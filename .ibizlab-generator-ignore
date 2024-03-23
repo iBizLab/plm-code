@@ -1,0 +1,16 @@
+**.ibizlab-generator-ignore
+**.DS_Store
+**/node_modules/**
+**/target/**
+**@macro/**
+**/BootApplication.java
+**/application.yml
+**/SysDepartmentServiceImpl.java
+pom.xml
+.gitignore
+Dockerfile
+Dockerfile-serviceapi
+**/sysmodel/**
+**/permission/**
+**/msgtempl/**
+**/logic/**
