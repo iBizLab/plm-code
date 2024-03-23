@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper	namespace="cn.ibizlab.plm.core.projmgmt.mapper.SprintMapper">
+
+        <!--通过mybatis将查询结果注入到entity中,通过配置autoMapping="true"由mybatis自动处理映射关系 -->
+    <resultMap id="SprintResultMap" type="cn.ibizlab.plm.core.projmgmt.domain.Sprint" autoMapping="true">
+		<id property="id" column="id" /><!--主键字段映射-->
+		<result property="startAt" column="start_at" />
+		<result property="endAt" column="end_at" />
+		<result property="projectName" column="project_name" />
+		<result property="sprintCategoryName" column="sprint_category_name" />
+		<result property="assigneeName" column="assignee_name" />
+		<result property="assigneeId" column="assignee_id" />
+		<result property="updateMan" column="update_man" />
+		<result property="createMan" column="create_man" />
+		<result property="updateTime" column="update_time" />
+		<result property="createTime" column="create_time" />
+		<result property="projectId" column="project_id" />
+		<result property="pid" column="pid" />
+		<result property="sprintCategoryId" column="sprint_category_id" />
+        <association property="project" javaType="cn.ibizlab.plm.core.projmgmt.domain.Project" column="project_id" select="cn.ibizlab.plm.core.projmgmt.mapper.ProjectMapper.selectById" fetchType="lazy"></association>
+        <association property="sprintCategory" javaType="cn.ibizlab.plm.core.projmgmt.domain.SprintCategory" column="sprint_category_id" select="cn.ibizlab.plm.core.projmgmt.mapper.SprintCategoryMapper.selectById" fetchType="lazy"></association>
+        <association property="sprint" javaType="cn.ibizlab.plm.core.projmgmt.domain.Sprint" column="pid" select="cn.ibizlab.plm.core.projmgmt.mapper.SprintMapper.selectById" fetchType="lazy"></association>
+    </resultMap>
+
+    <select id="selectById"  resultMap="SprintResultMap">
+        <include refid="view" /> 
+         where 
+         t1.id=#{ id }
+    </select>
+
+    <select id="selectEntity" parameterType="cn.ibizlab.plm.core.projmgmt.domain.Sprint" resultMap="SprintResultMap">
+        <include refid="view" /> 
+         where 
+         (t1.id = #{ id })
+    </select>
+
+    <select id="selectEntities" parameterType="java.util.List" resultMap="SprintResultMap">
+        <include refid="view" /> 
+         where 
+         (t1.id)
+         in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.id }) </foreach>)
+    </select>
+
+    <delete id="deleteEntities" parameterType="java.util.List">
+    delete from SPRINT
+    where (id)
+         in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.id }) </foreach>)
+    </delete>
+
+    <sql id="chooseMove" databaseId="mysql">
+         <![CDATA[ select null as id, '待分配工作项' as name union all select t1.id, t1.name from `sprint` `t1`  ]]>  where  <![CDATA[ (`id` <> #{ctx.webcontext.sprint_id} and `status` <>  '3' ) ]]> 
+    </sql>
+
+    <sql id="default" databaseId="mysql">
+         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`NAME`, t1.`PID`, t11.`NAME` AS `PNAME`, t1.`PROJECT_ID`, t21.`NAME` AS `PROJECT_NAME`, t1.`SPRINT_CATEGORY_ID`, t31.`NAME` AS `SPRINT_CATEGORY_NAME`, t1.`START_AT`, t1.`STATUS`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `SPRINT` t1  LEFT JOIN `SPRINT` t11 ON t1.`PID` = t11.`ID`  LEFT JOIN `PROJECT` t21 ON t1.`PROJECT_ID` = t21.`ID`  LEFT JOIN `SPRINT_CATEGORY` t31 ON t1.`SPRINT_CATEGORY_ID` = t31.`ID`   ]]>  
+    </sql>
+
+    <sql id="notFinish" databaseId="mysql">
+         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`NAME`, t1.`PID`, t11.`NAME` AS `PNAME`, t1.`PROJECT_ID`, t21.`NAME` AS `PROJECT_NAME`, t1.`SPRINT_CATEGORY_ID`, t31.`NAME` AS `SPRINT_CATEGORY_NAME`, t1.`START_AT`, t1.`STATUS`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `SPRINT` t1  LEFT JOIN `SPRINT` t11 ON t1.`PID` = t11.`ID`  LEFT JOIN `PROJECT` t21 ON t1.`PROJECT_ID` = t21.`ID`  LEFT JOIN `SPRINT_CATEGORY` t31 ON t1.`SPRINT_CATEGORY_ID` = t31.`ID`   ]]>  where  <![CDATA[ ( t1.`STATUS` <> '3' ) ]]> 
+    </sql>
+
+    <sql id="view" databaseId="mysql">
+         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`NAME`, t1.`PID`, t11.`NAME` AS `PNAME`, t1.`PROJECT_ID`, t21.`NAME` AS `PROJECT_NAME`, t1.`SPRINT_CATEGORY_ID`, t31.`NAME` AS `SPRINT_CATEGORY_NAME`, t1.`START_AT`, t1.`STATUS`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `SPRINT` t1  LEFT JOIN `SPRINT` t11 ON t1.`PID` = t11.`ID`  LEFT JOIN `PROJECT` t21 ON t1.`PROJECT_ID` = t21.`ID`  LEFT JOIN `SPRINT_CATEGORY` t31 ON t1.`SPRINT_CATEGORY_ID` = t31.`ID`   ]]>  
+    </sql>
+
+    <select id="searchChooseMove"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.SprintSearchContext"  resultMap="SprintResultMap">
+        select t1.* 
+        from (
+            <include refid="chooseMove"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listChooseMove"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.SprintSearchContext"  resultMap="SprintResultMap">
+        select t1.*
+        from (
+            <include refid="chooseMove"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.SprintSearchContext"  resultMap="SprintResultMap">
+        select t1.* 
+        from (
+            <include refid="default"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listDefault"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.SprintSearchContext"  resultMap="SprintResultMap">
+        select t1.*
+        from (
+            <include refid="default"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchNotFinish"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.SprintSearchContext"  resultMap="SprintResultMap">
+        select t1.* 
+        from (
+            <include refid="notFinish"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listNotFinish"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.SprintSearchContext"  resultMap="SprintResultMap">
+        select t1.*
+        from (
+            <include refid="notFinish"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="findByProjectId" resultMap="SprintResultMap">
+        select t1.* from (
+            <include refid="default"/>
+        ) t1
+        where project_id in <foreach item="id" index="index" collection="projectIds" open="(" separator="," close=")">#{id}</foreach> 
+    </select>
+
+    <select id="findBySprintCategoryId" resultMap="SprintResultMap">
+        select t1.* from (
+            <include refid="default"/>
+        ) t1
+        where sprint_category_id in <foreach item="id" index="index" collection="sprintCategoryIds" open="(" separator="," close=")">#{id}</foreach> 
+    </select>
+
+    <select id="findByPid" resultMap="SprintResultMap">
+        select t1.* from (
+            <include refid="default"/>
+        ) t1
+        where pid in <foreach item="id" index="index" collection="pids" open="(" separator="," close=")">#{id}</foreach> 
+    </select>
+
+
+</mapper>

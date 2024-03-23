@@ -1,0 +1,47 @@
+export default {
+  codeListTag: 'Field_type',
+  codeListType: 'STATIC',
+  codeName: 'Field_type',
+  emptyText: '未定义',
+  appDataEntityId: 'plmweb.psdefield',
+  codeItems: [
+    {
+      codeName: 'Item_1',
+      color: 'Blue',
+      text: '物理字段[来自当前实体物理表字段]',
+      value: '1',
+      id: 'item_1',
+    },
+    {
+      codeName: 'Item_2',
+      color: 'DarkSlateGray',
+      text: '逻辑字段[来自计算式]',
+      value: '2',
+      id: 'item_2',
+    },
+    {
+      codeName: 'Item_3',
+      color: 'Darkorange',
+      text: '链接字段[来自关系实体字段]',
+      value: '3',
+      id: 'item_3',
+    },
+    {
+      codeName: 'Item_4',
+      color: 'SeaGreen',
+      text: '扩展物理字段[来自动态存储实体物理表字段]',
+      value: '4',
+      id: 'item_4',
+    },
+    {
+      codeName: 'Item_5',
+      color: 'Violet',
+      text: '应用界面字段[无存储]',
+      value: '5',
+      id: 'item_5',
+    },
+  ],
+  enableCache: true,
+  name: '云实体属性类型',
+  id: 'plmweb.field_type',
+};

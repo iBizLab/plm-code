@@ -1,0 +1,35 @@
+#Generate code from /{{projectName}}-{{apis}}/src/main/resources/application.yml.hbs
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  liquibase:
+    enabled: false
+  profiles:
+    include: sys ,nacos, api, dev
+  application:
+    name: ibizplm-serviceapi-dev
+  main:
+    allow-bean-definition-overriding: true
+  messages:
+    basename: i18n/messages
+
+server:
+  port: ${server.ibizplm-serviceapi.port:18080}
+
+
+springfox:
+  documentation:
+    enabled: false
+
+ibiz:
+  rest:
+    basePath:
+      serviceapi: /ibizplm/serviceapi
+  servicehub:
+    id: demo
+    register-naming-service: false
+    publish-config: false
+  runtime:
+    mapUnderscore2camelCase: true
+    pointcut: execution(* cn.ibizlab.plm.core.testmgmt.service.*.*(..)) || execution(* cn.ibizlab.plm.core.projmgmt.service.*.*(..)) || execution(* cn.ibizlab.plm.core.prodmgmt.service.*.*(..))  ||  execution(* cn.ibizlab.plm.core.ebsx.service.*.*(..))

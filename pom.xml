@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>plm</artifactId>
+    <groupId>cn.ibizlab.plm</groupId>
+    <version>1.0.0.0</version>
+    <name>Plm</name>
+    <description>plm</description>
+    <packaging>pom</packaging>
+
+    <parent>
+        <groupId>cn.ibizlab.plugin</groupId>
+        <artifactId>ibizlab-boot-starter-parent</artifactId>
+        <version>2.6.12.3.1</version>
+    </parent>
+
+    <properties>
+        <docker.image.prefix>ibizlab</docker.image.prefix>
+        <ibizlab-boot-starter.version>2.6.12.3.1</ibizlab-boot-starter.version>
+        <ibizlab-boot-adapter.version>2.6.1.5</ibizlab-boot-adapter.version>
+        <ibizlab-generator-plugin.version>1.0.5.8</ibizlab-generator-plugin.version>
+        <ibizlab-template-ibizedge.version>2.6.P-SNAPSHOT</ibizlab-template-ibizedge.version>
+    </properties>
+
+    <modules>
+        <!-- cores -->
+        <module>plm-core</module>
+        <!-- users -->
+        <module>plm-user</module>
+        <!-- serviceapi -->
+        <module>plm-serviceapi</module>
+    </modules>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>cn.ibizlab.plugin</groupId>
+            <artifactId>ibizlab-boot-adapter</artifactId>
+            <version>${ibizlab-boot-adapter.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+            <version>3.2.1</version>
+        </dependency>
+
+    </dependencies>
+
+
+
+    <repositories>
+        <repository>
+            <id>aliyunmaven</id>
+            <name>阿里云公共仓库</name>
+            <url>https://maven.aliyun.com/repository/public/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/groups/public/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>aliyun-plugin</id>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>ossrh-plugin</id>
+            <url>https://s01.oss.sonatype.org/content/groups/public/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <configuration>
+                    <generateBackupPoms>false</generateBackupPoms>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>cn.ibizlab.plugin</groupId>
+                <artifactId>ibizlab-generator-plugin</artifactId>
+                <version>${ibizlab-generator-plugin.version}</version>
+                <configuration>
+                    <output>
+                        ${basedir}/
+                    </output>
+                    <inputSpec>
+                        ${basedir}/../plm/runtime/cn/ibizlab/plm
+                    </inputSpec>
+                    <templateDirs>
+                        ${basedir}/plm-core/src/main/resources/templ
+                    </templateDirs>
+                    <packageName>
+                        ${project.groupId}
+                    </packageName>
+                    <name>
+                        ${project.artifactId}
+                    </name>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>cn.ibizlab.plugin</groupId>
+                        <artifactId>ibizlab-template-ibizedge</artifactId>
+                        <version>${ibizlab-template-ibizedge.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

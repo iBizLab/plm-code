@@ -1,0 +1,67 @@
+export default {
+  funcViewMode: 'PICKUPVIEW',
+  deviewCodeName: 'PickupView',
+  deviewId: '4dc4407ce4c85e5295b14053ffeb6bc4',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.RELEASE',
+  },
+  caption: '项目发布',
+  codeName: 'releasePickupView',
+  appDataEntityId: 'plmweb.release',
+  appViewEngines: [
+    {
+      engineCat: 'VIEW',
+      engineType: 'PickupView',
+      id: 'engine',
+    },
+  ],
+  controls: [
+    {
+      embeddedAppDEViewId: 'plmweb.releasepickupgridview',
+      codeName: 'PickupViewpickupviewpanel',
+      controlType: 'PICKUPVIEWPANEL',
+      appDataEntityId: 'plmweb.release',
+      controlParam: {
+        id: 'pickupviewpanel',
+      },
+      name: 'pickupviewpanel',
+      id: 'pickupviewpickupviewpanel',
+    },
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.RELEASE',
+      },
+      caption: '项目发布',
+      codeName: 'PickupViewcaptionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.release',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'pickupviewcaptionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'Layoutpanel',
+    controlStyle: 'APPDEPICKUPVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.release',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '项目发布数据选择视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.RELEASE.PICKUPVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEPICKUPVIEW',
+  enableDP: true,
+  showCaptionBar: false,
+  modelId: '39f79bc547a006bf94a165652599d75b',
+  modelType: 'PSAPPDEVIEW',
+  name: 'releasePickupView',
+  id: 'plmweb.releasepickupview',
+};

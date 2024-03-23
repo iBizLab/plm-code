@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>plm</artifactId>
+        <groupId>cn.ibizlab.plm</groupId>
+        <version>1.0.0.0</version>
+    </parent>
+
+    <artifactId>plm-core</artifactId>
+    <name>Plm Core</name>
+    <description>plm Core，模板生成代码，再次发布会覆盖，建议不要直接修改，修改请在plm-usr plm-serviceapi 项目中继承或覆盖重写</description>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>cn.ibizlab.plugin</groupId>
+            <artifactId>ibizlab-boot-starter-data</artifactId>
+            <version>${ibizlab-boot-starter.version}</version>
+        </dependency>
+
+        <!--  MySQL驱动包 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+
+	</dependencies>
+
+    <properties>
+        <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
+    </properties>
+    <profiles>
+        <profile>
+            <id>diff</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.liquibase</groupId>
+                        <artifactId>liquibase-maven-plugin</artifactId>
+                        <version>${liquibase.version}</version>
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.h2database</groupId>
+                                <artifactId>h2</artifactId>
+                                <version>1.4.200</version>
+                            </dependency>
+                        </dependencies>
+                        <executions>
+                            <execution>
+                                <id>prepare-newdb</id>
+                                <configuration>
+                                    <changeLogFile>${project.basedir}/src/main/resources/liquibase/h2_table.xml</changeLogFile>
+                                    <driver>org.h2.Driver</driver>
+                                    <url>jdbc:h2:file:${project.build.directory}/db/new;MODE=mysql</url>
+                                    <username>root</username>
+                                    <dropFirst>true</dropFirst>
+                                </configuration>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>update</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>prepare-olddb</id>
+                                <configuration>
+                                    <changeLogFile>${project.basedir}/src/main/resources/liquibase/master_table.xml</changeLogFile>
+                                    <driver>org.h2.Driver</driver>
+                                    <url>jdbc:h2:file:${project.build.directory}/db/last;MODE=mysql</url>
+                                    <username>root</username>
+                                    <dropFirst>true</dropFirst>
+                                </configuration>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>update</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>make-diff</id>
+                                <configuration>
+                                    <changeLogFile>${project.basedir}/src/main/resources/liquibase/empty.xml</changeLogFile>
+                                    <diffChangeLogFile>${project.basedir}/src/main/resources/liquibase/changelog/${maven.build.timestamp}_changelog.xml</diffChangeLogFile>
+                                    <driver>org.h2.Driver</driver>
+                                    <url>jdbc:h2:file:${project.build.directory}/db/last;MODE=mysql</url>
+                                    <username>root</username>
+                                    <password></password>
+                                    <referenceUrl>jdbc:h2:file:${project.build.directory}/db/new;MODE=mysql</referenceUrl>
+                                    <referenceDriver>org.h2.Driver</referenceDriver>
+                                    <referenceUsername>root</referenceUsername>
+                                    <verbose>true</verbose>
+                                    <logging>debug</logging>
+                                    <contexts>!test</contexts>
+                                    <diffExcludeObjects>Index:.*,foreignKey:FK_RELATION_CHILD,FK_RELATION_PARENT,table:ibzfile,ibzuser,ibzdataaudit,ibzcfg,IBZFILE,IBZUSER,IBZDATAAUDIT,IBZCFG,act_de_databasechangelog,act_de_databasechangeloglock,act_de_model,act_de_model_history,act_de_model_relation,ACT_DE_DATABASECHANGELOG,ACT_DE_DATABASECHANGELOGLOCK,ACT_DE_MODEL,ACT_DE_MODEL_HISTORY,ACT_DE_MODEL_RELATION</diffExcludeObjects>
+                                </configuration>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>diff</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>

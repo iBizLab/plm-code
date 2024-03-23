@@ -1,0 +1,71 @@
+export default {
+  redirectAppViewRefs: [
+    {
+      realTitle: '空间成员编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.SPACE_MEMBER.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.space_membereditview',
+      name: 'SPACE_MEMBER:EDITVIEW',
+      id: 'space_member:editview',
+    },
+    {
+      realTitle: '空间成员编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.SPACE_MEMBER.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.space_membereditview',
+      name: 'EDITVIEW',
+      id: 'editview',
+    },
+  ],
+  enableWorkflow: true,
+  funcViewMode: 'REDIRECTVIEW',
+  deviewCodeName: 'RedirectView',
+  deviewId: '3773802aa95ff94c9c84df4c5e3919d3',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.SPACE_MEMBER',
+  },
+  caption: '空间成员',
+  codeName: 'space_memberRedirectView',
+  appDataEntityId: 'plmweb.space_member',
+  controls: [
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.SPACE_MEMBER',
+      },
+      caption: '空间成员',
+      codeName: 'RedirectViewcaptionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.space_member',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'redirectviewcaptionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'Layoutpanel',
+    controlStyle: 'APPDEREDIRECTVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.space_member',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '空间成员数据重定向视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.SPACE_MEMBER.REDIRECTVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEREDIRECTVIEW',
+  enableDP: true,
+  redirectView: true,
+  showCaptionBar: true,
+  modelId: '3c670e448745d385fa228d89233dcfa3',
+  modelType: 'PSAPPDEVIEW',
+  name: 'space_memberRedirectView',
+  id: 'plmweb.space_memberredirectview',
+};

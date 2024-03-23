@@ -1,0 +1,25 @@
+spring:
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
+    database: 0
+  datasource:
+    username: plm
+    password: 'plm@2024'
+    url: jdbc:mysql://127.0.0.1:30006/plm?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&useOldAliasMetadataBehavior=true&useSSL=false&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.jdbc.Driver
+    defaultSchema: plm
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:30048
+        group: ibiz_config_group
+        enabled: true
+      config:
+        server-addr: 127.0.0.1:30048
+        group: ibiz_config_group
+        file-extension: yaml
+
+ibiz:
+  cacheLevel: L2 #(L1)一级本地caffeine缓存;(L2)caffeine缓存+Redis缓存

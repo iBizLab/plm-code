@@ -1,0 +1,47 @@
+export default {
+  codeListTag: 'ProdMgmt__Idea_state',
+  codeListType: 'STATIC',
+  codeName: 'ProdMgmt__Idea_state',
+  emptyText: '未定义',
+  appDataEntityId: 'plmweb.idea',
+  codeItems: [
+    {
+      codeName: 'Item_10',
+      color: '#56ABFB',
+      text: '待评审',
+      value: '10',
+      id: 'item_10',
+    },
+    {
+      codeName: 'Item_20',
+      color: '#FF9F73',
+      text: '已计划',
+      value: '20',
+      id: 'item_20',
+    },
+    {
+      codeName: 'Item_30',
+      color: '#F6C659',
+      text: '进行中',
+      value: '30',
+      id: 'item_30',
+    },
+    {
+      codeName: 'Item_40',
+      color: '#73D897',
+      text: '已完成',
+      value: '40',
+      id: 'item_40',
+    },
+    {
+      codeName: 'Item_50',
+      color: '#4E4D4D',
+      text: '已关闭',
+      value: '50',
+      id: 'item_50',
+    },
+  ],
+  enableCache: true,
+  name: '需求状态',
+  id: 'plmweb.prodmgmt__idea_state',
+};

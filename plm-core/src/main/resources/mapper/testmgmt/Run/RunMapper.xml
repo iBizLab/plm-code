@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper	namespace="cn.ibizlab.plm.core.testmgmt.mapper.RunMapper">
+
+        <!--通过mybatis将查询结果注入到entity中,通过配置autoMapping="true"由mybatis自动处理映射关系 -->
+    <resultMap id="RunResultMap" type="cn.ibizlab.plm.core.testmgmt.domain.Run" autoMapping="true">
+		<id property="id" column="id" /><!--主键字段映射-->
+		<result property="executedAt" column="executed_at" />
+        <result property="steps" column="steps" jdbcType="VARCHAR" typeHandler="cn.ibizlab.plm.core.testmgmt.domain.handlers.StepTypeHandler" />
+		<result property="planName" column="plan_name" />
+		<result property="testType" column="test_type" />
+		<result property="maintenanceName" column="maintenance_name" />
+		<result property="executorId" column="executor_id" />
+		<result property="executorName" column="executor_name" />
+		<result property="suiteId" column="suite_id" />
+		<result property="suiteName" column="suite_name" />
+		<result property="libraryName" column="library_name" />
+		<result property="libraryId" column="library_id" />
+		<result property="updateTime" column="update_time" />
+		<result property="createMan" column="create_man" />
+		<result property="createTime" column="create_time" />
+		<result property="updateMan" column="update_man" />
+		<result property="planId" column="plan_id" />
+		<result property="caseId" column="case_id" />
+		<result property="caseName" column="case_name" />
+        <association property="testCase" javaType="cn.ibizlab.plm.core.testmgmt.domain.TestCase" column="case_id" select="cn.ibizlab.plm.core.testmgmt.mapper.TestCaseMapper.selectById" fetchType="lazy"></association>
+        <association property="testPlan" javaType="cn.ibizlab.plm.core.testmgmt.domain.TestPlan" column="plan_id" select="cn.ibizlab.plm.core.testmgmt.mapper.TestPlanMapper.selectById" fetchType="lazy"></association>
+    </resultMap>
+
+    <select id="selectById"  resultMap="RunResultMap">
+        <include refid="view" /> 
+         where 
+         t1.id=#{ id }
+    </select>
+
+    <select id="selectEntity" parameterType="cn.ibizlab.plm.core.testmgmt.domain.Run" resultMap="RunResultMap">
+        <include refid="view" /> 
+         where 
+         (t1.id = #{ id })
+    </select>
+
+    <select id="selectEntities" parameterType="java.util.List" resultMap="RunResultMap">
+        <include refid="view" /> 
+         where 
+         (t1.id)
+         in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.id }) </foreach>)
+    </select>
+
+    <delete id="deleteEntities" parameterType="java.util.List">
+    delete from RUN
+    where (id)
+         in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.id }) </foreach>)
+    </delete>
+
+    <sql id="commentNotifyExecutor" databaseId="mysql">
+         <![CDATA[ SELECT t1.`EXECUTOR_ID`, t1.`EXECUTOR_NAME`, t1.`ID` FROM `RUN` t1   ]]>  where  <![CDATA[ ( exists (select 1 from comment t2 where t1.ID = t2.PRINCIPAL_ID and t2.ID = #{ctx.webcontext.id}) ) ]]> 
+    </sql>
+
+    <sql id="default" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CASE_ID`, t11.`NAME` AS `CASE_NAME`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`EXECUTED_AT`, t1.`EXECUTOR_ID`, t1.`EXECUTOR_NAME`, t1.`ID`, t11.`IDENTIFIER`, t11.`LEVEL`, t21.`LIBRARY_ID`, t41.`NAME` AS `LIBRARY_NAME`, t11.`MAINTENANCE_NAME`, t1.`NAME`, t1.`PLAN_ID`, t21.`NAME` AS `PLAN_NAME`, t11.`PRECONDITION`, t1.`REMARK`, t11.`STATE`, t1.`STATUS`, t31.`SUITES`, t11.`SUITE_ID`, t31.`NAME` AS `SUITE_NAME`, t11.`TEST_TYPE`, t11.`TITLE`, t11.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RUN` t1  LEFT JOIN `TEST_CASE` t11 ON t1.`CASE_ID` = t11.`ID`  LEFT JOIN `TEST_PLAN` t21 ON t1.`PLAN_ID` = t21.`ID`  LEFT JOIN `TEST_SUITE` t31 ON t11.`SUITE_ID` = t31.`ID`  LEFT JOIN `LIBRARY` t41 ON t21.`LIBRARY_ID` = t41.`ID`   ]]>  
+    </sql>
+
+    <sql id="normal" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CASE_ID`, t11.`NAME` AS `CASE_NAME`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`EXECUTED_AT`, t1.`EXECUTOR_ID`, t1.`EXECUTOR_NAME`, t1.`ID`, t11.`IDENTIFIER`, t11.`LEVEL`, t21.`LIBRARY_ID`, t41.`NAME` AS `LIBRARY_NAME`, t11.`MAINTENANCE_NAME`, t1.`NAME`, t1.`PLAN_ID`, t21.`NAME` AS `PLAN_NAME`, t11.`PRECONDITION`, t1.`REMARK`, t11.`STATE`, t1.`STATUS`, t31.`SUITES`, t11.`SUITE_ID`, t31.`NAME` AS `SUITE_NAME`, t11.`TEST_TYPE`, t11.`TITLE`, t11.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RUN` t1  LEFT JOIN `TEST_CASE` t11 ON t1.`CASE_ID` = t11.`ID`  LEFT JOIN `TEST_PLAN` t21 ON t1.`PLAN_ID` = t21.`ID`  LEFT JOIN `TEST_SUITE` t31 ON t11.`SUITE_ID` = t31.`ID`  LEFT JOIN `LIBRARY` t41 ON t21.`LIBRARY_ID` = t41.`ID`   ]]>  where ( ( <choose><when test='ctx.webcontext.suite_id !=null and ctx.webcontext.suite_id != &quot;&quot; '>  t11.`SUITE_ID` = #{ctx.webcontext.suite_id}  </when><otherwise>1&lt;&gt;1</otherwise></choose>  OR  t31.`SUITES` LIKE CONCAT('%',#{ctx.webcontext.suite_id},'%') ) ) 
+    </sql>
+
+    <sql id="view" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CASE_ID`, t11.`NAME` AS `CASE_NAME`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`EXECUTED_AT`, t1.`EXECUTOR_ID`, t1.`EXECUTOR_NAME`, t1.`ID`, t11.`IDENTIFIER`, t11.`LEVEL`, t21.`LIBRARY_ID`, t41.`NAME` AS `LIBRARY_NAME`, t11.`MAINTENANCE_NAME`, t1.`NAME`, t1.`PLAN_ID`, t21.`NAME` AS `PLAN_NAME`, t11.`PRECONDITION`, t1.`REMARK`, t11.`STATE`, t1.`STATUS`, t1.`STEPS`, t31.`SUITES`, t11.`SUITE_ID`, t31.`NAME` AS `SUITE_NAME`, t11.`TEST_TYPE`, t11.`TITLE`, t11.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RUN` t1  LEFT JOIN `TEST_CASE` t11 ON t1.`CASE_ID` = t11.`ID`  LEFT JOIN `TEST_PLAN` t21 ON t1.`PLAN_ID` = t21.`ID`  LEFT JOIN `TEST_SUITE` t31 ON t11.`SUITE_ID` = t31.`ID`  LEFT JOIN `LIBRARY` t41 ON t21.`LIBRARY_ID` = t41.`ID`   ]]>  
+    </sql>
+
+    <select id="searchCommentNotifyExecutor"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.RunSearchContext"  resultMap="RunResultMap">
+        select t1.* 
+        from (
+            <include refid="commentNotifyExecutor"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listCommentNotifyExecutor"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.RunSearchContext"  resultMap="RunResultMap">
+        select t1.*
+        from (
+            <include refid="commentNotifyExecutor"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.RunSearchContext"  resultMap="RunResultMap">
+        select t1.* 
+        from (
+            <include refid="default"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listDefault"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.RunSearchContext"  resultMap="RunResultMap">
+        select t1.*
+        from (
+            <include refid="default"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchNormal"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.RunSearchContext"  resultMap="RunResultMap">
+        select t1.* 
+        from (
+            <include refid="normal"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listNormal"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.RunSearchContext"  resultMap="RunResultMap">
+        select t1.*
+        from (
+            <include refid="normal"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="findByCaseId" resultMap="RunResultMap">
+        select t1.* from (
+            <include refid="default"/>
+        ) t1
+        where case_id in <foreach item="id" index="index" collection="caseIds" open="(" separator="," close=")">#{id}</foreach>  order by IDENTIFIER ASC
+    </select>
+
+    <select id="findByPlanId" resultMap="RunResultMap">
+        select t1.* from (
+            <include refid="default"/>
+        ) t1
+        where plan_id in <foreach item="id" index="index" collection="planIds" open="(" separator="," close=")">#{id}</foreach>  order by IDENTIFIER ASC
+    </select>
+
+
+</mapper>

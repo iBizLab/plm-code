@@ -1,0 +1,83 @@
+export default {
+  getDataAppDEActionId: 'get',
+  redirectAppViewRefs: [
+    {
+      realTitle: '工作项编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.work_itemeditview',
+      name: 'WORK_ITEM:EDITVIEW',
+      id: 'work_item:editview',
+    },
+    {
+      realTitle: '工作项编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.work_itemeditview',
+      name: 'EDITVIEW',
+      id: 'editview',
+    },
+  ],
+  typeAppDEFieldId: 'work_item_type_id',
+  enableCustomGetDataAction: true,
+  enableWorkflow: true,
+  funcViewMode: 'REDIRECTVIEW',
+  deviewCodeName: 'RedirectView',
+  deviewId: 'da75bb009ca18609b946f9ab1e265deb',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.WORK_ITEM',
+  },
+  caption: '工作项',
+  codeName: 'work_itemRedirectView',
+  appDataEntityId: 'plmweb.work_item',
+  appViewRefs: [
+    {
+      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realTitle: '工作项',
+      refAppViewId: 'plmweb.work_itemmain_view',
+      name: 'EDITDATA',
+      id: 'editdata',
+    },
+  ],
+  controls: [
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.WORK_ITEM',
+      },
+      caption: '工作项',
+      codeName: 'RedirectViewcaptionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.work_item',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'redirectviewcaptionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'Layoutpanel',
+    controlStyle: 'APPDEREDIRECTVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.work_item',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '工作项数据重定向视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.WORK_ITEM.REDIRECTVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEREDIRECTVIEW',
+  enableDP: true,
+  redirectView: true,
+  showCaptionBar: true,
+  modelId: '0ae85717afb12c9b38b058358a23c814',
+  modelType: 'PSAPPDEVIEW',
+  name: 'work_itemRedirectView',
+  id: 'plmweb.work_itemredirectview',
+};

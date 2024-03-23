@@ -1,0 +1,17 @@
+window.Environment = {
+  dev: true,
+  logLevel: 'ERROR',
+  BaseUrl: '/api',
+  pluginBaseUrl: './plugins',
+  hub: true,
+  enableMqtt: true,
+  mqttUrl: '/portal/mqtt/mqtt',
+  enableAnonymous: false,
+  anonymousUser: '',
+  anonymousPwd: '',
+  marketAddress: '',
+  appId: 'ibizplm__plmweb',
+  mockDcSystemId: 'ibizplm',
+  AppTitle: '应用首页',
+  favicon: './favicon.ico',
+};

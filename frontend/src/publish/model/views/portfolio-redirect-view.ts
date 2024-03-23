@@ -1,0 +1,73 @@
+export default {
+  redirectAppViewRefs: [
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '项目集信息展示视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.PORTFOLIO.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.portfolioproject_show_view',
+      name: 'PORTFOLIO:EDITVIEW',
+      id: 'portfolio:editview',
+    },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '项目集信息展示视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.PORTFOLIO.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.portfolioproject_show_view',
+      name: 'EDITVIEW',
+      id: 'editview',
+    },
+  ],
+  enableWorkflow: true,
+  funcViewMode: 'REDIRECTVIEW',
+  deviewCodeName: 'RedirectView',
+  deviewId: '57aec6d631814b93ffdffa7cbe7a902a',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.PORTFOLIO',
+  },
+  caption: '文件夹',
+  codeName: 'portfolioRedirectView',
+  appDataEntityId: 'plmweb.portfolio',
+  controls: [
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.PORTFOLIO',
+      },
+      caption: '文件夹',
+      codeName: 'RedirectViewcaptionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.portfolio',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'redirectviewcaptionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'Layoutpanel',
+    controlStyle: 'APPDEREDIRECTVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.portfolio',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '文件夹数据重定向视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.PORTFOLIO.REDIRECTVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEREDIRECTVIEW',
+  enableDP: true,
+  redirectView: true,
+  showCaptionBar: true,
+  modelId: '0a30b7bf6a03b69c6c388efb9b0e26f8',
+  modelType: 'PSAPPDEVIEW',
+  name: 'portfolioRedirectView',
+  id: 'plmweb.portfolioredirectview',
+};

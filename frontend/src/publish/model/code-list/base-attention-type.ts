@@ -1,0 +1,40 @@
+export default {
+  codeListTag: 'Base__Attention_type',
+  codeListType: 'STATIC',
+  codeName: 'Base__Attention_type',
+  emptyText: '未定义',
+  appDataEntityId: 'plmweb.attention',
+  codeItems: [
+    {
+      codeName: 'Item_10',
+      text: '不关注',
+      tooltip: '不关注，只有当评论中有人@提及时接收通知',
+      value: '10',
+      id: 'item_10',
+    },
+    {
+      codeName: 'Item_20',
+      text: '订阅',
+      tooltip: '保持关注，只有当评论中有人@提及时接收通知',
+      value: '20',
+      id: 'item_20',
+    },
+    {
+      codeName: 'Item_30',
+      text: '重要通知',
+      tooltip: '保持关注，接收重要的操作通知，如@我，状态变更',
+      value: '30',
+      id: 'item_30',
+    },
+    {
+      codeName: 'Item_40',
+      text: '关注',
+      tooltip: '保持关注并接收所有的通知',
+      value: '40',
+      id: 'item_40',
+    },
+  ],
+  enableCache: true,
+  name: '关注类型',
+  id: 'plmweb.base__attention_type',
+};

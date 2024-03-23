@@ -1,0 +1,67 @@
+export default {
+  funcViewMode: 'PICKUPVIEW',
+  deviewCodeName: 'PickupView',
+  deviewId: '91b2888a020d315b73a934b5db078b4f',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.WORKLOAD_TYPE',
+  },
+  caption: '工时类别',
+  codeName: 'workload_typePickupView',
+  appDataEntityId: 'plmweb.workload_type',
+  appViewEngines: [
+    {
+      engineCat: 'VIEW',
+      engineType: 'PickupView',
+      id: 'engine',
+    },
+  ],
+  controls: [
+    {
+      embeddedAppDEViewId: 'plmweb.workload_typepickupgridview',
+      codeName: 'PickupViewpickupviewpanel',
+      controlType: 'PICKUPVIEWPANEL',
+      appDataEntityId: 'plmweb.workload_type',
+      controlParam: {
+        id: 'pickupviewpanel',
+      },
+      name: 'pickupviewpanel',
+      id: 'pickupviewpickupviewpanel',
+    },
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.WORKLOAD_TYPE',
+      },
+      caption: '工时类别',
+      codeName: 'PickupViewcaptionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.workload_type',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'pickupviewcaptionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'Layoutpanel',
+    controlStyle: 'APPDEPICKUPVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.workload_type',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '工时类别数据选择视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.WORKLOAD_TYPE.PICKUPVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEPICKUPVIEW',
+  enableDP: true,
+  showCaptionBar: false,
+  modelId: '1eb24eb7b9fe7f2b87656d4b88465cd9',
+  modelType: 'PSAPPDEVIEW',
+  name: 'workload_typePickupView',
+  id: 'plmweb.workload_typepickupview',
+};

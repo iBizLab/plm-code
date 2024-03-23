@@ -1,0 +1,58 @@
+export default {
+  deviewCodeName: 'move_choose_pickup_view',
+  deviewId: '8BE79340-3B61-4757-A568-54E79934BAE2',
+  accUserMode: 2,
+  caption: '选择项目',
+  codeName: 'projectmove_choose_pickup_view',
+  appDataEntityId: 'plmweb.project',
+  appViewEngines: [
+    {
+      engineCat: 'VIEW',
+      engineType: 'PickupView',
+      id: 'engine',
+    },
+  ],
+  controls: [
+    {
+      embeddedAppDEViewId:
+        'plmweb.projectmove_choose_pickup_view_pickupgridview',
+      codeName: 'move_choose_pickup_viewpickupviewpanel',
+      controlType: 'PICKUPVIEWPANEL',
+      appDataEntityId: 'plmweb.project',
+      controlParam: {
+        id: 'pickupviewpanel',
+      },
+      name: 'pickupviewpanel',
+      id: 'move_choose_pickup_viewpickupviewpanel',
+    },
+    {
+      caption: '选择项目',
+      codeName: 'move_choose_pickup_viewcaptionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.project',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'move_choose_pickup_viewcaptionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'Layoutpanel',
+    controlStyle: 'APPDEPICKUPVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.project',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '工作项移动时选择视图',
+  viewStyle: 'DEFAULT',
+  viewType: 'DEPICKUPVIEW',
+  enableDP: true,
+  showCaptionBar: false,
+  modelId: 'fe5e1fe06b9fe031c2481728e61c94d0',
+  modelType: 'PSAPPDEVIEW',
+  name: 'projectmove_choose_pickup_view',
+  id: 'plmweb.projectmove_choose_pickup_view',
+};

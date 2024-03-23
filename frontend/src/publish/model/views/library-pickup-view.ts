@@ -1,0 +1,67 @@
+export default {
+  funcViewMode: 'PICKUPVIEW',
+  deviewCodeName: 'PickupView',
+  deviewId: 'e1f3ac5960b65ec5e23f5c20fff341ba',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.LIBRARY',
+  },
+  caption: '测试库',
+  codeName: 'libraryPickupView',
+  appDataEntityId: 'plmweb.library',
+  appViewEngines: [
+    {
+      engineCat: 'VIEW',
+      engineType: 'PickupView',
+      id: 'engine',
+    },
+  ],
+  controls: [
+    {
+      embeddedAppDEViewId: 'plmweb.librarypickupgridview',
+      codeName: 'PickupViewpickupviewpanel',
+      controlType: 'PICKUPVIEWPANEL',
+      appDataEntityId: 'plmweb.library',
+      controlParam: {
+        id: 'pickupviewpanel',
+      },
+      name: 'pickupviewpanel',
+      id: 'pickupviewpickupviewpanel',
+    },
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.LIBRARY',
+      },
+      caption: '测试库',
+      codeName: 'PickupViewcaptionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.library',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'pickupviewcaptionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'Layoutpanel',
+    controlStyle: 'APPDEPICKUPVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.library',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '测试库数据选择视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.LIBRARY.PICKUPVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEPICKUPVIEW',
+  enableDP: true,
+  showCaptionBar: false,
+  modelId: 'f8528550af8f1440115abc78da1370c6',
+  modelType: 'PSAPPDEVIEW',
+  name: 'libraryPickupView',
+  id: 'plmweb.librarypickupview',
+};

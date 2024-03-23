@@ -1,0 +1,75 @@
+export default {
+  funcViewMode: 'PICKUPVIEW',
+  openMode: 'POPUPMODAL',
+  deviewCodeName: 'PickupView',
+  deviewId: 'ab7a7da7488a4d7ec0d18dc0efdc5024',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.SPRINT',
+  },
+  caption: '迭代',
+  codeName: 'sprintPickupView',
+  appDataEntityId: 'plmweb.sprint',
+  appViewEngines: [
+    {
+      engineCat: 'VIEW',
+      engineType: 'PickupView',
+      id: 'engine',
+    },
+  ],
+  appViewNavParams: [
+    {
+      key: 'n_project_id_eq',
+      value: 'project',
+      id: 'n_project_id_eq',
+    },
+  ],
+  controls: [
+    {
+      embeddedAppDEViewId: 'plmweb.sprintpickupgridview',
+      codeName: 'PickupViewpickupviewpanel',
+      controlType: 'PICKUPVIEWPANEL',
+      appDataEntityId: 'plmweb.sprint',
+      controlParam: {
+        id: 'pickupviewpanel',
+      },
+      name: 'pickupviewpanel',
+      id: 'pickupviewpickupviewpanel',
+    },
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.SPRINT',
+      },
+      caption: '迭代',
+      codeName: 'PickupViewcaptionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.sprint',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'pickupviewcaptionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'Layoutpanel',
+    controlStyle: 'APPDEPICKUPVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.sprint',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '迭代数据选择视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.SPRINT.PICKUPVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEPICKUPVIEW',
+  enableDP: true,
+  showCaptionBar: false,
+  modelId: 'cb3e5f46fa41586ef22d036981511add',
+  modelType: 'PSAPPDEVIEW',
+  name: 'sprintPickupView',
+  id: 'plmweb.sprintpickupview',
+};

@@ -1,0 +1,67 @@
+export default {
+  funcViewMode: 'PICKUPVIEW',
+  deviewCodeName: 'PickupView',
+  deviewId: '26d5daf6466a834deb3d210b4ed53d55',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.BOARD',
+  },
+  caption: '看板',
+  codeName: 'boardPickupView',
+  appDataEntityId: 'plmweb.board',
+  appViewEngines: [
+    {
+      engineCat: 'VIEW',
+      engineType: 'PickupView',
+      id: 'engine',
+    },
+  ],
+  controls: [
+    {
+      embeddedAppDEViewId: 'plmweb.boardpickupgridview',
+      codeName: 'PickupViewpickupviewpanel',
+      controlType: 'PICKUPVIEWPANEL',
+      appDataEntityId: 'plmweb.board',
+      controlParam: {
+        id: 'pickupviewpanel',
+      },
+      name: 'pickupviewpanel',
+      id: 'pickupviewpickupviewpanel',
+    },
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.BOARD',
+      },
+      caption: '看板',
+      codeName: 'PickupViewcaptionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.board',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'pickupviewcaptionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'Layoutpanel',
+    controlStyle: 'APPDEPICKUPVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.board',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '看板数据选择视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.BOARD.PICKUPVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEPICKUPVIEW',
+  enableDP: true,
+  showCaptionBar: false,
+  modelId: '03f79b2a60820cd48519261f19bfb459',
+  modelType: 'PSAPPDEVIEW',
+  name: 'boardPickupView',
+  id: 'plmweb.boardpickupview',
+};

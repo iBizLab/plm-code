@@ -1,0 +1,157 @@
+#Generate code from /{{projectName}}-core/src/main/resources/application-sys.yml.hbs
+#缓存、数据源
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        enabled: true
+  cache:
+    redis:
+      time-to-live: 3600
+    caffeine:
+      spec: initialCapacity=5,maximumSize=500,expireAfterWrite=3600s
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
+    database: 0
+    lettuce:
+      pool:
+        max-active: 32
+        max-wait: 300ms
+        max-idle: 16
+        min-idle: 8
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  datasource:
+    username: root
+    password: 'root'
+    url: jdbc:mysql://127.0.0.1:3306/plm?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&useOldAliasMetadataBehavior=true&serverTimezone=Asia/Shanghai&allowMultiQueries=true&serverTimezone=GMT%2B8
+    driver-class-name: com.mysql.jdbc.Driver
+    isSyncDBSchema: false
+    defaultSchema: plm
+    druid:
+      # 监控页面
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        profileEnable: true
+        exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+      statViewServlet:
+        enabled: true
+        # 设置白名单，不填则允许所有访问
+        allow:
+          url-pattern: /druid/*
+        # 控制台管理用户名和密码
+        login-username: admin
+        login-password: admin
+    dynamic:
+      druid: #以下是全局默认值，可以全局更改
+        filters: stat,slf4j
+        useGlobalDataSourceStat: true
+        stat:
+          log-slow-sql: true
+          merge-sql: true
+          slow-sql-millis: 10000
+        #配置初始化大小/最小/最大
+        initial-size: 1
+        min-idle: 1
+        max-active: 20
+        #获取连接等待超时时间
+        max-wait: 60000
+        #间隔多久进行一次检测，检测需要关闭的空闲连接
+        time-between-eviction-runs-millis: 60000
+        #一个连接在池中最小生存的时间
+        min-evictable-idle-time-millis: 300000
+        validation-query: SELECT 1 FROM DUAL
+        test-while-idle: true
+        test-on-borrow: false
+        test-on-return: false
+        #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
+        pool-prepared-statements: false
+        max-pool-prepared-statement-per-connection-size: 20
+      datasource:
+        master:
+          username: ${spring.datasource.username}
+          password: ${spring.datasource.password}
+          url: ${spring.datasource.url}
+          driver-class-name: ${spring.datasource.driver-class-name}
+          conf: classpath:liquibase/master.xml
+          isSyncDBSchema: ${spring.datasource.isSyncDBSchema}
+          defaultSchema: ${spring.datasource.defaultSchema}
+
+#Mybatis-plus配置
+mybatis-plus:
+  global-config:
+    refresh-mapper: true
+    db-config:
+      # 全局逻辑已删除默认值
+      logic-delete-value: 0
+      # 全局逻辑未删除默认值
+      logic-not-delete-value: 1
+  mapper-locations: classpath*:/mapper/*/*/*.xml
+  configuration:
+    jdbc-type-for-null: 'null'
+    map-underscore-to-camel-case: false
+
+#阿里sentinel熔断器
+feign:
+  httpclient:
+    enabled: true
+  sentinel:
+    enabled: true
+  compression:
+    request:
+      enabled: ${server.compression.enable:true}
+      mime-types: application/javascript,text/css,application/json,application/xml,text/html,text/xml,text/plain
+      min-response-size: 10240
+    response:
+      enabled: ${server.compression.enable:true}
+
+#Log配置
+logging:
+  level:
+    cn.ibizlab.plm: debug
+    org.springframework.boot.autoconfigure: ERROR
+
+#zuul网关超时设置
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+
+#系统是否开启权限验证、是否开启缓存
+#缓存级别：无缓存(无配置项)、一级缓存(L1)、二级缓存(L2)
+ibiz:
+  systemid: ibizplm
+  systemname: iBiz产品生命周期管理系统
+  enablePermissionValid: true
+  ref:
+    service:
+      uaa: uaa-api
+      rt:
+        version: RT2
+  cacheLevel: L1 #(L1)一级本地caffeine缓存;(L2)caffeine缓存+Redis缓存
+  jwt:
+    signature: RSA
+  saas:
+    column: SRFDCID
+    sys-tables: ACT_RU_TASK,act_re_procdef,databasechangelog,databasechangeloglock,T_DATA_ACTIVITY,T_DATA_COMMENTS,T_DATA_RESOURCE,T_DATA_RESOURCE_TYPE,T_DATA_SCHEMA,T_DATA_SET,T_DATA_SHARE,T_DATA_SOURCE,T_DATA_TAGS,logging_event,T_MC_APP,T_MC_BPMN,T_MC_MODEL,T_MC_MODEL_REFERENCE,T_MC_PIPELINE,T_MC_VISUAL,T_MC_VISUAL_COMPONENT,T_MC_VISUAL_CONFIG,T_MC_VISUAL_MAP,T_META_ENVIRONMENT,T_META_LOOKUP,T_META_LOOKUP_CATEGORY,T_META_SEQUENCE,T_META_TAGS,T_OSS_FILE
+
+### jobs
+jobs:
+  #admin-address: http://127.0.0.1:40005
+  app-name: ibizplm
+  app-port: 9999
+  #app-ip: 127.0.0.1
+
+server:
+  port: 18080
+  compression:
+    enabled: true
+    mime-types: application/javascript,text/css,application/json,application/xml,text/html,text/xml,text/plain
+    min-response-size: 10240
+
+

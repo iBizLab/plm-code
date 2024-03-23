@@ -1,0 +1,67 @@
+export default {
+  funcViewMode: 'PICKUPVIEW',
+  deviewCodeName: 'PickupView',
+  deviewId: '5cf855ecc343ce25fe919c3b0ed34917',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.USER',
+  },
+  caption: '企业用户',
+  codeName: 'userPickupView',
+  appDataEntityId: 'plmweb.user',
+  appViewEngines: [
+    {
+      engineCat: 'VIEW',
+      engineType: 'PickupView',
+      id: 'engine',
+    },
+  ],
+  controls: [
+    {
+      embeddedAppDEViewId: 'plmweb.userpickupgridview',
+      codeName: 'PickupViewpickupviewpanel',
+      controlType: 'PICKUPVIEWPANEL',
+      appDataEntityId: 'plmweb.user',
+      controlParam: {
+        id: 'pickupviewpanel',
+      },
+      name: 'pickupviewpanel',
+      id: 'pickupviewpickupviewpanel',
+    },
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.USER',
+      },
+      caption: '企业用户',
+      codeName: 'PickupViewcaptionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.user',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'pickupviewcaptionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'Layoutpanel',
+    controlStyle: 'APPDEPICKUPVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.user',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '企业用户数据选择视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.USER.PICKUPVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEPICKUPVIEW',
+  enableDP: true,
+  showCaptionBar: false,
+  modelId: '969dedc4a4221fecc55765e2e7f169f5',
+  modelType: 'PSAPPDEVIEW',
+  name: 'userPickupView',
+  id: 'plmweb.userpickupview',
+};

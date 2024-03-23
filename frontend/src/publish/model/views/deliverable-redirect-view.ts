@@ -1,0 +1,71 @@
+export default {
+  redirectAppViewRefs: [
+    {
+      realTitle: '交付物编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.DELIVERABLE.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.deliverableeditview',
+      name: 'DELIVERABLE:EDITVIEW',
+      id: 'deliverable:editview',
+    },
+    {
+      realTitle: '交付物编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.DELIVERABLE.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.deliverableeditview',
+      name: 'EDITVIEW',
+      id: 'editview',
+    },
+  ],
+  enableWorkflow: true,
+  funcViewMode: 'REDIRECTVIEW',
+  deviewCodeName: 'RedirectView',
+  deviewId: '5fea912c16569ef3e100dd424ddfb480',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.DELIVERABLE',
+  },
+  caption: '交付物',
+  codeName: 'deliverableRedirectView',
+  appDataEntityId: 'plmweb.deliverable',
+  controls: [
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.DELIVERABLE',
+      },
+      caption: '交付物',
+      codeName: 'RedirectViewcaptionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.deliverable',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'redirectviewcaptionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'Layoutpanel',
+    controlStyle: 'APPDEREDIRECTVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.deliverable',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '交付物数据重定向视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.DELIVERABLE.REDIRECTVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEREDIRECTVIEW',
+  enableDP: true,
+  redirectView: true,
+  showCaptionBar: true,
+  modelId: 'f5b78670de5667fb0978bf40071b9f13',
+  modelType: 'PSAPPDEVIEW',
+  name: 'deliverableRedirectView',
+  id: 'plmweb.deliverableredirectview',
+};
