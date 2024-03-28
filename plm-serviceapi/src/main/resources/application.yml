@@ -32,4 +32,4 @@ ibiz:
     publish-config: false
   runtime:
     mapUnderscore2camelCase: true
-    pointcut: execution(* cn.ibizlab.plm.core.testmgmt.service.*.*(..)) || execution(* cn.ibizlab.plm.core.projmgmt.service.*.*(..)) || execution(* cn.ibizlab.plm.core.prodmgmt.service.*.*(..))  ||  execution(* cn.ibizlab.plm.core.ebsx.service.*.*(..))
+    pointcut: execution(* cn.ibizlab.plm.core.testmgmt.service.*.*(..)) || execution(* cn.ibizlab.plm.core.projmgmt.service.*.*(..)) || execution(* cn.ibizlab.plm.core.prodmgmt.service.*.*(..))  ||  execution(* cn.ibizlab.plm.core.ebsx.service.*.*(..)) || execution(* cn.ibizlab.plm.core.wiki.service.*.*(..))

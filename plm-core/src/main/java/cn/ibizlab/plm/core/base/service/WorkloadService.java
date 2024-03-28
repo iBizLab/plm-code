@@ -191,7 +191,7 @@ public interface WorkloadService extends IService<Workload> {
      * @return
      */
     default Workload getRegisterWorkload(String key) {
-        return null;
+        return getSelf().getRegisterWorkload(new Workload().setId(key));
     }
 
     /**
@@ -202,6 +202,16 @@ public interface WorkloadService extends IService<Workload> {
      */
     default Workload updateWorkload(Workload dto) {
         return dto;
+    }
+
+    /**
+     * Get_register_workload
+     * 修改实际工时表单获取数据行为
+     * @param et
+     * @return
+     */
+    default Workload getRegisterWorkload(Workload et) {
+        return et;
     }
 
     /**

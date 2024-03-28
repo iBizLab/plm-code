@@ -228,7 +228,7 @@ public interface TestCaseService extends IService<TestCase> {
      * @return
      */
     default TestCase getActualWorkload(String key) {
-        return null;
+        return getSelf().getActualWorkload(new TestCase().setId(key));
     }
 
     /**
@@ -248,7 +248,7 @@ public interface TestCaseService extends IService<TestCase> {
      * @return
      */
     default TestCase newestRun(String key) {
-        return null;
+        return getSelf().newestRun(new TestCase().setId(key));
     }
 
     /**
@@ -319,6 +319,26 @@ public interface TestCaseService extends IService<TestCase> {
      */
     default TestCase testCaseReCounters(TestCase dto) {
         return dto;
+    }
+
+    /**
+     * Get_actual_workload
+     * 
+     * @param et
+     * @return
+     */
+    default TestCase getActualWorkload(TestCase et) {
+        return et;
+    }
+
+    /**
+     * Newest_run
+     * 
+     * @param et
+     * @return
+     */
+    default TestCase newestRun(TestCase et) {
+        return et;
     }
 
     /**

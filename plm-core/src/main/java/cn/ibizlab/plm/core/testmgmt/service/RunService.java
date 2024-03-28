@@ -215,7 +215,7 @@ public interface RunService extends IService<Run> {
      * @return
      */
     default Run getActualWorkload(String key) {
-        return null;
+        return getSelf().getActualWorkload(new Run().setId(key));
     }
 
     /**
@@ -295,7 +295,27 @@ public interface RunService extends IService<Run> {
      * @return
      */
     default Run thisRunDetails(String key) {
-        return null;
+        return getSelf().thisRunDetails(new Run().setId(key));
+    }
+
+    /**
+     * Get_actual_workload
+     * 
+     * @param et
+     * @return
+     */
+    default Run getActualWorkload(Run et) {
+        return et;
+    }
+
+    /**
+     * This_run_details
+     * 
+     * @param et
+     * @return
+     */
+    default Run thisRunDetails(Run et) {
+        return et;
     }
 
     /**

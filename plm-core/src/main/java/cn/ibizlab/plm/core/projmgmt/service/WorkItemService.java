@@ -306,7 +306,7 @@ public interface WorkItemService extends IService<WorkItem> {
      * @return
      */
     default WorkItem getActualWorkload(String key) {
-        return null;
+        return getSelf().getActualWorkload(new WorkItem().setId(key));
     }
 
     /**
@@ -437,6 +437,16 @@ public interface WorkItemService extends IService<WorkItem> {
      */
     default WorkItem workItemTestPlanProject(WorkItem dto) {
         return dto;
+    }
+
+    /**
+     * Get_actual_workload
+     * 
+     * @param et
+     * @return
+     */
+    default WorkItem getActualWorkload(WorkItem et) {
+        return et;
     }
 
     /**

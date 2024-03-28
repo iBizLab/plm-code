@@ -5,6 +5,7 @@ import {
   getAppViewModel,
   getAppModel,
 } from '@/publish/model';
+import { mergeUIActions } from './merge-ui-action';
 
 /**
  * 模型加载适配器
@@ -34,7 +35,8 @@ export class ModelLoader implements ModelLoaderProvider {
   }
 
   async getApp(_id?: string): Promise<IApplication> {
-    return getAppModel();
+    const app = await getAppModel();
+    return mergeUIActions(app);
   }
 
   async getAppView(_appId: string, codeName: string): Promise<IAppView> {

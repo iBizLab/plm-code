@@ -3,22 +3,23 @@
  */
 package cn.ibizlab.plm;
 
+import cn.ibizlab.util.web.SearchContextHandlerMethodArgumentResolver;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.context.annotation.*;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.boot.SpringApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
-import org.springframework.web.method.support.HandlerMethodArgumentResolver;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import java.lang.reflect.Method;
 import java.util.List;
-import cn.ibizlab.util.web.SearchContextHandlerMethodArgumentResolver;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Slf4j
 @EnableDiscoveryClient
@@ -26,11 +27,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 @EnableTransactionManagement
 @EnableFeignClients(basePackages = {"cn.ibizlab.util","cn.ibizlab.plm"})
 @SpringBootApplication(exclude = {
-        org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration.class,
-        org.springframework.boot.autoconfigure.data.mongo.MongoRepositoriesAutoConfiguration.class,
-        com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure.class
+            com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure.class,
+            org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration.class,
+            org.springframework.boot.autoconfigure.data.mongo.MongoRepositoriesAutoConfiguration.class,
 })
-@ComponentScan(basePackages = {"cn.ibizlab.plm.util.config","cn.ibizlab.util","cn.ibizlab.plm"})
+@ComponentScan(basePackages = {"cn.ibizlab.plm.util.config","cn.ibizlab.util","cn.ibizlab.plm"}
+//        ,excludeFilters = {
+//                @ComponentScan.Filter(type= org.springframework.context.annotation.FilterType.REGEX, pattern="cn.ibizlab.plm.xxx.rest.xxx"),
+//        }
+)
 @Import({
         org.springframework.cloud.openfeign.FeignClientsConfiguration.class
 })
@@ -50,6 +55,4 @@ public class BootApplication extends WebMvcConfigurerAdapter {
         super.addArgumentResolvers(argumentResolvers);
         argumentResolvers.add(resolver);
     }
-
-
 }

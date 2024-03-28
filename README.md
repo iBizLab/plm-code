@@ -118,20 +118,9 @@ $ pnpm install && pnpm preview
 
 # 开发&扩展
 ## 修改&重写业务层默认实现
-在 plm-user 项目中预留了用户扩展的实现类，您可以找到相应的实现类，并在实现类中重写基类中的默认实现逻辑。
-如：需要重写获取产品的行为。
-```java
-@Slf4j
-@Service("ProjectService")
-public class ProjectServiceImpl extends AbstractProjectService {
-    @Override
-    public boolean get(Project et) {
-        //可在此处进行重写
-        return et;
-    }
-}
-```
-说明：由于在实体的默认服务对象 (如：AbstractProjectService) 中继承了 mybatis-plus 中  IService，所以您在重写时可直接使用 mybatis-plus 所提供方法。
+plm-user 项目中预留了用户扩展的实现类，可重写基类中的默认实现逻辑。
+
+如：在 ProjectServiceImpl 中重写获取项目信息的行为， 其上级 AbstractProjectService 继承自 mybatis-plus 的 ServiceImpl，方便使用 mybatis-plus 所提供方法。
 ```java
 @Slf4j
 @Service("ProjectService")
@@ -145,18 +134,17 @@ public class ProjectServiceImpl extends AbstractProjectService {
 }
 ```
 ## 增加新接口&服务能力
-除了重写默认实现能力外，您还可以在 plm-user 项目中添加新的接口和服务来满足您的业务需求。
+除了重写 Service 实现能力外，也可以在 plm-user 项目中重写或添加 rest 接口来满足您的业务需求。
 ```java
-@RestController
-public class ExtResource {
+public class ProjectResourceImpl extends AbstractProjectResource  {
     @RequestMapping("/call")
     public Map call(@RequestBody Map body){
-        return service.call(body);
+        return projectService.call(body);
     }
 }
 ```
 # 动态扩展能力
-iBizPLM 中内置了表单设计器、规则设计器与动态引擎。您可以根据业务需要，使用表单设计器定制业务表单。也可以配置动态规则并交由动态引擎去执行，使得系统在运行过程中能够灵活地调整功能，满足企业不断变化的需求。
+iBizPLM 中内置了表单设计器、规则设计器等。可以根据业务需要定制业务表单或者配置动态规则，这些动态扩展能力依托动态引擎实现，保障系统在运行过程中能够灵活的定制功能，满足用户方不断变化的需求。
 ## 动态表单
 使用内置的表单设计器，用户可以轻松设计业务表单。
 ![image.png](doc/images/formDesigner.png)
@@ -167,12 +155,12 @@ iBizPLM 中内置了表单设计器、规则设计器与动态引擎。您可以
 
 ![image.png](doc/images/ruleDesigner2.png)
 ## 动态引擎工作原理
-动态引擎的工作原理是将用户在系统中配置的表单、规则等数据存储为 JSON 格式数据。在系统运行时，动态引擎加载并解析这部分 JSON 数据，并提供相应的服务能力。
+定制的表单和规则等数据存储为模型文件(JSON)。在系统运行时，动态引擎加载并解释执行模型文件，提供相应的服务能力。
 ![image.png](doc/images/dynamicEngine.png)
 ## 集成动态引擎
-iBizPLM 是通过动态引擎适配器 (adapter) 与动态引擎进行交互。动态引擎适配器负责监听应用程序内部的操作（如创建、更新、删除等），并在操作前后驱动动态引擎来解析用户配置并执行相应的操作。
+系统通过引擎适配器 (adapter) 与动态引擎进行交互。以切面方式监听 Service 中的 Action（如创建、更新、删除等），驱动动态引擎来解析对应的模型文件并执行相应的操作。
 
-**示例&说明**：下面将以生成工作项编号的动态规则为例说明 iBizPLM 如何与动态引擎进行交互。
+**示例&说明**：下面将以生成工作项编号的动态规则为例说明代码如何与动态引擎进行交互。
 ![image.png](doc/images/dynamicEngineAdapter.png)
 ## 系统功能实现
 | **功能名称** | **功能描述** | **代码实现** | **动态引擎** |

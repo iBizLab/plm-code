@@ -192,7 +192,7 @@ public interface SprintService extends IService<Sprint> {
      * @return
      */
     default Sprint getNotFinish(String key) {
-        return null;
+        return getSelf().getNotFinish(new Sprint().setId(key));
     }
 
     /**
@@ -213,6 +213,16 @@ public interface SprintService extends IService<Sprint> {
      */
     default Sprint startSprint(Sprint dto) {
         return dto;
+    }
+
+    /**
+     * Get_not_finish
+     * 
+     * @param et
+     * @return
+     */
+    default Sprint getNotFinish(Sprint et) {
+        return et;
     }
 
     /**

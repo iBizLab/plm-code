@@ -235,7 +235,7 @@ public interface IdeaService extends IService<Idea> {
      * @return
      */
     default Idea getActualWorkload(String key) {
-        return null;
+        return getSelf().getActualWorkload(new Idea().setId(key));
     }
 
     /**
@@ -346,6 +346,16 @@ public interface IdeaService extends IService<Idea> {
      */
     default Idea recover(Idea dto) {
         return dto;
+    }
+
+    /**
+     * Get_actual_workload
+     * 
+     * @param et
+     * @return
+     */
+    default Idea getActualWorkload(Idea et) {
+        return et;
     }
 
     /**
