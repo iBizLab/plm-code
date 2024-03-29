@@ -1,0 +1,1448 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="Administrator (generated)" id="1711701630637-1">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <tableExists tableName="work_item" />
+            </not>
+        </preConditions>
+        <createTable tableName="activitiy">
+            <column name="AUDITINFO" type="TEXT"/>
+            <column name="AUDITTYPE" type="VARCHAR(100)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="IPADDRESS" type="VARCHAR(500)"/>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="OBJECTID" type="VARCHAR(100)"/>
+            <column name="OBJECTTYPE" type="VARCHAR(100)"/>
+            <column name="OPPERSONID" type="VARCHAR(100)"/>
+            <column name="OPPERSONNAME" type="VARCHAR(100)"/>
+            <column name="OWNER_ID" type="VARCHAR(200)"/>
+            <column name="OWNER_TYPE" type="VARCHAR(100)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+        </createTable>
+    
+        <createTable tableName="attachment">
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="FILE_ID" type="VARCHAR(500)"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="OWNER_ID" type="VARCHAR(100)"/>
+            <column name="OWNER_SUBTYPE" type="VARCHAR(100)"/>
+            <column name="OWNER_TYPE" type="VARCHAR(100)"/>
+            <column name="TITLE" type="VARCHAR(100)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+        </createTable>
+    
+        <createTable tableName="attention">
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="OWNER_ID" type="VARCHAR(100)"/>
+            <column name="OWNER_SUBTYPE" type="VARCHAR(100)"/>
+            <column name="OWNER_TYPE" type="VARCHAR(100)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+            <column name="TYPE" type="VARCHAR(60)"/>
+            <column name="USER_ID" type="VARCHAR(100)"/>
+        </createTable>
+    
+        <createTable tableName="board">
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="PROJECT_ID" type="VARCHAR(100)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+        </createTable>
+    
+        <createTable tableName="case_history">
+            <column name="CASE_ID" type="VARCHAR(100)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+        </createTable>
+    
+        <createTable tableName="category">
+            <column name="CATEGORYS" type="VARCHAR(500)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="OWNER_ID" type="VARCHAR(100)"/>
+            <column name="OWNER_SUBTYPE" type="VARCHAR(100)"/>
+            <column name="OWNER_TYPE" type="VARCHAR(100)"/>
+            <column name="PID" type="VARCHAR(100)"/>
+            <column name="SECTION_ID" type="VARCHAR(100)"/>
+            <column name="SEQUENCE" type="DECIMAL(10)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+            <column name="IS_LEAF" type="INT"/>
+            <column name="CATEGORIES" type="VARCHAR(2000)"/>
+        </createTable>
+    
+        <createTable tableName="channel">
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="PRODUCT_ID" type="VARCHAR(100)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+        </createTable>
+    
+        <createTable tableName="comment">
+            <column name="CONTENT" type="TEXT"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="OWNER_TYPE" type="VARCHAR(100)"/>
+            <column name="PCONTENT" type="TEXT"/>
+            <column name="PCREATE_MAN" type="VARCHAR(100)"/>
+            <column name="PID" type="VARCHAR(100)"/>
+            <column name="PRINCIPAL_ID" type="VARCHAR(100)"/>
+            <column name="PRINCIPAL_TYPE" type="VARCHAR(100)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+            <column name="PRINCIPAL_NAME" type="VARCHAR(100)"/>
+        </createTable>
+    
+        <createTable tableName="customer">
+            <column name="ASSIGNEE_ID" type="VARCHAR(100)"/>
+            <column name="ASSIGNEE_NAME" type="VARCHAR(100)"/>
+            <column name="CATEGORYS" type="VARCHAR(2000)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="DESCRIPTION" type="VARCHAR(2000)"/>
+            <column name="GRADE_ID" type="VARCHAR(60)"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="INDUSTRY_ID" type="VARCHAR(60)"/>
+            <column name="IS_ARCHIVED" type="INT"/>
+            <column name="IS_DELETED" type="INT"/>
+            <column name="LOGO" type="VARCHAR(100)"/>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="PRODUCT_ID" type="VARCHAR(100)"/>
+            <column name="SCALE" type="INT"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+            <column name="CATEGORIES" type="VARCHAR(2000)"/>
+            <column name="CATEGORIES_NAME" type="VARCHAR(2000)"/>
+        </createTable>
+    
+        <createTable tableName="dynadashboard">
+            <column name="APPID" type="VARCHAR(100)"/>
+            <column name="CREATEDATE" type="datetime"/>
+            <column name="CREATEMAN" type="VARCHAR(60)"/>
+            <column name="DYNADASHBOARDID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="DYNADASHBOARDNAME" type="VARCHAR(200)"/>
+            <column name="MODEL" type="TEXT"/>
+            <column name="MODELID" type="VARCHAR(100)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+            <column name="USERID" type="VARCHAR(100)"/>
+        </createTable>
+    
+        <createTable tableName="entry">
+            <column name="BOARD_ID" type="VARCHAR(100)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="IS_SPLIT" type="INT"/>
+            <column name="IS_SYSTEM" type="INT"/>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="PROJECT_ID" type="VARCHAR(100)"/>
+            <column name="SHOWORDER" type="INT"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+        </createTable>
+    
+        <createTable tableName="extend_log">
+            <column name="CATEGORY" type="VARCHAR(100)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ELAPSED_TIME" type="VARCHAR(100)"/>
+            <column name="END_AT" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="INFO" type="TEXT"/>
+            <column name="LEVEL" type="VARCHAR(100)"/>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="OWNER_ID" type="VARCHAR(100)"/>
+            <column name="OWNER_SUBTYPE" type="VARCHAR(100)"/>
+            <column name="OWNER_TYPE" type="VARCHAR(100)"/>
+            <column name="START_AT" type="datetime"/>
+            <column name="STATE" type="VARCHAR(100)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+        </createTable>
+    
+        <createTable tableName="extend_storage">
+            <column name="BIGINT_VALUE" type="BIGINT"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="DATETIME_VALUE" type="datetime"/>
+            <column name="DECIMAL_VALUE" type="DECIMAL(10)"/>
+            <column name="DOUBLE_VALUE" type="FLOAT(12)"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="INT_VALUE" type="INT"/>
+            <column name="LONGSTRING_VALUE" type="TEXT"/>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="OWNER_ID" type="VARCHAR(100)"/>
+            <column name="OWNER_TYPE" type="VARCHAR(100)"/>
+            <column name="STRING_VALUE" type="VARCHAR(4000)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+        </createTable>
+    
+        <createTable tableName="favorite">
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="OWNER_ID" type="VARCHAR(100)"/>
+            <column name="OWNER_SUBTYPE" type="VARCHAR(100)"/>
+            <column name="OWNER_TYPE" type="VARCHAR(100)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+        </createTable>
+    
+        <createTable tableName="idea">
+            <column name="ASSIGNEE_ID" type="VARCHAR(100)"/>
+            <column name="ASSIGNEE_NAME" type="VARCHAR(100)"/>
+            <column name="CATEGORYS" type="VARCHAR(2000)"/>
+            <column name="CATEGORY_ID" type="VARCHAR(100)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="DESCRIPTION" type="VARCHAR(2000)"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="IDENTIFIER" type="VARCHAR(100)"/>
+            <column name="IS_ARCHIVED" type="INT"/>
+            <column name="IS_DELETED" type="INT"/>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="PLAN_AT" type="VARCHAR(100)"/>
+            <column name="PLAN_AT_FROM" type="datetime"/>
+            <column name="PLAN_AT_GRANULARITY" type="VARCHAR(60)"/>
+            <column name="PLAN_AT_TO" type="datetime"/>
+            <column name="PRIORITY" type="VARCHAR(60)"/>
+            <column name="PRODUCT_ID" type="VARCHAR(100)"/>
+            <column name="PROGRESS" type="DECIMAL(10)"/>
+            <column name="REAL_AT" type="VARCHAR(100)"/>
+            <column name="REAL_AT_FROM" type="datetime"/>
+            <column name="REAL_AT_GRANULARITY" type="VARCHAR(60)"/>
+            <column name="REAL_AT_TO" type="datetime"/>
+            <column name="SECTION_NAME" type="VARCHAR(100)"/>
+            <column name="STATE" type="VARCHAR(60)"/>
+            <column name="SUITE" type="VARCHAR(100)"/>
+            <column name="TITLE" type="VARCHAR(100)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+        </createTable>
+    
+        <createTable tableName="insight">
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="DESC" type="TEXT"/>
+            <column name="GROUP" type="VARCHAR(60)"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="TYPE" type="VARCHAR(60)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+            <column name="VIEW_URL" type="TEXT"/>
+            <column name="BELONG" type="VARCHAR(100)"/>
+        </createTable>
+    
+        <createTable tableName="library">
+            <column name="COLOR" type="VARCHAR(100)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="DESCRIPTION" type="VARCHAR(2000)"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="IDENTIFIER" type="VARCHAR(100)"/>
+            <column name="IS_ARCHIVED" type="INT"/>
+            <column name="IS_DELETED" type="INT"/>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+            <column name="VISIBILITY" type="VARCHAR(60)"/>
+        </createTable>
+    
+        <createTable tableName="library_member">
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="LIBRARY_ID" type="VARCHAR(100)"/>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="ROLE_ID" type="VARCHAR(60)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+            <column name="USER_ID" type="VARCHAR(100)"/>
+        </createTable>
+    
+        <createTable tableName="page">
+            <column name="CONTENT" type="TEXT"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="FORMAT_TYPE" type="VARCHAR(60)"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="PARENT_ID" type="VARCHAR(100)"/>
+            <column name="SPACE_ID" type="VARCHAR(100)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+            <column name="IS_ARCHIVED" type="INT"/>
+            <column name="IS_DELETED" type="INT"/>
+            <column name="IS_LEAF" type="INT"/>
+            <column name="TYPE" type="VARCHAR(60)"/>
+            <column name="IDENTIFIER" type="VARCHAR(100)"/>
+            <column name="SEQUENCE" type="DECIMAL(10)"/>
+        </createTable>
+    
+        <createTable tableName="page_version">
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="PAGE_ID" type="VARCHAR(100)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+            <column name="CONTENT" type="TEXT"/>
+        </createTable>
+    
+        <createTable tableName="portfolio">
+            <column name="ASSIGNEE_ID" type="VARCHAR(100)"/>
+            <column name="ASSIGNEE_NAME" type="VARCHAR(100)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="DESCRIPTION" type="VARCHAR(2000)"/>
+            <column name="END_AT" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="IDENTIFIER" type="VARCHAR(100)"/>
+            <column name="IS_DELETED" type="INT"/>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="START_AT" type="datetime"/>
+            <column name="STATE" type="VARCHAR(60)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+        </createTable>
+    
+        <createTable tableName="portfolio_member">
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="PORTFOLIO_ID" type="VARCHAR(100)"/>
+            <column name="ROLE_ID" type="VARCHAR(60)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+            <column name="USER_ID" type="VARCHAR(100)"/>
+        </createTable>
+    
+        <createTable tableName="product">
+            <column name="COLOR" type="VARCHAR(100)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="DESCRIPTION" type="VARCHAR(2000)"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="IDENTIFIER" type="VARCHAR(100)"/>
+            <column name="IS_ARCHIVED" type="INT"/>
+            <column name="IS_DELETED" type="INT"/>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+            <column name="VISIBILITY" type="VARCHAR(60)"/>
+        </createTable>
+    
+        <createTable tableName="product_member">
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="PRODUCT_ID" type="VARCHAR(100)"/>
+            <column name="ROLE_ID" type="VARCHAR(60)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+            <column name="USER_ID" type="VARCHAR(100)"/>
+        </createTable>
+    
+        <createTable tableName="product_plan">
+            <column name="ASSIGNEE_ID" type="VARCHAR(100)"/>
+            <column name="ASSIGNEE_NAME" type="VARCHAR(100)"/>
+            <column name="CATEGORYS" type="VARCHAR(2000)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="END_AT" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="IS_DELETED" type="INT"/>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="PRODUCT_ID" type="VARCHAR(100)"/>
+            <column name="START_AT" type="datetime"/>
+            <column name="TYPE" type="VARCHAR(1000)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+            <column name="CATEGORIES" type="VARCHAR(2000)"/>
+            <column name="CATEGORIES_NAME" type="VARCHAR(2000)"/>
+        </createTable>
+    
+        <createTable tableName="product_tag">
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="PRODUCT_ID" type="VARCHAR(100)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+        </createTable>
+    
+        <createTable tableName="product_ticket_type">
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="PRODUCT_ID" type="VARCHAR(100)"/>
+            <column name="TICKET_TYPE_ID" type="VARCHAR(100)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+        </createTable>
+    
+        <createTable tableName="progress">
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="PROJECT_ID" type="VARCHAR(100)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+        </createTable>
+    
+        <createTable tableName="project">
+            <column name="ASSIGNEE_ID" type="VARCHAR(100)"/>
+            <column name="ASSIGNEE_NAME" type="VARCHAR(100)"/>
+            <column name="COLOR" type="VARCHAR(100)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="DESCRIPTION" type="VARCHAR(2000)"/>
+            <column name="END_AT" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="IDENTIFIER" type="VARCHAR(100)"/>
+            <column name="IS_ARCHIVED" type="INT"/>
+            <column name="IS_DELETED" type="INT"/>
+            <column name="IS_LOCAL_CONFIGURE" type="INT"/>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="START_AT" type="datetime"/>
+            <column name="STATE" type="VARCHAR(60)"/>
+            <column name="TYPE" type="VARCHAR(60)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+            <column name="VISIBILITY" type="VARCHAR(60)"/>
+        </createTable>
+    
+        <createTable tableName="project_member">
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="PROJECT_ID" type="VARCHAR(100)"/>
+            <column name="ROLE_ID" type="VARCHAR(60)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+            <column name="USER_ID" type="VARCHAR(100)"/>
+            <column name="DAY_CAPACITIES" type="TEXT"/>
+            <column name="WEEKDAY" type="INT"/>
+        </createTable>
+    
+        <createTable tableName="project_release">
+            <column name="ASSIGNEE_ID" type="VARCHAR(100)"/>
+            <column name="ASSIGNEE_NAME" type="VARCHAR(100)"/>
+            <column name="CATEGORIES" type="VARCHAR(2000)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="DESCRIPTION" type="VARCHAR(2000)"/>
+            <column name="END_AT" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="PROGRESS" type="DECIMAL(10)"/>
+            <column name="PROJECT_ID" type="VARCHAR(100)"/>
+            <column name="START_AT" type="datetime"/>
+            <column name="STATUS" type="VARCHAR(60)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+        </createTable>
+    
+        <createTable tableName="project_tag">
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+        </createTable>
+    
+        <createTable tableName="recent">
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="IDENTIFIER" type="VARCHAR(100)"/>
+            <column name="IS_DELETED" type="INT"/>
+            <column name="NAME" type="VARCHAR(500)"/>
+            <column name="OWNER_ID" type="VARCHAR(100)"/>
+            <column name="OWNER_SUBTYPE" type="VARCHAR(100)"/>
+            <column name="OWNER_TYPE" type="VARCHAR(100)"/>
+            <column name="RECENT_PARENT" type="VARCHAR(200)"/>
+            <column name="RECENT_PARENT_NAME" type="VARCHAR(100)"/>
+            <column name="TYPE" type="VARCHAR(100)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+            <column name="RECENT_PARENT_IDENTIFIER" type="VARCHAR(100)"/>
+        </createTable>
+    
+        <createTable tableName="relation">
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="OWNER_ID" type="VARCHAR(100)"/>
+            <column name="OWNER_SUBTYPE" type="VARCHAR(100)"/>
+            <column name="OWNER_TYPE" type="VARCHAR(100)"/>
+            <column name="PRINCIPAL_ID" type="VARCHAR(100)"/>
+            <column name="PRINCIPAL_TYPE" type="VARCHAR(100)"/>
+            <column name="TARGET_ID" type="VARCHAR(100)"/>
+            <column name="TARGET_TYPE" type="VARCHAR(100)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+        </createTable>
+    
+        <createTable tableName="release">
+            <column name="ASSIGNEE_ID" type="VARCHAR(100)"/>
+            <column name="ASSIGNEE_NAME" type="VARCHAR(100)"/>
+            <column name="CATEGORIES" type="VARCHAR(2000)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="DESCRIPTION" type="VARCHAR(2000)"/>
+            <column name="END_AT" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="PROGRESS" type="DECIMAL(10)"/>
+            <column name="PROJECT_ID" type="VARCHAR(100)"/>
+            <column name="START_AT" type="datetime"/>
+            <column name="STATUS" type="VARCHAR(60)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+        </createTable>
+    
+        <createTable tableName="run">
+            <column name="CASE_ID" type="VARCHAR(100)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="EXECUTED_AT" type="datetime"/>
+            <column name="EXECUTOR_ID" type="VARCHAR(100)"/>
+            <column name="EXECUTOR_NAME" type="VARCHAR(100)"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="PLAN_ID" type="VARCHAR(100)"/>
+            <column name="REMARK" type="VARCHAR(2000)"/>
+            <column name="STATUS" type="VARCHAR(60)"/>
+            <column name="STEPS" type="TEXT"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+        </createTable>
+    
+        <createTable tableName="run_history">
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="EXECUTED_AT" type="datetime"/>
+            <column name="EXECUTOR_ID" type="VARCHAR(100)"/>
+            <column name="EXECUTOR_NAME" type="VARCHAR(100)"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="RUN_ID" type="VARCHAR(100)"/>
+            <column name="STATUS" type="VARCHAR(60)"/>
+            <column name="STEPS" type="TEXT"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+            <column name="REMARK" type="VARCHAR(2000)"/>
+        </createTable>
+    
+        <createTable tableName="section">
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="OWNER_ID" type="VARCHAR(100)"/>
+            <column name="OWNER_SUBTYPE" type="VARCHAR(100)"/>
+            <column name="OWNER_TYPE" type="VARCHAR(100)"/>
+            <column name="SEQUENCE" type="DECIMAL(10)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+            <column name="IS_LEAF" type="INT"/>
+        </createTable>
+    
+        <createTable tableName="sequence_generator">
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="CURRENT_VALUE" type="BIGINT"/>
+            <column name="GROUP_TAG" type="VARCHAR(200)"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+        </createTable>
+    
+        <createTable tableName="space">
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+            <column name="IDENTIFIER" type="VARCHAR(100)"/>
+            <column name="IS_ARCHIVED" type="INT"/>
+            <column name="IS_DELETED" type="INT"/>
+            <column name="VISIBILITY" type="VARCHAR(60)"/>
+            <column name="DESCRIPTION" type="VARCHAR(2000)"/>
+            <column name="CATEGORY_ID" type="VARCHAR(100)"/>
+        </createTable>
+    
+        <createTable tableName="space_member">
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="SPACE_ID" type="VARCHAR(100)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+            <column name="USER_ID" type="VARCHAR(100)"/>
+            <column name="ROLE_ID" type="VARCHAR(60)"/>
+        </createTable>
+    
+        <createTable tableName="sprint">
+            <column name="ASSIGNEE_ID" type="VARCHAR(100)"/>
+            <column name="ASSIGNEE_NAME" type="VARCHAR(100)"/>
+            <column name="CATEGORYS" type="VARCHAR(2000)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="DESCRIPTION" type="VARCHAR(2000)"/>
+            <column name="END_AT" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="PID" type="VARCHAR(100)"/>
+            <column name="PROJECT_ID" type="VARCHAR(100)"/>
+            <column name="SPRINT_CATEGORY_ID" type="VARCHAR(100)"/>
+            <column name="START_AT" type="datetime"/>
+            <column name="STATUS" type="VARCHAR(60)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+            <column name="CATEGORIES" type="VARCHAR(2000)"/>
+        </createTable>
+    
+        <createTable tableName="sprint_category">
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="PROJECT_ID" type="VARCHAR(100)"/>
+            <column name="SPRINT_SECTION_ID" type="VARCHAR(100)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+        </createTable>
+    
+        <createTable tableName="sprint_section">
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="PROJECT_ID" type="VARCHAR(100)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+        </createTable>
+    
+        <createTable tableName="stage">
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+            <column name="VERSION_ID" type="VARCHAR(100)"/>
+            <column name="RELEASE_ID" type="VARCHAR(100)"/>
+        </createTable>
+    
+        <createTable tableName="stencil">
+            <column name="CONTENT" type="TEXT"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="IS_GLOBAL" type="INT"/>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="SPACE_ID" type="VARCHAR(100)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+        </createTable>
+    
+        <createTable tableName="suite">
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+        </createTable>
+    
+        <createTable tableName="swimlane">
+            <column name="BOARD_ID" type="VARCHAR(100)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="PROJECT_ID" type="VARCHAR(100)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+        </createTable>
+    
+        <createTable tableName="test_case">
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="DESCRIPTION" type="VARCHAR(2000)"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="IDENTIFIER" type="VARCHAR(100)"/>
+            <column name="IS_ARCHIVED" type="INT"/>
+            <column name="IS_DELETED" type="INT"/>
+            <column name="LEVEL" type="VARCHAR(60)"/>
+            <column name="MAINTENANCE_ID" type="VARCHAR(100)"/>
+            <column name="MAINTENANCE_NAME" type="VARCHAR(100)"/>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="PRECONDITION" type="VARCHAR(2000)"/>
+            <column name="STATE" type="VARCHAR(60)"/>
+            <column name="STEPS" type="TEXT"/>
+            <column name="SUITE" type="VARCHAR(100)"/>
+            <column name="SUITES" type="VARCHAR(500)"/>
+            <column name="SUITE_ID" type="VARCHAR(100)"/>
+            <column name="TEST_LIBRARY_ID" type="VARCHAR(100)"/>
+            <column name="TEST_TYPE" type="VARCHAR(60)"/>
+            <column name="TITLE" type="VARCHAR(100)"/>
+            <column name="TYPE" type="VARCHAR(60)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+        </createTable>
+    
+        <createTable tableName="test_plan">
+            <column name="ASSIGNEE_ID" type="VARCHAR(100)"/>
+            <column name="ASSIGNEE_NAME" type="VARCHAR(100)"/>
+            <column name="CATEGORYS" type="VARCHAR(2000)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="END_AT" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="LIBRARY_ID" type="VARCHAR(100)"/>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="PROJECT_ID" type="VARCHAR(100)"/>
+            <column name="SPRINT_ID" type="VARCHAR(100)"/>
+            <column name="START_AT" type="datetime"/>
+            <column name="STATUS" type="VARCHAR(60)"/>
+            <column name="SUMMARY" type="VARCHAR(2000)"/>
+            <column name="TYPE" type="VARCHAR(60)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+            <column name="VERSION_ID" type="VARCHAR(100)"/>
+            <column name="CATEGORIES" type="VARCHAR(2000)"/>
+            <column name="RELEASE_ID" type="VARCHAR(100)"/>
+        </createTable>
+    
+        <createTable tableName="test_suite">
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="LIBRARY_ID" type="VARCHAR(100)"/>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="PID" type="VARCHAR(100)"/>
+            <column name="SEQUENCE" type="DECIMAL(10)"/>
+            <column name="SUITES" type="VARCHAR(500)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+            <column name="CONTAINS_LEAF" type="INT"/>
+            <column name="IS_LEAF" type="INT"/>
+        </createTable>
+    
+        <createTable tableName="ticket">
+            <column name="ASSIGNEE_ID" type="VARCHAR(100)"/>
+            <column name="ASSIGNEE_NAME" type="VARCHAR(100)"/>
+            <column name="CHANNEL" type="VARCHAR(100)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="CUSTOMER_ID" type="VARCHAR(100)"/>
+            <column name="DESCRIPTION" type="VARCHAR(2000)"/>
+            <column name="ESTIMATED_AT" type="VARCHAR(100)"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="IDENTIFIER" type="VARCHAR(100)"/>
+            <column name="IS_ARCHIVED" type="INT"/>
+            <column name="IS_DELETED" type="INT"/>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="PRIORITY" type="VARCHAR(60)"/>
+            <column name="PRODUCT_ID" type="VARCHAR(100)"/>
+            <column name="SOLUTION" type="VARCHAR(60)"/>
+            <column name="STATE" type="VARCHAR(60)"/>
+            <column name="SUBMITTED_AT" type="datetime"/>
+            <column name="SUBMITTER_ID" type="VARCHAR(100)"/>
+            <column name="SUBMITTER_NAME" type="VARCHAR(100)"/>
+            <column name="TAGS" type="VARCHAR(2000)"/>
+            <column name="TITLE" type="VARCHAR(100)"/>
+            <column name="TYPE" type="VARCHAR(100)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+            <column name="PRODUCT_IDENTIFIER" type="VARCHAR(100)"/>
+        </createTable>
+    
+        <createTable tableName="ticket_type">
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+        </createTable>
+    
+        <createTable tableName="transition_history">
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+            <column name="WORK_ITEM_ID" type="VARCHAR(100)"/>
+            <column name="OWNER_ID" type="VARCHAR(100)"/>
+            <column name="OWNER_SUBTYPE" type="VARCHAR(100)"/>
+            <column name="OWNER_TYPE" type="VARCHAR(100)"/>
+            <column name="FROM_STATE" type="VARCHAR(100)"/>
+            <column name="TO_STATE" type="VARCHAR(100)"/>
+        </createTable>
+    
+        <createTable tableName="version">
+            <column name="ASSIGNEE_ID" type="VARCHAR(100)"/>
+            <column name="ASSIGNEE_NAME" type="VARCHAR(100)"/>
+            <column name="CATEGORYS" type="VARCHAR(2000)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="DESCRIPTION" type="VARCHAR(2000)"/>
+            <column name="END_AT" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="PROGRESS" type="DECIMAL(10)"/>
+            <column name="PROJECT_ID" type="VARCHAR(100)"/>
+            <column name="START_AT" type="datetime"/>
+            <column name="STATUS" type="VARCHAR(60)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+            <column name="VERSION_CATEGORY_ID" type="VARCHAR(100)"/>
+            <column name="CATEGORIES" type="VARCHAR(2000)"/>
+            <column name="OWNER_ID" type="VARCHAR(100)"/>
+            <column name="OWNER_SUBTYPE" type="VARCHAR(100)"/>
+            <column name="OWNER_TYPE" type="VARCHAR(100)"/>
+        </createTable>
+    
+        <createTable tableName="version_category">
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+            <column name="VERSION_SECTION_ID" type="VARCHAR(100)"/>
+        </createTable>
+    
+        <createTable tableName="version_section">
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="PROJECT_ID" type="VARCHAR(100)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+        </createTable>
+    
+        <createTable tableName="work">
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="PILOT_ID" type="VARCHAR(100)"/>
+            <column name="PORTFOLIO_ID" type="VARCHAR(100)"/>
+            <column name="PRINCIPAL_ID" type="VARCHAR(100)"/>
+            <column name="PRINCIPAL_TYPE" type="VARCHAR(100)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+        </createTable>
+    
+        <createTable tableName="work_item">
+            <column name="ASSIGNEE_ID" type="VARCHAR(100)"/>
+            <column name="ASSIGNEE_NAME" type="VARCHAR(100)"/>
+            <column name="BACKLOG_FROM" type="VARCHAR(60)"/>
+            <column name="BACKLOG_TYPE" type="VARCHAR(60)"/>
+            <column name="BOARD_ID" type="VARCHAR(100)"/>
+            <column name="COMPLETED_AT" type="datetime"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="DESCRIPTION" type="TEXT"/>
+            <column name="END_AT" type="datetime"/>
+            <column name="ENTRY_ID" type="VARCHAR(100)"/>
+            <column name="ENTRY_POSITION" type="INT"/>
+            <column name="ENTRY_STATUS" type="VARCHAR(100)"/>
+            <column name="ESTIMATED_WORKLOAD" type="DECIMAL(11, 1)"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="IDENTIFIER" type="VARCHAR(100)"/>
+            <column name="IS_ARCHIVED" type="INT"/>
+            <column name="IS_DELETED" type="INT"/>
+            <column name="JOB_TYPE" type="VARCHAR(60)"/>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="PID" type="VARCHAR(100)"/>
+            <column name="PRIORITY" type="VARCHAR(100)"/>
+            <column name="PROJECT_ID" type="VARCHAR(100)"/>
+            <column name="REAPPEAR_PROBABILITY" type="VARCHAR(60)"/>
+            <column name="REMAINING_WORKLOAD" type="DECIMAL(11, 1)"/>
+            <column name="RISK" type="VARCHAR(60)"/>
+            <column name="SEVERITY" type="VARCHAR(60)"/>
+            <column name="SPRINT_ID" type="VARCHAR(100)"/>
+            <column name="START_AT" type="datetime"/>
+            <column name="STATE" type="VARCHAR(100)"/>
+            <column name="SWIMLANE_ID" type="VARCHAR(100)"/>
+            <column name="TAGS" type="VARCHAR(2000)"/>
+            <column name="TITLE" type="VARCHAR(500)"/>
+            <column name="TOP_ID" type="VARCHAR(100)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+            <column name="VERSION_ID" type="VARCHAR(100)"/>
+            <column name="WORK_ITEM_TYPE_ID" type="VARCHAR(100)"/>
+            <column name="PROJECT_IDENTIFIER" type="VARCHAR(100)"/>
+            <column name="IS_LEAF" type="INT"/>
+            <column name="RELEASE_ID" type="VARCHAR(100)"/>
+        </createTable>
+    
+        <createTable tableName="work_item_state">
+            <column name="COLOR" type="VARCHAR(100)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="SEQUENCE" type="DECIMAL(10)"/>
+            <column name="STYLE" type="VARCHAR(100)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+            <column name="WORK_ITEM_TYPE_ID" type="VARCHAR(100)"/>
+            <column name="TYPE" type="VARCHAR(60)"/>
+        </createTable>
+    
+        <createTable tableName="work_item_type">
+            <column name="CODE" type="VARCHAR(100)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="GROUP" type="VARCHAR(60)"/>
+            <column name="ICON" type="TEXT"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="IS_SYSTEM" type="INT"/>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="PROJECT_TYPE" type="VARCHAR(60)"/>
+            <column name="SEQUENCE" type="DECIMAL(10)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+        </createTable>
+    
+        <createTable tableName="workload">
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="DESCRIPTION" type="TEXT"/>
+            <column name="DURATION" type="INT"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="OWNER_TYPE" type="VARCHAR(100)"/>
+            <column name="PRINCIPAL_ID" type="VARCHAR(100)"/>
+            <column name="PRINCIPAL_TYPE" type="VARCHAR(100)"/>
+            <column name="TYPE_ID" type="VARCHAR(100)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+            <column name="REGISTER_DATE" type="datetime"/>
+            <column name="IDENTIFIER" type="VARCHAR(100)"/>
+            <column name="RECENT_PARENT" type="VARCHAR(100)"/>
+            <column name="RECENT_PARENT_IDENTIFIER" type="VARCHAR(100)"/>
+            <column name="RECENT_PARENT_NAME" type="VARCHAR(100)"/>
+        </createTable>
+    
+        <createTable tableName="workload_type">
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="datetime"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="datetime"/>
+        </createTable>
+
+        <createIndex associatedWith="" indexName="ATTENTION" tableName="attention">
+            <column name="OWNER_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F0199793F370FBC" tableName="channel">
+            <column name="PRODUCT_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F01D46E0EAC4778" tableName="idea">
+            <column name="ASSIGNEE_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F0269AB8E3170BC" tableName="product_member">
+            <column name="USER_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F079C61D4906104" tableName="work_item">
+            <column name="SWIMLANE_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F07C37698BA032B" tableName="page">
+            <column name="SPACE_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F0897EAE6269EBB" tableName="work_item">
+            <column name="RELEASE_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F098430ADAA9271" tableName="sprint">
+            <column name="PID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F0C08696406E2FD" tableName="test_case">
+            <column name="TEST_LIBRARY_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F0C78F1D21CD7F9" tableName="entry">
+            <column name="PROJECT_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F0FF672093B328F" tableName="space_member">
+            <column name="USER_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F1894F43520CFB8" tableName="board">
+            <column name="PROJECT_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F1CDB1F867C3799" tableName="page_version">
+            <column name="PAGE_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F236C549615B8CE" tableName="test_plan">
+            <column name="SPRINT_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F23F3E7F2CF4536" tableName="test_suite">
+            <column name="PID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F25BC14C476D132" tableName="product_plan">
+            <column name="PRODUCT_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F25C2DB589109DD" tableName="comment">
+            <column name="PID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F275E1F9CDDBED5" tableName="transition_history">
+            <column name="WORK_ITEM_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F31B5802E7D9C1B" tableName="page">
+            <column name="PARENT_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F34E1399044E88A" tableName="sprint">
+            <column name="PROJECT_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F34E13A0D242490" tableName="version">
+            <column name="VERSION_CATEGORY_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F386A62BD0D4740" tableName="ticket">
+            <column name="PRODUCT_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F38ADCDA84138E5" tableName="portfolio_member">
+            <column name="PORTFOLIO_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F3A7ED5B3A99DE1" tableName="sprint">
+            <column name="SPRINT_CATEGORY_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F3F94F0CC3EDE5A" tableName="work_item">
+            <column name="SPRINT_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F475532A5EFF55E" tableName="product_tag">
+            <column name="PRODUCT_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F47C7D0AAA0E147" tableName="project_member">
+            <column name="PROJECT_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F48A358F24D4978" tableName="library_member">
+            <column name="LIBRARY_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F4C3B0CAC90DDEC" tableName="work_item">
+            <column name="PROJECT_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F4D50C7E16EC1E5" tableName="ticket">
+            <column name="ASSIGNEE_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F4DE9495F8CBA31" tableName="test_plan">
+            <column name="VERSION_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F53127AF9907086" tableName="space_member">
+            <column name="SPACE_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F5F5428288A5D15" tableName="work_item">
+            <column name="PID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F62A68EB094CAB1" tableName="work_item">
+            <column name="VERSION_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F6448FFA0AC507A" tableName="version">
+            <column name="PROJECT_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F648E649452EF01" tableName="library_member">
+            <column name="USER_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F66B7B327F5F4EB" tableName="product_member">
+            <column name="PRODUCT_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F6A18F712BB5867" tableName="swimlane">
+            <column name="BOARD_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F6BC075A5CAB2AC" tableName="work_item">
+            <column name="STATE"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F6E1C08657488EE" tableName="project_release">
+            <column name="PROJECT_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F7561AC78669705" tableName="work_item">
+            <column name="TOP_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F77DF6CCA4533F5" tableName="swimlane">
+            <column name="PROJECT_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F7DC8AE97726F83" tableName="run">
+            <column name="PLAN_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F84202473670458" tableName="progress">
+            <column name="PROJECT_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F854C4B7CB97EE9" tableName="stage">
+            <column name="RELEASE_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F8B7AC64D49582C" tableName="version_section">
+            <column name="PROJECT_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F8CE681F35A64DE" tableName="space">
+            <column name="CATEGORY_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F92E9E29974C236" tableName="case_history">
+            <column name="CASE_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F940A4A540128BA" tableName="idea">
+            <column name="PRODUCT_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_F95BFBC7A0B362A" tableName="test_plan">
+            <column name="RELEASE_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_FA0608F38A2AE5F" tableName="work_item">
+            <column name="ENTRY_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_FA2D986FD6567BF" tableName="category">
+            <column name="PID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_FA4C372EEC88718" tableName="work_item">
+            <column name="ASSIGNEE_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_FAA31AFD96ABAB1" tableName="run">
+            <column name="CASE_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_FAB0F18EF58113D" tableName="stage">
+            <column name="VERSION_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_FAF7FC1F0E290B8" tableName="work_item_state">
+            <column name="WORK_ITEM_TYPE_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_FAF8B167657F616" tableName="run_history">
+            <column name="RUN_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_FB0A0C75D19E46A" tableName="stencil">
+            <column name="SPACE_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_FB0AF876E9831AD" tableName="product_ticket_type">
+            <column name="TICKET_TYPE_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_FB9B5B68802E10A" tableName="category">
+            <column name="SECTION_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_FB9DF73EA3EB67E" tableName="sprint_category">
+            <column name="SPRINT_SECTION_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_FBB77966489F1BB" tableName="customer">
+            <column name="PRODUCT_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_FBE9723CC0DCC84" tableName="sprint_category">
+            <column name="PROJECT_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_FBEE28A97854467" tableName="sprint_section">
+            <column name="PROJECT_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_FC224035DDFFA00" tableName="portfolio_member">
+            <column name="USER_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_FC378F652AEFFBA" tableName="work_item">
+            <column name="WORK_ITEM_TYPE_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_FC37C24CC2C5F9B" tableName="product_ticket_type">
+            <column name="PRODUCT_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_FC45ECF8632049A" tableName="project_member">
+            <column name="USER_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_FCC7A5C87955A8C" tableName="test_plan">
+            <column name="LIBRARY_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_FCE005621E4B3B3" tableName="entry">
+            <column name="BOARD_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_FD2E577EB810416" tableName="test_suite">
+            <column name="LIBRARY_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_FD909A5E16933EF" tableName="work">
+            <column name="PORTFOLIO_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_FDB7D3FFBABD8D9" tableName="test_case">
+            <column name="MAINTENANCE_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_FDC0F115045FB43" tableName="version_category">
+            <column name="VERSION_SECTION_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_FDE16D8812AEA4A" tableName="idea">
+            <column name="CATEGORY_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_FEBBFAA8D7CB315" tableName="customer">
+            <column name="ASSIGNEE_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_FED1DFF49581937" tableName="ticket">
+            <column name="CUSTOMER_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_FF271824DD80D44" tableName="workload">
+            <column name="TYPE_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_FF2953DF2D7C6D1" tableName="test_case">
+            <column name="SUITE_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_FF35313328DCEB2" tableName="work_item">
+            <column name="BOARD_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="IF_FF80D59CE09E6BA" tableName="test_plan">
+            <column name="PROJECT_ID"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="RELATION" tableName="relation">
+            <column name="PRINCIPAL_ID"/>
+            <column name="PRINCIPAL_TYPE"/>
+            <column name="TARGET_TYPE"/>
+        </createIndex>
+    
+        <createIndex associatedWith="" indexName="WORK_ITEM" tableName="work_item">
+            <column name="IS_ARCHIVED"/>
+            <column name="IS_DELETED"/>
+            <column name="PROJECT_ID"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>

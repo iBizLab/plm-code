@@ -93,7 +93,7 @@
                                     <verbose>true</verbose>
                                     <logging>debug</logging>
                                     <contexts>!test</contexts>
-                                    <diffExcludeObjects>Index:.*,foreignKey:FK_RELATION_CHILD,FK_RELATION_PARENT,table:ibzfile,ibzuser,ibzdataaudit,ibzcfg,IBZFILE,IBZUSER,IBZDATAAUDIT,IBZCFG,act_de_databasechangelog,act_de_databasechangeloglock,act_de_model,act_de_model_history,act_de_model_relation,ACT_DE_DATABASECHANGELOG,ACT_DE_DATABASECHANGELOGLOCK,ACT_DE_MODEL,ACT_DE_MODEL_HISTORY,ACT_DE_MODEL_RELATION</diffExcludeObjects>
+                                    <diffExcludeObjects>Index:.*,foreignKey:.*,table:ibzfile,ibzuser,ibzdataaudit,ibzcfg,IBZFILE,IBZUSER,IBZDATAAUDIT,IBZCFG,act_de_databasechangelog,act_de_databasechangeloglock,act_de_model,act_de_model_history,act_de_model_relation,ACT_DE_DATABASECHANGELOG,ACT_DE_DATABASECHANGELOGLOCK,ACT_DE_MODEL,ACT_DE_MODEL_HISTORY,ACT_DE_MODEL_RELATION</diffExcludeObjects>
                                 </configuration>
                                 <phase>process-resources</phase>
                                 <goals>
