@@ -46,7 +46,7 @@ export default {
                   cssClass: 'fa fa-play-circle-o',
                   glyph: 'xf01d@FontAwesome',
                 },
-                id: 'u49192b1',
+                id: 'u5697108',
               },
               {
                 actionLevel: 200,
@@ -60,7 +60,7 @@ export default {
                   cssClass: 'fa fa-dot-circle-o',
                   glyph: 'xf192@FontAwesome',
                 },
-                id: 'u3389afe',
+                id: 'u8c111e0',
               },
               {
                 actionLevel: 100,
@@ -75,7 +75,7 @@ export default {
                   cssClass: 'fa fa-edit',
                   glyph: 'xf044@FontAwesome',
                 },
-                id: 'u84a9411',
+                id: 'u11d4b0f',
               },
               {
                 actionLevel: 100,
@@ -90,7 +90,7 @@ export default {
                   cssClass: 'fa fa-trash-o',
                   glyph: 'xf014@FontAwesome',
                 },
-                id: 'ua341705',
+                id: 'ufa3966e',
               },
             ],
             uniqueTag: 'Sprint__Usr1220815404',
@@ -267,12 +267,6 @@ export default {
           id: 'pid',
         },
         {
-          appDEFieldId: 'sprint_category_id',
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'sprint_category_id',
-        },
-        {
           appDEFieldId: 'name',
           valueType: 'SIMPLE',
           dataType: 25,
@@ -417,9 +411,36 @@ export default {
             columnCount: 24,
             layout: 'TABLE_24COL',
           },
-          capLanguageRes: {
-            lanResTag: 'CONTROL.DEFORM.SPRINT.DEFAULT.FORMPAGE.FORMPAGE1',
-          },
+          deformDetails: [
+            {
+              dataType: 25,
+              enableCond: 3,
+              labelPos: 'NONE',
+              noPrivDisplayMode: 1,
+              appDEFieldId: 'name',
+              editor: {
+                editorType: 'TEXTBOX',
+                placeHolder: '请输入迭代名称',
+                valueType: 'SIMPLE',
+                editable: true,
+                id: 'n_name_like',
+              },
+              allowEmpty: true,
+              capLanguageRes: {
+                lanResTag: 'CONTROL.DEFSFITEM.SPRINT.N_NAME_LIKE',
+              },
+              caption: '名称(%)',
+              codeName: 'n_name_like',
+              detailStyle: 'DEFAULT',
+              detailType: 'FORMITEM',
+              layoutPos: {
+                colLG: 8,
+                colMD: 8,
+                layout: 'TABLE_24COL',
+              },
+              id: 'n_name_like',
+            },
+          ],
           caption: '常规条件',
           codeName: 'formpage1',
           detailStyle: 'DEFAULT',

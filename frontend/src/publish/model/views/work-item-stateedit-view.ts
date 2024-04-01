@@ -4,7 +4,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'edit_view',
-  deviewId: '7833635D-C97A-4921-B410-5F4DF179FE51',
+  deviewId: 'c56b90afea567e0776e9887962119236',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM_STATE',
@@ -54,7 +54,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '1A9FB9E8-935B-41BA-B469-35CD70F7C59A',
+      modelId: '47deeaa1aab5cfc17155ba5502e6d02c',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'edit_viewtoolbar',
@@ -328,7 +328,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '3A4F9030-7E4E-472B-B92E-CECD56884859',
+      modelId: 'e6fd2a1ef9a97d2a1234d6315ae27091',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.work_item_state.edit_view_form',
@@ -373,7 +373,7 @@ export default {
   width: 880,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '55f69aee0959c782ecd3b4dcc429aa3e',
+  modelId: '408076fb342398f5e605b6e2f445443f',
   modelType: 'PSAPPDEVIEW',
   name: 'work_item_stateedit_view',
   id: 'plmweb.work_item_stateedit_view',

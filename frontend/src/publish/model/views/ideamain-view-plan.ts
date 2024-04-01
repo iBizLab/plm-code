@@ -4,7 +4,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'main_view_plan',
-  deviewId: '0776F2FC-4119-4192-81C1-D4EEFCC91526',
+  deviewId: '2bb2649e5b56feddd2bfdf7b5b117c6f',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'PAGE.CAPTION.IDEA.MAIN_VIEW_PLAN',
@@ -268,16 +268,6 @@ export default {
     ],
     appViewRefs: [
       {
-        realOpenMode: 'POPUPMODAL',
-        realTitle: '需求编辑视图',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.IDEA.EDITVIEW',
-        },
-        refAppViewId: 'plmweb.ideaeditview',
-        name: 'NEWDATA',
-        id: 'newdata',
-      },
-      {
         openMode: 'POPUPMODAL',
         realOpenMode: 'POPUPMODAL',
         realTitle: '需求',
@@ -288,6 +278,16 @@ export default {
         name: 'EDITDATA',
         id: 'editdata',
       },
+      {
+        realOpenMode: 'POPUPMODAL',
+        realTitle: '需求编辑视图',
+        realTitleLanguageRes: {
+          lanResTag: 'PAGE.TITLE.IDEA.EDITVIEW',
+        },
+        refAppViewId: 'plmweb.ideaeditview',
+        name: 'NEWDATA',
+        id: 'newdata',
+      },
     ],
     controls: [
       {
@@ -295,7 +295,7 @@ export default {
           {
             actionLevel: 100,
             noPrivDisplayMode: 2,
-            uiactionId: 'product_plan_add_relation_idea@idea',
+            uiactionId: 'product_plan_relation_idea@product_plan',
             uiactionTarget: 'NONE',
             valid: true,
             caption: '选择需求',
@@ -318,7 +318,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: '06268B6E-1132-45EE-B226-3A674A0081B3',
+        modelId: 'ab3c74a554fe199302f5ed851b6cae35',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'main_view_plantoolbar',
@@ -582,7 +582,7 @@ export default {
                       cssClass: 'fa fa-user-md',
                       glyph: 'xf0f0@FontAwesome',
                     },
-                    id: 'u653ff49',
+                    id: 'u4befff7',
                   },
                 ],
                 uniqueTag: 'Product_member__Usr0311005787',
@@ -734,7 +734,7 @@ export default {
             controlParam: {
               id: 'grid_batchtoolbar',
             },
-            modelId: '4F67D1AD-E398-46BA-BA09-80815FC061A1',
+            modelId: '0ed8657eb322d351494c8b1f83be54b2',
             modelType: 'PSDETOOLBAR',
             name: 'grid_batchtoolbar',
             id: 'main_view_plangrid_batchtoolbar',
@@ -752,7 +752,7 @@ export default {
           id: 'grid',
         },
         sysPFPluginId: 'number_grid',
-        modelId: 'D19A1F3F-4851-4393-BED4-72F90B73C591',
+        modelId: 'e384190e60875d1fd17e80ab79e6c701',
         modelType: 'PSDEGRID',
         name: 'grid',
         id: 'plmweb.idea.main_plan',
@@ -780,6 +780,10 @@ export default {
                   id: 'n_identifier_like',
                 },
                 allowEmpty: true,
+                capLanguageRes: {
+                  lanResTag:
+                    'CONTROL.DEFORM.IDEA.DEFAULT.FORMITEM.N_IDENTIFIER_LIKE',
+                },
                 caption: '编号',
                 codeName: 'n_identifier_like',
                 detailStyle: 'DEFAULT',
@@ -806,7 +810,8 @@ export default {
                 },
                 allowEmpty: true,
                 capLanguageRes: {
-                  lanResTag: 'CONTROL.DEFSFITEM.IDEA.N_TITLE_LIKE',
+                  lanResTag:
+                    'CONTROL.DEFORM.IDEA.DEFAULT.FORMITEM.N_TITLE_LIKE',
                 },
                 caption: '标题',
                 codeName: 'n_title_like',
@@ -941,7 +946,7 @@ export default {
         controlParam: {
           id: 'searchbar',
         },
-        modelId: 'B33F3FCB-7D61-4799-8A1C-80A45EAE36ED',
+        modelId: '7a913394ecbf814bf51cbfb4c79b7680',
         modelType: 'PSSYSSEARCHBAR',
         name: 'searchbar',
         id: 'plmweb.idea.product_plan_idea',
@@ -964,7 +969,7 @@ export default {
     logicName: 'main_view_plan表格视图布局',
     appDataEntityId: 'plmweb.idea',
     controlParam: {},
-    modelId: '5BCFAEA1-9D15-4305-9AC9-9781C3D54DA5',
+    modelId: 'ee9bc299b1d5beb2a5f9064177bdbfb7',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0205185813',
@@ -978,7 +983,7 @@ export default {
   width: 90,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '8de15f1203b8aef0e1b7842c37d581f6',
+  modelId: 'df6f3e16622cefba8d01a4bcde914d43',
   modelType: 'PSAPPDEVIEW',
   name: 'ideamain_view_plan',
   id: 'plmweb.ideamain_view_plan',

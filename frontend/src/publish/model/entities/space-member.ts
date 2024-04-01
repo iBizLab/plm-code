@@ -699,6 +699,14 @@ export default {
           id: 'preparejsparam1',
         },
         {
+          codeName: 'END1',
+          leftPos: 910,
+          logicNodeType: 'END',
+          topPos: 200,
+          name: '结束',
+          id: 'end1',
+        },
+        {
           code: "ibiz.hub.getApp(context.srfappid).deService.exec(\r\n    'plmweb.space_member',\r\n    'Create',\r\n    context,\r\n    uiLogic.user,\r\n);",
           codeName: 'RAWJSCODE1',
           leftPos: 649,
@@ -713,14 +721,6 @@ export default {
           topPos: 208,
           name: '创建临时数据',
           id: 'rawjscode1',
-        },
-        {
-          codeName: 'END1',
-          leftPos: 910,
-          logicNodeType: 'END',
-          topPos: 200,
-          name: '结束',
-          id: 'end1',
         },
       ],
       deuilogicParams: [
@@ -746,15 +746,15 @@ export default {
   deopprivs: [
     {
       logicName: '建立',
+      name: 'CREATE',
+      id: 'create',
+    },
+    {
+      logicName: '建立',
       mapDEName: 'SPACE',
       mapDEOPPrivName: 'UPDATE',
       name: 'CREATE',
       id: 'space__create',
-    },
-    {
-      logicName: '建立',
-      name: 'CREATE',
-      id: 'create',
     },
     {
       logicName: '删除',

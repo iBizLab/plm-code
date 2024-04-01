@@ -1,0 +1,11 @@
+deploysystems:
+  - gateway
+  - ibizplm
+tempfolder: /app/file/tempfile
+filefolder: /app/file/datafile
+systemsettings:
+  cloudclientutil:
+    serviceurl: lb://ebsx-oldapi
+    accesstokenurl: lb://ibizcloud-uaa/v7/login
+    clientid: aibizhi
+    clientsecret: '123456'

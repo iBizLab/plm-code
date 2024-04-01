@@ -66,17 +66,17 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '测试计划',
-      refAppViewId: 'plmweb.test_planmain_view',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
-    {
       realOpenMode: 'POPUPMODAL',
       realTitle: '新建测试计划',
       refAppViewId: 'plmweb.test_planquick_create_view',
       name: 'NEWDATA',
       id: 'newdata',
+    },
+    {
+      realTitle: '测试计划',
+      refAppViewId: 'plmweb.test_planmain_view',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
   ],
   controls: [
@@ -143,7 +143,7 @@ export default {
                   cssClass: 'fa fa-play-circle-o',
                   glyph: 'xf01d@FontAwesome',
                 },
-                id: 'uda3f5d9',
+                id: 'u6d3152c',
               },
               {
                 actionLevel: 200,
@@ -157,7 +157,7 @@ export default {
                   cssClass: 'fa fa-dot-circle-o',
                   glyph: 'xf192@FontAwesome',
                 },
-                id: 'u303b642',
+                id: 'u8dd3442',
               },
               {
                 actionLevel: 100,
@@ -172,7 +172,7 @@ export default {
                   cssClass: 'fa fa-edit',
                   glyph: 'xf044@FontAwesome',
                 },
-                id: 'u33ceb8c',
+                id: 'uf8d2086',
               },
               {
                 actionLevel: 100,
@@ -187,7 +187,7 @@ export default {
                   cssClass: 'fa fa-trash-o',
                   glyph: 'xf014@FontAwesome',
                 },
-                id: 'u0d816bc',
+                id: 'u405a462',
               },
             ],
             uniqueTag: 'Test_plan__Usr1220152730',
@@ -375,12 +375,6 @@ export default {
           id: 'library_id',
         },
         {
-          appDEFieldId: 'version_id',
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'version_id',
-        },
-        {
           appDEFieldId: 'sprint_id',
           valueType: 'SIMPLE',
           dataType: 25,
@@ -524,7 +518,7 @@ export default {
       controlParam: {
         id: 'searchbar',
       },
-      modelId: '639925CA-41A6-43AD-97FD-4D4FD3FEE694',
+      modelId: '0beec61e35014502963147dd1dbc0615',
       modelType: 'PSSYSSEARCHBAR',
       name: 'searchbar',
       id: 'plmweb.test_plan.usr0204427021',

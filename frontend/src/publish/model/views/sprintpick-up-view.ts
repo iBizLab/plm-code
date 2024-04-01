@@ -1,7 +1,7 @@
 export default {
   openMode: 'POPUPMODAL',
   deviewCodeName: 'pick_up_view',
-  deviewId: 'B9B0576A-EBEC-4BE4-AC75-82A896241002',
+  deviewId: '4fbf1376d3e76930c2c99d57fb7b6263',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SPRINT',
@@ -231,7 +231,7 @@ export default {
           controlParam: {
             id: 'treeexpbar_tree',
           },
-          modelId: 'C9882041-6056-47DA-8B3E-BD6BEF6FE009',
+          modelId: '8bc847c2c88d169451907e26c3ba4808',
           modelType: 'PSDETREEVIEW',
           name: 'treeexpbar_tree',
           id: 'plmweb.sprint.pick_up_view_treeview',
@@ -243,7 +243,7 @@ export default {
       controlParam: {
         id: 'treeexpbar',
       },
-      modelId: 'c9ee7a04a49d7aab3f5e5420116dc3ee_treeexpbar',
+      modelId: '02f8b5fc0ac977528533aa835db10f54_treeexpbar',
       modelType: 'PSEXPBAR',
       name: 'treeexpbar',
       id: 'pick_up_viewtreeexpbar',
@@ -402,12 +402,16 @@ export default {
                 },
                 dataRegionType: 'INHERIT',
                 caption: '容器',
+                contentWidth: 300,
                 itemStyle: 'DEFAULT',
                 itemType: 'CONTAINER',
                 layoutPos: {
                   shrink: 0,
                   layout: 'FLEX',
+                  width: 300,
+                  widthMode: 'PX',
                 },
+                width: 300,
                 id: 'container6',
               },
               {
@@ -532,7 +536,7 @@ export default {
     logicName: '选择视图(左右关系)布局面板(项目发布实体扩展)',
     appDataEntityId: 'plmweb.sprint',
     controlParam: {},
-    modelId: '13116BE6-B714-4245-89D2-19DFFA2F4D1F',
+    modelId: '7f8b0b1998812e4323ecee2d9ea553ab',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'exreleasepickupview2layout',
@@ -542,7 +546,7 @@ export default {
   viewType: 'DEPICKUPVIEW2',
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'c9ee7a04a49d7aab3f5e5420116dc3ee',
+  modelId: '02f8b5fc0ac977528533aa835db10f54',
   modelType: 'PSAPPDEVIEW',
   name: 'sprintpick_up_view',
   id: 'plmweb.sprintpick_up_view',

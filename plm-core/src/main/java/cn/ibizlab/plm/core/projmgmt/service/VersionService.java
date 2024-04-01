@@ -3,7 +3,6 @@
  */
 package cn.ibizlab.plm.core.projmgmt.service;
 
-import java.math.BigDecimal;
 import java.util.*;
 
 import org.springframework.data.domain.Page;
@@ -13,11 +12,7 @@ import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
 import cn.ibizlab.plm.core.projmgmt.domain.Version;
 import cn.ibizlab.plm.core.projmgmt.filter.VersionSearchContext;
-import cn.ibizlab.plm.core.projmgmt.domain.Project;
-import cn.ibizlab.plm.core.projmgmt.domain.VersionCategory;
-import cn.ibizlab.plm.core.projmgmt.domain.Stage;
-import cn.ibizlab.plm.core.testmgmt.domain.TestPlan;
-import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
+import cn.ibizlab.plm.core.wiki.domain.ArticlePage;
 
 /**
  * 版本（temp）服务接口[VersionService]
@@ -178,6 +173,26 @@ public interface VersionService extends IService<Version> {
     }
 
     /**
+     * Commit
+     * 
+     * @param dto
+     * @return
+     */
+    default Version commit(Version dto) {
+        return dto;
+    }
+
+    /**
+     * Restore
+     * 
+     * @param dto
+     * @return
+     */
+    default Version restore(Version dto) {
+        return dto;
+    }
+
+    /**
      * searchDefault
      * 
      * @param context
@@ -207,80 +222,42 @@ public interface VersionService extends IService<Version> {
         return new VersionSearchContext();
     }
     /**
-     * selectRelByProjectId
-     * @param projectIds
+     * selectRelByOwnerId
+     * @param ownerIds
      * @return
      */
-    List<Version> findByProjectId(List<String> projectIds);
-    default List<Version> findByProjectId(String projectId) {
-        return findByProjectId(Arrays.asList(projectId));
+    List<Version> findByOwnerId(List<String> ownerIds);
+    default List<Version> findByOwnerId(String ownerId) {
+        return findByOwnerId(Arrays.asList(ownerId));
     }
     /**
-     * removeRelByProjectId
-     * @param projectId
+     * removeRelByOwnerId
+     * @param ownerId
      * @return
      */
-    boolean removeByProjectId(String projectId);
+    boolean removeByOwnerId(String ownerId);
     /**
-     * resetRelByProjectId
-     * @param projectId
+     * resetRelByOwnerId
+     * @param ownerId
      * @return
      */
-    boolean resetByProjectId(String projectId);
+    boolean resetByOwnerId(String ownerId);
     /**
-     * saveRelByProjectId
-     * @param projectId
+     * saveRelByOwnerId
+     * @param ownerId
      * @param list
      * @return
      */
-    default boolean saveByProjectId(String projectId,List<Version> list) {
-        return getSelf().saveByProject(new Project().setId(projectId),list);
+    default boolean saveByOwnerId(String ownerId,List<Version> list) {
+        return getSelf().saveByPage(new ArticlePage().setId(ownerId),list);
     }
     /**
-    * saveRelByProject
-    * @param project
+    * saveRelByPage
+    * @param articlePage
     * @param list
     * @return
     */
-    boolean saveByProject(Project project,List<Version> list);
-
-    /**
-     * selectRelByVersionCategoryId
-     * @param versionCategoryIds
-     * @return
-     */
-    List<Version> findByVersionCategoryId(List<String> versionCategoryIds);
-    default List<Version> findByVersionCategoryId(String versionCategoryId) {
-        return findByVersionCategoryId(Arrays.asList(versionCategoryId));
-    }
-    /**
-     * removeRelByVersionCategoryId
-     * @param versionCategoryId
-     * @return
-     */
-    boolean removeByVersionCategoryId(String versionCategoryId);
-    /**
-     * resetRelByVersionCategoryId
-     * @param versionCategoryId
-     * @return
-     */
-    boolean resetByVersionCategoryId(String versionCategoryId);
-    /**
-     * saveRelByVersionCategoryId
-     * @param versionCategoryId
-     * @param list
-     * @return
-     */
-    default boolean saveByVersionCategoryId(String versionCategoryId,List<Version> list) {
-        return getSelf().saveByVersionCategory(new VersionCategory().setId(versionCategoryId),list);
-    }
-    /**
-    * saveRelByVersionCategory
-    * @param versionCategory
-    * @param list
-    * @return
-    */
-    boolean saveByVersionCategory(VersionCategory versionCategory,List<Version> list);
+    boolean saveByPage(ArticlePage articlePage,List<Version> list);
 
 
     /**

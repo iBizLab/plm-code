@@ -286,6 +286,17 @@ public abstract class AbstractSpaceService extends ServiceImpl<SpaceMapper,Space
         return list;
     }
 
+    public Page<Space> searchReader(SpaceSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Space> pages=baseMapper.searchReader(context.getPages(),context,context.getSelectCond());
+        List<Space> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Space> listReader(SpaceSearchContext context) {
+        List<Space> list = baseMapper.listReader(context,context.getSelectCond());
+        return list;
+    }
+
     public Page<Space> searchUser(SpaceSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Space> pages=baseMapper.searchUser(context.getPages(),context,context.getSelectCond());
         List<Space> list = pages.getRecords();

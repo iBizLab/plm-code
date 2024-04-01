@@ -2,7 +2,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'grid_view_tag',
-  deviewId: '101AE184-7047-4F6E-B4A8-EF1C815F78BB',
+  deviewId: 'cb1c006e5d44a335b2753b50ee1fc007',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PROJECT_TAG',
@@ -116,7 +116,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '0AD387F3-E837-486B-8053-1DFAFF7F15CD',
+      modelId: '97b46e5ab28ff4016efe341c2c4f8bcf',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'grid_view_tagtoolbar',
@@ -204,7 +204,7 @@ export default {
                   cssClass: 'fa fa-edit',
                   glyph: 'xf044@FontAwesome',
                 },
-                id: 'u2a7e2a3',
+                id: 'uaef81a8',
               },
               {
                 actionLevel: 100,
@@ -217,7 +217,7 @@ export default {
                   cssClass: 'fa fa-trash',
                   glyph: 'xf1f8@FontAwesome',
                 },
-                id: 'uc682af2',
+                id: 'ue78c972',
               },
             ],
             uniqueTag: 'Project_tag__Usr1219502352',
@@ -313,7 +313,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '345DE93F-CBA6-4735-B82B-69A6BB0C94E5',
+      modelId: '79c74066aa46b7bf3048858c76fdfeae',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.project_tag.management_table',
@@ -396,7 +396,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '2972353c0fa38b25473ad71ade69c824',
+  modelId: 'a1325c597e362bb1af2957e1d6451bec',
   modelType: 'PSAPPDEVIEW',
   name: 'project_taggrid_view_tag',
   id: 'plmweb.project_taggrid_view_tag',

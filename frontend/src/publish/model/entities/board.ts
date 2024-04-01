@@ -16,14 +16,14 @@ export default {
           id: 'text',
         },
         {
-          appDEFieldId: 'id',
-          dataType: 25,
-          id: 'id',
-        },
-        {
           appDEFieldId: 'name',
           dataType: 25,
           id: 'name',
+        },
+        {
+          appDEFieldId: 'id',
+          dataType: 25,
+          id: 'id',
         },
       ],
       deuiactionGroup: {
@@ -37,7 +37,11 @@ export default {
             uiactionId: 'new@board',
             showCaption: true,
             showIcon: true,
-            id: 'u7c7be3c',
+            sysImage: {
+              cssClass: 'fa fa-plus',
+              glyph: 'xf067@FontAwesome',
+            },
+            id: 'u243d7d9',
           },
         ],
         uniqueTag: 'Board__Usr1225361038',
@@ -45,6 +49,113 @@ export default {
         id: 'usr1225361038',
       },
       pagingSize: 50,
+      itemLayoutPanel: {
+        layoutMode: 'TABLE_24COL',
+        layout: {
+          columnCount: 24,
+          layout: 'TABLE_24COL',
+        },
+        rootPanelItems: [
+          {
+            panelItems: [
+              {
+                panelItems: [
+                  {
+                    rawItem: {
+                      sysImage: {
+                        cssClass: 'fa fa-trello',
+                        glyph: 'xf181@FontAwesome',
+                      },
+                      contentType: 'IMAGE',
+                      predefinedType: 'STATIC_IMAGE',
+                      rawItemHeight: 30,
+                      id: 'static_image',
+                    },
+                    caption: '图片',
+                    contentHeight: 30,
+                    height: 30,
+                    itemStyle: 'DEFAULT',
+                    itemType: 'RAWITEM',
+                    layoutPos: {
+                      shrink: 1,
+                      height: 30,
+                      heightMode: 'PERCENTAGE',
+                      layout: 'FLEX',
+                    },
+                    sysImage: {
+                      cssClass: 'fa fa-trello',
+                      glyph: 'xf181@FontAwesome',
+                    },
+                    showCaption: true,
+                    id: 'static_image',
+                  },
+                  {
+                    editor: {
+                      halign: 'LEFT',
+                      renderMode: 'TEXT_DYNAMIC',
+                      valign: 'MIDDLE',
+                      wrapMode: 'NOWRAP',
+                      editorType: 'SPAN',
+                      predefinedType: 'FIELD_TEXT_DYNAMIC',
+                      valueType: 'SIMPLE',
+                      editable: true,
+                      id: 'name',
+                    },
+                    viewFieldName: 'NAME',
+                    allowEmpty: true,
+                    caption: '文本(动态)',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'FIELD',
+                    layoutPos: {
+                      shrink: 1,
+                      layout: 'FLEX',
+                    },
+                    id: 'name',
+                  },
+                ],
+                layout: {
+                  dir: 'row',
+                  layout: 'FLEX',
+                },
+                dataRegionType: 'INHERIT',
+                caption: '容器',
+                itemStyle: 'DEFAULT',
+                itemType: 'CONTAINER',
+                layoutPos: {
+                  shrink: 1,
+                  layout: 'FLEX',
+                  spacingTop: 'INNERSMALL',
+                },
+                id: 'container3',
+              },
+            ],
+            layout: {
+              dir: 'column',
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              colMD: 24,
+              layout: 'TABLE_24COL',
+            },
+            id: 'page_container',
+          },
+        ],
+        layoutPanel: true,
+        codeName: 'Choose_board',
+        controlType: 'PANEL',
+        logicName: '选择看板布局面板',
+        appDataEntityId: 'plmweb.board',
+        controlParam: {
+          id: 'panel',
+        },
+        modelId: 'cbf3c1d84991b67894b7429728fc4ff7',
+        modelType: 'PSSYSVIEWPANEL',
+        name: 'panel',
+        id: 'plmweb.board.choose_board',
+      },
       textAppDEFieldId: 'name',
       valueAppDEFieldId: 'id',
       id: 'create_board',
@@ -544,6 +655,10 @@ export default {
           id: 'board',
         },
       ],
+      sysImage: {
+        cssClass: 'fa fa-plus',
+        glyph: 'xf067@FontAwesome',
+      },
       timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'New',
@@ -570,15 +685,15 @@ export default {
     },
     {
       logicName: '删除',
-      name: 'DELETE',
-      id: 'delete',
-    },
-    {
-      logicName: '删除',
       mapDEName: 'PROJECT',
       mapDEOPPrivName: 'SUBDATA',
       name: 'DELETE',
       id: 'project__delete',
+    },
+    {
+      logicName: '删除',
+      name: 'DELETE',
+      id: 'delete',
     },
     {
       logicName: '读取',

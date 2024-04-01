@@ -193,6 +193,16 @@ public interface RecentService extends IService<Recent> {
     }
 
     /**
+     * Recent_clean
+     * 每天定时清理最近访问数据，每人每个访问类型数据只保留100条
+     * @param dto
+     * @return
+     */
+    default Recent recentClean(Recent dto) {
+        return dto;
+    }
+
+    /**
      * searchDefault
      * 
      * @param context
@@ -236,6 +246,21 @@ public interface RecentService extends IService<Recent> {
      * @return
      */
     List<Recent> listRecentCurproductTicket(RecentSearchContext context);
+
+    /**
+     * searchRecent_curproject_child_work_item
+     * 
+     * @param context
+     * @return
+     */
+    Page<Recent> searchRecentCurprojectChildWorkItem(RecentSearchContext context);
+    /**
+     * listRecent_curproject_child_work_item
+     * 
+     * @param context
+     * @return
+     */
+    List<Recent> listRecentCurprojectChildWorkItem(RecentSearchContext context);
 
     /**
      * searchRecent_curproject_work_item

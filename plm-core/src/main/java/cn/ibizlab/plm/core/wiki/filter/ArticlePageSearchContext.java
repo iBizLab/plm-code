@@ -39,6 +39,14 @@ import cn.ibizlab.plm.core.wiki.domain.ArticlePage;
 public class ArticlePageSearchContext extends QueryWrapperContext<ArticlePage> {
 
     /**
+     * 编号EQ
+     */
+    @JsonProperty("n_identifier_eq")
+    @JSONField(name = "n_identifier_eq")
+    @ApiModelProperty("编号EQ")
+    private String identifierEQ;
+
+    /**
      * 正文格式EQ
      */
     @JsonProperty("n_format_type_eq")
@@ -63,6 +71,14 @@ public class ArticlePageSearchContext extends QueryWrapperContext<ArticlePage> {
     private String isFavoriteEQ;
 
     /**
+     * 标识NOTEQ
+     */
+    @JsonProperty("n_id_noteq")
+    @JSONField(name = "n_id_noteq")
+    @ApiModelProperty("标识NOTEQ")
+    private String idNOTEQ;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
@@ -71,12 +87,47 @@ public class ArticlePageSearchContext extends QueryWrapperContext<ArticlePage> {
     private String idEQ;
 
     /**
+     * 建立时间EQ
+     */
+    @JsonProperty("n_create_time_eq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_create_time_eq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("建立时间EQ")
+    private Date createTimeEQ;
+
+    /**
+     * 建立时间GTANDEQ
+     */
+    @JsonProperty("n_create_time_gtandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_create_time_gtandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("建立时间GTANDEQ")
+    private Date createTimeGTANDEQ;
+
+    /**
+     * 建立时间LTANDEQ
+     */
+    @JsonProperty("n_create_time_ltandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_create_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("建立时间LTANDEQ")
+    private Date createTimeLTANDEQ;
+
+    /**
      * 主题LIKE
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
     @ApiModelProperty("主题LIKE")
     private String nameLIKE;
+
+    /**
+     * 建立人EQ
+     */
+    @JsonProperty("n_create_man_eq")
+    @JSONField(name = "n_create_man_eq")
+    @ApiModelProperty("建立人EQ")
+    private String createManEQ;
 
     /**
      * 空间标识EQ

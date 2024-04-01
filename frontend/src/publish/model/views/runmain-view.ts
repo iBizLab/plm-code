@@ -1,11 +1,12 @@
 export default {
+  markOpenDataMode: 'OPENDATA;EDITDATA;DISPLAYOPPERSON;NOTICERELOAD',
   showDataInfoBar: true,
   xdataControlName: 'form',
   loadDefault: true,
   funcViewMode: 'EDITVIEW',
   openMode: 'INDEXVIEWTAB_POPUPMODAL',
   deviewCodeName: 'main_view',
-  deviewId: 'bda8452dec19ec7988f38b218ff46023',
+  deviewId: 'a0e25fb4f8239c676727ada4225af179',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RUN',
@@ -601,7 +602,7 @@ export default {
                       uiactionId: 'open_re_run@run',
                       showCaption: true,
                       showIcon: true,
-                      id: 'uf0965c9',
+                      id: 'u77de18c',
                     },
                   ],
                   uniqueTag: 'Run__Usr0108650072',
@@ -836,7 +837,7 @@ export default {
                                   uiactionId: 'all_pass@run',
                                   showCaption: true,
                                   showIcon: true,
-                                  id: 'u3eadc83',
+                                  id: 'u2565776',
                                 },
                               ],
                               uniqueTag: 'Run__Usr0104753567',
@@ -1192,7 +1193,7 @@ export default {
                                         cssClass: 'fa fa-plus',
                                         glyph: 'xf067@FontAwesome',
                                       },
-                                      id: 'u0b61da9',
+                                      id: 'u74e45e0',
                                     },
                                   ],
                                   uniqueTag: 'Run__Usr0124971859',
@@ -1288,7 +1289,7 @@ export default {
                                                   cssClass: 'fa fa-download',
                                                   glyph: 'xf019@FontAwesome',
                                                 },
-                                                id: 'u0b42a77',
+                                                id: 'u73b8ba5',
                                               },
                                               {
                                                 actionLevel: 100,
@@ -1304,7 +1305,7 @@ export default {
                                                   cssClass: 'fa fa-trash-o',
                                                   glyph: 'xf014@FontAwesome',
                                                 },
-                                                id: 'u8aff03a',
+                                                id: 'u44d00e2',
                                               },
                                             ],
                                             uniqueTag:
@@ -1689,16 +1690,31 @@ export default {
                           {
                             appViewId:
                               'plmweb.work_itemrun_re_work_item_bug_grid_view',
+                            navigateContexts: [
+                              {
+                                key: 'TEST_CASE',
+                                rawValue: true,
+                                name: 'TEST_CASE',
+                                id: 'test_case',
+                              },
+                              {
+                                key: 'TEST_PLAN',
+                                rawValue: true,
+                                name: 'TEST_PLAN',
+                                id: 'test_plan',
+                              },
+                              {
+                                key: 'CURTEST_CASE',
+                                value: 'test_case',
+                                name: 'CURTEST_CASE',
+                                id: 'curtest_case',
+                              },
+                            ],
                             navigateParams: [
                               {
                                 key: 'principal_id',
                                 value: 'run',
                                 id: 'principal_id',
-                              },
-                              {
-                                key: 'test_case',
-                                value: 'test_case',
-                                id: 'test_case',
                               },
                             ],
                             parentDataJO: {
@@ -1789,7 +1805,7 @@ export default {
                       uiactionId: 'open_re_run@run',
                       showCaption: true,
                       showIcon: true,
-                      id: 'uf0965c9',
+                      id: 'u77de18c',
                     },
                   ],
                   uniqueTag: 'Run__Usr0108650072',
@@ -1918,7 +1934,7 @@ export default {
                                           cssClass: 'fa fa-user-md',
                                           glyph: 'xf0f0@FontAwesome',
                                         },
-                                        id: 'u2011858',
+                                        id: 'u23c0102',
                                       },
                                     ],
                                     uniqueTag: 'Library_member__Usr0311619181',
@@ -2244,11 +2260,12 @@ export default {
                             },
                             deformDetails: [
                               {
-                                dataType: 25,
+                                dataType: 6,
                                 enableCond: 3,
                                 labelPos: 'LEFT',
                                 labelWidth: 130,
                                 noPrivDisplayMode: 1,
+                                appDEFieldId: 'estimated_workload',
                                 editor: {
                                   contentType: 'RAW',
                                   editorType: 'RAW',
@@ -2269,11 +2286,12 @@ export default {
                                 id: 'estimated_workload',
                               },
                               {
-                                dataType: 25,
+                                dataType: 6,
                                 enableCond: 3,
                                 labelPos: 'LEFT',
                                 labelWidth: 130,
                                 noPrivDisplayMode: 1,
+                                appDEFieldId: 'actual_workload',
                                 editor: {
                                   contentType: 'RAW',
                                   editorType: 'RAW',
@@ -2287,18 +2305,59 @@ export default {
                                 detailStyle: 'DEFAULT',
                                 detailType: 'FORMITEM',
                                 layoutPos: {
-                                  colMD: 24,
+                                  colLG: 22,
+                                  colMD: 22,
                                   layout: 'TABLE_24COL',
                                 },
                                 showCaption: true,
                                 id: 'actual_workload',
                               },
                               {
-                                dataType: 25,
+                                actionGroupExtractMode: 'ITEM',
+                                layout: {
+                                  columnCount: 24,
+                                  layout: 'TABLE_24COL',
+                                },
+                                deformDetails: [
+                                  {
+                                    actionType: 'UIACTION',
+                                    uiactionId: 'check_workload_detail@run',
+                                    tooltip: '查看明细',
+                                    uiactionTarget: 'NONE',
+                                    caption: '查看明细',
+                                    codeName: 'button1',
+                                    detailStyle: 'STYLE2',
+                                    detailType: 'BUTTON',
+                                    layoutPos: {
+                                      colLGOffset: 8,
+                                      colMD: 24,
+                                      colMDOffset: 8,
+                                      layout: 'TABLE_24COL',
+                                    },
+                                    sysImage: {
+                                      cssClass: 'fa fa-arrow-circle-o-right',
+                                      glyph: 'xf18e@FontAwesome',
+                                    },
+                                    id: 'button1',
+                                  },
+                                ],
+                                codeName: 'grouppanel2',
+                                detailStyle: 'DEFAULT',
+                                detailType: 'GROUPPANEL',
+                                layoutPos: {
+                                  colLG: 2,
+                                  colMD: 2,
+                                  layout: 'TABLE_24COL',
+                                },
+                                id: 'grouppanel2',
+                              },
+                              {
+                                dataType: 6,
                                 enableCond: 3,
                                 labelPos: 'LEFT',
                                 labelWidth: 130,
                                 noPrivDisplayMode: 1,
+                                appDEFieldId: 'remaining_workload',
                                 editor: {
                                   contentType: 'RAW',
                                   editorType: 'RAW',
@@ -2319,12 +2378,15 @@ export default {
                                 id: 'remaining_workload',
                               },
                               {
-                                dataType: 25,
+                                createDV: '0',
+                                dataType: 6,
                                 labelPos: 'LEFT',
                                 labelWidth: 130,
                                 noPrivDisplayMode: 1,
+                                appDEFieldId: 'workload_schedule',
                                 editor: {
                                   stepValue: 1,
+                                  precision: 1,
                                   editorParams: {
                                     showText: 'true',
                                   },
@@ -2705,6 +2767,56 @@ export default {
                     },
                     id: 'tabpanel2',
                   },
+                  {
+                    actionGroupExtractMode: 'ITEM',
+                    layout: {
+                      columnCount: 24,
+                      layout: 'TABLE_24COL',
+                    },
+                    deformDetails: [
+                      {
+                        appViewId: 'plmweb.workloadrun_list_view',
+                        parentDataJO: {
+                          srfparentdename: 'RUN',
+                          SRFPARENTTYPE: 'CUSTOM',
+                        },
+                        codeName: 'druipart3',
+                        detailStyle: 'DEFAULT',
+                        detailType: 'DRUIPART',
+                        layoutPos: {
+                          colMD: 24,
+                          layout: 'TABLE_24COL',
+                        },
+                        showCaption: true,
+                        id: 'druipart3',
+                      },
+                    ],
+                    codeName: 'grouppanel1',
+                    detailStyle: 'DEFAULT',
+                    detailType: 'GROUPPANEL',
+                    defdgroupLogics: [
+                      {
+                        logicCat: 'PANELVISIBLE',
+                        relatedDetailNames: ['workload_schedule'],
+                        groupOP: 'AND',
+                        defdlogics: [
+                          {
+                            condOP: 'EQ',
+                            defdname: 'workload_schedule',
+                            value: '-1',
+                            logicType: 'SINGLE',
+                          },
+                        ],
+                        logicType: 'GROUP',
+                        id: '表单成员[grouppanel1][面板显示]逻辑',
+                      },
+                    ],
+                    layoutPos: {
+                      colMD: 24,
+                      layout: 'TABLE_24COL',
+                    },
+                    id: 'grouppanel1',
+                  },
                 ],
                 codeName: 'right_grouppanel',
                 detailStyle: 'DEFAULT',
@@ -2827,8 +2939,8 @@ export default {
               name: '执行用例关联分页计数器',
               id: 'plmweb.run_re_counters',
             },
-            tag: '87c1ef8b2ff69d74016176a83cf41f9b',
-            id: '87c1ef8b2ff69d74016176a83cf41f9b',
+            tag: '6a9257dc240f07a00c06dd57012c580e',
+            id: '6a9257dc240f07a00c06dd57012c580e',
           },
         ],
         codeName: 'Main',
@@ -2892,7 +3004,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: '78A0D42B-A2F0-4B2D-83BE-F536C78194A0',
+        modelId: '31f83dc94caa589c447b391a2eb0412e',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'main_viewtoolbar',
@@ -2973,7 +3085,7 @@ export default {
   width: 90,
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'e544c143f666bb88d36845123b1b494e',
+  modelId: '9b30c37fc03b53d8ee1e9160f8029e74',
   modelType: 'PSAPPDEVIEW',
   name: 'runmain_view',
   id: 'plmweb.runmain_view',

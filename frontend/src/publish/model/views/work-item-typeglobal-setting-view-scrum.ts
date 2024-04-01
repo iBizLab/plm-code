@@ -2,7 +2,7 @@ export default {
   xdataControlName: 'list',
   loadDefault: true,
   deviewCodeName: 'global_setting_view_scrum',
-  deviewId: '2519C414-B767-4F17-8BDA-71CD2EECECB4',
+  deviewId: '402df0bd4cd4c12e77e4497e6ddbf3d7',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM_TYPE',
@@ -1112,23 +1112,23 @@ export default {
         logicName: 'global_setting_列表项面板',
         appDataEntityId: 'plmweb.work_item_type',
         controlParam: {},
-        modelId: '9430D8BB-F376-4CFC-95FB-F7777A5DF457',
+        modelId: '266dfc28416fd9919aef218b7e7a5d14',
         modelType: 'PSSYSVIEWPANEL',
         name: 'list_itempanel',
         id: 'plmweb.work_item_type.usr1229905828',
       },
       delistDataItems: [
         {
-          dataType: 21,
-          id: 'icon',
+          dataType: 25,
+          id: 'id',
         },
         {
           dataType: 25,
           id: 'name',
         },
         {
-          dataType: 25,
-          id: 'id',
+          dataType: 21,
+          id: 'icon',
         },
         {
           appDEFieldId: 'id',
@@ -1177,7 +1177,7 @@ export default {
       controlParam: {
         id: 'list',
       },
-      modelId: 'A0D589CF-6D54-4795-A163-9DB4BCC5D3A9',
+      modelId: 'c5a5fc55cda750b5c324312abfadd530',
       modelType: 'PSDELIST',
       name: 'list',
       id: 'plmweb.work_item_type.global_setting',
@@ -1220,7 +1220,7 @@ export default {
   viewType: 'DELISTVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'f89e1732c3a1e268b888fb4d522b3b2b',
+  modelId: 'd216e09d82f9cba437e2e0171d009044',
   modelType: 'PSAPPDEVIEW',
   name: 'work_item_typeglobal_setting_view_scrum',
   id: 'plmweb.work_item_typeglobal_setting_view_scrum',

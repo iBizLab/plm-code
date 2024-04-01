@@ -202,6 +202,45 @@ public abstract class AbstractRecentResource {
     }
 
     /**
+    * Recent_clean 最近访问
+    * 每天定时清理最近访问数据，每人每个访问类型数据只保留100条
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<RecentDTO>
+    */
+    @ApiOperation(value = "Recent_clean", tags = {"最近访问" },  notes = "Recent-Recent_clean 每天定时清理最近访问数据，每人每个访问类型数据只保留100条")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Recent-Recent_clean-all') or hasPermission(this.recentDtoMapping.toDomain(#dto),'ibizplm-Recent-Recent_clean')")
+    @PostMapping("recents/{id}/recent_clean")
+    public ResponseEntity<ResponseWrapper<RecentDTO>> recentCleanById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RecentDTO> dto) {
+        ResponseWrapper<RecentDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(recentCleanById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(recentCleanById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * Recent_clean 最近访问
+    * 每天定时清理最近访问数据，每人每个访问类型数据只保留100条
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<RecentDTO>
+    */   
+    public RecentDTO recentCleanById
+            (String id, RecentDTO dto) {
+        Recent domain = recentDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Recent rt = recentService.recentClean(domain);
+        return recentDtoMapping.toDto(rt);
+    }
+
+    /**
     * 保存Save 最近访问
     * 
     *
@@ -357,6 +396,27 @@ public abstract class AbstractRecentResource {
             (@Validated @RequestBody RecentFilterDTO dto) {
         RecentSearchContext context = recentFilterDtoMapping.toDomain(dto);
         Page<Recent> domains = recentService.searchRecentCurproductTicket(context) ;
+        List<RecentDTO> list = recentDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询FetchRecent_curproject_child_work_item 最近访问
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<RecentDTO>>
+    */
+    @ApiOperation(value = "查询FetchRecent_curproject_child_work_item", tags = {"最近访问" },  notes = "Recent-FetchRecent_curproject_child_work_item ")
+    @PostMapping("recents/fetchrecent_curproject_child_work_item")
+    public ResponseEntity<List<RecentDTO>> fetchRecentCurprojectChildWorkItem
+            (@Validated @RequestBody RecentFilterDTO dto) {
+        RecentSearchContext context = recentFilterDtoMapping.toDomain(dto);
+        Page<Recent> domains = recentService.searchRecentCurprojectChildWorkItem(context) ;
         List<RecentDTO> list = recentDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

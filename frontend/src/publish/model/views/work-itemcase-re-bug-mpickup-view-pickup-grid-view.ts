@@ -5,7 +5,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'case_re_bug_mpickup_view_PickupGridView',
-  deviewId: 'C55FDF72-B409-4CE4-AEB0-49F5EFA856E6',
+  deviewId: '13d18801fb8aa0e57481ca279e31a2da',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -130,12 +130,6 @@ export default {
           id: 'sprint_id',
         },
         {
-          appDEFieldId: 'version_id',
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'version_id',
-        },
-        {
           appDEFieldId: 'board_id',
           valueType: 'SIMPLE',
           dataType: 25,
@@ -219,7 +213,7 @@ export default {
         id: 'grid',
       },
       sysPFPluginId: 'checkbox_grid',
-      modelId: '12B36AF0-0202-4B91-8C99-42A17C266804',
+      modelId: 'df024aedefea3a9eadb265751e663d83',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.work_item.case_re_bug_mpickup_view_pickupgridview_grid',
@@ -306,7 +300,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: '5AD9CE26-E9C2-423A-B048-973F7EACBA94',
+      modelId: '3bc81178ebb00e652c430a221700382f',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.work_item.choose_search_form',
@@ -349,7 +343,7 @@ export default {
   viewType: 'DEPICKUPGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '0264bda248e29df4881f7cea5ad0177d',
+  modelId: '4ddb272262e333b8345a230f4036d7f0',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemcase_re_bug_mpickup_view_PickupGridView',
   id: 'plmweb.work_itemcase_re_bug_mpickup_view_pickupgridview',

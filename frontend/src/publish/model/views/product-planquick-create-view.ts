@@ -302,7 +302,7 @@ export default {
                             cssClass: 'fa fa-user-md',
                             glyph: 'xf0f0@FontAwesome',
                           },
-                          id: 'u653ff49',
+                          id: 'u4befff7',
                         },
                       ],
                       uniqueTag: 'Product_member__Usr0311005787',

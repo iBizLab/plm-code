@@ -1,7 +1,7 @@
 export default {
   loadDefault: true,
   deviewCodeName: 'idea_tree_grid_view',
-  deviewId: '865A0B90-31C4-4EAC-A60F-54A992FD3835',
+  deviewId: '2d985026276b79c4e1efabd42793cb5e',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -215,6 +215,7 @@ export default {
             itemStyle: 'DEFAULT',
             itemType: 'CTRLPOS',
             layoutPos: {
+              grow: 1,
               shrink: 1,
               layout: 'FLEX',
             },
@@ -475,7 +476,7 @@ export default {
                     cssClass: 'fa fa-plus-square-o',
                     glyph: 'xf196@FontAwesome',
                   },
-                  id: 'u31bae44',
+                  id: 'u32d0c74',
                 },
                 {
                   actionLevel: 100,
@@ -490,7 +491,7 @@ export default {
                     cssClass: 'fa fa-copy',
                     glyph: 'xf0c5@FontAwesome',
                   },
-                  id: 'u710f7df',
+                  id: 'ua80018a',
                 },
                 {
                   actionLevel: 100,
@@ -505,7 +506,7 @@ export default {
                     cssClass: 'fa fa-arrows',
                     glyph: 'xf047@FontAwesome',
                   },
-                  id: 'u4ea8869',
+                  id: 'uf7afb36',
                 },
                 {
                   actionLevel: 100,
@@ -520,7 +521,7 @@ export default {
                     cssClass: 'fa fa-archive',
                     glyph: 'xf187@FontAwesome',
                   },
-                  id: 'u251b3b6',
+                  id: 'uafbfc54',
                 },
                 {
                   actionLevel: 100,
@@ -535,7 +536,7 @@ export default {
                     cssClass: 'fa fa-trash-o',
                     glyph: 'xf014@FontAwesome',
                   },
-                  id: 'ue3ce3f8',
+                  id: 'u3dfbbfa',
                 },
                 {
                   actionLevel: 100,
@@ -549,7 +550,7 @@ export default {
                   sysImage: {
                     cssClass: 'key',
                   },
-                  id: 'ud7336b0',
+                  id: 'uff1854b',
                 },
                 {
                   actionLevel: 100,
@@ -563,7 +564,7 @@ export default {
                   sysImage: {
                     cssClass: 'git-branch',
                   },
-                  id: 'ua81cbd3',
+                  id: 'u4e8bfc7',
                 },
                 {
                   actionLevel: 100,
@@ -578,7 +579,7 @@ export default {
                     cssClass: 'fa fa-link',
                     glyph: 'xf0c1@FontAwesome',
                   },
-                  id: 'uf5c3e8d',
+                  id: 'u8c90944',
                 },
                 {
                   actionLevel: 100,
@@ -593,7 +594,7 @@ export default {
                     cssClass: 'fa fa-send-o',
                     glyph: 'xf1d9@FontAwesome',
                   },
-                  id: 'u6152dc7',
+                  id: 'u7a39111',
                 },
                 {
                   actionLevel: 100,
@@ -608,7 +609,7 @@ export default {
                     cssClass: 'fa fa-send-o',
                     glyph: 'xf1d9@FontAwesome',
                   },
-                  id: 'uf3e30e3',
+                  id: 'u46a4899',
                 },
                 {
                   actionLevel: 100,
@@ -619,7 +620,7 @@ export default {
                   uiactionId: 'get_editor_column',
                   showCaption: true,
                   showIcon: true,
-                  id: 'uc632539',
+                  id: 'u1bc0e64',
                 },
               ],
               uniqueTag: 'Work_item__Usr0218300163',
@@ -736,21 +737,24 @@ export default {
           },
           {
             clconvertMode: 'NONE',
-            dataItemName: 'start_at',
+            dataItemName: 'create_time',
             excelCaption: '建立时间',
-            appDEFieldId: 'start_at',
+            appDEFieldId: 'create_time',
             valueFormat: 'YYYY-MM-DD',
             valueType: 'SIMPLE',
             aggMode: 'NONE',
             align: 'LEFT',
+            capLanguageRes: {
+              lanResTag: 'DEF.LNAME.CREATE_TIME',
+            },
             caption: '建立时间',
-            codeName: 'start_at',
+            codeName: 'create_time',
             columnType: 'DEFGRIDCOLUMN',
             noPrivDisplayMode: 1,
             width: 200,
             widthUnit: 'PX',
             enableSort: true,
-            id: 'start_at',
+            id: 'create_time',
           },
           {
             clconvertMode: 'NONE',
@@ -816,12 +820,12 @@ export default {
           {
             clconvertMode: 'NONE',
             dataItemName: 'assignee_id',
-            excelCaption: '负责人标识',
+            excelCaption: '负责人',
             appDEFieldId: 'assignee_id',
             valueType: 'SIMPLE',
             aggMode: 'NONE',
             align: 'LEFT',
-            caption: '负责人标识',
+            caption: '负责人',
             codeName: 'assignee_id',
             columnType: 'DEFGRIDCOLUMN',
             noPrivDisplayMode: 1,
@@ -883,10 +887,10 @@ export default {
           },
           {
             format: 'YYYY-MM-DD',
-            appDEFieldId: 'start_at',
+            appDEFieldId: 'create_time',
             valueType: 'SIMPLE',
             dataType: 5,
-            id: 'start_at',
+            id: 'create_time',
           },
           {
             appDEFieldId: 'tags',
@@ -941,12 +945,6 @@ export default {
             valueType: 'SIMPLE',
             dataType: 25,
             id: 'sprint_id',
-          },
-          {
-            appDEFieldId: 'version_id',
-            valueType: 'SIMPLE',
-            dataType: 25,
-            id: 'version_id',
           },
           {
             appDEFieldId: 'board_id',
@@ -1058,7 +1056,7 @@ export default {
                       cssClass: 'fa fa-user-md',
                       glyph: 'xf0f0@FontAwesome',
                     },
-                    id: 'ue68004d',
+                    id: 'uc5eeb4c',
                   },
                 ],
                 uniqueTag: 'Project_member__Usr0104465165',
@@ -1342,7 +1340,7 @@ export default {
             controlParam: {
               id: 'treegrid_batchtoolbar',
             },
-            modelId: '9366DB7F-2A7F-438D-90F0-B2B936356967',
+            modelId: '559be635e58fa6cfe7ed880e88bf87e6',
             modelType: 'PSDETOOLBAR',
             name: 'treegrid_batchtoolbar',
             id: 'idea_tree_grid_viewtreegrid_batchtoolbar',
@@ -1371,7 +1369,7 @@ export default {
           id: 'treegrid',
         },
         sysPFPluginId: 'number_grid',
-        modelId: '3D87D6B6-C36A-4AB8-BCB1-279F64802FF7',
+        modelId: '0e3dd412a345b708c134e7111dbcc9dc',
         modelType: 'PSDEGRID',
         name: 'treegrid',
         id: 'plmweb.work_item.idea_tree_grid',
@@ -1589,7 +1587,7 @@ export default {
         controlParam: {
           id: 'searchbar',
         },
-        modelId: 'EFB380F1-C924-4E2F-AD00-DF64DB99ACE4',
+        modelId: '74b339dd51581f80bda6f5f7afa2f953',
         modelType: 'PSSYSSEARCHBAR',
         name: 'searchbar',
         id: 'plmweb.work_item.project_idea',
@@ -1612,7 +1610,7 @@ export default {
     logicName: 'idea_tree_grid_view树表格视图布局面板',
     appDataEntityId: 'plmweb.work_item',
     controlParam: {},
-    modelId: '8F94D7B1-7DD1-4019-BC15-A44B50E1B07F',
+    modelId: '833c648447a1d9b83937f270f07eb3e1',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0218557522',
@@ -1622,7 +1620,7 @@ export default {
   viewType: 'DETREEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '082c1dbd1e56d2bddda2b41bfc40a339',
+  modelId: '4237bdf0df724de24e6aac82f9b132fd',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemidea_tree_grid_view',
   id: 'plmweb.work_itemidea_tree_grid_view',

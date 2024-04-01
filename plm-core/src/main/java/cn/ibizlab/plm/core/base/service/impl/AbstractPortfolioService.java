@@ -211,6 +211,17 @@ public abstract class AbstractPortfolioService extends ServiceImpl<PortfolioMapp
         return list;
     }
 
+    public Page<Portfolio> searchReader(PortfolioSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Portfolio> pages=baseMapper.searchReader(context.getPages(),context,context.getSelectCond());
+        List<Portfolio> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Portfolio> listReader(PortfolioSearchContext context) {
+        List<Portfolio> list = baseMapper.listReader(context,context.getSelectCond());
+        return list;
+    }
+
     public Page<Portfolio> searchUser(PortfolioSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Portfolio> pages=baseMapper.searchUser(context.getPages(),context,context.getSelectCond());
         List<Portfolio> list = pages.getRecords();

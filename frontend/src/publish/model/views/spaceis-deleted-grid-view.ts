@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'is_deleted_grid_view',
-  deviewId: 'A62D4FDB-1ABD-40D7-9400-BA0FDFA28112',
+  deviewId: '08c1d0e96b99ccb9e32a73d40d0ef40c',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SPACE',
@@ -66,15 +66,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '空间编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.SPACE.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.spaceeditview',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       realOpenMode: 'POPUPMODAL',
       realTitle: '空间信息',
       realTitleLanguageRes: {
@@ -83,6 +74,15 @@ export default {
       refAppViewId: 'plmweb.spaceinfo_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realTitle: '空间编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.SPACE.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.spaceeditview',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -95,7 +95,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '59F1B9E8-DB74-4B7B-9B6C-D458BAA2CE91',
+      modelId: 'ee7a42a5a07cd88ba05aaa0cc7ce531d',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'is_deleted_grid_viewtoolbar',
@@ -183,7 +183,7 @@ export default {
                   cssClass: 'fa fa-retweet',
                   glyph: 'xf079@FontAwesome',
                 },
-                id: 'u3ab03b0',
+                id: 'ub9bb800',
               },
             ],
             uniqueTag: 'Space__Usr0227660413',
@@ -290,45 +290,10 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: 'BDF23D03-A708-4F13-AE52-481AE70EA46F',
+      modelId: 'd523d6e45daa3d25f1603f8fe4eaaf15',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.space.is_deleted_grid_view_grid',
-    },
-    {
-      searchButtonStyle: 'DEFAULT',
-      deformPages: [
-        {
-          layout: {
-            columnCount: 24,
-            layout: 'TABLE_24COL',
-          },
-          caption: '常规条件',
-          codeName: 'formpage1',
-          detailStyle: 'DEFAULT',
-          detailType: 'FORMPAGE',
-          id: 'formpage1',
-        },
-      ],
-      layout: {
-        columnCount: 24,
-        layout: 'TABLE_24COL',
-      },
-      tabHeaderPos: 'TOP',
-      noTabHeader: true,
-      autoLoad: true,
-      showBusyIndicator: true,
-      codeName: 'Usr02277995_SearchForm',
-      controlType: 'SEARCHFORM',
-      logicName: '删除的空间表格视图_搜索表单',
-      appDataEntityId: 'plmweb.space',
-      controlParam: {
-        id: 'searchform',
-      },
-      modelId: 'FD49B6F0-17EA-41AB-8130-BF6DB33D9E25',
-      modelType: 'PSDEFORM_SEARCHFORM',
-      name: 'searchform',
-      id: 'plmweb.space.usr02277995_searchform',
     },
     {
       groupMode: 'SINGLE',
@@ -370,7 +335,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '22dbf22531ad73583e422d6b0c346a69',
+  modelId: '2817d88d093e3e048dfd54eb83851d2c',
   modelType: 'PSAPPDEVIEW',
   name: 'spaceis_deleted_grid_view',
   id: 'plmweb.spaceis_deleted_grid_view',

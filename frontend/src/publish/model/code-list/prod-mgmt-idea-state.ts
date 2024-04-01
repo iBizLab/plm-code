@@ -9,6 +9,9 @@ export default {
       codeName: 'Item_10',
       color: '#56ABFB',
       text: '待评审',
+      textLanguageRes: {
+        lanResTag: 'CL.ITEM.LNAME.IDEA_STATE.10',
+      },
       value: '10',
       id: 'item_10',
     },
@@ -16,6 +19,9 @@ export default {
       codeName: 'Item_20',
       color: '#FF9F73',
       text: '已计划',
+      textLanguageRes: {
+        lanResTag: 'CL.ITEM.LNAME.IDEA_STATE.20',
+      },
       value: '20',
       id: 'item_20',
     },
@@ -23,6 +29,9 @@ export default {
       codeName: 'Item_30',
       color: '#F6C659',
       text: '进行中',
+      textLanguageRes: {
+        lanResTag: 'CL.ITEM.LNAME.IDEA_STATE.30',
+      },
       value: '30',
       id: 'item_30',
     },
@@ -30,6 +39,9 @@ export default {
       codeName: 'Item_40',
       color: '#73D897',
       text: '已完成',
+      textLanguageRes: {
+        lanResTag: 'CL.ITEM.LNAME.IDEA_STATE.40',
+      },
       value: '40',
       id: 'item_40',
     },
@@ -37,6 +49,9 @@ export default {
       codeName: 'Item_50',
       color: '#4E4D4D',
       text: '已关闭',
+      textLanguageRes: {
+        lanResTag: 'CL.ITEM.LNAME.IDEA_STATE.50',
+      },
       value: '50',
       id: 'item_50',
     },

@@ -63,20 +63,20 @@ public class SequenceGeneratorSearchContext extends QueryWrapperContext<Sequence
     private String idEQ;
 
     /**
-     * 名称LIKE
-     */
-    @JsonProperty("n_name_like")
-    @JSONField(name = "n_name_like")
-    @ApiModelProperty("名称LIKE")
-    private String nameLIKE;
-
-    /**
      * 名称EQ
      */
     @JsonProperty("n_name_eq")
     @JSONField(name = "n_name_eq")
     @ApiModelProperty("名称EQ")
     private String nameEQ;
+
+    /**
+     * 名称LIKE
+     */
+    @JsonProperty("n_name_like")
+    @JSONField(name = "n_name_like")
+    @ApiModelProperty("名称LIKE")
+    private String nameLIKE;
 
     @Override
     public void setQuery(String query) {

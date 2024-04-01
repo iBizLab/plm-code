@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'test_case_re_bug_grid_view',
-  deviewId: '9C921E61-EA13-45DF-8C0D-B3D20105A760',
+  deviewId: '9d4b4b7ff4a1db6288f10cd140972d78',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -264,7 +264,7 @@ export default {
                   cssClass: 'fa fa-plus',
                   glyph: 'xf067@FontAwesome',
                 },
-                id: 'ue9bab50',
+                id: 'u2f91358',
               },
             ],
             uniqueTag: 'Recent__Usr0123910744',
@@ -333,7 +333,7 @@ export default {
         logicTrigger: 'VIEWEVENT',
         logicType: 'SCRIPT',
         scriptCode:
-          "view.layoutPanel.panelItems.choose_data.state.visible = false;\n\n// 初始化默认隐藏表格\nview.layoutPanel.panelItems.grid.state.keepAlive = true;\nview.layoutPanel.panelItems.grid.state.visible = false;\nconst form = view.getController('form');\nconsole.log('项显示逻辑执行了')\nif (form) {\n    form.evt.on('onFormDetailEvent', event =>{\n        const panelItems = view.layoutPanel.panelItems;\n        if (!panelItems.comment) {\n            return;\n        }\n        if (event.formDetailName === 'tabpage1') {\n            panelItems.comment.state.visible = true;\n        } else {\n            panelItems.comment.state.visible = false;\n        }\n    });\n}\n\n// 初始化隐藏发送和清空按钮\nview.layoutPanel.panelItems.button_calluilogic1.state.visible = false\nview.layoutPanel.panelItems.button_calluilogic.state.visible = false",
+          "view.layoutPanel.panelItems.choose_data.state.visible = view.context.srfshowchoose || false;\n\n// 初始化默认隐藏表格\nview.layoutPanel.panelItems.grid.state.keepAlive = true;\nview.layoutPanel.panelItems.grid.state.visible = false;\nconst form = view.getController('form');\nconsole.log('项显示逻辑执行了');\nif (form) {\n    form.evt.on('onFormDetailEvent', event =>{\n        const panelItems = view.layoutPanel.panelItems;\n        if (!panelItems.comment) {\n            return;\n        }\n        if (event.formDetailName === 'tabpage1') {\n            panelItems.comment.state.visible = true;\n        } else {\n            panelItems.comment.state.visible = false;\n        }\n    });\n}\n\n// 初始化隐藏发送和清空按钮\nview.layoutPanel.panelItems.button_calluilogic1.state.visible = false\nview.layoutPanel.panelItems.button_calluilogic.state.visible = false",
         builtinLogic: true,
         id: 'viewmounted',
       },
@@ -416,15 +416,6 @@ export default {
     ],
     appViewRefs: [
       {
-        realTitle: '工作项编辑视图',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
-        },
-        refAppViewId: 'plmweb.work_itemeditview',
-        name: 'NEWDATA',
-        id: 'newdata',
-      },
-      {
         openMode: 'POPUPMODAL',
         navigateContexts: [
           {
@@ -439,6 +430,15 @@ export default {
         refAppViewId: 'plmweb.work_itemmain_view',
         name: 'EDITDATA',
         id: 'editdata',
+      },
+      {
+        realTitle: '工作项编辑视图',
+        realTitleLanguageRes: {
+          lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
+        },
+        refAppViewId: 'plmweb.work_itemeditview',
+        name: 'NEWDATA',
+        id: 'newdata',
       },
     ],
     controls: [
@@ -470,7 +470,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: 'A5612BB6-0871-4883-B160-3690FE17D43F',
+        modelId: '5a3f7b8c56fa32d3f831bc3e15dc91f2',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'test_case_re_bug_grid_viewtoolbar',
@@ -572,7 +572,7 @@ export default {
                     cssClass: 'fa fa-unlink',
                     glyph: 'xf127@FontAwesome',
                   },
-                  id: 'u4344078',
+                  id: 'u8fe5207',
                 },
               ],
               uniqueTag: 'Work_item__Usr1227606619',
@@ -678,12 +678,6 @@ export default {
             id: 'sprint_id',
           },
           {
-            appDEFieldId: 'version_id',
-            valueType: 'SIMPLE',
-            dataType: 25,
-            id: 'version_id',
-          },
-          {
             appDEFieldId: 'board_id',
             valueType: 'SIMPLE',
             dataType: 25,
@@ -764,7 +758,7 @@ export default {
         controlParam: {
           id: 'grid',
         },
-        modelId: '4B982FED-3ECA-40D4-AD85-651AC769FE6E',
+        modelId: 'b1cb68de6756482ea264516b67277a4e',
         modelType: 'PSDEGRID',
         name: 'grid',
         id: 'plmweb.work_item.test_case_relation_bug_grid',
@@ -801,14 +795,14 @@ export default {
         itemName: 'CHOOSE_DATA',
         logicTag: 'layoutpanel',
         logicType: 'APPDEUILOGIC',
-        appDEUILogicId: 'relation_work_item_change',
+        appDEUILogicId: 'test_case_relation_work_item',
         appDataEntityId: 'plmweb.work_item',
         triggerType: 'CTRLEVENT',
         id: 'logic',
       },
     ],
     controlParam: {},
-    modelId: '4514358D-5A07-4012-92C1-857A43554C34',
+    modelId: 'fd4bc8791cb0a0d9c0712385087706f3',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0112685160',
@@ -818,7 +812,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'f9126d93c36619cfe67838cf7459e946',
+  modelId: 'a9ffef9c44ffe89a209299267cfbb06a',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemtest_case_re_bug_grid_view',
   id: 'plmweb.work_itemtest_case_re_bug_grid_view',

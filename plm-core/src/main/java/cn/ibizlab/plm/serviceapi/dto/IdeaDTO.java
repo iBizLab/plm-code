@@ -193,11 +193,11 @@ public class IdeaDTO extends DTOBase implements Serializable {
     private String productIdentifier;
 
     /**
-     * 负责人标识
+     * 负责人
      */
     @JsonProperty("assignee_id")
     @JSONField(name = "assignee_id")
-    @ApiModelProperty(value = "负责人标识", position = 19)
+    @ApiModelProperty(value = "负责人", position = 19)
     private String assigneeId;
 
     /**
@@ -330,11 +330,11 @@ public class IdeaDTO extends DTOBase implements Serializable {
     private String name;
 
     /**
-     * 产品标识
+     * 产品
      */
     @JsonProperty("product_id")
     @JSONField(name = "product_id")
-    @ApiModelProperty(value = "产品标识", position = 36)
+    @ApiModelProperty(value = "产品", position = 36)
     private String productId;
 
     /**
@@ -535,7 +535,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
     }
 
     /**
-     * 设置 [负责人标识]
+     * 设置 [负责人]
      */
     public IdeaDTO setAssigneeId(String assigneeId) {
         this.assigneeId = assigneeId;
@@ -661,7 +661,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
     }
 
     /**
-     * 设置 [产品标识]
+     * 设置 [产品]
      */
     public IdeaDTO setProductId(String productId) {
         this.productId = productId;

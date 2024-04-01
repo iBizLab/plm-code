@@ -5,7 +5,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'pick_up_view_PickupGridView',
-  deviewId: '4A69F852-B532-4E78-8F18-A86082A6BA88',
+  deviewId: '51de79445e3054714d54f0f1c3af6842',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SPRINT',
@@ -80,12 +80,6 @@ export default {
           id: 'pid',
         },
         {
-          appDEFieldId: 'sprint_category_id',
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'sprint_category_id',
-        },
-        {
           appDEFieldId: 'name',
           valueType: 'SIMPLE',
           dataType: 25,
@@ -136,7 +130,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '705FE77C-D918-4770-B1C1-EA7B701AEE89',
+      modelId: '99427f789842b07583c91c83e57ace15',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.sprint.pick_up_view_pickupgridview_grid',
@@ -201,7 +195,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: 'E0C3F7B5-640D-4502-8BE8-89E6361B9C7B',
+      modelId: '3816d3032c6bb3b290fb704fdd31a775',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.sprint.usr12189848_searchform',
@@ -244,7 +238,7 @@ export default {
   viewType: 'DEPICKUPGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '21447e23b25dba016ba78a94c15347e7',
+  modelId: 'dbaded45595feaf6d329653506de19f9',
   modelType: 'PSAPPDEVIEW',
   name: 'sprintpick_up_view_PickupGridView',
   id: 'plmweb.sprintpick_up_view_pickupgridview',

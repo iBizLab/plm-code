@@ -1,7 +1,7 @@
 export default {
   openMode: 'POPUPMODAL',
   deviewCodeName: 'parent_pick_up_view',
-  deviewId: 'EFC77D31-6EA7-4CA3-AE60-2917260797E9',
+  deviewId: '4272f83b97bde756f04785c9a5e0e47b',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -105,6 +105,13 @@ export default {
               id: '项目名称 - 我负责的',
             },
             {
+              childDETreeNodeId: 'node_4',
+              parentDETreeNodeId: 'node',
+              parentValueLevel: 1,
+              searchMode: 3,
+              id: '项目名称 - 我关注的',
+            },
+            {
               childDETreeNodeId: 'node_5',
               parentDETreeNodeId: 'node',
               parentValueLevel: 1,
@@ -153,7 +160,7 @@ export default {
               navigateParams: [
                 {
                   key: 'query_recent',
-                  value: '1',
+                  value: 'recent',
                   rawValue: true,
                   id: 'query_recent',
                 },
@@ -190,6 +197,14 @@ export default {
             {
               text: '我关注的',
               nodeType: 'node_4',
+              navigateParams: [
+                {
+                  key: 'query_attention',
+                  value: 'attention',
+                  rawValue: true,
+                  id: 'query_attention',
+                },
+              ],
               treeNodeType: 'STATIC',
               name: '我关注的',
               id: 'node_4',
@@ -280,7 +295,7 @@ export default {
           controlParam: {
             id: 'treeexpbar_tree',
           },
-          modelId: '416337D8-9848-4AC3-985B-7ADBC14752A6',
+          modelId: 'b0c1e0369e0f9cc1c9e8e09ffc98980c',
           modelType: 'PSDETREEVIEW',
           name: 'treeexpbar_tree',
           id: 'plmweb.work_item.parent_pick_up_view_treeview',
@@ -292,7 +307,7 @@ export default {
       controlParam: {
         id: 'treeexpbar',
       },
-      modelId: '56df8574c2f9c030f805f3d50efd34ff_treeexpbar',
+      modelId: '2e304a8fa543e81bc783f6d9c14eda6e_treeexpbar',
       modelType: 'PSEXPBAR',
       name: 'treeexpbar',
       id: 'parent_pick_up_viewtreeexpbar',
@@ -451,12 +466,16 @@ export default {
                 },
                 dataRegionType: 'INHERIT',
                 caption: '容器',
+                contentWidth: 300,
                 itemStyle: 'DEFAULT',
                 itemType: 'CONTAINER',
                 layoutPos: {
                   shrink: 0,
                   layout: 'FLEX',
+                  width: 300,
+                  widthMode: 'PX',
                 },
+                width: 300,
                 id: 'container6',
               },
               {
@@ -581,7 +600,7 @@ export default {
     logicName: '选择视图(左右关系)布局面板(工作项实体扩展)',
     appDataEntityId: 'plmweb.work_item',
     controlParam: {},
-    modelId: '22C3417B-7F09-40B3-A759-F27E21E630E2',
+    modelId: 'edb864d6dd4a550ebc41667b62c7cd86',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'exworkitempickupview2layout',
@@ -591,7 +610,7 @@ export default {
   viewType: 'DEPICKUPVIEW2',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '56df8574c2f9c030f805f3d50efd34ff',
+  modelId: '2e304a8fa543e81bc783f6d9c14eda6e',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemparent_pick_up_view',
   id: 'plmweb.work_itemparent_pick_up_view',

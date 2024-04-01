@@ -55,11 +55,19 @@ public class ProjectFilterDTO extends FilterBase implements Serializable {
 	private String typeEQ;
 
     /**
+     * 项目标识EQ
+     */
+    @JsonProperty("n_identifier_eq")
+    @JSONField(name = "n_identifier_eq")
+    @ApiModelProperty(value = "项目标识EQ", position = 60)
+	private String identifierEQ;
+
+    /**
      * 项目标识LIKE
      */
     @JsonProperty("n_identifier_like")
     @JSONField(name = "n_identifier_like")
-    @ApiModelProperty(value = "项目标识LIKE", position = 60)
+    @ApiModelProperty(value = "项目标识LIKE", position = 61)
 	private String identifierLIKE;
 
     /**
@@ -93,6 +101,14 @@ public class ProjectFilterDTO extends FilterBase implements Serializable {
     @JSONField(name = "n_id_eq")
     @ApiModelProperty(value = "标识EQ", position = 150)
 	private String idEQ;
+
+    /**
+     * 标识NOTEQ
+     */
+    @JsonProperty("n_id_noteq")
+    @JSONField(name = "n_id_noteq")
+    @ApiModelProperty(value = "标识NOTEQ", position = 151)
+	private String idNOTEQ;
 
     /**
      * 项目名称LIKE

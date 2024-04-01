@@ -118,14 +118,6 @@ public class TestPlanSearchContext extends QueryWrapperContext<TestPlan> {
     private String projectIdEQ;
 
     /**
-     * 关联发布EQ
-     */
-    @JsonProperty("n_version_id_eq")
-    @JSONField(name = "n_version_id_eq")
-    @ApiModelProperty("关联发布EQ")
-    private String versionIdEQ;
-
-    /**
      * 关联迭代EQ
      */
     @JsonProperty("n_sprint_id_eq")
@@ -148,22 +140,6 @@ public class TestPlanSearchContext extends QueryWrapperContext<TestPlan> {
     @JSONField(name = "n_project_name_like")
     @ApiModelProperty("关联项目LIKE")
     private String projectNameLIKE;
-
-    /**
-     * 关联发布EQ
-     */
-    @JsonProperty("n_version_name_eq")
-    @JSONField(name = "n_version_name_eq")
-    @ApiModelProperty("关联发布EQ")
-    private String versionNameEQ;
-
-    /**
-     * 关联发布LIKE
-     */
-    @JsonProperty("n_version_name_like")
-    @JSONField(name = "n_version_name_like")
-    @ApiModelProperty("关联发布LIKE")
-    private String versionNameLIKE;
 
     /**
      * 关联迭代EQ
@@ -232,8 +208,6 @@ public class TestPlanSearchContext extends QueryWrapperContext<TestPlan> {
             this.getFilter().eq("release_id",contextParentKey);
         if(Entities.SPRINT.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("sprint_id",contextParentKey);
-        if(Entities.VERSION.equals(this.getContextParentEntity())&&contextParentKey!=null)
-            this.getFilter().eq("version_id",contextParentKey);
     }
 
     @Override

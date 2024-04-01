@@ -26,8 +26,6 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import cn.ibizlab.plm.core.projmgmt.domain.Release;
 import cn.ibizlab.plm.core.projmgmt.service.ReleaseService;
-import cn.ibizlab.plm.core.projmgmt.domain.Version;
-import cn.ibizlab.plm.core.projmgmt.service.VersionService;
 
 /**
  * 实体[发布阶段] 服务对象接口实现
@@ -40,10 +38,6 @@ public abstract class AbstractStageService extends ServiceImpl<StageMapper,Stage
     @Autowired
     @Lazy
     protected ReleaseService releaseService;
-
-    @Autowired
-    @Lazy
-    protected VersionService versionService;
 
     protected int batchSize = 500;
 
@@ -62,9 +56,6 @@ public abstract class AbstractStageService extends ServiceImpl<StageMapper,Stage
     public void fillParentData(Stage et) {
         if(Entities.RELEASE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
             et.setReleaseId((String)et.getContextParentKey());
-        }
-        if(Entities.VERSION.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
-            et.setVersionId((String)et.getContextParentKey());
         }
     }
 
@@ -168,10 +159,6 @@ public abstract class AbstractStageService extends ServiceImpl<StageMapper,Stage
         List<Stage> list = baseMapper.findByReleaseId(releaseIds);
         return list;
     }
-    public List<Stage> findByVersionId(List<String> versionIds) {
-        List<Stage> list = baseMapper.findByVersionId(versionIds);
-        return list;
-    }
     public boolean removeByReleaseId(String releaseId) {
         return this.remove(Wrappers.<Stage>lambdaQuery().eq(Stage::getReleaseId,releaseId));
     }
@@ -190,41 +177,6 @@ public abstract class AbstractStageService extends ServiceImpl<StageMapper,Stage
         for(Stage sub:list) {
             sub.setReleaseId(release.getId());
             sub.setRelease(release);
-            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
-                before.remove(sub.getId());
-                update.add(sub);
-            }
-            else
-                create.add(sub);
-        }
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
-            return false;
-        else
-            return true;
-    }
-
-    public boolean removeByVersionId(String versionId) {
-        return this.remove(Wrappers.<Stage>lambdaQuery().eq(Stage::getVersionId,versionId));
-    }
-
-    public boolean resetByVersionId(String versionId) {
-        return this.update(Wrappers.<Stage>lambdaUpdate().eq(Stage::getVersionId,versionId));
-    }
-
-    public boolean saveByVersion(Version version,List<Stage> list) {
-        if(list==null)
-            return true;
-        Map<String,Stage> before = findByVersionId(version.getId()).stream().collect(Collectors.toMap(Stage::getId,e->e));
-        List<Stage> update = new ArrayList<>();
-        List<Stage> create = new ArrayList<>();
-
-        for(Stage sub:list) {
-            sub.setVersionId(version.getId());
-            sub.setVersion(version);
             if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
                 before.remove(sub.getId());
                 update.add(sub);

@@ -153,19 +153,11 @@ public interface VersionMapper extends BaseMapper<Version> {
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
 
     /**
-     * 根据projectId查询
+     * 根据ownerId查询
      *
-     * @param projectIds
+     * @param ownerIds
      * @return
      */
-    List<Version> findByProjectId(@Param("projectIds") List<String> projectIds);
-
-    /**
-     * 根据versionCategoryId查询
-     *
-     * @param versionCategoryIds
-     * @return
-     */
-    List<Version> findByVersionCategoryId(@Param("versionCategoryIds") List<String> versionCategoryIds);
+    List<Version> findByOwnerId(@Param("ownerIds") List<String> ownerIds);
 
 }

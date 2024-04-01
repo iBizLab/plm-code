@@ -2,7 +2,7 @@ export default {
   showDataInfoBar: true,
   loadDefault: true,
   deviewCodeName: 'category_tree__exp_view',
-  deviewId: 'DACED5BD-757D-4CD6-A12A-3EB5AD259C33',
+  deviewId: 'c45f3874df70ea4daeedc00add29d019',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SPACE',
@@ -182,7 +182,7 @@ export default {
                 controlParam: {
                   id: 'node_cm',
                 },
-                modelId: 'DECFE777-1CDE-4825-869F-8583A9233C47',
+                modelId: '8aa9da8f9e2f308c751f25a6e82ea732',
                 modelType: 'PSDETOOLBAR',
                 name: 'node_cm',
                 id: 'category_tree__exp_viewnode_cm',
@@ -235,7 +235,7 @@ export default {
                 controlParam: {
                   id: 'node_1_cm',
                 },
-                modelId: 'DECFE777-1CDE-4825-869F-8583A9233C47',
+                modelId: '8aa9da8f9e2f308c751f25a6e82ea732',
                 modelType: 'PSDETOOLBAR',
                 name: 'node_1_cm',
                 id: 'category_tree__exp_viewnode_1_cm',
@@ -307,7 +307,7 @@ export default {
               controlParam: {
                 id: 'node_cm',
               },
-              modelId: 'DECFE777-1CDE-4825-869F-8583A9233C47',
+              modelId: '8aa9da8f9e2f308c751f25a6e82ea732',
               modelType: 'PSDETOOLBAR',
               name: 'node_cm',
               id: 'category_tree__exp_viewnode_cm',
@@ -336,7 +336,7 @@ export default {
               controlParam: {
                 id: 'node_1_cm',
               },
-              modelId: 'DECFE777-1CDE-4825-869F-8583A9233C47',
+              modelId: '8aa9da8f9e2f308c751f25a6e82ea732',
               modelType: 'PSDETOOLBAR',
               name: 'node_1_cm',
               id: 'category_tree__exp_viewnode_1_cm',
@@ -367,7 +367,7 @@ export default {
             id: 'treeexpbar_tree',
           },
           sysPFPluginId: 'group_tree',
-          modelId: '634429BD-CE13-4701-A45E-7879F8BA362F',
+          modelId: 'e355a01f7811ac13e8d59894bb469a68',
           modelType: 'PSDETREEVIEW',
           name: 'treeexpbar_tree',
           id: 'plmweb.space.category_tree__exp_view_treeview',
@@ -400,7 +400,7 @@ export default {
           controlParam: {
             id: 'treeexpbar_toolbar',
           },
-          modelId: '2A3FE9F1-DAEF-4B0B-8BF0-DC394A15D4F4',
+          modelId: 'f6bef1c47d21de1f647bcb4e769e488f',
           modelType: 'PSDETOOLBAR',
           name: 'treeexpbar_toolbar',
           id: 'category_tree__exp_viewtreeexpbar_toolbar',
@@ -412,7 +412,7 @@ export default {
       controlParam: {
         id: 'treeexpbar',
       },
-      modelId: '155a3f4055c53b84ee2eb7440e4b5298_treeexpbar',
+      modelId: '1235950d05def5bc67b319010be8c7ce_treeexpbar',
       modelType: 'PSEXPBAR',
       name: 'treeexpbar',
       id: 'category_tree__exp_viewtreeexpbar',
@@ -457,7 +457,7 @@ export default {
   viewType: 'DETREEEXPVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '155a3f4055c53b84ee2eb7440e4b5298',
+  modelId: '1235950d05def5bc67b319010be8c7ce',
   modelType: 'PSAPPDEVIEW',
   name: 'spacecategory_tree__exp_view',
   id: 'plmweb.spacecategory_tree__exp_view',

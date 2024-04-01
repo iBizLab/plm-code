@@ -3,7 +3,7 @@ export default {
   loadDefault: true,
   showDataInfoBar: true,
   deviewCodeName: 'management_view',
-  deviewId: '5ACA8AED-2481-459C-951A-4BD1345A498A',
+  deviewId: 'cce66404f0dd682db67a30ff297967a6',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORKLOAD',
@@ -25,8 +25,8 @@ export default {
       uniqueTag: 'workloadmanagement_view__tabexppanel',
       appViewRefs: [
         {
-          realTitle: '工时日历表格视图（管理）',
-          refAppViewId: 'plmweb.workloadcalendar_management_view',
+          realTitle: '工时日历分页搜索视图（管理）',
+          refAppViewId: 'plmweb.workloadmanagement_tab_search_view',
           name: 'EXPITEM:calendar',
           id: 'expitem:calendar',
         },
@@ -40,14 +40,14 @@ export default {
       controls: [
         {
           caption: '工时日历',
-          embeddedAppDEViewId: 'plmweb.workloadcalendar_management_view',
+          embeddedAppDEViewId: 'plmweb.workloadmanagement_tab_search_view',
           codeName: 'management_viewcalendar',
           controlType: 'TABVIEWPANEL',
           appDataEntityId: 'plmweb.workload',
           controlParam: {
             id: 'calendar',
           },
-          modelId: '7151696d5a5bf955870da0635c4a746f_calendar',
+          modelId: 'e3005ae28b4e8e929b4273186b02c055_calendar',
           modelType: 'PSVIEWPANEL',
           name: 'calendar',
           id: 'management_viewcalendar',
@@ -61,7 +61,7 @@ export default {
           controlParam: {
             id: 'log',
           },
-          modelId: '7151696d5a5bf955870da0635c4a746f_log',
+          modelId: 'e3005ae28b4e8e929b4273186b02c055_log',
           modelType: 'PSVIEWPANEL',
           name: 'log',
           id: 'management_viewlog',
@@ -71,7 +71,7 @@ export default {
       controlType: 'TABEXPPANEL',
       appDataEntityId: 'plmweb.workload',
       controlParam: {},
-      modelId: '7151696d5a5bf955870da0635c4a746f_tabexppanel',
+      modelId: 'e3005ae28b4e8e929b4273186b02c055_tabexppanel',
       modelType: 'PSTABEXPPANEL',
       name: 'tabexppanel',
       id: 'management_viewtabexppanel',
@@ -105,7 +105,7 @@ export default {
   viewType: 'DETABEXPVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '7151696d5a5bf955870da0635c4a746f',
+  modelId: 'e3005ae28b4e8e929b4273186b02c055',
   modelType: 'PSAPPDEVIEW',
   name: 'workloadmanagement_view',
   id: 'plmweb.workloadmanagement_view',

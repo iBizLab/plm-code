@@ -11,6 +11,8 @@
 		<result property="spaceIdentifier" column="space_identifier" />
 		<result property="isArchived" column="is_archived" />
 		<result property="isDeleted" column="is_deleted" />
+		<result property="curVersionId" column="cur_version_id" />
+		<result property="curVersionName" column="cur_version_name" />
 		<result property="showIdentifier" column="show_identifier" />
 		<result property="updateMan" column="update_man" />
 		<result property="updateTime" column="update_time" />
@@ -48,37 +50,62 @@
          in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.id }) </foreach>)
     </delete>
 
+    <sql id="advancedSearch" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`CUR_VERSION_NAME`, t1.`FORMAT_TYPE`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`IS_LEAF`, t1.`NAME`, t1.`PARENT_ID`, t1.`SEQUENCE`, concat(t11.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`SPACE_ID`, t11.`IDENTIFIER` AS `SPACE_IDENTIFIER`, t11.`NAME` AS `SPACE_NAME`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PAGE` t1  LEFT JOIN `SPACE` t11 ON t1.`SPACE_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`IS_DELETED` = 0 ) ]]> 
+    </sql>
+
     <sql id="childPage" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`FORMAT_TYPE`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`IS_LEAF`, t1.`NAME`, t1.`PARENT_ID`, t1.`SEQUENCE`, concat(t11.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`SPACE_ID`, t11.`IDENTIFIER` AS `SPACE_IDENTIFIER`, t11.`NAME` AS `SPACE_NAME`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PAGE` t1  LEFT JOIN `SPACE` t11 ON t1.`SPACE_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`PARENT_ID` IS NOT NULL ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`CUR_VERSION_NAME`, t1.`FORMAT_TYPE`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`IS_LEAF`, t1.`NAME`, t1.`PARENT_ID`, t1.`SEQUENCE`, concat(t11.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`SPACE_ID`, t11.`IDENTIFIER` AS `SPACE_IDENTIFIER`, t11.`NAME` AS `SPACE_NAME`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PAGE` t1  LEFT JOIN `SPACE` t11 ON t1.`SPACE_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`PARENT_ID` IS NOT NULL ) ]]> 
     </sql>
 
     <sql id="default" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`FORMAT_TYPE`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`IS_LEAF`, t1.`NAME`, t1.`PARENT_ID`, t1.`SEQUENCE`, concat(t11.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`SPACE_ID`, t11.`IDENTIFIER` AS `SPACE_IDENTIFIER`, t11.`NAME` AS `SPACE_NAME`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PAGE` t1  LEFT JOIN `SPACE` t11 ON t1.`SPACE_ID` = t11.`ID`   ]]>  
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`CUR_VERSION_NAME`, t1.`FORMAT_TYPE`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`IS_LEAF`, t1.`NAME`, t1.`PARENT_ID`, t1.`SEQUENCE`, concat(t11.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`SPACE_ID`, t11.`IDENTIFIER` AS `SPACE_IDENTIFIER`, t11.`NAME` AS `SPACE_NAME`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PAGE` t1  LEFT JOIN `SPACE` t11 ON t1.`SPACE_ID` = t11.`ID`   ]]>  
     </sql>
 
     <sql id="homePage" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`FORMAT_TYPE`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`IS_LEAF`, t1.`NAME`, t1.`PARENT_ID`, t1.`SEQUENCE`, concat(t11.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`SPACE_ID`, t11.`IDENTIFIER` AS `SPACE_IDENTIFIER`, t11.`NAME` AS `SPACE_NAME`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PAGE` t1  LEFT JOIN `SPACE` t11 ON t1.`SPACE_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`ID` = #{ctx.webcontext.n_space_id_eq} ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`CUR_VERSION_NAME`, t1.`FORMAT_TYPE`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`IS_LEAF`, t1.`NAME`, t1.`PARENT_ID`, t1.`SEQUENCE`, concat(t11.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`SPACE_ID`, t11.`IDENTIFIER` AS `SPACE_IDENTIFIER`, t11.`NAME` AS `SPACE_NAME`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PAGE` t1  LEFT JOIN `SPACE` t11 ON t1.`SPACE_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`ID` = #{ctx.webcontext.n_space_id_eq} ) ]]> 
     </sql>
 
     <sql id="isDeleted" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`FORMAT_TYPE`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`IS_LEAF`, t1.`NAME`, t1.`PARENT_ID`, t1.`SEQUENCE`, concat(t11.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`SPACE_ID`, t11.`IDENTIFIER` AS `SPACE_IDENTIFIER`, t11.`NAME` AS `SPACE_NAME`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PAGE` t1  LEFT JOIN `SPACE` t11 ON t1.`SPACE_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`IS_DELETED` = 1 ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`CUR_VERSION_NAME`, t1.`FORMAT_TYPE`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`IS_LEAF`, t1.`NAME`, t1.`PARENT_ID`, t1.`SEQUENCE`, concat(t11.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`SPACE_ID`, t11.`IDENTIFIER` AS `SPACE_IDENTIFIER`, t11.`NAME` AS `SPACE_NAME`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PAGE` t1  LEFT JOIN `SPACE` t11 ON t1.`SPACE_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`IS_DELETED` = 1 ) ]]> 
     </sql>
 
     <sql id="myFavoritePage" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`FORMAT_TYPE`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`IS_LEAF`, t1.`NAME`, t1.`PARENT_ID`, t1.`SEQUENCE`, concat(t11.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`SPACE_ID`, t11.`IDENTIFIER` AS `SPACE_IDENTIFIER`, t11.`NAME` AS `SPACE_NAME`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PAGE` t1  LEFT JOIN `SPACE` t11 ON t1.`SPACE_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`IS_ARCHIVED` = 0  AND  t1.`IS_DELETED` = 0  AND  (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) = '1' ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`CUR_VERSION_NAME`, t1.`FORMAT_TYPE`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`IS_LEAF`, t1.`NAME`, t1.`PARENT_ID`, t1.`SEQUENCE`, concat(t11.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`SPACE_ID`, t11.`IDENTIFIER` AS `SPACE_IDENTIFIER`, t11.`NAME` AS `SPACE_NAME`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PAGE` t1  LEFT JOIN `SPACE` t11 ON t1.`SPACE_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`IS_ARCHIVED` = 0  AND  t1.`IS_DELETED` = 0  AND  (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) = '1' ) ]]> 
     </sql>
 
     <sql id="noParentPage" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`FORMAT_TYPE`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`IS_LEAF`, t1.`NAME`, t1.`PARENT_ID`, t1.`SEQUENCE`, concat(t11.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`SPACE_ID`, t11.`IDENTIFIER` AS `SPACE_IDENTIFIER`, t11.`NAME` AS `SPACE_NAME`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PAGE` t1  LEFT JOIN `SPACE` t11 ON t1.`SPACE_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`PARENT_ID` IS NULL  AND  t1.`ID` <> #{ctx.webcontext.n_space_id_eq}  AND  t1.`IS_ARCHIVED` = 0  AND  t1.`IS_DELETED` = 0 ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`CUR_VERSION_NAME`, t1.`FORMAT_TYPE`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`IS_LEAF`, t1.`NAME`, t1.`PARENT_ID`, t1.`SEQUENCE`, concat(t11.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`SPACE_ID`, t11.`IDENTIFIER` AS `SPACE_IDENTIFIER`, t11.`NAME` AS `SPACE_NAME`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PAGE` t1  LEFT JOIN `SPACE` t11 ON t1.`SPACE_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`PARENT_ID` IS NULL  AND  t1.`ID` <> #{ctx.webcontext.n_space_id_eq}  AND  t1.`IS_ARCHIVED` = 0  AND  t1.`IS_DELETED` = 0 ) ]]> 
     </sql>
 
     <sql id="normal" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`FORMAT_TYPE`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`IS_LEAF`, t1.`NAME`, t1.`PARENT_ID`, t1.`SEQUENCE`, concat(t11.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`SPACE_ID`, t11.`IDENTIFIER` AS `SPACE_IDENTIFIER`, t11.`NAME` AS `SPACE_NAME`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PAGE` t1  LEFT JOIN `SPACE` t11 ON t1.`SPACE_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`IS_DELETED` = 0  AND  t1.`IS_ARCHIVED` = 0 ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`CUR_VERSION_NAME`, t1.`FORMAT_TYPE`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`IS_LEAF`, t1.`NAME`, t1.`PARENT_ID`, t1.`SEQUENCE`, concat(t11.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`SPACE_ID`, t11.`IDENTIFIER` AS `SPACE_IDENTIFIER`, t11.`NAME` AS `SPACE_NAME`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PAGE` t1  LEFT JOIN `SPACE` t11 ON t1.`SPACE_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`IS_DELETED` = 0  AND  t1.`IS_ARCHIVED` = 0 ) ]]> 
     </sql>
 
     <sql id="view" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CONTENT`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`FORMAT_TYPE`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`IS_LEAF`, t1.`NAME`, t1.`PARENT_ID`, t1.`SEQUENCE`, concat(t11.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`SPACE_ID`, t11.`IDENTIFIER` AS `SPACE_IDENTIFIER`, t11.`NAME` AS `SPACE_NAME`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PAGE` t1  LEFT JOIN `SPACE` t11 ON t1.`SPACE_ID` = t11.`ID`   ]]>  
+         <![CDATA[ SELECT t1.`CONTENT`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`CUR_VERSION_NAME`, t1.`FORMAT_TYPE`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`IS_LEAF`, t1.`NAME`, t1.`PARENT_ID`, t1.`SEQUENCE`, concat(t11.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`SPACE_ID`, t11.`IDENTIFIER` AS `SPACE_IDENTIFIER`, t11.`NAME` AS `SPACE_NAME`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PAGE` t1  LEFT JOIN `SPACE` t11 ON t1.`SPACE_ID` = t11.`ID`   ]]>  
     </sql>
+
+    <select id="searchAdvancedSearch"  parameterType="cn.ibizlab.plm.core.wiki.filter.ArticlePageSearchContext"  resultMap="ArticlePageResultMap">
+        select t1.* 
+        from (
+            <include refid="advancedSearch"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listAdvancedSearch"  parameterType="cn.ibizlab.plm.core.wiki.filter.ArticlePageSearchContext"  resultMap="ArticlePageResultMap">
+        select t1.*
+        from (
+            <include refid="advancedSearch"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
 
     <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.wiki.filter.ArticlePageSearchContext"  resultMap="ArticlePageResultMap">
         select t1.* 

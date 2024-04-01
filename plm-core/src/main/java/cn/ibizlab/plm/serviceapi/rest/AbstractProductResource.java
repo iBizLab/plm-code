@@ -282,6 +282,45 @@ public abstract class AbstractProductResource {
     }
 
     /**
+    * Other_re_space 产品
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProductDTO>
+    */
+    @ApiOperation(value = "Other_re_space", tags = {"产品" },  notes = "Product-Other_re_space ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Product-Other_re_space-all') or hasPermission(this.productDtoMapping.toDomain(#dto),'ibizplm-Product-Other_re_space')")
+    @PutMapping("products/{id}/other_re_space")
+    public ResponseEntity<ResponseWrapper<ProductDTO>> otherReSpaceById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProductDTO> dto) {
+        ResponseWrapper<ProductDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(otherReSpaceById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(otherReSpaceById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * Other_re_space 产品
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProductDTO>
+    */   
+    public ProductDTO otherReSpaceById
+            (String id, ProductDTO dto) {
+        Product domain = productDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Product rt = productService.otherReSpace(domain);
+        return productDtoMapping.toDto(rt);
+    }
+
+    /**
     * Product_counters 产品
     * 
     *
@@ -621,6 +660,28 @@ public abstract class AbstractProductResource {
             (@Validated @RequestBody ProductFilterDTO dto) {
         ProductSearchContext context = productFilterDtoMapping.toDomain(dto);
         Page<Product> domains = productService.searchNormal(context) ;
+        List<ProductDTO> list = productDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询FetchReader 产品
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<ProductDTO>>
+    */
+    @ApiOperation(value = "查询FetchReader", tags = {"产品" },  notes = "Product-FetchReader ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Product-FetchReader-all') or hasPermission(#dto,'ibizplm-Product-FetchReader')")
+    @PostMapping("products/fetchreader")
+    public ResponseEntity<List<ProductDTO>> fetchReader
+            (@Validated @RequestBody ProductFilterDTO dto) {
+        ProductSearchContext context = productFilterDtoMapping.toDomain(dto);
+        Page<Product> domains = productService.searchReader(context) ;
         List<ProductDTO> list = productDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

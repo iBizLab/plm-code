@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'form',
   loadDefault: true,
   deviewCodeName: 'advanced_setting_view',
-  deviewId: '8B8582C9-ECDF-4E83-B1DD-1AEA9916C204',
+  deviewId: '5e5d2b94e3efca03c40382512f138591',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SPACE',
@@ -28,7 +28,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: 'D34FC95C-F4BB-44E3-86DE-8AF3856D8240',
+      modelId: 'bdc7eb271ea4f8db6d58f46e23944367',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'advanced_setting_viewtoolbar',
@@ -250,7 +250,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '49F1806B-FAEF-4109-A175-3545ED9185EE',
+      modelId: 'b4da241331620de4c47a583a2f77f2dd',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.space.advanced_setting_view_form',
@@ -294,7 +294,7 @@ export default {
   viewType: 'DEEDITVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '8d9864c468ed60c7ec33aff97070ff73',
+  modelId: 'e721d1550b7c0fb4e573eef984aa3049',
   modelType: 'PSAPPDEVIEW',
   name: 'spaceadvanced_setting_view',
   id: 'plmweb.spaceadvanced_setting_view',

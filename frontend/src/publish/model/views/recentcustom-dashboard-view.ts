@@ -1,6 +1,6 @@
 export default {
   deviewCodeName: 'custom_dashboard_view',
-  deviewId: '566A4900-0CA7-4FE2-B8CD-7BF913C9429F',
+  deviewId: '12ff57953113afa8ccef57a4f5f17813',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RECENT',
@@ -65,7 +65,7 @@ export default {
               xdataControlName: 'calendar',
               loadDefault: true,
               deviewCodeName: 'calendar_view',
-              deviewId: 'B897CE69-F88D-486C-AA3A-63BD08A1A407',
+              deviewId: '8f3f72ae82620652822b738bdf6a6a95',
               accUserMode: 2,
               capLanguageRes: {
                 lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -259,7 +259,7 @@ export default {
                   controlParam: {
                     id: 'calendar',
                   },
-                  modelId: '83F3C71F-608E-4975-ABD9-A62EB9B74541',
+                  modelId: '8948343a22e6f3e2feaef4c63535db9a',
                   modelType: 'PSSYSCALENDAR',
                   name: 'calendar',
                   id: 'plmweb.work_item.alendar_view_calendar',
@@ -302,7 +302,7 @@ export default {
               viewType: 'DECALENDARVIEW',
               enableDP: true,
               showCaptionBar: false,
-              modelId: 'e226c7bb2137eeb4ee69eea5d83d6cd2',
+              modelId: 'e41deafcffaf79640a9b9196e21ad9f1',
               modelType: 'PSAPPDEVIEW',
               name: 'work_itemcalendar_view',
               id: 'plmweb.work_itemcalendar_view',
@@ -324,7 +324,7 @@ export default {
             height: 780,
             appDataEntityId: 'plmweb.recent',
             controlParam: {},
-            modelId: '897B4197-953E-4D54-AD1F-D08736E2B02C',
+            modelId: 'c185f3eaf8bcd4c36ad068722234b16f',
             modelType: 'PSSYSDBPART',
             name: 'dashboard_sysportlet1',
             id: 'work_itemalendar_view',
@@ -361,7 +361,7 @@ export default {
                 },
                 dechartSerieses: [
                   {
-                    caption: '访问来源',
+                    caption: '状态',
                     catalogField: 'STATE_TYPE',
                     catalogCodeListId: 'plmweb.projmgmt__state_type',
                     echartsType: 'pie',
@@ -430,12 +430,25 @@ export default {
                 height: 1,
                 logicName: 'my_work_item_count',
                 appDataEntityId: 'plmweb.work_item',
+                controlLogics: [
+                  {
+                    eventNames: 'onLoadSuccess',
+                    logicTag: 'dashboard_sysportlet6_chart',
+                    logicType: 'APPDEUILOGIC',
+                    appDEUILogicId: 'chart_show_count',
+                    appDataEntityId: 'plmweb.work_item',
+                    triggerType: 'CTRLEVENT',
+                    id: 'logic_custom_params',
+                  },
+                ],
                 controlParam: {},
-                modelId: 'DDFA8DD7-7AB4-4DC1-A615-B8E9362C06BA',
+                modelId: 'c1171b62713874c9abc534ca1a13df2a',
                 modelType: 'PSDECHART',
                 userParam: {
                   'EC.emphasis':
                     '{"show":true,"itemStyle":{"opacity":0.8,"borderWidth":6,"borderColor":""},"focus":"self","scale":true,"shadowBlur":10,"shadowOffsetX":0,"shadowColor":"rgba(0,0,0,0.5)"}',
+                  'EC.title':
+                    '{"text":"","left":"center","top":"center","textStyle":{"fontSize":"18px"}}',
                   'EC.legend':
                     '{"left":"center","bottom":0,"orient":"horizontal","icon":"circle","type":"plain"}',
                   'EC.color':
@@ -450,7 +463,7 @@ export default {
             height: 780,
             appDataEntityId: 'plmweb.work_item',
             controlParam: {},
-            modelId: 'E5ACFBD6-5E12-453A-A8A9-575056F5D3F6',
+            modelId: '568dea04bc9c24a197ea7a819a84bd04',
             modelType: 'PSSYSDBPART',
             name: 'dashboard_sysportlet6',
             id: 'my_work_item_count',
@@ -886,12 +899,6 @@ export default {
                         id: 'sprint_id',
                       },
                       {
-                        appDEFieldId: 'version_id',
-                        valueType: 'SIMPLE',
-                        dataType: 25,
-                        id: 'version_id',
-                      },
-                      {
                         appDEFieldId: 'board_id',
                         valueType: 'SIMPLE',
                         dataType: 25,
@@ -975,7 +982,7 @@ export default {
                     controlParam: {
                       id: 'grid',
                     },
-                    modelId: '0A63AB28-E5E9-41A8-B02D-6DA4F7C525E4',
+                    modelId: '534470fd56c4400373fc9e51843f56f4',
                     modelType: 'PSDEGRID',
                     name: 'grid',
                     id: 'plmweb.work_item.my_created_work_item_grid_index',
@@ -1089,7 +1096,7 @@ export default {
                                     uiactionId: 'open_global_setting@project',
                                     showCaption: true,
                                     showIcon: true,
-                                    id: 'u25405e6',
+                                    id: 'u3fee786',
                                   },
                                 ],
                                 uniqueTag: 'Project__Usr1221520658',
@@ -1176,7 +1183,7 @@ export default {
                     controlParam: {
                       id: 'searchform',
                     },
-                    modelId: '01F1712B-2B06-453F-87D2-2B983C1E818B',
+                    modelId: '61ba43bf73f82539179e0f3a969efce9',
                     modelType: 'PSDEFORM_SEARCHFORM',
                     name: 'searchform',
                     id: 'plmweb.work_item.kanban_view_searchform',
@@ -1210,7 +1217,7 @@ export default {
                 logicName: 'my_gird_view_index表格视图布局',
                 appDataEntityId: 'plmweb.work_item',
                 controlParam: {},
-                modelId: 'D18D0F90-7172-46B2-BFA1-148621FAEB9C',
+                modelId: '3ae6010a3b11afea2e0de5d9ef051e9e',
                 modelType: 'PSSYSVIEWLAYOUTPANEL',
                 name: 'layoutpanel',
                 id: 'usr0222094750',
@@ -1244,7 +1251,7 @@ export default {
             height: 380,
             appDataEntityId: 'plmweb.recent',
             controlParam: {},
-            modelId: '85EF76B6-3089-48C4-ACED-A68EB70C1908',
+            modelId: '3d48876f604beb018683359f994fb329',
             modelType: 'PSSYSDBPART',
             name: 'dashboard_sysportlet2',
             id: 'work_itemmy_index',
@@ -1255,7 +1262,7 @@ export default {
               xdataControlName: 'grid',
               loadDefault: true,
               deviewCodeName: 'recent_project_grid_view',
-              deviewId: 'D1A7EAF3-AF12-4662-B78F-3780498DF327',
+              deviewId: '3b435c33f4a3be4e7c8cf7ce7ce4c950',
               accUserMode: 2,
               capLanguageRes: {
                 lanResTag: 'DE.LNAME.RECENT',
@@ -1596,7 +1603,7 @@ export default {
                     controlParam: {
                       id: 'grid',
                     },
-                    modelId: '3B6B51F4-1983-431B-AE76-1E64D04900B8',
+                    modelId: '9859443f22bdab0dd1920b1d84d33c21',
                     modelType: 'PSDEGRID',
                     name: 'grid',
                     id: 'plmweb.recent.recent_project_grid',
@@ -1630,7 +1637,7 @@ export default {
                 logicName: 'recent_project_grid_view表格视图布局',
                 appDataEntityId: 'plmweb.recent',
                 controlParam: {},
-                modelId: 'ABED4B6F-22E9-4E38-AE8D-495846AF246D',
+                modelId: '8264cd88ce05cdb12f5b03ed24b0968f',
                 modelType: 'PSSYSVIEWLAYOUTPANEL',
                 name: 'layoutpanel',
                 id: 'usr0222904513',
@@ -1640,7 +1647,7 @@ export default {
               viewType: 'DEGRIDVIEW',
               enableDP: true,
               showCaptionBar: false,
-              modelId: 'f8b881c71903bd4a9385aa1f49d56e57',
+              modelId: '538294aa29895738ff5d63c37e9ff894',
               modelType: 'PSAPPDEVIEW',
               name: 'recentrecent_project_grid_view',
               id: 'plmweb.recentrecent_project_grid_view',
@@ -1664,7 +1671,7 @@ export default {
             height: 380,
             appDataEntityId: 'plmweb.recent',
             controlParam: {},
-            modelId: 'C6DA36E7-9914-460F-9D8F-05AAF7C6E1AC',
+            modelId: '7c1ea11858efc4730332c94313e7a7ed',
             modelType: 'PSSYSDBPART',
             name: 'dashboard_sysportlet3',
             id: 'recentrecent_project',
@@ -1899,15 +1906,6 @@ export default {
                 ],
                 appViewRefs: [
                   {
-                    realTitle: '工作项编辑视图',
-                    realTitleLanguageRes: {
-                      lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
-                    },
-                    refAppViewId: 'plmweb.work_itemeditview',
-                    name: 'NEWDATA',
-                    id: 'newdata',
-                  },
-                  {
                     openMode: 'INDEXVIEWTAB_POPUPMODAL',
                     navigateContexts: [
                       {
@@ -1922,6 +1920,15 @@ export default {
                     refAppViewId: 'plmweb.work_itemmain_view',
                     name: 'EDITDATA',
                     id: 'editdata',
+                  },
+                  {
+                    realTitle: '工作项编辑视图',
+                    realTitleLanguageRes: {
+                      lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
+                    },
+                    refAppViewId: 'plmweb.work_itemeditview',
+                    name: 'NEWDATA',
+                    id: 'newdata',
                   },
                 ],
                 controls: [
@@ -2100,12 +2107,6 @@ export default {
                         id: 'sprint_id',
                       },
                       {
-                        appDEFieldId: 'version_id',
-                        valueType: 'SIMPLE',
-                        dataType: 25,
-                        id: 'version_id',
-                      },
-                      {
                         appDEFieldId: 'board_id',
                         valueType: 'SIMPLE',
                         dataType: 25,
@@ -2189,7 +2190,7 @@ export default {
                     controlParam: {
                       id: 'grid',
                     },
-                    modelId: '0A63AB28-E5E9-41A8-B02D-6DA4F7C525E4',
+                    modelId: '534470fd56c4400373fc9e51843f56f4',
                     modelType: 'PSDEGRID',
                     name: 'grid',
                     id: 'plmweb.work_item.my_created_work_item_grid_index',
@@ -2223,7 +2224,7 @@ export default {
                 logicName: 'my_created_grid_view_index表格视图布局',
                 appDataEntityId: 'plmweb.work_item',
                 controlParam: {},
-                modelId: 'C16FDC97-A36E-4A6C-8EB8-2ABF1ABEB6E2',
+                modelId: '3459ea8a498d7a2042e5543c97e6b79c',
                 modelType: 'PSSYSVIEWLAYOUTPANEL',
                 name: 'layoutpanel',
                 id: 'usr0222922932',
@@ -2257,7 +2258,7 @@ export default {
             height: 380,
             appDataEntityId: 'plmweb.work_item',
             controlParam: {},
-            modelId: '3C5BB90F-E8B6-498C-8A0B-DAC68726512B',
+            modelId: '73a01390106f877e0c6230ed5105040b',
             modelType: 'PSSYSDBPART',
             name: 'dashboard_sysportlet4',
             id: 'my_created_work_item',
@@ -2268,7 +2269,7 @@ export default {
               xdataControlName: 'grid',
               loadDefault: true,
               deviewCodeName: 'recent_test_case_grid_view',
-              deviewId: '70B4DBC8-92D2-4426-BC60-627A1F515087',
+              deviewId: '51240b881c73b04d6cf0cc5ed7b46c8d',
               accUserMode: 2,
               capLanguageRes: {
                 lanResTag: 'DE.LNAME.RECENT',
@@ -2648,7 +2649,7 @@ export default {
                     controlParam: {
                       id: 'grid',
                     },
-                    modelId: 'F7F1DB98-C463-4E8E-B5B9-CBD643097836',
+                    modelId: '2275ea2027befbf916faf2f568ffb8a3',
                     modelType: 'PSDEGRID',
                     name: 'grid',
                     id: 'plmweb.recent.recent_grid',
@@ -2771,7 +2772,7 @@ export default {
                     controlParam: {
                       id: 'searchform',
                     },
-                    modelId: 'b386ae303f90c2804cc76a7ce3e60a51',
+                    modelId: 'e0daefea3163d35c58b1f48a00f0fc03',
                     modelType: 'PSDEFORM_SEARCHFORM',
                     name: 'searchform',
                     id: 'plmweb.recent.default',
@@ -2805,7 +2806,7 @@ export default {
                 logicName: 'recent_grid_view表格视图布局',
                 appDataEntityId: 'plmweb.recent',
                 controlParam: {},
-                modelId: '7EAA0D45-F7DF-451F-9A2B-29F886700904',
+                modelId: 'de77b7ae8391ddc622bb60e74009d07c',
                 modelType: 'PSSYSVIEWLAYOUTPANEL',
                 name: 'layoutpanel',
                 id: 'usr0222324429',
@@ -2815,7 +2816,7 @@ export default {
               viewType: 'DEGRIDVIEW',
               enableDP: true,
               showCaptionBar: false,
-              modelId: '399bdcfabe4e46463e4f48a17c384002',
+              modelId: 'da64f5f5f90671e79b89c165e5c1d8cc',
               modelType: 'PSAPPDEVIEW',
               name: 'recentrecent_test_case_grid_view',
               id: 'plmweb.recentrecent_test_case_grid_view',
@@ -2839,7 +2840,7 @@ export default {
             height: 380,
             appDataEntityId: 'plmweb.recent',
             controlParam: {},
-            modelId: '14312E4E-05A5-442A-9BAD-626D4C2F00CE',
+            modelId: 'ff92f328ee9141e28209f3e17334225c',
             modelType: 'PSSYSDBPART',
             name: 'dashboard_sysportlet5',
             id: 'recent_test_case',
@@ -2855,7 +2856,7 @@ export default {
         sysCss: {
           cssName: 'recentcustom_dashboard_view_style',
         },
-        modelId: '2e9d7bfa941674b7c71cff3c6a9db5c2',
+        modelId: 'f4c1e0f1f7bd6959c074c9f3c66bb1dd',
         modelType: 'PSSYSDASHBOARD',
         name: 'dashboard',
         id: 'plmweb.recent.dashboard',
@@ -2878,7 +2879,7 @@ export default {
     logicName: '自定义仪表盘视图布局面板',
     appDataEntityId: 'plmweb.recent',
     controlParam: {},
-    modelId: 'F528F63B-E7FD-47BB-9625-3412794627EB',
+    modelId: '4376deb433997558baa63fb882953438',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0225728160',
@@ -2888,7 +2889,7 @@ export default {
   viewType: 'DECUSTOMVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '2e9d7bfa941674b7c71cff3c6a9db5c2',
+  modelId: 'f4c1e0f1f7bd6959c074c9f3c66bb1dd',
   modelType: 'PSAPPDEVIEW',
   name: 'recentcustom_dashboard_view',
   id: 'plmweb.recentcustom_dashboard_view',

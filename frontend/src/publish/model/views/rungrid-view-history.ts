@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'grid_view_history',
-  deviewId: 'B8B279CB-3028-490E-85F3-A9CEA4FBF092',
+  deviewId: '90e815c4639c2fe2911e6d4e9df60a52',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RUN',
@@ -258,7 +258,7 @@ export default {
         logicTrigger: 'VIEWEVENT',
         logicType: 'SCRIPT',
         scriptCode:
-          "view.layoutPanel.panelItems.choose_data.state.visible = false;\n\n// 初始化默认隐藏表格\nview.layoutPanel.panelItems.grid.state.keepAlive = true;\nview.layoutPanel.panelItems.grid.state.visible = false;\nconst form = view.getController('form');\nconsole.log('项显示逻辑执行了')\nif (form) {\n    form.evt.on('onFormDetailEvent', event =>{\n        const panelItems = view.layoutPanel.panelItems;\n        if (!panelItems.comment) {\n            return;\n        }\n        if (event.formDetailName === 'tabpage1') {\n            panelItems.comment.state.visible = true;\n        } else {\n            panelItems.comment.state.visible = false;\n        }\n    });\n}\n\n// 初始化隐藏发送和清空按钮\nview.layoutPanel.panelItems.button_calluilogic1.state.visible = false\nview.layoutPanel.panelItems.button_calluilogic.state.visible = false",
+          "view.layoutPanel.panelItems.choose_data.state.visible = view.context.srfshowchoose || false;\n\n// 初始化默认隐藏表格\nview.layoutPanel.panelItems.grid.state.keepAlive = true;\nview.layoutPanel.panelItems.grid.state.visible = false;\nconst form = view.getController('form');\nconsole.log('项显示逻辑执行了');\nif (form) {\n    form.evt.on('onFormDetailEvent', event =>{\n        const panelItems = view.layoutPanel.panelItems;\n        if (!panelItems.comment) {\n            return;\n        }\n        if (event.formDetailName === 'tabpage1') {\n            panelItems.comment.state.visible = true;\n        } else {\n            panelItems.comment.state.visible = false;\n        }\n    });\n}\n\n// 初始化隐藏发送和清空按钮\nview.layoutPanel.panelItems.button_calluilogic1.state.visible = false\nview.layoutPanel.panelItems.button_calluilogic.state.visible = false",
         builtinLogic: true,
         id: 'viewmounted',
       },
@@ -379,7 +379,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: '5B2416FC-CA2C-428C-B1CD-C8484EC404F7',
+        modelId: '97b647cbe00cc608f9a368e2d0874c1e',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'grid_view_historytoolbar',
@@ -558,7 +558,7 @@ export default {
         controlParam: {
           id: 'grid',
         },
-        modelId: '8E926BDE-5473-4295-8AEA-1D9EF65B75C4',
+        modelId: '90183f3e0c689f7a1a26c9f6886724d4',
         modelType: 'PSDEGRID',
         name: 'grid',
         id: 'plmweb.run.history',
@@ -590,7 +590,7 @@ export default {
     logicName: 'grid_view_history表格视图布局',
     appDataEntityId: 'plmweb.run',
     controlParam: {},
-    modelId: '0B6C3967-DA8B-436F-8B7E-6B1CF12A85F4',
+    modelId: '4c5e03d833bed8ea5893710ac77b61ce',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0112642514',
@@ -600,7 +600,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'b4c61477a676ddcad551852b707eb88c',
+  modelId: '823c20406cd1fe1aa9a276dc93f34c74',
   modelType: 'PSAPPDEVIEW',
   name: 'rungrid_view_history',
   id: 'plmweb.rungrid_view_history',

@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'grid_view_management_archived',
-  deviewId: 'F536459B-8E90-4ED6-BEA6-6E9078B6F3A5',
+  deviewId: 'bcb15d0ede13e8971b54cd75b96355ff',
   accUserMode: 2,
   caption: '项目管理',
   codeName: 'projectgrid_view_management_archived',
@@ -61,16 +61,16 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '项目编辑视图',
-      refAppViewId: 'plmweb.projecteditview',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       realTitle: '项目数据重定向视图',
       refAppViewId: 'plmweb.projectredirectview',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realTitle: '项目编辑视图',
+      refAppViewId: 'plmweb.projecteditview',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -157,7 +157,7 @@ export default {
                   cssClass: 'fa fa-lightbulb-o',
                   glyph: 'xf0eb@FontAwesome',
                 },
-                id: 'u772e03a',
+                id: 'u1084d2a',
               },
               {
                 actionLevel: 100,
@@ -171,7 +171,7 @@ export default {
                   cssClass: 'fa fa-trash',
                   glyph: 'xf1f8@FontAwesome',
                 },
-                id: 'ufcf3a6f',
+                id: 'ue08bbc0',
               },
             ],
             uniqueTag: 'Project__Usr1219101638',
@@ -272,7 +272,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '45FE70CD-9586-487F-971C-BF42E0D329F6',
+      modelId: '522e530508ad7135fc6f5a9dc86a3924',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.project.management_table_archived',
@@ -307,7 +307,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: '3F8C765A-7925-442A-B6A2-49CB4F8811F5',
+      modelId: '8f7ede1ae997bb2f8e25eab49b91c89b',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.project.kanban_view_searchform',
@@ -349,7 +349,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '96a064249c8572fa5dac89fc92d20b81',
+  modelId: '67a9e2ea7060ae1ae205ff85919d3021',
   modelType: 'PSAPPDEVIEW',
   name: 'projectgrid_view_management_archived',
   id: 'plmweb.projectgrid_view_management_archived',

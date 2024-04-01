@@ -234,6 +234,17 @@ public abstract class AbstractCustomerService extends ServiceImpl<CustomerMapper
         return list;
     }
 
+    public Page<Customer> searchNotifyAssignee(CustomerSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Customer> pages=baseMapper.searchNotifyAssignee(context.getPages(),context,context.getSelectCond());
+        List<Customer> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Customer> listNotifyAssignee(CustomerSearchContext context) {
+        List<Customer> list = baseMapper.listNotifyAssignee(context,context.getSelectCond());
+        return list;
+    }
+
     public List<Customer> findByProductId(List<String> productIds) {
         List<Customer> list = baseMapper.findByProductId(productIds);
         if(!ObjectUtils.isEmpty(list))

@@ -113,7 +113,6 @@ export default {
                     editable: true,
                     id: 'name',
                   },
-                  allowEmpty: true,
                   capLanguageRes: {
                     lanResTag: 'DEF.LNAME.NAME',
                   },

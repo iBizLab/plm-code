@@ -22,7 +22,7 @@ export default {
   enableWorkflow: true,
   funcViewMode: 'REDIRECTVIEW',
   deviewCodeName: 'RedirectView',
-  deviewId: '3773802aa95ff94c9c84df4c5e3919d3',
+  deviewId: '1909e6466704e37195e05a985acb9327',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SPACE_MEMBER',
@@ -64,7 +64,7 @@ export default {
   enableDP: true,
   redirectView: true,
   showCaptionBar: true,
-  modelId: '3c670e448745d385fa228d89233dcfa3',
+  modelId: '32f56b79456d100cefeb7b04ce6f7edf',
   modelType: 'PSAPPDEVIEW',
   name: 'space_memberRedirectView',
   id: 'plmweb.space_memberredirectview',

@@ -17,13 +17,9 @@ import cn.ibizlab.plm.core.projmgmt.domain.Entry;
 import cn.ibizlab.plm.core.projmgmt.domain.Progress;
 import cn.ibizlab.plm.core.projmgmt.domain.ProjectMember;
 import cn.ibizlab.plm.core.projmgmt.domain.Release;
-import cn.ibizlab.plm.core.projmgmt.domain.SprintCategory;
 import cn.ibizlab.plm.core.projmgmt.domain.Sprint;
-import cn.ibizlab.plm.core.projmgmt.domain.SprintSection;
 import cn.ibizlab.plm.core.projmgmt.domain.Swimlane;
 import cn.ibizlab.plm.core.testmgmt.domain.TestPlan;
-import cn.ibizlab.plm.core.projmgmt.domain.Version;
-import cn.ibizlab.plm.core.projmgmt.domain.VersionSection;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
 import cn.ibizlab.plm.core.base.domain.Favorite;
 import cn.ibizlab.plm.core.base.domain.Work;
@@ -338,6 +334,16 @@ public interface ProjectService extends IService<Project> {
     }
 
     /**
+     * Other_re_space
+     * 
+     * @param dto
+     * @return
+     */
+    default Project otherReSpace(Project dto) {
+        return dto;
+    }
+
+    /**
      * Recover
      * 
      * @param dto
@@ -496,6 +502,21 @@ public interface ProjectService extends IService<Project> {
      * @return
      */
     List<Project> listNormal(ProjectSearchContext context);
+
+    /**
+     * searchReader
+     * 
+     * @param context
+     * @return
+     */
+    Page<Project> searchReader(ProjectSearchContext context);
+    /**
+     * listReader
+     * 
+     * @param context
+     * @return
+     */
+    List<Project> listReader(ProjectSearchContext context);
 
     /**
      * searchSame_type

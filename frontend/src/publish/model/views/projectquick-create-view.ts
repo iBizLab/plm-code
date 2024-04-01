@@ -311,13 +311,20 @@ export default {
                       appDEFieldId: 'identifier',
                       editor: {
                         maxLength: 15,
+                        sysValueRule: {
+                          codeName: 'UsrValueRule0312488358',
+                          regExCode: '^[A-Z0-9]{1,15}$',
+                          ruleInfo: '请填写大写字母和数字',
+                          ruleType: 'REG',
+                          name: '大写字母和数字',
+                          id: 'plmweb.usrvaluerule0312488358',
+                        },
                         editorType: 'TEXTBOX',
                         placeHolder: '大写字母和数字，15个字符范围内',
                         valueType: 'SIMPLE',
                         editable: true,
                         id: 'identifier',
                       },
-                      allowEmpty: true,
                       capLanguageRes: {
                         lanResTag: 'DEF.LNAME.IDENTIFIER',
                       },

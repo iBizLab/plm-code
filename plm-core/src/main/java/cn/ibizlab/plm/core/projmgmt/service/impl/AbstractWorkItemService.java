@@ -38,8 +38,6 @@ import cn.ibizlab.plm.core.projmgmt.service.SprintService;
 import cn.ibizlab.plm.core.projmgmt.domain.Swimlane;
 import cn.ibizlab.plm.core.projmgmt.service.SwimlaneService;
 import cn.ibizlab.plm.core.base.domain.User;
-import cn.ibizlab.plm.core.projmgmt.domain.Version;
-import cn.ibizlab.plm.core.projmgmt.service.VersionService;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItemState;
 import cn.ibizlab.plm.core.projmgmt.service.WorkItemStateService;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItemType;
@@ -90,10 +88,6 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
     @Autowired
     @Lazy
     protected SwimlaneService swimlaneService;
-
-    @Autowired
-    @Lazy
-    protected VersionService versionService;
 
     @Autowired
     @Lazy
@@ -211,18 +205,6 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
         }
         if(Entities.SWIMLANE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
             et.setSwimlaneId((String)et.getContextParentKey());
-        }
-        if(Entities.VERSION.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
-            et.setVersionId((String)et.getContextParentKey());
-            Version version = et.getVersion();
-            if(version == null) {
-                version = versionService.getById(et.getVersionId());
-                et.setVersion(version);
-            }
-            if(!ObjectUtils.isEmpty(version)) {
-                et.setVersionId(version.getId());
-                et.setVersionName(version.getName());
-            }
         }
         if(Entities.WORK_ITEM.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
             et.setPid((String)et.getContextParentKey());
@@ -370,6 +352,17 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
         return true;
     }
 
+    public Page<WorkItem> searchAdvancedSearch(WorkItemSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchAdvancedSearch(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<WorkItem> listAdvancedSearch(WorkItemSearchContext context) {
+        List<WorkItem> list = baseMapper.listAdvancedSearch(context,context.getSelectCond());
+        return list;
+    }
+
     public Page<WorkItem> searchArchived(WorkItemSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("IDENTIFIER,ASC");
@@ -383,6 +376,24 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
             context.setSort("IDENTIFIER,ASC");
         List<WorkItem> list = baseMapper.listArchived(context,context.getSelectCond());
         return list;
+    }
+
+    public Page<WorkItem> searchBacklogPropertyDistribution(WorkItemSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchBacklogPropertyDistribution(context.getPages(),context,context.getSelectCond());
+        return new PageImpl<WorkItem>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),WorkItem.class), context.getPageable(), pages.getTotal());
+    }
+
+    public List<WorkItem> listBacklogPropertyDistribution(WorkItemSearchContext context) {
+        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listBacklogPropertyDistribution(context,context.getSelectCond()),WorkItem.class);
+    }
+
+    public Page<WorkItem> searchBacklogStateDistribution(WorkItemSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchBacklogStateDistribution(context.getPages(),context,context.getSelectCond());
+        return new PageImpl<WorkItem>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),WorkItem.class), context.getPageable(), pages.getTotal());
+    }
+
+    public List<WorkItem> listBacklogStateDistribution(WorkItemSearchContext context) {
+        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listBacklogStateDistribution(context,context.getSelectCond()),WorkItem.class);
     }
 
     public Page<WorkItem> searchBug(WorkItemSearchContext context) {
@@ -491,6 +502,15 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
         return list;
     }
 
+    public Page<WorkItem> searchDefectPropertyDistribution(WorkItemSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchDefectPropertyDistribution(context.getPages(),context,context.getSelectCond());
+        return new PageImpl<WorkItem>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),WorkItem.class), context.getPageable(), pages.getTotal());
+    }
+
+    public List<WorkItem> listDefectPropertyDistribution(WorkItemSearchContext context) {
+        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listDefectPropertyDistribution(context,context.getSelectCond()),WorkItem.class);
+    }
+
     public Page<WorkItem> searchDeleted(WorkItemSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("IDENTIFIER,ASC");
@@ -519,6 +539,15 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
             context.setSort("IDENTIFIER,ASC");
         List<WorkItem> list = baseMapper.listIdeaRelationWorkItem(context,context.getSelectCond());
         return list;
+    }
+
+    public Page<WorkItem> searchKanbanUserStat(WorkItemSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchKanbanUserStat(context.getPages(),context,context.getSelectCond());
+        return new PageImpl<WorkItem>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),WorkItem.class), context.getPageable(), pages.getTotal());
+    }
+
+    public List<WorkItem> listKanbanUserStat(WorkItemSearchContext context) {
+        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listKanbanUserStat(context,context.getSelectCond()),WorkItem.class);
     }
 
     public Page<WorkItem> searchMilestone(WorkItemSearchContext context) {
@@ -679,6 +708,17 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
         return list;
     }
 
+    public Page<WorkItem> searchNotifyAssignee(WorkItemSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchNotifyAssignee(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<WorkItem> listNotifyAssignee(WorkItemSearchContext context) {
+        List<WorkItem> list = baseMapper.listNotifyAssignee(context,context.getSelectCond());
+        return list;
+    }
+
     public Page<WorkItem> searchOverviewChart(WorkItemSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("WORK_ITEM_TYPE_SEQUENCE,ASC");
@@ -748,6 +788,17 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
         return list;
     }
 
+    public Page<WorkItem> searchResourceAssignment(WorkItemSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchResourceAssignment(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<WorkItem> listResourceAssignment(WorkItemSearchContext context) {
+        List<WorkItem> list = baseMapper.listResourceAssignment(context,context.getSelectCond());
+        return list;
+    }
+
     public Page<WorkItem> searchRunRelationBug(WorkItemSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchRunRelationBug(context.getPages(),context,context.getSelectCond());
         List<WorkItem> list = pages.getRecords();
@@ -768,6 +819,24 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
     public List<WorkItem> listRunRelationWorkItem(WorkItemSearchContext context) {
         List<WorkItem> list = baseMapper.listRunRelationWorkItem(context,context.getSelectCond());
         return list;
+    }
+
+    public Page<WorkItem> searchSprintUserStat(WorkItemSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchSprintUserStat(context.getPages(),context,context.getSelectCond());
+        return new PageImpl<WorkItem>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),WorkItem.class), context.getPageable(), pages.getTotal());
+    }
+
+    public List<WorkItem> listSprintUserStat(WorkItemSearchContext context) {
+        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listSprintUserStat(context,context.getSelectCond()),WorkItem.class);
+    }
+
+    public Page<WorkItem> searchTempSpeedReport(WorkItemSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchTempSpeedReport(context.getPages(),context,context.getSelectCond());
+        return new PageImpl<WorkItem>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),WorkItem.class), context.getPageable(), pages.getTotal());
+    }
+
+    public List<WorkItem> listTempSpeedReport(WorkItemSearchContext context) {
+        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listTempSpeedReport(context,context.getSelectCond()),WorkItem.class);
     }
 
     public Page<WorkItem> searchTestCaseRelationBug(WorkItemSearchContext context) {
@@ -845,18 +914,18 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
         return list;
     }
 
-    public Page<WorkItem> searchTreeGrid(WorkItemSearchContext context) {
+    public Page<WorkItem> searchTopTreeGrid(WorkItemSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("IDENTIFIER,ASC");
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchTreeGrid(context.getPages(),context,context.getSelectCond());
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchTopTreeGrid(context.getPages(),context,context.getSelectCond());
         List<WorkItem> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<WorkItem> listTreeGrid(WorkItemSearchContext context) {
+    public List<WorkItem> listTopTreeGrid(WorkItemSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("IDENTIFIER,ASC");
-        List<WorkItem> list = baseMapper.listTreeGrid(context,context.getSelectCond());
+        List<WorkItem> list = baseMapper.listTopTreeGrid(context,context.getSelectCond());
         return list;
     }
 
@@ -869,6 +938,15 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
     public List<WorkItem> listUnderWork(WorkItemSearchContext context) {
         List<WorkItem> list = baseMapper.listUnderWork(context,context.getSelectCond());
         return list;
+    }
+
+    public Page<WorkItem> searchWorkItemDistribution(WorkItemSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchWorkItemDistribution(context.getPages(),context,context.getSelectCond());
+        return new PageImpl<WorkItem>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),WorkItem.class), context.getPageable(), pages.getTotal());
+    }
+
+    public List<WorkItem> listWorkItemDistribution(WorkItemSearchContext context) {
+        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listWorkItemDistribution(context,context.getSelectCond()),WorkItem.class);
     }
 
     public Page<WorkItem> searchWorkItemRelationWorkItem(WorkItemSearchContext context) {
@@ -966,19 +1044,6 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
     }
     public List<WorkItem> findByAssigneeId(List<String> assigneeIds) {
         List<WorkItem> list = baseMapper.findByAssigneeId(assigneeIds);
-        if(!ObjectUtils.isEmpty(list))
-            attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
-        if(!ObjectUtils.isEmpty(list))
-            attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
-        if(!ObjectUtils.isEmpty(list))
-            deliverableService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setDeliverable(sub.getValue())));
-        return list;
-    }
-    public List<WorkItem> findByVersionId(List<String> versionIds) {
-        List<WorkItem> list = baseMapper.findByVersionId(versionIds);
         if(!ObjectUtils.isEmpty(list))
             attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
                 .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
@@ -1270,41 +1335,6 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
         for(WorkItem sub:list) {
             sub.setAssigneeId(user.getId());
             sub.setUser(user);
-            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
-                before.remove(sub.getId());
-                update.add(sub);
-            }
-            else
-                create.add(sub);
-        }
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
-            return false;
-        else
-            return true;
-    }
-
-    public boolean removeByVersionId(String versionId) {
-        return this.remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getVersionId,versionId));
-    }
-
-    public boolean resetByVersionId(String versionId) {
-        return this.update(Wrappers.<WorkItem>lambdaUpdate().eq(WorkItem::getVersionId,versionId));
-    }
-
-    public boolean saveByVersion(Version version,List<WorkItem> list) {
-        if(list==null)
-            return true;
-        Map<String,WorkItem> before = findByVersionId(version.getId()).stream().collect(Collectors.toMap(WorkItem::getId,e->e));
-        List<WorkItem> update = new ArrayList<>();
-        List<WorkItem> create = new ArrayList<>();
-
-        for(WorkItem sub:list) {
-            sub.setVersionId(version.getId());
-            sub.setVersion(version);
             if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
                 before.remove(sub.getId());
                 update.add(sub);

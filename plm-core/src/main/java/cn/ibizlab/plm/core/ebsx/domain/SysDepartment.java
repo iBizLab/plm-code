@@ -209,15 +209,6 @@ public class SysDepartment extends EntityClient implements Serializable
     private BigDecimal reserver17;
 
     /**
-     * 保留16
-     */
-    @DEField(name = "reserver16")
-    @JsonProperty("reserver16")
-    @JSONField(name = "reserver16")
-    @ApiModelProperty(value = "reserver16", notes = "保留16")
-    private BigDecimal reserver16;
-
-    /**
      * 保留12
      */
     @DEField(name = "reserver12")
@@ -225,6 +216,15 @@ public class SysDepartment extends EntityClient implements Serializable
     @JSONField(name = "reserver12")
     @ApiModelProperty(value = "reserver12", notes = "保留12")
     private Integer reserver12;
+
+    /**
+     * 保留16
+     */
+    @DEField(name = "reserver16")
+    @JsonProperty("reserver16")
+    @JSONField(name = "reserver16")
+    @ApiModelProperty(value = "reserver16", notes = "保留16")
+    private BigDecimal reserver16;
 
     /**
      * 保留15
@@ -299,15 +299,6 @@ public class SysDepartment extends EntityClient implements Serializable
     private String reserver4;
 
     /**
-     * 保留8
-     */
-    @DEField(name = "reserver8")
-    @JsonProperty("reserver8")
-    @JSONField(name = "reserver8")
-    @ApiModelProperty(value = "reserver8", notes = "保留8")
-    private String reserver8;
-
-    /**
      * 保留
      */
     @DEField(name = "reserver")
@@ -315,6 +306,15 @@ public class SysDepartment extends EntityClient implements Serializable
     @JSONField(name = "reserver")
     @ApiModelProperty(value = "reserver", notes = "保留")
     private String reserver;
+
+    /**
+     * 保留8
+     */
+    @DEField(name = "reserver8")
+    @JsonProperty("reserver8")
+    @JSONField(name = "reserver8")
+    @ApiModelProperty(value = "reserver8", notes = "保留8")
+    private String reserver8;
 
     /**
      * 保留5
@@ -355,15 +355,6 @@ public class SysDepartment extends EntityClient implements Serializable
     private Date reserver19;
 
     /**
-     * 保留9
-     */
-    @DEField(name = "reserver9")
-    @JsonProperty("reserver9")
-    @JSONField(name = "reserver9")
-    @ApiModelProperty(value = "reserver9", notes = "保留9")
-    private String reserver9;
-
-    /**
      * 保留10
      */
     @DEField(name = "reserver10")
@@ -371,6 +362,15 @@ public class SysDepartment extends EntityClient implements Serializable
     @JSONField(name = "reserver10")
     @ApiModelProperty(value = "reserver10", notes = "保留10")
     private String reserver10;
+
+    /**
+     * 保留9
+     */
+    @DEField(name = "reserver9")
+    @JsonProperty("reserver9")
+    @JSONField(name = "reserver9")
+    @ApiModelProperty(value = "reserver9", notes = "保留9")
+    private String reserver9;
 
     /**
      * 企业微信部门标识
@@ -544,20 +544,20 @@ public class SysDepartment extends EntityClient implements Serializable
     }
 
     /**
-     * 设置 [保留16]
-     */
-    public SysDepartment setReserver16(BigDecimal reserver16) {
-        this.reserver16 = reserver16;
-        this.modify("reserver16", reserver16);
-        return this;
-    }
-
-    /**
      * 设置 [保留12]
      */
     public SysDepartment setReserver12(Integer reserver12) {
         this.reserver12 = reserver12;
         this.modify("reserver12", reserver12);
+        return this;
+    }
+
+    /**
+     * 设置 [保留16]
+     */
+    public SysDepartment setReserver16(BigDecimal reserver16) {
+        this.reserver16 = reserver16;
+        this.modify("reserver16", reserver16);
         return this;
     }
 
@@ -634,20 +634,20 @@ public class SysDepartment extends EntityClient implements Serializable
     }
 
     /**
-     * 设置 [保留8]
-     */
-    public SysDepartment setReserver8(String reserver8) {
-        this.reserver8 = reserver8;
-        this.modify("reserver8", reserver8);
-        return this;
-    }
-
-    /**
      * 设置 [保留]
      */
     public SysDepartment setReserver(String reserver) {
         this.reserver = reserver;
         this.modify("reserver", reserver);
+        return this;
+    }
+
+    /**
+     * 设置 [保留8]
+     */
+    public SysDepartment setReserver8(String reserver8) {
+        this.reserver8 = reserver8;
+        this.modify("reserver8", reserver8);
         return this;
     }
 
@@ -688,20 +688,20 @@ public class SysDepartment extends EntityClient implements Serializable
     }
 
     /**
-     * 设置 [保留9]
-     */
-    public SysDepartment setReserver9(String reserver9) {
-        this.reserver9 = reserver9;
-        this.modify("reserver9", reserver9);
-        return this;
-    }
-
-    /**
      * 设置 [保留10]
      */
     public SysDepartment setReserver10(String reserver10) {
         this.reserver10 = reserver10;
         this.modify("reserver10", reserver10);
+        return this;
+    }
+
+    /**
+     * 设置 [保留9]
+     */
+    public SysDepartment setReserver9(String reserver9) {
+        this.reserver9 = reserver9;
+        this.modify("reserver9", reserver9);
         return this;
     }
 

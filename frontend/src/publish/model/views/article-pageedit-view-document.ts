@@ -1,10 +1,11 @@
 export default {
+  markOpenDataMode: 'OPENDATA;EDITDATA;DISPLAYOPPERSON;NOTICERELOAD',
   showDataInfoBar: true,
   xdataControlName: 'form',
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'edit_view_document',
-  deviewId: 'f078657ddc05fe09411bb800b32182e5',
+  deviewId: '04ee9a868a4db30ea1f6275886bad7a2',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PAGE',
@@ -26,11 +27,9 @@ export default {
         {
           actionLevel: 100,
           noPrivDisplayMode: 2,
-          uiactionId: 'saveandexit',
+          uiactionId: 'release@article_page',
+          uiactionTarget: 'SINGLEDATA',
           valid: true,
-          capLanguageRes: {
-            lanResTag: 'TBB.TEXT.EDITVIEW.SAVEANDCLOSE',
-          },
           caption: '发布',
           itemType: 'DEUIACTION',
           sysImage: {
@@ -38,9 +37,6 @@ export default {
             glyph: 'xf1d9@FontAwesome',
           },
           tooltip: '发布',
-          tooltipLanguageRes: {
-            lanResTag: 'TBB.TOOLTIP.EDITVIEW.SAVEANDCLOSE',
-          },
           showCaption: true,
           showIcon: true,
           id: 'deuiaction1',
@@ -54,7 +50,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '59D82179-790C-4BAF-B8C6-1F5CD18CC6A6',
+      modelId: '51c637de933831860a8716591fa19673',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'edit_view_documenttoolbar',
@@ -183,6 +179,7 @@ export default {
                         'value.replaceAll(/\\#\\{\\"id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\",\\"identifier\\":\\"(.+?)\\",\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })}).replaceAll(/\\#\\{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })})',
                       USERSCRIPT:
                         '`@{"id":"${data.id}","name":"${data.name}"}`',
+                      ENABLEREALTIME: 'true',
                       QUOTESCRIPT:
                         '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","icon":"${data.icon}"}`',
                       USERURL:
@@ -283,7 +280,7 @@ export default {
                       cssClass: 'fa fa-plus',
                       glyph: 'xf067@FontAwesome',
                     },
-                    id: 'u14721d8',
+                    id: 'u7f64bbb',
                   },
                 ],
                 uniqueTag: 'Article_page__Usr0228516811',
@@ -378,7 +375,7 @@ export default {
                                 cssClass: 'fa fa-download',
                                 glyph: 'xf019@FontAwesome',
                               },
-                              id: 'u0b42a77',
+                              id: 'u73b8ba5',
                             },
                             {
                               actionLevel: 100,
@@ -394,7 +391,7 @@ export default {
                                 cssClass: 'fa fa-trash-o',
                                 glyph: 'xf014@FontAwesome',
                               },
-                              id: 'u8aff03a',
+                              id: 'u44d00e2',
                             },
                           ],
                           uniqueTag: 'Attachment__Usr0103721999',
@@ -643,7 +640,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '27f429d7c178ba5e96ef52f8a27e8d2b',
+      modelId: 'f3fa75d7170445c8e54fc523c57f4df4',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.article_page.edit_view_document_form',
@@ -688,7 +685,7 @@ export default {
   width: 90,
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'eeeb9dcec5cfd5e68e44e83d47473c39',
+  modelId: 'faf368059394baea6f8875fd486d4b18',
   modelType: 'PSAPPDEVIEW',
   name: 'article_pageedit_view_document',
   id: 'plmweb.article_pageedit_view_document',

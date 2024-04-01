@@ -73,13 +73,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '新建计划',
-      refAppViewId: 'plmweb.product_planquick_create_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       realTitle: '计划内容',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.IDEA.MAIN_VIEW_PLAN',
@@ -87,6 +80,13 @@ export default {
       refAppViewId: 'plmweb.ideamain_view_plan',
       name: 'OPENDATA',
       id: 'opendata',
+    },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '新建计划',
+      refAppViewId: 'plmweb.product_planquick_create_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
     {
       openMode: 'POPUPMODAL',
@@ -165,7 +165,7 @@ export default {
                   cssClass: 'fa fa-edit',
                   glyph: 'xf044@FontAwesome',
                 },
-                id: 'u238234a',
+                id: 'uc47afc7',
               },
               {
                 actionLevel: 100,
@@ -180,7 +180,7 @@ export default {
                   cssClass: 'fa fa-trash-o',
                   glyph: 'xf014@FontAwesome',
                 },
-                id: 'u06adfdc',
+                id: 'u7841db0',
               },
             ],
             uniqueTag: 'Product_plan__Usr1228161361',

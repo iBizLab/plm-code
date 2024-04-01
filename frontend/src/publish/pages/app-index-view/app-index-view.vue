@@ -5,9 +5,6 @@
     :modal="props.modal"
     :model-data="model"
   >
-    <template #appmenu="slotProps">
-      <i-biz-app-menu-control v-bind="slotProps" />
-    </template>
   </i-biz-view>
 </template>
 <script setup lang="ts">

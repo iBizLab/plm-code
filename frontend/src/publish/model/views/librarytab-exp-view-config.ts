@@ -3,7 +3,7 @@ export default {
   loadDefault: true,
   showDataInfoBar: true,
   deviewCodeName: 'tab_exp_view_config',
-  deviewId: '8631EE47-5A57-4667-907B-3D071BC1DB06',
+  deviewId: '0059c280c6bd1613683c2eb6aa63bdd8',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.LIBRARY',
@@ -53,7 +53,7 @@ export default {
           controlParam: {
             id: 'in_progress',
           },
-          modelId: 'd747306d485b85e49fae9c34eeca2a2a_in_progress',
+          modelId: '4222cea9219c3327e6244ed257697dee_in_progress',
           modelType: 'PSVIEWPANEL',
           name: 'in_progress',
           id: 'tab_exp_view_configin_progress',
@@ -67,7 +67,7 @@ export default {
           controlParam: {
             id: 'archived',
           },
-          modelId: 'd747306d485b85e49fae9c34eeca2a2a_archived',
+          modelId: '4222cea9219c3327e6244ed257697dee_archived',
           modelType: 'PSVIEWPANEL',
           name: 'archived',
           id: 'tab_exp_view_configarchived',
@@ -81,7 +81,7 @@ export default {
           controlParam: {
             id: 'deleted',
           },
-          modelId: 'd747306d485b85e49fae9c34eeca2a2a_deleted',
+          modelId: '4222cea9219c3327e6244ed257697dee_deleted',
           modelType: 'PSVIEWPANEL',
           name: 'deleted',
           id: 'tab_exp_view_configdeleted',
@@ -91,7 +91,7 @@ export default {
       controlType: 'TABEXPPANEL',
       appDataEntityId: 'plmweb.library',
       controlParam: {},
-      modelId: 'd747306d485b85e49fae9c34eeca2a2a_tabexppanel',
+      modelId: '4222cea9219c3327e6244ed257697dee_tabexppanel',
       modelType: 'PSTABEXPPANEL',
       name: 'tabexppanel',
       id: 'tab_exp_view_configtabexppanel',
@@ -125,7 +125,7 @@ export default {
   viewType: 'DETABEXPVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'd747306d485b85e49fae9c34eeca2a2a',
+  modelId: '4222cea9219c3327e6244ed257697dee',
   modelType: 'PSAPPDEVIEW',
   name: 'librarytab_exp_view_config',
   id: 'plmweb.librarytab_exp_view_config',

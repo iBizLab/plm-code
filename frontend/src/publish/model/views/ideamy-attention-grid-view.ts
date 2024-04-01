@@ -4,7 +4,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'my_attention_grid_view',
-  deviewId: '6B5D3106-148C-4AFF-A853-C02995EC6BDC',
+  deviewId: '0ae5238a83b63f5b9403ad68344bfc45',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.IDEA',
@@ -129,6 +129,9 @@ export default {
           valueType: 'SIMPLE',
           aggMode: 'NONE',
           align: 'LEFT',
+          capLanguageRes: {
+            lanResTag: 'DEF.LNAME.SHOW_IDENTIFIER',
+          },
           caption: '编号',
           codeName: 'identifier',
           columnType: 'DEFGRIDCOLUMN',
@@ -200,47 +203,25 @@ export default {
           id: 'assignee_name',
         },
         {
-          clconvertMode: 'NONE',
-          dataItemName: 'create_time',
-          excelCaption: '建立时间',
-          appDEFieldId: 'create_time',
-          deuiactionGroup: {
-            uiactionGroupDetails: [
-              {
-                actionLevel: 100,
-                afterItemType: 'NONE',
-                beforeItemType: 'NONE',
-                caption: '取消关联',
-                detailType: 'DEUIACTION',
-                uiactionId: 'del_relation@idea',
-                showCaption: true,
-                showIcon: true,
-                sysImage: {
-                  cssClass: 'fa fa-unlink',
-                  glyph: 'xf127@FontAwesome',
-                },
-                id: 'u93d6c8f',
-              },
-            ],
-            uniqueTag: 'Idea__Usr1227985234',
-            name: '取消关联',
-            id: 'usr1227985234',
-          },
-          valueFormat: 'YYYY-MM-DD',
+          clconvertMode: 'FRONT',
+          dataItemName: 'priority',
+          excelCaption: '优先级',
+          appCodeListId: 'plmweb.prodmgmt__idea_priority',
+          appDEFieldId: 'priority',
           valueType: 'SIMPLE',
           aggMode: 'NONE',
           align: 'LEFT',
           capLanguageRes: {
-            lanResTag: 'DEF.LNAME.CREATE_TIME',
+            lanResTag: 'DEF.LNAME.PRIORITY',
           },
-          caption: '建立时间',
-          codeName: 'create_time',
+          caption: '优先级',
+          codeName: 'priority',
           columnType: 'DEFGRIDCOLUMN',
           noPrivDisplayMode: 1,
           width: 150,
           widthUnit: 'PX',
           enableSort: true,
-          id: 'create_time',
+          id: 'priority',
         },
       ],
       degridDataItems: [
@@ -267,6 +248,12 @@ export default {
           valueType: 'SIMPLE',
           dataType: 25,
           id: 'assignee_name',
+        },
+        {
+          appDEFieldId: 'priority',
+          valueType: 'SIMPLE',
+          dataType: 25,
+          id: 'priority',
         },
         {
           format: 'YYYY-MM-DD',
@@ -335,7 +322,6 @@ export default {
       ],
       pagingSize: 20,
       sortMode: 'REMOTE',
-      enablePagingBar: true,
       singleSelect: true,
       fetchControlAction: {
         appDEMethodId: 'fetchmy_attention',
@@ -357,7 +343,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '445109D6-5D98-4052-B066-6E540A55CD61',
+      modelId: '6a26f4af9a8fca306f0c9d135a5c1e3a',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.idea.idea_re_idea_grid',
@@ -386,6 +372,10 @@ export default {
                 id: 'n_show_identifier_like',
               },
               allowEmpty: true,
+              capLanguageRes: {
+                lanResTag:
+                  'CONTROL.DEFORM.IDEA.USR12263500_SEARCHFORM.FORMITEM.N_SHOW_IDENTIFIER_LIKE',
+              },
               caption: '编号',
               codeName: 'n_show_identifier_like',
               detailStyle: 'DEFAULT',
@@ -444,7 +434,8 @@ export default {
               allowEmpty: true,
               needCodeListConfig: true,
               capLanguageRes: {
-                lanResTag: 'CONTROL.DEFSFITEM.IDEA.N_STATE_EQ',
+                lanResTag:
+                  'CONTROL.DEFORM.IDEA.USR12263500_SEARCHFORM.FORMITEM.N_STATE_EQ',
               },
               caption: '状态',
               codeName: 'n_state_eq',
@@ -491,7 +482,8 @@ export default {
               },
               allowEmpty: true,
               capLanguageRes: {
-                lanResTag: 'CONTROL.DEFSFITEM.IDEA.N_PRODUCT_NAME_EQ',
+                lanResTag:
+                  'CONTROL.DEFORM.IDEA.USR12263500_SEARCHFORM.FORMITEM.N_PRODUCT_NAME_EQ',
               },
               caption: '所属产品',
               codeName: 'n_product_name_eq',
@@ -556,7 +548,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: '807435FE-97D8-4B83-8FC5-2544177737EC',
+      modelId: '205868a8309156105483df42deb57400',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.idea.usr12263500_searchform',
@@ -595,11 +587,14 @@ export default {
     id: 'layoutpanel',
   },
   title: '我关注的需求表格视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.IDEA.MY_ATTENTION_GRID_VIEW',
+  },
   viewStyle: 'DEFAULT',
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '92c14a086f5db733534f99e6dd4a6452',
+  modelId: '6834459013ffbabe5e9a57c9e8ceed66',
   modelType: 'PSAPPDEVIEW',
   name: 'ideamy_attention_grid_view',
   id: 'plmweb.ideamy_attention_grid_view',

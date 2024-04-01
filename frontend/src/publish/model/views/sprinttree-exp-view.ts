@@ -394,8 +394,8 @@ export default {
                 },
               ],
               sysImage: {
-                cssClass: 'fa fa-table',
-                glyph: 'xf0ce@FontAwesome',
+                cssClass: 'fa fa-reorder',
+                glyph: 'xf0c9@FontAwesome',
               },
               treeNodeType: 'DE',
               allowDrag: true,

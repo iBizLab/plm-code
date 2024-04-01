@@ -201,6 +201,17 @@ public abstract class AbstractRecentService extends ServiceImpl<RecentMapper,Rec
         return list;
     }
 
+    public Page<Recent> searchRecentCurprojectChildWorkItem(RecentSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Recent> pages=baseMapper.searchRecentCurprojectChildWorkItem(context.getPages(),context,context.getSelectCond());
+        List<Recent> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Recent> listRecentCurprojectChildWorkItem(RecentSearchContext context) {
+        List<Recent> list = baseMapper.listRecentCurprojectChildWorkItem(context,context.getSelectCond());
+        return list;
+    }
+
     public Page<Recent> searchRecentCurprojectWorkItem(RecentSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Recent> pages=baseMapper.searchRecentCurprojectWorkItem(context.getPages(),context,context.getSelectCond());
         List<Recent> list = pages.getRecords();

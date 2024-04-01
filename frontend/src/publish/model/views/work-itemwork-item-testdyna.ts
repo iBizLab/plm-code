@@ -126,6 +126,15 @@ export default {
   ],
   appViewRefs: [
     {
+      realTitle: '工作项编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.work_itemeditview',
+      name: 'NEWDATA',
+      id: 'newdata',
+    },
+    {
       openMode: 'INDEXVIEWTAB_POPUPMODAL',
       navigateContexts: [
         {
@@ -154,15 +163,6 @@ export default {
       refAppViewId: 'plmweb.work_itemmain_view_dyna',
       name: 'EDITDATA',
       id: 'editdata',
-    },
-    {
-      realTitle: '工作项编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.work_itemeditview',
-      name: 'NEWDATA',
-      id: 'newdata',
     },
   ],
   controls: [
@@ -309,7 +309,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '12F3DAA7-952F-48E4-AE0F-015DC4369294',
+      modelId: 'fe45239d889da6c9e29cc6c6b2409005',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'work_item_testdynatoolbar',
@@ -357,7 +357,7 @@ export default {
                   cssClass: 'fa fa-copy',
                   glyph: 'xf0c5@FontAwesome',
                 },
-                id: 'u9c9c725',
+                id: 'uf11d057',
               },
               {
                 actionLevel: 100,
@@ -372,7 +372,7 @@ export default {
                   cssClass: 'fa fa-arrows',
                   glyph: 'xf047@FontAwesome',
                 },
-                id: 'u2588787',
+                id: 'u2cec520',
               },
               {
                 actionLevel: 100,
@@ -387,7 +387,7 @@ export default {
                   cssClass: 'fa fa-archive',
                   glyph: 'xf187@FontAwesome',
                 },
-                id: 'ud0137d9',
+                id: 'u4fdad0f',
               },
               {
                 actionLevel: 100,
@@ -402,7 +402,7 @@ export default {
                   cssClass: 'fa fa-trash-o',
                   glyph: 'xf014@FontAwesome',
                 },
-                id: 'ua4fae66',
+                id: 'u774a363',
               },
               {
                 actionLevel: 100,
@@ -416,7 +416,7 @@ export default {
                 sysImage: {
                   cssClass: 'key',
                 },
-                id: 'uf4b02b1',
+                id: 'u6aa52c1',
               },
               {
                 actionLevel: 100,
@@ -430,7 +430,7 @@ export default {
                 sysImage: {
                   cssClass: 'git-branch',
                 },
-                id: 'uda36756',
+                id: 'ua2ab7cd',
               },
               {
                 actionLevel: 100,
@@ -445,7 +445,7 @@ export default {
                   cssClass: 'fa fa-link',
                   glyph: 'xf0c1@FontAwesome',
                 },
-                id: 'uff8cd76',
+                id: 'ud5a51ef',
               },
               {
                 actionLevel: 100,
@@ -460,7 +460,7 @@ export default {
                   cssClass: 'fa fa-send-o',
                   glyph: 'xf1d9@FontAwesome',
                 },
-                id: 'u177ee71',
+                id: 'u6586895',
               },
               {
                 actionLevel: 100,
@@ -475,7 +475,7 @@ export default {
                   cssClass: 'fa fa-send-o',
                   glyph: 'xf1d9@FontAwesome',
                 },
-                id: 'u55c2849',
+                id: 'u0f2b72c',
               },
               {
                 actionLevel: 100,
@@ -486,11 +486,11 @@ export default {
                 uiactionId: 'get_editor_column',
                 showCaption: true,
                 showIcon: true,
-                id: 'u96e02ff',
+                id: 'u951f751',
               },
             ],
             uniqueTag: 'Work_item__Usr1220197218',
-            name: '工作项操作列',
+            name: '敏捷项目工作项操作列',
             id: 'usr1220197218',
           },
           valueType: 'SIMPLE',
@@ -758,12 +758,6 @@ export default {
           id: 'sprint_id',
         },
         {
-          appDEFieldId: 'version_id',
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'version_id',
-        },
-        {
           appDEFieldId: 'board_id',
           valueType: 'SIMPLE',
           dataType: 25,
@@ -911,7 +905,7 @@ export default {
                     cssClass: 'fa fa-user-md',
                     glyph: 'xf0f0@FontAwesome',
                   },
-                  id: 'ue68004d',
+                  id: 'uc5eeb4c',
                 },
               ],
               uniqueTag: 'Project_member__Usr0104465165',
@@ -1225,7 +1219,7 @@ export default {
           controlParam: {
             id: 'grid_batchtoolbar',
           },
-          modelId: '9366DB7F-2A7F-438D-90F0-B2B936356967',
+          modelId: '559be635e58fa6cfe7ed880e88bf87e6',
           modelType: 'PSDETOOLBAR',
           name: 'grid_batchtoolbar',
           id: 'work_item_testdynagrid_batchtoolbar',
@@ -1354,7 +1348,7 @@ export default {
                       uiactionId: 'open_global_setting@project',
                       showCaption: true,
                       showIcon: true,
-                      id: 'u25405e6',
+                      id: 'u3fee786',
                     },
                   ],
                   uniqueTag: 'Project__Usr1221520658',
@@ -1441,7 +1435,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: '01F1712B-2B06-453F-87D2-2B983C1E818B',
+      modelId: '61ba43bf73f82539179e0f3a969efce9',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.work_item.kanban_view_searchform',

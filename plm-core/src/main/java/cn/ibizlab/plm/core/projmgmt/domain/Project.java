@@ -25,13 +25,9 @@ import cn.ibizlab.plm.core.projmgmt.domain.Entry;
 import cn.ibizlab.plm.core.projmgmt.domain.Progress;
 import cn.ibizlab.plm.core.projmgmt.domain.ProjectMember;
 import cn.ibizlab.plm.core.projmgmt.domain.Release;
-import cn.ibizlab.plm.core.projmgmt.domain.SprintCategory;
 import cn.ibizlab.plm.core.projmgmt.domain.Sprint;
-import cn.ibizlab.plm.core.projmgmt.domain.SprintSection;
 import cn.ibizlab.plm.core.projmgmt.domain.Swimlane;
 import cn.ibizlab.plm.core.testmgmt.domain.TestPlan;
-import cn.ibizlab.plm.core.projmgmt.domain.Version;
-import cn.ibizlab.plm.core.projmgmt.domain.VersionSection;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
 import cn.ibizlab.plm.core.base.domain.Favorite;
 import cn.ibizlab.plm.core.base.domain.Work;
@@ -159,7 +155,7 @@ public class Project extends EntityMP implements Serializable
      * 是否星标
      */
     @TableField(value = "is_favorite" , exist = false)
-    @DEField(name = "is_favorite")
+    @DEField(name = "is_favorite" , dict = "YesNo")
     @JsonProperty("is_favorite")
     @JSONField(name = "is_favorite")
     @ApiModelProperty(value = "is_favorite", notes = "是否星标")

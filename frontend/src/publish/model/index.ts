@@ -17,6 +17,9 @@ export async function registerCodeList(
   );
   setCodeList(await import('./code-list/base-index-type').then(m => m.default));
   setCodeList(
+    await import('./code-list/base-insight-group').then(m => m.default),
+  );
+  setCodeList(
     await import('./code-list/base-recent-index').then(m => m.default),
   );
   setCodeList(
@@ -27,6 +30,15 @@ export async function registerCodeList(
     await import('./code-list/base-recent-visite').then(m => m.default),
   );
   setCodeList(await import('./code-list/base-role-type').then(m => m.default));
+  setCodeList(
+    await import('./code-list/base-usr-code-list-0320804109').then(
+      m => m.default,
+    ),
+  );
+  setCodeList(
+    await import('./code-list/base-workload-type').then(m => m.default),
+  );
+  setCodeList(await import('./code-list/ftr-search-menu').then(m => m.default));
   setCodeList(await import('./code-list/field-data-type').then(m => m.default));
   setCodeList(await import('./code-list/field-type').then(m => m.default));
   setCodeList(
@@ -68,6 +80,19 @@ export async function registerCodeList(
     await import('./code-list/prod-mgmt-ticket-state').then(m => m.default),
   );
   setCodeList(
+    await import('./code-list/proj-mgmt-cur-project-member').then(
+      m => m.default,
+    ),
+  );
+  setCodeList(
+    await import('./code-list/proj-mgmt-cur-sprint').then(m => m.default),
+  );
+  setCodeList(
+    await import('./code-list/proj-mgmt-defect-property-distribution').then(
+      m => m.default,
+    ),
+  );
+  setCodeList(
     await import('./code-list/proj-mgmt-demand-sources').then(m => m.default),
   );
   setCodeList(
@@ -81,6 +106,9 @@ export async function registerCodeList(
   );
   setCodeList(
     await import('./code-list/proj-mgmt-project-type').then(m => m.default),
+  );
+  setCodeList(
+    await import('./code-list/proj-mgmt-rep-days-0-to-30').then(m => m.default),
   );
   setCodeList(
     await import('./code-list/proj-mgmt-reproduction-probability').then(
@@ -142,10 +170,20 @@ export async function registerCodeList(
   );
   setCodeList(await import('./code-list/sys-operator').then(m => m.default));
   setCodeList(
+    await import('./code-list/test-mgmt-cur-library-member').then(
+      m => m.default,
+    ),
+  );
+  setCodeList(
     await import('./code-list/test-mgmt-library-list').then(m => m.default),
   );
   setCodeList(
     await import('./code-list/test-mgmt-library-member').then(m => m.default),
+  );
+  setCodeList(
+    await import('./code-list/test-mgmt-rep-times-1-to-10').then(
+      m => m.default,
+    ),
   );
   setCodeList(
     await import('./code-list/test-mgmt-run-status').then(m => m.default),
@@ -163,6 +201,9 @@ export async function registerCodeList(
   );
   setCodeList(
     await import('./code-list/test-mgmt-test-case-type').then(m => m.default),
+  );
+  setCodeList(
+    await import('./code-list/test-mgmt-test-plan').then(m => m.default),
   );
   setCodeList(
     await import('./code-list/test-mgmt-test-plan-status').then(m => m.default),
@@ -229,11 +270,6 @@ export async function getAppDataEntityModel(
       return import('./entities/library-member').then(
         m => m.default as unknown as IAppDataEntity,
       );
-    case 'plmweb.sprint_section':
-    case 'sprint_section':
-      return import('./entities/sprint-section').then(
-        m => m.default as unknown as IAppDataEntity,
-      );
     case 'plmweb.psdeform':
     case 'psdeform':
       return import('./entities/psde-form').then(
@@ -247,11 +283,6 @@ export async function getAppDataEntityModel(
     case 'plmweb.favorite':
     case 'favorite':
       return import('./entities/favorite').then(
-        m => m.default as unknown as IAppDataEntity,
-      );
-    case 'plmweb.relation':
-    case 'relation':
-      return import('./entities/relation').then(
         m => m.default as unknown as IAppDataEntity,
       );
     case 'plmweb.deliverable':
@@ -294,6 +325,11 @@ export async function getAppDataEntityModel(
       return import('./entities/workload-type').then(
         m => m.default as unknown as IAppDataEntity,
       );
+    case 'plmweb.search_hub':
+    case 'search_hub':
+      return import('./entities/search-hub').then(
+        m => m.default as unknown as IAppDataEntity,
+      );
     case 'plmweb.department':
     case 'department':
       return import('./entities/department').then(
@@ -332,6 +368,11 @@ export async function getAppDataEntityModel(
     case 'plmweb.day_capacity':
     case 'day_capacity':
       return import('./entities/day-capacity').then(
+        m => m.default as unknown as IAppDataEntity,
+      );
+    case 'plmweb.relation':
+    case 'relation':
+      return import('./entities/relation').then(
         m => m.default as unknown as IAppDataEntity,
       );
     case 'plmweb.sprint':
@@ -392,6 +433,11 @@ export async function getAppDataEntityModel(
     case 'plmweb.page_version':
     case 'page_version':
       return import('./entities/page-version').then(
+        m => m.default as unknown as IAppDataEntity,
+      );
+    case 'plmweb.notify_setting':
+    case 'notify_setting':
+      return import('./entities/notify-setting').then(
         m => m.default as unknown as IAppDataEntity,
       );
     case 'plmweb.psdelogic':
@@ -494,6 +540,11 @@ export async function getAppDataEntityModel(
       return import('./entities/psde-notify').then(
         m => m.default as unknown as IAppDataEntity,
       );
+    case 'plmweb.template_flow':
+    case 'template_flow':
+      return import('./entities/template-flow').then(
+        m => m.default as unknown as IAppDataEntity,
+      );
     case 'plmweb.space':
     case 'space':
       return import('./entities/space').then(
@@ -509,14 +560,14 @@ export async function getAppDataEntityModel(
       return import('./entities/attention').then(
         m => m.default as unknown as IAppDataEntity,
       );
+    case 'plmweb.notify_event':
+    case 'notify_event':
+      return import('./entities/notify-event').then(
+        m => m.default as unknown as IAppDataEntity,
+      );
     case 'plmweb.release':
     case 'release':
       return import('./entities/release').then(
-        m => m.default as unknown as IAppDataEntity,
-      );
-    case 'plmweb.sprint_category':
-    case 'sprint_category':
-      return import('./entities/sprint-category').then(
         m => m.default as unknown as IAppDataEntity,
       );
     case 'plmweb.recent':
@@ -551,10 +602,6 @@ export async function getAppDataEntityModel(
 export async function getAppViewModel(name: string): Promise<IAppView> {
   const _name = name.toLowerCase();
   switch (_name) {
-    case 'portfolioredirectview':
-      return import('./views/portfolio-redirect-view').then(
-        m => m.default as unknown as IAppView,
-      );
     case 'work_itemredirectview':
       return import('./views/work-item-redirect-view').then(
         m => m.default as unknown as IAppView,
@@ -563,44 +610,60 @@ export async function getAppViewModel(name: string): Promise<IAppView> {
       return import('./views/run-redirect-view').then(
         m => m.default as unknown as IAppView,
       );
-    case 'insightredirect_view':
-      return import('./views/insightredirect-view').then(
-        m => m.default as unknown as IAppView,
-      );
-    case 'workredirectview':
-      return import('./views/work-redirect-view').then(
-        m => m.default as unknown as IAppView,
-      );
     case 'library_memberredirectview':
       return import('./views/library-member-redirect-view').then(
-        m => m.default as unknown as IAppView,
-      );
-    case 'portfolio_memberredirectview':
-      return import('./views/portfolio-member-redirect-view').then(
         m => m.default as unknown as IAppView,
       );
     case 'space_memberredirectview':
       return import('./views/space-member-redirect-view').then(
         m => m.default as unknown as IAppView,
       );
-    case 'project_tagredirectview':
-      return import('./views/project-tag-redirect-view').then(
+    case 'portfolio_memberredirectview':
+      return import('./views/portfolio-member-redirect-view').then(
         m => m.default as unknown as IAppView,
       );
-    case 'libraryredirectview':
-      return import('./views/library-redirect-view').then(
+    case 'attachmentredirectview':
+      return import('./views/attachment-redirect-view').then(
+        m => m.default as unknown as IAppView,
+      );
+    case 'portfolioredirectview':
+      return import('./views/portfolio-redirect-view').then(
+        m => m.default as unknown as IAppView,
+      );
+    case 'workloadredirectview':
+      return import('./views/workload-redirect-view').then(
+        m => m.default as unknown as IAppView,
+      );
+    case 'deliverableredirectview':
+      return import('./views/deliverable-redirect-view').then(
+        m => m.default as unknown as IAppView,
+      );
+    case 'commentredirectview':
+      return import('./views/comment-redirect-view').then(
+        m => m.default as unknown as IAppView,
+      );
+    case 'project_tagredirectview':
+      return import('./views/project-tag-redirect-view').then(
         m => m.default as unknown as IAppView,
       );
     case 'userredirectview':
       return import('./views/user-redirect-view').then(
         m => m.default as unknown as IAppView,
       );
+    case 'libraryredirectview':
+      return import('./views/library-redirect-view').then(
+        m => m.default as unknown as IAppView,
+      );
+    case 'insightredirect_view':
+      return import('./views/insightredirect-view').then(
+        m => m.default as unknown as IAppView,
+      );
     case 'projectredirectview':
       return import('./views/project-redirect-view').then(
         m => m.default as unknown as IAppView,
       );
-    case 'recentredirectview':
-      return import('./views/recent-redirect-view').then(
+    case 'article_pageredirectview':
+      return import('./views/article-page-redirect-view').then(
         m => m.default as unknown as IAppView,
       );
     case 'test_caseredirectview':
@@ -619,12 +682,12 @@ export async function getAppViewModel(name: string): Promise<IAppView> {
       return import('./views/project-member-redirect-view').then(
         m => m.default as unknown as IAppView,
       );
-    case 'workloadredirectview':
-      return import('./views/workload-redirect-view').then(
+    case 'recentredirectview':
+      return import('./views/recent-redirect-view').then(
         m => m.default as unknown as IAppView,
       );
-    case 'deliverableredirectview':
-      return import('./views/deliverable-redirect-view').then(
+    case 'workredirectview':
+      return import('./views/work-redirect-view').then(
         m => m.default as unknown as IAppView,
       );
     default:

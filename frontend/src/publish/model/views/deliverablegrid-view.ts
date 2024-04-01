@@ -4,7 +4,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'grid_view',
-  deviewId: 'E79580C1-E958-47B4-8836-16658903A91B',
+  deviewId: '5ff1794829b09dbe2da16ab33cc1f2b2',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.DELIVERABLE',
@@ -112,7 +112,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '5B2416FC-CA2C-428C-B1CD-C8484EC404F7',
+      modelId: '97b647cbe00cc608f9a368e2d0874c1e',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'grid_viewtoolbar',
@@ -174,7 +174,7 @@ export default {
                   cssClass: 'fa fa-upload',
                   glyph: 'xf093@FontAwesome',
                 },
-                id: 'u047a397',
+                id: 'ubeb5c67',
               },
               {
                 actionLevel: 100,
@@ -189,7 +189,7 @@ export default {
                   cssClass: 'fa fa-trash-o',
                   glyph: 'xf014@FontAwesome',
                 },
-                id: 'u9a71778',
+                id: 'u87b84dd',
               },
             ],
             uniqueTag: 'Deliverable__Usr0118491970',
@@ -409,7 +409,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: 'A111F604-09A0-4FA7-8461-12064E626A1A',
+      modelId: '5322120ba16500bbecc9b84b81a1870b',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.deliverable.deliverable_grid',
@@ -447,7 +447,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: 'da2464a2705bdb837b6c23cecdba7d6a',
+      modelId: 'd61cc0661fe4b40a0c53da84cbd9717a',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.deliverable.default',
@@ -492,7 +492,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '455db2354774d865a65d8cace3b2ab2f',
+  modelId: 'f83fece66b57054661da2c6bc826c9c6',
   modelType: 'PSAPPDEVIEW',
   name: 'deliverablegrid_view',
   id: 'plmweb.deliverablegrid_view',

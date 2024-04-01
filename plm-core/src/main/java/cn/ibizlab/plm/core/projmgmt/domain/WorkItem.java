@@ -28,7 +28,6 @@ import cn.ibizlab.plm.core.projmgmt.domain.Release;
 import cn.ibizlab.plm.core.projmgmt.domain.Sprint;
 import cn.ibizlab.plm.core.projmgmt.domain.Swimlane;
 import cn.ibizlab.plm.core.base.domain.User;
-import cn.ibizlab.plm.core.projmgmt.domain.Version;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItemState;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItemType;
 import cn.ibizlab.plm.core.base.domain.Attention;
@@ -201,13 +200,13 @@ public class WorkItem extends EntityMP implements Serializable
     private String reappearProbability;
 
     /**
-     * 负责人标识
+     * 负责人
      */
     @TableField(value = "assignee_id")
     @DEField(name = "assignee_id")
     @JsonProperty("assignee_id")
     @JSONField(name = "assignee_id")
-    @ApiModelProperty(value = "assignee_id", notes = "负责人标识")
+    @ApiModelProperty(value = "assignee_id", notes = "负责人")
     private String assigneeId;
 
     /**
@@ -374,7 +373,7 @@ public class WorkItem extends EntityMP implements Serializable
     /**
      * 实际工时
      */
-    @TableField(value = "actual_workload" , exist = false)
+    @TableField(value = "actual_workload")
     @DEField(name = "actual_workload")
     @JsonProperty("actual_workload")
     @JSONField(name = "actual_workload")
@@ -525,13 +524,13 @@ public class WorkItem extends EntityMP implements Serializable
     private Date updateTime;
 
     /**
-     * 项目标识
+     * 项目
      */
     @TableField(value = "project_id")
     @DEField(name = "project_id")
     @JsonProperty("project_id")
     @JSONField(name = "project_id")
-    @ApiModelProperty(value = "project_id", notes = "项目标识")
+    @ApiModelProperty(value = "project_id", notes = "项目")
     private String projectId;
 
     /**
@@ -593,16 +592,6 @@ public class WorkItem extends EntityMP implements Serializable
     @JSONField(name = "sprint_id")
     @ApiModelProperty(value = "sprint_id", notes = "迭代标识")
     private String sprintId;
-
-    /**
-     * 项目发布标识
-     */
-    @TableField(value = "version_id")
-    @DEField(name = "version_id")
-    @JsonProperty("version_id")
-    @JSONField(name = "version_id")
-    @ApiModelProperty(value = "version_id", notes = "项目发布标识")
-    private String versionId;
 
     /**
      * 看板标识
@@ -673,16 +662,6 @@ public class WorkItem extends EntityMP implements Serializable
     @JSONField(name = "top_title")
     @ApiModelProperty(value = "top_title", notes = "顶级工作项标题")
     private String topTitle;
-
-    /**
-     * 发布名称
-     */
-    @TableField(value = "version_name" , exist = false)
-    @DEField(name = "version_name")
-    @JsonProperty("version_name")
-    @JSONField(name = "version_name")
-    @ApiModelProperty(value = "version_name", notes = "发布名称")
-    private String versionName;
 
     /**
      * 迭代名称
@@ -773,16 +752,6 @@ public class WorkItem extends EntityMP implements Serializable
     @Transient
     @ApiModelProperty(value = "user", notes = "负责人")
     private User user;
-
-    /**
-     * 版本（temp）
-     */
-    @JsonIgnore
-    @JSONField(serialize = false)
-    @TableField(exist = false)
-    @Transient
-    @ApiModelProperty(value = "version", notes = "项目发布")
-    private Version version;
 
     /**
      * 工作项
@@ -951,7 +920,7 @@ public class WorkItem extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [负责人标识]
+     * 设置 [负责人]
      */
     public WorkItem setAssigneeId(String assigneeId) {
         this.assigneeId = assigneeId;
@@ -1194,7 +1163,7 @@ public class WorkItem extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [项目标识]
+     * 设置 [项目]
      */
     public WorkItem setProjectId(String projectId) {
         this.projectId = projectId;
@@ -1253,15 +1222,6 @@ public class WorkItem extends EntityMP implements Serializable
     public WorkItem setSprintId(String sprintId) {
         this.sprintId = sprintId;
         this.modify("sprint_id", sprintId);
-        return this;
-    }
-
-    /**
-     * 设置 [项目发布标识]
-     */
-    public WorkItem setVersionId(String versionId) {
-        this.versionId = versionId;
-        this.modify("version_id", versionId);
         return this;
     }
 
@@ -1325,15 +1285,6 @@ public class WorkItem extends EntityMP implements Serializable
     public WorkItem setTopTitle(String topTitle) {
         this.topTitle = topTitle;
         this.modify("top_title", topTitle);
-        return this;
-    }
-
-    /**
-     * 设置 [发布名称]
-     */
-    public WorkItem setVersionName(String versionName) {
-        this.versionName = versionName;
-        this.modify("version_name", versionName);
         return this;
     }
 

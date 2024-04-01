@@ -54,6 +54,22 @@ public class AttentionSearchContext extends QueryWrapperContext<Attention> {
     private String ownerIdEXISTSOwner_idEQ;
 
     /**
+     * 所属数据对象EQ
+     */
+    @JsonProperty("n_owner_type_eq")
+    @JSONField(name = "n_owner_type_eq")
+    @ApiModelProperty("所属数据对象EQ")
+    private String ownerTypeEQ;
+
+    /**
+     * 所属对象子类型EQ
+     */
+    @JsonProperty("n_owner_subtype_eq")
+    @JSONField(name = "n_owner_subtype_eq")
+    @ApiModelProperty("所属对象子类型EQ")
+    private String ownerSubtypeEQ;
+
+    /**
      * 关注人EQ
      */
     @JsonProperty("n_user_id_eq")

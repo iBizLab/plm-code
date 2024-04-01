@@ -125,11 +125,11 @@ public class TestCaseDTO extends DTOBase implements Serializable {
     private List<StepDTO> steps;
 
     /**
-     * 维护人标识
+     * 维护人
      */
     @JsonProperty("maintenance_id")
     @JSONField(name = "maintenance_id")
-    @ApiModelProperty(value = "维护人标识", position = 11)
+    @ApiModelProperty(value = "维护人", position = 11)
     private String maintenanceId;
 
     /**
@@ -303,11 +303,11 @@ public class TestCaseDTO extends DTOBase implements Serializable {
     private String suiteName;
 
     /**
-     * 测试库标识
+     * 测试库
      */
     @JsonProperty("test_library_id")
     @JSONField(name = "test_library_id")
-    @ApiModelProperty(value = "测试库标识", position = 33)
+    @ApiModelProperty(value = "测试库", position = 33)
     private String testLibraryId;
 
     /**
@@ -436,7 +436,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
     }
 
     /**
-     * 设置 [维护人标识]
+     * 设置 [维护人]
      */
     public TestCaseDTO setMaintenanceId(String maintenanceId) {
         this.maintenanceId = maintenanceId;
@@ -607,7 +607,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
     }
 
     /**
-     * 设置 [测试库标识]
+     * 设置 [测试库]
      */
     public TestCaseDTO setTestLibraryId(String testLibraryId) {
         this.testLibraryId = testLibraryId;

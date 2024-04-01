@@ -31,6 +31,14 @@ import io.swagger.annotations.ApiModelProperty;
 public class ArticlePageFilterDTO extends FilterBase implements Serializable {
 
     /**
+     * 编号EQ
+     */
+    @JsonProperty("n_identifier_eq")
+    @JSONField(name = "n_identifier_eq")
+    @ApiModelProperty(value = "编号EQ", position = 0)
+	private String identifierEQ;
+
+    /**
      * 正文格式EQ
      */
     @JsonProperty("n_format_type_eq")
@@ -55,27 +63,70 @@ public class ArticlePageFilterDTO extends FilterBase implements Serializable {
 	private String isFavoriteEQ;
 
     /**
+     * 标识NOTEQ
+     */
+    @JsonProperty("n_id_noteq")
+    @JSONField(name = "n_id_noteq")
+    @ApiModelProperty(value = "标识NOTEQ", position = 150)
+	private String idNOTEQ;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 130)
+    @ApiModelProperty(value = "标识EQ", position = 151)
 	private String idEQ;
+
+    /**
+     * 建立时间EQ
+     */
+    @JsonProperty("n_create_time_eq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_create_time_eq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "建立时间EQ", position = 180)
+	private Date createTimeEQ;
+
+    /**
+     * 建立时间GTANDEQ
+     */
+    @JsonProperty("n_create_time_gtandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_create_time_gtandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "建立时间GTANDEQ", position = 181)
+	private Date createTimeGTANDEQ;
+
+    /**
+     * 建立时间LTANDEQ
+     */
+    @JsonProperty("n_create_time_ltandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_create_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "建立时间LTANDEQ", position = 182)
+	private Date createTimeLTANDEQ;
 
     /**
      * 主题LIKE
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "主题LIKE", position = 170)
+    @ApiModelProperty(value = "主题LIKE", position = 190)
 	private String nameLIKE;
+
+    /**
+     * 建立人EQ
+     */
+    @JsonProperty("n_create_man_eq")
+    @JSONField(name = "n_create_man_eq")
+    @ApiModelProperty(value = "建立人EQ", position = 200)
+	private String createManEQ;
 
     /**
      * 空间标识EQ
      */
     @JsonProperty("n_space_id_eq")
     @JSONField(name = "n_space_id_eq")
-    @ApiModelProperty(value = "空间标识EQ", position = 190)
+    @ApiModelProperty(value = "空间标识EQ", position = 210)
 	private String spaceIdEQ;
 
     /**
@@ -83,7 +134,7 @@ public class ArticlePageFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_parent_id_eq")
     @JSONField(name = "n_parent_id_eq")
-    @ApiModelProperty(value = "父页面标识EQ", position = 200)
+    @ApiModelProperty(value = "父页面标识EQ", position = 220)
 	private String parentIdEQ;
 
     /**
@@ -91,7 +142,7 @@ public class ArticlePageFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_parent_id_isnull")
     @JSONField(name = "n_parent_id_isnull")
-    @ApiModelProperty(value = "父页面标识ISNULL", position = 201)
+    @ApiModelProperty(value = "父页面标识ISNULL", position = 221)
 	private String parentIdISNULL;
 
     /**
@@ -99,7 +150,7 @@ public class ArticlePageFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_space_name_eq")
     @JSONField(name = "n_space_name_eq")
-    @ApiModelProperty(value = "空间名称EQ", position = 210)
+    @ApiModelProperty(value = "空间名称EQ", position = 230)
 	private String spaceNameEQ;
 
     /**
@@ -107,7 +158,7 @@ public class ArticlePageFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_space_name_like")
     @JSONField(name = "n_space_name_like")
-    @ApiModelProperty(value = "空间名称LIKE", position = 211)
+    @ApiModelProperty(value = "空间名称LIKE", position = 231)
 	private String spaceNameLIKE;
 
 

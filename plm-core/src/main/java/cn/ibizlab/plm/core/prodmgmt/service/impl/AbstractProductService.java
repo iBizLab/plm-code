@@ -269,6 +269,17 @@ public abstract class AbstractProductService extends ServiceImpl<ProductMapper,P
         return list;
     }
 
+    public Page<Product> searchReader(ProductSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Product> pages=baseMapper.searchReader(context.getPages(),context,context.getSelectCond());
+        List<Product> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Product> listReader(ProductSearchContext context) {
+        List<Product> list = baseMapper.listReader(context,context.getSelectCond());
+        return list;
+    }
+
     public Page<Product> searchUser(ProductSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Product> pages=baseMapper.searchUser(context.getPages(),context,context.getSelectCond());
         List<Product> list = pages.getRecords();

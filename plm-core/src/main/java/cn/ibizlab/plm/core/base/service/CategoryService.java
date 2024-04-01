@@ -217,14 +217,14 @@ public interface CategoryService extends IService<Category> {
 
     /**
      * searchProduct_idea_category
-     * 
+     * 需求下子产品中父标识为空的模块
      * @param context
      * @return
      */
     Page<Category> searchProductIdeaCategory(CategorySearchContext context);
     /**
      * listProduct_idea_category
-     * 
+     * 需求下子产品中父标识为空的模块
      * @param context
      * @return
      */

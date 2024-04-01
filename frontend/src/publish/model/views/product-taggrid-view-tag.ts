@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'grid_view_tag',
-  deviewId: '4C455477-B775-40AD-8BF6-0E0B528A68E5',
+  deviewId: '2bc39b0f8648422659932845d0beb097',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PRODUCT_TAG',
@@ -89,6 +89,13 @@ export default {
   ],
   appViewRefs: [
     {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '新建标签',
+      refAppViewId: 'plmweb.product_tagoption_view_new',
+      name: 'NEWDATA',
+      id: 'newdata',
+    },
+    {
       openMode: 'POPUPMODAL',
       navigateParams: [
         {
@@ -103,13 +110,6 @@ export default {
       name: 'EDITDATA',
       id: 'editdata',
     },
-    {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '新建标签',
-      refAppViewId: 'plmweb.product_tagoption_view_new',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
   ],
   controls: [
     {
@@ -117,7 +117,7 @@ export default {
         {
           actionLevel: 100,
           noPrivDisplayMode: 2,
-          uiactionId: 'new',
+          uiactionId: 'new_common',
           valid: true,
           capLanguageRes: {
             lanResTag: 'TBB.TEXT.*.NEW',
@@ -145,7 +145,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '5D2DD788-B3AD-42A8-A74B-0D0778C5745D',
+      modelId: 'c6ebef98ee094810c9153830a668c12e',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'grid_view_tagtoolbar',
@@ -171,7 +171,7 @@ export default {
           codeName: 'name',
           columnType: 'DEFGRIDCOLUMN',
           noPrivDisplayMode: 1,
-          width: 100,
+          width: 200,
           widthUnit: 'STAR',
           enableSort: true,
           id: 'name',
@@ -192,8 +192,8 @@ export default {
           codeName: 'create_man',
           columnType: 'DEFGRIDCOLUMN',
           noPrivDisplayMode: 1,
-          width: 100,
-          widthUnit: 'STAR',
+          width: 150,
+          widthUnit: 'PX',
           enableSort: true,
           id: 'create_man',
         },
@@ -213,8 +213,8 @@ export default {
           codeName: 'create_time',
           columnType: 'DEFGRIDCOLUMN',
           noPrivDisplayMode: 1,
-          width: 100,
-          widthUnit: 'STAR',
+          width: 200,
+          widthUnit: 'PX',
           enableSort: true,
           id: 'create_time',
         },
@@ -233,7 +233,7 @@ export default {
                   cssClass: 'fa fa-edit',
                   glyph: 'xf044@FontAwesome',
                 },
-                id: 'u0971a9e',
+                id: 'ud38e74b',
               },
               {
                 actionLevel: 100,
@@ -247,7 +247,7 @@ export default {
                   cssClass: 'fa fa-trash',
                   glyph: 'xf1f8@FontAwesome',
                 },
-                id: 'u0e77fe6',
+                id: 'ub539582',
               },
             ],
             uniqueTag: 'Product_tag__Usr1220692267',
@@ -260,8 +260,8 @@ export default {
           codeName: 'uagridcolumn1',
           columnType: 'UAGRIDCOLUMN',
           noPrivDisplayMode: 1,
-          width: 100,
-          widthUnit: 'STAR',
+          width: 200,
+          widthUnit: 'PX',
           id: 'uagridcolumn1',
         },
       ],
@@ -349,7 +349,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '85F17CBD-B50B-4A6E-BAD2-B07A6DB0C816',
+      modelId: 'd7574d308a30ebe11f73f83e211c78a1',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.product_tag.management_table',
@@ -432,7 +432,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '7649e8fef507d2ad111d39813cd6b381',
+  modelId: '702a45db3e957dfdf64f776456ec59d2',
   modelType: 'PSAPPDEVIEW',
   name: 'product_taggrid_view_tag',
   id: 'plmweb.product_taggrid_view_tag',

@@ -119,6 +119,14 @@ public class WorkItemSearchContext extends QueryWrapperContext<WorkItem> {
     private String backlogFromEQ;
 
     /**
+     * 描述LIKE
+     */
+    @JsonProperty("n_description_like")
+    @JSONField(name = "n_description_like")
+    @ApiModelProperty("描述LIKE")
+    private String descriptionLIKE;
+
+    /**
      * 复现概率EQ
      */
     @JsonProperty("n_reappear_probability_eq")
@@ -127,11 +135,11 @@ public class WorkItemSearchContext extends QueryWrapperContext<WorkItem> {
     private String reappearProbabilityEQ;
 
     /**
-     * 负责人标识EQ
+     * 负责人EQ
      */
     @JsonProperty("n_assignee_id_eq")
     @JSONField(name = "n_assignee_id_eq")
-    @ApiModelProperty("负责人标识EQ")
+    @ApiModelProperty("负责人EQ")
     private String assigneeIdEQ;
 
     /**
@@ -247,6 +255,15 @@ public class WorkItemSearchContext extends QueryWrapperContext<WorkItem> {
     private String idNOTEQ;
 
     /**
+     * 建立时间EQ
+     */
+    @JsonProperty("n_create_time_eq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_create_time_eq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("建立时间EQ")
+    private Date createTimeEQ;
+
+    /**
      * 建立时间GTANDEQ
      */
     @JsonProperty("n_create_time_gtandeq")
@@ -273,11 +290,11 @@ public class WorkItemSearchContext extends QueryWrapperContext<WorkItem> {
     private String createManEQ;
 
     /**
-     * 项目标识EQ
+     * 项目EQ
      */
     @JsonProperty("n_project_id_eq")
     @JSONField(name = "n_project_id_eq")
-    @ApiModelProperty("项目标识EQ")
+    @ApiModelProperty("项目EQ")
     private String projectIdEQ;
 
     /**
@@ -377,14 +394,6 @@ public class WorkItemSearchContext extends QueryWrapperContext<WorkItem> {
     private String sprintIdISNULL;
 
     /**
-     * 项目发布标识EQ
-     */
-    @JsonProperty("n_version_id_eq")
-    @JSONField(name = "n_version_id_eq")
-    @ApiModelProperty("项目发布标识EQ")
-    private String versionIdEQ;
-
-    /**
      * 看板标识EQ
      */
     @JsonProperty("n_board_id_eq")
@@ -473,22 +482,6 @@ public class WorkItemSearchContext extends QueryWrapperContext<WorkItem> {
     private String topTitleLIKE;
 
     /**
-     * 发布名称EQ
-     */
-    @JsonProperty("n_version_name_eq")
-    @JSONField(name = "n_version_name_eq")
-    @ApiModelProperty("发布名称EQ")
-    private String versionNameEQ;
-
-    /**
-     * 发布名称LIKE
-     */
-    @JsonProperty("n_version_name_like")
-    @JSONField(name = "n_version_name_like")
-    @ApiModelProperty("发布名称LIKE")
-    private String versionNameLIKE;
-
-    /**
      * 迭代名称EQ
      */
     @JsonProperty("n_sprint_name_eq")
@@ -529,8 +522,6 @@ public class WorkItemSearchContext extends QueryWrapperContext<WorkItem> {
             this.getFilter().eq("swimlane_id",contextParentKey);
         if(Entities.USER.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("assignee_id",contextParentKey);
-        if(Entities.VERSION.equals(this.getContextParentEntity())&&contextParentKey!=null)
-            this.getFilter().eq("version_id",contextParentKey);
         if(Entities.WORK_ITEM.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("pid",contextParentKey);
         if(Entities.WORK_ITEM_STATE.equals(this.getContextParentEntity())&&contextParentKey!=null)

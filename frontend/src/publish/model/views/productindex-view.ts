@@ -1,7 +1,7 @@
 export default {
   loadDefault: true,
   deviewCodeName: 'index_view',
-  deviewId: 'E8ED4613-21D0-4532-8F95-BBF0C3C938F0',
+  deviewId: '2087b26e9db62df9ee8726beba0f92d6',
   accUserMode: 2,
   caption: '产品',
   codeName: 'productindex_view',
@@ -409,7 +409,7 @@ export default {
           id: 'drbar',
         },
         sysPFPluginId: 'drbar_ex',
-        modelId: '9EA9D723-3793-4090-AEF6-7CEE47609A43',
+        modelId: '1842ec47d0c1674d37d3c1368731abb2',
         modelType: 'PSDEDRBAR',
         name: 'drbar',
         id: 'index_view_dr',
@@ -504,7 +504,7 @@ export default {
         controlParam: {
           id: 'form',
         },
-        modelId: 'DD49D95D-7954-4BE0-82AF-E3FFEDA499F9',
+        modelId: 'fafc79267d14df97f63d7cd394ed33c3',
         modelType: 'PSDEFORM_EDITFORM',
         name: 'form',
         id: 'plmweb.product.index_view_form',
@@ -581,7 +581,7 @@ export default {
               },
               {
                 actionLevel: 100,
-                noPrivDisplayMode: 6,
+                noPrivDisplayMode: 2,
                 uiactionId: 'open_edit_view@product',
                 uiactionTarget: 'SINGLEKEY',
                 valid: true,
@@ -615,7 +615,7 @@ export default {
               },
               {
                 actionLevel: 100,
-                noPrivDisplayMode: 6,
+                noPrivDisplayMode: 2,
                 uiactionId: 'open_deleted_view@product',
                 uiactionTarget: 'SINGLEKEY',
                 valid: true,
@@ -650,7 +650,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: 'A42E116F-73C1-41BF-8A8B-044F4AAF3F03',
+        modelId: '0b38513c497c7160761706429e278613',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'index_viewtoolbar',
@@ -680,7 +680,7 @@ export default {
   viewType: 'DEINDEXVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'ffd7154b8a589990fd07cbb5712f5993',
+  modelId: '163cbdfa983fe6d2148c14d0c986ae45',
   modelType: 'PSAPPDEVIEW',
   name: 'productindex_view',
   id: 'plmweb.productindex_view',

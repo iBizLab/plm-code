@@ -168,6 +168,45 @@ public abstract class AbstractCustomerResource {
     }
 
     /**
+    * Customer_choose_ticket 客户
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<CustomerDTO>
+    */
+    @ApiOperation(value = "Customer_choose_ticket", tags = {"客户" },  notes = "Customer-Customer_choose_ticket ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Customer-Customer_choose_ticket-all') or hasPermission(this.customerDtoMapping.toDomain(#dto),'ibizplm-Customer-Customer_choose_ticket')")
+    @PutMapping("customers/{id}/customer_choose_ticket")
+    public ResponseEntity<ResponseWrapper<CustomerDTO>> customerChooseTicketById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<CustomerDTO> dto) {
+        ResponseWrapper<CustomerDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(customerChooseTicketById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(customerChooseTicketById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * Customer_choose_ticket 客户
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<CustomerDTO>
+    */   
+    public CustomerDTO customerChooseTicketById
+            (String id, CustomerDTO dto) {
+        Customer domain = customerDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Customer rt = customerService.customerChooseTicket(domain);
+        return customerDtoMapping.toDto(rt);
+    }
+
+    /**
     * Del_relation 客户
     * 
     *
@@ -209,18 +248,22 @@ public abstract class AbstractCustomerResource {
     * Others_relation_customer 客户
     * 
     *
+    * @param id id
     * @param dto dto
     * @return ResponseEntity<CustomerDTO>
     */
     @ApiOperation(value = "Others_relation_customer", tags = {"客户" },  notes = "Customer-Others_relation_customer ")
-    @PostMapping("customers/others_relation_customer")
-    public ResponseEntity<ResponseWrapper<CustomerDTO>> othersRelationCustomer
-            (@Validated @RequestBody RequestWrapper<CustomerDTO> dto) {
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Customer-Others_relation_customer-all') or hasPermission(this.customerDtoMapping.toDomain(#dto),'ibizplm-Customer-Others_relation_customer')")
+    @PutMapping("customers/{id}/others_relation_customer")
+    public ResponseEntity<ResponseWrapper<CustomerDTO>> othersRelationCustomerById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<CustomerDTO> dto) {
         ResponseWrapper<CustomerDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray())
-            dto.getList().forEach(item -> rt.add(othersRelationCustomer(item)));
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(othersRelationCustomerById(ids[i], dto.getList().get(i))));
+        }
         else
-            rt.set(othersRelationCustomer(dto.getDto()));
+            rt.set(othersRelationCustomerById(id, dto.getDto()));
         return ResponseEntity.status(HttpStatus.OK).body(rt);
     }
 
@@ -228,12 +271,14 @@ public abstract class AbstractCustomerResource {
     * Others_relation_customer 客户
     * 
     *
+    * @param id id
     * @param dto dto
     * @return ResponseEntity<CustomerDTO>
     */   
-    public CustomerDTO othersRelationCustomer
-            (CustomerDTO dto) {
+    public CustomerDTO othersRelationCustomerById
+            (String id, CustomerDTO dto) {
         Customer domain = customerDtoMapping.toDomain(dto);
+        domain.setId(id);
         Customer rt = customerService.othersRelationCustomer(domain);
         return customerDtoMapping.toDto(rt);
     }
@@ -433,6 +478,47 @@ public abstract class AbstractCustomerResource {
     }
 
     /**
+    * Customer_choose_ticket 客户
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<CustomerDTO>
+    */
+    @ApiOperation(value = "Customer_choose_ticket", tags = {"客户" },  notes = "Customer-Customer_choose_ticket ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Customer-Customer_choose_ticket-all') or hasPermission('Product',#productId,this.customerDtoMapping.toDomain(#dto),'ibizplm-Customer-Customer_choose_ticket')")
+    @PutMapping("products/{productId}/customers/{id}/customer_choose_ticket")
+    public ResponseEntity<ResponseWrapper<CustomerDTO>> customerChooseTicketByProductIdAndId
+            (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<CustomerDTO> dto) {
+        ResponseWrapper<CustomerDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(customerChooseTicketByProductIdAndId(productId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(customerChooseTicketByProductIdAndId(productId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * Customer_choose_ticket 客户
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<CustomerDTO>
+    */   
+    public CustomerDTO customerChooseTicketByProductIdAndId
+            (String productId, String id, CustomerDTO dto) {
+        Customer domain = customerDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Customer rt = customerService.customerChooseTicket(domain);
+        return customerDtoMapping.toDto(rt);
+    }
+
+    /**
     * Del_relation 客户
     * 
     *
@@ -477,18 +563,22 @@ public abstract class AbstractCustomerResource {
     * 
     *
     * @param productId productId
+    * @param id id
     * @param dto dto
     * @return ResponseEntity<CustomerDTO>
     */
     @ApiOperation(value = "Others_relation_customer", tags = {"客户" },  notes = "Customer-Others_relation_customer ")
-    @PostMapping("products/{productId}/customers/others_relation_customer")
-    public ResponseEntity<ResponseWrapper<CustomerDTO>> othersRelationCustomerByProductId
-            (@PathVariable("productId") String productId, @Validated @RequestBody RequestWrapper<CustomerDTO> dto) {
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Customer-Others_relation_customer-all') or hasPermission('Product',#productId,this.customerDtoMapping.toDomain(#dto),'ibizplm-Customer-Others_relation_customer')")
+    @PutMapping("products/{productId}/customers/{id}/others_relation_customer")
+    public ResponseEntity<ResponseWrapper<CustomerDTO>> othersRelationCustomerByProductIdAndId
+            (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<CustomerDTO> dto) {
         ResponseWrapper<CustomerDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray())
-            dto.getList().forEach(item -> rt.add(othersRelationCustomerByProductId(productId, item)));
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(othersRelationCustomerByProductIdAndId(productId, ids[i], dto.getList().get(i))));
+        }
         else
-            rt.set(othersRelationCustomerByProductId(productId, dto.getDto()));
+            rt.set(othersRelationCustomerByProductIdAndId(productId, id, dto.getDto()));
         return ResponseEntity.status(HttpStatus.OK).body(rt);
     }
 
@@ -497,13 +587,14 @@ public abstract class AbstractCustomerResource {
     * 
     *
     * @param productId productId
+    * @param id id
     * @param dto dto
     * @return ResponseEntity<CustomerDTO>
     */   
-    public CustomerDTO othersRelationCustomerByProductId
-            (String productId, CustomerDTO dto) {
+    public CustomerDTO othersRelationCustomerByProductIdAndId
+            (String productId, String id, CustomerDTO dto) {
         Customer domain = customerDtoMapping.toDomain(dto);
-        domain.setProductId(productId);
+        domain.setId(id);
         Customer rt = customerService.othersRelationCustomer(domain);
         return customerDtoMapping.toDto(rt);
     }
@@ -778,6 +869,28 @@ public abstract class AbstractCustomerResource {
     }
 
     /**
+    * 查询FetchNotify_assignee 客户
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<CustomerassigneeDTO>>
+    */
+    @ApiOperation(value = "查询FetchNotify_assignee", tags = {"客户" },  notes = "Customer-FetchNotify_assignee ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Customer-FetchNotify_assignee-all') or hasPermission(#dto,'ibizplm-Customer-FetchNotify_assignee')")
+    @PostMapping("customers/fetchnotify_assignee")
+    public ResponseEntity<List<CustomerassigneeDTO>> fetchNotifyAssignee
+            (@Validated @RequestBody CustomerFilterDTO dto) {
+        CustomerSearchContext context = customerFilterDtoMapping.toDomain(dto);
+        Page<Customer> domains = customerService.searchNotifyAssignee(context) ;
+        List<CustomerassigneeDTO> list = customerassigneeDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
     * 获取Get 客户
     * 
     *
@@ -977,6 +1090,30 @@ public abstract class AbstractCustomerResource {
         CustomerSearchContext context = customerFilterDtoMapping.toDomain(dto);
         Page<Customer> domains = customerService.searchNormal(context) ;
         List<CustomerDTO> list = customerDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询FetchNotify_assignee 客户
+    * 
+    *
+    * @param productId productId
+    * @param dto dto
+    * @return ResponseEntity<List<CustomerassigneeDTO>>
+    */
+    @ApiOperation(value = "查询FetchNotify_assignee", tags = {"客户" },  notes = "Customer-FetchNotify_assignee ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Customer-FetchNotify_assignee-all') or hasPermission('Product',#productId,#dto,'ibizplm-Customer-FetchNotify_assignee')")
+    @PostMapping("products/{productId}/customers/fetchnotify_assignee")
+    public ResponseEntity<List<CustomerassigneeDTO>> fetchNotifyAssigneeByProductId
+            (@PathVariable("productId") String productId, @Validated @RequestBody CustomerFilterDTO dto) {
+        dto.setProductIdEQ(productId);
+        CustomerSearchContext context = customerFilterDtoMapping.toDomain(dto);
+        Page<Customer> domains = customerService.searchNotifyAssignee(context) ;
+        List<CustomerassigneeDTO> list = customerassigneeDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))

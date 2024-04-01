@@ -1,0 +1,71 @@
+export default {
+  redirectAppViewRefs: [
+    {
+      realTitle: '页面编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.PAGE.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.article_pageeditview',
+      name: 'PAGE:EDITVIEW',
+      id: 'page:editview',
+    },
+    {
+      realTitle: '页面编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.PAGE.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.article_pageeditview',
+      name: 'EDITVIEW',
+      id: 'editview',
+    },
+  ],
+  enableWorkflow: true,
+  funcViewMode: 'REDIRECTVIEW',
+  deviewCodeName: 'RedirectView',
+  deviewId: '3afea0805bce93837c7044472437b459',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.PAGE',
+  },
+  caption: '页面',
+  codeName: 'article_pageRedirectView',
+  appDataEntityId: 'plmweb.article_page',
+  controls: [
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.PAGE',
+      },
+      caption: '页面',
+      codeName: 'RedirectViewcaptionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.article_page',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'redirectviewcaptionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'Layoutpanel',
+    controlStyle: 'APPDEREDIRECTVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.article_page',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '页面数据重定向视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.PAGE.REDIRECTVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEREDIRECTVIEW',
+  enableDP: true,
+  redirectView: true,
+  showCaptionBar: true,
+  modelId: 'bcf7dcf44f503ff9ac832be5de13475d',
+  modelType: 'PSAPPDEVIEW',
+  name: 'article_pageRedirectView',
+  id: 'plmweb.article_pageredirectview',
+};

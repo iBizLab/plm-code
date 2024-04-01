@@ -46,6 +46,14 @@ public class CommentSearchContext extends QueryWrapperContext<Comment> {
     private String principalIdEQ;
 
     /**
+     * 所属数据对象EQ
+     */
+    @JsonProperty("n_owner_type_eq")
+    @JSONField(name = "n_owner_type_eq")
+    @ApiModelProperty("所属数据对象EQ")
+    private String ownerTypeEQ;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
@@ -60,6 +68,41 @@ public class CommentSearchContext extends QueryWrapperContext<Comment> {
     @JSONField(name = "n_name_like")
     @ApiModelProperty("名称LIKE")
     private String nameLIKE;
+
+    /**
+     * 建立人EQ
+     */
+    @JsonProperty("n_create_man_eq")
+    @JSONField(name = "n_create_man_eq")
+    @ApiModelProperty("建立人EQ")
+    private String createManEQ;
+
+    /**
+     * 建立时间EQ
+     */
+    @JsonProperty("n_create_time_eq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_create_time_eq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("建立时间EQ")
+    private Date createTimeEQ;
+
+    /**
+     * 建立时间GTANDEQ
+     */
+    @JsonProperty("n_create_time_gtandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_create_time_gtandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("建立时间GTANDEQ")
+    private Date createTimeGTANDEQ;
+
+    /**
+     * 建立时间LTANDEQ
+     */
+    @JsonProperty("n_create_time_ltandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_create_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("建立时间LTANDEQ")
+    private Date createTimeLTANDEQ;
 
     /**
      * 父标识EQ

@@ -104,6 +104,16 @@ public class Attachment extends EntityMP implements Serializable
     private String workItemTitle;
 
     /**
+     * 父对象版本标识
+     */
+    @TableField(value = "parent_version_id")
+    @DEField(name = "parent_version_id" , preType = DEPredefinedFieldType.PARENTVERSIONID)
+    @JsonProperty("parent_version_id")
+    @JSONField(name = "parent_version_id")
+    @ApiModelProperty(value = "parent_version_id", notes = "父对象版本标识")
+    private String parentVersionId;
+
+    /**
      * 标题
      */
     @TableField(value = "title")

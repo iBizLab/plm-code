@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'calendar',
   loadDefault: true,
   deviewCodeName: 'calendar_view',
-  deviewId: 'B897CE69-F88D-486C-AA3A-63BD08A1A407',
+  deviewId: '8f3f72ae82620652822b738bdf6a6a95',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -197,7 +197,7 @@ export default {
       controlParam: {
         id: 'calendar',
       },
-      modelId: '83F3C71F-608E-4975-ABD9-A62EB9B74541',
+      modelId: '8948343a22e6f3e2feaef4c63535db9a',
       modelType: 'PSSYSCALENDAR',
       name: 'calendar',
       id: 'plmweb.work_item.alendar_view_calendar',
@@ -240,7 +240,7 @@ export default {
   viewType: 'DECALENDARVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'e226c7bb2137eeb4ee69eea5d83d6cd2',
+  modelId: 'e41deafcffaf79640a9b9196e21ad9f1',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemcalendar_view',
   id: 'plmweb.work_itemcalendar_view',

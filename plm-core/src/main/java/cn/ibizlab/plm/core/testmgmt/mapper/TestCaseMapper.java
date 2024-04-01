@@ -24,6 +24,82 @@ import com.alibaba.fastjson.JSONObject;
 public interface TestCaseMapper extends BaseMapper<TestCase> {
 
     /**
+     * 数据集合Advanced_search分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<TestCase> searchAdvancedSearch(IPage<TestCase> page, @Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
+    
+    /**
+     * 数据集合Advanced_search查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<TestCase> listAdvancedSearch(@Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
+
+    /**
+     * 数据集合AssessmentResult分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Map> searchAssessmentResult(IPage<TestCase> page, @Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
+    
+    /**
+     * 数据集合AssessmentResult查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Map> listAssessmentResult(@Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
+
+    /**
+     * 数据集合CasePerson分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Map> searchCasePerson(IPage<TestCase> page, @Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
+    
+    /**
+     * 数据集合CasePerson查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Map> listCasePerson(@Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
+
+    /**
+     * 数据集合CaseType分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Map> searchCaseType(IPage<TestCase> page, @Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
+    
+    /**
+     * 数据集合CaseType查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Map> listCaseType(@Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
+
+    /**
      * 数据集合Comment_notify_maintenance分页查询
      * 
      * @param page
@@ -41,6 +117,25 @@ public interface TestCaseMapper extends BaseMapper<TestCase> {
      * @return
      */
     List<TestCase> listCommentNotifyMaintenance(@Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
+
+    /**
+     * 数据集合DailyTendencies分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Map> searchDailyTendencies(IPage<TestCase> page, @Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
+    
+    /**
+     * 数据集合DailyTendencies查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Map> listDailyTendencies(@Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
 
     /**
      * 数据集合Default分页查询
@@ -62,6 +157,25 @@ public interface TestCaseMapper extends BaseMapper<TestCase> {
     List<TestCase> listDefault(@Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
 
     /**
+     * 数据集合DegreeImportance分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Map> searchDegreeImportance(IPage<TestCase> page, @Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
+    
+    /**
+     * 数据集合DegreeImportance查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Map> listDegreeImportance(@Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
+
+    /**
      * 数据集合Deleted分页查询
      * 
      * @param page
@@ -81,6 +195,25 @@ public interface TestCaseMapper extends BaseMapper<TestCase> {
     List<TestCase> listDeleted(@Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
 
     /**
+     * 数据集合EverydayTest分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Map> searchEverydayTest(IPage<TestCase> page, @Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
+    
+    /**
+     * 数据集合EverydayTest查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Map> listEverydayTest(@Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
+
+    /**
      * 数据集合Idea_relation_test_case分页查询
      * 
      * @param page
@@ -98,6 +231,25 @@ public interface TestCaseMapper extends BaseMapper<TestCase> {
      * @return
      */
     List<TestCase> listIdeaRelationTestCase(@Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
+
+    /**
+     * 数据集合ImplementationResults分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Map> searchImplementationResults(IPage<TestCase> page, @Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
+    
+    /**
+     * 数据集合ImplementationResults查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Map> listImplementationResults(@Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
 
     /**
      * 数据集合My_assign分页查询
@@ -250,6 +402,63 @@ public interface TestCaseMapper extends BaseMapper<TestCase> {
      * @return
      */
     List<TestCase> listNotExsistsRelation(@Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
+
+    /**
+     * 数据集合Notify_assignee分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<TestCase> searchNotifyAssignee(IPage<TestCase> page, @Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
+    
+    /**
+     * 数据集合Notify_assignee查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<TestCase> listNotifyAssignee(@Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
+
+    /**
+     * 数据集合PersonDistributions分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Map> searchPersonDistributions(IPage<TestCase> page, @Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
+    
+    /**
+     * 数据集合PersonDistributions查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Map> listPersonDistributions(@Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
+
+    /**
+     * 数据集合PriorityDistributions分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Map> searchPriorityDistributions(IPage<TestCase> page, @Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
+    
+    /**
+     * 数据集合PriorityDistributions查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Map> listPriorityDistributions(@Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
 
     /**
      * 数据集合Recent_test_case分页查询

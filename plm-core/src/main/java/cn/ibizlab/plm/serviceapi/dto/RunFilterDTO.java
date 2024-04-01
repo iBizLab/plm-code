@@ -31,6 +31,33 @@ import io.swagger.annotations.ApiModelProperty;
 public class RunFilterDTO extends FilterBase implements Serializable {
 
     /**
+     * 执行时间EQ
+     */
+    @JsonProperty("n_executed_at_eq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_executed_at_eq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "执行时间EQ", position = 50)
+	private Date executedAtEQ;
+
+    /**
+     * 执行时间GTANDEQ
+     */
+    @JsonProperty("n_executed_at_gtandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_executed_at_gtandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "执行时间GTANDEQ", position = 51)
+	private Date executedAtGTANDEQ;
+
+    /**
+     * 执行时间LTANDEQ
+     */
+    @JsonProperty("n_executed_at_ltandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_executed_at_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "执行时间LTANDEQ", position = 52)
+	private Date executedAtLTANDEQ;
+
+    /**
      * 执行结果EQ
      */
     @JsonProperty("n_status_eq")
@@ -63,6 +90,22 @@ public class RunFilterDTO extends FilterBase implements Serializable {
 	private String planNameLIKE;
 
     /**
+     * 执行人标识EQ
+     */
+    @JsonProperty("n_executor_id_eq")
+    @JSONField(name = "n_executor_id_eq")
+    @ApiModelProperty(value = "执行人标识EQ", position = 120)
+	private String executorIdEQ;
+
+    /**
+     * 执行人EQ
+     */
+    @JsonProperty("n_executor_name_eq")
+    @JSONField(name = "n_executor_name_eq")
+    @ApiModelProperty(value = "执行人EQ", position = 130)
+	private String executorNameEQ;
+
+    /**
      * 用例模块标识EQ
      */
     @JsonProperty("n_suite_id_eq")
@@ -71,19 +114,45 @@ public class RunFilterDTO extends FilterBase implements Serializable {
 	private String suiteIdEQ;
 
     /**
+     * 测试库标识EQ
+     */
+    @JsonProperty("n_library_id_eq")
+    @JSONField(name = "n_library_id_eq")
+    @ApiModelProperty(value = "测试库标识EQ", position = 200)
+	private String libraryIdEQ;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 230)
+    @ApiModelProperty(value = "标识EQ", position = 270)
 	private String idEQ;
+
+    /**
+     * 建立时间GTANDEQ
+     */
+    @JsonProperty("n_create_time_gtandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_create_time_gtandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "建立时间GTANDEQ", position = 290)
+	private Date createTimeGTANDEQ;
+
+    /**
+     * 建立时间LTANDEQ
+     */
+    @JsonProperty("n_create_time_ltandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_create_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "建立时间LTANDEQ", position = 291)
+	private Date createTimeLTANDEQ;
 
     /**
      * 名称LIKE
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 270)
+    @ApiModelProperty(value = "名称LIKE", position = 310)
 	private String nameLIKE;
 
     /**
@@ -91,7 +160,7 @@ public class RunFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_plan_id_eq")
     @JSONField(name = "n_plan_id_eq")
-    @ApiModelProperty(value = "测试计划标识EQ", position = 280)
+    @ApiModelProperty(value = "测试计划标识EQ", position = 320)
 	private String planIdEQ;
 
     /**
@@ -99,7 +168,7 @@ public class RunFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_case_id_eq")
     @JSONField(name = "n_case_id_eq")
-    @ApiModelProperty(value = "测试用例标识EQ", position = 290)
+    @ApiModelProperty(value = "测试用例标识EQ", position = 330)
 	private String caseIdEQ;
 
     /**
@@ -107,7 +176,7 @@ public class RunFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_case_name_eq")
     @JSONField(name = "n_case_name_eq")
-    @ApiModelProperty(value = "名称EQ", position = 300)
+    @ApiModelProperty(value = "名称EQ", position = 340)
 	private String caseNameEQ;
 
     /**
@@ -115,7 +184,7 @@ public class RunFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_case_name_like")
     @JSONField(name = "n_case_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 301)
+    @ApiModelProperty(value = "名称LIKE", position = 341)
 	private String caseNameLIKE;
 
 

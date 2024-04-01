@@ -22,7 +22,12 @@ import io.swagger.annotations.*;
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import cn.ibizlab.plm.core.base.domain.WorkloadType;
+import cn.ibizlab.plm.core.prodmgmt.domain.Idea;
+import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
+import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
+import cn.ibizlab.plm.core.prodmgmt.domain.Idea;
+import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
 
 /**
  * 工时实体类[Workload]
@@ -151,6 +156,36 @@ public class Workload extends EntityMP implements Serializable
     private String recentParentIdentifier;
 
     /**
+     * 工作项
+     */
+    @TableField(exist = false)
+    @DEField(name = "work_item")
+    @JsonProperty("work_item")
+    @JSONField(name = "work_item")
+    @ApiModelProperty(value = "work_item", notes = "工作项")
+    private WorkItem workItem;
+
+    /**
+     * 需求
+     */
+    @TableField(exist = false)
+    @DEField(name = "idea")
+    @JsonProperty("idea")
+    @JSONField(name = "idea")
+    @ApiModelProperty(value = "idea", notes = "需求")
+    private Idea idea;
+
+    /**
+     * 用例
+     */
+    @TableField(exist = false)
+    @DEField(name = "test_case")
+    @JsonProperty("test_case")
+    @JSONField(name = "test_case")
+    @ApiModelProperty(value = "test_case", notes = "用例")
+    private TestCase testCase;
+
+    /**
      * 标识
      */
     @Id
@@ -244,14 +279,34 @@ public class Workload extends EntityMP implements Serializable
     private WorkloadType workloadType;
 
     /**
+     * 需求
+     */
+    @JsonIgnore
+    @JSONField(serialize = false)
+    @TableField(exist = false)
+    @Transient
+    @ApiModelProperty(value = "rel_idea", notes = "需求-工时")
+    private Idea relIdea;
+
+    /**
+     * 用例
+     */
+    @JsonIgnore
+    @JSONField(serialize = false)
+    @TableField(exist = false)
+    @Transient
+    @ApiModelProperty(value = "rel_test_case", notes = "用例-工时")
+    private TestCase relTestCase;
+
+    /**
      * 工作项
      */
     @JsonIgnore
     @JSONField(serialize = false)
     @TableField(exist = false)
     @Transient
-    @ApiModelProperty(value = "work_item", notes = "工作项-工时")
-    private WorkItem workItem;
+    @ApiModelProperty(value = "rel_work_item", notes = "工作项-工时")
+    private WorkItem relWorkItem;
 
     /**
      * 设置 [编号]
@@ -322,6 +377,33 @@ public class Workload extends EntityMP implements Serializable
     public Workload setRecentParentIdentifier(String recentParentIdentifier) {
         this.recentParentIdentifier = recentParentIdentifier;
         this.modify("recent_parent_identifier", recentParentIdentifier);
+        return this;
+    }
+
+    /**
+     * 设置 [工作项]
+     */
+    public Workload setWorkItem(WorkItem workItem) {
+        this.workItem = workItem;
+        this.modify("work_item", workItem);
+        return this;
+    }
+
+    /**
+     * 设置 [需求]
+     */
+    public Workload setIdea(Idea idea) {
+        this.idea = idea;
+        this.modify("idea", idea);
+        return this;
+    }
+
+    /**
+     * 设置 [用例]
+     */
+    public Workload setTestCase(TestCase testCase) {
+        this.testCase = testCase;
+        this.modify("test_case", testCase);
         return this;
     }
 

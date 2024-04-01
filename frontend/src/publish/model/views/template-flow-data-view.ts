@@ -1,6 +1,9 @@
 export default {
+  mdctrlActiveMode: 1,
+  xdataControlName: 'dataview',
+  loadDefault: true,
   deviewCodeName: 'template_flow_data_view',
-  deviewId: '0960E260-1B79-49E8-B36F-5C793F1159D0',
+  deviewId: '8fb578de97db391a50661ce08cdbccb2',
   accUserMode: 2,
   caption: '模板库',
   codeName: 'template_flow_data_view',
@@ -133,6 +136,74 @@ export default {
       },
     ],
     layoutPanel: true,
+    appViewEngines: [
+      {
+        engineCat: 'VIEW',
+        engineType: 'DataView',
+        id: 'engine',
+      },
+    ],
+    appViewLogics: [
+      {
+        logicTrigger: 'CUSTOM',
+        logicType: 'APPUILOGIC',
+        builtinAppUILogic: {
+          actionAfterWizard: 'DEFAULT',
+          newDataAppView: {
+            refAppViewId: 'plmweb.psdelogiceditview',
+          },
+          appUILogicRefViews: [
+            {
+              refAppViewId: 'plmweb.psdelogiceditview',
+            },
+          ],
+          builtinLogic: true,
+          logicType: 'PREDEFINED',
+          viewLogicType: 'APP_NEWDATA',
+          id: '新建数据',
+        },
+        builtinLogic: true,
+        id: 'newdata',
+      },
+      {
+        logicTrigger: 'CUSTOM',
+        logicType: 'APPUILOGIC',
+        builtinAppUILogic: {
+          openDataAppView: {
+            openMode: 'POPUPMODAL',
+            refAppViewId: 'plmweb.psdelogictemplate_info_view',
+          },
+          editMode: true,
+          appUILogicRefViews: [
+            {
+              openMode: 'POPUPMODAL',
+              refAppViewId: 'plmweb.psdelogictemplate_info_view',
+            },
+          ],
+          builtinLogic: true,
+          logicType: 'PREDEFINED',
+          viewLogicType: 'APP_OPENDATA',
+          id: '打开数据',
+        },
+        builtinLogic: true,
+        id: 'opendata',
+      },
+    ],
+    appViewRefs: [
+      {
+        realOpenMode: 'POPUPMODAL',
+        realTitle: '自动规则模板信息',
+        refAppViewId: 'plmweb.psdelogictemplate_info_view',
+        name: 'EDITDATA',
+        id: 'editdata',
+      },
+      {
+        realTitle: '实体处理逻辑编辑视图',
+        refAppViewId: 'plmweb.psdelogiceditview',
+        name: 'NEWDATA',
+        id: 'newdata',
+      },
+    ],
     controls: [
       {
         cardHeight: 120,
@@ -167,8 +238,11 @@ export default {
                               itemStyle: 'DEFAULT',
                               itemType: 'RAWITEM',
                               layoutPos: {
+                                grow: 1,
                                 shrink: 1,
+                                heightMode: 'FULL',
                                 layout: 'FLEX',
+                                widthMode: 'FULL',
                               },
                               panelItemGroupLogics: [
                                 {
@@ -203,19 +277,17 @@ export default {
                                 },
                                 contentType: 'IMAGE',
                                 predefinedType: 'STATIC_IMAGE',
-                                rawItemHeight: 36,
                                 id: 'static_image1',
                               },
                               caption: '图片',
-                              contentHeight: 36,
-                              height: 36,
                               itemStyle: 'DEFAULT',
                               itemType: 'RAWITEM',
                               layoutPos: {
+                                grow: 1,
                                 shrink: 1,
-                                height: 36,
-                                heightMode: 'PX',
+                                heightMode: 'FULL',
                                 layout: 'FLEX',
+                                widthMode: 'FULL',
                               },
                               panelItemGroupLogics: [
                                 {
@@ -393,7 +465,7 @@ export default {
           logicName: '模板规则卡片_卡片面板',
           appDataEntityId: 'plmweb.psdelogic',
           controlParam: {},
-          modelId: '5F94A392-BCBE-4853-A89B-902299877E10',
+          modelId: '1f8221bf7a33b296ba118e00d50502cf',
           modelType: 'PSSYSVIEWPANEL',
           name: 'itemlayoutpanel',
           id: 'plmweb.psdelogic.usr0227567693',
@@ -442,6 +514,7 @@ export default {
         pagingSize: 1000,
         appendDEItems: true,
         noSort: true,
+        singleSelect: true,
         createControlAction: {
           appDEMethodId: 'create',
           appDataEntityId: 'plmweb.psdelogic',
@@ -476,10 +549,21 @@ export default {
         controlParam: {
           id: 'dataview',
         },
-        modelId: '317F29FD-B7A8-450F-9B79-9BEE7ECC07E8',
+        modelId: 'a0ebede0e456c1ff2ce8392c480b0e45',
         modelType: 'PSDEDATAVIEW',
         name: 'dataview',
         id: 'plmweb.psdelogic.flow_data_view',
+      },
+      {
+        groupMode: 'SINGLE',
+        quickSearchMode: 1,
+        enableQuickSearch: true,
+        controlType: 'SEARCHBAR',
+        appDataEntityId: 'plmweb.psdelogic',
+        controlParam: {
+          id: 'searchbar',
+        },
+        id: 'searchbar',
       },
       {
         caption: '模板库',
@@ -496,17 +580,17 @@ export default {
     logicName: '规则模板库卡片视图布局面板',
     appDataEntityId: 'plmweb.psdelogic',
     controlParam: {},
-    modelId: '064C68E2-E2E9-4F3D-A666-FF0C64204997',
+    modelId: '5fd4b5e436368e60b97a9d978620ca68',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0227868395',
   },
   title: '模板库',
   viewStyle: 'DEFAULT',
-  viewType: 'DECUSTOMVIEW',
+  viewType: 'DEDATAVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '608241d634fa1ddd0a3b275f6db90e89',
+  modelId: '4098d599e7d122e462d073a3a0428649',
   modelType: 'PSAPPDEVIEW',
   name: 'template_flow_data_view',
   id: 'plmweb.template_flow_data_view',

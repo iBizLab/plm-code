@@ -26,6 +26,7 @@ import cn.ibizlab.plm.core.wiki.domain.PageVersion;
 import cn.ibizlab.plm.core.base.domain.Comment;
 import cn.ibizlab.plm.core.base.domain.Attention;
 import cn.ibizlab.plm.core.base.domain.Attachment;
+import cn.ibizlab.plm.core.projmgmt.domain.Version;
 import cn.ibizlab.plm.core.base.domain.Attachment;
 import cn.ibizlab.plm.core.base.domain.Attention;
 
@@ -98,7 +99,7 @@ public class ArticlePage extends EntityMP implements Serializable
      * 是否星标
      */
     @TableField(value = "is_favorite" , exist = false)
-    @DEField(name = "is_favorite")
+    @DEField(name = "is_favorite" , dict = "YesNo")
     @JsonProperty("is_favorite")
     @JSONField(name = "is_favorite")
     @ApiModelProperty(value = "is_favorite", notes = "是否星标")
@@ -163,6 +164,26 @@ public class ArticlePage extends EntityMP implements Serializable
     @JSONField(name = "attentions")
     @ApiModelProperty(value = "attentions", notes = "关注")
     private List<Attention> attentions;
+
+    /**
+     * 当前版本标识
+     */
+    @TableField(value = "cur_version_id")
+    @DEField(name = "cur_version_id" , preType = DEPredefinedFieldType.VERSIONID)
+    @JsonProperty("cur_version_id")
+    @JSONField(name = "cur_version_id")
+    @ApiModelProperty(value = "cur_version_id", notes = "当前版本标识")
+    private String curVersionId;
+
+    /**
+     * 当前版本名称
+     */
+    @TableField(value = "cur_version_name")
+    @DEField(name = "cur_version_name" , preType = DEPredefinedFieldType.VERSION)
+    @JsonProperty("cur_version_name")
+    @JSONField(name = "cur_version_name")
+    @ApiModelProperty(value = "cur_version_name", notes = "当前版本名称")
+    private String curVersionName;
 
     /**
      * 编号

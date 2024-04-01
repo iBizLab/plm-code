@@ -522,12 +522,12 @@ public abstract class AbstractSprintResource {
 
     /**
     * 查询FetchChoose_move 迭代
-    * 
+    * 确认迭代完成时，选择移动至其他迭代
     *
     * @param dto dto
     * @return ResponseEntity<List<SprintDTO>>
     */
-    @ApiOperation(value = "查询FetchChoose_move", tags = {"迭代" },  notes = "Sprint-FetchChoose_move ")
+    @ApiOperation(value = "查询FetchChoose_move", tags = {"迭代" },  notes = "Sprint-FetchChoose_move 确认迭代完成时，选择移动至其他迭代")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Sprint-FetchChoose_move-all') or hasPermission(#dto,'ibizplm-Sprint-FetchChoose_move')")
     @PostMapping("sprints/fetchchoose_move")
     public ResponseEntity<List<SprintDTO>> fetchChooseMove
@@ -675,13 +675,13 @@ public abstract class AbstractSprintResource {
 
     /**
     * 查询FetchChoose_move 迭代
-    * 
+    * 确认迭代完成时，选择移动至其他迭代
     *
     * @param projectId projectId
     * @param dto dto
     * @return ResponseEntity<List<SprintDTO>>
     */
-    @ApiOperation(value = "查询FetchChoose_move", tags = {"迭代" },  notes = "Sprint-FetchChoose_move ")
+    @ApiOperation(value = "查询FetchChoose_move", tags = {"迭代" },  notes = "Sprint-FetchChoose_move 确认迭代完成时，选择移动至其他迭代")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Sprint-FetchChoose_move-all') or hasPermission('Project',#projectId,#dto,'ibizplm-Sprint-FetchChoose_move')")
     @PostMapping("projects/{projectId}/sprints/fetchchoose_move")
     public ResponseEntity<List<SprintDTO>> fetchChooseMoveByProjectId

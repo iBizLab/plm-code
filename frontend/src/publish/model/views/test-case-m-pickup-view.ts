@@ -90,21 +90,21 @@ export default {
         logicName: 'simplelist列表',
         appDataEntityId: 'plmweb.test_case',
         controlParam: {},
-        modelId: '9DF1B137-9567-443F-BBF5-EFDB53DAAA15',
+        modelId: '990f55660edafd4e3bfc70c3b86d8ba6',
         modelType: 'PSSYSVIEWPANEL',
         name: 'simplelist_itempanel',
         id: 'plmweb.test_case.usr1226998954',
       },
       delistDataItems: [
         {
-          appDEFieldId: 'name',
-          dataType: 25,
-          id: 'name',
-        },
-        {
           appDEFieldId: 'id',
           dataType: 25,
           id: 'id',
+        },
+        {
+          appDEFieldId: 'name',
+          dataType: 25,
+          id: 'name',
         },
         {
           appDEFieldId: 'id',

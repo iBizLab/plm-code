@@ -1,7 +1,7 @@
 export default {
   loadDefault: true,
   deviewCodeName: 'index_view',
-  deviewId: '5D299F47-8DCA-4535-910D-610537C39D81',
+  deviewId: '4c02e76fa434536d2d6a06791d12bbb0',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'PAGE.CAPTION.SPACE.INDEX_VIEW',
@@ -435,7 +435,7 @@ export default {
           id: 'drbar',
         },
         sysPFPluginId: 'drbar_ex',
-        modelId: 'B5DB244A-119B-4466-987E-DD148B2C398F',
+        modelId: '648f1e540a676cae9b83c11faf38ea5d',
         modelType: 'PSDEDRBAR',
         name: 'drbar',
         id: 'index_view_dr',
@@ -564,7 +564,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: '65A25761-EF57-41CC-9BF9-4B6F10CA2641',
+        modelId: '6ff68b4ec59796dc91f8b16b542df42b',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'index_viewtoolbar',
@@ -600,7 +600,7 @@ export default {
   viewType: 'DEINDEXVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '2ba1209edc1794f125ba0d40cf4ed862',
+  modelId: 'ff44a252dae60d878838b788688c4184',
   modelType: 'PSAPPDEVIEW',
   name: 'spaceindex_view',
   id: 'plmweb.spaceindex_view',

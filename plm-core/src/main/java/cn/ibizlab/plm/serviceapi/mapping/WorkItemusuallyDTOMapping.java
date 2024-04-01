@@ -21,14 +21,14 @@ public interface WorkItemusuallyDTOMapping extends MappingBase<WorkItemusuallyDT
     @Override
     @Mappings({
             @Mapping(source="reappearProbability", target="reappearProbability"),
-            @Mapping(source="severity", target="severity")
+            @Mapping(source="severity", target="severity"),
     })
     WorkItem toDomain(WorkItemusuallyDTO dto);
 
     @Override
     @Mappings({
             @Mapping(source="reappearProbability", target="reappearProbability"),
-            @Mapping(source="severity", target="severity")
+            @Mapping(source="severity", target="severity"),
     })
     WorkItemusuallyDTO toDto(WorkItem entity);
 

@@ -21,6 +21,7 @@ import io.swagger.annotations.*;
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import cn.ibizlab.plm.core.testmgmt.domain.LibraryMember;
+import cn.ibizlab.plm.core.testmgmt.domain.Review;
 import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
 import cn.ibizlab.plm.core.testmgmt.domain.TestPlan;
 import cn.ibizlab.plm.core.testmgmt.domain.TestSuite;
@@ -106,7 +107,7 @@ public class Library extends EntityMP implements Serializable
      * 是否星标
      */
     @TableField(value = "is_favorite" , exist = false)
-    @DEField(name = "is_favorite")
+    @DEField(name = "is_favorite" , dict = "YesNo")
     @JsonProperty("is_favorite")
     @JSONField(name = "is_favorite")
     @ApiModelProperty(value = "is_favorite", notes = "是否星标")

@@ -414,6 +414,21 @@ public interface PortfolioService extends IService<Portfolio> {
     List<Portfolio> listProjectSetGoing(PortfolioSearchContext context);
 
     /**
+     * searchReader
+     * 
+     * @param context
+     * @return
+     */
+    Page<Portfolio> searchReader(PortfolioSearchContext context);
+    /**
+     * listReader
+     * 
+     * @param context
+     * @return
+     */
+    List<Portfolio> listReader(PortfolioSearchContext context);
+
+    /**
      * searchUser
      * 
      * @param context

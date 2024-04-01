@@ -4,7 +4,7 @@ export default {
   loadDefault: true,
   funcViewMode: 'EDITVIEW',
   deviewCodeName: 'EditView',
-  deviewId: '64716e683f2c0de4449d8874cbe454ac',
+  deviewId: 'a0235e91245d938918f0fbbfeca2b887',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SPACE_MEMBER',
@@ -281,7 +281,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: 'aa7015abfb9aaeaabeeb104c81901735',
+      modelId: '100d9372caebff7f3d1a7a4eeb580300',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.space_member.main',
@@ -328,7 +328,7 @@ export default {
   viewType: 'DEEDITVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '0be430f81fd2e3dbdaf7e178cc4308b1',
+  modelId: '6ee7b9931b9721925c947a18e23dc311',
   modelType: 'PSAPPDEVIEW',
   name: 'space_memberEditView',
   id: 'plmweb.space_membereditview',

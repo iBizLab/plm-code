@@ -38,6 +38,14 @@ import cn.ibizlab.plm.core.testmgmt.domain.Library;
 public class LibrarySearchContext extends QueryWrapperContext<Library> {
 
     /**
+     * 测试库标识EQ
+     */
+    @JsonProperty("n_identifier_eq")
+    @JSONField(name = "n_identifier_eq")
+    @ApiModelProperty("测试库标识EQ")
+    private String identifierEQ;
+
+    /**
      * 可见范围EQ
      */
     @JsonProperty("n_visibility_eq")
@@ -68,6 +76,14 @@ public class LibrarySearchContext extends QueryWrapperContext<Library> {
     @JSONField(name = "n_is_favorite_eq")
     @ApiModelProperty("是否星标EQ")
     private String isFavoriteEQ;
+
+    /**
+     * 标识NOTEQ
+     */
+    @JsonProperty("n_id_noteq")
+    @JSONField(name = "n_id_noteq")
+    @ApiModelProperty("标识NOTEQ")
+    private String idNOTEQ;
 
     /**
      * 标识EQ

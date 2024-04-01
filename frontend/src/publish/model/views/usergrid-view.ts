@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'grid_view',
-  deviewId: '449B560A-A096-4B19-9A00-E4FA1EFA13B4',
+  deviewId: '3c59499b3892b06df2ce6015faeb507b',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.USER',
@@ -64,6 +64,12 @@ export default {
   ],
   appViewRefs: [
     {
+      realTitle: '设置成员信息',
+      refAppViewId: 'plmweb.userquick_cfg_view',
+      name: 'NEWDATA',
+      id: 'newdata',
+    },
+    {
       realTitle: '企业用户数据重定向视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.USER.REDIRECTVIEW',
@@ -71,12 +77,6 @@ export default {
       refAppViewId: 'plmweb.userredirectview',
       name: 'EDITDATA',
       id: 'editdata',
-    },
-    {
-      realTitle: '设置成员信息',
-      refAppViewId: 'plmweb.userquick_cfg_view',
-      name: 'NEWDATA',
-      id: 'newdata',
     },
   ],
   controls: [
@@ -89,7 +89,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: 'B0E8FFDA-A8C9-469D-887D-EEE8256C570D',
+      modelId: '924215731158b518ae501c3fb92f16a8',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'grid_viewtoolbar',
@@ -364,45 +364,10 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '1012105B-B9BD-41CA-B6A4-31FCDE9D02E8',
+      modelId: '7b8681e48aefe9f75b36984ec97a6f22',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.user.main_grid',
-    },
-    {
-      searchButtonStyle: 'DEFAULT',
-      deformPages: [
-        {
-          layout: {
-            columnCount: 24,
-            layout: 'TABLE_24COL',
-          },
-          caption: '常规条件',
-          codeName: 'formpage1',
-          detailStyle: 'DEFAULT',
-          detailType: 'FORMPAGE',
-          id: 'formpage1',
-        },
-      ],
-      layout: {
-        columnCount: 24,
-        layout: 'TABLE_24COL',
-      },
-      tabHeaderPos: 'TOP',
-      noTabHeader: true,
-      autoLoad: true,
-      showBusyIndicator: true,
-      codeName: 'Grid_view_search_form',
-      controlType: 'SEARCHFORM',
-      logicName: '企业用户管理表格视图_搜索表单',
-      appDataEntityId: 'plmweb.user',
-      controlParam: {
-        id: 'searchform',
-      },
-      modelId: '3200B91A-937C-4EE2-9AB0-36CB8C5E806D',
-      modelType: 'PSDEFORM_SEARCHFORM',
-      name: 'searchform',
-      id: 'plmweb.user.grid_view_search_form',
     },
     {
       groupMode: 'SINGLE',
@@ -444,7 +409,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '5898256834d7632535011b4dee6a6edb',
+  modelId: '47b59e3d23ead9a7a07d8dd8091676cc',
   modelType: 'PSAPPDEVIEW',
   name: 'usergrid_view',
   id: 'plmweb.usergrid_view',

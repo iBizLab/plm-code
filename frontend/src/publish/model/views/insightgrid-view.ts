@@ -4,12 +4,12 @@ export default {
   loadDefault: true,
   funcViewMode: 'MDATAVIEW',
   deviewCodeName: 'grid_view',
-  deviewId: '513fb2ca671f9b2c8574746cc3205a07',
+  deviewId: 'd57d81c7b6d675822d95a67e947c1209',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.INSIGHT',
   },
-  caption: '洞察力',
+  caption: 'scrum报表',
   codeName: 'insightgrid_view',
   appDataEntityId: 'plmweb.insight',
   appViewEngines: [
@@ -69,12 +69,29 @@ export default {
     {
       rawValue: true,
       key: 'PROJECT',
-      value: 'ee11e5a96002f4f3937ddba025ec7d44',
+      value: 'cc1ca882-84ed-cf02-b1a7-b6a2d2569a23',
       name: 'PROJECT',
       id: 'project',
     },
   ],
+  appViewNavParams: [
+    {
+      rawValue: true,
+      key: 'n_belong_eq',
+      value: 'scrum',
+      id: 'n_belong_eq',
+    },
+  ],
   appViewRefs: [
+    {
+      realTitle: '洞察力数据重定向视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.INSIGHT.REDIRECTVIEW',
+      },
+      refAppViewId: 'plmweb.insightredirect_view',
+      name: 'EDITDATA',
+      id: 'editdata',
+    },
     {
       realOpenMode: 'POPUPMODAL',
       realTitle: '洞察力编辑视图',
@@ -84,15 +101,6 @@ export default {
       refAppViewId: 'plmweb.insightedit_view',
       name: 'NEWDATA',
       id: 'newdata',
-    },
-    {
-      realTitle: '洞察力数据重定向视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.INSIGHT.REDIRECTVIEW',
-      },
-      refAppViewId: 'plmweb.insightredirect_view',
-      name: 'EDITDATA',
-      id: 'editdata',
     },
   ],
   controls: [
@@ -172,7 +180,7 @@ export default {
         },
         {
           actionLevel: 100,
-          noPrivDisplayMode: 2,
+          noPrivDisplayMode: 1,
           uiactionId: 'remove',
           uiactionTarget: 'MULTIKEY',
           valid: true,
@@ -337,6 +345,8 @@ export default {
       columnEnableFilter: 2,
       columnEnableLink: 2,
       groupMode: 'NONE',
+      minorSortDir: 'ASC',
+      minorSortAppDEFieldId: 'name',
       degridColumns: [
         {
           clconvertMode: 'NONE',
@@ -359,9 +369,10 @@ export default {
           id: 'name',
         },
         {
-          clconvertMode: 'NONE',
+          clconvertMode: 'FRONT',
           dataItemName: 'group',
           excelCaption: '组别',
+          appCodeListId: 'plmweb.base__insight_group',
           appDEFieldId: 'group',
           valueType: 'SIMPLE',
           aggMode: 'NONE',
@@ -462,6 +473,7 @@ export default {
       sortMode: 'REMOTE',
       enableCustomized: true,
       enablePagingBar: true,
+      singleSelect: true,
       fetchControlAction: {
         appDEMethodId: 'fetchdefault',
         appDataEntityId: 'plmweb.insight',
@@ -481,7 +493,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '52e9c6710b4f931130b13ac250f97e15',
+      modelId: '765f14ab61579f80efaa01666c13fcbb',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.insight.main',
@@ -519,7 +531,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: 'c4c78d9b609ff88d2a65f0ad11354ab6',
+      modelId: '7cae254282ecc57068b6e571661dc252',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.insight.default',
@@ -539,7 +551,7 @@ export default {
       capLanguageRes: {
         lanResTag: 'DE.LNAME.INSIGHT',
       },
-      caption: '洞察力',
+      caption: 'scrum报表',
       codeName: 'grid_viewcaptionbar',
       controlType: 'CAPTIONBAR',
       appDataEntityId: 'plmweb.insight',
@@ -559,7 +571,7 @@ export default {
     controlParam: {},
     id: 'layoutpanel',
   },
-  title: '洞察力表格视图',
+  title: 'scrum报表视图',
   titleLanguageRes: {
     lanResTag: 'PAGE.TITLE.INSIGHT.GRIDVIEW',
   },
@@ -567,7 +579,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '0bfd344d66f56f9837c43f387df5e4cf',
+  modelId: '7f3a4e2d95ee8b462d1d4d74fbbf1648',
   modelType: 'PSAPPDEVIEW',
   name: 'insightgrid_view',
   id: 'plmweb.insightgrid_view',

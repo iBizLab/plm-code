@@ -22,6 +22,7 @@ import cn.ibizlab.plm.core.testmgmt.domain.Step;
 import cn.ibizlab.plm.core.base.domain.Attention;
 import cn.ibizlab.plm.core.base.domain.Comment;
 import cn.ibizlab.plm.core.base.domain.Attachment;
+import cn.ibizlab.plm.core.base.domain.Workload;
 
 /**
  * 用例服务接口[TestCaseService]
@@ -222,16 +223,6 @@ public interface TestCaseService extends IService<TestCase> {
     }
 
     /**
-     * Get_actual_workload
-     * 
-     * @param key
-     * @return
-     */
-    default TestCase getActualWorkload(String key) {
-        return getSelf().getActualWorkload(new TestCase().setId(key));
-    }
-
-    /**
      * Move_case
      * 
      * @param dto
@@ -322,16 +313,6 @@ public interface TestCaseService extends IService<TestCase> {
     }
 
     /**
-     * Get_actual_workload
-     * 
-     * @param et
-     * @return
-     */
-    default TestCase getActualWorkload(TestCase et) {
-        return et;
-    }
-
-    /**
      * Newest_run
      * 
      * @param et
@@ -340,6 +321,66 @@ public interface TestCaseService extends IService<TestCase> {
     default TestCase newestRun(TestCase et) {
         return et;
     }
+
+    /**
+     * searchAdvanced_search
+     * 
+     * @param context
+     * @return
+     */
+    Page<TestCase> searchAdvancedSearch(TestCaseSearchContext context);
+    /**
+     * listAdvanced_search
+     * 
+     * @param context
+     * @return
+     */
+    List<TestCase> listAdvancedSearch(TestCaseSearchContext context);
+
+    /**
+     * searchAssessmentResult
+     * 
+     * @param context
+     * @return
+     */
+    Page<TestCase> searchAssessmentResult(TestCaseSearchContext context);
+    /**
+     * listAssessmentResult
+     * 
+     * @param context
+     * @return
+     */
+    List<TestCase> listAssessmentResult(TestCaseSearchContext context);
+
+    /**
+     * searchCasePerson
+     * 
+     * @param context
+     * @return
+     */
+    Page<TestCase> searchCasePerson(TestCaseSearchContext context);
+    /**
+     * listCasePerson
+     * 
+     * @param context
+     * @return
+     */
+    List<TestCase> listCasePerson(TestCaseSearchContext context);
+
+    /**
+     * searchCaseType
+     * 
+     * @param context
+     * @return
+     */
+    Page<TestCase> searchCaseType(TestCaseSearchContext context);
+    /**
+     * listCaseType
+     * 
+     * @param context
+     * @return
+     */
+    List<TestCase> listCaseType(TestCaseSearchContext context);
 
     /**
      * searchComment_notify_maintenance
@@ -357,6 +398,21 @@ public interface TestCaseService extends IService<TestCase> {
     List<TestCase> listCommentNotifyMaintenance(TestCaseSearchContext context);
 
     /**
+     * searchDailyTendencies
+     * 
+     * @param context
+     * @return
+     */
+    Page<TestCase> searchDailyTendencies(TestCaseSearchContext context);
+    /**
+     * listDailyTendencies
+     * 
+     * @param context
+     * @return
+     */
+    List<TestCase> listDailyTendencies(TestCaseSearchContext context);
+
+    /**
      * searchDefault
      * 
      * @param context
@@ -370,6 +426,21 @@ public interface TestCaseService extends IService<TestCase> {
      * @return
      */
     List<TestCase> listDefault(TestCaseSearchContext context);
+
+    /**
+     * searchDegreeImportance
+     * 
+     * @param context
+     * @return
+     */
+    Page<TestCase> searchDegreeImportance(TestCaseSearchContext context);
+    /**
+     * listDegreeImportance
+     * 
+     * @param context
+     * @return
+     */
+    List<TestCase> listDegreeImportance(TestCaseSearchContext context);
 
     /**
      * searchDeleted
@@ -387,6 +458,21 @@ public interface TestCaseService extends IService<TestCase> {
     List<TestCase> listDeleted(TestCaseSearchContext context);
 
     /**
+     * searchEverydayTest
+     * 
+     * @param context
+     * @return
+     */
+    Page<TestCase> searchEverydayTest(TestCaseSearchContext context);
+    /**
+     * listEverydayTest
+     * 
+     * @param context
+     * @return
+     */
+    List<TestCase> listEverydayTest(TestCaseSearchContext context);
+
+    /**
      * searchIdea_relation_test_case
      * 
      * @param context
@@ -400,6 +486,21 @@ public interface TestCaseService extends IService<TestCase> {
      * @return
      */
     List<TestCase> listIdeaRelationTestCase(TestCaseSearchContext context);
+
+    /**
+     * searchImplementationResults
+     * 
+     * @param context
+     * @return
+     */
+    Page<TestCase> searchImplementationResults(TestCaseSearchContext context);
+    /**
+     * listImplementationResults
+     * 
+     * @param context
+     * @return
+     */
+    List<TestCase> listImplementationResults(TestCaseSearchContext context);
 
     /**
      * searchMy_assign
@@ -520,6 +621,51 @@ public interface TestCaseService extends IService<TestCase> {
      * @return
      */
     List<TestCase> listNotExsistsRelation(TestCaseSearchContext context);
+
+    /**
+     * searchNotify_assignee
+     * 
+     * @param context
+     * @return
+     */
+    Page<TestCase> searchNotifyAssignee(TestCaseSearchContext context);
+    /**
+     * listNotify_assignee
+     * 
+     * @param context
+     * @return
+     */
+    List<TestCase> listNotifyAssignee(TestCaseSearchContext context);
+
+    /**
+     * searchPersonDistributions
+     * 
+     * @param context
+     * @return
+     */
+    Page<TestCase> searchPersonDistributions(TestCaseSearchContext context);
+    /**
+     * listPersonDistributions
+     * 
+     * @param context
+     * @return
+     */
+    List<TestCase> listPersonDistributions(TestCaseSearchContext context);
+
+    /**
+     * searchPriorityDistributions
+     * 
+     * @param context
+     * @return
+     */
+    Page<TestCase> searchPriorityDistributions(TestCaseSearchContext context);
+    /**
+     * listPriorityDistributions
+     * 
+     * @param context
+     * @return
+     */
+    List<TestCase> listPriorityDistributions(TestCaseSearchContext context);
 
     /**
      * searchRecent_test_case

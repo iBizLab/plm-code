@@ -31,11 +31,27 @@ import io.swagger.annotations.ApiModelProperty;
 public class TestCaseFilterDTO extends FilterBase implements Serializable {
 
     /**
+     * 编号EQ
+     */
+    @JsonProperty("n_identifier_eq")
+    @JSONField(name = "n_identifier_eq")
+    @ApiModelProperty(value = "编号EQ", position = 0)
+	private String identifierEQ;
+
+    /**
+     * 编号ISNULL
+     */
+    @JsonProperty("n_identifier_isnull")
+    @JSONField(name = "n_identifier_isnull")
+    @ApiModelProperty(value = "编号ISNULL", position = 1)
+	private String identifierISNULL;
+
+    /**
      * 编号LIKE
      */
     @JsonProperty("n_identifier_like")
     @JSONField(name = "n_identifier_like")
-    @ApiModelProperty(value = "编号LIKE", position = 0)
+    @ApiModelProperty(value = "编号LIKE", position = 2)
 	private String identifierLIKE;
 
     /**
@@ -71,6 +87,14 @@ public class TestCaseFilterDTO extends FilterBase implements Serializable {
 	private String testTypeEQ;
 
     /**
+     * 描述LIKE
+     */
+    @JsonProperty("n_description_like")
+    @JSONField(name = "n_description_like")
+    @ApiModelProperty(value = "描述LIKE", position = 50)
+	private String descriptionLIKE;
+
+    /**
      * 是否已归档EQ
      */
     @JsonProperty("n_is_archived_eq")
@@ -103,12 +127,36 @@ public class TestCaseFilterDTO extends FilterBase implements Serializable {
 	private String stateNOTIN;
 
     /**
-     * 维护人标识EQ
+     * 维护人EQ
      */
     @JsonProperty("n_maintenance_id_eq")
     @JSONField(name = "n_maintenance_id_eq")
-    @ApiModelProperty(value = "维护人标识EQ", position = 110)
+    @ApiModelProperty(value = "维护人EQ", position = 110)
 	private String maintenanceIdEQ;
+
+    /**
+     * 维护人EQ
+     */
+    @JsonProperty("n_maintenance_name_eq")
+    @JSONField(name = "n_maintenance_name_eq")
+    @ApiModelProperty(value = "维护人EQ", position = 120)
+	private String maintenanceNameEQ;
+
+    /**
+     * 测试计划名称EQ
+     */
+    @JsonProperty("n_test_plan_name_eq")
+    @JSONField(name = "n_test_plan_name_eq")
+    @ApiModelProperty(value = "测试计划名称EQ", position = 130)
+	private String testPlanNameEQ;
+
+    /**
+     * 执行人EQ
+     */
+    @JsonProperty("n_executor_name_eq")
+    @JSONField(name = "n_executor_name_eq")
+    @ApiModelProperty(value = "执行人EQ", position = 150)
+	private String executorNameEQ;
 
     /**
      * 执行结果EQ
@@ -135,12 +183,47 @@ public class TestCaseFilterDTO extends FilterBase implements Serializable {
 	private String showIdentifierLIKE;
 
     /**
+     * 标识NOTEQ
+     */
+    @JsonProperty("n_id_noteq")
+    @JSONField(name = "n_id_noteq")
+    @ApiModelProperty(value = "标识NOTEQ", position = 270)
+	private String idNOTEQ;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 270)
+    @ApiModelProperty(value = "标识EQ", position = 271)
 	private String idEQ;
+
+    /**
+     * 建立时间EQ
+     */
+    @JsonProperty("n_create_time_eq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_create_time_eq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "建立时间EQ", position = 280)
+	private Date createTimeEQ;
+
+    /**
+     * 建立时间GTANDEQ
+     */
+    @JsonProperty("n_create_time_gtandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_create_time_gtandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "建立时间GTANDEQ", position = 281)
+	private Date createTimeGTANDEQ;
+
+    /**
+     * 建立时间LTANDEQ
+     */
+    @JsonProperty("n_create_time_ltandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_create_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "建立时间LTANDEQ", position = 282)
+	private Date createTimeLTANDEQ;
 
     /**
      * 建立人EQ
@@ -159,12 +242,20 @@ public class TestCaseFilterDTO extends FilterBase implements Serializable {
 	private String nameLIKE;
 
     /**
-     * 测试库标识EQ
+     * 测试库EQ
      */
     @JsonProperty("n_test_library_id_eq")
     @JSONField(name = "n_test_library_id_eq")
-    @ApiModelProperty(value = "测试库标识EQ", position = 330)
+    @ApiModelProperty(value = "测试库EQ", position = 330)
 	private String testLibraryIdEQ;
+
+    /**
+     * 测试库ISNULL
+     */
+    @JsonProperty("n_test_library_id_isnull")
+    @JSONField(name = "n_test_library_id_isnull")
+    @ApiModelProperty(value = "测试库ISNULL", position = 331)
+	private String testLibraryIdISNULL;
 
     /**
      * 用例模块标识EQ

@@ -123,10 +123,10 @@ export default {
           codeName: 'estimated_update',
           defiupdateDetails: [
             {
-              id: 'remaining_workload',
+              id: 'workload_schedule',
             },
             {
-              id: 'workload_schedule',
+              id: 'remaining_workload',
             },
           ],
           scriptCode:
@@ -169,7 +169,6 @@ export default {
                     editable: true,
                     id: 'title',
                   },
-                  allowEmpty: true,
                   capLanguageRes: {
                     lanResTag: 'DEF.LNAME.TITLE',
                   },
@@ -213,7 +212,7 @@ export default {
                             cssClass: 'fa fa-user-md',
                             glyph: 'xf0f0@FontAwesome',
                           },
-                          id: 'u653ff49',
+                          id: 'u4befff7',
                         },
                       ],
                       uniqueTag: 'Product_member__Usr0311005787',
@@ -252,7 +251,8 @@ export default {
                   },
                   allowEmpty: true,
                   capLanguageRes: {
-                    lanResTag: 'DEF.LNAME.ASSIGNEE_NAME',
+                    lanResTag:
+                      'CONTROL.DEFORM.IDEA.MAIN.FORMITEM.ASSIGNEE_NAME',
                   },
                   caption: '负责人',
                   codeName: 'assignee_name',
@@ -378,7 +378,7 @@ export default {
                   allowEmpty: true,
                   hidden: true,
                   capLanguageRes: {
-                    lanResTag: 'DEF.LNAME.ASSIGNEE_ID',
+                    lanResTag: 'CONTROL.DEFORM.IDEA.MAIN.FORMITEM.ASSIGNEE_ID',
                   },
                   caption: '负责人标识',
                   codeName: 'assignee_id',
@@ -468,7 +468,7 @@ export default {
                                   USERFIELDMAP:
                                     '{"id":"user_id","name":"name"}',
                                   INSERTKEYS:
-                                    '[{"index":66,"keys":["marker"]}]',
+                                    '[{"index":66,"keys":["marker"]},{"index":5,"keys":["paintformat"]}]',
                                   QUOTEURL: '`recents/fetchrecent_access`',
                                 },
                                 editorStyle: 'COLLAPSE',
@@ -480,7 +480,8 @@ export default {
                               },
                               allowEmpty: true,
                               capLanguageRes: {
-                                lanResTag: 'DEF.LNAME.DESCRIPTION',
+                                lanResTag:
+                                  'CONTROL.DEFORM.IDEA.MAIN.FORMITEM.DESCRIPTION',
                               },
                               caption: '描述',
                               codeName: 'description',
@@ -493,6 +494,10 @@ export default {
                               id: 'description',
                             },
                           ],
+                          capLanguageRes: {
+                            lanResTag:
+                              'CONTROL.DEFORM.IDEA.MAIN.GROUPPANEL.DESCRIPTION_CONTAINER',
+                          },
                           caption: '描述',
                           codeName: 'description_container',
                           detailStyle: 'DEFAULT',
@@ -521,7 +526,7 @@ export default {
                                   cssClass: 'fa fa-plus',
                                   glyph: 'xf067@FontAwesome',
                                 },
-                                id: 'uf78943b',
+                                id: 'u3a6466f',
                               },
                             ],
                             uniqueTag: 'Idea__Usr0110921898',
@@ -616,7 +621,7 @@ export default {
                                             cssClass: 'fa fa-download',
                                             glyph: 'xf019@FontAwesome',
                                           },
-                                          id: 'u0b42a77',
+                                          id: 'u73b8ba5',
                                         },
                                         {
                                           actionLevel: 100,
@@ -632,7 +637,7 @@ export default {
                                             cssClass: 'fa fa-trash-o',
                                             glyph: 'xf014@FontAwesome',
                                           },
-                                          id: 'u8aff03a',
+                                          id: 'u44d00e2',
                                         },
                                       ],
                                       uniqueTag: 'Attachment__Usr0103721999',
@@ -818,6 +823,10 @@ export default {
                               id: 'attachments',
                             },
                           ],
+                          capLanguageRes: {
+                            lanResTag:
+                              'CONTROL.DEFORM.IDEA.MAIN.GROUPPANEL.GROUPPANEL5',
+                          },
                           caption: '附件',
                           codeName: 'grouppanel5',
                           detailStyle: 'DEFAULT',
@@ -854,6 +863,10 @@ export default {
                                   id: 'druipart1',
                                 },
                               ],
+                              capLanguageRes: {
+                                lanResTag:
+                                  'CONTROL.DEFORM.IDEA.MAIN.TABPAGE.TABPAGE2',
+                              },
                               caption: '评论',
                               codeName: 'tabpage2',
                               detailStyle: 'DEFAULT',
@@ -884,6 +897,10 @@ export default {
                                   id: 'druipart2',
                                 },
                               ],
+                              capLanguageRes: {
+                                lanResTag:
+                                  'CONTROL.DEFORM.IDEA.MAIN.TABPAGE.TABPAGE3',
+                              },
                               caption: '活动',
                               codeName: 'tabpage3',
                               detailStyle: 'DEFAULT',
@@ -915,6 +932,10 @@ export default {
                                   id: 'druipart3',
                                 },
                               ],
+                              capLanguageRes: {
+                                lanResTag:
+                                  'CONTROL.DEFORM.IDEA.MAIN.TABPAGE.TABPAGE4',
+                              },
                               caption: '流转',
                               codeName: 'tabpage4',
                               detailStyle: 'DEFAULT',
@@ -1373,6 +1394,10 @@ export default {
                           },
                           resetItemNames: ['product_name'],
                           allowEmpty: true,
+                          capLanguageRes: {
+                            lanResTag:
+                              'CONTROL.DEFORM.IDEA.MAIN.FORMITEM.CATEGORY_NAME',
+                          },
                           caption: '模块',
                           codeName: 'category_name',
                           detailStyle: 'DEFAULT',
@@ -1399,6 +1424,9 @@ export default {
                           },
                           allowEmpty: true,
                           hidden: true,
+                          capLanguageRes: {
+                            lanResTag: 'DEF.LNAME.CATEGORY_ID',
+                          },
                           caption: '类别标识',
                           codeName: 'category_id',
                           detailStyle: 'DEFAULT',
@@ -1453,6 +1481,9 @@ export default {
                             id: 'estimated_workload',
                           },
                           allowEmpty: true,
+                          capLanguageRes: {
+                            lanResTag: 'DEF.LNAME.ESTIMATED_WORKLOAD',
+                          },
                           caption: '预估工时',
                           codeName: 'estimated_workload',
                           detailStyle: 'DEFAULT',
@@ -1466,6 +1497,7 @@ export default {
                         },
                         {
                           dataType: 6,
+                          enableCond: 3,
                           labelPos: 'LEFT',
                           labelWidth: 130,
                           noPrivDisplayMode: 1,
@@ -1477,75 +1509,106 @@ export default {
                             editable: true,
                             id: 'actual_workload',
                           },
+                          valueFormat: '#.0',
                           allowEmpty: true,
+                          capLanguageRes: {
+                            lanResTag:
+                              'CONTROL.DEFORM.IDEA.MAIN.FORMITEM.ACTUAL_WORKLOAD',
+                          },
                           caption: '实际工时',
                           codeName: 'actual_workload',
                           detailStyle: 'DEFAULT',
                           detailType: 'FORMITEM',
                           layoutPos: {
-                            colLG: 20,
-                            colMD: 20,
+                            colLG: 21,
+                            colMD: 21,
                             layout: 'TABLE_24COL',
                           },
                           showCaption: true,
                           id: 'actual_workload',
                         },
                         {
-                          actionType: 'UIACTION',
-                          uiactionId: 'check_workload_detail@idea',
-                          tooltip: '查看工时明细',
-                          uiactionTarget: 'NONE',
-                          caption: '查看工时明细',
-                          codeName: 'button2',
-                          detailStyle: 'STYLE2',
-                          detailType: 'BUTTON',
-                          layoutPos: {
-                            colLG: 2,
-                            colMD: 2,
+                          actionGroupExtractMode: 'ITEM',
+                          layout: {
+                            columnCount: 24,
                             layout: 'TABLE_24COL',
                           },
-                          sysImage: {
-                            cssClass: 'fa fa-arrow-circle-o-right',
-                            glyph: 'xf18e@FontAwesome',
-                          },
-                          id: 'button2',
-                        },
-                        {
-                          actionType: 'UIACTION',
-                          uiactionId: 'add_actual_workload@idea',
-                          tooltip: '登记工时',
-                          uiactionTarget: 'NONE',
-                          caption: '登记工时',
-                          codeName: 'button1',
-                          detailStyle: 'STYLE2',
-                          detailType: 'BUTTON',
-                          defdgroupLogics: [
+                          deformDetails: [
                             {
-                              logicCat: 'PANELVISIBLE',
-                              relatedDetailNames: ['is_deleted'],
-                              groupOP: 'AND',
-                              defdlogics: [
+                              actionType: 'UIACTION',
+                              uiactionId: 'check_workload_detail@idea',
+                              tooltip: '查看工时明细',
+                              uiactionTarget: 'NONE',
+                              capLanguageRes: {
+                                lanResTag:
+                                  'CONTROL.DEFORM.IDEA.MAIN.BUTTON.BUTTON2',
+                              },
+                              caption: '查看工时明细',
+                              codeName: 'button2',
+                              detailStyle: 'STYLE2',
+                              detailType: 'BUTTON',
+                              layoutPos: {
+                                colLG: 12,
+                                colMD: 12,
+                                layout: 'TABLE_24COL',
+                              },
+                              sysImage: {
+                                cssClass: 'fa fa-arrow-circle-o-right',
+                                glyph: 'xf18e@FontAwesome',
+                              },
+                              id: 'button2',
+                            },
+                            {
+                              actionType: 'UIACTION',
+                              uiactionId: 'add_actual_workload@idea',
+                              tooltip: '登记工时',
+                              uiactionTarget: 'NONE',
+                              capLanguageRes: {
+                                lanResTag:
+                                  'CONTROL.DEFORM.IDEA.MAIN.BUTTON.BUTTON1',
+                              },
+                              caption: '登记工时',
+                              codeName: 'button1',
+                              detailStyle: 'STYLE2',
+                              detailType: 'BUTTON',
+                              defdgroupLogics: [
                                 {
-                                  condOP: 'EQ',
-                                  defdname: 'is_deleted',
-                                  value: '0',
-                                  logicType: 'SINGLE',
+                                  logicCat: 'PANELVISIBLE',
+                                  relatedDetailNames: ['is_deleted'],
+                                  groupOP: 'AND',
+                                  defdlogics: [
+                                    {
+                                      condOP: 'EQ',
+                                      defdname: 'is_deleted',
+                                      value: '0',
+                                      logicType: 'SINGLE',
+                                    },
+                                  ],
+                                  logicType: 'GROUP',
+                                  id: '表单成员[button1][面板显示]逻辑',
                                 },
                               ],
-                              logicType: 'GROUP',
-                              id: '表单成员[button1][面板显示]逻辑',
+                              layoutPos: {
+                                colLG: 12,
+                                colMD: 12,
+                                layout: 'TABLE_24COL',
+                              },
+                              sysImage: {
+                                cssClass: 'fa fa-plus',
+                                glyph: 'xf067@FontAwesome',
+                              },
+                              id: 'button1',
                             },
                           ],
+                          codeName: 'grouppanel4',
+                          detailStyle: 'DEFAULT',
+                          detailType: 'GROUPPANEL',
                           layoutPos: {
-                            colLG: 2,
-                            colMD: 2,
+                            colLG: 3,
+                            colMD: 3,
                             layout: 'TABLE_24COL',
                           },
-                          sysImage: {
-                            cssClass: 'fa fa-plus',
-                            glyph: 'xf067@FontAwesome',
-                          },
-                          id: 'button1',
+                          id: 'grouppanel4',
                         },
                         {
                           dataType: 6,
@@ -1567,6 +1630,10 @@ export default {
                             id: 'remaining_workload',
                           },
                           allowEmpty: true,
+                          capLanguageRes: {
+                            lanResTag:
+                              'CONTROL.DEFORM.IDEA.MAIN.FORMITEM.REMAINING_WORKLOAD',
+                          },
                           caption: '剩余工时',
                           codeName: 'remaining_workload',
                           detailStyle: 'DEFAULT',
@@ -1598,6 +1665,10 @@ export default {
                           },
                           updateDV: '0',
                           allowEmpty: true,
+                          capLanguageRes: {
+                            lanResTag:
+                              'CONTROL.DEFORM.IDEA.MAIN.FORMITEM.WORKLOAD_SCHEDULE',
+                          },
                           caption: '工时进度',
                           codeName: 'workload_schedule',
                           detailStyle: 'DEFAULT',
@@ -1610,6 +1681,10 @@ export default {
                           id: 'workload_schedule',
                         },
                       ],
+                      capLanguageRes: {
+                        lanResTag:
+                          'CONTROL.DEFORM.IDEA.MAIN.GROUPPANEL.GROUPPANEL2',
+                      },
                       caption: '工时',
                       codeName: 'grouppanel2',
                       detailStyle: 'DEFAULT',
@@ -1682,7 +1757,7 @@ export default {
                           capLanguageRes: {
                             lanResTag: 'DEF.LNAME.PRODUCT_ID',
                           },
-                          caption: '产品标识',
+                          caption: '产品',
                           codeName: 'product_id',
                           detailStyle: 'DEFAULT',
                           detailType: 'FORMITEM',
@@ -1714,7 +1789,8 @@ export default {
                           allowEmpty: true,
                           convertToCodeItemText: true,
                           capLanguageRes: {
-                            lanResTag: 'DEF.LNAME.CREATE_MAN',
+                            lanResTag:
+                              'CONTROL.DEFORM.IDEA.MAIN.FORMITEM.CREATE_MAN',
                           },
                           caption: '建立人',
                           codeName: 'create_man',
@@ -1747,7 +1823,8 @@ export default {
                           valueFormat: 'YYYY-MM-DD HH:mm:ss',
                           allowEmpty: true,
                           capLanguageRes: {
-                            lanResTag: 'DEF.LNAME.CREATE_TIME',
+                            lanResTag:
+                              'CONTROL.DEFORM.IDEA.MAIN.FORMITEM.CREATE_TIME',
                           },
                           caption: '建立时间',
                           codeName: 'create_time',
@@ -1781,7 +1858,8 @@ export default {
                           allowEmpty: true,
                           convertToCodeItemText: true,
                           capLanguageRes: {
-                            lanResTag: 'DEF.LNAME.UPDATE_MAN',
+                            lanResTag:
+                              'CONTROL.DEFORM.IDEA.MAIN.FORMITEM.UPDATE_MAN',
                           },
                           caption: '更新人',
                           codeName: 'update_man',
@@ -1814,7 +1892,8 @@ export default {
                           valueFormat: 'YYYY-MM-DD HH:mm:ss',
                           allowEmpty: true,
                           capLanguageRes: {
-                            lanResTag: 'DEF.LNAME.UPDATE_TIME',
+                            lanResTag:
+                              'CONTROL.DEFORM.IDEA.MAIN.FORMITEM.UPDATE_TIME',
                           },
                           caption: '更新时间',
                           codeName: 'update_time',
@@ -1877,6 +1956,10 @@ export default {
                       id: 'druipart4',
                     },
                   ],
+                  capLanguageRes: {
+                    lanResTag:
+                      'CONTROL.DEFORM.IDEA.MAIN.GROUPPANEL.GROUPPANEL9',
+                  },
                   caption: '工时明细',
                   codeName: 'grouppanel9',
                   detailStyle: 'DEFAULT',
@@ -1974,8 +2057,8 @@ export default {
             name: '产品需求关联分页计数器',
             id: 'plmweb.product_idea_re_counters',
           },
-          tag: 'ff7d8b02b09764f605c0f91de07a9fa7',
-          id: 'ff7d8b02b09764f605c0f91de07a9fa7',
+          tag: 'e7055521eeb711936d36f027b585c5d3',
+          id: 'e7055521eeb711936d36f027b585c5d3',
         },
       ],
       codeName: 'Main',
@@ -1987,7 +2070,7 @@ export default {
           eventNames: 'onLoadSuccess',
           logicTag: 'form',
           logicType: 'APPDEUILOGIC',
-          appDEUILogicId: 'get_actual_workload',
+          appDEUILogicId: 'get_workload_schedule',
           appDataEntityId: 'plmweb.idea',
           triggerType: 'CTRLEVENT',
           id: 'get_actual_workload',

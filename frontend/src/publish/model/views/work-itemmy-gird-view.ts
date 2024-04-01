@@ -4,7 +4,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'my_gird_view',
-  deviewId: 'A0E6F3AB-D0AD-4CAA-93FF-300EC70E3B67',
+  deviewId: '77c582a7303a284beb8c60d69be49504',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -90,15 +90,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '工作项编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.work_itemeditview',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       openMode: 'INDEXVIEWTAB_POPUPMODAL',
       navigateContexts: [
         {
@@ -113,6 +104,15 @@ export default {
       refAppViewId: 'plmweb.work_itemmain_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realTitle: '工作项编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.work_itemeditview',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -269,12 +269,6 @@ export default {
           id: 'sprint_id',
         },
         {
-          appDEFieldId: 'version_id',
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'version_id',
-        },
-        {
           appDEFieldId: 'board_id',
           valueType: 'SIMPLE',
           dataType: 25,
@@ -357,7 +351,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '64820E13-18F0-459B-BBCE-73E31C38633E',
+      modelId: '7cc6ab90ee0318b5b6d46d54d5ecd0d6',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.work_item.my_work_item_grid',
@@ -471,7 +465,7 @@ export default {
                       uiactionId: 'open_global_setting@project',
                       showCaption: true,
                       showIcon: true,
-                      id: 'u25405e6',
+                      id: 'u3fee786',
                     },
                   ],
                   uniqueTag: 'Project__Usr1221520658',
@@ -558,7 +552,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: '01F1712B-2B06-453F-87D2-2B983C1E818B',
+      modelId: '61ba43bf73f82539179e0f3a969efce9',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.work_item.kanban_view_searchform',
@@ -601,7 +595,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '6b1dbfc0f30b1861c925e188c2bf2d1e',
+  modelId: '4489e5651d10c9c3bc6ee56712ad2d5f',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemmy_gird_view',
   id: 'plmweb.work_itemmy_gird_view',

@@ -1,9 +1,8 @@
 export default {
-  gridRowActiveMode: 1,
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'grid_view_assigned',
-  deviewId: '55B50C25-349F-4F1E-A8AF-4286FED0F1F1',
+  deviewId: 'e6bae1d1b201c101c59b95a62ae82ca3',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SPACE_MEMBER',
@@ -106,15 +105,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '空间成员编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.SPACE_MEMBER.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.space_membereditview',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       realTitle: '空间成员数据重定向视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.SPACE_MEMBER.REDIRECTVIEW',
@@ -122,6 +112,15 @@ export default {
       refAppViewId: 'plmweb.space_memberredirectview',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realTitle: '空间成员编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.SPACE_MEMBER.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.space_membereditview',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
     {
       realOpenMode: 'POPUPMODAL',
@@ -175,7 +174,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: 'E76C15ED-FD8E-4D75-9105-6F8153883A2C',
+      modelId: '41167099b62c6b269095ada0e0176010',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'grid_view_assignedtoolbar',
@@ -220,7 +219,7 @@ export default {
                   cssClass: 'fa fa-trash',
                   glyph: 'xf1f8@FontAwesome',
                 },
-                id: 'ud3fa6e1',
+                id: 'uafbf3eb',
               },
             ],
             uniqueTag: 'Space_member__Usr0227475921',
@@ -295,6 +294,7 @@ export default {
       pagingSize: 20,
       sortMode: 'REMOTE',
       enableCustomized: true,
+      singleSelect: true,
       fetchControlAction: {
         appDEMethodId: 'fetchdefault',
         appDataEntityId: 'plmweb.space_member',
@@ -314,7 +314,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '602bf8646086fcbd72575db936c2ad4a',
+      modelId: '100d9372caebff7f3d1a7a4eeb580300',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.space_member.main',
@@ -352,7 +352,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: 'a876ed3494dbad6385d8cb9f37af8f6c',
+      modelId: '75d1281e27232788f0dc7293c49c244d',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.space_member.default',
@@ -395,7 +395,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '4292bf96394736a3d804b226e38aea29',
+  modelId: '45c146e362bf996668c08a9b3add40ff',
   modelType: 'PSAPPDEVIEW',
   name: 'space_membergrid_view_assigned',
   id: 'plmweb.space_membergrid_view_assigned',

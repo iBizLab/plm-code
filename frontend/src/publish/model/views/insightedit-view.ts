@@ -5,7 +5,7 @@ export default {
   funcViewMode: 'EDITVIEW',
   openMode: 'POPUPMODAL',
   deviewCodeName: 'edit_view',
-  deviewId: 'ccc9522ecc90e33363dd5397aa6392c4',
+  deviewId: '486af9be87b01cd9137497c0df1f45d1',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.INSIGHT',
@@ -171,6 +171,7 @@ export default {
                   appDEFieldId: 'group',
                   editor: {
                     singleSelect: true,
+                    appCodeListId: 'plmweb.base__insight_group',
                     editorType: 'DROPDOWNLIST',
                     valueType: 'SIMPLE',
                     editable: true,
@@ -350,7 +351,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '191f96095b50232e90bafd28ec9d9f98',
+      modelId: '765f14ab61579f80efaa01666c13fcbb',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.insight.main',
@@ -398,7 +399,7 @@ export default {
   width: 800,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '85ff2dd5c0af2f4f709f7694a21d107f',
+  modelId: '4db257cfe92e6f5d782d2682ab01cd77',
   modelType: 'PSAPPDEVIEW',
   name: 'insightedit_view',
   id: 'plmweb.insightedit_view',

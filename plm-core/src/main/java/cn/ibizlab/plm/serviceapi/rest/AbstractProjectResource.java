@@ -286,6 +286,45 @@ public abstract class AbstractProjectResource {
     }
 
     /**
+    * Other_re_space 项目
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProjectDTO>
+    */
+    @ApiOperation(value = "Other_re_space", tags = {"项目" },  notes = "Project-Other_re_space ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Project-Other_re_space-all') or hasPermission(this.projectDtoMapping.toDomain(#dto),'ibizplm-Project-Other_re_space')")
+    @PutMapping("projects/{id}/other_re_space")
+    public ResponseEntity<ResponseWrapper<ProjectDTO>> otherReSpaceById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProjectDTO> dto) {
+        ResponseWrapper<ProjectDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(otherReSpaceById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(otherReSpaceById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * Other_re_space 项目
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProjectDTO>
+    */   
+    public ProjectDTO otherReSpaceById
+            (String id, ProjectDTO dto) {
+        Project domain = projectDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Project rt = projectService.otherReSpace(domain);
+        return projectDtoMapping.toDto(rt);
+    }
+
+    /**
     * Recover 项目
     * 
     *
@@ -680,6 +719,28 @@ public abstract class AbstractProjectResource {
             (@Validated @RequestBody ProjectFilterDTO dto) {
         ProjectSearchContext context = projectFilterDtoMapping.toDomain(dto);
         Page<Project> domains = projectService.searchNormal(context) ;
+        List<ProjectDTO> list = projectDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询FetchReader 项目
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<ProjectDTO>>
+    */
+    @ApiOperation(value = "查询FetchReader", tags = {"项目" },  notes = "Project-FetchReader ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Project-FetchReader-all') or hasPermission(#dto,'ibizplm-Project-FetchReader')")
+    @PostMapping("projects/fetchreader")
+    public ResponseEntity<List<ProjectDTO>> fetchReader
+            (@Validated @RequestBody ProjectFilterDTO dto) {
+        ProjectSearchContext context = projectFilterDtoMapping.toDomain(dto);
+        Page<Project> domains = projectService.searchReader(context) ;
         List<ProjectDTO> list = projectDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

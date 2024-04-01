@@ -265,6 +265,28 @@ public abstract class AbstractCommentResource {
     }
 
     /**
+    * 查询FetchAdvanced_search 评论
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<CommentDTO>>
+    */
+    @ApiOperation(value = "查询FetchAdvanced_search", tags = {"评论" },  notes = "Comment-FetchAdvanced_search ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Comment-FetchAdvanced_search-all') or hasPermission(#dto,'ibizplm-Comment-FetchAdvanced_search')")
+    @PostMapping("comments/fetchadvanced_search")
+    public ResponseEntity<List<CommentDTO>> fetchAdvancedSearch
+            (@Validated @RequestBody CommentFilterDTO dto) {
+        CommentSearchContext context = commentFilterDtoMapping.toDomain(dto);
+        Page<Comment> domains = commentService.searchAdvancedSearch(context) ;
+        List<CommentDTO> list = commentDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
     * 查询FetchDefault 评论
     * 
     *

@@ -24,6 +24,25 @@ import com.alibaba.fastjson.JSONObject;
 public interface ArticlePageMapper extends BaseMapper<ArticlePage> {
 
     /**
+     * 数据集合Advanced_search分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<ArticlePage> searchAdvancedSearch(IPage<ArticlePage> page, @Param("ctx") ArticlePageSearchContext context, @Param("ew") Wrapper<ArticlePage> wrapper);
+    
+    /**
+     * 数据集合Advanced_search查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<ArticlePage> listAdvancedSearch(@Param("ctx") ArticlePageSearchContext context, @Param("ew") Wrapper<ArticlePage> wrapper);
+
+    /**
      * 数据集合Default分页查询
      * 
      * @param page

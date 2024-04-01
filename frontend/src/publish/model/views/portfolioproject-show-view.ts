@@ -5,7 +5,7 @@ export default {
   funcViewMode: 'EDITVIEW',
   openMode: 'POPUPMODAL',
   deviewCodeName: 'project_show_view',
-  deviewId: '023ce849b029f495ebd8260cf2713230',
+  deviewId: '8fd1fb5dc12f9b75ea0528d4de39048c',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PORTFOLIO',
@@ -326,7 +326,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: 'fcd1ea24130ed153d575d834867e4741',
+      modelId: '8a69c7edc1c0283c3868ca51d37e9e1f',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.portfolio.project_show_form',
@@ -374,7 +374,7 @@ export default {
   width: 700,
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'bc849ad4607ceb926f8235f8e287fd37',
+  modelId: '0c7e75387d85b5fd1ee6e161e4e06a55',
   modelType: 'PSAPPDEVIEW',
   name: 'portfolioproject_show_view',
   id: 'plmweb.portfolioproject_show_view',

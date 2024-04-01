@@ -1,6 +1,6 @@
 export default {
   deviewCodeName: 'LogicDesign',
-  deviewId: '5B64656B-5CC2-4526-A507-144F15E2A9EE',
+  deviewId: '26a83b85d38f50498854b6bcd1762dcf',
   accUserMode: 2,
   caption: '实体处理逻辑',
   codeName: 'PSDELogicLogicDesign',
@@ -32,7 +32,7 @@ export default {
   viewType: 'DESUBAPPREFVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '2c53d6822f5d130fcb16a2ed4491494f',
+  modelId: 'b7634025a44aaf83375a02fd979b8278',
   modelType: 'PSAPPDEVIEW',
   name: 'PSDELogicLogicDesign',
   id: 'plmweb.psdelogiclogicdesign',

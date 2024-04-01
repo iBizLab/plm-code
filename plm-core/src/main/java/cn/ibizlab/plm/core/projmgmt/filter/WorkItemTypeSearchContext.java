@@ -55,6 +55,14 @@ public class WorkItemTypeSearchContext extends QueryWrapperContext<WorkItemType>
     private String groupEQ;
 
     /**
+     * 编码IN
+     */
+    @JsonProperty("n_code_in")
+    @JSONField(name = "n_code_in")
+    @ApiModelProperty("编码IN")
+    private String codeIN;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")

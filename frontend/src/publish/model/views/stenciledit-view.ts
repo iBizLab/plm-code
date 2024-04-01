@@ -4,7 +4,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'edit_view',
-  deviewId: 'B83214CC-3F43-477D-AFF9-866E7C5A46B1',
+  deviewId: '4063a5f18bfd139e431d607854fee08b',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.STENCIL',
@@ -61,7 +61,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: 'C0F581D1-8430-4EE8-93F9-5DC04D3FDA2D',
+      modelId: '36bf4a6eb35e691287cabaace5457cc2',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'edit_viewtoolbar',
@@ -259,7 +259,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '8E92DE0B-4AC7-4693-A1A5-D399169E3D22',
+      modelId: 'e00c1e93918d99a57ad8c1dcfc8d01c6',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.stencil.edit_view_form',
@@ -304,7 +304,7 @@ export default {
   width: 90,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '3480fe1259e5baf16326a06dd1cffdd2',
+  modelId: '853ba849564cd9d13011d2050250a748',
   modelType: 'PSAPPDEVIEW',
   name: 'stenciledit_view',
   id: 'plmweb.stenciledit_view',

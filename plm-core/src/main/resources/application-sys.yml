@@ -126,7 +126,7 @@ ribbon:
 #缓存级别：无缓存(无配置项)、一级缓存(L1)、二级缓存(L2)
 ibiz:
   systemid: ibizplm
-  systemname: iBiz产品生命周期管理系统
+  systemname: 产品生命周期管理系统
   enablePermissionValid: true
   ref:
     service:

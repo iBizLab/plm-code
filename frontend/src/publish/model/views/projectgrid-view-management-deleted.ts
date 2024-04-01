@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'grid_view_management_deleted',
-  deviewId: 'E23069C4-C5DA-40D2-A7EF-9C42129F5C45',
+  deviewId: '137000fb2aed0869e109de87c39ce0e3',
   accUserMode: 2,
   caption: '项目管理',
   codeName: 'projectgrid_view_management_deleted',
@@ -61,16 +61,16 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '项目数据重定向视图',
-      refAppViewId: 'plmweb.projectredirectview',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
-    {
       realTitle: '项目编辑视图',
       refAppViewId: 'plmweb.projecteditview',
       name: 'NEWDATA',
       id: 'newdata',
+    },
+    {
+      realTitle: '项目数据重定向视图',
+      refAppViewId: 'plmweb.projectredirectview',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
   ],
   controls: [
@@ -157,7 +157,7 @@ export default {
                   cssClass: 'fa fa-retweet',
                   glyph: 'xf079@FontAwesome',
                 },
-                id: 'uc1639a9',
+                id: 'u5b3a614',
               },
             ],
             uniqueTag: 'Project__Usr1219752220',
@@ -258,7 +258,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '8EF47BBD-48B0-4E0F-955D-590487675CCA',
+      modelId: '2d0281508013a3ce770f78d0ac86fb5c',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.project.management_table_deleted',
@@ -293,7 +293,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: '3F8C765A-7925-442A-B6A2-49CB4F8811F5',
+      modelId: '8f7ede1ae997bb2f8e25eab49b91c89b',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.project.kanban_view_searchform',
@@ -335,7 +335,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '1ff05f39cdfb01d002952c15a91cde08',
+  modelId: '63778a07c0f76c97733ddd4ba89de0fb',
   modelType: 'PSAPPDEVIEW',
   name: 'projectgrid_view_management_deleted',
   id: 'plmweb.projectgrid_view_management_deleted',

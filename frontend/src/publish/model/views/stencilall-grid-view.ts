@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'all_grid_view',
-  deviewId: '957F5A7F-023A-4E45-90F4-A3998F4D8DE0',
+  deviewId: '48f7694d54b301f0b56375b7c5571bde',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.STENCIL',
@@ -68,20 +68,20 @@ export default {
   ],
   appViewRefs: [
     {
-      openMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realTitle: '页面模板编辑视图',
-      refAppViewId: 'plmweb.stenciledit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       openMode: 'POPUPMODAL',
       realOpenMode: 'POPUPMODAL',
       realTitle: '页面模板编辑视图_展示',
       refAppViewId: 'plmweb.stenciledit_view_show',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      openMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realTitle: '页面模板编辑视图',
+      refAppViewId: 'plmweb.stenciledit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -118,7 +118,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: 'E51D665C-5042-49A3-812F-DCC48EAF0919',
+      modelId: 'dbd88b988ba4be066de117a4a6baa17b',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'all_grid_viewtoolbar',
@@ -207,7 +207,7 @@ export default {
                   cssClass: 'fa fa-pencil-square-o',
                   glyph: 'xf044@FontAwesome',
                 },
-                id: 'u314af28',
+                id: 'u543f6bc',
               },
               {
                 actionLevel: 100,
@@ -222,7 +222,7 @@ export default {
                   cssClass: 'fa fa-trash-o',
                   glyph: 'xf014@FontAwesome',
                 },
-                id: 'u68d1cc0',
+                id: 'u6fac85a',
               },
             ],
             uniqueTag: 'Stencil__Usr0312219795',
@@ -324,7 +324,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: 'BECBBD47-879D-4AB0-B54D-9D1EAE9AE5B5',
+      modelId: '3ec62622afb2a986f7cbdc0baedc1538',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.stencil.all_grid_view_grid',
@@ -389,7 +389,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: '4E5B348C-7CD3-4CBD-A723-1EE5EA9426C2',
+      modelId: 'a1a293471fd5189f903227dbdbd23e22',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.stencil.all_grid_view_searchform',
@@ -434,7 +434,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '76aaf095ab7d2c63989b7ce998e0a816',
+  modelId: 'e7cc3d8339f132b7bc08547008e4c4aa',
   modelType: 'PSAPPDEVIEW',
   name: 'stencilall_grid_view',
   id: 'plmweb.stencilall_grid_view',

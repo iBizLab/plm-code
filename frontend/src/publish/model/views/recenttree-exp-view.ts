@@ -2,7 +2,7 @@ export default {
   showDataInfoBar: true,
   loadDefault: true,
   deviewCodeName: 'tree_exp_view',
-  deviewId: '31BC34FA-2251-4FFC-817B-37517ECAA585',
+  deviewId: 'e5f43803798efad33f04ad5169a3416f',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RECENT',
@@ -47,7 +47,7 @@ export default {
   ],
   controls: [
     {
-      appCounterRefId: '16d52c532eef4a7195e47893f7652493',
+      appCounterRefId: '07d5ede6359564bafce7f09f39d5934d',
       xdataControlName: 'treeexpbar_tree',
       enableCounter: true,
       showTitleBar: true,
@@ -64,8 +64,8 @@ export default {
             name: '我负责的事项',
             id: 'plmweb.base__my_charge_entry',
           },
-          tag: '16d52c532eef4a7195e47893f7652493',
-          id: '16d52c532eef4a7195e47893f7652493',
+          tag: '07d5ede6359564bafce7f09f39d5934d',
+          id: '07d5ede6359564bafce7f09f39d5934d',
         },
       ],
       appViewRefs: [
@@ -307,7 +307,7 @@ export default {
             id: 'treeexpbar_tree',
           },
           sysPFPluginId: 'list_tree',
-          modelId: '25654C0C-B1C5-4935-8527-3F764CBE1605',
+          modelId: 'f163082e0a78e6b46e973235d73308ee',
           modelType: 'PSDETREEVIEW',
           name: 'treeexpbar_tree',
           id: 'plmweb.recent.tree_exp_view_treeview',
@@ -319,7 +319,7 @@ export default {
       controlParam: {
         id: 'treeexpbar',
       },
-      modelId: '8e02cac412e804fd0cc48ab436614622_treeexpbar',
+      modelId: '01bc8b6f62152d12a02a02abb723a896_treeexpbar',
       modelType: 'PSEXPBAR',
       name: 'treeexpbar',
       id: 'tree_exp_viewtreeexpbar',
@@ -364,7 +364,7 @@ export default {
   viewType: 'DETREEEXPVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '8e02cac412e804fd0cc48ab436614622',
+  modelId: '01bc8b6f62152d12a02a02abb723a896',
   modelType: 'PSAPPDEVIEW',
   name: 'recenttree_exp_view',
   id: 'plmweb.recenttree_exp_view',

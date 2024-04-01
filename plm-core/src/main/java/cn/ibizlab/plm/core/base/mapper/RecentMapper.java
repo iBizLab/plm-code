@@ -81,6 +81,25 @@ public interface RecentMapper extends BaseMapper<Recent> {
     List<Recent> listRecentCurproductTicket(@Param("ctx") RecentSearchContext context, @Param("ew") Wrapper<Recent> wrapper);
 
     /**
+     * 数据集合Recent_curproject_child_work_item分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Recent> searchRecentCurprojectChildWorkItem(IPage<Recent> page, @Param("ctx") RecentSearchContext context, @Param("ew") Wrapper<Recent> wrapper);
+    
+    /**
+     * 数据集合Recent_curproject_child_work_item查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Recent> listRecentCurprojectChildWorkItem(@Param("ctx") RecentSearchContext context, @Param("ew") Wrapper<Recent> wrapper);
+
+    /**
      * 数据集合Recent_curproject_work_item分页查询
      * 
      * @param page

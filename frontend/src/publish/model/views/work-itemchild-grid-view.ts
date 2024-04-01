@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'child_grid_view',
-  deviewId: '8384F2E7-63FB-42FD-97A9-E130F5DA5C81',
+  deviewId: '62056a9176c167f70e72ea2b31abc89b',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -238,7 +238,7 @@ export default {
           singleSelect: true,
           pickupAppViewId: 'plmweb.work_itemchoose_child_view',
           appDEACModeId: 'create_child_work_item',
-          appDEDataSetId: 'fetchrecent_curproject_work_item',
+          appDEDataSetId: 'fetchrecent_curproject_child_work_item',
           appDataEntityId: 'plmweb.recent',
           uiactionGroup: {
             uiactionGroupDetails: [
@@ -255,7 +255,7 @@ export default {
                   cssClass: 'fa fa-plus',
                   glyph: 'xf067@FontAwesome',
                 },
-                id: 'u3cf7fcf',
+                id: 'ub171561',
               },
             ],
             uniqueTag: 'Recent__Usr0131214397',
@@ -269,6 +269,7 @@ export default {
             'srfnavparam.size': '20',
             'srfnavparam.principal_id': '%principal_id%',
             lastlabel: '更多工作项',
+            'srfnavparam.n_work_item_type_id_in': '%n_work_item_type_id_in%',
             AC: 'TRUE',
             'srfnavparam.project': '%project%',
             toplabel: '最近浏览',
@@ -292,6 +293,11 @@ export default {
               key: 'principal_id',
               value: 'principal_id',
               id: 'principal_id',
+            },
+            {
+              key: 'n_work_item_type_id_in',
+              value: 'n_work_item_type_id_in',
+              id: 'n_work_item_type_id_in',
             },
             {
               key: 'project',
@@ -326,11 +332,21 @@ export default {
     ],
     appViewLogics: [
       {
+        eventNames: 'onCreated',
+        logicTrigger: 'VIEWEVENT',
+        logicType: 'APPDEUILOGIC',
+        appDEUILogicId: 'calc_children_work_item_type_context',
+        appDataEntityId: 'plmweb.work_item',
+        builtinLogic: true,
+        name: 'LOGIC3',
+        id: 'logic3',
+      },
+      {
         eventNames: 'onMounted',
         logicTrigger: 'VIEWEVENT',
         logicType: 'SCRIPT',
         scriptCode:
-          "view.layoutPanel.panelItems.choose_data.state.visible = false;\n\n// 初始化默认隐藏表格\nview.layoutPanel.panelItems.grid.state.keepAlive = true;\nview.layoutPanel.panelItems.grid.state.visible = false;\nconst form = view.getController('form');\nconsole.log('项显示逻辑执行了')\nif (form) {\n    form.evt.on('onFormDetailEvent', event =>{\n        const panelItems = view.layoutPanel.panelItems;\n        if (!panelItems.comment) {\n            return;\n        }\n        if (event.formDetailName === 'tabpage1') {\n            panelItems.comment.state.visible = true;\n        } else {\n            panelItems.comment.state.visible = false;\n        }\n    });\n}\n\n// 初始化隐藏发送和清空按钮\nview.layoutPanel.panelItems.button_calluilogic1.state.visible = false\nview.layoutPanel.panelItems.button_calluilogic.state.visible = false",
+          "view.layoutPanel.panelItems.choose_data.state.visible = view.context.srfshowchoose || false;\n\n// 初始化默认隐藏表格\nview.layoutPanel.panelItems.grid.state.keepAlive = true;\nview.layoutPanel.panelItems.grid.state.visible = false;\nconst form = view.getController('form');\nconsole.log('项显示逻辑执行了');\nif (form) {\n    form.evt.on('onFormDetailEvent', event =>{\n        const panelItems = view.layoutPanel.panelItems;\n        if (!panelItems.comment) {\n            return;\n        }\n        if (event.formDetailName === 'tabpage1') {\n            panelItems.comment.state.visible = true;\n        } else {\n            panelItems.comment.state.visible = false;\n        }\n    });\n}\n\n// 初始化隐藏发送和清空按钮\nview.layoutPanel.panelItems.button_calluilogic1.state.visible = false\nview.layoutPanel.panelItems.button_calluilogic.state.visible = false",
         builtinLogic: true,
         id: 'viewmounted',
       },
@@ -413,6 +429,15 @@ export default {
     ],
     appViewRefs: [
       {
+        realTitle: '工作项编辑视图',
+        realTitleLanguageRes: {
+          lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
+        },
+        refAppViewId: 'plmweb.work_itemeditview',
+        name: 'NEWDATA',
+        id: 'newdata',
+      },
+      {
         openMode: 'POPUPMODAL',
         navigateContexts: [
           {
@@ -428,15 +453,6 @@ export default {
         name: 'EDITDATA',
         id: 'editdata',
       },
-      {
-        realTitle: '工作项编辑视图',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
-        },
-        refAppViewId: 'plmweb.work_itemeditview',
-        name: 'NEWDATA',
-        id: 'newdata',
-      },
     ],
     controls: [
       {
@@ -449,16 +465,6 @@ export default {
             valid: true,
             caption: '添加子工作项',
             itemType: 'DEUIACTION',
-            controlLogics: [
-              {
-                itemName: 'deuiaction1',
-                logicTag: 'toolbar',
-                logicType: 'SCRIPT',
-                scriptCode: '!context.is_delete',
-                triggerType: 'ITEMVISIBLE',
-                id: 'action',
-              },
-            ],
             sysImage: {
               cssClass: 'fa fa-plus',
               glyph: 'xf067@FontAwesome',
@@ -477,7 +483,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: 'AA0832BD-061F-42C2-9335-2D69306C0659',
+        modelId: '02e3c840fc5dedd8bf119f7ae8313b9a',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'child_grid_viewtoolbar',
@@ -595,7 +601,7 @@ export default {
                     cssClass: 'fa fa-unlink',
                     glyph: 'xf127@FontAwesome',
                   },
-                  id: 'u0232877',
+                  id: 'u0a620b7',
                 },
               ],
               uniqueTag: 'Work_item__Usr0201085943',
@@ -710,12 +716,6 @@ export default {
             id: 'sprint_id',
           },
           {
-            appDEFieldId: 'version_id',
-            valueType: 'SIMPLE',
-            dataType: 25,
-            id: 'version_id',
-          },
-          {
             appDEFieldId: 'board_id',
             valueType: 'SIMPLE',
             dataType: 25,
@@ -777,7 +777,7 @@ export default {
         sortMode: 'REMOTE',
         singleSelect: true,
         fetchControlAction: {
-          appDEMethodId: 'fetchnormal',
+          appDEMethodId: 'fetchcommon',
           appDataEntityId: 'plmweb.work_item',
           id: 'fetch',
         },
@@ -796,7 +796,7 @@ export default {
         controlParam: {
           id: 'grid',
         },
-        modelId: '51CB3E60-D99B-46E9-95FC-11EB414A6C18',
+        modelId: 'bac32d44bca19296079296cd667b9686',
         modelType: 'PSDEGRID',
         name: 'grid',
         id: 'plmweb.work_item.child_grid',
@@ -840,7 +840,7 @@ export default {
       },
     ],
     controlParam: {},
-    modelId: 'C2438752-7339-4BF0-B7CD-60F902338BDF',
+    modelId: 'd3369e41cb4c829a7b6fdfe5c1808058',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0131978974',
@@ -850,7 +850,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '9b61624fa61962e6f0e26d3ea8e368a1',
+  modelId: '4d0bb0fd6084366977c8464b26b53fe1',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemchild_grid_view',
   id: 'plmweb.work_itemchild_grid_view',

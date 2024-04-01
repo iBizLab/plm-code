@@ -204,7 +204,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: 'D3BEBC56-21F2-4AA9-82AF-7022A148D4F2',
+      modelId: 'e41e852d9312f34e7f2bb0440c569a25',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.project.choose_project_grid',

@@ -21,7 +21,6 @@ import io.swagger.annotations.*;
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import cn.ibizlab.plm.core.projmgmt.domain.Release;
-import cn.ibizlab.plm.core.projmgmt.domain.Version;
 
 /**
  * 发布阶段实体类[Stage]
@@ -102,16 +101,6 @@ public class Stage extends EntityMP implements Serializable
     private Date createTime;
 
     /**
-     * 发布标识
-     */
-    @TableField(value = "version_id")
-    @DEField(name = "version_id")
-    @JsonProperty("version_id")
-    @JSONField(name = "version_id")
-    @ApiModelProperty(value = "version_id", notes = "发布标识")
-    private String versionId;
-
-    /**
      * 项目发布标识
      */
     @TableField(value = "release_id")
@@ -132,30 +121,11 @@ public class Stage extends EntityMP implements Serializable
     private Release release;
 
     /**
-     * 版本（temp）
-     */
-    @JsonIgnore
-    @JSONField(serialize = false)
-    @TableField(exist = false)
-    @Transient
-    @ApiModelProperty(value = "version", notes = "发布阶段")
-    private Version version;
-
-    /**
      * 设置 [名称]
      */
     public Stage setName(String name) {
         this.name = name;
         this.modify("name", name);
-        return this;
-    }
-
-    /**
-     * 设置 [发布标识]
-     */
-    public Stage setVersionId(String versionId) {
-        this.versionId = versionId;
-        this.modify("version_id", versionId);
         return this;
     }
 

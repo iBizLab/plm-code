@@ -807,7 +807,7 @@ export default {
       caption: '打开日志列表',
       codeName: 'open_log_list',
       dialogResult: 'OK',
-      frontAppViewId: 'plmweb.article_pageloglistview',
+      frontAppViewId: 'plmweb.article_pageupdateed_logs',
       frontProcessType: 'TOP',
       fullCodeName: 'User_open_log_list',
       timeout: 60000,

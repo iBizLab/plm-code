@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'customer_re_ticket_grid_view',
-  deviewId: 'A7B44413-8414-4FD8-8E21-9D442A5C04D6',
+  deviewId: '299b1ed48856808c705a2fff7106a1b8',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TICKET',
@@ -260,7 +260,7 @@ export default {
                   cssClass: 'fa fa-plus',
                   glyph: 'xf067@FontAwesome',
                 },
-                id: 'u2d1c389',
+                id: 'uea2ee63',
               },
             ],
             uniqueTag: 'Recent__Usr0202267187',
@@ -335,7 +335,7 @@ export default {
         logicTrigger: 'VIEWEVENT',
         logicType: 'SCRIPT',
         scriptCode:
-          "view.layoutPanel.panelItems.choose_data.state.visible = false;\n\n// 初始化默认隐藏表格\nview.layoutPanel.panelItems.grid.state.keepAlive = true;\nview.layoutPanel.panelItems.grid.state.visible = false;\nconst form = view.getController('form');\nconsole.log('项显示逻辑执行了')\nif (form) {\n    form.evt.on('onFormDetailEvent', event =>{\n        const panelItems = view.layoutPanel.panelItems;\n        if (!panelItems.comment) {\n            return;\n        }\n        if (event.formDetailName === 'tabpage1') {\n            panelItems.comment.state.visible = true;\n        } else {\n            panelItems.comment.state.visible = false;\n        }\n    });\n}\n\n// 初始化隐藏发送和清空按钮\nview.layoutPanel.panelItems.button_calluilogic1.state.visible = false\nview.layoutPanel.panelItems.button_calluilogic.state.visible = false",
+          "view.layoutPanel.panelItems.choose_data.state.visible = view.context.srfshowchoose || false;\n\n// 初始化默认隐藏表格\nview.layoutPanel.panelItems.grid.state.keepAlive = true;\nview.layoutPanel.panelItems.grid.state.visible = false;\nconst form = view.getController('form');\nconsole.log('项显示逻辑执行了');\nif (form) {\n    form.evt.on('onFormDetailEvent', event =>{\n        const panelItems = view.layoutPanel.panelItems;\n        if (!panelItems.comment) {\n            return;\n        }\n        if (event.formDetailName === 'tabpage1') {\n            panelItems.comment.state.visible = true;\n        } else {\n            panelItems.comment.state.visible = false;\n        }\n    });\n}\n\n// 初始化隐藏发送和清空按钮\nview.layoutPanel.panelItems.button_calluilogic1.state.visible = false\nview.layoutPanel.panelItems.button_calluilogic.state.visible = false",
         builtinLogic: true,
         id: 'viewmounted',
       },
@@ -411,6 +411,15 @@ export default {
     ],
     appViewRefs: [
       {
+        realTitle: '工单编辑视图',
+        realTitleLanguageRes: {
+          lanResTag: 'PAGE.TITLE.TICKET.EDITVIEW',
+        },
+        refAppViewId: 'plmweb.ticketeditview',
+        name: 'NEWDATA',
+        id: 'newdata',
+      },
+      {
         openMode: 'POPUPMODAL',
         navigateContexts: [
           {
@@ -426,15 +435,6 @@ export default {
         name: 'EDITDATA',
         id: 'editdata',
       },
-      {
-        realTitle: '工单编辑视图',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.TICKET.EDITVIEW',
-        },
-        refAppViewId: 'plmweb.ticketeditview',
-        name: 'NEWDATA',
-        id: 'newdata',
-      },
     ],
     controls: [
       {
@@ -447,16 +447,6 @@ export default {
             valid: true,
             caption: '添加工单',
             itemType: 'DEUIACTION',
-            controlLogics: [
-              {
-                itemName: 'deuiaction2',
-                logicTag: 'toolbar',
-                logicType: 'SCRIPT',
-                scriptCode: '!context.is_delete',
-                triggerType: 'ITEMVISIBLE',
-                id: 'action',
-              },
-            ],
             sysImage: {
               cssClass: 'fa fa-plus',
               glyph: 'xf067@FontAwesome',
@@ -475,7 +465,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: '13AC8B51-935C-40E2-A413-A65AAB8B60C5',
+        modelId: 'f10a0d2bbfa55a784b66da9cacfb78dd',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'customer_re_ticket_grid_viewtoolbar',
@@ -572,7 +562,7 @@ export default {
                   uiactionId: 'customer_del_ticket@ticket',
                   showCaption: true,
                   showIcon: true,
-                  id: 'uc73d061',
+                  id: 'uef56f7c',
                 },
               ],
               uniqueTag: 'Ticket__Usr0204918890',
@@ -705,7 +695,7 @@ export default {
         controlParam: {
           id: 'grid',
         },
-        modelId: '8C4CB5EA-3256-438C-A417-95279029C263',
+        modelId: 'ba0a6e4b4314edbb001edc874f2cba35',
         modelType: 'PSDEGRID',
         name: 'grid',
         id: 'plmweb.ticket.customer_re_ticket_grid',
@@ -751,7 +741,7 @@ export default {
       },
     ],
     controlParam: {},
-    modelId: '5A982B25-4402-45A2-B736-EE8A9E915110',
+    modelId: 'abfbae627be34bee67ceaf5c148cefc0',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0112784663',
@@ -761,7 +751,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'e6bb1fa9b5d4fec5f2d7040f29d3a2c3',
+  modelId: 'c924faa7e2a04fbe18da6b5781e2fc0a',
   modelType: 'PSAPPDEVIEW',
   name: 'ticketcustomer_re_ticket_grid_view',
   id: 'plmweb.ticketcustomer_re_ticket_grid_view',

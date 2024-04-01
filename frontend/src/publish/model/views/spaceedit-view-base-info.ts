@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'form',
   loadDefault: true,
   deviewCodeName: 'edit_view_base_info',
-  deviewId: '4F5C917C-2F2B-4D0E-88E3-29F24DA5C338',
+  deviewId: '92de9919ed42f740b4b1ff98feecce6f',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SPACE',
@@ -117,6 +117,14 @@ export default {
                   appDEFieldId: 'identifier',
                   editor: {
                     maxLength: 15,
+                    sysValueRule: {
+                      codeName: 'UsrValueRule0312488358',
+                      regExCode: '^[A-Z0-9]{1,15}$',
+                      ruleInfo: '请填写大写字母和数字',
+                      ruleType: 'REG',
+                      name: '大写字母和数字',
+                      id: 'plmweb.usrvaluerule0312488358',
+                    },
                     editorType: 'TEXTBOX',
                     valueType: 'SIMPLE',
                     editable: true,
@@ -414,7 +422,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: 'D203C639-76B2-4CC9-A056-0E40ADEB80C8',
+      modelId: 'dbaca95726a3defcec35e9aaf84fa712',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.space.edit_view_base_info_form',
@@ -458,7 +466,7 @@ export default {
   viewType: 'DEEDITVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '2aaff0b503a349fade6a1c8d74ab8974',
+  modelId: 'b54a6e84f09751835d88e56c7ce1500c',
   modelType: 'PSAPPDEVIEW',
   name: 'spaceedit_view_base_info',
   id: 'plmweb.spaceedit_view_base_info',

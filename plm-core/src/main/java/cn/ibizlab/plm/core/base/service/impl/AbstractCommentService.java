@@ -215,6 +215,17 @@ public abstract class AbstractCommentService extends ServiceImpl<CommentMapper,C
         return true;
     }
 
+    public Page<Comment> searchAdvancedSearch(CommentSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Comment> pages=baseMapper.searchAdvancedSearch(context.getPages(),context,context.getSelectCond());
+        List<Comment> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Comment> listAdvancedSearch(CommentSearchContext context) {
+        List<Comment> list = baseMapper.listAdvancedSearch(context,context.getSelectCond());
+        return list;
+    }
+
     public Page<Comment> searchDefault(CommentSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Comment> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<Comment> list = pages.getRecords();

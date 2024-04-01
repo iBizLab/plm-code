@@ -2,7 +2,7 @@ export default {
   xdataControlName: 'list',
   loadDefault: true,
   deviewCodeName: 'HistoryListView',
-  deviewId: '3B807FD5-37F2-430B-A6B6-09FAE1DACE36',
+  deviewId: 'fbb0ae2ba2c1f30f14ee5dc3d0d24d16',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.ACTIVITIY',
@@ -481,7 +481,7 @@ export default {
         logicName: 'HISTORY_LIST_列表项面板',
         appDataEntityId: 'plmweb.activitiy',
         controlParam: {},
-        modelId: '34EC41FF-7A3B-4A42-AF85-352C7E8EC5D0',
+        modelId: '47611fb86ad8e99f21ec0c16773bd20b',
         modelType: 'PSSYSVIEWPANEL',
         name: 'list_itempanel',
         id: 'plmweb.activitiy.usr0218550985',
@@ -489,6 +489,17 @@ export default {
       minorSortDir: 'DESC',
       minorSortAppDEFieldId: 'update_time',
       delistDataItems: [
+        {
+          appDEFieldId: 'audittype',
+          dataType: 25,
+          id: 'audittype',
+        },
+        {
+          appDEFieldId: 'update_time',
+          dataType: 5,
+          format: 'YYYY-MM-DD HH:mm:ss',
+          id: 'update_time',
+        },
         {
           appDEFieldId: 'auditinfo',
           dataType: 21,
@@ -500,20 +511,9 @@ export default {
           id: 'oppersonname',
         },
         {
-          appDEFieldId: 'audittype',
-          dataType: 25,
-          id: 'audittype',
-        },
-        {
           appDEFieldId: 'objecttype',
           dataType: 25,
           id: 'objecttype',
-        },
-        {
-          appDEFieldId: 'update_time',
-          dataType: 5,
-          format: 'YYYY-MM-DD HH:mm:ss',
-          id: 'update_time',
         },
         {
           appDEFieldId: 'id',
@@ -565,7 +565,7 @@ export default {
       sysCss: {
         cssName: 'comment-list-height-auto',
       },
-      modelId: '00305D90-D9F0-4F68-9E24-38D62CCC6EBC',
+      modelId: '3d3e19d816ba90fd3ec7a6191578b33e',
       modelType: 'PSDELIST',
       name: 'list',
       id: 'plmweb.activitiy.history_list',
@@ -608,7 +608,7 @@ export default {
   viewType: 'DELISTVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '51559909a83be8c5c9dbccd9c29f592d',
+  modelId: 'a09dce0a598d8be807726cba248d769d',
   modelType: 'PSAPPDEVIEW',
   name: 'activitiyHistoryListView',
   id: 'plmweb.activitiyhistorylistview',

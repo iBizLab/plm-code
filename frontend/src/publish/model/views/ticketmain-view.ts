@@ -1,4 +1,5 @@
 export default {
+  markOpenDataMode: 'OPENDATA;EDITDATA;DISPLAYOPPERSON;NOTICERELOAD',
   showDataInfoBar: true,
   xdataControlName: 'form',
   loadDefault: true,
@@ -175,168 +176,187 @@ export default {
                           {
                             panelItems: [
                               {
-                                editor: {
-                                  editorParams: {
-                                    USERINSCRIPT:
-                                      'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
-                                    QUOTECODELISTMAP:
-                                      '{"type":"plmweb.base__recent_visite"}',
-                                    QUOTEFIELDMAP:
-                                      '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype"}',
-                                    QUOTEPARAMS:
-                                      '{"page":0,"size":20,"sort":"update_time,desc"}',
-                                    QUOTEINSCRIPT:
-                                      'value.replaceAll(/\\#\\{\\"id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\",\\"identifier\\":\\"(.+?)\\",\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })}).replaceAll(/\\#\\{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })})',
-                                    USERSCRIPT:
-                                      '`@{"id":"${data.id}","name":"${data.name}"}`',
-                                    QUOTESCRIPT:
-                                      '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","icon":"${data.icon}"}`',
-                                    REPLYSCRIPT:
-                                      'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>").replace(/#{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>")',
-                                    USERFIELDMAP:
-                                      '{"id":"user_id","name":"name"}',
-                                    USERURL:
-                                      '`products/${context.product}/product_members/fetchdefault`',
-                                    QUOTEURL: '`recents/fetchrecent_access`',
+                                panelItems: [
+                                  {
+                                    editor: {
+                                      editorParams: {
+                                        USERINSCRIPT:
+                                          'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                        QUOTECODELISTMAP:
+                                          '{"type":"plmweb.base__recent_visite"}',
+                                        QUOTEFIELDMAP:
+                                          '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype"}',
+                                        QUOTEPARAMS:
+                                          '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                        QUOTEINSCRIPT:
+                                          'value.replaceAll(/\\#\\{\\"id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\",\\"identifier\\":\\"(.+?)\\",\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })}).replaceAll(/\\#\\{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })})',
+                                        USERSCRIPT:
+                                          '`@{"id":"${data.id}","name":"${data.name}"}`',
+                                        QUOTESCRIPT:
+                                          '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","icon":"${data.icon}"}`',
+                                        REPLYSCRIPT:
+                                          'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>").replace(/#{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>")',
+                                        USERFIELDMAP:
+                                          '{"id":"user_id","name":"name"}',
+                                        USERURL:
+                                          '`products/${context.product}/product_members/fetchdefault`',
+                                        QUOTEURL:
+                                          '`recents/fetchrecent_access`',
+                                      },
+                                      editorStyle: 'COMMENT_PRODUCT',
+                                      editorType: 'HTMLEDITOR',
+                                      sysPFPluginId: 'comment',
+                                      predefinedType: 'FIELD_TEXT_DYNAMIC',
+                                      valueType: 'SIMPLE',
+                                      editable: true,
+                                      id: 'field_textbox',
+                                    },
+                                    allowEmpty: true,
+                                    caption: '文本(动态)',
+                                    itemStyle: 'DEFAULT',
+                                    itemType: 'FIELD',
+                                    layoutPos: {
+                                      grow: 10,
+                                      shrink: 1,
+                                      layout: 'FLEX',
+                                    },
+                                    id: 'field_textbox',
                                   },
-                                  editorStyle: 'COMMENT_PRODUCT',
-                                  editorType: 'HTMLEDITOR',
-                                  sysPFPluginId: 'comment',
-                                  predefinedType: 'FIELD_TEXT_DYNAMIC',
-                                  valueType: 'SIMPLE',
-                                  editable: true,
-                                  id: 'field_textbox',
+                                  {
+                                    actionType: 'UIACTION',
+                                    buttonStyle: 'INFO',
+                                    buttonType: 'PANELBUTTON',
+                                    uiactionId: 'clear_comment@comment',
+                                    renderMode: 'BUTTON',
+                                    tooltip: '取消',
+                                    uiactionTarget: 'NONE',
+                                    caption: '取消',
+                                    dynaClass:
+                                      "['ibiz-panel-button--comment__cancel']",
+                                    itemStyle: 'INFO',
+                                    itemType: 'BUTTON',
+                                    layoutPos: {
+                                      shrink: 0,
+                                      layout: 'FLEX',
+                                    },
+                                    panelItemGroupLogics: [
+                                      {
+                                        logicCat: 'PANELVISIBLE',
+                                        relatedItemNames: ['field_textbox'],
+                                        groupOP: 'AND',
+                                        panelItemLogics: [
+                                          {
+                                            condOp: 'ISNOTNULL',
+                                            dstModelField: 'FIELD_TEXTBOX',
+                                            logicType: 'SINGLE',
+                                            id: '逻辑项',
+                                          },
+                                        ],
+                                        logicType: 'GROUP',
+                                        id: '面板成员[comment_cancel][面板显示]逻辑',
+                                      },
+                                    ],
+                                    showCaption: true,
+                                    id: 'comment_cancel',
+                                  },
+                                  {
+                                    actionType: 'UIACTION',
+                                    buttonStyle: 'DEFAULT',
+                                    buttonType: 'PANELBUTTON',
+                                    uiactionId: 'send_comment@comment',
+                                    renderMode: 'BUTTON',
+                                    tooltip: '发送',
+                                    uiactionTarget: 'NONE',
+                                    caption: '发送',
+                                    dynaClass:
+                                      "['ibiz-panel-button--comment__send']",
+                                    itemStyle: 'DEFAULT',
+                                    itemType: 'BUTTON',
+                                    layoutPos: {
+                                      shrink: 0,
+                                      layout: 'FLEX',
+                                    },
+                                    panelItemGroupLogics: [
+                                      {
+                                        logicCat: 'PANELVISIBLE',
+                                        relatedItemNames: ['field_textbox'],
+                                        groupOP: 'AND',
+                                        panelItemLogics: [
+                                          {
+                                            condOp: 'ISNOTNULL',
+                                            dstModelField: 'FIELD_TEXTBOX',
+                                            logicType: 'SINGLE',
+                                            id: '逻辑项',
+                                          },
+                                        ],
+                                        logicType: 'GROUP',
+                                        id: '面板成员[comment_send][面板显示]逻辑',
+                                      },
+                                    ],
+                                    showCaption: true,
+                                    id: 'comment_send',
+                                  },
+                                  {
+                                    rawItem: {
+                                      sysImage: {
+                                        cssClass: 'fa fa-arrow-circle-o-right',
+                                        glyph: 'xf18e@FontAwesome',
+                                      },
+                                      contentType: 'IMAGE',
+                                      dynaClass:
+                                        "['ibiz-panel-button--comment__icon']",
+                                      sysCss: {
+                                        cssName: 'comment_icon',
+                                      },
+                                      predefinedType: 'STATIC_IMAGE',
+                                      rawItemHeight: 48,
+                                      id: 'comment_icon',
+                                    },
+                                    caption: '图片',
+                                    contentHeight: 48,
+                                    height: 48,
+                                    itemStyle: 'DEFAULT',
+                                    itemType: 'RAWITEM',
+                                    layoutPos: {
+                                      shrink: 0,
+                                      height: 48,
+                                      heightMode: 'PX',
+                                      layout: 'FLEX',
+                                    },
+                                    sysCss: {
+                                      cssName: 'comment_icon',
+                                    },
+                                    sysImage: {
+                                      cssClass: 'fa fa-arrow-circle-o-right',
+                                      glyph: 'xf18e@FontAwesome',
+                                    },
+                                    showCaption: true,
+                                    id: 'comment_icon',
+                                  },
+                                ],
+                                layout: {
+                                  dir: 'row',
+                                  layout: 'FLEX',
+                                  valign: 'flex-start',
                                 },
-                                allowEmpty: true,
-                                caption: '文本(动态)',
+                                dataRegionType: 'INHERIT',
+                                caption: '容器',
                                 itemStyle: 'DEFAULT',
-                                itemType: 'FIELD',
+                                itemType: 'CONTAINER',
                                 layoutPos: {
-                                  grow: 10,
                                   shrink: 1,
+                                  heightMode: 'FULL',
                                   layout: 'FLEX',
+                                  widthMode: 'FULL',
                                 },
-                                id: 'field_textbox',
-                              },
-                              {
-                                actionType: 'UIACTION',
-                                buttonStyle: 'INFO',
-                                buttonType: 'PANELBUTTON',
-                                uiactionId: 'clear_comment@comment',
-                                renderMode: 'BUTTON',
-                                tooltip: '取消',
-                                uiactionTarget: 'NONE',
-                                caption: '取消',
-                                dynaClass:
-                                  "['ibiz-panel-button--comment__cancel']",
-                                itemStyle: 'INFO',
-                                itemType: 'BUTTON',
-                                layoutPos: {
-                                  shrink: 0,
-                                  layout: 'FLEX',
-                                },
-                                panelItemGroupLogics: [
-                                  {
-                                    logicCat: 'PANELVISIBLE',
-                                    relatedItemNames: ['field_textbox'],
-                                    groupOP: 'AND',
-                                    panelItemLogics: [
-                                      {
-                                        condOp: 'ISNOTNULL',
-                                        dstModelField: 'FIELD_TEXTBOX',
-                                        logicType: 'SINGLE',
-                                        id: '逻辑项',
-                                      },
-                                    ],
-                                    logicType: 'GROUP',
-                                    id: '面板成员[comment_cancel][面板显示]逻辑',
-                                  },
-                                ],
-                                showCaption: true,
-                                id: 'comment_cancel',
-                              },
-                              {
-                                actionType: 'UIACTION',
-                                buttonStyle: 'DEFAULT',
-                                buttonType: 'PANELBUTTON',
-                                uiactionId: 'send_comment@comment',
-                                renderMode: 'BUTTON',
-                                tooltip: '发送',
-                                uiactionTarget: 'NONE',
-                                caption: '发送',
-                                dynaClass:
-                                  "['ibiz-panel-button--comment__send']",
-                                itemStyle: 'DEFAULT',
-                                itemType: 'BUTTON',
-                                layoutPos: {
-                                  shrink: 0,
-                                  layout: 'FLEX',
-                                },
-                                panelItemGroupLogics: [
-                                  {
-                                    logicCat: 'PANELVISIBLE',
-                                    relatedItemNames: ['field_textbox'],
-                                    groupOP: 'AND',
-                                    panelItemLogics: [
-                                      {
-                                        condOp: 'ISNOTNULL',
-                                        dstModelField: 'FIELD_TEXTBOX',
-                                        logicType: 'SINGLE',
-                                        id: '逻辑项',
-                                      },
-                                    ],
-                                    logicType: 'GROUP',
-                                    id: '面板成员[comment_send][面板显示]逻辑',
-                                  },
-                                ],
-                                showCaption: true,
-                                id: 'comment_send',
-                              },
-                              {
-                                rawItem: {
-                                  sysImage: {
-                                    cssClass: 'fa fa-arrow-circle-o-right',
-                                    glyph: 'xf18e@FontAwesome',
-                                  },
-                                  contentType: 'IMAGE',
-                                  dynaClass:
-                                    "['ibiz-panel-button--comment__icon']",
-                                  sysCss: {
-                                    cssName: 'comment_icon',
-                                  },
-                                  predefinedType: 'STATIC_IMAGE',
-                                  rawItemHeight: 48,
-                                  id: 'comment_icon',
-                                },
-                                caption: '图片',
-                                contentHeight: 48,
-                                height: 48,
-                                itemStyle: 'DEFAULT',
-                                itemType: 'RAWITEM',
-                                layoutPos: {
-                                  shrink: 0,
-                                  height: 48,
-                                  heightMode: 'PX',
-                                  layout: 'FLEX',
-                                },
-                                sysCss: {
-                                  cssName: 'comment_icon',
-                                },
-                                sysImage: {
-                                  cssClass: 'fa fa-arrow-circle-o-right',
-                                  glyph: 'xf18e@FontAwesome',
-                                },
-                                showCaption: true,
-                                id: 'comment_icon',
+                                id: 'container_comment',
                               },
                             ],
                             layout: {
-                              dir: 'row',
+                              dir: 'column',
                               layout: 'FLEX',
-                              valign: 'flex-start',
                             },
                             dataRegionType: 'INHERIT',
-                            caption: '容器',
                             itemStyle: 'DEFAULT',
                             itemType: 'CONTAINER',
                             layoutPos: {
@@ -345,40 +365,228 @@ export default {
                               layout: 'FLEX',
                               widthMode: 'FULL',
                             },
-                            id: 'container_comment',
+                            id: 'page_container',
                           },
                         ],
+                        predefinedType: 'PANELPART',
                         layout: {
-                          dir: 'column',
                           layout: 'FLEX',
                         },
                         dataRegionType: 'INHERIT',
+                        caption: '引用布局面板',
                         itemStyle: 'DEFAULT',
                         itemType: 'CONTAINER',
                         layoutPos: {
-                          colMD: 24,
-                          heightMode: 'FULL',
-                          layout: 'TABLE_24COL',
-                          widthMode: 'FULL',
+                          shrink: 0,
+                          layout: 'FLEX',
                         },
-                        id: 'page_container',
+                        showCaption: true,
+                        id: 'panelpart',
                       },
                     ],
-                    predefinedType: 'PANELPART',
                     layout: {
-                      columnCount: 24,
-                      layout: 'TABLE_24COL',
+                      layout: 'FLEX',
                     },
                     dataRegionType: 'INHERIT',
-                    caption: '引用布局面板',
+                    caption: '容器',
                     itemStyle: 'DEFAULT',
                     itemType: 'CONTAINER',
                     layoutPos: {
                       colMD: 24,
                       layout: 'TABLE_24COL',
                     },
-                    showCaption: true,
-                    id: 'panelpart',
+                    id: 'container2',
+                  },
+                  {
+                    panelItems: [
+                      {
+                        panelItems: [
+                          {
+                            panelItems: [
+                              {
+                                panelItems: [
+                                  {
+                                    editor: {
+                                      editorParams: {
+                                        DEFAULTCOLLAPSE: 'true',
+                                        USERINSCRIPT:
+                                          'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                        QUOTECODELISTMAP:
+                                          '{"type":"plmweb.base__recent_visite"}',
+                                        QUOTEFIELDMAP:
+                                          '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype"}',
+                                        QUOTEPARAMS:
+                                          '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                        QUOTEINSCRIPT:
+                                          'value.replaceAll(/\\#\\{\\"id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\",\\"identifier\\":\\"(.+?)\\",\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })}).replaceAll(/\\#\\{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })})',
+                                        USERSCRIPT:
+                                          '`@{"id":"${data.id}","name":"${data.name}"}`',
+                                        QUOTESCRIPT:
+                                          '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","icon":"${data.icon}"}`',
+                                        REPLYSCRIPT:
+                                          'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>").replace(/#{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>")',
+                                        USERFIELDMAP:
+                                          '{"id":"user_id","name":"name"}',
+                                        USERURL:
+                                          '`products/${context.product}/product_members/fetchdefault`',
+                                        QUOTEURL:
+                                          '`recents/fetchrecent_access`',
+                                      },
+                                      editorStyle: 'COMMENT_PRODUCT',
+                                      editorType: 'HTMLEDITOR',
+                                      sysPFPluginId: 'comment',
+                                      predefinedType: 'FIELD_TEXT_DYNAMIC',
+                                      valueType: 'SIMPLE',
+                                      editable: true,
+                                      id: 'client_field_textbox',
+                                    },
+                                    allowEmpty: true,
+                                    caption: '文本(动态)',
+                                    itemStyle: 'DEFAULT',
+                                    itemType: 'FIELD',
+                                    layoutPos: {
+                                      grow: 10,
+                                      shrink: 1,
+                                      layout: 'FLEX',
+                                    },
+                                    id: 'client_field_textbox',
+                                  },
+                                  {
+                                    actionType: 'UIACTION',
+                                    buttonStyle: 'INFO',
+                                    buttonType: 'PANELBUTTON',
+                                    uiactionId: 'clear_comment_client@comment',
+                                    renderMode: 'BUTTON',
+                                    tooltip: '取消',
+                                    uiactionTarget: 'NONE',
+                                    caption: '取消',
+                                    dynaClass:
+                                      "['ibiz-panel-button--comment__cancel']",
+                                    itemStyle: 'INFO',
+                                    itemType: 'BUTTON',
+                                    layoutPos: {
+                                      shrink: 0,
+                                      layout: 'FLEX',
+                                    },
+                                    showCaption: true,
+                                    id: 'client_comment_cancel',
+                                  },
+                                  {
+                                    actionType: 'UIACTION',
+                                    buttonStyle: 'DEFAULT',
+                                    buttonType: 'PANELBUTTON',
+                                    uiactionId:
+                                      'send_comment_customer_comment@comment',
+                                    renderMode: 'BUTTON',
+                                    tooltip: '发送',
+                                    uiactionTarget: 'NONE',
+                                    caption: '发送',
+                                    dynaClass:
+                                      "['ibiz-panel-button--comment__send']",
+                                    itemStyle: 'DEFAULT',
+                                    itemType: 'BUTTON',
+                                    layoutPos: {
+                                      shrink: 0,
+                                      layout: 'FLEX',
+                                    },
+                                    showCaption: true,
+                                    id: 'client_comment_send',
+                                  },
+                                ],
+                                layout: {
+                                  dir: 'row',
+                                  layout: 'FLEX',
+                                  valign: 'flex-start',
+                                },
+                                dataRegionType: 'INHERIT',
+                                caption: '容器',
+                                itemStyle: 'DEFAULT',
+                                itemType: 'CONTAINER',
+                                layoutPos: {
+                                  shrink: 1,
+                                  heightMode: 'FULL',
+                                  layout: 'FLEX',
+                                  widthMode: 'FULL',
+                                },
+                                id: 'client_container_comment',
+                              },
+                            ],
+                            layout: {
+                              dir: 'column',
+                              layout: 'FLEX',
+                            },
+                            dataRegionType: 'INHERIT',
+                            itemStyle: 'DEFAULT',
+                            itemType: 'CONTAINER',
+                            layoutPos: {
+                              shrink: 1,
+                              heightMode: 'FULL',
+                              layout: 'FLEX',
+                              widthMode: 'FULL',
+                            },
+                            id: 'client_container',
+                          },
+                        ],
+                        predefinedType: 'PANELPART',
+                        layout: {
+                          layout: 'FLEX',
+                        },
+                        dataRegionType: 'INHERIT',
+                        caption: '引用布局面板',
+                        itemStyle: 'DEFAULT',
+                        itemType: 'CONTAINER',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        panelItemGroupLogics: [
+                          {
+                            logicCat: 'PANELVISIBLE',
+                            groupOP: 'AND',
+                            panelItemLogics: [
+                              {
+                                condOp: 'EQ',
+                                logicType: 'SINGLE',
+                                id: '逻辑项',
+                              },
+                            ],
+                            logicType: 'GROUP',
+                            id: '面板成员[client_panelpart1][面板显示]逻辑',
+                          },
+                        ],
+                        showCaption: true,
+                        id: 'client_panelpart1',
+                      },
+                    ],
+                    layout: {
+                      layout: 'FLEX',
+                    },
+                    dataRegionType: 'INHERIT',
+                    caption: '容器',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'CONTAINER',
+                    layoutPos: {
+                      colMD: 24,
+                      layout: 'TABLE_24COL',
+                    },
+                    panelItemGroupLogics: [
+                      {
+                        logicCat: 'PANELVISIBLE',
+                        relatedItemNames: ['show_client_container'],
+                        groupOP: 'AND',
+                        panelItemLogics: [
+                          {
+                            condOp: 'ISNOTNULL',
+                            dstModelField: 'SHOW_CLIENT_CONTAINER',
+                            logicType: 'SINGLE',
+                            id: '逻辑项',
+                          },
+                        ],
+                        logicType: 'GROUP',
+                        id: '面板成员[client_panel_container][面板显示]逻辑',
+                      },
+                    ],
+                    id: 'client_panel_container',
                   },
                 ],
                 layout: {
@@ -522,6 +730,25 @@ export default {
         },
         id: 'view_content',
       },
+      {
+        editor: {
+          editorType: 'HIDDEN',
+          predefinedType: 'FIELD_TEXTBOX',
+          valueType: 'SIMPLE',
+          editable: true,
+          id: 'show_client_container',
+        },
+        allowEmpty: true,
+        hidden: true,
+        caption: '文本框',
+        itemStyle: 'DEFAULT',
+        itemType: 'FIELD',
+        layoutPos: {
+          shrink: 1,
+          layout: 'FLEX',
+        },
+        id: 'show_client_container',
+      },
     ],
     layoutPanel: true,
     appViewEngines: [
@@ -545,7 +772,7 @@ export default {
     ],
     controls: [
       {
-        autoSaveMode: 1,
+        autoSaveMode: 3,
         createControlAction: {
           appDEMethodId: 'create',
           appDataEntityId: 'plmweb.ticket',
@@ -561,7 +788,7 @@ export default {
           id: 'loaddraft',
         },
         getControlAction: {
-          appDEMethodId: 'get',
+          appDEMethodId: 'test_get_archived_info',
           appDataEntityId: 'plmweb.ticket',
           id: 'load',
         },
@@ -608,7 +835,6 @@ export default {
                       editable: true,
                       id: 'title',
                     },
-                    allowEmpty: true,
                     caption: '标题',
                     codeName: 'title',
                     detailStyle: 'DEFAULT',
@@ -619,6 +845,118 @@ export default {
                       layout: 'TABLE_24COL',
                     },
                     id: 'title',
+                  },
+                  {
+                    actionGroupExtractMode: 'ITEM',
+                    layout: {
+                      align: 'flex-start',
+                      dir: 'row',
+                      layout: 'FLEX',
+                      valign: 'center',
+                    },
+                    deformDetails: [
+                      {
+                        rawItem: {
+                          sysImage: {
+                            cssClass: 'fa fa-warning',
+                            glyph: 'xf071@FontAwesome',
+                          },
+                          contentType: 'IMAGE',
+                          id: 'rawitem1',
+                        },
+                        codeName: 'rawitem1',
+                        detailStyle: 'DEFAULT',
+                        detailType: 'RAWITEM',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        sysImage: {
+                          cssClass: 'fa fa-warning',
+                          glyph: 'xf071@FontAwesome',
+                        },
+                        showCaption: true,
+                        id: 'rawitem1',
+                      },
+                      {
+                        dataType: 25,
+                        enableCond: 3,
+                        labelPos: 'NONE',
+                        noPrivDisplayMode: 1,
+                        editor: {
+                          halign: 'LEFT',
+                          valign: 'MIDDLE',
+                          wrapMode: 'NOWRAP',
+                          editorType: 'SPAN',
+                          valueType: 'SIMPLE',
+                          editable: true,
+                          id: 'archived_info',
+                        },
+                        allowEmpty: true,
+                        emptyCaption: true,
+                        codeName: 'archived_info',
+                        detailStyle: 'DEFAULT',
+                        detailType: 'FORMITEM',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        id: 'archived_info',
+                      },
+                      {
+                        dataType: 9,
+                        enableCond: 3,
+                        labelPos: 'LEFT',
+                        labelWidth: 130,
+                        noPrivDisplayMode: 1,
+                        appDEFieldId: 'is_archived',
+                        editor: {
+                          editorType: 'HIDDEN',
+                          valueType: 'SIMPLE',
+                          editable: true,
+                          id: 'is_archived',
+                        },
+                        allowEmpty: true,
+                        emptyCaption: true,
+                        hidden: true,
+                        codeName: 'is_archived',
+                        detailStyle: 'DEFAULT',
+                        detailType: 'FORMITEM',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        showCaption: true,
+                        id: 'is_archived',
+                      },
+                    ],
+                    caption: '提示区',
+                    codeName: 'grouppanel1',
+                    detailStyle: 'DEFAULT',
+                    detailType: 'GROUPPANEL',
+                    defdgroupLogics: [
+                      {
+                        logicCat: 'PANELVISIBLE',
+                        relatedDetailNames: ['is_archived'],
+                        groupOP: 'AND',
+                        defdlogics: [
+                          {
+                            condOP: 'EQ',
+                            defdname: 'is_archived',
+                            value: '1',
+                            logicType: 'SINGLE',
+                          },
+                        ],
+                        logicType: 'GROUP',
+                        id: '表单成员[grouppanel1][面板显示]逻辑',
+                      },
+                    ],
+                    layoutPos: {
+                      colLG: 24,
+                      colMD: 24,
+                      layout: 'TABLE_24COL',
+                    },
+                    id: 'grouppanel1',
                   },
                   {
                     dataType: 25,
@@ -649,7 +987,7 @@ export default {
                               cssClass: 'fa fa-user-md',
                               glyph: 'xf0f0@FontAwesome',
                             },
-                            id: 'u653ff49',
+                            id: 'u4befff7',
                           },
                         ],
                         uniqueTag: 'Product_member__Usr0311005787',
@@ -864,7 +1202,7 @@ export default {
                                     USERFIELDMAP:
                                       '{"id":"user_id","name":"name"}',
                                     INSERTKEYS:
-                                      '[{"index":66,"keys":["marker"]}]',
+                                      '[{"index":66,"keys":["marker"]},{"index":5,"keys":["paintformat"]}]',
                                     QUOTEURL: '`recents/fetchrecent_access`',
                                   },
                                   editorStyle: 'COLLAPSE',
@@ -914,7 +1252,7 @@ export default {
                                     cssClass: 'fa fa-plus',
                                     glyph: 'xf067@FontAwesome',
                                   },
-                                  id: 'uadd40ac',
+                                  id: 'ufce83c9',
                                 },
                               ],
                               uniqueTag: 'Ticket__Usr0110243653',
@@ -1009,7 +1347,7 @@ export default {
                                               cssClass: 'fa fa-download',
                                               glyph: 'xf019@FontAwesome',
                                             },
-                                            id: 'u0b42a77',
+                                            id: 'u73b8ba5',
                                           },
                                           {
                                             actionLevel: 100,
@@ -1025,7 +1363,7 @@ export default {
                                               cssClass: 'fa fa-trash-o',
                                               glyph: 'xf014@FontAwesome',
                                             },
-                                            id: 'u8aff03a',
+                                            id: 'u44d00e2',
                                           },
                                         ],
                                         uniqueTag: 'Attachment__Usr0103721999',
@@ -1667,13 +2005,13 @@ export default {
                         noPrivDisplayMode: 1,
                         appDEFieldId: 'channel',
                         editor: {
-                          maxLength: 100,
-                          editorType: 'TEXTBOX',
+                          editorType: 'HIDDEN',
                           valueType: 'SIMPLE',
                           editable: true,
                           id: 'channel',
                         },
                         allowEmpty: true,
+                        hidden: true,
                         caption: '渠道',
                         codeName: 'channel',
                         detailStyle: 'DEFAULT',
@@ -1788,7 +2126,7 @@ export default {
                                   cssClass: 'fa fa-user-md',
                                   glyph: 'xf0f0@FontAwesome',
                                 },
-                                id: 'u653ff49',
+                                id: 'u4befff7',
                               },
                             ],
                             uniqueTag: 'Product_member__Usr0311005787',
@@ -2191,8 +2529,8 @@ export default {
               name: '产品工单关联分页计数器',
               id: 'plmweb.product_ticket_re_counters',
             },
-            tag: '7f53f6259a2c319e8efc3afef14357d7',
-            id: '7f53f6259a2c319e8efc3afef14357d7',
+            tag: 'f0644c4cea5377a9ed058ba47b49df60',
+            id: 'f0644c4cea5377a9ed058ba47b49df60',
           },
         ],
         codeName: 'Main',
@@ -2250,11 +2588,11 @@ export default {
       },
       {
         eventNames: 'onBlur',
-        itemName: 'FIELD_TEXTBOX',
+        itemName: 'CLIENT_FIELD_TEXTBOX',
         logicTag: 'layoutpanel',
-        logicType: 'APPDEUILOGIC',
-        appDEUILogicId: 'comment_icon_hidden',
-        appDataEntityId: 'plmweb.comment',
+        logicType: 'SCRIPT',
+        scriptCode:
+          'const value = data[0];\r\nif (value && !value.client_field_textbox) {\r\n   view.layoutPanel.panelItems.client_panel_container.state.visible = false;\r\n}',
         triggerType: 'CTRLEVENT',
         name: 'onBlur',
         id: 'onblur',
@@ -2272,7 +2610,7 @@ export default {
       },
     ],
     controlParam: {},
-    modelId: '59C6F36B-1B0E-4339-94AD-1C1FC86E3998',
+    modelId: '918b875053f0056ab1c5a74cf1083f1d',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0116931148',

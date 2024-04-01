@@ -12,6 +12,8 @@ import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
 import cn.ibizlab.plm.core.base.domain.Relation;
 import cn.ibizlab.plm.core.base.filter.RelationSearchContext;
+import cn.ibizlab.plm.core.base.domain.Baseline;
+import cn.ibizlab.plm.core.testmgmt.domain.Review;
 import cn.ibizlab.plm.core.testmgmt.domain.TestPlan;
 
 /**
@@ -229,8 +231,24 @@ public interface RelationService extends IService<Relation> {
      * @return
      */
     default boolean saveByPrincipalId(String principalId,List<Relation> list) {
-        return getSelf().saveByTestPlan(new TestPlan().setId(principalId),list);
+        return getSelf().saveByBaseline(new Baseline().setId(principalId),list);
     }
+    /**
+    * saveRelByBaseline
+    * @param baseline
+    * @param list
+    * @return
+    */
+    boolean saveByBaseline(Baseline baseline,List<Relation> list);
+
+    /**
+    * saveRelByReview
+    * @param review
+    * @param list
+    * @return
+    */
+    boolean saveByReview(Review review,List<Relation> list);
+
     /**
     * saveRelByTestPlan
     * @param testPlan

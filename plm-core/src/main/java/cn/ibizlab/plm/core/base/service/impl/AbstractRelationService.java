@@ -24,6 +24,10 @@ import com.baomidou.mybatisplus.core.enums.SqlMethod;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import cn.ibizlab.plm.core.base.domain.Baseline;
+import cn.ibizlab.plm.core.base.service.BaselineService;
+import cn.ibizlab.plm.core.testmgmt.domain.Review;
+import cn.ibizlab.plm.core.testmgmt.service.ReviewService;
 import cn.ibizlab.plm.core.testmgmt.domain.TestPlan;
 import cn.ibizlab.plm.core.testmgmt.service.TestPlanService;
 
@@ -34,6 +38,14 @@ import cn.ibizlab.plm.core.testmgmt.service.TestPlanService;
  */
 @Slf4j
 public abstract class AbstractRelationService extends ServiceImpl<RelationMapper,Relation> implements RelationService {
+
+    @Autowired
+    @Lazy
+    protected BaselineService baselineService;
+
+    @Autowired
+    @Lazy
+    protected ReviewService reviewService;
 
     @Autowired
     @Lazy
@@ -58,6 +70,12 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
     }
 
     public void fillParentData(Relation et) {
+        if(Entities.BASELINE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setPrincipalId((String)et.getContextParentKey());
+        }
+        if(Entities.REVIEW.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setPrincipalId((String)et.getContextParentKey());
+        }
         if(Entities.TEST_PLAN.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
             et.setPrincipalId((String)et.getContextParentKey());
         }
@@ -181,6 +199,68 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
 
     public boolean resetByPrincipalId(String principalId) {
         return this.update(Wrappers.<Relation>lambdaUpdate().eq(Relation::getPrincipalId,principalId));
+    }
+
+    public boolean saveByBaseline(Baseline baseline,List<Relation> list) {
+        if(list==null)
+            return true;
+        Map<String,Relation> before = findByPrincipalId(baseline.getId()).stream().collect(Collectors.toMap(Relation::getId,e->e));
+        List<Relation> update = new ArrayList<>();
+        List<Relation> create = new ArrayList<>();
+
+        for(Relation sub:list) {
+            sub.setPrincipalId(baseline.getId());
+            sub.setBaseline(baseline);
+            if(ObjectUtils.isEmpty(sub.getId()))
+                before.values().stream()
+                        .filter(e->ObjectUtils.nullSafeEquals(sub.getDefaultKey(true),e.getDefaultKey(true)))
+                        .findFirst().ifPresent(e->sub.setId(e.getId()));
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().createBatch(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+            return false;
+        else
+            return true;
+    }
+
+    public boolean saveByReview(Review review,List<Relation> list) {
+        if(list==null)
+            return true;
+        Map<String,Relation> before = findByPrincipalId(review.getId()).stream().collect(Collectors.toMap(Relation::getId,e->e));
+        List<Relation> update = new ArrayList<>();
+        List<Relation> create = new ArrayList<>();
+
+        for(Relation sub:list) {
+            sub.setPrincipalId(review.getId());
+            sub.setReview(review);
+            if(ObjectUtils.isEmpty(sub.getId()))
+                before.values().stream()
+                        .filter(e->ObjectUtils.nullSafeEquals(sub.getDefaultKey(true),e.getDefaultKey(true)))
+                        .findFirst().ifPresent(e->sub.setId(e.getId()));
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().createBatch(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+            return false;
+        else
+            return true;
     }
 
     public boolean saveByTestPlan(TestPlan testPlan,List<Relation> list) {

@@ -72,6 +72,10 @@ public class RelationSearchContext extends QueryWrapperContext<Relation> {
     @Override
     public void setContextParentKey(Serializable contextParentKey) {
         super.setContextParentKey(contextParentKey);
+        if(Entities.BASELINE.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("principal_id",contextParentKey);
+        if(Entities.REVIEW.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("principal_id",contextParentKey);
         if(Entities.TEST_PLAN.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("principal_id",contextParentKey);
     }

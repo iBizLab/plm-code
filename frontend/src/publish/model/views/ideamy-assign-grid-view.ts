@@ -4,7 +4,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'my_assign_grid_view',
-  deviewId: '158D8FCC-8E4B-4779-8069-9DDD4EEF81EB',
+  deviewId: 'bc9b95dbe58cb046b25e7416583e31a0',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.IDEA',
@@ -85,16 +85,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '需求编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.IDEA.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.ideaeditview',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       openMode: 'INDEXVIEWTAB_POPUPMODAL',
       navigateContexts: [
         {
@@ -113,6 +103,16 @@ export default {
       name: 'EDITDATA',
       id: 'editdata',
     },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '需求编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.IDEA.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.ideaeditview',
+      name: 'NEWDATA',
+      id: 'newdata',
+    },
   ],
   controls: [
     {
@@ -129,6 +129,9 @@ export default {
           valueType: 'SIMPLE',
           aggMode: 'NONE',
           align: 'LEFT',
+          capLanguageRes: {
+            lanResTag: 'DEF.LNAME.SHOW_IDENTIFIER',
+          },
           caption: '编号',
           codeName: 'show_identifier',
           columnType: 'DEFGRIDCOLUMN',
@@ -312,7 +315,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: 'C8E51B57-76CE-44F5-9FDA-8FFD3D31C09A',
+      modelId: '8417c7c9d0c9bccd269c4e19a50e2670',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.idea.my_idea_grid',
@@ -341,6 +344,10 @@ export default {
                 id: 'n_show_identifier_like',
               },
               allowEmpty: true,
+              capLanguageRes: {
+                lanResTag:
+                  'CONTROL.DEFORM.IDEA.USR12263500_SEARCHFORM.FORMITEM.N_SHOW_IDENTIFIER_LIKE',
+              },
               caption: '编号',
               codeName: 'n_show_identifier_like',
               detailStyle: 'DEFAULT',
@@ -399,7 +406,8 @@ export default {
               allowEmpty: true,
               needCodeListConfig: true,
               capLanguageRes: {
-                lanResTag: 'CONTROL.DEFSFITEM.IDEA.N_STATE_EQ',
+                lanResTag:
+                  'CONTROL.DEFORM.IDEA.USR12263500_SEARCHFORM.FORMITEM.N_STATE_EQ',
               },
               caption: '状态',
               codeName: 'n_state_eq',
@@ -446,7 +454,8 @@ export default {
               },
               allowEmpty: true,
               capLanguageRes: {
-                lanResTag: 'CONTROL.DEFSFITEM.IDEA.N_PRODUCT_NAME_EQ',
+                lanResTag:
+                  'CONTROL.DEFORM.IDEA.USR12263500_SEARCHFORM.FORMITEM.N_PRODUCT_NAME_EQ',
               },
               caption: '所属产品',
               codeName: 'n_product_name_eq',
@@ -511,7 +520,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: '807435FE-97D8-4B83-8FC5-2544177737EC',
+      modelId: '205868a8309156105483df42deb57400',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.idea.usr12263500_searchform',
@@ -550,11 +559,14 @@ export default {
     id: 'layoutpanel',
   },
   title: '我负责的需求',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.IDEA.MY_ASSIGN_GRID_VIEW',
+  },
   viewStyle: 'DEFAULT',
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '0f7fdc4bec138f10d28036d16c9bd264',
+  modelId: '5952cbdd88bbdfebd88e7c21c7879541',
   modelType: 'PSAPPDEVIEW',
   name: 'ideamy_assign_grid_view',
   id: 'plmweb.ideamy_assign_grid_view',

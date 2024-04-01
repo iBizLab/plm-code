@@ -179,6 +179,21 @@ public interface AttachmentService extends IService<Attachment> {
     }
 
     /**
+     * searchAdvanced_search
+     * 
+     * @param context
+     * @return
+     */
+    Page<Attachment> searchAdvancedSearch(AttachmentSearchContext context);
+    /**
+     * listAdvanced_search
+     * 
+     * @param context
+     * @return
+     */
+    List<Attachment> listAdvancedSearch(AttachmentSearchContext context);
+
+    /**
      * searchDefault
      * 
      * @param context

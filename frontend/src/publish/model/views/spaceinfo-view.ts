@@ -4,7 +4,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'info_view',
-  deviewId: '43BEB857-6B9C-44FC-90C7-8DC80D908DD3',
+  deviewId: '5d75e91863ad12d7809c977104178582',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'PAGE.CAPTION.SPACE.INFO_VIEW',
@@ -85,7 +85,7 @@ export default {
                   capLanguageRes: {
                     lanResTag: 'CONTROL.DEFORM.SPACE.MAIN.FORMITEM.NAME',
                   },
-                  caption: '名称',
+                  caption: '空间名称',
                   codeName: 'name',
                   detailStyle: 'DEFAULT',
                   detailType: 'FORMITEM',
@@ -261,7 +261,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '0f646efa3092431a0a36d759d0d4bb55',
+      modelId: 'f465e063a4a325e393b1291fd7afca8e',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.space.main',
@@ -309,7 +309,7 @@ export default {
   width: 700,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '7d17bc6311e6a71beb1be0d39f8e51ca',
+  modelId: '711c7f776a65e869f5652aeb8cf45f4c',
   modelType: 'PSAPPDEVIEW',
   name: 'spaceinfo_view',
   id: 'plmweb.spaceinfo_view',

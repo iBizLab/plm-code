@@ -1,7 +1,7 @@
 export default {
   openMode: 'POPUPMODAL',
   deviewCodeName: 'create_wizard_view',
-  deviewId: 'C576627F-41B6-4029-B362-AA9901E96153',
+  deviewId: 'ee839811051ab4eb472d8ae5b2c49e65',
   accUserMode: 2,
   caption: '新建产品',
   codeName: 'productcreate_wizard_view',
@@ -208,6 +208,14 @@ export default {
                       appDEFieldId: 'identifier',
                       editor: {
                         maxLength: 15,
+                        sysValueRule: {
+                          codeName: 'UsrValueRule0312488358',
+                          regExCode: '^[A-Z0-9]{1,15}$',
+                          ruleInfo: '请填写大写字母和数字',
+                          ruleType: 'REG',
+                          name: '大写字母和数字',
+                          id: 'plmweb.usrvaluerule0312488358',
+                        },
                         editorType: 'TEXTBOX',
                         placeHolder: '大写字母和数字，15个字符范围内',
                         valueType: 'SIMPLE',
@@ -347,7 +355,7 @@ export default {
           controlParam: {
             id: 'wizardpanel_form_fill_info',
           },
-          modelId: '9E58FEA7-AEF7-4E1D-96FD-9946CA6EB027',
+          modelId: '3e30f1bb347b1b2c190f3cc21cee46c5',
           modelType: 'PSDEFORM_EDITFORM',
           name: 'wizardpanel_form_fill_info',
           id: 'plmweb.product.wizard_create',
@@ -694,7 +702,7 @@ export default {
           controlParam: {
             id: 'wizardpanel_form_bind_member',
           },
-          modelId: '9B5025C4-5388-45DD-B3E1-BFCE5C52338E',
+          modelId: 'c70ad34546c9ceec2ee1335ebd7d2093',
           modelType: 'PSDEFORM_EDITFORM',
           name: 'wizardpanel_form_bind_member',
           id: 'plmweb.product.wizard_member_bind',
@@ -749,7 +757,7 @@ export default {
       controlParam: {
         id: 'wizardpanel',
       },
-      modelId: 'FC79594F-1110-43D1-8D8B-27FFD82E3C62',
+      modelId: '0160f8ac6437823c8116a82d6674ff9e',
       modelType: 'PSDEWIZARDPANEL',
       name: 'wizardpanel',
       id: 'plmweb.product.product_wizard',
@@ -781,7 +789,7 @@ export default {
   width: 1024,
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'a7b424141615d670f4ab1185313e3d25',
+  modelId: '7f27e131823949c22c2c78b7ef4ec511',
   modelType: 'PSAPPDEVIEW',
   name: 'productcreate_wizard_view',
   id: 'plmweb.productcreate_wizard_view',

@@ -138,6 +138,25 @@ public interface ProductMapper extends BaseMapper<Product> {
     List<Product> listNormal(@Param("ctx") ProductSearchContext context, @Param("ew") Wrapper<Product> wrapper);
 
     /**
+     * 数据集合Reader分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Product> searchReader(IPage<Product> page, @Param("ctx") ProductSearchContext context, @Param("ew") Wrapper<Product> wrapper);
+    
+    /**
+     * 数据集合Reader查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Product> listReader(@Param("ctx") ProductSearchContext context, @Param("ew") Wrapper<Product> wrapper);
+
+    /**
      * 数据集合User分页查询
      * 
      * @param page

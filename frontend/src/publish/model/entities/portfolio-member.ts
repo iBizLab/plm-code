@@ -662,14 +662,6 @@ export default {
           id: 'rawjscode1',
         },
         {
-          codeName: 'END1',
-          leftPos: 200,
-          logicNodeType: 'END',
-          topPos: 611,
-          name: '结束',
-          id: 'end1',
-        },
-        {
           codeName: 'PREPAREJSPARAM1',
           leftPos: 160,
           logicNodeType: 'PREPAREJSPARAM',
@@ -718,6 +710,14 @@ export default {
           name: '获取当前用户数据',
           id: 'preparejsparam1',
         },
+        {
+          codeName: 'END1',
+          leftPos: 200,
+          logicNodeType: 'END',
+          topPos: 611,
+          name: '结束',
+          id: 'end1',
+        },
       ],
       deuilogicParams: [
         {
@@ -742,20 +742,15 @@ export default {
   deopprivs: [
     {
       logicName: '建立',
-      mapDEName: 'PORTFOLIO',
-      mapDEOPPrivName: 'UPDATE',
-      name: 'CREATE',
-      id: 'portfolio__create',
-    },
-    {
-      logicName: '建立',
       name: 'CREATE',
       id: 'create',
     },
     {
-      logicName: '删除',
-      name: 'DELETE',
-      id: 'delete',
+      logicName: '建立',
+      mapDEName: 'PORTFOLIO',
+      mapDEOPPrivName: 'UPDATE',
+      name: 'CREATE',
+      id: 'portfolio__create',
     },
     {
       logicName: '删除',
@@ -765,16 +760,21 @@ export default {
       id: 'portfolio__delete',
     },
     {
-      logicName: '读取',
-      mapDEName: 'PORTFOLIO',
-      mapDEOPPrivName: 'READ',
-      name: 'READ',
-      id: 'portfolio__read',
+      logicName: '删除',
+      name: 'DELETE',
+      id: 'delete',
     },
     {
       logicName: '读取',
       name: 'READ',
       id: 'read',
+    },
+    {
+      logicName: '读取',
+      mapDEName: 'PORTFOLIO',
+      mapDEOPPrivName: 'READ',
+      name: 'READ',
+      id: 'portfolio__read',
     },
     {
       logicName: '更新',

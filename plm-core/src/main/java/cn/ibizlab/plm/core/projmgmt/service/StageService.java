@@ -13,7 +13,6 @@ import cn.ibizlab.util.domain.ImportResult;
 import cn.ibizlab.plm.core.projmgmt.domain.Stage;
 import cn.ibizlab.plm.core.projmgmt.filter.StageSearchContext;
 import cn.ibizlab.plm.core.projmgmt.domain.Release;
-import cn.ibizlab.plm.core.projmgmt.domain.Version;
 
 /**
  * 发布阶段服务接口[StageService]
@@ -239,44 +238,6 @@ public interface StageService extends IService<Stage> {
     * @return
     */
     boolean saveByRelease(Release release,List<Stage> list);
-
-    /**
-     * selectRelByVersionId
-     * @param versionIds
-     * @return
-     */
-    List<Stage> findByVersionId(List<String> versionIds);
-    default List<Stage> findByVersionId(String versionId) {
-        return findByVersionId(Arrays.asList(versionId));
-    }
-    /**
-     * removeRelByVersionId
-     * @param versionId
-     * @return
-     */
-    boolean removeByVersionId(String versionId);
-    /**
-     * resetRelByVersionId
-     * @param versionId
-     * @return
-     */
-    boolean resetByVersionId(String versionId);
-    /**
-     * saveRelByVersionId
-     * @param versionId
-     * @param list
-     * @return
-     */
-    default boolean saveByVersionId(String versionId,List<Stage> list) {
-        return getSelf().saveByVersion(new Version().setId(versionId),list);
-    }
-    /**
-    * saveRelByVersion
-    * @param version
-    * @param list
-    * @return
-    */
-    boolean saveByVersion(Version version,List<Stage> list);
 
 
     /**

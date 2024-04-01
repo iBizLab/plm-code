@@ -18,6 +18,7 @@ import cn.ibizlab.plm.core.wiki.domain.PageVersion;
 import cn.ibizlab.plm.core.base.domain.Comment;
 import cn.ibizlab.plm.core.base.domain.Attention;
 import cn.ibizlab.plm.core.base.domain.Attachment;
+import cn.ibizlab.plm.core.projmgmt.domain.Version;
 
 /**
  * 页面服务接口[ArticlePageService]
@@ -228,6 +229,16 @@ public interface ArticlePageService extends IService<ArticlePage> {
     }
 
     /**
+     * Recover_version
+     * 
+     * @param dto
+     * @return
+     */
+    default ArticlePage recoverVersion(ArticlePage dto) {
+        return dto;
+    }
+
+    /**
      * Save_to_stencil
      * 
      * @param dto
@@ -246,6 +257,21 @@ public interface ArticlePageService extends IService<ArticlePage> {
     default ArticlePage unFavorite(ArticlePage dto) {
         return dto;
     }
+
+    /**
+     * searchAdvanced_search
+     * 
+     * @param context
+     * @return
+     */
+    Page<ArticlePage> searchAdvancedSearch(ArticlePageSearchContext context);
+    /**
+     * listAdvanced_search
+     * 
+     * @param context
+     * @return
+     */
+    List<ArticlePage> listAdvancedSearch(ArticlePageSearchContext context);
 
     /**
      * searchDefault

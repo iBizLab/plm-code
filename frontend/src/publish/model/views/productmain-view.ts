@@ -294,7 +294,7 @@ export default {
               },
               {
                 actionLevel: 100,
-                noPrivDisplayMode: 6,
+                noPrivDisplayMode: 2,
                 uiactionId: 'open_edit_view@product',
                 uiactionTarget: 'SINGLEKEY',
                 valid: true,
@@ -328,7 +328,7 @@ export default {
               },
               {
                 actionLevel: 100,
-                noPrivDisplayMode: 6,
+                noPrivDisplayMode: 2,
                 uiactionId: 'open_deleted_view@product',
                 uiactionTarget: 'SINGLEKEY',
                 valid: true,
@@ -366,7 +366,7 @@ export default {
         sysCss: {
           cssName: 'star_css',
         },
-        modelId: 'A42E116F-73C1-41BF-8A8B-044F4AAF3F03',
+        modelId: '0b38513c497c7160761706429e278613',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'main_viewtoolbar',
@@ -582,7 +582,7 @@ export default {
     logicName: 'main_view分页导航视图布局面板',
     appDataEntityId: 'plmweb.product',
     controlParam: {},
-    modelId: '4BE1116D-C3B7-46CC-AF02-C5C940A02E31',
+    modelId: 'd72cde708e9125e196617f2b4ec8bf5a',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr1219566924',

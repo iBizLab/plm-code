@@ -26,8 +26,6 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import cn.ibizlab.plm.core.projmgmt.domain.Project;
 import cn.ibizlab.plm.core.projmgmt.service.ProjectService;
-import cn.ibizlab.plm.core.projmgmt.domain.SprintCategory;
-import cn.ibizlab.plm.core.projmgmt.service.SprintCategoryService;
 import cn.ibizlab.plm.core.testmgmt.domain.TestPlan;
 import cn.ibizlab.plm.core.testmgmt.service.TestPlanService;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
@@ -44,10 +42,6 @@ public abstract class AbstractSprintService extends ServiceImpl<SprintMapper,Spr
     @Autowired
     @Lazy
     protected ProjectService projectService;
-
-    @Autowired
-    @Lazy
-    protected SprintCategoryService sprintCategoryService;
 
     @Autowired
     @Lazy
@@ -86,18 +80,6 @@ public abstract class AbstractSprintService extends ServiceImpl<SprintMapper,Spr
             if(!ObjectUtils.isEmpty(project)) {
                 et.setProjectName(project.getName());
                 et.setProjectId(project.getId());
-            }
-        }
-        if(Entities.SPRINT_CATEGORY.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
-            et.setSprintCategoryId((String)et.getContextParentKey());
-            SprintCategory sprintCategory = et.getSprintCategory();
-            if(sprintCategory == null) {
-                sprintCategory = sprintCategoryService.getById(et.getSprintCategoryId());
-                et.setSprintCategory(sprintCategory);
-            }
-            if(!ObjectUtils.isEmpty(sprintCategory)) {
-                et.setSprintCategoryName(sprintCategory.getName());
-                et.setSprintCategoryId(sprintCategory.getId());
             }
         }
         if(Entities.SPRINT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
@@ -240,10 +222,6 @@ public abstract class AbstractSprintService extends ServiceImpl<SprintMapper,Spr
         List<Sprint> list = baseMapper.findByProjectId(projectIds);
         return list;
     }
-    public List<Sprint> findBySprintCategoryId(List<String> sprintCategoryIds) {
-        List<Sprint> list = baseMapper.findBySprintCategoryId(sprintCategoryIds);
-        return list;
-    }
     public List<Sprint> findByPid(List<String> pids) {
         List<Sprint> list = baseMapper.findByPid(pids);
         return list;
@@ -270,45 +248,6 @@ public abstract class AbstractSprintService extends ServiceImpl<SprintMapper,Spr
         for(Sprint sub:list) {
             sub.setProjectId(project.getId());
             sub.setProject(project);
-            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
-                before.remove(sub.getId());
-                update.add(sub);
-            }
-            else
-                create.add(sub);
-        }
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
-            return false;
-        else
-            return true;
-    }
-
-    public boolean removeBySprintCategoryId(String sprintCategoryId) {
-        List<String> ids = baseMapper.findBySprintCategoryId(Arrays.asList(sprintCategoryId)).stream().map(e->e.getId()).collect(Collectors.toList());
-        if(!ObjectUtils.isEmpty(ids))
-            return this.removeBatch(ids);
-        else
-            return true;
-    }
-
-    public boolean resetBySprintCategoryId(String sprintCategoryId) {
-        return this.update(Wrappers.<Sprint>lambdaUpdate().eq(Sprint::getSprintCategoryId,sprintCategoryId));
-    }
-
-    public boolean saveBySprintCategory(SprintCategory sprintCategory,List<Sprint> list) {
-        if(list==null)
-            return true;
-        Map<String,Sprint> before = findBySprintCategoryId(sprintCategory.getId()).stream().collect(Collectors.toMap(Sprint::getId,e->e));
-        List<Sprint> update = new ArrayList<>();
-        List<Sprint> create = new ArrayList<>();
-
-        for(Sprint sub:list) {
-            sub.setSprintCategoryId(sprintCategory.getId());
-            sub.setSprintCategory(sprintCategory);
             if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
                 before.remove(sub.getId());
                 update.add(sub);

@@ -24,7 +24,6 @@ import cn.ibizlab.plm.core.testmgmt.domain.Library;
 import cn.ibizlab.plm.core.projmgmt.domain.Project;
 import cn.ibizlab.plm.core.projmgmt.domain.Release;
 import cn.ibizlab.plm.core.projmgmt.domain.Sprint;
-import cn.ibizlab.plm.core.projmgmt.domain.Version;
 import cn.ibizlab.plm.core.testmgmt.domain.Run;
 import cn.ibizlab.plm.core.base.domain.Relation;
 import cn.ibizlab.plm.core.base.domain.Relation;
@@ -240,16 +239,6 @@ public class TestPlan extends EntityMP implements Serializable
     private String projectId;
 
     /**
-     * 关联发布
-     */
-    @TableField(value = "version_id")
-    @DEField(name = "version_id")
-    @JsonProperty("version_id")
-    @JSONField(name = "version_id")
-    @ApiModelProperty(value = "version_id", notes = "关联发布")
-    private String versionId;
-
-    /**
      * 关联迭代
      */
     @TableField(value = "sprint_id")
@@ -268,16 +257,6 @@ public class TestPlan extends EntityMP implements Serializable
     @JSONField(name = "project_name")
     @ApiModelProperty(value = "project_name", notes = "关联项目")
     private String projectName;
-
-    /**
-     * 关联发布
-     */
-    @TableField(value = "version_name" , exist = false)
-    @DEField(name = "version_name")
-    @JsonProperty("version_name")
-    @JSONField(name = "version_name")
-    @ApiModelProperty(value = "version_name", notes = "关联发布")
-    private String versionName;
 
     /**
      * 关联迭代
@@ -358,16 +337,6 @@ public class TestPlan extends EntityMP implements Serializable
     @Transient
     @ApiModelProperty(value = "sprint", notes = "迭代")
     private Sprint sprint;
-
-    /**
-     * 版本（temp）
-     */
-    @JsonIgnore
-    @JSONField(serialize = false)
-    @TableField(exist = false)
-    @Transient
-    @ApiModelProperty(value = "version", notes = "发布")
-    private Version version;
 
     /**
      * 设置 [状态]
@@ -496,15 +465,6 @@ public class TestPlan extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [关联发布]
-     */
-    public TestPlan setVersionId(String versionId) {
-        this.versionId = versionId;
-        this.modify("version_id", versionId);
-        return this;
-    }
-
-    /**
      * 设置 [关联迭代]
      */
     public TestPlan setSprintId(String sprintId) {
@@ -519,15 +479,6 @@ public class TestPlan extends EntityMP implements Serializable
     public TestPlan setProjectName(String projectName) {
         this.projectName = projectName;
         this.modify("project_name", projectName);
-        return this;
-    }
-
-    /**
-     * 设置 [关联发布]
-     */
-    public TestPlan setVersionName(String versionName) {
-        this.versionName = versionName;
-        this.modify("version_name", versionName);
         return this;
     }
 

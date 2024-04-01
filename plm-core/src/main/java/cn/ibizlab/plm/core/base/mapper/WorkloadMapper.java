@@ -62,6 +62,25 @@ public interface WorkloadMapper extends BaseMapper<Workload> {
     List<Workload> listDefault(@Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
 
     /**
+     * 数据集合Idea_workload分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Workload> searchIdeaWorkload(IPage<Workload> page, @Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
+    
+    /**
+     * 数据集合Idea_workload查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Workload> listIdeaWorkload(@Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
+
+    /**
      * 数据集合Log分页查询
      * 
      * @param page
@@ -100,6 +119,25 @@ public interface WorkloadMapper extends BaseMapper<Workload> {
     List<Workload> listMyCalendar(@Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
 
     /**
+     * 数据集合My_idea_workload分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Workload> searchMyIdeaWorkload(IPage<Workload> page, @Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
+    
+    /**
+     * 数据集合My_idea_workload查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Workload> listMyIdeaWorkload(@Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
+
+    /**
      * 数据集合My_log分页查询
      * 
      * @param page
@@ -117,6 +155,120 @@ public interface WorkloadMapper extends BaseMapper<Workload> {
      * @return
      */
     List<Workload> listMyLog(@Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
+
+    /**
+     * 数据集合My_test_case_workload分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Workload> searchMyTestCaseWorkload(IPage<Workload> page, @Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
+    
+    /**
+     * 数据集合My_test_case_workload查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Workload> listMyTestCaseWorkload(@Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
+
+    /**
+     * 数据集合My_type_of分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Workload> searchMyTypeOf(IPage<Workload> page, @Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
+    
+    /**
+     * 数据集合My_type_of查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Workload> listMyTypeOf(@Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
+
+    /**
+     * 数据集合My_work_item_workload分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Workload> searchMyWorkItemWorkload(IPage<Workload> page, @Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
+    
+    /**
+     * 数据集合My_work_item_workload查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Workload> listMyWorkItemWorkload(@Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
+
+    /**
+     * 数据集合Test_case_workload分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Workload> searchTestCaseWorkload(IPage<Workload> page, @Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
+    
+    /**
+     * 数据集合Test_case_workload查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Workload> listTestCaseWorkload(@Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
+
+    /**
+     * 数据集合Type_of分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Workload> searchTypeOf(IPage<Workload> page, @Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
+    
+    /**
+     * 数据集合Type_of查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Workload> listTypeOf(@Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
+
+    /**
+     * 数据集合Work_item_workload分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Workload> searchWorkItemWorkload(IPage<Workload> page, @Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
+    
+    /**
+     * 数据集合Work_item_workload查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Workload> listWorkItemWorkload(@Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
 
     /**
      * 主键查询

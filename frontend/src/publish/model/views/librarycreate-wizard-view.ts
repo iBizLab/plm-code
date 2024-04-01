@@ -1,7 +1,7 @@
 export default {
   openMode: 'POPUPMODAL',
   deviewCodeName: 'create_wizard_view',
-  deviewId: '4FC140FE-3DAB-4866-9CFF-40A3A497CAAB',
+  deviewId: '74ddb13ae93e683f3b250b636951c8ba',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.LIBRARY',
@@ -211,6 +211,14 @@ export default {
                       appDEFieldId: 'identifier',
                       editor: {
                         maxLength: 15,
+                        sysValueRule: {
+                          codeName: 'UsrValueRule0312488358',
+                          regExCode: '^[A-Z0-9]{1,15}$',
+                          ruleInfo: '请填写大写字母和数字',
+                          ruleType: 'REG',
+                          name: '大写字母和数字',
+                          id: 'plmweb.usrvaluerule0312488358',
+                        },
                         editorType: 'TEXTBOX',
                         placeHolder: '大写字母和数字，15个字符范围内',
                         valueType: 'SIMPLE',
@@ -350,7 +358,7 @@ export default {
           controlParam: {
             id: 'wizardpanel_form_fill_info',
           },
-          modelId: '922EB363-5439-4511-B1EA-57B930721CFB',
+          modelId: '8a732d30f0926cbbd872c5f2d7d4fa75',
           modelType: 'PSDEFORM_EDITFORM',
           name: 'wizardpanel_form_fill_info',
           id: 'plmweb.library.wizard_create',
@@ -697,7 +705,7 @@ export default {
           controlParam: {
             id: 'wizardpanel_form_bind_member',
           },
-          modelId: 'C93644E7-8B4C-4767-A838-0D7A30C2E1F3',
+          modelId: 'a9efc274752d0028e4fbbcdb63fd2e2e',
           modelType: 'PSDEFORM_EDITFORM',
           name: 'wizardpanel_form_bind_member',
           id: 'plmweb.library.wizard_member_bind',
@@ -752,7 +760,7 @@ export default {
       controlParam: {
         id: 'wizardpanel',
       },
-      modelId: 'DFA04E25-170D-488E-89F0-CC45187AC7BF',
+      modelId: 'df303ea2922b1ec56dfe69721868edba',
       modelType: 'PSDEWIZARDPANEL',
       name: 'wizardpanel',
       id: 'plmweb.library.library_wizard',
@@ -787,7 +795,7 @@ export default {
   width: 1024,
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'bc1e1f02fb70a4c56e599de10351d3f5',
+  modelId: 'a75cfab577ec52ba3bebfe77dd3334b7',
   modelType: 'PSAPPDEVIEW',
   name: 'librarycreate_wizard_view',
   id: 'plmweb.librarycreate_wizard_view',

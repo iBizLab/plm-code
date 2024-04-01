@@ -32,8 +32,6 @@ import cn.ibizlab.plm.core.projmgmt.domain.Release;
 import cn.ibizlab.plm.core.projmgmt.service.ReleaseService;
 import cn.ibizlab.plm.core.projmgmt.domain.Sprint;
 import cn.ibizlab.plm.core.projmgmt.service.SprintService;
-import cn.ibizlab.plm.core.projmgmt.domain.Version;
-import cn.ibizlab.plm.core.projmgmt.service.VersionService;
 import cn.ibizlab.plm.core.testmgmt.domain.Run;
 import cn.ibizlab.plm.core.testmgmt.service.RunService;
 import cn.ibizlab.plm.core.base.domain.Relation;
@@ -62,10 +60,6 @@ public abstract class AbstractTestPlanService extends ServiceImpl<TestPlanMapper
     @Autowired
     @Lazy
     protected SprintService sprintService;
-
-    @Autowired
-    @Lazy
-    protected VersionService versionService;
 
     @Autowired
     @Lazy
@@ -140,18 +134,6 @@ public abstract class AbstractTestPlanService extends ServiceImpl<TestPlanMapper
             if(!ObjectUtils.isEmpty(sprint)) {
                 et.setSprintId(sprint.getId());
                 et.setSprintName(sprint.getName());
-            }
-        }
-        if(Entities.VERSION.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
-            et.setVersionId((String)et.getContextParentKey());
-            Version version = et.getVersion();
-            if(version == null) {
-                version = versionService.getById(et.getVersionId());
-                et.setVersion(version);
-            }
-            if(!ObjectUtils.isEmpty(version)) {
-                et.setVersionId(version.getId());
-                et.setVersionName(version.getName());
             }
         }
     }
@@ -348,13 +330,6 @@ public abstract class AbstractTestPlanService extends ServiceImpl<TestPlanMapper
                 .stream().collect(Collectors.groupingBy(e->e.getPrincipalId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setWorkItemRelations(sub.getValue())));
         return list;
     }
-    public List<TestPlan> findByVersionId(List<String> versionIds) {
-        List<TestPlan> list = baseMapper.findByVersionId(versionIds);
-        if(!ObjectUtils.isEmpty(list))
-            relationService.findByPrincipalId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getPrincipalId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setWorkItemRelations(sub.getValue())));
-        return list;
-    }
     public boolean removeByLibraryId(String libraryId) {
         return this.remove(Wrappers.<TestPlan>lambdaQuery().eq(TestPlan::getLibraryId,libraryId));
     }
@@ -478,41 +453,6 @@ public abstract class AbstractTestPlanService extends ServiceImpl<TestPlanMapper
         for(TestPlan sub:list) {
             sub.setSprintId(sprint.getId());
             sub.setSprint(sprint);
-            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
-                before.remove(sub.getId());
-                update.add(sub);
-            }
-            else
-                create.add(sub);
-        }
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
-            return false;
-        else
-            return true;
-    }
-
-    public boolean removeByVersionId(String versionId) {
-        return this.remove(Wrappers.<TestPlan>lambdaQuery().eq(TestPlan::getVersionId,versionId));
-    }
-
-    public boolean resetByVersionId(String versionId) {
-        return this.update(Wrappers.<TestPlan>lambdaUpdate().eq(TestPlan::getVersionId,versionId));
-    }
-
-    public boolean saveByVersion(Version version,List<TestPlan> list) {
-        if(list==null)
-            return true;
-        Map<String,TestPlan> before = findByVersionId(version.getId()).stream().collect(Collectors.toMap(TestPlan::getId,e->e));
-        List<TestPlan> update = new ArrayList<>();
-        List<TestPlan> create = new ArrayList<>();
-
-        for(TestPlan sub:list) {
-            sub.setVersionId(version.getId());
-            sub.setVersion(version);
             if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
                 before.remove(sub.getId());
                 update.add(sub);

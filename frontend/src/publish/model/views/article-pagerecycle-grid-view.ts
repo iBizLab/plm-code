@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'recycle_grid_view',
-  deviewId: 'A8460BD5-6A6E-4383-8DA2-846F865530AF',
+  deviewId: '1f9c736beb62c86c1cad0b9c7aefd182',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PAGE',
@@ -66,14 +66,6 @@ export default {
   ],
   appViewRefs: [
     {
-      openMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realTitle: '页面',
-      refAppViewId: 'plmweb.article_pageshow_view_model',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
-    {
       realTitle: '页面编辑视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.PAGE.EDITVIEW',
@@ -81,6 +73,14 @@ export default {
       refAppViewId: 'plmweb.article_pageeditview',
       name: 'NEWDATA',
       id: 'newdata',
+    },
+    {
+      openMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realTitle: '页面',
+      refAppViewId: 'plmweb.article_pageshow_view_model',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
   ],
   controls: [
@@ -93,7 +93,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '30D4F4F7-ABD3-4F41-AD31-F8ADF28DA16A',
+      modelId: '3fcc008a223e942c7ebd679fb04aa62d',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'recycle_grid_viewtoolbar',
@@ -180,7 +180,7 @@ export default {
                   cssClass: 'fa fa-refresh',
                   glyph: 'xf021@FontAwesome',
                 },
-                id: 'u19a9fd2',
+                id: 'ue29c4e3',
               },
             ],
             uniqueTag: 'Article_page__Usr0227832449',
@@ -293,45 +293,10 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: 'E760214D-5EB8-4FCA-BB50-1A066B0013E1',
+      modelId: '6b64de681f20d3c9052c80c9453e4e35',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.article_page.recycle_grid_view_grid',
-    },
-    {
-      searchButtonStyle: 'DEFAULT',
-      deformPages: [
-        {
-          layout: {
-            columnCount: 24,
-            layout: 'TABLE_24COL',
-          },
-          caption: '常规条件',
-          codeName: 'formpage1',
-          detailStyle: 'DEFAULT',
-          detailType: 'FORMPAGE',
-          id: 'formpage1',
-        },
-      ],
-      layout: {
-        columnCount: 24,
-        layout: 'TABLE_24COL',
-      },
-      tabHeaderPos: 'TOP',
-      noTabHeader: true,
-      autoLoad: true,
-      showBusyIndicator: true,
-      codeName: 'Recycle_grid_view_SearchForm',
-      controlType: 'SEARCHFORM',
-      logicName: '页面回收站表格视图_搜索表单',
-      appDataEntityId: 'plmweb.article_page',
-      controlParam: {
-        id: 'searchform',
-      },
-      modelId: '76EBA0FD-4AF3-4619-9E40-D8D58B8CB154',
-      modelType: 'PSDEFORM_SEARCHFORM',
-      name: 'searchform',
-      id: 'plmweb.article_page.recycle_grid_view_searchform',
     },
     {
       groupMode: 'SINGLE',
@@ -373,7 +338,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '3c5a711a5635e4331f1a1e8e24649036',
+  modelId: '02d4ecec0eaff0c20d8c13d838bd7935',
   modelType: 'PSAPPDEVIEW',
   name: 'article_pagerecycle_grid_view',
   id: 'plmweb.article_pagerecycle_grid_view',

@@ -95,7 +95,7 @@ public class Space extends EntityMP implements Serializable
      * 是否星标
      */
     @TableField(value = "is_favorite" , exist = false)
-    @DEField(name = "is_favorite")
+    @DEField(name = "is_favorite" , dict = "YesNo")
     @JsonProperty("is_favorite")
     @JSONField(name = "is_favorite")
     @ApiModelProperty(value = "is_favorite", notes = "是否星标")

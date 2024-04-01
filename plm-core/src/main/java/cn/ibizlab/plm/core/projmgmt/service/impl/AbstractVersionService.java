@@ -3,7 +3,6 @@
  */
 package cn.ibizlab.plm.core.projmgmt.service.impl;
 
-import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
@@ -25,16 +24,8 @@ import com.baomidou.mybatisplus.core.enums.SqlMethod;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import cn.ibizlab.plm.core.projmgmt.domain.Project;
-import cn.ibizlab.plm.core.projmgmt.service.ProjectService;
-import cn.ibizlab.plm.core.projmgmt.domain.VersionCategory;
-import cn.ibizlab.plm.core.projmgmt.service.VersionCategoryService;
-import cn.ibizlab.plm.core.projmgmt.domain.Stage;
-import cn.ibizlab.plm.core.projmgmt.service.StageService;
-import cn.ibizlab.plm.core.testmgmt.domain.TestPlan;
-import cn.ibizlab.plm.core.testmgmt.service.TestPlanService;
-import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
-import cn.ibizlab.plm.core.projmgmt.service.WorkItemService;
+import cn.ibizlab.plm.core.wiki.domain.ArticlePage;
+import cn.ibizlab.plm.core.wiki.service.ArticlePageService;
 
 /**
  * 实体[版本（temp）] 服务对象接口实现
@@ -46,23 +37,7 @@ public abstract class AbstractVersionService extends ServiceImpl<VersionMapper,V
 
     @Autowired
     @Lazy
-    protected ProjectService projectService;
-
-    @Autowired
-    @Lazy
-    protected VersionCategoryService versionCategoryService;
-
-    @Autowired
-    @Lazy
-    protected StageService stageService;
-
-    @Autowired
-    @Lazy
-    protected TestPlanService testPlanService;
-
-    @Autowired
-    @Lazy
-    protected WorkItemService workItemService;
+    protected ArticlePageService articlePageService;
 
     protected int batchSize = 500;
 
@@ -79,20 +54,8 @@ public abstract class AbstractVersionService extends ServiceImpl<VersionMapper,V
     }
 
     public void fillParentData(Version et) {
-        if(Entities.PROJECT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
-            et.setProjectId((String)et.getContextParentKey());
-            Project project = et.getProject();
-            if(project == null) {
-                project = projectService.getById(et.getProjectId());
-                et.setProject(project);
-            }
-            if(!ObjectUtils.isEmpty(project)) {
-                et.setProjectId(project.getId());
-                et.setProjectName(project.getName());
-            }
-        }
-        if(Entities.VERSION_CATEGORY.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
-            et.setVersionCategoryId((String)et.getContextParentKey());
+        if(Entities.ARTICLE_PAGE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setOwnerId((String)et.getContextParentKey());
         }
     }
 
@@ -170,8 +133,6 @@ public abstract class AbstractVersionService extends ServiceImpl<VersionMapper,V
 
     @Transactional
     public boolean remove(Version et) {
-        String key = et.getId();
-        workItemService.resetByVersionId(key);
         if(!remove(Wrappers.<Version>lambdaQuery().eq(Version::getId, et.getId())))
             return false;
         return true;
@@ -179,9 +140,7 @@ public abstract class AbstractVersionService extends ServiceImpl<VersionMapper,V
 
     @Transactional
     public boolean removeByEntities(List<Version> entities) {
-        for (Version et : entities)
-            if(!getSelf().remove(et))
-                return false;
+        this.baseMapper.deleteEntities(entities);
         return true;
     }
 
@@ -196,75 +155,28 @@ public abstract class AbstractVersionService extends ServiceImpl<VersionMapper,V
         return list;
     }
 
-    public List<Version> findByProjectId(List<String> projectIds) {
-        List<Version> list = baseMapper.findByProjectId(projectIds);
+    public List<Version> findByOwnerId(List<String> ownerIds) {
+        List<Version> list = baseMapper.findByOwnerId(ownerIds);
         return list;
     }
-    public List<Version> findByVersionCategoryId(List<String> versionCategoryIds) {
-        List<Version> list = baseMapper.findByVersionCategoryId(versionCategoryIds);
-        return list;
-    }
-    public boolean removeByProjectId(String projectId) {
-        List<String> ids = baseMapper.findByProjectId(Arrays.asList(projectId)).stream().map(e->e.getId()).collect(Collectors.toList());
-        if(!ObjectUtils.isEmpty(ids))
-            return this.removeBatch(ids);
-        else
-            return true;
+    public boolean removeByOwnerId(String ownerId) {
+        return this.remove(Wrappers.<Version>lambdaQuery().eq(Version::getOwnerId,ownerId));
     }
 
-    public boolean resetByProjectId(String projectId) {
-        return this.update(Wrappers.<Version>lambdaUpdate().eq(Version::getProjectId,projectId));
+    public boolean resetByOwnerId(String ownerId) {
+        return this.update(Wrappers.<Version>lambdaUpdate().eq(Version::getOwnerId,ownerId));
     }
 
-    public boolean saveByProject(Project project,List<Version> list) {
+    public boolean saveByPage(ArticlePage articlePage,List<Version> list) {
         if(list==null)
             return true;
-        Map<String,Version> before = findByProjectId(project.getId()).stream().collect(Collectors.toMap(Version::getId,e->e));
+        Map<String,Version> before = findByOwnerId(articlePage.getId()).stream().collect(Collectors.toMap(Version::getId,e->e));
         List<Version> update = new ArrayList<>();
         List<Version> create = new ArrayList<>();
 
         for(Version sub:list) {
-            sub.setProjectId(project.getId());
-            sub.setProject(project);
-            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
-                before.remove(sub.getId());
-                update.add(sub);
-            }
-            else
-                create.add(sub);
-        }
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
-            return false;
-        else
-            return true;
-    }
-
-    public boolean removeByVersionCategoryId(String versionCategoryId) {
-        List<String> ids = baseMapper.findByVersionCategoryId(Arrays.asList(versionCategoryId)).stream().map(e->e.getId()).collect(Collectors.toList());
-        if(!ObjectUtils.isEmpty(ids))
-            return this.removeBatch(ids);
-        else
-            return true;
-    }
-
-    public boolean resetByVersionCategoryId(String versionCategoryId) {
-        return this.update(Wrappers.<Version>lambdaUpdate().eq(Version::getVersionCategoryId,versionCategoryId));
-    }
-
-    public boolean saveByVersionCategory(VersionCategory versionCategory,List<Version> list) {
-        if(list==null)
-            return true;
-        Map<String,Version> before = findByVersionCategoryId(versionCategory.getId()).stream().collect(Collectors.toMap(Version::getId,e->e));
-        List<Version> update = new ArrayList<>();
-        List<Version> create = new ArrayList<>();
-
-        for(Version sub:list) {
-            sub.setVersionCategoryId(versionCategory.getId());
-            sub.setVersionCategory(versionCategory);
+            sub.setOwnerId(articlePage.getId());
+            sub.setPage(articlePage);
             if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
                 before.remove(sub.getId());
                 update.add(sub);

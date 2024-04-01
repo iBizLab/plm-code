@@ -268,6 +268,16 @@ public interface TicketService extends IService<Ticket> {
     }
 
     /**
+     * Get_product_member
+     * 
+     * @param key
+     * @return
+     */
+    default Ticket getProductMember(String key) {
+        return getSelf().getProductMember(new Ticket().setId(key));
+    }
+
+    /**
      * Nothing
      * 
      * @param dto
@@ -308,6 +318,51 @@ public interface TicketService extends IService<Ticket> {
     }
 
     /**
+     * Test_get_archived_info
+     * 
+     * @param key
+     * @return
+     */
+    default Ticket testGetArchivedInfo(String key) {
+        return getSelf().testGetArchivedInfo(new Ticket().setId(key));
+    }
+
+    /**
+     * Get_product_member
+     * 
+     * @param et
+     * @return
+     */
+    default Ticket getProductMember(Ticket et) {
+        return et;
+    }
+
+    /**
+     * Test_get_archived_info
+     * 
+     * @param et
+     * @return
+     */
+    default Ticket testGetArchivedInfo(Ticket et) {
+        return et;
+    }
+
+    /**
+     * searchAdvanced_search
+     * 
+     * @param context
+     * @return
+     */
+    Page<Ticket> searchAdvancedSearch(TicketSearchContext context);
+    /**
+     * listAdvanced_search
+     * 
+     * @param context
+     * @return
+     */
+    List<Ticket> listAdvancedSearch(TicketSearchContext context);
+
+    /**
      * searchArchived
      * 
      * @param context
@@ -339,14 +394,14 @@ public interface TicketService extends IService<Ticket> {
 
     /**
      * searchCommon
-     * 
+     * 通用查询，非删除数据
      * @param context
      * @return
      */
     Page<Ticket> searchCommon(TicketSearchContext context);
     /**
      * listCommon
-     * 
+     * 通用查询，非删除数据
      * @param context
      * @return
      */
@@ -354,14 +409,14 @@ public interface TicketService extends IService<Ticket> {
 
     /**
      * searchCustomer_notre_ticket
-     * 
+     * 查询未关联工单的数据；客户关联工单表格调用
      * @param context
      * @return
      */
     Page<Ticket> searchCustomerNotreTicket(TicketSearchContext context);
     /**
      * listCustomer_notre_ticket
-     * 
+     * 查询未关联工单的数据；客户关联工单表格调用
      * @param context
      * @return
      */
@@ -414,14 +469,14 @@ public interface TicketService extends IService<Ticket> {
 
     /**
      * searchIdea_relation_ticket
-     * 
+     * 产品关联工单表格调用
      * @param context
      * @return
      */
     Page<Ticket> searchIdeaRelationTicket(TicketSearchContext context);
     /**
      * listIdea_relation_ticket
-     * 
+     * 产品关联工单表格调用
      * @param context
      * @return
      */
@@ -429,14 +484,14 @@ public interface TicketService extends IService<Ticket> {
 
     /**
      * searchMy_assign
-     * 
+     * 首页我负责的工单表格调用
      * @param context
      * @return
      */
     Page<Ticket> searchMyAssign(TicketSearchContext context);
     /**
      * listMy_assign
-     * 
+     * 首页我负责的工单表格调用
      * @param context
      * @return
      */
@@ -444,14 +499,14 @@ public interface TicketService extends IService<Ticket> {
 
     /**
      * searchMy_assignee_count
-     * 
+     * 首页我负责的工单表格调用
      * @param context
      * @return
      */
     Page<Ticket> searchMyAssigneeCount(TicketSearchContext context);
     /**
      * listMy_assignee_count
-     * 
+     * 首页我负责的工单表格调用
      * @param context
      * @return
      */
@@ -489,14 +544,14 @@ public interface TicketService extends IService<Ticket> {
 
     /**
      * searchNormal
-     * 
+     * 非归档，非删除数据
      * @param context
      * @return
      */
     Page<Ticket> searchNormal(TicketSearchContext context);
     /**
      * listNormal
-     * 
+     * 非归档，非删除数据
      * @param context
      * @return
      */
@@ -518,6 +573,21 @@ public interface TicketService extends IService<Ticket> {
     List<Ticket> listNotExsistsRelation(TicketSearchContext context);
 
     /**
+     * searchNotify_assignee
+     * 
+     * @param context
+     * @return
+     */
+    Page<Ticket> searchNotifyAssignee(TicketSearchContext context);
+    /**
+     * listNotify_assignee
+     * 
+     * @param context
+     * @return
+     */
+    List<Ticket> listNotifyAssignee(TicketSearchContext context);
+
+    /**
      * searchRecent_ticket
      * 
      * @param context
@@ -534,14 +604,14 @@ public interface TicketService extends IService<Ticket> {
 
     /**
      * searchTicket_re_product_tag
-     * 
+     * 当前标签下工单表格视图调用
      * @param context
      * @return
      */
     Page<Ticket> searchTicketReProductTag(TicketSearchContext context);
     /**
      * listTicket_re_product_tag
-     * 
+     * 当前标签下工单表格视图调用
      * @param context
      * @return
      */

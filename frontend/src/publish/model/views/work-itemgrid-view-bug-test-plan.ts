@@ -100,6 +100,13 @@ export default {
   ],
   appViewRefs: [
     {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '新建缺陷',
+      refAppViewId: 'plmweb.work_itemquick_create_view_bug',
+      name: 'NEWDATA',
+      id: 'newdata',
+    },
+    {
       navigateContexts: [
         {
           key: 'PROJECT',
@@ -113,13 +120,6 @@ export default {
       refAppViewId: 'plmweb.work_itemmain_view',
       name: 'EDITDATA',
       id: 'editdata',
-    },
-    {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '新建缺陷',
-      refAppViewId: 'plmweb.work_itemquick_create_view_bug',
-      name: 'NEWDATA',
-      id: 'newdata',
     },
   ],
   controls: [
@@ -151,7 +151,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '5B2416FC-CA2C-428C-B1CD-C8484EC404F7',
+      modelId: '97b647cbe00cc608f9a368e2d0874c1e',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'grid_view_bug_test_plantoolbar',
@@ -199,7 +199,7 @@ export default {
                   cssClass: 'fa fa-copy',
                   glyph: 'xf0c5@FontAwesome',
                 },
-                id: 'u9c9c725',
+                id: 'uf11d057',
               },
               {
                 actionLevel: 100,
@@ -214,7 +214,7 @@ export default {
                   cssClass: 'fa fa-arrows',
                   glyph: 'xf047@FontAwesome',
                 },
-                id: 'u2588787',
+                id: 'u2cec520',
               },
               {
                 actionLevel: 100,
@@ -229,7 +229,7 @@ export default {
                   cssClass: 'fa fa-archive',
                   glyph: 'xf187@FontAwesome',
                 },
-                id: 'ud0137d9',
+                id: 'u4fdad0f',
               },
               {
                 actionLevel: 100,
@@ -244,7 +244,7 @@ export default {
                   cssClass: 'fa fa-trash-o',
                   glyph: 'xf014@FontAwesome',
                 },
-                id: 'ua4fae66',
+                id: 'u774a363',
               },
               {
                 actionLevel: 100,
@@ -258,7 +258,7 @@ export default {
                 sysImage: {
                   cssClass: 'key',
                 },
-                id: 'uf4b02b1',
+                id: 'u6aa52c1',
               },
               {
                 actionLevel: 100,
@@ -272,7 +272,7 @@ export default {
                 sysImage: {
                   cssClass: 'git-branch',
                 },
-                id: 'uda36756',
+                id: 'ua2ab7cd',
               },
               {
                 actionLevel: 100,
@@ -287,7 +287,7 @@ export default {
                   cssClass: 'fa fa-link',
                   glyph: 'xf0c1@FontAwesome',
                 },
-                id: 'uff8cd76',
+                id: 'ud5a51ef',
               },
               {
                 actionLevel: 100,
@@ -302,7 +302,7 @@ export default {
                   cssClass: 'fa fa-send-o',
                   glyph: 'xf1d9@FontAwesome',
                 },
-                id: 'u177ee71',
+                id: 'u6586895',
               },
               {
                 actionLevel: 100,
@@ -317,7 +317,7 @@ export default {
                   cssClass: 'fa fa-send-o',
                   glyph: 'xf1d9@FontAwesome',
                 },
-                id: 'u55c2849',
+                id: 'u0f2b72c',
               },
               {
                 actionLevel: 100,
@@ -328,11 +328,11 @@ export default {
                 uiactionId: 'get_editor_column',
                 showCaption: true,
                 showIcon: true,
-                id: 'u96e02ff',
+                id: 'u951f751',
               },
             ],
             uniqueTag: 'Work_item__Usr1220197218',
-            name: '工作项操作列',
+            name: '敏捷项目工作项操作列',
             id: 'usr1220197218',
           },
           valueType: 'SIMPLE',
@@ -608,12 +608,6 @@ export default {
           id: 'sprint_id',
         },
         {
-          appDEFieldId: 'version_id',
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'version_id',
-        },
-        {
           appDEFieldId: 'board_id',
           valueType: 'SIMPLE',
           dataType: 25,
@@ -668,7 +662,6 @@ export default {
             editable: true,
             id: 'title',
           },
-          allowEmpty: true,
           id: 'title',
         },
         {
@@ -722,7 +715,7 @@ export default {
                     cssClass: 'fa fa-user-md',
                     glyph: 'xf0f0@FontAwesome',
                   },
-                  id: 'ue68004d',
+                  id: 'uc5eeb4c',
                 },
               ],
               uniqueTag: 'Project_member__Usr0104465165',
@@ -1034,7 +1027,7 @@ export default {
           controlParam: {
             id: 'grid_batchtoolbar',
           },
-          modelId: '9366DB7F-2A7F-438D-90F0-B2B936356967',
+          modelId: '559be635e58fa6cfe7ed880e88bf87e6',
           modelType: 'PSDETOOLBAR',
           name: 'grid_batchtoolbar',
           id: 'grid_view_bug_test_plangrid_batchtoolbar',
@@ -1219,7 +1212,7 @@ export default {
       controlParam: {
         id: 'searchbar',
       },
-      modelId: '4D39C771-F7C1-4603-880E-BA73DC3B678F',
+      modelId: '32a4e0ad260e65751e6e749981f83842',
       modelType: 'PSSYSSEARCHBAR',
       name: 'searchbar',
       id: 'plmweb.work_item.project_no_section',

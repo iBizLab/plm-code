@@ -239,22 +239,6 @@ public class TestPlanDTO extends DTOBase implements Serializable {
     @ApiModelProperty(value = "更新时间", position = 24)
     private Date updateTime;
 
-    /**
-     * 关联发布
-     */
-    @JsonProperty("version_id")
-    @JSONField(name = "version_id")
-    @ApiModelProperty(value = "关联发布", position = 25)
-    private String versionId;
-
-    /**
-     * 关联发布
-     */
-    @JsonProperty("version_name")
-    @JSONField(name = "version_name")
-    @ApiModelProperty(value = "关联发布", position = 26)
-    private String versionName;
-
 
     /**
      * 设置 [状态]
@@ -433,24 +417,6 @@ public class TestPlanDTO extends DTOBase implements Serializable {
     public TestPlanDTO setSprintName(String sprintName) {
         this.sprintName = sprintName;
         this.modify("sprint_name", sprintName);
-        return this;
-    }
-
-    /**
-     * 设置 [关联发布]
-     */
-    public TestPlanDTO setVersionId(String versionId) {
-        this.versionId = versionId;
-        this.modify("version_id", versionId);
-        return this;
-    }
-
-    /**
-     * 设置 [关联发布]
-     */
-    public TestPlanDTO setVersionName(String versionName) {
-        this.versionName = versionName;
-        this.modify("version_name", versionName);
         return this;
     }
 

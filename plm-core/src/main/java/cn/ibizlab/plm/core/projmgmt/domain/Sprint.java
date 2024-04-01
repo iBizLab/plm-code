@@ -21,7 +21,6 @@ import io.swagger.annotations.*;
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import cn.ibizlab.plm.core.projmgmt.domain.Project;
-import cn.ibizlab.plm.core.projmgmt.domain.SprintCategory;
 import cn.ibizlab.plm.core.testmgmt.domain.TestPlan;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
 
@@ -101,16 +100,6 @@ public class Sprint extends EntityMP implements Serializable
     @JSONField(name = "project_name")
     @ApiModelProperty(value = "project_name", notes = "项目名称")
     private String projectName;
-
-    /**
-     * 类别名称
-     */
-    @TableField(value = "sprint_category_name" , exist = false)
-    @DEField(name = "sprint_category_name")
-    @JsonProperty("sprint_category_name")
-    @JSONField(name = "sprint_category_name")
-    @ApiModelProperty(value = "sprint_category_name", notes = "类别名称")
-    private String sprintCategoryName;
 
     /**
      * 类别
@@ -226,16 +215,6 @@ public class Sprint extends EntityMP implements Serializable
     private String pid;
 
     /**
-     * 迭代类别标识
-     */
-    @TableField(value = "sprint_category_id")
-    @DEField(name = "sprint_category_id")
-    @JsonProperty("sprint_category_id")
-    @JSONField(name = "sprint_category_id")
-    @ApiModelProperty(value = "sprint_category_id", notes = "迭代类别标识")
-    private String sprintCategoryId;
-
-    /**
      * 项目
      */
     @JsonIgnore
@@ -244,16 +223,6 @@ public class Sprint extends EntityMP implements Serializable
     @Transient
     @ApiModelProperty(value = "project", notes = "项目-迭代")
     private Project project;
-
-    /**
-     * 迭代类别
-     */
-    @JsonIgnore
-    @JSONField(serialize = false)
-    @TableField(exist = false)
-    @Transient
-    @ApiModelProperty(value = "sprint_category", notes = "迭代类别")
-    private SprintCategory sprintCategory;
 
     /**
      * 迭代
@@ -320,15 +289,6 @@ public class Sprint extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [类别名称]
-     */
-    public Sprint setSprintCategoryName(String sprintCategoryName) {
-        this.sprintCategoryName = sprintCategoryName;
-        this.modify("sprint_category_name", sprintCategoryName);
-        return this;
-    }
-
-    /**
      * 设置 [类别]
      */
     public Sprint setCategories(String categories) {
@@ -379,15 +339,6 @@ public class Sprint extends EntityMP implements Serializable
     public Sprint setPid(String pid) {
         this.pid = pid;
         this.modify("pid", pid);
-        return this;
-    }
-
-    /**
-     * 设置 [迭代类别标识]
-     */
-    public Sprint setSprintCategoryId(String sprintCategoryId) {
-        this.sprintCategoryId = sprintCategoryId;
-        this.modify("sprint_category_id", sprintCategoryId);
         return this;
     }
 

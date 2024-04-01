@@ -1,0 +1,71 @@
+export default {
+  redirectAppViewRefs: [
+    {
+      realTitle: '评论编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.COMMENT.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.commenteditview',
+      name: 'COMMENT:EDITVIEW',
+      id: 'comment:editview',
+    },
+    {
+      realTitle: '评论编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.COMMENT.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.commenteditview',
+      name: 'EDITVIEW',
+      id: 'editview',
+    },
+  ],
+  enableWorkflow: true,
+  funcViewMode: 'REDIRECTVIEW',
+  deviewCodeName: 'RedirectView',
+  deviewId: 'bd43b253800e7de9a32e7928379b327f',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.COMMENT',
+  },
+  caption: '评论',
+  codeName: 'commentRedirectView',
+  appDataEntityId: 'plmweb.comment',
+  controls: [
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.COMMENT',
+      },
+      caption: '评论',
+      codeName: 'RedirectViewcaptionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.comment',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'redirectviewcaptionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'Layoutpanel',
+    controlStyle: 'APPDEREDIRECTVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.comment',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '评论数据重定向视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.COMMENT.REDIRECTVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEREDIRECTVIEW',
+  enableDP: true,
+  redirectView: true,
+  showCaptionBar: true,
+  modelId: '875062e326a658573a1b24175910c82c',
+  modelType: 'PSAPPDEVIEW',
+  name: 'commentRedirectView',
+  id: 'plmweb.commentredirectview',
+};

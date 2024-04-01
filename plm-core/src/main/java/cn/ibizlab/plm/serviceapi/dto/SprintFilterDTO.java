@@ -71,27 +71,11 @@ public class SprintFilterDTO extends FilterBase implements Serializable {
 	private String projectNameLIKE;
 
     /**
-     * 类别名称EQ
-     */
-    @JsonProperty("n_sprint_category_name_eq")
-    @JSONField(name = "n_sprint_category_name_eq")
-    @ApiModelProperty(value = "类别名称EQ", position = 60)
-	private String sprintCategoryNameEQ;
-
-    /**
-     * 类别名称LIKE
-     */
-    @JsonProperty("n_sprint_category_name_like")
-    @JSONField(name = "n_sprint_category_name_like")
-    @ApiModelProperty(value = "类别名称LIKE", position = 61)
-	private String sprintCategoryNameLIKE;
-
-    /**
      * 类别LIKE
      */
     @JsonProperty("n_categories_like")
     @JSONField(name = "n_categories_like")
-    @ApiModelProperty(value = "类别LIKE", position = 70)
+    @ApiModelProperty(value = "类别LIKE", position = 60)
 	private String categoriesLIKE;
 
     /**
@@ -99,7 +83,7 @@ public class SprintFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 100)
+    @ApiModelProperty(value = "标识EQ", position = 90)
 	private String idEQ;
 
     /**
@@ -107,7 +91,7 @@ public class SprintFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 110)
+    @ApiModelProperty(value = "名称LIKE", position = 100)
 	private String nameLIKE;
 
     /**
@@ -115,7 +99,7 @@ public class SprintFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_project_id_eq")
     @JSONField(name = "n_project_id_eq")
-    @ApiModelProperty(value = "产品标识EQ", position = 160)
+    @ApiModelProperty(value = "产品标识EQ", position = 150)
 	private String projectIdEQ;
 
     /**
@@ -123,16 +107,8 @@ public class SprintFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_pid_eq")
     @JSONField(name = "n_pid_eq")
-    @ApiModelProperty(value = "父标识EQ", position = 170)
+    @ApiModelProperty(value = "父标识EQ", position = 160)
 	private String pidEQ;
-
-    /**
-     * 迭代类别标识EQ
-     */
-    @JsonProperty("n_sprint_category_id_eq")
-    @JSONField(name = "n_sprint_category_id_eq")
-    @ApiModelProperty(value = "迭代类别标识EQ", position = 180)
-	private String sprintCategoryIdEQ;
 
 
 }

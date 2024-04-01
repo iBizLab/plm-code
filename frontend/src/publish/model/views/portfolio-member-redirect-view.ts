@@ -22,7 +22,7 @@ export default {
   enableWorkflow: true,
   funcViewMode: 'REDIRECTVIEW',
   deviewCodeName: 'RedirectView',
-  deviewId: '0f2d58fd356a77228d4b64264efdbe35',
+  deviewId: 'c2ee8f818c1c7eab14f9751860e69ded',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PORTFOLIO_MEMBER',
@@ -64,7 +64,7 @@ export default {
   enableDP: true,
   redirectView: true,
   showCaptionBar: true,
-  modelId: '2f86cb4cdb07893445ec824928ff005c',
+  modelId: '463c638f7f804940660d7aeb5b333295',
   modelType: 'PSAPPDEVIEW',
   name: 'portfolio_memberRedirectView',
   id: 'plmweb.portfolio_memberredirectview',

@@ -13,7 +13,6 @@ import cn.ibizlab.util.domain.ImportResult;
 import cn.ibizlab.plm.core.projmgmt.domain.Sprint;
 import cn.ibizlab.plm.core.projmgmt.filter.SprintSearchContext;
 import cn.ibizlab.plm.core.projmgmt.domain.Project;
-import cn.ibizlab.plm.core.projmgmt.domain.SprintCategory;
 import cn.ibizlab.plm.core.testmgmt.domain.TestPlan;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
 
@@ -227,14 +226,14 @@ public interface SprintService extends IService<Sprint> {
 
     /**
      * searchChoose_move
-     * 
+     * 确认迭代完成时，选择移动至其他迭代
      * @param context
      * @return
      */
     Page<Sprint> searchChooseMove(SprintSearchContext context);
     /**
      * listChoose_move
-     * 
+     * 确认迭代完成时，选择移动至其他迭代
      * @param context
      * @return
      */
@@ -321,44 +320,6 @@ public interface SprintService extends IService<Sprint> {
     * @return
     */
     boolean saveByProject(Project project,List<Sprint> list);
-
-    /**
-     * selectRelBySprintCategoryId
-     * @param sprintCategoryIds
-     * @return
-     */
-    List<Sprint> findBySprintCategoryId(List<String> sprintCategoryIds);
-    default List<Sprint> findBySprintCategoryId(String sprintCategoryId) {
-        return findBySprintCategoryId(Arrays.asList(sprintCategoryId));
-    }
-    /**
-     * removeRelBySprintCategoryId
-     * @param sprintCategoryId
-     * @return
-     */
-    boolean removeBySprintCategoryId(String sprintCategoryId);
-    /**
-     * resetRelBySprintCategoryId
-     * @param sprintCategoryId
-     * @return
-     */
-    boolean resetBySprintCategoryId(String sprintCategoryId);
-    /**
-     * saveRelBySprintCategoryId
-     * @param sprintCategoryId
-     * @param list
-     * @return
-     */
-    default boolean saveBySprintCategoryId(String sprintCategoryId,List<Sprint> list) {
-        return getSelf().saveBySprintCategory(new SprintCategory().setId(sprintCategoryId),list);
-    }
-    /**
-    * saveRelBySprintCategory
-    * @param sprintCategory
-    * @param list
-    * @return
-    */
-    boolean saveBySprintCategory(SprintCategory sprintCategory,List<Sprint> list);
 
     /**
      * selectRelByPid

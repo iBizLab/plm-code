@@ -5,7 +5,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'others_re_view_PickupGridView',
-  deviewId: '30BAF4E9-7B25-4B0D-8D28-4DF11AED2211',
+  deviewId: 'e72b1d9e0d642d6fe920cd8b8c7b5924',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.IDEA',
@@ -164,7 +164,7 @@ export default {
         id: 'grid',
       },
       sysPFPluginId: 'checkbox_grid',
-      modelId: '589F5088-8870-40C6-B19E-2B6ECD07EF3D',
+      modelId: 'acc2487bdda1e8fe9020542490c32acd',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.idea.others_relation_view_pickupgridview_grid',
@@ -192,6 +192,10 @@ export default {
                 id: 'n_identifier_like',
               },
               allowEmpty: true,
+              capLanguageRes: {
+                lanResTag:
+                  'CONTROL.DEFORM.IDEA.USR12252032_SEARCHFORM.FORMITEM.N_IDENTIFIER_LIKE',
+              },
               caption: '编号',
               codeName: 'n_identifier_like',
               detailStyle: 'DEFAULT',
@@ -218,7 +222,8 @@ export default {
               },
               allowEmpty: true,
               capLanguageRes: {
-                lanResTag: 'CONTROL.DEFSFITEM.IDEA.N_TITLE_LIKE',
+                lanResTag:
+                  'CONTROL.DEFORM.IDEA.USR12252032_SEARCHFORM.FORMITEM.N_TITLE_LIKE',
               },
               caption: '标题',
               codeName: 'n_title_like',
@@ -258,7 +263,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: '83C285C5-0FD7-4B51-B6E7-7DC5DD4A93BE',
+      modelId: 'b80e02efc3e1c2d378be6c34e35677f2',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.idea.usr12252032_searchform',
@@ -301,7 +306,7 @@ export default {
   viewType: 'DEPICKUPGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '010a29286063f4f02d032c71b21b6596',
+  modelId: 'c75e4f00e2e1d386ec16363437241dbc',
   modelType: 'PSAPPDEVIEW',
   name: 'ideaothers_re_view_PickupGridView',
   id: 'plmweb.ideaothers_re_view_pickupgridview',

@@ -38,6 +38,14 @@ import cn.ibizlab.plm.core.prodmgmt.domain.Product;
 public class ProductSearchContext extends QueryWrapperContext<Product> {
 
     /**
+     * 产品标识EQ
+     */
+    @JsonProperty("n_identifier_eq")
+    @JSONField(name = "n_identifier_eq")
+    @ApiModelProperty("产品标识EQ")
+    private String identifierEQ;
+
+    /**
      * 可见范围EQ
      */
     @JsonProperty("n_visibility_eq")
@@ -84,6 +92,14 @@ public class ProductSearchContext extends QueryWrapperContext<Product> {
     @JSONField(name = "n_id_eq")
     @ApiModelProperty("标识EQ")
     private String idEQ;
+
+    /**
+     * 标识NOTEQ
+     */
+    @JsonProperty("n_id_noteq")
+    @JSONField(name = "n_id_noteq")
+    @ApiModelProperty("标识NOTEQ")
+    private String idNOTEQ;
 
     @Override
     public void setQuery(String query) {

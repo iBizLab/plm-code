@@ -4,7 +4,7 @@ export default {
   loadDefault: true,
   funcViewMode: 'EDITVIEW',
   deviewCodeName: 'EditView',
-  deviewId: '87ab4940a3ef110742c513351569c740',
+  deviewId: 'fd9a011878525ff9eb5bc0eab75c1c1e',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SPACE',
@@ -84,7 +84,7 @@ export default {
                   capLanguageRes: {
                     lanResTag: 'CONTROL.DEFORM.SPACE.MAIN.FORMITEM.NAME',
                   },
-                  caption: '名称',
+                  caption: '空间名称',
                   codeName: 'name',
                   detailStyle: 'DEFAULT',
                   detailType: 'FORMITEM',
@@ -260,7 +260,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '0f646efa3092431a0a36d759d0d4bb55',
+      modelId: 'f465e063a4a325e393b1291fd7afca8e',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.space.main',
@@ -345,7 +345,7 @@ export default {
   viewType: 'DEEDITVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '2b7744986cf24d8b6dcafd3278e8a33d',
+  modelId: '5dded6ea7beaa871ce65ec11a42e4ca7',
   modelType: 'PSAPPDEVIEW',
   name: 'spaceEditView',
   id: 'plmweb.spaceeditview',

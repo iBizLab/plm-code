@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'grid_view_config',
-  deviewId: '1F4629F1-1106-4680-8729-BF67ADBFB57B',
+  deviewId: '497520aefed42b2875dece0f91e66429',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SPACE_MEMBER',
@@ -137,7 +137,7 @@ export default {
         {
           actionLevel: 100,
           noPrivDisplayMode: 2,
-          uiactionId: 'new',
+          uiactionId: 'new_common',
           valid: true,
           capLanguageRes: {
             lanResTag: 'TBB.TEXT.*.NEW',
@@ -160,12 +160,12 @@ export default {
       xdataControlName: 'grid',
       codeName: 'grid_view_configtoolbar',
       controlType: 'TOOLBAR',
-      logicName: '空间成员实体表格视图_工具栏',
+      logicName: '成员表-添加成员',
       appDataEntityId: 'plmweb.space_member',
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '92F2F622-23E0-4A5F-991C-861A22C0E23B',
+      modelId: 'e4c7ec8c53b0399f986684f7da9b5686',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'grid_view_configtoolbar',
@@ -256,37 +256,6 @@ export default {
           widthUnit: 'PX',
           enableSort: true,
           id: 'update_time',
-        },
-        {
-          deuiactionGroup: {
-            uiactionGroupDetails: [
-              {
-                actionLevel: 100,
-                afterItemType: 'NONE',
-                beforeItemType: 'NONE',
-                detailType: 'DEUIACTION',
-                uiactionId: 'remove_member@space_member',
-                showIcon: true,
-                sysImage: {
-                  cssClass: 'fa fa-trash',
-                  glyph: 'xf1f8@FontAwesome',
-                },
-                id: 'ud3fa6e1',
-              },
-            ],
-            uniqueTag: 'Space_member__Usr0227475921',
-            name: '空间成员配置',
-            id: 'usr0227475921',
-          },
-          aggMode: 'NONE',
-          align: 'CENTER',
-          caption: '操作',
-          codeName: 'uagridcolumn1',
-          columnType: 'UAGRIDCOLUMN',
-          noPrivDisplayMode: 1,
-          width: 100,
-          widthUnit: 'PX',
-          id: 'uagridcolumn1',
         },
       ],
       degridDataItems: [
@@ -422,7 +391,7 @@ export default {
           detoolbarItems: [
             {
               actionLevel: 100,
-              noPrivDisplayMode: 2,
+              noPrivDisplayMode: 1,
               uiactionId: 'remove',
               uiactionTarget: 'MULTIKEY',
               valid: true,
@@ -451,7 +420,7 @@ export default {
           controlParam: {
             id: 'grid_batchtoolbar',
           },
-          modelId: '74CCFEF5-0654-4145-852A-227C53342218',
+          modelId: '824333fc6aa069bfea300fcc0b94336d',
           modelType: 'PSDETOOLBAR',
           name: 'grid_batchtoolbar',
           id: 'grid_view_configgrid_batchtoolbar',
@@ -464,45 +433,10 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: 'F6474F66-FA1C-4851-BE67-D69F3CFEF90D',
+      modelId: '038f008fc3cba72d2ce40759e204269e',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.space_member.grid_view_config_grid',
-    },
-    {
-      searchButtonStyle: 'DEFAULT',
-      deformPages: [
-        {
-          layout: {
-            columnCount: 24,
-            layout: 'TABLE_24COL',
-          },
-          caption: '常规条件',
-          codeName: 'formpage1',
-          detailStyle: 'DEFAULT',
-          detailType: 'FORMPAGE',
-          id: 'formpage1',
-        },
-      ],
-      layout: {
-        columnCount: 24,
-        layout: 'TABLE_24COL',
-      },
-      tabHeaderPos: 'TOP',
-      noTabHeader: true,
-      autoLoad: true,
-      showBusyIndicator: true,
-      codeName: 'Grid_view_config_SearchForm',
-      controlType: 'SEARCHFORM',
-      logicName: '空间成员实体表格视图_搜索表单',
-      appDataEntityId: 'plmweb.space_member',
-      controlParam: {
-        id: 'searchform',
-      },
-      modelId: '79714D3A-2974-4483-9E8A-BEB0B712947C',
-      modelType: 'PSDEFORM_SEARCHFORM',
-      name: 'searchform',
-      id: 'plmweb.space_member.grid_view_config_searchform',
     },
     {
       groupMode: 'SINGLE',
@@ -544,7 +478,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'af1071b65c2d5b4cad3063fe6d54f9b3',
+  modelId: '85130571d7b835e9206c9b31705b683c',
   modelType: 'PSAPPDEVIEW',
   name: 'space_membergrid_view_config',
   id: 'plmweb.space_membergrid_view_config',

@@ -14,6 +14,8 @@
 		<result property="updateMan" column="update_man" />
 		<result property="createMan" column="create_man" />
 		<result property="updateTime" column="update_time" />
+        <association property="baseline" javaType="cn.ibizlab.plm.core.base.domain.Baseline" column="principal_id" select="cn.ibizlab.plm.core.base.mapper.BaselineMapper.selectById" fetchType="lazy"></association>
+        <association property="review" javaType="cn.ibizlab.plm.core.testmgmt.domain.Review" column="principal_id" select="cn.ibizlab.plm.core.testmgmt.mapper.ReviewMapper.selectById" fetchType="lazy"></association>
         <association property="testPlan" javaType="cn.ibizlab.plm.core.testmgmt.domain.TestPlan" column="principal_id" select="cn.ibizlab.plm.core.testmgmt.mapper.TestPlanMapper.selectById" fetchType="lazy"></association>
     </resultMap>
 
@@ -69,6 +71,20 @@
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
         
+    </select>
+
+    <select id="findByPrincipalId" resultMap="RelationResultMap">
+        select t1.* from (
+            <include refid="default"/>
+        ) t1
+        where principal_id in <foreach item="id" index="index" collection="principalIds" open="(" separator="," close=")">#{id}</foreach> 
+    </select>
+
+    <select id="findByPrincipalId" resultMap="RelationResultMap">
+        select t1.* from (
+            <include refid="default"/>
+        ) t1
+        where principal_id in <foreach item="id" index="index" collection="principalIds" open="(" separator="," close=")">#{id}</foreach> 
     </select>
 
     <select id="findByPrincipalId" resultMap="RelationResultMap">

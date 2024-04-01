@@ -82,6 +82,14 @@
          <![CDATA[ SELECT t11.`CATEGORIES`, t1.`CATEGORY_ID`, t11.`NAME` AS `CATEGORY_NAME`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VISIBILITY` FROM `SPACE` t1  LEFT JOIN `CATEGORY` t11 ON t1.`CATEGORY_ID` = t11.`ID`   ]]>  where EXISTS(SELECT * FROM `RELATION` t21   WHERE   t1.`ID` = t21.`TARGET_ID`  AND  ( t21.`PRINCIPAL_TYPE` = #{ctx.datacontext.principal_type}  AND  t21.`TARGET_TYPE` = #{ctx.datacontext.target_type}  AND  <choose><when test="ctx.datacontext.principal_id !=null ">  t21.`PRINCIPAL_ID` = #{ctx.datacontext.principal_id}  </when><otherwise>1=1</otherwise></choose> ) ) and ( t1.`IS_DELETED` = 0  AND  t1.`IS_ARCHIVED` = 0 ) 
     </sql>
 
+    <sql id="public" databaseId="mysql">
+         <![CDATA[ SELECT t11.`CATEGORIES`, t1.`CATEGORY_ID`, t11.`NAME` AS `CATEGORY_NAME`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VISIBILITY` FROM `SPACE` t1  LEFT JOIN `CATEGORY` t11 ON t1.`CATEGORY_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`VISIBILITY` = 'public' ) ]]> 
+    </sql>
+
+    <sql id="reader" databaseId="mysql">
+         <![CDATA[ SELECT t11.`CATEGORIES`, t1.`CATEGORY_ID`, t11.`NAME` AS `CATEGORY_NAME`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VISIBILITY` FROM `SPACE` t1  LEFT JOIN `CATEGORY` t11 ON t1.`CATEGORY_ID` = t11.`ID`   ]]>  where  <![CDATA[ EXISTS(SELECT * FROM `SPACE_MEMBER` t21   WHERE   t1.`ID` = t21.`SPACE_ID`  AND  ( t21.`USER_ID` = #{ctx.sessioncontext.srfpersonid}  AND  t21.`ROLE_ID` = 'reader' ) ) ]]> 
+    </sql>
+
     <sql id="user" databaseId="mysql">
          <![CDATA[ SELECT t11.`CATEGORIES`, t1.`CATEGORY_ID`, t11.`NAME` AS `CATEGORY_NAME`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VISIBILITY` FROM `SPACE` t1  LEFT JOIN `CATEGORY` t11 ON t1.`CATEGORY_ID` = t11.`ID`   ]]>  where  <![CDATA[ EXISTS(SELECT * FROM `SPACE_MEMBER` t21   WHERE   t1.`ID` = t21.`SPACE_ID`  AND  ( t21.`USER_ID` = #{ctx.sessioncontext.srfpersonid}  AND  t21.`ROLE_ID` = 'user' ) ) ]]> 
     </sql>
@@ -294,6 +302,31 @@
         select t1.*
         from (
             <include refid="productReSpace"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchReader"  parameterType="cn.ibizlab.plm.core.wiki.filter.SpaceSearchContext"  resultMap="SpaceResultMap">
+        select t1.* 
+        from (
+            <include refid="reader"/>
+                 union all 
+            <include refid="public"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listReader"  parameterType="cn.ibizlab.plm.core.wiki.filter.SpaceSearchContext"  resultMap="SpaceResultMap">
+        select t1.*
+        from (
+            <include refid="reader"/>
+                 union all
+            <include refid="public"/>
         ) t1
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>

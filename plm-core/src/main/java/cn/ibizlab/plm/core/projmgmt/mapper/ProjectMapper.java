@@ -176,6 +176,25 @@ public interface ProjectMapper extends BaseMapper<Project> {
     List<Project> listNormal(@Param("ctx") ProjectSearchContext context, @Param("ew") Wrapper<Project> wrapper);
 
     /**
+     * 数据集合Reader分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Project> searchReader(IPage<Project> page, @Param("ctx") ProjectSearchContext context, @Param("ew") Wrapper<Project> wrapper);
+    
+    /**
+     * 数据集合Reader查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Project> listReader(@Param("ctx") ProjectSearchContext context, @Param("ew") Wrapper<Project> wrapper);
+
+    /**
      * 数据集合Same_type分页查询
      * 
      * @param page

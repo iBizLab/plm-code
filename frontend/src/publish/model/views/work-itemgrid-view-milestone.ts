@@ -5,7 +5,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'grid_view_milestone',
-  deviewId: '27D51C5A-FE4C-4669-B967-BD4F8B87D264',
+  deviewId: '716caeec4dc47995b0cf11a690960644',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -79,19 +79,19 @@ export default {
   ],
   appViewRefs: [
     {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '新建工作项',
-      refAppViewId: 'plmweb.work_itemquick_create_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       openMode: 'INDEXVIEWTAB_POPUPMODAL',
       realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
       realTitle: '工作项',
       refAppViewId: 'plmweb.work_itemmain_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '新建工作项',
+      refAppViewId: 'plmweb.work_itemquick_create_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -157,7 +157,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: 'E7EB5D8A-F7FB-492A-B092-71612699CE41',
+      modelId: 'ff41787db61e466a4721e50349805744',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'grid_view_milestonetoolbar',
@@ -377,12 +377,6 @@ export default {
           id: 'sprint_id',
         },
         {
-          appDEFieldId: 'version_id',
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'version_id',
-        },
-        {
           appDEFieldId: 'board_id',
           valueType: 'SIMPLE',
           dataType: 25,
@@ -477,7 +471,7 @@ export default {
                     cssClass: 'fa fa-user-md',
                     glyph: 'xf0f0@FontAwesome',
                   },
-                  id: 'ue68004d',
+                  id: 'uc5eeb4c',
                 },
               ],
               uniqueTag: 'Project_member__Usr0104465165',
@@ -591,7 +585,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: 'D5CF7D80-32D4-45A9-8C8E-910FA3B1F370',
+      modelId: 'a7732fa4853ef4fd9f3427fb5cbe15d6',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.work_item.milestone_grid',
@@ -723,7 +717,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '822dbf74514d11c4a5e7381f1598535c',
+  modelId: 'af2a6eb937c085677ff2bdf271b24902',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemgrid_view_milestone',
   id: 'plmweb.work_itemgrid_view_milestone',

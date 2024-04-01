@@ -189,6 +189,21 @@ public interface CommentService extends IService<Comment> {
     }
 
     /**
+     * searchAdvanced_search
+     * 
+     * @param context
+     * @return
+     */
+    Page<Comment> searchAdvancedSearch(CommentSearchContext context);
+    /**
+     * listAdvanced_search
+     * 
+     * @param context
+     * @return
+     */
+    List<Comment> listAdvancedSearch(CommentSearchContext context);
+
+    /**
      * searchDefault
      * 
      * @param context

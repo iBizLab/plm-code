@@ -44,11 +44,11 @@ public class TestCasemaintenanceDTO extends DTOBase implements Serializable {
     private String id;
 
     /**
-     * 维护人标识
+     * 维护人
      */
     @JsonProperty("maintenance_id")
     @JSONField(name = "maintenance_id")
-    @ApiModelProperty(value = "维护人标识", position = 1)
+    @ApiModelProperty(value = "维护人", position = 1)
     private String maintenanceId;
 
     /**
@@ -61,7 +61,7 @@ public class TestCasemaintenanceDTO extends DTOBase implements Serializable {
 
 
     /**
-     * 设置 [维护人标识]
+     * 设置 [维护人]
      */
     public TestCasemaintenanceDTO setMaintenanceId(String maintenanceId) {
         this.maintenanceId = maintenanceId;

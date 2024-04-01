@@ -4,6 +4,7 @@
 package cn.ibizlab.plm.core.testmgmt.domain;
 
 import java.util.*;
+import java.math.BigDecimal;
 import cn.ibizlab.util.domain.IEntity;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.*;
@@ -267,6 +268,46 @@ public class Run extends EntityMP implements Serializable
     @JSONField(name = "attentions")
     @ApiModelProperty(value = "attentions", notes = "关注")
     private List<Attention> attentions;
+
+    /**
+     * 预估工时
+     */
+    @TableField(value = "estimated_workload" , exist = false)
+    @DEField(name = "estimated_workload")
+    @JsonProperty("estimated_workload")
+    @JSONField(name = "estimated_workload")
+    @ApiModelProperty(value = "estimated_workload", notes = "预估工时")
+    private BigDecimal estimatedWorkload;
+
+    /**
+     * 工时进度
+     */
+    @TableField(value = "workload_schedule" , exist = false)
+    @DEField(name = "workload_schedule")
+    @JsonProperty("workload_schedule")
+    @JSONField(name = "workload_schedule")
+    @ApiModelProperty(value = "workload_schedule", notes = "工时进度")
+    private BigDecimal workloadSchedule;
+
+    /**
+     * 剩余工时
+     */
+    @TableField(value = "remaining_workload" , exist = false)
+    @DEField(name = "remaining_workload")
+    @JsonProperty("remaining_workload")
+    @JSONField(name = "remaining_workload")
+    @ApiModelProperty(value = "remaining_workload", notes = "剩余工时")
+    private BigDecimal remainingWorkload;
+
+    /**
+     * 实际工时
+     */
+    @TableField(value = "actual_workload" , exist = false)
+    @DEField(name = "actual_workload")
+    @JsonProperty("actual_workload")
+    @JSONField(name = "actual_workload")
+    @ApiModelProperty(value = "actual_workload", notes = "实际工时")
+    private BigDecimal actualWorkload;
 
     /**
      * 更新时间
@@ -585,6 +626,42 @@ public class Run extends EntityMP implements Serializable
     public Run setAttentions(List<Attention> attentions) {
         this.attentions = attentions;
         this.modify("attentions", attentions);
+        return this;
+    }
+
+    /**
+     * 设置 [预估工时]
+     */
+    public Run setEstimatedWorkload(BigDecimal estimatedWorkload) {
+        this.estimatedWorkload = estimatedWorkload;
+        this.modify("estimated_workload", estimatedWorkload);
+        return this;
+    }
+
+    /**
+     * 设置 [工时进度]
+     */
+    public Run setWorkloadSchedule(BigDecimal workloadSchedule) {
+        this.workloadSchedule = workloadSchedule;
+        this.modify("workload_schedule", workloadSchedule);
+        return this;
+    }
+
+    /**
+     * 设置 [剩余工时]
+     */
+    public Run setRemainingWorkload(BigDecimal remainingWorkload) {
+        this.remainingWorkload = remainingWorkload;
+        this.modify("remaining_workload", remainingWorkload);
+        return this;
+    }
+
+    /**
+     * 设置 [实际工时]
+     */
+    public Run setActualWorkload(BigDecimal actualWorkload) {
+        this.actualWorkload = actualWorkload;
+        this.modify("actual_workload", actualWorkload);
         return this;
     }
 

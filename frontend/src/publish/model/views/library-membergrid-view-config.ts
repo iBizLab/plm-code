@@ -2,7 +2,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'grid_view_config',
-  deviewId: '2737ED82-4B5A-4B5B-A503-633A0CBDBB39',
+  deviewId: '79d71dc6bf49a2dba926ae1424887d46',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.LIBRARY_MEMBER',
@@ -120,7 +120,7 @@ export default {
         {
           actionLevel: 100,
           noPrivDisplayMode: 2,
-          uiactionId: 'new',
+          uiactionId: 'new_common',
           valid: true,
           capLanguageRes: {
             lanResTag: 'TBB.TEXT.*.NEW',
@@ -143,12 +143,12 @@ export default {
       xdataControlName: 'grid',
       codeName: 'grid_view_configtoolbar',
       controlType: 'TOOLBAR',
-      logicName: '添加成员',
+      logicName: '成员表-添加成员',
       appDataEntityId: 'plmweb.library_member',
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '710F7DDD-459E-43BC-B37E-9387C4DCC573',
+      modelId: 'fc715669b051d16b5d5b5771d61a800f',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'grid_view_configtoolbar',
@@ -239,37 +239,6 @@ export default {
           widthUnit: 'PX',
           enableSort: true,
           id: 'update_time',
-        },
-        {
-          deuiactionGroup: {
-            uiactionGroupDetails: [
-              {
-                actionLevel: 100,
-                afterItemType: 'NONE',
-                beforeItemType: 'NONE',
-                detailType: 'DEUIACTION',
-                uiactionId: 'delete_member@library_member',
-                showIcon: true,
-                sysImage: {
-                  cssClass: 'fa fa-trash',
-                  glyph: 'xf1f8@FontAwesome',
-                },
-                id: 'u2225ef5',
-              },
-            ],
-            uniqueTag: 'Library_member__Usr1220824792',
-            name: '设置测试库成员',
-            id: 'usr1220824792',
-          },
-          aggMode: 'NONE',
-          align: 'CENTER',
-          caption: '操作',
-          codeName: 'uagridcolumn1',
-          columnType: 'UAGRIDCOLUMN',
-          noPrivDisplayMode: 1,
-          width: 100,
-          widthUnit: 'PX',
-          id: 'uagridcolumn1',
         },
       ],
       degridDataItems: [
@@ -382,7 +351,7 @@ export default {
           detoolbarItems: [
             {
               actionLevel: 100,
-              noPrivDisplayMode: 2,
+              noPrivDisplayMode: 1,
               uiactionId: 'remove',
               uiactionTarget: 'MULTIKEY',
               valid: true,
@@ -411,7 +380,7 @@ export default {
           controlParam: {
             id: 'grid_batchtoolbar',
           },
-          modelId: '74CCFEF5-0654-4145-852A-227C53342218',
+          modelId: '824333fc6aa069bfea300fcc0b94336d',
           modelType: 'PSDETOOLBAR',
           name: 'grid_batchtoolbar',
           id: 'grid_view_configgrid_batchtoolbar',
@@ -424,7 +393,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '8D3AC249-B786-41A9-883C-47D0F6D7F2DA',
+      modelId: 'de0b571fac99f8657552907a81cfddf7',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.library_member.details_table',
@@ -508,7 +477,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '18dc8ad032101656aa51401465cbe62b',
+  modelId: 'ba06938c3f112aa7f1884f0e339cdbed',
   modelType: 'PSAPPDEVIEW',
   name: 'library_membergrid_view_config',
   id: 'plmweb.library_membergrid_view_config',

@@ -428,12 +428,6 @@ export default {
             id: 'sprint_id',
           },
           {
-            appDEFieldId: 'version_id',
-            valueType: 'SIMPLE',
-            dataType: 25,
-            id: 'version_id',
-          },
-          {
             appDEFieldId: 'board_id',
             valueType: 'SIMPLE',
             dataType: 25,
@@ -517,7 +511,7 @@ export default {
         controlParam: {
           id: 'grid',
         },
-        modelId: '0A63AB28-E5E9-41A8-B02D-6DA4F7C525E4',
+        modelId: '534470fd56c4400373fc9e51843f56f4',
         modelType: 'PSDEGRID',
         name: 'grid',
         id: 'plmweb.work_item.my_created_work_item_grid_index',
@@ -631,7 +625,7 @@ export default {
                         uiactionId: 'open_global_setting@project',
                         showCaption: true,
                         showIcon: true,
-                        id: 'u25405e6',
+                        id: 'u3fee786',
                       },
                     ],
                     uniqueTag: 'Project__Usr1221520658',
@@ -718,7 +712,7 @@ export default {
         controlParam: {
           id: 'searchform',
         },
-        modelId: '01F1712B-2B06-453F-87D2-2B983C1E818B',
+        modelId: '61ba43bf73f82539179e0f3a969efce9',
         modelType: 'PSDEFORM_SEARCHFORM',
         name: 'searchform',
         id: 'plmweb.work_item.kanban_view_searchform',
@@ -752,7 +746,7 @@ export default {
     logicName: 'my_gird_view_index表格视图布局',
     appDataEntityId: 'plmweb.work_item',
     controlParam: {},
-    modelId: 'D18D0F90-7172-46B2-BFA1-148621FAEB9C',
+    modelId: '3ae6010a3b11afea2e0de5d9ef051e9e',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0222094750',

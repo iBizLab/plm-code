@@ -4,7 +4,7 @@ export default {
   loadDefault: true,
   funcViewMode: 'EDITVIEW',
   deviewCodeName: 'EditView',
-  deviewId: '89e75d3017b43fe7d80c45bd66be8efb',
+  deviewId: '06d406c8fe000e57e497b6bcfe8bd76d',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORKLOAD',
@@ -116,7 +116,6 @@ export default {
                     editable: true,
                     id: 'name',
                   },
-                  allowEmpty: true,
                   capLanguageRes: {
                     lanResTag: 'DEF.LNAME.NAME',
                   },
@@ -236,7 +235,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: 'f34e455575b9827e1a9572fce98eae0b',
+      modelId: '31cf856327e7d9a240184c746f7c9c9e',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.workload.main',
@@ -283,7 +282,7 @@ export default {
   viewType: 'DEEDITVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '263438a106edbc2289bd7e627e82ac19',
+  modelId: 'ce973dcc81dbad55e337a170f4afd2cb',
   modelType: 'PSAPPDEVIEW',
   name: 'workloadEditView',
   id: 'plmweb.workloadeditview',

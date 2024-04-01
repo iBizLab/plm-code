@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'grid_view_all',
-  deviewId: '099F576A-F2AB-4E78-8B01-98FFE883D967',
+  deviewId: '38db9b5d40ea265029dcea1589707185',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'PAGE.CAPTION.SPACE.GRID_VIEW_ALL',
@@ -113,7 +113,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '1467591C-9D94-435B-91C9-A5732FC6136C',
+      modelId: '5c891ec3b04e36a3fc9606e529b1818d',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'grid_view_alltoolbar',
@@ -145,7 +145,7 @@ export default {
                   rawContent:
                     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="design-iconfont" width="16" height="16">\n  <path d="M9.54013,6.48742551 L8,3.36677551 L6.45987,6.48742551 L3.01604,6.98784551 L5.50802,9.41692551 L4.91975,12.8468255 L8,11.2274255 L11.08025,12.8468255 L10.49195,9.41692551 L12.98395,6.98784551 L9.54013,6.48742551 Z M14.53135,6.20219551 C14.77745,6.23794551 14.87565,6.54033551 14.69765,6.71389551 L11.56645,9.76604551 L12.30565,14.0757255 C12.34765,14.3208255 12.09045,14.5077255 11.87035,14.3920255 L8,12.3572255 L4.12966,14.3920255 C3.90957,14.5077255 3.65234,14.3208255 3.69437,14.0757255 L4.43354,9.76604551 L1.30237,6.71389551 C1.12431,6.54033551 1.22256,6.23794551 1.46863,6.20219551 L5.79581,5.57341551 L7.73098,1.65232551 C7.84103,1.42934551 8.15898,1.42935551 8.26902,1.65232551 L10.20415,5.57341551 L14.53135,6.20219551 Z" fill-opacity=".9" fill="#557DA5" fill-rule="nonzero"></path>\n</svg>',
                 },
-                id: 'u61b2c99',
+                id: 'u18c8e7f',
               },
               {
                 actionLevel: 250,
@@ -159,7 +159,7 @@ export default {
                   rawContent:
                     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="design-iconfont" width="16" height="16">\n  <path d="M14.53135,6.20219551 C14.77745,6.23794551 14.87565,6.54033551 14.69765,6.71389551 L11.56645,9.76604551 L12.30565,14.0757255 C12.34765,14.3208255 12.09045,14.5077255 11.87035,14.3920255 L8,12.3572255 L4.12966,14.3920255 C3.90957,14.5077255 3.65234,14.3208255 3.69437,14.0757255 L4.43354,9.76604551 L1.30237,6.71389551 C1.12431,6.54033551 1.22256,6.23794551 1.46863,6.20219551 L5.79581,5.57341551 L7.73098,1.65232551 C7.84103,1.42934551 8.15898,1.42935551 8.26902,1.65232551 L10.20415,5.57341551 L14.53135,6.20219551 Z" fill-opacity=".9" fill="#FFB31A" fill-rule="nonzero"></path>\n</svg>',
                 },
-                id: 'u6f02fd7',
+                id: 'u94d997a',
               },
               {
                 actionLevel: 100,
@@ -174,7 +174,7 @@ export default {
                   cssClass: 'fa fa-info-circle',
                   glyph: 'xf05a@FontAwesome',
                 },
-                id: 'u19bfa32',
+                id: 'u63cd4ae',
               },
               {
                 actionLevel: 100,
@@ -189,7 +189,7 @@ export default {
                   cssClass: 'fa fa-users',
                   glyph: 'xf0c0@FontAwesome',
                 },
-                id: 'ub6c9efc',
+                id: 'uf9c141d',
               },
               {
                 actionLevel: 100,
@@ -204,7 +204,7 @@ export default {
                   cssClass: 'fa fa-edit',
                   glyph: 'xf044@FontAwesome',
                 },
-                id: 'u08730ca',
+                id: 'uecc4a08',
               },
               {
                 actionLevel: 100,
@@ -219,7 +219,7 @@ export default {
                   cssClass: 'fa fa-th-list',
                   glyph: 'xf00b@FontAwesome',
                 },
-                id: 'u4c65f6e',
+                id: 'u5890174',
               },
               {
                 actionLevel: 100,
@@ -234,7 +234,7 @@ export default {
                   cssClass: 'fa fa-trash-o',
                   glyph: 'xf014@FontAwesome',
                 },
-                id: 'ud1895f0',
+                id: 'u57c9a6e',
               },
               {
                 actionLevel: 200,
@@ -248,7 +248,7 @@ export default {
                   rawContent:
                     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="design-iconfont" width="16" height="16">\n  <path d="M7.875,1.75 C7.94375,1.75 8,1.80625 8,1.875 L8,2.75 C8,2.81875 7.94375,2.875 7.875,2.875 L2.875,2.875 L2.875,13.125 L13.125,13.125 L13.125,8.125 C13.125,8.05625 13.18125,8 13.25,8 L14.125,8 C14.19375,8 14.25,8.05625 14.25,8.125 L14.25,13.75 C14.25,14.0265625 14.0265625,14.25 13.75,14.25 L2.25,14.25 C1.9734375,14.25 1.75,14.0265625 1.75,13.75 L1.75,2.25 C1.75,1.9734375 1.9734375,1.75 2.25,1.75 Z M12.7666777,2.4349185 C12.7666777,2.333356 12.8838652,2.277106 12.9635527,2.339606 L14.9635527,3.917731 C15.0260527,3.9661685 15.0260527,4.0599185 14.9635527,4.1099185 L12.9619902,5.689606 C12.8823027,5.752106 12.7651152,5.695856 12.7651152,5.5942935 L12.7651152,4.595856 C12.5635527,4.5974185 12.3619902,4.6099185 12.1588652,4.6349185 C11.4994902,4.7161685 10.8760527,4.9192935 10.2979277,5.2411685 C9.70261522,5.570856 9.18542772,6.0161685 8.76042772,6.558356 C8.33699022,7.1005435 8.03074022,7.708356 7.85261522,8.367731 C7.68074022,9.0036685 7.63386522,9.6599185 7.71355272,10.317731 C7.72449022,10.402106 7.73699022,10.486481 7.75105272,10.5692935 L6.58074022,10.5692935 C6.35261522,8.9474185 6.76042772,7.2380435 7.84792772,5.8442935 C9.07917772,4.2692935 10.9104277,3.442731 12.7635527,3.4349185 Z" fill="#557DA5" fill-rule="nonzero"></path>\n</svg>',
                 },
-                id: 'u7e2a9a9',
+                id: 'uea69d99',
               },
             ],
             uniqueTag: 'Space__Usr0227253924',
@@ -399,6 +399,7 @@ export default {
         id: 'remove',
       },
       autoLoad: true,
+      enableItemPrivilege: true,
       showBusyIndicator: true,
       controls: [
         {
@@ -428,7 +429,7 @@ export default {
           controlParam: {
             id: 'grid_batchtoolbar',
           },
-          modelId: 'E9BC1977-D5CD-4066-8694-2A9E6C035869',
+          modelId: '2d63581c6ba4dabc275de95d3780fa3f',
           modelType: 'PSDETOOLBAR',
           name: 'grid_batchtoolbar',
           id: 'grid_view_allgrid_batchtoolbar',
@@ -441,7 +442,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '5f44a487d4b0674be9e650226af6a526',
+      modelId: 'f465e063a4a325e393b1291fd7afca8e',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.space.main',
@@ -510,7 +511,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: 'd0e8fb24ed85d08f68312e0467a6bcc0',
+      modelId: 'cd986fdbda38298747776b3da594d1c3',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.space.default',
@@ -558,7 +559,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '4c4c227108c70b6a34478ab9dfb33aab',
+  modelId: 'dfebc86f23e4b9c270d116e1f8d58b37',
   modelType: 'PSAPPDEVIEW',
   name: 'spacegrid_view_all',
   id: 'plmweb.spacegrid_view_all',

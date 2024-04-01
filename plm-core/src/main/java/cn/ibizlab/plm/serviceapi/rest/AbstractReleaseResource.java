@@ -126,6 +126,45 @@ public abstract class AbstractReleaseResource {
     }
 
     /**
+    * Plan_work_item 项目发布
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ReleaseDTO>
+    */
+    @ApiOperation(value = "Plan_work_item", tags = {"项目发布" },  notes = "Release-Plan_work_item ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Release-Plan_work_item-all') or hasPermission(this.releaseDtoMapping.toDomain(#dto),'ibizplm-Release-Plan_work_item')")
+    @PutMapping("releases/{id}/plan_work_item")
+    public ResponseEntity<ResponseWrapper<ReleaseDTO>> planWorkItemById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ReleaseDTO> dto) {
+        ResponseWrapper<ReleaseDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(planWorkItemById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(planWorkItemById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * Plan_work_item 项目发布
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ReleaseDTO>
+    */   
+    public ReleaseDTO planWorkItemById
+            (String id, ReleaseDTO dto) {
+        Release domain = releaseDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Release rt = releaseService.planWorkItem(domain);
+        return releaseDtoMapping.toDto(rt);
+    }
+
+    /**
     * 保存Save 项目发布
     * 
     *
@@ -238,6 +277,47 @@ public abstract class AbstractReleaseResource {
         domain.setId(id);
         releaseService.update(domain);
         Release rt = domain;
+        return releaseDtoMapping.toDto(rt);
+    }
+
+    /**
+    * Plan_work_item 项目发布
+    * 
+    *
+    * @param projectId projectId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ReleaseDTO>
+    */
+    @ApiOperation(value = "Plan_work_item", tags = {"项目发布" },  notes = "Release-Plan_work_item ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Release-Plan_work_item-all') or hasPermission('Project',#projectId,this.releaseDtoMapping.toDomain(#dto),'ibizplm-Release-Plan_work_item')")
+    @PutMapping("projects/{projectId}/releases/{id}/plan_work_item")
+    public ResponseEntity<ResponseWrapper<ReleaseDTO>> planWorkItemByProjectIdAndId
+            (@PathVariable("projectId") String projectId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ReleaseDTO> dto) {
+        ResponseWrapper<ReleaseDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(planWorkItemByProjectIdAndId(projectId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(planWorkItemByProjectIdAndId(projectId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * Plan_work_item 项目发布
+    * 
+    *
+    * @param projectId projectId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ReleaseDTO>
+    */   
+    public ReleaseDTO planWorkItemByProjectIdAndId
+            (String projectId, String id, ReleaseDTO dto) {
+        Release domain = releaseDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Release rt = releaseService.planWorkItem(domain);
         return releaseDtoMapping.toDto(rt);
     }
 

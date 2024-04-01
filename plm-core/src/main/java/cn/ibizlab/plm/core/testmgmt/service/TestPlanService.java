@@ -16,7 +16,6 @@ import cn.ibizlab.plm.core.testmgmt.domain.Library;
 import cn.ibizlab.plm.core.projmgmt.domain.Project;
 import cn.ibizlab.plm.core.projmgmt.domain.Release;
 import cn.ibizlab.plm.core.projmgmt.domain.Sprint;
-import cn.ibizlab.plm.core.projmgmt.domain.Version;
 import cn.ibizlab.plm.core.testmgmt.domain.Run;
 import cn.ibizlab.plm.core.base.domain.Relation;
 
@@ -468,44 +467,6 @@ public interface TestPlanService extends IService<TestPlan> {
     * @return
     */
     boolean saveBySprint(Sprint sprint,List<TestPlan> list);
-
-    /**
-     * selectRelByVersionId
-     * @param versionIds
-     * @return
-     */
-    List<TestPlan> findByVersionId(List<String> versionIds);
-    default List<TestPlan> findByVersionId(String versionId) {
-        return findByVersionId(Arrays.asList(versionId));
-    }
-    /**
-     * removeRelByVersionId
-     * @param versionId
-     * @return
-     */
-    boolean removeByVersionId(String versionId);
-    /**
-     * resetRelByVersionId
-     * @param versionId
-     * @return
-     */
-    boolean resetByVersionId(String versionId);
-    /**
-     * saveRelByVersionId
-     * @param versionId
-     * @param list
-     * @return
-     */
-    default boolean saveByVersionId(String versionId,List<TestPlan> list) {
-        return getSelf().saveByVersion(new Version().setId(versionId),list);
-    }
-    /**
-    * saveRelByVersion
-    * @param version
-    * @param list
-    * @return
-    */
-    boolean saveByVersion(Version version,List<TestPlan> list);
 
     default List<Relation> getWorkItemRelations(TestPlan et) {
         return new ArrayList<>();

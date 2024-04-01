@@ -22,7 +22,7 @@ export default {
   enableWorkflow: true,
   funcViewMode: 'REDIRECTVIEW',
   deviewCodeName: 'RedirectView',
-  deviewId: '770b1c50628d4d3dfd8f085ce5519885',
+  deviewId: '8dcee60b0bc67d62c2fd16aecbdfdcc2',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORKLOAD',
@@ -64,7 +64,7 @@ export default {
   enableDP: true,
   redirectView: true,
   showCaptionBar: true,
-  modelId: 'd640e551f1ed67b18c0da0e57688ed82',
+  modelId: '71def727a6cc89c7d038bb171de521b6',
   modelType: 'PSAPPDEVIEW',
   name: 'workloadRedirectView',
   id: 'plmweb.workloadredirectview',

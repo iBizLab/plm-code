@@ -4,7 +4,7 @@ export default {
   loadDefault: true,
   openMode: 'POPOVER',
   deviewCodeName: 'move_case_view',
-  deviewId: '2480F704-79C9-4BE6-AD04-79344F5BEDC6',
+  deviewId: '2acf46e3750dba0f84bd0d4649aff7db',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TEST_CASE',
@@ -273,7 +273,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '4BD8BA2F-B1DD-44CF-96B7-7349E2E2D9B8',
+      modelId: '260181a6ac130ee3e642f5b0f9045ecb',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.test_case.move_case_form',
@@ -318,7 +318,7 @@ export default {
   width: 500,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '70e36f3d83a3b8597caeae6a10a941ce',
+  modelId: '6d6b7d889601faa2f519e18013e89904',
   modelType: 'PSAPPDEVIEW',
   name: 'test_casemove_case_view',
   id: 'plmweb.test_casemove_case_view',

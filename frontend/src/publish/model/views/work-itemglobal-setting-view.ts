@@ -3,7 +3,7 @@ export default {
   loadDefault: true,
   showDataInfoBar: true,
   deviewCodeName: 'global_setting_view',
-  deviewId: 'DC770843-6B79-44B5-9A3B-F89D048B5715',
+  deviewId: '708a64a7ae868f296248bcb3827775ab',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -62,7 +62,7 @@ export default {
       controlParam: {
         id: 'tabexppanel',
       },
-      modelId: 'CD5D4274-B0C2-4EAF-8A83-53C8CB531C24',
+      modelId: 'efc625391d64c5e4d884c239af84c7c8',
       modelType: 'PSDEDRTAB',
       name: 'tabexppanel',
       id: 'global_setting_view_dr',
@@ -96,7 +96,7 @@ export default {
   viewType: 'DETABEXPVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '5af04bf50cad990f6483904bf990ca36',
+  modelId: '4fd3b4a237b221c98f14006c885034df',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemglobal_setting_view',
   id: 'plmweb.work_itemglobal_setting_view',

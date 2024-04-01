@@ -5,7 +5,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'grid_view_bug_scrum',
-  deviewId: '364304224aedf4158329e9bd95039340',
+  deviewId: '775252aac480cb8ed71a61f817c2cf0e',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -79,19 +79,19 @@ export default {
   ],
   appViewRefs: [
     {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '新建缺陷',
+      refAppViewId: 'plmweb.work_itemquick_create_view_bug',
+      name: 'NEWDATA',
+      id: 'newdata',
+    },
+    {
       openMode: 'INDEXVIEWTAB_POPUPMODAL',
       realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
       realTitle: '工作项',
       refAppViewId: 'plmweb.work_itemmain_view',
       name: 'EDITDATA',
       id: 'editdata',
-    },
-    {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '新建缺陷',
-      refAppViewId: 'plmweb.work_itemquick_create_view_bug',
-      name: 'NEWDATA',
-      id: 'newdata',
     },
   ],
   controls: [
@@ -223,7 +223,7 @@ export default {
                   cssClass: 'fa fa-copy',
                   glyph: 'xf0c5@FontAwesome',
                 },
-                id: 'u9c9c725',
+                id: 'uf11d057',
               },
               {
                 actionLevel: 100,
@@ -238,7 +238,7 @@ export default {
                   cssClass: 'fa fa-arrows',
                   glyph: 'xf047@FontAwesome',
                 },
-                id: 'u2588787',
+                id: 'u2cec520',
               },
               {
                 actionLevel: 100,
@@ -253,7 +253,7 @@ export default {
                   cssClass: 'fa fa-archive',
                   glyph: 'xf187@FontAwesome',
                 },
-                id: 'ud0137d9',
+                id: 'u4fdad0f',
               },
               {
                 actionLevel: 100,
@@ -268,7 +268,7 @@ export default {
                   cssClass: 'fa fa-trash-o',
                   glyph: 'xf014@FontAwesome',
                 },
-                id: 'ua4fae66',
+                id: 'u774a363',
               },
               {
                 actionLevel: 100,
@@ -282,7 +282,7 @@ export default {
                 sysImage: {
                   cssClass: 'key',
                 },
-                id: 'uf4b02b1',
+                id: 'u6aa52c1',
               },
               {
                 actionLevel: 100,
@@ -296,7 +296,7 @@ export default {
                 sysImage: {
                   cssClass: 'git-branch',
                 },
-                id: 'uda36756',
+                id: 'ua2ab7cd',
               },
               {
                 actionLevel: 100,
@@ -311,7 +311,7 @@ export default {
                   cssClass: 'fa fa-link',
                   glyph: 'xf0c1@FontAwesome',
                 },
-                id: 'uff8cd76',
+                id: 'ud5a51ef',
               },
               {
                 actionLevel: 100,
@@ -326,7 +326,7 @@ export default {
                   cssClass: 'fa fa-send-o',
                   glyph: 'xf1d9@FontAwesome',
                 },
-                id: 'u177ee71',
+                id: 'u6586895',
               },
               {
                 actionLevel: 100,
@@ -341,7 +341,7 @@ export default {
                   cssClass: 'fa fa-send-o',
                   glyph: 'xf1d9@FontAwesome',
                 },
-                id: 'u55c2849',
+                id: 'u0f2b72c',
               },
               {
                 actionLevel: 100,
@@ -352,11 +352,11 @@ export default {
                 uiactionId: 'get_editor_column',
                 showCaption: true,
                 showIcon: true,
-                id: 'u96e02ff',
+                id: 'u951f751',
               },
             ],
             uniqueTag: 'Work_item__Usr1220197218',
-            name: '工作项操作列',
+            name: '敏捷项目工作项操作列',
             id: 'usr1220197218',
           },
           valueType: 'SIMPLE',
@@ -492,7 +492,7 @@ export default {
           dataItemName: 'create_time',
           excelCaption: '建立时间',
           appDEFieldId: 'create_time',
-          valueFormat: 'YYYY-MM-DD HH:mm:ss',
+          valueFormat: 'YYYY-MM-DD',
           valueType: 'SIMPLE',
           aggMode: 'NONE',
           align: 'LEFT',
@@ -565,7 +565,7 @@ export default {
           id: 'reappear_probability',
         },
         {
-          format: 'YYYY-MM-DD HH:mm:ss',
+          format: 'YYYY-MM-DD',
           appDEFieldId: 'create_time',
           valueType: 'SIMPLE',
           dataType: 5,
@@ -632,12 +632,6 @@ export default {
           id: 'sprint_id',
         },
         {
-          appDEFieldId: 'version_id',
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'version_id',
-        },
-        {
           appDEFieldId: 'board_id',
           valueType: 'SIMPLE',
           dataType: 25,
@@ -692,7 +686,6 @@ export default {
             editable: true,
             id: 'title',
           },
-          allowEmpty: true,
           id: 'title',
         },
         {
@@ -747,7 +740,7 @@ export default {
                     cssClass: 'fa fa-user-md',
                     glyph: 'xf0f0@FontAwesome',
                   },
-                  id: 'ue68004d',
+                  id: 'uc5eeb4c',
                 },
               ],
               uniqueTag: 'Project_member__Usr0104465165',
@@ -1081,7 +1074,7 @@ export default {
           controlParam: {
             id: 'grid_batchtoolbar',
           },
-          modelId: '9366DB7F-2A7F-438D-90F0-B2B936356967',
+          modelId: '559be635e58fa6cfe7ed880e88bf87e6',
           modelType: 'PSDETOOLBAR',
           name: 'grid_batchtoolbar',
           id: 'grid_view_bug_scrumgrid_batchtoolbar',
@@ -1092,11 +1085,22 @@ export default {
       controlType: 'GRID',
       logicName: '工作项表格（缺陷）',
       appDataEntityId: 'plmweb.work_item',
+      controlLogics: [
+        {
+          eventNames: 'onLoadSuccess',
+          logicTag: 'grid',
+          logicType: 'APPDEUILOGIC',
+          appDEUILogicId: 'calc_column_action_state',
+          appDataEntityId: 'plmweb.work_item',
+          triggerType: 'CTRLEVENT',
+          id: 'calc_button_state',
+        },
+      ],
       controlParam: {
         id: 'grid',
       },
       sysPFPluginId: 'number_grid',
-      modelId: '0e63cfb0f6eef0fe56aae5e0f45c660f',
+      modelId: 'd316bc548b0ac7e3f29765efa3dd1b7b',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.work_item.bug_grid',
@@ -1331,7 +1335,7 @@ export default {
       controlParam: {
         id: 'searchbar',
       },
-      modelId: '9701F628-102D-4832-8906-134802344863',
+      modelId: 'e3715ecb283b07a7ddc9d46974124392',
       modelType: 'PSSYSSEARCHBAR',
       name: 'searchbar',
       id: 'plmweb.work_item.project_work_item',
@@ -1365,7 +1369,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '23d49722293de56711362a6e242b2aa2',
+  modelId: '4e883deed532f0b202b2f012f24969d6',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemgrid_view_bug_scrum',
   id: 'plmweb.work_itemgrid_view_bug_scrum',

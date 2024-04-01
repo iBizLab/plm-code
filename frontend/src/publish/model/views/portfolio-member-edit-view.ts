@@ -4,7 +4,7 @@ export default {
   loadDefault: true,
   funcViewMode: 'EDITVIEW',
   deviewCodeName: 'EditView',
-  deviewId: '345e8bfcdaecff108dc78ab7c292908f',
+  deviewId: '099899cac32a80bf598681fc82a99778',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PORTFOLIO_MEMBER',
@@ -285,7 +285,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '2de81cb75d75e2fba6fb8a325e19865e',
+      modelId: '4d3eaff42b4dd501e56cdbff7625db88',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.portfolio_member.main',
@@ -332,7 +332,7 @@ export default {
   viewType: 'DEEDITVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '2e7248daf70f31f870b8e1411a7c308c',
+  modelId: 'f6e93e726d84a35b9b1d8e1b1e1911e4',
   modelType: 'PSAPPDEVIEW',
   name: 'portfolio_memberEditView',
   id: 'plmweb.portfolio_membereditview',

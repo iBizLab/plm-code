@@ -20,6 +20,8 @@ import lombok.experimental.Accessors;
 import io.swagger.annotations.*;
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
+import cn.ibizlab.plm.core.base.domain.Baseline;
+import cn.ibizlab.plm.core.testmgmt.domain.Review;
 import cn.ibizlab.plm.core.testmgmt.domain.TestPlan;
 
 /**
@@ -149,6 +151,26 @@ public class Relation extends EntityMP implements Serializable
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
     @ApiModelProperty(value = "update_time", notes = "更新时间")
     private Date updateTime;
+
+    /**
+     * 基线
+     */
+    @JsonIgnore
+    @JSONField(serialize = false)
+    @TableField(exist = false)
+    @Transient
+    @ApiModelProperty(value = "baseline", notes = "基线-关联")
+    private Baseline baseline;
+
+    /**
+     * 评审
+     */
+    @JsonIgnore
+    @JSONField(serialize = false)
+    @TableField(exist = false)
+    @Transient
+    @ApiModelProperty(value = "review", notes = "评审-关联")
+    private Review review;
 
     /**
      * 测试计划

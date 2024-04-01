@@ -8,9 +8,6 @@
     <template #grid="slotProps">
       <i-biz-control-shell v-bind="slotProps" />
     </template>
-    <template #searchform="slotProps">
-      <i-biz-searchform-control v-bind="slotProps" />
-    </template>
   </i-biz-view>
 </template>
 <script setup lang="ts">

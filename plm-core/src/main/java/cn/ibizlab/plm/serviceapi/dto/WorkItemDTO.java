@@ -143,11 +143,11 @@ public class WorkItemDTO extends DTOBase implements Serializable {
     private String description;
 
     /**
-     * 负责人标识
+     * 负责人
      */
     @JsonProperty("assignee_id")
     @JSONField(name = "assignee_id")
-    @ApiModelProperty(value = "负责人标识", position = 13)
+    @ApiModelProperty(value = "负责人", position = 13)
     private String assigneeId;
 
     /**
@@ -433,11 +433,11 @@ public class WorkItemDTO extends DTOBase implements Serializable {
     private String pid;
 
     /**
-     * 项目标识
+     * 项目
      */
     @JsonProperty("project_id")
     @JSONField(name = "project_id")
-    @ApiModelProperty(value = "项目标识", position = 49)
+    @ApiModelProperty(value = "项目", position = 49)
     private String projectId;
 
     /**
@@ -522,27 +522,11 @@ public class WorkItemDTO extends DTOBase implements Serializable {
     private Date updateTime;
 
     /**
-     * 项目发布标识
-     */
-    @JsonProperty("version_id")
-    @JSONField(name = "version_id")
-    @ApiModelProperty(value = "项目发布标识", position = 60)
-    private String versionId;
-
-    /**
-     * 发布名称
-     */
-    @JsonProperty("version_name")
-    @JSONField(name = "version_name")
-    @ApiModelProperty(value = "发布名称", position = 61)
-    private String versionName;
-
-    /**
      * 工作项类型
      */
     @JsonProperty("work_item_type_id")
     @JSONField(name = "work_item_type_id")
-    @ApiModelProperty(value = "工作项类型", position = 62)
+    @ApiModelProperty(value = "工作项类型", position = 60)
     private String workItemTypeId;
 
     /**
@@ -550,7 +534,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("work_item_type_name")
     @JSONField(name = "work_item_type_name")
-    @ApiModelProperty(value = "工作项类型", position = 63)
+    @ApiModelProperty(value = "工作项类型", position = 61)
     private String workItemTypeName;
 
 
@@ -672,7 +656,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
     }
 
     /**
-     * 设置 [负责人标识]
+     * 设置 [负责人]
      */
     public WorkItemDTO setAssigneeId(String assigneeId) {
         this.assigneeId = assigneeId;
@@ -969,7 +953,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
     }
 
     /**
-     * 设置 [项目标识]
+     * 设置 [项目]
      */
     public WorkItemDTO setProjectId(String projectId) {
         this.projectId = projectId;
@@ -1046,24 +1030,6 @@ public class WorkItemDTO extends DTOBase implements Serializable {
     public WorkItemDTO setTopTitle(String topTitle) {
         this.topTitle = topTitle;
         this.modify("top_title", topTitle);
-        return this;
-    }
-
-    /**
-     * 设置 [项目发布标识]
-     */
-    public WorkItemDTO setVersionId(String versionId) {
-        this.versionId = versionId;
-        this.modify("version_id", versionId);
-        return this;
-    }
-
-    /**
-     * 设置 [发布名称]
-     */
-    public WorkItemDTO setVersionName(String versionName) {
-        this.versionName = versionName;
-        this.modify("version_name", versionName);
         return this;
     }
 

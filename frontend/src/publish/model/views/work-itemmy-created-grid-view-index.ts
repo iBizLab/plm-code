@@ -227,15 +227,6 @@ export default {
     ],
     appViewRefs: [
       {
-        realTitle: '工作项编辑视图',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
-        },
-        refAppViewId: 'plmweb.work_itemeditview',
-        name: 'NEWDATA',
-        id: 'newdata',
-      },
-      {
         openMode: 'INDEXVIEWTAB_POPUPMODAL',
         navigateContexts: [
           {
@@ -250,6 +241,15 @@ export default {
         refAppViewId: 'plmweb.work_itemmain_view',
         name: 'EDITDATA',
         id: 'editdata',
+      },
+      {
+        realTitle: '工作项编辑视图',
+        realTitleLanguageRes: {
+          lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
+        },
+        refAppViewId: 'plmweb.work_itemeditview',
+        name: 'NEWDATA',
+        id: 'newdata',
       },
     ],
     controls: [
@@ -428,12 +428,6 @@ export default {
             id: 'sprint_id',
           },
           {
-            appDEFieldId: 'version_id',
-            valueType: 'SIMPLE',
-            dataType: 25,
-            id: 'version_id',
-          },
-          {
             appDEFieldId: 'board_id',
             valueType: 'SIMPLE',
             dataType: 25,
@@ -517,7 +511,7 @@ export default {
         controlParam: {
           id: 'grid',
         },
-        modelId: '0A63AB28-E5E9-41A8-B02D-6DA4F7C525E4',
+        modelId: '534470fd56c4400373fc9e51843f56f4',
         modelType: 'PSDEGRID',
         name: 'grid',
         id: 'plmweb.work_item.my_created_work_item_grid_index',
@@ -551,7 +545,7 @@ export default {
     logicName: 'my_created_grid_view_index表格视图布局',
     appDataEntityId: 'plmweb.work_item',
     controlParam: {},
-    modelId: 'C16FDC97-A36E-4A6C-8EB8-2ABF1ABEB6E2',
+    modelId: '3459ea8a498d7a2042e5543c97e6b79c',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0222922932',

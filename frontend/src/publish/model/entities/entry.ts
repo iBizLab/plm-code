@@ -565,6 +565,13 @@ export default {
   deopprivs: [
     {
       logicName: '建立',
+      mapDEName: 'BOARD',
+      mapDEOPPrivName: 'CREATE',
+      name: 'CREATE',
+      id: 'board__create',
+    },
+    {
+      logicName: '建立',
       name: 'CREATE',
       id: 'create',
     },
@@ -576,18 +583,16 @@ export default {
       id: 'project__create',
     },
     {
-      logicName: '建立',
-      mapDEName: 'BOARD',
-      mapDEOPPrivName: 'CREATE',
-      name: 'CREATE',
-      id: 'board__create',
-    },
-    {
       logicName: '删除',
       mapDEName: 'PROJECT',
       mapDEOPPrivName: 'SUBDATA',
       name: 'DELETE',
       id: 'project__delete',
+    },
+    {
+      logicName: '删除',
+      name: 'DELETE',
+      id: 'delete',
     },
     {
       logicName: '删除',
@@ -597,9 +602,9 @@ export default {
       id: 'board__delete',
     },
     {
-      logicName: '删除',
-      name: 'DELETE',
-      id: 'delete',
+      logicName: '读取',
+      name: 'READ',
+      id: 'read',
     },
     {
       logicName: '读取',
@@ -610,11 +615,6 @@ export default {
     },
     {
       logicName: '读取',
-      name: 'READ',
-      id: 'read',
-    },
-    {
-      logicName: '读取',
       mapDEName: 'BOARD',
       mapDEOPPrivName: 'READ',
       name: 'READ',
@@ -622,17 +622,17 @@ export default {
     },
     {
       logicName: '更新',
-      mapDEName: 'PROJECT',
-      mapDEOPPrivName: 'SUBDATA',
-      name: 'UPDATE',
-      id: 'project__update',
-    },
-    {
-      logicName: '更新',
       mapDEName: 'BOARD',
       mapDEOPPrivName: 'UPDATE',
       name: 'UPDATE',
       id: 'board__update',
+    },
+    {
+      logicName: '更新',
+      mapDEName: 'PROJECT',
+      mapDEOPPrivName: 'SUBDATA',
+      name: 'UPDATE',
+      id: 'project__update',
     },
     {
       logicName: '更新',

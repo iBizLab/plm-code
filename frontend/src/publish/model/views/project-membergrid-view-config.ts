@@ -1,10 +1,9 @@
 export default {
   enableRowEdit: true,
-  rowEditDefault: true,
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'grid_view_config',
-  deviewId: '26060796-99F6-4FAA-9D58-0E39B889D2A3',
+  deviewId: '3c93792f402587f4c06c66434241048c',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PROJECT_MEMBER',
@@ -138,7 +137,7 @@ export default {
         {
           actionLevel: 100,
           noPrivDisplayMode: 2,
-          uiactionId: 'new',
+          uiactionId: 'new_common',
           valid: true,
           capLanguageRes: {
             lanResTag: 'TBB.TEXT.*.NEW',
@@ -161,12 +160,12 @@ export default {
       xdataControlName: 'grid',
       codeName: 'grid_view_configtoolbar',
       controlType: 'TOOLBAR',
-      logicName: '添加成员',
+      logicName: '成员表-添加成员',
       appDataEntityId: 'plmweb.project_member',
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '8B01BC7A-BD0F-42A1-A05D-362163EB4581',
+      modelId: '57f9be47626d04e5a530e14f28f5f6af',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'grid_view_configtoolbar',
@@ -258,37 +257,6 @@ export default {
           enableSort: true,
           id: 'update_time',
         },
-        {
-          deuiactionGroup: {
-            uiactionGroupDetails: [
-              {
-                actionLevel: 100,
-                afterItemType: 'NONE',
-                beforeItemType: 'NONE',
-                detailType: 'DEUIACTION',
-                uiactionId: 'remove_member@project_member',
-                showIcon: true,
-                sysImage: {
-                  cssClass: 'fa fa-trash',
-                  glyph: 'xf1f8@FontAwesome',
-                },
-                id: 'ua83cdb4',
-              },
-            ],
-            uniqueTag: 'Project_member__Usr1220055289',
-            name: '项目成员配置',
-            id: 'usr1220055289',
-          },
-          aggMode: 'NONE',
-          align: 'CENTER',
-          caption: '操作',
-          codeName: 'uagridcolumn1',
-          columnType: 'UAGRIDCOLUMN',
-          noPrivDisplayMode: 1,
-          width: 100,
-          widthUnit: 'PX',
-          id: 'uagridcolumn1',
-        },
       ],
       degridDataItems: [
         {
@@ -315,6 +283,12 @@ export default {
           valueType: 'SIMPLE',
           dataType: 5,
           id: 'update_time',
+        },
+        {
+          appDEFieldId: 'id',
+          valueType: 'SIMPLE',
+          dataType: 25,
+          id: 'id',
         },
         {
           appDEFieldId: 'id',
@@ -416,14 +390,13 @@ export default {
         id: 'update',
       },
       autoLoad: true,
-      enableItemPrivilege: true,
       showBusyIndicator: true,
       controls: [
         {
           detoolbarItems: [
             {
               actionLevel: 100,
-              noPrivDisplayMode: 2,
+              noPrivDisplayMode: 1,
               uiactionId: 'remove',
               uiactionTarget: 'MULTIKEY',
               valid: true,
@@ -452,62 +425,23 @@ export default {
           controlParam: {
             id: 'grid_batchtoolbar',
           },
-          modelId: '74CCFEF5-0654-4145-852A-227C53342218',
+          modelId: '824333fc6aa069bfea300fcc0b94336d',
           modelType: 'PSDETOOLBAR',
           name: 'grid_batchtoolbar',
           id: 'grid_view_configgrid_batchtoolbar',
         },
       ],
-      codeName: 'Setting',
+      codeName: 'Setting_table',
       controlType: 'GRID',
       logicName: '项目成员配置表格',
       appDataEntityId: 'plmweb.project_member',
       controlParam: {
         id: 'grid',
       },
-      modelId: '684B7847-7020-480C-AAAE-750829D11CDC',
+      modelId: '112de0e8ac280a71beb62a6d7c6df6d8',
       modelType: 'PSDEGRID',
       name: 'grid',
-      id: 'plmweb.project_member.setting',
-    },
-    {
-      searchButtonStyle: 'DEFAULT',
-      deformPages: [
-        {
-          layout: {
-            columnCount: 24,
-            layout: 'TABLE_24COL',
-          },
-          capLanguageRes: {
-            lanResTag:
-              'CONTROL.DEFORM.PROJECT_MEMBER.DEFAULT.FORMPAGE.FORMPAGE1',
-          },
-          caption: '常规条件',
-          codeName: 'formpage1',
-          detailStyle: 'DEFAULT',
-          detailType: 'FORMPAGE',
-          id: 'formpage1',
-        },
-      ],
-      layout: {
-        columnCount: 24,
-        layout: 'TABLE_24COL',
-      },
-      tabHeaderPos: 'TOP',
-      noTabHeader: true,
-      autoLoad: true,
-      showBusyIndicator: true,
-      codeName: 'Default',
-      controlType: 'SEARCHFORM',
-      logicName: '默认搜索表单',
-      appDataEntityId: 'plmweb.project_member',
-      controlParam: {
-        id: 'searchform',
-      },
-      modelId: '0355ba2b12962aa6d2ba2ab4b4f76be6',
-      modelType: 'PSDEFORM_SEARCHFORM',
-      name: 'searchform',
-      id: 'plmweb.project_member.default',
+      id: 'plmweb.project_member.setting_table',
     },
     {
       groupMode: 'SINGLE',
@@ -549,7 +483,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '244e4ff492afaf1f6ae117d57a37490a',
+  modelId: '3d41427d83a0b492d3ab2cc2be75b90f',
   modelType: 'PSAPPDEVIEW',
   name: 'project_membergrid_view_config',
   id: 'plmweb.project_membergrid_view_config',

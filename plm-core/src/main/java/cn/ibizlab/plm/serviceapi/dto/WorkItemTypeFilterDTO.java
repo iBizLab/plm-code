@@ -47,6 +47,14 @@ public class WorkItemTypeFilterDTO extends FilterBase implements Serializable {
 	private String groupEQ;
 
     /**
+     * 编码IN
+     */
+    @JsonProperty("n_code_in")
+    @JSONField(name = "n_code_in")
+    @ApiModelProperty(value = "编码IN", position = 40)
+	private String codeIN;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")

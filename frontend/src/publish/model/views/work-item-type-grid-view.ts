@@ -390,7 +390,7 @@ export default {
         },
         {
           actionLevel: 100,
-          noPrivDisplayMode: 2,
+          noPrivDisplayMode: 1,
           uiactionId: 'remove',
           uiactionTarget: 'MULTIKEY',
           valid: true,

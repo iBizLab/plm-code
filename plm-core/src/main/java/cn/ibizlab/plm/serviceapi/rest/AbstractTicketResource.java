@@ -51,6 +51,10 @@ public abstract class AbstractTicketResource {
 
     @Autowired
     @Lazy
+    public Ticketadvanced_searchDTOMapping ticketadvancedSearchDtoMapping;
+
+    @Autowired
+    @Lazy
     public TicketassigneeDTOMapping ticketassigneeDtoMapping;
 
     /**
@@ -287,18 +291,22 @@ public abstract class AbstractTicketResource {
     * Customer_choose_ticket 工单
     * 
     *
+    * @param id id
     * @param dto dto
     * @return ResponseEntity<TicketDTO>
     */
     @ApiOperation(value = "Customer_choose_ticket", tags = {"工单" },  notes = "Ticket-Customer_choose_ticket ")
-    @PostMapping("tickets/customer_choose_ticket")
-    public ResponseEntity<ResponseWrapper<TicketDTO>> customerChooseTicket
-            (@Validated @RequestBody RequestWrapper<TicketDTO> dto) {
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-Customer_choose_ticket-all') or hasPermission(this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-Customer_choose_ticket')")
+    @PutMapping("tickets/{id}/customer_choose_ticket")
+    public ResponseEntity<ResponseWrapper<TicketDTO>> customerChooseTicketById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
         ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray())
-            dto.getList().forEach(item -> rt.add(customerChooseTicket(item)));
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(customerChooseTicketById(ids[i], dto.getList().get(i))));
+        }
         else
-            rt.set(customerChooseTicket(dto.getDto()));
+            rt.set(customerChooseTicketById(id, dto.getDto()));
         return ResponseEntity.status(HttpStatus.OK).body(rt);
     }
 
@@ -306,12 +314,14 @@ public abstract class AbstractTicketResource {
     * Customer_choose_ticket 工单
     * 
     *
+    * @param id id
     * @param dto dto
     * @return ResponseEntity<TicketDTO>
     */   
-    public TicketDTO customerChooseTicket
-            (TicketDTO dto) {
+    public TicketDTO customerChooseTicketById
+            (String id, TicketDTO dto) {
         Ticket domain = ticketDtoMapping.toDomain(dto);
+        domain.setId(id);
         Ticket rt = ticketService.customerChooseTicket(domain);
         return ticketDtoMapping.toDto(rt);
     }
@@ -435,18 +445,22 @@ public abstract class AbstractTicketResource {
     * Others_relation_ticket 工单
     * 
     *
+    * @param id id
     * @param dto dto
     * @return ResponseEntity<TicketDTO>
     */
     @ApiOperation(value = "Others_relation_ticket", tags = {"工单" },  notes = "Ticket-Others_relation_ticket ")
-    @PostMapping("tickets/others_relation_ticket")
-    public ResponseEntity<ResponseWrapper<TicketDTO>> othersRelationTicket
-            (@Validated @RequestBody RequestWrapper<TicketDTO> dto) {
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-Others_relation_ticket-all') or hasPermission(this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-Others_relation_ticket')")
+    @PutMapping("tickets/{id}/others_relation_ticket")
+    public ResponseEntity<ResponseWrapper<TicketDTO>> othersRelationTicketById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
         ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray())
-            dto.getList().forEach(item -> rt.add(othersRelationTicket(item)));
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(othersRelationTicketById(ids[i], dto.getList().get(i))));
+        }
         else
-            rt.set(othersRelationTicket(dto.getDto()));
+            rt.set(othersRelationTicketById(id, dto.getDto()));
         return ResponseEntity.status(HttpStatus.OK).body(rt);
     }
 
@@ -454,12 +468,14 @@ public abstract class AbstractTicketResource {
     * Others_relation_ticket 工单
     * 
     *
+    * @param id id
     * @param dto dto
     * @return ResponseEntity<TicketDTO>
     */   
-    public TicketDTO othersRelationTicket
-            (TicketDTO dto) {
+    public TicketDTO othersRelationTicketById
+            (String id, TicketDTO dto) {
         Ticket domain = ticketDtoMapping.toDomain(dto);
+        domain.setId(id);
         Ticket rt = ticketService.othersRelationTicket(domain);
         return ticketDtoMapping.toDto(rt);
     }
@@ -824,18 +840,22 @@ public abstract class AbstractTicketResource {
     * 
     *
     * @param productId productId
+    * @param id id
     * @param dto dto
     * @return ResponseEntity<TicketDTO>
     */
     @ApiOperation(value = "Customer_choose_ticket", tags = {"工单" },  notes = "Ticket-Customer_choose_ticket ")
-    @PostMapping("products/{productId}/tickets/customer_choose_ticket")
-    public ResponseEntity<ResponseWrapper<TicketDTO>> customerChooseTicketByProductId
-            (@PathVariable("productId") String productId, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-Customer_choose_ticket-all') or hasPermission('Product',#productId,this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-Customer_choose_ticket')")
+    @PutMapping("products/{productId}/tickets/{id}/customer_choose_ticket")
+    public ResponseEntity<ResponseWrapper<TicketDTO>> customerChooseTicketByProductIdAndId
+            (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
         ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray())
-            dto.getList().forEach(item -> rt.add(customerChooseTicketByProductId(productId, item)));
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(customerChooseTicketByProductIdAndId(productId, ids[i], dto.getList().get(i))));
+        }
         else
-            rt.set(customerChooseTicketByProductId(productId, dto.getDto()));
+            rt.set(customerChooseTicketByProductIdAndId(productId, id, dto.getDto()));
         return ResponseEntity.status(HttpStatus.OK).body(rt);
     }
 
@@ -844,13 +864,14 @@ public abstract class AbstractTicketResource {
     * 
     *
     * @param productId productId
+    * @param id id
     * @param dto dto
     * @return ResponseEntity<TicketDTO>
     */   
-    public TicketDTO customerChooseTicketByProductId
-            (String productId, TicketDTO dto) {
+    public TicketDTO customerChooseTicketByProductIdAndId
+            (String productId, String id, TicketDTO dto) {
         Ticket domain = ticketDtoMapping.toDomain(dto);
-        domain.setProductId(productId);
+        domain.setId(id);
         Ticket rt = ticketService.customerChooseTicket(domain);
         return ticketDtoMapping.toDto(rt);
     }
@@ -981,18 +1002,22 @@ public abstract class AbstractTicketResource {
     * 
     *
     * @param productId productId
+    * @param id id
     * @param dto dto
     * @return ResponseEntity<TicketDTO>
     */
     @ApiOperation(value = "Others_relation_ticket", tags = {"工单" },  notes = "Ticket-Others_relation_ticket ")
-    @PostMapping("products/{productId}/tickets/others_relation_ticket")
-    public ResponseEntity<ResponseWrapper<TicketDTO>> othersRelationTicketByProductId
-            (@PathVariable("productId") String productId, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-Others_relation_ticket-all') or hasPermission('Product',#productId,this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-Others_relation_ticket')")
+    @PutMapping("products/{productId}/tickets/{id}/others_relation_ticket")
+    public ResponseEntity<ResponseWrapper<TicketDTO>> othersRelationTicketByProductIdAndId
+            (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
         ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray())
-            dto.getList().forEach(item -> rt.add(othersRelationTicketByProductId(productId, item)));
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(othersRelationTicketByProductIdAndId(productId, ids[i], dto.getList().get(i))));
+        }
         else
-            rt.set(othersRelationTicketByProductId(productId, dto.getDto()));
+            rt.set(othersRelationTicketByProductIdAndId(productId, id, dto.getDto()));
         return ResponseEntity.status(HttpStatus.OK).body(rt);
     }
 
@@ -1001,13 +1026,14 @@ public abstract class AbstractTicketResource {
     * 
     *
     * @param productId productId
+    * @param id id
     * @param dto dto
     * @return ResponseEntity<TicketDTO>
     */   
-    public TicketDTO othersRelationTicketByProductId
-            (String productId, TicketDTO dto) {
+    public TicketDTO othersRelationTicketByProductIdAndId
+            (String productId, String id, TicketDTO dto) {
         Ticket domain = ticketDtoMapping.toDomain(dto);
-        domain.setProductId(productId);
+        domain.setId(id);
         Ticket rt = ticketService.othersRelationTicket(domain);
         return ticketDtoMapping.toDto(rt);
     }
@@ -1213,6 +1239,60 @@ public abstract class AbstractTicketResource {
     }
 
     /**
+    * Get_product_member 工单
+    * 
+    *
+    * @param id id
+    * @return ResponseEntity<TicketDTO>
+    */
+    @ApiOperation(value = "Get_product_member", tags = {"工单" },  notes = "Ticket-Get_product_member ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-Get_product_member-all') or hasPermission(this.ticketService.get(#id),'ibizplm-Ticket-Get_product_member')")
+    @GetMapping("tickets/{id}/get_product_member")
+    public ResponseEntity<TicketDTO> getProductMemberById
+            (@PathVariable("id") String id) {
+        Ticket rt = ticketService.getProductMember(id);
+        return ResponseEntity.status(HttpStatus.OK).body(ticketDtoMapping.toDto(rt));
+    }
+
+    /**
+    * Test_get_archived_info 工单
+    * 
+    *
+    * @param id id
+    * @return ResponseEntity<TicketDTO>
+    */
+    @ApiOperation(value = "Test_get_archived_info", tags = {"工单" },  notes = "Ticket-Test_get_archived_info ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-Test_get_archived_info-all') or hasPermission(this.ticketService.get(#id),'ibizplm-Ticket-Test_get_archived_info')")
+    @GetMapping("tickets/{id}/test_get_archived_info")
+    public ResponseEntity<TicketDTO> testGetArchivedInfoById
+            (@PathVariable("id") String id) {
+        Ticket rt = ticketService.testGetArchivedInfo(id);
+        return ResponseEntity.status(HttpStatus.OK).body(ticketDtoMapping.toDto(rt));
+    }
+
+    /**
+    * 查询FetchAdvanced_search 工单
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<Ticketadvanced_searchDTO>>
+    */
+    @ApiOperation(value = "查询FetchAdvanced_search", tags = {"工单" },  notes = "Ticket-FetchAdvanced_search ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-FetchAdvanced_search-all') or hasPermission(#dto,'ibizplm-Ticket-FetchAdvanced_search')")
+    @PostMapping("tickets/fetchadvanced_search")
+    public ResponseEntity<List<Ticketadvanced_searchDTO>> fetchAdvancedSearch
+            (@Validated @RequestBody TicketFilterDTO dto) {
+        TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
+        Page<Ticket> domains = ticketService.searchAdvancedSearch(context) ;
+        List<Ticketadvanced_searchDTO> list = ticketadvancedSearchDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
     * 查询FetchArchived 工单
     * 
     *
@@ -1258,12 +1338,12 @@ public abstract class AbstractTicketResource {
 
     /**
     * 查询FetchCommon 工单
-    * 
+    * 通用查询，非删除数据
     *
     * @param dto dto
     * @return ResponseEntity<List<TicketDTO>>
     */
-    @ApiOperation(value = "查询FetchCommon", tags = {"工单" },  notes = "Ticket-FetchCommon ")
+    @ApiOperation(value = "查询FetchCommon", tags = {"工单" },  notes = "Ticket-FetchCommon 通用查询，非删除数据")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-FetchCommon-all') or hasPermission(#dto,'ibizplm-Ticket-FetchCommon')")
     @PostMapping("tickets/fetchcommon")
     public ResponseEntity<List<TicketDTO>> fetchCommon
@@ -1280,12 +1360,12 @@ public abstract class AbstractTicketResource {
 
     /**
     * 查询FetchCustomer_notre_ticket 工单
-    * 
+    * 查询未关联工单的数据；客户关联工单表格调用
     *
     * @param dto dto
     * @return ResponseEntity<List<TicketDTO>>
     */
-    @ApiOperation(value = "查询FetchCustomer_notre_ticket", tags = {"工单" },  notes = "Ticket-FetchCustomer_notre_ticket ")
+    @ApiOperation(value = "查询FetchCustomer_notre_ticket", tags = {"工单" },  notes = "Ticket-FetchCustomer_notre_ticket 查询未关联工单的数据；客户关联工单表格调用")
     @PostMapping("tickets/fetchcustomer_notre_ticket")
     public ResponseEntity<List<TicketDTO>> fetchCustomerNotreTicket
             (@Validated @RequestBody TicketFilterDTO dto) {
@@ -1367,12 +1447,12 @@ public abstract class AbstractTicketResource {
 
     /**
     * 查询FetchIdea_relation_ticket 工单
-    * 
+    * 产品关联工单表格调用
     *
     * @param dto dto
     * @return ResponseEntity<List<TicketDTO>>
     */
-    @ApiOperation(value = "查询FetchIdea_relation_ticket", tags = {"工单" },  notes = "Ticket-FetchIdea_relation_ticket ")
+    @ApiOperation(value = "查询FetchIdea_relation_ticket", tags = {"工单" },  notes = "Ticket-FetchIdea_relation_ticket 产品关联工单表格调用")
     @PostMapping("tickets/fetchidea_relation_ticket")
     public ResponseEntity<List<TicketDTO>> fetchIdeaRelationTicket
             (@Validated @RequestBody TicketFilterDTO dto) {
@@ -1388,12 +1468,12 @@ public abstract class AbstractTicketResource {
 
     /**
     * 查询FetchMy_assign 工单
-    * 
+    * 首页我负责的工单表格调用
     *
     * @param dto dto
     * @return ResponseEntity<List<TicketDTO>>
     */
-    @ApiOperation(value = "查询FetchMy_assign", tags = {"工单" },  notes = "Ticket-FetchMy_assign ")
+    @ApiOperation(value = "查询FetchMy_assign", tags = {"工单" },  notes = "Ticket-FetchMy_assign 首页我负责的工单表格调用")
     @PostMapping("tickets/fetchmy_assign")
     public ResponseEntity<List<TicketDTO>> fetchMyAssign
             (@Validated @RequestBody TicketFilterDTO dto) {
@@ -1409,12 +1489,12 @@ public abstract class AbstractTicketResource {
 
     /**
     * 查询FetchMy_assignee_count 工单
-    * 
+    * 首页我负责的工单表格调用
     *
     * @param dto dto
     * @return ResponseEntity<List<TicketDTO>>
     */
-    @ApiOperation(value = "查询FetchMy_assignee_count", tags = {"工单" },  notes = "Ticket-FetchMy_assignee_count ")
+    @ApiOperation(value = "查询FetchMy_assignee_count", tags = {"工单" },  notes = "Ticket-FetchMy_assignee_count 首页我负责的工单表格调用")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-FetchMy_assignee_count-all') or hasPermission(#dto,'ibizplm-Ticket-FetchMy_assignee_count')")
     @PostMapping("tickets/fetchmy_assignee_count")
     public ResponseEntity<List<TicketDTO>> fetchMyAssigneeCount
@@ -1473,12 +1553,12 @@ public abstract class AbstractTicketResource {
 
     /**
     * 查询FetchNormal 工单
-    * 
+    * 非归档，非删除数据
     *
     * @param dto dto
     * @return ResponseEntity<List<TicketDTO>>
     */
-    @ApiOperation(value = "查询FetchNormal", tags = {"工单" },  notes = "Ticket-FetchNormal ")
+    @ApiOperation(value = "查询FetchNormal", tags = {"工单" },  notes = "Ticket-FetchNormal 非归档，非删除数据")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-FetchNormal-all') or hasPermission(#dto,'ibizplm-Ticket-FetchNormal')")
     @PostMapping("tickets/fetchnormal")
     public ResponseEntity<List<TicketDTO>> fetchNormal
@@ -1516,6 +1596,28 @@ public abstract class AbstractTicketResource {
     }
 
     /**
+    * 查询FetchNotify_assignee 工单
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<TicketassigneeDTO>>
+    */
+    @ApiOperation(value = "查询FetchNotify_assignee", tags = {"工单" },  notes = "Ticket-FetchNotify_assignee ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-FetchNotify_assignee-all') or hasPermission(#dto,'ibizplm-Ticket-FetchNotify_assignee')")
+    @PostMapping("tickets/fetchnotify_assignee")
+    public ResponseEntity<List<TicketassigneeDTO>> fetchNotifyAssignee
+            (@Validated @RequestBody TicketFilterDTO dto) {
+        TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
+        Page<Ticket> domains = ticketService.searchNotifyAssignee(context) ;
+        List<TicketassigneeDTO> list = ticketassigneeDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
     * 查询FetchRecent_ticket 工单
     * 
     *
@@ -1538,12 +1640,12 @@ public abstract class AbstractTicketResource {
 
     /**
     * 查询FetchTicket_re_product_tag 工单
-    * 
+    * 当前标签下工单表格视图调用
     *
     * @param dto dto
     * @return ResponseEntity<List<TicketDTO>>
     */
-    @ApiOperation(value = "查询FetchTicket_re_product_tag", tags = {"工单" },  notes = "Ticket-FetchTicket_re_product_tag ")
+    @ApiOperation(value = "查询FetchTicket_re_product_tag", tags = {"工单" },  notes = "Ticket-FetchTicket_re_product_tag 当前标签下工单表格视图调用")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-FetchTicket_re_product_tag-all') or hasPermission(#dto,'ibizplm-Ticket-FetchTicket_re_product_tag')")
     @PostMapping("tickets/fetchticket_re_product_tag")
     public ResponseEntity<List<TicketDTO>> fetchTicketReProductTag
@@ -1688,6 +1790,64 @@ public abstract class AbstractTicketResource {
     }
 
     /**
+    * Get_product_member 工单
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @return ResponseEntity<TicketDTO>
+    */
+    @ApiOperation(value = "Get_product_member", tags = {"工单" },  notes = "Ticket-Get_product_member ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-Get_product_member-all') or hasPermission('Product',#productId,this.ticketService.get(#id),'ibizplm-Ticket-Get_product_member')")
+    @GetMapping("products/{productId}/tickets/{id}/get_product_member")
+    public ResponseEntity<TicketDTO> getProductMemberByProductIdAndId
+            (@PathVariable("productId") String productId, @PathVariable("id") String id) {
+        Ticket rt = ticketService.getProductMember(id);
+        return ResponseEntity.status(HttpStatus.OK).body(ticketDtoMapping.toDto(rt));
+    }
+
+    /**
+    * Test_get_archived_info 工单
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @return ResponseEntity<TicketDTO>
+    */
+    @ApiOperation(value = "Test_get_archived_info", tags = {"工单" },  notes = "Ticket-Test_get_archived_info ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-Test_get_archived_info-all') or hasPermission('Product',#productId,this.ticketService.get(#id),'ibizplm-Ticket-Test_get_archived_info')")
+    @GetMapping("products/{productId}/tickets/{id}/test_get_archived_info")
+    public ResponseEntity<TicketDTO> testGetArchivedInfoByProductIdAndId
+            (@PathVariable("productId") String productId, @PathVariable("id") String id) {
+        Ticket rt = ticketService.testGetArchivedInfo(id);
+        return ResponseEntity.status(HttpStatus.OK).body(ticketDtoMapping.toDto(rt));
+    }
+
+    /**
+    * 查询FetchAdvanced_search 工单
+    * 
+    *
+    * @param productId productId
+    * @param dto dto
+    * @return ResponseEntity<List<Ticketadvanced_searchDTO>>
+    */
+    @ApiOperation(value = "查询FetchAdvanced_search", tags = {"工单" },  notes = "Ticket-FetchAdvanced_search ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-FetchAdvanced_search-all') or hasPermission('Product',#productId,#dto,'ibizplm-Ticket-FetchAdvanced_search')")
+    @PostMapping("products/{productId}/tickets/fetchadvanced_search")
+    public ResponseEntity<List<Ticketadvanced_searchDTO>> fetchAdvancedSearchByProductId
+            (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
+        dto.setProductIdEQ(productId);
+        TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
+        Page<Ticket> domains = ticketService.searchAdvancedSearch(context) ;
+        List<Ticketadvanced_searchDTO> list = ticketadvancedSearchDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
     * 查询FetchArchived 工单
     * 
     *
@@ -1737,13 +1897,13 @@ public abstract class AbstractTicketResource {
 
     /**
     * 查询FetchCommon 工单
-    * 
+    * 通用查询，非删除数据
     *
     * @param productId productId
     * @param dto dto
     * @return ResponseEntity<List<TicketDTO>>
     */
-    @ApiOperation(value = "查询FetchCommon", tags = {"工单" },  notes = "Ticket-FetchCommon ")
+    @ApiOperation(value = "查询FetchCommon", tags = {"工单" },  notes = "Ticket-FetchCommon 通用查询，非删除数据")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-FetchCommon-all') or hasPermission('Product',#productId,#dto,'ibizplm-Ticket-FetchCommon')")
     @PostMapping("products/{productId}/tickets/fetchcommon")
     public ResponseEntity<List<TicketDTO>> fetchCommonByProductId
@@ -1761,13 +1921,13 @@ public abstract class AbstractTicketResource {
 
     /**
     * 查询FetchCustomer_notre_ticket 工单
-    * 
+    * 查询未关联工单的数据；客户关联工单表格调用
     *
     * @param productId productId
     * @param dto dto
     * @return ResponseEntity<List<TicketDTO>>
     */
-    @ApiOperation(value = "查询FetchCustomer_notre_ticket", tags = {"工单" },  notes = "Ticket-FetchCustomer_notre_ticket ")
+    @ApiOperation(value = "查询FetchCustomer_notre_ticket", tags = {"工单" },  notes = "Ticket-FetchCustomer_notre_ticket 查询未关联工单的数据；客户关联工单表格调用")
     @PostMapping("products/{productId}/tickets/fetchcustomer_notre_ticket")
     public ResponseEntity<List<TicketDTO>> fetchCustomerNotreTicketByProductId
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
@@ -1856,13 +2016,13 @@ public abstract class AbstractTicketResource {
 
     /**
     * 查询FetchIdea_relation_ticket 工单
-    * 
+    * 产品关联工单表格调用
     *
     * @param productId productId
     * @param dto dto
     * @return ResponseEntity<List<TicketDTO>>
     */
-    @ApiOperation(value = "查询FetchIdea_relation_ticket", tags = {"工单" },  notes = "Ticket-FetchIdea_relation_ticket ")
+    @ApiOperation(value = "查询FetchIdea_relation_ticket", tags = {"工单" },  notes = "Ticket-FetchIdea_relation_ticket 产品关联工单表格调用")
     @PostMapping("products/{productId}/tickets/fetchidea_relation_ticket")
     public ResponseEntity<List<TicketDTO>> fetchIdeaRelationTicketByProductId
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
@@ -1879,13 +2039,13 @@ public abstract class AbstractTicketResource {
 
     /**
     * 查询FetchMy_assign 工单
-    * 
+    * 首页我负责的工单表格调用
     *
     * @param productId productId
     * @param dto dto
     * @return ResponseEntity<List<TicketDTO>>
     */
-    @ApiOperation(value = "查询FetchMy_assign", tags = {"工单" },  notes = "Ticket-FetchMy_assign ")
+    @ApiOperation(value = "查询FetchMy_assign", tags = {"工单" },  notes = "Ticket-FetchMy_assign 首页我负责的工单表格调用")
     @PostMapping("products/{productId}/tickets/fetchmy_assign")
     public ResponseEntity<List<TicketDTO>> fetchMyAssignByProductId
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
@@ -1902,13 +2062,13 @@ public abstract class AbstractTicketResource {
 
     /**
     * 查询FetchMy_assignee_count 工单
-    * 
+    * 首页我负责的工单表格调用
     *
     * @param productId productId
     * @param dto dto
     * @return ResponseEntity<List<TicketDTO>>
     */
-    @ApiOperation(value = "查询FetchMy_assignee_count", tags = {"工单" },  notes = "Ticket-FetchMy_assignee_count ")
+    @ApiOperation(value = "查询FetchMy_assignee_count", tags = {"工单" },  notes = "Ticket-FetchMy_assignee_count 首页我负责的工单表格调用")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-FetchMy_assignee_count-all') or hasPermission('Product',#productId,#dto,'ibizplm-Ticket-FetchMy_assignee_count')")
     @PostMapping("products/{productId}/tickets/fetchmy_assignee_count")
     public ResponseEntity<List<TicketDTO>> fetchMyAssigneeCountByProductId
@@ -1972,13 +2132,13 @@ public abstract class AbstractTicketResource {
 
     /**
     * 查询FetchNormal 工单
-    * 
+    * 非归档，非删除数据
     *
     * @param productId productId
     * @param dto dto
     * @return ResponseEntity<List<TicketDTO>>
     */
-    @ApiOperation(value = "查询FetchNormal", tags = {"工单" },  notes = "Ticket-FetchNormal ")
+    @ApiOperation(value = "查询FetchNormal", tags = {"工单" },  notes = "Ticket-FetchNormal 非归档，非删除数据")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-FetchNormal-all') or hasPermission('Product',#productId,#dto,'ibizplm-Ticket-FetchNormal')")
     @PostMapping("products/{productId}/tickets/fetchnormal")
     public ResponseEntity<List<TicketDTO>> fetchNormalByProductId
@@ -2019,6 +2179,30 @@ public abstract class AbstractTicketResource {
     }
 
     /**
+    * 查询FetchNotify_assignee 工单
+    * 
+    *
+    * @param productId productId
+    * @param dto dto
+    * @return ResponseEntity<List<TicketassigneeDTO>>
+    */
+    @ApiOperation(value = "查询FetchNotify_assignee", tags = {"工单" },  notes = "Ticket-FetchNotify_assignee ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-FetchNotify_assignee-all') or hasPermission('Product',#productId,#dto,'ibizplm-Ticket-FetchNotify_assignee')")
+    @PostMapping("products/{productId}/tickets/fetchnotify_assignee")
+    public ResponseEntity<List<TicketassigneeDTO>> fetchNotifyAssigneeByProductId
+            (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
+        dto.setProductIdEQ(productId);
+        TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
+        Page<Ticket> domains = ticketService.searchNotifyAssignee(context) ;
+        List<TicketassigneeDTO> list = ticketassigneeDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
     * 查询FetchRecent_ticket 工单
     * 
     *
@@ -2043,13 +2227,13 @@ public abstract class AbstractTicketResource {
 
     /**
     * 查询FetchTicket_re_product_tag 工单
-    * 
+    * 当前标签下工单表格视图调用
     *
     * @param productId productId
     * @param dto dto
     * @return ResponseEntity<List<TicketDTO>>
     */
-    @ApiOperation(value = "查询FetchTicket_re_product_tag", tags = {"工单" },  notes = "Ticket-FetchTicket_re_product_tag ")
+    @ApiOperation(value = "查询FetchTicket_re_product_tag", tags = {"工单" },  notes = "Ticket-FetchTicket_re_product_tag 当前标签下工单表格视图调用")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-FetchTicket_re_product_tag-all') or hasPermission('Product',#productId,#dto,'ibizplm-Ticket-FetchTicket_re_product_tag')")
     @PostMapping("products/{productId}/tickets/fetchticket_re_product_tag")
     public ResponseEntity<List<TicketDTO>> fetchTicketReProductTagByProductId

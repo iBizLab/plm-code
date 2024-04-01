@@ -31,6 +31,14 @@ import io.swagger.annotations.ApiModelProperty;
 public class ProductFilterDTO extends FilterBase implements Serializable {
 
     /**
+     * 产品标识EQ
+     */
+    @JsonProperty("n_identifier_eq")
+    @JSONField(name = "n_identifier_eq")
+    @ApiModelProperty(value = "产品标识EQ", position = 0)
+	private String identifierEQ;
+
+    /**
      * 可见范围EQ
      */
     @JsonProperty("n_visibility_eq")
@@ -77,6 +85,14 @@ public class ProductFilterDTO extends FilterBase implements Serializable {
     @JSONField(name = "n_id_eq")
     @ApiModelProperty(value = "标识EQ", position = 120)
 	private String idEQ;
+
+    /**
+     * 标识NOTEQ
+     */
+    @JsonProperty("n_id_noteq")
+    @JSONField(name = "n_id_noteq")
+    @ApiModelProperty(value = "标识NOTEQ", position = 121)
+	private String idNOTEQ;
 
 
 }

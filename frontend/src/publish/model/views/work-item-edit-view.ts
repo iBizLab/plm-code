@@ -116,7 +116,6 @@ export default {
                     editable: true,
                     id: 'title',
                   },
-                  allowEmpty: true,
                   caption: '标题',
                   codeName: 'title',
                   detailStyle: 'DEFAULT',

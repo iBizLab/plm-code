@@ -4,7 +4,7 @@ export default {
   loadDefault: true,
   funcViewMode: 'EDITVIEW',
   deviewCodeName: 'quick_cfg_view',
-  deviewId: 'E92565A3-6EE6-47BA-B314-4D9607D97729',
+  deviewId: 'ed16a62deee6b07cdc4c7b720b27617a',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.USER',
@@ -29,7 +29,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: 'E7E36B5A-B191-4AA3-8A8D-2F7B009A3628',
+      modelId: '95ff935d8e08d0c0610c85e026afe9ff',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'quick_cfg_viewtoolbar',
@@ -336,7 +336,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '95BB2C8F-2C8A-470E-8E41-93ED763BF87B',
+      modelId: 'edaa37f58ea44a4daa0e76fbeb04a8aa',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.user.quick_cfg',
@@ -380,7 +380,7 @@ export default {
   viewType: 'DEEDITVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '585413f412c9a482cfbd2d71da0aa8ff',
+  modelId: '883777df6c2f24c7447b4b97db3d2fb1',
   modelType: 'PSAPPDEVIEW',
   name: 'userquick_cfg_view',
   id: 'plmweb.userquick_cfg_view',

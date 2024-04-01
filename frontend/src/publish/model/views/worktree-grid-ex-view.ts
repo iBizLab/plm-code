@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'treegridex',
   loadDefault: true,
   deviewCodeName: 'tree_grid_ex_view',
-  deviewId: 'B27A1C7E-42AD-4C7D-BF1D-D9BBFA3FDB87',
+  deviewId: 'f9d01b56fe894bc7b07202d661fbf9e8',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK',
@@ -36,15 +36,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '工作编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.WORK.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.workeditview',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       realTitle: '工作数据重定向视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.WORK.REDIRECTVIEW',
@@ -52,6 +43,15 @@ export default {
       refAppViewId: 'plmweb.workredirectview',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realTitle: '工作编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.WORK.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.workeditview',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -92,7 +92,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: 'B9BF1A0F-135F-4C4E-BCD9-627597A034BA',
+      modelId: '454a290d0783bdc78098cd01581564a9',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'tree_grid_ex_viewtoolbar',
@@ -223,7 +223,7 @@ export default {
                       cssClass: 'fa fa-trash-o',
                       glyph: 'xf014@FontAwesome',
                     },
-                    id: 'u26b6c92',
+                    id: 'uda81f5e',
                   },
                 ],
                 uniqueTag: 'Portfolio__Usr0305508371',
@@ -360,7 +360,7 @@ export default {
                       cssClass: 'fa fa-trash-o',
                       glyph: 'xf014@FontAwesome',
                     },
-                    id: 'uba518c0',
+                    id: 'u33e263f',
                   },
                 ],
                 uniqueTag: 'Project__Usr0305093607',
@@ -496,7 +496,7 @@ export default {
                       cssClass: 'fa fa-trash-o',
                       glyph: 'xf014@FontAwesome',
                     },
-                    id: 'uba518c0',
+                    id: 'u33e263f',
                   },
                 ],
                 uniqueTag: 'Project__Usr0305093607',
@@ -594,7 +594,7 @@ export default {
       controlParam: {
         id: 'treegridex',
       },
-      modelId: 'EDF70DFE-C5DC-4BF1-8C9C-85B10FE1F5C8',
+      modelId: 'f720a521cc496bc1e9b7a63678e19d64',
       modelType: 'PSDETREEGRIDEX',
       name: 'treegridex',
       id: 'plmweb.work.tree_grid_ex_view_treegrid',
@@ -637,7 +637,7 @@ export default {
   viewType: 'DETREEGRIDEXVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'bb593ec6281784775051b04647ea0451',
+  modelId: '1ceccb8debea89c59d963504096335a5',
   modelType: 'PSAPPDEVIEW',
   name: 'worktree_grid_ex_view',
   id: 'plmweb.worktree_grid_ex_view',

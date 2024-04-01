@@ -5,10 +5,10 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'not_re_pickup_grid',
-  deviewId: 'D57720F6-66FE-4DC5-9601-8AA860A83BC1',
+  deviewId: '2e396a1ee12f38e9ac476068cce408f3',
   accUserMode: 2,
   capLanguageRes: {
-    lanResTag: 'DE.LNAME.IDEA',
+    lanResTag: 'PAGE.CAPTION.IDEA.NOT_RE_PICKUP_GRID',
   },
   caption: '选择需求',
   codeName: 'ideanot_re_pickup_grid',
@@ -208,7 +208,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: 'C19E595B-9D85-4342-85B5-26EA3EF10823',
+      modelId: 'ead185875a2073695785998c494e5a01',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.idea.not_re_pickup_grid_grid',
@@ -238,7 +238,8 @@ export default {
               allowEmpty: true,
               emptyCaption: true,
               capLanguageRes: {
-                lanResTag: 'CONTROL.DEFSFITEM.IDEA.N_TITLE_LIKE',
+                lanResTag:
+                  'CONTROL.DEFORM.IDEA.NOT_RE_PICKUP_GRID_SEARCHFORM.FORMITEM.N_TITLE_LIKE',
               },
               codeName: 'n_title_like',
               detailStyle: 'DEFAULT',
@@ -251,6 +252,10 @@ export default {
               id: 'n_title_like',
             },
           ],
+          capLanguageRes: {
+            lanResTag:
+              'CONTROL.DEFORM.IDEA.NOT_RE_PICKUP_GRID_SEARCHFORM.FORMPAGE.FORMPAGE1',
+          },
           caption: '常规条件',
           codeName: 'formpage1',
           detailStyle: 'DEFAULT',
@@ -273,7 +278,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: '4E611330-1C1B-4390-9BCF-551E2BE463A0',
+      modelId: '3d33f3cf53dec293100956b259a51e85',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.idea.not_re_pickup_grid_searchform',
@@ -289,7 +294,7 @@ export default {
     },
     {
       capLanguageRes: {
-        lanResTag: 'DE.LNAME.IDEA',
+        lanResTag: 'PAGE.CAPTION.IDEA.NOT_RE_PICKUP_GRID',
       },
       caption: '选择需求',
       codeName: 'not_re_pickup_gridcaptionbar',
@@ -312,11 +317,14 @@ export default {
     id: 'layoutpanel',
   },
   title: '未排期的需求',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.IDEA.NOT_RE_PICKUP_GRID',
+  },
   viewStyle: 'DEFAULT',
   viewType: 'DEPICKUPGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'eadcd73103a255014af4383a1876ed11',
+  modelId: 'a728c8dc1a30d60b6f7d85fdd7ce353e',
   modelType: 'PSAPPDEVIEW',
   name: 'ideanot_re_pickup_grid',
   id: 'plmweb.ideanot_re_pickup_grid',

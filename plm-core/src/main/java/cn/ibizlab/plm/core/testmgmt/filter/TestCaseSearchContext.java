@@ -39,6 +39,22 @@ import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
 public class TestCaseSearchContext extends QueryWrapperContext<TestCase> {
 
     /**
+     * 编号EQ
+     */
+    @JsonProperty("n_identifier_eq")
+    @JSONField(name = "n_identifier_eq")
+    @ApiModelProperty("编号EQ")
+    private String identifierEQ;
+
+    /**
+     * 编号ISNULL
+     */
+    @JsonProperty("n_identifier_isnull")
+    @JSONField(name = "n_identifier_isnull")
+    @ApiModelProperty("编号ISNULL")
+    private String identifierISNULL;
+
+    /**
      * 编号LIKE
      */
     @JsonProperty("n_identifier_like")
@@ -79,6 +95,14 @@ public class TestCaseSearchContext extends QueryWrapperContext<TestCase> {
     private String testTypeEQ;
 
     /**
+     * 描述LIKE
+     */
+    @JsonProperty("n_description_like")
+    @JSONField(name = "n_description_like")
+    @ApiModelProperty("描述LIKE")
+    private String descriptionLIKE;
+
+    /**
      * 是否已归档EQ
      */
     @JsonProperty("n_is_archived_eq")
@@ -111,12 +135,36 @@ public class TestCaseSearchContext extends QueryWrapperContext<TestCase> {
     private String stateNOTIN;
 
     /**
-     * 维护人标识EQ
+     * 维护人EQ
      */
     @JsonProperty("n_maintenance_id_eq")
     @JSONField(name = "n_maintenance_id_eq")
-    @ApiModelProperty("维护人标识EQ")
+    @ApiModelProperty("维护人EQ")
     private String maintenanceIdEQ;
+
+    /**
+     * 维护人EQ
+     */
+    @JsonProperty("n_maintenance_name_eq")
+    @JSONField(name = "n_maintenance_name_eq")
+    @ApiModelProperty("维护人EQ")
+    private String maintenanceNameEQ;
+
+    /**
+     * 测试计划名称EQ
+     */
+    @JsonProperty("n_test_plan_name_eq")
+    @JSONField(name = "n_test_plan_name_eq")
+    @ApiModelProperty("测试计划名称EQ")
+    private String testPlanNameEQ;
+
+    /**
+     * 执行人EQ
+     */
+    @JsonProperty("n_executor_name_eq")
+    @JSONField(name = "n_executor_name_eq")
+    @ApiModelProperty("执行人EQ")
+    private String executorNameEQ;
 
     /**
      * 执行结果EQ
@@ -143,12 +191,47 @@ public class TestCaseSearchContext extends QueryWrapperContext<TestCase> {
     private String showIdentifierLIKE;
 
     /**
+     * 标识NOTEQ
+     */
+    @JsonProperty("n_id_noteq")
+    @JSONField(name = "n_id_noteq")
+    @ApiModelProperty("标识NOTEQ")
+    private String idNOTEQ;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
     @ApiModelProperty("标识EQ")
     private String idEQ;
+
+    /**
+     * 建立时间EQ
+     */
+    @JsonProperty("n_create_time_eq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_create_time_eq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("建立时间EQ")
+    private Date createTimeEQ;
+
+    /**
+     * 建立时间GTANDEQ
+     */
+    @JsonProperty("n_create_time_gtandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_create_time_gtandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("建立时间GTANDEQ")
+    private Date createTimeGTANDEQ;
+
+    /**
+     * 建立时间LTANDEQ
+     */
+    @JsonProperty("n_create_time_ltandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_create_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("建立时间LTANDEQ")
+    private Date createTimeLTANDEQ;
 
     /**
      * 建立人EQ
@@ -167,12 +250,20 @@ public class TestCaseSearchContext extends QueryWrapperContext<TestCase> {
     private String nameLIKE;
 
     /**
-     * 测试库标识EQ
+     * 测试库EQ
      */
     @JsonProperty("n_test_library_id_eq")
     @JSONField(name = "n_test_library_id_eq")
-    @ApiModelProperty("测试库标识EQ")
+    @ApiModelProperty("测试库EQ")
     private String testLibraryIdEQ;
+
+    /**
+     * 测试库ISNULL
+     */
+    @JsonProperty("n_test_library_id_isnull")
+    @JSONField(name = "n_test_library_id_isnull")
+    @ApiModelProperty("测试库ISNULL")
+    private String testLibraryIdISNULL;
 
     /**
      * 用例模块标识EQ

@@ -107,15 +107,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '测试库成员数据重定向视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.LIBRARY_MEMBER.REDIRECTVIEW',
-      },
-      refAppViewId: 'plmweb.library_memberredirectview',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
-    {
       realTitle: '测试库成员编辑视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.LIBRARY_MEMBER.EDITVIEW',
@@ -123,6 +114,15 @@ export default {
       refAppViewId: 'plmweb.library_membereditview',
       name: 'NEWDATA',
       id: 'newdata',
+    },
+    {
+      realTitle: '测试库成员数据重定向视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.LIBRARY_MEMBER.REDIRECTVIEW',
+      },
+      refAppViewId: 'plmweb.library_memberredirectview',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
     {
       name: 'MPICKUPVIEW:LIBRARY',
@@ -170,7 +170,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '710F7DDD-459E-43BC-B37E-9387C4DCC573',
+      modelId: '1c9a0339342259c9a4e65f8c77b0dbbd',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'grid_view_assignedtoolbar',
@@ -215,7 +215,7 @@ export default {
                   cssClass: 'fa fa-trash',
                   glyph: 'xf1f8@FontAwesome',
                 },
-                id: 'u2225ef5',
+                id: 'ud1b4964',
               },
             ],
             uniqueTag: 'Library_member__Usr1220824792',
@@ -289,6 +289,7 @@ export default {
       pagingSize: 20,
       sortMode: 'REMOTE',
       enableCustomized: true,
+      singleSelect: true,
       fetchControlAction: {
         appDEMethodId: 'fetchdefault',
         appDataEntityId: 'plmweb.library_member',
@@ -301,46 +302,6 @@ export default {
       },
       autoLoad: true,
       showBusyIndicator: true,
-      controls: [
-        {
-          detoolbarItems: [
-            {
-              actionLevel: 100,
-              noPrivDisplayMode: 2,
-              uiactionId: 'remove',
-              uiactionTarget: 'MULTIKEY',
-              valid: true,
-              capLanguageRes: {
-                lanResTag: 'TBB.TEXT.*.REMOVE',
-              },
-              caption: '删除',
-              itemType: 'DEUIACTION',
-              sysImage: {
-                cssClass: 'fa fa-remove',
-                glyph: 'xf00d@FontAwesome',
-              },
-              tooltip: '删除',
-              tooltipLanguageRes: {
-                lanResTag: 'TBB.TOOLTIP.*.REMOVE',
-              },
-              showCaption: true,
-              showIcon: true,
-              id: 'deuiaction2',
-            },
-          ],
-          codeName: 'grid_view_assignedgrid_batchtoolbar',
-          controlType: 'TOOLBAR',
-          logicName: '工具栏模板（表格批量操作）',
-          appDataEntityId: 'plmweb.library_member',
-          controlParam: {
-            id: 'grid_batchtoolbar',
-          },
-          modelId: '74CCFEF5-0654-4145-852A-227C53342218',
-          modelType: 'PSDETOOLBAR',
-          name: 'grid_batchtoolbar',
-          id: 'grid_view_assignedgrid_batchtoolbar',
-        },
-      ],
       codeName: 'Binding',
       controlType: 'GRID',
       logicName: '测试库绑定成员表格',

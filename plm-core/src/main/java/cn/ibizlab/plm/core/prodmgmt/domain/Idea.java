@@ -27,6 +27,7 @@ import cn.ibizlab.plm.core.base.domain.User;
 import cn.ibizlab.plm.core.base.domain.Attention;
 import cn.ibizlab.plm.core.base.domain.Comment;
 import cn.ibizlab.plm.core.base.domain.Attachment;
+import cn.ibizlab.plm.core.base.domain.Workload;
 import cn.ibizlab.plm.core.base.domain.Attachment;
 import cn.ibizlab.plm.core.base.domain.Attention;
 
@@ -241,13 +242,13 @@ public class Idea extends EntityMP implements Serializable
     private String assigneeName;
 
     /**
-     * 负责人标识
+     * 负责人
      */
     @TableField(value = "assignee_id")
     @DEField(name = "assignee_id")
     @JsonProperty("assignee_id")
     @JSONField(name = "assignee_id")
-    @ApiModelProperty(value = "assignee_id", notes = "负责人标识")
+    @ApiModelProperty(value = "assignee_id", notes = "负责人")
     private String assigneeId;
 
     /**
@@ -343,7 +344,7 @@ public class Idea extends EntityMP implements Serializable
     /**
      * 实际工时
      */
-    @TableField(value = "actual_workload" , exist = false)
+    @TableField(value = "actual_workload")
     @DEField(name = "actual_workload")
     @JsonProperty("actual_workload")
     @JSONField(name = "actual_workload")
@@ -414,13 +415,13 @@ public class Idea extends EntityMP implements Serializable
     private String name;
 
     /**
-     * 产品标识
+     * 产品
      */
     @TableField(value = "product_id")
     @DEField(name = "product_id")
     @JsonProperty("product_id")
     @JSONField(name = "product_id")
-    @ApiModelProperty(value = "product_id", notes = "产品标识")
+    @ApiModelProperty(value = "product_id", notes = "产品")
     private String productId;
 
     /**
@@ -655,7 +656,7 @@ public class Idea extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [负责人标识]
+     * 设置 [负责人]
      */
     public Idea setAssigneeId(String assigneeId) {
         this.assigneeId = assigneeId;
@@ -763,7 +764,7 @@ public class Idea extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [产品标识]
+     * 设置 [产品]
      */
     public Idea setProductId(String productId) {
         this.productId = productId;

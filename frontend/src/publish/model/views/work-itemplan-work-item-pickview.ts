@@ -1,7 +1,7 @@
 export default {
   openMode: 'POPUPMODAL',
   deviewCodeName: 'plan_work_item_pickview',
-  deviewId: 'CAA30D90-7EC2-4971-A7CC-99753ADEE102',
+  deviewId: 'b1033a714d6c6ff3e06d4e4c8e2a128f',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -158,12 +158,16 @@ export default {
                 },
                 dataRegionType: 'INHERIT',
                 caption: '容器',
+                contentWidth: 300,
                 itemStyle: 'DEFAULT',
                 itemType: 'CONTAINER',
                 layoutPos: {
                   shrink: 0,
                   layout: 'FLEX',
+                  width: 300,
+                  widthMode: 'PX',
                 },
+                width: 300,
                 id: 'container6',
               },
               {
@@ -642,7 +646,7 @@ export default {
             controlParam: {
               id: 'treeexpbar_tree',
             },
-            modelId: '735481A5-F019-412A-A8A1-AF76353CC6C0',
+            modelId: '0fd79d62dc9a007ecd2463c2a8774273',
             modelType: 'PSDETREEVIEW',
             name: 'treeexpbar_tree',
             id: 'plmweb.work_item.plan_work_item_view_treeview',
@@ -654,7 +658,7 @@ export default {
         controlParam: {
           id: 'treeexpbar',
         },
-        modelId: '8875ded4635cdf4799866d5596843eac_treeexpbar',
+        modelId: '747631dca7e56838468abd0361664612_treeexpbar',
         modelType: 'PSEXPBAR',
         name: 'treeexpbar',
         id: 'plan_work_item_pickviewtreeexpbar',
@@ -708,11 +712,6 @@ export default {
             appDEFieldId: 'sprint_id',
             dataType: 25,
             id: 'sprint_id',
-          },
-          {
-            appDEFieldId: 'version_id',
-            dataType: 25,
-            id: 'version_id',
           },
           {
             appDEFieldId: 'board_id',
@@ -805,7 +804,7 @@ export default {
       'test_plan_re_test_case_prickup_view多项选择视图(左右关系)布局面板',
     appDataEntityId: 'plmweb.work_item',
     controlParam: {},
-    modelId: '08CC89CD-B04A-44F5-B158-36E04260FC88',
+    modelId: '82218f671f3810568f77706c73381de7',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0123151638',
@@ -815,7 +814,7 @@ export default {
   viewType: 'DEMPICKUPVIEW2',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '8875ded4635cdf4799866d5596843eac',
+  modelId: '747631dca7e56838468abd0361664612',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemplan_work_item_pickview',
   id: 'plmweb.work_itemplan_work_item_pickview',

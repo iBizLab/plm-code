@@ -24,6 +24,25 @@ import com.alibaba.fastjson.JSONObject;
 public interface TicketMapper extends BaseMapper<Ticket> {
 
     /**
+     * 数据集合Advanced_search分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Ticket> searchAdvancedSearch(IPage<Ticket> page, @Param("ctx") TicketSearchContext context, @Param("ew") Wrapper<Ticket> wrapper);
+    
+    /**
+     * 数据集合Advanced_search查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Ticket> listAdvancedSearch(@Param("ctx") TicketSearchContext context, @Param("ew") Wrapper<Ticket> wrapper);
+
+    /**
      * 数据集合Archived分页查询
      * 
      * @param page
@@ -288,6 +307,25 @@ public interface TicketMapper extends BaseMapper<Ticket> {
      * @return
      */
     List<Ticket> listNotExsistsRelation(@Param("ctx") TicketSearchContext context, @Param("ew") Wrapper<Ticket> wrapper);
+
+    /**
+     * 数据集合Notify_assignee分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Ticket> searchNotifyAssignee(IPage<Ticket> page, @Param("ctx") TicketSearchContext context, @Param("ew") Wrapper<Ticket> wrapper);
+    
+    /**
+     * 数据集合Notify_assignee查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Ticket> listNotifyAssignee(@Param("ctx") TicketSearchContext context, @Param("ew") Wrapper<Ticket> wrapper);
 
     /**
      * 数据集合Recent_ticket分页查询

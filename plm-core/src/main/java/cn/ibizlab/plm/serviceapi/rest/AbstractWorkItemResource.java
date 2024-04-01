@@ -51,6 +51,10 @@ public abstract class AbstractWorkItemResource {
 
     @Autowired
     @Lazy
+    public WorkItemadvanced_searchDTOMapping workItemadvancedSearchDtoMapping;
+
+    @Autowired
+    @Lazy
     public WorkItemassigneeDTOMapping workItemassigneeDtoMapping;
 
     @Autowired
@@ -412,7 +416,8 @@ public abstract class AbstractWorkItemResource {
     * @return ResponseEntity<WorkItemDTO>
     */
     @ApiOperation(value = "Choose_child", tags = {"工作项" },  notes = "WorkItem-Choose_child ")
-    @PostMapping("work_items/{id}/choose_child")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-Choose_child-all') or hasPermission(this.workItemDtoMapping.toDomain(#dto),'ibizplm-WorkItem-Choose_child')")
+    @PutMapping("work_items/{id}/choose_child")
     public ResponseEntity<ResponseWrapper<WorkItemDTO>> chooseChildById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
         ResponseWrapper<WorkItemDTO> rt = new ResponseWrapper<>();
@@ -593,18 +598,22 @@ public abstract class AbstractWorkItemResource {
     * Others_relation_work_item 工作项
     * 
     *
+    * @param id id
     * @param dto dto
     * @return ResponseEntity<WorkItemDTO>
     */
     @ApiOperation(value = "Others_relation_work_item", tags = {"工作项" },  notes = "WorkItem-Others_relation_work_item ")
-    @PostMapping("work_items/others_relation_work_item")
-    public ResponseEntity<ResponseWrapper<WorkItemDTO>> othersRelationWorkItem
-            (@Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-Others_relation_work_item-all') or hasPermission(this.workItemDtoMapping.toDomain(#dto),'ibizplm-WorkItem-Others_relation_work_item')")
+    @PutMapping("work_items/{id}/others_relation_work_item")
+    public ResponseEntity<ResponseWrapper<WorkItemDTO>> othersRelationWorkItemById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
         ResponseWrapper<WorkItemDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray())
-            dto.getList().forEach(item -> rt.add(othersRelationWorkItem(item)));
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(othersRelationWorkItemById(ids[i], dto.getList().get(i))));
+        }
         else
-            rt.set(othersRelationWorkItem(dto.getDto()));
+            rt.set(othersRelationWorkItemById(id, dto.getDto()));
         return ResponseEntity.status(HttpStatus.OK).body(rt);
     }
 
@@ -612,12 +621,14 @@ public abstract class AbstractWorkItemResource {
     * Others_relation_work_item 工作项
     * 
     *
+    * @param id id
     * @param dto dto
     * @return ResponseEntity<WorkItemDTO>
     */   
-    public WorkItemDTO othersRelationWorkItem
-            (WorkItemDTO dto) {
+    public WorkItemDTO othersRelationWorkItemById
+            (String id, WorkItemDTO dto) {
         WorkItem domain = workItemDtoMapping.toDomain(dto);
+        domain.setId(id);
         WorkItem rt = workItemService.othersRelationWorkItem(domain);
         return workItemDtoMapping.toDto(rt);
     }
@@ -626,18 +637,22 @@ public abstract class AbstractWorkItemResource {
     * Plan_work_item 工作项
     * 
     *
+    * @param id id
     * @param dto dto
     * @return ResponseEntity<WorkItemDTO>
     */
     @ApiOperation(value = "Plan_work_item", tags = {"工作项" },  notes = "WorkItem-Plan_work_item ")
-    @PostMapping("work_items/plan_work_item")
-    public ResponseEntity<ResponseWrapper<WorkItemDTO>> planWorkItem
-            (@Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-Plan_work_item-all') or hasPermission(this.workItemDtoMapping.toDomain(#dto),'ibizplm-WorkItem-Plan_work_item')")
+    @PutMapping("work_items/{id}/plan_work_item")
+    public ResponseEntity<ResponseWrapper<WorkItemDTO>> planWorkItemById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
         ResponseWrapper<WorkItemDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray())
-            dto.getList().forEach(item -> rt.add(planWorkItem(item)));
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(planWorkItemById(ids[i], dto.getList().get(i))));
+        }
         else
-            rt.set(planWorkItem(dto.getDto()));
+            rt.set(planWorkItemById(id, dto.getDto()));
         return ResponseEntity.status(HttpStatus.OK).body(rt);
     }
 
@@ -645,12 +660,14 @@ public abstract class AbstractWorkItemResource {
     * Plan_work_item 工作项
     * 
     *
+    * @param id id
     * @param dto dto
     * @return ResponseEntity<WorkItemDTO>
     */   
-    public WorkItemDTO planWorkItem
-            (WorkItemDTO dto) {
+    public WorkItemDTO planWorkItemById
+            (String id, WorkItemDTO dto) {
         WorkItem domain = workItemDtoMapping.toDomain(dto);
+        domain.setId(id);
         WorkItem rt = workItemService.planWorkItem(domain);
         return workItemDtoMapping.toDto(rt);
     }
@@ -1363,7 +1380,8 @@ public abstract class AbstractWorkItemResource {
     * @return ResponseEntity<WorkItemDTO>
     */
     @ApiOperation(value = "Choose_child", tags = {"工作项" },  notes = "WorkItem-Choose_child ")
-    @PostMapping("projects/{projectId}/work_items/{id}/choose_child")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-Choose_child-all') or hasPermission('Project',#projectId,this.workItemDtoMapping.toDomain(#dto),'ibizplm-WorkItem-Choose_child')")
+    @PutMapping("projects/{projectId}/work_items/{id}/choose_child")
     public ResponseEntity<ResponseWrapper<WorkItemDTO>> chooseChildByProjectIdAndId
             (@PathVariable("projectId") String projectId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
         ResponseWrapper<WorkItemDTO> rt = new ResponseWrapper<>();
@@ -1555,18 +1573,22 @@ public abstract class AbstractWorkItemResource {
     * 
     *
     * @param projectId projectId
+    * @param id id
     * @param dto dto
     * @return ResponseEntity<WorkItemDTO>
     */
     @ApiOperation(value = "Others_relation_work_item", tags = {"工作项" },  notes = "WorkItem-Others_relation_work_item ")
-    @PostMapping("projects/{projectId}/work_items/others_relation_work_item")
-    public ResponseEntity<ResponseWrapper<WorkItemDTO>> othersRelationWorkItemByProjectId
-            (@PathVariable("projectId") String projectId, @Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-Others_relation_work_item-all') or hasPermission('Project',#projectId,this.workItemDtoMapping.toDomain(#dto),'ibizplm-WorkItem-Others_relation_work_item')")
+    @PutMapping("projects/{projectId}/work_items/{id}/others_relation_work_item")
+    public ResponseEntity<ResponseWrapper<WorkItemDTO>> othersRelationWorkItemByProjectIdAndId
+            (@PathVariable("projectId") String projectId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
         ResponseWrapper<WorkItemDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray())
-            dto.getList().forEach(item -> rt.add(othersRelationWorkItemByProjectId(projectId, item)));
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(othersRelationWorkItemByProjectIdAndId(projectId, ids[i], dto.getList().get(i))));
+        }
         else
-            rt.set(othersRelationWorkItemByProjectId(projectId, dto.getDto()));
+            rt.set(othersRelationWorkItemByProjectIdAndId(projectId, id, dto.getDto()));
         return ResponseEntity.status(HttpStatus.OK).body(rt);
     }
 
@@ -1575,13 +1597,14 @@ public abstract class AbstractWorkItemResource {
     * 
     *
     * @param projectId projectId
+    * @param id id
     * @param dto dto
     * @return ResponseEntity<WorkItemDTO>
     */   
-    public WorkItemDTO othersRelationWorkItemByProjectId
-            (String projectId, WorkItemDTO dto) {
+    public WorkItemDTO othersRelationWorkItemByProjectIdAndId
+            (String projectId, String id, WorkItemDTO dto) {
         WorkItem domain = workItemDtoMapping.toDomain(dto);
-        domain.setProjectId(projectId);
+        domain.setId(id);
         WorkItem rt = workItemService.othersRelationWorkItem(domain);
         return workItemDtoMapping.toDto(rt);
     }
@@ -1591,18 +1614,22 @@ public abstract class AbstractWorkItemResource {
     * 
     *
     * @param projectId projectId
+    * @param id id
     * @param dto dto
     * @return ResponseEntity<WorkItemDTO>
     */
     @ApiOperation(value = "Plan_work_item", tags = {"工作项" },  notes = "WorkItem-Plan_work_item ")
-    @PostMapping("projects/{projectId}/work_items/plan_work_item")
-    public ResponseEntity<ResponseWrapper<WorkItemDTO>> planWorkItemByProjectId
-            (@PathVariable("projectId") String projectId, @Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-Plan_work_item-all') or hasPermission('Project',#projectId,this.workItemDtoMapping.toDomain(#dto),'ibizplm-WorkItem-Plan_work_item')")
+    @PutMapping("projects/{projectId}/work_items/{id}/plan_work_item")
+    public ResponseEntity<ResponseWrapper<WorkItemDTO>> planWorkItemByProjectIdAndId
+            (@PathVariable("projectId") String projectId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
         ResponseWrapper<WorkItemDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray())
-            dto.getList().forEach(item -> rt.add(planWorkItemByProjectId(projectId, item)));
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(planWorkItemByProjectIdAndId(projectId, ids[i], dto.getList().get(i))));
+        }
         else
-            rt.set(planWorkItemByProjectId(projectId, dto.getDto()));
+            rt.set(planWorkItemByProjectIdAndId(projectId, id, dto.getDto()));
         return ResponseEntity.status(HttpStatus.OK).body(rt);
     }
 
@@ -1611,13 +1638,14 @@ public abstract class AbstractWorkItemResource {
     * 
     *
     * @param projectId projectId
+    * @param id id
     * @param dto dto
     * @return ResponseEntity<WorkItemDTO>
     */   
-    public WorkItemDTO planWorkItemByProjectId
-            (String projectId, WorkItemDTO dto) {
+    public WorkItemDTO planWorkItemByProjectIdAndId
+            (String projectId, String id, WorkItemDTO dto) {
         WorkItem domain = workItemDtoMapping.toDomain(dto);
-        domain.setProjectId(projectId);
+        domain.setId(id);
         WorkItem rt = workItemService.planWorkItem(domain);
         return workItemDtoMapping.toDto(rt);
     }
@@ -2042,21 +2070,6 @@ public abstract class AbstractWorkItemResource {
     }
 
     /**
-    * Get_actual_workload 工作项
-    * 
-    *
-    * @param id id
-    * @return ResponseEntity<WorkItemDTO>
-    */
-    @ApiOperation(value = "Get_actual_workload", tags = {"工作项" },  notes = "WorkItem-Get_actual_workload ")
-    @GetMapping("work_items/{id}/get_actual_workload")
-    public ResponseEntity<WorkItemDTO> getActualWorkloadById
-            (@PathVariable("id") String id) {
-        WorkItem rt = workItemService.getActualWorkload(id);
-        return ResponseEntity.status(HttpStatus.OK).body(workItemDtoMapping.toDto(rt));
-    }
-
-    /**
     * Get_attention 工作项
     * 
     *
@@ -2073,6 +2086,28 @@ public abstract class AbstractWorkItemResource {
     }
 
     /**
+    * 查询FetchAdvanced_search 工作项
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<WorkItemadvanced_searchDTO>>
+    */
+    @ApiOperation(value = "查询FetchAdvanced_search", tags = {"工作项" },  notes = "WorkItem-FetchAdvanced_search ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-FetchAdvanced_search-all') or hasPermission(#dto,'ibizplm-WorkItem-FetchAdvanced_search')")
+    @PostMapping("work_items/fetchadvanced_search")
+    public ResponseEntity<List<WorkItemadvanced_searchDTO>> fetchAdvancedSearch
+            (@Validated @RequestBody WorkItemFilterDTO dto) {
+        WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
+        Page<WorkItem> domains = workItemService.searchAdvancedSearch(context) ;
+        List<WorkItemadvanced_searchDTO> list = workItemadvancedSearchDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
     * 查询FetchArchived 工作项
     * 
     *
@@ -2086,6 +2121,50 @@ public abstract class AbstractWorkItemResource {
             (@Validated @RequestBody WorkItemFilterDTO dto) {
         WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
         Page<WorkItem> domains = workItemService.searchArchived(context) ;
+        List<WorkItemDTO> list = workItemDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询FetchBacklog_property_distribution 工作项
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<WorkItemDTO>>
+    */
+    @ApiOperation(value = "查询FetchBacklog_property_distribution", tags = {"工作项" },  notes = "WorkItem-FetchBacklog_property_distribution ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-FetchBacklog_property_distribution-all') or hasPermission(#dto,'ibizplm-WorkItem-FetchBacklog_property_distribution')")
+    @PostMapping("work_items/fetchbacklog_property_distribution")
+    public ResponseEntity<List<WorkItemDTO>> fetchBacklogPropertyDistribution
+            (@Validated @RequestBody WorkItemFilterDTO dto) {
+        WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
+        Page<WorkItem> domains = workItemService.searchBacklogPropertyDistribution(context) ;
+        List<WorkItemDTO> list = workItemDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询FetchBacklog_state_distribution 工作项
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<WorkItemDTO>>
+    */
+    @ApiOperation(value = "查询FetchBacklog_state_distribution", tags = {"工作项" },  notes = "WorkItem-FetchBacklog_state_distribution ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-FetchBacklog_state_distribution-all') or hasPermission(#dto,'ibizplm-WorkItem-FetchBacklog_state_distribution')")
+    @PostMapping("work_items/fetchbacklog_state_distribution")
+    public ResponseEntity<List<WorkItemDTO>> fetchBacklogStateDistribution
+            (@Validated @RequestBody WorkItemFilterDTO dto) {
+        WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
+        Page<WorkItem> domains = workItemService.searchBacklogStateDistribution(context) ;
         List<WorkItemDTO> list = workItemDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2205,12 +2284,12 @@ public abstract class AbstractWorkItemResource {
 
     /**
     * 查询FetchCommon 工作项
-    * 
+    * 未删除
     *
     * @param dto dto
     * @return ResponseEntity<List<WorkItemusuallyDTO>>
     */
-    @ApiOperation(value = "查询FetchCommon", tags = {"工作项" },  notes = "WorkItem-FetchCommon ")
+    @ApiOperation(value = "查询FetchCommon", tags = {"工作项" },  notes = "WorkItem-FetchCommon 未删除")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-FetchCommon-all') or hasPermission(#dto,'ibizplm-WorkItem-FetchCommon')")
     @PostMapping("work_items/fetchcommon")
     public ResponseEntity<List<WorkItemusuallyDTO>> fetchCommon
@@ -2269,6 +2348,28 @@ public abstract class AbstractWorkItemResource {
     }
 
     /**
+    * 查询FetchDefect_property_distribution 工作项
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<WorkItemDTO>>
+    */
+    @ApiOperation(value = "查询FetchDefect_property_distribution", tags = {"工作项" },  notes = "WorkItem-FetchDefect_property_distribution ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-FetchDefect_property_distribution-all') or hasPermission(#dto,'ibizplm-WorkItem-FetchDefect_property_distribution')")
+    @PostMapping("work_items/fetchdefect_property_distribution")
+    public ResponseEntity<List<WorkItemDTO>> fetchDefectPropertyDistribution
+            (@Validated @RequestBody WorkItemFilterDTO dto) {
+        WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
+        Page<WorkItem> domains = workItemService.searchDefectPropertyDistribution(context) ;
+        List<WorkItemDTO> list = workItemDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
     * 查询FetchDeleted 工作项
     * 
     *
@@ -2303,6 +2404,28 @@ public abstract class AbstractWorkItemResource {
             (@Validated @RequestBody WorkItemFilterDTO dto) {
         WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
         Page<WorkItem> domains = workItemService.searchIdeaRelationWorkItem(context) ;
+        List<WorkItemDTO> list = workItemDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询FetchKanban_user_stat 工作项
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<WorkItemDTO>>
+    */
+    @ApiOperation(value = "查询FetchKanban_user_stat", tags = {"工作项" },  notes = "WorkItem-FetchKanban_user_stat ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-FetchKanban_user_stat-all') or hasPermission(#dto,'ibizplm-WorkItem-FetchKanban_user_stat')")
+    @PostMapping("work_items/fetchkanban_user_stat")
+    public ResponseEntity<List<WorkItemDTO>> fetchKanbanUserStat
+            (@Validated @RequestBody WorkItemFilterDTO dto) {
+        WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
+        Page<WorkItem> domains = workItemService.searchKanbanUserStat(context) ;
         List<WorkItemDTO> list = workItemDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2505,12 +2628,12 @@ public abstract class AbstractWorkItemResource {
 
     /**
     * 查询FetchNot_exsists_bug_relation 工作项
-    * 
+    * 仅缺陷
     *
     * @param dto dto
     * @return ResponseEntity<List<WorkItemDTO>>
     */
-    @ApiOperation(value = "查询FetchNot_exsists_bug_relation", tags = {"工作项" },  notes = "WorkItem-FetchNot_exsists_bug_relation ")
+    @ApiOperation(value = "查询FetchNot_exsists_bug_relation", tags = {"工作项" },  notes = "WorkItem-FetchNot_exsists_bug_relation 仅缺陷")
     @PostMapping("work_items/fetchnot_exsists_bug_relation")
     public ResponseEntity<List<WorkItemDTO>> fetchNotExsistsBugRelation
             (@Validated @RequestBody WorkItemFilterDTO dto) {
@@ -2547,12 +2670,12 @@ public abstract class AbstractWorkItemResource {
 
     /**
     * 查询FetchNotbug_exsists_relation 工作项
-    * 
+    * 未关联且不为缺陷工作项
     *
     * @param dto dto
     * @return ResponseEntity<List<WorkItemDTO>>
     */
-    @ApiOperation(value = "查询FetchNotbug_exsists_relation", tags = {"工作项" },  notes = "WorkItem-FetchNotbug_exsists_relation ")
+    @ApiOperation(value = "查询FetchNotbug_exsists_relation", tags = {"工作项" },  notes = "WorkItem-FetchNotbug_exsists_relation 未关联且不为缺陷工作项")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-FetchNotbug_exsists_relation-all') or hasPermission(#dto,'ibizplm-WorkItem-FetchNotbug_exsists_relation')")
     @PostMapping("work_items/fetchnotbug_exsists_relation")
     public ResponseEntity<List<WorkItemDTO>> fetchNotbugExsistsRelation
@@ -2560,6 +2683,28 @@ public abstract class AbstractWorkItemResource {
         WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
         Page<WorkItem> domains = workItemService.searchNotbugExsistsRelation(context) ;
         List<WorkItemDTO> list = workItemDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询FetchNotify_assignee 工作项
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<WorkItemassigneeDTO>>
+    */
+    @ApiOperation(value = "查询FetchNotify_assignee", tags = {"工作项" },  notes = "WorkItem-FetchNotify_assignee ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-FetchNotify_assignee-all') or hasPermission(#dto,'ibizplm-WorkItem-FetchNotify_assignee')")
+    @PostMapping("work_items/fetchnotify_assignee")
+    public ResponseEntity<List<WorkItemassigneeDTO>> fetchNotifyAssignee
+            (@Validated @RequestBody WorkItemFilterDTO dto) {
+        WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
+        Page<WorkItem> domains = workItemService.searchNotifyAssignee(context) ;
+        List<WorkItemassigneeDTO> list = workItemassigneeDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
@@ -2676,6 +2821,28 @@ public abstract class AbstractWorkItemResource {
     }
 
     /**
+    * 查询FetchResource_assignment 工作项
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<WorkItemDTO>>
+    */
+    @ApiOperation(value = "查询FetchResource_assignment", tags = {"工作项" },  notes = "WorkItem-FetchResource_assignment ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-FetchResource_assignment-all') or hasPermission(#dto,'ibizplm-WorkItem-FetchResource_assignment')")
+    @PostMapping("work_items/fetchresource_assignment")
+    public ResponseEntity<List<WorkItemDTO>> fetchResourceAssignment
+            (@Validated @RequestBody WorkItemFilterDTO dto) {
+        WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
+        Page<WorkItem> domains = workItemService.searchResourceAssignment(context) ;
+        List<WorkItemDTO> list = workItemDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
     * 查询FetchRun_relation_bug 工作项
     * 
     *
@@ -2709,6 +2876,50 @@ public abstract class AbstractWorkItemResource {
             (@Validated @RequestBody WorkItemFilterDTO dto) {
         WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
         Page<WorkItem> domains = workItemService.searchRunRelationWorkItem(context) ;
+        List<WorkItemDTO> list = workItemDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询FetchSprint_user_stat 工作项
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<WorkItemDTO>>
+    */
+    @ApiOperation(value = "查询FetchSprint_user_stat", tags = {"工作项" },  notes = "WorkItem-FetchSprint_user_stat ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-FetchSprint_user_stat-all') or hasPermission(#dto,'ibizplm-WorkItem-FetchSprint_user_stat')")
+    @PostMapping("work_items/fetchsprint_user_stat")
+    public ResponseEntity<List<WorkItemDTO>> fetchSprintUserStat
+            (@Validated @RequestBody WorkItemFilterDTO dto) {
+        WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
+        Page<WorkItem> domains = workItemService.searchSprintUserStat(context) ;
+        List<WorkItemDTO> list = workItemDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询FetchTemp_speed_report 工作项
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<WorkItemDTO>>
+    */
+    @ApiOperation(value = "查询FetchTemp_speed_report", tags = {"工作项" },  notes = "WorkItem-FetchTemp_speed_report ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-FetchTemp_speed_report-all') or hasPermission(#dto,'ibizplm-WorkItem-FetchTemp_speed_report')")
+    @PostMapping("work_items/fetchtemp_speed_report")
+    public ResponseEntity<List<WorkItemDTO>> fetchTempSpeedReport
+            (@Validated @RequestBody WorkItemFilterDTO dto) {
+        WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
+        Page<WorkItem> domains = workItemService.searchTempSpeedReport(context) ;
         List<WorkItemDTO> list = workItemDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2824,19 +3035,19 @@ public abstract class AbstractWorkItemResource {
     }
 
     /**
-    * 查询FetchTree_grid 工作项
-    * 
+    * 查询FetchTop_tree_grid 工作项
+    * 查询表格树顶层工作项
     *
     * @param dto dto
     * @return ResponseEntity<List<WorkItemDTO>>
     */
-    @ApiOperation(value = "查询FetchTree_grid", tags = {"工作项" },  notes = "WorkItem-FetchTree_grid ")
-    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-FetchTree_grid-all') or hasPermission(#dto,'ibizplm-WorkItem-FetchTree_grid')")
-    @PostMapping("work_items/fetchtree_grid")
-    public ResponseEntity<List<WorkItemDTO>> fetchTreeGrid
+    @ApiOperation(value = "查询FetchTop_tree_grid", tags = {"工作项" },  notes = "WorkItem-FetchTop_tree_grid 查询表格树顶层工作项")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-FetchTop_tree_grid-all') or hasPermission(#dto,'ibizplm-WorkItem-FetchTop_tree_grid')")
+    @PostMapping("work_items/fetchtop_tree_grid")
+    public ResponseEntity<List<WorkItemDTO>> fetchTopTreeGrid
             (@Validated @RequestBody WorkItemFilterDTO dto) {
         WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
-        Page<WorkItem> domains = workItemService.searchTreeGrid(context) ;
+        Page<WorkItem> domains = workItemService.searchTopTreeGrid(context) ;
         List<WorkItemDTO> list = workItemDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2858,6 +3069,28 @@ public abstract class AbstractWorkItemResource {
             (@Validated @RequestBody WorkItemFilterDTO dto) {
         WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
         Page<WorkItem> domains = workItemService.searchUnderWork(context) ;
+        List<WorkItemDTO> list = workItemDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询FetchWork_item_distribution 工作项
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<WorkItemDTO>>
+    */
+    @ApiOperation(value = "查询FetchWork_item_distribution", tags = {"工作项" },  notes = "WorkItem-FetchWork_item_distribution ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-FetchWork_item_distribution-all') or hasPermission(#dto,'ibizplm-WorkItem-FetchWork_item_distribution')")
+    @PostMapping("work_items/fetchwork_item_distribution")
+    public ResponseEntity<List<WorkItemDTO>> fetchWorkItemDistribution
+            (@Validated @RequestBody WorkItemFilterDTO dto) {
+        WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
+        Page<WorkItem> domains = workItemService.searchWorkItemDistribution(context) ;
         List<WorkItemDTO> list = workItemDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2958,22 +3191,6 @@ public abstract class AbstractWorkItemResource {
     }
 
     /**
-    * Get_actual_workload 工作项
-    * 
-    *
-    * @param projectId projectId
-    * @param id id
-    * @return ResponseEntity<WorkItemDTO>
-    */
-    @ApiOperation(value = "Get_actual_workload", tags = {"工作项" },  notes = "WorkItem-Get_actual_workload ")
-    @GetMapping("projects/{projectId}/work_items/{id}/get_actual_workload")
-    public ResponseEntity<WorkItemDTO> getActualWorkloadByProjectIdAndId
-            (@PathVariable("projectId") String projectId, @PathVariable("id") String id) {
-        WorkItem rt = workItemService.getActualWorkload(id);
-        return ResponseEntity.status(HttpStatus.OK).body(workItemDtoMapping.toDto(rt));
-    }
-
-    /**
     * Get_attention 工作项
     * 
     *
@@ -2988,6 +3205,30 @@ public abstract class AbstractWorkItemResource {
             (@PathVariable("projectId") String projectId, @PathVariable("id") String id) {
         WorkItem rt = workItemService.getAttention(id);
         return ResponseEntity.status(HttpStatus.OK).body(workItemDtoMapping.toDto(rt));
+    }
+
+    /**
+    * 查询FetchAdvanced_search 工作项
+    * 
+    *
+    * @param projectId projectId
+    * @param dto dto
+    * @return ResponseEntity<List<WorkItemadvanced_searchDTO>>
+    */
+    @ApiOperation(value = "查询FetchAdvanced_search", tags = {"工作项" },  notes = "WorkItem-FetchAdvanced_search ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-FetchAdvanced_search-all') or hasPermission('Project',#projectId,#dto,'ibizplm-WorkItem-FetchAdvanced_search')")
+    @PostMapping("projects/{projectId}/work_items/fetchadvanced_search")
+    public ResponseEntity<List<WorkItemadvanced_searchDTO>> fetchAdvancedSearchByProjectId
+            (@PathVariable("projectId") String projectId, @Validated @RequestBody WorkItemFilterDTO dto) {
+        dto.setProjectIdEQ(projectId);
+        WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
+        Page<WorkItem> domains = workItemService.searchAdvancedSearch(context) ;
+        List<WorkItemadvanced_searchDTO> list = workItemadvancedSearchDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
     }
 
     /**
@@ -3006,6 +3247,54 @@ public abstract class AbstractWorkItemResource {
         dto.setProjectIdEQ(projectId);
         WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
         Page<WorkItem> domains = workItemService.searchArchived(context) ;
+        List<WorkItemDTO> list = workItemDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询FetchBacklog_property_distribution 工作项
+    * 
+    *
+    * @param projectId projectId
+    * @param dto dto
+    * @return ResponseEntity<List<WorkItemDTO>>
+    */
+    @ApiOperation(value = "查询FetchBacklog_property_distribution", tags = {"工作项" },  notes = "WorkItem-FetchBacklog_property_distribution ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-FetchBacklog_property_distribution-all') or hasPermission('Project',#projectId,#dto,'ibizplm-WorkItem-FetchBacklog_property_distribution')")
+    @PostMapping("projects/{projectId}/work_items/fetchbacklog_property_distribution")
+    public ResponseEntity<List<WorkItemDTO>> fetchBacklogPropertyDistributionByProjectId
+            (@PathVariable("projectId") String projectId, @Validated @RequestBody WorkItemFilterDTO dto) {
+        dto.setProjectIdEQ(projectId);
+        WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
+        Page<WorkItem> domains = workItemService.searchBacklogPropertyDistribution(context) ;
+        List<WorkItemDTO> list = workItemDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询FetchBacklog_state_distribution 工作项
+    * 
+    *
+    * @param projectId projectId
+    * @param dto dto
+    * @return ResponseEntity<List<WorkItemDTO>>
+    */
+    @ApiOperation(value = "查询FetchBacklog_state_distribution", tags = {"工作项" },  notes = "WorkItem-FetchBacklog_state_distribution ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-FetchBacklog_state_distribution-all') or hasPermission('Project',#projectId,#dto,'ibizplm-WorkItem-FetchBacklog_state_distribution')")
+    @PostMapping("projects/{projectId}/work_items/fetchbacklog_state_distribution")
+    public ResponseEntity<List<WorkItemDTO>> fetchBacklogStateDistributionByProjectId
+            (@PathVariable("projectId") String projectId, @Validated @RequestBody WorkItemFilterDTO dto) {
+        dto.setProjectIdEQ(projectId);
+        WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
+        Page<WorkItem> domains = workItemService.searchBacklogStateDistribution(context) ;
         List<WorkItemDTO> list = workItemDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -3135,13 +3424,13 @@ public abstract class AbstractWorkItemResource {
 
     /**
     * 查询FetchCommon 工作项
-    * 
+    * 未删除
     *
     * @param projectId projectId
     * @param dto dto
     * @return ResponseEntity<List<WorkItemusuallyDTO>>
     */
-    @ApiOperation(value = "查询FetchCommon", tags = {"工作项" },  notes = "WorkItem-FetchCommon ")
+    @ApiOperation(value = "查询FetchCommon", tags = {"工作项" },  notes = "WorkItem-FetchCommon 未删除")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-FetchCommon-all') or hasPermission('Project',#projectId,#dto,'ibizplm-WorkItem-FetchCommon')")
     @PostMapping("projects/{projectId}/work_items/fetchcommon")
     public ResponseEntity<List<WorkItemusuallyDTO>> fetchCommonByProjectId
@@ -3205,6 +3494,30 @@ public abstract class AbstractWorkItemResource {
     }
 
     /**
+    * 查询FetchDefect_property_distribution 工作项
+    * 
+    *
+    * @param projectId projectId
+    * @param dto dto
+    * @return ResponseEntity<List<WorkItemDTO>>
+    */
+    @ApiOperation(value = "查询FetchDefect_property_distribution", tags = {"工作项" },  notes = "WorkItem-FetchDefect_property_distribution ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-FetchDefect_property_distribution-all') or hasPermission('Project',#projectId,#dto,'ibizplm-WorkItem-FetchDefect_property_distribution')")
+    @PostMapping("projects/{projectId}/work_items/fetchdefect_property_distribution")
+    public ResponseEntity<List<WorkItemDTO>> fetchDefectPropertyDistributionByProjectId
+            (@PathVariable("projectId") String projectId, @Validated @RequestBody WorkItemFilterDTO dto) {
+        dto.setProjectIdEQ(projectId);
+        WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
+        Page<WorkItem> domains = workItemService.searchDefectPropertyDistribution(context) ;
+        List<WorkItemDTO> list = workItemDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
     * 查询FetchDeleted 工作项
     * 
     *
@@ -3243,6 +3556,30 @@ public abstract class AbstractWorkItemResource {
         dto.setProjectIdEQ(projectId);
         WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
         Page<WorkItem> domains = workItemService.searchIdeaRelationWorkItem(context) ;
+        List<WorkItemDTO> list = workItemDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询FetchKanban_user_stat 工作项
+    * 
+    *
+    * @param projectId projectId
+    * @param dto dto
+    * @return ResponseEntity<List<WorkItemDTO>>
+    */
+    @ApiOperation(value = "查询FetchKanban_user_stat", tags = {"工作项" },  notes = "WorkItem-FetchKanban_user_stat ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-FetchKanban_user_stat-all') or hasPermission('Project',#projectId,#dto,'ibizplm-WorkItem-FetchKanban_user_stat')")
+    @PostMapping("projects/{projectId}/work_items/fetchkanban_user_stat")
+    public ResponseEntity<List<WorkItemDTO>> fetchKanbanUserStatByProjectId
+            (@PathVariable("projectId") String projectId, @Validated @RequestBody WorkItemFilterDTO dto) {
+        dto.setProjectIdEQ(projectId);
+        WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
+        Page<WorkItem> domains = workItemService.searchKanbanUserStat(context) ;
         List<WorkItemDTO> list = workItemDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -3463,13 +3800,13 @@ public abstract class AbstractWorkItemResource {
 
     /**
     * 查询FetchNot_exsists_bug_relation 工作项
-    * 
+    * 仅缺陷
     *
     * @param projectId projectId
     * @param dto dto
     * @return ResponseEntity<List<WorkItemDTO>>
     */
-    @ApiOperation(value = "查询FetchNot_exsists_bug_relation", tags = {"工作项" },  notes = "WorkItem-FetchNot_exsists_bug_relation ")
+    @ApiOperation(value = "查询FetchNot_exsists_bug_relation", tags = {"工作项" },  notes = "WorkItem-FetchNot_exsists_bug_relation 仅缺陷")
     @PostMapping("projects/{projectId}/work_items/fetchnot_exsists_bug_relation")
     public ResponseEntity<List<WorkItemDTO>> fetchNotExsistsBugRelationByProjectId
             (@PathVariable("projectId") String projectId, @Validated @RequestBody WorkItemFilterDTO dto) {
@@ -3509,13 +3846,13 @@ public abstract class AbstractWorkItemResource {
 
     /**
     * 查询FetchNotbug_exsists_relation 工作项
-    * 
+    * 未关联且不为缺陷工作项
     *
     * @param projectId projectId
     * @param dto dto
     * @return ResponseEntity<List<WorkItemDTO>>
     */
-    @ApiOperation(value = "查询FetchNotbug_exsists_relation", tags = {"工作项" },  notes = "WorkItem-FetchNotbug_exsists_relation ")
+    @ApiOperation(value = "查询FetchNotbug_exsists_relation", tags = {"工作项" },  notes = "WorkItem-FetchNotbug_exsists_relation 未关联且不为缺陷工作项")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-FetchNotbug_exsists_relation-all') or hasPermission('Project',#projectId,#dto,'ibizplm-WorkItem-FetchNotbug_exsists_relation')")
     @PostMapping("projects/{projectId}/work_items/fetchnotbug_exsists_relation")
     public ResponseEntity<List<WorkItemDTO>> fetchNotbugExsistsRelationByProjectId
@@ -3524,6 +3861,30 @@ public abstract class AbstractWorkItemResource {
         WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
         Page<WorkItem> domains = workItemService.searchNotbugExsistsRelation(context) ;
         List<WorkItemDTO> list = workItemDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询FetchNotify_assignee 工作项
+    * 
+    *
+    * @param projectId projectId
+    * @param dto dto
+    * @return ResponseEntity<List<WorkItemassigneeDTO>>
+    */
+    @ApiOperation(value = "查询FetchNotify_assignee", tags = {"工作项" },  notes = "WorkItem-FetchNotify_assignee ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-FetchNotify_assignee-all') or hasPermission('Project',#projectId,#dto,'ibizplm-WorkItem-FetchNotify_assignee')")
+    @PostMapping("projects/{projectId}/work_items/fetchnotify_assignee")
+    public ResponseEntity<List<WorkItemassigneeDTO>> fetchNotifyAssigneeByProjectId
+            (@PathVariable("projectId") String projectId, @Validated @RequestBody WorkItemFilterDTO dto) {
+        dto.setProjectIdEQ(projectId);
+        WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
+        Page<WorkItem> domains = workItemService.searchNotifyAssignee(context) ;
+        List<WorkItemassigneeDTO> list = workItemassigneeDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
@@ -3650,6 +4011,30 @@ public abstract class AbstractWorkItemResource {
     }
 
     /**
+    * 查询FetchResource_assignment 工作项
+    * 
+    *
+    * @param projectId projectId
+    * @param dto dto
+    * @return ResponseEntity<List<WorkItemDTO>>
+    */
+    @ApiOperation(value = "查询FetchResource_assignment", tags = {"工作项" },  notes = "WorkItem-FetchResource_assignment ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-FetchResource_assignment-all') or hasPermission('Project',#projectId,#dto,'ibizplm-WorkItem-FetchResource_assignment')")
+    @PostMapping("projects/{projectId}/work_items/fetchresource_assignment")
+    public ResponseEntity<List<WorkItemDTO>> fetchResourceAssignmentByProjectId
+            (@PathVariable("projectId") String projectId, @Validated @RequestBody WorkItemFilterDTO dto) {
+        dto.setProjectIdEQ(projectId);
+        WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
+        Page<WorkItem> domains = workItemService.searchResourceAssignment(context) ;
+        List<WorkItemDTO> list = workItemDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
     * 查询FetchRun_relation_bug 工作项
     * 
     *
@@ -3687,6 +4072,54 @@ public abstract class AbstractWorkItemResource {
         dto.setProjectIdEQ(projectId);
         WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
         Page<WorkItem> domains = workItemService.searchRunRelationWorkItem(context) ;
+        List<WorkItemDTO> list = workItemDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询FetchSprint_user_stat 工作项
+    * 
+    *
+    * @param projectId projectId
+    * @param dto dto
+    * @return ResponseEntity<List<WorkItemDTO>>
+    */
+    @ApiOperation(value = "查询FetchSprint_user_stat", tags = {"工作项" },  notes = "WorkItem-FetchSprint_user_stat ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-FetchSprint_user_stat-all') or hasPermission('Project',#projectId,#dto,'ibizplm-WorkItem-FetchSprint_user_stat')")
+    @PostMapping("projects/{projectId}/work_items/fetchsprint_user_stat")
+    public ResponseEntity<List<WorkItemDTO>> fetchSprintUserStatByProjectId
+            (@PathVariable("projectId") String projectId, @Validated @RequestBody WorkItemFilterDTO dto) {
+        dto.setProjectIdEQ(projectId);
+        WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
+        Page<WorkItem> domains = workItemService.searchSprintUserStat(context) ;
+        List<WorkItemDTO> list = workItemDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询FetchTemp_speed_report 工作项
+    * 
+    *
+    * @param projectId projectId
+    * @param dto dto
+    * @return ResponseEntity<List<WorkItemDTO>>
+    */
+    @ApiOperation(value = "查询FetchTemp_speed_report", tags = {"工作项" },  notes = "WorkItem-FetchTemp_speed_report ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-FetchTemp_speed_report-all') or hasPermission('Project',#projectId,#dto,'ibizplm-WorkItem-FetchTemp_speed_report')")
+    @PostMapping("projects/{projectId}/work_items/fetchtemp_speed_report")
+    public ResponseEntity<List<WorkItemDTO>> fetchTempSpeedReportByProjectId
+            (@PathVariable("projectId") String projectId, @Validated @RequestBody WorkItemFilterDTO dto) {
+        dto.setProjectIdEQ(projectId);
+        WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
+        Page<WorkItem> domains = workItemService.searchTempSpeedReport(context) ;
         List<WorkItemDTO> list = workItemDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -3812,21 +4245,21 @@ public abstract class AbstractWorkItemResource {
     }
 
     /**
-    * 查询FetchTree_grid 工作项
-    * 
+    * 查询FetchTop_tree_grid 工作项
+    * 查询表格树顶层工作项
     *
     * @param projectId projectId
     * @param dto dto
     * @return ResponseEntity<List<WorkItemDTO>>
     */
-    @ApiOperation(value = "查询FetchTree_grid", tags = {"工作项" },  notes = "WorkItem-FetchTree_grid ")
-    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-FetchTree_grid-all') or hasPermission('Project',#projectId,#dto,'ibizplm-WorkItem-FetchTree_grid')")
-    @PostMapping("projects/{projectId}/work_items/fetchtree_grid")
-    public ResponseEntity<List<WorkItemDTO>> fetchTreeGridByProjectId
+    @ApiOperation(value = "查询FetchTop_tree_grid", tags = {"工作项" },  notes = "WorkItem-FetchTop_tree_grid 查询表格树顶层工作项")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-FetchTop_tree_grid-all') or hasPermission('Project',#projectId,#dto,'ibizplm-WorkItem-FetchTop_tree_grid')")
+    @PostMapping("projects/{projectId}/work_items/fetchtop_tree_grid")
+    public ResponseEntity<List<WorkItemDTO>> fetchTopTreeGridByProjectId
             (@PathVariable("projectId") String projectId, @Validated @RequestBody WorkItemFilterDTO dto) {
         dto.setProjectIdEQ(projectId);
         WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
-        Page<WorkItem> domains = workItemService.searchTreeGrid(context) ;
+        Page<WorkItem> domains = workItemService.searchTopTreeGrid(context) ;
         List<WorkItemDTO> list = workItemDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -3850,6 +4283,30 @@ public abstract class AbstractWorkItemResource {
         dto.setProjectIdEQ(projectId);
         WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
         Page<WorkItem> domains = workItemService.searchUnderWork(context) ;
+        List<WorkItemDTO> list = workItemDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询FetchWork_item_distribution 工作项
+    * 
+    *
+    * @param projectId projectId
+    * @param dto dto
+    * @return ResponseEntity<List<WorkItemDTO>>
+    */
+    @ApiOperation(value = "查询FetchWork_item_distribution", tags = {"工作项" },  notes = "WorkItem-FetchWork_item_distribution ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-FetchWork_item_distribution-all') or hasPermission('Project',#projectId,#dto,'ibizplm-WorkItem-FetchWork_item_distribution')")
+    @PostMapping("projects/{projectId}/work_items/fetchwork_item_distribution")
+    public ResponseEntity<List<WorkItemDTO>> fetchWorkItemDistributionByProjectId
+            (@PathVariable("projectId") String projectId, @Validated @RequestBody WorkItemFilterDTO dto) {
+        dto.setProjectIdEQ(projectId);
+        WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
+        Page<WorkItem> domains = workItemService.searchWorkItemDistribution(context) ;
         List<WorkItemDTO> list = workItemDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

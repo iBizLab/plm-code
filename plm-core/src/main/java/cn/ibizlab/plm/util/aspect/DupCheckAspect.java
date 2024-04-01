@@ -118,6 +118,15 @@ public class DupCheckAspect {
         check(point, "searchDefault");
     }
     /**
+     * 实体[Version]
+     *
+     * @param point
+     */
+    @AfterReturning(value = "execution(* cn.ibizlab.plm.core.*.service.VersionService.create*(..))||execution(* cn.ibizlab.plm.core.*.service.VersionService.update*(..))")
+    public void checkVersion(JoinPoint point) {
+        check(point, "searchDefault");
+    }
+    /**
      * 实体[WorkItem]
      *
      * @param point

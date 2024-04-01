@@ -1,7 +1,7 @@
 export default {
   loadDefault: true,
   deviewCodeName: 'project_index_view',
-  deviewId: 'D015F200-8A8E-4601-A6E6-ACB0E5E78DB5',
+  deviewId: '3657446cab865bb23e3eafee5d46c32a',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PORTFOLIO',
@@ -355,7 +355,7 @@ export default {
           id: 'drbar',
         },
         sysPFPluginId: 'drbar_ex',
-        modelId: '24777BB1-DB8A-4745-BA5B-AEBD15DC42D8',
+        modelId: '85ad58ed355f7e90d7746b0a458f8262',
         modelType: 'PSDEDRBAR',
         name: 'drbar',
         id: 'item_set_index_view_dr',
@@ -454,7 +454,7 @@ export default {
         controlParam: {
           id: 'form',
         },
-        modelId: '5666EA76-E842-4FCC-8DE8-8930258F5BDC',
+        modelId: '99da64b6d8894651d6ee9a97b1c8e879',
         modelType: 'PSDEFORM_EDITFORM',
         name: 'form',
         id: 'plmweb.portfolio.project_index_view_form',
@@ -583,7 +583,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: 'DF49EF2A-2027-40FE-AC05-1CB1979C6BF5',
+        modelId: '3da3c08b3b1bacd69567a71635dda2dd',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'project_index_viewtoolbar',
@@ -619,7 +619,7 @@ export default {
   viewType: 'DEINDEXVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'a5280d9e9de586d918d52d4a46804565',
+  modelId: '23741bcb93e5feef50e5319de0614510',
   modelType: 'PSAPPDEVIEW',
   name: 'portfolioproject_index_view',
   id: 'plmweb.portfolioproject_index_view',

@@ -177,6 +177,16 @@ public interface ReleaseService extends IService<Release> {
     }
 
     /**
+     * Plan_work_item
+     * 
+     * @param dto
+     * @return
+     */
+    default Release planWorkItem(Release dto) {
+        return dto;
+    }
+
+    /**
      * searchDefault
      * 
      * @param context

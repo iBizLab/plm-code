@@ -593,17 +593,39 @@ public abstract class AbstractLibraryResource {
 
     /**
     * 查询FetchProject_relation_library 测试库
-    * 
+    * 通过测试计划中进行关联项目展示测试库
     *
     * @param dto dto
     * @return ResponseEntity<List<LibraryDTO>>
     */
-    @ApiOperation(value = "查询FetchProject_relation_library", tags = {"测试库" },  notes = "Library-FetchProject_relation_library ")
+    @ApiOperation(value = "查询FetchProject_relation_library", tags = {"测试库" },  notes = "Library-FetchProject_relation_library 通过测试计划中进行关联项目展示测试库")
     @PostMapping("libraries/fetchproject_relation_library")
     public ResponseEntity<List<LibraryDTO>> fetchProjectRelationLibrary
             (@Validated @RequestBody LibraryFilterDTO dto) {
         LibrarySearchContext context = libraryFilterDtoMapping.toDomain(dto);
         Page<Library> domains = libraryService.searchProjectRelationLibrary(context) ;
+        List<LibraryDTO> list = libraryDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询FetchReader 测试库
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<LibraryDTO>>
+    */
+    @ApiOperation(value = "查询FetchReader", tags = {"测试库" },  notes = "Library-FetchReader ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Library-FetchReader-all') or hasPermission(#dto,'ibizplm-Library-FetchReader')")
+    @PostMapping("libraries/fetchreader")
+    public ResponseEntity<List<LibraryDTO>> fetchReader
+            (@Validated @RequestBody LibraryFilterDTO dto) {
+        LibrarySearchContext context = libraryFilterDtoMapping.toDomain(dto);
+        Page<Library> domains = libraryService.searchReader(context) ;
         List<LibraryDTO> list = libraryDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

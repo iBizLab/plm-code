@@ -24,6 +24,25 @@ import com.alibaba.fastjson.JSONObject;
 public interface CommentMapper extends BaseMapper<Comment> {
 
     /**
+     * 数据集合Advanced_search分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Comment> searchAdvancedSearch(IPage<Comment> page, @Param("ctx") CommentSearchContext context, @Param("ew") Wrapper<Comment> wrapper);
+    
+    /**
+     * 数据集合Advanced_search查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Comment> listAdvancedSearch(@Param("ctx") CommentSearchContext context, @Param("ew") Wrapper<Comment> wrapper);
+
+    /**
      * 数据集合Default分页查询
      * 
      * @param page

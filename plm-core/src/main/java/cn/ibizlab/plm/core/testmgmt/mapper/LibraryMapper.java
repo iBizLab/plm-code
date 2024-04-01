@@ -157,6 +157,25 @@ public interface LibraryMapper extends BaseMapper<Library> {
     List<Library> listProjectRelationLibrary(@Param("ctx") LibrarySearchContext context, @Param("ew") Wrapper<Library> wrapper);
 
     /**
+     * 数据集合Reader分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Library> searchReader(IPage<Library> page, @Param("ctx") LibrarySearchContext context, @Param("ew") Wrapper<Library> wrapper);
+    
+    /**
+     * 数据集合Reader查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Library> listReader(@Param("ctx") LibrarySearchContext context, @Param("ew") Wrapper<Library> wrapper);
+
+    /**
      * 数据集合User分页查询
      * 
      * @param page

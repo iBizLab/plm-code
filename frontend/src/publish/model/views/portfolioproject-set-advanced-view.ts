@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'form',
   loadDefault: true,
   deviewCodeName: 'project_set_advanced_view',
-  deviewId: '66A83ED0-F671-4781-BB28-0FFA7D8F7946',
+  deviewId: 'c7d1885f6bc3a44806eea8170db236c0',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PORTFOLIO',
@@ -164,7 +164,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '16E017D9-0CB3-4B69-912A-B5983A9C38E1',
+      modelId: '153ab81f1b9fc431b0747d52957e63d9',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.portfolio.project_set_advanced_form',
@@ -208,7 +208,7 @@ export default {
   viewType: 'DEEDITVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '60678250d8bf094000e7aaec1c39fe1e',
+  modelId: 'fdabd1b707400a8d16cacef7006e4c5f',
   modelType: 'PSAPPDEVIEW',
   name: 'portfolioproject_set_advanced_view',
   id: 'plmweb.portfolioproject_set_advanced_view',

@@ -309,12 +309,12 @@ public abstract class AbstractCategoryResource {
 
     /**
     * 查询FetchProduct_idea_category 类别
-    * 
+    * 需求下子产品中父标识为空的模块
     *
     * @param dto dto
     * @return ResponseEntity<List<CategoryDTO>>
     */
-    @ApiOperation(value = "查询FetchProduct_idea_category", tags = {"类别" },  notes = "Category-FetchProduct_idea_category ")
+    @ApiOperation(value = "查询FetchProduct_idea_category", tags = {"类别" },  notes = "Category-FetchProduct_idea_category 需求下子产品中父标识为空的模块")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Category-FetchProduct_idea_category-all') or hasPermission(#dto,'ibizplm-Category-FetchProduct_idea_category')")
     @PostMapping("categories/fetchproduct_idea_category")
     public ResponseEntity<List<CategoryDTO>> fetchProductIdeaCategory

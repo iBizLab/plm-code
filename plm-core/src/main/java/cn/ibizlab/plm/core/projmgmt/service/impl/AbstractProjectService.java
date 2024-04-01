@@ -34,20 +34,12 @@ import cn.ibizlab.plm.core.projmgmt.domain.ProjectMember;
 import cn.ibizlab.plm.core.projmgmt.service.ProjectMemberService;
 import cn.ibizlab.plm.core.projmgmt.domain.Release;
 import cn.ibizlab.plm.core.projmgmt.service.ReleaseService;
-import cn.ibizlab.plm.core.projmgmt.domain.SprintCategory;
-import cn.ibizlab.plm.core.projmgmt.service.SprintCategoryService;
 import cn.ibizlab.plm.core.projmgmt.domain.Sprint;
 import cn.ibizlab.plm.core.projmgmt.service.SprintService;
-import cn.ibizlab.plm.core.projmgmt.domain.SprintSection;
-import cn.ibizlab.plm.core.projmgmt.service.SprintSectionService;
 import cn.ibizlab.plm.core.projmgmt.domain.Swimlane;
 import cn.ibizlab.plm.core.projmgmt.service.SwimlaneService;
 import cn.ibizlab.plm.core.testmgmt.domain.TestPlan;
 import cn.ibizlab.plm.core.testmgmt.service.TestPlanService;
-import cn.ibizlab.plm.core.projmgmt.domain.Version;
-import cn.ibizlab.plm.core.projmgmt.service.VersionService;
-import cn.ibizlab.plm.core.projmgmt.domain.VersionSection;
-import cn.ibizlab.plm.core.projmgmt.service.VersionSectionService;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
 import cn.ibizlab.plm.core.projmgmt.service.WorkItemService;
 import cn.ibizlab.plm.core.base.domain.Favorite;
@@ -87,15 +79,7 @@ public abstract class AbstractProjectService extends ServiceImpl<ProjectMapper,P
 
     @Autowired
     @Lazy
-    protected SprintCategoryService sprintCategoryService;
-
-    @Autowired
-    @Lazy
     protected SprintService sprintService;
-
-    @Autowired
-    @Lazy
-    protected SprintSectionService sprintSectionService;
 
     @Autowired
     @Lazy
@@ -104,14 +88,6 @@ public abstract class AbstractProjectService extends ServiceImpl<ProjectMapper,P
     @Autowired
     @Lazy
     protected TestPlanService testPlanService;
-
-    @Autowired
-    @Lazy
-    protected VersionService versionService;
-
-    @Autowired
-    @Lazy
-    protected VersionSectionService versionSectionService;
 
     @Autowired
     @Lazy
@@ -324,6 +300,17 @@ public abstract class AbstractProjectService extends ServiceImpl<ProjectMapper,P
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("NAME,DESC");
         List<Project> list = baseMapper.listNormal(context,context.getSelectCond());
+        return list;
+    }
+
+    public Page<Project> searchReader(ProjectSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Project> pages=baseMapper.searchReader(context.getPages(),context,context.getSelectCond());
+        List<Project> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Project> listReader(ProjectSearchContext context) {
+        List<Project> list = baseMapper.listReader(context,context.getSelectCond());
         return list;
     }
 

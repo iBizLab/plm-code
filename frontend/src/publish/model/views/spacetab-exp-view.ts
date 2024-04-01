@@ -3,7 +3,7 @@ export default {
   loadDefault: true,
   showDataInfoBar: true,
   deviewCodeName: 'tab_exp_view',
-  deviewId: '0F0F4DB1-03D5-47D9-95B2-A529F8BF9C04',
+  deviewId: '106bc35b466de1756501fc71a3988e14',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SPACE',
@@ -51,7 +51,7 @@ export default {
       controlParam: {
         id: 'tabexppanel',
       },
-      modelId: 'F7C59A55-1DDE-49D6-B3AD-6139ABAF5E78',
+      modelId: 'cf069b1a731324cd7305d886367122c7',
       modelType: 'PSDEDRTAB',
       name: 'tabexppanel',
       id: 'tab_exp_view_dr',
@@ -85,7 +85,7 @@ export default {
   viewType: 'DETABEXPVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '1bbf7b675761fbc3d11b8f107353aeb9',
+  modelId: 'a3790b72a843294d734c705dd52b87ee',
   modelType: 'PSAPPDEVIEW',
   name: 'spacetab_exp_view',
   id: 'plmweb.spacetab_exp_view',

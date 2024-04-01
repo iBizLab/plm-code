@@ -269,6 +269,16 @@ export default {
     ],
     appViewRefs: [
       {
+        realOpenMode: 'POPUPMODAL',
+        realTitle: '新建需求',
+        realTitleLanguageRes: {
+          lanResTag: 'PAGE.TITLE.IDEA.QUICK_CREATE_VIEW',
+        },
+        refAppViewId: 'plmweb.ideaquick_create_view',
+        name: 'NEWDATA',
+        id: 'newdata',
+      },
+      {
         openMode: 'INDEXVIEWTAB_POPUPMODAL',
         realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
         realTitle: '需求',
@@ -278,16 +288,6 @@ export default {
         refAppViewId: 'plmweb.ideamain_view',
         name: 'EDITDATA',
         id: 'editdata',
-      },
-      {
-        realOpenMode: 'POPUPMODAL',
-        realTitle: '新建需求',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.IDEA.QUICK_CREATE_VIEW',
-        },
-        refAppViewId: 'plmweb.ideaquick_create_view',
-        name: 'NEWDATA',
-        id: 'newdata',
       },
     ],
     controls: [
@@ -642,7 +642,7 @@ export default {
                       cssClass: 'fa fa-user-md',
                       glyph: 'xf0f0@FontAwesome',
                     },
-                    id: 'u653ff49',
+                    id: 'u4befff7',
                   },
                 ],
                 uniqueTag: 'Product_member__Usr0311005787',
@@ -823,12 +823,22 @@ export default {
                   },
                   {
                     actionLevel: 100,
-                    noPrivDisplayMode: 1,
+                    noPrivDisplayMode: 2,
                     uiactionId: 'idea_archive@idea',
                     uiactionTarget: 'MULTIKEY',
                     valid: true,
                     caption: '归档',
                     itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction6',
+                        logicTag: 'grid_batchtoolbar',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!data.is_archived',
+                        triggerType: 'ITEMENABLE',
+                        id: 'deuiaction6',
+                      },
+                    ],
                     sysImage: {
                       cssClass: 'fa fa-folder',
                       glyph: 'xf07b@FontAwesome',
@@ -840,12 +850,22 @@ export default {
                   },
                   {
                     actionLevel: 100,
-                    noPrivDisplayMode: 1,
+                    noPrivDisplayMode: 2,
                     uiactionId: 'activate@idea',
                     uiactionTarget: 'MULTIKEY',
                     valid: true,
                     caption: '激活',
                     itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction2',
+                        logicTag: 'grid_batchtoolbar',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!!data.is_archived',
+                        triggerType: 'ITEMENABLE',
+                        id: 'deuiaction2',
+                      },
+                    ],
                     sysImage: {
                       cssClass: 'key',
                     },
@@ -892,7 +912,7 @@ export default {
             controlParam: {
               id: 'grid_batchtoolbar',
             },
-            modelId: '1E0B4CCC-EC5C-4279-9D8E-BB048825A19E',
+            modelId: 'f6cac434fa0ccee31881c1e97240e1be',
             modelType: 'PSDETOOLBAR',
             name: 'grid_batchtoolbar',
             id: 'grid_view_allgrid_batchtoolbar',
@@ -1009,6 +1029,35 @@ export default {
             appDEFieldId: 'assignee_id',
             id: 'assignee_id',
           },
+          {
+            dataType: 21,
+            labelPos: 'NONE',
+            defsearchMode: {
+              codeName: 'N_DESCRIPTION_LIKE',
+              stdDataType: 21,
+              valueOP: 'LIKE',
+              name: 'N_DESCRIPTION_LIKE',
+              id: 'n_description_like',
+            },
+            editor: {
+              showMaxLength: true,
+              editorParams: {
+                HEIGHT: '200',
+              },
+              editorType: 'TEXTAREA_10',
+              valueType: 'SIMPLE',
+              editable: true,
+              id: 'description',
+            },
+            allowEmpty: true,
+            capLanguageRes: {
+              lanResTag: 'CONTROL.DEFSFITEM.IDEA.N_DESCRIPTION_LIKE',
+            },
+            caption: '描述(%)',
+            itemType: 'FILTER',
+            appDEFieldId: 'description',
+            id: 'description',
+          },
         ],
         searchBarGroups: [
           {
@@ -1050,7 +1099,7 @@ export default {
         controlParam: {
           id: 'searchbar',
         },
-        modelId: 'B5E7378B-0086-4265-AEA8-3FD96A51D011',
+        modelId: '49b0d55acc450858ac21ebd18e7fd928',
         modelType: 'PSSYSSEARCHBAR',
         name: 'searchbar',
         id: 'plmweb.idea.product_idea',
@@ -1073,7 +1122,7 @@ export default {
     logicName: 'grid_view_all表格视图布局',
     appDataEntityId: 'plmweb.idea',
     controlParam: {},
-    modelId: '2919F240-0AE8-44BD-A53E-CB6E36F6FDED',
+    modelId: 'bc14997a8c041bdfd3dde50593c7fa23',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0119787094',

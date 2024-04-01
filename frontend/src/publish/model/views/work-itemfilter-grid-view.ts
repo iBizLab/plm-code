@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'filter_grid_view',
-  deviewId: '2957FCB8-C273-4BED-92A6-1E178EB1A231',
+  deviewId: '1f5a60375bfce1a82d4908b786df4763',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -89,15 +89,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '工作项编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.work_itemeditview',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       openMode: 'INDEXVIEWTAB_POPUPMODAL',
       navigateContexts: [
         {
@@ -112,6 +103,15 @@ export default {
       refAppViewId: 'plmweb.work_itemmain_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realTitle: '工作项编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.work_itemeditview',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -150,7 +150,6 @@ export default {
           codeName: 'title',
           columnType: 'DEFGRIDCOLUMN',
           noPrivDisplayMode: 1,
-          sysPFPluginId: 'column_action_edit',
           width: 300,
           widthUnit: 'STAR',
           enableSort: true,
@@ -414,12 +413,6 @@ export default {
           id: 'sprint_id',
         },
         {
-          appDEFieldId: 'version_id',
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'version_id',
-        },
-        {
           appDEFieldId: 'board_id',
           valueType: 'SIMPLE',
           dataType: 25,
@@ -501,7 +494,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '5725E0D7-727C-40E5-93F5-EF8590FBBBD5',
+      modelId: '7aa241cdeb4f8657f07c0918a06c2a2a',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.work_item.under_work_grid',
@@ -845,7 +838,7 @@ export default {
       controlParam: {
         id: 'searchbar',
       },
-      modelId: '6D10875F-692A-4F17-8423-2273FD548A4D',
+      modelId: 'bfdff616fa4c0436010fc6ea7006006b',
       modelType: 'PSSYSSEARCHBAR',
       name: 'searchbar',
       id: 'plmweb.work_item.filter_searchbar',
@@ -879,7 +872,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '963e3ef761d0d812ca815e960bb09ad6',
+  modelId: '0aafcea086394afab17a6f7ac6adef84',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemfilter_grid_view',
   id: 'plmweb.work_itemfilter_grid_view',

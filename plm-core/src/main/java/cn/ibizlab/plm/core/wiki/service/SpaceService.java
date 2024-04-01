@@ -536,6 +536,21 @@ public interface SpaceService extends IService<Space> {
     List<Space> listOtherReSpace(SpaceSearchContext context);
 
     /**
+     * searchReader
+     * 
+     * @param context
+     * @return
+     */
+    Page<Space> searchReader(SpaceSearchContext context);
+    /**
+     * listReader
+     * 
+     * @param context
+     * @return
+     */
+    List<Space> listReader(SpaceSearchContext context);
+
+    /**
      * searchUser
      * 
      * @param context

@@ -17,6 +17,12 @@ export default {
       value: 'ProjMgmt.project.update:AFTER',
       id: 'projmgmt_project_update_after',
     },
+    {
+      codeName: 'Testmgmt_run_update_after',
+      text: '更新执行用例',
+      value: 'TestMgmt.run.update.AFTER',
+      id: 'testmgmt_run_update_after',
+    },
   ],
   enableCache: true,
   name: '可供选择的触发器',

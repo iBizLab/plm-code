@@ -1,7 +1,7 @@
 export default {
   loadDefault: true,
   deviewCodeName: 'main_data_scrum',
-  deviewId: 'FDE7DD70-93FE-43E7-B9A3-BE3B3636A90E',
+  deviewId: 'e6886dc5e8aae323e4d910c5c8962ccd',
   accUserMode: 2,
   caption: '项目',
   codeName: 'projectmain_data_scrum',
@@ -399,7 +399,7 @@ export default {
         controlParam: {
           id: 'form',
         },
-        modelId: 'B03F7C2B-E851-4ABB-9B5D-769809929146',
+        modelId: '95ec38e6b1053586f6b5a0284e3c46d4',
         modelType: 'PSDEFORM_EDITFORM',
         name: 'form',
         id: 'plmweb.project.overview',
@@ -558,7 +558,7 @@ export default {
           {
             dedrbarGroupId: 'usrdrgroup1225815912',
             caption: '报表',
-            appViewId: 'plmweb.work_itemtab_exp_view_test',
+            appViewId: 'plmweb.insightscrum_tree_exp_view',
             id: 'report',
           },
         ],
@@ -719,7 +719,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: 'c2aa820751f0f4a610c123509362a739',
+        modelId: '9e4da30b505e7af66d6e6d30b27b9141',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'main_data_scrumtoolbar',
@@ -749,7 +749,7 @@ export default {
   viewType: 'DEINDEXVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '581e0fc819c11fa38579df72f79bee80',
+  modelId: '0c35668b86d3d74af28b1fef1996ca1b',
   modelType: 'PSAPPDEVIEW',
   name: 'projectmain_data_scrum',
   id: 'plmweb.projectmain_data_scrum',

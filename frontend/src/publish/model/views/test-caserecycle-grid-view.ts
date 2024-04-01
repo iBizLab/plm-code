@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'recycle_grid_view',
-  deviewId: '37CA0285-40ED-4AD9-A72D-AB6EF276DE65',
+  deviewId: 'e303d7ba7fc722ca004b8ec5aa195b95',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TEST_CASE',
@@ -66,13 +66,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realTitle: '用例',
-      refAppViewId: 'plmweb.test_casemain_view',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
-    {
       realTitle: '用例编辑视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.TEST_CASE.EDITVIEW',
@@ -80,6 +73,13 @@ export default {
       refAppViewId: 'plmweb.test_caseeditview',
       name: 'NEWDATA',
       id: 'newdata',
+    },
+    {
+      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realTitle: '用例',
+      refAppViewId: 'plmweb.test_casemain_view',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
   ],
   controls: [
@@ -267,7 +267,7 @@ export default {
           controlParam: {
             id: 'grid_batchtoolbar',
           },
-          modelId: '4212E08A-CD67-4204-BDBC-F9E9AA381453',
+          modelId: 'de7ef036d2e2c954e11f4f25c24e358a',
           modelType: 'PSDETOOLBAR',
           name: 'grid_batchtoolbar',
           id: 'recycle_grid_viewgrid_batchtoolbar',
@@ -280,7 +280,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '7E016D9A-01CE-4C83-85A3-B02641AC4077',
+      modelId: '5872ba1a66827098bcf717ba7f0ceb1a',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.test_case.recycle_grid_view_grid',
@@ -315,7 +315,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: '656E9A59-030A-425C-8876-3DA2FC7CEBDC',
+      modelId: '8b2fe337f5b8c2d1d7244e1c0436bf25',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.test_case.recycle_grid_view_searchform',
@@ -360,7 +360,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '0461dc42b49fd11682f3ddd57a01c1d1',
+  modelId: '48417fdd35c2e7ff0e9e6a87f1472062',
   modelType: 'PSAPPDEVIEW',
   name: 'test_caserecycle_grid_view',
   id: 'plmweb.test_caserecycle_grid_view',

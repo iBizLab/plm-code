@@ -30,6 +30,7 @@ import cn.ibizlab.plm.core.testmgmt.domain.Step;
 import cn.ibizlab.plm.core.base.domain.Attention;
 import cn.ibizlab.plm.core.base.domain.Comment;
 import cn.ibizlab.plm.core.base.domain.Attachment;
+import cn.ibizlab.plm.core.base.domain.Workload;
 import cn.ibizlab.plm.core.testmgmt.domain.Step;
 import cn.ibizlab.plm.core.base.domain.Attachment;
 import cn.ibizlab.plm.core.base.domain.Attention;
@@ -161,13 +162,13 @@ public class TestCase extends EntityMP implements Serializable
     private List<Step> steps;
 
     /**
-     * 维护人标识
+     * 维护人
      */
     @TableField(value = "maintenance_id")
     @DEField(name = "maintenance_id")
     @JsonProperty("maintenance_id")
     @JSONField(name = "maintenance_id")
-    @ApiModelProperty(value = "maintenance_id", notes = "维护人标识")
+    @ApiModelProperty(value = "maintenance_id", notes = "维护人")
     private String maintenanceId;
 
     /**
@@ -314,7 +315,7 @@ public class TestCase extends EntityMP implements Serializable
     /**
      * 实际工时
      */
-    @TableField(value = "actual_workload" , exist = false)
+    @TableField(value = "actual_workload")
     @DEField(name = "actual_workload")
     @JsonProperty("actual_workload")
     @JSONField(name = "actual_workload")
@@ -385,13 +386,13 @@ public class TestCase extends EntityMP implements Serializable
     private String updateMan;
 
     /**
-     * 测试库标识
+     * 测试库
      */
     @TableField(value = "test_library_id")
     @DEField(name = "test_library_id")
     @JsonProperty("test_library_id")
     @JSONField(name = "test_library_id")
-    @ApiModelProperty(value = "test_library_id", notes = "测试库标识")
+    @ApiModelProperty(value = "test_library_id", notes = "测试库")
     private String testLibraryId;
 
     /**
@@ -554,7 +555,7 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [维护人标识]
+     * 设置 [维护人]
      */
     public TestCase setMaintenanceId(String maintenanceId) {
         this.maintenanceId = maintenanceId;
@@ -707,7 +708,7 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [测试库标识]
+     * 设置 [测试库]
      */
     public TestCase setTestLibraryId(String testLibraryId) {
         this.testLibraryId = testLibraryId;

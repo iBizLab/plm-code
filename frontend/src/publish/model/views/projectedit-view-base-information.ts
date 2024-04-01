@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'form',
   loadDefault: true,
   deviewCodeName: 'edit_view_base_information',
-  deviewId: '46CBE929-5D68-4DC7-B73F-3C008A870806',
+  deviewId: 'de6b8a29dc4199928d2a25e40e351baa',
   accUserMode: 2,
   caption: '基本信息',
   codeName: 'projectedit_view_base_information',
@@ -97,6 +97,19 @@ export default {
                   codeName: 'name',
                   detailStyle: 'DEFAULT',
                   detailType: 'FORMITEM',
+                  defdgroupLogics: [
+                    {
+                      logicCat: 'SCRIPTCODE_CHANGE',
+                      groupOP: 'AND',
+                      defdlogics: [
+                        {
+                          logicType: 'SINGLE',
+                        },
+                      ],
+                      logicType: 'GROUP',
+                      id: '表单成员[name][表单项值变更（脚本处理）]逻辑',
+                    },
+                  ],
                   layoutPos: {
                     colLG: 6,
                     colMD: 6,
@@ -114,6 +127,14 @@ export default {
                   appDEFieldId: 'identifier',
                   editor: {
                     maxLength: 15,
+                    sysValueRule: {
+                      codeName: 'UsrValueRule0312488358',
+                      regExCode: '^[A-Z0-9]{1,15}$',
+                      ruleInfo: '请填写大写字母和数字',
+                      ruleType: 'REG',
+                      name: '大写字母和数字',
+                      id: 'plmweb.usrvaluerule0312488358',
+                    },
                     editorType: 'TEXTBOX',
                     valueType: 'SIMPLE',
                     editable: true,
@@ -156,7 +177,6 @@ export default {
                         editable: true,
                         id: 'visibility',
                       },
-                      allowEmpty: true,
                       needCodeListConfig: true,
                       caption: '可见范围',
                       codeName: 'visibility',
@@ -320,7 +340,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '89A21EA3-779D-4D8A-9FF6-676503103265',
+      modelId: '2ad51eb5868b6ddec67db4091b42927e',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.project.setting_base_info',
@@ -361,7 +381,7 @@ export default {
   viewType: 'DEEDITVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'b0441da8ab80706dd971c2318d3ffd4e',
+  modelId: 'b9e956604c077b4d08b9822fb898bd85',
   modelType: 'PSAPPDEVIEW',
   name: 'projectedit_view_base_information',
   id: 'plmweb.projectedit_view_base_information',

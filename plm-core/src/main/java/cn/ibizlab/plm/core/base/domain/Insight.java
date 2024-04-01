@@ -60,7 +60,7 @@ public class Insight extends EntityMP implements Serializable
      * 组别
      */
     @TableField(value = "group")
-    @DEField(name = "group")
+    @DEField(name = "group" , dict = "Insight_group")
     @JsonProperty("group")
     @JSONField(name = "group")
     @ApiModelProperty(value = "group", notes = "组别")

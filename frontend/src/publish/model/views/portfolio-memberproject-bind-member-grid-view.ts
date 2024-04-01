@@ -1,9 +1,8 @@
 export default {
-  gridRowActiveMode: 1,
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'project_bind_member_grid_view',
-  deviewId: 'DB8BD346-9A82-4BE0-979C-574CF15FB080',
+  deviewId: 'dbab4f333c9a360b27b1c5e897b48d7f',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PORTFOLIO_MEMBER',
@@ -179,7 +178,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '3578EE3F-43CD-42AA-AD53-B428092A4C08',
+      modelId: 'e482ccd2f4e6a521985a544538b1425d',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'project_bind_member_grid_viewtoolbar',
@@ -224,7 +223,7 @@ export default {
                   cssClass: 'fa fa-trash',
                   glyph: 'xf1f8@FontAwesome',
                 },
-                id: 'udf7e024',
+                id: 'u53f5978',
               },
             ],
             uniqueTag: 'Portfolio_member__Usr0229758660',
@@ -299,6 +298,7 @@ export default {
       pagingSize: 20,
       sortMode: 'REMOTE',
       enableCustomized: true,
+      singleSelect: true,
       fetchControlAction: {
         appDEMethodId: 'fetchdefault',
         appDataEntityId: 'plmweb.portfolio_member',
@@ -318,7 +318,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '03BBCB90-2D63-45CD-9DBB-4F31B1C7FA9A',
+      modelId: '78b341142b5bc47a3f60878ffe2bc3b3',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.portfolio_member.project_bind_member_grid',
@@ -357,7 +357,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: '36f00418626849f569424629e07d060a',
+      modelId: 'd7419f2e1297e18a847b44198e6eb472',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.portfolio_member.default',
@@ -400,7 +400,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '8da7284b93a73821a1497df5ba36075c',
+  modelId: '4f6431664ca9e6f9bcafed2cdfef397d',
   modelType: 'PSAPPDEVIEW',
   name: 'portfolio_memberproject_bind_member_grid_view',
   id: 'plmweb.portfolio_memberproject_bind_member_grid_view',

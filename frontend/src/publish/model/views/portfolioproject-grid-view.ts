@@ -4,7 +4,7 @@ export default {
   loadDefault: true,
   funcViewMode: 'MDATAVIEW',
   deviewCodeName: 'project_grid_view',
-  deviewId: 'e3a1ef4c8535b01f1bb11da97469e9a1',
+  deviewId: '62f2b112872002bf3d7c94c2c73f10fe',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'PAGE.CAPTION.PORTFOLIO.ITEM_SET_GRID_VIEW',
@@ -67,15 +67,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '项目集首页视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.PORTFOLIO.ITEM_SET_INDEX_VIEW',
-      },
-      refAppViewId: 'plmweb.portfolioproject_index_view',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
-    {
       realOpenMode: 'POPUPMODAL',
       realTitle: '新建项目集',
       realTitleLanguageRes: {
@@ -84,6 +75,15 @@ export default {
       refAppViewId: 'plmweb.portfolioproject_create_wizard_view',
       name: 'NEWDATA',
       id: 'newdata',
+    },
+    {
+      realTitle: '项目集首页视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.PORTFOLIO.ITEM_SET_INDEX_VIEW',
+      },
+      refAppViewId: 'plmweb.portfolioproject_index_view',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
   ],
   controls: [
@@ -112,7 +112,7 @@ export default {
                   rawContent:
                     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="design-iconfont" width="16" height="16">\n  <path d="M9.54013,6.48742551 L8,3.36677551 L6.45987,6.48742551 L3.01604,6.98784551 L5.50802,9.41692551 L4.91975,12.8468255 L8,11.2274255 L11.08025,12.8468255 L10.49195,9.41692551 L12.98395,6.98784551 L9.54013,6.48742551 Z M14.53135,6.20219551 C14.77745,6.23794551 14.87565,6.54033551 14.69765,6.71389551 L11.56645,9.76604551 L12.30565,14.0757255 C12.34765,14.3208255 12.09045,14.5077255 11.87035,14.3920255 L8,12.3572255 L4.12966,14.3920255 C3.90957,14.5077255 3.65234,14.3208255 3.69437,14.0757255 L4.43354,9.76604551 L1.30237,6.71389551 C1.12431,6.54033551 1.22256,6.23794551 1.46863,6.20219551 L5.79581,5.57341551 L7.73098,1.65232551 C7.84103,1.42934551 8.15898,1.42935551 8.26902,1.65232551 L10.20415,5.57341551 L14.53135,6.20219551 Z" fill-opacity=".9" fill="#557DA5" fill-rule="nonzero"></path>\n</svg>',
                 },
-                id: 'u45bbe75',
+                id: 'u6efbb95',
               },
               {
                 actionLevel: 200,
@@ -126,7 +126,7 @@ export default {
                   rawContent:
                     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="design-iconfont" width="16" height="16">\n  <path d="M14.53135,6.20219551 C14.77745,6.23794551 14.87565,6.54033551 14.69765,6.71389551 L11.56645,9.76604551 L12.30565,14.0757255 C12.34765,14.3208255 12.09045,14.5077255 11.87035,14.3920255 L8,12.3572255 L4.12966,14.3920255 C3.90957,14.5077255 3.65234,14.3208255 3.69437,14.0757255 L4.43354,9.76604551 L1.30237,6.71389551 C1.12431,6.54033551 1.22256,6.23794551 1.46863,6.20219551 L5.79581,5.57341551 L7.73098,1.65232551 C7.84103,1.42934551 8.15898,1.42935551 8.26902,1.65232551 L10.20415,5.57341551 L14.53135,6.20219551 Z" fill-opacity=".9" fill="#FFB31A" fill-rule="nonzero"></path>\n</svg>',
                 },
-                id: 'uc6a105d',
+                id: 'u1e9e5c0',
               },
               {
                 actionLevel: 200,
@@ -140,7 +140,7 @@ export default {
                   rawContent:
                     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="design-iconfont" width="16" height="16">\n  <path d="M7.875,1.75 C7.94375,1.75 8,1.80625 8,1.875 L8,2.75 C8,2.81875 7.94375,2.875 7.875,2.875 L2.875,2.875 L2.875,13.125 L13.125,13.125 L13.125,8.125 C13.125,8.05625 13.18125,8 13.25,8 L14.125,8 C14.19375,8 14.25,8.05625 14.25,8.125 L14.25,13.75 C14.25,14.0265625 14.0265625,14.25 13.75,14.25 L2.25,14.25 C1.9734375,14.25 1.75,14.0265625 1.75,13.75 L1.75,2.25 C1.75,1.9734375 1.9734375,1.75 2.25,1.75 Z M12.7666777,2.4349185 C12.7666777,2.333356 12.8838652,2.277106 12.9635527,2.339606 L14.9635527,3.917731 C15.0260527,3.9661685 15.0260527,4.0599185 14.9635527,4.1099185 L12.9619902,5.689606 C12.8823027,5.752106 12.7651152,5.695856 12.7651152,5.5942935 L12.7651152,4.595856 C12.5635527,4.5974185 12.3619902,4.6099185 12.1588652,4.6349185 C11.4994902,4.7161685 10.8760527,4.9192935 10.2979277,5.2411685 C9.70261522,5.570856 9.18542772,6.0161685 8.76042772,6.558356 C8.33699022,7.1005435 8.03074022,7.708356 7.85261522,8.367731 C7.68074022,9.0036685 7.63386522,9.6599185 7.71355272,10.317731 C7.72449022,10.402106 7.73699022,10.486481 7.75105272,10.5692935 L6.58074022,10.5692935 C6.35261522,8.9474185 6.76042772,7.2380435 7.84792772,5.8442935 C9.07917772,4.2692935 10.9104277,3.442731 12.7635527,3.4349185 Z" fill="#557DA5" fill-rule="nonzero"></path>\n</svg>',
                 },
-                id: 'ufbadccc',
+                id: 'ub92c802',
               },
               {
                 actionLevel: 100,
@@ -155,7 +155,7 @@ export default {
                   cssClass: 'fa fa-info-circle',
                   glyph: 'xf05a@FontAwesome',
                 },
-                id: 'ufdc2136',
+                id: 'u6d176b8',
               },
               {
                 actionLevel: 100,
@@ -170,7 +170,7 @@ export default {
                   cssClass: 'fa fa-users',
                   glyph: 'xf0c0@FontAwesome',
                 },
-                id: 'u2130912',
+                id: 'u087289a',
               },
               {
                 actionLevel: 100,
@@ -185,7 +185,7 @@ export default {
                   cssClass: 'fa fa-edit',
                   glyph: 'xf044@FontAwesome',
                 },
-                id: 'u03077c1',
+                id: 'u7e9dcdd',
               },
               {
                 actionLevel: 100,
@@ -200,7 +200,7 @@ export default {
                   cssClass: 'fa fa-th-list',
                   glyph: 'xf00b@FontAwesome',
                 },
-                id: 'u92e1add',
+                id: 'u2090df1',
               },
             ],
             uniqueTag: 'Portfolio__Usr0229938625',
@@ -407,6 +407,7 @@ export default {
         id: 'remove',
       },
       autoLoad: true,
+      enableItemPrivilege: true,
       showBusyIndicator: true,
       codeName: 'Project_grid',
       controlType: 'GRID',
@@ -415,7 +416,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '5ea701166e3be058dac43ddf5703df9b',
+      modelId: 'c4b01346e7739537dffc258880c6dc5d',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.portfolio.project_grid',
@@ -508,7 +509,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: 'b010046a8422f87cfef7341a33aa00f6',
+      modelId: 'd1d9405410ab8d049a65f07e85457883',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.portfolio.default',
@@ -540,7 +541,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: 'C3D2AAF9-217C-4219-9C4F-6F26A9A05B1A',
+      modelId: '151c31cd82c0511a284cf77f8088a773',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'project_grid_viewtoolbar',
@@ -588,7 +589,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '255fb88b0baa854072d54ddb44843696',
+  modelId: 'd071f351a322c993e2d0719a57195df5',
   modelType: 'PSAPPDEVIEW',
   name: 'portfolioproject_grid_view',
   id: 'plmweb.portfolioproject_grid_view',

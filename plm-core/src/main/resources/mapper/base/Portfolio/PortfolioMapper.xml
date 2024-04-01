@@ -66,6 +66,10 @@
          <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`NAME`, t1.`START_AT`, t1.`STATE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PORTFOLIO` t1   ]]>  where  <![CDATA[ ( t1.`IS_DELETED` = 0 ) ]]> 
     </sql>
 
+    <sql id="reader" databaseId="mysql">
+         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`NAME`, t1.`START_AT`, t1.`STATE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PORTFOLIO` t1   ]]>  where  <![CDATA[ EXISTS(SELECT * FROM `PORTFOLIO_MEMBER` t11   WHERE   t1.`ID` = t11.`PORTFOLIO_ID`  AND  ( t11.`USER_ID` = #{ctx.sessioncontext.srfpersonid}  AND  t11.`ROLE_ID` = 'reader' ) ) ]]> 
+    </sql>
+
     <sql id="user" databaseId="mysql">
          <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`NAME`, t1.`START_AT`, t1.`STATE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PORTFOLIO` t1   ]]>  where  <![CDATA[ EXISTS(SELECT * FROM `PORTFOLIO_MEMBER` t11   WHERE   t1.`ID` = t11.`PORTFOLIO_ID`  AND  ( t11.`USER_ID` = #{ctx.sessioncontext.srfpersonid}  AND  t11.`ROLE_ID` = 'user' ) ) ]]> 
     </sql>
@@ -198,6 +202,27 @@
         select t1.*
         from (
             <include refid="projectSetGoing"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchReader"  parameterType="cn.ibizlab.plm.core.base.filter.PortfolioSearchContext"  resultMap="PortfolioResultMap">
+        select t1.* 
+        from (
+            <include refid="reader"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listReader"  parameterType="cn.ibizlab.plm.core.base.filter.PortfolioSearchContext"  resultMap="PortfolioResultMap">
+        select t1.*
+        from (
+            <include refid="reader"/>
         ) t1
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>

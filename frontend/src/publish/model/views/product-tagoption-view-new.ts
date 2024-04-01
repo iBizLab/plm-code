@@ -4,7 +4,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'option_view_new',
-  deviewId: '4A4541D7-5EA2-45DF-8D73-4F6F35C899C3',
+  deviewId: '4b698127eec7b01a12f62616121f5b5e',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PRODUCT_TAG',
@@ -156,7 +156,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '16EDC1CB-9379-4E59-AEA8-402682BD40DE',
+      modelId: '62315fb135696cb6fa771347e0630c9f',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.product_tag.edit_or_new',
@@ -201,7 +201,7 @@ export default {
   width: 500,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '522189b04eeaef6f9bd213a800610e07',
+  modelId: '97a6b39b9df237188c5d78ae4c56f797',
   modelType: 'PSAPPDEVIEW',
   name: 'product_tagoption_view_new',
   id: 'plmweb.product_tagoption_view_new',

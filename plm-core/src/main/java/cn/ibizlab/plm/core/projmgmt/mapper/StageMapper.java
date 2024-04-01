@@ -160,12 +160,4 @@ public interface StageMapper extends BaseMapper<Stage> {
      */
     List<Stage> findByReleaseId(@Param("releaseIds") List<String> releaseIds);
 
-    /**
-     * 根据versionId查询
-     *
-     * @param versionIds
-     * @return
-     */
-    List<Stage> findByVersionId(@Param("versionIds") List<String> versionIds);
-
 }

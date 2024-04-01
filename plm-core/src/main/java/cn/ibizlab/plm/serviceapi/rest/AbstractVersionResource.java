@@ -126,6 +126,79 @@ public abstract class AbstractVersionResource {
     }
 
     /**
+    * Commit 版本（temp）
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<VersionDTO>
+    */
+    @ApiOperation(value = "Commit", tags = {"版本（temp）" },  notes = "Version-Commit ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Version-Commit-all') or hasPermission(this.versionDtoMapping.toDomain(#dto),'ibizplm-Version-Commit')")
+    @PostMapping("versions/commit")
+    public ResponseEntity<ResponseWrapper<VersionDTO>> commit
+            (@Validated @RequestBody RequestWrapper<VersionDTO> dto) {
+        ResponseWrapper<VersionDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(commit(item)));
+        else
+            rt.set(commit(dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * Commit 版本（temp）
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<VersionDTO>
+    */   
+    public VersionDTO commit
+            (VersionDTO dto) {
+        Version domain = versionDtoMapping.toDomain(dto);
+        Version rt = versionService.commit(domain);
+        return versionDtoMapping.toDto(rt);
+    }
+
+    /**
+    * Restore 版本（temp）
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<VersionDTO>
+    */
+    @ApiOperation(value = "Restore", tags = {"版本（temp）" },  notes = "Version-Restore ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Version-Restore-all') or hasPermission(this.versionDtoMapping.toDomain(#dto),'ibizplm-Version-Restore')")
+    @PostMapping("versions/{id}/restore")
+    public ResponseEntity<ResponseWrapper<VersionDTO>> restoreById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<VersionDTO> dto) {
+        ResponseWrapper<VersionDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(restoreById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(restoreById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * Restore 版本（temp）
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<VersionDTO>
+    */   
+    public VersionDTO restoreById
+            (String id, VersionDTO dto) {
+        Version domain = versionDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Version rt = versionService.restore(domain);
+        return versionDtoMapping.toDto(rt);
+    }
+
+    /**
     * 保存Save 版本（temp）
     * 
     *
@@ -155,125 +228,6 @@ public abstract class AbstractVersionResource {
     public VersionDTO save
             (VersionDTO dto) {
         Version domain = versionDtoMapping.toDomain(dto);
-        versionService.save(domain);
-        Version rt = domain;
-        return versionDtoMapping.toDto(rt);
-    }
-
-    /**
-    * 创建Create 版本（temp）
-    * 
-    *
-    * @param projectId projectId
-    * @param dto dto
-    * @return ResponseEntity<VersionDTO>
-    */
-    @ApiOperation(value = "创建Create", tags = {"版本（temp）" },  notes = "Version-Create ")
-    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Version-Create-all') or hasPermission('Project',#projectId,this.versionDtoMapping.toDomain(#dto),'ibizplm-Version-Create')")
-    @PostMapping("projects/{projectId}/versions")
-    public ResponseEntity<ResponseWrapper<VersionDTO>> createByProjectId
-            (@PathVariable("projectId") String projectId, @Validated @RequestBody RequestWrapper<VersionDTO> dto) {
-        ResponseWrapper<VersionDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray())
-            dto.getList().forEach(item -> rt.add(createByProjectId(projectId, item)));
-        else
-            rt.set(createByProjectId(projectId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
-    }
-
-    /**
-    * 创建Create 版本（temp）
-    * 
-    *
-    * @param projectId projectId
-    * @param dto dto
-    * @return ResponseEntity<VersionDTO>
-    */   
-    public VersionDTO createByProjectId
-            (String projectId, VersionDTO dto) {
-        Version domain = versionDtoMapping.toDomain(dto);
-        domain.setProjectId(projectId);
-        versionService.create(domain);
-        Version rt = domain;
-        return versionDtoMapping.toDto(rt);
-    }
-
-    /**
-    * 更新Update 版本（temp）
-    * 
-    *
-    * @param projectId projectId
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<VersionDTO>
-    */
-    @ApiOperation(value = "更新Update", tags = {"版本（temp）" },  notes = "Version-Update ")
-    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Version-Update-all') or hasPermission('Project',#projectId,this.versionService.get(#id),'ibizplm-Version-Update')")
-    @VersionCheck(entity = "version" , versionfield = "updateTime")
-    @PutMapping("projects/{projectId}/versions/{id}")
-    public ResponseEntity<ResponseWrapper<VersionDTO>> updateByProjectIdAndId
-            (@PathVariable("projectId") String projectId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<VersionDTO> dto) {
-        ResponseWrapper<VersionDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(updateByProjectIdAndId(projectId, ids[i], dto.getList().get(i))));
-        }
-        else
-            rt.set(updateByProjectIdAndId(projectId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
-    }
-
-    /**
-    * 更新Update 版本（temp）
-    * 
-    *
-    * @param projectId projectId
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<VersionDTO>
-    */   
-    public VersionDTO updateByProjectIdAndId
-            (String projectId, String id, VersionDTO dto) {
-        Version domain = versionDtoMapping.toDomain(dto);
-        domain.setId(id);
-        versionService.update(domain);
-        Version rt = domain;
-        return versionDtoMapping.toDto(rt);
-    }
-
-    /**
-    * 保存Save 版本（temp）
-    * 
-    *
-    * @param projectId projectId
-    * @param dto dto
-    * @return ResponseEntity<VersionDTO>
-    */
-    @ApiOperation(value = "保存Save", tags = {"版本（temp）" },  notes = "Version-Save ")
-    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Version-Save-all') or hasPermission('Project',#projectId,this.versionDtoMapping.toDomain(#dto),'ibizplm-Version-Save')")
-    @PostMapping("projects/{projectId}/versions/save")
-    public ResponseEntity<ResponseWrapper<VersionDTO>> saveByProjectId
-            (@PathVariable("projectId") String projectId, @Validated @RequestBody RequestWrapper<VersionDTO> dto) {
-        ResponseWrapper<VersionDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray())
-            dto.getList().forEach(item -> rt.add(saveByProjectId(projectId, item)));
-        else
-            rt.set(saveByProjectId(projectId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
-    }
-
-    /**
-    * 保存Save 版本（temp）
-    * 
-    *
-    * @param projectId projectId
-    * @param dto dto
-    * @return ResponseEntity<VersionDTO>
-    */   
-    public VersionDTO saveByProjectId
-            (String projectId, VersionDTO dto) {
-        Version domain = versionDtoMapping.toDomain(dto);
-        domain.setProjectId(projectId);
         versionService.save(domain);
         Version rt = domain;
         return versionDtoMapping.toDto(rt);
@@ -356,100 +310,6 @@ public abstract class AbstractVersionResource {
     @PostMapping("versions/fetchdefault")
     public ResponseEntity<List<VersionDTO>> fetchDefault
             (@Validated @RequestBody VersionFilterDTO dto) {
-        VersionSearchContext context = versionFilterDtoMapping.toDomain(dto);
-        Page<Version> domains = versionService.searchDefault(context) ;
-        List<VersionDTO> list = versionDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
-            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
-            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
-            .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
-    }
-
-    /**
-    * 获取Get 版本（temp）
-    * 
-    *
-    * @param projectId projectId
-    * @param id id
-    * @return ResponseEntity<VersionDTO>
-    */
-    @ApiOperation(value = "获取Get", tags = {"版本（temp）" },  notes = "Version-Get ")
-    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Version-Get-all')  or hasPermission('Project',#projectId,this.versionDtoMapping.toDomain(returnObject.body),'ibizplm-Version-Get')")
-    @GetMapping("projects/{projectId}/versions/{id}")
-    public ResponseEntity<VersionDTO> getByProjectIdAndId
-            (@PathVariable("projectId") String projectId, @PathVariable("id") String id) {
-        Version rt = versionService.get(id);
-        return ResponseEntity.status(HttpStatus.OK).body(versionDtoMapping.toDto(rt));
-    }
-
-    /**
-    * 删除Remove 版本（temp）
-    * 
-    *
-    * @param projectId projectId
-    * @param id id
-    * @return ResponseEntity<Boolean>
-    */
-    @ApiOperation(value = "删除Remove", tags = {"版本（temp）" },  notes = "Version-Remove ")
-    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Version-Remove-all') or hasPermission('Project',#projectId,this.versionService.get(#id),'ibizplm-Version-Remove')")
-    @DeleteMapping("projects/{projectId}/versions/{id}")
-    public ResponseEntity<Boolean> removeByProjectIdAndId
-            (@PathVariable("projectId") String projectId, @PathVariable("id") String id) {
-        Boolean rt = versionService.remove(id);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
-    }
-
-    /**
-    * 校验CheckKey 版本（temp）
-    * 
-    *
-    * @param projectId projectId
-    * @param dto dto
-    * @return ResponseEntity<Integer>
-    */
-    @ApiOperation(value = "校验CheckKey", tags = {"版本（temp）" },  notes = "Version-CheckKey ")
-    @PostMapping("projects/{projectId}/versions/checkkey")
-    public ResponseEntity<Integer> checkKeyByProjectId
-            (@PathVariable("projectId") String projectId, @Validated @RequestBody VersionDTO dto) {
-        Version domain = versionDtoMapping.toDomain(dto);
-        domain.setProjectId(projectId);
-        Integer rt = versionService.checkKey(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
-    }
-
-    /**
-    * 草稿GetDraft 版本（temp）
-    * 
-    *
-    * @param projectId projectId
-    * @param dto dto
-    * @return ResponseEntity<VersionDTO>
-    */
-    @ApiOperation(value = "草稿GetDraft", tags = {"版本（temp）" },  notes = "Version-GetDraft ")
-    @GetMapping("projects/{projectId}/versions/getdraft")
-    public ResponseEntity<VersionDTO> getDraftByProjectId
-            (@PathVariable("projectId") String projectId, @SpringQueryMap VersionDTO dto) {
-        Version domain = versionDtoMapping.toDomain(dto);
-        domain.setProjectId(projectId);
-        Version rt = versionService.getDraft(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(versionDtoMapping.toDto(rt));
-    }
-
-    /**
-    * 查询FetchDefault 版本（temp）
-    * 
-    *
-    * @param projectId projectId
-    * @param dto dto
-    * @return ResponseEntity<List<VersionDTO>>
-    */
-    @ApiOperation(value = "查询FetchDefault", tags = {"版本（temp）" },  notes = "Version-FetchDefault ")
-    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Version-FetchDefault-all') or hasPermission('Project',#projectId,#dto,'ibizplm-Version-FetchDefault')")
-    @PostMapping("projects/{projectId}/versions/fetchdefault")
-    public ResponseEntity<List<VersionDTO>> fetchDefaultByProjectId
-            (@PathVariable("projectId") String projectId, @Validated @RequestBody VersionFilterDTO dto) {
-        dto.setProjectIdEQ(projectId);
         VersionSearchContext context = versionFilterDtoMapping.toDomain(dto);
         Page<Version> domains = versionService.searchDefault(context) ;
         List<VersionDTO> list = versionDtoMapping.toDto(domains.getContent());

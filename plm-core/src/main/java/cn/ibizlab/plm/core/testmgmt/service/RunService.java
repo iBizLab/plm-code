@@ -3,6 +3,7 @@
  */
 package cn.ibizlab.plm.core.testmgmt.service;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 import org.springframework.data.domain.Page;
@@ -229,6 +230,16 @@ public interface RunService extends IService<Run> {
     }
 
     /**
+     * Other_relation_run
+     * 
+     * @param dto
+     * @return
+     */
+    default Run otherRelationRun(Run dto) {
+        return dto;
+    }
+
+    /**
      * Program_plan
      * 
      * @param dto
@@ -319,6 +330,21 @@ public interface RunService extends IService<Run> {
     }
 
     /**
+     * searchCasePerson
+     * 
+     * @param context
+     * @return
+     */
+    Page<Run> searchCasePerson(RunSearchContext context);
+    /**
+     * listCasePerson
+     * 
+     * @param context
+     * @return
+     */
+    List<Run> listCasePerson(RunSearchContext context);
+
+    /**
      * searchComment_notify_executor
      * 
      * @param context
@@ -349,6 +375,21 @@ public interface RunService extends IService<Run> {
     List<Run> listDefault(RunSearchContext context);
 
     /**
+     * searchImplementationResults
+     * 
+     * @param context
+     * @return
+     */
+    Page<Run> searchImplementationResults(RunSearchContext context);
+    /**
+     * listImplementationResults
+     * 
+     * @param context
+     * @return
+     */
+    List<Run> listImplementationResults(RunSearchContext context);
+
+    /**
      * searchNormal
      * 
      * @param context
@@ -362,6 +403,21 @@ public interface RunService extends IService<Run> {
      * @return
      */
     List<Run> listNormal(RunSearchContext context);
+
+    /**
+     * searchPriorityDistributions
+     * 
+     * @param context
+     * @return
+     */
+    Page<Run> searchPriorityDistributions(RunSearchContext context);
+    /**
+     * listPriorityDistributions
+     * 
+     * @param context
+     * @return
+     */
+    List<Run> listPriorityDistributions(RunSearchContext context);
 
     /**
      * 创建实体对象

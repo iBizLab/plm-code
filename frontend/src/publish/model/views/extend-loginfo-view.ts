@@ -4,7 +4,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'info_view',
-  deviewId: '5BB781FA-3452-41B4-84AC-7D5446600514',
+  deviewId: '930c1fd7d51e5f2ded64b99d8c540560',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.EXTEND_LOG',
@@ -29,7 +29,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: 'AB471804-4B58-4D34-9A74-9631D7F54CF3',
+      modelId: '03234d7320009a2f3df7231072ee705b',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'info_viewtoolbar',
@@ -279,7 +279,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: 'FBE3E240-1B28-45FF-911D-2CD14EB07835',
+      modelId: '824b28f7a90cbf1a4c68882d46311518',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.extend_log.info_view_form',
@@ -323,7 +323,7 @@ export default {
   viewType: 'DEEDITVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'ea37102d5383959a815557be3cc398e3',
+  modelId: '9e19d3b65c3927b802945cbf1d59471d',
   modelType: 'PSAPPDEVIEW',
   name: 'extend_loginfo_view',
   id: 'plmweb.extend_loginfo_view',

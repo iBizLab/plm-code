@@ -547,6 +547,28 @@ public abstract class AbstractPortfolioResource {
     }
 
     /**
+    * 查询FetchReader 文件夹
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<PortfolioDTO>>
+    */
+    @ApiOperation(value = "查询FetchReader", tags = {"文件夹" },  notes = "Portfolio-FetchReader ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Portfolio-FetchReader-all') or hasPermission(#dto,'ibizplm-Portfolio-FetchReader')")
+    @PostMapping("portfolios/fetchreader")
+    public ResponseEntity<List<PortfolioDTO>> fetchReader
+            (@Validated @RequestBody PortfolioFilterDTO dto) {
+        PortfolioSearchContext context = portfolioFilterDtoMapping.toDomain(dto);
+        Page<Portfolio> domains = portfolioService.searchReader(context) ;
+        List<PortfolioDTO> list = portfolioDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
     * 查询FetchUser 文件夹
     * 
     *

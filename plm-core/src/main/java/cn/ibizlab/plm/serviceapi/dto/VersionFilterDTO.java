@@ -31,27 +31,19 @@ import io.swagger.annotations.ApiModelProperty;
 public class VersionFilterDTO extends FilterBase implements Serializable {
 
     /**
-     * 状态EQ
+     * 所属数据标识EQ
      */
-    @JsonProperty("n_status_eq")
-    @JSONField(name = "n_status_eq")
-    @ApiModelProperty(value = "状态EQ", position = 40)
-	private String statusEQ;
-
-    /**
-     * 类别LIKE
-     */
-    @JsonProperty("n_categories_like")
-    @JSONField(name = "n_categories_like")
-    @ApiModelProperty(value = "类别LIKE", position = 80)
-	private String categoriesLIKE;
+    @JsonProperty("n_owner_id_eq")
+    @JSONField(name = "n_owner_id_eq")
+    @ApiModelProperty(value = "所属数据标识EQ", position = 10)
+	private String ownerIdEQ;
 
     /**
      * 名称LIKE
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 110)
+    @ApiModelProperty(value = "名称LIKE", position = 60)
 	private String nameLIKE;
 
     /**
@@ -59,40 +51,8 @@ public class VersionFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 140)
+    @ApiModelProperty(value = "标识EQ", position = 90)
 	private String idEQ;
-
-    /**
-     * 项目标识EQ
-     */
-    @JsonProperty("n_project_id_eq")
-    @JSONField(name = "n_project_id_eq")
-    @ApiModelProperty(value = "项目标识EQ", position = 170)
-	private String projectIdEQ;
-
-    /**
-     * 发布类别标识EQ
-     */
-    @JsonProperty("n_version_category_id_eq")
-    @JSONField(name = "n_version_category_id_eq")
-    @ApiModelProperty(value = "发布类别标识EQ", position = 180)
-	private String versionCategoryIdEQ;
-
-    /**
-     * 项目名称EQ
-     */
-    @JsonProperty("n_project_name_eq")
-    @JSONField(name = "n_project_name_eq")
-    @ApiModelProperty(value = "项目名称EQ", position = 190)
-	private String projectNameEQ;
-
-    /**
-     * 项目名称LIKE
-     */
-    @JsonProperty("n_project_name_like")
-    @JSONField(name = "n_project_name_like")
-    @ApiModelProperty(value = "项目名称LIKE", position = 191)
-	private String projectNameLIKE;
 
 
 }

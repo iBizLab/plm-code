@@ -515,7 +515,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '8b1e27457d4725b227e3b93e67a1e6be',
+      modelId: '12ea897d2ea6f1b0ebe7be21c50ba11d',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.psdefield.quick_create',

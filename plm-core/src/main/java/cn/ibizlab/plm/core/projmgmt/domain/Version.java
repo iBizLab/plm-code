@@ -4,7 +4,6 @@
 package cn.ibizlab.plm.core.projmgmt.domain;
 
 import java.util.*;
-import java.math.BigDecimal;
 import cn.ibizlab.util.domain.IEntity;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.*;
@@ -21,11 +20,7 @@ import lombok.experimental.Accessors;
 import io.swagger.annotations.*;
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
-import cn.ibizlab.plm.core.projmgmt.domain.Project;
-import cn.ibizlab.plm.core.projmgmt.domain.VersionCategory;
-import cn.ibizlab.plm.core.projmgmt.domain.Stage;
-import cn.ibizlab.plm.core.testmgmt.domain.TestPlan;
-import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
+import cn.ibizlab.plm.core.wiki.domain.ArticlePage;
 
 /**
  * 版本（temp）实体类[Version]
@@ -43,38 +38,6 @@ public class Version extends EntityMP implements Serializable
 {
 
     /**
-     * 开始时间
-     */
-    @TableField(value = "start_at")
-    @DEField(name = "start_at")
-    @JsonProperty("start_at")
-    @JsonFormat(pattern = "yyyy-MM-dd", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "start_at" , format = "yyyy-MM-dd")
-    @ApiModelProperty(value = "start_at", notes = "开始时间")
-    private Date startAt;
-
-    /**
-     * 发布时间
-     */
-    @TableField(value = "end_at")
-    @DEField(name = "end_at")
-    @JsonProperty("end_at")
-    @JsonFormat(pattern = "yyyy-MM-dd", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "end_at" , format = "yyyy-MM-dd")
-    @ApiModelProperty(value = "end_at", notes = "发布时间")
-    private Date endAt;
-
-    /**
-     * 发布进度
-     */
-    @TableField(value = "progress")
-    @DEField(name = "progress")
-    @JsonProperty("progress")
-    @JSONField(name = "progress")
-    @ApiModelProperty(value = "progress", notes = "发布进度")
-    private BigDecimal progress;
-
-    /**
      * 描述
      */
     @TableField(value = "description")
@@ -83,16 +46,6 @@ public class Version extends EntityMP implements Serializable
     @JSONField(name = "description")
     @ApiModelProperty(value = "description", notes = "描述")
     private String description;
-
-    /**
-     * 状态
-     */
-    @TableField(value = "status")
-    @DEField(name = "status" , defaultValue = "pending" , dict = "Version_status")
-    @JsonProperty("status")
-    @JSONField(name = "status")
-    @ApiModelProperty(value = "status", notes = "状态")
-    private String status;
 
     /**
      * 所属数据标识
@@ -115,44 +68,34 @@ public class Version extends EntityMP implements Serializable
     private String ownerType;
 
     /**
-     * 所属对象子类型
+     * 版本
      */
-    @TableField(value = "owner_subtype")
-    @DEField(name = "owner_subtype" , preType = DEPredefinedFieldType.PARENTSUBTYPE)
-    @JsonProperty("owner_subtype")
-    @JSONField(name = "owner_subtype")
-    @ApiModelProperty(value = "owner_subtype", notes = "所属对象子类型")
-    private String ownerSubtype;
+    @TableField(value = "identifier")
+    @DEField(name = "identifier" , dupCheck = DupCheck.ALL)
+    @JsonProperty("identifier")
+    @JSONField(name = "identifier")
+    @ApiModelProperty(value = "identifier", notes = "版本")
+    private String identifier;
 
     /**
-     * 类别
+     * 数据
      */
-    @TableField(value = "categories")
-    @DEField(name = "categories")
-    @JsonProperty("categories")
-    @JSONField(name = "categories")
-    @ApiModelProperty(value = "categories", notes = "类别")
-    private String categories;
+    @TableField(value = "data")
+    @DEField(name = "data")
+    @JsonProperty("data")
+    @JSONField(name = "data")
+    @ApiModelProperty(value = "data", notes = "数据")
+    private String data;
 
     /**
-     * 负责人
+     * 手动提交
      */
-    @TableField(value = "assignee_name")
-    @DEField(name = "assignee_name")
-    @JsonProperty("assignee_name")
-    @JSONField(name = "assignee_name")
-    @ApiModelProperty(value = "assignee_name", notes = "负责人")
-    private String assigneeName;
-
-    /**
-     * 负责人标识
-     */
-    @TableField(value = "assignee_id")
-    @DEField(name = "assignee_id")
-    @JsonProperty("assignee_id")
-    @JSONField(name = "assignee_id")
-    @ApiModelProperty(value = "assignee_id", notes = "负责人标识")
-    private String assigneeId;
+    @TableField(value = "manual")
+    @DEField(name = "manual" , defaultValue = "0" , dict = "YesNo")
+    @JsonProperty("manual")
+    @JSONField(name = "manual")
+    @ApiModelProperty(value = "manual", notes = "手动提交")
+    private Integer manual;
 
     /**
      * 名称
@@ -218,81 +161,14 @@ public class Version extends EntityMP implements Serializable
     private String updateMan;
 
     /**
-     * 项目标识
-     */
-    @TableField(value = "project_id")
-    @DEField(name = "project_id")
-    @JsonProperty("project_id")
-    @JSONField(name = "project_id")
-    @ApiModelProperty(value = "project_id", notes = "项目标识")
-    private String projectId;
-
-    /**
-     * 发布类别标识
-     */
-    @TableField(value = "version_category_id")
-    @DEField(name = "version_category_id")
-    @JsonProperty("version_category_id")
-    @JSONField(name = "version_category_id")
-    @ApiModelProperty(value = "version_category_id", notes = "发布类别标识")
-    private String versionCategoryId;
-
-    /**
-     * 项目名称
-     */
-    @TableField(value = "project_name" , exist = false)
-    @DEField(name = "project_name")
-    @JsonProperty("project_name")
-    @JSONField(name = "project_name")
-    @ApiModelProperty(value = "project_name", notes = "项目名称")
-    private String projectName;
-
-    /**
-     * 项目
+     * 页面
      */
     @JsonIgnore
     @JSONField(serialize = false)
     @TableField(exist = false)
     @Transient
-    @ApiModelProperty(value = "project", notes = "项目发布")
-    private Project project;
-
-    /**
-     * 发布类别
-     */
-    @JsonIgnore
-    @JSONField(serialize = false)
-    @TableField(exist = false)
-    @Transient
-    @ApiModelProperty(value = "version_category", notes = "发布-类别")
-    private VersionCategory versionCategory;
-
-    /**
-     * 设置 [开始时间]
-     */
-    public Version setStartAt(Date startAt) {
-        this.startAt = startAt;
-        this.modify("start_at", startAt);
-        return this;
-    }
-
-    /**
-     * 设置 [发布时间]
-     */
-    public Version setEndAt(Date endAt) {
-        this.endAt = endAt;
-        this.modify("end_at", endAt);
-        return this;
-    }
-
-    /**
-     * 设置 [发布进度]
-     */
-    public Version setProgress(BigDecimal progress) {
-        this.progress = progress;
-        this.modify("progress", progress);
-        return this;
-    }
+    @ApiModelProperty(value = "page", notes = "页面-版本")
+    private ArticlePage page;
 
     /**
      * 设置 [描述]
@@ -304,38 +180,29 @@ public class Version extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [状态]
+     * 设置 [版本]
      */
-    public Version setStatus(String status) {
-        this.status = status;
-        this.modify("status", status);
+    public Version setIdentifier(String identifier) {
+        this.identifier = identifier;
+        this.modify("identifier", identifier);
         return this;
     }
 
     /**
-     * 设置 [类别]
+     * 设置 [数据]
      */
-    public Version setCategories(String categories) {
-        this.categories = categories;
-        this.modify("categories", categories);
+    public Version setData(String data) {
+        this.data = data;
+        this.modify("data", data);
         return this;
     }
 
     /**
-     * 设置 [负责人]
+     * 设置 [手动提交]
      */
-    public Version setAssigneeName(String assigneeName) {
-        this.assigneeName = assigneeName;
-        this.modify("assignee_name", assigneeName);
-        return this;
-    }
-
-    /**
-     * 设置 [负责人标识]
-     */
-    public Version setAssigneeId(String assigneeId) {
-        this.assigneeId = assigneeId;
-        this.modify("assignee_id", assigneeId);
+    public Version setManual(Integer manual) {
+        this.manual = manual;
+        this.modify("manual", manual);
         return this;
     }
 
@@ -345,33 +212,6 @@ public class Version extends EntityMP implements Serializable
     public Version setName(String name) {
         this.name = name;
         this.modify("name", name);
-        return this;
-    }
-
-    /**
-     * 设置 [项目标识]
-     */
-    public Version setProjectId(String projectId) {
-        this.projectId = projectId;
-        this.modify("project_id", projectId);
-        return this;
-    }
-
-    /**
-     * 设置 [发布类别标识]
-     */
-    public Version setVersionCategoryId(String versionCategoryId) {
-        this.versionCategoryId = versionCategoryId;
-        this.modify("version_category_id", versionCategoryId);
-        return this;
-    }
-
-    /**
-     * 设置 [项目名称]
-     */
-    public Version setProjectName(String projectName) {
-        this.projectName = projectName;
-        this.modify("project_name", projectName);
         return this;
     }
 

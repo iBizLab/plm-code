@@ -19,6 +19,7 @@ import cn.ibizlab.plm.core.base.domain.User;
 import cn.ibizlab.plm.core.base.domain.Attention;
 import cn.ibizlab.plm.core.base.domain.Comment;
 import cn.ibizlab.plm.core.base.domain.Attachment;
+import cn.ibizlab.plm.core.base.domain.Workload;
 
 /**
  * 需求服务接口[IdeaService]
@@ -210,7 +211,7 @@ public interface IdeaService extends IService<Idea> {
 
     /**
      * Del_relation
-     * 
+     * 取消关联，删除相应的正反向关联数据
      * @param dto
      * @return
      */
@@ -226,16 +227,6 @@ public interface IdeaService extends IService<Idea> {
      */
     default Idea delete(Idea dto) {
         return dto;
-    }
-
-    /**
-     * Get_actual_workload
-     * 
-     * @param key
-     * @return
-     */
-    default Idea getActualWorkload(String key) {
-        return getSelf().getActualWorkload(new Idea().setId(key));
     }
 
     /**
@@ -319,16 +310,6 @@ public interface IdeaService extends IService<Idea> {
     }
 
     /**
-     * Product_get_category
-     * 
-     * @param dto
-     * @return
-     */
-    default Idea productGetCategory(Idea dto) {
-        return dto;
-    }
-
-    /**
      * Product_idea_re_counters
      * 
      * @param dto
@@ -349,25 +330,30 @@ public interface IdeaService extends IService<Idea> {
     }
 
     /**
-     * Get_actual_workload
-     * 
-     * @param et
+     * searchAdvanced_search
+     * 指定属性组；查询未删除的需求数据
+     * @param context
      * @return
      */
-    default Idea getActualWorkload(Idea et) {
-        return et;
-    }
+    Page<Idea> searchAdvancedSearch(IdeaSearchContext context);
+    /**
+     * listAdvanced_search
+     * 指定属性组；查询未删除的需求数据
+     * @param context
+     * @return
+     */
+    List<Idea> listAdvancedSearch(IdeaSearchContext context);
 
     /**
      * searchArchived
-     * 
+     * 查询已归档且未删除的需求数据
      * @param context
      * @return
      */
     Page<Idea> searchArchived(IdeaSearchContext context);
     /**
      * listArchived
-     * 
+     * 查询已归档且未删除的需求数据
      * @param context
      * @return
      */
@@ -375,14 +361,14 @@ public interface IdeaService extends IService<Idea> {
 
     /**
      * searchComment_notify_assignee
-     * 
+     * 查询指定属性组；评论负责人
      * @param context
      * @return
      */
     Page<Idea> searchCommentNotifyAssignee(IdeaSearchContext context);
     /**
      * listComment_notify_assignee
-     * 
+     * 查询指定属性组；评论负责人
      * @param context
      * @return
      */
@@ -390,14 +376,14 @@ public interface IdeaService extends IService<Idea> {
 
     /**
      * searchCommon
-     * 
+     * 状态非删除，如果上下文传递了类别参数，显示该类别下数据
      * @param context
      * @return
      */
     Page<Idea> searchCommon(IdeaSearchContext context);
     /**
      * listCommon
-     * 
+     * 状态非删除，如果上下文传递了类别参数，显示该类别下数据
      * @param context
      * @return
      */
@@ -405,14 +391,14 @@ public interface IdeaService extends IService<Idea> {
 
     /**
      * searchDefault
-     * 
+     * 默认普通数据查询
      * @param context
      * @return
      */
     Page<Idea> searchDefault(IdeaSearchContext context);
     /**
      * listDefault
-     * 
+     * 默认普通数据查询
      * @param context
      * @return
      */
@@ -420,14 +406,14 @@ public interface IdeaService extends IService<Idea> {
 
     /**
      * searchDeleted
-     * 
+     * 查询已删除的需求数据
      * @param context
      * @return
      */
     Page<Idea> searchDeleted(IdeaSearchContext context);
     /**
      * listDeleted
-     * 
+     * 查询已删除的需求数据
      * @param context
      * @return
      */
@@ -435,14 +421,14 @@ public interface IdeaService extends IService<Idea> {
 
     /**
      * searchIdea_relation_idea
-     * 
+     * 需求关联需求表格调用
      * @param context
      * @return
      */
     Page<Idea> searchIdeaRelationIdea(IdeaSearchContext context);
     /**
      * listIdea_relation_idea
-     * 
+     * 需求关联需求表格调用
      * @param context
      * @return
      */
@@ -450,14 +436,14 @@ public interface IdeaService extends IService<Idea> {
 
     /**
      * searchMy_assign
-     * 
+     * 非归档数据，且负责人为当前登录人的数据
      * @param context
      * @return
      */
     Page<Idea> searchMyAssign(IdeaSearchContext context);
     /**
      * listMy_assign
-     * 
+     * 非归档数据，且负责人为当前登录人的数据
      * @param context
      * @return
      */
@@ -465,14 +451,14 @@ public interface IdeaService extends IService<Idea> {
 
     /**
      * searchMy_assignee_count
-     * 
+     * 非归档数据，且负责人为当前登录人的数据
      * @param context
      * @return
      */
     Page<Idea> searchMyAssigneeCount(IdeaSearchContext context);
     /**
      * listMy_assignee_count
-     * 
+     * 非归档数据，且负责人为当前登录人的数据
      * @param context
      * @return
      */
@@ -480,14 +466,14 @@ public interface IdeaService extends IService<Idea> {
 
     /**
      * searchMy_attention
-     * 
+     * 查询我关注的需求（未归档、未删除）
      * @param context
      * @return
      */
     Page<Idea> searchMyAttention(IdeaSearchContext context);
     /**
      * listMy_attention
-     * 
+     * 查询我关注的需求（未归档、未删除）
      * @param context
      * @return
      */
@@ -495,14 +481,14 @@ public interface IdeaService extends IService<Idea> {
 
     /**
      * searchMy_created
-     * 
+     * 首页我创建的需求表格调用
      * @param context
      * @return
      */
     Page<Idea> searchMyCreated(IdeaSearchContext context);
     /**
      * listMy_created
-     * 
+     * 首页我创建的需求表格调用
      * @param context
      * @return
      */
@@ -510,14 +496,14 @@ public interface IdeaService extends IService<Idea> {
 
     /**
      * searchNormal
-     * 
+     * 状态非删除，如果上下文传递了子产品参数，查询当前子产品下的需求
      * @param context
      * @return
      */
     Page<Idea> searchNormal(IdeaSearchContext context);
     /**
      * listNormal
-     * 
+     * 状态非删除，如果上下文传递了子产品参数，查询当前子产品下的需求
      * @param context
      * @return
      */
@@ -525,29 +511,44 @@ public interface IdeaService extends IService<Idea> {
 
     /**
      * searchNot_exsists_relation
-     * 
+     * 多项选择视图中右侧表格的数据来源；查询了未与当前主体关联的数据。
      * @param context
      * @return
      */
     Page<Idea> searchNotExsistsRelation(IdeaSearchContext context);
     /**
      * listNot_exsists_relation
-     * 
+     * 多项选择视图中右侧表格的数据来源；查询了未与当前主体关联的数据。
      * @param context
      * @return
      */
     List<Idea> listNotExsistsRelation(IdeaSearchContext context);
 
     /**
+     * searchNotify_assignee
+     * 查询指定属性组（负责人相关）
+     * @param context
+     * @return
+     */
+    Page<Idea> searchNotifyAssignee(IdeaSearchContext context);
+    /**
+     * listNotify_assignee
+     * 查询指定属性组（负责人相关）
+     * @param context
+     * @return
+     */
+    List<Idea> listNotifyAssignee(IdeaSearchContext context);
+
+    /**
      * searchPlan_relation_idea
-     * 
+     * 计划关联需求表格调用
      * @param context
      * @return
      */
     Page<Idea> searchPlanRelationIdea(IdeaSearchContext context);
     /**
      * listPlan_relation_idea
-     * 
+     * 计划关联需求表格调用
      * @param context
      * @return
      */
@@ -555,14 +556,14 @@ public interface IdeaService extends IService<Idea> {
 
     /**
      * searchRecent_idea
-     * 
+     * 最近浏览的且未关联当前主体且非归档非删除的数据
      * @param context
      * @return
      */
     Page<Idea> searchRecentIdea(IdeaSearchContext context);
     /**
      * listRecent_idea
-     * 
+     * 最近浏览的且未关联当前主体且非归档非删除的数据
      * @param context
      * @return
      */
@@ -570,14 +571,14 @@ public interface IdeaService extends IService<Idea> {
 
     /**
      * searchTest_case_relation
-     * 
+     * 测试用例关联需求表格调用；
      * @param context
      * @return
      */
     Page<Idea> searchTestCaseRelation(IdeaSearchContext context);
     /**
      * listTest_case_relation
-     * 
+     * 测试用例关联需求表格调用；
      * @param context
      * @return
      */
@@ -585,14 +586,14 @@ public interface IdeaService extends IService<Idea> {
 
     /**
      * searchTicket_relation_idea
-     * 
+     * 工单关联需求表格调用
      * @param context
      * @return
      */
     Page<Idea> searchTicketRelationIdea(IdeaSearchContext context);
     /**
      * listTicket_relation_idea
-     * 
+     * 工单关联需求表格调用
      * @param context
      * @return
      */
@@ -600,14 +601,14 @@ public interface IdeaService extends IService<Idea> {
 
     /**
      * searchWork_item_relation_idea
-     * 
+     * 工作项关联需求表格调用
      * @param context
      * @return
      */
     Page<Idea> searchWorkItemRelationIdea(IdeaSearchContext context);
     /**
      * listWork_item_relation_idea
-     * 
+     * 工作项关联需求表格调用
      * @param context
      * @return
      */

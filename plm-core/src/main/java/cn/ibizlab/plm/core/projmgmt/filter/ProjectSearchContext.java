@@ -62,6 +62,14 @@ public class ProjectSearchContext extends QueryWrapperContext<Project> {
     private String typeEQ;
 
     /**
+     * 项目标识EQ
+     */
+    @JsonProperty("n_identifier_eq")
+    @JSONField(name = "n_identifier_eq")
+    @ApiModelProperty("项目标识EQ")
+    private String identifierEQ;
+
+    /**
      * 项目标识LIKE
      */
     @JsonProperty("n_identifier_like")
@@ -100,6 +108,14 @@ public class ProjectSearchContext extends QueryWrapperContext<Project> {
     @JSONField(name = "n_id_eq")
     @ApiModelProperty("标识EQ")
     private String idEQ;
+
+    /**
+     * 标识NOTEQ
+     */
+    @JsonProperty("n_id_noteq")
+    @JSONField(name = "n_id_noteq")
+    @ApiModelProperty("标识NOTEQ")
+    private String idNOTEQ;
 
     /**
      * 项目名称LIKE

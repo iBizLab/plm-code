@@ -1,7 +1,7 @@
 export default {
   openMode: 'POPUPMODAL',
   deviewCodeName: 'pick_up_view',
-  deviewId: '9AFB8223-62F1-4CF5-8244-B6EE8A977C45',
+  deviewId: '9cbfbac431dfb090d9a4ca55de810768',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RELEASE',
@@ -237,7 +237,7 @@ export default {
           controlParam: {
             id: 'treeexpbar_tree',
           },
-          modelId: 'C95A9CFA-6D74-4238-A5D3-4321D6639176',
+          modelId: '744e79a258793bcd0f520ce791dd4414',
           modelType: 'PSDETREEVIEW',
           name: 'treeexpbar_tree',
           id: 'plmweb.release.pick_up_view_treeview',
@@ -249,7 +249,7 @@ export default {
       controlParam: {
         id: 'treeexpbar',
       },
-      modelId: 'f745318610da822093377071ef2cc551_treeexpbar',
+      modelId: '80d4b90543caac6826d5f6865e4832d2_treeexpbar',
       modelType: 'PSEXPBAR',
       name: 'treeexpbar',
       id: 'pick_up_viewtreeexpbar',
@@ -408,12 +408,16 @@ export default {
                 },
                 dataRegionType: 'INHERIT',
                 caption: '容器',
+                contentWidth: 300,
                 itemStyle: 'DEFAULT',
                 itemType: 'CONTAINER',
                 layoutPos: {
                   shrink: 0,
                   layout: 'FLEX',
+                  width: 300,
+                  widthMode: 'PX',
                 },
+                width: 300,
                 id: 'container6',
               },
               {
@@ -538,7 +542,7 @@ export default {
     logicName: '选择视图(左右关系)布局面板(项目发布实体扩展)',
     appDataEntityId: 'plmweb.release',
     controlParam: {},
-    modelId: '13116BE6-B714-4245-89D2-19DFFA2F4D1F',
+    modelId: '7f8b0b1998812e4323ecee2d9ea553ab',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'exreleasepickupview2layout',
@@ -548,7 +552,7 @@ export default {
   viewType: 'DEPICKUPVIEW2',
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'f745318610da822093377071ef2cc551',
+  modelId: '80d4b90543caac6826d5f6865e4832d2',
   modelType: 'PSAPPDEVIEW',
   name: 'releasepick_up_view',
   id: 'plmweb.releasepick_up_view',

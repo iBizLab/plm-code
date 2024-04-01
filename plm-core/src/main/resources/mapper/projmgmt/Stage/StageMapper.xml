@@ -9,10 +9,8 @@
 		<result property="updateMan" column="update_man" />
 		<result property="createMan" column="create_man" />
 		<result property="createTime" column="create_time" />
-		<result property="versionId" column="version_id" />
 		<result property="releaseId" column="release_id" />
         <association property="release" javaType="cn.ibizlab.plm.core.projmgmt.domain.Release" column="release_id" select="cn.ibizlab.plm.core.projmgmt.mapper.ReleaseMapper.selectById" fetchType="lazy"></association>
-        <association property="version" javaType="cn.ibizlab.plm.core.projmgmt.domain.Version" column="version_id" select="cn.ibizlab.plm.core.projmgmt.mapper.VersionMapper.selectById" fetchType="lazy"></association>
     </resultMap>
 
     <select id="selectById"  resultMap="StageResultMap">
@@ -41,11 +39,11 @@
     </delete>
 
     <sql id="default" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`NAME`, t1.`RELEASE_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VERSION_ID` FROM `STAGE` t1   ]]>  
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`NAME`, t1.`RELEASE_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `STAGE` t1   ]]>  
     </sql>
 
     <sql id="view" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`NAME`, t1.`RELEASE_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VERSION_ID` FROM `STAGE` t1   ]]>  
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`NAME`, t1.`RELEASE_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `STAGE` t1   ]]>  
     </sql>
 
     <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.StageSearchContext"  resultMap="StageResultMap">
@@ -74,13 +72,6 @@
             <include refid="default"/>
         ) t1
         where release_id in <foreach item="id" index="index" collection="releaseIds" open="(" separator="," close=")">#{id}</foreach> 
-    </select>
-
-    <select id="findByVersionId" resultMap="StageResultMap">
-        select t1.* from (
-            <include refid="default"/>
-        ) t1
-        where version_id in <foreach item="id" index="index" collection="versionIds" open="(" separator="," close=")">#{id}</foreach> 
     </select>
 
 

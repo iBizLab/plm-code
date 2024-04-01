@@ -39,6 +39,22 @@ import cn.ibizlab.plm.core.prodmgmt.domain.Idea;
 public class IdeaSearchContext extends QueryWrapperContext<Idea> {
 
     /**
+     * 编号EQ
+     */
+    @JsonProperty("n_identifier_eq")
+    @JSONField(name = "n_identifier_eq")
+    @ApiModelProperty("编号EQ")
+    private String identifierEQ;
+
+    /**
+     * 编号ISNULL
+     */
+    @JsonProperty("n_identifier_isnull")
+    @JSONField(name = "n_identifier_isnull")
+    @ApiModelProperty("编号ISNULL")
+    private String identifierISNULL;
+
+    /**
      * 编号LIKE
      */
     @JsonProperty("n_identifier_like")
@@ -103,6 +119,14 @@ public class IdeaSearchContext extends QueryWrapperContext<Idea> {
     private String realAtGranularityEQ;
 
     /**
+     * 描述LIKE
+     */
+    @JsonProperty("n_description_like")
+    @JSONField(name = "n_description_like")
+    @ApiModelProperty("描述LIKE")
+    private String descriptionLIKE;
+
+    /**
      * 是否已归档EQ
      */
     @JsonProperty("n_is_archived_eq")
@@ -119,11 +143,27 @@ public class IdeaSearchContext extends QueryWrapperContext<Idea> {
     private Integer isDeletedEQ;
 
     /**
-     * 负责人标识EQ
+     * 负责人EQ
+     */
+    @JsonProperty("n_assignee_name_eq")
+    @JSONField(name = "n_assignee_name_eq")
+    @ApiModelProperty("负责人EQ")
+    private String assigneeNameEQ;
+
+    /**
+     * 负责人LIKE
+     */
+    @JsonProperty("n_assignee_name_like")
+    @JSONField(name = "n_assignee_name_like")
+    @ApiModelProperty("负责人LIKE")
+    private String assigneeNameLIKE;
+
+    /**
+     * 负责人EQ
      */
     @JsonProperty("n_assignee_id_eq")
     @JSONField(name = "n_assignee_id_eq")
-    @ApiModelProperty("负责人标识EQ")
+    @ApiModelProperty("负责人EQ")
     private String assigneeIdEQ;
 
     /**
@@ -159,6 +199,33 @@ public class IdeaSearchContext extends QueryWrapperContext<Idea> {
     private String idEQ;
 
     /**
+     * 建立时间EQ
+     */
+    @JsonProperty("n_create_time_eq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_create_time_eq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("建立时间EQ")
+    private Date createTimeEQ;
+
+    /**
+     * 建立时间GTANDEQ
+     */
+    @JsonProperty("n_create_time_gtandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_create_time_gtandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("建立时间GTANDEQ")
+    private Date createTimeGTANDEQ;
+
+    /**
+     * 建立时间LTANDEQ
+     */
+    @JsonProperty("n_create_time_ltandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_create_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("建立时间LTANDEQ")
+    private Date createTimeLTANDEQ;
+
+    /**
      * 建立人EQ
      */
     @JsonProperty("n_create_man_eq")
@@ -175,12 +242,20 @@ public class IdeaSearchContext extends QueryWrapperContext<Idea> {
     private String nameLIKE;
 
     /**
-     * 产品标识EQ
+     * 产品EQ
      */
     @JsonProperty("n_product_id_eq")
     @JSONField(name = "n_product_id_eq")
-    @ApiModelProperty("产品标识EQ")
+    @ApiModelProperty("产品EQ")
     private String productIdEQ;
+
+    /**
+     * 产品ISNULL
+     */
+    @JsonProperty("n_product_id_isnull")
+    @JSONField(name = "n_product_id_isnull")
+    @ApiModelProperty("产品ISNULL")
+    private String productIdISNULL;
 
     /**
      * 所属产品EQ

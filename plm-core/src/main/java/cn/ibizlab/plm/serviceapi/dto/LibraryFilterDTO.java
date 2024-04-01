@@ -31,6 +31,14 @@ import io.swagger.annotations.ApiModelProperty;
 public class LibraryFilterDTO extends FilterBase implements Serializable {
 
     /**
+     * 测试库标识EQ
+     */
+    @JsonProperty("n_identifier_eq")
+    @JSONField(name = "n_identifier_eq")
+    @ApiModelProperty(value = "测试库标识EQ", position = 0)
+	private String identifierEQ;
+
+    /**
      * 可见范围EQ
      */
     @JsonProperty("n_visibility_eq")
@@ -63,11 +71,19 @@ public class LibraryFilterDTO extends FilterBase implements Serializable {
 	private String isFavoriteEQ;
 
     /**
+     * 标识NOTEQ
+     */
+    @JsonProperty("n_id_noteq")
+    @JSONField(name = "n_id_noteq")
+    @ApiModelProperty(value = "标识NOTEQ", position = 80)
+	private String idNOTEQ;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 80)
+    @ApiModelProperty(value = "标识EQ", position = 81)
 	private String idEQ;
 
     /**

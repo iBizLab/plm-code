@@ -20,7 +20,6 @@ import cn.ibizlab.plm.core.projmgmt.domain.Release;
 import cn.ibizlab.plm.core.projmgmt.domain.Sprint;
 import cn.ibizlab.plm.core.projmgmt.domain.Swimlane;
 import cn.ibizlab.plm.core.base.domain.User;
-import cn.ibizlab.plm.core.projmgmt.domain.Version;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItemState;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItemType;
 import cn.ibizlab.plm.core.base.domain.Attention;
@@ -300,16 +299,6 @@ public interface WorkItemService extends IService<WorkItem> {
     }
 
     /**
-     * Get_actual_workload
-     * 
-     * @param key
-     * @return
-     */
-    default WorkItem getActualWorkload(String key) {
-        return getSelf().getActualWorkload(new WorkItem().setId(key));
-    }
-
-    /**
      * Get_attention
      * 
      * @param key
@@ -440,14 +429,19 @@ public interface WorkItemService extends IService<WorkItem> {
     }
 
     /**
-     * Get_actual_workload
+     * searchAdvanced_search
      * 
-     * @param et
+     * @param context
      * @return
      */
-    default WorkItem getActualWorkload(WorkItem et) {
-        return et;
-    }
+    Page<WorkItem> searchAdvancedSearch(WorkItemSearchContext context);
+    /**
+     * listAdvanced_search
+     * 
+     * @param context
+     * @return
+     */
+    List<WorkItem> listAdvancedSearch(WorkItemSearchContext context);
 
     /**
      * searchArchived
@@ -463,6 +457,36 @@ public interface WorkItemService extends IService<WorkItem> {
      * @return
      */
     List<WorkItem> listArchived(WorkItemSearchContext context);
+
+    /**
+     * searchBacklog_property_distribution
+     * 
+     * @param context
+     * @return
+     */
+    Page<WorkItem> searchBacklogPropertyDistribution(WorkItemSearchContext context);
+    /**
+     * listBacklog_property_distribution
+     * 
+     * @param context
+     * @return
+     */
+    List<WorkItem> listBacklogPropertyDistribution(WorkItemSearchContext context);
+
+    /**
+     * searchBacklog_state_distribution
+     * 
+     * @param context
+     * @return
+     */
+    Page<WorkItem> searchBacklogStateDistribution(WorkItemSearchContext context);
+    /**
+     * listBacklog_state_distribution
+     * 
+     * @param context
+     * @return
+     */
+    List<WorkItem> listBacklogStateDistribution(WorkItemSearchContext context);
 
     /**
      * searchBug
@@ -541,14 +565,14 @@ public interface WorkItemService extends IService<WorkItem> {
 
     /**
      * searchCommon
-     * 
+     * 未删除
      * @param context
      * @return
      */
     Page<WorkItem> searchCommon(WorkItemSearchContext context);
     /**
      * listCommon
-     * 
+     * 未删除
      * @param context
      * @return
      */
@@ -585,6 +609,21 @@ public interface WorkItemService extends IService<WorkItem> {
     List<WorkItem> listDefault(WorkItemSearchContext context);
 
     /**
+     * searchDefect_property_distribution
+     * 
+     * @param context
+     * @return
+     */
+    Page<WorkItem> searchDefectPropertyDistribution(WorkItemSearchContext context);
+    /**
+     * listDefect_property_distribution
+     * 
+     * @param context
+     * @return
+     */
+    List<WorkItem> listDefectPropertyDistribution(WorkItemSearchContext context);
+
+    /**
      * searchDeleted
      * 
      * @param context
@@ -613,6 +652,21 @@ public interface WorkItemService extends IService<WorkItem> {
      * @return
      */
     List<WorkItem> listIdeaRelationWorkItem(WorkItemSearchContext context);
+
+    /**
+     * searchKanban_user_stat
+     * 
+     * @param context
+     * @return
+     */
+    Page<WorkItem> searchKanbanUserStat(WorkItemSearchContext context);
+    /**
+     * listKanban_user_stat
+     * 
+     * @param context
+     * @return
+     */
+    List<WorkItem> listKanbanUserStat(WorkItemSearchContext context);
 
     /**
      * searchMilestone
@@ -751,14 +805,14 @@ public interface WorkItemService extends IService<WorkItem> {
 
     /**
      * searchNot_exsists_bug_relation
-     * 
+     * 仅缺陷
      * @param context
      * @return
      */
     Page<WorkItem> searchNotExsistsBugRelation(WorkItemSearchContext context);
     /**
      * listNot_exsists_bug_relation
-     * 
+     * 仅缺陷
      * @param context
      * @return
      */
@@ -781,18 +835,33 @@ public interface WorkItemService extends IService<WorkItem> {
 
     /**
      * searchNotbug_exsists_relation
-     * 
+     * 未关联且不为缺陷工作项
      * @param context
      * @return
      */
     Page<WorkItem> searchNotbugExsistsRelation(WorkItemSearchContext context);
     /**
      * listNotbug_exsists_relation
-     * 
+     * 未关联且不为缺陷工作项
      * @param context
      * @return
      */
     List<WorkItem> listNotbugExsistsRelation(WorkItemSearchContext context);
+
+    /**
+     * searchNotify_assignee
+     * 
+     * @param context
+     * @return
+     */
+    Page<WorkItem> searchNotifyAssignee(WorkItemSearchContext context);
+    /**
+     * listNotify_assignee
+     * 
+     * @param context
+     * @return
+     */
+    List<WorkItem> listNotifyAssignee(WorkItemSearchContext context);
 
     /**
      * searchOverview_chart
@@ -870,6 +939,21 @@ public interface WorkItemService extends IService<WorkItem> {
     List<WorkItem> listRequirement(WorkItemSearchContext context);
 
     /**
+     * searchResource_assignment
+     * 
+     * @param context
+     * @return
+     */
+    Page<WorkItem> searchResourceAssignment(WorkItemSearchContext context);
+    /**
+     * listResource_assignment
+     * 
+     * @param context
+     * @return
+     */
+    List<WorkItem> listResourceAssignment(WorkItemSearchContext context);
+
+    /**
      * searchRun_relation_bug
      * 
      * @param context
@@ -898,6 +982,36 @@ public interface WorkItemService extends IService<WorkItem> {
      * @return
      */
     List<WorkItem> listRunRelationWorkItem(WorkItemSearchContext context);
+
+    /**
+     * searchSprint_user_stat
+     * 
+     * @param context
+     * @return
+     */
+    Page<WorkItem> searchSprintUserStat(WorkItemSearchContext context);
+    /**
+     * listSprint_user_stat
+     * 
+     * @param context
+     * @return
+     */
+    List<WorkItem> listSprintUserStat(WorkItemSearchContext context);
+
+    /**
+     * searchTemp_speed_report
+     * 
+     * @param context
+     * @return
+     */
+    Page<WorkItem> searchTempSpeedReport(WorkItemSearchContext context);
+    /**
+     * listTemp_speed_report
+     * 
+     * @param context
+     * @return
+     */
+    List<WorkItem> listTempSpeedReport(WorkItemSearchContext context);
 
     /**
      * searchTest_case_relation_bug
@@ -975,19 +1089,19 @@ public interface WorkItemService extends IService<WorkItem> {
     List<WorkItem> listTop(WorkItemSearchContext context);
 
     /**
-     * searchTree_grid
-     * 
+     * searchTop_tree_grid
+     * 查询表格树顶层工作项
      * @param context
      * @return
      */
-    Page<WorkItem> searchTreeGrid(WorkItemSearchContext context);
+    Page<WorkItem> searchTopTreeGrid(WorkItemSearchContext context);
     /**
-     * listTree_grid
-     * 
+     * listTop_tree_grid
+     * 查询表格树顶层工作项
      * @param context
      * @return
      */
-    List<WorkItem> listTreeGrid(WorkItemSearchContext context);
+    List<WorkItem> listTopTreeGrid(WorkItemSearchContext context);
 
     /**
      * searchUnder_work
@@ -1003,6 +1117,21 @@ public interface WorkItemService extends IService<WorkItem> {
      * @return
      */
     List<WorkItem> listUnderWork(WorkItemSearchContext context);
+
+    /**
+     * searchWork_item_distribution
+     * 
+     * @param context
+     * @return
+     */
+    Page<WorkItem> searchWorkItemDistribution(WorkItemSearchContext context);
+    /**
+     * listWork_item_distribution
+     * 
+     * @param context
+     * @return
+     */
+    List<WorkItem> listWorkItemDistribution(WorkItemSearchContext context);
 
     /**
      * searchWork_item_relation_work_item
@@ -1298,44 +1427,6 @@ public interface WorkItemService extends IService<WorkItem> {
     * @return
     */
     boolean saveByUser(User user,List<WorkItem> list);
-
-    /**
-     * selectRelByVersionId
-     * @param versionIds
-     * @return
-     */
-    List<WorkItem> findByVersionId(List<String> versionIds);
-    default List<WorkItem> findByVersionId(String versionId) {
-        return findByVersionId(Arrays.asList(versionId));
-    }
-    /**
-     * removeRelByVersionId
-     * @param versionId
-     * @return
-     */
-    boolean removeByVersionId(String versionId);
-    /**
-     * resetRelByVersionId
-     * @param versionId
-     * @return
-     */
-    boolean resetByVersionId(String versionId);
-    /**
-     * saveRelByVersionId
-     * @param versionId
-     * @param list
-     * @return
-     */
-    default boolean saveByVersionId(String versionId,List<WorkItem> list) {
-        return getSelf().saveByVersion(new Version().setId(versionId),list);
-    }
-    /**
-    * saveRelByVersion
-    * @param version
-    * @param list
-    * @return
-    */
-    boolean saveByVersion(Version version,List<WorkItem> list);
 
     /**
      * selectRelByPid

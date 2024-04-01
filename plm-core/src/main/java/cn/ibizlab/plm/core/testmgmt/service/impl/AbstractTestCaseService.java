@@ -41,6 +41,8 @@ import cn.ibizlab.plm.core.base.domain.Comment;
 import cn.ibizlab.plm.core.base.service.CommentService;
 import cn.ibizlab.plm.core.base.domain.Attachment;
 import cn.ibizlab.plm.core.base.service.AttachmentService;
+import cn.ibizlab.plm.core.base.domain.Workload;
+import cn.ibizlab.plm.core.base.service.WorkloadService;
 
 /**
  * 实体[用例] 服务对象接口实现
@@ -77,6 +79,10 @@ public abstract class AbstractTestCaseService extends ServiceImpl<TestCaseMapper
     @Autowired
     @Lazy
     protected AttachmentService attachmentService;
+
+    @Autowired
+    @Lazy
+    protected WorkloadService workloadService;
 
     protected int batchSize = 500;
 
@@ -217,6 +223,44 @@ public abstract class AbstractTestCaseService extends ServiceImpl<TestCaseMapper
         return true;
     }
 
+    public Page<TestCase> searchAdvancedSearch(TestCaseSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestCase> pages=baseMapper.searchAdvancedSearch(context.getPages(),context,context.getSelectCond());
+        List<TestCase> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<TestCase> listAdvancedSearch(TestCaseSearchContext context) {
+        List<TestCase> list = baseMapper.listAdvancedSearch(context,context.getSelectCond());
+        return list;
+    }
+
+    public Page<TestCase> searchAssessmentResult(TestCaseSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchAssessmentResult(context.getPages(),context,context.getSelectCond());
+        return new PageImpl<TestCase>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),TestCase.class), context.getPageable(), pages.getTotal());
+    }
+
+    public List<TestCase> listAssessmentResult(TestCaseSearchContext context) {
+        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listAssessmentResult(context,context.getSelectCond()),TestCase.class);
+    }
+
+    public Page<TestCase> searchCasePerson(TestCaseSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchCasePerson(context.getPages(),context,context.getSelectCond());
+        return new PageImpl<TestCase>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),TestCase.class), context.getPageable(), pages.getTotal());
+    }
+
+    public List<TestCase> listCasePerson(TestCaseSearchContext context) {
+        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listCasePerson(context,context.getSelectCond()),TestCase.class);
+    }
+
+    public Page<TestCase> searchCaseType(TestCaseSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchCaseType(context.getPages(),context,context.getSelectCond());
+        return new PageImpl<TestCase>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),TestCase.class), context.getPageable(), pages.getTotal());
+    }
+
+    public List<TestCase> listCaseType(TestCaseSearchContext context) {
+        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listCaseType(context,context.getSelectCond()),TestCase.class);
+    }
+
     public Page<TestCase> searchCommentNotifyMaintenance(TestCaseSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestCase> pages=baseMapper.searchCommentNotifyMaintenance(context.getPages(),context,context.getSelectCond());
         List<TestCase> list = pages.getRecords();
@@ -226,6 +270,15 @@ public abstract class AbstractTestCaseService extends ServiceImpl<TestCaseMapper
     public List<TestCase> listCommentNotifyMaintenance(TestCaseSearchContext context) {
         List<TestCase> list = baseMapper.listCommentNotifyMaintenance(context,context.getSelectCond());
         return list;
+    }
+
+    public Page<TestCase> searchDailyTendencies(TestCaseSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchDailyTendencies(context.getPages(),context,context.getSelectCond());
+        return new PageImpl<TestCase>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),TestCase.class), context.getPageable(), pages.getTotal());
+    }
+
+    public List<TestCase> listDailyTendencies(TestCaseSearchContext context) {
+        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listDailyTendencies(context,context.getSelectCond()),TestCase.class);
     }
 
     public Page<TestCase> searchDefault(TestCaseSearchContext context) {
@@ -243,6 +296,15 @@ public abstract class AbstractTestCaseService extends ServiceImpl<TestCaseMapper
         return list;
     }
 
+    public Page<TestCase> searchDegreeImportance(TestCaseSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchDegreeImportance(context.getPages(),context,context.getSelectCond());
+        return new PageImpl<TestCase>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),TestCase.class), context.getPageable(), pages.getTotal());
+    }
+
+    public List<TestCase> listDegreeImportance(TestCaseSearchContext context) {
+        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listDegreeImportance(context,context.getSelectCond()),TestCase.class);
+    }
+
     public Page<TestCase> searchDeleted(TestCaseSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("IDENTIFIER,ASC");
@@ -258,6 +320,15 @@ public abstract class AbstractTestCaseService extends ServiceImpl<TestCaseMapper
         return list;
     }
 
+    public Page<TestCase> searchEverydayTest(TestCaseSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchEverydayTest(context.getPages(),context,context.getSelectCond());
+        return new PageImpl<TestCase>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),TestCase.class), context.getPageable(), pages.getTotal());
+    }
+
+    public List<TestCase> listEverydayTest(TestCaseSearchContext context) {
+        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listEverydayTest(context,context.getSelectCond()),TestCase.class);
+    }
+
     public Page<TestCase> searchIdeaRelationTestCase(TestCaseSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("IDENTIFIER,ASC");
@@ -271,6 +342,15 @@ public abstract class AbstractTestCaseService extends ServiceImpl<TestCaseMapper
             context.setSort("IDENTIFIER,ASC");
         List<TestCase> list = baseMapper.listIdeaRelationTestCase(context,context.getSelectCond());
         return list;
+    }
+
+    public Page<TestCase> searchImplementationResults(TestCaseSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchImplementationResults(context.getPages(),context,context.getSelectCond());
+        return new PageImpl<TestCase>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),TestCase.class), context.getPageable(), pages.getTotal());
+    }
+
+    public List<TestCase> listImplementationResults(TestCaseSearchContext context) {
+        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listImplementationResults(context,context.getSelectCond()),TestCase.class);
     }
 
     public Page<TestCase> searchMyAssign(TestCaseSearchContext context) {
@@ -369,6 +449,35 @@ public abstract class AbstractTestCaseService extends ServiceImpl<TestCaseMapper
             context.setSort("IDENTIFIER,ASC");
         List<TestCase> list = baseMapper.listNotExsistsRelation(context,context.getSelectCond());
         return list;
+    }
+
+    public Page<TestCase> searchNotifyAssignee(TestCaseSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestCase> pages=baseMapper.searchNotifyAssignee(context.getPages(),context,context.getSelectCond());
+        List<TestCase> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<TestCase> listNotifyAssignee(TestCaseSearchContext context) {
+        List<TestCase> list = baseMapper.listNotifyAssignee(context,context.getSelectCond());
+        return list;
+    }
+
+    public Page<TestCase> searchPersonDistributions(TestCaseSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchPersonDistributions(context.getPages(),context,context.getSelectCond());
+        return new PageImpl<TestCase>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),TestCase.class), context.getPageable(), pages.getTotal());
+    }
+
+    public List<TestCase> listPersonDistributions(TestCaseSearchContext context) {
+        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listPersonDistributions(context,context.getSelectCond()),TestCase.class);
+    }
+
+    public Page<TestCase> searchPriorityDistributions(TestCaseSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchPriorityDistributions(context.getPages(),context,context.getSelectCond());
+        return new PageImpl<TestCase>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),TestCase.class), context.getPageable(), pages.getTotal());
+    }
+
+    public List<TestCase> listPriorityDistributions(TestCaseSearchContext context) {
+        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listPriorityDistributions(context,context.getSelectCond()),TestCase.class);
     }
 
     public Page<TestCase> searchRecentTestCase(TestCaseSearchContext context) {

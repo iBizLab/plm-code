@@ -5,7 +5,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'pick_up_view_PickupGridView',
-  deviewId: '7D872B11-84D9-441C-8701-71C555A600FE',
+  deviewId: '0f45b0bdd3f4bc88c6221a83d8d3bd1d',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RELEASE',
@@ -119,7 +119,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: 'ADE8A0ED-81C0-45E1-919B-1E5FE72628C7',
+      modelId: 'fef164932e2ec4a476cd4c689084cdcc',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.release.pick_up_view_pickupgridview_grid',
@@ -155,7 +155,8 @@ export default {
               detailStyle: 'DEFAULT',
               detailType: 'FORMITEM',
               layoutPos: {
-                colMD: 24,
+                colLG: 8,
+                colMD: 8,
                 layout: 'TABLE_24COL',
               },
               id: 'n_name_like',
@@ -183,7 +184,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: 'F2FDAD6E-7EB5-4845-B22D-3A0FE4506899',
+      modelId: 'b5504e34cb743c8bfcbccdc6c94443b9',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.release.usr03122799_searchform',
@@ -226,7 +227,7 @@ export default {
   viewType: 'DEPICKUPGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '7468253706caa20d98b331272192f8b1',
+  modelId: '465c1eb06cd7f7340cf4c648022e2421',
   modelType: 'PSAPPDEVIEW',
   name: 'releasepick_up_view_PickupGridView',
   id: 'plmweb.releasepick_up_view_pickupgridview',

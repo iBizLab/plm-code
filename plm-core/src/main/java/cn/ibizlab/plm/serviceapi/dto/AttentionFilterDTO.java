@@ -47,6 +47,22 @@ public class AttentionFilterDTO extends FilterBase implements Serializable {
 	private String ownerIdEXISTSOwner_idEQ;
 
     /**
+     * 所属数据对象EQ
+     */
+    @JsonProperty("n_owner_type_eq")
+    @JSONField(name = "n_owner_type_eq")
+    @ApiModelProperty(value = "所属数据对象EQ", position = 10)
+	private String ownerTypeEQ;
+
+    /**
+     * 所属对象子类型EQ
+     */
+    @JsonProperty("n_owner_subtype_eq")
+    @JSONField(name = "n_owner_subtype_eq")
+    @ApiModelProperty(value = "所属对象子类型EQ", position = 20)
+	private String ownerSubtypeEQ;
+
+    /**
      * 关注人EQ
      */
     @JsonProperty("n_user_id_eq")

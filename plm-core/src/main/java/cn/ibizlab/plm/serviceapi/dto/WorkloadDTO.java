@@ -126,11 +126,35 @@ public class WorkloadDTO extends DTOBase implements Serializable {
     private String recentParentIdentifier;
 
     /**
+     * 工作项
+     */
+    @JsonProperty("work_item")
+    @JSONField(name = "work_item")
+    @ApiModelProperty(value = "工作项", position = 11)
+    private WorkItemDTO workItem;
+
+    /**
+     * 需求
+     */
+    @JsonProperty("idea")
+    @JSONField(name = "idea")
+    @ApiModelProperty(value = "需求", position = 12)
+    private IdeaDTO idea;
+
+    /**
+     * 用例
+     */
+    @JsonProperty("test_case")
+    @JSONField(name = "test_case")
+    @ApiModelProperty(value = "用例", position = 13)
+    private TestCaseDTO testCase;
+
+    /**
      * 建立人
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 11)
+    @ApiModelProperty(value = "建立人", position = 14)
     private String createMan;
 
     /**
@@ -139,7 +163,7 @@ public class WorkloadDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 12)
+    @ApiModelProperty(value = "建立时间", position = 15)
     private Date createTime;
 
     /**
@@ -147,7 +171,7 @@ public class WorkloadDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 13)
+    @ApiModelProperty(value = "标识", position = 16)
     private String id;
 
     /**
@@ -155,7 +179,7 @@ public class WorkloadDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "事项", position = 14)
+    @ApiModelProperty(value = "事项", position = 17)
     private String name;
 
     /**
@@ -163,7 +187,7 @@ public class WorkloadDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("type_id")
     @JSONField(name = "type_id")
-    @ApiModelProperty(value = "类别", position = 15)
+    @ApiModelProperty(value = "类别", position = 18)
     private String typeId;
 
     /**
@@ -171,7 +195,7 @@ public class WorkloadDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("type_name")
     @JSONField(name = "type_name")
-    @ApiModelProperty(value = "名称", position = 16)
+    @ApiModelProperty(value = "名称", position = 19)
     private String typeName;
 
     /**
@@ -179,7 +203,7 @@ public class WorkloadDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 17)
+    @ApiModelProperty(value = "更新人", position = 20)
     private String updateMan;
 
     /**
@@ -188,7 +212,7 @@ public class WorkloadDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 18)
+    @ApiModelProperty(value = "更新时间", position = 21)
     private Date updateTime;
 
 
@@ -261,6 +285,33 @@ public class WorkloadDTO extends DTOBase implements Serializable {
     public WorkloadDTO setRecentParentIdentifier(String recentParentIdentifier) {
         this.recentParentIdentifier = recentParentIdentifier;
         this.modify("recent_parent_identifier", recentParentIdentifier);
+        return this;
+    }
+
+    /**
+     * 设置 [工作项]
+     */
+    public WorkloadDTO setWorkItem(WorkItemDTO workItem) {
+        this.workItem = workItem;
+        this.modify("work_item", workItem);
+        return this;
+    }
+
+    /**
+     * 设置 [需求]
+     */
+    public WorkloadDTO setIdea(IdeaDTO idea) {
+        this.idea = idea;
+        this.modify("idea", idea);
+        return this;
+    }
+
+    /**
+     * 设置 [用例]
+     */
+    public WorkloadDTO setTestCase(TestCaseDTO testCase) {
+        this.testCase = testCase;
+        this.modify("test_case", testCase);
         return this;
     }
 

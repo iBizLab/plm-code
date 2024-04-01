@@ -199,14 +199,6 @@ public interface SprintMapper extends BaseMapper<Sprint> {
     List<Sprint> findByProjectId(@Param("projectIds") List<String> projectIds);
 
     /**
-     * 根据sprintCategoryId查询
-     *
-     * @param sprintCategoryIds
-     * @return
-     */
-    List<Sprint> findBySprintCategoryId(@Param("sprintCategoryIds") List<String> sprintCategoryIds);
-
-    /**
      * 根据pid查询
      *
      * @param pids

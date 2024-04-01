@@ -183,6 +183,16 @@ public interface ProductPlanService extends IService<ProductPlan> {
     }
 
     /**
+     * Product_plan_relation_idea
+     * 
+     * @param dto
+     * @return
+     */
+    default ProductPlan productPlanRelationIdea(ProductPlan dto) {
+        return dto;
+    }
+
+    /**
      * searchDefault
      * 
      * @param context

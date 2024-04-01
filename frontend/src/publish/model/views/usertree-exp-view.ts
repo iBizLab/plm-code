@@ -2,7 +2,7 @@ export default {
   showDataInfoBar: true,
   loadDefault: true,
   deviewCodeName: 'tree_exp_view',
-  deviewId: '9C4C6F12-AB76-46E0-9FFA-4F8FBBA6BE91',
+  deviewId: 'c51077b30d7e45ac3e3c52d3bcfd6dd3',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.USER',
@@ -301,7 +301,7 @@ export default {
           controlParam: {
             id: 'treeexpbar_tree',
           },
-          modelId: '9C5B02AE-57EA-43D0-8031-CBDA5B8B54F8',
+          modelId: '5b1481c903d43d72b1dace80963a3bd3',
           modelType: 'PSDETREEVIEW',
           name: 'treeexpbar_tree',
           id: 'plmweb.user.main',
@@ -313,7 +313,7 @@ export default {
       controlParam: {
         id: 'treeexpbar',
       },
-      modelId: '01a28c0d33d59d483c85ecbba70b805d_treeexpbar',
+      modelId: '70e8e29d2a0c7e33cf312536f39ac95e_treeexpbar',
       modelType: 'PSEXPBAR',
       name: 'treeexpbar',
       id: 'tree_exp_viewtreeexpbar',
@@ -358,7 +358,7 @@ export default {
   viewType: 'DETREEEXPVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '01a28c0d33d59d483c85ecbba70b805d',
+  modelId: '70e8e29d2a0c7e33cf312536f39ac95e',
   modelType: 'PSAPPDEVIEW',
   name: 'usertree_exp_view',
   id: 'plmweb.usertree_exp_view',

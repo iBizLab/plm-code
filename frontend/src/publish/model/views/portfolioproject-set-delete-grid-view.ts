@@ -2,7 +2,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'project_set_delete_grid_view',
-  deviewId: '1E5A64A3-7242-42C5-822C-DB5BC7585380',
+  deviewId: 'afdbc370f47e3932996e84c1ee90df03',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PORTFOLIO',
@@ -65,6 +65,15 @@ export default {
   ],
   appViewRefs: [
     {
+      realTitle: '文件夹数据重定向视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.PORTFOLIO.REDIRECTVIEW',
+      },
+      refAppViewId: 'plmweb.portfolioredirectview',
+      name: 'EDITDATA',
+      id: 'editdata',
+    },
+    {
       realOpenMode: 'POPUPMODAL',
       realTitle: '项目集信息展示视图',
       realTitleLanguageRes: {
@@ -73,15 +82,6 @@ export default {
       refAppViewId: 'plmweb.portfolioproject_show_view',
       name: 'NEWDATA',
       id: 'newdata',
-    },
-    {
-      realTitle: '文件夹数据重定向视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.PORTFOLIO.REDIRECTVIEW',
-      },
-      refAppViewId: 'plmweb.portfolioredirectview',
-      name: 'EDITDATA',
-      id: 'editdata',
     },
   ],
   controls: [
@@ -167,7 +167,7 @@ export default {
                   cssClass: 'fa fa-refresh',
                   glyph: 'xf021@FontAwesome',
                 },
-                id: 'uec5c768',
+                id: 'u030ba10',
               },
             ],
             uniqueTag: 'Portfolio__Usr0306756348',
@@ -268,7 +268,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: 'F19AD4AF-C687-48BD-B7A0-CB8BD5DEA5A0',
+      modelId: '741e22367f3969d75275e6ee544f8081',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.portfolio.project_set_deleted_grid',
@@ -361,7 +361,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: 'b010046a8422f87cfef7341a33aa00f6',
+      modelId: 'd1d9405410ab8d049a65f07e85457883',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.portfolio.default',
@@ -406,7 +406,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '777d782a01741ae557d770a1b94b33b8',
+  modelId: '69b0a5e800029c0a49685a0903d7ce69',
   modelType: 'PSAPPDEVIEW',
   name: 'portfolioproject_set_delete_grid_view',
   id: 'plmweb.portfolioproject_set_delete_grid_view',

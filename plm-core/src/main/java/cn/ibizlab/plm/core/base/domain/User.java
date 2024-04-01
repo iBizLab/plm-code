@@ -23,6 +23,7 @@ import cn.ibizlab.plm.core.base.domain.Job;
 import cn.ibizlab.plm.core.prodmgmt.domain.Customer;
 import cn.ibizlab.plm.core.prodmgmt.domain.Idea;
 import cn.ibizlab.plm.core.testmgmt.domain.LibraryMember;
+import cn.ibizlab.plm.core.base.domain.Member;
 import cn.ibizlab.plm.core.base.domain.PortfolioMember;
 import cn.ibizlab.plm.core.prodmgmt.domain.ProductMember;
 import cn.ibizlab.plm.core.projmgmt.domain.ProjectMember;

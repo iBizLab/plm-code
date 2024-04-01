@@ -5,7 +5,7 @@ export default {
   enableWorkflow: true,
   funcViewMode: 'REDIRECTVIEW',
   deviewCodeName: 'RedirectView',
-  deviewId: 'efb9612c56eb41512d101c3220f3c6ae',
+  deviewId: '8a1a03523824e2c2f358de5450b734c2',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RECENT',
@@ -29,12 +29,6 @@ export default {
     },
   ],
   appViewRefs: [
-    {
-      realTitle: '主数据视图kanban（测试）',
-      refAppViewId: 'plmweb.projectmain_data_kanban',
-      name: 'KANBAN',
-      id: 'kanban',
-    },
     {
       navigateContexts: [
         {
@@ -60,6 +54,14 @@ export default {
       id: 'space',
     },
     {
+      openMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realTitle: '工作项',
+      refAppViewId: 'plmweb.work_itemmain_view',
+      name: 'WORK_ITEM',
+      id: 'work_item',
+    },
+    {
       navigateContexts: [
         {
           key: 'PROJECT',
@@ -79,28 +81,6 @@ export default {
       refAppViewId: 'plmweb.projectmain_data_scrum',
       name: 'SCRUM',
       id: 'scrum',
-    },
-    {
-      openMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realTitle: '工单',
-      refAppViewId: 'plmweb.ticketmain_view',
-      name: 'TICKET',
-      id: 'ticket',
-    },
-    {
-      openMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realTitle: '页面',
-      refAppViewId: 'plmweb.article_pageshow_view_model',
-      name: 'PAGE',
-      id: 'page',
-    },
-    {
-      realTitle: '测试库',
-      refAppViewId: 'plmweb.libraryindex_view',
-      name: 'LIBRARY',
-      id: 'library',
     },
     {
       navigateContexts: [
@@ -124,6 +104,26 @@ export default {
       id: 'product',
     },
     {
+      realTitle: '主数据视图waterfall（测试）',
+      refAppViewId: 'plmweb.projectmain_data_waterfall',
+      name: 'WATERFALL',
+      id: 'waterfall',
+    },
+    {
+      openMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realTitle: '页面',
+      refAppViewId: 'plmweb.article_pageshow_view_model',
+      name: 'PAGE',
+      id: 'page',
+    },
+    {
+      realTitle: '测试库',
+      refAppViewId: 'plmweb.libraryindex_view',
+      name: 'LIBRARY',
+      id: 'library',
+    },
+    {
       openMode: 'INDEXVIEWTAB_POPUPMODAL',
       realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
       realTitle: '需求',
@@ -145,16 +145,16 @@ export default {
     {
       openMode: 'INDEXVIEWTAB_POPUPMODAL',
       realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realTitle: '工作项',
-      refAppViewId: 'plmweb.work_itemmain_view',
-      name: 'WORK_ITEM',
-      id: 'work_item',
+      realTitle: '工单',
+      refAppViewId: 'plmweb.ticketmain_view',
+      name: 'TICKET',
+      id: 'ticket',
     },
     {
-      realTitle: '主数据视图waterfall（测试）',
-      refAppViewId: 'plmweb.projectmain_data_waterfall',
-      name: 'WATERFALL',
-      id: 'waterfall',
+      realTitle: '主数据视图kanban（测试）',
+      refAppViewId: 'plmweb.projectmain_data_kanban',
+      name: 'KANBAN',
+      id: 'kanban',
     },
   ],
   controls: [
@@ -191,7 +191,7 @@ export default {
   enableDP: true,
   redirectView: true,
   showCaptionBar: true,
-  modelId: 'b244460119d2f40c7a0e68820c866077',
+  modelId: 'db8a12cb46e76a7bde6d3bd97aec053d',
   modelType: 'PSAPPDEVIEW',
   name: 'recentRedirectView',
   id: 'plmweb.recentredirectview',

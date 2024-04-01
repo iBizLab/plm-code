@@ -318,12 +318,6 @@ export default {
           id: 'sprint_id',
         },
         {
-          appDEFieldId: 'version_id',
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'version_id',
-        },
-        {
           appDEFieldId: 'board_id',
           valueType: 'SIMPLE',
           dataType: 25,
@@ -520,7 +514,7 @@ export default {
                       uiactionId: 'open_global_setting@project',
                       showCaption: true,
                       showIcon: true,
-                      id: 'u25405e6',
+                      id: 'u3fee786',
                     },
                   ],
                   uniqueTag: 'Project__Usr1221520658',
@@ -607,7 +601,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: '01F1712B-2B06-453F-87D2-2B983C1E818B',
+      modelId: '61ba43bf73f82539179e0f3a969efce9',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.work_item.kanban_view_searchform',

@@ -202,6 +202,17 @@ public abstract class AbstractTicketService extends ServiceImpl<TicketMapper,Tic
         return true;
     }
 
+    public Page<Ticket> searchAdvancedSearch(TicketSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Ticket> pages=baseMapper.searchAdvancedSearch(context.getPages(),context,context.getSelectCond());
+        List<Ticket> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Ticket> listAdvancedSearch(TicketSearchContext context) {
+        List<Ticket> list = baseMapper.listAdvancedSearch(context,context.getSelectCond());
+        return list;
+    }
+
     public Page<Ticket> searchArchived(TicketSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Ticket> pages=baseMapper.searchArchived(context.getPages(),context,context.getSelectCond());
         List<Ticket> list = pages.getRecords();
@@ -367,6 +378,17 @@ public abstract class AbstractTicketService extends ServiceImpl<TicketMapper,Tic
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("UPDATE_TIME,DESC");
         List<Ticket> list = baseMapper.listNotExsistsRelation(context,context.getSelectCond());
+        return list;
+    }
+
+    public Page<Ticket> searchNotifyAssignee(TicketSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Ticket> pages=baseMapper.searchNotifyAssignee(context.getPages(),context,context.getSelectCond());
+        List<Ticket> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Ticket> listNotifyAssignee(TicketSearchContext context) {
+        List<Ticket> list = baseMapper.listNotifyAssignee(context,context.getSelectCond());
         return list;
     }
 

@@ -54,14 +54,6 @@ public class StageSearchContext extends QueryWrapperContext<Stage> {
     private String idEQ;
 
     /**
-     * 发布标识EQ
-     */
-    @JsonProperty("n_version_id_eq")
-    @JSONField(name = "n_version_id_eq")
-    @ApiModelProperty("发布标识EQ")
-    private String versionIdEQ;
-
-    /**
      * 项目发布标识EQ
      */
     @JsonProperty("n_release_id_eq")
@@ -74,8 +66,6 @@ public class StageSearchContext extends QueryWrapperContext<Stage> {
         super.setContextParentKey(contextParentKey);
         if(Entities.RELEASE.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("release_id",contextParentKey);
-        if(Entities.VERSION.equals(this.getContextParentEntity())&&contextParentKey!=null)
-            this.getFilter().eq("version_id",contextParentKey);
     }
 
     @Override

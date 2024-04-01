@@ -24,6 +24,25 @@ import com.alibaba.fastjson.JSONObject;
 public interface RunMapper extends BaseMapper<Run> {
 
     /**
+     * 数据集合CasePerson分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Map> searchCasePerson(IPage<Run> page, @Param("ctx") RunSearchContext context, @Param("ew") Wrapper<Run> wrapper);
+    
+    /**
+     * 数据集合CasePerson查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Map> listCasePerson(@Param("ctx") RunSearchContext context, @Param("ew") Wrapper<Run> wrapper);
+
+    /**
      * 数据集合Comment_notify_executor分页查询
      * 
      * @param page
@@ -62,6 +81,25 @@ public interface RunMapper extends BaseMapper<Run> {
     List<Run> listDefault(@Param("ctx") RunSearchContext context, @Param("ew") Wrapper<Run> wrapper);
 
     /**
+     * 数据集合ImplementationResults分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Map> searchImplementationResults(IPage<Run> page, @Param("ctx") RunSearchContext context, @Param("ew") Wrapper<Run> wrapper);
+    
+    /**
+     * 数据集合ImplementationResults查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Map> listImplementationResults(@Param("ctx") RunSearchContext context, @Param("ew") Wrapper<Run> wrapper);
+
+    /**
      * 数据集合Normal分页查询
      * 
      * @param page
@@ -79,6 +117,25 @@ public interface RunMapper extends BaseMapper<Run> {
      * @return
      */
     List<Run> listNormal(@Param("ctx") RunSearchContext context, @Param("ew") Wrapper<Run> wrapper);
+
+    /**
+     * 数据集合PriorityDistributions分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Map> searchPriorityDistributions(IPage<Run> page, @Param("ctx") RunSearchContext context, @Param("ew") Wrapper<Run> wrapper);
+    
+    /**
+     * 数据集合PriorityDistributions查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Map> listPriorityDistributions(@Param("ctx") RunSearchContext context, @Param("ew") Wrapper<Run> wrapper);
 
     /**
      * 主键查询

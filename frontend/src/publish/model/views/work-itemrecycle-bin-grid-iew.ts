@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'recycle_bin_grid_iew',
-  deviewId: 'C61B8903-9CD3-440B-89A2-F95B638A5104',
+  deviewId: '12bd28e9eaa481fc3c31fd1f8ed2a8a5',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -53,44 +53,12 @@ export default {
       builtinAppUILogic: {
         openDataAppView: {
           openMode: 'INDEXVIEWTAB_POPUPMODAL',
-          navigateContexts: [
-            {
-              key: 'IS_DELETE',
-              value: 'true',
-              rawValue: true,
-              name: 'IS_DELETE',
-              id: 'is_delete',
-            },
-            {
-              key: 'SRFREADONLY',
-              value: 'true',
-              rawValue: true,
-              name: 'SRFREADONLY',
-              id: 'srfreadonly',
-            },
-          ],
           refAppViewId: 'plmweb.work_itemmain_view',
         },
         editMode: true,
         appUILogicRefViews: [
           {
             openMode: 'INDEXVIEWTAB_POPUPMODAL',
-            navigateContexts: [
-              {
-                key: 'IS_DELETE',
-                value: 'true',
-                rawValue: true,
-                name: 'IS_DELETE',
-                id: 'is_delete',
-              },
-              {
-                key: 'SRFREADONLY',
-                value: 'true',
-                rawValue: true,
-                name: 'SRFREADONLY',
-                id: 'srfreadonly',
-              },
-            ],
             refAppViewId: 'plmweb.work_itemmain_view',
           },
         ],
@@ -105,22 +73,6 @@ export default {
   ],
   appViewRefs: [
     {
-      navigateContexts: [
-        {
-          key: 'IS_DELETE',
-          value: 'true',
-          rawValue: true,
-          name: 'IS_DELETE',
-          id: 'is_delete',
-        },
-        {
-          key: 'SRFREADONLY',
-          value: 'true',
-          rawValue: true,
-          name: 'SRFREADONLY',
-          id: 'srfreadonly',
-        },
-      ],
       realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
       realTitle: '工作项',
       refAppViewId: 'plmweb.work_itemmain_view',
@@ -164,7 +116,7 @@ export default {
                   cssClass: 'fa fa-refresh',
                   glyph: 'xf021@FontAwesome',
                 },
-                id: 'ud5ffca4',
+                id: 'u304ad8f',
               },
             ],
             uniqueTag: 'Work_item__Usr1229282939',
@@ -307,12 +259,6 @@ export default {
           id: 'sprint_id',
         },
         {
-          appDEFieldId: 'version_id',
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'version_id',
-        },
-        {
           appDEFieldId: 'board_id',
           valueType: 'SIMPLE',
           dataType: 25,
@@ -415,7 +361,7 @@ export default {
           controlParam: {
             id: 'grid_batchtoolbar',
           },
-          modelId: '963126A9-9C7A-428F-A10E-742F92C0A6CA',
+          modelId: 'e807bada769be570f11c441375c357c4',
           modelType: 'PSDETOOLBAR',
           name: 'grid_batchtoolbar',
           id: 'recycle_bin_grid_iewgrid_batchtoolbar',
@@ -428,7 +374,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '7EACCE61-3203-4EB6-9AAF-25082682560E',
+      modelId: '03098d17b364366ca5eac9a699859940',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.work_item.recycle_bin_grid',
@@ -542,7 +488,7 @@ export default {
                       uiactionId: 'open_global_setting@project',
                       showCaption: true,
                       showIcon: true,
-                      id: 'u25405e6',
+                      id: 'u3fee786',
                     },
                   ],
                   uniqueTag: 'Project__Usr1221520658',
@@ -629,7 +575,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: '01F1712B-2B06-453F-87D2-2B983C1E818B',
+      modelId: '61ba43bf73f82539179e0f3a969efce9',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.work_item.kanban_view_searchform',
@@ -674,7 +620,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '16618ede8895b5734edd049dc080860c',
+  modelId: 'f6d2051ea27a11e417b98c45c58480c3',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemrecycle_bin_grid_iew',
   id: 'plmweb.work_itemrecycle_bin_grid_iew',

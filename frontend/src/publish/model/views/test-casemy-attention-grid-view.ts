@@ -4,7 +4,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'my_attention_grid_view',
-  deviewId: '5648EC3D-AD75-4B09-87F6-2D5861D9C742',
+  deviewId: '6afd959709fda91af68abaaee477ecb7',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TEST_CASE',
@@ -291,7 +291,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '5208C269-FF23-4EDA-B40B-EA534BC4607E',
+      modelId: '5abd084624d518ad95dbcf6318b89e10',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.test_case.my_test_case_grid',
@@ -522,7 +522,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '5524b91adb716a1b467638668b8e51d7',
+  modelId: '624ab58c401263286da0e6a6663c5f8f',
   modelType: 'PSAPPDEVIEW',
   name: 'test_casemy_attention_grid_view',
   id: 'plmweb.test_casemy_attention_grid_view',

@@ -4,7 +4,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'update_view',
-  deviewId: '56F5D8D1-589E-45E4-A727-4B33A38934E0',
+  deviewId: '074605da2ffdd618047232bdb779728b',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RELEASE',
@@ -51,6 +51,102 @@ export default {
         appDataEntityId: 'plmweb.release',
         id: 'update',
       },
+      deformItemVRs: [
+        {
+          checkMode: 1,
+          defvalueRule: {
+            codeName: 'START_AT',
+            groupCond: {
+              condOp: 'AND',
+              conds: [
+                {
+                  condOp: 'OR',
+                  conds: [
+                    {
+                      condOp: 'ISNULL',
+                      defname: 'END_AT',
+                      condType: 'SIMPLE',
+                      name: '[常规条件] 值为空(Nil)',
+                      id: '[常规条件] 值为空(nil)',
+                    },
+                    {
+                      condOp: 'LTANDEQ',
+                      paramType: 'ENTITYFIELD',
+                      paramValue: 'END_AT',
+                      defname: 'START_AT',
+                      condType: 'SIMPLE',
+                      ruleInfo: '开始时间必须小于等于结束时间',
+                      name: '[常规条件] 小于等于(<=) 数据对象属性 (END_AT)',
+                      id: '[常规条件] 小于等于(<=) 数据对象属性 (end_at)',
+                    },
+                  ],
+                  condType: 'GROUP',
+                  ruleInfo: '开始时间必须小于等于结束时间',
+                  name: '[条件组]OR',
+                  id: '[条件组]or',
+                },
+              ],
+              condType: 'GROUP',
+              ruleInfo: '开始时间必须小于等于结束时间',
+              id: '默认组',
+            },
+            ruleInfo: '开始时间必须小于等于结束时间',
+            checkDefault: true,
+            name: '开始时间',
+            id: 'start_at',
+          },
+          deformItemName: 'start_at',
+          valueRuleType: 'DEFVALUERULE',
+          id: '表单项值规则',
+        },
+        {
+          checkMode: 1,
+          defvalueRule: {
+            codeName: 'END_AT',
+            groupCond: {
+              condOp: 'AND',
+              conds: [
+                {
+                  condOp: 'OR',
+                  conds: [
+                    {
+                      condOp: 'ISNULL',
+                      defname: 'START_AT',
+                      condType: 'SIMPLE',
+                      name: '[常规条件] 值为空(Nil)',
+                      id: '[常规条件] 值为空(nil)',
+                    },
+                    {
+                      condOp: 'GTANDEQ',
+                      paramType: 'ENTITYFIELD',
+                      paramValue: 'START_AT',
+                      defname: 'END_AT',
+                      condType: 'SIMPLE',
+                      ruleInfo: '结束时间必须大于等于开始时间',
+                      name: '[常规条件] 大于等于(>=) 数据对象属性 (START_AT)',
+                      id: '[常规条件] 大于等于(>=) 数据对象属性 (start_at)',
+                    },
+                  ],
+                  condType: 'GROUP',
+                  ruleInfo: '结束时间必须大于等于开始时间',
+                  name: '[条件组]OR',
+                  id: '[条件组]or',
+                },
+              ],
+              condType: 'GROUP',
+              ruleInfo: '结束时间必须大于等于开始时间',
+              id: '默认组',
+            },
+            ruleInfo: '结束时间必须大于等于开始时间',
+            checkDefault: true,
+            name: '结束时间',
+            id: 'end_at',
+          },
+          deformItemName: 'end_at',
+          valueRuleType: 'DEFVALUERULE',
+          id: '表单项值规则',
+        },
+      ],
       deformPages: [
         {
           layout: {
@@ -114,7 +210,7 @@ export default {
                       uiactionId: 'open_global_setting@project',
                       showCaption: true,
                       showIcon: true,
-                      id: 'u25405e6',
+                      id: 'u3fee786',
                     },
                   ],
                   uniqueTag: 'Project__Usr1221520658',
@@ -439,7 +535,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: 'A48B8F7B-EC9E-4913-8539-A905348FE8CF',
+      modelId: 'cf08bb59cfa3b58a8614a7b4924f36ee',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.release.creat_release_form',
@@ -484,7 +580,7 @@ export default {
   width: 800,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '95e01a50711690430323fff485af84a6',
+  modelId: 'd14936a5cdd18c2cc95c3ad9850c296a',
   modelType: 'PSAPPDEVIEW',
   name: 'releaseupdate_view',
   id: 'plmweb.releaseupdate_view',

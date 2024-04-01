@@ -4,7 +4,7 @@ export default {
   loadDefault: true,
   funcViewMode: 'MDATAVIEW',
   deviewCodeName: 'grid_view',
-  deviewId: '41241bdaba9e3b7c52f05085a110623d',
+  deviewId: 'c93fcdab26329a78bbcfd254d2770a0b',
   accUserMode: 2,
   caption: '实体属性',
   codeName: 'PSDEFieldgrid_view',
@@ -73,18 +73,18 @@ export default {
   ],
   appViewRefs: [
     {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '实体属性选项操作视图',
-      refAppViewId: 'plmweb.psdefieldquick_create_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       realOpenMode: 'DRAWER_RIGHT',
       realTitle: '实体属性编辑视图',
       refAppViewId: 'plmweb.psdefieldquick_cfg_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '实体属性选项操作视图',
+      refAppViewId: 'plmweb.psdefieldquick_create_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -164,7 +164,7 @@ export default {
         },
         {
           actionLevel: 100,
-          noPrivDisplayMode: 2,
+          noPrivDisplayMode: 1,
           uiactionId: 'remove',
           uiactionTarget: 'MULTIKEY',
           valid: true,
@@ -584,7 +584,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '806893e4187406f64bfe24b4041462e9',
+  modelId: '774b0fe80dee35da526c296c529d1e8a',
   modelType: 'PSAPPDEVIEW',
   name: 'PSDEFieldgrid_view',
   id: 'plmweb.psdefieldgrid_view',

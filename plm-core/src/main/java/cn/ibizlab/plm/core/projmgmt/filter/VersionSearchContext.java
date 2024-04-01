@@ -6,7 +6,6 @@ package cn.ibizlab.plm.core.projmgmt.filter;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import java.util.*;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -39,20 +38,12 @@ import cn.ibizlab.plm.core.projmgmt.domain.Version;
 public class VersionSearchContext extends QueryWrapperContext<Version> {
 
     /**
-     * 状态EQ
+     * 所属数据标识EQ
      */
-    @JsonProperty("n_status_eq")
-    @JSONField(name = "n_status_eq")
-    @ApiModelProperty("状态EQ")
-    private String statusEQ;
-
-    /**
-     * 类别LIKE
-     */
-    @JsonProperty("n_categories_like")
-    @JSONField(name = "n_categories_like")
-    @ApiModelProperty("类别LIKE")
-    private String categoriesLIKE;
+    @JsonProperty("n_owner_id_eq")
+    @JSONField(name = "n_owner_id_eq")
+    @ApiModelProperty("所属数据标识EQ")
+    private String ownerIdEQ;
 
     /**
      * 名称LIKE
@@ -70,52 +61,18 @@ public class VersionSearchContext extends QueryWrapperContext<Version> {
     @ApiModelProperty("标识EQ")
     private String idEQ;
 
-    /**
-     * 项目标识EQ
-     */
-    @JsonProperty("n_project_id_eq")
-    @JSONField(name = "n_project_id_eq")
-    @ApiModelProperty("项目标识EQ")
-    private String projectIdEQ;
-
-    /**
-     * 发布类别标识EQ
-     */
-    @JsonProperty("n_version_category_id_eq")
-    @JSONField(name = "n_version_category_id_eq")
-    @ApiModelProperty("发布类别标识EQ")
-    private String versionCategoryIdEQ;
-
-    /**
-     * 项目名称EQ
-     */
-    @JsonProperty("n_project_name_eq")
-    @JSONField(name = "n_project_name_eq")
-    @ApiModelProperty("项目名称EQ")
-    private String projectNameEQ;
-
-    /**
-     * 项目名称LIKE
-     */
-    @JsonProperty("n_project_name_like")
-    @JSONField(name = "n_project_name_like")
-    @ApiModelProperty("项目名称LIKE")
-    private String projectNameLIKE;
-
     @Override
     public void setContextParentKey(Serializable contextParentKey) {
         super.setContextParentKey(contextParentKey);
-        if(Entities.PROJECT.equals(this.getContextParentEntity())&&contextParentKey!=null)
-            this.getFilter().eq("project_id",contextParentKey);
-        if(Entities.VERSION_CATEGORY.equals(this.getContextParentEntity())&&contextParentKey!=null)
-            this.getFilter().eq("version_category_id",contextParentKey);
+        if(Entities.ARTICLE_PAGE.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("owner_id",contextParentKey);
     }
 
     @Override
     public void setQuery(String query) {
         this.query=query;
         if(!ObjectUtils.isEmpty(query))
-            this.getFilter().and(QueryFilter.createQuery().or(QueryFilter.createQuery().like("name",query)));
+            this.getFilter().and(QueryFilter.createQuery().or(QueryFilter.createQuery().like("identifier",query),QueryFilter.createQuery().like("name",query)));
     }
 
     @JsonIgnore

@@ -4,7 +4,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'my_attention_grid_view',
-  deviewId: '10762CBE-772A-4659-89DB-08DCC4F57AD0',
+  deviewId: 'd735451a7adc3688ef79f66707457378',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TICKET',
@@ -83,6 +83,15 @@ export default {
   ],
   appViewRefs: [
     {
+      realTitle: '工单编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.TICKET.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.ticketeditview',
+      name: 'NEWDATA',
+      id: 'newdata',
+    },
+    {
       openMode: 'INDEXVIEWTAB_POPUPMODAL',
       navigateContexts: [
         {
@@ -97,15 +106,6 @@ export default {
       refAppViewId: 'plmweb.ticketmain_view',
       name: 'EDITDATA',
       id: 'editdata',
-    },
-    {
-      realTitle: '工单编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.TICKET.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.ticketeditview',
-      name: 'NEWDATA',
-      id: 'newdata',
     },
   ],
   controls: [
@@ -296,7 +296,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '53C6DF06-6D93-4760-8A33-63ACE8771871',
+      modelId: '8fdafde9cad839070dcf88bafe307f3d',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.ticket.my_ticket_grid',
@@ -527,7 +527,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '6b1e525c2514bb33606692c4f0d28cc6',
+  modelId: '390c9e9beeda323cdfb213deec0288fa',
   modelType: 'PSAPPDEVIEW',
   name: 'ticketmy_attention_grid_view',
   id: 'plmweb.ticketmy_attention_grid_view',

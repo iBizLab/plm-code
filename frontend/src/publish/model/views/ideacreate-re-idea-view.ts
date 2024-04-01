@@ -4,7 +4,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'create_re_idea_view',
-  deviewId: 'C2C2A01D-209B-47E5-BDD2-CF99DEBCC10E',
+  deviewId: '1a2185b0db6a1ca5c9bf52ca926eadb4',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.IDEA',
@@ -351,7 +351,8 @@ export default {
                             USERURL:
                               "`${context.library ? `libraries/${context.library}/library_members/fetchdefault` : context.product ? `products/${context.product}/product_members/fetchdefault` : context.project ? `projects/${context.project}/project_members/fetchdefault` : ''}`",
                             USERFIELDMAP: '{"id":"user_id","name":"name"}',
-                            INSERTKEYS: '[{"index":66,"keys":["marker"]}]',
+                            INSERTKEYS:
+                              '[{"index":66,"keys":["marker"]},{"index":5,"keys":["paintformat"]}]',
                             QUOTEURL: '`recents/fetchrecent_access`',
                           },
                           editorStyle: 'COLLAPSE',
@@ -363,7 +364,8 @@ export default {
                         },
                         allowEmpty: true,
                         capLanguageRes: {
-                          lanResTag: 'DEF.LNAME.DESCRIPTION',
+                          lanResTag:
+                            'CONTROL.DEFORM.IDEA.QUICK_CREATE.FORMITEM.DESCRIPTION',
                         },
                         caption: '描述',
                         codeName: 'description',
@@ -376,6 +378,10 @@ export default {
                         id: 'description',
                       },
                     ],
+                    capLanguageRes: {
+                      lanResTag:
+                        'CONTROL.DEFORM.IDEA.QUICK_CREATE.GROUPPANEL.GROUPPANEL3',
+                    },
                     caption: '描述',
                     codeName: 'grouppanel3',
                     detailStyle: 'DEFAULT',
@@ -404,7 +410,7 @@ export default {
                             cssClass: 'fa fa-plus',
                             glyph: 'xf067@FontAwesome',
                           },
-                          id: 'uf78943b',
+                          id: 'u3a6466f',
                         },
                       ],
                       uniqueTag: 'Idea__Usr0110921898',
@@ -499,7 +505,7 @@ export default {
                                       cssClass: 'fa fa-download',
                                       glyph: 'xf019@FontAwesome',
                                     },
-                                    id: 'u0b42a77',
+                                    id: 'u73b8ba5',
                                   },
                                   {
                                     actionLevel: 100,
@@ -515,7 +521,7 @@ export default {
                                       cssClass: 'fa fa-trash-o',
                                       glyph: 'xf014@FontAwesome',
                                     },
-                                    id: 'u8aff03a',
+                                    id: 'u44d00e2',
                                   },
                                 ],
                                 uniqueTag: 'Attachment__Usr0103721999',
@@ -701,6 +707,10 @@ export default {
                         id: 'attachments',
                       },
                     ],
+                    capLanguageRes: {
+                      lanResTag:
+                        'CONTROL.DEFORM.IDEA.QUICK_CREATE.GROUPPANEL.GROUPPANEL2',
+                    },
                     caption: '附件',
                     codeName: 'grouppanel2',
                     detailStyle: 'DEFAULT',
@@ -810,6 +820,10 @@ export default {
                     },
                     allowEmpty: true,
                     hidden: true,
+                    capLanguageRes: {
+                      lanResTag:
+                        'CONTROL.DEFORM.IDEA.QUICK_CREATE.FORMITEM.CHECKID',
+                    },
                     caption: '上下文Id',
                     codeName: 'checkid',
                     detailStyle: 'DEFAULT',
@@ -857,6 +871,10 @@ export default {
                     },
                     resetItemNames: ['product_name'],
                     allowEmpty: true,
+                    capLanguageRes: {
+                      lanResTag:
+                        'CONTROL.DEFORM.IDEA.QUICK_CREATE.FORMITEM.CATEGORY_NAME',
+                    },
                     caption: '模块',
                     codeName: 'category_name',
                     detailStyle: 'DEFAULT',
@@ -897,7 +915,7 @@ export default {
                               cssClass: 'fa fa-user-md',
                               glyph: 'xf0f0@FontAwesome',
                             },
-                            id: 'u653ff49',
+                            id: 'u4befff7',
                           },
                         ],
                         uniqueTag: 'Product_member__Usr0311005787',
@@ -941,7 +959,8 @@ export default {
                     },
                     allowEmpty: true,
                     capLanguageRes: {
-                      lanResTag: 'DEF.LNAME.ASSIGNEE_NAME',
+                      lanResTag:
+                        'CONTROL.DEFORM.IDEA.QUICK_CREATE.FORMITEM.ASSIGNEE_NAME',
                     },
                     caption: '负责人',
                     codeName: 'assignee_name',
@@ -1025,6 +1044,10 @@ export default {
                           id: 'attentions',
                         },
                         allowEmpty: true,
+                        capLanguageRes: {
+                          lanResTag:
+                            'CONTROL.DEFORM.IDEA.QUICK_CREATE.FORMITEM.ATTENTIONS',
+                        },
                         caption: '关注人',
                         codeName: 'attentions',
                         detailStyle: 'DEFAULT',
@@ -1037,6 +1060,10 @@ export default {
                         id: 'attentions',
                       },
                     ],
+                    capLanguageRes: {
+                      lanResTag:
+                        'CONTROL.DEFORM.IDEA.QUICK_CREATE.GROUPPANEL.GROUPPANEL4',
+                    },
                     caption: '关注字段',
                     codeName: 'grouppanel4',
                     detailStyle: 'DEFAULT',
@@ -1063,7 +1090,8 @@ export default {
                     allowEmpty: true,
                     hidden: true,
                     capLanguageRes: {
-                      lanResTag: 'DEF.LNAME.PRODUCT_ID',
+                      lanResTag:
+                        'CONTROL.DEFORM.IDEA.QUICK_CREATE.FORMITEM.PRODUCT_ID',
                     },
                     caption: '产品标识',
                     codeName: 'product_id',
@@ -1092,7 +1120,8 @@ export default {
                     allowEmpty: true,
                     hidden: true,
                     capLanguageRes: {
-                      lanResTag: 'DEF.LNAME.ASSIGNEE_ID',
+                      lanResTag:
+                        'CONTROL.DEFORM.IDEA.QUICK_CREATE.FORMITEM.ASSIGNEE_ID',
                     },
                     caption: '负责人标识',
                     codeName: 'assignee_id',
@@ -1120,6 +1149,10 @@ export default {
                     },
                     allowEmpty: true,
                     hidden: true,
+                    capLanguageRes: {
+                      lanResTag:
+                        'CONTROL.DEFORM.IDEA.QUICK_CREATE.FORMITEM.CATEGORY_ID',
+                    },
                     caption: '类别标识',
                     codeName: 'category_id',
                     detailStyle: 'DEFAULT',
@@ -1237,7 +1270,7 @@ export default {
     logicName: 'create_relation_idea_view选项操作视图布局面',
     appDataEntityId: 'plmweb.idea',
     controlParam: {},
-    modelId: '4F603DE0-9789-41F7-BB50-E9C7A77F1272',
+    modelId: 'fcea9d8d76a149be98bd47acc9f4a0ee',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr1226919930',
@@ -1250,7 +1283,7 @@ export default {
   viewType: 'DEOPTVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '0e443fa637471e5fae79c70f9b814ae5',
+  modelId: 'c31d91c7168be6afba3cb4f98332bcf8',
   modelType: 'PSAPPDEVIEW',
   name: 'ideacreate_re_idea_view',
   id: 'plmweb.ideacreate_re_idea_view',

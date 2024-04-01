@@ -26,6 +26,8 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import cn.ibizlab.plm.core.testmgmt.domain.LibraryMember;
 import cn.ibizlab.plm.core.testmgmt.service.LibraryMemberService;
+import cn.ibizlab.plm.core.testmgmt.domain.Review;
+import cn.ibizlab.plm.core.testmgmt.service.ReviewService;
 import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
 import cn.ibizlab.plm.core.testmgmt.service.TestCaseService;
 import cn.ibizlab.plm.core.testmgmt.domain.TestPlan;
@@ -46,6 +48,10 @@ public abstract class AbstractLibraryService extends ServiceImpl<LibraryMapper,L
     @Autowired
     @Lazy
     protected LibraryMemberService libraryMemberService;
+
+    @Autowired
+    @Lazy
+    protected ReviewService reviewService;
 
     @Autowired
     @Lazy
@@ -251,6 +257,17 @@ public abstract class AbstractLibraryService extends ServiceImpl<LibraryMapper,L
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("NAME,DESC");
         List<Library> list = baseMapper.listProjectRelationLibrary(context,context.getSelectCond());
+        return list;
+    }
+
+    public Page<Library> searchReader(LibrarySearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Library> pages=baseMapper.searchReader(context.getPages(),context,context.getSelectCond());
+        List<Library> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Library> listReader(LibrarySearchContext context) {
+        List<Library> list = baseMapper.listReader(context,context.getSelectCond());
         return list;
     }
 

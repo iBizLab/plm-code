@@ -3,6 +3,7 @@
  */
 package cn.ibizlab.plm.core.testmgmt.service.impl;
 
+import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
@@ -241,6 +242,15 @@ public abstract class AbstractRunService extends ServiceImpl<RunMapper,Run> impl
         return true;
     }
 
+    public Page<Run> searchCasePerson(RunSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchCasePerson(context.getPages(),context,context.getSelectCond());
+        return new PageImpl<Run>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),Run.class), context.getPageable(), pages.getTotal());
+    }
+
+    public List<Run> listCasePerson(RunSearchContext context) {
+        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listCasePerson(context,context.getSelectCond()),Run.class);
+    }
+
     public Page<Run> searchCommentNotifyExecutor(RunSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Run> pages=baseMapper.searchCommentNotifyExecutor(context.getPages(),context,context.getSelectCond());
         List<Run> list = pages.getRecords();
@@ -267,6 +277,15 @@ public abstract class AbstractRunService extends ServiceImpl<RunMapper,Run> impl
         return list;
     }
 
+    public Page<Run> searchImplementationResults(RunSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchImplementationResults(context.getPages(),context,context.getSelectCond());
+        return new PageImpl<Run>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),Run.class), context.getPageable(), pages.getTotal());
+    }
+
+    public List<Run> listImplementationResults(RunSearchContext context) {
+        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listImplementationResults(context,context.getSelectCond()),Run.class);
+    }
+
     public Page<Run> searchNormal(RunSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("IDENTIFIER,ASC");
@@ -280,6 +299,15 @@ public abstract class AbstractRunService extends ServiceImpl<RunMapper,Run> impl
             context.setSort("IDENTIFIER,ASC");
         List<Run> list = baseMapper.listNormal(context,context.getSelectCond());
         return list;
+    }
+
+    public Page<Run> searchPriorityDistributions(RunSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchPriorityDistributions(context.getPages(),context,context.getSelectCond());
+        return new PageImpl<Run>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),Run.class), context.getPageable(), pages.getTotal());
+    }
+
+    public List<Run> listPriorityDistributions(RunSearchContext context) {
+        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listPriorityDistributions(context,context.getSelectCond()),Run.class);
     }
 
     public List<Run> findByCaseId(List<String> caseIds) {

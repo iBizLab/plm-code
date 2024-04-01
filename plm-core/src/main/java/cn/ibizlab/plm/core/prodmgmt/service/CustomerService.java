@@ -187,6 +187,16 @@ public interface CustomerService extends IService<Customer> {
     }
 
     /**
+     * Customer_choose_ticket
+     * 
+     * @param dto
+     * @return
+     */
+    default Customer customerChooseTicket(Customer dto) {
+        return dto;
+    }
+
+    /**
      * Del_relation
      * 
      * @param dto
@@ -310,6 +320,21 @@ public interface CustomerService extends IService<Customer> {
      * @return
      */
     List<Customer> listNormal(CustomerSearchContext context);
+
+    /**
+     * searchNotify_assignee
+     * 
+     * @param context
+     * @return
+     */
+    Page<Customer> searchNotifyAssignee(CustomerSearchContext context);
+    /**
+     * listNotify_assignee
+     * 
+     * @param context
+     * @return
+     */
+    List<Customer> listNotifyAssignee(CustomerSearchContext context);
 
     /**
      * 创建实体对象

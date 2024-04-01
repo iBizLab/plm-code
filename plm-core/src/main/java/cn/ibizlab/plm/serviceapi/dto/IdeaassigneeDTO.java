@@ -44,11 +44,11 @@ public class IdeaassigneeDTO extends DTOBase implements Serializable {
     private String id;
 
     /**
-     * 负责人标识
+     * 负责人
      */
     @JsonProperty("assignee_id")
     @JSONField(name = "assignee_id")
-    @ApiModelProperty(value = "负责人标识", position = 1)
+    @ApiModelProperty(value = "负责人", position = 1)
     private String assigneeId;
 
     /**
@@ -61,7 +61,7 @@ public class IdeaassigneeDTO extends DTOBase implements Serializable {
 
 
     /**
-     * 设置 [负责人标识]
+     * 设置 [负责人]
      */
     public IdeaassigneeDTO setAssigneeId(String assigneeId) {
         this.assigneeId = assigneeId;

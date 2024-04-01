@@ -46,7 +46,7 @@ export default {
                   cssClass: 'fa fa-play-circle-o',
                   glyph: 'xf01d@FontAwesome',
                 },
-                id: 'uda3f5d9',
+                id: 'u6d3152c',
               },
               {
                 actionLevel: 200,
@@ -60,7 +60,7 @@ export default {
                   cssClass: 'fa fa-dot-circle-o',
                   glyph: 'xf192@FontAwesome',
                 },
-                id: 'u303b642',
+                id: 'u8dd3442',
               },
               {
                 actionLevel: 100,
@@ -75,7 +75,7 @@ export default {
                   cssClass: 'fa fa-edit',
                   glyph: 'xf044@FontAwesome',
                 },
-                id: 'u33ceb8c',
+                id: 'uf8d2086',
               },
               {
                 actionLevel: 100,
@@ -90,7 +90,7 @@ export default {
                   cssClass: 'fa fa-trash-o',
                   glyph: 'xf014@FontAwesome',
                 },
-                id: 'u0d816bc',
+                id: 'u405a462',
               },
             ],
             uniqueTag: 'Test_plan__Usr1220152730',
@@ -276,12 +276,6 @@ export default {
           valueType: 'SIMPLE',
           dataType: 25,
           id: 'library_id',
-        },
-        {
-          appDEFieldId: 'version_id',
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'version_id',
         },
         {
           appDEFieldId: 'sprint_id',

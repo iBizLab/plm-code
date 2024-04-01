@@ -256,7 +256,8 @@ export default {
                       USERURL:
                         "`${context.library ? `libraries/${context.library}/library_members/fetchdefault` : context.product ? `products/${context.product}/product_members/fetchdefault` : context.project ? `projects/${context.project}/project_members/fetchdefault` : ''}`",
                       USERFIELDMAP: '{"id":"user_id","name":"name"}',
-                      INSERTKEYS: '[{"index":66,"keys":["marker"]}]',
+                      INSERTKEYS:
+                        '[{"index":66,"keys":["marker"]},{"index":5,"keys":["paintformat"]}]',
                       QUOTEURL: '`recents/fetchrecent_access`',
                     },
                     editorStyle: 'COLLAPSE',

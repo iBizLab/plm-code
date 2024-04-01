@@ -404,7 +404,8 @@ public abstract class AbstractSpaceResource {
     * @return ResponseEntity<SpaceDTO>
     */
     @ApiOperation(value = "Other_re_space", tags = {"空间" },  notes = "Space-Other_re_space ")
-    @PostMapping("spaces/{id}/other_re_space")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Space-Other_re_space-all') or hasPermission(this.spaceDtoMapping.toDomain(#dto),'ibizplm-Space-Other_re_space')")
+    @PutMapping("spaces/{id}/other_re_space")
     public ResponseEntity<ResponseWrapper<SpaceDTO>> otherReSpaceById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<SpaceDTO> dto) {
         ResponseWrapper<SpaceDTO> rt = new ResponseWrapper<>();
@@ -819,6 +820,28 @@ public abstract class AbstractSpaceResource {
             (@Validated @RequestBody SpaceFilterDTO dto) {
         SpaceSearchContext context = spaceFilterDtoMapping.toDomain(dto);
         Page<Space> domains = spaceService.searchOtherReSpace(context) ;
+        List<SpaceDTO> list = spaceDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询FetchReader 空间
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<SpaceDTO>>
+    */
+    @ApiOperation(value = "查询FetchReader", tags = {"空间" },  notes = "Space-FetchReader ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Space-FetchReader-all') or hasPermission(#dto,'ibizplm-Space-FetchReader')")
+    @PostMapping("spaces/fetchreader")
+    public ResponseEntity<List<SpaceDTO>> fetchReader
+            (@Validated @RequestBody SpaceFilterDTO dto) {
+        SpaceSearchContext context = spaceFilterDtoMapping.toDomain(dto);
+        Page<Space> domains = spaceService.searchReader(context) ;
         List<SpaceDTO> list = spaceDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

@@ -6,12 +6,6 @@ export default {
   appDataEntityId: 'plmweb.work_item',
   codeItems: [
     {
-      codeName: 'Work_item_type_name',
-      text: '工作项类型',
-      value: 'work_item_type_name',
-      id: 'work_item_type_name',
-    },
-    {
       codeName: 'State',
       text: '状态',
       value: 'state',
@@ -49,6 +43,6 @@ export default {
     },
   ],
   enableCache: true,
-  name: '工作项报表分组属性',
+  name: '需求属性分布',
   id: 'plmweb.projmgmt__work_item_group_field',
 };

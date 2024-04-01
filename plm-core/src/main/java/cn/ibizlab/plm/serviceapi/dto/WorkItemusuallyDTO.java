@@ -84,11 +84,11 @@ public class WorkItemusuallyDTO extends DTOBase implements Serializable {
     private String workItemTypeId;
 
     /**
-     * 负责人标识
+     * 负责人
      */
     @JsonProperty("assignee_id")
     @JSONField(name = "assignee_id")
-    @ApiModelProperty(value = "负责人标识", position = 6)
+    @ApiModelProperty(value = "负责人", position = 6)
     private String assigneeId;
 
     /**
@@ -142,11 +142,11 @@ public class WorkItemusuallyDTO extends DTOBase implements Serializable {
     private String topId;
 
     /**
-     * 项目标识
+     * 项目
      */
     @JsonProperty("project_id")
     @JSONField(name = "project_id")
-    @ApiModelProperty(value = "项目标识", position = 13)
+    @ApiModelProperty(value = "项目", position = 13)
     private String projectId;
 
     /**
@@ -180,6 +180,15 @@ public class WorkItemusuallyDTO extends DTOBase implements Serializable {
     @JSONField(name = "severity")
     @ApiModelProperty(value = "严重程度", position = 17)
     private String severity;
+
+    /**
+     * 建立时间
+     */
+    @JsonProperty("create_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "建立时间", position = 18)
+    private Date createTime;
 
 
     /**
@@ -228,7 +237,7 @@ public class WorkItemusuallyDTO extends DTOBase implements Serializable {
     }
 
     /**
-     * 设置 [负责人标识]
+     * 设置 [负责人]
      */
     public WorkItemusuallyDTO setAssigneeId(String assigneeId) {
         this.assigneeId = assigneeId;
@@ -291,7 +300,7 @@ public class WorkItemusuallyDTO extends DTOBase implements Serializable {
     }
 
     /**
-     * 设置 [项目标识]
+     * 设置 [项目]
      */
     public WorkItemusuallyDTO setProjectId(String projectId) {
         this.projectId = projectId;

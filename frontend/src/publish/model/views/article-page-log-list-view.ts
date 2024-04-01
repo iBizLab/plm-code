@@ -3,12 +3,12 @@ export default {
   xdataControlName: 'list',
   loadDefault: true,
   deviewCodeName: 'LogListView',
-  deviewId: 'AD5CF017-484D-4BE5-A580-FF0BE148A6AD',
+  deviewId: 'e0d2dd80ee2abd064284c821556c05fb',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PAGE',
   },
-  caption: '日志列表视图',
+  caption: 'PLM系统更新日志',
   codeName: 'article_pageLogListView',
   appDataEntityId: 'plmweb.article_page',
   appViewEngines: [
@@ -45,12 +45,12 @@ export default {
       logicType: 'APPUILOGIC',
       builtinAppUILogic: {
         openDataAppView: {
-          refAppViewId: 'plmweb.article_pageeditview',
+          refAppViewId: 'plmweb.article_pagere_show_view',
         },
         editMode: true,
         appUILogicRefViews: [
           {
-            refAppViewId: 'plmweb.article_pageeditview',
+            refAppViewId: 'plmweb.article_pagere_show_view',
           },
         ],
         builtinLogic: true,
@@ -93,13 +93,10 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '页面编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.PAGE.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.article_pageeditview',
-      name: 'NEWDATA',
-      id: 'newdata',
+      realTitle: '页面',
+      refAppViewId: 'plmweb.article_pagere_show_view',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
     {
       realTitle: '页面编辑视图',
@@ -107,8 +104,8 @@ export default {
         lanResTag: 'PAGE.TITLE.PAGE.EDITVIEW',
       },
       refAppViewId: 'plmweb.article_pageeditview',
-      name: 'EDITDATA',
-      id: 'editdata',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -122,6 +119,31 @@ export default {
         },
         rootPanelItems: [
           {
+            panelItems: [
+              {
+                editor: {
+                  halign: 'LEFT',
+                  renderMode: 'TEXT_DYNAMIC',
+                  valign: 'MIDDLE',
+                  wrapMode: 'NOWRAP',
+                  editorType: 'SPAN',
+                  predefinedType: 'FIELD_TEXT_DYNAMIC',
+                  valueType: 'SIMPLE',
+                  editable: true,
+                  id: 'field_text_dynamic',
+                },
+                viewFieldName: 'NAME',
+                allowEmpty: true,
+                caption: '文本(动态)',
+                itemStyle: 'DEFAULT',
+                itemType: 'FIELD',
+                layoutPos: {
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                id: 'field_text_dynamic',
+              },
+            ],
             layout: {
               dir: 'column',
               layout: 'FLEX',
@@ -141,7 +163,7 @@ export default {
         logicName: 'log_list_列表项面板',
         appDataEntityId: 'plmweb.article_page',
         controlParam: {},
-        modelId: '25B66B9E-1428-4ACF-A611-881A55DD266A',
+        modelId: '3d32fca2960d72127afd45849503b2d2',
         modelType: 'PSSYSVIEWPANEL',
         name: 'list_itempanel',
         id: 'plmweb.article_page.usr0314805172',
@@ -149,6 +171,16 @@ export default {
       minorSortDir: 'DESC',
       minorSortAppDEFieldId: 'create_time',
       delistDataItems: [
+        {
+          appDEFieldId: 'name',
+          dataType: 25,
+          id: 'name',
+        },
+        {
+          appDEFieldId: 'space_name',
+          dataType: 25,
+          id: 'space_name',
+        },
         {
           appDEFieldId: 'id',
           dataType: 25,
@@ -210,7 +242,7 @@ export default {
       controlParam: {
         id: 'list',
       },
-      modelId: '1D0CC7EB-C81D-471B-8656-FF1C7082389B',
+      modelId: '8b9b797ee78ae961f09512f55fb0d6c0',
       modelType: 'PSDELIST',
       name: 'list',
       id: 'plmweb.article_page.log_list',
@@ -230,7 +262,7 @@ export default {
       capLanguageRes: {
         lanResTag: 'DE.LNAME.PAGE',
       },
-      caption: '日志列表视图',
+      caption: 'PLM系统更新日志',
       codeName: 'LogListViewcaptionbar',
       controlType: 'CAPTIONBAR',
       appDataEntityId: 'plmweb.article_page',
@@ -255,7 +287,7 @@ export default {
   viewType: 'DELISTVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '149437f8c1e9a153bb05e5ddeb595ce5',
+  modelId: '55bb4c29fb7ff5d17cbd84253892c53f',
   modelType: 'PSAPPDEVIEW',
   name: 'article_pageLogListView',
   id: 'plmweb.article_pageloglistview',

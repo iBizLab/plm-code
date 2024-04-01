@@ -15,6 +15,7 @@
 		<result property="libraryIdentifier" column="library_identifier" />
 		<result property="estimatedWorkload" column="estimated_workload" />
 		<result property="remainingWorkload" column="remaining_workload" />
+		<result property="actualWorkload" column="actual_workload" />
 		<result property="createTime" column="create_time" />
 		<result property="createMan" column="create_man" />
 		<result property="updateTime" column="update_time" />
@@ -52,11 +53,39 @@
          in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.id }) </foreach>)
     </delete>
 
+    <sql id="advancedSearch" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, t1.`LEVEL`, t21.`IDENTIFIER` AS `LIBRARY_IDENTIFIER`, t1.`MAINTENANCE_ID`, t1.`MAINTENANCE_NAME`, t1.`NAME`, t1.`PRECONDITION`, concat(t21.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`STATE`, t11.`SUITES`, t1.`SUITE_ID`, t11.`NAME` AS `SUITE_NAME`, t1.`TEST_LIBRARY_ID`, t21.`NAME` AS `TEST_LIBRARY_NAME`, t1.`TEST_TYPE`, t1.`TITLE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `TEST_CASE` t1  LEFT JOIN `TEST_SUITE` t11 ON t1.`SUITE_ID` = t11.`ID`  LEFT JOIN `LIBRARY` t21 ON t1.`TEST_LIBRARY_ID` = t21.`ID`   ]]>  where  <![CDATA[ ( t1.`IS_DELETED` = 0 ) ]]> 
+    </sql>
+
+    <sql id="assessmentResult" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, t1.`LEVEL`, t21.`IDENTIFIER` AS `LIBRARY_IDENTIFIER`, t1.`MAINTENANCE_ID`, t1.`MAINTENANCE_NAME`, t1.`NAME`, t1.`PRECONDITION`, concat(t21.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`STATE`, t11.`SUITES`, t1.`SUITE_ID`, t11.`NAME` AS `SUITE_NAME`, t1.`TEST_LIBRARY_ID`, t21.`NAME` AS `TEST_LIBRARY_NAME`, t1.`TEST_TYPE`, t1.`TITLE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `TEST_CASE` t1  LEFT JOIN `TEST_SUITE` t11 ON t1.`SUITE_ID` = t11.`ID`  LEFT JOIN `LIBRARY` t21 ON t1.`TEST_LIBRARY_ID` = t21.`ID`   ]]>  
+    </sql>
+
+    <sql id="casePerson" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, t1.`LEVEL`, t21.`IDENTIFIER` AS `LIBRARY_IDENTIFIER`, t1.`MAINTENANCE_ID`, t1.`MAINTENANCE_NAME`, t1.`NAME`, t1.`PRECONDITION`, concat(t21.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`STATE`, t11.`SUITES`, t1.`SUITE_ID`, t11.`NAME` AS `SUITE_NAME`, t1.`TEST_LIBRARY_ID`, t21.`NAME` AS `TEST_LIBRARY_NAME`, t1.`TEST_TYPE`, t1.`TITLE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `TEST_CASE` t1  LEFT JOIN `TEST_SUITE` t11 ON t1.`SUITE_ID` = t11.`ID`  LEFT JOIN `LIBRARY` t21 ON t1.`TEST_LIBRARY_ID` = t21.`ID`   ]]>  
+    </sql>
+
+    <sql id="caseType" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, t1.`LEVEL`, t21.`IDENTIFIER` AS `LIBRARY_IDENTIFIER`, t1.`MAINTENANCE_ID`, t1.`MAINTENANCE_NAME`, t1.`NAME`, t1.`PRECONDITION`, concat(t21.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`STATE`, t11.`SUITES`, t1.`SUITE_ID`, t11.`NAME` AS `SUITE_NAME`, t1.`TEST_LIBRARY_ID`, t21.`NAME` AS `TEST_LIBRARY_NAME`, t1.`TEST_TYPE`, t1.`TITLE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `TEST_CASE` t1  LEFT JOIN `TEST_SUITE` t11 ON t1.`SUITE_ID` = t11.`ID`  LEFT JOIN `LIBRARY` t21 ON t1.`TEST_LIBRARY_ID` = t21.`ID`   ]]>  
+    </sql>
+
     <sql id="commentNotifyMaintenance" databaseId="mysql">
-         <![CDATA[ SELECT t1.`ID`, t1.`MAINTENANCE_ID`, t1.`MAINTENANCE_NAME` FROM `TEST_CASE` t1   ]]>  where  <![CDATA[ ( exists (select 1 from comment t2 where t1.ID = t2.PRINCIPAL_ID and t2.ID = #{ctx.webcontext.id}) ) ]]> 
+         <![CDATA[ SELECT t1.`ID`, t1.`MAINTENANCE_ID`, t1.`MAINTENANCE_NAME` FROM `TEST_CASE` t1   ]]>  where  <![CDATA[ ( exists (select 1 from comment t2 where t1.ID = t2.PRINCIPAL_ID and t2.ID = #{ctx.webcontext.id}  and t2.create_man != t1.maintenance_id ) ) ]]> 
+    </sql>
+
+    <sql id="comparativeAnalysis" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, t1.`LEVEL`, t21.`IDENTIFIER` AS `LIBRARY_IDENTIFIER`, t1.`MAINTENANCE_ID`, t1.`MAINTENANCE_NAME`, t1.`NAME`, t1.`PRECONDITION`, concat(t21.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`STATE`, t11.`SUITES`, t1.`SUITE_ID`, t11.`NAME` AS `SUITE_NAME`, t1.`TEST_LIBRARY_ID`, t21.`NAME` AS `TEST_LIBRARY_NAME`, t1.`TEST_TYPE`, t1.`TITLE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `TEST_CASE` t1  LEFT JOIN `TEST_SUITE` t11 ON t1.`SUITE_ID` = t11.`ID`  LEFT JOIN `LIBRARY` t21 ON t1.`TEST_LIBRARY_ID` = t21.`ID`   ]]>  
+    </sql>
+
+    <sql id="dailyTendencies" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, t1.`LEVEL`, t21.`IDENTIFIER` AS `LIBRARY_IDENTIFIER`, t1.`MAINTENANCE_ID`, t1.`MAINTENANCE_NAME`, t1.`NAME`, t1.`PRECONDITION`, concat(t21.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`STATE`, t11.`SUITES`, t1.`SUITE_ID`, t11.`NAME` AS `SUITE_NAME`, t1.`TEST_LIBRARY_ID`, t21.`NAME` AS `TEST_LIBRARY_NAME`, t1.`TEST_TYPE`, t1.`TITLE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `TEST_CASE` t1  LEFT JOIN `TEST_SUITE` t11 ON t1.`SUITE_ID` = t11.`ID`  LEFT JOIN `LIBRARY` t21 ON t1.`TEST_LIBRARY_ID` = t21.`ID`   ]]>  
     </sql>
 
     <sql id="default" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, t1.`LEVEL`, t21.`IDENTIFIER` AS `LIBRARY_IDENTIFIER`, t1.`MAINTENANCE_ID`, t1.`MAINTENANCE_NAME`, t1.`NAME`, t1.`PRECONDITION`, concat(t21.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`STATE`, t11.`SUITES`, t1.`SUITE_ID`, t11.`NAME` AS `SUITE_NAME`, t1.`TEST_LIBRARY_ID`, t21.`NAME` AS `TEST_LIBRARY_NAME`, t1.`TEST_TYPE`, t1.`TITLE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `TEST_CASE` t1  LEFT JOIN `TEST_SUITE` t11 ON t1.`SUITE_ID` = t11.`ID`  LEFT JOIN `LIBRARY` t21 ON t1.`TEST_LIBRARY_ID` = t21.`ID`   ]]>  
+    </sql>
+
+    <sql id="degreeImportance" databaseId="mysql">
          <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, t1.`LEVEL`, t21.`IDENTIFIER` AS `LIBRARY_IDENTIFIER`, t1.`MAINTENANCE_ID`, t1.`MAINTENANCE_NAME`, t1.`NAME`, t1.`PRECONDITION`, concat(t21.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`STATE`, t11.`SUITES`, t1.`SUITE_ID`, t11.`NAME` AS `SUITE_NAME`, t1.`TEST_LIBRARY_ID`, t21.`NAME` AS `TEST_LIBRARY_NAME`, t1.`TEST_TYPE`, t1.`TITLE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `TEST_CASE` t1  LEFT JOIN `TEST_SUITE` t11 ON t1.`SUITE_ID` = t11.`ID`  LEFT JOIN `LIBRARY` t21 ON t1.`TEST_LIBRARY_ID` = t21.`ID`   ]]>  
     </sql>
 
@@ -64,8 +93,16 @@
          <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, t1.`LEVEL`, t21.`IDENTIFIER` AS `LIBRARY_IDENTIFIER`, t1.`MAINTENANCE_ID`, t1.`MAINTENANCE_NAME`, t1.`NAME`, t1.`PRECONDITION`, concat(t21.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`STATE`, t11.`SUITES`, t1.`SUITE_ID`, t11.`NAME` AS `SUITE_NAME`, t1.`TEST_LIBRARY_ID`, t21.`NAME` AS `TEST_LIBRARY_NAME`, t1.`TEST_TYPE`, t1.`TITLE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `TEST_CASE` t1  LEFT JOIN `TEST_SUITE` t11 ON t1.`SUITE_ID` = t11.`ID`  LEFT JOIN `LIBRARY` t21 ON t1.`TEST_LIBRARY_ID` = t21.`ID`   ]]>  where  <![CDATA[ ( t1.`IS_DELETED` = 1 ) ]]> 
     </sql>
 
+    <sql id="everydayTest" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, t1.`LEVEL`, t21.`IDENTIFIER` AS `LIBRARY_IDENTIFIER`, t1.`MAINTENANCE_ID`, t1.`MAINTENANCE_NAME`, t1.`NAME`, t1.`PRECONDITION`, concat(t21.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`STATE`, t11.`SUITES`, t1.`SUITE_ID`, t11.`NAME` AS `SUITE_NAME`, t1.`TEST_LIBRARY_ID`, t21.`NAME` AS `TEST_LIBRARY_NAME`, t1.`TEST_TYPE`, t1.`TITLE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `TEST_CASE` t1  LEFT JOIN `TEST_SUITE` t11 ON t1.`SUITE_ID` = t11.`ID`  LEFT JOIN `LIBRARY` t21 ON t1.`TEST_LIBRARY_ID` = t21.`ID`   ]]>  
+    </sql>
+
     <sql id="ideaRelationTestCase" databaseId="mysql">
          <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, t1.`LEVEL`, t21.`IDENTIFIER` AS `LIBRARY_IDENTIFIER`, t1.`MAINTENANCE_ID`, t1.`MAINTENANCE_NAME`, t1.`NAME`, t1.`PRECONDITION`, concat(t21.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`STATE`, t11.`SUITES`, t1.`SUITE_ID`, t11.`NAME` AS `SUITE_NAME`, t1.`TEST_LIBRARY_ID`, t21.`NAME` AS `TEST_LIBRARY_NAME`, t1.`TEST_TYPE`, t1.`TITLE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `TEST_CASE` t1  LEFT JOIN `TEST_SUITE` t11 ON t1.`SUITE_ID` = t11.`ID`  LEFT JOIN `LIBRARY` t21 ON t1.`TEST_LIBRARY_ID` = t21.`ID`   ]]>  where  <![CDATA[ EXISTS(SELECT * FROM `RELATION` t31   WHERE   t1.`ID` = t31.`TARGET_ID`  AND  ( t31.`TARGET_TYPE` = 'test_case'  AND  t31.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id}  AND  t31.`PRINCIPAL_TYPE` = 'idea' ) ) ]]> and  <![CDATA[ ( t1.`IS_DELETED` = 0 ) ]]> 
+    </sql>
+
+    <sql id="implementationResults" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, t1.`LEVEL`, t21.`IDENTIFIER` AS `LIBRARY_IDENTIFIER`, t1.`MAINTENANCE_ID`, t1.`MAINTENANCE_NAME`, t1.`NAME`, t1.`PRECONDITION`, concat(t21.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`STATE`, t11.`SUITES`, t1.`SUITE_ID`, t11.`NAME` AS `SUITE_NAME`, t1.`TEST_LIBRARY_ID`, t21.`NAME` AS `TEST_LIBRARY_NAME`, t1.`TEST_TYPE`, t1.`TITLE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `TEST_CASE` t1  LEFT JOIN `TEST_SUITE` t11 ON t1.`SUITE_ID` = t11.`ID`  LEFT JOIN `LIBRARY` t21 ON t1.`TEST_LIBRARY_ID` = t21.`ID`   ]]>  
     </sql>
 
     <sql id="myAssign" databaseId="mysql">
@@ -101,6 +138,22 @@ t2.PLAN_ID = #{ctx.webcontext.test_plan})
          <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, t1.`LEVEL`, t21.`IDENTIFIER` AS `LIBRARY_IDENTIFIER`, t1.`MAINTENANCE_ID`, t1.`MAINTENANCE_NAME`, t1.`NAME`, t1.`PRECONDITION`, concat(t21.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`STATE`, t11.`SUITES`, t1.`SUITE_ID`, t11.`NAME` AS `SUITE_NAME`, t1.`TEST_LIBRARY_ID`, t21.`NAME` AS `TEST_LIBRARY_NAME`, t1.`TEST_TYPE`, t1.`TITLE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `TEST_CASE` t1  LEFT JOIN `TEST_SUITE` t11 ON t1.`SUITE_ID` = t11.`ID`  LEFT JOIN `LIBRARY` t21 ON t1.`TEST_LIBRARY_ID` = t21.`ID`   ]]>  where  <![CDATA[ NOT(EXISTS(SELECT * FROM `RELATION` t31   WHERE   t1.`ID` = t31.`TARGET_ID`  AND  ( t31.`PRINCIPAL_TYPE` = #{ctx.webcontext.principal_type}  AND  t31.`TARGET_TYPE` = #{ctx.webcontext.target_type}  AND  t31.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id} ) )) ]]> and  <![CDATA[ ( t1.`IS_DELETED` = 0 ) ]]> 
     </sql>
 
+    <sql id="notifyAssignee" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, t1.`LEVEL`, t21.`IDENTIFIER` AS `LIBRARY_IDENTIFIER`, t1.`MAINTENANCE_ID`, t1.`MAINTENANCE_NAME`, t1.`NAME`, t1.`PRECONDITION`, concat(t21.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`STATE`, t11.`SUITES`, t1.`SUITE_ID`, t11.`NAME` AS `SUITE_NAME`, t1.`TEST_LIBRARY_ID`, t21.`NAME` AS `TEST_LIBRARY_NAME`, t1.`TEST_TYPE`, t1.`TITLE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `TEST_CASE` t1  LEFT JOIN `TEST_SUITE` t11 ON t1.`SUITE_ID` = t11.`ID`  LEFT JOIN `LIBRARY` t21 ON t1.`TEST_LIBRARY_ID` = t21.`ID`   ]]>  where  <![CDATA[ ( t1.`ID` = #{ctx.webcontext.id}  AND  t1.`MAINTENANCE_ID` <> #{ctx.sessioncontext.srfpersonid} ) ]]> 
+    </sql>
+
+    <sql id="personDistributions" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, t1.`LEVEL`, t21.`IDENTIFIER` AS `LIBRARY_IDENTIFIER`, t1.`MAINTENANCE_ID`, t1.`MAINTENANCE_NAME`, t1.`NAME`, t1.`PRECONDITION`, concat(t21.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`STATE`, t11.`SUITES`, t1.`SUITE_ID`, t11.`NAME` AS `SUITE_NAME`, t1.`TEST_LIBRARY_ID`, t21.`NAME` AS `TEST_LIBRARY_NAME`, t1.`TEST_TYPE`, t1.`TITLE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `TEST_CASE` t1  LEFT JOIN `TEST_SUITE` t11 ON t1.`SUITE_ID` = t11.`ID`  LEFT JOIN `LIBRARY` t21 ON t1.`TEST_LIBRARY_ID` = t21.`ID`   ]]>  
+    </sql>
+
+    <sql id="priorityDistributions" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, t1.`LEVEL`, t21.`IDENTIFIER` AS `LIBRARY_IDENTIFIER`, t1.`MAINTENANCE_ID`, t1.`MAINTENANCE_NAME`, t1.`NAME`, t1.`PRECONDITION`, concat(t21.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`STATE`, t11.`SUITES`, t1.`SUITE_ID`, t11.`NAME` AS `SUITE_NAME`, t1.`TEST_LIBRARY_ID`, t21.`NAME` AS `TEST_LIBRARY_NAME`, t1.`TEST_TYPE`, t1.`TITLE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `TEST_CASE` t1  LEFT JOIN `TEST_SUITE` t11 ON t1.`SUITE_ID` = t11.`ID`  LEFT JOIN `LIBRARY` t21 ON t1.`TEST_LIBRARY_ID` = t21.`ID`   ]]>  
+    </sql>
+
+    <sql id="programAnalyze" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, t1.`LEVEL`, t21.`IDENTIFIER` AS `LIBRARY_IDENTIFIER`, t1.`MAINTENANCE_ID`, t1.`MAINTENANCE_NAME`, t1.`NAME`, t1.`PRECONDITION`, concat(t21.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`STATE`, t11.`SUITES`, t1.`SUITE_ID`, t11.`NAME` AS `SUITE_NAME`, t1.`TEST_LIBRARY_ID`, t21.`NAME` AS `TEST_LIBRARY_NAME`, t1.`TEST_TYPE`, t1.`TITLE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `TEST_CASE` t1  LEFT JOIN `TEST_SUITE` t11 ON t1.`SUITE_ID` = t11.`ID`  LEFT JOIN `LIBRARY` t21 ON t1.`TEST_LIBRARY_ID` = t21.`ID`   ]]>  
+    </sql>
+
     <sql id="recentTestCase" databaseId="mysql">
          <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, t1.`LEVEL`, t21.`IDENTIFIER` AS `LIBRARY_IDENTIFIER`, t1.`MAINTENANCE_ID`, t1.`MAINTENANCE_NAME`, t1.`NAME`, t1.`PRECONDITION`, concat(t21.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`STATE`, t11.`SUITES`, t1.`SUITE_ID`, t11.`NAME` AS `SUITE_NAME`, t1.`TEST_LIBRARY_ID`, t21.`NAME` AS `TEST_LIBRARY_NAME`, t1.`TEST_TYPE`, t1.`TITLE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `TEST_CASE` t1  LEFT JOIN `TEST_SUITE` t11 ON t1.`SUITE_ID` = t11.`ID`  LEFT JOIN `LIBRARY` t21 ON t1.`TEST_LIBRARY_ID` = t21.`ID`   ]]>  where  <![CDATA[ ( t1.`IS_DELETED` = 0  AND  t1.`IS_ARCHIVED` = 0  AND  NOT EXISTS(SELECT 1 FROM `RELATION` t3 WHERE t1.`ID` = t3.`TARGET_ID` AND  t3.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id}   )  AND  exists(select 1 from recent t2 where t1.id=t2.owner_id and t2.create_man=#{ctx.sessioncontext.srfpersonid} ) ) ]]> 
     </sql>
@@ -109,13 +162,101 @@ t2.PLAN_ID = #{ctx.webcontext.test_plan})
          <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, t1.`LEVEL`, t21.`IDENTIFIER` AS `LIBRARY_IDENTIFIER`, t1.`MAINTENANCE_ID`, t1.`MAINTENANCE_NAME`, t1.`NAME`, t1.`PRECONDITION`, concat(t21.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`STATE`, t11.`SUITES`, t1.`SUITE_ID`, t11.`NAME` AS `SUITE_NAME`, t1.`TEST_LIBRARY_ID`, t21.`NAME` AS `TEST_LIBRARY_NAME`, t1.`TEST_TYPE`, t1.`TITLE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `TEST_CASE` t1  LEFT JOIN `TEST_SUITE` t11 ON t1.`SUITE_ID` = t11.`ID`  LEFT JOIN `LIBRARY` t21 ON t1.`TEST_LIBRARY_ID` = t21.`ID`   ]]>  where  <![CDATA[ ( INSTR(t1.suites, #{ctx.webcontext.principal_id} ) ) ]]> 
     </sql>
 
+    <sql id="testCaseManeuverContext" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, t1.`LEVEL`, t21.`IDENTIFIER` AS `LIBRARY_IDENTIFIER`, t1.`MAINTENANCE_ID`, t1.`MAINTENANCE_NAME`, t1.`NAME`, t1.`PRECONDITION`, concat(t21.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`STATE`, t11.`SUITES`, t1.`SUITE_ID`, t11.`NAME` AS `SUITE_NAME`, t1.`TEST_LIBRARY_ID`, t21.`NAME` AS `TEST_LIBRARY_NAME`, t1.`TEST_TYPE`, t1.`TITLE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `TEST_CASE` t1  LEFT JOIN `TEST_SUITE` t11 ON t1.`SUITE_ID` = t11.`ID`  LEFT JOIN `LIBRARY` t21 ON t1.`TEST_LIBRARY_ID` = t21.`ID`   ]]>  
+    </sql>
+
     <sql id="view" databaseId="mysql">
          <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, t1.`LEVEL`, t21.`IDENTIFIER` AS `LIBRARY_IDENTIFIER`, t1.`MAINTENANCE_ID`, t1.`MAINTENANCE_NAME`, t1.`NAME`, t1.`PRECONDITION`, concat(t21.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`STATE`, t1.`STEPS`, t11.`SUITES`, t1.`SUITE_ID`, t11.`NAME` AS `SUITE_NAME`, t1.`TEST_LIBRARY_ID`, t21.`NAME` AS `TEST_LIBRARY_NAME`, t1.`TEST_TYPE`, t1.`TITLE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `TEST_CASE` t1  LEFT JOIN `TEST_SUITE` t11 ON t1.`SUITE_ID` = t11.`ID`  LEFT JOIN `LIBRARY` t21 ON t1.`TEST_LIBRARY_ID` = t21.`ID`   ]]>  
     </sql>
 
     <sql id="workItemRelationTestCase" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, t1.`LEVEL`, t21.`IDENTIFIER` AS `LIBRARY_IDENTIFIER`, t1.`MAINTENANCE_ID`, t1.`MAINTENANCE_NAME`, t1.`NAME`, t1.`PRECONDITION`, concat(t21.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`STATE`, t11.`SUITES`, t1.`SUITE_ID`, t11.`NAME` AS `SUITE_NAME`, t1.`TEST_LIBRARY_ID`, t21.`NAME` AS `TEST_LIBRARY_NAME`, t1.`TEST_TYPE`, t1.`TITLE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `TEST_CASE` t1  LEFT JOIN `TEST_SUITE` t11 ON t1.`SUITE_ID` = t11.`ID`  LEFT JOIN `LIBRARY` t21 ON t1.`TEST_LIBRARY_ID` = t21.`ID`   ]]>  where  <![CDATA[ EXISTS(SELECT * FROM `RELATION` t31   WHERE   t1.`ID` = t31.`TARGET_ID`  AND  ( ( t31.`PRINCIPAL_TYPE` = 'work_item'  OR  t31.`PRINCIPAL_TYPE` = 'bug' )  AND  t31.`TARGET_TYPE` = 'test_case'  AND  t31.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id} ) ) ]]> and  <![CDATA[ ( t1.`IS_DELETED` = 0  AND  t1.`IS_ARCHIVED` = 0 ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, t1.`LEVEL`, t21.`IDENTIFIER` AS `LIBRARY_IDENTIFIER`, t1.`MAINTENANCE_ID`, t1.`MAINTENANCE_NAME`, t1.`NAME`, t1.`PRECONDITION`, concat(t21.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`STATE`, t11.`SUITES`, t1.`SUITE_ID`, t11.`NAME` AS `SUITE_NAME`, t1.`TEST_LIBRARY_ID`, t21.`NAME` AS `TEST_LIBRARY_NAME`, t1.`TEST_TYPE`, t1.`TITLE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `TEST_CASE` t1  LEFT JOIN `TEST_SUITE` t11 ON t1.`SUITE_ID` = t11.`ID`  LEFT JOIN `LIBRARY` t21 ON t1.`TEST_LIBRARY_ID` = t21.`ID`   ]]>  where  <![CDATA[ EXISTS(SELECT * FROM `RELATION` t31   WHERE   t1.`ID` = t31.`TARGET_ID`  AND  ( ( t31.`PRINCIPAL_TYPE` = 'work_item'  OR  t31.`PRINCIPAL_TYPE` = 'bug' )  AND  t31.`TARGET_TYPE` = 'test_case'  AND  t31.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id} ) ) ]]> and  <![CDATA[ ( t1.`IS_DELETED` = 0 ) ]]> 
     </sql>
+
+    <select id="searchAdvancedSearch"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestCaseSearchContext"  resultMap="TestCaseResultMap">
+        select t1.* 
+        from (
+            <include refid="advancedSearch"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listAdvancedSearch"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestCaseSearchContext"  resultMap="TestCaseResultMap">
+        select t1.*
+        from (
+            <include refid="advancedSearch"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchAssessmentResult"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestCaseSearchContext"  resultType="java.util.HashMap">
+        select count(1) as count,STATE as state 
+        from (
+            <include refid="assessmentResult"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+         group by STATE
+    </select>
+
+
+    <select id="listAssessmentResult"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestCaseSearchContext"  resultType="java.util.HashMap">
+        select count(1) as count,STATE as state
+        from (
+            <include refid="assessmentResult"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+         group by STATE
+    </select>
+
+    <select id="searchCasePerson"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestCaseSearchContext"  resultType="java.util.HashMap">
+        select count(1) as count,IF(TRIM(EXECUTOR_NAME) is null, '未分组', EXECUTOR_NAME) as executor_name 
+        from (
+            <include refid="casePerson"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+         group by IF(TRIM(EXECUTOR_NAME) is null, '未分组', EXECUTOR_NAME)
+    </select>
+
+
+    <select id="listCasePerson"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestCaseSearchContext"  resultType="java.util.HashMap">
+        select count(1) as count,IF(TRIM(EXECUTOR_NAME) is null, '未分组', EXECUTOR_NAME) as executor_name
+        from (
+            <include refid="casePerson"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+         group by IF(TRIM(EXECUTOR_NAME) is null, '未分组', EXECUTOR_NAME)
+    </select>
+
+    <select id="searchCaseType"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestCaseSearchContext"  resultType="java.util.HashMap">
+        select count(1) as count,IF(TRIM(type) is null, '未设置类型', type) as type 
+        from (
+            <include refid="caseType"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+         group by IF(TRIM(type) is null, '未设置类型', type)
+    </select>
+
+
+    <select id="listCaseType"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestCaseSearchContext"  resultType="java.util.HashMap">
+        select count(1) as count,IF(TRIM(type) is null, '未设置类型', type) as type
+        from (
+            <include refid="caseType"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+         group by IF(TRIM(type) is null, '未设置类型', type)
+    </select>
 
     <select id="searchCommentNotifyMaintenance"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestCaseSearchContext"  resultMap="TestCaseResultMap">
         select t1.* 
@@ -136,6 +277,27 @@ t2.PLAN_ID = #{ctx.webcontext.test_plan})
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
         
+    </select>
+
+    <select id="searchDailyTendencies"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestCaseSearchContext"  resultType="java.util.HashMap">
+        select count(1) as count,EXECUTED_AT as executed_at 
+        from (
+            <include refid="dailyTendencies"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+         group by EXECUTED_AT
+    </select>
+
+
+    <select id="listDailyTendencies"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestCaseSearchContext"  resultType="java.util.HashMap">
+        select count(1) as count,EXECUTED_AT as executed_at
+        from (
+            <include refid="dailyTendencies"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+         group by EXECUTED_AT
     </select>
 
     <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestCaseSearchContext"  resultMap="TestCaseResultMap">
@@ -159,6 +321,27 @@ t2.PLAN_ID = #{ctx.webcontext.test_plan})
         
     </select>
 
+    <select id="searchDegreeImportance"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestCaseSearchContext"  resultType="java.util.HashMap">
+        select count(1) as count,IF(TRIM(level) is null, '未分组', level) as level 
+        from (
+            <include refid="degreeImportance"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+         group by IF(TRIM(level) is null, '未分组', level)
+    </select>
+
+
+    <select id="listDegreeImportance"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestCaseSearchContext"  resultType="java.util.HashMap">
+        select count(1) as count,IF(TRIM(level) is null, '未分组', level) as level
+        from (
+            <include refid="degreeImportance"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+         group by IF(TRIM(level) is null, '未分组', level)
+    </select>
+
     <select id="searchDeleted"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestCaseSearchContext"  resultMap="TestCaseResultMap">
         select t1.* 
         from (
@@ -180,6 +363,27 @@ t2.PLAN_ID = #{ctx.webcontext.test_plan})
         
     </select>
 
+    <select id="searchEverydayTest"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestCaseSearchContext"  resultType="java.util.HashMap">
+        select count(1) as count,CREATE_TIME as create_time 
+        from (
+            <include refid="everydayTest"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+         group by CREATE_TIME
+    </select>
+
+
+    <select id="listEverydayTest"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestCaseSearchContext"  resultType="java.util.HashMap">
+        select count(1) as count,CREATE_TIME as create_time
+        from (
+            <include refid="everydayTest"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+         group by CREATE_TIME
+    </select>
+
     <select id="searchIdeaRelationTestCase"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestCaseSearchContext"  resultMap="TestCaseResultMap">
         select t1.* 
         from (
@@ -199,6 +403,27 @@ t2.PLAN_ID = #{ctx.webcontext.test_plan})
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
         
+    </select>
+
+    <select id="searchImplementationResults"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestCaseSearchContext"  resultType="java.util.HashMap">
+        select count(1) as count,RUN_STATUS as run_status 
+        from (
+            <include refid="implementationResults"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+         group by RUN_STATUS
+    </select>
+
+
+    <select id="listImplementationResults"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestCaseSearchContext"  resultType="java.util.HashMap">
+        select count(1) as count,RUN_STATUS as run_status
+        from (
+            <include refid="implementationResults"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+         group by RUN_STATUS
     </select>
 
     <select id="searchMyAssign"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestCaseSearchContext"  resultMap="TestCaseResultMap">
@@ -367,6 +592,69 @@ t2.PLAN_ID = #{ctx.webcontext.test_plan})
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
         
+    </select>
+
+    <select id="searchNotifyAssignee"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestCaseSearchContext"  resultMap="TestCaseResultMap">
+        select t1.* 
+        from (
+            <include refid="notifyAssignee"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listNotifyAssignee"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestCaseSearchContext"  resultMap="TestCaseResultMap">
+        select t1.*
+        from (
+            <include refid="notifyAssignee"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchPersonDistributions"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestCaseSearchContext"  resultType="java.util.HashMap">
+        select count(1) as count,IF(TRIM(MAINTENANCE_ID) is null, '未设置维护人', MAINTENANCE_ID) as maintenance_id 
+        from (
+            <include refid="personDistributions"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+         group by IF(TRIM(MAINTENANCE_ID) is null, '未设置维护人', MAINTENANCE_ID)
+    </select>
+
+
+    <select id="listPersonDistributions"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestCaseSearchContext"  resultType="java.util.HashMap">
+        select count(1) as count,IF(TRIM(MAINTENANCE_ID) is null, '未设置维护人', MAINTENANCE_ID) as maintenance_id
+        from (
+            <include refid="personDistributions"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+         group by IF(TRIM(MAINTENANCE_ID) is null, '未设置维护人', MAINTENANCE_ID)
+    </select>
+
+    <select id="searchPriorityDistributions"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestCaseSearchContext"  resultType="java.util.HashMap">
+        select count(1) as count,CREATE_TIME as create_time 
+        from (
+            <include refid="priorityDistributions"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+         group by CREATE_TIME
+    </select>
+
+
+    <select id="listPriorityDistributions"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestCaseSearchContext"  resultType="java.util.HashMap">
+        select count(1) as count,CREATE_TIME as create_time
+        from (
+            <include refid="priorityDistributions"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+         group by CREATE_TIME
     </select>
 
     <select id="searchRecentTestCase"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestCaseSearchContext"  resultMap="TestCaseResultMap">

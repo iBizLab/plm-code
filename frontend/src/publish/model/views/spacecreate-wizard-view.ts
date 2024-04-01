@@ -1,7 +1,7 @@
 export default {
   openMode: 'POPUPMODAL',
   deviewCodeName: 'create_wizard_view',
-  deviewId: 'B3C8645E-A518-44E4-B170-4E5D03961D80',
+  deviewId: '86c886e32a4e753ab89ac70b6202fcc7',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'PAGE.CAPTION.SPACE.CREATE_WIZARD_VIEW',
@@ -223,6 +223,14 @@ export default {
                       appDEFieldId: 'identifier',
                       editor: {
                         maxLength: 15,
+                        sysValueRule: {
+                          codeName: 'UsrValueRule0312488358',
+                          regExCode: '^[A-Z0-9]{1,15}$',
+                          ruleInfo: '请填写大写字母和数字',
+                          ruleType: 'REG',
+                          name: '大写字母和数字',
+                          id: 'plmweb.usrvaluerule0312488358',
+                        },
                         editorType: 'TEXTBOX',
                         placeHolder: '大写字母和数字，15个字符范围内',
                         valueType: 'SIMPLE',
@@ -453,7 +461,7 @@ export default {
           controlParam: {
             id: 'wizardpanel_form_fill_info',
           },
-          modelId: '81CC72D0-B570-4D2C-8DB4-E9CF3C6854F7',
+          modelId: 'de2958971ec647741e08f19985a2d28a',
           modelType: 'PSDEFORM_EDITFORM',
           name: 'wizardpanel_form_fill_info',
           id: 'plmweb.space.wizard_create',
@@ -792,7 +800,7 @@ export default {
           controlParam: {
             id: 'wizardpanel_form_bind_member',
           },
-          modelId: '4E5CB238-F6CC-4881-9C47-9C36866A329E',
+          modelId: '3b29b121f7aeb0302e7e4b58f9d18423',
           modelType: 'PSDEFORM_EDITFORM',
           name: 'wizardpanel_form_bind_member',
           id: 'plmweb.space.wizard_member_bind',
@@ -847,7 +855,7 @@ export default {
       controlParam: {
         id: 'wizardpanel',
       },
-      modelId: '822C340C-8F0D-459C-92BB-BBA2371C9A45',
+      modelId: '6df8c9fd009a348d1cc11db4c2386bac',
       modelType: 'PSDEWIZARDPANEL',
       name: 'wizardpanel',
       id: 'plmweb.space.space_wizard',
@@ -885,7 +893,7 @@ export default {
   width: 1024,
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'ce6d62fa5c0189d4d192a0f4253625d5',
+  modelId: '4244ca2906ffe6483a4cd0d0c8c4d943',
   modelType: 'PSAPPDEVIEW',
   name: 'spacecreate_wizard_view',
   id: 'plmweb.spacecreate_wizard_view',

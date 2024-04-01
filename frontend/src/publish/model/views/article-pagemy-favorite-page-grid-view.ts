@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'my_favorite_page_grid_view',
-  deviewId: '3AF0D8BA-CB18-4F0E-BB22-BDD12728E224',
+  deviewId: '63c2fd166d589226530c22b4e04eefd9',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PAGE',
@@ -82,6 +82,15 @@ export default {
   ],
   appViewRefs: [
     {
+      realTitle: '页面编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.PAGE.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.article_pageeditview',
+      name: 'NEWDATA',
+      id: 'newdata',
+    },
+    {
       openMode: 'INDEXVIEWTAB_POPUPMODAL',
       navigateContexts: [
         {
@@ -96,15 +105,6 @@ export default {
       refAppViewId: 'plmweb.article_pageshow_view_model',
       name: 'EDITDATA',
       id: 'editdata',
-    },
-    {
-      realTitle: '页面编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.PAGE.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.article_pageeditview',
-      name: 'NEWDATA',
-      id: 'newdata',
     },
   ],
   controls: [
@@ -136,7 +136,7 @@ export default {
                   rawContent:
                     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="design-iconfont" width="16" height="16">\n  <path d="M14.53135,6.20219551 C14.77745,6.23794551 14.87565,6.54033551 14.69765,6.71389551 L11.56645,9.76604551 L12.30565,14.0757255 C12.34765,14.3208255 12.09045,14.5077255 11.87035,14.3920255 L8,12.3572255 L4.12966,14.3920255 C3.90957,14.5077255 3.65234,14.3208255 3.69437,14.0757255 L4.43354,9.76604551 L1.30237,6.71389551 C1.12431,6.54033551 1.22256,6.23794551 1.46863,6.20219551 L5.79581,5.57341551 L7.73098,1.65232551 C7.84103,1.42934551 8.15898,1.42935551 8.26902,1.65232551 L10.20415,5.57341551 L14.53135,6.20219551 Z" fill-opacity=".9" fill="#FFB31A" fill-rule="nonzero"></path>\n</svg>',
                 },
-                id: 'u5b7e154',
+                id: 'ue3221c9',
               },
             ],
             uniqueTag: 'Article_page__Usr0229529277',
@@ -304,7 +304,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '236E2282-BE1F-4286-9FAA-8AFB06D7457E',
+      modelId: 'd31c62d38d44d73dff12b13904ee4ebc',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.article_page.my_favorite_page_grid',
@@ -342,7 +342,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: '6303039c84776f96c9c29169702bec7c',
+      modelId: 'dba63e8b4c9d398faf062106a134da54',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.article_page.default',
@@ -387,7 +387,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '512ee73e6d8cd6fea300f973a88b5f63',
+  modelId: '961bf40f7ce20ae67d56524162cfe6c5',
   modelType: 'PSAPPDEVIEW',
   name: 'article_pagemy_favorite_page_grid_view',
   id: 'plmweb.article_pagemy_favorite_page_grid_view',

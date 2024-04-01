@@ -55,7 +55,7 @@ export default {
               cssClass: 'fa fa-user-md',
               glyph: 'xf0f0@FontAwesome',
             },
-            id: 'u2011858',
+            id: 'u23c0102',
           },
         ],
         uniqueTag: 'Library_member__Usr0311619181',
@@ -909,14 +909,6 @@ export default {
           id: 'begin',
         },
         {
-          codeName: 'END1',
-          leftPos: 910,
-          logicNodeType: 'END',
-          topPos: 200,
-          name: '结束',
-          id: 'end1',
-        },
-        {
           code: "ibiz.hub.getApp(context.srfappid).deService.exec(\r\n    'plmweb.library_member',\r\n    'Create',\r\n    context,\r\n    uiLogic.user,\r\n);",
           codeName: 'RAWJSCODE1',
           leftPos: 649,
@@ -931,6 +923,14 @@ export default {
           topPos: 208,
           name: '创建临时数据',
           id: 'rawjscode1',
+        },
+        {
+          codeName: 'END1',
+          leftPos: 910,
+          logicNodeType: 'END',
+          topPos: 200,
+          name: '结束',
+          id: 'end1',
         },
         {
           codeName: 'PREPAREJSPARAM1',
@@ -984,17 +984,17 @@ export default {
       ],
       deuilogicParams: [
         {
+          codeName: 'user',
+          entityParam: true,
+          name: '当前人员',
+          id: 'user',
+        },
+        {
           codeName: 'Default',
           default: true,
           entityParam: true,
           name: '传入变量',
           id: 'default',
-        },
-        {
-          codeName: 'user',
-          entityParam: true,
-          name: '当前人员',
-          id: 'user',
         },
       ],
       startDEUILogicNodeId: 'begin',
@@ -1056,6 +1056,22 @@ export default {
           id: 'preparejsparam1',
         },
         {
+          code: "// 如果当前视图打开方式为普通模态，则先关闭模态再跳转\r\nif (view.modal && view.modal.mode === 'MODAL') {\r\n\tview.modal.ignoreDismissCheck = true\r\n\tview.closeView({ ok: true })\r\n}\r\nibiz.openView.push(`/-/index/library=${context.library}/libraryindex_view/srfnav=usrdrgroup1227882118/librarytree_exp_view_details_setting/srfnav=root%3Anormal%3Amember/library_membergrid_view_config/-`);",
+          codeName: 'RAWJSCODE1',
+          leftPos: 699,
+          logicNodeType: 'RAWJSCODE',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'end1',
+              srcDEUILogicNodeId: 'rawjscode1',
+              id: '连接名称',
+            },
+          ],
+          topPos: 208,
+          name: '设置路由',
+          id: 'rawjscode1',
+        },
+        {
           buttonsType: 'OKCANCEL',
           message: '是否要跳转至成员设置',
           msgBoxType: 'QUESTION',
@@ -1090,36 +1106,8 @@ export default {
           name: '操作提示',
           id: 'msgbox1',
         },
-        {
-          code: "// 如果当前视图打开方式为普通模态，则先关闭模态再跳转\r\nif (view.modal && view.modal.mode === 'MODAL') {\r\n\tview.modal.ignoreDismissCheck = true\r\n\tview.closeView({ ok: true })\r\n}\r\nibiz.openView.push(`/-/index/library=${context.library}/libraryindex_view/srfnav=usrdrgroup1227882118/librarytree_exp_view_details_setting/srfnav=root%3Anormal%3Amember/library_membergrid_view_config/-`);",
-          codeName: 'RAWJSCODE1',
-          leftPos: 699,
-          logicNodeType: 'RAWJSCODE',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'end1',
-              srcDEUILogicNodeId: 'rawjscode1',
-              id: '连接名称',
-            },
-          ],
-          topPos: 208,
-          name: '设置路由',
-          id: 'rawjscode1',
-        },
       ],
       deuilogicParams: [
-        {
-          codeName: 'view',
-          activeViewParam: true,
-          name: '视图',
-          id: 'view',
-        },
-        {
-          codeName: 'project',
-          entityParam: true,
-          name: '项目标识',
-          id: 'project',
-        },
         {
           codeName: 'msg',
           entityParam: true,
@@ -1133,11 +1121,23 @@ export default {
           id: 'lastreturn',
         },
         {
+          codeName: 'project',
+          entityParam: true,
+          name: '项目标识',
+          id: 'project',
+        },
+        {
           codeName: 'Default',
           default: true,
           entityParam: true,
           name: '传入变量',
           id: 'default',
+        },
+        {
+          codeName: 'view',
+          activeViewParam: true,
+          name: '视图',
+          id: 'view',
         },
       ],
       startDEUILogicNodeId: 'begin',
@@ -1148,15 +1148,15 @@ export default {
   deopprivs: [
     {
       logicName: '建立',
+      name: 'CREATE',
+      id: 'create',
+    },
+    {
+      logicName: '建立',
       mapDEName: 'LIBRARY',
       mapDEOPPrivName: 'UPDATE',
       name: 'CREATE',
       id: 'library__create',
-    },
-    {
-      logicName: '建立',
-      name: 'CREATE',
-      id: 'create',
     },
     {
       logicName: '删除',

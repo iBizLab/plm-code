@@ -38,6 +38,22 @@ import cn.ibizlab.plm.core.prodmgmt.domain.Ticket;
 public class TicketSearchContext extends QueryWrapperContext<Ticket> {
 
     /**
+     * 编号EQ
+     */
+    @JsonProperty("n_identifier_eq")
+    @JSONField(name = "n_identifier_eq")
+    @ApiModelProperty("编号EQ")
+    private String identifierEQ;
+
+    /**
+     * 编号ISNULL
+     */
+    @JsonProperty("n_identifier_isnull")
+    @JSONField(name = "n_identifier_isnull")
+    @ApiModelProperty("编号ISNULL")
+    private String identifierISNULL;
+
+    /**
      * 编号LIKE
      */
     @JsonProperty("n_identifier_like")
@@ -134,6 +150,33 @@ public class TicketSearchContext extends QueryWrapperContext<Ticket> {
     private String createManEQ;
 
     /**
+     * 建立时间EQ
+     */
+    @JsonProperty("n_create_time_eq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_create_time_eq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("建立时间EQ")
+    private Date createTimeEQ;
+
+    /**
+     * 建立时间GTANDEQ
+     */
+    @JsonProperty("n_create_time_gtandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_create_time_gtandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("建立时间GTANDEQ")
+    private Date createTimeGTANDEQ;
+
+    /**
+     * 建立时间LTANDEQ
+     */
+    @JsonProperty("n_create_time_ltandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_create_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("建立时间LTANDEQ")
+    private Date createTimeLTANDEQ;
+
+    /**
      * 标识NOTEQ
      */
     @JsonProperty("n_id_noteq")
@@ -164,6 +207,14 @@ public class TicketSearchContext extends QueryWrapperContext<Ticket> {
     @JSONField(name = "n_product_id_eq")
     @ApiModelProperty("产品标识EQ")
     private String productIdEQ;
+
+    /**
+     * 产品标识ISNULL
+     */
+    @JsonProperty("n_product_id_isnull")
+    @JSONField(name = "n_product_id_isnull")
+    @ApiModelProperty("产品标识ISNULL")
+    private String productIdISNULL;
 
     /**
      * 客户标识EQ

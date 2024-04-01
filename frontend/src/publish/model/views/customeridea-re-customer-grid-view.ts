@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'idea_re_customer_grid_view',
-  deviewId: '7646f0222512cabce3dcf3d737be4a8f',
+  deviewId: 'e4f6e77bb0767445fc95f1ad890d34e9',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.CUSTOMER',
@@ -292,7 +292,7 @@ export default {
         logicTrigger: 'VIEWEVENT',
         logicType: 'SCRIPT',
         scriptCode:
-          "view.layoutPanel.panelItems.choose_data.state.visible = false;\n\n// 初始化默认隐藏表格\nview.layoutPanel.panelItems.grid.state.keepAlive = true;\nview.layoutPanel.panelItems.grid.state.visible = false;\nconst form = view.getController('form');\nconsole.log('项显示逻辑执行了')\nif (form) {\n    form.evt.on('onFormDetailEvent', event =>{\n        const panelItems = view.layoutPanel.panelItems;\n        if (!panelItems.comment) {\n            return;\n        }\n        if (event.formDetailName === 'tabpage1') {\n            panelItems.comment.state.visible = true;\n        } else {\n            panelItems.comment.state.visible = false;\n        }\n    });\n}\n\n// 初始化隐藏发送和清空按钮\nview.layoutPanel.panelItems.button_calluilogic1.state.visible = false\nview.layoutPanel.panelItems.button_calluilogic.state.visible = false",
+          "view.layoutPanel.panelItems.choose_data.state.visible = view.context.srfshowchoose || false;\n\n// 初始化默认隐藏表格\nview.layoutPanel.panelItems.grid.state.keepAlive = true;\nview.layoutPanel.panelItems.grid.state.visible = false;\nconst form = view.getController('form');\nconsole.log('项显示逻辑执行了');\nif (form) {\n    form.evt.on('onFormDetailEvent', event =>{\n        const panelItems = view.layoutPanel.panelItems;\n        if (!panelItems.comment) {\n            return;\n        }\n        if (event.formDetailName === 'tabpage1') {\n            panelItems.comment.state.visible = true;\n        } else {\n            panelItems.comment.state.visible = false;\n        }\n    });\n}\n\n// 初始化隐藏发送和清空按钮\nview.layoutPanel.panelItems.button_calluilogic1.state.visible = false\nview.layoutPanel.panelItems.button_calluilogic.state.visible = false",
         builtinLogic: true,
         id: 'viewmounted',
       },
@@ -370,13 +370,6 @@ export default {
     ],
     appViewRefs: [
       {
-        realOpenMode: 'POPUPMODAL',
-        realTitle: '新建客户',
-        refAppViewId: 'plmweb.customerquick_create_view',
-        name: 'NEWDATA',
-        id: 'newdata',
-      },
-      {
         openMode: 'POPUPMODAL',
         navigateContexts: [
           {
@@ -391,6 +384,13 @@ export default {
         refAppViewId: 'plmweb.customermain_view',
         name: 'EDITDATA',
         id: 'editdata',
+      },
+      {
+        realOpenMode: 'POPUPMODAL',
+        realTitle: '新建客户',
+        refAppViewId: 'plmweb.customerquick_create_view',
+        name: 'NEWDATA',
+        id: 'newdata',
       },
     ],
     controls: [
@@ -422,7 +422,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: '1A6EF3C3-9E73-4A9F-BBC5-58682AD26BBE',
+        modelId: '4cb342fddb3b8fc242bd61e6f07a1489',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'idea_re_customer_grid_viewtoolbar',
@@ -507,7 +507,7 @@ export default {
                   uiactionId: 'del_relation@customer',
                   showCaption: true,
                   showIcon: true,
-                  id: 'u05232b9',
+                  id: 'u0fd50fe',
                 },
               ],
               uniqueTag: 'Customer__Usr0117237114',
@@ -647,7 +647,7 @@ export default {
         controlParam: {
           id: 'grid',
         },
-        modelId: 'D5667992-5FC9-4D32-AB33-A3376777189D',
+        modelId: '65e6343173e8a295bc27eef5094025c9',
         modelType: 'PSDEGRID',
         name: 'grid',
         id: 'plmweb.customer.other_re_customer_grid',
@@ -686,14 +686,14 @@ export default {
         itemName: 'CHOOSE_DATA',
         logicTag: 'layoutpanel',
         logicType: 'APPDEUILOGIC',
-        appDEUILogicId: 'relation_customer_change',
+        appDEUILogicId: 'idea_relation_customer',
         appDataEntityId: 'plmweb.customer',
         triggerType: 'CTRLEVENT',
         id: 'logic',
       },
     ],
     controlParam: {},
-    modelId: 'F21F82AF-9004-40DD-B34F-454F03F3A268',
+    modelId: '61f0163bec69b4d50cdd4bf6c73fb7db',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0117024393',
@@ -703,7 +703,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '11c129e2203a05c2df07262cd5b910fb',
+  modelId: '023a4ae51285c34374cd282bb136e8d9',
   modelType: 'PSAPPDEVIEW',
   name: 'customeridea_re_customer_grid_view',
   id: 'plmweb.customeridea_re_customer_grid_view',

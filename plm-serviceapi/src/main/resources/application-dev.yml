@@ -1,4 +1,6 @@
 spring:
+  liquibase:
+    enabled: false
   redis:
     host: 127.0.0.1
     port: 6379
@@ -10,6 +12,7 @@ spring:
     url: jdbc:mysql://127.0.0.1:30006/plm?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&useOldAliasMetadataBehavior=true&useSSL=false&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.jdbc.Driver
     defaultSchema: plm
+    isSyncDBSchema: true
   cloud:
     nacos:
       discovery:

@@ -27,9 +27,11 @@ ibiz:
     basePath:
       serviceapi: /ibizplm/serviceapi
   servicehub:
-    id: demo
+    id: ibizplm-dev
     register-naming-service: false
     publish-config: false
+    system-runtime-class:
+      ibizplm: cn.ibizlab.util.adapter.service.impl.DefaultAdapterSystemRuntime
   runtime:
     mapUnderscore2camelCase: true
-    pointcut: execution(* cn.ibizlab.plm.core.testmgmt.service.*.*(..)) || execution(* cn.ibizlab.plm.core.projmgmt.service.*.*(..)) || execution(* cn.ibizlab.plm.core.prodmgmt.service.*.*(..))  ||  execution(* cn.ibizlab.plm.core.ebsx.service.*.*(..)) || execution(* cn.ibizlab.plm.core.wiki.service.*.*(..))
+    pointcut: execution(* cn.ibizlab.plm.core.testmgmt.service.*.*(..)) || execution(* cn.ibizlab.plm.core.projmgmt.service.*.*(..)) || execution(* cn.ibizlab.plm.core.prodmgmt.service.*.*(..))  ||  execution(* cn.ibizlab.plm.core.ebsx.service.*.*(..))

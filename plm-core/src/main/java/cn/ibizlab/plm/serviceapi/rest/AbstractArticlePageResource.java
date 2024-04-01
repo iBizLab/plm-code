@@ -241,6 +241,44 @@ public abstract class AbstractArticlePageResource {
     }
 
     /**
+    * Recover_version 页面
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ArticlePageDTO>
+    */
+    @ApiOperation(value = "Recover_version", tags = {"页面" },  notes = "ArticlePage-Recover_version ")
+    @PostMapping("article_pages/{id}/recover_version")
+    public ResponseEntity<ResponseWrapper<ArticlePageDTO>> recoverVersionById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ArticlePageDTO> dto) {
+        ResponseWrapper<ArticlePageDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(recoverVersionById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(recoverVersionById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * Recover_version 页面
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ArticlePageDTO>
+    */   
+    public ArticlePageDTO recoverVersionById
+            (String id, ArticlePageDTO dto) {
+        ArticlePage domain = articlePageDtoMapping.toDomain(dto);
+        domain.setId(id);
+        ArticlePage rt = articlePageService.recoverVersion(domain);
+        return articlePageDtoMapping.toDto(rt);
+    }
+
+    /**
     * 保存Save 页面
     * 
     *
@@ -554,6 +592,46 @@ public abstract class AbstractArticlePageResource {
     }
 
     /**
+    * Recover_version 页面
+    * 
+    *
+    * @param spaceId spaceId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ArticlePageDTO>
+    */
+    @ApiOperation(value = "Recover_version", tags = {"页面" },  notes = "ArticlePage-Recover_version ")
+    @PostMapping("spaces/{spaceId}/article_pages/{id}/recover_version")
+    public ResponseEntity<ResponseWrapper<ArticlePageDTO>> recoverVersionBySpaceIdAndId
+            (@PathVariable("spaceId") String spaceId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ArticlePageDTO> dto) {
+        ResponseWrapper<ArticlePageDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(recoverVersionBySpaceIdAndId(spaceId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(recoverVersionBySpaceIdAndId(spaceId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * Recover_version 页面
+    * 
+    *
+    * @param spaceId spaceId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ArticlePageDTO>
+    */   
+    public ArticlePageDTO recoverVersionBySpaceIdAndId
+            (String spaceId, String id, ArticlePageDTO dto) {
+        ArticlePage domain = articlePageDtoMapping.toDomain(dto);
+        domain.setId(id);
+        ArticlePage rt = articlePageService.recoverVersion(domain);
+        return articlePageDtoMapping.toDto(rt);
+    }
+
+    /**
     * 保存Save 页面
     * 
     *
@@ -750,6 +828,28 @@ public abstract class AbstractArticlePageResource {
         ArticlePage domain = articlePageDtoMapping.toDomain(dto);
         ArticlePage rt = articlePageService.getFormStencil(domain);
         return ResponseEntity.status(HttpStatus.OK).body(articlePageDtoMapping.toDto(rt));
+    }
+
+    /**
+    * 查询FetchAdvanced_search 页面
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<ArticlePageDTO>>
+    */
+    @ApiOperation(value = "查询FetchAdvanced_search", tags = {"页面" },  notes = "ArticlePage-FetchAdvanced_search ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-FetchAdvanced_search-all') or hasPermission(#dto,'ibizplm-ArticlePage-FetchAdvanced_search')")
+    @PostMapping("article_pages/fetchadvanced_search")
+    public ResponseEntity<List<ArticlePageDTO>> fetchAdvancedSearch
+            (@Validated @RequestBody ArticlePageFilterDTO dto) {
+        ArticlePageSearchContext context = articlePageFilterDtoMapping.toDomain(dto);
+        Page<ArticlePage> domains = articlePageService.searchAdvancedSearch(context) ;
+        List<ArticlePageDTO> list = articlePageDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
     }
 
     /**
@@ -965,6 +1065,30 @@ public abstract class AbstractArticlePageResource {
         domain.setSpaceId(spaceId);
         ArticlePage rt = articlePageService.getFormStencil(domain);
         return ResponseEntity.status(HttpStatus.OK).body(articlePageDtoMapping.toDto(rt));
+    }
+
+    /**
+    * 查询FetchAdvanced_search 页面
+    * 
+    *
+    * @param spaceId spaceId
+    * @param dto dto
+    * @return ResponseEntity<List<ArticlePageDTO>>
+    */
+    @ApiOperation(value = "查询FetchAdvanced_search", tags = {"页面" },  notes = "ArticlePage-FetchAdvanced_search ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-FetchAdvanced_search-all') or hasPermission('Space',#spaceId,#dto,'ibizplm-ArticlePage-FetchAdvanced_search')")
+    @PostMapping("spaces/{spaceId}/article_pages/fetchadvanced_search")
+    public ResponseEntity<List<ArticlePageDTO>> fetchAdvancedSearchBySpaceId
+            (@PathVariable("spaceId") String spaceId, @Validated @RequestBody ArticlePageFilterDTO dto) {
+        dto.setSpaceIdEQ(spaceId);
+        ArticlePageSearchContext context = articlePageFilterDtoMapping.toDomain(dto);
+        Page<ArticlePage> domains = articlePageService.searchAdvancedSearch(context) ;
+        List<ArticlePageDTO> list = articlePageDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
     }
 
     /**

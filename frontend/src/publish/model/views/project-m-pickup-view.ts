@@ -80,7 +80,7 @@ export default {
         logicName: 'simplelist_列表项面板',
         appDataEntityId: 'plmweb.project',
         controlParam: {},
-        modelId: 'C01C4677-2B78-4237-88C0-943B42A84095',
+        modelId: 'd27cee863fe4ce8ddc9b3d512964c345',
         modelType: 'PSSYSVIEWPANEL',
         name: 'simplelist_itempanel',
         id: 'plmweb.project.usr0229358727',
@@ -142,7 +142,7 @@ export default {
       controlParam: {
         id: 'simplelist',
       },
-      modelId: '05E70244-1DC4-4ECF-A42D-CD30F95ABD2C',
+      modelId: 'e34703bfb81d9dd10751bc75da51ccbb',
       modelType: 'PSDELIST',
       name: 'simplelist',
       id: 'plmweb.project.simplelist',

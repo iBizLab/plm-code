@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'recent_page_grid_view',
-  deviewId: '1E74C128-327A-40F5-B993-A07FB48CF013',
+  deviewId: 'e01b828d3deb866f92762bb77921158c',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RECENT',
@@ -232,7 +232,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: 'A952B6CB-7DD1-456E-8857-15EC81353E51',
+      modelId: '26a8baa6f196439e59377ceb7abf85cc',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.recent.recent_page_grid_view_grid',
@@ -267,7 +267,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: 'F8E1354E-C5E1-4F6A-BCAB-6C7D772D26D9',
+      modelId: '0a7ce636f1dba2866a6b1d9e97431b61',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.recent.usr02299198_searchform',
@@ -312,7 +312,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '0dc6550d081fc6856f49b90b70c5a15a',
+  modelId: '8cfdfeda6691fa0dbaff1e725369f31d',
   modelType: 'PSAPPDEVIEW',
   name: 'recentrecent_page_grid_view',
   id: 'plmweb.recentrecent_page_grid_view',

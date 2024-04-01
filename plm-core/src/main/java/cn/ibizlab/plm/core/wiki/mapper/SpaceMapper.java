@@ -214,6 +214,25 @@ public interface SpaceMapper extends BaseMapper<Space> {
     List<Space> listOtherReSpace(@Param("ctx") SpaceSearchContext context, @Param("ew") Wrapper<Space> wrapper);
 
     /**
+     * 数据集合Reader分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Space> searchReader(IPage<Space> page, @Param("ctx") SpaceSearchContext context, @Param("ew") Wrapper<Space> wrapper);
+    
+    /**
+     * 数据集合Reader查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Space> listReader(@Param("ctx") SpaceSearchContext context, @Param("ew") Wrapper<Space> wrapper);
+
+    /**
      * 数据集合User分页查询
      * 
      * @param page

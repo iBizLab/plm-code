@@ -281,6 +281,17 @@ export default {
       codeName: 'Work_item_typeFilterDTO',
       appDEMethodDTOFields: [
         {
+          codeName: 'N_CODE_IN',
+          logicName: '编码',
+          appDEFieldId: 'code',
+          sourceType: 'DEFSEARCHMODE',
+          stdDataType: 25,
+          type: 'SIMPLE',
+          allowEmpty: true,
+          name: 'N_CODE_IN',
+          id: 'n_code_in',
+        },
+        {
           codeName: 'N_GROUP_EQ',
           logicName: '类型分组',
           appDEFieldId: 'group',

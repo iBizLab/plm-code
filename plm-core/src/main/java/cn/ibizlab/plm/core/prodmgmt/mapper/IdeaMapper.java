@@ -24,6 +24,25 @@ import com.alibaba.fastjson.JSONObject;
 public interface IdeaMapper extends BaseMapper<Idea> {
 
     /**
+     * 数据集合Advanced_search分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Idea> searchAdvancedSearch(IPage<Idea> page, @Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
+    
+    /**
+     * 数据集合Advanced_search查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Idea> listAdvancedSearch(@Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
+
+    /**
      * 数据集合Archived分页查询
      * 
      * @param page
@@ -250,6 +269,25 @@ public interface IdeaMapper extends BaseMapper<Idea> {
      * @return
      */
     List<Idea> listNotExsistsRelation(@Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
+
+    /**
+     * 数据集合Notify_assignee分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Idea> searchNotifyAssignee(IPage<Idea> page, @Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
+    
+    /**
+     * 数据集合Notify_assignee查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Idea> listNotifyAssignee(@Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
 
     /**
      * 数据集合Plan_relation_idea分页查询

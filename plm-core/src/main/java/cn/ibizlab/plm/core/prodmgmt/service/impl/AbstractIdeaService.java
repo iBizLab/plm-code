@@ -36,6 +36,8 @@ import cn.ibizlab.plm.core.base.domain.Comment;
 import cn.ibizlab.plm.core.base.service.CommentService;
 import cn.ibizlab.plm.core.base.domain.Attachment;
 import cn.ibizlab.plm.core.base.service.AttachmentService;
+import cn.ibizlab.plm.core.base.domain.Workload;
+import cn.ibizlab.plm.core.base.service.WorkloadService;
 
 /**
  * 实体[需求] 服务对象接口实现
@@ -64,6 +66,10 @@ public abstract class AbstractIdeaService extends ServiceImpl<IdeaMapper,Idea> i
     @Autowired
     @Lazy
     protected AttachmentService attachmentService;
+
+    @Autowired
+    @Lazy
+    protected WorkloadService workloadService;
 
     protected int batchSize = 500;
 
@@ -204,6 +210,17 @@ public abstract class AbstractIdeaService extends ServiceImpl<IdeaMapper,Idea> i
     public boolean removeByEntities(List<Idea> entities) {
         this.baseMapper.deleteEntities(entities);
         return true;
+    }
+
+    public Page<Idea> searchAdvancedSearch(IdeaSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Idea> pages=baseMapper.searchAdvancedSearch(context.getPages(),context,context.getSelectCond());
+        List<Idea> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Idea> listAdvancedSearch(IdeaSearchContext context) {
+        List<Idea> list = baseMapper.listAdvancedSearch(context,context.getSelectCond());
+        return list;
     }
 
     public Page<Idea> searchArchived(IdeaSearchContext context) {
@@ -365,6 +382,17 @@ public abstract class AbstractIdeaService extends ServiceImpl<IdeaMapper,Idea> i
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("IDENTIFIER,ASC");
         List<Idea> list = baseMapper.listNotExsistsRelation(context,context.getSelectCond());
+        return list;
+    }
+
+    public Page<Idea> searchNotifyAssignee(IdeaSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Idea> pages=baseMapper.searchNotifyAssignee(context.getPages(),context,context.getSelectCond());
+        List<Idea> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Idea> listNotifyAssignee(IdeaSearchContext context) {
+        List<Idea> list = baseMapper.listNotifyAssignee(context,context.getSelectCond());
         return list;
     }
 

@@ -6,6 +6,7 @@ package cn.ibizlab.plm.core.testmgmt.filter;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import java.util.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -36,6 +37,33 @@ import cn.ibizlab.plm.core.testmgmt.domain.Run;
 @Accessors(chain = true)
 @ApiModel("执行用例查询条件对象")
 public class RunSearchContext extends QueryWrapperContext<Run> {
+
+    /**
+     * 执行时间EQ
+     */
+    @JsonProperty("n_executed_at_eq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_executed_at_eq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("执行时间EQ")
+    private Date executedAtEQ;
+
+    /**
+     * 执行时间GTANDEQ
+     */
+    @JsonProperty("n_executed_at_gtandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_executed_at_gtandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("执行时间GTANDEQ")
+    private Date executedAtGTANDEQ;
+
+    /**
+     * 执行时间LTANDEQ
+     */
+    @JsonProperty("n_executed_at_ltandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_executed_at_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("执行时间LTANDEQ")
+    private Date executedAtLTANDEQ;
 
     /**
      * 执行结果EQ
@@ -70,6 +98,22 @@ public class RunSearchContext extends QueryWrapperContext<Run> {
     private String planNameLIKE;
 
     /**
+     * 执行人标识EQ
+     */
+    @JsonProperty("n_executor_id_eq")
+    @JSONField(name = "n_executor_id_eq")
+    @ApiModelProperty("执行人标识EQ")
+    private String executorIdEQ;
+
+    /**
+     * 执行人EQ
+     */
+    @JsonProperty("n_executor_name_eq")
+    @JSONField(name = "n_executor_name_eq")
+    @ApiModelProperty("执行人EQ")
+    private String executorNameEQ;
+
+    /**
      * 用例模块标识EQ
      */
     @JsonProperty("n_suite_id_eq")
@@ -78,12 +122,38 @@ public class RunSearchContext extends QueryWrapperContext<Run> {
     private String suiteIdEQ;
 
     /**
+     * 测试库标识EQ
+     */
+    @JsonProperty("n_library_id_eq")
+    @JSONField(name = "n_library_id_eq")
+    @ApiModelProperty("测试库标识EQ")
+    private String libraryIdEQ;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
     @ApiModelProperty("标识EQ")
     private String idEQ;
+
+    /**
+     * 建立时间GTANDEQ
+     */
+    @JsonProperty("n_create_time_gtandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_create_time_gtandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("建立时间GTANDEQ")
+    private Date createTimeGTANDEQ;
+
+    /**
+     * 建立时间LTANDEQ
+     */
+    @JsonProperty("n_create_time_ltandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_create_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("建立时间LTANDEQ")
+    private Date createTimeLTANDEQ;
 
     /**
      * 名称LIKE

@@ -2,7 +2,7 @@ export default {
   showDataInfoBar: true,
   loadDefault: true,
   deviewCodeName: 'tree_exp_view',
-  deviewId: '202B7D24-C9F3-4FF9-94D1-C8C1EB01D0EB',
+  deviewId: 'ff6f256041466fde1e8117d019cfc776',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RELEASE',
@@ -220,7 +220,7 @@ export default {
                 controlParam: {
                   id: 'node_1_cm',
                 },
-                modelId: '804B412D-3AE2-4B2D-8EF1-B27A44BC60F1',
+                modelId: '5c21ba53614135d0b96ba605a993a61b',
                 modelType: 'PSDETOOLBAR',
                 name: 'node_1_cm',
                 id: 'tree_exp_viewnode_1_cm',
@@ -296,7 +296,7 @@ export default {
                 controlParam: {
                   id: 'node_2_cm',
                 },
-                modelId: '804B412D-3AE2-4B2D-8EF1-B27A44BC60F1',
+                modelId: '5c21ba53614135d0b96ba605a993a61b',
                 modelType: 'PSDETOOLBAR',
                 name: 'node_2_cm',
                 id: 'tree_exp_viewnode_2_cm',
@@ -377,7 +377,7 @@ export default {
                 controlParam: {
                   id: 'node_3_cm',
                 },
-                modelId: '804B412D-3AE2-4B2D-8EF1-B27A44BC60F1',
+                modelId: '5c21ba53614135d0b96ba605a993a61b',
                 modelType: 'PSDETOOLBAR',
                 name: 'node_3_cm',
                 id: 'tree_exp_viewnode_3_cm',
@@ -477,7 +477,7 @@ export default {
               controlParam: {
                 id: 'node_3_cm',
               },
-              modelId: '804B412D-3AE2-4B2D-8EF1-B27A44BC60F1',
+              modelId: '5c21ba53614135d0b96ba605a993a61b',
               modelType: 'PSDETOOLBAR',
               name: 'node_3_cm',
               id: 'tree_exp_viewnode_3_cm',
@@ -529,7 +529,7 @@ export default {
               controlParam: {
                 id: 'node_1_cm',
               },
-              modelId: '804B412D-3AE2-4B2D-8EF1-B27A44BC60F1',
+              modelId: '5c21ba53614135d0b96ba605a993a61b',
               modelType: 'PSDETOOLBAR',
               name: 'node_1_cm',
               id: 'tree_exp_viewnode_1_cm',
@@ -581,7 +581,7 @@ export default {
               controlParam: {
                 id: 'node_2_cm',
               },
-              modelId: '804B412D-3AE2-4B2D-8EF1-B27A44BC60F1',
+              modelId: '5c21ba53614135d0b96ba605a993a61b',
               modelType: 'PSDETOOLBAR',
               name: 'node_2_cm',
               id: 'tree_exp_viewnode_2_cm',
@@ -612,7 +612,7 @@ export default {
             id: 'treeexpbar_tree',
           },
           sysPFPluginId: 'group_tree',
-          modelId: 'A3896613-B124-4508-AD5F-A2E08076486D',
+          modelId: '0130f0f419962abff4c8241cc8649f32',
           modelType: 'PSDETREEVIEW',
           name: 'treeexpbar_tree',
           id: 'plmweb.release.tree_exp_view_treeview',
@@ -704,7 +704,7 @@ export default {
       controlParam: {
         id: 'treeexpbar',
       },
-      modelId: '82da168858d75bb7975e4ba3a9febf3b_treeexpbar',
+      modelId: '98ce2b0c645d9e9d299e82448a252927_treeexpbar',
       modelType: 'PSEXPBAR',
       name: 'treeexpbar',
       id: 'tree_exp_viewtreeexpbar',
@@ -749,7 +749,7 @@ export default {
   viewType: 'DETREEEXPVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '82da168858d75bb7975e4ba3a9febf3b',
+  modelId: '98ce2b0c645d9e9d299e82448a252927',
   modelType: 'PSAPPDEVIEW',
   name: 'releasetree_exp_view',
   id: 'plmweb.releasetree_exp_view',

@@ -322,6 +322,16 @@ public interface ProductService extends IService<Product> {
     }
 
     /**
+     * Other_re_space
+     * 
+     * @param dto
+     * @return
+     */
+    default Product otherReSpace(Product dto) {
+        return dto;
+    }
+
+    /**
      * Product_counters
      * 
      * @param dto
@@ -440,6 +450,21 @@ public interface ProductService extends IService<Product> {
      * @return
      */
     List<Product> listNormal(ProductSearchContext context);
+
+    /**
+     * searchReader
+     * 
+     * @param context
+     * @return
+     */
+    Page<Product> searchReader(ProductSearchContext context);
+    /**
+     * listReader
+     * 
+     * @param context
+     * @return
+     */
+    List<Product> listReader(ProductSearchContext context);
 
     /**
      * searchUser

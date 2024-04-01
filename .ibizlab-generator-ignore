@@ -8,6 +8,8 @@
 **/SysDepartmentServiceImpl.java
 pom.xml
 plm-core/pom.xml
+plm-serviceapi/pom.xml
+plm-user/pom.xml
 .gitignore
 Dockerfile
 Dockerfile-serviceapi

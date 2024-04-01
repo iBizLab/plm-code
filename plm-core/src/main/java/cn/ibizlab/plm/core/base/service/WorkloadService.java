@@ -14,6 +14,8 @@ import cn.ibizlab.util.domain.ImportResult;
 import cn.ibizlab.plm.core.base.domain.Workload;
 import cn.ibizlab.plm.core.base.filter.WorkloadSearchContext;
 import cn.ibizlab.plm.core.base.domain.WorkloadType;
+import cn.ibizlab.plm.core.prodmgmt.domain.Idea;
+import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
 
 /**
@@ -245,6 +247,21 @@ public interface WorkloadService extends IService<Workload> {
     List<Workload> listDefault(WorkloadSearchContext context);
 
     /**
+     * searchIdea_workload
+     * 
+     * @param context
+     * @return
+     */
+    Page<Workload> searchIdeaWorkload(WorkloadSearchContext context);
+    /**
+     * listIdea_workload
+     * 
+     * @param context
+     * @return
+     */
+    List<Workload> listIdeaWorkload(WorkloadSearchContext context);
+
+    /**
      * searchLog
      * 
      * @param context
@@ -275,6 +292,21 @@ public interface WorkloadService extends IService<Workload> {
     List<Workload> listMyCalendar(WorkloadSearchContext context);
 
     /**
+     * searchMy_idea_workload
+     * 
+     * @param context
+     * @return
+     */
+    Page<Workload> searchMyIdeaWorkload(WorkloadSearchContext context);
+    /**
+     * listMy_idea_workload
+     * 
+     * @param context
+     * @return
+     */
+    List<Workload> listMyIdeaWorkload(WorkloadSearchContext context);
+
+    /**
      * searchMy_log
      * 
      * @param context
@@ -288,6 +320,96 @@ public interface WorkloadService extends IService<Workload> {
      * @return
      */
     List<Workload> listMyLog(WorkloadSearchContext context);
+
+    /**
+     * searchMy_test_case_workload
+     * 
+     * @param context
+     * @return
+     */
+    Page<Workload> searchMyTestCaseWorkload(WorkloadSearchContext context);
+    /**
+     * listMy_test_case_workload
+     * 
+     * @param context
+     * @return
+     */
+    List<Workload> listMyTestCaseWorkload(WorkloadSearchContext context);
+
+    /**
+     * searchMy_type_of
+     * 
+     * @param context
+     * @return
+     */
+    Page<Workload> searchMyTypeOf(WorkloadSearchContext context);
+    /**
+     * listMy_type_of
+     * 
+     * @param context
+     * @return
+     */
+    List<Workload> listMyTypeOf(WorkloadSearchContext context);
+
+    /**
+     * searchMy_work_item_workload
+     * 
+     * @param context
+     * @return
+     */
+    Page<Workload> searchMyWorkItemWorkload(WorkloadSearchContext context);
+    /**
+     * listMy_work_item_workload
+     * 
+     * @param context
+     * @return
+     */
+    List<Workload> listMyWorkItemWorkload(WorkloadSearchContext context);
+
+    /**
+     * searchTest_case_workload
+     * 
+     * @param context
+     * @return
+     */
+    Page<Workload> searchTestCaseWorkload(WorkloadSearchContext context);
+    /**
+     * listTest_case_workload
+     * 
+     * @param context
+     * @return
+     */
+    List<Workload> listTestCaseWorkload(WorkloadSearchContext context);
+
+    /**
+     * searchType_of
+     * 
+     * @param context
+     * @return
+     */
+    Page<Workload> searchTypeOf(WorkloadSearchContext context);
+    /**
+     * listType_of
+     * 
+     * @param context
+     * @return
+     */
+    List<Workload> listTypeOf(WorkloadSearchContext context);
+
+    /**
+     * searchWork_item_workload
+     * 
+     * @param context
+     * @return
+     */
+    Page<Workload> searchWorkItemWorkload(WorkloadSearchContext context);
+    /**
+     * listWork_item_workload
+     * 
+     * @param context
+     * @return
+     */
+    List<Workload> listWorkItemWorkload(WorkloadSearchContext context);
 
     /**
      * 创建实体对象
@@ -369,15 +491,31 @@ public interface WorkloadService extends IService<Workload> {
      * @return
      */
     default boolean saveByPrincipalId(String principalId,List<Workload> list) {
-        return getSelf().saveByWorkItem(new WorkItem().setId(principalId),list);
+        return getSelf().saveByRelIdea(new Idea().setId(principalId),list);
     }
     /**
-    * saveRelByWorkItem
+    * saveRelByRelIdea
+    * @param idea
+    * @param list
+    * @return
+    */
+    boolean saveByRelIdea(Idea idea,List<Workload> list);
+
+    /**
+    * saveRelByRelTestCase
+    * @param testCase
+    * @param list
+    * @return
+    */
+    boolean saveByRelTestCase(TestCase testCase,List<Workload> list);
+
+    /**
+    * saveRelByRelWorkItem
     * @param workItem
     * @param list
     * @return
     */
-    boolean saveByWorkItem(WorkItem workItem,List<Workload> list);
+    boolean saveByRelWorkItem(WorkItem workItem,List<Workload> list);
 
 
     /**

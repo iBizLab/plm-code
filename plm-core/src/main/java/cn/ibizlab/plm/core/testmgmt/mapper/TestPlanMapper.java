@@ -298,12 +298,4 @@ public interface TestPlanMapper extends BaseMapper<TestPlan> {
      */
     List<TestPlan> findBySprintId(@Param("sprintIds") List<String> sprintIds);
 
-    /**
-     * 根据versionId查询
-     *
-     * @param versionIds
-     * @return
-     */
-    List<TestPlan> findByVersionId(@Param("versionIds") List<String> versionIds);
-
 }

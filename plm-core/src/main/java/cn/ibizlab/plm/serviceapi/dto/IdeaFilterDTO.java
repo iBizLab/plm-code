@@ -31,11 +31,27 @@ import io.swagger.annotations.ApiModelProperty;
 public class IdeaFilterDTO extends FilterBase implements Serializable {
 
     /**
+     * 编号EQ
+     */
+    @JsonProperty("n_identifier_eq")
+    @JSONField(name = "n_identifier_eq")
+    @ApiModelProperty(value = "编号EQ", position = 0)
+	private String identifierEQ;
+
+    /**
+     * 编号ISNULL
+     */
+    @JsonProperty("n_identifier_isnull")
+    @JSONField(name = "n_identifier_isnull")
+    @ApiModelProperty(value = "编号ISNULL", position = 1)
+	private String identifierISNULL;
+
+    /**
      * 编号LIKE
      */
     @JsonProperty("n_identifier_like")
     @JSONField(name = "n_identifier_like")
-    @ApiModelProperty(value = "编号LIKE", position = 0)
+    @ApiModelProperty(value = "编号LIKE", position = 2)
 	private String identifierLIKE;
 
     /**
@@ -95,6 +111,14 @@ public class IdeaFilterDTO extends FilterBase implements Serializable {
 	private String realAtGranularityEQ;
 
     /**
+     * 描述LIKE
+     */
+    @JsonProperty("n_description_like")
+    @JSONField(name = "n_description_like")
+    @ApiModelProperty(value = "描述LIKE", position = 140)
+	private String descriptionLIKE;
+
+    /**
      * 是否已归档EQ
      */
     @JsonProperty("n_is_archived_eq")
@@ -111,11 +135,27 @@ public class IdeaFilterDTO extends FilterBase implements Serializable {
 	private Integer isDeletedEQ;
 
     /**
-     * 负责人标识EQ
+     * 负责人EQ
+     */
+    @JsonProperty("n_assignee_name_eq")
+    @JSONField(name = "n_assignee_name_eq")
+    @ApiModelProperty(value = "负责人EQ", position = 180)
+	private String assigneeNameEQ;
+
+    /**
+     * 负责人LIKE
+     */
+    @JsonProperty("n_assignee_name_like")
+    @JSONField(name = "n_assignee_name_like")
+    @ApiModelProperty(value = "负责人LIKE", position = 181)
+	private String assigneeNameLIKE;
+
+    /**
+     * 负责人EQ
      */
     @JsonProperty("n_assignee_id_eq")
     @JSONField(name = "n_assignee_id_eq")
-    @ApiModelProperty(value = "负责人标识EQ", position = 190)
+    @ApiModelProperty(value = "负责人EQ", position = 190)
 	private String assigneeIdEQ;
 
     /**
@@ -151,6 +191,33 @@ public class IdeaFilterDTO extends FilterBase implements Serializable {
 	private String idEQ;
 
     /**
+     * 建立时间EQ
+     */
+    @JsonProperty("n_create_time_eq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_create_time_eq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "建立时间EQ", position = 310)
+	private Date createTimeEQ;
+
+    /**
+     * 建立时间GTANDEQ
+     */
+    @JsonProperty("n_create_time_gtandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_create_time_gtandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "建立时间GTANDEQ", position = 311)
+	private Date createTimeGTANDEQ;
+
+    /**
+     * 建立时间LTANDEQ
+     */
+    @JsonProperty("n_create_time_ltandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_create_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "建立时间LTANDEQ", position = 312)
+	private Date createTimeLTANDEQ;
+
+    /**
      * 建立人EQ
      */
     @JsonProperty("n_create_man_eq")
@@ -167,12 +234,20 @@ public class IdeaFilterDTO extends FilterBase implements Serializable {
 	private String nameLIKE;
 
     /**
-     * 产品标识EQ
+     * 产品EQ
      */
     @JsonProperty("n_product_id_eq")
     @JSONField(name = "n_product_id_eq")
-    @ApiModelProperty(value = "产品标识EQ", position = 360)
+    @ApiModelProperty(value = "产品EQ", position = 360)
 	private String productIdEQ;
+
+    /**
+     * 产品ISNULL
+     */
+    @JsonProperty("n_product_id_isnull")
+    @JSONField(name = "n_product_id_isnull")
+    @ApiModelProperty(value = "产品ISNULL", position = 361)
+	private String productIdISNULL;
 
     /**
      * 所属产品EQ

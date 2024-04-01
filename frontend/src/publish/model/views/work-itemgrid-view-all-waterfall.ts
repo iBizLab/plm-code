@@ -4,7 +4,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'grid_view_all_waterfall',
-  deviewId: '8E7845A3-C49E-4C99-84D0-728090B1EE60',
+  deviewId: 'e979b5039a2f9a418d24d5cde0c04891',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -54,12 +54,28 @@ export default {
       builtinAppUILogic: {
         openDataAppView: {
           openMode: 'INDEXVIEWTAB_POPUPMODAL',
+          navigateContexts: [
+            {
+              key: 'WORK_ITEM_TYPE_ID',
+              value: 'work_item_type_id',
+              name: 'WORK_ITEM_TYPE_ID',
+              id: 'work_item_type_id',
+            },
+          ],
           refAppViewId: 'plmweb.work_itemmain_view',
         },
         editMode: true,
         appUILogicRefViews: [
           {
             openMode: 'INDEXVIEWTAB_POPUPMODAL',
+            navigateContexts: [
+              {
+                key: 'WORK_ITEM_TYPE_ID',
+                value: 'work_item_type_id',
+                name: 'WORK_ITEM_TYPE_ID',
+                id: 'work_item_type_id',
+              },
+            ],
             refAppViewId: 'plmweb.work_itemmain_view',
           },
         ],
@@ -74,6 +90,22 @@ export default {
   ],
   appViewRefs: [
     {
+      openMode: 'INDEXVIEWTAB_POPUPMODAL',
+      navigateContexts: [
+        {
+          key: 'WORK_ITEM_TYPE_ID',
+          value: 'work_item_type_id',
+          name: 'WORK_ITEM_TYPE_ID',
+          id: 'work_item_type_id',
+        },
+      ],
+      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realTitle: '工作项',
+      refAppViewId: 'plmweb.work_itemmain_view',
+      name: 'EDITDATA',
+      id: 'editdata',
+    },
+    {
       realTitle: '工作项编辑视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
@@ -81,14 +113,6 @@ export default {
       refAppViewId: 'plmweb.work_itemeditview',
       name: 'NEWDATA',
       id: 'newdata',
-    },
-    {
-      openMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realTitle: '工作项',
-      refAppViewId: 'plmweb.work_itemmain_view',
-      name: 'EDITDATA',
-      id: 'editdata',
     },
   ],
   controls: [
@@ -284,7 +308,7 @@ export default {
                   cssClass: 'fa fa-copy',
                   glyph: 'xf0c5@FontAwesome',
                 },
-                id: 'u9c9c725',
+                id: 'u70bb63a',
               },
               {
                 actionLevel: 100,
@@ -299,7 +323,7 @@ export default {
                   cssClass: 'fa fa-arrows',
                   glyph: 'xf047@FontAwesome',
                 },
-                id: 'u2588787',
+                id: 'ub7ee408',
               },
               {
                 actionLevel: 100,
@@ -314,7 +338,7 @@ export default {
                   cssClass: 'fa fa-archive',
                   glyph: 'xf187@FontAwesome',
                 },
-                id: 'ud0137d9',
+                id: 'u163555a',
               },
               {
                 actionLevel: 100,
@@ -329,7 +353,7 @@ export default {
                   cssClass: 'fa fa-trash-o',
                   glyph: 'xf014@FontAwesome',
                 },
-                id: 'ua4fae66',
+                id: 'ua24947d',
               },
               {
                 actionLevel: 100,
@@ -343,7 +367,7 @@ export default {
                 sysImage: {
                   cssClass: 'key',
                 },
-                id: 'uf4b02b1',
+                id: 'u1dc8a52',
               },
               {
                 actionLevel: 100,
@@ -357,7 +381,7 @@ export default {
                 sysImage: {
                   cssClass: 'git-branch',
                 },
-                id: 'uda36756',
+                id: 'u98ec49a',
               },
               {
                 actionLevel: 100,
@@ -372,22 +396,7 @@ export default {
                   cssClass: 'fa fa-link',
                   glyph: 'xf0c1@FontAwesome',
                 },
-                id: 'uff8cd76',
-              },
-              {
-                actionLevel: 100,
-                afterItemType: 'NONE',
-                beforeItemType: 'NONE',
-                caption: '移入迭代',
-                detailType: 'DEUIACTION',
-                uiactionId: 'shift_in_sprint@work_item',
-                showCaption: true,
-                showIcon: true,
-                sysImage: {
-                  cssClass: 'fa fa-send-o',
-                  glyph: 'xf1d9@FontAwesome',
-                },
-                id: 'u177ee71',
+                id: 'u4cba128',
               },
               {
                 actionLevel: 100,
@@ -402,7 +411,7 @@ export default {
                   cssClass: 'fa fa-send-o',
                   glyph: 'xf1d9@FontAwesome',
                 },
-                id: 'u55c2849',
+                id: 'ubbceaf6',
               },
               {
                 actionLevel: 100,
@@ -413,12 +422,12 @@ export default {
                 uiactionId: 'get_editor_column',
                 showCaption: true,
                 showIcon: true,
-                id: 'u96e02ff',
+                id: 'u0e3491f',
               },
             ],
-            uniqueTag: 'Work_item__Usr1220197218',
-            name: '工作项操作列',
-            id: 'usr1220197218',
+            uniqueTag: 'Work_item__Usr0326744776',
+            name: '瀑布项目工作项操作列',
+            id: 'usr0326744776',
           },
           valueType: 'SIMPLE',
           enableRowEdit: true,
@@ -685,12 +694,6 @@ export default {
           id: 'sprint_id',
         },
         {
-          appDEFieldId: 'version_id',
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'version_id',
-        },
-        {
           appDEFieldId: 'board_id',
           valueType: 'SIMPLE',
           dataType: 25,
@@ -799,7 +802,7 @@ export default {
                     cssClass: 'fa fa-user-md',
                     glyph: 'xf0f0@FontAwesome',
                   },
-                  id: 'ue68004d',
+                  id: 'uc5eeb4c',
                 },
               ],
               uniqueTag: 'Project_member__Usr0104465165',
@@ -962,7 +965,7 @@ export default {
             {
               actionLevel: 100,
               noPrivDisplayMode: 2,
-              uiactionId: 'shift_in_sprint@work_item',
+              uiactionId: 'shift_in_version@work_item',
               uiactionTarget: 'MULTIKEY',
               valid: true,
               caption: '移入迭代',
@@ -974,24 +977,7 @@ export default {
               tooltip: '移入迭代',
               showCaption: true,
               showIcon: true,
-              id: 'deuiaction9',
-            },
-            {
-              actionLevel: 100,
-              noPrivDisplayMode: 2,
-              uiactionId: 'shift_in_version@work_item',
-              uiactionTarget: 'MULTIKEY',
-              valid: true,
-              caption: '移入发布',
-              itemType: 'DEUIACTION',
-              sysImage: {
-                cssClass: 'fa fa-send-o',
-                glyph: 'xf1d9@FontAwesome',
-              },
-              tooltip: '移入发布',
-              showCaption: true,
-              showIcon: true,
-              id: 'deuiaction2',
+              id: 'deuiaction1',
             },
             {
               actionLevel: 100,
@@ -1008,7 +994,7 @@ export default {
               tooltip: '变更状态',
               showCaption: true,
               showIcon: true,
-              id: 'deuiaction3',
+              id: 'deuiaction2',
             },
             {
               actionLevel: 100,
@@ -1025,7 +1011,7 @@ export default {
               tooltip: '分配负责人',
               showCaption: true,
               showIcon: true,
-              id: 'deuiaction4',
+              id: 'deuiaction3',
             },
             {
               actionLevel: 100,
@@ -1035,14 +1021,10 @@ export default {
               valid: true,
               caption: '修改时间',
               itemType: 'DEUIACTION',
-              sysImage: {
-                cssClass: 'fa fa-calendar',
-                glyph: 'xf073@FontAwesome',
-              },
               tooltip: '修改时间',
               showCaption: true,
               showIcon: true,
-              id: 'deuiaction10',
+              id: 'deuiaction4',
             },
             {
               detoolbarItems: [
@@ -1054,16 +1036,6 @@ export default {
                   valid: true,
                   caption: '归档',
                   itemType: 'DEUIACTION',
-                  controlLogics: [
-                    {
-                      itemName: 'deuiaction6',
-                      logicTag: 'grid_batchtoolbar',
-                      logicType: 'SCRIPT',
-                      scriptCode: '!data.is_archived',
-                      triggerType: 'ITEMENABLE',
-                      id: 'deuiaction6',
-                    },
-                  ],
                   sysImage: {
                     cssClass: 'fa fa-archive',
                     glyph: 'xf187@FontAwesome',
@@ -1071,33 +1043,7 @@ export default {
                   tooltip: '归档',
                   showCaption: true,
                   showIcon: true,
-                  id: 'deuiaction6',
-                },
-                {
-                  actionLevel: 100,
-                  noPrivDisplayMode: 2,
-                  uiactionId: 'activate@work_item',
-                  uiactionTarget: 'MULTIKEY',
-                  valid: true,
-                  caption: '激活',
-                  itemType: 'DEUIACTION',
-                  controlLogics: [
-                    {
-                      itemName: 'deuiaction7',
-                      logicTag: 'grid_batchtoolbar',
-                      logicType: 'SCRIPT',
-                      scriptCode: '!!data.is_archived\r\n',
-                      triggerType: 'ITEMENABLE',
-                      id: 'deuiaction7',
-                    },
-                  ],
-                  sysImage: {
-                    cssClass: 'key',
-                  },
-                  tooltip: '激活',
-                  showCaption: true,
-                  showIcon: true,
-                  id: 'deuiaction7',
+                  id: 'deuiaction5',
                 },
                 {
                   actionLevel: 100,
@@ -1114,7 +1060,23 @@ export default {
                   tooltip: '删除',
                   showCaption: true,
                   showIcon: true,
-                  id: 'deuiaction8',
+                  id: 'deuiaction7',
+                },
+                {
+                  actionLevel: 100,
+                  noPrivDisplayMode: 2,
+                  uiactionId: 'activate@work_item',
+                  uiactionTarget: 'MULTIKEY',
+                  valid: true,
+                  caption: '激活',
+                  itemType: 'DEUIACTION',
+                  sysImage: {
+                    cssClass: 'key',
+                  },
+                  tooltip: '激活',
+                  showCaption: true,
+                  showIcon: true,
+                  id: 'deuiaction6',
                 },
               ],
               valid: true,
@@ -1128,12 +1090,12 @@ export default {
           ],
           codeName: 'grid_view_all_waterfallgrid_batchtoolbar',
           controlType: 'TOOLBAR',
-          logicName: '批操作工具栏（工作项）',
+          logicName: '批操作工具栏（看板/瀑布项目）',
           appDataEntityId: 'plmweb.work_item',
           controlParam: {
             id: 'grid_batchtoolbar',
           },
-          modelId: '9366DB7F-2A7F-438D-90F0-B2B936356967',
+          modelId: '8f1e277a3a1b5b2c56062c5d56aa2592',
           modelType: 'PSDETOOLBAR',
           name: 'grid_batchtoolbar',
           id: 'grid_view_all_waterfallgrid_batchtoolbar',
@@ -1151,7 +1113,7 @@ export default {
         id: 'grid',
       },
       sysPFPluginId: 'number_grid',
-      modelId: '133ED9CD-D999-4247-B343-52A4F78AAA4A',
+      modelId: '0050b5bd1a0a6ed7fc716103e14b6b49',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.work_item.waterfall_grid',
@@ -1386,7 +1348,7 @@ export default {
       controlParam: {
         id: 'searchbar',
       },
-      modelId: '9701F628-102D-4832-8906-134802344863',
+      modelId: 'e3715ecb283b07a7ddc9d46974124392',
       modelType: 'PSSYSSEARCHBAR',
       name: 'searchbar',
       id: 'plmweb.work_item.project_work_item',
@@ -1420,7 +1382,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'c793881ac6236dde3f6a12cbb77ad103',
+  modelId: '0d216083b38f868a127a4294ca6b8081',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemgrid_view_all_waterfall',
   id: 'plmweb.work_itemgrid_view_all_waterfall',

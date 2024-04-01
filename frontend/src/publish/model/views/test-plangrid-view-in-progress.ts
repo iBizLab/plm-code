@@ -2,7 +2,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'grid_view_in_progress',
-  deviewId: '3CF7EDAF-5613-4EBF-88DE-09A705D6244A',
+  deviewId: '20ca75612a2d9fe91e66b3acb9a27208',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TEST_PLAN',
@@ -243,12 +243,6 @@ export default {
           id: 'project_id',
         },
         {
-          appDEFieldId: 'version_id',
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'version_id',
-        },
-        {
           appDEFieldId: 'sprint_id',
           valueType: 'SIMPLE',
           dataType: 25,
@@ -312,7 +306,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: 'CC90824B-B659-4907-8DCB-CF99488B66F7',
+      modelId: 'a1a8b2573e426cd3b37450ae6573cbef',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.test_plan.my_charge_grid',
@@ -395,7 +389,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '49df5e8870fcd2bd5664c090dee8e623',
+  modelId: '569c83730970d60f6a33661568087bf8',
   modelType: 'PSAPPDEVIEW',
   name: 'test_plangrid_view_in_progress',
   id: 'plmweb.test_plangrid_view_in_progress',

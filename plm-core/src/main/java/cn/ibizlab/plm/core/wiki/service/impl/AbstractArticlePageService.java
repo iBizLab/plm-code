@@ -35,6 +35,8 @@ import cn.ibizlab.plm.core.base.domain.Attention;
 import cn.ibizlab.plm.core.base.service.AttentionService;
 import cn.ibizlab.plm.core.base.domain.Attachment;
 import cn.ibizlab.plm.core.base.service.AttachmentService;
+import cn.ibizlab.plm.core.projmgmt.domain.Version;
+import cn.ibizlab.plm.core.projmgmt.service.VersionService;
 
 /**
  * 实体[页面] 服务对象接口实现
@@ -63,6 +65,10 @@ public abstract class AbstractArticlePageService extends ServiceImpl<ArticlePage
     @Autowired
     @Lazy
     protected AttachmentService attachmentService;
+
+    @Autowired
+    @Lazy
+    protected VersionService versionService;
 
     @Autowired
     @Lazy
@@ -196,6 +202,17 @@ public abstract class AbstractArticlePageService extends ServiceImpl<ArticlePage
             if(!getSelf().remove(et))
                 return false;
         return true;
+    }
+
+    public Page<ArticlePage> searchAdvancedSearch(ArticlePageSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ArticlePage> pages=baseMapper.searchAdvancedSearch(context.getPages(),context,context.getSelectCond());
+        List<ArticlePage> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<ArticlePage> listAdvancedSearch(ArticlePageSearchContext context) {
+        List<ArticlePage> list = baseMapper.listAdvancedSearch(context,context.getSelectCond());
+        return list;
     }
 
     public Page<ArticlePage> searchDefault(ArticlePageSearchContext context) {

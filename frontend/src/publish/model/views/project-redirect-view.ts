@@ -25,16 +25,16 @@ export default {
   appDataEntityId: 'plmweb.project',
   appViewRefs: [
     {
-      realTitle: '主数据视图kanban（测试）',
-      refAppViewId: 'plmweb.projectmain_data_kanban',
-      name: 'KANBAN',
-      id: 'kanban',
-    },
-    {
       realTitle: '主数据视图scrum（测试）',
       refAppViewId: 'plmweb.projectmain_data_scrum',
       name: 'SCRUM',
       id: 'scrum',
+    },
+    {
+      realTitle: '主数据视图kanban（测试）',
+      refAppViewId: 'plmweb.projectmain_data_kanban',
+      name: 'KANBAN',
+      id: 'kanban',
     },
     {
       realTitle: '主数据视图waterfall（测试）',

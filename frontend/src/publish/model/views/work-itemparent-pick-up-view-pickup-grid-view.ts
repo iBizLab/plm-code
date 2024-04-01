@@ -1,11 +1,10 @@
 export default {
-  gridRowActiveMode: 1,
   expandSearchForm: true,
   pickupMode: true,
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'parent_pick_up_view_PickupGridView',
-  deviewId: '6AC47522-A9E9-40D8-A483-FD5C7DC1A0DA',
+  deviewId: '817ae4edec484699bc4568e43d8c9a19',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -223,12 +222,6 @@ export default {
           id: 'sprint_id',
         },
         {
-          appDEFieldId: 'version_id',
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'version_id',
-        },
-        {
           appDEFieldId: 'board_id',
           valueType: 'SIMPLE',
           dataType: 25,
@@ -310,7 +303,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '701FF2D6-A8BC-44AF-8E4B-C6A3FD279E00',
+      modelId: 'f248670bdeaacf5a2d733ef3651515ab',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.work_item.parent_pick_up_view_pickupgridview_grid',
@@ -397,7 +390,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: '5AD9CE26-E9C2-423A-B048-973F7EACBA94',
+      modelId: '3bc81178ebb00e652c430a221700382f',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.work_item.choose_search_form',
@@ -440,7 +433,7 @@ export default {
   viewType: 'DEPICKUPGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '039417e903f4f7b814367dc313c4bac4',
+  modelId: 'e63ee8a8867e16a44f2041f83e05b5b5',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemparent_pick_up_view_PickupGridView',
   id: 'plmweb.work_itemparent_pick_up_view_pickupgridview',

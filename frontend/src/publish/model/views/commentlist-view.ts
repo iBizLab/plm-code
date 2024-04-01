@@ -2,7 +2,7 @@ export default {
   xdataControlName: 'list',
   loadDefault: true,
   deviewCodeName: 'list_view',
-  deviewId: 'EBC99E58-2108-44EA-94A6-A643A266FB36',
+  deviewId: '2cd57b81d6d3e24a97d721002d13a493',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.COMMENT',
@@ -11,6 +11,11 @@ export default {
   codeName: 'commentlist_view',
   appDataEntityId: 'plmweb.comment',
   appViewNavParams: [
+    {
+      key: 'n_owner_type_eq',
+      value: 'principal_type',
+      id: 'n_owner_type_eq',
+    },
     {
       key: 'n_principal_id_eq',
       value: 'principal_id',
@@ -208,6 +213,14 @@ export default {
         logicType: 'APPUILOGIC',
         builtinAppUILogic: {
           actionAfterWizard: 'DEFAULT',
+          newDataAppView: {
+            refAppViewId: 'plmweb.commenteditview',
+          },
+          appUILogicRefViews: [
+            {
+              refAppViewId: 'plmweb.commenteditview',
+            },
+          ],
           builtinLogic: true,
           logicType: 'PREDEFINED',
           viewLogicType: 'APP_NEWDATA',
@@ -220,7 +233,15 @@ export default {
         logicTrigger: 'CUSTOM',
         logicType: 'APPUILOGIC',
         builtinAppUILogic: {
+          openDataAppView: {
+            refAppViewId: 'plmweb.commenteditview',
+          },
           editMode: true,
+          appUILogicRefViews: [
+            {
+              refAppViewId: 'plmweb.commenteditview',
+            },
+          ],
           builtinLogic: true,
           logicType: 'PREDEFINED',
           viewLogicType: 'APP_OPENDATA',
@@ -232,10 +253,20 @@ export default {
     ],
     appViewRefs: [
       {
+        realTitle: '评论编辑视图',
+        realTitleLanguageRes: {
+          lanResTag: 'PAGE.TITLE.COMMENT.EDITVIEW',
+        },
+        refAppViewId: 'plmweb.commenteditview',
         name: 'NEWDATA',
         id: 'newdata',
       },
       {
+        realTitle: '评论编辑视图',
+        realTitleLanguageRes: {
+          lanResTag: 'PAGE.TITLE.COMMENT.EDITVIEW',
+        },
+        refAppViewId: 'plmweb.commenteditview',
         name: 'EDITDATA',
         id: 'editdata',
       },
@@ -386,8 +417,8 @@ export default {
                             layout: 'FLEX',
                           },
                           sysImage: {
-                            cssClass: 'fa fa-twitch',
-                            glyph: 'xf1e8@FontAwesome',
+                            cssClass: 'fa fa-comment-o',
+                            glyph: 'xf0e5@FontAwesome',
                           },
                           id: 'button_calluilogic2',
                         },
@@ -403,6 +434,17 @@ export default {
                           caption: '编辑',
                           itemStyle: 'STYLE2',
                           itemType: 'BUTTON',
+                          controlLogics: [
+                            {
+                              itemName: 'BUTTON_CALLUILOGIC1',
+                              logicTag: 'list_itempanel',
+                              logicType: 'SCRIPT',
+                              scriptCode:
+                                'data?.create_man === context?.srfuserid',
+                              triggerType: 'ITEMVISIBLE',
+                              id: 'logic_edit',
+                            },
+                          ],
                           layoutPos: {
                             shrink: 1,
                             layout: 'FLEX',
@@ -424,6 +466,17 @@ export default {
                           caption: '删除',
                           itemStyle: 'STYLE2',
                           itemType: 'BUTTON',
+                          controlLogics: [
+                            {
+                              itemName: 'BUTTON_CALLUILOGIC',
+                              logicTag: 'list_itempanel',
+                              logicType: 'SCRIPT',
+                              scriptCode:
+                                'data?.create_man === context?.srfuserid',
+                              triggerType: 'ITEMVISIBLE',
+                              id: 'logic_dele',
+                            },
+                          ],
                           layoutPos: {
                             shrink: 1,
                             layout: 'FLEX',
@@ -663,8 +716,20 @@ export default {
           controlType: 'PANEL',
           logicName: 'list_列表项面板',
           appDataEntityId: 'plmweb.comment',
+          controlLogics: [
+            {
+              eventNames: 'onClick',
+              itemName: 'BUTTON_CALLUILOGIC2',
+              logicTag: 'list_itempanel',
+              logicType: 'SCRIPT',
+              scriptCode:
+                'const panelItems = view.layoutPanel.panelItems;\r\n panelItems.container_comment.state.visible = true;',
+              triggerType: 'CTRLEVENT',
+              id: 'logic',
+            },
+          ],
           controlParam: {},
-          modelId: '42AC4D7C-0311-4B52-8AFB-500470D66A00',
+          modelId: 'ee886f58af63fee0ca6e9603df7aaa8e',
           modelType: 'PSSYSVIEWPANEL',
           name: 'list_itempanel',
           id: 'plmweb.comment.usr0103471499',
@@ -673,10 +738,20 @@ export default {
         minorSortAppDEFieldId: 'create_time',
         delistDataItems: [
           {
-            appDEFieldId: 'pcreate_man',
+            appDEFieldId: 'pcontent',
+            dataType: 21,
+            id: 'pcontent',
+          },
+          {
+            appDEFieldId: 'id',
+            dataType: 25,
+            id: 'id',
+          },
+          {
+            appDEFieldId: 'create_man',
             frontCodeListId: 'plmweb.sysoperator',
             dataType: 25,
-            id: 'pcreate_man',
+            id: 'create_man',
           },
           {
             appDEFieldId: 'create_time',
@@ -685,30 +760,20 @@ export default {
             id: 'create_time',
           },
           {
-            appDEFieldId: 'id',
-            dataType: 25,
-            id: 'id',
-          },
-          {
-            appDEFieldId: 'pid',
-            dataType: 25,
-            id: 'pid',
-          },
-          {
-            appDEFieldId: 'pcontent',
-            dataType: 21,
-            id: 'pcontent',
-          },
-          {
             appDEFieldId: 'content',
             dataType: 21,
             id: 'content',
           },
           {
-            appDEFieldId: 'create_man',
+            appDEFieldId: 'pcreate_man',
             frontCodeListId: 'plmweb.sysoperator',
             dataType: 25,
-            id: 'create_man',
+            id: 'pcreate_man',
+          },
+          {
+            appDEFieldId: 'pid',
+            dataType: 25,
+            id: 'pid',
           },
           {
             appDEFieldId: 'id',
@@ -760,7 +825,7 @@ export default {
         sysCss: {
           cssName: 'comment-list-height-auto',
         },
-        modelId: 'D2480E29-78F4-47E2-8523-9E8819F79D0A',
+        modelId: '9b4452e60e1fe2c3e394cd0199c78969',
         modelType: 'PSDELIST',
         name: 'list',
         id: 'plmweb.comment.list',
@@ -792,7 +857,7 @@ export default {
     logicName: 'list_view列表视图布局面板',
     appDataEntityId: 'plmweb.comment',
     controlParam: {},
-    modelId: '9E9F7E9C-F8E1-4141-91F0-80366DADD68E',
+    modelId: 'ec74278f1f5a797ebc942e090298d91c',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0103274907',
@@ -802,7 +867,7 @@ export default {
   viewType: 'DELISTVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '7710eddbecab1aa5864175faecb8101d',
+  modelId: 'eac2aa8e4fe80453d257341ab278a79a',
   modelType: 'PSAPPDEVIEW',
   name: 'commentlist_view',
   id: 'plmweb.commentlist_view',

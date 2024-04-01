@@ -1,5 +1,4 @@
 export default {
-  gridRowActiveMode: 1,
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'grid_view_assigned',
@@ -163,7 +162,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '4D75189B-4410-495B-90E8-F8EF16159E62',
+      modelId: '499424ebd79d9a468dcaea50e9b6ce20',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'grid_view_assignedtoolbar',
@@ -208,7 +207,7 @@ export default {
                   cssClass: 'fa fa-trash',
                   glyph: 'xf1f8@FontAwesome',
                 },
-                id: 'ufb3b1ad',
+                id: 'ua447adb',
               },
             ],
             uniqueTag: 'Product_member__Usr1220692644',
@@ -283,6 +282,7 @@ export default {
       pagingSize: 20,
       sortMode: 'REMOTE',
       enableCustomized: true,
+      singleSelect: true,
       fetchControlAction: {
         appDEMethodId: 'fetchdefault',
         appDataEntityId: 'plmweb.product_member',
@@ -295,46 +295,6 @@ export default {
       },
       autoLoad: true,
       showBusyIndicator: true,
-      controls: [
-        {
-          detoolbarItems: [
-            {
-              actionLevel: 100,
-              noPrivDisplayMode: 2,
-              uiactionId: 'remove',
-              uiactionTarget: 'MULTIKEY',
-              valid: true,
-              capLanguageRes: {
-                lanResTag: 'TBB.TEXT.*.REMOVE',
-              },
-              caption: '删除',
-              itemType: 'DEUIACTION',
-              sysImage: {
-                cssClass: 'fa fa-remove',
-                glyph: 'xf00d@FontAwesome',
-              },
-              tooltip: '删除',
-              tooltipLanguageRes: {
-                lanResTag: 'TBB.TOOLTIP.*.REMOVE',
-              },
-              showCaption: true,
-              showIcon: true,
-              id: 'deuiaction2',
-            },
-          ],
-          codeName: 'grid_view_assignedgrid_batchtoolbar',
-          controlType: 'TOOLBAR',
-          logicName: '工具栏模板（表格批量操作）',
-          appDataEntityId: 'plmweb.product_member',
-          controlParam: {
-            id: 'grid_batchtoolbar',
-          },
-          modelId: '74CCFEF5-0654-4145-852A-227C53342218',
-          modelType: 'PSDETOOLBAR',
-          name: 'grid_batchtoolbar',
-          id: 'grid_view_assignedgrid_batchtoolbar',
-        },
-      ],
       codeName: 'Binding',
       controlType: 'GRID',
       logicName: '产品成员绑定',

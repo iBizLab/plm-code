@@ -9,6 +9,7 @@
 		<result property="ownerType" column="owner_type" />
 		<result property="ownerSubtype" column="owner_subtype" />
 		<result property="fileId" column="file_id" />
+		<result property="parentVersionId" column="parent_version_id" />
 		<result property="createMan" column="create_man" />
 		<result property="createTime" column="create_time" />
 		<result property="updateMan" column="update_man" />
@@ -47,8 +48,12 @@
          in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.id }) </foreach>)
     </delete>
 
+    <sql id="advancedSearch" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`FILE_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`TITLE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `ATTACHMENT` t1   ]]>  
+    </sql>
+
     <sql id="default" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`FILE_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`TITLE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `ATTACHMENT` t1   ]]>  
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`FILE_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`TITLE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `ATTACHMENT` t1   ]]>  
     </sql>
 
     <sql id="projectDeliverable" databaseId="mysql">
@@ -56,12 +61,33 @@
     </sql>
 
     <sql id="view" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`FILE_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`TITLE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `ATTACHMENT` t1   ]]>  
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`FILE_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`TITLE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `ATTACHMENT` t1   ]]>  
     </sql>
 
     <sql id="workItemDeliverable" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`FILE_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`TITLE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `ATTACHMENT` t1   ]]>  where  <![CDATA[ ( t1.`OWNER_TYPE` = 'WORK_ITEM' ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`FILE_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`TITLE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `ATTACHMENT` t1   ]]>  where  <![CDATA[ ( t1.`OWNER_TYPE` = 'WORK_ITEM' ) ]]> 
     </sql>
+
+    <select id="searchAdvancedSearch"  parameterType="cn.ibizlab.plm.core.base.filter.AttachmentSearchContext"  resultMap="AttachmentResultMap">
+        select t1.* 
+        from (
+            <include refid="advancedSearch"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listAdvancedSearch"  parameterType="cn.ibizlab.plm.core.base.filter.AttachmentSearchContext"  resultMap="AttachmentResultMap">
+        select t1.*
+        from (
+            <include refid="advancedSearch"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
 
     <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.base.filter.AttachmentSearchContext"  resultMap="AttachmentResultMap">
         select t1.* 

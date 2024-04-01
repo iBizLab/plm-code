@@ -47,6 +47,14 @@ public class InsightFilterDTO extends FilterBase implements Serializable {
 	private String groupEQ;
 
     /**
+     * 归属EQ
+     */
+    @JsonProperty("n_belong_eq")
+    @JSONField(name = "n_belong_eq")
+    @ApiModelProperty(value = "归属EQ", position = 30)
+	private String belongEQ;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")

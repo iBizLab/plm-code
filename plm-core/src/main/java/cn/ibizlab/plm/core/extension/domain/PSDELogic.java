@@ -143,6 +143,33 @@ public class PSDELogic extends EntityBase implements Serializable
     private Date lastStartAt;
 
     /**
+     * 逻辑参数
+     */
+    @DEField(name = "psdelogicparams")
+    @JsonProperty("psdelogicparams")
+    @JSONField(name = "psdelogicparams")
+    @ApiModelProperty(value = "psdelogicparams", notes = "逻辑参数")
+    private List<Map> psdelogicparams;
+
+    /**
+     * 逻辑节点
+     */
+    @DEField(name = "psdelogicnodes")
+    @JsonProperty("psdelogicnodes")
+    @JSONField(name = "psdelogicnodes")
+    @ApiModelProperty(value = "psdelogicnodes", notes = "逻辑节点")
+    private List<Map> psdelogicnodes;
+
+    /**
+     * 逻辑连接
+     */
+    @DEField(name = "psdelogiclinks")
+    @JsonProperty("psdelogiclinks")
+    @JSONField(name = "psdelogiclinks")
+    @ApiModelProperty(value = "psdelogiclinks", notes = "逻辑连接")
+    private List<Map> psdelogiclinks;
+
+    /**
      * 实体处理逻辑标识
      */
     @Id

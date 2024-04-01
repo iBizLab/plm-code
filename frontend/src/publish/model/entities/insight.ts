@@ -265,6 +265,17 @@ export default {
       codeName: 'InsightFilterDTO',
       appDEMethodDTOFields: [
         {
+          codeName: 'N_BELONG_EQ',
+          logicName: '归属',
+          appDEFieldId: 'belong',
+          sourceType: 'DEFSEARCHMODE',
+          stdDataType: 25,
+          type: 'SIMPLE',
+          allowEmpty: true,
+          name: 'N_BELONG_EQ',
+          id: 'n_belong_eq',
+        },
+        {
           codeName: 'N_GROUP_EQ',
           logicName: '组别',
           appDEFieldId: 'group',

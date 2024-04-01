@@ -4,7 +4,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'grid_view_config',
-  deviewId: '8BA407E6-82B1-4AC6-B57D-6B5A6533144F',
+  deviewId: '2f3e78d0e1a8446a870a42d2a858e79e',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PRODUCT_MEMBER',
@@ -81,6 +81,15 @@ export default {
   ],
   appViewRefs: [
     {
+      realTitle: '产品成员数据重定向视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.PRODUCT_MEMBER.REDIRECTVIEW',
+      },
+      refAppViewId: 'plmweb.product_memberredirectview',
+      name: 'EDITDATA',
+      id: 'editdata',
+    },
+    {
       openMode: 'POPUPMODAL',
       realOpenMode: 'POPUPMODAL',
       realTitle: '产品成员编辑视图',
@@ -90,15 +99,6 @@ export default {
       refAppViewId: 'plmweb.product_membereditview',
       name: 'NEWDATA',
       id: 'newdata',
-    },
-    {
-      realTitle: '产品成员数据重定向视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.PRODUCT_MEMBER.REDIRECTVIEW',
-      },
-      refAppViewId: 'plmweb.product_memberredirectview',
-      name: 'EDITDATA',
-      id: 'editdata',
     },
     {
       name: 'MPICKUPVIEW:PRODUCT',
@@ -141,7 +141,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '5CEC7855-85C9-41F3-B0E5-72014AD359A7',
+      modelId: 'fe0f7071346a0550d43e1d9420fd7574',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'grid_view_configtoolbar',
@@ -232,37 +232,6 @@ export default {
           widthUnit: 'PX',
           enableSort: true,
           id: 'update_time',
-        },
-        {
-          deuiactionGroup: {
-            uiactionGroupDetails: [
-              {
-                actionLevel: 100,
-                afterItemType: 'NONE',
-                beforeItemType: 'NONE',
-                detailType: 'DEUIACTION',
-                uiactionId: 'remove_member@product_member',
-                showIcon: true,
-                sysImage: {
-                  cssClass: 'fa fa-trash',
-                  glyph: 'xf1f8@FontAwesome',
-                },
-                id: 'ufb3b1ad',
-              },
-            ],
-            uniqueTag: 'Product_member__Usr1220692644',
-            name: '成员删除',
-            id: 'usr1220692644',
-          },
-          aggMode: 'NONE',
-          align: 'CENTER',
-          caption: '操作',
-          codeName: 'uagridcolumn1',
-          columnType: 'UAGRIDCOLUMN',
-          noPrivDisplayMode: 1,
-          width: 100,
-          widthUnit: 'PX',
-          id: 'uagridcolumn1',
         },
       ],
       degridDataItems: [
@@ -398,7 +367,7 @@ export default {
           detoolbarItems: [
             {
               actionLevel: 100,
-              noPrivDisplayMode: 2,
+              noPrivDisplayMode: 1,
               uiactionId: 'remove',
               uiactionTarget: 'MULTIKEY',
               valid: true,
@@ -427,7 +396,7 @@ export default {
           controlParam: {
             id: 'grid_batchtoolbar',
           },
-          modelId: '74CCFEF5-0654-4145-852A-227C53342218',
+          modelId: '824333fc6aa069bfea300fcc0b94336d',
           modelType: 'PSDETOOLBAR',
           name: 'grid_batchtoolbar',
           id: 'grid_view_configgrid_batchtoolbar',
@@ -440,49 +409,10 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '4B57E981-FD0B-4C4A-B98A-1B2A251D6A8F',
+      modelId: 'd71b3dd388a97ca314fd6fdf148e0d02',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.product_member.setting_table',
-    },
-    {
-      searchButtonStyle: 'DEFAULT',
-      deformPages: [
-        {
-          layout: {
-            columnCount: 24,
-            layout: 'TABLE_24COL',
-          },
-          capLanguageRes: {
-            lanResTag:
-              'CONTROL.DEFORM.PRODUCT_MEMBER.DEFAULT.FORMPAGE.FORMPAGE1',
-          },
-          caption: '常规条件',
-          codeName: 'formpage1',
-          detailStyle: 'DEFAULT',
-          detailType: 'FORMPAGE',
-          id: 'formpage1',
-        },
-      ],
-      layout: {
-        columnCount: 24,
-        layout: 'TABLE_24COL',
-      },
-      tabHeaderPos: 'TOP',
-      noTabHeader: true,
-      autoLoad: true,
-      showBusyIndicator: true,
-      codeName: 'Default',
-      controlType: 'SEARCHFORM',
-      logicName: '默认搜索表单',
-      appDataEntityId: 'plmweb.product_member',
-      controlParam: {
-        id: 'searchform',
-      },
-      modelId: 'bf2d0bb4baa47702b1ba90abd578bacf',
-      modelType: 'PSDEFORM_SEARCHFORM',
-      name: 'searchform',
-      id: 'plmweb.product_member.default',
     },
     {
       groupMode: 'SINGLE',
@@ -524,7 +454,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '1b2d20a521eeab4a4407bc23013e3ee8',
+  modelId: 'fc673378e1cfcbf265abb5be40ea9f2b',
   modelType: 'PSAPPDEVIEW',
   name: 'product_membergrid_view_config',
   id: 'plmweb.product_membergrid_view_config',

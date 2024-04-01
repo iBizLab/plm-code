@@ -9,7 +9,7 @@
       <i-biz-edit-form-control v-bind="slotProps" />
     </template>
     <template #drbar="slotProps">
-      <i-biz-drbar-control v-bind="slotProps" />
+      <i-biz-dr-bar-control v-bind="slotProps" />
     </template>
   </i-biz-view>
 </template>

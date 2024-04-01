@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'is_archived_grid_view',
-  deviewId: '241E9156-3C46-4FC5-96E7-E6F86B9269C0',
+  deviewId: '7c199dbf32d1b3ecc0f6b178fcea0dcd',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SPACE',
@@ -95,7 +95,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '0A9DC56E-3DBC-476A-BC80-734CC8A24D59',
+      modelId: '40aa0e7c389c40884d92cc5e0f4c565b',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'is_archived_grid_viewtoolbar',
@@ -183,7 +183,7 @@ export default {
                   cssClass: 'fa fa-lightbulb-o',
                   glyph: 'xf0eb@FontAwesome',
                 },
-                id: 'u6149c3b',
+                id: 'ufd6f0c4',
               },
               {
                 actionLevel: 100,
@@ -196,7 +196,7 @@ export default {
                   cssClass: 'fa fa-trash',
                   glyph: 'xf1f8@FontAwesome',
                 },
-                id: 'uc252f2e',
+                id: 'uee82576',
               },
             ],
             uniqueTag: 'Space__Usr0227073034',
@@ -303,7 +303,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: 'CB189885-151C-4C0B-AB83-823B108AA8FA',
+      modelId: 'f774390223110060a81dc829791eb388',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.space.is_archived_grid_view_grid',
@@ -338,7 +338,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: 'BC7A0CA3-DFDE-4450-B0B3-4B0F859FD118',
+      modelId: 'fac324d70bd86a3fad7c71423c5d047d',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.space.usr02274038_searchform',
@@ -383,7 +383,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '44708029ba840bb702b44586650a78cd',
+  modelId: 'b9cee3b3cad8320b1df8ef32e129078f',
   modelType: 'PSAPPDEVIEW',
   name: 'spaceis_archived_grid_view',
   id: 'plmweb.spaceis_archived_grid_view',

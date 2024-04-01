@@ -1,7 +1,7 @@
 export default {
   funcViewMode: 'PICKUPVIEW',
   deviewCodeName: 'PickupView',
-  deviewId: '91b2888a020d315b73a934b5db078b4f',
+  deviewId: '8c874e334b6714acb619c71a35637f66',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORKLOAD_TYPE',
@@ -60,7 +60,7 @@ export default {
   viewType: 'DEPICKUPVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '1eb24eb7b9fe7f2b87656d4b88465cd9',
+  modelId: '3034b5bcf0a67763f29d50f4cd26e74c',
   modelType: 'PSAPPDEVIEW',
   name: 'workload_typePickupView',
   id: 'plmweb.workload_typepickupview',

@@ -4,7 +4,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'confirm_finish_view',
-  deviewId: '150EDD01-91C8-49E1-8B76-82FCE60368CE',
+  deviewId: '4ab97e72494ac2e84a0dae4a515f5934',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SPRINT',
@@ -351,7 +351,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: 'F310CD44-AA19-4218-9474-50ED1A47B5B9',
+      modelId: 'c08074e3c23bb5fa2d86ce5dc48e0c53',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.sprint.confirm_finish_form',
@@ -396,7 +396,7 @@ export default {
   width: 650,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '5a82e99b28b5bd88249dd3789ea9b829',
+  modelId: '4de4be2aed811e46dfea245c209f9d14',
   modelType: 'PSAPPDEVIEW',
   name: 'sprintconfirm_finish_view',
   id: 'plmweb.sprintconfirm_finish_view',

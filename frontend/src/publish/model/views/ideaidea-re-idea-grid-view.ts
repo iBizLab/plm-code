@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'idea_re_idea_grid_view',
-  deviewId: '7CB52BE8-61C7-4745-95C8-698642CAC84F',
+  deviewId: '21f44eebd58765869fc873c2802f49cf',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.IDEA',
@@ -232,7 +232,7 @@ export default {
                       cssClass: 'fa fa-plus',
                       glyph: 'xf067@FontAwesome',
                     },
-                    id: 'uc3dd255',
+                    id: 'uc95d0ba',
                   },
                 ],
                 uniqueTag: 'Recent__Usr0122481934',
@@ -317,7 +317,7 @@ export default {
         logicTrigger: 'VIEWEVENT',
         logicType: 'SCRIPT',
         scriptCode:
-          "view.layoutPanel.panelItems.choose_data.state.visible = false;\n\n// 初始化默认隐藏表格\nview.layoutPanel.panelItems.grid.state.keepAlive = true;\nview.layoutPanel.panelItems.grid.state.visible = false;\nconst form = view.getController('form');\nconsole.log('项显示逻辑执行了')\nif (form) {\n    form.evt.on('onFormDetailEvent', event =>{\n        const panelItems = view.layoutPanel.panelItems;\n        if (!panelItems.comment) {\n            return;\n        }\n        if (event.formDetailName === 'tabpage1') {\n            panelItems.comment.state.visible = true;\n        } else {\n            panelItems.comment.state.visible = false;\n        }\n    });\n}\n\n// 初始化隐藏发送和清空按钮\nview.layoutPanel.panelItems.button_calluilogic1.state.visible = false\nview.layoutPanel.panelItems.button_calluilogic.state.visible = false",
+          "view.layoutPanel.panelItems.choose_data.state.visible = view.context.srfshowchoose || false;\n\n// 初始化默认隐藏表格\nview.layoutPanel.panelItems.grid.state.keepAlive = true;\nview.layoutPanel.panelItems.grid.state.visible = false;\nconst form = view.getController('form');\nconsole.log('项显示逻辑执行了');\nif (form) {\n    form.evt.on('onFormDetailEvent', event =>{\n        const panelItems = view.layoutPanel.panelItems;\n        if (!panelItems.comment) {\n            return;\n        }\n        if (event.formDetailName === 'tabpage1') {\n            panelItems.comment.state.visible = true;\n        } else {\n            panelItems.comment.state.visible = false;\n        }\n    });\n}\n\n// 初始化隐藏发送和清空按钮\nview.layoutPanel.panelItems.button_calluilogic1.state.visible = false\nview.layoutPanel.panelItems.button_calluilogic.state.visible = false",
         builtinLogic: true,
         id: 'viewmounted',
       },
@@ -396,6 +396,17 @@ export default {
     appViewRefs: [
       {
         openMode: 'POPUPMODAL',
+        realOpenMode: 'POPUPMODAL',
+        realTitle: '关联需求快速新建视图',
+        realTitleLanguageRes: {
+          lanResTag: 'PAGE.TITLE.IDEA.CREATE_RELATION_IDEA_VIEW',
+        },
+        refAppViewId: 'plmweb.ideacreate_re_idea_view',
+        name: 'NEWDATA',
+        id: 'newdata',
+      },
+      {
+        openMode: 'POPUPMODAL',
         navigateContexts: [
           {
             key: 'PRODUCT',
@@ -413,17 +424,6 @@ export default {
         name: 'EDITDATA',
         id: 'editdata',
       },
-      {
-        openMode: 'POPUPMODAL',
-        realOpenMode: 'POPUPMODAL',
-        realTitle: '关联需求快速新建视图',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.IDEA.CREATE_RELATION_IDEA_VIEW',
-        },
-        refAppViewId: 'plmweb.ideacreate_re_idea_view',
-        name: 'NEWDATA',
-        id: 'newdata',
-      },
     ],
     controls: [
       {
@@ -436,16 +436,6 @@ export default {
             valid: true,
             caption: '添加需求',
             itemType: 'DEUIACTION',
-            controlLogics: [
-              {
-                itemName: 'deuiaction1',
-                logicTag: 'toolbar',
-                logicType: 'SCRIPT',
-                scriptCode: '!context.is_delete',
-                triggerType: 'ITEMVISIBLE',
-                id: 'action',
-              },
-            ],
             sysImage: {
               cssClass: 'fa fa-plus',
               glyph: 'xf067@FontAwesome',
@@ -464,7 +454,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: 'C0861029-9FB2-4403-96FC-AC56F9763942',
+        modelId: 'edb08943d81fe3c8d910ddd7915b7dc1',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'idea_re_idea_grid_viewtoolbar',
@@ -483,6 +473,9 @@ export default {
             valueType: 'SIMPLE',
             aggMode: 'NONE',
             align: 'LEFT',
+            capLanguageRes: {
+              lanResTag: 'DEF.LNAME.SHOW_IDENTIFIER',
+            },
             caption: '编号',
             codeName: 'identifier',
             columnType: 'DEFGRIDCOLUMN',
@@ -554,47 +547,25 @@ export default {
             id: 'assignee_name',
           },
           {
-            clconvertMode: 'NONE',
-            dataItemName: 'create_time',
-            excelCaption: '建立时间',
-            appDEFieldId: 'create_time',
-            deuiactionGroup: {
-              uiactionGroupDetails: [
-                {
-                  actionLevel: 100,
-                  afterItemType: 'NONE',
-                  beforeItemType: 'NONE',
-                  caption: '取消关联',
-                  detailType: 'DEUIACTION',
-                  uiactionId: 'del_relation@idea',
-                  showCaption: true,
-                  showIcon: true,
-                  sysImage: {
-                    cssClass: 'fa fa-unlink',
-                    glyph: 'xf127@FontAwesome',
-                  },
-                  id: 'u93d6c8f',
-                },
-              ],
-              uniqueTag: 'Idea__Usr1227985234',
-              name: '取消关联',
-              id: 'usr1227985234',
-            },
-            valueFormat: 'YYYY-MM-DD',
+            clconvertMode: 'FRONT',
+            dataItemName: 'priority',
+            excelCaption: '优先级',
+            appCodeListId: 'plmweb.prodmgmt__idea_priority',
+            appDEFieldId: 'priority',
             valueType: 'SIMPLE',
             aggMode: 'NONE',
             align: 'LEFT',
             capLanguageRes: {
-              lanResTag: 'DEF.LNAME.CREATE_TIME',
+              lanResTag: 'DEF.LNAME.PRIORITY',
             },
-            caption: '建立时间',
-            codeName: 'create_time',
+            caption: '优先级',
+            codeName: 'priority',
             columnType: 'DEFGRIDCOLUMN',
             noPrivDisplayMode: 1,
             width: 150,
             widthUnit: 'PX',
             enableSort: true,
-            id: 'create_time',
+            id: 'priority',
           },
         ],
         degridDataItems: [
@@ -621,6 +592,12 @@ export default {
             valueType: 'SIMPLE',
             dataType: 25,
             id: 'assignee_name',
+          },
+          {
+            appDEFieldId: 'priority',
+            valueType: 'SIMPLE',
+            dataType: 25,
+            id: 'priority',
           },
           {
             format: 'YYYY-MM-DD',
@@ -689,7 +666,6 @@ export default {
         ],
         pagingSize: 20,
         sortMode: 'REMOTE',
-        enablePagingBar: true,
         singleSelect: true,
         fetchControlAction: {
           appDEMethodId: 'fetchidea_relation_idea',
@@ -711,7 +687,7 @@ export default {
         controlParam: {
           id: 'grid',
         },
-        modelId: '445109D6-5D98-4052-B066-6E540A55CD61',
+        modelId: '6a26f4af9a8fca306f0c9d135a5c1e3a',
         modelType: 'PSDEGRID',
         name: 'grid',
         id: 'plmweb.idea.idea_re_idea_grid',
@@ -750,14 +726,14 @@ export default {
         itemName: 'CHOOSE_DATA',
         logicTag: 'layoutpanel',
         logicType: 'APPDEUILOGIC',
-        appDEUILogicId: 'relation_idea_change',
+        appDEUILogicId: 'idea_relation_idea',
         appDataEntityId: 'plmweb.idea',
         triggerType: 'CTRLEVENT',
         id: 'idea_change',
       },
     ],
     controlParam: {},
-    modelId: '323F3436-3EED-4B1E-AE2C-16D0BC919CF1',
+    modelId: '99814d8e24e81fee905eed000cb54b4e',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0112196049',
@@ -770,7 +746,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '6399a672efc0b24b0bea331bc0d76891',
+  modelId: 'd63120c52df441853c38622e05791be2',
   modelType: 'PSAPPDEVIEW',
   name: 'ideaidea_re_idea_grid_view',
   id: 'plmweb.ideaidea_re_idea_grid_view',

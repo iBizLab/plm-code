@@ -22,7 +22,7 @@ export default {
   enableWorkflow: true,
   funcViewMode: 'REDIRECTVIEW',
   deviewCodeName: 'RedirectView',
-  deviewId: '5fea912c16569ef3e100dd424ddfb480',
+  deviewId: '58c91e45ec85f688a27ef6de67ec6bb5',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.DELIVERABLE',
@@ -64,7 +64,7 @@ export default {
   enableDP: true,
   redirectView: true,
   showCaptionBar: true,
-  modelId: 'f5b78670de5667fb0978bf40071b9f13',
+  modelId: '8168d2f63112136004b50959958f50a4',
   modelType: 'PSAPPDEVIEW',
   name: 'deliverableRedirectView',
   id: 'plmweb.deliverableredirectview',

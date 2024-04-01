@@ -13,6 +13,7 @@ import cn.ibizlab.util.domain.ImportResult;
 import cn.ibizlab.plm.core.testmgmt.domain.Library;
 import cn.ibizlab.plm.core.testmgmt.filter.LibrarySearchContext;
 import cn.ibizlab.plm.core.testmgmt.domain.LibraryMember;
+import cn.ibizlab.plm.core.testmgmt.domain.Review;
 import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
 import cn.ibizlab.plm.core.testmgmt.domain.TestPlan;
 import cn.ibizlab.plm.core.testmgmt.domain.TestSuite;
@@ -428,18 +429,33 @@ public interface LibraryService extends IService<Library> {
 
     /**
      * searchProject_relation_library
-     * 
+     * 通过测试计划中进行关联项目展示测试库
      * @param context
      * @return
      */
     Page<Library> searchProjectRelationLibrary(LibrarySearchContext context);
     /**
      * listProject_relation_library
-     * 
+     * 通过测试计划中进行关联项目展示测试库
      * @param context
      * @return
      */
     List<Library> listProjectRelationLibrary(LibrarySearchContext context);
+
+    /**
+     * searchReader
+     * 
+     * @param context
+     * @return
+     */
+    Page<Library> searchReader(LibrarySearchContext context);
+    /**
+     * listReader
+     * 
+     * @param context
+     * @return
+     */
+    List<Library> listReader(LibrarySearchContext context);
 
     /**
      * searchUser

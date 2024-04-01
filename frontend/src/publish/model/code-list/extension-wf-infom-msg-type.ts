@@ -40,18 +40,6 @@ export default {
       value: '128',
       id: 'entwt',
     },
-    {
-      codeName: 'USER',
-      text: '用户自定义',
-      value: '256',
-      id: 'user',
-    },
-    {
-      codeName: 'USER2',
-      text: '用户自定义2',
-      value: '512',
-      id: 'user2',
-    },
   ],
   textSeparator: '、',
   codeItemValueNumber: true,

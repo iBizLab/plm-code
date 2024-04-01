@@ -78,22 +78,6 @@ public class SprintSearchContext extends QueryWrapperContext<Sprint> {
     private String projectNameLIKE;
 
     /**
-     * 类别名称EQ
-     */
-    @JsonProperty("n_sprint_category_name_eq")
-    @JSONField(name = "n_sprint_category_name_eq")
-    @ApiModelProperty("类别名称EQ")
-    private String sprintCategoryNameEQ;
-
-    /**
-     * 类别名称LIKE
-     */
-    @JsonProperty("n_sprint_category_name_like")
-    @JSONField(name = "n_sprint_category_name_like")
-    @ApiModelProperty("类别名称LIKE")
-    private String sprintCategoryNameLIKE;
-
-    /**
      * 类别LIKE
      */
     @JsonProperty("n_categories_like")
@@ -133,21 +117,11 @@ public class SprintSearchContext extends QueryWrapperContext<Sprint> {
     @ApiModelProperty("父标识EQ")
     private String pidEQ;
 
-    /**
-     * 迭代类别标识EQ
-     */
-    @JsonProperty("n_sprint_category_id_eq")
-    @JSONField(name = "n_sprint_category_id_eq")
-    @ApiModelProperty("迭代类别标识EQ")
-    private String sprintCategoryIdEQ;
-
     @Override
     public void setContextParentKey(Serializable contextParentKey) {
         super.setContextParentKey(contextParentKey);
         if(Entities.PROJECT.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("project_id",contextParentKey);
-        if(Entities.SPRINT_CATEGORY.equals(this.getContextParentEntity())&&contextParentKey!=null)
-            this.getFilter().eq("sprint_category_id",contextParentKey);
         if(Entities.SPRINT.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("pid",contextParentKey);
     }
