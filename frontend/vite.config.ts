@@ -136,6 +136,13 @@ export default defineConfig({
           return path.replace('/api/', '/');
         },
       },
+      '/api/ibizplm__plmweb/ibizutil': {
+        target: 'http://127.0.0.1:30086',
+        changeOrigin: true,
+        rewrite(path) {
+           return path.replace('/api/', '/');
+        },
+      },
       '/api/ibizplm__plmweb/portal/mqtt/mqtt': {
         target: 'ws://127.0.0.1:30086',
         changeOrigin: true,
