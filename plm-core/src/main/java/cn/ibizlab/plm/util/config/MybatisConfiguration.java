@@ -4,21 +4,22 @@
 package cn.ibizlab.plm.util.config;
 
 import cn.ibizlab.util.db.dialect.MySqlDialect;
+import cn.ibizlab.util.filter.DbTypeContextHolder;
 import cn.ibizlab.util.helper.UniqueNameGenerator;
+import com.alibaba.druid.pool.DruidDataSource;
+import com.baomidou.dynamic.datasource.DynamicRoutingDataSource;
+import com.baomidou.dynamic.datasource.ds.ItemDataSource;
+import com.baomidou.dynamic.datasource.toolkit.DynamicDataSourceContextHolder;
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
-import com.baomidou.mybatisplus.extension.toolkit.JdbcUtils;
 import org.apache.ibatis.mapping.DatabaseIdProvider;
 import org.apache.ibatis.mapping.VendorDatabaseIdProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.Properties;
 
 /**
@@ -52,31 +53,45 @@ public class MybatisConfiguration {
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor(DataSource dataSource) {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
+        DbTypeContextHolder.register(new DbTypeContextHolder.DbTypeContext() {
+            @Override
+            public void init(DataSource dataSource) {
+                if(dataSource instanceof DynamicRoutingDataSource){
+                    ((DynamicRoutingDataSource) dataSource).getCurrentDataSources().entrySet().forEach(
+                            item->{
+                                if(item.getValue() instanceof ItemDataSource) {
+                                   push(item.getKey(), getDbType(((ItemDataSource) item.getValue()).getDataSource()));
+                                }
+                            }
+                    );
+                }
+                else
+                    push(getDbType(dataSource));
+            }
+            @Override
+            public DbType get() {
+                return peek(DynamicDataSourceContextHolder.peek());
+            }
+        }, dataSource);
         PaginationInnerInterceptor paginationInnerInterceptor = new PaginationInnerInterceptor();
         initDialect(dataSource,paginationInnerInterceptor);
         interceptor.addInnerInterceptor(paginationInnerInterceptor);
         return interceptor;
     }
 
-    public void initDialect(DataSource dataSource, PaginationInnerInterceptor paginationInnerInterceptor) {
-        Connection connection = null;
-        try {
-            connection = dataSource.getConnection();
-            DbType dbType = JdbcUtils.getDbType(connection.getMetaData().getURL());
-            if (dbType == DbType.MYSQL) {
-                Properties properties = new Properties();
-                properties.put("dialect", MySqlDialect.class.getCanonicalName());
-                paginationInnerInterceptor.setProperties(properties);
-            }
-        } catch (SQLException e) {
+    public DbType getDbType(DataSource dataSource) {
+        if (dataSource instanceof DruidDataSource) {
+            return DbType.getDbType(((DruidDataSource) dataSource).getDbType());
+        }
+        return DbTypeContextHolder.getDbType(dataSource);
+    }
 
-        } finally {
-            try {
-                if (connection != null && !connection.isClosed()) {
-                    connection.close();
-                }
-            } catch (SQLException e) {
-            }
+    public void initDialect(DataSource dataSource, PaginationInnerInterceptor paginationInnerInterceptor) {
+        DbType dbType = getDbType(dataSource);
+        if (dbType == DbType.MYSQL) {
+            Properties properties = new Properties();
+            properties.put("dialect", MySqlDialect.class.getCanonicalName());
+            paginationInnerInterceptor.setProperties(properties);
         }
     }
     
