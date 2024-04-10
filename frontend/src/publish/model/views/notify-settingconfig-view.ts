@@ -1,4 +1,5 @@
 export default {
+  enableDirtyChecking: true,
   xdataControlName: 'form',
   loadDefault: true,
   deviewCodeName: 'config_view',

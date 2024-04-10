@@ -30,10 +30,13 @@ export default {
     },
     rootPanelItems: [
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '页面标题',
@@ -78,8 +81,10 @@ export default {
             id: 'view_header_left',
           },
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '工具栏',
@@ -143,8 +148,10 @@ export default {
         id: 'view_header',
       },
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
                 caption: '关系分页部件',
@@ -172,6 +179,7 @@ export default {
             id: 'view_tabexppanel',
           },
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
                 caption: '搜索表单',
@@ -199,6 +207,7 @@ export default {
             id: 'view_searchform',
           },
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
                 caption: '搜索栏',
@@ -226,6 +235,7 @@ export default {
             id: 'view_searchbar',
           },
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
                 rawItem: {

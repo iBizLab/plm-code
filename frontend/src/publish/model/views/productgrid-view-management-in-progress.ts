@@ -174,6 +174,7 @@ export default {
                 id: 'u4e994a6',
               },
             ],
+            appDataEntityId: 'plmweb.product',
             uniqueTag: 'Product__Usr1218213350',
             name: '进行中',
             id: 'usr1218213350',

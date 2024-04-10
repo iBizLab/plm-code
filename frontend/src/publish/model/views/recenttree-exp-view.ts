@@ -61,6 +61,7 @@ export default {
             getAppDEActionId: 'my_charge_entry',
             appDataEntityId: 'plmweb.recent',
             timer: 60000,
+            uniqueTag: 'Base__my_charge_entry',
             name: '我负责的事项',
             id: 'plmweb.base__my_charge_entry',
           },

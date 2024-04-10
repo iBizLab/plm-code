@@ -19,10 +19,13 @@ export default {
     },
     rootPanelItems: [
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '页面标题',
@@ -67,8 +70,10 @@ export default {
             id: 'view_header_left',
           },
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '搜索栏',
@@ -144,6 +149,7 @@ export default {
         id: 'view_header',
       },
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
             caption: '搜索表单',
@@ -171,6 +177,7 @@ export default {
         id: 'view_searchform',
       },
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
             caption: '表格',
@@ -353,6 +360,7 @@ export default {
                   id: 'u43f56f4',
                 },
               ],
+              appDataEntityId: 'plmweb.release',
               uniqueTag: 'Release__Usr0312161662',
               name: '主表格操作列',
               id: 'usr0312161662',

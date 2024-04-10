@@ -39,8 +39,10 @@ export default {
     },
     rootPanelItems: [
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
                 rawItem: {
@@ -217,12 +219,16 @@ export default {
           },
           rootPanelItems: [
             {
+              actionGroupExtractMode: 'ITEM',
               panelItems: [
                 {
+                  actionGroupExtractMode: 'ITEM',
                   panelItems: [
                     {
+                      actionGroupExtractMode: 'ITEM',
                       panelItems: [
                         {
+                          actionGroupExtractMode: 'ITEM',
                           panelItems: [
                             {
                               rawItem: {
@@ -348,8 +354,10 @@ export default {
                       id: 'container',
                     },
                     {
+                      actionGroupExtractMode: 'ITEM',
                       panelItems: [
                         {
+                          actionGroupExtractMode: 'ITEM',
                           panelItems: [
                             {
                               editor: {

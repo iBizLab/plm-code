@@ -1,4 +1,5 @@
 export default {
+  enableDirtyChecking: true,
   showDataInfoBar: true,
   xdataControlName: 'form',
   loadDefault: true,
@@ -45,10 +46,13 @@ export default {
     },
     rootPanelItems: [
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '页面标题',
@@ -93,8 +97,10 @@ export default {
             id: 'view_header_left',
           },
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '工具栏',
@@ -157,8 +163,10 @@ export default {
         id: 'view_header',
       },
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
                 caption: '表单',
@@ -174,8 +182,10 @@ export default {
                 id: 'form',
               },
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
+                    actionGroupExtractMode: 'ITEM',
                     panelItems: [
                       {
                         caption: '列表',
@@ -204,12 +214,16 @@ export default {
                     id: 'container2',
                   },
                   {
+                    actionGroupExtractMode: 'ITEM',
                     panelItems: [
                       {
+                        actionGroupExtractMode: 'ITEM',
                         panelItems: [
                           {
+                            actionGroupExtractMode: 'ITEM',
                             panelItems: [
                               {
+                                actionGroupExtractMode: 'ITEM',
                                 panelItems: [
                                   {
                                     editor: {
@@ -418,6 +432,7 @@ export default {
                         id: 'panelpart',
                       },
                       {
+                        actionGroupExtractMode: 'ITEM',
                         panelItems: [
                           {
                             editor: {
@@ -1070,6 +1085,7 @@ export default {
                                     id: 'u5832788',
                                   },
                                 ],
+                                appDataEntityId: 'plmweb.attachment',
                                 uniqueTag: 'Attachment__Usr0229502203',
                                 name: '附件表格操作列（仅下载）',
                                 id: 'usr0229502203',
@@ -1462,10 +1478,13 @@ export default {
           },
           rootPanelItems: [
             {
+              actionGroupExtractMode: 'ITEM',
               panelItems: [
                 {
+                  actionGroupExtractMode: 'ITEM',
                   panelItems: [
                     {
+                      actionGroupExtractMode: 'ITEM',
                       panelItems: [
                         {
                           editor: {
@@ -1580,6 +1599,7 @@ export default {
                       id: 'container1',
                     },
                     {
+                      actionGroupExtractMode: 'ITEM',
                       panelItems: [
                         {
                           actionType: 'UIACTION',
@@ -1700,6 +1720,7 @@ export default {
                   id: 'container',
                 },
                 {
+                  actionGroupExtractMode: 'ITEM',
                   panelItems: [
                     {
                       editor: {
@@ -1729,6 +1750,7 @@ export default {
                       id: 'field_text_dynamic1',
                     },
                     {
+                      actionGroupExtractMode: 'ITEM',
                       panelItems: [
                         {
                           editor: {

@@ -14,8 +14,10 @@ export default {
     },
     rootPanelItems: [
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
                 caption: '标题栏',
@@ -60,6 +62,7 @@ export default {
         id: 'view_header',
       },
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
             caption: '关系分页部件',
@@ -87,8 +90,10 @@ export default {
         id: 'container2',
       },
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             layout: {
               layout: 'FLEX',
             },
@@ -103,8 +108,10 @@ export default {
             id: 'view_tabexppanel_left',
           },
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     rawItem: {
@@ -138,6 +145,7 @@ export default {
                 id: 'view_content',
               },
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     actionType: 'UIACTION',
@@ -188,6 +196,7 @@ export default {
             id: 'container1',
           },
           {
+            actionGroupExtractMode: 'ITEM',
             layout: {
               layout: 'FLEX',
             },

@@ -131,8 +131,10 @@ export default {
         },
         rootPanelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     editor: {
@@ -169,6 +171,7 @@ export default {
                     id: 'field_image',
                   },
                   {
+                    actionGroupExtractMode: 'ITEM',
                     captionItemName: 'name',
                     panelItems: [
                       {
@@ -210,10 +213,13 @@ export default {
                         id: 'id',
                       },
                       {
+                        actionGroupExtractMode: 'ITEM',
                         panelItems: [
                           {
+                            actionGroupExtractMode: 'ITEM',
                             panelItems: [
                               {
+                                actionGroupExtractMode: 'ITEM',
                                 panelItems: [
                                   {
                                     rawItem: {
@@ -321,8 +327,10 @@ export default {
                             id: 'container',
                           },
                           {
+                            actionGroupExtractMode: 'ITEM',
                             panelItems: [
                               {
+                                actionGroupExtractMode: 'ITEM',
                                 panelItems: [
                                   {
                                     actionType: 'UIACTION',
@@ -391,10 +399,13 @@ export default {
                         id: 'container_grid',
                       },
                       {
+                        actionGroupExtractMode: 'ITEM',
                         panelItems: [
                           {
+                            actionGroupExtractMode: 'ITEM',
                             panelItems: [
                               {
+                                actionGroupExtractMode: 'ITEM',
                                 panelItems: [
                                   {
                                     rawItem: {
@@ -502,8 +513,10 @@ export default {
                             id: 'container3',
                           },
                           {
+                            actionGroupExtractMode: 'ITEM',
                             panelItems: [
                               {
+                                actionGroupExtractMode: 'ITEM',
                                 panelItems: [
                                   {
                                     actionType: 'UIACTION',
@@ -572,10 +585,13 @@ export default {
                         id: 'container_grid1',
                       },
                       {
+                        actionGroupExtractMode: 'ITEM',
                         panelItems: [
                           {
+                            actionGroupExtractMode: 'ITEM',
                             panelItems: [
                               {
+                                actionGroupExtractMode: 'ITEM',
                                 panelItems: [
                                   {
                                     rawItem: {
@@ -684,8 +700,10 @@ export default {
                             id: 'container8',
                           },
                           {
+                            actionGroupExtractMode: 'ITEM',
                             panelItems: [
                               {
+                                actionGroupExtractMode: 'ITEM',
                                 panelItems: [
                                   {
                                     actionType: 'NONE',
@@ -752,10 +770,13 @@ export default {
                         id: 'container_grid2',
                       },
                       {
+                        actionGroupExtractMode: 'ITEM',
                         panelItems: [
                           {
+                            actionGroupExtractMode: 'ITEM',
                             panelItems: [
                               {
+                                actionGroupExtractMode: 'ITEM',
                                 panelItems: [
                                   {
                                     rawItem: {
@@ -862,8 +883,10 @@ export default {
                             id: 'container12',
                           },
                           {
+                            actionGroupExtractMode: 'ITEM',
                             panelItems: [
                               {
+                                actionGroupExtractMode: 'ITEM',
                                 panelItems: [
                                   {
                                     actionType: 'UIACTION',
@@ -932,10 +955,13 @@ export default {
                         id: 'container_grid3',
                       },
                       {
+                        actionGroupExtractMode: 'ITEM',
                         panelItems: [
                           {
+                            actionGroupExtractMode: 'ITEM',
                             panelItems: [
                               {
+                                actionGroupExtractMode: 'ITEM',
                                 panelItems: [
                                   {
                                     rawItem: {
@@ -1042,8 +1068,10 @@ export default {
                             id: 'container16',
                           },
                           {
+                            actionGroupExtractMode: 'ITEM',
                             panelItems: [
                               {
+                                actionGroupExtractMode: 'ITEM',
                                 panelItems: [
                                   {
                                     actionType: 'NONE',

@@ -44,6 +44,7 @@ export default {
             id: 'u243d7d9',
           },
         ],
+        appDataEntityId: 'plmweb.board',
         uniqueTag: 'Board__Usr1225361038',
         name: '自填模式_界面行为组',
         id: 'usr1225361038',
@@ -57,8 +58,10 @@ export default {
         },
         rootPanelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     rawItem: {

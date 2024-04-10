@@ -20,10 +20,13 @@ export default {
     },
     rootPanelItems: [
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '搜索表单',
@@ -63,6 +66,7 @@ export default {
                 id: 'searchbar',
               },
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '工具栏',
@@ -109,8 +113,10 @@ export default {
             id: 'view_header_right',
           },
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '页面标题',
@@ -173,6 +179,7 @@ export default {
         id: 'view_header',
       },
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
             caption: '表格',

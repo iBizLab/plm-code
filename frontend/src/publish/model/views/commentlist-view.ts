@@ -30,10 +30,13 @@ export default {
     },
     rootPanelItems: [
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '页面标题',
@@ -78,8 +81,10 @@ export default {
             id: 'view_header_left',
           },
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '工具栏',
@@ -142,6 +147,7 @@ export default {
         id: 'view_header',
       },
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
             caption: '搜索表单',
@@ -169,6 +175,7 @@ export default {
         id: 'view_searchform',
       },
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
             caption: '列表',
@@ -282,10 +289,13 @@ export default {
           },
           rootPanelItems: [
             {
+              actionGroupExtractMode: 'ITEM',
               panelItems: [
                 {
+                  actionGroupExtractMode: 'ITEM',
                   panelItems: [
                     {
+                      actionGroupExtractMode: 'ITEM',
                       panelItems: [
                         {
                           editor: {
@@ -399,6 +409,7 @@ export default {
                       id: 'container1',
                     },
                     {
+                      actionGroupExtractMode: 'ITEM',
                       panelItems: [
                         {
                           actionType: 'UIACTION',
@@ -537,6 +548,7 @@ export default {
                   id: 'container',
                 },
                 {
+                  actionGroupExtractMode: 'ITEM',
                   panelItems: [
                     {
                       editor: {
@@ -566,6 +578,7 @@ export default {
                       id: 'field_text_dynamic2',
                     },
                     {
+                      actionGroupExtractMode: 'ITEM',
                       panelItems: [
                         {
                           editor: {

@@ -95,6 +95,7 @@ export default {
                           id: 'u23c0102',
                         },
                       ],
+                      appDataEntityId: 'plmweb.library_member',
                       uniqueTag: 'Library_member__Usr0311619181',
                       name: '跳转至成员设置',
                       id: 'usr0311619181',

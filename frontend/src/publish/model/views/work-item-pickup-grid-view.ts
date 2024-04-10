@@ -384,6 +384,7 @@ export default {
                   id: 'uc5eeb4c',
                 },
               ],
+              appDataEntityId: 'plmweb.project_member',
               uniqueTag: 'Project_member__Usr0104465165',
               name: '跳转至成员配置',
               id: 'usr0104465165',

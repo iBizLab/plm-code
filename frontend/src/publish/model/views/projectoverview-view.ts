@@ -42,6 +42,7 @@ export default {
           controls: [
             {
               portletAppView: {
+                enableDirtyChecking: true,
                 showDataInfoBar: true,
                 xdataControlName: 'form',
                 loadDefault: true,
@@ -600,6 +601,9 @@ export default {
                       id: '0',
                     },
                   ],
+                  dechartDataGrid: {
+                    id: '0',
+                  },
                   dechartLegend: {
                     legendPos: 'TOP',
                     showLegend: true,

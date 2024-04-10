@@ -1,5 +1,6 @@
 export default {
   markOpenDataMode: 'OPENDATA;EDITDATA;DISPLAYOPPERSON;NOTICERELOAD',
+  enableDirtyChecking: true,
   showDataInfoBar: true,
   xdataControlName: 'form',
   loadDefault: true,
@@ -40,10 +41,13 @@ export default {
     },
     rootPanelItems: [
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '页面标题',
@@ -88,8 +92,10 @@ export default {
             id: 'view_header_left',
           },
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '工具栏',
@@ -152,6 +158,7 @@ export default {
         id: 'view_header',
       },
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
             caption: '表单',
@@ -166,16 +173,22 @@ export default {
             id: 'form',
           },
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
+                    actionGroupExtractMode: 'ITEM',
                     panelItems: [
                       {
+                        actionGroupExtractMode: 'ITEM',
                         panelItems: [
                           {
+                            actionGroupExtractMode: 'ITEM',
                             panelItems: [
                               {
+                                actionGroupExtractMode: 'ITEM',
                                 panelItems: [
                                   {
                                     editor: {
@@ -398,12 +411,16 @@ export default {
                     id: 'container2',
                   },
                   {
+                    actionGroupExtractMode: 'ITEM',
                     panelItems: [
                       {
+                        actionGroupExtractMode: 'ITEM',
                         panelItems: [
                           {
+                            actionGroupExtractMode: 'ITEM',
                             panelItems: [
                               {
+                                actionGroupExtractMode: 'ITEM',
                                 panelItems: [
                                   {
                                     editor: {
@@ -607,8 +624,10 @@ export default {
                 id: 'container',
               },
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
+                    actionGroupExtractMode: 'ITEM',
                     panelItems: [
                       {
                         editor: {
@@ -990,6 +1009,7 @@ export default {
                             id: 'u4befff7',
                           },
                         ],
+                        appDataEntityId: 'plmweb.product_member',
                         uniqueTag: 'Product_member__Usr0311005787',
                         name: '跳转至成员设置',
                         id: 'usr0311005787',
@@ -1255,6 +1275,7 @@ export default {
                                   id: 'ufce83c9',
                                 },
                               ],
+                              appDataEntityId: 'plmweb.ticket',
                               uniqueTag: 'Ticket__Usr0110243653',
                               name: '新建附件',
                               id: 'usr0110243653',
@@ -1366,6 +1387,7 @@ export default {
                                             id: 'u44d00e2',
                                           },
                                         ],
+                                        appDataEntityId: 'plmweb.attachment',
                                         uniqueTag: 'Attachment__Usr0103721999',
                                         name: '附件表格操作列',
                                         id: 'usr0103721999',
@@ -1720,8 +1742,10 @@ export default {
                         ],
                         caption: '产品需求',
                         codeName: 'tabpanel1_idea',
+                        counterId: 'ticket_re_idea',
                         detailStyle: 'DEFAULT',
                         detailType: 'TABPAGE',
+                        appCounterRefId: 'f0644c4cea5377a9ed058ba47b49df60',
                         showCaption: true,
                         id: 'tabpanel1_idea',
                       },
@@ -1774,8 +1798,10 @@ export default {
                         ],
                         caption: '工作项',
                         codeName: 'tabpanel1_work_item',
+                        counterId: 'ticket_re_work_item',
                         detailStyle: 'DEFAULT',
                         detailType: 'TABPAGE',
+                        appCounterRefId: 'f0644c4cea5377a9ed058ba47b49df60',
                         showCaption: true,
                         id: 'tabpanel1_work_item',
                       },
@@ -1839,8 +1865,10 @@ export default {
                         ],
                         caption: '工单',
                         codeName: 'tabpanel1_ticket',
+                        counterId: 'ticket_re_ticket',
                         detailStyle: 'DEFAULT',
                         detailType: 'TABPAGE',
+                        appCounterRefId: 'f0644c4cea5377a9ed058ba47b49df60',
                         showCaption: true,
                         id: 'tabpanel1_ticket',
                       },
@@ -2129,6 +2157,7 @@ export default {
                                 id: 'u4befff7',
                               },
                             ],
+                            appDataEntityId: 'plmweb.product_member',
                             uniqueTag: 'Product_member__Usr0311005787',
                             name: '跳转至成员设置',
                             id: 'usr0311005787',
@@ -2526,6 +2555,7 @@ export default {
               getAppDEActionId: 'product_ticket_re_counters',
               appDataEntityId: 'plmweb.ticket',
               timer: 60000,
+              uniqueTag: 'product_ticket_re_counters',
               name: '产品工单关联分页计数器',
               id: 'plmweb.product_ticket_re_counters',
             },

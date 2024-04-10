@@ -19,10 +19,13 @@ export default {
     },
     rootPanelItems: [
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '页面标题',
@@ -52,6 +55,7 @@ export default {
                 id: 'view_captionbar',
               },
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     editor: {
@@ -132,8 +136,10 @@ export default {
             id: 'view_header_left',
           },
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '工具栏',
@@ -196,6 +202,7 @@ export default {
         id: 'view_header',
       },
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
             caption: '表格',
@@ -510,6 +517,7 @@ export default {
                   id: 'u0fd50fe',
                 },
               ],
+              appDataEntityId: 'plmweb.customer',
               uniqueTag: 'Customer__Usr0117237114',
               name: '取消关联',
               id: 'usr0117237114',

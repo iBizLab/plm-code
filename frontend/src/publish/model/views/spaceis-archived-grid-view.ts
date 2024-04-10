@@ -199,6 +199,7 @@ export default {
                 id: 'uee82576',
               },
             ],
+            appDataEntityId: 'plmweb.space',
             uniqueTag: 'Space__Usr0227073034',
             name: '已归档',
             id: 'usr0227073034',

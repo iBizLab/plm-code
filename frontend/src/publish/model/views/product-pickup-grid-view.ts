@@ -151,6 +151,7 @@ export default {
                 id: 'u2afbaad',
               },
             ],
+            appDataEntityId: 'plmweb.product',
             uniqueTag: 'Product__Usr1220913174',
             name: '主表格操作列',
             id: 'usr1220913174',

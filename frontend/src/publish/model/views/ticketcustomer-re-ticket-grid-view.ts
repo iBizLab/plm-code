@@ -31,10 +31,13 @@ export default {
     },
     rootPanelItems: [
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '页面标题',
@@ -64,6 +67,7 @@ export default {
                 id: 'view_captionbar',
               },
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     editor: {
@@ -144,8 +148,10 @@ export default {
             id: 'view_header_left',
           },
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '工具栏',
@@ -208,6 +214,7 @@ export default {
         id: 'view_header',
       },
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
             caption: '表格',
@@ -263,6 +270,7 @@ export default {
                 id: 'uea2ee63',
               },
             ],
+            appDataEntityId: 'plmweb.recent',
             uniqueTag: 'Recent__Usr0202267187',
             name: '新建工单（客户）',
             id: 'usr0202267187',
@@ -565,6 +573,7 @@ export default {
                   id: 'uef56f7c',
                 },
               ],
+              appDataEntityId: 'plmweb.ticket',
               uniqueTag: 'Ticket__Usr0204918890',
               name: '客户取消关联',
               id: 'usr0204918890',

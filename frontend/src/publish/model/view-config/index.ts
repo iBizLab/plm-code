@@ -375,6 +375,7 @@ import releaseupdate_view from './releaseupdate-view';
 import projecttab_exp_view_management from './projecttab-exp-view-management';
 import work_item_typeglobal_setting_view_scrum from './work-item-typeglobal-setting-view-scrum';
 import work_itemchange_assignee_view from './work-itemchange-assignee-view';
+import userInfoCustomView from './user-info-custom-view';
 import ideaidea_re_idea_grid_view from './ideaidea-re-idea-grid-view';
 import workloadcalendar_idea_management_grid_view from './workloadcalendar-idea-management-grid-view';
 import ticketmain_view from './ticketmain-view';
@@ -1930,6 +1931,10 @@ export async function initViewConfig(): Promise<void> {
   ibiz.hub.config.view.set(
     'plmweb.work_itemchange_assignee_view',
     work_itemchange_assignee_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.userinfocustomview',
+    userInfoCustomView as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.ideaidea_re_idea_grid_view',

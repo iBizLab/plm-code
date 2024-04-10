@@ -435,6 +435,7 @@ export default {
                 id: 'u2090df1',
               },
             ],
+            appDataEntityId: 'plmweb.portfolio',
             uniqueTag: 'Portfolio__Usr0229938625',
             name: '项目集表格操作列',
             id: 'usr0229938625',

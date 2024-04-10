@@ -45,7 +45,7 @@
     "@imengyu/vue3-context-menu": "../js/@imengyu/vue3-context-menu/1.3.3/index.system.min.js",
     "@ibiz-template-plugin/ai-chat": "../js/@ibiz-template-plugin/ai-chat/0.0.1/index.system.min.js",
     "@antv/x6": "../js/@antv/x6/2.15.5/index.system.min.js",
-    "@ibiz-template-plugin/gantt": "../js/@ibiz-template-plugin/gantt/0.1.3-alpha.23/index.system.min.js"
+    "@ibiz-template-plugin/gantt": "../js/@ibiz-template-plugin/gantt/0.1.3-alpha.46/index.system.min.js"
   },
   "styles": {
     "@ibiz-template/vue3-components": "../js/@ibiz-template/vue3-components/index.min.css",
@@ -56,7 +56,7 @@
     "cherry-markdown": "../js/cherry-markdown/0.8.26/cherry-markdown.min.css",
     "@imengyu/vue3-context-menu": "../js/@imengyu/vue3-context-menu/1.3.3/index.min.css",
     "@antv/x6": "../js/@antv/x6/2.15.5/index.min.css",
-    "@ibiz-template-plugin/gantt": "../js/@ibiz-template-plugin/gantt/0.1.3-alpha.23/index.min.css",
+    "@ibiz-template-plugin/gantt": "../js/@ibiz-template-plugin/gantt/0.1.3-alpha.46/index.min.css",
     "vue-grid-layout": "../js/vue-grid-layout/3.0.0-beta1/index.min.css"
   }
 }

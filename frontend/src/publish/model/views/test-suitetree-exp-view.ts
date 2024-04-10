@@ -417,6 +417,7 @@ export default {
               allowDrop: true,
               allowEditText: true,
               allowOrder: true,
+              enableRowEdit: true,
               name: '子模块',
               id: 'node_3',
             },

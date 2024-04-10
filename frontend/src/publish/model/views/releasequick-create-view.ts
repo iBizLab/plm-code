@@ -1,4 +1,5 @@
 export default {
+  enableDirtyChecking: true,
   showDataInfoBar: true,
   xdataControlName: 'form',
   loadDefault: true,
@@ -213,6 +214,7 @@ export default {
                       id: 'u3fee786',
                     },
                   ],
+                  appDataEntityId: 'plmweb.project',
                   uniqueTag: 'Project__Usr1221520658',
                   name: '自填模式行为组',
                   id: 'usr1221520658',

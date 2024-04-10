@@ -25,10 +25,13 @@ export default {
     },
     rootPanelItems: [
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '页面标题',
@@ -58,6 +61,7 @@ export default {
                 id: 'view_captionbar',
               },
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     editor: {
@@ -138,8 +142,10 @@ export default {
             id: 'view_header_left',
           },
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '工具栏',
@@ -202,6 +208,7 @@ export default {
         id: 'view_header',
       },
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
             caption: '表格',
@@ -232,6 +239,7 @@ export default {
         id: 'view_content',
       },
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
             editor: {
@@ -549,6 +557,7 @@ export default {
                   id: 'u0d3e2ae',
                 },
               ],
+              appDataEntityId: 'plmweb.deliverable',
               uniqueTag: 'Deliverable__Usr0122603791',
               name: '交付目标_操作列',
               id: 'usr0122603791',

@@ -173,6 +173,7 @@ export default {
                 id: 'ue7bc021',
               },
             ],
+            appDataEntityId: 'plmweb.product',
             uniqueTag: 'Product__Usr1218619865',
             name: '已归档',
             id: 'usr1218619865',

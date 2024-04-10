@@ -19,10 +19,13 @@ export default {
     },
     rootPanelItems: [
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '页面标题',
@@ -52,6 +55,7 @@ export default {
                 id: 'view_captionbar',
               },
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     editor: {
@@ -132,8 +136,10 @@ export default {
             id: 'view_header_left',
           },
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '工具栏',
@@ -196,6 +202,7 @@ export default {
         id: 'view_header',
       },
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
             caption: '表格',
@@ -251,6 +258,7 @@ export default {
                 id: 'ua2b3bbd',
               },
             ],
+            appDataEntityId: 'plmweb.recent',
             uniqueTag: 'Recent__Usr0122130784',
             name: '新建测试用例',
             id: 'usr0122130784',
@@ -533,6 +541,7 @@ export default {
                   id: 'u08d9a95',
                 },
               ],
+              appDataEntityId: 'plmweb.test_case',
               uniqueTag: 'Test_case__Usr1227538660',
               name: '取消关联',
               id: 'usr1227538660',

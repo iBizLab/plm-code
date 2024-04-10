@@ -210,6 +210,7 @@ export default {
                 id: 'ua447adb',
               },
             ],
+            appDataEntityId: 'plmweb.product_member',
             uniqueTag: 'Product_member__Usr1220692644',
             name: '成员删除',
             id: 'usr1220692644',

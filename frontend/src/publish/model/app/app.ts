@@ -1897,6 +1897,7 @@ export default {
       },
       control: {
         portletAppView: {
+          enableDirtyChecking: true,
           showDataInfoBar: true,
           xdataControlName: 'form',
           loadDefault: true,
@@ -2443,6 +2444,9 @@ export default {
                 id: '0',
               },
             ],
+            dechartDataGrid: {
+              id: '0',
+            },
             dechartLegend: {
               legendPos: 'TOP',
               showLegend: true,
@@ -3019,6 +3023,9 @@ export default {
                 id: '0',
               },
             ],
+            dechartDataGrid: {
+              id: '0',
+            },
             dechartLegend: {
               legendPos: 'BOTTOM',
               showLegend: true,
@@ -3168,10 +3175,13 @@ export default {
             },
             rootPanelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
+                    actionGroupExtractMode: 'ITEM',
                     panelItems: [
                       {
+                        actionGroupExtractMode: 'ITEM',
                         panelItems: [
                           {
                             caption: '页面标题',
@@ -3216,8 +3226,10 @@ export default {
                     id: 'view_header_left',
                   },
                   {
+                    actionGroupExtractMode: 'ITEM',
                     panelItems: [
                       {
+                        actionGroupExtractMode: 'ITEM',
                         layout: {
                           align: 'center',
                           layout: 'FLEX',
@@ -3267,6 +3279,7 @@ export default {
                 id: 'view_header',
               },
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '表格',
@@ -3598,10 +3611,13 @@ export default {
             },
             rootPanelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
+                    actionGroupExtractMode: 'ITEM',
                     panelItems: [
                       {
+                        actionGroupExtractMode: 'ITEM',
                         panelItems: [
                           {
                             caption: '页面标题',
@@ -3646,8 +3662,10 @@ export default {
                     id: 'view_header_left',
                   },
                   {
+                    actionGroupExtractMode: 'ITEM',
                     panelItems: [
                       {
+                        actionGroupExtractMode: 'ITEM',
                         layout: {
                           align: 'center',
                           layout: 'FLEX',
@@ -3697,6 +3715,7 @@ export default {
                 id: 'view_header',
               },
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '表格',
@@ -4207,6 +4226,7 @@ export default {
                                 id: 'u3fee786',
                               },
                             ],
+                            appDataEntityId: 'plmweb.project',
                             uniqueTag: 'Project__Usr1221520658',
                             name: '自填模式行为组',
                             id: 'usr1221520658',
@@ -4396,10 +4416,13 @@ export default {
             },
             rootPanelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
+                    actionGroupExtractMode: 'ITEM',
                     panelItems: [
                       {
+                        actionGroupExtractMode: 'ITEM',
                         panelItems: [
                           {
                             caption: '页面标题',
@@ -4444,8 +4467,10 @@ export default {
                     id: 'view_header_left',
                   },
                   {
+                    actionGroupExtractMode: 'ITEM',
                     panelItems: [
                       {
+                        actionGroupExtractMode: 'ITEM',
                         layout: {
                           align: 'center',
                           layout: 'FLEX',
@@ -4495,6 +4520,7 @@ export default {
                 id: 'view_header',
               },
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '表格',
@@ -4993,10 +5019,13 @@ export default {
             },
             rootPanelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
+                    actionGroupExtractMode: 'ITEM',
                     panelItems: [
                       {
+                        actionGroupExtractMode: 'ITEM',
                         panelItems: [
                           {
                             caption: '页面标题',
@@ -5041,8 +5070,10 @@ export default {
                     id: 'view_header_left',
                   },
                   {
+                    actionGroupExtractMode: 'ITEM',
                     panelItems: [
                       {
+                        actionGroupExtractMode: 'ITEM',
                         layout: {
                           align: 'center',
                           layout: 'FLEX',
@@ -5092,6 +5123,7 @@ export default {
                 id: 'view_header',
               },
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '表格',
@@ -5869,10 +5901,13 @@ export default {
             },
             rootPanelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
+                    actionGroupExtractMode: 'ITEM',
                     panelItems: [
                       {
+                        actionGroupExtractMode: 'ITEM',
                         panelItems: [
                           {
                             caption: '页面标题',
@@ -5917,8 +5952,10 @@ export default {
                     id: 'view_header_left',
                   },
                   {
+                    actionGroupExtractMode: 'ITEM',
                     panelItems: [
                       {
+                        actionGroupExtractMode: 'ITEM',
                         layout: {
                           align: 'center',
                           layout: 'FLEX',
@@ -5968,6 +6005,7 @@ export default {
                 id: 'view_header',
               },
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '表格',
@@ -6478,6 +6516,7 @@ export default {
                                 id: 'u3fee786',
                               },
                             ],
+                            appDataEntityId: 'plmweb.project',
                             uniqueTag: 'Project__Usr1221520658',
                             name: '自填模式行为组',
                             id: 'usr1221520658',
@@ -6671,10 +6710,13 @@ export default {
             },
             rootPanelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
+                    actionGroupExtractMode: 'ITEM',
                     panelItems: [
                       {
+                        actionGroupExtractMode: 'ITEM',
                         panelItems: [
                           {
                             caption: '页面标题',
@@ -6719,8 +6761,10 @@ export default {
                     id: 'view_header_left',
                   },
                   {
+                    actionGroupExtractMode: 'ITEM',
                     panelItems: [
                       {
+                        actionGroupExtractMode: 'ITEM',
                         layout: {
                           align: 'center',
                           layout: 'FLEX',
@@ -6770,6 +6814,7 @@ export default {
                 id: 'view_header',
               },
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '表格',
@@ -7105,10 +7150,13 @@ export default {
             },
             rootPanelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
+                    actionGroupExtractMode: 'ITEM',
                     panelItems: [
                       {
+                        actionGroupExtractMode: 'ITEM',
                         panelItems: [
                           {
                             caption: '页面标题',
@@ -7153,8 +7201,10 @@ export default {
                     id: 'view_header_left',
                   },
                   {
+                    actionGroupExtractMode: 'ITEM',
                     panelItems: [
                       {
+                        actionGroupExtractMode: 'ITEM',
                         layout: {
                           align: 'center',
                           layout: 'FLEX',
@@ -7204,6 +7254,7 @@ export default {
                 id: 'view_header',
               },
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '表格',
@@ -7706,10 +7757,13 @@ export default {
             },
             rootPanelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
+                    actionGroupExtractMode: 'ITEM',
                     panelItems: [
                       {
+                        actionGroupExtractMode: 'ITEM',
                         panelItems: [
                           {
                             caption: '页面标题',
@@ -7754,8 +7808,10 @@ export default {
                     id: 'view_header_left',
                   },
                   {
+                    actionGroupExtractMode: 'ITEM',
                     panelItems: [
                       {
+                        actionGroupExtractMode: 'ITEM',
                         layout: {
                           align: 'center',
                           layout: 'FLEX',
@@ -7805,6 +7861,7 @@ export default {
                 id: 'view_header',
               },
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '表格',
@@ -8395,6 +8452,7 @@ export default {
   appFolder: 'plmweb',
   appMode: 'CLOUDHUBAPP',
   appVersion: '1.0.0.0',
+  caption: '产品生命周期管理系统',
   codeName: 'plmweb',
   dynaSysMode: 1,
   engineVer: 240,
@@ -8403,11 +8461,10 @@ export default {
   pkgcodeName: 'plmweb',
   serviceCodeName: 'plmweb',
   sysCodeName: 'iBizPLM',
+  title: 'PLM',
   enableServiceAPIDTO: true,
   enableUIModelEx: true,
   useServiceApi: true,
-  title: 'PLM',
-  caption: '产品生命周期管理系统',
   userParam: {
     enableMqtt: 'true',
     DefaultOSSCat: 'plm',

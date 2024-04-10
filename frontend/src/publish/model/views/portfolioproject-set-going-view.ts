@@ -170,6 +170,7 @@ export default {
                 id: 'u1975dc7',
               },
             ],
+            appDataEntityId: 'plmweb.portfolio',
             uniqueTag: 'Portfolio__Usr0306252974',
             name: '项目集进行中_行为组',
             id: 'usr0306252974',

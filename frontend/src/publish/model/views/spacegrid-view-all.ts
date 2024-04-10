@@ -251,6 +251,7 @@ export default {
                 id: 'uea69d99',
               },
             ],
+            appDataEntityId: 'plmweb.space',
             uniqueTag: 'Space__Usr0227253924',
             name: '空间操作列',
             id: 'usr0227253924',

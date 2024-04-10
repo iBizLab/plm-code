@@ -13,14 +13,19 @@ export default {
     },
     rootPanelItems: [
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
+                    actionGroupExtractMode: 'ITEM',
                     panelItems: [
                       {
+                        actionGroupExtractMode: 'ITEM',
                         panelItems: [
                           {
                             caption: '表单',
@@ -72,6 +77,7 @@ export default {
                     id: 'container_group1',
                   },
                   {
+                    actionGroupExtractMode: 'ITEM',
                     panelItems: [
                       {
                         caption: '表格',
@@ -136,10 +142,13 @@ export default {
             id: 'container_scroll_main',
           },
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
+                    actionGroupExtractMode: 'ITEM',
                     panelItems: [
                       {
                         caption: '图表',
@@ -170,8 +179,10 @@ export default {
                     id: 'container_group2',
                   },
                   {
+                    actionGroupExtractMode: 'ITEM',
                     panelItems: [
                       {
+                        actionGroupExtractMode: 'ITEM',
                         panelItems: [
                           {
                             caption: '表单',
@@ -657,6 +668,7 @@ export default {
                   id: 'u0c56ad6',
                 },
               ],
+              appDataEntityId: 'plmweb.extend_log',
               uniqueTag: 'Extend_log__Usr0126003239',
               name: '界面行为组',
               id: 'usr0126003239',
@@ -816,6 +828,9 @@ export default {
             id: '0',
           },
         ],
+        dechartDataGrid: {
+          id: '0',
+        },
         dechartLegend: {
           showLegend: true,
           id: '0',

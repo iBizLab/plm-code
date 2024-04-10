@@ -19,10 +19,13 @@ export default {
     },
     rootPanelItems: [
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '页面标题',
@@ -52,6 +55,7 @@ export default {
                 id: 'view_captionbar',
               },
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     editor: {
@@ -132,8 +136,10 @@ export default {
             id: 'view_header_left',
           },
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '工具栏',
@@ -196,6 +202,7 @@ export default {
         id: 'view_header',
       },
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
             caption: '搜索表单',
@@ -223,6 +230,7 @@ export default {
         id: 'view_searchform',
       },
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
             caption: '表格',
@@ -483,6 +491,7 @@ export default {
                   id: 'u8fe5207',
                 },
               ],
+              appDataEntityId: 'plmweb.work_item',
               uniqueTag: 'Work_item__Usr1227606619',
               name: '取消关联',
               id: 'usr1227606619',
@@ -783,6 +792,7 @@ export default {
                         id: 'u3fee786',
                       },
                     ],
+                    appDataEntityId: 'plmweb.project',
                     uniqueTag: 'Project__Usr1221520658',
                     name: '自填模式行为组',
                     id: 'usr1221520658',

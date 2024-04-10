@@ -186,6 +186,7 @@ export default {
                 id: 'ub9bb800',
               },
             ],
+            appDataEntityId: 'plmweb.space',
             uniqueTag: 'Space__Usr0227660413',
             name: '已删除',
             id: 'usr0227660413',

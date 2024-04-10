@@ -19,12 +19,16 @@ export default {
     },
     rootPanelItems: [
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
+                    actionGroupExtractMode: 'ITEM',
                     panelItems: [
                       {
                         caption: '页面标题',
@@ -74,6 +78,7 @@ export default {
                 id: 'view_header',
               },
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     rawItem: {
@@ -111,6 +116,7 @@ export default {
                 id: 'view_tab_searchbar',
               },
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '关系分页部件',
@@ -142,6 +148,7 @@ export default {
                 id: 'view_tabexppanel',
               },
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     rawItem: {
@@ -191,6 +198,7 @@ export default {
             id: 'container1',
           },
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
                 rawItem: {

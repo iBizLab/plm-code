@@ -118,6 +118,7 @@ export default {
                 id: 'u9143dcb',
               },
             ],
+            appDataEntityId: 'plmweb.idea',
             uniqueTag: 'Idea__Usr1229641605',
             name: '恢复',
             id: 'usr1229641605',

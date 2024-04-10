@@ -178,6 +178,7 @@ export default {
                 id: 'u3c4ca85',
               },
             ],
+            appDataEntityId: 'plmweb.library',
             uniqueTag: 'Library__Usr1219849106',
             name: '已归档',
             id: 'usr1219849106',

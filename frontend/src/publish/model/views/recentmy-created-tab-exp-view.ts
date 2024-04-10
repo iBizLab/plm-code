@@ -23,21 +23,25 @@ export default {
       dedrtabPages: [
         {
           caption: '工作项',
+          enableMode: 'ALL',
           appViewId: 'plmweb.work_itemmy_created_grid_view',
           id: 'work_item',
         },
         {
           caption: '产品需求',
+          enableMode: 'ALL',
           appViewId: 'plmweb.ideamy_created_grid_view',
           id: 'idea',
         },
         {
           caption: '工单',
+          enableMode: 'ALL',
           appViewId: 'plmweb.ticketmy_created_grid_view',
           id: 'ticket',
         },
         {
           caption: '测试用例',
+          enableMode: 'ALL',
           appViewId: 'plmweb.test_casemy_craeted_grid_view',
           id: 'test_case',
         },
@@ -59,6 +63,7 @@ export default {
             getAppDEActionId: 'my_created_entry',
             appDataEntityId: 'plmweb.recent',
             timer: 60000,
+            uniqueTag: 'my_created_entry',
             name: '我创建的事项',
             id: 'plmweb.my_created_entry',
           },

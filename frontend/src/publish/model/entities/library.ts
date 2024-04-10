@@ -57,6 +57,7 @@ export default {
         },
         rootPanelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
                 editor: {

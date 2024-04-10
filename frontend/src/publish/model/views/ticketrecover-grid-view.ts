@@ -112,6 +112,7 @@ export default {
                 id: 'u24ed628',
               },
             ],
+            appDataEntityId: 'plmweb.ticket',
             uniqueTag: 'Ticket__Usr1228162074',
             name: '回收站工单恢复',
             id: 'usr1228162074',

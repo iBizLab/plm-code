@@ -200,6 +200,7 @@ export default {
                 id: 'u183e681',
               },
             ],
+            appDataEntityId: 'plmweb.space',
             uniqueTag: 'Space__Usr0227887014',
             name: '进行中',
             id: 'usr0227887014',

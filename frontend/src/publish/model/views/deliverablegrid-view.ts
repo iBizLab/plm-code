@@ -192,6 +192,7 @@ export default {
                 id: 'u87b84dd',
               },
             ],
+            appDataEntityId: 'plmweb.deliverable',
             uniqueTag: 'Deliverable__Usr0118491970',
             name: '交付物_操作列',
             id: 'usr0118491970',

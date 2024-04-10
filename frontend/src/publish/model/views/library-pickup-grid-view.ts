@@ -157,6 +157,7 @@ export default {
                 id: 'u39450b8',
               },
             ],
+            appDataEntityId: 'plmweb.library',
             uniqueTag: 'Library__Usr1220078717',
             name: '主表格操作列',
             id: 'usr1220078717',

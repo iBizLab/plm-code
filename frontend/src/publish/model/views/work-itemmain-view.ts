@@ -1,5 +1,6 @@
 export default {
   markOpenDataMode: 'OPENDATA;EDITDATA;DISPLAYOPPERSON;NOTICERELOAD',
+  enableDirtyChecking: true,
   showDataInfoBar: true,
   xdataControlName: 'form',
   loadDefault: true,
@@ -61,10 +62,13 @@ export default {
     },
     rootPanelItems: [
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '页面标题',
@@ -111,8 +115,10 @@ export default {
             id: 'view_header_left',
           },
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '工具栏',
@@ -175,6 +181,7 @@ export default {
         id: 'view_header',
       },
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
             caption: '表单',
@@ -189,14 +196,19 @@ export default {
             id: 'form',
           },
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
+                    actionGroupExtractMode: 'ITEM',
                     panelItems: [
                       {
+                        actionGroupExtractMode: 'ITEM',
                         panelItems: [
                           {
+                            actionGroupExtractMode: 'ITEM',
                             panelItems: [
                               {
                                 editor: {
@@ -423,8 +435,10 @@ export default {
                 id: 'container',
               },
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
+                    actionGroupExtractMode: 'ITEM',
                     panelItems: [
                       {
                         editor: {
@@ -827,6 +841,7 @@ export default {
                             id: 'uc5eeb4c',
                           },
                         ],
+                        appDataEntityId: 'plmweb.project_member',
                         uniqueTag: 'Project_member__Usr0104465165',
                         name: '跳转至成员配置',
                         id: 'usr0104465165',
@@ -1172,6 +1187,7 @@ export default {
                                   id: 'uaa6fcf7',
                                 },
                               ],
+                              appDataEntityId: 'plmweb.work_item',
                               uniqueTag: 'Work_item__Usr0102014691',
                               name: '新建附件',
                               id: 'usr0102014691',
@@ -1283,6 +1299,7 @@ export default {
                                             id: 'u44d00e2',
                                           },
                                         ],
+                                        appDataEntityId: 'plmweb.attachment',
                                         uniqueTag: 'Attachment__Usr0103721999',
                                         name: '附件表格操作列',
                                         id: 'usr0103721999',
@@ -1638,8 +1655,10 @@ export default {
                         ],
                         caption: '产品需求',
                         codeName: 'tabpanel1_product_idea',
+                        counterId: 'work_item_re_idea',
                         detailStyle: 'DEFAULT',
                         detailType: 'TABPAGE',
+                        appCounterRefId: '80c6a87f18f8c72574d69d7391fa7db1',
                         showCaption: true,
                         id: 'tabpanel1_product_idea',
                       },
@@ -1671,8 +1690,10 @@ export default {
                         ],
                         caption: '子工作项',
                         codeName: 'tabpanel1_child',
+                        counterId: 'work_item_re_children',
                         detailStyle: 'DEFAULT',
                         detailType: 'TABPAGE',
+                        appCounterRefId: '80c6a87f18f8c72574d69d7391fa7db1',
                         showCaption: true,
                         id: 'tabpanel1_child',
                       },
@@ -1736,8 +1757,10 @@ export default {
                         ],
                         caption: '关联',
                         codeName: 'tabpanel1_relation',
+                        counterId: 'work_item_re_work_item',
                         detailStyle: 'DEFAULT',
                         detailType: 'TABPAGE',
+                        appCounterRefId: '80c6a87f18f8c72574d69d7391fa7db1',
                         showCaption: true,
                         id: 'tabpanel1_relation',
                       },
@@ -1766,8 +1789,10 @@ export default {
                         ],
                         caption: '交付物',
                         codeName: 'tabpanel1_deliverable',
+                        counterId: 'work_item_deliverable',
                         detailStyle: 'DEFAULT',
                         detailType: 'TABPAGE',
+                        appCounterRefId: '80c6a87f18f8c72574d69d7391fa7db1',
                         showCaption: true,
                         id: 'tabpanel1_deliverable',
                       },
@@ -1819,8 +1844,10 @@ export default {
                         ],
                         caption: '工单',
                         codeName: 'tabpanel1_ticket',
+                        counterId: 'work_item_re_ticket',
                         detailStyle: 'DEFAULT',
                         detailType: 'TABPAGE',
+                        appCounterRefId: '80c6a87f18f8c72574d69d7391fa7db1',
                         showCaption: true,
                         id: 'tabpanel1_ticket',
                       },
@@ -1873,8 +1900,10 @@ export default {
                         ],
                         caption: '测试',
                         codeName: 'tabpanel1_test_case',
+                        counterId: 'work_item_re_test_case',
                         detailStyle: 'DEFAULT',
                         detailType: 'TABPAGE',
+                        appCounterRefId: '80c6a87f18f8c72574d69d7391fa7db1',
                         showCaption: true,
                         id: 'tabpanel1_test_case',
                       },
@@ -2852,6 +2881,7 @@ export default {
                                     id: 'u3fee786',
                                   },
                                 ],
+                                appDataEntityId: 'plmweb.project',
                                 uniqueTag: 'Project__Usr1221520658',
                                 name: '自填模式行为组',
                                 id: 'usr1221520658',
@@ -3155,6 +3185,7 @@ export default {
               getAppDEActionId: 'work_item_re_counters',
               appDataEntityId: 'plmweb.work_item',
               timer: 60000,
+              uniqueTag: 'work_item_re_counters',
               name: '工作项关联分页计数器',
               id: 'plmweb.work_item_re_counters',
             },

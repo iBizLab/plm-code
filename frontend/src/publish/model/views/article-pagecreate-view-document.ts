@@ -1,4 +1,5 @@
 export default {
+  enableDirtyChecking: true,
   showDataInfoBar: true,
   xdataControlName: 'form',
   loadDefault: true,
@@ -257,8 +258,10 @@ export default {
                               },
                               rootPanelItems: [
                                 {
+                                  actionGroupExtractMode: 'ITEM',
                                   panelItems: [
                                     {
+                                      actionGroupExtractMode: 'ITEM',
                                       panelItems: [
                                         {
                                           rawItem: {
@@ -448,8 +451,10 @@ export default {
                               },
                               rootPanelItems: [
                                 {
+                                  actionGroupExtractMode: 'ITEM',
                                   panelItems: [
                                     {
+                                      actionGroupExtractMode: 'ITEM',
                                       panelItems: [
                                         {
                                           rawItem: {
@@ -724,6 +729,7 @@ export default {
                     id: 'u7f64bbb',
                   },
                 ],
+                appDataEntityId: 'plmweb.article_page',
                 uniqueTag: 'Article_page__Usr0228516811',
                 name: '添加附件',
                 id: 'usr0228516811',
@@ -835,6 +841,7 @@ export default {
                               id: 'u44d00e2',
                             },
                           ],
+                          appDataEntityId: 'plmweb.attachment',
                           uniqueTag: 'Attachment__Usr0103721999',
                           name: '附件表格操作列',
                           id: 'usr0103721999',

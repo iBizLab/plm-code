@@ -26,10 +26,13 @@ export default {
     },
     rootPanelItems: [
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     editor: {
@@ -56,6 +59,7 @@ export default {
                             id: 'u243d7d9',
                           },
                         ],
+                        appDataEntityId: 'plmweb.board',
                         uniqueTag: 'Board__Usr1225361038',
                         name: '自填模式_界面行为组',
                         id: 'usr1225361038',
@@ -120,8 +124,10 @@ export default {
             id: 'view_header_left',
           },
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '搜索栏',
@@ -199,6 +205,7 @@ export default {
         id: 'view_header',
       },
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
             caption: '搜索表单',
@@ -226,6 +233,7 @@ export default {
         id: 'view_searchform',
       },
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
             caption: '看板',
@@ -515,6 +523,7 @@ export default {
                         id: 'u3fee786',
                       },
                     ],
+                    appDataEntityId: 'plmweb.project',
                     uniqueTag: 'Project__Usr1221520658',
                     name: '自填模式行为组',
                     id: 'usr1221520658',
@@ -683,6 +692,7 @@ export default {
               id: 'uc9efa9c',
             },
           ],
+          appDataEntityId: 'plmweb.work_item',
           uniqueTag: 'Work_item__Usr1219683065',
           name: '工作项看板_分组界面行为组',
           id: 'usr1219683065',
@@ -695,12 +705,16 @@ export default {
           },
           rootPanelItems: [
             {
+              actionGroupExtractMode: 'ITEM',
               panelItems: [
                 {
+                  actionGroupExtractMode: 'ITEM',
                   panelItems: [
                     {
+                      actionGroupExtractMode: 'ITEM',
                       panelItems: [
                         {
+                          actionGroupExtractMode: 'ITEM',
                           panelItems: [
                             {
                               editor: {
@@ -826,6 +840,7 @@ export default {
                       id: 'container1',
                     },
                     {
+                      actionGroupExtractMode: 'ITEM',
                       layout: {
                         columnCount: 24,
                         layout: 'TABLE_24COL',
@@ -842,6 +857,7 @@ export default {
                       id: 'container3',
                     },
                     {
+                      actionGroupExtractMode: 'ITEM',
                       panelItems: [
                         {
                           editor: {
@@ -948,8 +964,10 @@ export default {
                   id: 'title',
                 },
                 {
+                  actionGroupExtractMode: 'ITEM',
                   panelItems: [
                     {
+                      actionGroupExtractMode: 'ITEM',
                       panelItems: [
                         {
                           editor: {
@@ -998,6 +1016,7 @@ export default {
                           id: 'state',
                         },
                         {
+                          actionGroupExtractMode: 'ITEM',
                           panelItems: [
                             {
                               rawItem: {
@@ -1110,8 +1129,10 @@ export default {
                       id: 'container6',
                     },
                     {
+                      actionGroupExtractMode: 'ITEM',
                       panelItems: [
                         {
+                          actionGroupExtractMode: 'ITEM',
                           panelItems: [
                             {
                               rawItem: {
@@ -1574,6 +1595,7 @@ export default {
                   id: 'u683f35b',
                 },
               ],
+              appDataEntityId: 'plmweb.work_item',
               uniqueTag: 'Work_item__Usr0226224309',
               name: '看板快捷操作',
               id: 'usr0226224309',

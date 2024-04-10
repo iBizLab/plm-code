@@ -1,5 +1,6 @@
 export default {
   markOpenDataMode: 'OPENDATA;EDITDATA;DISPLAYOPPERSON;NOTICERELOAD',
+  enableDirtyChecking: true,
   showDataInfoBar: true,
   xdataControlName: 'form',
   loadDefault: true,
@@ -40,10 +41,13 @@ export default {
     },
     rootPanelItems: [
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '页面标题',
@@ -88,8 +92,10 @@ export default {
             id: 'view_header_left',
           },
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '工具栏',
@@ -152,6 +158,7 @@ export default {
         id: 'view_header',
       },
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
             caption: '表单',
@@ -166,14 +173,19 @@ export default {
             id: 'form',
           },
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
+                    actionGroupExtractMode: 'ITEM',
                     panelItems: [
                       {
+                        actionGroupExtractMode: 'ITEM',
                         panelItems: [
                           {
+                            actionGroupExtractMode: 'ITEM',
                             panelItems: [
                               {
                                 editor: {
@@ -400,8 +412,10 @@ export default {
                 id: 'container',
               },
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
+                    actionGroupExtractMode: 'ITEM',
                     panelItems: [
                       {
                         editor: {
@@ -798,8 +812,10 @@ export default {
                         ],
                         caption: '工单',
                         codeName: 'tabpanel1_ticket',
+                        counterId: 'customer_re_ticket',
                         detailStyle: 'DEFAULT',
                         detailType: 'TABPAGE',
+                        appCounterRefId: 'b695fef9299747306f3a0917232df1ab',
                         showCaption: true,
                         id: 'tabpanel1_ticket',
                       },
@@ -871,6 +887,7 @@ export default {
                                 id: 'u4befff7',
                               },
                             ],
+                            appDataEntityId: 'plmweb.product_member',
                             uniqueTag: 'Product_member__Usr0311005787',
                             name: '跳转至成员设置',
                             id: 'usr0311005787',
@@ -1277,6 +1294,7 @@ export default {
               getAppDEActionId: 'product_customer_re_counters',
               appDataEntityId: 'plmweb.customer',
               timer: 60000,
+              uniqueTag: 'product_customer_re_counters',
               name: '产品客户关联分页计数器',
               id: 'plmweb.product_customer_re_counters',
             },

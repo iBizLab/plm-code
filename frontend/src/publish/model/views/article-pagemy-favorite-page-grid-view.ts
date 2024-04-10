@@ -139,6 +139,7 @@ export default {
                 id: 'ue3221c9',
               },
             ],
+            appDataEntityId: 'plmweb.article_page',
             uniqueTag: 'Article_page__Usr0229529277',
             name: '收藏表格',
             id: 'usr0229529277',

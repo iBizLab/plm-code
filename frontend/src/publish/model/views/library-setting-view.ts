@@ -1,4 +1,5 @@
 export default {
+  enableDirtyChecking: true,
   showDataInfoBar: true,
   xdataControlName: 'form',
   loadDefault: true,
@@ -142,18 +143,24 @@ export default {
         {
           dedrbarGroupId: 'usrdrgroup0319461775',
           caption: '回收站',
+          dataAccessAction: 'UPDATE',
+          enableMode: 'DEOPPRIV',
           appViewId: 'plmweb.test_caserecycle_grid_view',
           id: 'recycle',
         },
         {
           dedrbarGroupId: 'usrdrgroup0319986719',
           caption: '基本信息',
+          dataAccessAction: 'UPDATE',
+          enableMode: 'DEOPPRIV',
           appViewId: 'plmweb.libraryedit_view_base_info',
           id: 'base',
         },
         {
           dedrbarGroupId: 'usrdrgroup0319986719',
           caption: '高级设置',
+          dataAccessAction: 'UPDATE',
+          enableMode: 'DEOPPRIV',
           appViewId: 'plmweb.libraryedit_view_advanced_setting',
           id: 'adv',
         },

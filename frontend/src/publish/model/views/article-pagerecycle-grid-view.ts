@@ -183,6 +183,7 @@ export default {
                 id: 'ue29c4e3',
               },
             ],
+            appDataEntityId: 'plmweb.article_page',
             uniqueTag: 'Article_page__Usr0227832449',
             name: '回收站操作列',
             id: 'usr0227832449',

@@ -79,8 +79,10 @@ export default {
         },
         rootPanelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     editor: {
@@ -193,6 +195,7 @@ export default {
                 id: 'container',
               },
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     editor: {
@@ -241,6 +244,7 @@ export default {
                     id: 'auditinfo',
                   },
                   {
+                    actionGroupExtractMode: 'ITEM',
                     panelItems: [
                       {
                         rawItem: {

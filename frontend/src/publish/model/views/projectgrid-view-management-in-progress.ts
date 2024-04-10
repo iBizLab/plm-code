@@ -174,6 +174,7 @@ export default {
                 id: 'uc046f49',
               },
             ],
+            appDataEntityId: 'plmweb.project',
             uniqueTag: 'Project__Usr1219112932',
             name: '进行中',
             id: 'usr1219112932',

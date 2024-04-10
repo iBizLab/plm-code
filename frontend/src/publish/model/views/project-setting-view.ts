@@ -1,4 +1,5 @@
 export default {
+  enableDirtyChecking: true,
   showDataInfoBar: true,
   xdataControlName: 'form',
   loadDefault: true,
@@ -141,6 +142,8 @@ export default {
         {
           dedrbarGroupId: 'usrdrgroup0319559229',
           caption: '自动化规则',
+          dataAccessAction: 'UPDATE',
+          enableMode: 'DEOPPRIV',
           appViewId: 'plmweb.psdelogicflow_grid_view',
           navigateContexts: [
             {
@@ -162,12 +165,16 @@ export default {
         {
           dedrbarGroupId: 'usrdrgroup0319559229',
           caption: '回收站',
+          dataAccessAction: 'UPDATE',
+          enableMode: 'DEOPPRIV',
           appViewId: 'plmweb.work_itemrecycle_bin_grid_iew',
           id: 'recycle',
         },
         {
           dedrbarGroupId: 'usrdrgroup0319892622',
           caption: '工作项配置',
+          dataAccessAction: 'UPDATE',
+          enableMode: 'DEOPPRIV',
           appViewId: 'plmweb.work_item_typesetting_view_scrum',
           navigateParams: [
             {
@@ -181,12 +188,16 @@ export default {
         {
           dedrbarGroupId: 'usrdrgroup0319482876',
           caption: '基本信息',
+          dataAccessAction: 'UPDATE',
+          enableMode: 'DEOPPRIV',
           appViewId: 'plmweb.projectedit_view_base_information',
           id: 'base',
         },
         {
           dedrbarGroupId: 'usrdrgroup0319482876',
           caption: '高级设置',
+          dataAccessAction: 'UPDATE',
+          enableMode: 'DEOPPRIV',
           appViewId: 'plmweb.projectedit_view_advanced_setting',
           id: 'adv',
         },

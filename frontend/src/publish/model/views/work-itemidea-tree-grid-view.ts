@@ -1,4 +1,5 @@
 export default {
+  gridRowActiveMode: 1,
   loadDefault: true,
   deviewCodeName: 'idea_tree_grid_view',
   deviewId: '2d985026276b79c4e1efabd42793cb5e',
@@ -17,10 +18,13 @@ export default {
     },
     rootPanelItems: [
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '页面标题',
@@ -65,6 +69,7 @@ export default {
             id: 'view_header_left',
           },
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
                 actionType: 'UIACTION',
@@ -91,6 +96,7 @@ export default {
                 id: 'button_calluilogic',
               },
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '工具栏',
@@ -120,6 +126,7 @@ export default {
                 id: 'view_toolbar',
               },
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '搜索栏',
@@ -182,6 +189,7 @@ export default {
         id: 'view_header',
       },
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
             caption: '搜索表单',
@@ -209,6 +217,7 @@ export default {
         id: 'view_searchform',
       },
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
             caption: '树表格',
@@ -623,6 +632,7 @@ export default {
                   id: 'u1bc0e64',
                 },
               ],
+              appDataEntityId: 'plmweb.work_item',
               uniqueTag: 'Work_item__Usr0218300163',
               name: '树表格操作列',
               id: 'usr0218300163',
@@ -1059,6 +1069,7 @@ export default {
                     id: 'uc5eeb4c',
                   },
                 ],
+                appDataEntityId: 'plmweb.project_member',
                 uniqueTag: 'Project_member__Usr0104465165',
                 name: '跳转至成员配置',
                 id: 'usr0104465165',

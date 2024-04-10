@@ -10,10 +10,13 @@ export default {
     },
     rootPanelItems: [
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     rawItem: {
@@ -68,8 +71,10 @@ export default {
             id: 'container_scroll_main',
           },
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     rawItem: {
@@ -115,8 +120,10 @@ export default {
                     id: 'auth_userinfo',
                   },
                   {
+                    actionGroupExtractMode: 'ITEM',
                     panelItems: [
                       {
+                        actionGroupExtractMode: 'ITEM',
                         panelItems: [
                           {
                             rawItem: {
@@ -167,6 +174,7 @@ export default {
                         id: 'container1',
                       },
                       {
+                        actionGroupExtractMode: 'ITEM',
                         panelItems: [
                           {
                             actionType: 'NONE',
@@ -221,6 +229,7 @@ export default {
                         id: 'container2',
                       },
                       {
+                        actionGroupExtractMode: 'ITEM',
                         panelItems: [
                           {
                             actionType: 'NONE',
@@ -275,6 +284,7 @@ export default {
                         id: 'container3',
                       },
                       {
+                        actionGroupExtractMode: 'ITEM',
                         panelItems: [
                           {
                             actionType: 'NONE',
@@ -348,6 +358,7 @@ export default {
                     id: 'indexactions',
                   },
                   {
+                    actionGroupExtractMode: 'ITEM',
                     panelItems: [
                       {
                         rawItem: {

@@ -1,4 +1,5 @@
 export default {
+  enableDirtyChecking: true,
   showDataInfoBar: true,
   xdataControlName: 'form',
   loadDefault: true,
@@ -36,10 +37,13 @@ export default {
     },
     rootPanelItems: [
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '页面标题',
@@ -84,8 +88,10 @@ export default {
             id: 'view_header_left',
           },
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '工具栏',
@@ -148,6 +154,7 @@ export default {
         id: 'view_header',
       },
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
             caption: '表单',
@@ -177,6 +184,7 @@ export default {
         id: 'view_content',
       },
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
             actionType: 'UIACTION',
@@ -386,6 +394,7 @@ export default {
                           id: 'ufce83c9',
                         },
                       ],
+                      appDataEntityId: 'plmweb.ticket',
                       uniqueTag: 'Ticket__Usr0110243653',
                       name: '新建附件',
                       id: 'usr0110243653',
@@ -497,6 +506,7 @@ export default {
                                     id: 'u44d00e2',
                                   },
                                 ],
+                                appDataEntityId: 'plmweb.attachment',
                                 uniqueTag: 'Attachment__Usr0103721999',
                                 name: '附件表格操作列',
                                 id: 'usr0103721999',
@@ -947,6 +957,7 @@ export default {
                             id: 'u4befff7',
                           },
                         ],
+                        appDataEntityId: 'plmweb.product_member',
                         uniqueTag: 'Product_member__Usr0311005787',
                         name: '跳转至成员设置',
                         id: 'usr0311005787',

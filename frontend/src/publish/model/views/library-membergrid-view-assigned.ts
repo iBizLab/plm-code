@@ -218,6 +218,7 @@ export default {
                 id: 'ud1b4964',
               },
             ],
+            appDataEntityId: 'plmweb.library_member',
             uniqueTag: 'Library_member__Usr1220824792',
             name: '设置测试库成员',
             id: 'usr1220824792',

@@ -2322,6 +2322,10 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './work-item/work-itemchange-assignee-view/work-itemchange-assignee-view.vue'
           ),
       );
+    case 'userinfocustomview':
+      return defineAsyncComponent(
+        () => import('./user/user-info-custom-view/user-info-custom-view.vue'),
+      );
     case 'ideaidea_re_idea_grid_view':
       return defineAsyncComponent(
         () =>

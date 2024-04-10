@@ -1,4 +1,5 @@
 export default {
+  gridRowActiveMode: 1,
   loadDefault: true,
   deviewCodeName: 'TreeGridTestView',
   deviewId: 'f04ee0ff658aa330190d8fb5338ab209',
@@ -17,10 +18,13 @@ export default {
     },
     rootPanelItems: [
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '页面标题',
@@ -65,6 +69,7 @@ export default {
             id: 'view_header_left',
           },
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
                 actionType: 'UIACTION',
@@ -91,6 +96,7 @@ export default {
                 id: 'button_calluilogic',
               },
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '搜索栏',
@@ -153,8 +159,10 @@ export default {
         id: 'view_header',
       },
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
                 caption: '搜索表单',
@@ -196,6 +204,7 @@ export default {
         id: 'container1',
       },
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
             caption: '树表格',
@@ -470,6 +479,7 @@ export default {
                   id: 'u5825cf1',
                 },
               ],
+              appDataEntityId: 'plmweb.work_item',
               uniqueTag: 'Work_item__Usr0116435313',
               name: '测试树表格新建行',
               id: 'usr0116435313',
@@ -930,6 +940,7 @@ export default {
                     id: 'uc5eeb4c',
                   },
                 ],
+                appDataEntityId: 'plmweb.project_member',
                 uniqueTag: 'Project_member__Usr0104465165',
                 name: '跳转至成员配置',
                 id: 'usr0104465165',

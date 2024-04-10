@@ -1,4 +1,5 @@
 export default {
+  enableDirtyChecking: true,
   showDataInfoBar: true,
   xdataControlName: 'form',
   loadDefault: true,
@@ -146,12 +147,16 @@ export default {
         {
           dedrbarGroupId: 'usrdrgroup0319522564',
           caption: '基本信息',
+          dataAccessAction: 'UPDATE',
+          enableMode: 'DEOPPRIV',
           appViewId: 'plmweb.portfolioproject_edit_view',
           id: 'base',
         },
         {
           dedrbarGroupId: 'usrdrgroup0319522564',
           caption: '高级设置',
+          dataAccessAction: 'UPDATE',
+          enableMode: 'DEOPPRIV',
           appViewId: 'plmweb.portfolioproject_set_advanced_view',
           id: 'adv',
         },

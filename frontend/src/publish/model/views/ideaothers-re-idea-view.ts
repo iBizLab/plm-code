@@ -381,6 +381,7 @@ export default {
         },
         rootPanelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
                 editor: {
@@ -535,10 +536,13 @@ export default {
     },
     rootPanelItems: [
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '页面标题',
@@ -583,8 +587,10 @@ export default {
             id: 'view_header_left',
           },
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '工具栏',
@@ -647,10 +653,13 @@ export default {
         id: 'view_header',
       },
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '树导航栏',
@@ -682,6 +691,7 @@ export default {
                 id: 'container6',
               },
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     caption: '控件占位',
@@ -728,6 +738,7 @@ export default {
             id: 'container3',
           },
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
                 rawItem: {
@@ -799,6 +810,7 @@ export default {
         id: 'view_content',
       },
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
             actionType: 'UIACTION',

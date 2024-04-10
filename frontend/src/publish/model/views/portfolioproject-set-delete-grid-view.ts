@@ -170,6 +170,7 @@ export default {
                 id: 'u030ba10',
               },
             ],
+            appDataEntityId: 'plmweb.portfolio',
             uniqueTag: 'Portfolio__Usr0306756348',
             name: '项目集已删除_行为组',
             id: 'usr0306756348',

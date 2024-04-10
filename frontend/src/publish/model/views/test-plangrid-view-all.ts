@@ -190,6 +190,7 @@ export default {
                 id: 'u405a462',
               },
             ],
+            appDataEntityId: 'plmweb.test_plan',
             uniqueTag: 'Test_plan__Usr1220152730',
             name: '主表格操作列',
             id: 'usr1220152730',

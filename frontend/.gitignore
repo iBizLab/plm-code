@@ -11,6 +11,7 @@ node_modules
 dist/**
 dist-ssr/**
 *.local
+!public/**
 
 # Editor directories and files
 .idea
@@ -23,6 +24,3 @@ dist-ssr/**
 
 # rollup 插件包分析文件
 stats.html
-
-# 发布文件
-# src/publish/**

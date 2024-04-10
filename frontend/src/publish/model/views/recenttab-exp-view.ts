@@ -26,8 +26,10 @@ export default {
     },
     rootPanelItems: [
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
                 caption: '标题栏',
@@ -55,6 +57,7 @@ export default {
             id: 'view_captionbar',
           },
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
                 caption: '分页导航',
@@ -100,8 +103,10 @@ export default {
         id: 'view_header',
       },
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             layout: {
               layout: 'FLEX',
             },
@@ -116,8 +121,10 @@ export default {
             id: 'view_tabexppanel_left',
           },
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 layout: {
                   layout: 'FLEX',
                 },
@@ -132,6 +139,7 @@ export default {
                 id: 'view_tabexppanel_bottom',
               },
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     rawItem: {
@@ -181,6 +189,7 @@ export default {
             id: 'container1',
           },
           {
+            actionGroupExtractMode: 'ITEM',
             layout: {
               layout: 'FLEX',
             },

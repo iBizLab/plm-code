@@ -183,6 +183,7 @@ export default {
                 id: 'u7841db0',
               },
             ],
+            appDataEntityId: 'plmweb.product_plan',
             uniqueTag: 'Product_plan__Usr1228161361',
             name: '计划表格操作项',
             id: 'usr1228161361',

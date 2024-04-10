@@ -66,10 +66,13 @@ export default {
             },
             rootPanelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
+                    actionGroupExtractMode: 'ITEM',
                     panelItems: [
                       {
+                        actionGroupExtractMode: 'ITEM',
                         panelItems: [
                           {
                             editor: {
@@ -239,6 +242,7 @@ export default {
                         id: 'state_container',
                       },
                       {
+                        actionGroupExtractMode: 'ITEM',
                         panelItems: [
                           {
                             editor: {

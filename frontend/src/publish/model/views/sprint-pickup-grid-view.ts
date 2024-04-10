@@ -93,6 +93,7 @@ export default {
                 id: 'ufa3966e',
               },
             ],
+            appDataEntityId: 'plmweb.sprint',
             uniqueTag: 'Sprint__Usr1220815404',
             name: '主表格操作列',
             id: 'usr1220815404',

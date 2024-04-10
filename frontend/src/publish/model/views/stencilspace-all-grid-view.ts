@@ -232,6 +232,7 @@ export default {
                 id: 'u6fac85a',
               },
             ],
+            appDataEntityId: 'plmweb.stencil',
             uniqueTag: 'Stencil__Usr0312219795',
             name: '表格操作列',
             id: 'usr0312219795',

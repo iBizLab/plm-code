@@ -18,8 +18,10 @@ export default {
     },
     rootPanelItems: [
       {
+        actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
                 caption: '表单',
@@ -47,8 +49,10 @@ export default {
             id: 'view_form',
           },
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     actionType: 'UIACTION',
@@ -252,6 +256,7 @@ export default {
             id: 'view_drbar',
           },
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
                 rawItem: {

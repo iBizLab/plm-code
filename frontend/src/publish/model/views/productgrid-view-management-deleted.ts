@@ -160,6 +160,7 @@ export default {
                 id: 'u8eeeee5',
               },
             ],
+            appDataEntityId: 'plmweb.product',
             uniqueTag: 'Product__Usr1218960252',
             name: '已删除',
             id: 'usr1218960252',

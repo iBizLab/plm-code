@@ -252,6 +252,7 @@ export default {
                 id: 'u2fc4c44',
               },
             ],
+            appDataEntityId: 'plmweb.project',
             uniqueTag: 'Project__Usr1220492659',
             name: '主表格操作列',
             id: 'usr1220492659',

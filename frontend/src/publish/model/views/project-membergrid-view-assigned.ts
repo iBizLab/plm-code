@@ -225,6 +225,7 @@ export default {
                 id: 'u76763f7',
               },
             ],
+            appDataEntityId: 'plmweb.project_member',
             uniqueTag: 'Project_member__Usr1220055289',
             name: '项目成员配置',
             id: 'usr1220055289',

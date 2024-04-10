@@ -174,6 +174,7 @@ export default {
                 id: 'ue08bbc0',
               },
             ],
+            appDataEntityId: 'plmweb.project',
             uniqueTag: 'Project__Usr1219101638',
             name: '已归档',
             id: 'usr1219101638',

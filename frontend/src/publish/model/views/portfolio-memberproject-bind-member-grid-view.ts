@@ -226,6 +226,7 @@ export default {
                 id: 'u53f5978',
               },
             ],
+            appDataEntityId: 'plmweb.portfolio_member',
             uniqueTag: 'Portfolio_member__Usr0229758660',
             name: '成员删除',
             id: 'usr0229758660',

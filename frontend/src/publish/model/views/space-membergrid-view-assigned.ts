@@ -222,6 +222,7 @@ export default {
                 id: 'uafbf3eb',
               },
             ],
+            appDataEntityId: 'plmweb.space_member',
             uniqueTag: 'Space_member__Usr0227475921',
             name: '空间成员配置',
             id: 'usr0227475921',

@@ -198,6 +198,7 @@ export default {
                 id: 'u043ffc0',
               },
             ],
+            appDataEntityId: 'plmweb.psdelogic',
             uniqueTag: 'PSDELogic__Usr0118075954',
             name: '自动化规则表格列行为组',
             id: 'usr0118075954',

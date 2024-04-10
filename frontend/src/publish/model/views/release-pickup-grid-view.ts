@@ -65,6 +65,7 @@ export default {
                 id: 'u43f56f4',
               },
             ],
+            appDataEntityId: 'plmweb.release',
             uniqueTag: 'Release__Usr0312161662',
             name: '主表格操作列',
             id: 'usr0312161662',

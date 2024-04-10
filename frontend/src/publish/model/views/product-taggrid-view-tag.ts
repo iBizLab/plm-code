@@ -250,6 +250,7 @@ export default {
                 id: 'ub539582',
               },
             ],
+            appDataEntityId: 'plmweb.product_tag',
             uniqueTag: 'Product_tag__Usr1220692267',
             name: '标签编辑或删除',
             id: 'usr1220692267',

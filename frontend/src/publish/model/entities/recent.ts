@@ -34,6 +34,7 @@ export default {
             id: 'ub171561',
           },
         ],
+        appDataEntityId: 'plmweb.recent',
         uniqueTag: 'Recent__Usr0131214397',
         name: '新建子工作项',
         id: 'usr0131214397',
@@ -47,8 +48,10 @@ export default {
         },
         rootPanelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     editor: {
@@ -215,6 +218,7 @@ export default {
             id: 'uc95d0ba',
           },
         ],
+        appDataEntityId: 'plmweb.recent',
         uniqueTag: 'Recent__Usr0122481934',
         name: '新建需求',
         id: 'usr0122481934',
@@ -228,8 +232,10 @@ export default {
         },
         rootPanelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     editor: {
@@ -401,6 +407,7 @@ export default {
             id: 'ua2b3bbd',
           },
         ],
+        appDataEntityId: 'plmweb.recent',
         uniqueTag: 'Recent__Usr0122130784',
         name: '新建测试用例',
         id: 'usr0122130784',
@@ -414,8 +421,10 @@ export default {
         },
         rootPanelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     editor: {
@@ -582,6 +591,7 @@ export default {
             id: 'u71bc0ed',
           },
         ],
+        appDataEntityId: 'plmweb.recent',
         uniqueTag: 'Recent__Usr0122963508',
         name: '新建工单',
         id: 'usr0122963508',
@@ -595,8 +605,10 @@ export default {
         },
         rootPanelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     editor: {
@@ -763,6 +775,7 @@ export default {
             id: 'u5d97054',
           },
         ],
+        appDataEntityId: 'plmweb.recent',
         uniqueTag: 'Recent__Usr0121381902',
         name: '关联新建（工作项）',
         id: 'usr0121381902',
@@ -776,8 +789,10 @@ export default {
         },
         rootPanelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     editor: {
@@ -944,6 +959,7 @@ export default {
             id: 'u2f91358',
           },
         ],
+        appDataEntityId: 'plmweb.recent',
         uniqueTag: 'Recent__Usr0123910744',
         name: '新建缺陷',
         id: 'usr0123910744',
@@ -957,8 +973,10 @@ export default {
         },
         rootPanelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     editor: {
@@ -1125,6 +1143,7 @@ export default {
             id: 'uea2ee63',
           },
         ],
+        appDataEntityId: 'plmweb.recent',
         uniqueTag: 'Recent__Usr0202267187',
         name: '新建工单（客户）',
         id: 'usr0202267187',
@@ -1138,8 +1157,10 @@ export default {
         },
         rootPanelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     editor: {
@@ -1329,6 +1350,7 @@ export default {
             id: 'u070a942',
           },
         ],
+        appDataEntityId: 'plmweb.recent',
         uniqueTag: 'Recent__Usr0204231776',
         name: '新建缺陷(执行用例)',
         id: 'usr0204231776',
@@ -1342,8 +1364,10 @@ export default {
         },
         rootPanelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     editor: {
@@ -1510,6 +1534,7 @@ export default {
             id: 'ud87270b',
           },
         ],
+        appDataEntityId: 'plmweb.recent',
         uniqueTag: 'Recent__Usr0205909923',
         name: '新建工作项（测试用例）',
         id: 'usr0205909923',
@@ -1523,8 +1548,10 @@ export default {
         },
         rootPanelItems: [
           {
+            actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
+                actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
                     editor: {

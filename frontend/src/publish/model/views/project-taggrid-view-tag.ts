@@ -220,6 +220,7 @@ export default {
                 id: 'ue78c972',
               },
             ],
+            appDataEntityId: 'plmweb.project_tag',
             uniqueTag: 'Project_tag__Usr1219502352',
             name: '标签管理操作',
             id: 'usr1219502352',
