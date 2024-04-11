@@ -102,68 +102,100 @@ export default defineConfig({
   server: {
     proxy: {
       '/api/ibizplm__plmweb/uaa/': {
-        target: 'http://127.0.0.1:30086',
+        target: 'http://172.16.100.19:30086',
         changeOrigin: true,
         rewrite(path) {
           return path.replace('/api/', '/');
         },
       },
       '/api/ibizplm__plmweb/v7': {
-        target: 'http://127.0.0.1:30086',
+        target: 'http://172.16.100.19:30086',
         rewrite(path) {
           return path.replace('/api/', '/');
         },
         changeOrigin: true,
       },
       '/api/ibizplm__plmweb/extension': {
-        target: 'http://127.0.0.1:30086',
+        target: 'http://172.16.100.19:30086',
         changeOrigin: true,
         rewrite(path) {
           return path.replace('/api/', '/');
         },
       },
       '/api/ibizplm__plmweb/dictionaries': {
-        target: 'http://127.0.0.1:30086',
+        target: 'http://172.16.100.19:30086',
         changeOrigin: true,
         rewrite(path) {
           return path.replace('/api/', '/');
         },
       },
       '/api/ibizplm__plmweb/configs': {
-        target: 'http://127.0.0.1:30086',
+        target: 'http://172.16.100.19:30086',
+        changeOrigin: true,
+        rewrite(path) {
+          return path.replace('/api/', '/');
+        },
+      },
+      '/api/ibizplm__plmweb/portal': {
+        target: 'http://172.16.100.19:30086',
         changeOrigin: true,
         rewrite(path) {
           return path.replace('/api/', '/');
         },
       },
       '/api/ibizplm__plmweb/ibizutil': {
-        target: 'http://127.0.0.1:30086',
+        target: 'http://172.16.100.19:30086',
+        changeOrigin: true,
+        rewrite(path) {
+           return path.replace('/api/', '/');
+        },
+      },
+      '/api/ibizplm__plmweb/portal': {
+        target: 'http://nacos.ibizcloud.cn:30086',
         changeOrigin: true,
         rewrite(path) {
            return path.replace('/api/', '/');
         },
       },
       '/api/ibizplm__plmweb/portal/mqtt/mqtt': {
-        target: 'ws://127.0.0.1:30086',
+        target: 'ws://172.16.100.19:30086',
         changeOrigin: true,
         rewrite(path) {
           return path.replace('/api/', '/');
         },
       },
+
+      // 前端依赖网关代理的已启动的serviceRunner服务
+      //
+      // '/api/ibizplm__plmweb': {
+      //   target: 'http://172.16.100.19:30086',
+      //   changeOrigin: true,
+      //   rewrite(path) {
+      //     return path.replace('/api/', '/');
+      //   },
+      // },
+      //
+      ///////////////////////////////
+
+      // 前端依赖本地已启动的后台代码服务
+      //
       '/api/ibizplm__plmweb/appdata': {
-        target: 'http://127.0.0.1:18080',
+        target: 'http://172.16.100.19:18080',
         rewrite(path) {
           return path.replace('/api/ibizplm__plmweb', '/ibizplm');
         },
         changeOrigin: true,
       },
       '/api/ibizplm__plmweb': {
-        target: 'http://127.0.0.1:18080',
+        target: 'http://172.16.100.19:18080',
         rewrite(path) {
           return path.replace('/api/ibizplm__plmweb', '/ibizplm/serviceapi');
         },
         changeOrigin: true,
       },
+      //
+      ///////////////////////////////
+
     },
     cors: true,
     fs: {
