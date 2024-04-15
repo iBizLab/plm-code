@@ -6,6 +6,7 @@
 **/BootApplication.java
 **/application.yml
 **/SysDepartmentServiceImpl.java
+**/MybatisConfiguration.java
 pom.xml
 plm-core/pom.xml
 plm-serviceapi/pom.xml
@@ -17,3 +18,7 @@ Dockerfile-serviceapi
 **/permission/**
 **/msgtempl/**
 **/logic/**
+**/SearchComment.java
+**/SearchAttachment.java
+**/SystemExtensionNotifySettingFeignClient.java
+**/AppSyncJob

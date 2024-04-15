@@ -1,0 +1,253 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.6.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <changeSet author="mac (generated)" id="1713154700063-3">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <tableExists tableName="ACTIVITY" />
+            </not>
+        </preConditions>
+        <createTable tableName="ACTIVITY">
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ACTIVITY_ID"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="TIMESTAMP"/>
+            <column name="UPDATE_TIME" type="TIMESTAMP"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="AUDITINFO" type="CLOB"/>
+            <column name="OBJECTID" type="VARCHAR(100)"/>
+            <column name="OPPERSONID" type="VARCHAR(100)"/>
+            <column name="OPPERSONNAME" type="VARCHAR(100)"/>
+            <column name="IPADDRESS" type="VARCHAR(500)"/>
+            <column name="AUDITTYPE" type="VARCHAR(100)"/>
+            <column name="OBJECTTYPE" type="VARCHAR(100)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1713154700063-4">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <tableExists tableName="TEST_CASE_TEMPLATE" />
+            </not>
+        </preConditions>
+        <createTable tableName="TEST_CASE_TEMPLATE">
+            <column name="TITLE" type="VARCHAR(500)"/>
+            <column name="LEVEL" type="VARCHAR(60)"/>
+            <column name="TYPE" type="VARCHAR(60)"/>
+            <column name="TEST_TYPE" type="VARCHAR(60)"/>
+            <column name="DESCRIPTION" type="VARCHAR(2000)"/>
+            <column name="PRECONDITION" type="VARCHAR(2000)"/>
+            <column name="IS_ARCHIVED" type="INT"/>
+            <column name="IS_DELETED" type="INT"/>
+            <column name="STATE" type="VARCHAR(60)"/>
+            <column name="STEPS" type="CLOB"/>
+            <column name="ESTIMATED_WORKLOAD" type="DECIMAL(10, 1)"/>
+            <column name="REMAINING_WORKLOAD" type="DECIMAL(10, 1)"/>
+            <column name="ACTUAL_WORKLOAD" type="DECIMAL(10, 1)"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_TEST_CASE_TEMPLATE_ID"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="UPDATE_TIME" type="TIMESTAMP"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="TIMESTAMP"/>
+            <column name="TEST_LIBRARY_ID" type="VARCHAR(100)"/>
+            <column name="SUITE_ID" type="VARCHAR(100)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1713154700063-5">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="BASELINE" columnName="DESCRIPTION" />
+            </not>
+        </preConditions>
+        <addColumn tableName="BASELINE">
+            <column name="DESCRIPTION" type="VARCHAR(2000 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1713154700063-6">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="BASELINE" columnName="STATUS" />
+            </not>
+        </preConditions>
+        <addColumn tableName="BASELINE">
+            <column name="STATUS" type="VARCHAR(60 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1713154700063-7">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="VERSION" columnName="OWNER_VERSION_ID" />
+            </not>
+        </preConditions>
+        <addColumn tableName="VERSION">
+            <column name="OWNER_VERSION_ID" type="VARCHAR(100 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1713154700063-8">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="BASELINE" columnName="CATEGORIES" />
+            </not>
+        </preConditions>
+        <addColumn tableName="BASELINE">
+            <column name="CATEGORIES" type="VARCHAR(2000 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1713154700063-9">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="RELATION" columnName="PARENT_VERSION_ID" />
+            </not>
+        </preConditions>
+        <addColumn tableName="RELATION">
+            <column name="PARENT_VERSION_ID" type="VARCHAR(100 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1713154700063-10">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="BASELINE" columnName="ASSIGNEE_NAME" />
+            </not>
+        </preConditions>
+        <addColumn tableName="BASELINE">
+            <column name="ASSIGNEE_NAME" type="VARCHAR(100 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1713154700063-11">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="RELATION" columnName="CUR_VERSION_ID" />
+            </not>
+        </preConditions>
+        <addColumn tableName="RELATION">
+            <column name="CUR_VERSION_ID" type="VARCHAR(100 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1713154700063-12">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="VERSION" columnName="RESTORABLE" />
+            </not>
+        </preConditions>
+        <addColumn tableName="VERSION">
+            <column name="RESTORABLE" type="VARCHAR(100 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1713154700063-13">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="BASELINE" columnName="ASSIGNEE_ID" />
+            </not>
+        </preConditions>
+        <addColumn tableName="BASELINE">
+            <column name="ASSIGNEE_ID" type="VARCHAR(100 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1713154700063-14">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="VERSION" columnName="FILTER" />
+            </not>
+        </preConditions>
+        <addColumn tableName="VERSION">
+            <column name="FILTER" type="VARCHAR(100 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1713154700063-15">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="PAGE" columnName="PUBLISH_TIME" />
+            </not>
+        </preConditions>
+        <addColumn tableName="PAGE">
+            <column name="PUBLISH_TIME" type="TIMESTAMP"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1713154700063-16">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="PAGE" columnName="IS_PUBLISHED" />
+            </not>
+        </preConditions>
+        <addColumn tableName="PAGE">
+            <column name="IS_PUBLISHED" type="INTEGER"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1713154700063-17">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="PAGE" columnName="PUBLISH_MAN" />
+            </not>
+        </preConditions>
+        <addColumn tableName="PAGE">
+            <column name="PUBLISH_MAN" type="VARCHAR(100 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1713154700063-18">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="PAGE" columnName="PUBLISH_CONTENT" />
+            </not>
+        </preConditions>
+        <addColumn tableName="PAGE">
+            <column name="PUBLISH_CONTENT" type="CLOB"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1713154700063-19">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="PAGE" columnName="PUBLISH_NAME" />
+            </not>
+        </preConditions>
+        <addColumn tableName="PAGE">
+            <column name="PUBLISH_NAME" type="VARCHAR(200 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1713154700063-20">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="WORK_ITEM" columnName="CUR_VERSION_ID" />
+            </not>
+        </preConditions>
+        <addColumn tableName="WORK_ITEM">
+            <column name="CUR_VERSION_ID" type="VARCHAR(100 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1713154700063-21">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="PAGE" columnName="PUBLISHED" />
+            </not>
+        </preConditions>
+        <addColumn tableName="PAGE">
+            <column name="PUBLISHED" type="INTEGER"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1713154700063-22">
+        <preConditions onFail="MARK_RAN"  >
+            <tableExists tableName="ACTIVITIY"/>
+        </preConditions>
+        <dropTable tableName="ACTIVITIY"/>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1713154700063-23">
+        <preConditions onFail="MARK_RAN"  >
+            <tableExists tableName="PAGE_VERSION"/>
+        </preConditions>
+        <dropTable tableName="PAGE_VERSION"/>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1713154700063-1">
+        <preConditions onFail="MARK_RAN"  >
+            <columnExists tableName="VERSION" columnName="IDENTIFIER" />
+        </preConditions>
+        <modifyDataType columnName="IDENTIFIER" newDataType="decimal(10)" tableName="VERSION"/>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1713154700063-2">
+        <preConditions onFail="MARK_RAN"  >
+            <columnExists tableName="TEST_PLAN" columnName="SUMMARY" />
+        </preConditions>
+        <modifyDataType columnName="SUMMARY" newDataType="clob" tableName="TEST_PLAN"/>
+    </changeSet>
+</databaseChangeLog>
