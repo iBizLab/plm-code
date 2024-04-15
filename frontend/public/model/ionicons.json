@@ -1,0 +1,6042 @@
+[
+  {
+    "cssclass": "accessibility",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-accessibility"
+  },
+  {
+    "cssclass": "accessibility-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-accessibility-outline"
+  },
+  {
+    "cssclass": "accessibility-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-accessibility-sharp"
+  },
+  { "cssclass": "add", "imagepath": "#", "pssysimagename": "ionv6-add" },
+  {
+    "cssclass": "add-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-add-circle"
+  },
+  {
+    "cssclass": "add-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-add-circle-outline"
+  },
+  {
+    "cssclass": "add-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-add-circle-sharp"
+  },
+  {
+    "cssclass": "add-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-add-outline"
+  },
+  {
+    "cssclass": "add-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-add-sharp"
+  },
+  {
+    "cssclass": "airplane",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-airplane"
+  },
+  {
+    "cssclass": "airplane-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-airplane-outline"
+  },
+  {
+    "cssclass": "airplane-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-airplane-sharp"
+  },
+  { "cssclass": "alarm", "imagepath": "#", "pssysimagename": "ionv6-alarm" },
+  {
+    "cssclass": "alarm-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-alarm-outline"
+  },
+  {
+    "cssclass": "alarm-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-alarm-sharp"
+  },
+  { "cssclass": "albums", "imagepath": "#", "pssysimagename": "ionv6-albums" },
+  {
+    "cssclass": "albums-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-albums-outline"
+  },
+  {
+    "cssclass": "albums-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-albums-sharp"
+  },
+  { "cssclass": "alert", "imagepath": "#", "pssysimagename": "ionv6-alert" },
+  {
+    "cssclass": "alert-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-alert-circle"
+  },
+  {
+    "cssclass": "alert-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-alert-circle-outline"
+  },
+  {
+    "cssclass": "alert-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-alert-circle-sharp"
+  },
+  {
+    "cssclass": "alert-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-alert-outline"
+  },
+  {
+    "cssclass": "alert-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-alert-sharp"
+  },
+  {
+    "cssclass": "american-football",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-american-football"
+  },
+  {
+    "cssclass": "american-football-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-american-football-outline"
+  },
+  {
+    "cssclass": "american-football-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-american-football-sharp"
+  },
+  {
+    "cssclass": "analytics",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-analytics"
+  },
+  {
+    "cssclass": "analytics-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-analytics-outline"
+  },
+  {
+    "cssclass": "analytics-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-analytics-sharp"
+  },
+  {
+    "cssclass": "aperture",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-aperture"
+  },
+  {
+    "cssclass": "aperture-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-aperture-outline"
+  },
+  {
+    "cssclass": "aperture-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-aperture-sharp"
+  },
+  { "cssclass": "apps", "imagepath": "#", "pssysimagename": "ionv6-apps" },
+  {
+    "cssclass": "apps-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-apps-outline"
+  },
+  {
+    "cssclass": "apps-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-apps-sharp"
+  },
+  {
+    "cssclass": "archive",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-archive"
+  },
+  {
+    "cssclass": "archive-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-archive-outline"
+  },
+  {
+    "cssclass": "archive-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-archive-sharp"
+  },
+  {
+    "cssclass": "arrow-back",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-arrow-back"
+  },
+  {
+    "cssclass": "arrow-back-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-arrow-back-circle"
+  },
+  {
+    "cssclass": "arrow-back-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-arrow-back-circle-outline"
+  },
+  {
+    "cssclass": "arrow-back-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-arrow-back-circle-sharp"
+  },
+  {
+    "cssclass": "arrow-back-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-arrow-back-outline"
+  },
+  {
+    "cssclass": "arrow-back-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-arrow-back-sharp"
+  },
+  {
+    "cssclass": "arrow-down",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-arrow-down"
+  },
+  {
+    "cssclass": "arrow-down-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-arrow-down-circle"
+  },
+  {
+    "cssclass": "arrow-down-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-arrow-down-circle-outline"
+  },
+  {
+    "cssclass": "arrow-down-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-arrow-down-circle-sharp"
+  },
+  {
+    "cssclass": "arrow-down-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-arrow-down-outline"
+  },
+  {
+    "cssclass": "arrow-down-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-arrow-down-sharp"
+  },
+  {
+    "cssclass": "arrow-forward",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-arrow-forward"
+  },
+  {
+    "cssclass": "arrow-forward-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-arrow-forward-circle"
+  },
+  {
+    "cssclass": "arrow-forward-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-arrow-forward-circle-outline"
+  },
+  {
+    "cssclass": "arrow-forward-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-arrow-forward-circle-sharp"
+  },
+  {
+    "cssclass": "arrow-forward-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-arrow-forward-outline"
+  },
+  {
+    "cssclass": "arrow-forward-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-arrow-forward-sharp"
+  },
+  {
+    "cssclass": "arrow-redo",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-arrow-redo"
+  },
+  {
+    "cssclass": "arrow-redo-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-arrow-redo-circle"
+  },
+  {
+    "cssclass": "arrow-redo-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-arrow-redo-circle-outline"
+  },
+  {
+    "cssclass": "arrow-redo-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-arrow-redo-circle-sharp"
+  },
+  {
+    "cssclass": "arrow-redo-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-arrow-redo-outline"
+  },
+  {
+    "cssclass": "arrow-redo-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-arrow-redo-sharp"
+  },
+  {
+    "cssclass": "arrow-undo",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-arrow-undo"
+  },
+  {
+    "cssclass": "arrow-undo-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-arrow-undo-circle"
+  },
+  {
+    "cssclass": "arrow-undo-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-arrow-undo-circle-outline"
+  },
+  {
+    "cssclass": "arrow-undo-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-arrow-undo-circle-sharp"
+  },
+  {
+    "cssclass": "arrow-undo-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-arrow-undo-outline"
+  },
+  {
+    "cssclass": "arrow-undo-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-arrow-undo-sharp"
+  },
+  {
+    "cssclass": "arrow-up",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-arrow-up"
+  },
+  {
+    "cssclass": "arrow-up-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-arrow-up-circle"
+  },
+  {
+    "cssclass": "arrow-up-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-arrow-up-circle-outline"
+  },
+  {
+    "cssclass": "arrow-up-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-arrow-up-circle-sharp"
+  },
+  {
+    "cssclass": "arrow-up-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-arrow-up-outline"
+  },
+  {
+    "cssclass": "arrow-up-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-arrow-up-sharp"
+  },
+  { "cssclass": "at", "imagepath": "#", "pssysimagename": "ionv6-at" },
+  {
+    "cssclass": "at-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-at-circle"
+  },
+  {
+    "cssclass": "at-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-at-circle-outline"
+  },
+  {
+    "cssclass": "at-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-at-circle-sharp"
+  },
+  {
+    "cssclass": "at-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-at-outline"
+  },
+  {
+    "cssclass": "at-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-at-sharp"
+  },
+  { "cssclass": "attach", "imagepath": "#", "pssysimagename": "ionv6-attach" },
+  {
+    "cssclass": "attach-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-attach-outline"
+  },
+  {
+    "cssclass": "attach-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-attach-sharp"
+  },
+  {
+    "cssclass": "backspace",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-backspace"
+  },
+  {
+    "cssclass": "backspace-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-backspace-outline"
+  },
+  {
+    "cssclass": "backspace-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-backspace-sharp"
+  },
+  { "cssclass": "bag", "imagepath": "#", "pssysimagename": "ionv6-bag" },
+  {
+    "cssclass": "bag-add",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bag-add"
+  },
+  {
+    "cssclass": "bag-add-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bag-add-outline"
+  },
+  {
+    "cssclass": "bag-add-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bag-add-sharp"
+  },
+  {
+    "cssclass": "bag-check",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bag-check"
+  },
+  {
+    "cssclass": "bag-check-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bag-check-outline"
+  },
+  {
+    "cssclass": "bag-check-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bag-check-sharp"
+  },
+  {
+    "cssclass": "bag-handle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bag-handle"
+  },
+  {
+    "cssclass": "bag-handle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bag-handle-outline"
+  },
+  {
+    "cssclass": "bag-handle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bag-handle-sharp"
+  },
+  {
+    "cssclass": "bag-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bag-outline"
+  },
+  {
+    "cssclass": "bag-remove",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bag-remove"
+  },
+  {
+    "cssclass": "bag-remove-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bag-remove-outline"
+  },
+  {
+    "cssclass": "bag-remove-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bag-remove-sharp"
+  },
+  {
+    "cssclass": "bag-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bag-sharp"
+  },
+  {
+    "cssclass": "balloon",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-balloon"
+  },
+  {
+    "cssclass": "balloon-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-balloon-outline"
+  },
+  {
+    "cssclass": "balloon-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-balloon-sharp"
+  },
+  { "cssclass": "ban", "imagepath": "#", "pssysimagename": "ionv6-ban" },
+  {
+    "cssclass": "ban-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-ban-outline"
+  },
+  {
+    "cssclass": "ban-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-ban-sharp"
+  },
+  {
+    "cssclass": "bandage",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bandage"
+  },
+  {
+    "cssclass": "bandage-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bandage-outline"
+  },
+  {
+    "cssclass": "bandage-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bandage-sharp"
+  },
+  {
+    "cssclass": "bar-chart",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bar-chart"
+  },
+  {
+    "cssclass": "bar-chart-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bar-chart-outline"
+  },
+  {
+    "cssclass": "bar-chart-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bar-chart-sharp"
+  },
+  {
+    "cssclass": "barbell",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-barbell"
+  },
+  {
+    "cssclass": "barbell-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-barbell-outline"
+  },
+  {
+    "cssclass": "barbell-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-barbell-sharp"
+  },
+  {
+    "cssclass": "barcode",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-barcode"
+  },
+  {
+    "cssclass": "barcode-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-barcode-outline"
+  },
+  {
+    "cssclass": "barcode-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-barcode-sharp"
+  },
+  {
+    "cssclass": "baseball",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-baseball"
+  },
+  {
+    "cssclass": "baseball-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-baseball-outline"
+  },
+  {
+    "cssclass": "baseball-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-baseball-sharp"
+  },
+  { "cssclass": "basket", "imagepath": "#", "pssysimagename": "ionv6-basket" },
+  {
+    "cssclass": "basket-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-basket-outline"
+  },
+  {
+    "cssclass": "basket-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-basket-sharp"
+  },
+  {
+    "cssclass": "basketball",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-basketball"
+  },
+  {
+    "cssclass": "basketball-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-basketball-outline"
+  },
+  {
+    "cssclass": "basketball-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-basketball-sharp"
+  },
+  {
+    "cssclass": "battery-charging",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-battery-charging"
+  },
+  {
+    "cssclass": "battery-charging-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-battery-charging-outline"
+  },
+  {
+    "cssclass": "battery-charging-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-battery-charging-sharp"
+  },
+  {
+    "cssclass": "battery-dead",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-battery-dead"
+  },
+  {
+    "cssclass": "battery-dead-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-battery-dead-outline"
+  },
+  {
+    "cssclass": "battery-dead-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-battery-dead-sharp"
+  },
+  {
+    "cssclass": "battery-full",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-battery-full"
+  },
+  {
+    "cssclass": "battery-full-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-battery-full-outline"
+  },
+  {
+    "cssclass": "battery-full-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-battery-full-sharp"
+  },
+  {
+    "cssclass": "battery-half",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-battery-half"
+  },
+  {
+    "cssclass": "battery-half-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-battery-half-outline"
+  },
+  {
+    "cssclass": "battery-half-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-battery-half-sharp"
+  },
+  { "cssclass": "beaker", "imagepath": "#", "pssysimagename": "ionv6-beaker" },
+  {
+    "cssclass": "beaker-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-beaker-outline"
+  },
+  {
+    "cssclass": "beaker-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-beaker-sharp"
+  },
+  { "cssclass": "bed", "imagepath": "#", "pssysimagename": "ionv6-bed" },
+  {
+    "cssclass": "bed-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bed-outline"
+  },
+  {
+    "cssclass": "bed-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bed-sharp"
+  },
+  { "cssclass": "beer", "imagepath": "#", "pssysimagename": "ionv6-beer" },
+  {
+    "cssclass": "beer-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-beer-outline"
+  },
+  {
+    "cssclass": "beer-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-beer-sharp"
+  },
+  {
+    "cssclass": "bicycle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bicycle"
+  },
+  {
+    "cssclass": "bicycle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bicycle-outline"
+  },
+  {
+    "cssclass": "bicycle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bicycle-sharp"
+  },
+  {
+    "cssclass": "bluetooth",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bluetooth"
+  },
+  {
+    "cssclass": "bluetooth-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bluetooth-outline"
+  },
+  {
+    "cssclass": "bluetooth-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bluetooth-sharp"
+  },
+  { "cssclass": "boat", "imagepath": "#", "pssysimagename": "ionv6-boat" },
+  {
+    "cssclass": "boat-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-boat-outline"
+  },
+  {
+    "cssclass": "boat-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-boat-sharp"
+  },
+  { "cssclass": "body", "imagepath": "#", "pssysimagename": "ionv6-body" },
+  {
+    "cssclass": "body-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-body-outline"
+  },
+  {
+    "cssclass": "body-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-body-sharp"
+  },
+  {
+    "cssclass": "bonfire",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bonfire"
+  },
+  {
+    "cssclass": "bonfire-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bonfire-outline"
+  },
+  {
+    "cssclass": "bonfire-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bonfire-sharp"
+  },
+  { "cssclass": "book", "imagepath": "#", "pssysimagename": "ionv6-book" },
+  {
+    "cssclass": "book-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-book-outline"
+  },
+  {
+    "cssclass": "book-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-book-sharp"
+  },
+  {
+    "cssclass": "bookmark",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bookmark"
+  },
+  {
+    "cssclass": "bookmark-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bookmark-outline"
+  },
+  {
+    "cssclass": "bookmark-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bookmark-sharp"
+  },
+  {
+    "cssclass": "bookmarks",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bookmarks"
+  },
+  {
+    "cssclass": "bookmarks-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bookmarks-outline"
+  },
+  {
+    "cssclass": "bookmarks-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bookmarks-sharp"
+  },
+  {
+    "cssclass": "bowling-ball",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bowling-ball"
+  },
+  {
+    "cssclass": "bowling-ball-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bowling-ball-outline"
+  },
+  {
+    "cssclass": "bowling-ball-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bowling-ball-sharp"
+  },
+  {
+    "cssclass": "briefcase",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-briefcase"
+  },
+  {
+    "cssclass": "briefcase-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-briefcase-outline"
+  },
+  {
+    "cssclass": "briefcase-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-briefcase-sharp"
+  },
+  {
+    "cssclass": "browsers",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-browsers"
+  },
+  {
+    "cssclass": "browsers-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-browsers-outline"
+  },
+  {
+    "cssclass": "browsers-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-browsers-sharp"
+  },
+  { "cssclass": "brush", "imagepath": "#", "pssysimagename": "ionv6-brush" },
+  {
+    "cssclass": "brush-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-brush-outline"
+  },
+  {
+    "cssclass": "brush-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-brush-sharp"
+  },
+  { "cssclass": "bug", "imagepath": "#", "pssysimagename": "ionv6-bug" },
+  {
+    "cssclass": "bug-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bug-outline"
+  },
+  {
+    "cssclass": "bug-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bug-sharp"
+  },
+  { "cssclass": "build", "imagepath": "#", "pssysimagename": "ionv6-build" },
+  {
+    "cssclass": "build-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-build-outline"
+  },
+  {
+    "cssclass": "build-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-build-sharp"
+  },
+  { "cssclass": "bulb", "imagepath": "#", "pssysimagename": "ionv6-bulb" },
+  {
+    "cssclass": "bulb-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bulb-outline"
+  },
+  {
+    "cssclass": "bulb-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bulb-sharp"
+  },
+  { "cssclass": "bus", "imagepath": "#", "pssysimagename": "ionv6-bus" },
+  {
+    "cssclass": "bus-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bus-outline"
+  },
+  {
+    "cssclass": "bus-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-bus-sharp"
+  },
+  {
+    "cssclass": "business",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-business"
+  },
+  {
+    "cssclass": "business-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-business-outline"
+  },
+  {
+    "cssclass": "business-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-business-sharp"
+  },
+  { "cssclass": "cafe", "imagepath": "#", "pssysimagename": "ionv6-cafe" },
+  {
+    "cssclass": "cafe-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cafe-outline"
+  },
+  {
+    "cssclass": "cafe-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cafe-sharp"
+  },
+  {
+    "cssclass": "calculator",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-calculator"
+  },
+  {
+    "cssclass": "calculator-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-calculator-outline"
+  },
+  {
+    "cssclass": "calculator-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-calculator-sharp"
+  },
+  {
+    "cssclass": "calendar",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-calendar"
+  },
+  {
+    "cssclass": "calendar-clear",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-calendar-clear"
+  },
+  {
+    "cssclass": "calendar-clear-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-calendar-clear-outline"
+  },
+  {
+    "cssclass": "calendar-clear-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-calendar-clear-sharp"
+  },
+  {
+    "cssclass": "calendar-number",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-calendar-number"
+  },
+  {
+    "cssclass": "calendar-number-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-calendar-number-outline"
+  },
+  {
+    "cssclass": "calendar-number-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-calendar-number-sharp"
+  },
+  {
+    "cssclass": "calendar-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-calendar-outline"
+  },
+  {
+    "cssclass": "calendar-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-calendar-sharp"
+  },
+  { "cssclass": "call", "imagepath": "#", "pssysimagename": "ionv6-call" },
+  {
+    "cssclass": "call-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-call-outline"
+  },
+  {
+    "cssclass": "call-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-call-sharp"
+  },
+  { "cssclass": "camera", "imagepath": "#", "pssysimagename": "ionv6-camera" },
+  {
+    "cssclass": "camera-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-camera-outline"
+  },
+  {
+    "cssclass": "camera-reverse",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-camera-reverse"
+  },
+  {
+    "cssclass": "camera-reverse-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-camera-reverse-outline"
+  },
+  {
+    "cssclass": "camera-reverse-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-camera-reverse-sharp"
+  },
+  {
+    "cssclass": "camera-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-camera-sharp"
+  },
+  { "cssclass": "car", "imagepath": "#", "pssysimagename": "ionv6-car" },
+  {
+    "cssclass": "car-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-car-outline"
+  },
+  {
+    "cssclass": "car-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-car-sharp"
+  },
+  {
+    "cssclass": "car-sport",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-car-sport"
+  },
+  {
+    "cssclass": "car-sport-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-car-sport-outline"
+  },
+  {
+    "cssclass": "car-sport-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-car-sport-sharp"
+  },
+  { "cssclass": "card", "imagepath": "#", "pssysimagename": "ionv6-card" },
+  {
+    "cssclass": "card-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-card-outline"
+  },
+  {
+    "cssclass": "card-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-card-sharp"
+  },
+  {
+    "cssclass": "caret-back",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-caret-back"
+  },
+  {
+    "cssclass": "caret-back-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-caret-back-circle"
+  },
+  {
+    "cssclass": "caret-back-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-caret-back-circle-outline"
+  },
+  {
+    "cssclass": "caret-back-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-caret-back-circle-sharp"
+  },
+  {
+    "cssclass": "caret-back-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-caret-back-outline"
+  },
+  {
+    "cssclass": "caret-back-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-caret-back-sharp"
+  },
+  {
+    "cssclass": "caret-down",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-caret-down"
+  },
+  {
+    "cssclass": "caret-down-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-caret-down-circle"
+  },
+  {
+    "cssclass": "caret-down-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-caret-down-circle-outline"
+  },
+  {
+    "cssclass": "caret-down-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-caret-down-circle-sharp"
+  },
+  {
+    "cssclass": "caret-down-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-caret-down-outline"
+  },
+  {
+    "cssclass": "caret-down-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-caret-down-sharp"
+  },
+  {
+    "cssclass": "caret-forward",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-caret-forward"
+  },
+  {
+    "cssclass": "caret-forward-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-caret-forward-circle"
+  },
+  {
+    "cssclass": "caret-forward-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-caret-forward-circle-outline"
+  },
+  {
+    "cssclass": "caret-forward-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-caret-forward-circle-sharp"
+  },
+  {
+    "cssclass": "caret-forward-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-caret-forward-outline"
+  },
+  {
+    "cssclass": "caret-forward-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-caret-forward-sharp"
+  },
+  {
+    "cssclass": "caret-up",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-caret-up"
+  },
+  {
+    "cssclass": "caret-up-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-caret-up-circle"
+  },
+  {
+    "cssclass": "caret-up-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-caret-up-circle-outline"
+  },
+  {
+    "cssclass": "caret-up-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-caret-up-circle-sharp"
+  },
+  {
+    "cssclass": "caret-up-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-caret-up-outline"
+  },
+  {
+    "cssclass": "caret-up-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-caret-up-sharp"
+  },
+  { "cssclass": "cart", "imagepath": "#", "pssysimagename": "ionv6-cart" },
+  {
+    "cssclass": "cart-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cart-outline"
+  },
+  {
+    "cssclass": "cart-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cart-sharp"
+  },
+  { "cssclass": "cash", "imagepath": "#", "pssysimagename": "ionv6-cash" },
+  {
+    "cssclass": "cash-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cash-outline"
+  },
+  {
+    "cssclass": "cash-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cash-sharp"
+  },
+  {
+    "cssclass": "cellular",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cellular"
+  },
+  {
+    "cssclass": "cellular-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cellular-outline"
+  },
+  {
+    "cssclass": "cellular-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cellular-sharp"
+  },
+  {
+    "cssclass": "chatbox",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chatbox"
+  },
+  {
+    "cssclass": "chatbox-ellipses",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chatbox-ellipses"
+  },
+  {
+    "cssclass": "chatbox-ellipses-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chatbox-ellipses-outline"
+  },
+  {
+    "cssclass": "chatbox-ellipses-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chatbox-ellipses-sharp"
+  },
+  {
+    "cssclass": "chatbox-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chatbox-outline"
+  },
+  {
+    "cssclass": "chatbox-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chatbox-sharp"
+  },
+  {
+    "cssclass": "chatbubble",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chatbubble"
+  },
+  {
+    "cssclass": "chatbubble-ellipses",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chatbubble-ellipses"
+  },
+  {
+    "cssclass": "chatbubble-ellipses-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chatbubble-ellipses-outline"
+  },
+  {
+    "cssclass": "chatbubble-ellipses-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chatbubble-ellipses-sharp"
+  },
+  {
+    "cssclass": "chatbubble-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chatbubble-outline"
+  },
+  {
+    "cssclass": "chatbubble-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chatbubble-sharp"
+  },
+  {
+    "cssclass": "chatbubbles",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chatbubbles"
+  },
+  {
+    "cssclass": "chatbubbles-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chatbubbles-outline"
+  },
+  {
+    "cssclass": "chatbubbles-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chatbubbles-sharp"
+  },
+  {
+    "cssclass": "checkbox",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-checkbox"
+  },
+  {
+    "cssclass": "checkbox-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-checkbox-outline"
+  },
+  {
+    "cssclass": "checkbox-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-checkbox-sharp"
+  },
+  {
+    "cssclass": "checkmark",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-checkmark"
+  },
+  {
+    "cssclass": "checkmark-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-checkmark-circle"
+  },
+  {
+    "cssclass": "checkmark-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-checkmark-circle-outline"
+  },
+  {
+    "cssclass": "checkmark-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-checkmark-circle-sharp"
+  },
+  {
+    "cssclass": "checkmark-done",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-checkmark-done"
+  },
+  {
+    "cssclass": "checkmark-done-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-checkmark-done-circle"
+  },
+  {
+    "cssclass": "checkmark-done-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-checkmark-done-circle-outline"
+  },
+  {
+    "cssclass": "checkmark-done-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-checkmark-done-circle-sharp"
+  },
+  {
+    "cssclass": "checkmark-done-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-checkmark-done-outline"
+  },
+  {
+    "cssclass": "checkmark-done-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-checkmark-done-sharp"
+  },
+  {
+    "cssclass": "checkmark-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-checkmark-outline"
+  },
+  {
+    "cssclass": "checkmark-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-checkmark-sharp"
+  },
+  {
+    "cssclass": "chevron-back",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chevron-back"
+  },
+  {
+    "cssclass": "chevron-back-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chevron-back-circle"
+  },
+  {
+    "cssclass": "chevron-back-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chevron-back-circle-outline"
+  },
+  {
+    "cssclass": "chevron-back-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chevron-back-circle-sharp"
+  },
+  {
+    "cssclass": "chevron-back-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chevron-back-outline"
+  },
+  {
+    "cssclass": "chevron-back-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chevron-back-sharp"
+  },
+  {
+    "cssclass": "chevron-down",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chevron-down"
+  },
+  {
+    "cssclass": "chevron-down-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chevron-down-circle"
+  },
+  {
+    "cssclass": "chevron-down-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chevron-down-circle-outline"
+  },
+  {
+    "cssclass": "chevron-down-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chevron-down-circle-sharp"
+  },
+  {
+    "cssclass": "chevron-down-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chevron-down-outline"
+  },
+  {
+    "cssclass": "chevron-down-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chevron-down-sharp"
+  },
+  {
+    "cssclass": "chevron-forward",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chevron-forward"
+  },
+  {
+    "cssclass": "chevron-forward-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chevron-forward-circle"
+  },
+  {
+    "cssclass": "chevron-forward-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chevron-forward-circle-outline"
+  },
+  {
+    "cssclass": "chevron-forward-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chevron-forward-circle-sharp"
+  },
+  {
+    "cssclass": "chevron-forward-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chevron-forward-outline"
+  },
+  {
+    "cssclass": "chevron-forward-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chevron-forward-sharp"
+  },
+  {
+    "cssclass": "chevron-up",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chevron-up"
+  },
+  {
+    "cssclass": "chevron-up-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chevron-up-circle"
+  },
+  {
+    "cssclass": "chevron-up-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chevron-up-circle-outline"
+  },
+  {
+    "cssclass": "chevron-up-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chevron-up-circle-sharp"
+  },
+  {
+    "cssclass": "chevron-up-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chevron-up-outline"
+  },
+  {
+    "cssclass": "chevron-up-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-chevron-up-sharp"
+  },
+  {
+    "cssclass": "clipboard",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-clipboard"
+  },
+  {
+    "cssclass": "clipboard-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-clipboard-outline"
+  },
+  {
+    "cssclass": "clipboard-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-clipboard-sharp"
+  },
+  { "cssclass": "close", "imagepath": "#", "pssysimagename": "ionv6-close" },
+  {
+    "cssclass": "close-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-close-circle"
+  },
+  {
+    "cssclass": "close-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-close-circle-outline"
+  },
+  {
+    "cssclass": "close-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-close-circle-sharp"
+  },
+  {
+    "cssclass": "close-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-close-outline"
+  },
+  {
+    "cssclass": "close-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-close-sharp"
+  },
+  { "cssclass": "cloud", "imagepath": "#", "pssysimagename": "ionv6-cloud" },
+  {
+    "cssclass": "cloud-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cloud-circle"
+  },
+  {
+    "cssclass": "cloud-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cloud-circle-outline"
+  },
+  {
+    "cssclass": "cloud-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cloud-circle-sharp"
+  },
+  {
+    "cssclass": "cloud-done",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cloud-done"
+  },
+  {
+    "cssclass": "cloud-done-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cloud-done-outline"
+  },
+  {
+    "cssclass": "cloud-done-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cloud-done-sharp"
+  },
+  {
+    "cssclass": "cloud-download",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cloud-download"
+  },
+  {
+    "cssclass": "cloud-download-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cloud-download-outline"
+  },
+  {
+    "cssclass": "cloud-download-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cloud-download-sharp"
+  },
+  {
+    "cssclass": "cloud-offline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cloud-offline"
+  },
+  {
+    "cssclass": "cloud-offline-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cloud-offline-outline"
+  },
+  {
+    "cssclass": "cloud-offline-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cloud-offline-sharp"
+  },
+  {
+    "cssclass": "cloud-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cloud-outline"
+  },
+  {
+    "cssclass": "cloud-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cloud-sharp"
+  },
+  {
+    "cssclass": "cloud-upload",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cloud-upload"
+  },
+  {
+    "cssclass": "cloud-upload-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cloud-upload-outline"
+  },
+  {
+    "cssclass": "cloud-upload-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cloud-upload-sharp"
+  },
+  { "cssclass": "cloudy", "imagepath": "#", "pssysimagename": "ionv6-cloudy" },
+  {
+    "cssclass": "cloudy-night",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cloudy-night"
+  },
+  {
+    "cssclass": "cloudy-night-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cloudy-night-outline"
+  },
+  {
+    "cssclass": "cloudy-night-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cloudy-night-sharp"
+  },
+  {
+    "cssclass": "cloudy-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cloudy-outline"
+  },
+  {
+    "cssclass": "cloudy-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cloudy-sharp"
+  },
+  { "cssclass": "code", "imagepath": "#", "pssysimagename": "ionv6-code" },
+  {
+    "cssclass": "code-download",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-code-download"
+  },
+  {
+    "cssclass": "code-download-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-code-download-outline"
+  },
+  {
+    "cssclass": "code-download-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-code-download-sharp"
+  },
+  {
+    "cssclass": "code-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-code-outline"
+  },
+  {
+    "cssclass": "code-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-code-sharp"
+  },
+  {
+    "cssclass": "code-slash",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-code-slash"
+  },
+  {
+    "cssclass": "code-slash-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-code-slash-outline"
+  },
+  {
+    "cssclass": "code-slash-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-code-slash-sharp"
+  },
+  {
+    "cssclass": "code-working",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-code-working"
+  },
+  {
+    "cssclass": "code-working-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-code-working-outline"
+  },
+  {
+    "cssclass": "code-working-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-code-working-sharp"
+  },
+  { "cssclass": "cog", "imagepath": "#", "pssysimagename": "ionv6-cog" },
+  {
+    "cssclass": "cog-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cog-outline"
+  },
+  {
+    "cssclass": "cog-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cog-sharp"
+  },
+  {
+    "cssclass": "color-fill",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-color-fill"
+  },
+  {
+    "cssclass": "color-fill-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-color-fill-outline"
+  },
+  {
+    "cssclass": "color-fill-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-color-fill-sharp"
+  },
+  {
+    "cssclass": "color-filter",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-color-filter"
+  },
+  {
+    "cssclass": "color-filter-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-color-filter-outline"
+  },
+  {
+    "cssclass": "color-filter-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-color-filter-sharp"
+  },
+  {
+    "cssclass": "color-palette",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-color-palette"
+  },
+  {
+    "cssclass": "color-palette-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-color-palette-outline"
+  },
+  {
+    "cssclass": "color-palette-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-color-palette-sharp"
+  },
+  {
+    "cssclass": "color-wand",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-color-wand"
+  },
+  {
+    "cssclass": "color-wand-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-color-wand-outline"
+  },
+  {
+    "cssclass": "color-wand-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-color-wand-sharp"
+  },
+  {
+    "cssclass": "compass",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-compass"
+  },
+  {
+    "cssclass": "compass-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-compass-outline"
+  },
+  {
+    "cssclass": "compass-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-compass-sharp"
+  },
+  {
+    "cssclass": "construct",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-construct"
+  },
+  {
+    "cssclass": "construct-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-construct-outline"
+  },
+  {
+    "cssclass": "construct-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-construct-sharp"
+  },
+  {
+    "cssclass": "contract",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-contract"
+  },
+  {
+    "cssclass": "contract-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-contract-outline"
+  },
+  {
+    "cssclass": "contract-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-contract-sharp"
+  },
+  {
+    "cssclass": "contrast",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-contrast"
+  },
+  {
+    "cssclass": "contrast-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-contrast-outline"
+  },
+  {
+    "cssclass": "contrast-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-contrast-sharp"
+  },
+  { "cssclass": "copy", "imagepath": "#", "pssysimagename": "ionv6-copy" },
+  {
+    "cssclass": "copy-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-copy-outline"
+  },
+  {
+    "cssclass": "copy-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-copy-sharp"
+  },
+  { "cssclass": "create", "imagepath": "#", "pssysimagename": "ionv6-create" },
+  {
+    "cssclass": "create-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-create-outline"
+  },
+  {
+    "cssclass": "create-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-create-sharp"
+  },
+  { "cssclass": "crop", "imagepath": "#", "pssysimagename": "ionv6-crop" },
+  {
+    "cssclass": "crop-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-crop-outline"
+  },
+  {
+    "cssclass": "crop-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-crop-sharp"
+  },
+  { "cssclass": "cube", "imagepath": "#", "pssysimagename": "ionv6-cube" },
+  {
+    "cssclass": "cube-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cube-outline"
+  },
+  {
+    "cssclass": "cube-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cube-sharp"
+  },
+  { "cssclass": "cut", "imagepath": "#", "pssysimagename": "ionv6-cut" },
+  {
+    "cssclass": "cut-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cut-outline"
+  },
+  {
+    "cssclass": "cut-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-cut-sharp"
+  },
+  {
+    "cssclass": "desktop",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-desktop"
+  },
+  {
+    "cssclass": "desktop-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-desktop-outline"
+  },
+  {
+    "cssclass": "desktop-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-desktop-sharp"
+  },
+  {
+    "cssclass": "diamond",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-diamond"
+  },
+  {
+    "cssclass": "diamond-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-diamond-outline"
+  },
+  {
+    "cssclass": "diamond-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-diamond-sharp"
+  },
+  { "cssclass": "dice", "imagepath": "#", "pssysimagename": "ionv6-dice" },
+  {
+    "cssclass": "dice-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-dice-outline"
+  },
+  {
+    "cssclass": "dice-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-dice-sharp"
+  },
+  { "cssclass": "disc", "imagepath": "#", "pssysimagename": "ionv6-disc" },
+  {
+    "cssclass": "disc-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-disc-outline"
+  },
+  {
+    "cssclass": "disc-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-disc-sharp"
+  },
+  {
+    "cssclass": "document",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-document"
+  },
+  {
+    "cssclass": "document-attach",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-document-attach"
+  },
+  {
+    "cssclass": "document-attach-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-document-attach-outline"
+  },
+  {
+    "cssclass": "document-attach-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-document-attach-sharp"
+  },
+  {
+    "cssclass": "document-lock",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-document-lock"
+  },
+  {
+    "cssclass": "document-lock-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-document-lock-outline"
+  },
+  {
+    "cssclass": "document-lock-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-document-lock-sharp"
+  },
+  {
+    "cssclass": "document-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-document-outline"
+  },
+  {
+    "cssclass": "document-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-document-sharp"
+  },
+  {
+    "cssclass": "document-text",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-document-text"
+  },
+  {
+    "cssclass": "document-text-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-document-text-outline"
+  },
+  {
+    "cssclass": "document-text-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-document-text-sharp"
+  },
+  {
+    "cssclass": "documents",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-documents"
+  },
+  {
+    "cssclass": "documents-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-documents-outline"
+  },
+  {
+    "cssclass": "documents-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-documents-sharp"
+  },
+  {
+    "cssclass": "download",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-download"
+  },
+  {
+    "cssclass": "download-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-download-outline"
+  },
+  {
+    "cssclass": "download-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-download-sharp"
+  },
+  {
+    "cssclass": "duplicate",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-duplicate"
+  },
+  {
+    "cssclass": "duplicate-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-duplicate-outline"
+  },
+  {
+    "cssclass": "duplicate-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-duplicate-sharp"
+  },
+  { "cssclass": "ear", "imagepath": "#", "pssysimagename": "ionv6-ear" },
+  {
+    "cssclass": "ear-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-ear-outline"
+  },
+  {
+    "cssclass": "ear-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-ear-sharp"
+  },
+  { "cssclass": "earth", "imagepath": "#", "pssysimagename": "ionv6-earth" },
+  {
+    "cssclass": "earth-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-earth-outline"
+  },
+  {
+    "cssclass": "earth-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-earth-sharp"
+  },
+  { "cssclass": "easel", "imagepath": "#", "pssysimagename": "ionv6-easel" },
+  {
+    "cssclass": "easel-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-easel-outline"
+  },
+  {
+    "cssclass": "easel-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-easel-sharp"
+  },
+  { "cssclass": "egg", "imagepath": "#", "pssysimagename": "ionv6-egg" },
+  {
+    "cssclass": "egg-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-egg-outline"
+  },
+  {
+    "cssclass": "egg-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-egg-sharp"
+  },
+  {
+    "cssclass": "ellipse",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-ellipse"
+  },
+  {
+    "cssclass": "ellipse-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-ellipse-outline"
+  },
+  {
+    "cssclass": "ellipse-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-ellipse-sharp"
+  },
+  {
+    "cssclass": "ellipsis-horizontal",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-ellipsis-horizontal"
+  },
+  {
+    "cssclass": "ellipsis-horizontal-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-ellipsis-horizontal-circle"
+  },
+  {
+    "cssclass": "ellipsis-horizontal-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-ellipsis-horizontal-circle-outline"
+  },
+  {
+    "cssclass": "ellipsis-horizontal-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-ellipsis-horizontal-circle-sharp"
+  },
+  {
+    "cssclass": "ellipsis-horizontal-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-ellipsis-horizontal-outline"
+  },
+  {
+    "cssclass": "ellipsis-horizontal-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-ellipsis-horizontal-sharp"
+  },
+  {
+    "cssclass": "ellipsis-vertical",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-ellipsis-vertical"
+  },
+  {
+    "cssclass": "ellipsis-vertical-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-ellipsis-vertical-circle"
+  },
+  {
+    "cssclass": "ellipsis-vertical-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-ellipsis-vertical-circle-outline"
+  },
+  {
+    "cssclass": "ellipsis-vertical-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-ellipsis-vertical-circle-sharp"
+  },
+  {
+    "cssclass": "ellipsis-vertical-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-ellipsis-vertical-outline"
+  },
+  {
+    "cssclass": "ellipsis-vertical-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-ellipsis-vertical-sharp"
+  },
+  { "cssclass": "enter", "imagepath": "#", "pssysimagename": "ionv6-enter" },
+  {
+    "cssclass": "enter-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-enter-outline"
+  },
+  {
+    "cssclass": "enter-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-enter-sharp"
+  },
+  { "cssclass": "exit", "imagepath": "#", "pssysimagename": "ionv6-exit" },
+  {
+    "cssclass": "exit-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-exit-outline"
+  },
+  {
+    "cssclass": "exit-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-exit-sharp"
+  },
+  { "cssclass": "expand", "imagepath": "#", "pssysimagename": "ionv6-expand" },
+  {
+    "cssclass": "expand-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-expand-outline"
+  },
+  {
+    "cssclass": "expand-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-expand-sharp"
+  },
+  {
+    "cssclass": "extension-puzzle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-extension-puzzle"
+  },
+  {
+    "cssclass": "extension-puzzle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-extension-puzzle-outline"
+  },
+  {
+    "cssclass": "extension-puzzle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-extension-puzzle-sharp"
+  },
+  { "cssclass": "eye", "imagepath": "#", "pssysimagename": "ionv6-eye" },
+  {
+    "cssclass": "eye-off",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-eye-off"
+  },
+  {
+    "cssclass": "eye-off-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-eye-off-outline"
+  },
+  {
+    "cssclass": "eye-off-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-eye-off-sharp"
+  },
+  {
+    "cssclass": "eye-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-eye-outline"
+  },
+  {
+    "cssclass": "eye-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-eye-sharp"
+  },
+  {
+    "cssclass": "eyedrop",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-eyedrop"
+  },
+  {
+    "cssclass": "eyedrop-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-eyedrop-outline"
+  },
+  {
+    "cssclass": "eyedrop-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-eyedrop-sharp"
+  },
+  {
+    "cssclass": "fast-food",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-fast-food"
+  },
+  {
+    "cssclass": "fast-food-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-fast-food-outline"
+  },
+  {
+    "cssclass": "fast-food-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-fast-food-sharp"
+  },
+  { "cssclass": "female", "imagepath": "#", "pssysimagename": "ionv6-female" },
+  {
+    "cssclass": "female-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-female-outline"
+  },
+  {
+    "cssclass": "female-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-female-sharp"
+  },
+  {
+    "cssclass": "file-tray",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-file-tray"
+  },
+  {
+    "cssclass": "file-tray-full",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-file-tray-full"
+  },
+  {
+    "cssclass": "file-tray-full-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-file-tray-full-outline"
+  },
+  {
+    "cssclass": "file-tray-full-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-file-tray-full-sharp"
+  },
+  {
+    "cssclass": "file-tray-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-file-tray-outline"
+  },
+  {
+    "cssclass": "file-tray-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-file-tray-sharp"
+  },
+  {
+    "cssclass": "file-tray-stacked",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-file-tray-stacked"
+  },
+  {
+    "cssclass": "file-tray-stacked-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-file-tray-stacked-outline"
+  },
+  {
+    "cssclass": "file-tray-stacked-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-file-tray-stacked-sharp"
+  },
+  { "cssclass": "film", "imagepath": "#", "pssysimagename": "ionv6-film" },
+  {
+    "cssclass": "film-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-film-outline"
+  },
+  {
+    "cssclass": "film-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-film-sharp"
+  },
+  { "cssclass": "filter", "imagepath": "#", "pssysimagename": "ionv6-filter" },
+  {
+    "cssclass": "filter-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-filter-circle"
+  },
+  {
+    "cssclass": "filter-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-filter-circle-outline"
+  },
+  {
+    "cssclass": "filter-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-filter-circle-sharp"
+  },
+  {
+    "cssclass": "filter-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-filter-outline"
+  },
+  {
+    "cssclass": "filter-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-filter-sharp"
+  },
+  {
+    "cssclass": "finger-print",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-finger-print"
+  },
+  {
+    "cssclass": "finger-print-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-finger-print-outline"
+  },
+  {
+    "cssclass": "finger-print-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-finger-print-sharp"
+  },
+  { "cssclass": "fish", "imagepath": "#", "pssysimagename": "ionv6-fish" },
+  {
+    "cssclass": "fish-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-fish-outline"
+  },
+  {
+    "cssclass": "fish-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-fish-sharp"
+  },
+  {
+    "cssclass": "fitness",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-fitness"
+  },
+  {
+    "cssclass": "fitness-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-fitness-outline"
+  },
+  {
+    "cssclass": "fitness-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-fitness-sharp"
+  },
+  { "cssclass": "flag", "imagepath": "#", "pssysimagename": "ionv6-flag" },
+  {
+    "cssclass": "flag-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-flag-outline"
+  },
+  {
+    "cssclass": "flag-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-flag-sharp"
+  },
+  { "cssclass": "flame", "imagepath": "#", "pssysimagename": "ionv6-flame" },
+  {
+    "cssclass": "flame-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-flame-outline"
+  },
+  {
+    "cssclass": "flame-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-flame-sharp"
+  },
+  { "cssclass": "flash", "imagepath": "#", "pssysimagename": "ionv6-flash" },
+  {
+    "cssclass": "flash-off",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-flash-off"
+  },
+  {
+    "cssclass": "flash-off-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-flash-off-outline"
+  },
+  {
+    "cssclass": "flash-off-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-flash-off-sharp"
+  },
+  {
+    "cssclass": "flash-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-flash-outline"
+  },
+  {
+    "cssclass": "flash-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-flash-sharp"
+  },
+  {
+    "cssclass": "flashlight",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-flashlight"
+  },
+  {
+    "cssclass": "flashlight-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-flashlight-outline"
+  },
+  {
+    "cssclass": "flashlight-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-flashlight-sharp"
+  },
+  { "cssclass": "flask", "imagepath": "#", "pssysimagename": "ionv6-flask" },
+  {
+    "cssclass": "flask-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-flask-outline"
+  },
+  {
+    "cssclass": "flask-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-flask-sharp"
+  },
+  { "cssclass": "flower", "imagepath": "#", "pssysimagename": "ionv6-flower" },
+  {
+    "cssclass": "flower-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-flower-outline"
+  },
+  {
+    "cssclass": "flower-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-flower-sharp"
+  },
+  { "cssclass": "folder", "imagepath": "#", "pssysimagename": "ionv6-folder" },
+  {
+    "cssclass": "folder-open",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-folder-open"
+  },
+  {
+    "cssclass": "folder-open-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-folder-open-outline"
+  },
+  {
+    "cssclass": "folder-open-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-folder-open-sharp"
+  },
+  {
+    "cssclass": "folder-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-folder-outline"
+  },
+  {
+    "cssclass": "folder-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-folder-sharp"
+  },
+  {
+    "cssclass": "football",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-football"
+  },
+  {
+    "cssclass": "football-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-football-outline"
+  },
+  {
+    "cssclass": "football-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-football-sharp"
+  },
+  {
+    "cssclass": "footsteps",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-footsteps"
+  },
+  {
+    "cssclass": "footsteps-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-footsteps-outline"
+  },
+  {
+    "cssclass": "footsteps-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-footsteps-sharp"
+  },
+  { "cssclass": "funnel", "imagepath": "#", "pssysimagename": "ionv6-funnel" },
+  {
+    "cssclass": "funnel-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-funnel-outline"
+  },
+  {
+    "cssclass": "funnel-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-funnel-sharp"
+  },
+  {
+    "cssclass": "game-controller",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-game-controller"
+  },
+  {
+    "cssclass": "game-controller-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-game-controller-outline"
+  },
+  {
+    "cssclass": "game-controller-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-game-controller-sharp"
+  },
+  { "cssclass": "gift", "imagepath": "#", "pssysimagename": "ionv6-gift" },
+  {
+    "cssclass": "gift-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-gift-outline"
+  },
+  {
+    "cssclass": "gift-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-gift-sharp"
+  },
+  {
+    "cssclass": "git-branch",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-git-branch"
+  },
+  {
+    "cssclass": "git-branch-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-git-branch-outline"
+  },
+  {
+    "cssclass": "git-branch-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-git-branch-sharp"
+  },
+  {
+    "cssclass": "git-commit",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-git-commit"
+  },
+  {
+    "cssclass": "git-commit-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-git-commit-outline"
+  },
+  {
+    "cssclass": "git-commit-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-git-commit-sharp"
+  },
+  {
+    "cssclass": "git-compare",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-git-compare"
+  },
+  {
+    "cssclass": "git-compare-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-git-compare-outline"
+  },
+  {
+    "cssclass": "git-compare-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-git-compare-sharp"
+  },
+  {
+    "cssclass": "git-merge",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-git-merge"
+  },
+  {
+    "cssclass": "git-merge-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-git-merge-outline"
+  },
+  {
+    "cssclass": "git-merge-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-git-merge-sharp"
+  },
+  {
+    "cssclass": "git-network",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-git-network"
+  },
+  {
+    "cssclass": "git-network-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-git-network-outline"
+  },
+  {
+    "cssclass": "git-network-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-git-network-sharp"
+  },
+  {
+    "cssclass": "git-pull-request",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-git-pull-request"
+  },
+  {
+    "cssclass": "git-pull-request-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-git-pull-request-outline"
+  },
+  {
+    "cssclass": "git-pull-request-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-git-pull-request-sharp"
+  },
+  {
+    "cssclass": "glasses",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-glasses"
+  },
+  {
+    "cssclass": "glasses-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-glasses-outline"
+  },
+  {
+    "cssclass": "glasses-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-glasses-sharp"
+  },
+  { "cssclass": "globe", "imagepath": "#", "pssysimagename": "ionv6-globe" },
+  {
+    "cssclass": "globe-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-globe-outline"
+  },
+  {
+    "cssclass": "globe-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-globe-sharp"
+  },
+  { "cssclass": "golf", "imagepath": "#", "pssysimagename": "ionv6-golf" },
+  {
+    "cssclass": "golf-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-golf-outline"
+  },
+  {
+    "cssclass": "golf-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-golf-sharp"
+  },
+  { "cssclass": "grid", "imagepath": "#", "pssysimagename": "ionv6-grid" },
+  {
+    "cssclass": "grid-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-grid-outline"
+  },
+  {
+    "cssclass": "grid-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-grid-sharp"
+  },
+  { "cssclass": "hammer", "imagepath": "#", "pssysimagename": "ionv6-hammer" },
+  {
+    "cssclass": "hammer-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-hammer-outline"
+  },
+  {
+    "cssclass": "hammer-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-hammer-sharp"
+  },
+  {
+    "cssclass": "hand-left",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-hand-left"
+  },
+  {
+    "cssclass": "hand-left-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-hand-left-outline"
+  },
+  {
+    "cssclass": "hand-left-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-hand-left-sharp"
+  },
+  {
+    "cssclass": "hand-right",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-hand-right"
+  },
+  {
+    "cssclass": "hand-right-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-hand-right-outline"
+  },
+  {
+    "cssclass": "hand-right-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-hand-right-sharp"
+  },
+  { "cssclass": "happy", "imagepath": "#", "pssysimagename": "ionv6-happy" },
+  {
+    "cssclass": "happy-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-happy-outline"
+  },
+  {
+    "cssclass": "happy-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-happy-sharp"
+  },
+  {
+    "cssclass": "hardware-chip",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-hardware-chip"
+  },
+  {
+    "cssclass": "hardware-chip-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-hardware-chip-outline"
+  },
+  {
+    "cssclass": "hardware-chip-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-hardware-chip-sharp"
+  },
+  {
+    "cssclass": "headset",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-headset"
+  },
+  {
+    "cssclass": "headset-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-headset-outline"
+  },
+  {
+    "cssclass": "headset-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-headset-sharp"
+  },
+  { "cssclass": "heart", "imagepath": "#", "pssysimagename": "ionv6-heart" },
+  {
+    "cssclass": "heart-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-heart-circle"
+  },
+  {
+    "cssclass": "heart-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-heart-circle-outline"
+  },
+  {
+    "cssclass": "heart-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-heart-circle-sharp"
+  },
+  {
+    "cssclass": "heart-dislike",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-heart-dislike"
+  },
+  {
+    "cssclass": "heart-dislike-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-heart-dislike-circle"
+  },
+  {
+    "cssclass": "heart-dislike-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-heart-dislike-circle-outline"
+  },
+  {
+    "cssclass": "heart-dislike-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-heart-dislike-circle-sharp"
+  },
+  {
+    "cssclass": "heart-dislike-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-heart-dislike-outline"
+  },
+  {
+    "cssclass": "heart-dislike-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-heart-dislike-sharp"
+  },
+  {
+    "cssclass": "heart-half",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-heart-half"
+  },
+  {
+    "cssclass": "heart-half-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-heart-half-outline"
+  },
+  {
+    "cssclass": "heart-half-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-heart-half-sharp"
+  },
+  {
+    "cssclass": "heart-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-heart-outline"
+  },
+  {
+    "cssclass": "heart-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-heart-sharp"
+  },
+  { "cssclass": "help", "imagepath": "#", "pssysimagename": "ionv6-help" },
+  {
+    "cssclass": "help-buoy",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-help-buoy"
+  },
+  {
+    "cssclass": "help-buoy-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-help-buoy-outline"
+  },
+  {
+    "cssclass": "help-buoy-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-help-buoy-sharp"
+  },
+  {
+    "cssclass": "help-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-help-circle"
+  },
+  {
+    "cssclass": "help-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-help-circle-outline"
+  },
+  {
+    "cssclass": "help-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-help-circle-sharp"
+  },
+  {
+    "cssclass": "help-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-help-outline"
+  },
+  {
+    "cssclass": "help-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-help-sharp"
+  },
+  { "cssclass": "home", "imagepath": "#", "pssysimagename": "ionv6-home" },
+  {
+    "cssclass": "home-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-home-outline"
+  },
+  {
+    "cssclass": "home-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-home-sharp"
+  },
+  {
+    "cssclass": "hourglass",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-hourglass"
+  },
+  {
+    "cssclass": "hourglass-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-hourglass-outline"
+  },
+  {
+    "cssclass": "hourglass-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-hourglass-sharp"
+  },
+  {
+    "cssclass": "ice-cream",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-ice-cream"
+  },
+  {
+    "cssclass": "ice-cream-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-ice-cream-outline"
+  },
+  {
+    "cssclass": "ice-cream-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-ice-cream-sharp"
+  },
+  {
+    "cssclass": "id-card",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-id-card"
+  },
+  {
+    "cssclass": "id-card-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-id-card-outline"
+  },
+  {
+    "cssclass": "id-card-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-id-card-sharp"
+  },
+  { "cssclass": "image", "imagepath": "#", "pssysimagename": "ionv6-image" },
+  {
+    "cssclass": "image-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-image-outline"
+  },
+  {
+    "cssclass": "image-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-image-sharp"
+  },
+  { "cssclass": "images", "imagepath": "#", "pssysimagename": "ionv6-images" },
+  {
+    "cssclass": "images-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-images-outline"
+  },
+  {
+    "cssclass": "images-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-images-sharp"
+  },
+  {
+    "cssclass": "infinite",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-infinite"
+  },
+  {
+    "cssclass": "infinite-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-infinite-outline"
+  },
+  {
+    "cssclass": "infinite-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-infinite-sharp"
+  },
+  {
+    "cssclass": "information",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-information"
+  },
+  {
+    "cssclass": "information-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-information-circle"
+  },
+  {
+    "cssclass": "information-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-information-circle-outline"
+  },
+  {
+    "cssclass": "information-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-information-circle-sharp"
+  },
+  {
+    "cssclass": "information-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-information-outline"
+  },
+  {
+    "cssclass": "information-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-information-sharp"
+  },
+  {
+    "cssclass": "invert-mode",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-invert-mode"
+  },
+  {
+    "cssclass": "invert-mode-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-invert-mode-outline"
+  },
+  {
+    "cssclass": "invert-mode-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-invert-mode-sharp"
+  },
+  {
+    "cssclass": "journal",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-journal"
+  },
+  {
+    "cssclass": "journal-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-journal-outline"
+  },
+  {
+    "cssclass": "journal-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-journal-sharp"
+  },
+  { "cssclass": "key", "imagepath": "#", "pssysimagename": "ionv6-key" },
+  {
+    "cssclass": "key-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-key-outline"
+  },
+  {
+    "cssclass": "key-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-key-sharp"
+  },
+  { "cssclass": "keypad", "imagepath": "#", "pssysimagename": "ionv6-keypad" },
+  {
+    "cssclass": "keypad-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-keypad-outline"
+  },
+  {
+    "cssclass": "keypad-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-keypad-sharp"
+  },
+  {
+    "cssclass": "language",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-language"
+  },
+  {
+    "cssclass": "language-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-language-outline"
+  },
+  {
+    "cssclass": "language-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-language-sharp"
+  },
+  { "cssclass": "laptop", "imagepath": "#", "pssysimagename": "ionv6-laptop" },
+  {
+    "cssclass": "laptop-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-laptop-outline"
+  },
+  {
+    "cssclass": "laptop-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-laptop-sharp"
+  },
+  { "cssclass": "layers", "imagepath": "#", "pssysimagename": "ionv6-layers" },
+  {
+    "cssclass": "layers-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-layers-outline"
+  },
+  {
+    "cssclass": "layers-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-layers-sharp"
+  },
+  { "cssclass": "leaf", "imagepath": "#", "pssysimagename": "ionv6-leaf" },
+  {
+    "cssclass": "leaf-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-leaf-outline"
+  },
+  {
+    "cssclass": "leaf-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-leaf-sharp"
+  },
+  {
+    "cssclass": "library",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-library"
+  },
+  {
+    "cssclass": "library-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-library-outline"
+  },
+  {
+    "cssclass": "library-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-library-sharp"
+  },
+  { "cssclass": "link", "imagepath": "#", "pssysimagename": "ionv6-link" },
+  {
+    "cssclass": "link-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-link-outline"
+  },
+  {
+    "cssclass": "link-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-link-sharp"
+  },
+  { "cssclass": "list", "imagepath": "#", "pssysimagename": "ionv6-list" },
+  {
+    "cssclass": "list-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-list-circle"
+  },
+  {
+    "cssclass": "list-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-list-circle-outline"
+  },
+  {
+    "cssclass": "list-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-list-circle-sharp"
+  },
+  {
+    "cssclass": "list-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-list-outline"
+  },
+  {
+    "cssclass": "list-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-list-sharp"
+  },
+  { "cssclass": "locate", "imagepath": "#", "pssysimagename": "ionv6-locate" },
+  {
+    "cssclass": "locate-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-locate-outline"
+  },
+  {
+    "cssclass": "locate-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-locate-sharp"
+  },
+  {
+    "cssclass": "location",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-location"
+  },
+  {
+    "cssclass": "location-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-location-outline"
+  },
+  {
+    "cssclass": "location-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-location-sharp"
+  },
+  {
+    "cssclass": "lock-closed",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-lock-closed"
+  },
+  {
+    "cssclass": "lock-closed-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-lock-closed-outline"
+  },
+  {
+    "cssclass": "lock-closed-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-lock-closed-sharp"
+  },
+  {
+    "cssclass": "lock-open",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-lock-open"
+  },
+  {
+    "cssclass": "lock-open-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-lock-open-outline"
+  },
+  {
+    "cssclass": "lock-open-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-lock-open-sharp"
+  },
+  { "cssclass": "log-in", "imagepath": "#", "pssysimagename": "ionv6-log-in" },
+  {
+    "cssclass": "log-in-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-log-in-outline"
+  },
+  {
+    "cssclass": "log-in-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-log-in-sharp"
+  },
+  {
+    "cssclass": "log-out",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-log-out"
+  },
+  {
+    "cssclass": "log-out-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-log-out-outline"
+  },
+  {
+    "cssclass": "log-out-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-log-out-sharp"
+  },
+  {
+    "cssclass": "logo-alipay",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-alipay"
+  },
+  {
+    "cssclass": "logo-amazon",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-amazon"
+  },
+  {
+    "cssclass": "logo-amplify",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-amplify"
+  },
+  {
+    "cssclass": "logo-android",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-android"
+  },
+  {
+    "cssclass": "logo-angular",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-angular"
+  },
+  {
+    "cssclass": "logo-apple",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-apple"
+  },
+  {
+    "cssclass": "logo-apple-appstore",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-apple-appstore"
+  },
+  {
+    "cssclass": "logo-apple-ar",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-apple-ar"
+  },
+  {
+    "cssclass": "logo-behance",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-behance"
+  },
+  {
+    "cssclass": "logo-bitbucket",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-bitbucket"
+  },
+  {
+    "cssclass": "logo-bitcoin",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-bitcoin"
+  },
+  {
+    "cssclass": "logo-buffer",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-buffer"
+  },
+  {
+    "cssclass": "logo-capacitor",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-capacitor"
+  },
+  {
+    "cssclass": "logo-chrome",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-chrome"
+  },
+  {
+    "cssclass": "logo-closed-captioning",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-closed-captioning"
+  },
+  {
+    "cssclass": "logo-codepen",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-codepen"
+  },
+  {
+    "cssclass": "logo-css3",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-css3"
+  },
+  {
+    "cssclass": "logo-designernews",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-designernews"
+  },
+  {
+    "cssclass": "logo-deviantart",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-deviantart"
+  },
+  {
+    "cssclass": "logo-discord",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-discord"
+  },
+  {
+    "cssclass": "logo-docker",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-docker"
+  },
+  {
+    "cssclass": "logo-dribbble",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-dribbble"
+  },
+  {
+    "cssclass": "logo-dropbox",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-dropbox"
+  },
+  {
+    "cssclass": "logo-edge",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-edge"
+  },
+  {
+    "cssclass": "logo-electron",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-electron"
+  },
+  {
+    "cssclass": "logo-euro",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-euro"
+  },
+  {
+    "cssclass": "logo-facebook",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-facebook"
+  },
+  {
+    "cssclass": "logo-figma",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-figma"
+  },
+  {
+    "cssclass": "logo-firebase",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-firebase"
+  },
+  {
+    "cssclass": "logo-firefox",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-firefox"
+  },
+  {
+    "cssclass": "logo-flickr",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-flickr"
+  },
+  {
+    "cssclass": "logo-foursquare",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-foursquare"
+  },
+  {
+    "cssclass": "logo-github",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-github"
+  },
+  {
+    "cssclass": "logo-gitlab",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-gitlab"
+  },
+  {
+    "cssclass": "logo-google",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-google"
+  },
+  {
+    "cssclass": "logo-google-playstore",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-google-playstore"
+  },
+  {
+    "cssclass": "logo-hackernews",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-hackernews"
+  },
+  {
+    "cssclass": "logo-html5",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-html5"
+  },
+  {
+    "cssclass": "logo-instagram",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-instagram"
+  },
+  {
+    "cssclass": "logo-ionic",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-ionic"
+  },
+  {
+    "cssclass": "logo-ionitron",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-ionitron"
+  },
+  {
+    "cssclass": "logo-javascript",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-javascript"
+  },
+  {
+    "cssclass": "logo-laravel",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-laravel"
+  },
+  {
+    "cssclass": "logo-linkedin",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-linkedin"
+  },
+  {
+    "cssclass": "logo-markdown",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-markdown"
+  },
+  {
+    "cssclass": "logo-mastodon",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-mastodon"
+  },
+  {
+    "cssclass": "logo-medium",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-medium"
+  },
+  {
+    "cssclass": "logo-microsoft",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-microsoft"
+  },
+  {
+    "cssclass": "logo-no-smoking",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-no-smoking"
+  },
+  {
+    "cssclass": "logo-nodejs",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-nodejs"
+  },
+  {
+    "cssclass": "logo-npm",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-npm"
+  },
+  {
+    "cssclass": "logo-octocat",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-octocat"
+  },
+  {
+    "cssclass": "logo-paypal",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-paypal"
+  },
+  {
+    "cssclass": "logo-pinterest",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-pinterest"
+  },
+  {
+    "cssclass": "logo-playstation",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-playstation"
+  },
+  {
+    "cssclass": "logo-pwa",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-pwa"
+  },
+  {
+    "cssclass": "logo-python",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-python"
+  },
+  {
+    "cssclass": "logo-react",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-react"
+  },
+  {
+    "cssclass": "logo-reddit",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-reddit"
+  },
+  {
+    "cssclass": "logo-rss",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-rss"
+  },
+  {
+    "cssclass": "logo-sass",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-sass"
+  },
+  {
+    "cssclass": "logo-skype",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-skype"
+  },
+  {
+    "cssclass": "logo-slack",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-slack"
+  },
+  {
+    "cssclass": "logo-snapchat",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-snapchat"
+  },
+  {
+    "cssclass": "logo-soundcloud",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-soundcloud"
+  },
+  {
+    "cssclass": "logo-stackoverflow",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-stackoverflow"
+  },
+  {
+    "cssclass": "logo-steam",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-steam"
+  },
+  {
+    "cssclass": "logo-stencil",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-stencil"
+  },
+  {
+    "cssclass": "logo-tableau",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-tableau"
+  },
+  {
+    "cssclass": "logo-tiktok",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-tiktok"
+  },
+  {
+    "cssclass": "logo-tumblr",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-tumblr"
+  },
+  {
+    "cssclass": "logo-tux",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-tux"
+  },
+  {
+    "cssclass": "logo-twitch",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-twitch"
+  },
+  {
+    "cssclass": "logo-twitter",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-twitter"
+  },
+  {
+    "cssclass": "logo-usd",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-usd"
+  },
+  {
+    "cssclass": "logo-venmo",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-venmo"
+  },
+  {
+    "cssclass": "logo-vercel",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-vercel"
+  },
+  {
+    "cssclass": "logo-vimeo",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-vimeo"
+  },
+  {
+    "cssclass": "logo-vk",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-vk"
+  },
+  {
+    "cssclass": "logo-vue",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-vue"
+  },
+  {
+    "cssclass": "logo-web-component",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-web-component"
+  },
+  {
+    "cssclass": "logo-wechat",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-wechat"
+  },
+  {
+    "cssclass": "logo-whatsapp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-whatsapp"
+  },
+  {
+    "cssclass": "logo-windows",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-windows"
+  },
+  {
+    "cssclass": "logo-wordpress",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-wordpress"
+  },
+  {
+    "cssclass": "logo-xbox",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-xbox"
+  },
+  {
+    "cssclass": "logo-xing",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-xing"
+  },
+  {
+    "cssclass": "logo-yahoo",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-yahoo"
+  },
+  {
+    "cssclass": "logo-yen",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-yen"
+  },
+  {
+    "cssclass": "logo-youtube",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-logo-youtube"
+  },
+  { "cssclass": "magnet", "imagepath": "#", "pssysimagename": "ionv6-magnet" },
+  {
+    "cssclass": "magnet-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-magnet-outline"
+  },
+  {
+    "cssclass": "magnet-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-magnet-sharp"
+  },
+  { "cssclass": "mail", "imagepath": "#", "pssysimagename": "ionv6-mail" },
+  {
+    "cssclass": "mail-open",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-mail-open"
+  },
+  {
+    "cssclass": "mail-open-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-mail-open-outline"
+  },
+  {
+    "cssclass": "mail-open-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-mail-open-sharp"
+  },
+  {
+    "cssclass": "mail-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-mail-outline"
+  },
+  {
+    "cssclass": "mail-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-mail-sharp"
+  },
+  {
+    "cssclass": "mail-unread",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-mail-unread"
+  },
+  {
+    "cssclass": "mail-unread-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-mail-unread-outline"
+  },
+  {
+    "cssclass": "mail-unread-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-mail-unread-sharp"
+  },
+  { "cssclass": "male", "imagepath": "#", "pssysimagename": "ionv6-male" },
+  {
+    "cssclass": "male-female",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-male-female"
+  },
+  {
+    "cssclass": "male-female-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-male-female-outline"
+  },
+  {
+    "cssclass": "male-female-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-male-female-sharp"
+  },
+  {
+    "cssclass": "male-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-male-outline"
+  },
+  {
+    "cssclass": "male-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-male-sharp"
+  },
+  { "cssclass": "man", "imagepath": "#", "pssysimagename": "ionv6-man" },
+  {
+    "cssclass": "man-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-man-outline"
+  },
+  {
+    "cssclass": "man-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-man-sharp"
+  },
+  { "cssclass": "map", "imagepath": "#", "pssysimagename": "ionv6-map" },
+  {
+    "cssclass": "map-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-map-outline"
+  },
+  {
+    "cssclass": "map-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-map-sharp"
+  },
+  { "cssclass": "medal", "imagepath": "#", "pssysimagename": "ionv6-medal" },
+  {
+    "cssclass": "medal-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-medal-outline"
+  },
+  {
+    "cssclass": "medal-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-medal-sharp"
+  },
+  {
+    "cssclass": "medical",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-medical"
+  },
+  {
+    "cssclass": "medical-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-medical-outline"
+  },
+  {
+    "cssclass": "medical-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-medical-sharp"
+  },
+  { "cssclass": "medkit", "imagepath": "#", "pssysimagename": "ionv6-medkit" },
+  {
+    "cssclass": "medkit-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-medkit-outline"
+  },
+  {
+    "cssclass": "medkit-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-medkit-sharp"
+  },
+  {
+    "cssclass": "megaphone",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-megaphone"
+  },
+  {
+    "cssclass": "megaphone-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-megaphone-outline"
+  },
+  {
+    "cssclass": "megaphone-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-megaphone-sharp"
+  },
+  { "cssclass": "menu", "imagepath": "#", "pssysimagename": "ionv6-menu" },
+  {
+    "cssclass": "menu-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-menu-outline"
+  },
+  {
+    "cssclass": "menu-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-menu-sharp"
+  },
+  { "cssclass": "mic", "imagepath": "#", "pssysimagename": "ionv6-mic" },
+  {
+    "cssclass": "mic-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-mic-circle"
+  },
+  {
+    "cssclass": "mic-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-mic-circle-outline"
+  },
+  {
+    "cssclass": "mic-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-mic-circle-sharp"
+  },
+  {
+    "cssclass": "mic-off",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-mic-off"
+  },
+  {
+    "cssclass": "mic-off-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-mic-off-circle"
+  },
+  {
+    "cssclass": "mic-off-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-mic-off-circle-outline"
+  },
+  {
+    "cssclass": "mic-off-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-mic-off-circle-sharp"
+  },
+  {
+    "cssclass": "mic-off-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-mic-off-outline"
+  },
+  {
+    "cssclass": "mic-off-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-mic-off-sharp"
+  },
+  {
+    "cssclass": "mic-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-mic-outline"
+  },
+  {
+    "cssclass": "mic-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-mic-sharp"
+  },
+  { "cssclass": "moon", "imagepath": "#", "pssysimagename": "ionv6-moon" },
+  {
+    "cssclass": "moon-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-moon-outline"
+  },
+  {
+    "cssclass": "moon-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-moon-sharp"
+  },
+  { "cssclass": "move", "imagepath": "#", "pssysimagename": "ionv6-move" },
+  {
+    "cssclass": "move-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-move-outline"
+  },
+  {
+    "cssclass": "move-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-move-sharp"
+  },
+  {
+    "cssclass": "musical-note",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-musical-note"
+  },
+  {
+    "cssclass": "musical-note-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-musical-note-outline"
+  },
+  {
+    "cssclass": "musical-note-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-musical-note-sharp"
+  },
+  {
+    "cssclass": "musical-notes",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-musical-notes"
+  },
+  {
+    "cssclass": "musical-notes-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-musical-notes-outline"
+  },
+  {
+    "cssclass": "musical-notes-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-musical-notes-sharp"
+  },
+  {
+    "cssclass": "navigate",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-navigate"
+  },
+  {
+    "cssclass": "navigate-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-navigate-circle"
+  },
+  {
+    "cssclass": "navigate-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-navigate-circle-outline"
+  },
+  {
+    "cssclass": "navigate-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-navigate-circle-sharp"
+  },
+  {
+    "cssclass": "navigate-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-navigate-outline"
+  },
+  {
+    "cssclass": "navigate-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-navigate-sharp"
+  },
+  {
+    "cssclass": "newspaper",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-newspaper"
+  },
+  {
+    "cssclass": "newspaper-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-newspaper-outline"
+  },
+  {
+    "cssclass": "newspaper-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-newspaper-sharp"
+  },
+  {
+    "cssclass": "notifications",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-notifications"
+  },
+  {
+    "cssclass": "notifications-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-notifications-circle"
+  },
+  {
+    "cssclass": "notifications-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-notifications-circle-outline"
+  },
+  {
+    "cssclass": "notifications-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-notifications-circle-sharp"
+  },
+  {
+    "cssclass": "notifications-off",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-notifications-off"
+  },
+  {
+    "cssclass": "notifications-off-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-notifications-off-circle"
+  },
+  {
+    "cssclass": "notifications-off-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-notifications-off-circle-outline"
+  },
+  {
+    "cssclass": "notifications-off-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-notifications-off-circle-sharp"
+  },
+  {
+    "cssclass": "notifications-off-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-notifications-off-outline"
+  },
+  {
+    "cssclass": "notifications-off-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-notifications-off-sharp"
+  },
+  {
+    "cssclass": "notifications-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-notifications-outline"
+  },
+  {
+    "cssclass": "notifications-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-notifications-sharp"
+  },
+  {
+    "cssclass": "nuclear",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-nuclear"
+  },
+  {
+    "cssclass": "nuclear-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-nuclear-outline"
+  },
+  {
+    "cssclass": "nuclear-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-nuclear-sharp"
+  },
+  {
+    "cssclass": "nutrition",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-nutrition"
+  },
+  {
+    "cssclass": "nutrition-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-nutrition-outline"
+  },
+  {
+    "cssclass": "nutrition-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-nutrition-sharp"
+  },
+  { "cssclass": "open", "imagepath": "#", "pssysimagename": "ionv6-open" },
+  {
+    "cssclass": "open-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-open-outline"
+  },
+  {
+    "cssclass": "open-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-open-sharp"
+  },
+  {
+    "cssclass": "options",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-options"
+  },
+  {
+    "cssclass": "options-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-options-outline"
+  },
+  {
+    "cssclass": "options-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-options-sharp"
+  },
+  {
+    "cssclass": "paper-plane",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-paper-plane"
+  },
+  {
+    "cssclass": "paper-plane-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-paper-plane-outline"
+  },
+  {
+    "cssclass": "paper-plane-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-paper-plane-sharp"
+  },
+  {
+    "cssclass": "partly-sunny",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-partly-sunny"
+  },
+  {
+    "cssclass": "partly-sunny-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-partly-sunny-outline"
+  },
+  {
+    "cssclass": "partly-sunny-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-partly-sunny-sharp"
+  },
+  { "cssclass": "pause", "imagepath": "#", "pssysimagename": "ionv6-pause" },
+  {
+    "cssclass": "pause-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-pause-circle"
+  },
+  {
+    "cssclass": "pause-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-pause-circle-outline"
+  },
+  {
+    "cssclass": "pause-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-pause-circle-sharp"
+  },
+  {
+    "cssclass": "pause-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-pause-outline"
+  },
+  {
+    "cssclass": "pause-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-pause-sharp"
+  },
+  { "cssclass": "paw", "imagepath": "#", "pssysimagename": "ionv6-paw" },
+  {
+    "cssclass": "paw-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-paw-outline"
+  },
+  {
+    "cssclass": "paw-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-paw-sharp"
+  },
+  { "cssclass": "pencil", "imagepath": "#", "pssysimagename": "ionv6-pencil" },
+  {
+    "cssclass": "pencil-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-pencil-outline"
+  },
+  {
+    "cssclass": "pencil-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-pencil-sharp"
+  },
+  { "cssclass": "people", "imagepath": "#", "pssysimagename": "ionv6-people" },
+  {
+    "cssclass": "people-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-people-circle"
+  },
+  {
+    "cssclass": "people-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-people-circle-outline"
+  },
+  {
+    "cssclass": "people-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-people-circle-sharp"
+  },
+  {
+    "cssclass": "people-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-people-outline"
+  },
+  {
+    "cssclass": "people-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-people-sharp"
+  },
+  { "cssclass": "person", "imagepath": "#", "pssysimagename": "ionv6-person" },
+  {
+    "cssclass": "person-add",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-person-add"
+  },
+  {
+    "cssclass": "person-add-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-person-add-outline"
+  },
+  {
+    "cssclass": "person-add-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-person-add-sharp"
+  },
+  {
+    "cssclass": "person-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-person-circle"
+  },
+  {
+    "cssclass": "person-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-person-circle-outline"
+  },
+  {
+    "cssclass": "person-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-person-circle-sharp"
+  },
+  {
+    "cssclass": "person-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-person-outline"
+  },
+  {
+    "cssclass": "person-remove",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-person-remove"
+  },
+  {
+    "cssclass": "person-remove-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-person-remove-outline"
+  },
+  {
+    "cssclass": "person-remove-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-person-remove-sharp"
+  },
+  {
+    "cssclass": "person-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-person-sharp"
+  },
+  {
+    "cssclass": "phone-landscape",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-phone-landscape"
+  },
+  {
+    "cssclass": "phone-landscape-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-phone-landscape-outline"
+  },
+  {
+    "cssclass": "phone-landscape-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-phone-landscape-sharp"
+  },
+  {
+    "cssclass": "phone-portrait",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-phone-portrait"
+  },
+  {
+    "cssclass": "phone-portrait-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-phone-portrait-outline"
+  },
+  {
+    "cssclass": "phone-portrait-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-phone-portrait-sharp"
+  },
+  {
+    "cssclass": "pie-chart",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-pie-chart"
+  },
+  {
+    "cssclass": "pie-chart-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-pie-chart-outline"
+  },
+  {
+    "cssclass": "pie-chart-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-pie-chart-sharp"
+  },
+  { "cssclass": "pin", "imagepath": "#", "pssysimagename": "ionv6-pin" },
+  {
+    "cssclass": "pin-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-pin-outline"
+  },
+  {
+    "cssclass": "pin-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-pin-sharp"
+  },
+  { "cssclass": "pint", "imagepath": "#", "pssysimagename": "ionv6-pint" },
+  {
+    "cssclass": "pint-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-pint-outline"
+  },
+  {
+    "cssclass": "pint-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-pint-sharp"
+  },
+  { "cssclass": "pizza", "imagepath": "#", "pssysimagename": "ionv6-pizza" },
+  {
+    "cssclass": "pizza-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-pizza-outline"
+  },
+  {
+    "cssclass": "pizza-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-pizza-sharp"
+  },
+  { "cssclass": "planet", "imagepath": "#", "pssysimagename": "ionv6-planet" },
+  {
+    "cssclass": "planet-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-planet-outline"
+  },
+  {
+    "cssclass": "planet-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-planet-sharp"
+  },
+  { "cssclass": "play", "imagepath": "#", "pssysimagename": "ionv6-play" },
+  {
+    "cssclass": "play-back",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-play-back"
+  },
+  {
+    "cssclass": "play-back-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-play-back-circle"
+  },
+  {
+    "cssclass": "play-back-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-play-back-circle-outline"
+  },
+  {
+    "cssclass": "play-back-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-play-back-circle-sharp"
+  },
+  {
+    "cssclass": "play-back-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-play-back-outline"
+  },
+  {
+    "cssclass": "play-back-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-play-back-sharp"
+  },
+  {
+    "cssclass": "play-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-play-circle"
+  },
+  {
+    "cssclass": "play-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-play-circle-outline"
+  },
+  {
+    "cssclass": "play-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-play-circle-sharp"
+  },
+  {
+    "cssclass": "play-forward",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-play-forward"
+  },
+  {
+    "cssclass": "play-forward-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-play-forward-circle"
+  },
+  {
+    "cssclass": "play-forward-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-play-forward-circle-outline"
+  },
+  {
+    "cssclass": "play-forward-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-play-forward-circle-sharp"
+  },
+  {
+    "cssclass": "play-forward-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-play-forward-outline"
+  },
+  {
+    "cssclass": "play-forward-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-play-forward-sharp"
+  },
+  {
+    "cssclass": "play-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-play-outline"
+  },
+  {
+    "cssclass": "play-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-play-sharp"
+  },
+  {
+    "cssclass": "play-skip-back",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-play-skip-back"
+  },
+  {
+    "cssclass": "play-skip-back-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-play-skip-back-circle"
+  },
+  {
+    "cssclass": "play-skip-back-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-play-skip-back-circle-outline"
+  },
+  {
+    "cssclass": "play-skip-back-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-play-skip-back-circle-sharp"
+  },
+  {
+    "cssclass": "play-skip-back-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-play-skip-back-outline"
+  },
+  {
+    "cssclass": "play-skip-back-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-play-skip-back-sharp"
+  },
+  {
+    "cssclass": "play-skip-forward",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-play-skip-forward"
+  },
+  {
+    "cssclass": "play-skip-forward-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-play-skip-forward-circle"
+  },
+  {
+    "cssclass": "play-skip-forward-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-play-skip-forward-circle-outline"
+  },
+  {
+    "cssclass": "play-skip-forward-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-play-skip-forward-circle-sharp"
+  },
+  {
+    "cssclass": "play-skip-forward-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-play-skip-forward-outline"
+  },
+  {
+    "cssclass": "play-skip-forward-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-play-skip-forward-sharp"
+  },
+  { "cssclass": "podium", "imagepath": "#", "pssysimagename": "ionv6-podium" },
+  {
+    "cssclass": "podium-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-podium-outline"
+  },
+  {
+    "cssclass": "podium-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-podium-sharp"
+  },
+  { "cssclass": "power", "imagepath": "#", "pssysimagename": "ionv6-power" },
+  {
+    "cssclass": "power-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-power-outline"
+  },
+  {
+    "cssclass": "power-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-power-sharp"
+  },
+  {
+    "cssclass": "pricetag",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-pricetag"
+  },
+  {
+    "cssclass": "pricetag-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-pricetag-outline"
+  },
+  {
+    "cssclass": "pricetag-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-pricetag-sharp"
+  },
+  {
+    "cssclass": "pricetags",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-pricetags"
+  },
+  {
+    "cssclass": "pricetags-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-pricetags-outline"
+  },
+  {
+    "cssclass": "pricetags-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-pricetags-sharp"
+  },
+  { "cssclass": "print", "imagepath": "#", "pssysimagename": "ionv6-print" },
+  {
+    "cssclass": "print-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-print-outline"
+  },
+  {
+    "cssclass": "print-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-print-sharp"
+  },
+  { "cssclass": "prism", "imagepath": "#", "pssysimagename": "ionv6-prism" },
+  {
+    "cssclass": "prism-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-prism-outline"
+  },
+  {
+    "cssclass": "prism-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-prism-sharp"
+  },
+  { "cssclass": "pulse", "imagepath": "#", "pssysimagename": "ionv6-pulse" },
+  {
+    "cssclass": "pulse-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-pulse-outline"
+  },
+  {
+    "cssclass": "pulse-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-pulse-sharp"
+  },
+  { "cssclass": "push", "imagepath": "#", "pssysimagename": "ionv6-push" },
+  {
+    "cssclass": "push-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-push-outline"
+  },
+  {
+    "cssclass": "push-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-push-sharp"
+  },
+  {
+    "cssclass": "qr-code",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-qr-code"
+  },
+  {
+    "cssclass": "qr-code-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-qr-code-outline"
+  },
+  {
+    "cssclass": "qr-code-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-qr-code-sharp"
+  },
+  { "cssclass": "radio", "imagepath": "#", "pssysimagename": "ionv6-radio" },
+  {
+    "cssclass": "radio-button-off",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-radio-button-off"
+  },
+  {
+    "cssclass": "radio-button-off-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-radio-button-off-outline"
+  },
+  {
+    "cssclass": "radio-button-off-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-radio-button-off-sharp"
+  },
+  {
+    "cssclass": "radio-button-on",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-radio-button-on"
+  },
+  {
+    "cssclass": "radio-button-on-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-radio-button-on-outline"
+  },
+  {
+    "cssclass": "radio-button-on-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-radio-button-on-sharp"
+  },
+  {
+    "cssclass": "radio-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-radio-outline"
+  },
+  {
+    "cssclass": "radio-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-radio-sharp"
+  },
+  { "cssclass": "rainy", "imagepath": "#", "pssysimagename": "ionv6-rainy" },
+  {
+    "cssclass": "rainy-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-rainy-outline"
+  },
+  {
+    "cssclass": "rainy-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-rainy-sharp"
+  },
+  { "cssclass": "reader", "imagepath": "#", "pssysimagename": "ionv6-reader" },
+  {
+    "cssclass": "reader-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-reader-outline"
+  },
+  {
+    "cssclass": "reader-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-reader-sharp"
+  },
+  {
+    "cssclass": "receipt",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-receipt"
+  },
+  {
+    "cssclass": "receipt-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-receipt-outline"
+  },
+  {
+    "cssclass": "receipt-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-receipt-sharp"
+  },
+  {
+    "cssclass": "recording",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-recording"
+  },
+  {
+    "cssclass": "recording-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-recording-outline"
+  },
+  {
+    "cssclass": "recording-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-recording-sharp"
+  },
+  {
+    "cssclass": "refresh",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-refresh"
+  },
+  {
+    "cssclass": "refresh-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-refresh-circle"
+  },
+  {
+    "cssclass": "refresh-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-refresh-circle-outline"
+  },
+  {
+    "cssclass": "refresh-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-refresh-circle-sharp"
+  },
+  {
+    "cssclass": "refresh-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-refresh-outline"
+  },
+  {
+    "cssclass": "refresh-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-refresh-sharp"
+  },
+  { "cssclass": "reload", "imagepath": "#", "pssysimagename": "ionv6-reload" },
+  {
+    "cssclass": "reload-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-reload-circle"
+  },
+  {
+    "cssclass": "reload-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-reload-circle-outline"
+  },
+  {
+    "cssclass": "reload-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-reload-circle-sharp"
+  },
+  {
+    "cssclass": "reload-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-reload-outline"
+  },
+  {
+    "cssclass": "reload-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-reload-sharp"
+  },
+  { "cssclass": "remove", "imagepath": "#", "pssysimagename": "ionv6-remove" },
+  {
+    "cssclass": "remove-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-remove-circle"
+  },
+  {
+    "cssclass": "remove-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-remove-circle-outline"
+  },
+  {
+    "cssclass": "remove-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-remove-circle-sharp"
+  },
+  {
+    "cssclass": "remove-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-remove-outline"
+  },
+  {
+    "cssclass": "remove-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-remove-sharp"
+  },
+  {
+    "cssclass": "reorder-four",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-reorder-four"
+  },
+  {
+    "cssclass": "reorder-four-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-reorder-four-outline"
+  },
+  {
+    "cssclass": "reorder-four-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-reorder-four-sharp"
+  },
+  {
+    "cssclass": "reorder-three",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-reorder-three"
+  },
+  {
+    "cssclass": "reorder-three-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-reorder-three-outline"
+  },
+  {
+    "cssclass": "reorder-three-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-reorder-three-sharp"
+  },
+  {
+    "cssclass": "reorder-two",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-reorder-two"
+  },
+  {
+    "cssclass": "reorder-two-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-reorder-two-outline"
+  },
+  {
+    "cssclass": "reorder-two-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-reorder-two-sharp"
+  },
+  { "cssclass": "repeat", "imagepath": "#", "pssysimagename": "ionv6-repeat" },
+  {
+    "cssclass": "repeat-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-repeat-outline"
+  },
+  {
+    "cssclass": "repeat-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-repeat-sharp"
+  },
+  { "cssclass": "resize", "imagepath": "#", "pssysimagename": "ionv6-resize" },
+  {
+    "cssclass": "resize-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-resize-outline"
+  },
+  {
+    "cssclass": "resize-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-resize-sharp"
+  },
+  {
+    "cssclass": "restaurant",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-restaurant"
+  },
+  {
+    "cssclass": "restaurant-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-restaurant-outline"
+  },
+  {
+    "cssclass": "restaurant-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-restaurant-sharp"
+  },
+  {
+    "cssclass": "return-down-back",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-return-down-back"
+  },
+  {
+    "cssclass": "return-down-back-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-return-down-back-outline"
+  },
+  {
+    "cssclass": "return-down-back-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-return-down-back-sharp"
+  },
+  {
+    "cssclass": "return-down-forward",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-return-down-forward"
+  },
+  {
+    "cssclass": "return-down-forward-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-return-down-forward-outline"
+  },
+  {
+    "cssclass": "return-down-forward-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-return-down-forward-sharp"
+  },
+  {
+    "cssclass": "return-up-back",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-return-up-back"
+  },
+  {
+    "cssclass": "return-up-back-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-return-up-back-outline"
+  },
+  {
+    "cssclass": "return-up-back-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-return-up-back-sharp"
+  },
+  {
+    "cssclass": "return-up-forward",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-return-up-forward"
+  },
+  {
+    "cssclass": "return-up-forward-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-return-up-forward-outline"
+  },
+  {
+    "cssclass": "return-up-forward-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-return-up-forward-sharp"
+  },
+  { "cssclass": "ribbon", "imagepath": "#", "pssysimagename": "ionv6-ribbon" },
+  {
+    "cssclass": "ribbon-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-ribbon-outline"
+  },
+  {
+    "cssclass": "ribbon-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-ribbon-sharp"
+  },
+  { "cssclass": "rocket", "imagepath": "#", "pssysimagename": "ionv6-rocket" },
+  {
+    "cssclass": "rocket-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-rocket-outline"
+  },
+  {
+    "cssclass": "rocket-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-rocket-sharp"
+  },
+  { "cssclass": "rose", "imagepath": "#", "pssysimagename": "ionv6-rose" },
+  {
+    "cssclass": "rose-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-rose-outline"
+  },
+  {
+    "cssclass": "rose-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-rose-sharp"
+  },
+  { "cssclass": "sad", "imagepath": "#", "pssysimagename": "ionv6-sad" },
+  {
+    "cssclass": "sad-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-sad-outline"
+  },
+  {
+    "cssclass": "sad-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-sad-sharp"
+  },
+  { "cssclass": "save", "imagepath": "#", "pssysimagename": "ionv6-save" },
+  {
+    "cssclass": "save-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-save-outline"
+  },
+  {
+    "cssclass": "save-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-save-sharp"
+  },
+  { "cssclass": "scale", "imagepath": "#", "pssysimagename": "ionv6-scale" },
+  {
+    "cssclass": "scale-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-scale-outline"
+  },
+  {
+    "cssclass": "scale-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-scale-sharp"
+  },
+  { "cssclass": "scan", "imagepath": "#", "pssysimagename": "ionv6-scan" },
+  {
+    "cssclass": "scan-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-scan-circle"
+  },
+  {
+    "cssclass": "scan-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-scan-circle-outline"
+  },
+  {
+    "cssclass": "scan-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-scan-circle-sharp"
+  },
+  {
+    "cssclass": "scan-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-scan-outline"
+  },
+  {
+    "cssclass": "scan-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-scan-sharp"
+  },
+  { "cssclass": "school", "imagepath": "#", "pssysimagename": "ionv6-school" },
+  {
+    "cssclass": "school-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-school-outline"
+  },
+  {
+    "cssclass": "school-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-school-sharp"
+  },
+  { "cssclass": "search", "imagepath": "#", "pssysimagename": "ionv6-search" },
+  {
+    "cssclass": "search-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-search-circle"
+  },
+  {
+    "cssclass": "search-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-search-circle-outline"
+  },
+  {
+    "cssclass": "search-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-search-circle-sharp"
+  },
+  {
+    "cssclass": "search-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-search-outline"
+  },
+  {
+    "cssclass": "search-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-search-sharp"
+  },
+  { "cssclass": "send", "imagepath": "#", "pssysimagename": "ionv6-send" },
+  {
+    "cssclass": "send-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-send-outline"
+  },
+  {
+    "cssclass": "send-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-send-sharp"
+  },
+  { "cssclass": "server", "imagepath": "#", "pssysimagename": "ionv6-server" },
+  {
+    "cssclass": "server-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-server-outline"
+  },
+  {
+    "cssclass": "server-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-server-sharp"
+  },
+  {
+    "cssclass": "settings",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-settings"
+  },
+  {
+    "cssclass": "settings-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-settings-outline"
+  },
+  {
+    "cssclass": "settings-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-settings-sharp"
+  },
+  { "cssclass": "shapes", "imagepath": "#", "pssysimagename": "ionv6-shapes" },
+  {
+    "cssclass": "shapes-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-shapes-outline"
+  },
+  {
+    "cssclass": "shapes-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-shapes-sharp"
+  },
+  { "cssclass": "share", "imagepath": "#", "pssysimagename": "ionv6-share" },
+  {
+    "cssclass": "share-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-share-outline"
+  },
+  {
+    "cssclass": "share-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-share-sharp"
+  },
+  {
+    "cssclass": "share-social",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-share-social"
+  },
+  {
+    "cssclass": "share-social-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-share-social-outline"
+  },
+  {
+    "cssclass": "share-social-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-share-social-sharp"
+  },
+  { "cssclass": "shield", "imagepath": "#", "pssysimagename": "ionv6-shield" },
+  {
+    "cssclass": "shield-checkmark",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-shield-checkmark"
+  },
+  {
+    "cssclass": "shield-checkmark-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-shield-checkmark-outline"
+  },
+  {
+    "cssclass": "shield-checkmark-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-shield-checkmark-sharp"
+  },
+  {
+    "cssclass": "shield-half",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-shield-half"
+  },
+  {
+    "cssclass": "shield-half-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-shield-half-outline"
+  },
+  {
+    "cssclass": "shield-half-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-shield-half-sharp"
+  },
+  {
+    "cssclass": "shield-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-shield-outline"
+  },
+  {
+    "cssclass": "shield-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-shield-sharp"
+  },
+  { "cssclass": "shirt", "imagepath": "#", "pssysimagename": "ionv6-shirt" },
+  {
+    "cssclass": "shirt-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-shirt-outline"
+  },
+  {
+    "cssclass": "shirt-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-shirt-sharp"
+  },
+  {
+    "cssclass": "shuffle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-shuffle"
+  },
+  {
+    "cssclass": "shuffle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-shuffle-outline"
+  },
+  {
+    "cssclass": "shuffle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-shuffle-sharp"
+  },
+  { "cssclass": "skull", "imagepath": "#", "pssysimagename": "ionv6-skull" },
+  {
+    "cssclass": "skull-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-skull-outline"
+  },
+  {
+    "cssclass": "skull-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-skull-sharp"
+  },
+  { "cssclass": "snow", "imagepath": "#", "pssysimagename": "ionv6-snow" },
+  {
+    "cssclass": "snow-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-snow-outline"
+  },
+  {
+    "cssclass": "snow-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-snow-sharp"
+  },
+  {
+    "cssclass": "sparkles",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-sparkles"
+  },
+  {
+    "cssclass": "sparkles-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-sparkles-outline"
+  },
+  {
+    "cssclass": "sparkles-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-sparkles-sharp"
+  },
+  {
+    "cssclass": "speedometer",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-speedometer"
+  },
+  {
+    "cssclass": "speedometer-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-speedometer-outline"
+  },
+  {
+    "cssclass": "speedometer-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-speedometer-sharp"
+  },
+  { "cssclass": "square", "imagepath": "#", "pssysimagename": "ionv6-square" },
+  {
+    "cssclass": "square-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-square-outline"
+  },
+  {
+    "cssclass": "square-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-square-sharp"
+  },
+  { "cssclass": "star", "imagepath": "#", "pssysimagename": "ionv6-star" },
+  {
+    "cssclass": "star-half",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-star-half"
+  },
+  {
+    "cssclass": "star-half-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-star-half-outline"
+  },
+  {
+    "cssclass": "star-half-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-star-half-sharp"
+  },
+  {
+    "cssclass": "star-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-star-outline"
+  },
+  {
+    "cssclass": "star-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-star-sharp"
+  },
+  {
+    "cssclass": "stats-chart",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-stats-chart"
+  },
+  {
+    "cssclass": "stats-chart-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-stats-chart-outline"
+  },
+  {
+    "cssclass": "stats-chart-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-stats-chart-sharp"
+  },
+  { "cssclass": "stop", "imagepath": "#", "pssysimagename": "ionv6-stop" },
+  {
+    "cssclass": "stop-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-stop-circle"
+  },
+  {
+    "cssclass": "stop-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-stop-circle-outline"
+  },
+  {
+    "cssclass": "stop-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-stop-circle-sharp"
+  },
+  {
+    "cssclass": "stop-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-stop-outline"
+  },
+  {
+    "cssclass": "stop-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-stop-sharp"
+  },
+  {
+    "cssclass": "stopwatch",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-stopwatch"
+  },
+  {
+    "cssclass": "stopwatch-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-stopwatch-outline"
+  },
+  {
+    "cssclass": "stopwatch-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-stopwatch-sharp"
+  },
+  {
+    "cssclass": "storefront",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-storefront"
+  },
+  {
+    "cssclass": "storefront-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-storefront-outline"
+  },
+  {
+    "cssclass": "storefront-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-storefront-sharp"
+  },
+  { "cssclass": "subway", "imagepath": "#", "pssysimagename": "ionv6-subway" },
+  {
+    "cssclass": "subway-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-subway-outline"
+  },
+  {
+    "cssclass": "subway-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-subway-sharp"
+  },
+  { "cssclass": "sunny", "imagepath": "#", "pssysimagename": "ionv6-sunny" },
+  {
+    "cssclass": "sunny-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-sunny-outline"
+  },
+  {
+    "cssclass": "sunny-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-sunny-sharp"
+  },
+  {
+    "cssclass": "swap-horizontal",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-swap-horizontal"
+  },
+  {
+    "cssclass": "swap-horizontal-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-swap-horizontal-outline"
+  },
+  {
+    "cssclass": "swap-horizontal-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-swap-horizontal-sharp"
+  },
+  {
+    "cssclass": "swap-vertical",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-swap-vertical"
+  },
+  {
+    "cssclass": "swap-vertical-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-swap-vertical-outline"
+  },
+  {
+    "cssclass": "swap-vertical-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-swap-vertical-sharp"
+  },
+  { "cssclass": "sync", "imagepath": "#", "pssysimagename": "ionv6-sync" },
+  {
+    "cssclass": "sync-circle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-sync-circle"
+  },
+  {
+    "cssclass": "sync-circle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-sync-circle-outline"
+  },
+  {
+    "cssclass": "sync-circle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-sync-circle-sharp"
+  },
+  {
+    "cssclass": "sync-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-sync-outline"
+  },
+  {
+    "cssclass": "sync-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-sync-sharp"
+  },
+  {
+    "cssclass": "tablet-landscape",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-tablet-landscape"
+  },
+  {
+    "cssclass": "tablet-landscape-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-tablet-landscape-outline"
+  },
+  {
+    "cssclass": "tablet-landscape-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-tablet-landscape-sharp"
+  },
+  {
+    "cssclass": "tablet-portrait",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-tablet-portrait"
+  },
+  {
+    "cssclass": "tablet-portrait-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-tablet-portrait-outline"
+  },
+  {
+    "cssclass": "tablet-portrait-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-tablet-portrait-sharp"
+  },
+  {
+    "cssclass": "telescope",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-telescope"
+  },
+  {
+    "cssclass": "telescope-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-telescope-outline"
+  },
+  {
+    "cssclass": "telescope-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-telescope-sharp"
+  },
+  {
+    "cssclass": "tennisball",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-tennisball"
+  },
+  {
+    "cssclass": "tennisball-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-tennisball-outline"
+  },
+  {
+    "cssclass": "tennisball-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-tennisball-sharp"
+  },
+  {
+    "cssclass": "terminal",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-terminal"
+  },
+  {
+    "cssclass": "terminal-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-terminal-outline"
+  },
+  {
+    "cssclass": "terminal-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-terminal-sharp"
+  },
+  { "cssclass": "text", "imagepath": "#", "pssysimagename": "ionv6-text" },
+  {
+    "cssclass": "text-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-text-outline"
+  },
+  {
+    "cssclass": "text-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-text-sharp"
+  },
+  {
+    "cssclass": "thermometer",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-thermometer"
+  },
+  {
+    "cssclass": "thermometer-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-thermometer-outline"
+  },
+  {
+    "cssclass": "thermometer-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-thermometer-sharp"
+  },
+  {
+    "cssclass": "thumbs-down",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-thumbs-down"
+  },
+  {
+    "cssclass": "thumbs-down-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-thumbs-down-outline"
+  },
+  {
+    "cssclass": "thumbs-down-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-thumbs-down-sharp"
+  },
+  {
+    "cssclass": "thumbs-up",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-thumbs-up"
+  },
+  {
+    "cssclass": "thumbs-up-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-thumbs-up-outline"
+  },
+  {
+    "cssclass": "thumbs-up-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-thumbs-up-sharp"
+  },
+  {
+    "cssclass": "thunderstorm",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-thunderstorm"
+  },
+  {
+    "cssclass": "thunderstorm-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-thunderstorm-outline"
+  },
+  {
+    "cssclass": "thunderstorm-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-thunderstorm-sharp"
+  },
+  { "cssclass": "ticket", "imagepath": "#", "pssysimagename": "ionv6-ticket" },
+  {
+    "cssclass": "ticket-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-ticket-outline"
+  },
+  {
+    "cssclass": "ticket-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-ticket-sharp"
+  },
+  { "cssclass": "time", "imagepath": "#", "pssysimagename": "ionv6-time" },
+  {
+    "cssclass": "time-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-time-outline"
+  },
+  {
+    "cssclass": "time-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-time-sharp"
+  },
+  { "cssclass": "timer", "imagepath": "#", "pssysimagename": "ionv6-timer" },
+  {
+    "cssclass": "timer-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-timer-outline"
+  },
+  {
+    "cssclass": "timer-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-timer-sharp"
+  },
+  { "cssclass": "today", "imagepath": "#", "pssysimagename": "ionv6-today" },
+  {
+    "cssclass": "today-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-today-outline"
+  },
+  {
+    "cssclass": "today-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-today-sharp"
+  },
+  { "cssclass": "toggle", "imagepath": "#", "pssysimagename": "ionv6-toggle" },
+  {
+    "cssclass": "toggle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-toggle-outline"
+  },
+  {
+    "cssclass": "toggle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-toggle-sharp"
+  },
+  {
+    "cssclass": "trail-sign",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-trail-sign"
+  },
+  {
+    "cssclass": "trail-sign-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-trail-sign-outline"
+  },
+  {
+    "cssclass": "trail-sign-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-trail-sign-sharp"
+  },
+  { "cssclass": "train", "imagepath": "#", "pssysimagename": "ionv6-train" },
+  {
+    "cssclass": "train-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-train-outline"
+  },
+  {
+    "cssclass": "train-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-train-sharp"
+  },
+  {
+    "cssclass": "transgender",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-transgender"
+  },
+  {
+    "cssclass": "transgender-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-transgender-outline"
+  },
+  {
+    "cssclass": "transgender-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-transgender-sharp"
+  },
+  { "cssclass": "trash", "imagepath": "#", "pssysimagename": "ionv6-trash" },
+  {
+    "cssclass": "trash-bin",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-trash-bin"
+  },
+  {
+    "cssclass": "trash-bin-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-trash-bin-outline"
+  },
+  {
+    "cssclass": "trash-bin-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-trash-bin-sharp"
+  },
+  {
+    "cssclass": "trash-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-trash-outline"
+  },
+  {
+    "cssclass": "trash-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-trash-sharp"
+  },
+  {
+    "cssclass": "trending-down",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-trending-down"
+  },
+  {
+    "cssclass": "trending-down-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-trending-down-outline"
+  },
+  {
+    "cssclass": "trending-down-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-trending-down-sharp"
+  },
+  {
+    "cssclass": "trending-up",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-trending-up"
+  },
+  {
+    "cssclass": "trending-up-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-trending-up-outline"
+  },
+  {
+    "cssclass": "trending-up-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-trending-up-sharp"
+  },
+  {
+    "cssclass": "triangle",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-triangle"
+  },
+  {
+    "cssclass": "triangle-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-triangle-outline"
+  },
+  {
+    "cssclass": "triangle-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-triangle-sharp"
+  },
+  { "cssclass": "trophy", "imagepath": "#", "pssysimagename": "ionv6-trophy" },
+  {
+    "cssclass": "trophy-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-trophy-outline"
+  },
+  {
+    "cssclass": "trophy-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-trophy-sharp"
+  },
+  { "cssclass": "tv", "imagepath": "#", "pssysimagename": "ionv6-tv" },
+  {
+    "cssclass": "tv-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-tv-outline"
+  },
+  {
+    "cssclass": "tv-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-tv-sharp"
+  },
+  {
+    "cssclass": "umbrella",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-umbrella"
+  },
+  {
+    "cssclass": "umbrella-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-umbrella-outline"
+  },
+  {
+    "cssclass": "umbrella-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-umbrella-sharp"
+  },
+  { "cssclass": "unlink", "imagepath": "#", "pssysimagename": "ionv6-unlink" },
+  {
+    "cssclass": "unlink-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-unlink-outline"
+  },
+  {
+    "cssclass": "unlink-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-unlink-sharp"
+  },
+  {
+    "cssclass": "videocam",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-videocam"
+  },
+  {
+    "cssclass": "videocam-off",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-videocam-off"
+  },
+  {
+    "cssclass": "videocam-off-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-videocam-off-outline"
+  },
+  {
+    "cssclass": "videocam-off-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-videocam-off-sharp"
+  },
+  {
+    "cssclass": "videocam-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-videocam-outline"
+  },
+  {
+    "cssclass": "videocam-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-videocam-sharp"
+  },
+  {
+    "cssclass": "volume-high",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-volume-high"
+  },
+  {
+    "cssclass": "volume-high-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-volume-high-outline"
+  },
+  {
+    "cssclass": "volume-high-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-volume-high-sharp"
+  },
+  {
+    "cssclass": "volume-low",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-volume-low"
+  },
+  {
+    "cssclass": "volume-low-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-volume-low-outline"
+  },
+  {
+    "cssclass": "volume-low-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-volume-low-sharp"
+  },
+  {
+    "cssclass": "volume-medium",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-volume-medium"
+  },
+  {
+    "cssclass": "volume-medium-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-volume-medium-outline"
+  },
+  {
+    "cssclass": "volume-medium-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-volume-medium-sharp"
+  },
+  {
+    "cssclass": "volume-mute",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-volume-mute"
+  },
+  {
+    "cssclass": "volume-mute-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-volume-mute-outline"
+  },
+  {
+    "cssclass": "volume-mute-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-volume-mute-sharp"
+  },
+  {
+    "cssclass": "volume-off",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-volume-off"
+  },
+  {
+    "cssclass": "volume-off-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-volume-off-outline"
+  },
+  {
+    "cssclass": "volume-off-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-volume-off-sharp"
+  },
+  { "cssclass": "walk", "imagepath": "#", "pssysimagename": "ionv6-walk" },
+  {
+    "cssclass": "walk-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-walk-outline"
+  },
+  {
+    "cssclass": "walk-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-walk-sharp"
+  },
+  { "cssclass": "wallet", "imagepath": "#", "pssysimagename": "ionv6-wallet" },
+  {
+    "cssclass": "wallet-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-wallet-outline"
+  },
+  {
+    "cssclass": "wallet-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-wallet-sharp"
+  },
+  {
+    "cssclass": "warning",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-warning"
+  },
+  {
+    "cssclass": "warning-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-warning-outline"
+  },
+  {
+    "cssclass": "warning-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-warning-sharp"
+  },
+  { "cssclass": "watch", "imagepath": "#", "pssysimagename": "ionv6-watch" },
+  {
+    "cssclass": "watch-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-watch-outline"
+  },
+  {
+    "cssclass": "watch-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-watch-sharp"
+  },
+  { "cssclass": "water", "imagepath": "#", "pssysimagename": "ionv6-water" },
+  {
+    "cssclass": "water-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-water-outline"
+  },
+  {
+    "cssclass": "water-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-water-sharp"
+  },
+  { "cssclass": "wifi", "imagepath": "#", "pssysimagename": "ionv6-wifi" },
+  {
+    "cssclass": "wifi-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-wifi-outline"
+  },
+  {
+    "cssclass": "wifi-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-wifi-sharp"
+  },
+  { "cssclass": "wine", "imagepath": "#", "pssysimagename": "ionv6-wine" },
+  {
+    "cssclass": "wine-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-wine-outline"
+  },
+  {
+    "cssclass": "wine-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-wine-sharp"
+  },
+  { "cssclass": "woman", "imagepath": "#", "pssysimagename": "ionv6-woman" },
+  {
+    "cssclass": "woman-outline",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-woman-outline"
+  },
+  {
+    "cssclass": "woman-sharp",
+    "imagepath": "#",
+    "pssysimagename": "ionv6-woman-sharp"
+  }
+]

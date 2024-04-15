@@ -1,0 +1,71 @@
+export default {
+  redirectAppViewRefs: [
+    {
+      realTitle: '工时编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.WORKLOAD.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.workload_edit_view',
+      name: 'WORKLOAD:EDITVIEW',
+      id: 'workload:editview',
+    },
+    {
+      realTitle: '工时编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.WORKLOAD.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.workload_edit_view',
+      name: 'EDITVIEW',
+      id: 'editview',
+    },
+  ],
+  enableWorkflow: true,
+  funcViewMode: 'REDIRECTVIEW',
+  deviewCodeName: 'RedirectView',
+  deviewId: '8dcee60b0bc67d62c2fd16aecbdfdcc2',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.WORKLOAD',
+  },
+  caption: '工时',
+  codeName: 'workload_redirect_view',
+  appDataEntityId: 'plmweb.workload',
+  controls: [
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.WORKLOAD',
+      },
+      caption: '工时',
+      codeName: 'redirect_view_captionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.workload',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'redirect_view_captionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'layoutpanel',
+    controlStyle: 'APPDEREDIRECTVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.workload',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '工时数据重定向视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.WORKLOAD.REDIRECTVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEREDIRECTVIEW',
+  enableDP: true,
+  redirectView: true,
+  showCaptionBar: true,
+  modelId: '71def727a6cc89c7d038bb171de521b6',
+  modelType: 'PSAPPDEVIEW',
+  name: 'workloadRedirectView',
+  id: 'plmweb.workload_redirect_view',
+};

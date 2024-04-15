@@ -1,0 +1,71 @@
+export default {
+  redirectAppViewRefs: [
+    {
+      realTitle: '工单编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.TICKET.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.ticket_edit_view',
+      name: 'TICKET:EDITVIEW',
+      id: 'ticket:editview',
+    },
+    {
+      realTitle: '工单编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.TICKET.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.ticket_edit_view',
+      name: 'EDITVIEW',
+      id: 'editview',
+    },
+  ],
+  enableWorkflow: true,
+  funcViewMode: 'REDIRECTVIEW',
+  deviewCodeName: 'RedirectView',
+  deviewId: '12d9af6ed8494a2fc7031024489a6719',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.TICKET',
+  },
+  caption: '工单',
+  codeName: 'ticket_redirect_view',
+  appDataEntityId: 'plmweb.ticket',
+  controls: [
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.TICKET',
+      },
+      caption: '工单',
+      codeName: 'redirect_view_captionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.ticket',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'redirect_view_captionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'layoutpanel',
+    controlStyle: 'APPDEREDIRECTVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.ticket',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '工单数据重定向视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.TICKET.REDIRECTVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEREDIRECTVIEW',
+  enableDP: true,
+  redirectView: true,
+  showCaptionBar: true,
+  modelId: 'cc5b5554cd8de97f1bd7ef47102ea6b8',
+  modelType: 'PSAPPDEVIEW',
+  name: 'ticketRedirectView',
+  id: 'plmweb.ticket_redirect_view',
+};

@@ -1,0 +1,22 @@
+/**
+ * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/{{apis}}/mapping/{{apiDtos@DEFAULT}}Mapping.java.hbs
+ */
+package cn.ibizlab.plm.serviceapi.mapping;
+
+import org.mapstruct.*;
+import cn.ibizlab.plm.core.testmgmt.domain.RunAttachment;
+import cn.ibizlab.plm.serviceapi.dto.RunAttachmentDTO;
+import cn.ibizlab.util.domain.MappingBase;
+
+/**
+ * 执行用例结果附件转换[RunAttachmentDTO]
+ *
+ * @author generator
+ */
+@Mapper(componentModel = "spring", uses = {}, implementationName = "ServiceAPIRunAttachmentDTOMapping",
+        nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE,
+        nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
+public interface RunAttachmentDTOMapping extends MappingBase<RunAttachmentDTO, RunAttachment> {
+
+
+}

@@ -1,0 +1,66 @@
+export default {
+  codeListTag: 'TestMgmt__test_case_type',
+  codeListType: 'STATIC',
+  codeName: 'TestMgmt__test_case_type',
+  emptyText: '未定义',
+  appDataEntityId: 'plmweb.test_case',
+  codeItems: [
+    {
+      codeName: 'item_10',
+      text: '功能测试',
+      value: '10',
+      id: 'item_10',
+    },
+    {
+      codeName: 'item_20',
+      text: '性能测试',
+      value: '20',
+      id: 'item_20',
+    },
+    {
+      codeName: 'item_30',
+      text: '配置相关',
+      value: '30',
+      id: 'item_30',
+    },
+    {
+      codeName: 'item_40',
+      text: '安装部署',
+      value: '40',
+      id: 'item_40',
+    },
+    {
+      codeName: 'item_50',
+      text: '接口测试',
+      value: '50',
+      id: 'item_50',
+    },
+    {
+      codeName: 'item_60',
+      text: '安全相关',
+      value: '60',
+      id: 'item_60',
+    },
+    {
+      codeName: 'item_70',
+      text: '兼容性测试',
+      value: '70',
+      id: 'item_70',
+    },
+    {
+      codeName: 'item_80',
+      text: 'UI测试',
+      value: '80',
+      id: 'item_80',
+    },
+    {
+      codeName: 'item_90',
+      text: '其他',
+      value: '90',
+      id: 'item_90',
+    },
+  ],
+  enableCache: true,
+  name: '用例类型',
+  id: 'plmweb.testmgmt__test_case_type',
+};

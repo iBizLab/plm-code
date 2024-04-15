@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper	namespace="cn.ibizlab.plm.core.base.mapper.PortfolioMapper">
+
+        <!--通过mybatis将查询结果注入到entity中,通过配置autoMapping="true"由mybatis自动处理映射关系 -->
+    <resultMap id="PortfolioResultMap" type="cn.ibizlab.plm.core.base.domain.Portfolio" autoMapping="true">
+		<id property="id" column="id" /><!--主键字段映射-->
+		<result property="startAt" column="start_at" />
+		<result property="endAt" column="end_at" />
+		<result property="isDeleted" column="is_deleted" />
+		<result property="isFavorite" column="is_favorite" />
+		<result property="assigneeName" column="assignee_name" />
+		<result property="assigneeId" column="assignee_id" />
+		<result property="createMan" column="create_man" />
+		<result property="createTime" column="create_time" />
+		<result property="updateMan" column="update_man" />
+		<result property="updateTime" column="update_time" />
+    </resultMap>
+
+    <select id="selectById"  resultMap="PortfolioResultMap">
+        <include refid="view" /> 
+         where 
+         t1.id=#{ id }
+    </select>
+
+    <select id="selectEntity" parameterType="cn.ibizlab.plm.core.base.domain.Portfolio" resultMap="PortfolioResultMap">
+        <include refid="view" /> 
+         where 
+         (t1.id = #{ id })
+    </select>
+
+    <select id="selectEntities" parameterType="java.util.List" resultMap="PortfolioResultMap">
+        <include refid="view" /> 
+         where 
+         (t1.id)
+         in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.id }) </foreach>)
+    </select>
+
+    <delete id="deleteEntities" parameterType="java.util.List">
+    delete from PORTFOLIO
+    where (id)
+         in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.id }) </foreach>)
+    </delete>
+
+    <sql id="default" databaseId="mysql">
+         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`NAME`, t1.`START_AT`, t1.`STATE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PORTFOLIO` t1   ]]>  
+    </sql>
+
+    <sql id="view" databaseId="mysql">
+         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`NAME`, t1.`START_AT`, t1.`STATE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PORTFOLIO` t1   ]]>  
+    </sql>
+
+    <sql id="admin" databaseId="mysql">
+         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`NAME`, t1.`START_AT`, t1.`STATE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PORTFOLIO` t1   ]]>  where  <![CDATA[ EXISTS(SELECT * FROM `PORTFOLIO_MEMBER` t11   WHERE   t1.`ID` = t11.`PORTFOLIO_ID`  AND  ( t11.`USER_ID` = #{ctx.sessioncontext.srfpersonid}  AND  t11.`ROLE_ID` = 'admin' ) ) ]]> 
+    </sql>
+
+    <sql id="chooseProjectPortfolio" databaseId="mysql">
+         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`NAME`, t1.`START_AT`, t1.`STATE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PORTFOLIO` t1   ]]>  where  <![CDATA[ ( t1.`IS_DELETED` = 0  AND  not exists(select 1 from `work` t2 where t2.id = t1.id and t2.portfolio_id = #{ctx.webcontext.portfolio})  AND  not exists(select 1 from `work` t2 where t1.id = t2.portfolio_id and t2.principal_type = 'project_portfolio')  AND  t1.`ID` <> #{ctx.webcontext.portfolio} ) ]]> 
+    </sql>
+
+    <sql id="favorite" databaseId="mysql">
+         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`NAME`, t1.`START_AT`, t1.`STATE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PORTFOLIO` t1   ]]>  where  <![CDATA[ ( t1.`IS_DELETED` = 0  AND  (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) = '1' ) ]]> 
+    </sql>
+
+    <sql id="projectSetDeleted" databaseId="mysql">
+         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`NAME`, t1.`START_AT`, t1.`STATE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PORTFOLIO` t1   ]]>  where  <![CDATA[ ( t1.`IS_DELETED` = 1 ) ]]> 
+    </sql>
+
+    <sql id="projectSetGoing" databaseId="mysql">
+         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`NAME`, t1.`START_AT`, t1.`STATE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PORTFOLIO` t1   ]]>  where  <![CDATA[ ( t1.`IS_DELETED` = 0 ) ]]> 
+    </sql>
+
+    <sql id="reader" databaseId="mysql">
+         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`NAME`, t1.`START_AT`, t1.`STATE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PORTFOLIO` t1   ]]>  where  <![CDATA[ EXISTS(SELECT * FROM `PORTFOLIO_MEMBER` t11   WHERE   t1.`ID` = t11.`PORTFOLIO_ID`  AND  ( t11.`USER_ID` = #{ctx.sessioncontext.srfpersonid}  AND  t11.`ROLE_ID` = 'reader' ) ) ]]> 
+    </sql>
+
+    <sql id="user" databaseId="mysql">
+         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`NAME`, t1.`START_AT`, t1.`STATE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PORTFOLIO` t1   ]]>  where  <![CDATA[ EXISTS(SELECT * FROM `PORTFOLIO_MEMBER` t11   WHERE   t1.`ID` = t11.`PORTFOLIO_ID`  AND  ( t11.`USER_ID` = #{ctx.sessioncontext.srfpersonid}  AND  t11.`ROLE_ID` = 'user' ) ) ]]> 
+    </sql>
+
+    <sql id="workProjectPortfolio" databaseId="mysql">
+         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`NAME`, t1.`START_AT`, t1.`STATE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PORTFOLIO` t1   ]]>  where  <![CDATA[ ( exists(select 1 from `work` t2 where t2.principal_id= t1.id and t2.portfolio_id = #{ctx.webcontext.project_portfolio})  AND  t1.`IS_DELETED` = 0 ) ]]> 
+    </sql>
+
+    <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.base.filter.PortfolioSearchContext"  resultMap="PortfolioResultMap">
+        select t1.* 
+        from (
+            <include refid="default"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listDefault"  parameterType="cn.ibizlab.plm.core.base.filter.PortfolioSearchContext"  resultMap="PortfolioResultMap">
+        select t1.*
+        from (
+            <include refid="default"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchAdmin"  parameterType="cn.ibizlab.plm.core.base.filter.PortfolioSearchContext"  resultMap="PortfolioResultMap">
+        select t1.* 
+        from (
+            <include refid="admin"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listAdmin"  parameterType="cn.ibizlab.plm.core.base.filter.PortfolioSearchContext"  resultMap="PortfolioResultMap">
+        select t1.*
+        from (
+            <include refid="admin"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchChooseProjectPortfolio"  parameterType="cn.ibizlab.plm.core.base.filter.PortfolioSearchContext"  resultMap="PortfolioResultMap">
+        select t1.* 
+        from (
+            <include refid="chooseProjectPortfolio"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listChooseProjectPortfolio"  parameterType="cn.ibizlab.plm.core.base.filter.PortfolioSearchContext"  resultMap="PortfolioResultMap">
+        select t1.*
+        from (
+            <include refid="chooseProjectPortfolio"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchFavorite"  parameterType="cn.ibizlab.plm.core.base.filter.PortfolioSearchContext"  resultMap="PortfolioResultMap">
+        select t1.* 
+        from (
+            <include refid="favorite"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listFavorite"  parameterType="cn.ibizlab.plm.core.base.filter.PortfolioSearchContext"  resultMap="PortfolioResultMap">
+        select t1.*
+        from (
+            <include refid="favorite"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchProjectSetDeleted"  parameterType="cn.ibizlab.plm.core.base.filter.PortfolioSearchContext"  resultMap="PortfolioResultMap">
+        select t1.* 
+        from (
+            <include refid="projectSetDeleted"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listProjectSetDeleted"  parameterType="cn.ibizlab.plm.core.base.filter.PortfolioSearchContext"  resultMap="PortfolioResultMap">
+        select t1.*
+        from (
+            <include refid="projectSetDeleted"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchProjectSetGoing"  parameterType="cn.ibizlab.plm.core.base.filter.PortfolioSearchContext"  resultMap="PortfolioResultMap">
+        select t1.* 
+        from (
+            <include refid="projectSetGoing"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listProjectSetGoing"  parameterType="cn.ibizlab.plm.core.base.filter.PortfolioSearchContext"  resultMap="PortfolioResultMap">
+        select t1.*
+        from (
+            <include refid="projectSetGoing"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchReader"  parameterType="cn.ibizlab.plm.core.base.filter.PortfolioSearchContext"  resultMap="PortfolioResultMap">
+        select t1.* 
+        from (
+            <include refid="reader"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listReader"  parameterType="cn.ibizlab.plm.core.base.filter.PortfolioSearchContext"  resultMap="PortfolioResultMap">
+        select t1.*
+        from (
+            <include refid="reader"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchUser"  parameterType="cn.ibizlab.plm.core.base.filter.PortfolioSearchContext"  resultMap="PortfolioResultMap">
+        select t1.* 
+        from (
+            <include refid="user"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listUser"  parameterType="cn.ibizlab.plm.core.base.filter.PortfolioSearchContext"  resultMap="PortfolioResultMap">
+        select t1.*
+        from (
+            <include refid="user"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchWorkProjectPortfolio"  parameterType="cn.ibizlab.plm.core.base.filter.PortfolioSearchContext"  resultMap="PortfolioResultMap">
+        select t1.* 
+        from (
+            <include refid="workProjectPortfolio"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listWorkProjectPortfolio"  parameterType="cn.ibizlab.plm.core.base.filter.PortfolioSearchContext"  resultMap="PortfolioResultMap">
+        select t1.*
+        from (
+            <include refid="workProjectPortfolio"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+</mapper>

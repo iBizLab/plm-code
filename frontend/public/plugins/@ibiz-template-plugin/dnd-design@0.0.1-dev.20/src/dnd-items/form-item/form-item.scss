@@ -1,0 +1,125 @@
+/* stylelint-disable selector-class-pattern */
+@include b(dnd-design-form-item) {
+  display: flex;
+  align-items: center;
+  height: inherit;
+  min-height: 40px;
+  overflow: auto;
+  font-size: getCssVar('font-size', 'regular');
+  color: getCssVar(color, text, 1);
+
+  @include e(wrapper) {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+  }
+
+  @include e(item-content) {
+    width: 100%;
+    @include flex(row, center, center);
+
+    @include m(right) {
+      flex-direction: row-reverse;
+      
+      @include e(label) {
+        text-align: left;
+      }
+    }
+
+    @include m(bottom) {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+    }
+
+    @include m(top) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    @include m(none) {
+      @include e(label-content) {
+        display: none;
+      }
+    }
+  }
+
+  @include e(label-content) {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  @include e(label) {
+    width: 100%;
+    text-align: right;
+  }
+
+  @include e(panel-array-input) {
+    @include flex(row, center, center);
+  }
+
+  @include e(panel-array-input-add-button) {
+    margin-left: getCssVar('spacing', 'tight');
+    font-size: getCssVar('font-size', 'header-2');
+  }
+
+  @include e(panel-array-input-remove-button) {
+    font-size: getCssVar('font-size', 'header-2');
+  }
+
+  @include e(datepicker) {
+    &.el-date-editor {
+      width: 100%;
+    }
+
+    .el-input__prefix {
+      display: none;
+    }
+  }
+
+  @include e(daterange) {
+    &.el-date-editor {
+      width: 100%;
+    }
+
+    &.el-range-editor.is-disabled input {
+      background-color: transparent;
+    }
+  }
+
+  @include e(fileuploader) {
+    width: 100%;
+    border-radius: getCssVar(border, radius, small);
+    box-shadow: 0 0 0 1px getCssVar(color, disabled, fill) inset;
+
+    ion-icon {
+      margin-right: getCssVar('spacing', 'tight');
+    }
+
+    &.el-button.is-disabled {
+      background-color: getCssVar(color, disabled, fill);
+    }
+  }
+
+  @include e(mappicker) {
+    width: 100%;
+  }
+
+  @include e(number) {
+    .el-input-number__decrease,
+    .el-input-number__increase {
+      display: none;
+    }
+  }
+
+  @include e(slider) {
+    pointer-events: none;
+  }
+
+  .el-radio__input.is-disabled + span.el-radio__label {
+    color: getCssVar(color, disabled, text);
+  }
+}

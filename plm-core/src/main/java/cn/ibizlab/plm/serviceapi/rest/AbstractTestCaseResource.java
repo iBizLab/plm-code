@@ -1,0 +1,2564 @@
+/**
+ * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/{{apis}}/rest/Abstract{{apiEntities}}Resource.java.hbs
+ */
+package cn.ibizlab.plm.serviceapi.rest;
+
+import java.util.*;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.openfeign.SpringQueryMap;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.util.ObjectUtils;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.validation.annotation.Validated;
+import io.swagger.annotations.ApiOperation;
+import java.util.stream.IntStream;
+import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.domain.RequestWrapper;
+import cn.ibizlab.util.domain.ResponseWrapper;
+import cn.ibizlab.plm.serviceapi.dto.*;
+import cn.ibizlab.plm.serviceapi.mapping.*;
+import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
+import cn.ibizlab.plm.core.testmgmt.service.TestCaseService;
+import cn.ibizlab.plm.core.testmgmt.filter.TestCaseSearchContext;
+import cn.ibizlab.util.annotation.VersionCheck;
+
+/**
+ * 实体[TestCase] rest实现
+ *
+ * @author generator
+ */
+@Slf4j
+public abstract class AbstractTestCaseResource {
+
+    @Autowired
+    public TestCaseService testCaseService;
+
+    @Autowired
+    @Lazy
+    public TestCaseDTOMapping testCaseDtoMapping;
+
+    @Autowired
+    @Lazy
+    public TestCaseFilterDTOMapping testCaseFilterDtoMapping;
+
+    @Autowired
+    @Lazy
+    public TestCaseMaintenanceDTOMapping testCaseMaintenanceDtoMapping;
+
+    /**
+    * 创建Create 用例
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "创建Create", tags = {"用例" },  notes = "TestCase-Create ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-Create-all') or hasPermission(this.testCaseDtoMapping.toDomain(#dto),'ibizplm-TestCase-Create')")
+    @PostMapping("test_cases")
+    public ResponseEntity<ResponseWrapper<TestCaseDTO>> create
+            (@Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
+        ResponseWrapper<TestCaseDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(create(item)));
+        else
+            rt.set(create(dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * 创建Create 用例
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */   
+    public TestCaseDTO create
+            (TestCaseDTO dto) {
+        TestCase domain = testCaseDtoMapping.toDomain(dto);
+        testCaseService.create(domain);
+        TestCase rt = domain;
+        return testCaseDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 更新Update 用例
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "更新Update", tags = {"用例" },  notes = "TestCase-Update ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-Update-all') or hasPermission(this.testCaseService.get(#id),'ibizplm-TestCase-Update')")
+    @VersionCheck(entity = "testcase" , versionfield = "updateTime")
+    @PutMapping("test_cases/{id}")
+    public ResponseEntity<ResponseWrapper<TestCaseDTO>> updateById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
+        ResponseWrapper<TestCaseDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(updateById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(updateById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * 更新Update 用例
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */   
+    public TestCaseDTO updateById
+            (String id, TestCaseDTO dto) {
+        TestCase domain = testCaseDtoMapping.toDomain(dto);
+        domain.setId(id);
+        testCaseService.update(domain);
+        TestCase rt = domain;
+        return testCaseDtoMapping.toDto(rt);
+    }
+
+    /**
+    * case_move_plan 用例
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "case_move_plan", tags = {"用例" },  notes = "TestCase-case_move_plan ")
+    @PostMapping("test_cases/{id}/case_move_plan")
+    public ResponseEntity<ResponseWrapper<TestCaseDTO>> caseMovePlanById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
+        ResponseWrapper<TestCaseDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(caseMovePlanById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(caseMovePlanById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * case_move_plan 用例
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */   
+    public TestCaseDTO caseMovePlanById
+            (String id, TestCaseDTO dto) {
+        TestCase domain = testCaseDtoMapping.toDomain(dto);
+        domain.setId(id);
+        TestCase rt = testCaseService.caseMovePlan(domain);
+        return testCaseDtoMapping.toDto(rt);
+    }
+
+    /**
+    * copy_case 用例
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "copy_case", tags = {"用例" },  notes = "TestCase-copy_case ")
+    @PostMapping("test_cases/{id}/copy_case")
+    public ResponseEntity<ResponseWrapper<TestCaseDTO>> copyCaseById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
+        ResponseWrapper<TestCaseDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(copyCaseById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(copyCaseById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * copy_case 用例
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */   
+    public TestCaseDTO copyCaseById
+            (String id, TestCaseDTO dto) {
+        TestCase domain = testCaseDtoMapping.toDomain(dto);
+        domain.setId(id);
+        TestCase rt = testCaseService.copyCase(domain);
+        return testCaseDtoMapping.toDto(rt);
+    }
+
+    /**
+    * del_relation 用例
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "del_relation", tags = {"用例" },  notes = "TestCase-del_relation ")
+    @PostMapping("test_cases/{id}/del_relation")
+    public ResponseEntity<ResponseWrapper<TestCaseDTO>> delRelationById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
+        ResponseWrapper<TestCaseDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(delRelationById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(delRelationById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * del_relation 用例
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */   
+    public TestCaseDTO delRelationById
+            (String id, TestCaseDTO dto) {
+        TestCase domain = testCaseDtoMapping.toDomain(dto);
+        domain.setId(id);
+        TestCase rt = testCaseService.delRelation(domain);
+        return testCaseDtoMapping.toDto(rt);
+    }
+
+    /**
+    * delete 用例
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "delete", tags = {"用例" },  notes = "TestCase-delete ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-delete-all') or hasPermission(this.testCaseDtoMapping.toDomain(#dto),'ibizplm-TestCase-delete')")
+    @PostMapping("test_cases/{id}/delete")
+    public ResponseEntity<ResponseWrapper<TestCaseDTO>> deleteById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
+        ResponseWrapper<TestCaseDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(deleteById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(deleteById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * delete 用例
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */   
+    public TestCaseDTO deleteById
+            (String id, TestCaseDTO dto) {
+        TestCase domain = testCaseDtoMapping.toDomain(dto);
+        domain.setId(id);
+        TestCase rt = testCaseService.delete(domain);
+        return testCaseDtoMapping.toDto(rt);
+    }
+
+    /**
+    * move_case 用例
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "move_case", tags = {"用例" },  notes = "TestCase-move_case ")
+    @PostMapping("test_cases/{id}/move_case")
+    public ResponseEntity<ResponseWrapper<TestCaseDTO>> moveCaseById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
+        ResponseWrapper<TestCaseDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(moveCaseById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(moveCaseById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * move_case 用例
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */   
+    public TestCaseDTO moveCaseById
+            (String id, TestCaseDTO dto) {
+        TestCase domain = testCaseDtoMapping.toDomain(dto);
+        domain.setId(id);
+        TestCase rt = testCaseService.moveCase(domain);
+        return testCaseDtoMapping.toDto(rt);
+    }
+
+    /**
+    * others_relation_case 用例
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "others_relation_case", tags = {"用例" },  notes = "TestCase-others_relation_case ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-others_relation_case-all') or hasPermission(this.testCaseDtoMapping.toDomain(#dto),'ibizplm-TestCase-others_relation_case')")
+    @PutMapping("test_cases/{id}/others_relation_case")
+    public ResponseEntity<ResponseWrapper<TestCaseDTO>> othersRelationCaseById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
+        ResponseWrapper<TestCaseDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(othersRelationCaseById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(othersRelationCaseById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * others_relation_case 用例
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */   
+    public TestCaseDTO othersRelationCaseById
+            (String id, TestCaseDTO dto) {
+        TestCase domain = testCaseDtoMapping.toDomain(dto);
+        domain.setId(id);
+        TestCase rt = testCaseService.othersRelationCase(domain);
+        return testCaseDtoMapping.toDto(rt);
+    }
+
+    /**
+    * recover 用例
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "recover", tags = {"用例" },  notes = "TestCase-recover ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-recover-all') or hasPermission(this.testCaseDtoMapping.toDomain(#dto),'ibizplm-TestCase-recover')")
+    @PostMapping("test_cases/{id}/recover")
+    public ResponseEntity<ResponseWrapper<TestCaseDTO>> recoverById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
+        ResponseWrapper<TestCaseDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(recoverById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(recoverById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * recover 用例
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */   
+    public TestCaseDTO recoverById
+            (String id, TestCaseDTO dto) {
+        TestCase domain = testCaseDtoMapping.toDomain(dto);
+        domain.setId(id);
+        TestCase rt = testCaseService.recover(domain);
+        return testCaseDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 保存Save 用例
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "保存Save", tags = {"用例" },  notes = "TestCase-Save ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-Save-all') or hasPermission(this.testCaseDtoMapping.toDomain(#dto),'ibizplm-TestCase-Save')")
+    @PostMapping("test_cases/save")
+    public ResponseEntity<ResponseWrapper<TestCaseDTO>> save
+            (@Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
+        ResponseWrapper<TestCaseDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(save(item)));
+        else
+            rt.set(save(dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * 保存Save 用例
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */   
+    public TestCaseDTO save
+            (TestCaseDTO dto) {
+        TestCase domain = testCaseDtoMapping.toDomain(dto);
+        testCaseService.save(domain);
+        TestCase rt = domain;
+        return testCaseDtoMapping.toDto(rt);
+    }
+
+    /**
+    * set_level 用例
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "set_level", tags = {"用例" },  notes = "TestCase-set_level ")
+    @PostMapping("test_cases/{id}/set_level")
+    public ResponseEntity<ResponseWrapper<TestCaseDTO>> setLevelById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
+        ResponseWrapper<TestCaseDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(setLevelById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(setLevelById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * set_level 用例
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */   
+    public TestCaseDTO setLevelById
+            (String id, TestCaseDTO dto) {
+        TestCase domain = testCaseDtoMapping.toDomain(dto);
+        domain.setId(id);
+        TestCase rt = testCaseService.setLevel(domain);
+        return testCaseDtoMapping.toDto(rt);
+    }
+
+    /**
+    * set_maintenance 用例
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "set_maintenance", tags = {"用例" },  notes = "TestCase-set_maintenance ")
+    @PostMapping("test_cases/{id}/set_maintenance")
+    public ResponseEntity<ResponseWrapper<TestCaseDTO>> setMaintenanceById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
+        ResponseWrapper<TestCaseDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(setMaintenanceById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(setMaintenanceById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * set_maintenance 用例
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */   
+    public TestCaseDTO setMaintenanceById
+            (String id, TestCaseDTO dto) {
+        TestCase domain = testCaseDtoMapping.toDomain(dto);
+        domain.setId(id);
+        TestCase rt = testCaseService.setMaintenance(domain);
+        return testCaseDtoMapping.toDto(rt);
+    }
+
+    /**
+    * set_state 用例
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "set_state", tags = {"用例" },  notes = "TestCase-set_state ")
+    @PostMapping("test_cases/{id}/set_state")
+    public ResponseEntity<ResponseWrapper<TestCaseDTO>> setStateById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
+        ResponseWrapper<TestCaseDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(setStateById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(setStateById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * set_state 用例
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */   
+    public TestCaseDTO setStateById
+            (String id, TestCaseDTO dto) {
+        TestCase domain = testCaseDtoMapping.toDomain(dto);
+        domain.setId(id);
+        TestCase rt = testCaseService.setState(domain);
+        return testCaseDtoMapping.toDto(rt);
+    }
+
+    /**
+    * test_case_re_counters 用例
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "test_case_re_counters", tags = {"用例" },  notes = "TestCase-test_case_re_counters ")
+    @PostMapping("test_cases/{id}/test_case_re_counters")
+    public ResponseEntity<ResponseWrapper<TestCaseDTO>> testCaseReCountersById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
+        ResponseWrapper<TestCaseDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(testCaseReCountersById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(testCaseReCountersById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * test_case_re_counters 用例
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */   
+    public TestCaseDTO testCaseReCountersById
+            (String id, TestCaseDTO dto) {
+        TestCase domain = testCaseDtoMapping.toDomain(dto);
+        domain.setId(id);
+        TestCase rt = testCaseService.testCaseReCounters(domain);
+        return testCaseDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 创建Create 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "创建Create", tags = {"用例" },  notes = "TestCase-Create ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-Create-all') or hasPermission('library',#testLibraryId,this.testCaseDtoMapping.toDomain(#dto),'ibizplm-TestCase-Create')")
+    @PostMapping("libraries/{testLibraryId}/test_cases")
+    public ResponseEntity<ResponseWrapper<TestCaseDTO>> createByTestLibraryId
+            (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
+        ResponseWrapper<TestCaseDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(createByTestLibraryId(testLibraryId, item)));
+        else
+            rt.set(createByTestLibraryId(testLibraryId, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * 创建Create 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */   
+    public TestCaseDTO createByTestLibraryId
+            (String testLibraryId, TestCaseDTO dto) {
+        TestCase domain = testCaseDtoMapping.toDomain(dto);
+        domain.setTestLibraryId(testLibraryId);
+        testCaseService.create(domain);
+        TestCase rt = domain;
+        return testCaseDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 更新Update 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "更新Update", tags = {"用例" },  notes = "TestCase-Update ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-Update-all') or hasPermission('library',#testLibraryId,this.testCaseService.get(#id),'ibizplm-TestCase-Update')")
+    @VersionCheck(entity = "testcase" , versionfield = "updateTime")
+    @PutMapping("libraries/{testLibraryId}/test_cases/{id}")
+    public ResponseEntity<ResponseWrapper<TestCaseDTO>> updateByTestLibraryIdAndId
+            (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
+        ResponseWrapper<TestCaseDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(updateByTestLibraryIdAndId(testLibraryId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(updateByTestLibraryIdAndId(testLibraryId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * 更新Update 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */   
+    public TestCaseDTO updateByTestLibraryIdAndId
+            (String testLibraryId, String id, TestCaseDTO dto) {
+        TestCase domain = testCaseDtoMapping.toDomain(dto);
+        domain.setId(id);
+        testCaseService.update(domain);
+        TestCase rt = domain;
+        return testCaseDtoMapping.toDto(rt);
+    }
+
+    /**
+    * case_move_plan 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "case_move_plan", tags = {"用例" },  notes = "TestCase-case_move_plan ")
+    @PostMapping("libraries/{testLibraryId}/test_cases/{id}/case_move_plan")
+    public ResponseEntity<ResponseWrapper<TestCaseDTO>> caseMovePlanByTestLibraryIdAndId
+            (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
+        ResponseWrapper<TestCaseDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(caseMovePlanByTestLibraryIdAndId(testLibraryId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(caseMovePlanByTestLibraryIdAndId(testLibraryId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * case_move_plan 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */   
+    public TestCaseDTO caseMovePlanByTestLibraryIdAndId
+            (String testLibraryId, String id, TestCaseDTO dto) {
+        TestCase domain = testCaseDtoMapping.toDomain(dto);
+        domain.setId(id);
+        TestCase rt = testCaseService.caseMovePlan(domain);
+        return testCaseDtoMapping.toDto(rt);
+    }
+
+    /**
+    * copy_case 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "copy_case", tags = {"用例" },  notes = "TestCase-copy_case ")
+    @PostMapping("libraries/{testLibraryId}/test_cases/{id}/copy_case")
+    public ResponseEntity<ResponseWrapper<TestCaseDTO>> copyCaseByTestLibraryIdAndId
+            (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
+        ResponseWrapper<TestCaseDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(copyCaseByTestLibraryIdAndId(testLibraryId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(copyCaseByTestLibraryIdAndId(testLibraryId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * copy_case 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */   
+    public TestCaseDTO copyCaseByTestLibraryIdAndId
+            (String testLibraryId, String id, TestCaseDTO dto) {
+        TestCase domain = testCaseDtoMapping.toDomain(dto);
+        domain.setId(id);
+        TestCase rt = testCaseService.copyCase(domain);
+        return testCaseDtoMapping.toDto(rt);
+    }
+
+    /**
+    * del_relation 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "del_relation", tags = {"用例" },  notes = "TestCase-del_relation ")
+    @PostMapping("libraries/{testLibraryId}/test_cases/{id}/del_relation")
+    public ResponseEntity<ResponseWrapper<TestCaseDTO>> delRelationByTestLibraryIdAndId
+            (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
+        ResponseWrapper<TestCaseDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(delRelationByTestLibraryIdAndId(testLibraryId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(delRelationByTestLibraryIdAndId(testLibraryId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * del_relation 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */   
+    public TestCaseDTO delRelationByTestLibraryIdAndId
+            (String testLibraryId, String id, TestCaseDTO dto) {
+        TestCase domain = testCaseDtoMapping.toDomain(dto);
+        domain.setId(id);
+        TestCase rt = testCaseService.delRelation(domain);
+        return testCaseDtoMapping.toDto(rt);
+    }
+
+    /**
+    * delete 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "delete", tags = {"用例" },  notes = "TestCase-delete ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-delete-all') or hasPermission('library',#testLibraryId,this.testCaseDtoMapping.toDomain(#dto),'ibizplm-TestCase-delete')")
+    @PostMapping("libraries/{testLibraryId}/test_cases/{id}/delete")
+    public ResponseEntity<ResponseWrapper<TestCaseDTO>> deleteByTestLibraryIdAndId
+            (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
+        ResponseWrapper<TestCaseDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(deleteByTestLibraryIdAndId(testLibraryId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(deleteByTestLibraryIdAndId(testLibraryId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * delete 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */   
+    public TestCaseDTO deleteByTestLibraryIdAndId
+            (String testLibraryId, String id, TestCaseDTO dto) {
+        TestCase domain = testCaseDtoMapping.toDomain(dto);
+        domain.setId(id);
+        TestCase rt = testCaseService.delete(domain);
+        return testCaseDtoMapping.toDto(rt);
+    }
+
+    /**
+    * move_case 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "move_case", tags = {"用例" },  notes = "TestCase-move_case ")
+    @PostMapping("libraries/{testLibraryId}/test_cases/{id}/move_case")
+    public ResponseEntity<ResponseWrapper<TestCaseDTO>> moveCaseByTestLibraryIdAndId
+            (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
+        ResponseWrapper<TestCaseDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(moveCaseByTestLibraryIdAndId(testLibraryId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(moveCaseByTestLibraryIdAndId(testLibraryId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * move_case 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */   
+    public TestCaseDTO moveCaseByTestLibraryIdAndId
+            (String testLibraryId, String id, TestCaseDTO dto) {
+        TestCase domain = testCaseDtoMapping.toDomain(dto);
+        domain.setId(id);
+        TestCase rt = testCaseService.moveCase(domain);
+        return testCaseDtoMapping.toDto(rt);
+    }
+
+    /**
+    * others_relation_case 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "others_relation_case", tags = {"用例" },  notes = "TestCase-others_relation_case ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-others_relation_case-all') or hasPermission('library',#testLibraryId,this.testCaseDtoMapping.toDomain(#dto),'ibizplm-TestCase-others_relation_case')")
+    @PutMapping("libraries/{testLibraryId}/test_cases/{id}/others_relation_case")
+    public ResponseEntity<ResponseWrapper<TestCaseDTO>> othersRelationCaseByTestLibraryIdAndId
+            (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
+        ResponseWrapper<TestCaseDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(othersRelationCaseByTestLibraryIdAndId(testLibraryId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(othersRelationCaseByTestLibraryIdAndId(testLibraryId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * others_relation_case 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */   
+    public TestCaseDTO othersRelationCaseByTestLibraryIdAndId
+            (String testLibraryId, String id, TestCaseDTO dto) {
+        TestCase domain = testCaseDtoMapping.toDomain(dto);
+        domain.setId(id);
+        TestCase rt = testCaseService.othersRelationCase(domain);
+        return testCaseDtoMapping.toDto(rt);
+    }
+
+    /**
+    * recover 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "recover", tags = {"用例" },  notes = "TestCase-recover ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-recover-all') or hasPermission('library',#testLibraryId,this.testCaseDtoMapping.toDomain(#dto),'ibizplm-TestCase-recover')")
+    @PostMapping("libraries/{testLibraryId}/test_cases/{id}/recover")
+    public ResponseEntity<ResponseWrapper<TestCaseDTO>> recoverByTestLibraryIdAndId
+            (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
+        ResponseWrapper<TestCaseDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(recoverByTestLibraryIdAndId(testLibraryId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(recoverByTestLibraryIdAndId(testLibraryId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * recover 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */   
+    public TestCaseDTO recoverByTestLibraryIdAndId
+            (String testLibraryId, String id, TestCaseDTO dto) {
+        TestCase domain = testCaseDtoMapping.toDomain(dto);
+        domain.setId(id);
+        TestCase rt = testCaseService.recover(domain);
+        return testCaseDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 保存Save 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "保存Save", tags = {"用例" },  notes = "TestCase-Save ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-Save-all') or hasPermission('library',#testLibraryId,this.testCaseDtoMapping.toDomain(#dto),'ibizplm-TestCase-Save')")
+    @PostMapping("libraries/{testLibraryId}/test_cases/save")
+    public ResponseEntity<ResponseWrapper<TestCaseDTO>> saveByTestLibraryId
+            (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
+        ResponseWrapper<TestCaseDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(saveByTestLibraryId(testLibraryId, item)));
+        else
+            rt.set(saveByTestLibraryId(testLibraryId, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * 保存Save 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */   
+    public TestCaseDTO saveByTestLibraryId
+            (String testLibraryId, TestCaseDTO dto) {
+        TestCase domain = testCaseDtoMapping.toDomain(dto);
+        domain.setTestLibraryId(testLibraryId);
+        testCaseService.save(domain);
+        TestCase rt = domain;
+        return testCaseDtoMapping.toDto(rt);
+    }
+
+    /**
+    * set_level 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "set_level", tags = {"用例" },  notes = "TestCase-set_level ")
+    @PostMapping("libraries/{testLibraryId}/test_cases/{id}/set_level")
+    public ResponseEntity<ResponseWrapper<TestCaseDTO>> setLevelByTestLibraryIdAndId
+            (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
+        ResponseWrapper<TestCaseDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(setLevelByTestLibraryIdAndId(testLibraryId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(setLevelByTestLibraryIdAndId(testLibraryId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * set_level 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */   
+    public TestCaseDTO setLevelByTestLibraryIdAndId
+            (String testLibraryId, String id, TestCaseDTO dto) {
+        TestCase domain = testCaseDtoMapping.toDomain(dto);
+        domain.setId(id);
+        TestCase rt = testCaseService.setLevel(domain);
+        return testCaseDtoMapping.toDto(rt);
+    }
+
+    /**
+    * set_maintenance 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "set_maintenance", tags = {"用例" },  notes = "TestCase-set_maintenance ")
+    @PostMapping("libraries/{testLibraryId}/test_cases/{id}/set_maintenance")
+    public ResponseEntity<ResponseWrapper<TestCaseDTO>> setMaintenanceByTestLibraryIdAndId
+            (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
+        ResponseWrapper<TestCaseDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(setMaintenanceByTestLibraryIdAndId(testLibraryId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(setMaintenanceByTestLibraryIdAndId(testLibraryId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * set_maintenance 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */   
+    public TestCaseDTO setMaintenanceByTestLibraryIdAndId
+            (String testLibraryId, String id, TestCaseDTO dto) {
+        TestCase domain = testCaseDtoMapping.toDomain(dto);
+        domain.setId(id);
+        TestCase rt = testCaseService.setMaintenance(domain);
+        return testCaseDtoMapping.toDto(rt);
+    }
+
+    /**
+    * set_state 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "set_state", tags = {"用例" },  notes = "TestCase-set_state ")
+    @PostMapping("libraries/{testLibraryId}/test_cases/{id}/set_state")
+    public ResponseEntity<ResponseWrapper<TestCaseDTO>> setStateByTestLibraryIdAndId
+            (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
+        ResponseWrapper<TestCaseDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(setStateByTestLibraryIdAndId(testLibraryId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(setStateByTestLibraryIdAndId(testLibraryId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * set_state 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */   
+    public TestCaseDTO setStateByTestLibraryIdAndId
+            (String testLibraryId, String id, TestCaseDTO dto) {
+        TestCase domain = testCaseDtoMapping.toDomain(dto);
+        domain.setId(id);
+        TestCase rt = testCaseService.setState(domain);
+        return testCaseDtoMapping.toDto(rt);
+    }
+
+    /**
+    * test_case_re_counters 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "test_case_re_counters", tags = {"用例" },  notes = "TestCase-test_case_re_counters ")
+    @PostMapping("libraries/{testLibraryId}/test_cases/{id}/test_case_re_counters")
+    public ResponseEntity<ResponseWrapper<TestCaseDTO>> testCaseReCountersByTestLibraryIdAndId
+            (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
+        ResponseWrapper<TestCaseDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(testCaseReCountersByTestLibraryIdAndId(testLibraryId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(testCaseReCountersByTestLibraryIdAndId(testLibraryId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * test_case_re_counters 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */   
+    public TestCaseDTO testCaseReCountersByTestLibraryIdAndId
+            (String testLibraryId, String id, TestCaseDTO dto) {
+        TestCase domain = testCaseDtoMapping.toDomain(dto);
+        domain.setId(id);
+        TestCase rt = testCaseService.testCaseReCounters(domain);
+        return testCaseDtoMapping.toDto(rt);
+    }
+
+
+    /**
+    * 获取Get 用例
+    * 
+    *
+    * @param id id
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "获取Get", tags = {"用例" },  notes = "TestCase-Get ")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-Get-all')  or hasPermission(this.testCaseDtoMapping.toDomain(returnObject.body),'ibizplm-TestCase-Get')")
+    @GetMapping("test_cases/{id}")
+    public ResponseEntity<TestCaseDTO> getById
+            (@PathVariable("id") String id) {
+        TestCase rt = testCaseService.get(id);
+        return ResponseEntity.status(HttpStatus.OK).body(testCaseDtoMapping.toDto(rt));
+    }
+
+    /**
+    * 删除Remove 用例
+    * 
+    *
+    * @param id id
+    * @return ResponseEntity<Boolean>
+    */
+    @ApiOperation(value = "删除Remove", tags = {"用例" },  notes = "TestCase-Remove ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-Remove-all') or hasPermission(this.testCaseService.get(#id),'ibizplm-TestCase-Remove')")
+    @DeleteMapping("test_cases/{id}")
+    public ResponseEntity<Boolean> removeById
+            (@PathVariable("id") String id) {
+        Boolean rt = testCaseService.remove(id);
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * 校验CheckKey 用例
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<Integer>
+    */
+    @ApiOperation(value = "校验CheckKey", tags = {"用例" },  notes = "TestCase-CheckKey ")
+    @PostMapping("test_cases/check_key")
+    public ResponseEntity<Integer> checkKey
+            (@Validated @RequestBody TestCaseDTO dto) {
+        TestCase domain = testCaseDtoMapping.toDomain(dto);
+        Integer rt = testCaseService.checkKey(domain);
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * 草稿GetDraft 用例
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "草稿GetDraft", tags = {"用例" },  notes = "TestCase-GetDraft ")
+    @GetMapping("test_cases/get_draft")
+    public ResponseEntity<TestCaseDTO> getDraft
+            (@SpringQueryMap TestCaseDTO dto) {
+        TestCase domain = testCaseDtoMapping.toDomain(dto);
+        TestCase rt = testCaseService.getDraft(domain);
+        return ResponseEntity.status(HttpStatus.OK).body(testCaseDtoMapping.toDto(rt));
+    }
+
+    /**
+    * newest_run 用例
+    * 
+    *
+    * @param id id
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "newest_run", tags = {"用例" },  notes = "TestCase-newest_run ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-newest_run-all') or hasPermission(this.testCaseService.get(#id),'ibizplm-TestCase-newest_run')")
+    @GetMapping("test_cases/{id}/newest_run")
+    public ResponseEntity<TestCaseDTO> newestRunById
+            (@PathVariable("id") String id) {
+        TestCase rt = testCaseService.newestRun(id);
+        return ResponseEntity.status(HttpStatus.OK).body(testCaseDtoMapping.toDto(rt));
+    }
+
+    /**
+    * 查询fetch_advanced_search 用例
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_advanced_search", tags = {"用例" },  notes = "TestCase-fetch_advanced_search ")
+    @PostMapping("test_cases/fetch_advanced_search")
+    public ResponseEntity<List<TestCaseDTO>> fetchAdvancedSearch
+            (@Validated @RequestBody TestCaseFilterDTO dto) {
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchAdvancedSearch(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_assessment_result 用例
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_assessment_result", tags = {"用例" },  notes = "TestCase-fetch_assessment_result ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_assessment_result-all') or hasPermission(#dto,'ibizplm-TestCase-fetch_assessment_result')")
+    @PostMapping("test_cases/fetch_assessment_result")
+    public ResponseEntity<List<TestCaseDTO>> fetchAssessmentResult
+            (@Validated @RequestBody TestCaseFilterDTO dto) {
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchAssessmentResult(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_case_person 用例
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_case_person", tags = {"用例" },  notes = "TestCase-fetch_case_person ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_case_person-all') or hasPermission(#dto,'ibizplm-TestCase-fetch_case_person')")
+    @PostMapping("test_cases/fetch_case_person")
+    public ResponseEntity<List<TestCaseDTO>> fetchCasePerson
+            (@Validated @RequestBody TestCaseFilterDTO dto) {
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchCasePerson(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_case_type 用例
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_case_type", tags = {"用例" },  notes = "TestCase-fetch_case_type ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_case_type-all') or hasPermission(#dto,'ibizplm-TestCase-fetch_case_type')")
+    @PostMapping("test_cases/fetch_case_type")
+    public ResponseEntity<List<TestCaseDTO>> fetchCaseType
+            (@Validated @RequestBody TestCaseFilterDTO dto) {
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchCaseType(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_comment_notify_maintenance 用例
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseMaintenanceDTO>>
+    */
+    @ApiOperation(value = "查询fetch_comment_notify_maintenance", tags = {"用例" },  notes = "TestCase-fetch_comment_notify_maintenance ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_comment_notify_maintenance-all') or hasPermission(#dto,'ibizplm-TestCase-fetch_comment_notify_maintenance')")
+    @PostMapping("test_cases/fetch_comment_notify_maintenance")
+    public ResponseEntity<List<TestCaseMaintenanceDTO>> fetchCommentNotifyMaintenance
+            (@Validated @RequestBody TestCaseFilterDTO dto) {
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchCommentNotifyMaintenance(context) ;
+        List<TestCaseMaintenanceDTO> list = testCaseMaintenanceDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_daily_tendencies 用例
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_daily_tendencies", tags = {"用例" },  notes = "TestCase-fetch_daily_tendencies ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_daily_tendencies-all') or hasPermission(#dto,'ibizplm-TestCase-fetch_daily_tendencies')")
+    @PostMapping("test_cases/fetch_daily_tendencies")
+    public ResponseEntity<List<TestCaseDTO>> fetchDailyTendencies
+            (@Validated @RequestBody TestCaseFilterDTO dto) {
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchDailyTendencies(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_default 用例
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_default", tags = {"用例" },  notes = "TestCase-fetch_default ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_default-all') or hasPermission(#dto,'ibizplm-TestCase-fetch_default')")
+    @PostMapping("test_cases/fetch_default")
+    public ResponseEntity<List<TestCaseDTO>> fetchDefault
+            (@Validated @RequestBody TestCaseFilterDTO dto) {
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchDefault(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_degree_importance 用例
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_degree_importance", tags = {"用例" },  notes = "TestCase-fetch_degree_importance ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_degree_importance-all') or hasPermission(#dto,'ibizplm-TestCase-fetch_degree_importance')")
+    @PostMapping("test_cases/fetch_degree_importance")
+    public ResponseEntity<List<TestCaseDTO>> fetchDegreeImportance
+            (@Validated @RequestBody TestCaseFilterDTO dto) {
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchDegreeImportance(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_deleted 用例
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_deleted", tags = {"用例" },  notes = "TestCase-fetch_deleted ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_deleted-all') or hasPermission(#dto,'ibizplm-TestCase-fetch_deleted')")
+    @PostMapping("test_cases/fetch_deleted")
+    public ResponseEntity<List<TestCaseDTO>> fetchDeleted
+            (@Validated @RequestBody TestCaseFilterDTO dto) {
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchDeleted(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_everyday_test 用例
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_everyday_test", tags = {"用例" },  notes = "TestCase-fetch_everyday_test ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_everyday_test-all') or hasPermission(#dto,'ibizplm-TestCase-fetch_everyday_test')")
+    @PostMapping("test_cases/fetch_everyday_test")
+    public ResponseEntity<List<TestCaseDTO>> fetchEverydayTest
+            (@Validated @RequestBody TestCaseFilterDTO dto) {
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchEverydayTest(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_idea_relation_test_case 用例
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_idea_relation_test_case", tags = {"用例" },  notes = "TestCase-fetch_idea_relation_test_case ")
+    @PostMapping("test_cases/fetch_idea_relation_test_case")
+    public ResponseEntity<List<TestCaseDTO>> fetchIdeaRelationTestCase
+            (@Validated @RequestBody TestCaseFilterDTO dto) {
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchIdeaRelationTestCase(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_implementation_results 用例
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_implementation_results", tags = {"用例" },  notes = "TestCase-fetch_implementation_results ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_implementation_results-all') or hasPermission(#dto,'ibizplm-TestCase-fetch_implementation_results')")
+    @PostMapping("test_cases/fetch_implementation_results")
+    public ResponseEntity<List<TestCaseDTO>> fetchImplementationResults
+            (@Validated @RequestBody TestCaseFilterDTO dto) {
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchImplementationResults(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_my_assign 用例
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_my_assign", tags = {"用例" },  notes = "TestCase-fetch_my_assign ")
+    @PostMapping("test_cases/fetch_my_assign")
+    public ResponseEntity<List<TestCaseDTO>> fetchMyAssign
+            (@Validated @RequestBody TestCaseFilterDTO dto) {
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchMyAssign(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_my_assignee_count_test_case 用例
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_my_assignee_count_test_case", tags = {"用例" },  notes = "TestCase-fetch_my_assignee_count_test_case ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_my_assignee_count_test_case-all') or hasPermission(#dto,'ibizplm-TestCase-fetch_my_assignee_count_test_case')")
+    @PostMapping("test_cases/fetch_my_assignee_count_test_case")
+    public ResponseEntity<List<TestCaseDTO>> fetchMyAssigneeCountTestCase
+            (@Validated @RequestBody TestCaseFilterDTO dto) {
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchMyAssigneeCountTestCase(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_my_attention 用例
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_my_attention", tags = {"用例" },  notes = "TestCase-fetch_my_attention ")
+    @PostMapping("test_cases/fetch_my_attention")
+    public ResponseEntity<List<TestCaseDTO>> fetchMyAttention
+            (@Validated @RequestBody TestCaseFilterDTO dto) {
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchMyAttention(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_my_created 用例
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_my_created", tags = {"用例" },  notes = "TestCase-fetch_my_created ")
+    @PostMapping("test_cases/fetch_my_created")
+    public ResponseEntity<List<TestCaseDTO>> fetchMyCreated
+            (@Validated @RequestBody TestCaseFilterDTO dto) {
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchMyCreated(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_normal 用例
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_normal", tags = {"用例" },  notes = "TestCase-fetch_normal ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_normal-all') or hasPermission(#dto,'ibizplm-TestCase-fetch_normal')")
+    @PostMapping("test_cases/fetch_normal")
+    public ResponseEntity<List<TestCaseDTO>> fetchNormal
+            (@Validated @RequestBody TestCaseFilterDTO dto) {
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchNormal(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_nosuite_test_case 用例
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_nosuite_test_case", tags = {"用例" },  notes = "TestCase-fetch_nosuite_test_case ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_nosuite_test_case-all') or hasPermission(#dto,'ibizplm-TestCase-fetch_nosuite_test_case')")
+    @PostMapping("test_cases/fetch_nosuite_test_case")
+    public ResponseEntity<List<TestCaseDTO>> fetchNosuiteTestCase
+            (@Validated @RequestBody TestCaseFilterDTO dto) {
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchNosuiteTestCase(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_not_add_case 用例
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_not_add_case", tags = {"用例" },  notes = "TestCase-fetch_not_add_case ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_not_add_case-all') or hasPermission(#dto,'ibizplm-TestCase-fetch_not_add_case')")
+    @PostMapping("test_cases/fetch_not_add_case")
+    public ResponseEntity<List<TestCaseDTO>> fetchNotAddCase
+            (@Validated @RequestBody TestCaseFilterDTO dto) {
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchNotAddCase(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_not_exsists_relation 用例
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_not_exsists_relation", tags = {"用例" },  notes = "TestCase-fetch_not_exsists_relation ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_not_exsists_relation-all') or hasPermission(#dto,'ibizplm-TestCase-fetch_not_exsists_relation')")
+    @PostMapping("test_cases/fetch_not_exsists_relation")
+    public ResponseEntity<List<TestCaseDTO>> fetchNotExsistsRelation
+            (@Validated @RequestBody TestCaseFilterDTO dto) {
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchNotExsistsRelation(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_notify_assignee 用例
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_notify_assignee", tags = {"用例" },  notes = "TestCase-fetch_notify_assignee ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_notify_assignee-all') or hasPermission(#dto,'ibizplm-TestCase-fetch_notify_assignee')")
+    @PostMapping("test_cases/fetch_notify_assignee")
+    public ResponseEntity<List<TestCaseDTO>> fetchNotifyAssignee
+            (@Validated @RequestBody TestCaseFilterDTO dto) {
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchNotifyAssignee(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_person_distributions 用例
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_person_distributions", tags = {"用例" },  notes = "TestCase-fetch_person_distributions ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_person_distributions-all') or hasPermission(#dto,'ibizplm-TestCase-fetch_person_distributions')")
+    @PostMapping("test_cases/fetch_person_distributions")
+    public ResponseEntity<List<TestCaseDTO>> fetchPersonDistributions
+            (@Validated @RequestBody TestCaseFilterDTO dto) {
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchPersonDistributions(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_priority_distributions 用例
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_priority_distributions", tags = {"用例" },  notes = "TestCase-fetch_priority_distributions ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_priority_distributions-all') or hasPermission(#dto,'ibizplm-TestCase-fetch_priority_distributions')")
+    @PostMapping("test_cases/fetch_priority_distributions")
+    public ResponseEntity<List<TestCaseDTO>> fetchPriorityDistributions
+            (@Validated @RequestBody TestCaseFilterDTO dto) {
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchPriorityDistributions(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_recent_test_case 用例
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_recent_test_case", tags = {"用例" },  notes = "TestCase-fetch_recent_test_case ")
+    @PostMapping("test_cases/fetch_recent_test_case")
+    public ResponseEntity<List<TestCaseDTO>> fetchRecentTestCase
+            (@Validated @RequestBody TestCaseFilterDTO dto) {
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchRecentTestCase(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_suites_test_case 用例
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_suites_test_case", tags = {"用例" },  notes = "TestCase-fetch_suites_test_case ")
+    @PostMapping("test_cases/fetch_suites_test_case")
+    public ResponseEntity<List<TestCaseDTO>> fetchSuitesTestCase
+            (@Validated @RequestBody TestCaseFilterDTO dto) {
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchSuitesTestCase(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_work_item_relation_test_case 用例
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_work_item_relation_test_case", tags = {"用例" },  notes = "TestCase-fetch_work_item_relation_test_case ")
+    @PostMapping("test_cases/fetch_work_item_relation_test_case")
+    public ResponseEntity<List<TestCaseDTO>> fetchWorkItemRelationTestCase
+            (@Validated @RequestBody TestCaseFilterDTO dto) {
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchWorkItemRelationTestCase(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 获取Get 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param id id
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "获取Get", tags = {"用例" },  notes = "TestCase-Get ")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-Get-all')  or hasPermission('library',#testLibraryId,this.testCaseDtoMapping.toDomain(returnObject.body),'ibizplm-TestCase-Get')")
+    @GetMapping("libraries/{testLibraryId}/test_cases/{id}")
+    public ResponseEntity<TestCaseDTO> getByTestLibraryIdAndId
+            (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("id") String id) {
+        TestCase rt = testCaseService.get(id);
+        return ResponseEntity.status(HttpStatus.OK).body(testCaseDtoMapping.toDto(rt));
+    }
+
+    /**
+    * 删除Remove 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param id id
+    * @return ResponseEntity<Boolean>
+    */
+    @ApiOperation(value = "删除Remove", tags = {"用例" },  notes = "TestCase-Remove ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-Remove-all') or hasPermission('library',#testLibraryId,this.testCaseService.get(#id),'ibizplm-TestCase-Remove')")
+    @DeleteMapping("libraries/{testLibraryId}/test_cases/{id}")
+    public ResponseEntity<Boolean> removeByTestLibraryIdAndId
+            (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("id") String id) {
+        Boolean rt = testCaseService.remove(id);
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * 校验CheckKey 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param dto dto
+    * @return ResponseEntity<Integer>
+    */
+    @ApiOperation(value = "校验CheckKey", tags = {"用例" },  notes = "TestCase-CheckKey ")
+    @PostMapping("libraries/{testLibraryId}/test_cases/check_key")
+    public ResponseEntity<Integer> checkKeyByTestLibraryId
+            (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseDTO dto) {
+        TestCase domain = testCaseDtoMapping.toDomain(dto);
+        domain.setTestLibraryId(testLibraryId);
+        Integer rt = testCaseService.checkKey(domain);
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * 草稿GetDraft 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "草稿GetDraft", tags = {"用例" },  notes = "TestCase-GetDraft ")
+    @GetMapping("libraries/{testLibraryId}/test_cases/get_draft")
+    public ResponseEntity<TestCaseDTO> getDraftByTestLibraryId
+            (@PathVariable("testLibraryId") String testLibraryId, @SpringQueryMap TestCaseDTO dto) {
+        TestCase domain = testCaseDtoMapping.toDomain(dto);
+        domain.setTestLibraryId(testLibraryId);
+        TestCase rt = testCaseService.getDraft(domain);
+        return ResponseEntity.status(HttpStatus.OK).body(testCaseDtoMapping.toDto(rt));
+    }
+
+    /**
+    * newest_run 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param id id
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "newest_run", tags = {"用例" },  notes = "TestCase-newest_run ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-newest_run-all') or hasPermission('library',#testLibraryId,this.testCaseService.get(#id),'ibizplm-TestCase-newest_run')")
+    @GetMapping("libraries/{testLibraryId}/test_cases/{id}/newest_run")
+    public ResponseEntity<TestCaseDTO> newestRunByTestLibraryIdAndId
+            (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("id") String id) {
+        TestCase rt = testCaseService.newestRun(id);
+        return ResponseEntity.status(HttpStatus.OK).body(testCaseDtoMapping.toDto(rt));
+    }
+
+    /**
+    * 查询fetch_advanced_search 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_advanced_search", tags = {"用例" },  notes = "TestCase-fetch_advanced_search ")
+    @PostMapping("libraries/{testLibraryId}/test_cases/fetch_advanced_search")
+    public ResponseEntity<List<TestCaseDTO>> fetchAdvancedSearchByTestLibraryId
+            (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
+        dto.setTestLibraryIdEQ(testLibraryId);
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchAdvancedSearch(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_assessment_result 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_assessment_result", tags = {"用例" },  notes = "TestCase-fetch_assessment_result ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_assessment_result-all') or hasPermission('library',#testLibraryId,#dto,'ibizplm-TestCase-fetch_assessment_result')")
+    @PostMapping("libraries/{testLibraryId}/test_cases/fetch_assessment_result")
+    public ResponseEntity<List<TestCaseDTO>> fetchAssessmentResultByTestLibraryId
+            (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
+        dto.setTestLibraryIdEQ(testLibraryId);
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchAssessmentResult(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_case_person 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_case_person", tags = {"用例" },  notes = "TestCase-fetch_case_person ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_case_person-all') or hasPermission('library',#testLibraryId,#dto,'ibizplm-TestCase-fetch_case_person')")
+    @PostMapping("libraries/{testLibraryId}/test_cases/fetch_case_person")
+    public ResponseEntity<List<TestCaseDTO>> fetchCasePersonByTestLibraryId
+            (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
+        dto.setTestLibraryIdEQ(testLibraryId);
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchCasePerson(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_case_type 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_case_type", tags = {"用例" },  notes = "TestCase-fetch_case_type ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_case_type-all') or hasPermission('library',#testLibraryId,#dto,'ibizplm-TestCase-fetch_case_type')")
+    @PostMapping("libraries/{testLibraryId}/test_cases/fetch_case_type")
+    public ResponseEntity<List<TestCaseDTO>> fetchCaseTypeByTestLibraryId
+            (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
+        dto.setTestLibraryIdEQ(testLibraryId);
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchCaseType(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_comment_notify_maintenance 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseMaintenanceDTO>>
+    */
+    @ApiOperation(value = "查询fetch_comment_notify_maintenance", tags = {"用例" },  notes = "TestCase-fetch_comment_notify_maintenance ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_comment_notify_maintenance-all') or hasPermission('library',#testLibraryId,#dto,'ibizplm-TestCase-fetch_comment_notify_maintenance')")
+    @PostMapping("libraries/{testLibraryId}/test_cases/fetch_comment_notify_maintenance")
+    public ResponseEntity<List<TestCaseMaintenanceDTO>> fetchCommentNotifyMaintenanceByTestLibraryId
+            (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
+        dto.setTestLibraryIdEQ(testLibraryId);
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchCommentNotifyMaintenance(context) ;
+        List<TestCaseMaintenanceDTO> list = testCaseMaintenanceDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_daily_tendencies 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_daily_tendencies", tags = {"用例" },  notes = "TestCase-fetch_daily_tendencies ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_daily_tendencies-all') or hasPermission('library',#testLibraryId,#dto,'ibizplm-TestCase-fetch_daily_tendencies')")
+    @PostMapping("libraries/{testLibraryId}/test_cases/fetch_daily_tendencies")
+    public ResponseEntity<List<TestCaseDTO>> fetchDailyTendenciesByTestLibraryId
+            (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
+        dto.setTestLibraryIdEQ(testLibraryId);
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchDailyTendencies(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_default 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_default", tags = {"用例" },  notes = "TestCase-fetch_default ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_default-all') or hasPermission('library',#testLibraryId,#dto,'ibizplm-TestCase-fetch_default')")
+    @PostMapping("libraries/{testLibraryId}/test_cases/fetch_default")
+    public ResponseEntity<List<TestCaseDTO>> fetchDefaultByTestLibraryId
+            (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
+        dto.setTestLibraryIdEQ(testLibraryId);
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchDefault(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_degree_importance 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_degree_importance", tags = {"用例" },  notes = "TestCase-fetch_degree_importance ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_degree_importance-all') or hasPermission('library',#testLibraryId,#dto,'ibizplm-TestCase-fetch_degree_importance')")
+    @PostMapping("libraries/{testLibraryId}/test_cases/fetch_degree_importance")
+    public ResponseEntity<List<TestCaseDTO>> fetchDegreeImportanceByTestLibraryId
+            (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
+        dto.setTestLibraryIdEQ(testLibraryId);
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchDegreeImportance(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_deleted 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_deleted", tags = {"用例" },  notes = "TestCase-fetch_deleted ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_deleted-all') or hasPermission('library',#testLibraryId,#dto,'ibizplm-TestCase-fetch_deleted')")
+    @PostMapping("libraries/{testLibraryId}/test_cases/fetch_deleted")
+    public ResponseEntity<List<TestCaseDTO>> fetchDeletedByTestLibraryId
+            (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
+        dto.setTestLibraryIdEQ(testLibraryId);
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchDeleted(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_everyday_test 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_everyday_test", tags = {"用例" },  notes = "TestCase-fetch_everyday_test ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_everyday_test-all') or hasPermission('library',#testLibraryId,#dto,'ibizplm-TestCase-fetch_everyday_test')")
+    @PostMapping("libraries/{testLibraryId}/test_cases/fetch_everyday_test")
+    public ResponseEntity<List<TestCaseDTO>> fetchEverydayTestByTestLibraryId
+            (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
+        dto.setTestLibraryIdEQ(testLibraryId);
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchEverydayTest(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_idea_relation_test_case 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_idea_relation_test_case", tags = {"用例" },  notes = "TestCase-fetch_idea_relation_test_case ")
+    @PostMapping("libraries/{testLibraryId}/test_cases/fetch_idea_relation_test_case")
+    public ResponseEntity<List<TestCaseDTO>> fetchIdeaRelationTestCaseByTestLibraryId
+            (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
+        dto.setTestLibraryIdEQ(testLibraryId);
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchIdeaRelationTestCase(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_implementation_results 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_implementation_results", tags = {"用例" },  notes = "TestCase-fetch_implementation_results ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_implementation_results-all') or hasPermission('library',#testLibraryId,#dto,'ibizplm-TestCase-fetch_implementation_results')")
+    @PostMapping("libraries/{testLibraryId}/test_cases/fetch_implementation_results")
+    public ResponseEntity<List<TestCaseDTO>> fetchImplementationResultsByTestLibraryId
+            (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
+        dto.setTestLibraryIdEQ(testLibraryId);
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchImplementationResults(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_my_assign 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_my_assign", tags = {"用例" },  notes = "TestCase-fetch_my_assign ")
+    @PostMapping("libraries/{testLibraryId}/test_cases/fetch_my_assign")
+    public ResponseEntity<List<TestCaseDTO>> fetchMyAssignByTestLibraryId
+            (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
+        dto.setTestLibraryIdEQ(testLibraryId);
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchMyAssign(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_my_assignee_count_test_case 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_my_assignee_count_test_case", tags = {"用例" },  notes = "TestCase-fetch_my_assignee_count_test_case ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_my_assignee_count_test_case-all') or hasPermission('library',#testLibraryId,#dto,'ibizplm-TestCase-fetch_my_assignee_count_test_case')")
+    @PostMapping("libraries/{testLibraryId}/test_cases/fetch_my_assignee_count_test_case")
+    public ResponseEntity<List<TestCaseDTO>> fetchMyAssigneeCountTestCaseByTestLibraryId
+            (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
+        dto.setTestLibraryIdEQ(testLibraryId);
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchMyAssigneeCountTestCase(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_my_attention 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_my_attention", tags = {"用例" },  notes = "TestCase-fetch_my_attention ")
+    @PostMapping("libraries/{testLibraryId}/test_cases/fetch_my_attention")
+    public ResponseEntity<List<TestCaseDTO>> fetchMyAttentionByTestLibraryId
+            (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
+        dto.setTestLibraryIdEQ(testLibraryId);
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchMyAttention(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_my_created 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_my_created", tags = {"用例" },  notes = "TestCase-fetch_my_created ")
+    @PostMapping("libraries/{testLibraryId}/test_cases/fetch_my_created")
+    public ResponseEntity<List<TestCaseDTO>> fetchMyCreatedByTestLibraryId
+            (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
+        dto.setTestLibraryIdEQ(testLibraryId);
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchMyCreated(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_normal 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_normal", tags = {"用例" },  notes = "TestCase-fetch_normal ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_normal-all') or hasPermission('library',#testLibraryId,#dto,'ibizplm-TestCase-fetch_normal')")
+    @PostMapping("libraries/{testLibraryId}/test_cases/fetch_normal")
+    public ResponseEntity<List<TestCaseDTO>> fetchNormalByTestLibraryId
+            (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
+        dto.setTestLibraryIdEQ(testLibraryId);
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchNormal(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_nosuite_test_case 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_nosuite_test_case", tags = {"用例" },  notes = "TestCase-fetch_nosuite_test_case ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_nosuite_test_case-all') or hasPermission('library',#testLibraryId,#dto,'ibizplm-TestCase-fetch_nosuite_test_case')")
+    @PostMapping("libraries/{testLibraryId}/test_cases/fetch_nosuite_test_case")
+    public ResponseEntity<List<TestCaseDTO>> fetchNosuiteTestCaseByTestLibraryId
+            (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
+        dto.setTestLibraryIdEQ(testLibraryId);
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchNosuiteTestCase(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_not_add_case 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_not_add_case", tags = {"用例" },  notes = "TestCase-fetch_not_add_case ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_not_add_case-all') or hasPermission('library',#testLibraryId,#dto,'ibizplm-TestCase-fetch_not_add_case')")
+    @PostMapping("libraries/{testLibraryId}/test_cases/fetch_not_add_case")
+    public ResponseEntity<List<TestCaseDTO>> fetchNotAddCaseByTestLibraryId
+            (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
+        dto.setTestLibraryIdEQ(testLibraryId);
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchNotAddCase(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_not_exsists_relation 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_not_exsists_relation", tags = {"用例" },  notes = "TestCase-fetch_not_exsists_relation ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_not_exsists_relation-all') or hasPermission('library',#testLibraryId,#dto,'ibizplm-TestCase-fetch_not_exsists_relation')")
+    @PostMapping("libraries/{testLibraryId}/test_cases/fetch_not_exsists_relation")
+    public ResponseEntity<List<TestCaseDTO>> fetchNotExsistsRelationByTestLibraryId
+            (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
+        dto.setTestLibraryIdEQ(testLibraryId);
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchNotExsistsRelation(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_notify_assignee 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_notify_assignee", tags = {"用例" },  notes = "TestCase-fetch_notify_assignee ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_notify_assignee-all') or hasPermission('library',#testLibraryId,#dto,'ibizplm-TestCase-fetch_notify_assignee')")
+    @PostMapping("libraries/{testLibraryId}/test_cases/fetch_notify_assignee")
+    public ResponseEntity<List<TestCaseDTO>> fetchNotifyAssigneeByTestLibraryId
+            (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
+        dto.setTestLibraryIdEQ(testLibraryId);
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchNotifyAssignee(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_person_distributions 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_person_distributions", tags = {"用例" },  notes = "TestCase-fetch_person_distributions ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_person_distributions-all') or hasPermission('library',#testLibraryId,#dto,'ibizplm-TestCase-fetch_person_distributions')")
+    @PostMapping("libraries/{testLibraryId}/test_cases/fetch_person_distributions")
+    public ResponseEntity<List<TestCaseDTO>> fetchPersonDistributionsByTestLibraryId
+            (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
+        dto.setTestLibraryIdEQ(testLibraryId);
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchPersonDistributions(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_priority_distributions 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_priority_distributions", tags = {"用例" },  notes = "TestCase-fetch_priority_distributions ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_priority_distributions-all') or hasPermission('library',#testLibraryId,#dto,'ibizplm-TestCase-fetch_priority_distributions')")
+    @PostMapping("libraries/{testLibraryId}/test_cases/fetch_priority_distributions")
+    public ResponseEntity<List<TestCaseDTO>> fetchPriorityDistributionsByTestLibraryId
+            (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
+        dto.setTestLibraryIdEQ(testLibraryId);
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchPriorityDistributions(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_recent_test_case 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_recent_test_case", tags = {"用例" },  notes = "TestCase-fetch_recent_test_case ")
+    @PostMapping("libraries/{testLibraryId}/test_cases/fetch_recent_test_case")
+    public ResponseEntity<List<TestCaseDTO>> fetchRecentTestCaseByTestLibraryId
+            (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
+        dto.setTestLibraryIdEQ(testLibraryId);
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchRecentTestCase(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_suites_test_case 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_suites_test_case", tags = {"用例" },  notes = "TestCase-fetch_suites_test_case ")
+    @PostMapping("libraries/{testLibraryId}/test_cases/fetch_suites_test_case")
+    public ResponseEntity<List<TestCaseDTO>> fetchSuitesTestCaseByTestLibraryId
+            (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
+        dto.setTestLibraryIdEQ(testLibraryId);
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchSuitesTestCase(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_work_item_relation_test_case 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param dto dto
+    * @return ResponseEntity<List<TestCaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_work_item_relation_test_case", tags = {"用例" },  notes = "TestCase-fetch_work_item_relation_test_case ")
+    @PostMapping("libraries/{testLibraryId}/test_cases/fetch_work_item_relation_test_case")
+    public ResponseEntity<List<TestCaseDTO>> fetchWorkItemRelationTestCaseByTestLibraryId
+            (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
+        dto.setTestLibraryIdEQ(testLibraryId);
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.searchWorkItemRelationTestCase(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+
+    /**
+    * 批量新建用例
+    * @param dtos
+    * @return ResponseEntity<Boolean>
+    */
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-TestCase-Create-all')")
+    @ApiOperation(value = "批量新建用例", tags = {"用例" },  notes = "批量新建用例")
+	@PostMapping("test_cases/batch")
+    public ResponseEntity<Boolean> createBatch(@RequestBody List<TestCaseDTO> dtos) {
+        testCaseService.createBatch(testCaseDtoMapping.toDomain(dtos));
+        return  ResponseEntity.status(HttpStatus.OK).body(true);
+    }
+
+    /**
+    * 批量删除用例
+    * @param ids ids
+    * @return ResponseEntity<Boolean>
+    */
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-TestCase-Remove-all')")
+    @ApiOperation(value = "批量删除用例", tags = {"用例" },  notes = "批量删除用例")
+	@DeleteMapping("test_cases/batch")
+    public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
+        testCaseService.removeBatch(ids);
+        return  ResponseEntity.status(HttpStatus.OK).body(true);
+    }
+
+    /**
+    * 批量更新用例
+    * @param dtos
+    * @return ResponseEntity<Boolean>
+    */
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-TestCase-Update-all')")
+    @ApiOperation(value = "批量更新用例", tags = {"用例" },  notes = "批量更新用例")
+	@PutMapping("test_cases/batch")
+    public ResponseEntity<Boolean> updateBatch(@RequestBody List<TestCaseDTO> dtos) {
+        testCaseService.updateBatch(testCaseDtoMapping.toDomain(dtos));
+        return  ResponseEntity.status(HttpStatus.OK).body(true);
+    }
+
+    /**
+    * 批量保存用例
+    * @param dtos
+    * @return ResponseEntity<Boolean>
+    */
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-TestCase-Save-all')")
+    @ApiOperation(value = "批量保存用例", tags = {"用例" },  notes = "批量保存用例")
+	@PostMapping("test_cases/savebatch")
+    public ResponseEntity<Boolean> saveBatch(@RequestBody List<TestCaseDTO> dtos) {
+        testCaseService.saveBatch(testCaseDtoMapping.toDomain(dtos));
+        return  ResponseEntity.status(HttpStatus.OK).body(true);
+    }
+
+    /**
+    * 批量导入用例
+    * @param config 导入模式
+    * @param ignoreError 导入中忽略错误
+    * @return ResponseEntity<ImportResult>
+    */
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-TestCase-Save-all')")
+    @ApiOperation(value = "批量导入用例", tags = {"用例" },  notes = "批量导入用例")
+	@PostMapping("test_cases/import")
+    public ResponseEntity<ImportResult> importData(@RequestParam(value = "config" , required = false) String config ,@RequestParam(value = "ignoreerror", required = false, defaultValue = "true") Boolean ignoreError ,@RequestBody List<TestCaseDTO> dtos) {
+        return  ResponseEntity.status(HttpStatus.OK).body(testCaseService.importData(config,ignoreError,testCaseDtoMapping.toDomain(dtos)));
+    }
+
+}

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper	namespace="cn.ibizlab.plm.core.base.mapper.ReferencesIndexMapper">
+
+        <!--通过mybatis将查询结果注入到entity中,通过配置autoMapping="true"由mybatis自动处理映射关系 -->
+    <resultMap id="ReferencesIndexResultMap" type="cn.ibizlab.plm.core.base.domain.ReferencesIndex" autoMapping="true">
+    </resultMap>
+
+    <select id="selectById"  resultMap="ReferencesIndexResultMap">
+        select t1.* from ( <include refid="view" /> ) t1 
+         where 
+         t1.id=#{ id }
+    </select>
+
+    <select id="selectEntity" parameterType="cn.ibizlab.plm.core.base.domain.ReferencesIndex" resultMap="ReferencesIndexResultMap">
+        <include refid="view" /> 
+         where 
+         ()
+    </select>
+
+    <select id="selectEntities" parameterType="java.util.List" resultMap="ReferencesIndexResultMap">
+        <include refid="view" /> 
+         where 
+         ()
+         in (<foreach collection="list" item="item" index="index" separator=","> () </foreach>)
+    </select>
+
+    <delete id="deleteEntities" parameterType="java.util.List">
+    delete from REFERENCES_INDEX
+    where ()
+         in (<foreach collection="list" item="item" index="index" separator=","> () </foreach>)
+    </delete>
+
+    <sql id="default" databaseId="mysql">
+         <![CDATA[ SELECT t1.`ID`, t1.`NAME`, t1.`TYPE` FROM (SELECT 'LIBRARY' AS `TYPE`,v1.`ID` AS `ID` ,v1.`NAME` AS `NAME` FROM (SELECT t1.`ID`, t1.`NAME` FROM `LIBRARY` t1  ) v1 UNION ALL SELECT 'PRODUCT' AS `TYPE`,v2.`ID` AS `ID` ,v2.`NAME` AS `NAME` FROM (SELECT t1.`ID`, t1.`NAME` FROM `PRODUCT` t1  ) v2 UNION ALL SELECT 'PROJECT' AS `TYPE`,v3.`ID` AS `ID` ,v3.`NAME` AS `NAME` FROM (SELECT t1.`ID`, t1.`NAME` FROM `PROJECT` t1  ) v3 ) t1   ]]>  
+    </sql>
+
+    <sql id="view" databaseId="mysql">
+         <![CDATA[ SELECT t1.`ID`, t1.`NAME`, t1.`TYPE` FROM (SELECT 'LIBRARY' AS `TYPE`,v1.`ID` AS `ID` ,v1.`NAME` AS `NAME` FROM (SELECT t1.`ID`, t1.`NAME` FROM `LIBRARY` t1  ) v1 UNION ALL SELECT 'PRODUCT' AS `TYPE`,v2.`ID` AS `ID` ,v2.`NAME` AS `NAME` FROM (SELECT t1.`ID`, t1.`NAME` FROM `PRODUCT` t1  ) v2 UNION ALL SELECT 'PROJECT' AS `TYPE`,v3.`ID` AS `ID` ,v3.`NAME` AS `NAME` FROM (SELECT t1.`ID`, t1.`NAME` FROM `PROJECT` t1  ) v3 ) t1   ]]>  
+    </sql>
+
+    <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.base.filter.ReferencesIndexSearchContext"  resultMap="ReferencesIndexResultMap">
+        select t1.* 
+        from (
+            <include refid="default"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listDefault"  parameterType="cn.ibizlab.plm.core.base.filter.ReferencesIndexSearchContext"  resultMap="ReferencesIndexResultMap">
+        select t1.*
+        from (
+            <include refid="default"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+</mapper>

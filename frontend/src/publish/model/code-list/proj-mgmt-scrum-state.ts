@@ -1,0 +1,40 @@
+export default {
+  cacheTimeout: 3000,
+  codeListTag: 'ProjMgmt__scrum_state',
+  codeListType: 'DYNAMIC',
+  codeName: 'ProjMgmt__scrum_state',
+  dynaSysMode: 1,
+  emptyText: '未定义',
+  appDataEntityId: 'plmweb.work_item',
+  codeItems: [
+    {
+      codeName: 'MAINSTATE1',
+      text: '打开',
+      value: '10',
+      default: true,
+      id: 'mainstate1',
+    },
+    {
+      codeName: 'MAINSTATE2',
+      text: '进行中',
+      value: '20',
+      id: 'mainstate2',
+    },
+    {
+      codeName: 'MAINSTATE3',
+      text: '已完成',
+      value: '30',
+      id: 'mainstate3',
+    },
+    {
+      codeName: 'MAINSTATE4',
+      text: '已关闭',
+      value: '40',
+      id: 'mainstate4',
+    },
+  ],
+  predefinedType: 'DEMAINSTATE',
+  enableCache: true,
+  name: '项目工作项代码表',
+  id: 'plmweb.projmgmt__scrum_state',
+};

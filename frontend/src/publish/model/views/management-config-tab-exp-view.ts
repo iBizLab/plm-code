@@ -1,0 +1,113 @@
+export default {
+  tabLayout: 'TOP',
+  loadDefault: true,
+  showDataInfoBar: true,
+  deviewCodeName: 'config_tab_exp_view',
+  deviewId: 'DBAEFBC8-BD1E-4F4D-8273-1D2BAEE44B9E',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.MANAGEMENT',
+  },
+  caption: '配置中心',
+  codeName: 'management_config_tab_exp_view',
+  appDataEntityId: 'plmweb.management',
+  appViewEngines: [
+    {
+      engineCat: 'VIEW',
+      engineType: 'TabExpView',
+      id: 'engine',
+    },
+  ],
+  controls: [
+    {
+      dedrtabPages: [
+        {
+          caption: '产品',
+          appViewId: 'plmweb.product_config_tree_exp_view',
+          sysImage: {
+            cssClass: 'fa fa-th-large',
+            glyph: 'xf009@FontAwesome',
+          },
+          id: 'product',
+        },
+        {
+          caption: '项目',
+          appViewId: 'plmweb.project_config_tree_exp_view',
+          sysImage: {
+            cssClass: 'fa fa-file-text-o',
+            glyph: 'xf0f6@FontAwesome',
+          },
+          id: 'project',
+        },
+        {
+          caption: '测试',
+          appViewId: 'plmweb.library_config_tree_exp_view',
+          sysImage: {
+            cssClass: 'fa fa-bug',
+            glyph: 'xf188@FontAwesome',
+          },
+          id: 'library',
+        },
+        {
+          caption: '知识',
+          appViewId: 'plmweb.space_config_tree_exp_view',
+          sysImage: {
+            cssClass: 'fa fa-book',
+            glyph: 'xf02d@FontAwesome',
+          },
+          id: 'space',
+        },
+      ],
+      editItemCapLanguageRes: {
+        lanResTag: 'DE.LNAME.MANAGEMENT',
+      },
+      editItemCaption: '后台管理',
+      uniqueTag: 'management_config_tab_exp_view__tabexppanel',
+      hideEditItem: true,
+      autoLoad: true,
+      showBusyIndicator: true,
+      codeName: 'config_tab_exp_view_dr',
+      controlType: 'DRTAB',
+      appDataEntityId: 'plmweb.management',
+      controlParam: {
+        id: 'tabexppanel',
+      },
+      modelId: '73F9D095-4112-43A5-B444-F9A1DB2349C1',
+      modelType: 'PSDEDRTAB',
+      name: 'tabexppanel',
+      id: 'config_tab_exp_view_dr',
+    },
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.MANAGEMENT',
+      },
+      caption: '配置中心',
+      codeName: 'config_tab_exp_view_captionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.management',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'config_tab_exp_view_captionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'layoutpanel',
+    controlStyle: 'APPDETABEXPVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.management',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '配置中心',
+  viewStyle: 'DEFAULT',
+  viewType: 'DETABEXPVIEW',
+  enableDP: true,
+  showCaptionBar: false,
+  modelId: 'ad2cb3a45309bf96af64eaa101ead271',
+  modelType: 'PSAPPDEVIEW',
+  name: 'managementconfig_tab_exp_view',
+  id: 'plmweb.management_config_tab_exp_view',
+};

@@ -1,0 +1,73 @@
+export default {
+  redirectAppViewRefs: [
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '执行用例主视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.RUN.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.run_main_view',
+      name: 'RUN:EDITVIEW',
+      id: 'run:editview',
+    },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '执行用例主视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.RUN.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.run_main_view',
+      name: 'EDITVIEW',
+      id: 'editview',
+    },
+  ],
+  enableWorkflow: true,
+  funcViewMode: 'REDIRECTVIEW',
+  deviewCodeName: 'RedirectView',
+  deviewId: '3c0829877793d12e95970b12807a7a34',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.RUN',
+  },
+  caption: '执行用例',
+  codeName: 'run_redirect_view',
+  appDataEntityId: 'plmweb.run',
+  controls: [
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.RUN',
+      },
+      caption: '执行用例',
+      codeName: 'redirect_view_captionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.run',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'redirect_view_captionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'layoutpanel',
+    controlStyle: 'APPDEREDIRECTVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.run',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '执行用例数据重定向视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.RUN.REDIRECTVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEREDIRECTVIEW',
+  enableDP: true,
+  redirectView: true,
+  showCaptionBar: true,
+  modelId: '0f0e83ac5a20c98a43c67d968e391c4c',
+  modelType: 'PSAPPDEVIEW',
+  name: 'runRedirectView',
+  id: 'plmweb.run_redirect_view',
+};

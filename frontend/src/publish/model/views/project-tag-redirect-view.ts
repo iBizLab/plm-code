@@ -1,0 +1,71 @@
+export default {
+  redirectAppViewRefs: [
+    {
+      realTitle: '项目标签编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.PROJECT_TAG.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.project_tag_edit_view',
+      name: 'PROJECT_TAG:EDITVIEW',
+      id: 'project_tag:editview',
+    },
+    {
+      realTitle: '项目标签编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.PROJECT_TAG.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.project_tag_edit_view',
+      name: 'EDITVIEW',
+      id: 'editview',
+    },
+  ],
+  enableWorkflow: true,
+  funcViewMode: 'REDIRECTVIEW',
+  deviewCodeName: 'RedirectView',
+  deviewId: '9d507f18386af95dbcdeaab5f5f36079',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.PROJECT_TAG',
+  },
+  caption: '项目标签',
+  codeName: 'project_tag_redirect_view',
+  appDataEntityId: 'plmweb.project_tag',
+  controls: [
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.PROJECT_TAG',
+      },
+      caption: '项目标签',
+      codeName: 'redirect_view_captionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.project_tag',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'redirect_view_captionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'layoutpanel',
+    controlStyle: 'APPDEREDIRECTVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.project_tag',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '项目标签数据重定向视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.PROJECT_TAG.REDIRECTVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEREDIRECTVIEW',
+  enableDP: true,
+  redirectView: true,
+  showCaptionBar: true,
+  modelId: '8e4c70d91ae5ebe2b6e788004f000ca6',
+  modelType: 'PSAPPDEVIEW',
+  name: 'project_tagRedirectView',
+  id: 'plmweb.project_tag_redirect_view',
+};

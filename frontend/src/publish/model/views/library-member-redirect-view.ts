@@ -1,0 +1,71 @@
+export default {
+  redirectAppViewRefs: [
+    {
+      realTitle: '测试库成员编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.LIBRARY_MEMBER.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.library_member_edit_view',
+      name: 'LIBRARY_MEMBER:EDITVIEW',
+      id: 'library_member:editview',
+    },
+    {
+      realTitle: '测试库成员编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.LIBRARY_MEMBER.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.library_member_edit_view',
+      name: 'EDITVIEW',
+      id: 'editview',
+    },
+  ],
+  enableWorkflow: true,
+  funcViewMode: 'REDIRECTVIEW',
+  deviewCodeName: 'RedirectView',
+  deviewId: 'e4458110089ec879728702a05ce151f9',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.LIBRARY_MEMBER',
+  },
+  caption: '测试库成员',
+  codeName: 'library_member_redirect_view',
+  appDataEntityId: 'plmweb.library_member',
+  controls: [
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.LIBRARY_MEMBER',
+      },
+      caption: '测试库成员',
+      codeName: 'redirect_view_captionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.library_member',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'redirect_view_captionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'layoutpanel',
+    controlStyle: 'APPDEREDIRECTVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.library_member',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '测试库成员数据重定向视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.LIBRARY_MEMBER.REDIRECTVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEREDIRECTVIEW',
+  enableDP: true,
+  redirectView: true,
+  showCaptionBar: true,
+  modelId: '21688ec4d97ef2532392c866af4d4722',
+  modelType: 'PSAPPDEVIEW',
+  name: 'library_memberRedirectView',
+  id: 'plmweb.library_member_redirect_view',
+};

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper	namespace="cn.ibizlab.plm.core.testmgmt.mapper.RunHistoryMapper">
+
+        <!--通过mybatis将查询结果注入到entity中,通过配置autoMapping="true"由mybatis自动处理映射关系 -->
+    <resultMap id="RunHistoryResultMap" type="cn.ibizlab.plm.core.testmgmt.domain.RunHistory" autoMapping="true">
+		<id property="id" column="id" /><!--主键字段映射-->
+		<result property="caseId" column="case_id" />
+		<result property="executedAt" column="executed_at" />
+        <result property="steps" column="steps" jdbcType="VARCHAR" typeHandler="cn.ibizlab.plm.core.testmgmt.domain.handlers.StepTypeHandler" />
+		<result property="executorId" column="executor_id" />
+		<result property="executorName" column="executor_name" />
+		<result property="createTime" column="create_time" />
+		<result property="createMan" column="create_man" />
+		<result property="updateMan" column="update_man" />
+		<result property="updateTime" column="update_time" />
+		<result property="runId" column="run_id" />
+		<result property="runTitle" column="run_title" />
+        <association property="run" javaType="cn.ibizlab.plm.core.testmgmt.domain.Run" column="run_id" select="cn.ibizlab.plm.core.testmgmt.mapper.RunMapper.selectById" fetchType="lazy"></association>
+    </resultMap>
+
+    <select id="selectById"  resultMap="RunHistoryResultMap">
+        <include refid="view" /> 
+         where 
+         t1.id=#{ id }
+    </select>
+
+    <select id="selectEntity" parameterType="cn.ibizlab.plm.core.testmgmt.domain.RunHistory" resultMap="RunHistoryResultMap">
+        <include refid="view" /> 
+         where 
+         (t1.id = #{ id })
+    </select>
+
+    <select id="selectEntities" parameterType="java.util.List" resultMap="RunHistoryResultMap">
+        <include refid="view" /> 
+         where 
+         (t1.id)
+         in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.id }) </foreach>)
+    </select>
+
+    <delete id="deleteEntities" parameterType="java.util.List">
+    delete from RUN_HISTORY
+    where (id)
+         in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.id }) </foreach>)
+    </delete>
+
+    <sql id="default" databaseId="mysql">
+         <![CDATA[ SELECT t11.`CASE_ID`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`EXECUTED_AT`, t1.`EXECUTOR_ID`, t1.`EXECUTOR_NAME`, t1.`ID`, t1.`NAME`, t1.`REMARK`, t1.`RUN_ID`, t21.`TITLE` AS `RUN_TITLE`, t1.`STATUS`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RUN_HISTORY` t1  LEFT JOIN `RUN` t11 ON t1.`RUN_ID` = t11.`ID`  LEFT JOIN `TEST_CASE` t21 ON t11.`CASE_ID` = t21.`ID`   ]]>  
+    </sql>
+
+    <sql id="view" databaseId="mysql">
+         <![CDATA[ SELECT t11.`CASE_ID`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`EXECUTED_AT`, t1.`EXECUTOR_ID`, t1.`EXECUTOR_NAME`, t1.`ID`, t1.`NAME`, t1.`REMARK`, t1.`RUN_ID`, t21.`TITLE` AS `RUN_TITLE`, t1.`STATUS`, t1.`STEPS`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RUN_HISTORY` t1  LEFT JOIN `RUN` t11 ON t1.`RUN_ID` = t11.`ID`  LEFT JOIN `TEST_CASE` t21 ON t11.`CASE_ID` = t21.`ID`   ]]>  
+    </sql>
+
+    <sql id="this" databaseId="mysql">
+         <![CDATA[ SELECT t11.`CASE_ID`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`EXECUTED_AT`, t1.`EXECUTOR_ID`, t1.`EXECUTOR_NAME`, t1.`ID`, t1.`NAME`, t1.`REMARK`, t1.`RUN_ID`, t21.`TITLE` AS `RUN_TITLE`, t1.`STATUS`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RUN_HISTORY` t1  LEFT JOIN `RUN` t11 ON t1.`RUN_ID` = t11.`ID`  LEFT JOIN `TEST_CASE` t21 ON t11.`CASE_ID` = t21.`ID`   ]]>  where  <![CDATA[ ( t1.`RUN_ID` = #{ctx.webcontext.run} ) ]]> 
+    </sql>
+
+    <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.RunHistorySearchContext"  resultMap="RunHistoryResultMap">
+        select t1.* 
+        from (
+            <include refid="default"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listDefault"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.RunHistorySearchContext"  resultMap="RunHistoryResultMap">
+        select t1.*
+        from (
+            <include refid="default"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchThis"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.RunHistorySearchContext"  resultMap="RunHistoryResultMap">
+        select t1.* 
+        from (
+            <include refid="this"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listThis"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.RunHistorySearchContext"  resultMap="RunHistoryResultMap">
+        select t1.*
+        from (
+            <include refid="this"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="findByRunId" resultMap="RunHistoryResultMap">
+        select t1.* from (
+            <include refid="default"/>
+        ) t1
+        where run_id in <foreach item="id" index="index" collection="runIds" open="(" separator="," close=")">#{id}</foreach> 
+    </select>
+
+
+</mapper>

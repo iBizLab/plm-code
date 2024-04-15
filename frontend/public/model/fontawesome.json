@@ -1,0 +1,7757 @@
+[
+  {
+    "cssclass": "fa-solid fa-house",
+    "imagepath": "#",
+    "pssysimagename": "fav6-house-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-magnifying-glass",
+    "imagepath": "#",
+    "pssysimagename": "fav6-magnifying-glass-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-user",
+    "imagepath": "#",
+    "pssysimagename": "fav6-user-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-user",
+    "imagepath": "#",
+    "pssysimagename": "fav6-user-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-check",
+    "imagepath": "#",
+    "pssysimagename": "fav6-check-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-download",
+    "imagepath": "#",
+    "pssysimagename": "fav6-download-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-image",
+    "imagepath": "#",
+    "pssysimagename": "fav6-image-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-image",
+    "imagepath": "#",
+    "pssysimagename": "fav6-image-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-phone",
+    "imagepath": "#",
+    "pssysimagename": "fav6-phone-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bars",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bars-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-envelope",
+    "imagepath": "#",
+    "pssysimagename": "fav6-envelope-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-envelope",
+    "imagepath": "#",
+    "pssysimagename": "fav6-envelope-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-star",
+    "imagepath": "#",
+    "pssysimagename": "fav6-star-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-star",
+    "imagepath": "#",
+    "pssysimagename": "fav6-star-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-location-dot",
+    "imagepath": "#",
+    "pssysimagename": "fav6-location-dot-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-music",
+    "imagepath": "#",
+    "pssysimagename": "fav6-music-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-wand-magic-sparkles",
+    "imagepath": "#",
+    "pssysimagename": "fav6-wand-magic-sparkles-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-heart",
+    "imagepath": "#",
+    "pssysimagename": "fav6-heart-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-heart",
+    "imagepath": "#",
+    "pssysimagename": "fav6-heart-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-right",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-right-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-circle-xmark",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-xmark-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-circle-xmark",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-xmark-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-bomb",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bomb-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-poo",
+    "imagepath": "#",
+    "pssysimagename": "fav6-poo-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-camera-retro",
+    "imagepath": "#",
+    "pssysimagename": "fav6-camera-retro-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-xmark",
+    "imagepath": "#",
+    "pssysimagename": "fav6-xmark-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-cloud",
+    "imagepath": "#",
+    "pssysimagename": "fav6-cloud-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-comment",
+    "imagepath": "#",
+    "pssysimagename": "fav6-comment-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-comment",
+    "imagepath": "#",
+    "pssysimagename": "fav6-comment-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-caret-up",
+    "imagepath": "#",
+    "pssysimagename": "fav6-caret-up-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-truck-fast",
+    "imagepath": "#",
+    "pssysimagename": "fav6-truck-fast-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-pen-nib",
+    "imagepath": "#",
+    "pssysimagename": "fav6-pen-nib-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-up",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-up-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hippo",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hippo-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-face-smile",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-smile-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-face-smile",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-smile-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-calendar-days",
+    "imagepath": "#",
+    "pssysimagename": "fav6-calendar-days-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-calendar-days",
+    "imagepath": "#",
+    "pssysimagename": "fav6-calendar-days-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-paperclip",
+    "imagepath": "#",
+    "pssysimagename": "fav6-paperclip-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-shield-halved",
+    "imagepath": "#",
+    "pssysimagename": "fav6-shield-halved-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-file",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-file",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-bell",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bell-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-bell",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bell-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-cart-shopping",
+    "imagepath": "#",
+    "pssysimagename": "fav6-cart-shopping-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-clipboard",
+    "imagepath": "#",
+    "pssysimagename": "fav6-clipboard-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-clipboard",
+    "imagepath": "#",
+    "pssysimagename": "fav6-clipboard-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-filter",
+    "imagepath": "#",
+    "pssysimagename": "fav6-filter-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-circle-info",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-info-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-up-from-bracket",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-up-from-bracket-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bolt",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bolt-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-car",
+    "imagepath": "#",
+    "pssysimagename": "fav6-car-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-ghost",
+    "imagepath": "#",
+    "pssysimagename": "fav6-ghost-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-mug-hot",
+    "imagepath": "#",
+    "pssysimagename": "fav6-mug-hot-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-circle-user",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-user-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-circle-user",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-user-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-pen",
+    "imagepath": "#",
+    "pssysimagename": "fav6-pen-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-umbrella",
+    "imagepath": "#",
+    "pssysimagename": "fav6-umbrella-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-gift",
+    "imagepath": "#",
+    "pssysimagename": "fav6-gift-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-film",
+    "imagepath": "#",
+    "pssysimagename": "fav6-film-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-list",
+    "imagepath": "#",
+    "pssysimagename": "fav6-list-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-gear",
+    "imagepath": "#",
+    "pssysimagename": "fav6-gear-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-trash",
+    "imagepath": "#",
+    "pssysimagename": "fav6-trash-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-circle-up",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-up-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-circle-up",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-up-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-circle-down",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-down-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-circle-down",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-down-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-inbox",
+    "imagepath": "#",
+    "pssysimagename": "fav6-inbox-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-rotate-right",
+    "imagepath": "#",
+    "pssysimagename": "fav6-rotate-right-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-lock",
+    "imagepath": "#",
+    "pssysimagename": "fav6-lock-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-headphones",
+    "imagepath": "#",
+    "pssysimagename": "fav6-headphones-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-barcode",
+    "imagepath": "#",
+    "pssysimagename": "fav6-barcode-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-tag",
+    "imagepath": "#",
+    "pssysimagename": "fav6-tag-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-book",
+    "imagepath": "#",
+    "pssysimagename": "fav6-book-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bookmark",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bookmark-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-bookmark",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bookmark-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-print",
+    "imagepath": "#",
+    "pssysimagename": "fav6-print-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-camera",
+    "imagepath": "#",
+    "pssysimagename": "fav6-camera-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-font",
+    "imagepath": "#",
+    "pssysimagename": "fav6-font-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-video",
+    "imagepath": "#",
+    "pssysimagename": "fav6-video-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-circle-half-stroke",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-half-stroke-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-droplet",
+    "imagepath": "#",
+    "pssysimagename": "fav6-droplet-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-pen-to-square",
+    "imagepath": "#",
+    "pssysimagename": "fav6-pen-to-square-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-pen-to-square",
+    "imagepath": "#",
+    "pssysimagename": "fav6-pen-to-square-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-share-from-square",
+    "imagepath": "#",
+    "pssysimagename": "fav6-share-from-square-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-share-from-square",
+    "imagepath": "#",
+    "pssysimagename": "fav6-share-from-square-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-plus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-plus-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-minus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-minus-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-share",
+    "imagepath": "#",
+    "pssysimagename": "fav6-share-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-circle-exclamation",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-exclamation-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-fire",
+    "imagepath": "#",
+    "pssysimagename": "fav6-fire-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-eye",
+    "imagepath": "#",
+    "pssysimagename": "fav6-eye-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-eye",
+    "imagepath": "#",
+    "pssysimagename": "fav6-eye-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-eye-slash",
+    "imagepath": "#",
+    "pssysimagename": "fav6-eye-slash-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-eye-slash",
+    "imagepath": "#",
+    "pssysimagename": "fav6-eye-slash-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-plane",
+    "imagepath": "#",
+    "pssysimagename": "fav6-plane-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-magnet",
+    "imagepath": "#",
+    "pssysimagename": "fav6-magnet-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hand",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hand-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-hand",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hand-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-folder",
+    "imagepath": "#",
+    "pssysimagename": "fav6-folder-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-folder",
+    "imagepath": "#",
+    "pssysimagename": "fav6-folder-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-folder-open",
+    "imagepath": "#",
+    "pssysimagename": "fav6-folder-open-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-folder-open",
+    "imagepath": "#",
+    "pssysimagename": "fav6-folder-open-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-money-bill",
+    "imagepath": "#",
+    "pssysimagename": "fav6-money-bill-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-thumbs-up",
+    "imagepath": "#",
+    "pssysimagename": "fav6-thumbs-up-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-thumbs-up",
+    "imagepath": "#",
+    "pssysimagename": "fav6-thumbs-up-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-thumbs-down",
+    "imagepath": "#",
+    "pssysimagename": "fav6-thumbs-down-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-thumbs-down",
+    "imagepath": "#",
+    "pssysimagename": "fav6-thumbs-down-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-comments",
+    "imagepath": "#",
+    "pssysimagename": "fav6-comments-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-comments",
+    "imagepath": "#",
+    "pssysimagename": "fav6-comments-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-lemon",
+    "imagepath": "#",
+    "pssysimagename": "fav6-lemon-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-lemon",
+    "imagepath": "#",
+    "pssysimagename": "fav6-lemon-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-key",
+    "imagepath": "#",
+    "pssysimagename": "fav6-key-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-thumbtack",
+    "imagepath": "#",
+    "pssysimagename": "fav6-thumbtack-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-gears",
+    "imagepath": "#",
+    "pssysimagename": "fav6-gears-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-paper-plane",
+    "imagepath": "#",
+    "pssysimagename": "fav6-paper-plane-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-paper-plane",
+    "imagepath": "#",
+    "pssysimagename": "fav6-paper-plane-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-code",
+    "imagepath": "#",
+    "pssysimagename": "fav6-code-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-globe",
+    "imagepath": "#",
+    "pssysimagename": "fav6-globe-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-truck",
+    "imagepath": "#",
+    "pssysimagename": "fav6-truck-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-city",
+    "imagepath": "#",
+    "pssysimagename": "fav6-city-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-ticket",
+    "imagepath": "#",
+    "pssysimagename": "fav6-ticket-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-tree",
+    "imagepath": "#",
+    "pssysimagename": "fav6-tree-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-wifi",
+    "imagepath": "#",
+    "pssysimagename": "fav6-wifi-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-paint-roller",
+    "imagepath": "#",
+    "pssysimagename": "fav6-paint-roller-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bicycle",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bicycle-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-sliders",
+    "imagepath": "#",
+    "pssysimagename": "fav6-sliders-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-brush",
+    "imagepath": "#",
+    "pssysimagename": "fav6-brush-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hashtag",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hashtag-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-flask",
+    "imagepath": "#",
+    "pssysimagename": "fav6-flask-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-briefcase",
+    "imagepath": "#",
+    "pssysimagename": "fav6-briefcase-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-compass",
+    "imagepath": "#",
+    "pssysimagename": "fav6-compass-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-compass",
+    "imagepath": "#",
+    "pssysimagename": "fav6-compass-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-dumpster-fire",
+    "imagepath": "#",
+    "pssysimagename": "fav6-dumpster-fire-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-dress",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-dress-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-address-book",
+    "imagepath": "#",
+    "pssysimagename": "fav6-address-book-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-address-book",
+    "imagepath": "#",
+    "pssysimagename": "fav6-address-book-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-bath",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bath-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-handshake",
+    "imagepath": "#",
+    "pssysimagename": "fav6-handshake-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-handshake",
+    "imagepath": "#",
+    "pssysimagename": "fav6-handshake-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-snowflake",
+    "imagepath": "#",
+    "pssysimagename": "fav6-snowflake-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-snowflake",
+    "imagepath": "#",
+    "pssysimagename": "fav6-snowflake-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-right-to-bracket",
+    "imagepath": "#",
+    "pssysimagename": "fav6-right-to-bracket-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-earth-americas",
+    "imagepath": "#",
+    "pssysimagename": "fav6-earth-americas-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-cloud-arrow-up",
+    "imagepath": "#",
+    "pssysimagename": "fav6-cloud-arrow-up-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-binoculars",
+    "imagepath": "#",
+    "pssysimagename": "fav6-binoculars-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-palette",
+    "imagepath": "#",
+    "pssysimagename": "fav6-palette-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-layer-group",
+    "imagepath": "#",
+    "pssysimagename": "fav6-layer-group-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-users",
+    "imagepath": "#",
+    "pssysimagename": "fav6-users-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-gamepad",
+    "imagepath": "#",
+    "pssysimagename": "fav6-gamepad-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-business-time",
+    "imagepath": "#",
+    "pssysimagename": "fav6-business-time-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-feather",
+    "imagepath": "#",
+    "pssysimagename": "fav6-feather-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-sun",
+    "imagepath": "#",
+    "pssysimagename": "fav6-sun-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-sun",
+    "imagepath": "#",
+    "pssysimagename": "fav6-sun-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-link",
+    "imagepath": "#",
+    "pssysimagename": "fav6-link-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-pen-fancy",
+    "imagepath": "#",
+    "pssysimagename": "fav6-pen-fancy-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-fish",
+    "imagepath": "#",
+    "pssysimagename": "fav6-fish-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bug",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bug-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-shop",
+    "imagepath": "#",
+    "pssysimagename": "fav6-shop-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-mug-saucer",
+    "imagepath": "#",
+    "pssysimagename": "fav6-mug-saucer-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-landmark",
+    "imagepath": "#",
+    "pssysimagename": "fav6-landmark-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-poo-storm",
+    "imagepath": "#",
+    "pssysimagename": "fav6-poo-storm-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-chart-simple",
+    "imagepath": "#",
+    "pssysimagename": "fav6-chart-simple-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-shirt",
+    "imagepath": "#",
+    "pssysimagename": "fav6-shirt-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-anchor",
+    "imagepath": "#",
+    "pssysimagename": "fav6-anchor-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-quote-left",
+    "imagepath": "#",
+    "pssysimagename": "fav6-quote-left-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bag-shopping",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bag-shopping-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-gauge",
+    "imagepath": "#",
+    "pssysimagename": "fav6-gauge-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-code-compare",
+    "imagepath": "#",
+    "pssysimagename": "fav6-code-compare-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-user-secret",
+    "imagepath": "#",
+    "pssysimagename": "fav6-user-secret-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-stethoscope",
+    "imagepath": "#",
+    "pssysimagename": "fav6-stethoscope-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-car-side",
+    "imagepath": "#",
+    "pssysimagename": "fav6-car-side-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hand-holding-heart",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hand-holding-heart-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-truck-front",
+    "imagepath": "#",
+    "pssysimagename": "fav6-truck-front-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-cable-car",
+    "imagepath": "#",
+    "pssysimagename": "fav6-cable-car-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-mountain-sun",
+    "imagepath": "#",
+    "pssysimagename": "fav6-mountain-sun-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-location-pin",
+    "imagepath": "#",
+    "pssysimagename": "fav6-location-pin-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-info",
+    "imagepath": "#",
+    "pssysimagename": "fav6-info-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-user-minus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-user-minus-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-calendar",
+    "imagepath": "#",
+    "pssysimagename": "fav6-calendar-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-calendar",
+    "imagepath": "#",
+    "pssysimagename": "fav6-calendar-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-cart-plus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-cart-plus-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-clock",
+    "imagepath": "#",
+    "pssysimagename": "fav6-clock-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-clock",
+    "imagepath": "#",
+    "pssysimagename": "fav6-clock-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-circle",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-circle",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-play",
+    "imagepath": "#",
+    "pssysimagename": "fav6-play-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-cross",
+    "imagepath": "#",
+    "pssysimagename": "fav6-cross-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-backward",
+    "imagepath": "#",
+    "pssysimagename": "fav6-backward-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-handshake-slash",
+    "imagepath": "#",
+    "pssysimagename": "fav6-handshake-slash-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-chevron-up",
+    "imagepath": "#",
+    "pssysimagename": "fav6-chevron-up-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-passport",
+    "imagepath": "#",
+    "pssysimagename": "fav6-passport-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-question",
+    "imagepath": "#",
+    "pssysimagename": "fav6-question-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-pencil",
+    "imagepath": "#",
+    "pssysimagename": "fav6-pencil-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-phone-volume",
+    "imagepath": "#",
+    "pssysimagename": "fav6-phone-volume-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-upload",
+    "imagepath": "#",
+    "pssysimagename": "fav6-upload-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-strikethrough",
+    "imagepath": "#",
+    "pssysimagename": "fav6-strikethrough-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-credit-card",
+    "imagepath": "#",
+    "pssysimagename": "fav6-credit-card-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-credit-card",
+    "imagepath": "#",
+    "pssysimagename": "fav6-credit-card-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-street-view",
+    "imagepath": "#",
+    "pssysimagename": "fav6-street-view-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-database",
+    "imagepath": "#",
+    "pssysimagename": "fav6-database-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-copy",
+    "imagepath": "#",
+    "pssysimagename": "fav6-copy-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-copy",
+    "imagepath": "#",
+    "pssysimagename": "fav6-copy-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-mobile",
+    "imagepath": "#",
+    "pssysimagename": "fav6-mobile-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-square",
+    "imagepath": "#",
+    "pssysimagename": "fav6-square-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-square",
+    "imagepath": "#",
+    "pssysimagename": "fav6-square-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-sort",
+    "imagepath": "#",
+    "pssysimagename": "fav6-sort-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-forward",
+    "imagepath": "#",
+    "pssysimagename": "fav6-forward-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hourglass-start",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hourglass-start-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-newspaper",
+    "imagepath": "#",
+    "pssysimagename": "fav6-newspaper-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-newspaper",
+    "imagepath": "#",
+    "pssysimagename": "fav6-newspaper-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-notes-medical",
+    "imagepath": "#",
+    "pssysimagename": "fav6-notes-medical-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-table",
+    "imagepath": "#",
+    "pssysimagename": "fav6-table-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-building",
+    "imagepath": "#",
+    "pssysimagename": "fav6-building-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-building",
+    "imagepath": "#",
+    "pssysimagename": "fav6-building-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-stop",
+    "imagepath": "#",
+    "pssysimagename": "fav6-stop-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-store",
+    "imagepath": "#",
+    "pssysimagename": "fav6-store-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-flag",
+    "imagepath": "#",
+    "pssysimagename": "fav6-flag-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-flag",
+    "imagepath": "#",
+    "pssysimagename": "fav6-flag-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-file-excel",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-excel-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-file-excel",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-excel-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-network-wired",
+    "imagepath": "#",
+    "pssysimagename": "fav6-network-wired-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-cash-register",
+    "imagepath": "#",
+    "pssysimagename": "fav6-cash-register-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-file-export",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-export-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hand-point-up",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hand-point-up-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-hand-point-up",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hand-point-up-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-angle-up",
+    "imagepath": "#",
+    "pssysimagename": "fav6-angle-up-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-shield",
+    "imagepath": "#",
+    "pssysimagename": "fav6-shield-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-address-card",
+    "imagepath": "#",
+    "pssysimagename": "fav6-address-card-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-address-card",
+    "imagepath": "#",
+    "pssysimagename": "fav6-address-card-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-expand",
+    "imagepath": "#",
+    "pssysimagename": "fav6-expand-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-flag-checkered",
+    "imagepath": "#",
+    "pssysimagename": "fav6-flag-checkered-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-quote-right",
+    "imagepath": "#",
+    "pssysimagename": "fav6-quote-right-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-tags",
+    "imagepath": "#",
+    "pssysimagename": "fav6-tags-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-server",
+    "imagepath": "#",
+    "pssysimagename": "fav6-server-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-user-nurse",
+    "imagepath": "#",
+    "pssysimagename": "fav6-user-nurse-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-video-slash",
+    "imagepath": "#",
+    "pssysimagename": "fav6-video-slash-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-down",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-down-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-blog",
+    "imagepath": "#",
+    "pssysimagename": "fav6-blog-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-school",
+    "imagepath": "#",
+    "pssysimagename": "fav6-school-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-file-invoice",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-invoice-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-rocket",
+    "imagepath": "#",
+    "pssysimagename": "fav6-rocket-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-spinner",
+    "imagepath": "#",
+    "pssysimagename": "fav6-spinner-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-tty",
+    "imagepath": "#",
+    "pssysimagename": "fav6-tty-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-exclamation",
+    "imagepath": "#",
+    "pssysimagename": "fav6-exclamation-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-water",
+    "imagepath": "#",
+    "pssysimagename": "fav6-water-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-registered",
+    "imagepath": "#",
+    "pssysimagename": "fav6-registered-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-registered",
+    "imagepath": "#",
+    "pssysimagename": "fav6-registered-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-signature",
+    "imagepath": "#",
+    "pssysimagename": "fav6-signature-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-laptop",
+    "imagepath": "#",
+    "pssysimagename": "fav6-laptop-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-restroom",
+    "imagepath": "#",
+    "pssysimagename": "fav6-restroom-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-power-off",
+    "imagepath": "#",
+    "pssysimagename": "fav6-power-off-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-sitemap",
+    "imagepath": "#",
+    "pssysimagename": "fav6-sitemap-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-icons",
+    "imagepath": "#",
+    "pssysimagename": "fav6-icons-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-desktop",
+    "imagepath": "#",
+    "pssysimagename": "fav6-desktop-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-moon",
+    "imagepath": "#",
+    "pssysimagename": "fav6-moon-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-moon",
+    "imagepath": "#",
+    "pssysimagename": "fav6-moon-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-calendar-week",
+    "imagepath": "#",
+    "pssysimagename": "fav6-calendar-week-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-pause",
+    "imagepath": "#",
+    "pssysimagename": "fav6-pause-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-file-word",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-word-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-file-word",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-word-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-vials",
+    "imagepath": "#",
+    "pssysimagename": "fav6-vials-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-language",
+    "imagepath": "#",
+    "pssysimagename": "fav6-language-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-door-open",
+    "imagepath": "#",
+    "pssysimagename": "fav6-door-open-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-brain",
+    "imagepath": "#",
+    "pssysimagename": "fav6-brain-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hotel",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hotel-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-marker",
+    "imagepath": "#",
+    "pssysimagename": "fav6-marker-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-star-of-life",
+    "imagepath": "#",
+    "pssysimagename": "fav6-star-of-life-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-leaf",
+    "imagepath": "#",
+    "pssysimagename": "fav6-leaf-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-walkie-talkie",
+    "imagepath": "#",
+    "pssysimagename": "fav6-walkie-talkie-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-shower",
+    "imagepath": "#",
+    "pssysimagename": "fav6-shower-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-caret-down",
+    "imagepath": "#",
+    "pssysimagename": "fav6-caret-down-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-file-import",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-import-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-place-of-worship",
+    "imagepath": "#",
+    "pssysimagename": "fav6-place-of-worship-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-wallet",
+    "imagepath": "#",
+    "pssysimagename": "fav6-wallet-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-slash",
+    "imagepath": "#",
+    "pssysimagename": "fav6-slash-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-award",
+    "imagepath": "#",
+    "pssysimagename": "fav6-award-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-toggle-on",
+    "imagepath": "#",
+    "pssysimagename": "fav6-toggle-on-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-ship",
+    "imagepath": "#",
+    "pssysimagename": "fav6-ship-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-chalkboard",
+    "imagepath": "#",
+    "pssysimagename": "fav6-chalkboard-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hands",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hands-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-signal",
+    "imagepath": "#",
+    "pssysimagename": "fav6-signal-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-motorcycle",
+    "imagepath": "#",
+    "pssysimagename": "fav6-motorcycle-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-up-right-from-square",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-up-right-from-square-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-audio-description",
+    "imagepath": "#",
+    "pssysimagename": "fav6-audio-description-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-seedling",
+    "imagepath": "#",
+    "pssysimagename": "fav6-seedling-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-closed-captioning",
+    "imagepath": "#",
+    "pssysimagename": "fav6-closed-captioning-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-closed-captioning",
+    "imagepath": "#",
+    "pssysimagename": "fav6-closed-captioning-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-train",
+    "imagepath": "#",
+    "pssysimagename": "fav6-train-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-left",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-left-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-wrench",
+    "imagepath": "#",
+    "pssysimagename": "fav6-wrench-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-microchip",
+    "imagepath": "#",
+    "pssysimagename": "fav6-microchip-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-record-vinyl",
+    "imagepath": "#",
+    "pssysimagename": "fav6-record-vinyl-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-trophy",
+    "imagepath": "#",
+    "pssysimagename": "fav6-trophy-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hammer",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hammer-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-diamond",
+    "imagepath": "#",
+    "pssysimagename": "fav6-diamond-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-robot",
+    "imagepath": "#",
+    "pssysimagename": "fav6-robot-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-file-pdf",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-pdf-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-file-pdf",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-pdf-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-hospital",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hospital-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-hospital",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hospital-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-file-contract",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-contract-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-square-xmark",
+    "imagepath": "#",
+    "pssysimagename": "fav6-square-xmark-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-square-check",
+    "imagepath": "#",
+    "pssysimagename": "fav6-square-check-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-square-check",
+    "imagepath": "#",
+    "pssysimagename": "fav6-square-check-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-crown",
+    "imagepath": "#",
+    "pssysimagename": "fav6-crown-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-user-plus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-user-plus-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-virus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-virus-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-child",
+    "imagepath": "#",
+    "pssysimagename": "fav6-child-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-repeat",
+    "imagepath": "#",
+    "pssysimagename": "fav6-repeat-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-cube",
+    "imagepath": "#",
+    "pssysimagename": "fav6-cube-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-copyright",
+    "imagepath": "#",
+    "pssysimagename": "fav6-copyright-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-copyright",
+    "imagepath": "#",
+    "pssysimagename": "fav6-copyright-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-medal",
+    "imagepath": "#",
+    "pssysimagename": "fav6-medal-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bullseye",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bullseye-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-mask",
+    "imagepath": "#",
+    "pssysimagename": "fav6-mask-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-circle-check",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-check-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-circle-check",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-check-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-radio",
+    "imagepath": "#",
+    "pssysimagename": "fav6-radio-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-reply",
+    "imagepath": "#",
+    "pssysimagename": "fav6-reply-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-chair",
+    "imagepath": "#",
+    "pssysimagename": "fav6-chair-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-route",
+    "imagepath": "#",
+    "pssysimagename": "fav6-route-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-plug",
+    "imagepath": "#",
+    "pssysimagename": "fav6-plug-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-calculator",
+    "imagepath": "#",
+    "pssysimagename": "fav6-calculator-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-dragon",
+    "imagepath": "#",
+    "pssysimagename": "fav6-dragon-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-certificate",
+    "imagepath": "#",
+    "pssysimagename": "fav6-certificate-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-fingerprint",
+    "imagepath": "#",
+    "pssysimagename": "fav6-fingerprint-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-road",
+    "imagepath": "#",
+    "pssysimagename": "fav6-road-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-crosshairs",
+    "imagepath": "#",
+    "pssysimagename": "fav6-crosshairs-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-heading",
+    "imagepath": "#",
+    "pssysimagename": "fav6-heading-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-percent",
+    "imagepath": "#",
+    "pssysimagename": "fav6-percent-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-user-tie",
+    "imagepath": "#",
+    "pssysimagename": "fav6-user-tie-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-square-minus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-square-minus-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-square-minus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-square-minus-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-i-cursor",
+    "imagepath": "#",
+    "pssysimagename": "fav6-i-cursor-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-church",
+    "imagepath": "#",
+    "pssysimagename": "fav6-church-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-joint",
+    "imagepath": "#",
+    "pssysimagename": "fav6-joint-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-comments-dollar",
+    "imagepath": "#",
+    "pssysimagename": "fav6-comments-dollar-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-truck-monster",
+    "imagepath": "#",
+    "pssysimagename": "fav6-truck-monster-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-recycle",
+    "imagepath": "#",
+    "pssysimagename": "fav6-recycle-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-warehouse",
+    "imagepath": "#",
+    "pssysimagename": "fav6-warehouse-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-ruler",
+    "imagepath": "#",
+    "pssysimagename": "fav6-ruler-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-soap",
+    "imagepath": "#",
+    "pssysimagename": "fav6-soap-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-scroll",
+    "imagepath": "#",
+    "pssysimagename": "fav6-scroll-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-coins",
+    "imagepath": "#",
+    "pssysimagename": "fav6-coins-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-wind",
+    "imagepath": "#",
+    "pssysimagename": "fav6-wind-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-baby",
+    "imagepath": "#",
+    "pssysimagename": "fav6-baby-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-lightbulb",
+    "imagepath": "#",
+    "pssysimagename": "fav6-lightbulb-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-lightbulb",
+    "imagepath": "#",
+    "pssysimagename": "fav6-lightbulb-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-voicemail",
+    "imagepath": "#",
+    "pssysimagename": "fav6-voicemail-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-puzzle-piece",
+    "imagepath": "#",
+    "pssysimagename": "fav6-puzzle-piece-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-keyboard",
+    "imagepath": "#",
+    "pssysimagename": "fav6-keyboard-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-keyboard",
+    "imagepath": "#",
+    "pssysimagename": "fav6-keyboard-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-clone",
+    "imagepath": "#",
+    "pssysimagename": "fav6-clone-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-clone",
+    "imagepath": "#",
+    "pssysimagename": "fav6-clone-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-eraser",
+    "imagepath": "#",
+    "pssysimagename": "fav6-eraser-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-wine-bottle",
+    "imagepath": "#",
+    "pssysimagename": "fav6-wine-bottle-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-dice",
+    "imagepath": "#",
+    "pssysimagename": "fav6-dice-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-receipt",
+    "imagepath": "#",
+    "pssysimagename": "fav6-receipt-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-ring",
+    "imagepath": "#",
+    "pssysimagename": "fav6-ring-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-unlock",
+    "imagepath": "#",
+    "pssysimagename": "fav6-unlock-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-solar-panel",
+    "imagepath": "#",
+    "pssysimagename": "fav6-solar-panel-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-ruler-vertical",
+    "imagepath": "#",
+    "pssysimagename": "fav6-ruler-vertical-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-circle-notch",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-notch-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-people-arrows",
+    "imagepath": "#",
+    "pssysimagename": "fav6-people-arrows-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-dollar-sign",
+    "imagepath": "#",
+    "pssysimagename": "fav6-dollar-sign-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-tablet",
+    "imagepath": "#",
+    "pssysimagename": "fav6-tablet-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-not-equal",
+    "imagepath": "#",
+    "pssysimagename": "fav6-not-equal-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-glasses",
+    "imagepath": "#",
+    "pssysimagename": "fav6-glasses-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-headset",
+    "imagepath": "#",
+    "pssysimagename": "fav6-headset-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-code-branch",
+    "imagepath": "#",
+    "pssysimagename": "fav6-code-branch-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-gopuram",
+    "imagepath": "#",
+    "pssysimagename": "fav6-gopuram-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-images",
+    "imagepath": "#",
+    "pssysimagename": "fav6-images-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-images",
+    "imagepath": "#",
+    "pssysimagename": "fav6-images-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-window-restore",
+    "imagepath": "#",
+    "pssysimagename": "fav6-window-restore-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-window-restore",
+    "imagepath": "#",
+    "pssysimagename": "fav6-window-restore-regular"
+  },
+  {
+    "cssclass": "fa-solid fa-industry",
+    "imagepath": "#",
+    "pssysimagename": "fav6-industry-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-stamp",
+    "imagepath": "#",
+    "pssysimagename": "fav6-stamp-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-microphone-slash",
+    "imagepath": "#",
+    "pssysimagename": "fav6-microphone-slash-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-cookie-bite",
+    "imagepath": "#",
+    "pssysimagename": "fav6-cookie-bite-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-otter",
+    "imagepath": "#",
+    "pssysimagename": "fav6-otter-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-chevron-down",
+    "imagepath": "#",
+    "pssysimagename": "fav6-chevron-down-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-kiwi-bird",
+    "imagepath": "#",
+    "pssysimagename": "fav6-kiwi-bird-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-viruses",
+    "imagepath": "#",
+    "pssysimagename": "fav6-viruses-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-umbrella-beach",
+    "imagepath": "#",
+    "pssysimagename": "fav6-umbrella-beach-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-subscript",
+    "imagepath": "#",
+    "pssysimagename": "fav6-subscript-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-tablets",
+    "imagepath": "#",
+    "pssysimagename": "fav6-tablets-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-microphone",
+    "imagepath": "#",
+    "pssysimagename": "fav6-microphone-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-border-none",
+    "imagepath": "#",
+    "pssysimagename": "fav6-border-none-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-dumbbell",
+    "imagepath": "#",
+    "pssysimagename": "fav6-dumbbell-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-plane-departure",
+    "imagepath": "#",
+    "pssysimagename": "fav6-plane-departure-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-z",
+    "imagepath": "#",
+    "pssysimagename": "fav6-z-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-yin-yang",
+    "imagepath": "#",
+    "pssysimagename": "fav6-yin-yang-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-yen-sign",
+    "imagepath": "#",
+    "pssysimagename": "fav6-yen-sign-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-y",
+    "imagepath": "#",
+    "pssysimagename": "fav6-y-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-xmarks-lines",
+    "imagepath": "#",
+    "pssysimagename": "fav6-xmarks-lines-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-x-ray",
+    "imagepath": "#",
+    "pssysimagename": "fav6-x-ray-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-x",
+    "imagepath": "#",
+    "pssysimagename": "fav6-x-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-worm",
+    "imagepath": "#",
+    "pssysimagename": "fav6-worm-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-won-sign",
+    "imagepath": "#",
+    "pssysimagename": "fav6-won-sign-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-wine-glass-empty",
+    "imagepath": "#",
+    "pssysimagename": "fav6-wine-glass-empty-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-wine-glass",
+    "imagepath": "#",
+    "pssysimagename": "fav6-wine-glass-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-window-minimize",
+    "imagepath": "#",
+    "pssysimagename": "fav6-window-minimize-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-window-maximize",
+    "imagepath": "#",
+    "pssysimagename": "fav6-window-maximize-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-whiskey-glass",
+    "imagepath": "#",
+    "pssysimagename": "fav6-whiskey-glass-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-wheelchair-move",
+    "imagepath": "#",
+    "pssysimagename": "fav6-wheelchair-move-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-wheelchair",
+    "imagepath": "#",
+    "pssysimagename": "fav6-wheelchair-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-wheat-awn-circle-exclamation",
+    "imagepath": "#",
+    "pssysimagename": "fav6-wheat-awn-circle-exclamation-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-wheat-awn",
+    "imagepath": "#",
+    "pssysimagename": "fav6-wheat-awn-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-weight-scale",
+    "imagepath": "#",
+    "pssysimagename": "fav6-weight-scale-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-weight-hanging",
+    "imagepath": "#",
+    "pssysimagename": "fav6-weight-hanging-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-wave-square",
+    "imagepath": "#",
+    "pssysimagename": "fav6-wave-square-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-water-ladder",
+    "imagepath": "#",
+    "pssysimagename": "fav6-water-ladder-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-wand-sparkles",
+    "imagepath": "#",
+    "pssysimagename": "fav6-wand-sparkles-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-wand-magic",
+    "imagepath": "#",
+    "pssysimagename": "fav6-wand-magic-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-w",
+    "imagepath": "#",
+    "pssysimagename": "fav6-w-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-vr-cardboard",
+    "imagepath": "#",
+    "pssysimagename": "fav6-vr-cardboard-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-volume-xmark",
+    "imagepath": "#",
+    "pssysimagename": "fav6-volume-xmark-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-volume-off",
+    "imagepath": "#",
+    "pssysimagename": "fav6-volume-off-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-volume-low",
+    "imagepath": "#",
+    "pssysimagename": "fav6-volume-low-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-volume-high",
+    "imagepath": "#",
+    "pssysimagename": "fav6-volume-high-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-volleyball",
+    "imagepath": "#",
+    "pssysimagename": "fav6-volleyball-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-volcano",
+    "imagepath": "#",
+    "pssysimagename": "fav6-volcano-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-virus-slash",
+    "imagepath": "#",
+    "pssysimagename": "fav6-virus-slash-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-virus-covid-slash",
+    "imagepath": "#",
+    "pssysimagename": "fav6-virus-covid-slash-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-virus-covid",
+    "imagepath": "#",
+    "pssysimagename": "fav6-virus-covid-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-vihara",
+    "imagepath": "#",
+    "pssysimagename": "fav6-vihara-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-vial-virus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-vial-virus-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-vial-circle-check",
+    "imagepath": "#",
+    "pssysimagename": "fav6-vial-circle-check-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-vial",
+    "imagepath": "#",
+    "pssysimagename": "fav6-vial-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-vest-patches",
+    "imagepath": "#",
+    "pssysimagename": "fav6-vest-patches-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-vest",
+    "imagepath": "#",
+    "pssysimagename": "fav6-vest-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-venus-mars",
+    "imagepath": "#",
+    "pssysimagename": "fav6-venus-mars-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-venus-double",
+    "imagepath": "#",
+    "pssysimagename": "fav6-venus-double-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-venus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-venus-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-vector-square",
+    "imagepath": "#",
+    "pssysimagename": "fav6-vector-square-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-vault",
+    "imagepath": "#",
+    "pssysimagename": "fav6-vault-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-van-shuttle",
+    "imagepath": "#",
+    "pssysimagename": "fav6-van-shuttle-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-v",
+    "imagepath": "#",
+    "pssysimagename": "fav6-v-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-utensils",
+    "imagepath": "#",
+    "pssysimagename": "fav6-utensils-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-users-viewfinder",
+    "imagepath": "#",
+    "pssysimagename": "fav6-users-viewfinder-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-users-slash",
+    "imagepath": "#",
+    "pssysimagename": "fav6-users-slash-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-users-rectangle",
+    "imagepath": "#",
+    "pssysimagename": "fav6-users-rectangle-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-users-rays",
+    "imagepath": "#",
+    "pssysimagename": "fav6-users-rays-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-users-line",
+    "imagepath": "#",
+    "pssysimagename": "fav6-users-line-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-users-gear",
+    "imagepath": "#",
+    "pssysimagename": "fav6-users-gear-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-users-between-lines",
+    "imagepath": "#",
+    "pssysimagename": "fav6-users-between-lines-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-user-xmark",
+    "imagepath": "#",
+    "pssysimagename": "fav6-user-xmark-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-user-tag",
+    "imagepath": "#",
+    "pssysimagename": "fav6-user-tag-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-user-slash",
+    "imagepath": "#",
+    "pssysimagename": "fav6-user-slash-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-user-shield",
+    "imagepath": "#",
+    "pssysimagename": "fav6-user-shield-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-user-pen",
+    "imagepath": "#",
+    "pssysimagename": "fav6-user-pen-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-user-ninja",
+    "imagepath": "#",
+    "pssysimagename": "fav6-user-ninja-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-user-lock",
+    "imagepath": "#",
+    "pssysimagename": "fav6-user-lock-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-user-large-slash",
+    "imagepath": "#",
+    "pssysimagename": "fav6-user-large-slash-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-user-large",
+    "imagepath": "#",
+    "pssysimagename": "fav6-user-large-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-user-injured",
+    "imagepath": "#",
+    "pssysimagename": "fav6-user-injured-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-user-group",
+    "imagepath": "#",
+    "pssysimagename": "fav6-user-group-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-user-graduate",
+    "imagepath": "#",
+    "pssysimagename": "fav6-user-graduate-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-user-gear",
+    "imagepath": "#",
+    "pssysimagename": "fav6-user-gear-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-user-doctor",
+    "imagepath": "#",
+    "pssysimagename": "fav6-user-doctor-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-user-clock",
+    "imagepath": "#",
+    "pssysimagename": "fav6-user-clock-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-user-check",
+    "imagepath": "#",
+    "pssysimagename": "fav6-user-check-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-user-astronaut",
+    "imagepath": "#",
+    "pssysimagename": "fav6-user-astronaut-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-up-right-from-square",
+    "imagepath": "#",
+    "pssysimagename": "fav6-up-right-from-square-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-up-right-and-down-left-from-center",
+    "imagepath": "#",
+    "pssysimagename": "fav6-up-right-and-down-left-from-center-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-up-long",
+    "imagepath": "#",
+    "pssysimagename": "fav6-up-long-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-up-down-left-right",
+    "imagepath": "#",
+    "pssysimagename": "fav6-up-down-left-right-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-up-down",
+    "imagepath": "#",
+    "pssysimagename": "fav6-up-down-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-unlock-keyhole",
+    "imagepath": "#",
+    "pssysimagename": "fav6-unlock-keyhole-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-universal-access",
+    "imagepath": "#",
+    "pssysimagename": "fav6-universal-access-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-underline",
+    "imagepath": "#",
+    "pssysimagename": "fav6-underline-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-u",
+    "imagepath": "#",
+    "pssysimagename": "fav6-u-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-tv",
+    "imagepath": "#",
+    "pssysimagename": "fav6-tv-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-turn-up",
+    "imagepath": "#",
+    "pssysimagename": "fav6-turn-up-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-turn-down",
+    "imagepath": "#",
+    "pssysimagename": "fav6-turn-down-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-turkish-lira-sign",
+    "imagepath": "#",
+    "pssysimagename": "fav6-turkish-lira-sign-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-truck-ramp-box",
+    "imagepath": "#",
+    "pssysimagename": "fav6-truck-ramp-box-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-truck-plane",
+    "imagepath": "#",
+    "pssysimagename": "fav6-truck-plane-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-truck-pickup",
+    "imagepath": "#",
+    "pssysimagename": "fav6-truck-pickup-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-truck-moving",
+    "imagepath": "#",
+    "pssysimagename": "fav6-truck-moving-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-truck-medical",
+    "imagepath": "#",
+    "pssysimagename": "fav6-truck-medical-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-truck-field-un",
+    "imagepath": "#",
+    "pssysimagename": "fav6-truck-field-un-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-truck-field",
+    "imagepath": "#",
+    "pssysimagename": "fav6-truck-field-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-truck-droplet",
+    "imagepath": "#",
+    "pssysimagename": "fav6-truck-droplet-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-truck-arrow-right",
+    "imagepath": "#",
+    "pssysimagename": "fav6-truck-arrow-right-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-trowel-bricks",
+    "imagepath": "#",
+    "pssysimagename": "fav6-trowel-bricks-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-trowel",
+    "imagepath": "#",
+    "pssysimagename": "fav6-trowel-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-triangle-exclamation",
+    "imagepath": "#",
+    "pssysimagename": "fav6-triangle-exclamation-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-tree-city",
+    "imagepath": "#",
+    "pssysimagename": "fav6-tree-city-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-trash-can-arrow-up",
+    "imagepath": "#",
+    "pssysimagename": "fav6-trash-can-arrow-up-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-trash-can",
+    "imagepath": "#",
+    "pssysimagename": "fav6-trash-can-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-trash-arrow-up",
+    "imagepath": "#",
+    "pssysimagename": "fav6-trash-arrow-up-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-transgender",
+    "imagepath": "#",
+    "pssysimagename": "fav6-transgender-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-train-tram",
+    "imagepath": "#",
+    "pssysimagename": "fav6-train-tram-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-train-subway",
+    "imagepath": "#",
+    "pssysimagename": "fav6-train-subway-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-trailer",
+    "imagepath": "#",
+    "pssysimagename": "fav6-trailer-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-traffic-light",
+    "imagepath": "#",
+    "pssysimagename": "fav6-traffic-light-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-trademark",
+    "imagepath": "#",
+    "pssysimagename": "fav6-trademark-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-tractor",
+    "imagepath": "#",
+    "pssysimagename": "fav6-tractor-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-tower-observation",
+    "imagepath": "#",
+    "pssysimagename": "fav6-tower-observation-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-tower-cell",
+    "imagepath": "#",
+    "pssysimagename": "fav6-tower-cell-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-tower-broadcast",
+    "imagepath": "#",
+    "pssysimagename": "fav6-tower-broadcast-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-tornado",
+    "imagepath": "#",
+    "pssysimagename": "fav6-tornado-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-torii-gate",
+    "imagepath": "#",
+    "pssysimagename": "fav6-torii-gate-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-tooth",
+    "imagepath": "#",
+    "pssysimagename": "fav6-tooth-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-toolbox",
+    "imagepath": "#",
+    "pssysimagename": "fav6-toolbox-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-toilets-portable",
+    "imagepath": "#",
+    "pssysimagename": "fav6-toilets-portable-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-toilet-portable",
+    "imagepath": "#",
+    "pssysimagename": "fav6-toilet-portable-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-toilet-paper-slash",
+    "imagepath": "#",
+    "pssysimagename": "fav6-toilet-paper-slash-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-toilet-paper",
+    "imagepath": "#",
+    "pssysimagename": "fav6-toilet-paper-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-toilet",
+    "imagepath": "#",
+    "pssysimagename": "fav6-toilet-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-toggle-off",
+    "imagepath": "#",
+    "pssysimagename": "fav6-toggle-off-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-timeline",
+    "imagepath": "#",
+    "pssysimagename": "fav6-timeline-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-ticket-simple",
+    "imagepath": "#",
+    "pssysimagename": "fav6-ticket-simple-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-thermometer",
+    "imagepath": "#",
+    "pssysimagename": "fav6-thermometer-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-text-width",
+    "imagepath": "#",
+    "pssysimagename": "fav6-text-width-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-text-slash",
+    "imagepath": "#",
+    "pssysimagename": "fav6-text-slash-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-text-height",
+    "imagepath": "#",
+    "pssysimagename": "fav6-text-height-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-terminal",
+    "imagepath": "#",
+    "pssysimagename": "fav6-terminal-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-tents",
+    "imagepath": "#",
+    "pssysimagename": "fav6-tents-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-tent-arrows-down",
+    "imagepath": "#",
+    "pssysimagename": "fav6-tent-arrows-down-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-tent-arrow-turn-left",
+    "imagepath": "#",
+    "pssysimagename": "fav6-tent-arrow-turn-left-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-tent-arrow-left-right",
+    "imagepath": "#",
+    "pssysimagename": "fav6-tent-arrow-left-right-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-tent-arrow-down-to-line",
+    "imagepath": "#",
+    "pssysimagename": "fav6-tent-arrow-down-to-line-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-tent",
+    "imagepath": "#",
+    "pssysimagename": "fav6-tent-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-tenge-sign",
+    "imagepath": "#",
+    "pssysimagename": "fav6-tenge-sign-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-temperature-three-quarters",
+    "imagepath": "#",
+    "pssysimagename": "fav6-temperature-three-quarters-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-temperature-quarter",
+    "imagepath": "#",
+    "pssysimagename": "fav6-temperature-quarter-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-temperature-low",
+    "imagepath": "#",
+    "pssysimagename": "fav6-temperature-low-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-temperature-high",
+    "imagepath": "#",
+    "pssysimagename": "fav6-temperature-high-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-temperature-half",
+    "imagepath": "#",
+    "pssysimagename": "fav6-temperature-half-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-temperature-full",
+    "imagepath": "#",
+    "pssysimagename": "fav6-temperature-full-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-temperature-empty",
+    "imagepath": "#",
+    "pssysimagename": "fav6-temperature-empty-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-temperature-arrow-up",
+    "imagepath": "#",
+    "pssysimagename": "fav6-temperature-arrow-up-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-temperature-arrow-down",
+    "imagepath": "#",
+    "pssysimagename": "fav6-temperature-arrow-down-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-teeth-open",
+    "imagepath": "#",
+    "pssysimagename": "fav6-teeth-open-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-teeth",
+    "imagepath": "#",
+    "pssysimagename": "fav6-teeth-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-taxi",
+    "imagepath": "#",
+    "pssysimagename": "fav6-taxi-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-tarp-droplet",
+    "imagepath": "#",
+    "pssysimagename": "fav6-tarp-droplet-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-tarp",
+    "imagepath": "#",
+    "pssysimagename": "fav6-tarp-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-tape",
+    "imagepath": "#",
+    "pssysimagename": "fav6-tape-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-tachograph-digital",
+    "imagepath": "#",
+    "pssysimagename": "fav6-tachograph-digital-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-tablet-screen-button",
+    "imagepath": "#",
+    "pssysimagename": "fav6-tablet-screen-button-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-tablet-button",
+    "imagepath": "#",
+    "pssysimagename": "fav6-tablet-button-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-table-tennis-paddle-ball",
+    "imagepath": "#",
+    "pssysimagename": "fav6-table-tennis-paddle-ball-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-table-list",
+    "imagepath": "#",
+    "pssysimagename": "fav6-table-list-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-table-columns",
+    "imagepath": "#",
+    "pssysimagename": "fav6-table-columns-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-table-cells-large",
+    "imagepath": "#",
+    "pssysimagename": "fav6-table-cells-large-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-table-cells",
+    "imagepath": "#",
+    "pssysimagename": "fav6-table-cells-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-t",
+    "imagepath": "#",
+    "pssysimagename": "fav6-t-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-syringe",
+    "imagepath": "#",
+    "pssysimagename": "fav6-syringe-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-synagogue",
+    "imagepath": "#",
+    "pssysimagename": "fav6-synagogue-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-swatchbook",
+    "imagepath": "#",
+    "pssysimagename": "fav6-swatchbook-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-superscript",
+    "imagepath": "#",
+    "pssysimagename": "fav6-superscript-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-sun-plant-wilt",
+    "imagepath": "#",
+    "pssysimagename": "fav6-sun-plant-wilt-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-suitcase-rolling",
+    "imagepath": "#",
+    "pssysimagename": "fav6-suitcase-rolling-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-suitcase-medical",
+    "imagepath": "#",
+    "pssysimagename": "fav6-suitcase-medical-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-suitcase",
+    "imagepath": "#",
+    "pssysimagename": "fav6-suitcase-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-stroopwafel",
+    "imagepath": "#",
+    "pssysimagename": "fav6-stroopwafel-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-store-slash",
+    "imagepath": "#",
+    "pssysimagename": "fav6-store-slash-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-stopwatch-20",
+    "imagepath": "#",
+    "pssysimagename": "fav6-stopwatch-20-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-stopwatch",
+    "imagepath": "#",
+    "pssysimagename": "fav6-stopwatch-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-sterling-sign",
+    "imagepath": "#",
+    "pssysimagename": "fav6-sterling-sign-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-star-of-david",
+    "imagepath": "#",
+    "pssysimagename": "fav6-star-of-david-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-star-half-stroke",
+    "imagepath": "#",
+    "pssysimagename": "fav6-star-half-stroke-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-star-half",
+    "imagepath": "#",
+    "pssysimagename": "fav6-star-half-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-star-and-crescent",
+    "imagepath": "#",
+    "pssysimagename": "fav6-star-and-crescent-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-stapler",
+    "imagepath": "#",
+    "pssysimagename": "fav6-stapler-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-stairs",
+    "imagepath": "#",
+    "pssysimagename": "fav6-stairs-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-staff-snake",
+    "imagepath": "#",
+    "pssysimagename": "fav6-staff-snake-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-square-virus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-square-virus-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-square-up-right",
+    "imagepath": "#",
+    "pssysimagename": "fav6-square-up-right-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-square-share-nodes",
+    "imagepath": "#",
+    "pssysimagename": "fav6-square-share-nodes-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-square-rss",
+    "imagepath": "#",
+    "pssysimagename": "fav6-square-rss-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-square-root-variable",
+    "imagepath": "#",
+    "pssysimagename": "fav6-square-root-variable-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-square-poll-vertical",
+    "imagepath": "#",
+    "pssysimagename": "fav6-square-poll-vertical-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-square-poll-horizontal",
+    "imagepath": "#",
+    "pssysimagename": "fav6-square-poll-horizontal-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-square-plus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-square-plus-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-square-phone-flip",
+    "imagepath": "#",
+    "pssysimagename": "fav6-square-phone-flip-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-square-phone",
+    "imagepath": "#",
+    "pssysimagename": "fav6-square-phone-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-square-person-confined",
+    "imagepath": "#",
+    "pssysimagename": "fav6-square-person-confined-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-square-pen",
+    "imagepath": "#",
+    "pssysimagename": "fav6-square-pen-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-square-parking",
+    "imagepath": "#",
+    "pssysimagename": "fav6-square-parking-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-square-nfi",
+    "imagepath": "#",
+    "pssysimagename": "fav6-square-nfi-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-square-h",
+    "imagepath": "#",
+    "pssysimagename": "fav6-square-h-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-square-full",
+    "imagepath": "#",
+    "pssysimagename": "fav6-square-full-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-square-envelope",
+    "imagepath": "#",
+    "pssysimagename": "fav6-square-envelope-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-square-caret-up",
+    "imagepath": "#",
+    "pssysimagename": "fav6-square-caret-up-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-square-caret-right",
+    "imagepath": "#",
+    "pssysimagename": "fav6-square-caret-right-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-square-caret-left",
+    "imagepath": "#",
+    "pssysimagename": "fav6-square-caret-left-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-square-caret-down",
+    "imagepath": "#",
+    "pssysimagename": "fav6-square-caret-down-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-square-arrow-up-right",
+    "imagepath": "#",
+    "pssysimagename": "fav6-square-arrow-up-right-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-spray-can-sparkles",
+    "imagepath": "#",
+    "pssysimagename": "fav6-spray-can-sparkles-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-spray-can",
+    "imagepath": "#",
+    "pssysimagename": "fav6-spray-can-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-spoon",
+    "imagepath": "#",
+    "pssysimagename": "fav6-spoon-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-splotch",
+    "imagepath": "#",
+    "pssysimagename": "fav6-splotch-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-spider",
+    "imagepath": "#",
+    "pssysimagename": "fav6-spider-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-spell-check",
+    "imagepath": "#",
+    "pssysimagename": "fav6-spell-check-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-spaghetti-monster-flying",
+    "imagepath": "#",
+    "pssysimagename": "fav6-spaghetti-monster-flying-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-spa",
+    "imagepath": "#",
+    "pssysimagename": "fav6-spa-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-sort-up",
+    "imagepath": "#",
+    "pssysimagename": "fav6-sort-up-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-sort-down",
+    "imagepath": "#",
+    "pssysimagename": "fav6-sort-down-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-socks",
+    "imagepath": "#",
+    "pssysimagename": "fav6-socks-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-snowplow",
+    "imagepath": "#",
+    "pssysimagename": "fav6-snowplow-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-snowman",
+    "imagepath": "#",
+    "pssysimagename": "fav6-snowman-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-smoking",
+    "imagepath": "#",
+    "pssysimagename": "fav6-smoking-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-smog",
+    "imagepath": "#",
+    "pssysimagename": "fav6-smog-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-sleigh",
+    "imagepath": "#",
+    "pssysimagename": "fav6-sleigh-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-skull-crossbones",
+    "imagepath": "#",
+    "pssysimagename": "fav6-skull-crossbones-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-skull",
+    "imagepath": "#",
+    "pssysimagename": "fav6-skull-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-sink",
+    "imagepath": "#",
+    "pssysimagename": "fav6-sink-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-sim-card",
+    "imagepath": "#",
+    "pssysimagename": "fav6-sim-card-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-signs-post",
+    "imagepath": "#",
+    "pssysimagename": "fav6-signs-post-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-sign-hanging",
+    "imagepath": "#",
+    "pssysimagename": "fav6-sign-hanging-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-shuttle-space",
+    "imagepath": "#",
+    "pssysimagename": "fav6-shuttle-space-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-shuffle",
+    "imagepath": "#",
+    "pssysimagename": "fav6-shuffle-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-shrimp",
+    "imagepath": "#",
+    "pssysimagename": "fav6-shrimp-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-shop-slash",
+    "imagepath": "#",
+    "pssysimagename": "fav6-shop-slash-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-shop-lock",
+    "imagepath": "#",
+    "pssysimagename": "fav6-shop-lock-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-shoe-prints",
+    "imagepath": "#",
+    "pssysimagename": "fav6-shoe-prints-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-shield-virus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-shield-virus-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-shield-heart",
+    "imagepath": "#",
+    "pssysimagename": "fav6-shield-heart-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-shield-dog",
+    "imagepath": "#",
+    "pssysimagename": "fav6-shield-dog-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-shield-cat",
+    "imagepath": "#",
+    "pssysimagename": "fav6-shield-cat-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-shekel-sign",
+    "imagepath": "#",
+    "pssysimagename": "fav6-shekel-sign-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-sheet-plastic",
+    "imagepath": "#",
+    "pssysimagename": "fav6-sheet-plastic-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-share-nodes",
+    "imagepath": "#",
+    "pssysimagename": "fav6-share-nodes-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-shapes",
+    "imagepath": "#",
+    "pssysimagename": "fav6-shapes-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-section",
+    "imagepath": "#",
+    "pssysimagename": "fav6-section-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-sd-card",
+    "imagepath": "#",
+    "pssysimagename": "fav6-sd-card-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-scroll-torah",
+    "imagepath": "#",
+    "pssysimagename": "fav6-scroll-torah-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-screwdriver-wrench",
+    "imagepath": "#",
+    "pssysimagename": "fav6-screwdriver-wrench-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-screwdriver",
+    "imagepath": "#",
+    "pssysimagename": "fav6-screwdriver-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-scissors",
+    "imagepath": "#",
+    "pssysimagename": "fav6-scissors-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-school-lock",
+    "imagepath": "#",
+    "pssysimagename": "fav6-school-lock-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-school-flag",
+    "imagepath": "#",
+    "pssysimagename": "fav6-school-flag-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-school-circle-xmark",
+    "imagepath": "#",
+    "pssysimagename": "fav6-school-circle-xmark-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-school-circle-exclamation",
+    "imagepath": "#",
+    "pssysimagename": "fav6-school-circle-exclamation-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-school-circle-check",
+    "imagepath": "#",
+    "pssysimagename": "fav6-school-circle-check-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-scale-unbalanced-flip",
+    "imagepath": "#",
+    "pssysimagename": "fav6-scale-unbalanced-flip-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-scale-unbalanced",
+    "imagepath": "#",
+    "pssysimagename": "fav6-scale-unbalanced-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-scale-balanced",
+    "imagepath": "#",
+    "pssysimagename": "fav6-scale-balanced-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-satellite-dish",
+    "imagepath": "#",
+    "pssysimagename": "fav6-satellite-dish-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-satellite",
+    "imagepath": "#",
+    "pssysimagename": "fav6-satellite-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-sailboat",
+    "imagepath": "#",
+    "pssysimagename": "fav6-sailboat-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-sack-xmark",
+    "imagepath": "#",
+    "pssysimagename": "fav6-sack-xmark-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-sack-dollar",
+    "imagepath": "#",
+    "pssysimagename": "fav6-sack-dollar-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-s",
+    "imagepath": "#",
+    "pssysimagename": "fav6-s-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-rupiah-sign",
+    "imagepath": "#",
+    "pssysimagename": "fav6-rupiah-sign-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-rupee-sign",
+    "imagepath": "#",
+    "pssysimagename": "fav6-rupee-sign-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-ruler-horizontal",
+    "imagepath": "#",
+    "pssysimagename": "fav6-ruler-horizontal-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-ruler-combined",
+    "imagepath": "#",
+    "pssysimagename": "fav6-ruler-combined-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-rug",
+    "imagepath": "#",
+    "pssysimagename": "fav6-rug-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-ruble-sign",
+    "imagepath": "#",
+    "pssysimagename": "fav6-ruble-sign-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-rss",
+    "imagepath": "#",
+    "pssysimagename": "fav6-rss-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-rotate-left",
+    "imagepath": "#",
+    "pssysimagename": "fav6-rotate-left-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-rotate",
+    "imagepath": "#",
+    "pssysimagename": "fav6-rotate-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-road-spikes",
+    "imagepath": "#",
+    "pssysimagename": "fav6-road-spikes-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-road-lock",
+    "imagepath": "#",
+    "pssysimagename": "fav6-road-lock-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-road-circle-xmark",
+    "imagepath": "#",
+    "pssysimagename": "fav6-road-circle-xmark-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-road-circle-exclamation",
+    "imagepath": "#",
+    "pssysimagename": "fav6-road-circle-exclamation-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-road-circle-check",
+    "imagepath": "#",
+    "pssysimagename": "fav6-road-circle-check-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-road-bridge",
+    "imagepath": "#",
+    "pssysimagename": "fav6-road-bridge-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-road-barrier",
+    "imagepath": "#",
+    "pssysimagename": "fav6-road-barrier-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-right-long",
+    "imagepath": "#",
+    "pssysimagename": "fav6-right-long-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-right-left",
+    "imagepath": "#",
+    "pssysimagename": "fav6-right-left-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-right-from-bracket",
+    "imagepath": "#",
+    "pssysimagename": "fav6-right-from-bracket-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-ribbon",
+    "imagepath": "#",
+    "pssysimagename": "fav6-ribbon-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-retweet",
+    "imagepath": "#",
+    "pssysimagename": "fav6-retweet-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-republican",
+    "imagepath": "#",
+    "pssysimagename": "fav6-republican-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-reply-all",
+    "imagepath": "#",
+    "pssysimagename": "fav6-reply-all-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-rectangle-xmark",
+    "imagepath": "#",
+    "pssysimagename": "fav6-rectangle-xmark-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-rectangle-list",
+    "imagepath": "#",
+    "pssysimagename": "fav6-rectangle-list-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-rectangle-ad",
+    "imagepath": "#",
+    "pssysimagename": "fav6-rectangle-ad-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-ranking-star",
+    "imagepath": "#",
+    "pssysimagename": "fav6-ranking-star-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-rainbow",
+    "imagepath": "#",
+    "pssysimagename": "fav6-rainbow-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-radiation",
+    "imagepath": "#",
+    "pssysimagename": "fav6-radiation-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-r",
+    "imagepath": "#",
+    "pssysimagename": "fav6-r-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-qrcode",
+    "imagepath": "#",
+    "pssysimagename": "fav6-qrcode-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-q",
+    "imagepath": "#",
+    "pssysimagename": "fav6-q-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-pump-soap",
+    "imagepath": "#",
+    "pssysimagename": "fav6-pump-soap-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-pump-medical",
+    "imagepath": "#",
+    "pssysimagename": "fav6-pump-medical-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-prescription-bottle-medical",
+    "imagepath": "#",
+    "pssysimagename": "fav6-prescription-bottle-medical-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-prescription-bottle",
+    "imagepath": "#",
+    "pssysimagename": "fav6-prescription-bottle-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-prescription",
+    "imagepath": "#",
+    "pssysimagename": "fav6-prescription-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-poop",
+    "imagepath": "#",
+    "pssysimagename": "fav6-poop-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-podcast",
+    "imagepath": "#",
+    "pssysimagename": "fav6-podcast-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-plus-minus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-plus-minus-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-plug-circle-xmark",
+    "imagepath": "#",
+    "pssysimagename": "fav6-plug-circle-xmark-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-plug-circle-plus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-plug-circle-plus-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-plug-circle-minus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-plug-circle-minus-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-plug-circle-exclamation",
+    "imagepath": "#",
+    "pssysimagename": "fav6-plug-circle-exclamation-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-plug-circle-check",
+    "imagepath": "#",
+    "pssysimagename": "fav6-plug-circle-check-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-plug-circle-bolt",
+    "imagepath": "#",
+    "pssysimagename": "fav6-plug-circle-bolt-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-plate-wheat",
+    "imagepath": "#",
+    "pssysimagename": "fav6-plate-wheat-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-plant-wilt",
+    "imagepath": "#",
+    "pssysimagename": "fav6-plant-wilt-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-plane-up",
+    "imagepath": "#",
+    "pssysimagename": "fav6-plane-up-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-plane-slash",
+    "imagepath": "#",
+    "pssysimagename": "fav6-plane-slash-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-plane-lock",
+    "imagepath": "#",
+    "pssysimagename": "fav6-plane-lock-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-plane-circle-xmark",
+    "imagepath": "#",
+    "pssysimagename": "fav6-plane-circle-xmark-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-plane-circle-exclamation",
+    "imagepath": "#",
+    "pssysimagename": "fav6-plane-circle-exclamation-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-plane-circle-check",
+    "imagepath": "#",
+    "pssysimagename": "fav6-plane-circle-check-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-plane-arrival",
+    "imagepath": "#",
+    "pssysimagename": "fav6-plane-arrival-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-pizza-slice",
+    "imagepath": "#",
+    "pssysimagename": "fav6-pizza-slice-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-pills",
+    "imagepath": "#",
+    "pssysimagename": "fav6-pills-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-piggy-bank",
+    "imagepath": "#",
+    "pssysimagename": "fav6-piggy-bank-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-photo-film",
+    "imagepath": "#",
+    "pssysimagename": "fav6-photo-film-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-phone-slash",
+    "imagepath": "#",
+    "pssysimagename": "fav6-phone-slash-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-phone-flip",
+    "imagepath": "#",
+    "pssysimagename": "fav6-phone-flip-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-peso-sign",
+    "imagepath": "#",
+    "pssysimagename": "fav6-peso-sign-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-peseta-sign",
+    "imagepath": "#",
+    "pssysimagename": "fav6-peseta-sign-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-walking-with-cane",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-walking-with-cane-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-walking-luggage",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-walking-luggage-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-walking-dashed-line-arrow-right",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-walking-dashed-line-arrow-right-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-walking-arrow-right",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-walking-arrow-right-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-walking-arrow-loop-left",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-walking-arrow-loop-left-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-walking",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-walking-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-through-window",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-through-window-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-swimming",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-swimming-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-snowboarding",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-snowboarding-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-skiing-nordic",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-skiing-nordic-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-skiing",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-skiing-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-skating",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-skating-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-shelter",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-shelter-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-running",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-running-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-rifle",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-rifle-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-rays",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-rays-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-pregnant",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-pregnant-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-praying",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-praying-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-military-to-person",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-military-to-person-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-military-rifle",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-military-rifle-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-military-pointing",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-military-pointing-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-hiking",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-hiking-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-harassing",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-harassing-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-half-dress",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-half-dress-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-falling-burst",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-falling-burst-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-falling",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-falling-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-drowning",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-drowning-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-dress-burst",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-dress-burst-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-dots-from-line",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-dots-from-line-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-digging",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-digging-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-circle-xmark",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-circle-xmark-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-circle-question",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-circle-question-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-circle-plus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-circle-plus-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-circle-minus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-circle-minus-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-circle-exclamation",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-circle-exclamation-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-circle-check",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-circle-check-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-chalkboard",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-chalkboard-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-cane",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-cane-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-burst",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-burst-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-breastfeeding",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-breastfeeding-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-booth",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-booth-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-biking",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-biking-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-arrow-up-from-line",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-arrow-up-from-line-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-person-arrow-down-to-line",
+    "imagepath": "#",
+    "pssysimagename": "fav6-person-arrow-down-to-line-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-pepper-hot",
+    "imagepath": "#",
+    "pssysimagename": "fav6-pepper-hot-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-people-roof",
+    "imagepath": "#",
+    "pssysimagename": "fav6-people-roof-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-people-robbery",
+    "imagepath": "#",
+    "pssysimagename": "fav6-people-robbery-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-people-pulling",
+    "imagepath": "#",
+    "pssysimagename": "fav6-people-pulling-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-people-line",
+    "imagepath": "#",
+    "pssysimagename": "fav6-people-line-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-people-group",
+    "imagepath": "#",
+    "pssysimagename": "fav6-people-group-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-people-carry-box",
+    "imagepath": "#",
+    "pssysimagename": "fav6-people-carry-box-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-pen-ruler",
+    "imagepath": "#",
+    "pssysimagename": "fav6-pen-ruler-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-pen-clip",
+    "imagepath": "#",
+    "pssysimagename": "fav6-pen-clip-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-peace",
+    "imagepath": "#",
+    "pssysimagename": "fav6-peace-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-paw",
+    "imagepath": "#",
+    "pssysimagename": "fav6-paw-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-paste",
+    "imagepath": "#",
+    "pssysimagename": "fav6-paste-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-paragraph",
+    "imagepath": "#",
+    "pssysimagename": "fav6-paragraph-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-parachute-box",
+    "imagepath": "#",
+    "pssysimagename": "fav6-parachute-box-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-panorama",
+    "imagepath": "#",
+    "pssysimagename": "fav6-panorama-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-pallet",
+    "imagepath": "#",
+    "pssysimagename": "fav6-pallet-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-paintbrush",
+    "imagepath": "#",
+    "pssysimagename": "fav6-paintbrush-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-pager",
+    "imagepath": "#",
+    "pssysimagename": "fav6-pager-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-p",
+    "imagepath": "#",
+    "pssysimagename": "fav6-p-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-outdent",
+    "imagepath": "#",
+    "pssysimagename": "fav6-outdent-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-om",
+    "imagepath": "#",
+    "pssysimagename": "fav6-om-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-oil-well",
+    "imagepath": "#",
+    "pssysimagename": "fav6-oil-well-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-oil-can",
+    "imagepath": "#",
+    "pssysimagename": "fav6-oil-can-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-object-ungroup",
+    "imagepath": "#",
+    "pssysimagename": "fav6-object-ungroup-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-object-group",
+    "imagepath": "#",
+    "pssysimagename": "fav6-object-group-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-o",
+    "imagepath": "#",
+    "pssysimagename": "fav6-o-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-note-sticky",
+    "imagepath": "#",
+    "pssysimagename": "fav6-note-sticky-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-neuter",
+    "imagepath": "#",
+    "pssysimagename": "fav6-neuter-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-naira-sign",
+    "imagepath": "#",
+    "pssysimagename": "fav6-naira-sign-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-n",
+    "imagepath": "#",
+    "pssysimagename": "fav6-n-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-mountain-city",
+    "imagepath": "#",
+    "pssysimagename": "fav6-mountain-city-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-mountain",
+    "imagepath": "#",
+    "pssysimagename": "fav6-mountain-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-mound",
+    "imagepath": "#",
+    "pssysimagename": "fav6-mound-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-mosquito-net",
+    "imagepath": "#",
+    "pssysimagename": "fav6-mosquito-net-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-mosquito",
+    "imagepath": "#",
+    "pssysimagename": "fav6-mosquito-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-mosque",
+    "imagepath": "#",
+    "pssysimagename": "fav6-mosque-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-mortar-pestle",
+    "imagepath": "#",
+    "pssysimagename": "fav6-mortar-pestle-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-monument",
+    "imagepath": "#",
+    "pssysimagename": "fav6-monument-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-money-check-dollar",
+    "imagepath": "#",
+    "pssysimagename": "fav6-money-check-dollar-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-money-check",
+    "imagepath": "#",
+    "pssysimagename": "fav6-money-check-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-money-bills",
+    "imagepath": "#",
+    "pssysimagename": "fav6-money-bills-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-money-bill-wheat",
+    "imagepath": "#",
+    "pssysimagename": "fav6-money-bill-wheat-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-money-bill-wave",
+    "imagepath": "#",
+    "pssysimagename": "fav6-money-bill-wave-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-money-bill-trend-up",
+    "imagepath": "#",
+    "pssysimagename": "fav6-money-bill-trend-up-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-money-bill-transfer",
+    "imagepath": "#",
+    "pssysimagename": "fav6-money-bill-transfer-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-money-bill-1-wave",
+    "imagepath": "#",
+    "pssysimagename": "fav6-money-bill-1-wave-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-money-bill-1",
+    "imagepath": "#",
+    "pssysimagename": "fav6-money-bill-1-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-mobile-screen-button",
+    "imagepath": "#",
+    "pssysimagename": "fav6-mobile-screen-button-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-mobile-screen",
+    "imagepath": "#",
+    "pssysimagename": "fav6-mobile-screen-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-mobile-retro",
+    "imagepath": "#",
+    "pssysimagename": "fav6-mobile-retro-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-mobile-button",
+    "imagepath": "#",
+    "pssysimagename": "fav6-mobile-button-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-mitten",
+    "imagepath": "#",
+    "pssysimagename": "fav6-mitten-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-minimize",
+    "imagepath": "#",
+    "pssysimagename": "fav6-minimize-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-mill-sign",
+    "imagepath": "#",
+    "pssysimagename": "fav6-mill-sign-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-microscope",
+    "imagepath": "#",
+    "pssysimagename": "fav6-microscope-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-microphone-lines-slash",
+    "imagepath": "#",
+    "pssysimagename": "fav6-microphone-lines-slash-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-microphone-lines",
+    "imagepath": "#",
+    "pssysimagename": "fav6-microphone-lines-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-meteor",
+    "imagepath": "#",
+    "pssysimagename": "fav6-meteor-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-message",
+    "imagepath": "#",
+    "pssysimagename": "fav6-message-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-mercury",
+    "imagepath": "#",
+    "pssysimagename": "fav6-mercury-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-menorah",
+    "imagepath": "#",
+    "pssysimagename": "fav6-menorah-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-memory",
+    "imagepath": "#",
+    "pssysimagename": "fav6-memory-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-maximize",
+    "imagepath": "#",
+    "pssysimagename": "fav6-maximize-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-mattress-pillow",
+    "imagepath": "#",
+    "pssysimagename": "fav6-mattress-pillow-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-masks-theater",
+    "imagepath": "#",
+    "pssysimagename": "fav6-masks-theater-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-mask-ventilator",
+    "imagepath": "#",
+    "pssysimagename": "fav6-mask-ventilator-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-mask-face",
+    "imagepath": "#",
+    "pssysimagename": "fav6-mask-face-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-martini-glass-empty",
+    "imagepath": "#",
+    "pssysimagename": "fav6-martini-glass-empty-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-martini-glass-citrus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-martini-glass-citrus-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-martini-glass",
+    "imagepath": "#",
+    "pssysimagename": "fav6-martini-glass-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-mars-stroke-up",
+    "imagepath": "#",
+    "pssysimagename": "fav6-mars-stroke-up-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-mars-stroke-right",
+    "imagepath": "#",
+    "pssysimagename": "fav6-mars-stroke-right-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-mars-stroke",
+    "imagepath": "#",
+    "pssysimagename": "fav6-mars-stroke-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-mars-double",
+    "imagepath": "#",
+    "pssysimagename": "fav6-mars-double-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-mars-and-venus-burst",
+    "imagepath": "#",
+    "pssysimagename": "fav6-mars-and-venus-burst-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-mars-and-venus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-mars-and-venus-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-mars",
+    "imagepath": "#",
+    "pssysimagename": "fav6-mars-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-map-pin",
+    "imagepath": "#",
+    "pssysimagename": "fav6-map-pin-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-map-location-dot",
+    "imagepath": "#",
+    "pssysimagename": "fav6-map-location-dot-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-map-location",
+    "imagepath": "#",
+    "pssysimagename": "fav6-map-location-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-map",
+    "imagepath": "#",
+    "pssysimagename": "fav6-map-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-manat-sign",
+    "imagepath": "#",
+    "pssysimagename": "fav6-manat-sign-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-magnifying-glass-plus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-magnifying-glass-plus-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-magnifying-glass-minus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-magnifying-glass-minus-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-magnifying-glass-location",
+    "imagepath": "#",
+    "pssysimagename": "fav6-magnifying-glass-location-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-magnifying-glass-dollar",
+    "imagepath": "#",
+    "pssysimagename": "fav6-magnifying-glass-dollar-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-magnifying-glass-chart",
+    "imagepath": "#",
+    "pssysimagename": "fav6-magnifying-glass-chart-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-magnifying-glass-arrow-right",
+    "imagepath": "#",
+    "pssysimagename": "fav6-magnifying-glass-arrow-right-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-m",
+    "imagepath": "#",
+    "pssysimagename": "fav6-m-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-lungs-virus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-lungs-virus-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-lungs",
+    "imagepath": "#",
+    "pssysimagename": "fav6-lungs-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-locust",
+    "imagepath": "#",
+    "pssysimagename": "fav6-locust-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-lock-open",
+    "imagepath": "#",
+    "pssysimagename": "fav6-lock-open-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-location-pin-lock",
+    "imagepath": "#",
+    "pssysimagename": "fav6-location-pin-lock-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-location-crosshairs",
+    "imagepath": "#",
+    "pssysimagename": "fav6-location-crosshairs-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-location-arrow",
+    "imagepath": "#",
+    "pssysimagename": "fav6-location-arrow-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-litecoin-sign",
+    "imagepath": "#",
+    "pssysimagename": "fav6-litecoin-sign-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-list-ul",
+    "imagepath": "#",
+    "pssysimagename": "fav6-list-ul-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-list-ol",
+    "imagepath": "#",
+    "pssysimagename": "fav6-list-ol-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-list-check",
+    "imagepath": "#",
+    "pssysimagename": "fav6-list-check-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-lira-sign",
+    "imagepath": "#",
+    "pssysimagename": "fav6-lira-sign-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-link-slash",
+    "imagepath": "#",
+    "pssysimagename": "fav6-link-slash-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-lines-leaning",
+    "imagepath": "#",
+    "pssysimagename": "fav6-lines-leaning-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-life-ring",
+    "imagepath": "#",
+    "pssysimagename": "fav6-life-ring-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-less-than-equal",
+    "imagepath": "#",
+    "pssysimagename": "fav6-less-than-equal-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-less-than",
+    "imagepath": "#",
+    "pssysimagename": "fav6-less-than-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-left-right",
+    "imagepath": "#",
+    "pssysimagename": "fav6-left-right-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-left-long",
+    "imagepath": "#",
+    "pssysimagename": "fav6-left-long-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-lari-sign",
+    "imagepath": "#",
+    "pssysimagename": "fav6-lari-sign-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-laptop-medical",
+    "imagepath": "#",
+    "pssysimagename": "fav6-laptop-medical-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-laptop-file",
+    "imagepath": "#",
+    "pssysimagename": "fav6-laptop-file-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-laptop-code",
+    "imagepath": "#",
+    "pssysimagename": "fav6-laptop-code-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-landmark-flag",
+    "imagepath": "#",
+    "pssysimagename": "fav6-landmark-flag-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-landmark-dome",
+    "imagepath": "#",
+    "pssysimagename": "fav6-landmark-dome-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-land-mine-on",
+    "imagepath": "#",
+    "pssysimagename": "fav6-land-mine-on-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-l",
+    "imagepath": "#",
+    "pssysimagename": "fav6-l-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-kitchen-set",
+    "imagepath": "#",
+    "pssysimagename": "fav6-kitchen-set-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-kit-medical",
+    "imagepath": "#",
+    "pssysimagename": "fav6-kit-medical-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-kip-sign",
+    "imagepath": "#",
+    "pssysimagename": "fav6-kip-sign-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-khanda",
+    "imagepath": "#",
+    "pssysimagename": "fav6-khanda-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-kaaba",
+    "imagepath": "#",
+    "pssysimagename": "fav6-kaaba-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-k",
+    "imagepath": "#",
+    "pssysimagename": "fav6-k-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-jug-detergent",
+    "imagepath": "#",
+    "pssysimagename": "fav6-jug-detergent-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-jet-fighter-up",
+    "imagepath": "#",
+    "pssysimagename": "fav6-jet-fighter-up-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-jet-fighter",
+    "imagepath": "#",
+    "pssysimagename": "fav6-jet-fighter-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-jedi",
+    "imagepath": "#",
+    "pssysimagename": "fav6-jedi-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-jar-wheat",
+    "imagepath": "#",
+    "pssysimagename": "fav6-jar-wheat-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-jar",
+    "imagepath": "#",
+    "pssysimagename": "fav6-jar-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-j",
+    "imagepath": "#",
+    "pssysimagename": "fav6-j-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-italic",
+    "imagepath": "#",
+    "pssysimagename": "fav6-italic-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-infinity",
+    "imagepath": "#",
+    "pssysimagename": "fav6-infinity-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-indian-rupee-sign",
+    "imagepath": "#",
+    "pssysimagename": "fav6-indian-rupee-sign-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-indent",
+    "imagepath": "#",
+    "pssysimagename": "fav6-indent-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-image-portrait",
+    "imagepath": "#",
+    "pssysimagename": "fav6-image-portrait-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-igloo",
+    "imagepath": "#",
+    "pssysimagename": "fav6-igloo-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-id-card-clip",
+    "imagepath": "#",
+    "pssysimagename": "fav6-id-card-clip-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-id-card",
+    "imagepath": "#",
+    "pssysimagename": "fav6-id-card-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-id-badge",
+    "imagepath": "#",
+    "pssysimagename": "fav6-id-badge-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-icicles",
+    "imagepath": "#",
+    "pssysimagename": "fav6-icicles-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-ice-cream",
+    "imagepath": "#",
+    "pssysimagename": "fav6-ice-cream-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-i",
+    "imagepath": "#",
+    "pssysimagename": "fav6-i-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hurricane",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hurricane-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hryvnia-sign",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hryvnia-sign-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-house-user",
+    "imagepath": "#",
+    "pssysimagename": "fav6-house-user-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-house-tsunami",
+    "imagepath": "#",
+    "pssysimagename": "fav6-house-tsunami-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-house-signal",
+    "imagepath": "#",
+    "pssysimagename": "fav6-house-signal-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-house-medical-flag",
+    "imagepath": "#",
+    "pssysimagename": "fav6-house-medical-flag-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-house-medical-circle-xmark",
+    "imagepath": "#",
+    "pssysimagename": "fav6-house-medical-circle-xmark-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-house-medical-circle-exclamation",
+    "imagepath": "#",
+    "pssysimagename": "fav6-house-medical-circle-exclamation-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-house-medical-circle-check",
+    "imagepath": "#",
+    "pssysimagename": "fav6-house-medical-circle-check-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-house-medical",
+    "imagepath": "#",
+    "pssysimagename": "fav6-house-medical-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-house-lock",
+    "imagepath": "#",
+    "pssysimagename": "fav6-house-lock-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-house-laptop",
+    "imagepath": "#",
+    "pssysimagename": "fav6-house-laptop-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-house-flood-water-circle-arrow-right",
+    "imagepath": "#",
+    "pssysimagename": "fav6-house-flood-water-circle-arrow-right-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-house-flood-water",
+    "imagepath": "#",
+    "pssysimagename": "fav6-house-flood-water-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-house-flag",
+    "imagepath": "#",
+    "pssysimagename": "fav6-house-flag-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-house-fire",
+    "imagepath": "#",
+    "pssysimagename": "fav6-house-fire-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-house-crack",
+    "imagepath": "#",
+    "pssysimagename": "fav6-house-crack-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-house-circle-xmark",
+    "imagepath": "#",
+    "pssysimagename": "fav6-house-circle-xmark-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-house-circle-exclamation",
+    "imagepath": "#",
+    "pssysimagename": "fav6-house-circle-exclamation-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-house-circle-check",
+    "imagepath": "#",
+    "pssysimagename": "fav6-house-circle-check-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-house-chimney-window",
+    "imagepath": "#",
+    "pssysimagename": "fav6-house-chimney-window-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-house-chimney-user",
+    "imagepath": "#",
+    "pssysimagename": "fav6-house-chimney-user-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-house-chimney-medical",
+    "imagepath": "#",
+    "pssysimagename": "fav6-house-chimney-medical-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-house-chimney-crack",
+    "imagepath": "#",
+    "pssysimagename": "fav6-house-chimney-crack-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-house-chimney",
+    "imagepath": "#",
+    "pssysimagename": "fav6-house-chimney-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hourglass-half",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hourglass-half-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hourglass-end",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hourglass-end-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hourglass",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hourglass-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hotdog",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hotdog-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hot-tub-person",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hot-tub-person-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hospital-user",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hospital-user-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-horse-head",
+    "imagepath": "#",
+    "pssysimagename": "fav6-horse-head-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-horse",
+    "imagepath": "#",
+    "pssysimagename": "fav6-horse-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-holly-berry",
+    "imagepath": "#",
+    "pssysimagename": "fav6-holly-berry-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hockey-puck",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hockey-puck-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hill-rockslide",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hill-rockslide-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hill-avalanche",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hill-avalanche-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-highlighter",
+    "imagepath": "#",
+    "pssysimagename": "fav6-highlighter-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-helmet-un",
+    "imagepath": "#",
+    "pssysimagename": "fav6-helmet-un-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-helmet-safety",
+    "imagepath": "#",
+    "pssysimagename": "fav6-helmet-safety-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-helicopter-symbol",
+    "imagepath": "#",
+    "pssysimagename": "fav6-helicopter-symbol-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-helicopter",
+    "imagepath": "#",
+    "pssysimagename": "fav6-helicopter-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-heart-pulse",
+    "imagepath": "#",
+    "pssysimagename": "fav6-heart-pulse-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-heart-crack",
+    "imagepath": "#",
+    "pssysimagename": "fav6-heart-crack-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-heart-circle-xmark",
+    "imagepath": "#",
+    "pssysimagename": "fav6-heart-circle-xmark-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-heart-circle-plus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-heart-circle-plus-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-heart-circle-minus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-heart-circle-minus-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-heart-circle-exclamation",
+    "imagepath": "#",
+    "pssysimagename": "fav6-heart-circle-exclamation-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-heart-circle-check",
+    "imagepath": "#",
+    "pssysimagename": "fav6-heart-circle-check-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-heart-circle-bolt",
+    "imagepath": "#",
+    "pssysimagename": "fav6-heart-circle-bolt-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-headphones-simple",
+    "imagepath": "#",
+    "pssysimagename": "fav6-headphones-simple-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-head-side-virus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-head-side-virus-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-head-side-mask",
+    "imagepath": "#",
+    "pssysimagename": "fav6-head-side-mask-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-head-side-cough-slash",
+    "imagepath": "#",
+    "pssysimagename": "fav6-head-side-cough-slash-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-head-side-cough",
+    "imagepath": "#",
+    "pssysimagename": "fav6-head-side-cough-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hat-wizard",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hat-wizard-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hat-cowboy-side",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hat-cowboy-side-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hat-cowboy",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hat-cowboy-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hard-drive",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hard-drive-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hanukiah",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hanukiah-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-handshake-simple-slash",
+    "imagepath": "#",
+    "pssysimagename": "fav6-handshake-simple-slash-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-handshake-simple",
+    "imagepath": "#",
+    "pssysimagename": "fav6-handshake-simple-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-handshake-angle",
+    "imagepath": "#",
+    "pssysimagename": "fav6-handshake-angle-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hands-praying",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hands-praying-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hands-holding-circle",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hands-holding-circle-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hands-holding-child",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hands-holding-child-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hands-holding",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hands-holding-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hands-clapping",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hands-clapping-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hands-bubbles",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hands-bubbles-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hands-bound",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hands-bound-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hands-asl-interpreting",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hands-asl-interpreting-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-handcuffs",
+    "imagepath": "#",
+    "pssysimagename": "fav6-handcuffs-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hand-spock",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hand-spock-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hand-sparkles",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hand-sparkles-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hand-scissors",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hand-scissors-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hand-pointer",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hand-pointer-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hand-point-right",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hand-point-right-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hand-point-left",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hand-point-left-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hand-point-down",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hand-point-down-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hand-peace",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hand-peace-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hand-middle-finger",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hand-middle-finger-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hand-lizard",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hand-lizard-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hand-holding-medical",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hand-holding-medical-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hand-holding-hand",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hand-holding-hand-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hand-holding-droplet",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hand-holding-droplet-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hand-holding-dollar",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hand-holding-dollar-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hand-holding",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hand-holding-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hand-fist",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hand-fist-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hand-dots",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hand-dots-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hand-back-fist",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hand-back-fist-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-hamsa",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hamsa-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-h",
+    "imagepath": "#",
+    "pssysimagename": "fav6-h-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-gun",
+    "imagepath": "#",
+    "pssysimagename": "fav6-gun-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-guitar",
+    "imagepath": "#",
+    "pssysimagename": "fav6-guitar-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-guarani-sign",
+    "imagepath": "#",
+    "pssysimagename": "fav6-guarani-sign-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-group-arrows-rotate",
+    "imagepath": "#",
+    "pssysimagename": "fav6-group-arrows-rotate-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-grip-vertical",
+    "imagepath": "#",
+    "pssysimagename": "fav6-grip-vertical-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-grip-lines-vertical",
+    "imagepath": "#",
+    "pssysimagename": "fav6-grip-lines-vertical-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-grip-lines",
+    "imagepath": "#",
+    "pssysimagename": "fav6-grip-lines-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-grip",
+    "imagepath": "#",
+    "pssysimagename": "fav6-grip-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-greater-than-equal",
+    "imagepath": "#",
+    "pssysimagename": "fav6-greater-than-equal-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-greater-than",
+    "imagepath": "#",
+    "pssysimagename": "fav6-greater-than-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-graduation-cap",
+    "imagepath": "#",
+    "pssysimagename": "fav6-graduation-cap-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-golf-ball-tee",
+    "imagepath": "#",
+    "pssysimagename": "fav6-golf-ball-tee-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-glass-water-droplet",
+    "imagepath": "#",
+    "pssysimagename": "fav6-glass-water-droplet-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-glass-water",
+    "imagepath": "#",
+    "pssysimagename": "fav6-glass-water-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-gifts",
+    "imagepath": "#",
+    "pssysimagename": "fav6-gifts-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-genderless",
+    "imagepath": "#",
+    "pssysimagename": "fav6-genderless-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-gem",
+    "imagepath": "#",
+    "pssysimagename": "fav6-gem-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-gavel",
+    "imagepath": "#",
+    "pssysimagename": "fav6-gavel-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-gauge-simple-high",
+    "imagepath": "#",
+    "pssysimagename": "fav6-gauge-simple-high-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-gauge-simple",
+    "imagepath": "#",
+    "pssysimagename": "fav6-gauge-simple-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-gauge-high",
+    "imagepath": "#",
+    "pssysimagename": "fav6-gauge-high-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-gas-pump",
+    "imagepath": "#",
+    "pssysimagename": "fav6-gas-pump-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-g",
+    "imagepath": "#",
+    "pssysimagename": "fav6-g-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-futbol",
+    "imagepath": "#",
+    "pssysimagename": "fav6-futbol-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-frog",
+    "imagepath": "#",
+    "pssysimagename": "fav6-frog-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-franc-sign",
+    "imagepath": "#",
+    "pssysimagename": "fav6-franc-sign-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-forward-step",
+    "imagepath": "#",
+    "pssysimagename": "fav6-forward-step-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-forward-fast",
+    "imagepath": "#",
+    "pssysimagename": "fav6-forward-fast-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-football",
+    "imagepath": "#",
+    "pssysimagename": "fav6-football-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-font-awesome",
+    "imagepath": "#",
+    "pssysimagename": "fav6-font-awesome-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-folder-tree",
+    "imagepath": "#",
+    "pssysimagename": "fav6-folder-tree-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-folder-plus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-folder-plus-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-folder-minus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-folder-minus-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-folder-closed",
+    "imagepath": "#",
+    "pssysimagename": "fav6-folder-closed-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-florin-sign",
+    "imagepath": "#",
+    "pssysimagename": "fav6-florin-sign-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-floppy-disk",
+    "imagepath": "#",
+    "pssysimagename": "fav6-floppy-disk-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-flask-vial",
+    "imagepath": "#",
+    "pssysimagename": "fav6-flask-vial-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-flag-usa",
+    "imagepath": "#",
+    "pssysimagename": "fav6-flag-usa-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-fish-fins",
+    "imagepath": "#",
+    "pssysimagename": "fav6-fish-fins-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-fire-flame-simple",
+    "imagepath": "#",
+    "pssysimagename": "fav6-fire-flame-simple-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-fire-flame-curved",
+    "imagepath": "#",
+    "pssysimagename": "fav6-fire-flame-curved-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-fire-extinguisher",
+    "imagepath": "#",
+    "pssysimagename": "fav6-fire-extinguisher-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-fire-burner",
+    "imagepath": "#",
+    "pssysimagename": "fav6-fire-burner-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-filter-circle-xmark",
+    "imagepath": "#",
+    "pssysimagename": "fav6-filter-circle-xmark-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-filter-circle-dollar",
+    "imagepath": "#",
+    "pssysimagename": "fav6-filter-circle-dollar-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-fill-drip",
+    "imagepath": "#",
+    "pssysimagename": "fav6-fill-drip-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-fill",
+    "imagepath": "#",
+    "pssysimagename": "fav6-fill-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-file-zipper",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-zipper-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-file-waveform",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-waveform-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-file-video",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-video-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-file-signature",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-signature-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-file-shield",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-shield-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-file-prescription",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-prescription-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-file-powerpoint",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-powerpoint-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-file-pen",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-pen-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-file-medical",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-medical-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-file-lines",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-lines-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-file-invoice-dollar",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-invoice-dollar-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-file-image",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-image-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-file-csv",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-csv-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-file-code",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-code-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-file-circle-xmark",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-circle-xmark-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-file-circle-question",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-circle-question-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-file-circle-plus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-circle-plus-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-file-circle-minus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-circle-minus-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-file-circle-exclamation",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-circle-exclamation-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-file-circle-check",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-circle-check-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-file-audio",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-audio-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-file-arrow-up",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-arrow-up-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-file-arrow-down",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-arrow-down-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-ferry",
+    "imagepath": "#",
+    "pssysimagename": "fav6-ferry-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-feather-pointed",
+    "imagepath": "#",
+    "pssysimagename": "fav6-feather-pointed-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-fax",
+    "imagepath": "#",
+    "pssysimagename": "fav6-fax-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-faucet-drip",
+    "imagepath": "#",
+    "pssysimagename": "fav6-faucet-drip-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-faucet",
+    "imagepath": "#",
+    "pssysimagename": "fav6-faucet-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-fan",
+    "imagepath": "#",
+    "pssysimagename": "fav6-fan-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-face-tired",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-tired-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-face-surprise",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-surprise-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-face-smile-wink",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-smile-wink-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-face-smile-beam",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-smile-beam-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-face-sad-tear",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-sad-tear-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-face-sad-cry",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-sad-cry-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-face-rolling-eyes",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-rolling-eyes-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-face-meh-blank",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-meh-blank-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-face-meh",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-meh-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-face-laugh-wink",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-laugh-wink-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-face-laugh-squint",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-laugh-squint-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-face-laugh-beam",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-laugh-beam-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-face-laugh",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-laugh-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-face-kiss-wink-heart",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-kiss-wink-heart-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-face-kiss-beam",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-kiss-beam-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-face-kiss",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-kiss-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-face-grin-wink",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-grin-wink-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-face-grin-wide",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-grin-wide-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-face-grin-tongue-wink",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-grin-tongue-wink-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-face-grin-tongue-squint",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-grin-tongue-squint-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-face-grin-tongue",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-grin-tongue-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-face-grin-tears",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-grin-tears-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-face-grin-stars",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-grin-stars-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-face-grin-squint-tears",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-grin-squint-tears-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-face-grin-squint",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-grin-squint-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-face-grin-hearts",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-grin-hearts-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-face-grin-beam-sweat",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-grin-beam-sweat-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-face-grin-beam",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-grin-beam-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-face-grin",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-grin-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-face-grimace",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-grimace-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-face-frown-open",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-frown-open-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-face-frown",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-frown-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-face-flushed",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-flushed-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-face-dizzy",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-dizzy-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-face-angry",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-angry-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-f",
+    "imagepath": "#",
+    "pssysimagename": "fav6-f-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-eye-low-vision",
+    "imagepath": "#",
+    "pssysimagename": "fav6-eye-low-vision-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-eye-dropper",
+    "imagepath": "#",
+    "pssysimagename": "fav6-eye-dropper-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-explosion",
+    "imagepath": "#",
+    "pssysimagename": "fav6-explosion-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-euro-sign",
+    "imagepath": "#",
+    "pssysimagename": "fav6-euro-sign-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-ethernet",
+    "imagepath": "#",
+    "pssysimagename": "fav6-ethernet-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-equals",
+    "imagepath": "#",
+    "pssysimagename": "fav6-equals-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-envelopes-bulk",
+    "imagepath": "#",
+    "pssysimagename": "fav6-envelopes-bulk-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-envelope-open-text",
+    "imagepath": "#",
+    "pssysimagename": "fav6-envelope-open-text-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-envelope-open",
+    "imagepath": "#",
+    "pssysimagename": "fav6-envelope-open-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-envelope-circle-check",
+    "imagepath": "#",
+    "pssysimagename": "fav6-envelope-circle-check-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-ellipsis-vertical",
+    "imagepath": "#",
+    "pssysimagename": "fav6-ellipsis-vertical-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-ellipsis",
+    "imagepath": "#",
+    "pssysimagename": "fav6-ellipsis-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-elevator",
+    "imagepath": "#",
+    "pssysimagename": "fav6-elevator-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-eject",
+    "imagepath": "#",
+    "pssysimagename": "fav6-eject-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-egg",
+    "imagepath": "#",
+    "pssysimagename": "fav6-egg-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-earth-oceania",
+    "imagepath": "#",
+    "pssysimagename": "fav6-earth-oceania-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-earth-europe",
+    "imagepath": "#",
+    "pssysimagename": "fav6-earth-europe-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-earth-asia",
+    "imagepath": "#",
+    "pssysimagename": "fav6-earth-asia-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-earth-africa",
+    "imagepath": "#",
+    "pssysimagename": "fav6-earth-africa-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-ear-listen",
+    "imagepath": "#",
+    "pssysimagename": "fav6-ear-listen-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-ear-deaf",
+    "imagepath": "#",
+    "pssysimagename": "fav6-ear-deaf-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-e",
+    "imagepath": "#",
+    "pssysimagename": "fav6-e-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-dungeon",
+    "imagepath": "#",
+    "pssysimagename": "fav6-dungeon-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-dumpster",
+    "imagepath": "#",
+    "pssysimagename": "fav6-dumpster-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-drumstick-bite",
+    "imagepath": "#",
+    "pssysimagename": "fav6-drumstick-bite-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-drum-steelpan",
+    "imagepath": "#",
+    "pssysimagename": "fav6-drum-steelpan-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-drum",
+    "imagepath": "#",
+    "pssysimagename": "fav6-drum-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-droplet-slash",
+    "imagepath": "#",
+    "pssysimagename": "fav6-droplet-slash-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-draw-polygon",
+    "imagepath": "#",
+    "pssysimagename": "fav6-draw-polygon-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-down-long",
+    "imagepath": "#",
+    "pssysimagename": "fav6-down-long-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-down-left-and-up-right-to-center",
+    "imagepath": "#",
+    "pssysimagename": "fav6-down-left-and-up-right-to-center-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-dove",
+    "imagepath": "#",
+    "pssysimagename": "fav6-dove-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-door-closed",
+    "imagepath": "#",
+    "pssysimagename": "fav6-door-closed-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-dong-sign",
+    "imagepath": "#",
+    "pssysimagename": "fav6-dong-sign-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-dolly",
+    "imagepath": "#",
+    "pssysimagename": "fav6-dolly-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-dog",
+    "imagepath": "#",
+    "pssysimagename": "fav6-dog-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-dna",
+    "imagepath": "#",
+    "pssysimagename": "fav6-dna-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-divide",
+    "imagepath": "#",
+    "pssysimagename": "fav6-divide-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-display",
+    "imagepath": "#",
+    "pssysimagename": "fav6-display-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-disease",
+    "imagepath": "#",
+    "pssysimagename": "fav6-disease-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-dice-two",
+    "imagepath": "#",
+    "pssysimagename": "fav6-dice-two-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-dice-three",
+    "imagepath": "#",
+    "pssysimagename": "fav6-dice-three-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-dice-six",
+    "imagepath": "#",
+    "pssysimagename": "fav6-dice-six-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-dice-one",
+    "imagepath": "#",
+    "pssysimagename": "fav6-dice-one-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-dice-four",
+    "imagepath": "#",
+    "pssysimagename": "fav6-dice-four-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-dice-five",
+    "imagepath": "#",
+    "pssysimagename": "fav6-dice-five-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-dice-d6",
+    "imagepath": "#",
+    "pssysimagename": "fav6-dice-d6-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-dice-d20",
+    "imagepath": "#",
+    "pssysimagename": "fav6-dice-d20-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-diamond-turn-right",
+    "imagepath": "#",
+    "pssysimagename": "fav6-diamond-turn-right-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-diagram-successor",
+    "imagepath": "#",
+    "pssysimagename": "fav6-diagram-successor-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-diagram-project",
+    "imagepath": "#",
+    "pssysimagename": "fav6-diagram-project-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-diagram-predecessor",
+    "imagepath": "#",
+    "pssysimagename": "fav6-diagram-predecessor-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-diagram-next",
+    "imagepath": "#",
+    "pssysimagename": "fav6-diagram-next-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-dharmachakra",
+    "imagepath": "#",
+    "pssysimagename": "fav6-dharmachakra-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-democrat",
+    "imagepath": "#",
+    "pssysimagename": "fav6-democrat-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-delete-left",
+    "imagepath": "#",
+    "pssysimagename": "fav6-delete-left-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-d",
+    "imagepath": "#",
+    "pssysimagename": "fav6-d-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-cubes-stacked",
+    "imagepath": "#",
+    "pssysimagename": "fav6-cubes-stacked-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-cubes",
+    "imagepath": "#",
+    "pssysimagename": "fav6-cubes-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-cruzeiro-sign",
+    "imagepath": "#",
+    "pssysimagename": "fav6-cruzeiro-sign-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-crutch",
+    "imagepath": "#",
+    "pssysimagename": "fav6-crutch-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-crow",
+    "imagepath": "#",
+    "pssysimagename": "fav6-crow-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-crop-simple",
+    "imagepath": "#",
+    "pssysimagename": "fav6-crop-simple-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-crop",
+    "imagepath": "#",
+    "pssysimagename": "fav6-crop-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-cow",
+    "imagepath": "#",
+    "pssysimagename": "fav6-cow-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-couch",
+    "imagepath": "#",
+    "pssysimagename": "fav6-couch-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-cookie",
+    "imagepath": "#",
+    "pssysimagename": "fav6-cookie-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-computer-mouse",
+    "imagepath": "#",
+    "pssysimagename": "fav6-computer-mouse-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-computer",
+    "imagepath": "#",
+    "pssysimagename": "fav6-computer-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-compress",
+    "imagepath": "#",
+    "pssysimagename": "fav6-compress-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-compass-drafting",
+    "imagepath": "#",
+    "pssysimagename": "fav6-compass-drafting-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-compact-disc",
+    "imagepath": "#",
+    "pssysimagename": "fav6-compact-disc-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-comment-sms",
+    "imagepath": "#",
+    "pssysimagename": "fav6-comment-sms-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-comment-slash",
+    "imagepath": "#",
+    "pssysimagename": "fav6-comment-slash-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-comment-medical",
+    "imagepath": "#",
+    "pssysimagename": "fav6-comment-medical-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-comment-dots",
+    "imagepath": "#",
+    "pssysimagename": "fav6-comment-dots-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-comment-dollar",
+    "imagepath": "#",
+    "pssysimagename": "fav6-comment-dollar-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-colon-sign",
+    "imagepath": "#",
+    "pssysimagename": "fav6-colon-sign-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-code-pull-request",
+    "imagepath": "#",
+    "pssysimagename": "fav6-code-pull-request-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-code-merge",
+    "imagepath": "#",
+    "pssysimagename": "fav6-code-merge-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-code-fork",
+    "imagepath": "#",
+    "pssysimagename": "fav6-code-fork-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-code-commit",
+    "imagepath": "#",
+    "pssysimagename": "fav6-code-commit-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-clover",
+    "imagepath": "#",
+    "pssysimagename": "fav6-clover-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-cloud-sun-rain",
+    "imagepath": "#",
+    "pssysimagename": "fav6-cloud-sun-rain-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-cloud-sun",
+    "imagepath": "#",
+    "pssysimagename": "fav6-cloud-sun-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-cloud-showers-water",
+    "imagepath": "#",
+    "pssysimagename": "fav6-cloud-showers-water-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-cloud-showers-heavy",
+    "imagepath": "#",
+    "pssysimagename": "fav6-cloud-showers-heavy-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-cloud-rain",
+    "imagepath": "#",
+    "pssysimagename": "fav6-cloud-rain-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-cloud-moon-rain",
+    "imagepath": "#",
+    "pssysimagename": "fav6-cloud-moon-rain-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-cloud-moon",
+    "imagepath": "#",
+    "pssysimagename": "fav6-cloud-moon-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-cloud-meatball",
+    "imagepath": "#",
+    "pssysimagename": "fav6-cloud-meatball-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-cloud-bolt",
+    "imagepath": "#",
+    "pssysimagename": "fav6-cloud-bolt-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-cloud-arrow-down",
+    "imagepath": "#",
+    "pssysimagename": "fav6-cloud-arrow-down-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-clock-rotate-left",
+    "imagepath": "#",
+    "pssysimagename": "fav6-clock-rotate-left-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-clipboard-user",
+    "imagepath": "#",
+    "pssysimagename": "fav6-clipboard-user-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-clipboard-question",
+    "imagepath": "#",
+    "pssysimagename": "fav6-clipboard-question-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-clipboard-list",
+    "imagepath": "#",
+    "pssysimagename": "fav6-clipboard-list-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-clipboard-check",
+    "imagepath": "#",
+    "pssysimagename": "fav6-clipboard-check-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-clapperboard",
+    "imagepath": "#",
+    "pssysimagename": "fav6-clapperboard-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-circle-stop",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-stop-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-circle-right",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-right-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-circle-radiation",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-radiation-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-circle-question",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-question-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-circle-plus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-plus-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-circle-play",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-play-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-circle-pause",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-pause-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-circle-nodes",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-nodes-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-circle-minus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-minus-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-circle-left",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-left-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-circle-h",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-h-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-circle-dot",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-dot-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-circle-dollar-to-slot",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-dollar-to-slot-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-circle-chevron-up",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-chevron-up-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-circle-chevron-right",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-chevron-right-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-circle-chevron-left",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-chevron-left-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-circle-chevron-down",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-chevron-down-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-circle-arrow-up",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-arrow-up-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-circle-arrow-right",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-arrow-right-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-circle-arrow-left",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-arrow-left-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-circle-arrow-down",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-arrow-down-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-children",
+    "imagepath": "#",
+    "pssysimagename": "fav6-children-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-child-rifle",
+    "imagepath": "#",
+    "pssysimagename": "fav6-child-rifle-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-child-reaching",
+    "imagepath": "#",
+    "pssysimagename": "fav6-child-reaching-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-child-dress",
+    "imagepath": "#",
+    "pssysimagename": "fav6-child-dress-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-chevron-right",
+    "imagepath": "#",
+    "pssysimagename": "fav6-chevron-right-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-chevron-left",
+    "imagepath": "#",
+    "pssysimagename": "fav6-chevron-left-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-chess-rook",
+    "imagepath": "#",
+    "pssysimagename": "fav6-chess-rook-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-chess-queen",
+    "imagepath": "#",
+    "pssysimagename": "fav6-chess-queen-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-chess-pawn",
+    "imagepath": "#",
+    "pssysimagename": "fav6-chess-pawn-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-chess-knight",
+    "imagepath": "#",
+    "pssysimagename": "fav6-chess-knight-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-chess-king",
+    "imagepath": "#",
+    "pssysimagename": "fav6-chess-king-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-chess-board",
+    "imagepath": "#",
+    "pssysimagename": "fav6-chess-board-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-chess-bishop",
+    "imagepath": "#",
+    "pssysimagename": "fav6-chess-bishop-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-chess",
+    "imagepath": "#",
+    "pssysimagename": "fav6-chess-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-cheese",
+    "imagepath": "#",
+    "pssysimagename": "fav6-cheese-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-check-to-slot",
+    "imagepath": "#",
+    "pssysimagename": "fav6-check-to-slot-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-check-double",
+    "imagepath": "#",
+    "pssysimagename": "fav6-check-double-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-chart-pie",
+    "imagepath": "#",
+    "pssysimagename": "fav6-chart-pie-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-chart-line",
+    "imagepath": "#",
+    "pssysimagename": "fav6-chart-line-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-chart-gantt",
+    "imagepath": "#",
+    "pssysimagename": "fav6-chart-gantt-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-chart-column",
+    "imagepath": "#",
+    "pssysimagename": "fav6-chart-column-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-chart-bar",
+    "imagepath": "#",
+    "pssysimagename": "fav6-chart-bar-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-chart-area",
+    "imagepath": "#",
+    "pssysimagename": "fav6-chart-area-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-charging-station",
+    "imagepath": "#",
+    "pssysimagename": "fav6-charging-station-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-champagne-glasses",
+    "imagepath": "#",
+    "pssysimagename": "fav6-champagne-glasses-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-chalkboard-user",
+    "imagepath": "#",
+    "pssysimagename": "fav6-chalkboard-user-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-cent-sign",
+    "imagepath": "#",
+    "pssysimagename": "fav6-cent-sign-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-cedi-sign",
+    "imagepath": "#",
+    "pssysimagename": "fav6-cedi-sign-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-cat",
+    "imagepath": "#",
+    "pssysimagename": "fav6-cat-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-cart-flatbed-suitcase",
+    "imagepath": "#",
+    "pssysimagename": "fav6-cart-flatbed-suitcase-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-cart-flatbed",
+    "imagepath": "#",
+    "pssysimagename": "fav6-cart-flatbed-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-cart-arrow-down",
+    "imagepath": "#",
+    "pssysimagename": "fav6-cart-arrow-down-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-carrot",
+    "imagepath": "#",
+    "pssysimagename": "fav6-carrot-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-caret-right",
+    "imagepath": "#",
+    "pssysimagename": "fav6-caret-right-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-caret-left",
+    "imagepath": "#",
+    "pssysimagename": "fav6-caret-left-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-caravan",
+    "imagepath": "#",
+    "pssysimagename": "fav6-caravan-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-car-tunnel",
+    "imagepath": "#",
+    "pssysimagename": "fav6-car-tunnel-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-car-rear",
+    "imagepath": "#",
+    "pssysimagename": "fav6-car-rear-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-car-on",
+    "imagepath": "#",
+    "pssysimagename": "fav6-car-on-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-car-burst",
+    "imagepath": "#",
+    "pssysimagename": "fav6-car-burst-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-car-battery",
+    "imagepath": "#",
+    "pssysimagename": "fav6-car-battery-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-capsules",
+    "imagepath": "#",
+    "pssysimagename": "fav6-capsules-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-cannabis",
+    "imagepath": "#",
+    "pssysimagename": "fav6-cannabis-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-candy-cane",
+    "imagepath": "#",
+    "pssysimagename": "fav6-candy-cane-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-campground",
+    "imagepath": "#",
+    "pssysimagename": "fav6-campground-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-camera-rotate",
+    "imagepath": "#",
+    "pssysimagename": "fav6-camera-rotate-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-calendar-xmark",
+    "imagepath": "#",
+    "pssysimagename": "fav6-calendar-xmark-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-calendar-plus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-calendar-plus-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-calendar-minus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-calendar-minus-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-calendar-day",
+    "imagepath": "#",
+    "pssysimagename": "fav6-calendar-day-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-calendar-check",
+    "imagepath": "#",
+    "pssysimagename": "fav6-calendar-check-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-cake-candles",
+    "imagepath": "#",
+    "pssysimagename": "fav6-cake-candles-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-c",
+    "imagepath": "#",
+    "pssysimagename": "fav6-c-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bus-simple",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bus-simple-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bus-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-burst",
+    "imagepath": "#",
+    "pssysimagename": "fav6-burst-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-burger",
+    "imagepath": "#",
+    "pssysimagename": "fav6-burger-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bullhorn",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bullhorn-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-building-wheat",
+    "imagepath": "#",
+    "pssysimagename": "fav6-building-wheat-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-building-user",
+    "imagepath": "#",
+    "pssysimagename": "fav6-building-user-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-building-un",
+    "imagepath": "#",
+    "pssysimagename": "fav6-building-un-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-building-shield",
+    "imagepath": "#",
+    "pssysimagename": "fav6-building-shield-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-building-ngo",
+    "imagepath": "#",
+    "pssysimagename": "fav6-building-ngo-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-building-lock",
+    "imagepath": "#",
+    "pssysimagename": "fav6-building-lock-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-building-flag",
+    "imagepath": "#",
+    "pssysimagename": "fav6-building-flag-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-building-columns",
+    "imagepath": "#",
+    "pssysimagename": "fav6-building-columns-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-building-circle-xmark",
+    "imagepath": "#",
+    "pssysimagename": "fav6-building-circle-xmark-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-building-circle-exclamation",
+    "imagepath": "#",
+    "pssysimagename": "fav6-building-circle-exclamation-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-building-circle-check",
+    "imagepath": "#",
+    "pssysimagename": "fav6-building-circle-check-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-building-circle-arrow-right",
+    "imagepath": "#",
+    "pssysimagename": "fav6-building-circle-arrow-right-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bugs",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bugs-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bug-slash",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bug-slash-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bucket",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bucket-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-broom-ball",
+    "imagepath": "#",
+    "pssysimagename": "fav6-broom-ball-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-broom",
+    "imagepath": "#",
+    "pssysimagename": "fav6-broom-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-briefcase-medical",
+    "imagepath": "#",
+    "pssysimagename": "fav6-briefcase-medical-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bridge-water",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bridge-water-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bridge-lock",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bridge-lock-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bridge-circle-xmark",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bridge-circle-xmark-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bridge-circle-exclamation",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bridge-circle-exclamation-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bridge-circle-check",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bridge-circle-check-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bridge",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bridge-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bread-slice",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bread-slice-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-brazilian-real-sign",
+    "imagepath": "#",
+    "pssysimagename": "fav6-brazilian-real-sign-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-braille",
+    "imagepath": "#",
+    "pssysimagename": "fav6-braille-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-boxes-stacked",
+    "imagepath": "#",
+    "pssysimagename": "fav6-boxes-stacked-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-boxes-packing",
+    "imagepath": "#",
+    "pssysimagename": "fav6-boxes-packing-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-box-tissue",
+    "imagepath": "#",
+    "pssysimagename": "fav6-box-tissue-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-box-open",
+    "imagepath": "#",
+    "pssysimagename": "fav6-box-open-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-box-archive",
+    "imagepath": "#",
+    "pssysimagename": "fav6-box-archive-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-box",
+    "imagepath": "#",
+    "pssysimagename": "fav6-box-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bowling-ball",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bowling-ball-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bowl-rice",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bowl-rice-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bowl-food",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bowl-food-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bottle-water",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bottle-water-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bottle-droplet",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bottle-droplet-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bore-hole",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bore-hole-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-border-top-left",
+    "imagepath": "#",
+    "pssysimagename": "fav6-border-top-left-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-border-all",
+    "imagepath": "#",
+    "pssysimagename": "fav6-border-all-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-book-tanakh",
+    "imagepath": "#",
+    "pssysimagename": "fav6-book-tanakh-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-book-skull",
+    "imagepath": "#",
+    "pssysimagename": "fav6-book-skull-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-book-quran",
+    "imagepath": "#",
+    "pssysimagename": "fav6-book-quran-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-book-open-reader",
+    "imagepath": "#",
+    "pssysimagename": "fav6-book-open-reader-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-book-open",
+    "imagepath": "#",
+    "pssysimagename": "fav6-book-open-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-book-medical",
+    "imagepath": "#",
+    "pssysimagename": "fav6-book-medical-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-book-journal-whills",
+    "imagepath": "#",
+    "pssysimagename": "fav6-book-journal-whills-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-book-bookmark",
+    "imagepath": "#",
+    "pssysimagename": "fav6-book-bookmark-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-book-bible",
+    "imagepath": "#",
+    "pssysimagename": "fav6-book-bible-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-book-atlas",
+    "imagepath": "#",
+    "pssysimagename": "fav6-book-atlas-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bong",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bong-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bone",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bone-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bolt-lightning",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bolt-lightning-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bold",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bold-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-blender-phone",
+    "imagepath": "#",
+    "pssysimagename": "fav6-blender-phone-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-blender",
+    "imagepath": "#",
+    "pssysimagename": "fav6-blender-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bitcoin-sign",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bitcoin-sign-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-biohazard",
+    "imagepath": "#",
+    "pssysimagename": "fav6-biohazard-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bezier-curve",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bezier-curve-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bell-slash",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bell-slash-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bell-concierge",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bell-concierge-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-beer-mug-empty",
+    "imagepath": "#",
+    "pssysimagename": "fav6-beer-mug-empty-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bed-pulse",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bed-pulse-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bed",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bed-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-battery-three-quarters",
+    "imagepath": "#",
+    "pssysimagename": "fav6-battery-three-quarters-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-battery-quarter",
+    "imagepath": "#",
+    "pssysimagename": "fav6-battery-quarter-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-battery-half",
+    "imagepath": "#",
+    "pssysimagename": "fav6-battery-half-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-battery-full",
+    "imagepath": "#",
+    "pssysimagename": "fav6-battery-full-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-battery-empty",
+    "imagepath": "#",
+    "pssysimagename": "fav6-battery-empty-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-basketball",
+    "imagepath": "#",
+    "pssysimagename": "fav6-basketball-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-basket-shopping",
+    "imagepath": "#",
+    "pssysimagename": "fav6-basket-shopping-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-baseball-bat-ball",
+    "imagepath": "#",
+    "pssysimagename": "fav6-baseball-bat-ball-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-baseball",
+    "imagepath": "#",
+    "pssysimagename": "fav6-baseball-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bars-staggered",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bars-staggered-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bars-progress",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bars-progress-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bandage",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bandage-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-ban-smoking",
+    "imagepath": "#",
+    "pssysimagename": "fav6-ban-smoking-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-ban",
+    "imagepath": "#",
+    "pssysimagename": "fav6-ban-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-baht-sign",
+    "imagepath": "#",
+    "pssysimagename": "fav6-baht-sign-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bahai",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bahai-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bacterium",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bacterium-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bacteria",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bacteria-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-bacon",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bacon-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-backward-step",
+    "imagepath": "#",
+    "pssysimagename": "fav6-backward-step-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-backward-fast",
+    "imagepath": "#",
+    "pssysimagename": "fav6-backward-fast-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-baby-carriage",
+    "imagepath": "#",
+    "pssysimagename": "fav6-baby-carriage-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-b",
+    "imagepath": "#",
+    "pssysimagename": "fav6-b-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-austral-sign",
+    "imagepath": "#",
+    "pssysimagename": "fav6-austral-sign-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-atom",
+    "imagepath": "#",
+    "pssysimagename": "fav6-atom-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-at",
+    "imagepath": "#",
+    "pssysimagename": "fav6-at-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-asterisk",
+    "imagepath": "#",
+    "pssysimagename": "fav6-asterisk-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrows-up-to-line",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrows-up-to-line-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrows-up-down-left-right",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrows-up-down-left-right-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrows-up-down",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrows-up-down-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrows-turn-to-dots",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrows-turn-to-dots-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrows-turn-right",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrows-turn-right-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrows-to-eye",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrows-to-eye-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrows-to-dot",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrows-to-dot-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrows-to-circle",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrows-to-circle-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrows-split-up-and-left",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrows-split-up-and-left-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrows-spin",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrows-spin-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrows-rotate",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrows-rotate-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrows-left-right-to-line",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrows-left-right-to-line-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrows-left-right",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrows-left-right-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrows-down-to-people",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrows-down-to-people-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrows-down-to-line",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrows-down-to-line-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-up-z-a",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-up-z-a-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-up-wide-short",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-up-wide-short-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-up-short-wide",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-up-short-wide-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-up-right-dots",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-up-right-dots-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-up-long",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-up-long-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-up-from-water-pump",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-up-from-water-pump-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-up-from-ground-water",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-up-from-ground-water-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-up-a-z",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-up-a-z-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-up-9-1",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-up-9-1-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-up-1-9",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-up-1-9-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-turn-up",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-turn-up-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-turn-down",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-turn-down-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-trend-up",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-trend-up-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-trend-down",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-trend-down-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-rotate-right",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-rotate-right-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-rotate-left",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-rotate-left-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-right-to-city",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-right-to-city-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-right-to-bracket",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-right-to-bracket-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-right-long",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-right-long-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-right-from-bracket",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-right-from-bracket-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-right-arrow-left",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-right-arrow-left-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-pointer",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-pointer-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-left-long",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-left-long-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-down-z-a",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-down-z-a-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-down-wide-short",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-down-wide-short-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-down-up-lock",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-down-up-lock-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-down-up-across-line",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-down-up-across-line-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-down-short-wide",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-down-short-wide-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-down-long",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-down-long-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-down-a-z",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-down-a-z-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-down-9-1",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-down-9-1-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-arrow-down-1-9",
+    "imagepath": "#",
+    "pssysimagename": "fav6-arrow-down-1-9-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-archway",
+    "imagepath": "#",
+    "pssysimagename": "fav6-archway-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-apple-whole",
+    "imagepath": "#",
+    "pssysimagename": "fav6-apple-whole-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-ankh",
+    "imagepath": "#",
+    "pssysimagename": "fav6-ankh-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-angles-up",
+    "imagepath": "#",
+    "pssysimagename": "fav6-angles-up-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-angles-right",
+    "imagepath": "#",
+    "pssysimagename": "fav6-angles-right-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-angles-left",
+    "imagepath": "#",
+    "pssysimagename": "fav6-angles-left-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-angles-down",
+    "imagepath": "#",
+    "pssysimagename": "fav6-angles-down-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-angle-right",
+    "imagepath": "#",
+    "pssysimagename": "fav6-angle-right-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-angle-left",
+    "imagepath": "#",
+    "pssysimagename": "fav6-angle-left-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-angle-down",
+    "imagepath": "#",
+    "pssysimagename": "fav6-angle-down-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-anchor-lock",
+    "imagepath": "#",
+    "pssysimagename": "fav6-anchor-lock-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-anchor-circle-xmark",
+    "imagepath": "#",
+    "pssysimagename": "fav6-anchor-circle-xmark-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-anchor-circle-exclamation",
+    "imagepath": "#",
+    "pssysimagename": "fav6-anchor-circle-exclamation-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-anchor-circle-check",
+    "imagepath": "#",
+    "pssysimagename": "fav6-anchor-circle-check-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-align-right",
+    "imagepath": "#",
+    "pssysimagename": "fav6-align-right-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-align-left",
+    "imagepath": "#",
+    "pssysimagename": "fav6-align-left-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-align-justify",
+    "imagepath": "#",
+    "pssysimagename": "fav6-align-justify-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-align-center",
+    "imagepath": "#",
+    "pssysimagename": "fav6-align-center-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-a",
+    "imagepath": "#",
+    "pssysimagename": "fav6-a-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-9",
+    "imagepath": "#",
+    "pssysimagename": "fav6-9-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-8",
+    "imagepath": "#",
+    "pssysimagename": "fav6-8-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-7",
+    "imagepath": "#",
+    "pssysimagename": "fav6-7-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-6",
+    "imagepath": "#",
+    "pssysimagename": "fav6-6-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-5",
+    "imagepath": "#",
+    "pssysimagename": "fav6-5-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-4",
+    "imagepath": "#",
+    "pssysimagename": "fav6-4-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-3",
+    "imagepath": "#",
+    "pssysimagename": "fav6-3-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-2",
+    "imagepath": "#",
+    "pssysimagename": "fav6-2-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-1",
+    "imagepath": "#",
+    "pssysimagename": "fav6-1-solid"
+  },
+  {
+    "cssclass": "fa-solid fa-0",
+    "imagepath": "#",
+    "pssysimagename": "fav6-0-solid"
+  },
+  {
+    "cssclass": "fa-regular fa-window-minimize",
+    "imagepath": "#",
+    "pssysimagename": "fav6-window-minimize-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-window-maximize",
+    "imagepath": "#",
+    "pssysimagename": "fav6-window-maximize-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-trash-can",
+    "imagepath": "#",
+    "pssysimagename": "fav6-trash-can-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-star-half-stroke",
+    "imagepath": "#",
+    "pssysimagename": "fav6-star-half-stroke-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-star-half",
+    "imagepath": "#",
+    "pssysimagename": "fav6-star-half-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-square-plus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-square-plus-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-square-full",
+    "imagepath": "#",
+    "pssysimagename": "fav6-square-full-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-square-caret-up",
+    "imagepath": "#",
+    "pssysimagename": "fav6-square-caret-up-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-square-caret-right",
+    "imagepath": "#",
+    "pssysimagename": "fav6-square-caret-right-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-square-caret-left",
+    "imagepath": "#",
+    "pssysimagename": "fav6-square-caret-left-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-square-caret-down",
+    "imagepath": "#",
+    "pssysimagename": "fav6-square-caret-down-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-rectangle-xmark",
+    "imagepath": "#",
+    "pssysimagename": "fav6-rectangle-xmark-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-rectangle-list",
+    "imagepath": "#",
+    "pssysimagename": "fav6-rectangle-list-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-paste",
+    "imagepath": "#",
+    "pssysimagename": "fav6-paste-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-object-ungroup",
+    "imagepath": "#",
+    "pssysimagename": "fav6-object-ungroup-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-object-group",
+    "imagepath": "#",
+    "pssysimagename": "fav6-object-group-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-note-sticky",
+    "imagepath": "#",
+    "pssysimagename": "fav6-note-sticky-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-money-bill-1",
+    "imagepath": "#",
+    "pssysimagename": "fav6-money-bill-1-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-message",
+    "imagepath": "#",
+    "pssysimagename": "fav6-message-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-map",
+    "imagepath": "#",
+    "pssysimagename": "fav6-map-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-life-ring",
+    "imagepath": "#",
+    "pssysimagename": "fav6-life-ring-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-id-card",
+    "imagepath": "#",
+    "pssysimagename": "fav6-id-card-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-id-badge",
+    "imagepath": "#",
+    "pssysimagename": "fav6-id-badge-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-hourglass-half",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hourglass-half-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-hourglass",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hourglass-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-hard-drive",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hard-drive-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-hand-spock",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hand-spock-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-hand-scissors",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hand-scissors-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-hand-pointer",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hand-pointer-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-hand-point-right",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hand-point-right-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-hand-point-left",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hand-point-left-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-hand-point-down",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hand-point-down-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-hand-peace",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hand-peace-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-hand-lizard",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hand-lizard-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-hand-back-fist",
+    "imagepath": "#",
+    "pssysimagename": "fav6-hand-back-fist-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-gem",
+    "imagepath": "#",
+    "pssysimagename": "fav6-gem-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-futbol",
+    "imagepath": "#",
+    "pssysimagename": "fav6-futbol-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-font-awesome",
+    "imagepath": "#",
+    "pssysimagename": "fav6-font-awesome-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-folder-closed",
+    "imagepath": "#",
+    "pssysimagename": "fav6-folder-closed-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-floppy-disk",
+    "imagepath": "#",
+    "pssysimagename": "fav6-floppy-disk-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-file-zipper",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-zipper-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-file-video",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-video-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-file-powerpoint",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-powerpoint-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-file-lines",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-lines-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-file-image",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-image-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-file-code",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-code-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-file-audio",
+    "imagepath": "#",
+    "pssysimagename": "fav6-file-audio-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-face-tired",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-tired-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-face-surprise",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-surprise-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-face-smile-wink",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-smile-wink-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-face-smile-beam",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-smile-beam-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-face-sad-tear",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-sad-tear-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-face-sad-cry",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-sad-cry-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-face-rolling-eyes",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-rolling-eyes-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-face-meh-blank",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-meh-blank-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-face-meh",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-meh-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-face-laugh-wink",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-laugh-wink-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-face-laugh-squint",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-laugh-squint-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-face-laugh-beam",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-laugh-beam-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-face-laugh",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-laugh-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-face-kiss-wink-heart",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-kiss-wink-heart-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-face-kiss-beam",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-kiss-beam-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-face-kiss",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-kiss-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-face-grin-wink",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-grin-wink-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-face-grin-wide",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-grin-wide-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-face-grin-tongue-wink",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-grin-tongue-wink-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-face-grin-tongue-squint",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-grin-tongue-squint-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-face-grin-tongue",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-grin-tongue-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-face-grin-tears",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-grin-tears-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-face-grin-stars",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-grin-stars-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-face-grin-squint-tears",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-grin-squint-tears-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-face-grin-squint",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-grin-squint-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-face-grin-hearts",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-grin-hearts-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-face-grin-beam-sweat",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-grin-beam-sweat-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-face-grin-beam",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-grin-beam-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-face-grin",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-grin-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-face-grimace",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-grimace-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-face-frown-open",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-frown-open-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-face-frown",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-frown-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-face-flushed",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-flushed-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-face-dizzy",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-dizzy-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-face-angry",
+    "imagepath": "#",
+    "pssysimagename": "fav6-face-angry-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-envelope-open",
+    "imagepath": "#",
+    "pssysimagename": "fav6-envelope-open-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-comment-dots",
+    "imagepath": "#",
+    "pssysimagename": "fav6-comment-dots-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-circle-stop",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-stop-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-circle-right",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-right-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-circle-question",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-question-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-circle-play",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-play-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-circle-pause",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-pause-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-circle-left",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-left-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-circle-dot",
+    "imagepath": "#",
+    "pssysimagename": "fav6-circle-dot-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-chess-rook",
+    "imagepath": "#",
+    "pssysimagename": "fav6-chess-rook-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-chess-queen",
+    "imagepath": "#",
+    "pssysimagename": "fav6-chess-queen-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-chess-pawn",
+    "imagepath": "#",
+    "pssysimagename": "fav6-chess-pawn-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-chess-knight",
+    "imagepath": "#",
+    "pssysimagename": "fav6-chess-knight-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-chess-king",
+    "imagepath": "#",
+    "pssysimagename": "fav6-chess-king-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-chess-bishop",
+    "imagepath": "#",
+    "pssysimagename": "fav6-chess-bishop-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-chart-bar",
+    "imagepath": "#",
+    "pssysimagename": "fav6-chart-bar-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-calendar-xmark",
+    "imagepath": "#",
+    "pssysimagename": "fav6-calendar-xmark-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-calendar-plus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-calendar-plus-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-calendar-minus",
+    "imagepath": "#",
+    "pssysimagename": "fav6-calendar-minus-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-calendar-check",
+    "imagepath": "#",
+    "pssysimagename": "fav6-calendar-check-regular"
+  },
+  {
+    "cssclass": "fa-regular fa-bell-slash",
+    "imagepath": "#",
+    "pssysimagename": "fav6-bell-slash-regular"
+  }
+]

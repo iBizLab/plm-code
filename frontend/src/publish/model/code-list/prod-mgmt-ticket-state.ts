@@ -1,0 +1,47 @@
+export default {
+  codeListTag: 'ProdMgmt__ticket_state',
+  codeListType: 'STATIC',
+  codeName: 'ProdMgmt__ticket_state',
+  emptyText: '未定义',
+  appDataEntityId: 'plmweb.ticket',
+  codeItems: [
+    {
+      codeName: 'item_10',
+      color: '#56ABFB',
+      text: '待处理',
+      value: '10',
+      id: 'item_10',
+    },
+    {
+      codeName: 'item_20',
+      color: '#F6C659',
+      text: '处理中',
+      value: '20',
+      id: 'item_20',
+    },
+    {
+      codeName: 'item_30',
+      color: '#FF9F73',
+      text: '已计划',
+      value: '30',
+      id: 'item_30',
+    },
+    {
+      codeName: 'item_40',
+      color: '#73D897',
+      text: '已完成',
+      value: '40',
+      id: 'item_40',
+    },
+    {
+      codeName: 'item_50',
+      color: '#AAAAAA',
+      text: '已关闭',
+      value: '50',
+      id: 'item_50',
+    },
+  ],
+  enableCache: true,
+  name: '工单状态',
+  id: 'plmweb.prodmgmt__ticket_state',
+};

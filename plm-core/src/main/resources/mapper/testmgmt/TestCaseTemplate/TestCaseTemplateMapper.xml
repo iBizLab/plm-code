@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper	namespace="cn.ibizlab.plm.core.testmgmt.mapper.TestCaseTemplateMapper">
+
+        <!--通过mybatis将查询结果注入到entity中,通过配置autoMapping="true"由mybatis自动处理映射关系 -->
+    <resultMap id="TestCaseTemplateResultMap" type="cn.ibizlab.plm.core.testmgmt.domain.TestCaseTemplate" autoMapping="true">
+		<id property="id" column="id" /><!--主键字段映射-->
+		<result property="testType" column="test_type" />
+		<result property="isArchived" column="is_archived" />
+		<result property="isDeleted" column="is_deleted" />
+        <result property="steps" column="steps" jdbcType="VARCHAR" typeHandler="cn.ibizlab.plm.core.testmgmt.domain.handlers.StepTypeHandler" />
+		<result property="estimatedWorkload" column="estimated_workload" />
+		<result property="remainingWorkload" column="remaining_workload" />
+		<result property="actualWorkload" column="actual_workload" />
+		<result property="updateTime" column="update_time" />
+		<result property="createMan" column="create_man" />
+		<result property="updateMan" column="update_man" />
+		<result property="createTime" column="create_time" />
+		<result property="testLibraryId" column="test_library_id" />
+		<result property="testLibraryName" column="test_library_name" />
+		<result property="suiteId" column="suite_id" />
+		<result property="suiteName" column="suite_name" />
+        <association property="library" javaType="cn.ibizlab.plm.core.testmgmt.domain.Library" column="test_library_id" select="cn.ibizlab.plm.core.testmgmt.mapper.LibraryMapper.selectById" fetchType="lazy"></association>
+        <association property="testSuite" javaType="cn.ibizlab.plm.core.testmgmt.domain.TestSuite" column="suite_id" select="cn.ibizlab.plm.core.testmgmt.mapper.TestSuiteMapper.selectById" fetchType="lazy"></association>
+    </resultMap>
+
+    <select id="selectById"  resultMap="TestCaseTemplateResultMap">
+        <include refid="view" /> 
+         where 
+         t1.id=#{ id }
+    </select>
+
+    <select id="selectEntity" parameterType="cn.ibizlab.plm.core.testmgmt.domain.TestCaseTemplate" resultMap="TestCaseTemplateResultMap">
+        <include refid="view" /> 
+         where 
+         (t1.id = #{ id })
+    </select>
+
+    <select id="selectEntities" parameterType="java.util.List" resultMap="TestCaseTemplateResultMap">
+        <include refid="view" /> 
+         where 
+         (t1.id)
+         in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.id }) </foreach>)
+    </select>
+
+    <delete id="deleteEntities" parameterType="java.util.List">
+    delete from TEST_CASE_TEMPLATE
+    where (id)
+         in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.id }) </foreach>)
+    </delete>
+
+    <sql id="default" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, t1.`LEVEL`, t1.`NAME`, t1.`PRECONDITION`, t1.`STATE`, t11.`SUITES`, t1.`SUITE_ID`, t11.`NAME` AS `SUITE_NAME`, t1.`TEST_LIBRARY_ID`, t21.`NAME` AS `TEST_LIBRARY_NAME`, t1.`TEST_TYPE`, t1.`TITLE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `TEST_CASE_TEMPLATE` t1  LEFT JOIN `TEST_SUITE` t11 ON t1.`SUITE_ID` = t11.`ID`  LEFT JOIN `LIBRARY` t21 ON t1.`TEST_LIBRARY_ID` = t21.`ID`   ]]>  
+    </sql>
+
+    <sql id="view" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, t1.`LEVEL`, t1.`NAME`, t1.`PRECONDITION`, t1.`STATE`, t1.`STEPS`, t11.`SUITES`, t1.`SUITE_ID`, t11.`NAME` AS `SUITE_NAME`, t1.`TEST_LIBRARY_ID`, t21.`NAME` AS `TEST_LIBRARY_NAME`, t1.`TEST_TYPE`, t1.`TITLE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `TEST_CASE_TEMPLATE` t1  LEFT JOIN `TEST_SUITE` t11 ON t1.`SUITE_ID` = t11.`ID`  LEFT JOIN `LIBRARY` t21 ON t1.`TEST_LIBRARY_ID` = t21.`ID`   ]]>  
+    </sql>
+
+    <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestCaseTemplateSearchContext"  resultMap="TestCaseTemplateResultMap">
+        select t1.* 
+        from (
+            <include refid="default"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listDefault"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestCaseTemplateSearchContext"  resultMap="TestCaseTemplateResultMap">
+        select t1.*
+        from (
+            <include refid="default"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="findByTestLibraryId" resultMap="TestCaseTemplateResultMap">
+        select t1.* from (
+            <include refid="default"/>
+        ) t1
+        where test_library_id in <foreach item="id" index="index" collection="testLibraryIds" open="(" separator="," close=")">#{id}</foreach> 
+    </select>
+
+    <select id="findBySuiteId" resultMap="TestCaseTemplateResultMap">
+        select t1.* from (
+            <include refid="default"/>
+        ) t1
+        where suite_id in <foreach item="id" index="index" collection="suiteIds" open="(" separator="," close=")">#{id}</foreach> 
+    </select>
+
+
+</mapper>

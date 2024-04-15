@@ -1,0 +1,198 @@
+export default {
+  getDataAppDEActionId: 'get',
+  typeAppDEFieldId: 'owner_subtype',
+  enableCustomGetDataAction: true,
+  enableWorkflow: true,
+  funcViewMode: 'REDIRECTVIEW',
+  deviewCodeName: 'RedirectView',
+  deviewId: '8a1a03523824e2c2f358de5450b734c2',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.RECENT',
+  },
+  caption: '最近访问',
+  codeName: 'recent_redirect_view',
+  appDataEntityId: 'plmweb.recent',
+  appViewNavContexts: [
+    {
+      key: 'ID',
+      value: 'id',
+      name: 'ID',
+      id: 'id',
+    },
+  ],
+  appViewNavParams: [
+    {
+      key: 'id',
+      value: 'id',
+      id: 'id',
+    },
+  ],
+  appViewRefs: [
+    {
+      navigateContexts: [
+        {
+          key: 'ID',
+          value: 'id',
+          name: 'ID',
+          id: 'id',
+        },
+      ],
+      navigateParams: [
+        {
+          key: 'id',
+          value: 'id',
+          id: 'id',
+        },
+      ],
+      realTitle: '空间',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.SPACE.INDEX_VIEW',
+      },
+      refAppViewId: 'plmweb.space_index_view',
+      name: 'SPACE',
+      id: 'space',
+    },
+    {
+      openMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realTitle: '工作项',
+      refAppViewId: 'plmweb.work_item_main_view',
+      name: 'WORK_ITEM',
+      id: 'work_item',
+    },
+    {
+      navigateContexts: [
+        {
+          key: 'PROJECT',
+          value: 'openid',
+          name: 'PROJECT',
+          id: 'project',
+        },
+      ],
+      navigateParams: [
+        {
+          key: 'project',
+          value: 'openid',
+          id: 'project',
+        },
+      ],
+      realTitle: '主数据视图scrum',
+      refAppViewId: 'plmweb.project_scrum_index_view',
+      name: 'SCRUM',
+      id: 'scrum',
+    },
+    {
+      navigateContexts: [
+        {
+          key: 'ID',
+          value: 'id',
+          name: 'ID',
+          id: 'id',
+        },
+      ],
+      navigateParams: [
+        {
+          key: 'id',
+          value: 'id',
+          id: 'id',
+        },
+      ],
+      realTitle: '产品',
+      refAppViewId: 'plmweb.product_index_view',
+      name: 'PRODUCT',
+      id: 'product',
+    },
+    {
+      realTitle: '主数据视图waterfall',
+      refAppViewId: 'plmweb.project_waterfall_index_view',
+      name: 'WATERFALL',
+      id: 'waterfall',
+    },
+    {
+      openMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realTitle: '页面',
+      refAppViewId: 'plmweb.article_page_model_show_view',
+      name: 'PAGE',
+      id: 'page',
+    },
+    {
+      realTitle: '测试库',
+      refAppViewId: 'plmweb.library_index_view',
+      name: 'LIBRARY',
+      id: 'library',
+    },
+    {
+      openMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realTitle: '需求',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.IDEA.MAIN_VIEW',
+      },
+      refAppViewId: 'plmweb.idea_main_view',
+      name: 'IDEA',
+      id: 'idea',
+    },
+    {
+      openMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realTitle: '用例',
+      refAppViewId: 'plmweb.test_case_main_view',
+      name: 'TEST_CASE',
+      id: 'test_case',
+    },
+    {
+      openMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realTitle: '工单',
+      refAppViewId: 'plmweb.ticket_main_view',
+      name: 'TICKET',
+      id: 'ticket',
+    },
+    {
+      realTitle: '主数据视图kanban',
+      refAppViewId: 'plmweb.project_kanban_index_view',
+      name: 'KANBAN',
+      id: 'kanban',
+    },
+  ],
+  controls: [
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.RECENT',
+      },
+      caption: '最近访问',
+      codeName: 'redirect_view_captionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.recent',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'redirect_view_captionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'layoutpanel',
+    controlStyle: 'APPDEREDIRECTVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.recent',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '最近访问数据重定向视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.RECENT.REDIRECTVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEREDIRECTVIEW',
+  enableDP: true,
+  redirectView: true,
+  showCaptionBar: true,
+  modelId: 'db8a12cb46e76a7bde6d3bd97aec053d',
+  modelType: 'PSAPPDEVIEW',
+  name: 'recentRedirectView',
+  id: 'plmweb.recent_redirect_view',
+};
