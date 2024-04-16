@@ -19,7 +19,7 @@
     <properties>
         <docker.image.prefix>ibizlab</docker.image.prefix>
         <ibizlab-boot-starter.version>2.6.12.3.5</ibizlab-boot-starter.version>
-        <ibizlab-boot-adapter.version>2.6.1.12</ibizlab-boot-adapter.version>
+        <ibizlab-boot-adapter.version>2.6.1.13</ibizlab-boot-adapter.version>
         <ibizlab-generator-plugin.version>1.0.5.12</ibizlab-generator-plugin.version>
         <ibizlab-template-ibizedge.version>2.6.P-SNAPSHOT</ibizlab-template-ibizedge.version>
     </properties>
