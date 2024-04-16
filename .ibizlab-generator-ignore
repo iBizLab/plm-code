@@ -22,3 +22,4 @@ Dockerfile-serviceapi
 **/SearchAttachment.java
 **/SystemExtensionNotifySettingFeignClient.java
 **/AppSyncJob
+**/AuditAspect
