@@ -38,6 +38,30 @@ import cn.ibizlab.plm.core.testmgmt.domain.Review;
 public class ReviewSearchContext extends QueryWrapperContext<Review> {
 
     /**
+     * 评审类型EQ
+     */
+    @JsonProperty("n_type_eq")
+    @JSONField(name = "n_type_eq")
+    @ApiModelProperty("评审类型EQ")
+    private String typeEQ;
+
+    /**
+     * 类别LIKE
+     */
+    @JsonProperty("n_categories_like")
+    @JSONField(name = "n_categories_like")
+    @ApiModelProperty("类别LIKE")
+    private String categoriesLIKE;
+
+    /**
+     * 评审状态EQ
+     */
+    @JsonProperty("n_state_eq")
+    @JSONField(name = "n_state_eq")
+    @ApiModelProperty("评审状态EQ")
+    private String stateEQ;
+
+    /**
      * 名称LIKE
      */
     @JsonProperty("n_name_like")
@@ -61,6 +85,22 @@ public class ReviewSearchContext extends QueryWrapperContext<Review> {
     @ApiModelProperty("测试库标识EQ")
     private String libraryIdEQ;
 
+    /**
+     * 测试库名称EQ
+     */
+    @JsonProperty("n_library_name_eq")
+    @JSONField(name = "n_library_name_eq")
+    @ApiModelProperty("测试库名称EQ")
+    private String libraryNameEQ;
+
+    /**
+     * 测试库名称LIKE
+     */
+    @JsonProperty("n_library_name_like")
+    @JSONField(name = "n_library_name_like")
+    @ApiModelProperty("测试库名称LIKE")
+    private String libraryNameLIKE;
+
     @Override
     public void setContextParentKey(Serializable contextParentKey) {
         super.setContextParentKey(contextParentKey);
@@ -72,7 +112,7 @@ public class ReviewSearchContext extends QueryWrapperContext<Review> {
     public void setQuery(String query) {
         this.query=query;
         if(!ObjectUtils.isEmpty(query))
-            this.getFilter().and(QueryFilter.createQuery().or(QueryFilter.createQuery().like("name",query)));
+            this.getFilter().and(QueryFilter.createQuery().or(QueryFilter.createQuery().like("identifier",query),QueryFilter.createQuery().like("name",query)));
     }
 
     @JsonIgnore

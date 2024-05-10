@@ -6,7 +6,7 @@
     :model-data="model"
   >
     <template #searchform="slotProps">
-      <i-biz-searchform-control v-bind="slotProps" />
+      <i-biz-search-form-control v-bind="slotProps" />
     </template>
     <template #list="slotProps">
       <i-biz-list-control v-bind="slotProps" />

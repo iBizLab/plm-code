@@ -40,7 +40,7 @@ public class Insight extends EntityMP implements Serializable
      * 报表类型
      */
     @TableField(value = "type")
-    @DEField(name = "type")
+    @DEField(name = "type" , dict = "report_type")
     @JsonProperty("type")
     @JSONField(name = "type")
     @ApiModelProperty(value = "type", notes = "报表类型")

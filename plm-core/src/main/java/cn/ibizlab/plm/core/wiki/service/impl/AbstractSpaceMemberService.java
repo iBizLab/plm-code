@@ -185,6 +185,17 @@ public abstract class AbstractSpaceMemberService extends ServiceImpl<SpaceMember
         return list;
     }
 
+    public Page<SpaceMember> searchCurSpace(SpaceMemberSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<SpaceMember> pages=baseMapper.searchCurSpace(context.getPages(),context,context.getSelectCond());
+        List<SpaceMember> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<SpaceMember> listCurSpace(SpaceMemberSearchContext context) {
+        List<SpaceMember> list = baseMapper.listCurSpace(context,context.getSelectCond());
+        return list;
+    }
+
     public List<SpaceMember> findBySpaceId(List<String> spaceIds) {
         List<SpaceMember> list = baseMapper.findBySpaceId(spaceIds);
         return list;

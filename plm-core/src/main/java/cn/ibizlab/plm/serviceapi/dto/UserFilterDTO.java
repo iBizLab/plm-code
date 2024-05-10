@@ -63,6 +63,14 @@ public class UserFilterDTO extends FilterBase implements Serializable {
 	private String departmentIdEQ;
 
     /**
+     * 部门标识ISNULL
+     */
+    @JsonProperty("n_department_id_isnull")
+    @JSONField(name = "n_department_id_isnull")
+    @ApiModelProperty(value = "部门标识ISNULL", position = 131)
+	private String departmentIdISNULL;
+
+    /**
      * 岗位标识EQ
      */
     @JsonProperty("n_job_id_eq")

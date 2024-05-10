@@ -88,6 +88,7 @@ export default {
       detoolbarItems: [
         {
           actionLevel: 100,
+          buttonStyle: 'STYLE3',
           noPrivDisplayMode: 2,
           uiactionId: 'new',
           valid: true,
@@ -109,22 +110,32 @@ export default {
           id: 'deuiaction1',
         },
         {
+          itemType: 'SEPERATOR',
+          id: 'seperator1',
+        },
+        {
+          actionLevel: 100,
+          buttonStyle: 'STYLE2',
           detoolbarItems: [
             {
               actionLevel: 100,
               noPrivDisplayMode: 2,
-              uiactionId: 'import',
+              uiactionId: 'ticket_custom_import_data@ticket',
+              uiactionTarget: 'NONE',
               valid: true,
               caption: '导入工单',
               itemType: 'DEUIACTION',
+              sysCss: {
+                cssName: 'kanban-title',
+              },
               sysImage: {
-                cssClass: 'fa fa-upload',
-                glyph: 'xf093@FontAwesome',
+                cssClass: 'fa fa-cloud-upload',
+                glyph: 'xf0ee@FontAwesome',
               },
               tooltip: '导入工单',
               showCaption: true,
               showIcon: true,
-              id: 'deuiaction2',
+              id: 'deuiaction4',
             },
             {
               actionLevel: 100,
@@ -217,7 +228,7 @@ export default {
         },
         {
           clconvertMode: 'FRONT',
-          dataItemName: 'state',
+          dataItemName: 'state_text',
           excelCaption: '状态',
           appCodeListId: 'plmweb.prodmgmt__ticket_state',
           appDEFieldId: 'state',
@@ -348,6 +359,12 @@ export default {
           appDEFieldId: 'state',
           valueType: 'SIMPLE',
           dataType: 25,
+          id: 'state_text',
+        },
+        {
+          appDEFieldId: 'state',
+          valueType: 'SIMPLE',
+          dataType: 25,
           id: 'state',
         },
         {
@@ -472,6 +489,11 @@ export default {
             singleSelect: true,
             appCodeListId: 'plmweb.prodmgmt__ticket_state',
             editorType: 'DROPDOWNLIST',
+            editorItems: [
+              {
+                id: 'state',
+              },
+            ],
             valueType: 'SIMPLE',
             editable: true,
             id: 'state',
@@ -705,6 +727,7 @@ export default {
               id: 'deuiaction2',
             },
             {
+              actionLevel: 100,
               detoolbarItems: [
                 {
                   actionLevel: 100,

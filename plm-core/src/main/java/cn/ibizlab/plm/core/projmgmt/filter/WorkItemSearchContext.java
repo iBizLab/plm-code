@@ -505,6 +505,22 @@ public class WorkItemSearchContext extends QueryWrapperContext<WorkItem> {
     @ApiModelProperty("项目发布标识EQ")
     private String releaseIdEQ;
 
+    /**
+     * 项目发布名称EQ
+     */
+    @JsonProperty("n_release_name_eq")
+    @JSONField(name = "n_release_name_eq")
+    @ApiModelProperty("项目发布名称EQ")
+    private String releaseNameEQ;
+
+    /**
+     * 项目发布名称LIKE
+     */
+    @JsonProperty("n_release_name_like")
+    @JSONField(name = "n_release_name_like")
+    @ApiModelProperty("项目发布名称LIKE")
+    private String releaseNameLIKE;
+
     @Override
     public void setContextParentKey(Serializable contextParentKey) {
         super.setContextParentKey(contextParentKey);

@@ -8,4 +8,5 @@ export default {
   appDataEntityId: 'plmweb.search_hub',
   redirectView: false,
   modalOption: {},
+  appId: '',
 };

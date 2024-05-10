@@ -322,6 +322,9 @@ export default {
                   editor: {
                     singleSelect: true,
                     appCodeListId: 'plmweb.prodmgmt__product_list',
+                    editorParams: {
+                      overflowMode: 'ellipsis',
+                    },
                     editorType: 'DROPDOWNLIST',
                     placeHolder: '选择产品',
                     valueType: 'SIMPLE',
@@ -368,6 +371,9 @@ export default {
                   editor: {
                     singleSelect: true,
                     appCodeListId: 'plmweb.testmgmt__library_list',
+                    editorParams: {
+                      overflowMode: 'ellipsis',
+                    },
                     editorType: 'DROPDOWNLIST',
                     placeHolder: '选择测试库',
                     valueType: 'SIMPLE',
@@ -420,6 +426,7 @@ export default {
                     forceSelection: true,
                     showTrigger: true,
                     editorParams: {
+                      overflowMode: 'ellipsis',
                       AC: 'TRUE',
                       TRIGGER: 'TRUE',
                       PICKUPVIEW: 'FALSE',
@@ -469,6 +476,9 @@ export default {
                   editor: {
                     singleSelect: true,
                     appCodeListId: 'plmweb.projmgmt__usrcodelist0122047845',
+                    editorParams: {
+                      overflowMode: 'ellipsis',
+                    },
                     editorType: 'DROPDOWNLIST',
                     placeHolder: '选择项目',
                     valueType: 'SIMPLE',

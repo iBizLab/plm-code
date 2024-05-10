@@ -43,6 +43,25 @@ public interface VersionMapper extends BaseMapper<Version> {
     List<Version> listDefault(@Param("ctx") VersionSearchContext context, @Param("ew") Wrapper<Version> wrapper);
 
     /**
+     * 数据集合owner分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Version> searchOwner(IPage<Version> page, @Param("ctx") VersionSearchContext context, @Param("ew") Wrapper<Version> wrapper);
+    
+    /**
+     * 数据集合owner查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Version> listOwner(@Param("ctx") VersionSearchContext context, @Param("ew") Wrapper<Version> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

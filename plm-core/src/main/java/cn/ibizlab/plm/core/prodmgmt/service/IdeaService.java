@@ -23,6 +23,7 @@ import cn.ibizlab.plm.core.base.domain.SearchAttachment;
 import cn.ibizlab.plm.core.base.domain.SearchComment;
 import cn.ibizlab.plm.core.base.domain.Workload;
 import cn.ibizlab.plm.core.base.domain.Relation;
+import cn.ibizlab.plm.core.base.domain.Version;
 
 /**
  * 需求服务接口[IdeaService]
@@ -233,6 +234,16 @@ public interface IdeaService extends IService<Idea> {
     }
 
     /**
+     * fill_product_member
+     * 
+     * @param dto
+     * @return
+     */
+    default Idea fillProductMember(Idea dto) {
+        return dto;
+    }
+
+    /**
      * get_attention
      * 
      * @param key
@@ -376,6 +387,21 @@ public interface IdeaService extends IService<Idea> {
      * @return
      */
     List<Idea> listArchived(IdeaSearchContext context);
+
+    /**
+     * searchbaseline_choose_idea
+     * 基线选择需求
+     * @param context
+     * @return
+     */
+    Page<Idea> searchBaselineChooseIdea(IdeaSearchContext context);
+    /**
+     * listbaseline_choose_idea
+     * 基线选择需求
+     * @param context
+     * @return
+     */
+    List<Idea> listBaselineChooseIdea(IdeaSearchContext context);
 
     /**
      * searchcomment_notify_assignee

@@ -22,6 +22,7 @@ import io.swagger.annotations.*;
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import cn.ibizlab.plm.core.base.domain.Category;
+import cn.ibizlab.plm.core.base.domain.Group;
 
 /**
  * 分组实体类[Section]

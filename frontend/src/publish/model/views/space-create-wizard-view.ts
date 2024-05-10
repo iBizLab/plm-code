@@ -8,7 +8,7 @@ export default {
   },
   caption: '新建空间',
   codeName: 'space_create_wizard_view',
-  height: 650,
+  height: 700,
   appDataEntityId: 'plmweb.space',
   appViewEngines: [
     {
@@ -18,6 +18,11 @@ export default {
     },
   ],
   appViewNavParams: [
+    {
+      key: 'srfdefaulttype',
+      value: 'scope_type',
+      id: 'srfdefaulttype',
+    },
     {
       key: 'category',
       value: 'category',
@@ -50,13 +55,31 @@ export default {
           },
           dewizardForm: {
             formTag: 'fill_info',
+            goFinishEnableScriptCode:
+              'data.scope_type !== "organization"\r\n\r\n\r\n',
+            goNextEnableScriptCode: 'data.scope_type === "organization"\r\n',
             deformName: '新建表单',
             dewizardStepId: '空间信息',
-            stepActions: ['NEXT'],
+            stepActions: ['NEXT', 'FINISH'],
             firstForm: true,
             id: 'fill_info',
           },
           formFuncMode: 'WIZARDFORM',
+          deformItemUpdates: [
+            {
+              codeName: 'visibility',
+              defiupdateDetails: [
+                {
+                  id: 'visibility',
+                },
+              ],
+              scriptCode:
+                "if(data.scope_type === 'user'){\r\n    data.visibility = 'private'\r\n}",
+              customCode: true,
+              showBusyIndicator: true,
+              id: 'visibility',
+            },
+          ],
           deformItemVRs: [
             {
               checkMode: 1,
@@ -119,7 +142,7 @@ export default {
                     {
                       rawItem: {
                         content:
-                          '<p class="template-name"><strong>空间</strong></p>\n<div class="template-desc"><span style="color: #95a5a6;">空间是记录信息和知识的页面集合，通过组织页面层级将知识系统化、结构化，在知识管理层面助力企业更快更好的发布产品。</span></div>\n<div class="template-tips">\n<div class="template-tip ng-star-inserted" style="padding-left: 40px;"><span style="color: #95a5a6;">丰富的页面元素，满足编写需要</span></div>\n<div class="template-tip ng-star-inserted" style="padding-left: 40px;"><span style="color: #95a5a6;">树状页面结构，直接拖动页面编排目录，让知识管理更方便高效</span></div>\n<div class="template-tip ng-star-inserted" style="padding-left: 40px;"><span style="color: #95a5a6;">通过页面评论实现成员沟通交流，形成反馈闭环</span></div>\n</div>',
+                          '<h2 class="template-name" style="margin: 0 0 6px; padding-left: 40px;"><strong>空间</strong></h2>\n<div class="template-desc" style="padding: 0 40px; margin-bottom: 16px;"><span style="color: #95a5a6;">空间是记录信息和知识的页面集合，通过组织页面层级将知识系统化、结构化，在知识管理层面助力企业更快更好的发布产品。</span></div>\n<div class="template-tips">\n<div class="template-tip ng-star-inserted" style="padding-left: 40px; margin-bottom: 12px;">\n<ul>\n<li style="color: #95a5a6;">丰富的页面元素，满足编写需要</li>\n</ul>\n</div>\n<div class="template-tip ng-star-inserted" style="padding-left: 40px; margin-bottom: 12px;">\n<ul>\n<li style="color: #95a5a6;">树状页面结构，直接拖动页面编排目录，让知识管理更方便高效</li>\n</ul>\n</div>\n<div class="template-tip ng-star-inserted" style="padding-left: 40px; margin-bottom: 12px;">\n<ul>\n<li style="color: #95a5a6;">通过页面评论实现成员沟通交流，形成反馈闭环</li>\n</ul>\n</div>\n</div>',
                         contentType: 'HTML',
                         id: 'rawitem1',
                       },
@@ -150,6 +173,81 @@ export default {
                     layout: 'TABLE_24COL',
                   },
                   deformDetails: [
+                    {
+                      dataType: 25,
+                      enableCond: 3,
+                      labelPos: 'TOP',
+                      labelWidth: 130,
+                      noPrivDisplayMode: 1,
+                      appDEFieldId: 'scope_id',
+                      editor: {
+                        editorType: 'HIDDEN',
+                        valueType: 'SIMPLE',
+                        editable: true,
+                        id: 'scope_id',
+                      },
+                      allowEmpty: true,
+                      hidden: true,
+                      caption: '所属对象',
+                      codeName: 'scope_id',
+                      detailStyle: 'DEFAULT',
+                      detailType: 'FORMITEM',
+                      layoutPos: {
+                        colMD: 24,
+                        layout: 'TABLE_24COL',
+                      },
+                      showCaption: true,
+                      id: 'scope_id',
+                    },
+                    {
+                      dataType: 25,
+                      enableCond: 3,
+                      labelPos: 'TOP',
+                      labelWidth: 130,
+                      noPrivDisplayMode: 1,
+                      appDEFieldId: 'scope_type',
+                      deformItemUpdateId: 'visibility',
+                      editor: {
+                        enablePickupView: true,
+                        singleSelect: true,
+                        handlerType: 'PickupText',
+                        appDEACModeId: 'default',
+                        appDEDataSetId: 'fetch_default',
+                        appDataEntityId: 'plmweb.group',
+                        enableAC: true,
+                        forceSelection: true,
+                        showTrigger: true,
+                        valueItemName: 'scope_id',
+                        editorParams: {
+                          AC: 'TRUE',
+                          fillMap:
+                            '{"user":"user","user_group":"user_group","organization":"organization"}',
+                          enablePerson: 'true',
+                          PICKUPVIEW: 'TRUE',
+                        },
+                        editorStyle: 'TEAM_PICKER',
+                        editorType: 'PICKER',
+                        editorItems: [
+                          {
+                            id: 'scope_id',
+                          },
+                        ],
+                        sysPFPluginId: 'team_picker',
+                        valueType: 'SIMPLE',
+                        editable: true,
+                        id: 'scope_type',
+                      },
+                      caption: '所属',
+                      codeName: 'scope_type',
+                      detailStyle: 'DEFAULT',
+                      detailType: 'FORMITEM',
+                      layoutPos: {
+                        colMD: 24,
+                        layout: 'TABLE_24COL',
+                      },
+                      showCaption: true,
+                      id: 'scope_type',
+                    },
                     {
                       dataType: 25,
                       enableCond: 3,
@@ -205,6 +303,23 @@ export default {
                       codeName: 'visibility',
                       detailStyle: 'DEFAULT',
                       detailType: 'FORMITEM',
+                      defdgroupLogics: [
+                        {
+                          logicCat: 'ITEMENABLE',
+                          relatedDetailNames: ['scope_type'],
+                          groupOP: 'AND',
+                          defdlogics: [
+                            {
+                              condOP: 'NOTEQ',
+                              defdname: 'scope_type',
+                              value: 'user',
+                              logicType: 'SINGLE',
+                            },
+                          ],
+                          logicType: 'GROUP',
+                          id: '表单成员[visibility][表单项启用]逻辑',
+                        },
+                      ],
                       layoutPos: {
                         colMD: 24,
                         layout: 'TABLE_24COL',
@@ -529,7 +644,7 @@ export default {
                     {
                       rawItem: {
                         content:
-                          '<p class="template-name"><strong>空间</strong></p>\n<div class="template-desc"><span style="color: #95a5a6;">空间是记录信息和知识的页面集合，通过组织页面层级将知识系统化、结构化，在知识管理层面助力企业更快更好的发布产品。</span></div>\n<div class="template-tips">\n<div class="template-tip ng-star-inserted" style="padding-left: 40px;"><span style="color: #95a5a6;">丰富的页面元素，满足编写需要</span></div>\n<div class="template-tip ng-star-inserted" style="padding-left: 40px;"><span style="color: #95a5a6;">树状页面结构，直接拖动页面编排目录，让知识管理更方便高效</span></div>\n<div class="template-tip ng-star-inserted" style="padding-left: 40px;"><span style="color: #95a5a6;">通过页面评论实现成员沟通交流，形成反馈闭环</span></div>\n</div>',
+                          '<h2 class="template-name" style="margin: 0 0 6px; padding-left: 40px;"><strong>空间</strong></h2>\n<div class="template-desc" style="padding: 0 40px; margin-bottom: 16px;"><span style="color: #95a5a6;">空间是记录信息和知识的页面集合，通过组织页面层级将知识系统化、结构化，在知识管理层面助力企业更快更好的发布产品。</span></div>\n<div class="template-tips">\n<div class="template-tip ng-star-inserted" style="padding-left: 40px; margin-bottom: 12px;">\n<ul>\n<li style="color: #95a5a6;">丰富的页面元素，满足编写需要</li>\n</ul>\n</div>\n<div class="template-tip ng-star-inserted" style="padding-left: 40px; margin-bottom: 12px;">\n<ul>\n<li style="color: #95a5a6;">树状页面结构，直接拖动页面编排目录，让知识管理更方便高效</li>\n</ul>\n</div>\n<div class="template-tip ng-star-inserted" style="padding-left: 40px; margin-bottom: 12px;">\n<ul>\n<li style="color: #95a5a6;">通过页面评论实现成员沟通交流，形成反馈闭环</li>\n</ul>\n</div>\n</div>',
                         contentType: 'HTML',
                         id: 'rawitem1',
                       },
@@ -809,9 +924,12 @@ export default {
         dewizardForms: [
           {
             formTag: 'fill_info',
+            goFinishEnableScriptCode:
+              'data.scope_type !== "organization"\r\n\r\n\r\n',
+            goNextEnableScriptCode: 'data.scope_type === "organization"\r\n',
             deformName: '新建表单',
             dewizardStepId: '空间信息',
-            stepActions: ['NEXT'],
+            stepActions: ['NEXT', 'FINISH'],
             firstForm: true,
             id: 'fill_info',
           },

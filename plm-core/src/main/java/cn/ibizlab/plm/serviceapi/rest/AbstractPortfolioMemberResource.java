@@ -126,6 +126,44 @@ public abstract class AbstractPortfolioMemberResource {
     }
 
     /**
+    * change_role 文件夹成员
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<PortfolioMemberDTO>
+    */
+    @ApiOperation(value = "change_role", tags = {"文件夹成员" },  notes = "PortfolioMember-change_role ")
+    @PostMapping("portfolio_members/{id}/change_role")
+    public ResponseEntity<ResponseWrapper<PortfolioMemberDTO>> changeRoleById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<PortfolioMemberDTO> dto) {
+        ResponseWrapper<PortfolioMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(changeRoleById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(changeRoleById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * change_role 文件夹成员
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<PortfolioMemberDTO>
+    */   
+    public PortfolioMemberDTO changeRoleById
+            (String id, PortfolioMemberDTO dto) {
+        PortfolioMember domain = portfolioMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        PortfolioMember rt = portfolioMemberService.changeRole(domain);
+        return portfolioMemberDtoMapping.toDto(rt);
+    }
+
+    /**
     * 保存Save 文件夹成员
     * 
     *
@@ -238,6 +276,46 @@ public abstract class AbstractPortfolioMemberResource {
         domain.setId(id);
         portfolioMemberService.update(domain);
         PortfolioMember rt = domain;
+        return portfolioMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * change_role 文件夹成员
+    * 
+    *
+    * @param portfolioId portfolioId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<PortfolioMemberDTO>
+    */
+    @ApiOperation(value = "change_role", tags = {"文件夹成员" },  notes = "PortfolioMember-change_role ")
+    @PostMapping("portfolios/{portfolioId}/portfolio_members/{id}/change_role")
+    public ResponseEntity<ResponseWrapper<PortfolioMemberDTO>> changeRoleByPortfolioIdAndId
+            (@PathVariable("portfolioId") String portfolioId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<PortfolioMemberDTO> dto) {
+        ResponseWrapper<PortfolioMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(changeRoleByPortfolioIdAndId(portfolioId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(changeRoleByPortfolioIdAndId(portfolioId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * change_role 文件夹成员
+    * 
+    *
+    * @param portfolioId portfolioId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<PortfolioMemberDTO>
+    */   
+    public PortfolioMemberDTO changeRoleByPortfolioIdAndId
+            (String portfolioId, String id, PortfolioMemberDTO dto) {
+        PortfolioMember domain = portfolioMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        PortfolioMember rt = portfolioMemberService.changeRole(domain);
         return portfolioMemberDtoMapping.toDto(rt);
     }
 
@@ -361,6 +439,46 @@ public abstract class AbstractPortfolioMemberResource {
     }
 
     /**
+    * change_role 文件夹成员
+    * 
+    *
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<PortfolioMemberDTO>
+    */
+    @ApiOperation(value = "change_role", tags = {"文件夹成员" },  notes = "PortfolioMember-change_role ")
+    @PostMapping("users/{userId}/portfolio_members/{id}/change_role")
+    public ResponseEntity<ResponseWrapper<PortfolioMemberDTO>> changeRoleByUserIdAndId
+            (@PathVariable("userId") String userId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<PortfolioMemberDTO> dto) {
+        ResponseWrapper<PortfolioMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(changeRoleByUserIdAndId(userId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(changeRoleByUserIdAndId(userId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * change_role 文件夹成员
+    * 
+    *
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<PortfolioMemberDTO>
+    */   
+    public PortfolioMemberDTO changeRoleByUserIdAndId
+            (String userId, String id, PortfolioMemberDTO dto) {
+        PortfolioMember domain = portfolioMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        PortfolioMember rt = portfolioMemberService.changeRole(domain);
+        return portfolioMemberDtoMapping.toDto(rt);
+    }
+
+    /**
     * 保存Save 文件夹成员
     * 
     *
@@ -464,6 +582,28 @@ public abstract class AbstractPortfolioMemberResource {
     }
 
     /**
+    * 查询fetch_cur_project_set 文件夹成员
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<PortfolioMemberDTO>>
+    */
+    @ApiOperation(value = "查询fetch_cur_project_set", tags = {"文件夹成员" },  notes = "PortfolioMember-fetch_cur_project_set ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-fetch_cur_project_set-all') or hasPermission(#dto,'ibizplm-PortfolioMember-fetch_cur_project_set')")
+    @PostMapping("portfolio_members/fetch_cur_project_set")
+    public ResponseEntity<List<PortfolioMemberDTO>> fetchCurProjectSet
+            (@Validated @RequestBody PortfolioMemberFilterDTO dto) {
+        PortfolioMemberSearchContext context = portfolioMemberFilterDtoMapping.toDomain(dto);
+        Page<PortfolioMember> domains = portfolioMemberService.searchCurProjectSet(context) ;
+        List<PortfolioMemberDTO> list = portfolioMemberDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
     * 查询fetch_default 文件夹成员
     * 
     *
@@ -553,6 +693,30 @@ public abstract class AbstractPortfolioMemberResource {
         domain.setPortfolioId(portfolioId);
         PortfolioMember rt = portfolioMemberService.getDraft(domain);
         return ResponseEntity.status(HttpStatus.OK).body(portfolioMemberDtoMapping.toDto(rt));
+    }
+
+    /**
+    * 查询fetch_cur_project_set 文件夹成员
+    * 
+    *
+    * @param portfolioId portfolioId
+    * @param dto dto
+    * @return ResponseEntity<List<PortfolioMemberDTO>>
+    */
+    @ApiOperation(value = "查询fetch_cur_project_set", tags = {"文件夹成员" },  notes = "PortfolioMember-fetch_cur_project_set ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-fetch_cur_project_set-all') or hasPermission('portfolio',#portfolioId,#dto,'ibizplm-PortfolioMember-fetch_cur_project_set')")
+    @PostMapping("portfolios/{portfolioId}/portfolio_members/fetch_cur_project_set")
+    public ResponseEntity<List<PortfolioMemberDTO>> fetchCurProjectSetByPortfolioId
+            (@PathVariable("portfolioId") String portfolioId, @Validated @RequestBody PortfolioMemberFilterDTO dto) {
+        dto.setPortfolioIdEQ(portfolioId);
+        PortfolioMemberSearchContext context = portfolioMemberFilterDtoMapping.toDomain(dto);
+        Page<PortfolioMember> domains = portfolioMemberService.searchCurProjectSet(context) ;
+        List<PortfolioMemberDTO> list = portfolioMemberDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
     }
 
     /**
@@ -647,6 +811,30 @@ public abstract class AbstractPortfolioMemberResource {
         domain.setUserId(userId);
         PortfolioMember rt = portfolioMemberService.getDraft(domain);
         return ResponseEntity.status(HttpStatus.OK).body(portfolioMemberDtoMapping.toDto(rt));
+    }
+
+    /**
+    * 查询fetch_cur_project_set 文件夹成员
+    * 
+    *
+    * @param userId userId
+    * @param dto dto
+    * @return ResponseEntity<List<PortfolioMemberDTO>>
+    */
+    @ApiOperation(value = "查询fetch_cur_project_set", tags = {"文件夹成员" },  notes = "PortfolioMember-fetch_cur_project_set ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-fetch_cur_project_set-all') or hasPermission('user',#userId,#dto,'ibizplm-PortfolioMember-fetch_cur_project_set')")
+    @PostMapping("users/{userId}/portfolio_members/fetch_cur_project_set")
+    public ResponseEntity<List<PortfolioMemberDTO>> fetchCurProjectSetByUserId
+            (@PathVariable("userId") String userId, @Validated @RequestBody PortfolioMemberFilterDTO dto) {
+        dto.setUserIdEQ(userId);
+        PortfolioMemberSearchContext context = portfolioMemberFilterDtoMapping.toDomain(dto);
+        Page<PortfolioMember> domains = portfolioMemberService.searchCurProjectSet(context) ;
+        List<PortfolioMemberDTO> list = portfolioMemberDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
     }
 
     /**

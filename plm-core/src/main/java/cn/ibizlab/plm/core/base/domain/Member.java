@@ -79,6 +79,16 @@ public class Member extends EntityMP implements Serializable
     private String ownerSubtype;
 
     /**
+     * 角色
+     */
+    @TableField(value = "role_id")
+    @DEField(name = "role_id" , defaultValue = "user" , dict = "user_group_role_type")
+    @JsonProperty("role_id")
+    @JSONField(name = "role_id")
+    @ApiModelProperty(value = "role_id", notes = "角色")
+    private String roleId;
+
+    /**
      * 更新时间
      */
     @TableField(value = "update_time")
@@ -167,6 +177,15 @@ public class Member extends EntityMP implements Serializable
     public Member setUserId(String userId) {
         this.userId = userId;
         this.modify("user_id", userId);
+        return this;
+    }
+
+    /**
+     * 设置 [角色]
+     */
+    public Member setRoleId(String roleId) {
+        this.roleId = roleId;
+        this.modify("role_id", roleId);
         return this;
     }
 

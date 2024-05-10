@@ -43,12 +43,16 @@ import cn.ibizlab.plm.core.base.domain.Relation;
 import cn.ibizlab.plm.core.base.service.RelationService;
 import cn.ibizlab.plm.core.base.domain.Attachment;
 import cn.ibizlab.plm.core.base.service.AttachmentService;
+import cn.ibizlab.plm.core.testmgmt.domain.ReviewContent;
+import cn.ibizlab.plm.core.testmgmt.service.ReviewContentService;
 import cn.ibizlab.plm.core.base.domain.SearchAttachment;
 import cn.ibizlab.plm.core.base.service.SearchAttachmentService;
 import cn.ibizlab.plm.core.base.domain.SearchComment;
 import cn.ibizlab.plm.core.base.service.SearchCommentService;
 import cn.ibizlab.plm.core.base.domain.Workload;
 import cn.ibizlab.plm.core.base.service.WorkloadService;
+import cn.ibizlab.plm.core.base.domain.Version;
+import cn.ibizlab.plm.core.base.service.VersionService;
 
 /**
  * 实体[用例] 服务对象接口实现
@@ -92,6 +96,10 @@ public abstract class AbstractTestCaseService extends ServiceImpl<TestCaseMapper
 
     @Autowired
     @Lazy
+    protected ReviewContentService reviewContentService;
+
+    @Autowired
+    @Lazy
     protected SearchAttachmentService searchAttachmentService;
 
     @Autowired
@@ -101,6 +109,10 @@ public abstract class AbstractTestCaseService extends ServiceImpl<TestCaseMapper
     @Autowired
     @Lazy
     protected WorkloadService workloadService;
+
+    @Autowired
+    @Lazy
+    protected VersionService versionService;
 
     protected int batchSize = 500;
 
@@ -113,6 +125,8 @@ public abstract class AbstractTestCaseService extends ServiceImpl<TestCaseMapper
         getAttentions(et);
         //设置 [附件]
         getAttachments(et);
+        //设置 [执行用例]
+        getLatestExecuted(et);
         return et;
     }
 
@@ -167,6 +181,7 @@ public abstract class AbstractTestCaseService extends ServiceImpl<TestCaseMapper
             return false;
         attentionService.saveByTestCase(et,et.getAttentions());
         attachmentService.saveByTestCase(et,et.getAttachments());
+        runService.saveByTestCaseLatestRun(et,et.getLatestExecuted());
         get(et);
         return true;
     }
@@ -187,6 +202,7 @@ public abstract class AbstractTestCaseService extends ServiceImpl<TestCaseMapper
             return false;
         attentionService.saveByTestCase(et,et.getAttentions());
         attachmentService.saveByTestCase(et,et.getAttachments());
+        runService.saveByTestCaseLatestRun(et,et.getLatestExecuted());
         get(et);
         return true;
     }
@@ -296,6 +312,21 @@ public abstract class AbstractTestCaseService extends ServiceImpl<TestCaseMapper
 
     public List<TestCase> listAssessmentResult(TestCaseSearchContext context) {
         return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listAssessmentResult(context,context.getSelectCond()),TestCase.class);
+    }
+
+    public Page<TestCase> searchBaselineChooseCase(TestCaseSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestCase> pages=baseMapper.searchBaselineChooseCase(context.getPages(),context,context.getSelectCond());
+        List<TestCase> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<TestCase> listBaselineChooseCase(TestCaseSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        List<TestCase> list = baseMapper.listBaselineChooseCase(context,context.getSelectCond());
+        return list;
     }
 
     public Page<TestCase> searchCasePerson(TestCaseSearchContext context) {
@@ -551,6 +582,9 @@ public abstract class AbstractTestCaseService extends ServiceImpl<TestCaseMapper
         if(!ObjectUtils.isEmpty(list))
             attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
                 .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
+            runService.findByCaseId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getCaseId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setLatestExecuted(sub.getValue())));
         return list;
     }
     public List<TestCase> findBySuiteId(List<String> suiteIds) {
@@ -561,6 +595,9 @@ public abstract class AbstractTestCaseService extends ServiceImpl<TestCaseMapper
         if(!ObjectUtils.isEmpty(list))
             attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
                 .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
+            runService.findByCaseId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getCaseId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setLatestExecuted(sub.getValue())));
         return list;
     }
     public List<TestCase> findByMaintenanceId(List<String> maintenanceIds) {
@@ -571,6 +608,9 @@ public abstract class AbstractTestCaseService extends ServiceImpl<TestCaseMapper
         if(!ObjectUtils.isEmpty(list))
             attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
                 .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
+            runService.findByCaseId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getCaseId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setLatestExecuted(sub.getValue())));
         return list;
     }
     public boolean removeByTestLibraryId(String testLibraryId) {
@@ -689,6 +729,13 @@ public abstract class AbstractTestCaseService extends ServiceImpl<TestCaseMapper
     public List<Attachment> getAttachments(TestCase et) {
         List<Attachment> list = attachmentService.findByOwnerId(et.getId());
         et.setAttachments(list);
+        return list;
+    }
+
+    @Override
+    public List<Run> getLatestExecuted(TestCase et) {
+        List<Run> list = runService.findByCaseId(et.getId());
+        et.setLatestExecuted(list);
         return list;
     }
 

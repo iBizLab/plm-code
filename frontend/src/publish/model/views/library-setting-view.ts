@@ -141,7 +141,7 @@ export default {
           id: 'member',
         },
         {
-          dedrbarGroupId: 'usrdrgroup0319986719',
+          dedrbarGroupId: 'usrdrgroup0319461775',
           caption: '用例模板',
           appViewId: 'plmweb.test_case_template_all_grid_view',
           id: 'test_case_template',

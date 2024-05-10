@@ -564,6 +564,16 @@ export default {
         name: 'LOGIC',
         id: 'logic',
       },
+      {
+        eventNames: 'onCreated',
+        logicTrigger: 'VIEWEVENT',
+        logicType: 'APPDEUILOGIC',
+        appDEUILogicId: 'test_get_only_read',
+        appDataEntityId: 'plmweb.run',
+        builtinLogic: true,
+        name: 'READONLY',
+        id: 'readonly',
+      },
     ],
     controls: [
       {
@@ -702,7 +712,7 @@ export default {
                       halign: 'LEFT',
                       valign: 'MIDDLE',
                       wrapMode: 'NOWRAP',
-                      appCodeListId: 'plmweb.testmgmt__test_case_state',
+                      appCodeListId: 'plmweb.testmgmt__case_state',
                       editorType: 'SPAN',
                       valueType: 'SIMPLE',
                       editable: true,
@@ -1337,7 +1347,7 @@ export default {
                         },
                         deformDetails: [
                           {
-                            appViewId: 'plmweb.idea_run_re_idea_grid_view',
+                            appViewId: 'plmweb.relation_run_re_idea_grid_view',
                             navigateParams: [
                               {
                                 key: 'principal_id',
@@ -1377,7 +1387,7 @@ export default {
                         deformDetails: [
                           {
                             appViewId:
-                              'plmweb.work_item_run_re_work_item_grid_view',
+                              'plmweb.relation_run_re_work_item_grid_view',
                             navigateParams: [
                               {
                                 key: 'principal_id',
@@ -1416,8 +1426,7 @@ export default {
                         },
                         deformDetails: [
                           {
-                            appViewId:
-                              'plmweb.work_item_run_re_work_item_bug_grid_view',
+                            appViewId: 'plmweb.relation_run_re_bug_grid_view',
                             navigateContexts: [
                               {
                                 key: 'TEST_CASE',
@@ -1426,10 +1435,24 @@ export default {
                                 id: 'test_case',
                               },
                               {
+                                key: 'TARGET_TYPE',
+                                value: 'work_item',
+                                rawValue: true,
+                                name: 'TARGET_TYPE',
+                                id: 'target_type',
+                              },
+                              {
                                 key: 'TEST_PLAN',
                                 rawValue: true,
                                 name: 'TEST_PLAN',
                                 id: 'test_plan',
+                              },
+                              {
+                                key: 'PRINCIPAL_TYPE',
+                                value: 'run',
+                                rawValue: true,
+                                name: 'PRINCIPAL_TYPE',
+                                id: 'principal_type',
                               },
                               {
                                 key: 'CURTEST_CASE',
@@ -1439,6 +1462,11 @@ export default {
                               },
                             ],
                             navigateParams: [
+                              {
+                                key: 'run',
+                                value: 'run',
+                                id: 'run',
+                              },
                               {
                                 key: 'principal_id',
                                 value: 'run',
@@ -1926,6 +1954,23 @@ export default {
                             codeName: 'grouppanel4',
                             detailStyle: 'DEFAULT',
                             detailType: 'GROUPPANEL',
+                            defdgroupLogics: [
+                              {
+                                logicCat: 'PANELVISIBLE',
+                                relatedDetailNames: ['is_readonly'],
+                                groupOP: 'AND',
+                                defdlogics: [
+                                  {
+                                    condOP: 'NOTEQ',
+                                    defdname: 'is_readonly',
+                                    value: 'true',
+                                    logicType: 'SINGLE',
+                                  },
+                                ],
+                                logicType: 'GROUP',
+                                id: '表单成员[grouppanel4][面板显示]逻辑',
+                              },
+                            ],
                             layoutPos: {
                               colMD: 24,
                               layout: 'TABLE_24COL',
@@ -2527,55 +2572,6 @@ export default {
                     },
                     id: 'tabpanel2',
                   },
-                  {
-                    layout: {
-                      columnCount: 24,
-                      layout: 'TABLE_24COL',
-                    },
-                    deformDetails: [
-                      {
-                        appViewId: 'plmweb.workload_run_list_view',
-                        parentDataJO: {
-                          srfparentdename: 'RUN',
-                          SRFPARENTTYPE: 'CUSTOM',
-                        },
-                        codeName: 'druipart3',
-                        detailStyle: 'DEFAULT',
-                        detailType: 'DRUIPART',
-                        layoutPos: {
-                          colMD: 24,
-                          layout: 'TABLE_24COL',
-                        },
-                        showCaption: true,
-                        id: 'druipart3',
-                      },
-                    ],
-                    codeName: 'grouppanel1',
-                    detailStyle: 'DEFAULT',
-                    detailType: 'GROUPPANEL',
-                    defdgroupLogics: [
-                      {
-                        logicCat: 'PANELVISIBLE',
-                        relatedDetailNames: ['workload_schedule'],
-                        groupOP: 'AND',
-                        defdlogics: [
-                          {
-                            condOP: 'EQ',
-                            defdname: 'workload_schedule',
-                            value: '-1',
-                            logicType: 'SINGLE',
-                          },
-                        ],
-                        logicType: 'GROUP',
-                        id: '表单成员[grouppanel1][面板显示]逻辑',
-                      },
-                    ],
-                    layoutPos: {
-                      colMD: 24,
-                      layout: 'TABLE_24COL',
-                    },
-                    id: 'grouppanel1',
-                  },
                 ],
                 codeName: 'right_grouppanel',
                 detailStyle: 'DEFAULT',
@@ -2612,6 +2608,84 @@ export default {
                 },
                 showCaption: true,
                 id: 'case_id',
+              },
+              {
+                createDV: 'srfreadonly',
+                createDVT: 'APPDATA',
+                dataType: 25,
+                enableCond: 3,
+                labelPos: 'LEFT',
+                labelWidth: 130,
+                noPrivDisplayMode: 1,
+                editor: {
+                  editorType: 'HIDDEN',
+                  valueType: 'SIMPLE',
+                  editable: true,
+                  id: 'is_readonly',
+                },
+                updateDV: 'srfreadonly',
+                updateDVT: 'APPDATA',
+                allowEmpty: true,
+                hidden: true,
+                caption: '是否只读',
+                codeName: 'is_readonly',
+                detailStyle: 'DEFAULT',
+                detailType: 'FORMITEM',
+                layoutPos: {
+                  colMD: 24,
+                  layout: 'TABLE_24COL',
+                },
+                showCaption: true,
+                id: 'is_readonly',
+              },
+              {
+                layout: {
+                  columnCount: 24,
+                  layout: 'TABLE_24COL',
+                },
+                deformDetails: [
+                  {
+                    appViewId: 'plmweb.workload_run_list_view',
+                    parentDataJO: {
+                      srfparentdename: 'RUN',
+                      SRFPARENTTYPE: 'CUSTOM',
+                    },
+                    codeName: 'druipart3',
+                    detailStyle: 'DEFAULT',
+                    detailType: 'DRUIPART',
+                    layoutPos: {
+                      colMD: 24,
+                      layout: 'TABLE_24COL',
+                    },
+                    showCaption: true,
+                    id: 'druipart3',
+                  },
+                ],
+                codeName: 'grouppanel1',
+                detailStyle: 'DEFAULT',
+                detailType: 'GROUPPANEL',
+                defdgroupLogics: [
+                  {
+                    logicCat: 'PANELVISIBLE',
+                    relatedDetailNames: ['workload_schedule'],
+                    groupOP: 'AND',
+                    defdlogics: [
+                      {
+                        condOP: 'EQ',
+                        defdname: 'workload_schedule',
+                        value: '-1',
+                        logicType: 'SINGLE',
+                      },
+                    ],
+                    logicType: 'GROUP',
+                    id: '表单成员[grouppanel1][面板显示]逻辑',
+                  },
+                ],
+                layoutPos: {
+                  colMD: 24,
+                  layout: 'TABLE_24COL',
+                },
+                id: 'grouppanel1',
               },
               {
                 dataType: 25,
@@ -2745,13 +2819,23 @@ export default {
             uiactionId: 'delete_run@run',
             uiactionTarget: 'MULTIKEY',
             valid: true,
-            caption: '移除',
+            caption: '移出',
             itemType: 'DEUIACTION',
+            controlLogics: [
+              {
+                itemName: 'deuiaction2',
+                logicTag: 'toolbar',
+                logicType: 'SCRIPT',
+                scriptCode: 'context.srfreadonly != true',
+                triggerType: 'ITEMVISIBLE',
+                id: 'deuiaction2',
+              },
+            ],
             sysImage: {
-              cssClass: 'fa fa-share',
-              glyph: 'xf064@FontAwesome',
+              cssClass: 'fa fa-mail-reply',
+              glyph: 'xf112@FontAwesome',
             },
-            tooltip: '移除',
+            tooltip: '移出',
             showCaption: true,
             showIcon: true,
             id: 'deuiaction2',
@@ -2764,6 +2848,16 @@ export default {
             valid: true,
             caption: '编辑',
             itemType: 'DEUIACTION',
+            controlLogics: [
+              {
+                itemName: 'deuiaction1',
+                logicTag: 'toolbar',
+                logicType: 'SCRIPT',
+                scriptCode: 'context.srfreadonly != true',
+                triggerType: 'ITEMVISIBLE',
+                id: 'deuiaction1',
+              },
+            ],
             sysImage: {
               cssClass: 'fa fa-pencil-square-o',
               glyph: 'xf044@FontAwesome',
@@ -2775,9 +2869,20 @@ export default {
           },
           {
             itemType: 'SEPERATOR',
+            controlLogics: [
+              {
+                itemName: 'seperator1',
+                logicTag: 'toolbar',
+                logicType: 'SCRIPT',
+                scriptCode: 'context.srfreadonly != true',
+                triggerType: 'ITEMVISIBLE',
+                id: 'seperator1',
+              },
+            ],
             id: 'seperator1',
           },
           {
+            actionLevel: 100,
             detoolbarItems: [
               {
                 actionLevel: 100,
@@ -2800,6 +2905,16 @@ export default {
             valid: true,
             caption: '更多',
             itemType: 'ITEMS',
+            controlLogics: [
+              {
+                itemName: 'items1',
+                logicTag: 'toolbar',
+                logicType: 'SCRIPT',
+                scriptCode: 'context.srfreadonly != true',
+                triggerType: 'ITEMVISIBLE',
+                id: 'items1',
+              },
+            ],
             sysImage: {
               cssClass: 'fa fa-list-ul',
               glyph: 'xf0ca@FontAwesome',

@@ -35,7 +35,7 @@ public class ProductTicketTypeFilterDTO extends FilterBase implements Serializab
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 10)
+    @ApiModelProperty(value = "名称LIKE", position = 20)
 	private String nameLIKE;
 
     /**
@@ -43,7 +43,7 @@ public class ProductTicketTypeFilterDTO extends FilterBase implements Serializab
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 50)
+    @ApiModelProperty(value = "标识EQ", position = 60)
 	private String idEQ;
 
     /**
@@ -51,7 +51,7 @@ public class ProductTicketTypeFilterDTO extends FilterBase implements Serializab
      */
     @JsonProperty("n_ticket_type_id_eq")
     @JSONField(name = "n_ticket_type_id_eq")
-    @ApiModelProperty(value = "工单类型标识EQ", position = 60)
+    @ApiModelProperty(value = "工单类型标识EQ", position = 70)
 	private String ticketTypeIdEQ;
 
     /**
@@ -59,8 +59,24 @@ public class ProductTicketTypeFilterDTO extends FilterBase implements Serializab
      */
     @JsonProperty("n_product_id_eq")
     @JSONField(name = "n_product_id_eq")
-    @ApiModelProperty(value = "产品标识EQ", position = 70)
+    @ApiModelProperty(value = "产品标识EQ", position = 80)
 	private String productIdEQ;
+
+    /**
+     * 名称EQ
+     */
+    @JsonProperty("n_ticket_type_name_eq")
+    @JSONField(name = "n_ticket_type_name_eq")
+    @ApiModelProperty(value = "名称EQ", position = 90)
+	private String ticketTypeNameEQ;
+
+    /**
+     * 名称LIKE
+     */
+    @JsonProperty("n_ticket_type_name_like")
+    @JSONField(name = "n_ticket_type_name_like")
+    @ApiModelProperty(value = "名称LIKE", position = 91)
+	private String ticketTypeNameLIKE;
 
 
 }

@@ -73,7 +73,7 @@ public class Run extends EntityMP implements Serializable
      * 评审状态
      */
     @TableField(value = "state" , exist = false)
-    @DEField(name = "state" , dict = "test_case_state")
+    @DEField(name = "state" , dict = "case_state")
     @JsonProperty("state")
     @JSONField(name = "state")
     @ApiModelProperty(value = "state", notes = "评审状态")
@@ -311,6 +311,16 @@ public class Run extends EntityMP implements Serializable
     private List<RunAttachment> runAttachment;
 
     /**
+     * 关注人
+     */
+    @TableField(value = "attentions_imp" , exist = false)
+    @DEField(name = "attentions_imp")
+    @JsonProperty("attentions_imp")
+    @JSONField(name = "attentions_imp")
+    @ApiModelProperty(value = "attentions_imp", notes = "关注人")
+    private String attentionsImp;
+
+    /**
      * 更新时间
      */
     @TableField(value = "update_time")
@@ -422,6 +432,16 @@ public class Run extends EntityMP implements Serializable
     @Transient
     @ApiModelProperty(value = "test_plan", notes = "计划-执行用例")
     private TestPlan testPlan;
+
+    /**
+     * 用例
+     */
+    @JsonIgnore
+    @JSONField(serialize = false)
+    @TableField(exist = false)
+    @Transient
+    @ApiModelProperty(value = "test_case_latest_run", notes = "名称")
+    private TestCase testCaseLatestRun;
 
     /**
      * 执行结果
@@ -663,6 +683,15 @@ public class Run extends EntityMP implements Serializable
     public Run setRunAttachment(List<RunAttachment> runAttachment) {
         this.runAttachment = runAttachment;
         this.modify("run_attachment", runAttachment);
+        return this;
+    }
+
+    /**
+     * 设置 [关注人]
+     */
+    public Run setAttentionsImp(String attentionsImp) {
+        this.attentionsImp = attentionsImp;
+        this.modify("attentions_imp", attentionsImp);
         return this;
     }
 

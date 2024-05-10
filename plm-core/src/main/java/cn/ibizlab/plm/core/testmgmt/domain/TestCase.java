@@ -31,12 +31,15 @@ import cn.ibizlab.plm.core.base.domain.Attention;
 import cn.ibizlab.plm.core.base.domain.Comment;
 import cn.ibizlab.plm.core.base.domain.Relation;
 import cn.ibizlab.plm.core.base.domain.Attachment;
+import cn.ibizlab.plm.core.testmgmt.domain.ReviewContent;
 import cn.ibizlab.plm.core.base.domain.SearchAttachment;
 import cn.ibizlab.plm.core.base.domain.SearchComment;
 import cn.ibizlab.plm.core.base.domain.Workload;
+import cn.ibizlab.plm.core.base.domain.Version;
 import cn.ibizlab.plm.core.testmgmt.domain.Step;
 import cn.ibizlab.plm.core.base.domain.Attachment;
 import cn.ibizlab.plm.core.base.domain.Attention;
+import cn.ibizlab.plm.core.testmgmt.domain.Run;
 
 /**
  * 用例实体类[TestCase]
@@ -145,13 +148,13 @@ public class TestCase extends EntityMP implements Serializable
     private Integer isDeleted;
 
     /**
-     * 评审状态
+     * 状态
      */
     @TableField(value = "state")
-    @DEField(name = "state" , defaultValue = "10" , dict = "test_case_state")
+    @DEField(name = "state" , defaultValue = "10" , dict = "case_state")
     @JsonProperty("state")
     @JSONField(name = "state")
-    @ApiModelProperty(value = "state", notes = "评审状态")
+    @ApiModelProperty(value = "state", notes = "状态")
     private String state;
 
     /**
@@ -173,6 +176,16 @@ public class TestCase extends EntityMP implements Serializable
     @JSONField(name = "maintenance_id")
     @ApiModelProperty(value = "maintenance_id", notes = "维护人")
     private String maintenanceId;
+
+    /**
+     * 当前版本标识
+     */
+    @TableField(value = "cur_version_id")
+    @DEField(name = "cur_version_id" , preType = DEPredefinedFieldType.VERSIONID)
+    @JsonProperty("cur_version_id")
+    @JSONField(name = "cur_version_id")
+    @ApiModelProperty(value = "cur_version_id", notes = "当前版本标识")
+    private String curVersionId;
 
     /**
      * 维护人
@@ -306,6 +319,26 @@ public class TestCase extends EntityMP implements Serializable
     private BigDecimal estimatedWorkload;
 
     /**
+     * 目标模板
+     */
+    @TableField(value = "target_template" , exist = false)
+    @DEField(name = "target_template")
+    @JsonProperty("target_template")
+    @JSONField(name = "target_template")
+    @ApiModelProperty(value = "target_template", notes = "目标模板")
+    private String targetTemplate;
+
+    /**
+     * 评审结果
+     */
+    @TableField(value = "review_result_state")
+    @DEField(name = "review_result_state")
+    @JsonProperty("review_result_state")
+    @JSONField(name = "review_result_state")
+    @ApiModelProperty(value = "review_result_state", notes = "评审结果")
+    private String reviewResultState;
+
+    /**
      * 剩余工时
      */
     @TableField(value = "remaining_workload")
@@ -316,6 +349,16 @@ public class TestCase extends EntityMP implements Serializable
     private BigDecimal remainingWorkload;
 
     /**
+     * 最新执行结果
+     */
+    @TableField(exist = false)
+    @DEField(name = "latest_executed")
+    @JsonProperty("latest_executed")
+    @JSONField(name = "latest_executed")
+    @ApiModelProperty(value = "latest_executed", notes = "最新执行结果")
+    private List<Run> latestExecuted;
+
+    /**
      * 实际工时
      */
     @TableField(value = "actual_workload")
@@ -324,6 +367,46 @@ public class TestCase extends EntityMP implements Serializable
     @JSONField(name = "actual_workload")
     @ApiModelProperty(value = "actual_workload", notes = "实际工时")
     private BigDecimal actualWorkload;
+
+    /**
+     * 当前版本名称
+     */
+    @TableField(value = "cur_version_name" , exist = false)
+    @DEField(name = "cur_version_name")
+    @JsonProperty("cur_version_name")
+    @JSONField(name = "cur_version_name")
+    @ApiModelProperty(value = "cur_version_name", notes = "当前版本名称")
+    private String curVersionName;
+
+    /**
+     * 选择版本标识
+     */
+    @TableField(value = "choose_version_id" , exist = false)
+    @DEField(name = "choose_version_id")
+    @JsonProperty("choose_version_id")
+    @JSONField(name = "choose_version_id")
+    @ApiModelProperty(value = "choose_version_id", notes = "选择版本标识")
+    private String chooseVersionId;
+
+    /**
+     * 选择版本名称
+     */
+    @TableField(value = "choose_version_name" , exist = false)
+    @DEField(name = "choose_version_name")
+    @JsonProperty("choose_version_name")
+    @JSONField(name = "choose_version_name")
+    @ApiModelProperty(value = "choose_version_name", notes = "选择版本名称")
+    private String chooseVersionName;
+
+    /**
+     * 关注人
+     */
+    @TableField(value = "attentions_imp" , exist = false)
+    @DEField(name = "attentions_imp")
+    @JsonProperty("attentions_imp")
+    @JSONField(name = "attentions_imp")
+    @ApiModelProperty(value = "attentions_imp", notes = "关注人")
+    private String attentionsImp;
 
     /**
      * 标识
@@ -540,7 +623,7 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [评审状态]
+     * 设置 [状态]
      */
     public TestCase setState(String state) {
         this.state = state;
@@ -684,6 +767,24 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
+     * 设置 [目标模板]
+     */
+    public TestCase setTargetTemplate(String targetTemplate) {
+        this.targetTemplate = targetTemplate;
+        this.modify("target_template", targetTemplate);
+        return this;
+    }
+
+    /**
+     * 设置 [评审结果]
+     */
+    public TestCase setReviewResultState(String reviewResultState) {
+        this.reviewResultState = reviewResultState;
+        this.modify("review_result_state", reviewResultState);
+        return this;
+    }
+
+    /**
      * 设置 [剩余工时]
      */
     public TestCase setRemainingWorkload(BigDecimal remainingWorkload) {
@@ -693,11 +794,56 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
+     * 设置 [最新执行结果]
+     */
+    public TestCase setLatestExecuted(List<Run> latestExecuted) {
+        this.latestExecuted = latestExecuted;
+        this.modify("latest_executed", latestExecuted);
+        return this;
+    }
+
+    /**
      * 设置 [实际工时]
      */
     public TestCase setActualWorkload(BigDecimal actualWorkload) {
         this.actualWorkload = actualWorkload;
         this.modify("actual_workload", actualWorkload);
+        return this;
+    }
+
+    /**
+     * 设置 [当前版本名称]
+     */
+    public TestCase setCurVersionName(String curVersionName) {
+        this.curVersionName = curVersionName;
+        this.modify("cur_version_name", curVersionName);
+        return this;
+    }
+
+    /**
+     * 设置 [选择版本标识]
+     */
+    public TestCase setChooseVersionId(String chooseVersionId) {
+        this.chooseVersionId = chooseVersionId;
+        this.modify("choose_version_id", chooseVersionId);
+        return this;
+    }
+
+    /**
+     * 设置 [选择版本名称]
+     */
+    public TestCase setChooseVersionName(String chooseVersionName) {
+        this.chooseVersionName = chooseVersionName;
+        this.modify("choose_version_name", chooseVersionName);
+        return this;
+    }
+
+    /**
+     * 设置 [关注人]
+     */
+    public TestCase setAttentionsImp(String attentionsImp) {
+        this.attentionsImp = attentionsImp;
+        this.modify("attentions_imp", attentionsImp);
         return this;
     }
 

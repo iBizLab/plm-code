@@ -90,6 +90,7 @@ export default {
                       renderMode: 'TEXT_DYNAMIC',
                       valign: 'MIDDLE',
                       wrapMode: 'NOWRAP',
+                      appCodeListId: 'plmweb.sysoperator',
                       editorStyle: 'PERSONNEL_INFO',
                       editorType: 'SPAN',
                       sysPFPluginId: 'personnel_info',
@@ -98,8 +99,9 @@ export default {
                       editable: true,
                       id: 'user_name',
                     },
-                    viewFieldName: 'OPPERSONNAME',
+                    viewFieldName: 'OPPERSONID',
                     allowEmpty: true,
+                    convertToCodeItemText: true,
                     caption: '文本(动态)',
                     itemStyle: 'DEFAULT',
                     itemType: 'FIELD',
@@ -201,11 +203,11 @@ export default {
                     editor: {
                       contentType: 'HTML',
                       template:
-                        "{{#each this as | item |}}<div class='activity-item'><div class='activity-item--caption'>修改了{{#if item.logicname}}{{item.logicname}}{{else}}{{item.dataauditdetailname}}{{/if}} {{#or (eq item.dataauditdetailname 'STEPS') (eq item.dataauditdetailname 'PRECONDITION') (eq item.dataauditdetailname 'DESCRIPTION')}}<span class='activity-item--contrast' click='onContrast(`{{item.dataauditdetailname}}`)'>对比</span>{{/or}}</div>{{#and (neq item.dataauditdetailname 'STEPS') (neq item.dataauditdetailname 'PRECONDITION') (neq item.dataauditdetailname 'DESCRIPTION')}}<div class='activity-item--description'><span class='activity-item--oldvalue'>{{#if item.oldtext}}{{item.oldtext}}{{else}}{{#if item.oldvalue}}{{item.oldvalue}}{{else}}无{{/if}}{{/if}}</span><ion-icon name='arrow-forward-outline'></ion-icon><span class='activity-item--newvalue'>{{#if item.newtext}}{{item.newtext}}{{else}}{{#if item.newvalue}}{{item.newvalue}}{{else}}无{{/if}}{{/if}}</span></div>{{/and}}</div>{{/each}}",
+                        "{{#each this as | item |}}<div class='object_type'><div class='activity-item--caption'>修改了{{#if item.logicname}}{{item.logicname}}{{else}}{{item.dataauditdetailname}}{{/if}} {{#or (eq item.dataauditdetailname 'STEPS') (eq item.dataauditdetailname 'PRECONDITION') (eq item.dataauditdetailname 'DESCRIPTION')}}<span class='activity-item--contrast' click='onContrast(`{{item.dataauditdetailname}}`)'>对比</span>{{/or}}</div>{{#and (neq item.dataauditdetailname 'STEPS') (neq item.dataauditdetailname 'PRECONDITION') (neq item.dataauditdetailname 'DESCRIPTION')}}<div class='activity-item--description'><span class='activity-item--oldvalue'>{{#if item.oldtext}}{{item.oldtext}}{{else}}{{#if item.oldvalue}}{{item.oldvalue}}{{else}}无{{/if}}{{/if}}</span><ion-icon name='arrow-forward-outline'></ion-icon><span class='activity-item--newvalue'>{{#if item.newtext}}{{item.newtext}}{{else}}{{#if item.newvalue}}{{item.newvalue}}{{else}}无{{/if}}{{/if}}</span></div>{{/and}}</div>{{/each}}",
                       editorParams: {
                         contenttype: 'HTML',
                         template:
-                          "{{#each this as | item |}}<div class='activity-item'><div class='activity-item--caption'>修改了{{#if item.logicname}}{{item.logicname}}{{else}}{{item.dataauditdetailname}}{{/if}} {{#or (eq item.dataauditdetailname 'STEPS') (eq item.dataauditdetailname 'PRECONDITION') (eq item.dataauditdetailname 'DESCRIPTION')}}<span class='activity-item--contrast' click='onContrast(`{{item.dataauditdetailname}}`)'>对比</span>{{/or}}</div>{{#and (neq item.dataauditdetailname 'STEPS') (neq item.dataauditdetailname 'PRECONDITION') (neq item.dataauditdetailname 'DESCRIPTION')}}<div class='activity-item--description'><span class='activity-item--oldvalue'>{{#if item.oldtext}}{{item.oldtext}}{{else}}{{#if item.oldvalue}}{{item.oldvalue}}{{else}}无{{/if}}{{/if}}</span><ion-icon name='arrow-forward-outline'></ion-icon><span class='activity-item--newvalue'>{{#if item.newtext}}{{item.newtext}}{{else}}{{#if item.newvalue}}{{item.newvalue}}{{else}}无{{/if}}{{/if}}</span></div>{{/and}}</div>{{/each}}",
+                          "{{#each this as | item |}}<div class='object_type'><div class='activity-item--caption'>修改了{{#if item.logicname}}{{item.logicname}}{{else}}{{item.dataauditdetailname}}{{/if}} {{#or (eq item.dataauditdetailname 'STEPS') (eq item.dataauditdetailname 'PRECONDITION') (eq item.dataauditdetailname 'DESCRIPTION')}}<span class='activity-item--contrast' click='onContrast(`{{item.dataauditdetailname}}`)'>对比</span>{{/or}}</div>{{#and (neq item.dataauditdetailname 'STEPS') (neq item.dataauditdetailname 'PRECONDITION') (neq item.dataauditdetailname 'DESCRIPTION')}}<div class='activity-item--description'><span class='activity-item--oldvalue'>{{#if item.oldtext}}{{item.oldtext}}{{else}}{{#if item.oldvalue}}{{item.oldvalue}}{{else}}无{{/if}}{{/if}}</span><ion-icon name='arrow-forward-outline'></ion-icon><span class='activity-item--newvalue'>{{#if item.newtext}}{{item.newtext}}{{else}}{{#if item.newvalue}}{{item.newvalue}}{{else}}无{{/if}}{{/if}}</span></div>{{/and}}</div>{{/each}}",
                       },
                       editorStyle: 'RAW_ACTIVITY',
                       editorType: 'RAW',
@@ -494,9 +496,14 @@ export default {
       minorSortAppDEFieldId: 'update_time',
       delistDataItems: [
         {
-          appDEFieldId: 'audit_type',
+          appDEFieldId: 'audit_info',
+          dataType: 21,
+          id: 'auditinfo',
+        },
+        {
+          appDEFieldId: 'op_person_id',
           dataType: 25,
-          id: 'audittype',
+          id: 'oppersonid',
         },
         {
           appDEFieldId: 'update_time',
@@ -505,9 +512,9 @@ export default {
           id: 'update_time',
         },
         {
-          appDEFieldId: 'audit_info',
-          dataType: 21,
-          id: 'auditinfo',
+          appDEFieldId: 'audit_type',
+          dataType: 25,
+          id: 'audittype',
         },
         {
           appDEFieldId: 'op_person_name',
@@ -607,6 +614,7 @@ export default {
     controlParam: {},
     id: 'layoutpanel',
   },
+  priority: 10,
   title: '活动历史列表',
   viewStyle: 'DEFAULT',
   viewType: 'DELISTVIEW',
@@ -614,6 +622,6 @@ export default {
   showCaptionBar: false,
   modelId: 'a09dce0a598d8be807726cba248d769d',
   modelType: 'PSAPPDEVIEW',
-  name: 'activitiyhistory_list_view',
+  name: 'activityhistory_list_view',
   id: 'plmweb.activity_history_list_view',
 };

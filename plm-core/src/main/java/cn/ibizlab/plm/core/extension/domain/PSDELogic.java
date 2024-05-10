@@ -189,12 +189,12 @@ public class PSDELogic extends EntityBase implements Serializable
     private String updateMan;
 
     /**
-     * 实体处理逻辑名称
+     * 名称
      */
     @DEField(name = "psdelogicname")
     @JsonProperty("psdelogicname")
     @JSONField(name = "psdelogicname")
-    @ApiModelProperty(value = "psdelogicname", notes = "实体处理逻辑名称")
+    @ApiModelProperty(value = "psdelogicname", notes = "名称")
     private String psdeLogicName;
 
     /**

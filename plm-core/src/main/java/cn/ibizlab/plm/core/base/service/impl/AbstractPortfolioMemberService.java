@@ -185,6 +185,17 @@ public abstract class AbstractPortfolioMemberService extends ServiceImpl<Portfol
         return list;
     }
 
+    public Page<PortfolioMember> searchCurProjectSet(PortfolioMemberSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<PortfolioMember> pages=baseMapper.searchCurProjectSet(context.getPages(),context,context.getSelectCond());
+        List<PortfolioMember> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<PortfolioMember> listCurProjectSet(PortfolioMemberSearchContext context) {
+        List<PortfolioMember> list = baseMapper.listCurProjectSet(context,context.getSelectCond());
+        return list;
+    }
+
     public List<PortfolioMember> findByPortfolioId(List<String> portfolioIds) {
         List<PortfolioMember> list = baseMapper.findByPortfolioId(portfolioIds);
         return list;

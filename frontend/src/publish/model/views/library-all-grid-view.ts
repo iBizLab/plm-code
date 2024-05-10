@@ -64,6 +64,13 @@ export default {
       id: 'opendata',
     },
   ],
+  appViewNavParams: [
+    {
+      key: 'n_scope_type_eq',
+      value: 'scope_type',
+      id: 'n_scope_type_eq',
+    },
+  ],
   appViewRefs: [
     {
       realTitle: '测试库',
@@ -85,7 +92,8 @@ export default {
         {
           actionLevel: 100,
           noPrivDisplayMode: 2,
-          uiactionId: 'new_library',
+          uiactionId: 'create_library@library',
+          uiactionTarget: 'NONE',
           valid: true,
           caption: '新建测试库',
           itemType: 'DEUIACTION',
@@ -351,11 +359,6 @@ export default {
           dataType: 25,
           id: 'srfmajortext',
         },
-        {
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'srfmstag',
-        },
       ],
       degridEditItems: [
         {
@@ -395,6 +398,17 @@ export default {
       controlType: 'GRID',
       logicName: '主表格',
       appDataEntityId: 'plmweb.library',
+      controlLogics: [
+        {
+          eventNames: 'onLoadSuccess',
+          logicTag: 'grid',
+          logicType: 'APPDEUILOGIC',
+          appDEUILogicId: 'calc_column_action_state',
+          appDataEntityId: 'plmweb.library',
+          triggerType: 'CTRLEVENT',
+          id: 'calc_button_state',
+        },
+      ],
       controlParam: {
         id: 'grid',
       },

@@ -34,7 +34,8 @@ export default {
           caption: '保存',
           itemType: 'DEUIACTION',
           sysImage: {
-            cssClass: 'sx-tb-saveandclose',
+            cssClass: 'fa fa-save',
+            glyph: 'xf0c7@FontAwesome',
           },
           tooltip: '保存',
           tooltipLanguageRes: {
@@ -100,6 +101,34 @@ export default {
                 columnCount: 24,
                 layout: 'TABLE_24COL',
               },
+              deformDetails: [
+                {
+                  dataType: 25,
+                  enableCond: 3,
+                  labelPos: 'TOP',
+                  labelWidth: 130,
+                  noPrivDisplayMode: 1,
+                  appDEFieldId: 'title',
+                  editor: {
+                    maxLength: 100,
+                    editorType: 'TEXTBOX',
+                    valueType: 'SIMPLE',
+                    editable: true,
+                    id: 'title',
+                  },
+                  allowEmpty: true,
+                  caption: '交付目标',
+                  codeName: 'title',
+                  detailStyle: 'DEFAULT',
+                  detailType: 'FORMITEM',
+                  layoutPos: {
+                    colMD: 24,
+                    layout: 'TABLE_24COL',
+                  },
+                  showCaption: true,
+                  id: 'title',
+                },
+              ],
               capLanguageRes: {
                 lanResTag: 'CONTROL.DEFORM.DELIVERABLE.MAIN.GROUPPANEL.GROUP1',
               },
@@ -111,7 +140,6 @@ export default {
                 colMD: 24,
                 layout: 'TABLE_24COL',
               },
-              showCaption: true,
               id: 'group1',
             },
             {
@@ -153,47 +181,13 @@ export default {
           detailType: 'FORMPAGE',
           id: 'formpage1',
         },
-        {
-          layout: {
-            columnCount: 24,
-            layout: 'TABLE_24COL',
-          },
-          deformDetails: [
-            {
-              layout: {
-                columnCount: 24,
-                layout: 'TABLE_24COL',
-              },
-              capLanguageRes: {
-                lanResTag: 'CONTROL.DEFORM.DELIVERABLE.MAIN.GROUPPANEL.GROUP2',
-              },
-              caption: '操作信息',
-              codeName: 'group2',
-              detailStyle: 'DEFAULT',
-              detailType: 'GROUPPANEL',
-              layoutPos: {
-                colMD: 24,
-                layout: 'TABLE_24COL',
-              },
-              showCaption: true,
-              id: 'group2',
-            },
-          ],
-          capLanguageRes: {
-            lanResTag: 'CONTROL.DEFORM.DELIVERABLE.MAIN.FORMPAGE.FORMPAGE2',
-          },
-          caption: '其它',
-          codeName: 'formpage2',
-          detailStyle: 'DEFAULT',
-          detailType: 'FORMPAGE',
-          id: 'formpage2',
-        },
       ],
       layout: {
         columnCount: 24,
         layout: 'TABLE_24COL',
       },
       tabHeaderPos: 'TOP',
+      noTabHeader: true,
       autoLoad: true,
       showBusyIndicator: true,
       codeName: 'main',

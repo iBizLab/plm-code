@@ -40,6 +40,8 @@ import cn.ibizlab.plm.core.prodmgmt.domain.ProductTicketType;
 import cn.ibizlab.plm.core.prodmgmt.service.ProductTicketTypeService;
 import cn.ibizlab.plm.core.prodmgmt.domain.Ticket;
 import cn.ibizlab.plm.core.prodmgmt.service.TicketService;
+import cn.ibizlab.plm.core.base.domain.Baseline;
+import cn.ibizlab.plm.core.base.service.BaselineService;
 import cn.ibizlab.plm.core.base.domain.Favorite;
 import cn.ibizlab.plm.core.base.service.FavoriteService;
 import cn.ibizlab.plm.core.base.domain.ReferencesIndex;
@@ -84,6 +86,10 @@ public abstract class AbstractProductService extends ServiceImpl<ProductMapper,P
     @Autowired
     @Lazy
     protected TicketService ticketService;
+
+    @Autowired
+    @Lazy
+    protected BaselineService baselineService;
 
     @Autowired
     @Lazy

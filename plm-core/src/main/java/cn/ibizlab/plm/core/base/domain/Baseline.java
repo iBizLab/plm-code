@@ -20,6 +20,12 @@ import lombok.experimental.Accessors;
 import io.swagger.annotations.*;
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
+import cn.ibizlab.plm.core.testmgmt.domain.Library;
+import cn.ibizlab.plm.core.prodmgmt.domain.Product;
+import cn.ibizlab.plm.core.projmgmt.domain.Project;
+import cn.ibizlab.plm.core.prodmgmt.domain.BaselineIdea;
+import cn.ibizlab.plm.core.testmgmt.domain.BaselineTestCase;
+import cn.ibizlab.plm.core.projmgmt.domain.BaselineWorkItem;
 import cn.ibizlab.plm.core.base.domain.Relation;
 
 /**
@@ -179,6 +185,36 @@ public class Baseline extends EntityMP implements Serializable
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
     @ApiModelProperty(value = "update_time", notes = "更新时间")
     private Date updateTime;
+
+    /**
+     * 测试库
+     */
+    @JsonIgnore
+    @JSONField(serialize = false)
+    @TableField(exist = false)
+    @Transient
+    @ApiModelProperty(value = "library", notes = "测试库-基线")
+    private Library library;
+
+    /**
+     * 产品
+     */
+    @JsonIgnore
+    @JSONField(serialize = false)
+    @TableField(exist = false)
+    @Transient
+    @ApiModelProperty(value = "product", notes = "产品-基线")
+    private Product product;
+
+    /**
+     * 项目
+     */
+    @JsonIgnore
+    @JSONField(serialize = false)
+    @TableField(exist = false)
+    @Transient
+    @ApiModelProperty(value = "project", notes = "项目-基线")
+    private Project project;
 
     /**
      * 设置 [描述]

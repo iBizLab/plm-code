@@ -13,7 +13,10 @@ import cn.ibizlab.util.domain.ImportResult;
 import cn.ibizlab.plm.core.testmgmt.domain.Review;
 import cn.ibizlab.plm.core.testmgmt.filter.ReviewSearchContext;
 import cn.ibizlab.plm.core.testmgmt.domain.Library;
+import cn.ibizlab.plm.core.base.domain.Attention;
 import cn.ibizlab.plm.core.base.domain.Relation;
+import cn.ibizlab.plm.core.base.domain.Attachment;
+import cn.ibizlab.plm.core.testmgmt.domain.ReviewContent;
 
 /**
  * 评审服务接口[ReviewService]
@@ -174,6 +177,126 @@ public interface ReviewService extends IService<Review> {
     }
 
     /**
+     * CreateTemp
+     * 
+     * @param dto
+     * @return
+     */
+    default Review createTemp(Review dto) {
+        return dto;
+    }
+
+    /**
+     * CreateTempMajor
+     * 
+     * @param dto
+     * @return
+     */
+    default Review createTempMajor(Review dto) {
+        return dto;
+    }
+
+    /**
+     * UpdateTemp
+     * 
+     * @param dto
+     * @return
+     */
+    default Review updateTemp(Review dto) {
+        return dto;
+    }
+
+    /**
+     * UpdateTempMajor
+     * 
+     * @param dto
+     * @return
+     */
+    default Review updateTempMajor(Review dto) {
+        return dto;
+    }
+
+    /**
+     * RemoveTemp
+     * 
+     * @param keys
+     * @return
+     */
+    default List<String> removeTemp(List<String> keys) {
+        return keys;
+    }
+
+    /**
+     * RemoveTempMajor
+     * 
+     * @param keys
+     * @return
+     */
+    default List<String> removeTempMajor(List<String> keys) {
+        return keys;
+    }
+
+    /**
+     * GetTemp
+     * 
+     * @param key
+     * @return
+     */
+    default Review getTemp(String key) {
+        return null;
+    }
+
+    /**
+     * GetTempMajor
+     * 
+     * @param key
+     * @return
+     */
+    default Review getTempMajor(String key) {
+        return null;
+    }
+
+    /**
+     * GetDraftTemp
+     * 
+     * @param dto
+     * @return
+     */
+    default Review getDraftTemp(Review dto) {
+        return dto;
+    }
+
+    /**
+     * GetDraftTempMajor
+     * 
+     * @param dto
+     * @return
+     */
+    default Review getDraftTempMajor(Review dto) {
+        return dto;
+    }
+
+    /**
+     * get_attention
+     * 
+     * @param key
+     * @return
+     */
+    default Review getAttention(String key) {
+        return null;
+    }
+
+    /**
+     * submit_review
+     * 
+     * @param dto
+     * @return
+     */
+    default Review submitReview(Review dto) {
+        return dto;
+    }
+
+    /**
      * searchDefault
      * 
      * @param context
@@ -239,6 +362,28 @@ public interface ReviewService extends IService<Review> {
     * @return
     */
     boolean saveByLibrary(Library library,List<Review> list);
+
+    default List<Attention> getAttentions(Review et) {
+        return new ArrayList<>();
+    }
+
+    default List<Attachment> getAttachments(Review et) {
+        return new ArrayList<>();
+    }
+
+    default List<ReviewContent> getContents(Review et) {
+        return new ArrayList<>();
+    }
+
+    /**
+     * 流程事件
+     * @param eventType
+     * @param et
+     * @return
+     */
+    default boolean onFlowEvent(String eventType,Review et) {
+        return true;
+    }
 
 
     /**

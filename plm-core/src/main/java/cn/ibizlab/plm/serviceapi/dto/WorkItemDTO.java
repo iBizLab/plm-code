@@ -376,11 +376,43 @@ public class WorkItemDTO extends DTOBase implements Serializable {
     private String stateType;
 
     /**
+     * 当前版本名称
+     */
+    @JsonProperty("cur_version_name")
+    @JSONField(name = "cur_version_name")
+    @ApiModelProperty(value = "当前版本名称", position = 42)
+    private String curVersionName;
+
+    /**
+     * 选择版本标识
+     */
+    @JsonProperty("choose_version_id")
+    @JSONField(name = "choose_version_id")
+    @ApiModelProperty(value = "选择版本标识", position = 43)
+    private String chooseVersionId;
+
+    /**
+     * 选择版本名称
+     */
+    @JsonProperty("choose_version_name")
+    @JSONField(name = "choose_version_name")
+    @ApiModelProperty(value = "选择版本名称", position = 44)
+    private String chooseVersionName;
+
+    /**
+     * 关注人
+     */
+    @JsonProperty("attentions_imp")
+    @JSONField(name = "attentions_imp")
+    @ApiModelProperty(value = "关注人", position = 45)
+    private String attentionsImp;
+
+    /**
      * 看板标识
      */
     @JsonProperty("board_id")
     @JSONField(name = "board_id")
-    @ApiModelProperty(value = "看板标识", position = 42)
+    @ApiModelProperty(value = "看板标识", position = 46)
     private String boardId;
 
     /**
@@ -388,7 +420,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("board_name")
     @JSONField(name = "board_name")
-    @ApiModelProperty(value = "看板名称", position = 43)
+    @ApiModelProperty(value = "看板名称", position = 47)
     private String boardName;
 
     /**
@@ -396,7 +428,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 44)
+    @ApiModelProperty(value = "建立人", position = 48)
     private String createMan;
 
     /**
@@ -405,7 +437,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 45)
+    @ApiModelProperty(value = "建立时间", position = 49)
     private Date createTime;
 
     /**
@@ -413,7 +445,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("entry_id")
     @JSONField(name = "entry_id")
-    @ApiModelProperty(value = "看板栏标识", position = 46)
+    @ApiModelProperty(value = "看板栏标识", position = 50)
     private String entryId;
 
     /**
@@ -421,7 +453,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("entry_name")
     @JSONField(name = "entry_name")
-    @ApiModelProperty(value = "看板栏名称", position = 47)
+    @ApiModelProperty(value = "看板栏名称", position = 51)
     private String entryName;
 
     /**
@@ -429,7 +461,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 48)
+    @ApiModelProperty(value = "标识", position = 52)
     private String id;
 
     /**
@@ -437,7 +469,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("pid")
     @JSONField(name = "pid")
-    @ApiModelProperty(value = "父标识", position = 49)
+    @ApiModelProperty(value = "父标识", position = 53)
     private String pid;
 
     /**
@@ -445,7 +477,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("project_id")
     @JSONField(name = "project_id")
-    @ApiModelProperty(value = "项目", position = 50)
+    @ApiModelProperty(value = "项目", position = 54)
     private String projectId;
 
     /**
@@ -453,7 +485,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("project_name")
     @JSONField(name = "project_name")
-    @ApiModelProperty(value = "所属项目", position = 51)
+    @ApiModelProperty(value = "所属项目", position = 55)
     private String projectName;
 
     /**
@@ -461,7 +493,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("ptitle")
     @JSONField(name = "ptitle")
-    @ApiModelProperty(value = "父工作项", position = 52)
+    @ApiModelProperty(value = "父工作项", position = 56)
     private String ptitle;
 
     /**
@@ -469,15 +501,23 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("release_id")
     @JSONField(name = "release_id")
-    @ApiModelProperty(value = "项目发布标识", position = 53)
+    @ApiModelProperty(value = "项目发布标识", position = 57)
     private String releaseId;
+
+    /**
+     * 项目发布名称
+     */
+    @JsonProperty("release_name")
+    @JSONField(name = "release_name")
+    @ApiModelProperty(value = "项目发布名称", position = 58)
+    private String releaseName;
 
     /**
      * 迭代标识
      */
     @JsonProperty("sprint_id")
     @JSONField(name = "sprint_id")
-    @ApiModelProperty(value = "迭代标识", position = 54)
+    @ApiModelProperty(value = "迭代标识", position = 59)
     private String sprintId;
 
     /**
@@ -485,7 +525,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("sprint_name")
     @JSONField(name = "sprint_name")
-    @ApiModelProperty(value = "迭代名称", position = 55)
+    @ApiModelProperty(value = "迭代名称", position = 60)
     private String sprintName;
 
     /**
@@ -493,7 +533,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("swimlane_id")
     @JSONField(name = "swimlane_id")
-    @ApiModelProperty(value = "泳道标识", position = 56)
+    @ApiModelProperty(value = "泳道标识", position = 61)
     private String swimlaneId;
 
     /**
@@ -501,7 +541,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("top_id")
     @JSONField(name = "top_id")
-    @ApiModelProperty(value = "顶级工作项标识", position = 57)
+    @ApiModelProperty(value = "顶级工作项标识", position = 62)
     private String topId;
 
     /**
@@ -509,7 +549,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("top_title")
     @JSONField(name = "top_title")
-    @ApiModelProperty(value = "顶级工作项标题", position = 58)
+    @ApiModelProperty(value = "顶级工作项标题", position = 63)
     private String topTitle;
 
     /**
@@ -517,7 +557,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 59)
+    @ApiModelProperty(value = "更新人", position = 64)
     private String updateMan;
 
     /**
@@ -526,7 +566,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 60)
+    @ApiModelProperty(value = "更新时间", position = 65)
     private Date updateTime;
 
     /**
@@ -534,7 +574,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("work_item_type_id")
     @JSONField(name = "work_item_type_id")
-    @ApiModelProperty(value = "工作项类型", position = 61)
+    @ApiModelProperty(value = "工作项类型", position = 66)
     private String workItemTypeId;
 
     /**
@@ -542,7 +582,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("work_item_type_name")
     @JSONField(name = "work_item_type_name")
-    @ApiModelProperty(value = "工作项类型", position = 62)
+    @ApiModelProperty(value = "工作项类型", position = 67)
     private String workItemTypeName;
 
 
@@ -916,6 +956,42 @@ public class WorkItemDTO extends DTOBase implements Serializable {
     }
 
     /**
+     * 设置 [当前版本名称]
+     */
+    public WorkItemDTO setCurVersionName(String curVersionName) {
+        this.curVersionName = curVersionName;
+        this.modify("cur_version_name", curVersionName);
+        return this;
+    }
+
+    /**
+     * 设置 [选择版本标识]
+     */
+    public WorkItemDTO setChooseVersionId(String chooseVersionId) {
+        this.chooseVersionId = chooseVersionId;
+        this.modify("choose_version_id", chooseVersionId);
+        return this;
+    }
+
+    /**
+     * 设置 [选择版本名称]
+     */
+    public WorkItemDTO setChooseVersionName(String chooseVersionName) {
+        this.chooseVersionName = chooseVersionName;
+        this.modify("choose_version_name", chooseVersionName);
+        return this;
+    }
+
+    /**
+     * 设置 [关注人]
+     */
+    public WorkItemDTO setAttentionsImp(String attentionsImp) {
+        this.attentionsImp = attentionsImp;
+        this.modify("attentions_imp", attentionsImp);
+        return this;
+    }
+
+    /**
      * 设置 [看板标识]
      */
     public WorkItemDTO setBoardId(String boardId) {
@@ -993,6 +1069,15 @@ public class WorkItemDTO extends DTOBase implements Serializable {
     public WorkItemDTO setReleaseId(String releaseId) {
         this.releaseId = releaseId;
         this.modify("release_id", releaseId);
+        return this;
+    }
+
+    /**
+     * 设置 [项目发布名称]
+     */
+    public WorkItemDTO setReleaseName(String releaseName) {
+        this.releaseName = releaseName;
+        this.modify("release_name", releaseName);
         return this;
     }
 

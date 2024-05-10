@@ -119,6 +119,25 @@ public interface TestCaseMapper extends BaseMapper<TestCase> {
     List<Map> listAssessmentResult(@Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
 
     /**
+     * 数据集合baseline_choose_case分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<TestCase> searchBaselineChooseCase(IPage<TestCase> page, @Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
+    
+    /**
+     * 数据集合baseline_choose_case查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<TestCase> listBaselineChooseCase(@Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
+
+    /**
      * 数据集合casePerson分页查询
      * 
      * @param page

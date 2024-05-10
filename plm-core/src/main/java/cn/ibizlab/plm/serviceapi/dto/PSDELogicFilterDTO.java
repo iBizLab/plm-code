@@ -55,11 +55,11 @@ public class PSDELogicFilterDTO extends FilterBase implements Serializable {
 	private String psdeLogicIdEQ;
 
     /**
-     * 实体处理逻辑名称LIKE
+     * 名称LIKE
      */
     @JsonProperty("n_psdelogicname_like")
     @JSONField(name = "n_psdelogicname_like")
-    @ApiModelProperty(value = "实体处理逻辑名称LIKE", position = 170)
+    @ApiModelProperty(value = "名称LIKE", position = 170)
 	private String psdeLogicNameLIKE;
 
     /**

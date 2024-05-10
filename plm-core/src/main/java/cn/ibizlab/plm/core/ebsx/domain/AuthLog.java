@@ -53,6 +53,15 @@ public class AuthLog extends EntityClient implements Serializable
     private String userName;
 
     /**
+     * 用户全局标识
+     */
+    @DEField(name = "userid")
+    @JsonProperty("userid")
+    @JSONField(name = "userid")
+    @ApiModelProperty(value = "userid", notes = "用户全局标识")
+    private String userId;
+
+    /**
      * 用户名称
      */
     @DEField(name = "personname")
@@ -117,11 +126,29 @@ public class AuthLog extends EntityClient implements Serializable
     private String authCode;
 
     /**
+     * 认证方式
+     */
+    @DEField(name = "authagent")
+    @JsonProperty("authagent")
+    @JSONField(name = "authagent")
+    @ApiModelProperty(value = "authagent", notes = "认证方式")
+    private String authAgent;
+
+    /**
      * 设置 [用户全局名]
      */
     public AuthLog setUserName(String userName) {
         this.userName = userName;
         this.modify("username", userName);
+        return this;
+    }
+
+    /**
+     * 设置 [用户全局标识]
+     */
+    public AuthLog setUserId(String userId) {
+        this.userId = userId;
+        this.modify("userid", userId);
         return this;
     }
 
@@ -176,6 +203,15 @@ public class AuthLog extends EntityClient implements Serializable
     public AuthLog setAuthCode(String authCode) {
         this.authCode = authCode;
         this.modify("authcode", authCode);
+        return this;
+    }
+
+    /**
+     * 设置 [认证方式]
+     */
+    public AuthLog setAuthAgent(String authAgent) {
+        this.authAgent = authAgent;
+        this.modify("authagent", authAgent);
         return this;
     }
 

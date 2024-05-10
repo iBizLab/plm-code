@@ -414,6 +414,9 @@ export default {
                   editor: {
                     singleSelect: true,
                     appCodeListId: 'plmweb.prodmgmt__product_list',
+                    editorParams: {
+                      overflowMode: 'ellipsis',
+                    },
                     editorType: 'DROPDOWNLIST',
                     placeHolder: '选择产品',
                     valueType: 'SIMPLE',

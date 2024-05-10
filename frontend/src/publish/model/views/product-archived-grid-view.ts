@@ -167,8 +167,8 @@ export default {
                 uiactionId: 'delete@product',
                 showIcon: true,
                 sysImage: {
-                  cssClass: 'fa fa-trash',
-                  glyph: 'xf1f8@FontAwesome',
+                  cssClass: 'fa fa-trash-o',
+                  glyph: 'xf014@FontAwesome',
                 },
                 id: 'ue7bc021',
               },
@@ -226,11 +226,6 @@ export default {
           valueType: 'SIMPLE',
           dataType: 25,
           id: 'srfmajortext',
-        },
-        {
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'srfmstag',
         },
       ],
       degridEditItems: [
@@ -317,6 +312,23 @@ export default {
       groupMode: 'SINGLE',
       quickSearchMode: 1,
       enableQuickSearch: true,
+      codeName: 'query_search_bar',
+      controlType: 'SEARCHBAR',
+      logicName: '快速搜索栏',
+      appDataEntityId: 'plmweb.product',
+      controlParam: {
+        ctrlParams: {
+          TELEPORTFLAG: 'true',
+        },
+        id: 'tabsearchbar',
+      },
+      modelId: '1DCF1D34-7F8B-4549-99A9-4B45D74F4AC4',
+      modelType: 'PSSYSSEARCHBAR',
+      name: 'tabsearchbar',
+      id: 'plmweb.product.query_search_bar',
+    },
+    {
+      groupMode: 'SINGLE',
       controlType: 'SEARCHBAR',
       appDataEntityId: 'plmweb.product',
       controlParam: {
@@ -349,7 +361,7 @@ export default {
   viewStyle: 'DEFAULT',
   viewType: 'DEGRIDVIEW',
   enableDP: true,
-  showCaptionBar: true,
+  showCaptionBar: false,
   modelId: '10ab729d81df0035653b88c34ce32613',
   modelType: 'PSAPPDEVIEW',
   name: 'productarchived_grid_view',

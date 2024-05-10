@@ -320,11 +320,6 @@ export default {
           dataType: 25,
           id: 'srfmajortext',
         },
-        {
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'srfmstag',
-        },
       ],
       degridEditItems: [
         {
@@ -362,6 +357,17 @@ export default {
       controlType: 'GRID',
       logicName: '主表格',
       appDataEntityId: 'plmweb.library',
+      controlLogics: [
+        {
+          eventNames: 'onLoadSuccess',
+          logicTag: 'grid',
+          logicType: 'APPDEUILOGIC',
+          appDEUILogicId: 'calc_column_action_state',
+          appDataEntityId: 'plmweb.library',
+          triggerType: 'CTRLEVENT',
+          id: 'calc_button_state',
+        },
+      ],
       controlParam: {
         id: 'grid',
       },
@@ -456,8 +462,8 @@ export default {
           caption: '删除',
           itemType: 'DEUIACTION',
           sysImage: {
-            cssClass: 'fa fa-remove',
-            glyph: 'xf00d@FontAwesome',
+            cssClass: 'fa fa-trash-o',
+            glyph: 'xf014@FontAwesome',
           },
           tooltip: '删除',
           tooltipLanguageRes: {
@@ -498,6 +504,7 @@ export default {
           id: 'tbitem10',
         },
         {
+          actionLevel: 100,
           detoolbarItems: [
             {
               actionLevel: 100,

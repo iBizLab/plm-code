@@ -442,6 +442,45 @@ public abstract class AbstractTicketResource {
     }
 
     /**
+    * fill_product_member 工单
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TicketDTO>
+    */
+    @ApiOperation(value = "fill_product_member", tags = {"工单" },  notes = "Ticket-fill_product_member ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fill_product_member-all') or hasPermission(this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-fill_product_member')")
+    @PostMapping("tickets/{id}/fill_product_member")
+    public ResponseEntity<ResponseWrapper<TicketDTO>> fillProductMemberById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
+        ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(fillProductMemberById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(fillProductMemberById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * fill_product_member 工单
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TicketDTO>
+    */   
+    public TicketDTO fillProductMemberById
+            (String id, TicketDTO dto) {
+        Ticket domain = ticketDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Ticket rt = ticketService.fillProductMember(domain);
+        return ticketDtoMapping.toDto(rt);
+    }
+
+    /**
     * others_relation_ticket 工单
     * 
     *
@@ -998,6 +1037,47 @@ public abstract class AbstractTicketResource {
     }
 
     /**
+    * fill_product_member 工单
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TicketDTO>
+    */
+    @ApiOperation(value = "fill_product_member", tags = {"工单" },  notes = "Ticket-fill_product_member ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fill_product_member-all') or hasPermission('product',#productId,this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-fill_product_member')")
+    @PostMapping("products/{productId}/tickets/{id}/fill_product_member")
+    public ResponseEntity<ResponseWrapper<TicketDTO>> fillProductMemberByProductIdAndId
+            (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
+        ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(fillProductMemberByProductIdAndId(productId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(fillProductMemberByProductIdAndId(productId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * fill_product_member 工单
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TicketDTO>
+    */   
+    public TicketDTO fillProductMemberByProductIdAndId
+            (String productId, String id, TicketDTO dto) {
+        Ticket domain = ticketDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Ticket rt = ticketService.fillProductMember(domain);
+        return ticketDtoMapping.toDto(rt);
+    }
+
+    /**
     * others_relation_ticket 工单
     * 
     *
@@ -1235,22 +1315,6 @@ public abstract class AbstractTicketResource {
             (@SpringQueryMap TicketDTO dto) {
         Ticket domain = ticketDtoMapping.toDomain(dto);
         Ticket rt = ticketService.getDraft(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(ticketDtoMapping.toDto(rt));
-    }
-
-    /**
-    * get_product_member 工单
-    * 
-    *
-    * @param id id
-    * @return ResponseEntity<TicketDTO>
-    */
-    @ApiOperation(value = "get_product_member", tags = {"工单" },  notes = "Ticket-get_product_member ")
-    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-get_product_member-all') or hasPermission(this.ticketService.get(#id),'ibizplm-Ticket-get_product_member')")
-    @GetMapping("tickets/{id}/get_product_member")
-    public ResponseEntity<TicketDTO> getProductMemberById
-            (@PathVariable("id") String id) {
-        Ticket rt = ticketService.getProductMember(id);
         return ResponseEntity.status(HttpStatus.OK).body(ticketDtoMapping.toDto(rt));
     }
 
@@ -1785,23 +1849,6 @@ public abstract class AbstractTicketResource {
         Ticket domain = ticketDtoMapping.toDomain(dto);
         domain.setProductId(productId);
         Ticket rt = ticketService.getDraft(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(ticketDtoMapping.toDto(rt));
-    }
-
-    /**
-    * get_product_member 工单
-    * 
-    *
-    * @param productId productId
-    * @param id id
-    * @return ResponseEntity<TicketDTO>
-    */
-    @ApiOperation(value = "get_product_member", tags = {"工单" },  notes = "Ticket-get_product_member ")
-    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-get_product_member-all') or hasPermission('product',#productId,this.ticketService.get(#id),'ibizplm-Ticket-get_product_member')")
-    @GetMapping("products/{productId}/tickets/{id}/get_product_member")
-    public ResponseEntity<TicketDTO> getProductMemberByProductIdAndId
-            (@PathVariable("productId") String productId, @PathVariable("id") String id) {
-        Ticket rt = ticketService.getProductMember(id);
         return ResponseEntity.status(HttpStatus.OK).body(ticketDtoMapping.toDto(rt));
     }
 

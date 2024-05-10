@@ -22,9 +22,8 @@ export default {
   ],
   appViewNavParams: [
     {
-      rawValue: true,
       key: 'principal_type',
-      value: 'product_plan',
+      value: 'principal_type',
       id: 'principal_type',
     },
     {

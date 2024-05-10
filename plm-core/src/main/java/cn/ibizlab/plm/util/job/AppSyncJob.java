@@ -4,6 +4,7 @@
 package cn.ibizlab.plm.util.job;
 
 import cn.ibizlab.util.client.UaaFeignClient;
+import cn.ibizlab.util.client.FlowFeignClient;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -11,13 +12,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 
 import java.io.File;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * 资源同步
@@ -32,6 +38,8 @@ public class AppSyncJob implements ApplicationRunner {
     @Autowired
     UaaFeignClient uaaFeignClient;
 
+    @Autowired
+    FlowFeignClient flowFeignClient;
 
     @Value("${ibiz.ref.service.rt.sync.resourcepath:/permission/resource.json}")
     String resourcePath;
@@ -61,9 +69,8 @@ public class AppSyncJob implements ApplicationRunner {
             log.error("import SysDeploySystem exception: {}", e.getMessage());
         }
 
-        //fix： model's local cache can't refresh bug， Emergency plan needs to be improved
         try {
-            File dirModelPath = Paths.get(modelCacheFolder,"deploysystem","e9e59a831e7290f9424d0b03e3017a97").toFile();
+            File dirModelPath = Paths.get(modelCacheFolder,"deploysystem").toFile();
             if(dirModelPath.exists())
                 FileUtils.deleteDirectory(dirModelPath);
             dirModelPath = Paths.get(modelCacheFolder,"ibizplm","deploysystem").toFile();
@@ -72,6 +79,22 @@ public class AppSyncJob implements ApplicationRunner {
             log.info("reset runtime model.");
         }catch (Exception e) {
             log.error("reset runtime model exception: {}", e.getMessage());
+        }
+
+        try {
+            LinkedHashMap<String, byte[]> workflows=new LinkedHashMap<String, byte[]>();
+            InputStream caseReviewFlowv1 = this.getClass().getResourceAsStream("/workflow/case_review_flowv1.bpmn");
+            if (!ObjectUtils.isEmpty(caseReviewFlowv1))
+                workflows.put("case_review_flowv1.bpmn", IOUtils.toByteArray(caseReviewFlowv1));
+            if (workflows.size() > 0) {
+                if (flowFeignClient.deployBpmn("ibizplm",workflows)) {
+                    log.info("向[wf]部署流程成功");
+                } else {
+                    log.error("向[wf]部署流程失败");
+                }
+            }
+        } catch (Exception ex) {
+            log.error("deploy bpmn exception: {}", ex.getMessage());
         }
 
     }

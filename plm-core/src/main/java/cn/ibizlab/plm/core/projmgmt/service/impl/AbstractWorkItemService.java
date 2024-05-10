@@ -214,6 +214,15 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
         }
         if(Entities.RELEASE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
             et.setReleaseId((String)et.getContextParentKey());
+            Release release = et.getRelease();
+            if(release == null) {
+                release = releaseService.getById(et.getReleaseId());
+                et.setRelease(release);
+            }
+            if(!ObjectUtils.isEmpty(release)) {
+                et.setReleaseId(release.getId());
+                et.setReleaseName(release.getName());
+            }
         }
         if(Entities.SPRINT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
             et.setSprintId((String)et.getContextParentKey());
@@ -437,6 +446,21 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
 
     public List<WorkItem> listBacklogStateDistribution(WorkItemSearchContext context) {
         return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listBacklogStateDistribution(context,context.getSelectCond()),WorkItem.class);
+    }
+
+    public Page<WorkItem> searchBaselineChooseWorkItem(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchBaselineChooseWorkItem(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<WorkItem> listBaselineChooseWorkItem(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        List<WorkItem> list = baseMapper.listBaselineChooseWorkItem(context,context.getSelectCond());
+        return list;
     }
 
     public Page<WorkItem> searchBug(WorkItemSearchContext context) {
@@ -773,21 +797,6 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
         return list;
     }
 
-    public Page<WorkItem> searchPlan(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchPlan(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listPlan(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        List<WorkItem> list = baseMapper.listPlan(context,context.getSelectCond());
-        return list;
-    }
-
     public Page<WorkItem> searchPropertyDistribution(WorkItemSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchPropertyDistribution(context.getPages(),context,context.getSelectCond());
         return new PageImpl<WorkItem>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),WorkItem.class), context.getPageable(), pages.getTotal());
@@ -809,6 +818,32 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("IDENTIFIER,ASC");
         List<WorkItem> list = baseMapper.listRecentWorkItem(context,context.getSelectCond());
+        return list;
+    }
+
+    public Page<WorkItem> searchRelease(WorkItemSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchRelease(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<WorkItem> listRelease(WorkItemSearchContext context) {
+        List<WorkItem> list = baseMapper.listRelease(context,context.getSelectCond());
+        return list;
+    }
+
+    public Page<WorkItem> searchReleasePlan(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,ASC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchReleasePlan(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<WorkItem> listReleasePlan(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,ASC");
+        List<WorkItem> list = baseMapper.listReleasePlan(context,context.getSelectCond());
         return list;
     }
 
@@ -862,24 +897,6 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
     public List<WorkItem> listRunRelationWorkItem(WorkItemSearchContext context) {
         List<WorkItem> list = baseMapper.listRunRelationWorkItem(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<WorkItem> searchSprintUserStat(WorkItemSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchSprintUserStat(context.getPages(),context,context.getSelectCond());
-        return new PageImpl<WorkItem>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),WorkItem.class), context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listSprintUserStat(WorkItemSearchContext context) {
-        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listSprintUserStat(context,context.getSelectCond()),WorkItem.class);
-    }
-
-    public Page<WorkItem> searchTempSpeedReport(WorkItemSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchTempSpeedReport(context.getPages(),context,context.getSelectCond());
-        return new PageImpl<WorkItem>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),WorkItem.class), context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listTempSpeedReport(WorkItemSearchContext context) {
-        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listTempSpeedReport(context,context.getSelectCond()),WorkItem.class);
     }
 
     public Page<WorkItem> searchTestCaseRelationBug(WorkItemSearchContext context) {
@@ -981,15 +998,6 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
     public List<WorkItem> listUnderWork(WorkItemSearchContext context) {
         List<WorkItem> list = baseMapper.listUnderWork(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<WorkItem> searchWorkItemDistribution(WorkItemSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchWorkItemDistribution(context.getPages(),context,context.getSelectCond());
-        return new PageImpl<WorkItem>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),WorkItem.class), context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listWorkItemDistribution(WorkItemSearchContext context) {
-        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listWorkItemDistribution(context,context.getSelectCond()),WorkItem.class);
     }
 
     public Page<WorkItem> searchWorkItemRelationWorkItem(WorkItemSearchContext context) {

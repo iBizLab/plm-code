@@ -119,6 +119,8 @@ export default {
     {
       detoolbarItems: [
         {
+          actionLevel: 100,
+          buttonStyle: 'STYLE3',
           detoolbarItems: [
             {
               actionLevel: 100,
@@ -212,23 +214,29 @@ export default {
           id: 'items1',
         },
         {
+          itemType: 'SEPERATOR',
+          id: 'seperator1',
+        },
+        {
+          actionLevel: 100,
+          buttonStyle: 'STYLE2',
           detoolbarItems: [
             {
               actionLevel: 100,
               noPrivDisplayMode: 2,
-              uiactionId: 'import_work_item_kanban@work_item',
+              uiactionId: 'kanban_work_item_import_data@work_item',
               uiactionTarget: 'NONE',
               valid: true,
               caption: '导入工作项',
               itemType: 'DEUIACTION',
               sysImage: {
-                cssClass: 'fa fa-upload',
-                glyph: 'xf093@FontAwesome',
+                cssClass: 'fa fa-cloud-upload',
+                glyph: 'xf0ee@FontAwesome',
               },
               tooltip: '导入工作项',
               showCaption: true,
               showIcon: true,
-              id: 'deuiaction2',
+              id: 'deuiaction4',
             },
             {
               actionLevel: 100,
@@ -1047,12 +1055,17 @@ export default {
               valid: true,
               caption: '修改时间',
               itemType: 'DEUIACTION',
+              sysImage: {
+                cssClass: 'fa fa-calendar',
+                glyph: 'xf073@FontAwesome',
+              },
               tooltip: '修改时间',
               showCaption: true,
               showIcon: true,
               id: 'deuiaction4',
             },
             {
+              actionLevel: 100,
               detoolbarItems: [
                 {
                   actionLevel: 100,
@@ -1108,6 +1121,10 @@ export default {
               valid: true,
               caption: '更多',
               itemType: 'ITEMS',
+              sysImage: {
+                cssClass: 'fa fa-list-ul',
+                glyph: 'xf0ca@FontAwesome',
+              },
               tooltip: '更多',
               showCaption: true,
               showIcon: true,

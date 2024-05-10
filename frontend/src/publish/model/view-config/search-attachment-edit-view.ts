@@ -8,4 +8,5 @@ export default {
   appDataEntityId: 'plmweb.search_attachment',
   redirectView: false,
   modalOption: {},
+  appId: '',
 };

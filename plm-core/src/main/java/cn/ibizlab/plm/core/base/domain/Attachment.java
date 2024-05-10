@@ -23,6 +23,7 @@ import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import cn.ibizlab.plm.core.wiki.domain.Stencil;
 import cn.ibizlab.plm.core.prodmgmt.domain.Idea;
 import cn.ibizlab.plm.core.wiki.domain.ArticlePage;
+import cn.ibizlab.plm.core.testmgmt.domain.Review;
 import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
 import cn.ibizlab.plm.core.prodmgmt.domain.Ticket;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
@@ -214,6 +215,16 @@ public class Attachment extends EntityMP implements Serializable
     @Transient
     @ApiModelProperty(value = "page", notes = "页面-附件")
     private ArticlePage page;
+
+    /**
+     * 评审
+     */
+    @JsonIgnore
+    @JSONField(serialize = false)
+    @TableField(exist = false)
+    @Transient
+    @ApiModelProperty(value = "review", notes = "评审_附件")
+    private Review review;
 
     /**
      * 用例

@@ -308,22 +308,29 @@ export default {
             id: 'deuiaction4',
           },
           {
+            itemType: 'SEPERATOR',
+            id: 'seperator1',
+          },
+          {
+            actionLevel: 100,
+            buttonStyle: 'STYLE2',
             detoolbarItems: [
               {
                 actionLevel: 100,
                 noPrivDisplayMode: 2,
-                uiactionId: 'import',
+                uiactionId: 'customer_import_data@customer',
+                uiactionTarget: 'NONE',
                 valid: true,
                 caption: '导入客户',
                 itemType: 'DEUIACTION',
                 sysImage: {
-                  cssClass: 'fa fa-upload',
-                  glyph: 'xf093@FontAwesome',
+                  cssClass: 'fa fa-cloud-upload',
+                  glyph: 'xf0ee@FontAwesome',
                 },
                 tooltip: '导入客户',
                 showCaption: true,
                 showIcon: true,
-                id: 'deuiaction2',
+                id: 'deuiaction1',
               },
               {
                 actionLevel: 100,

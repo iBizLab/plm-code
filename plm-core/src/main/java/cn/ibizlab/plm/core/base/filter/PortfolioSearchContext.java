@@ -54,14 +54,6 @@ public class PortfolioSearchContext extends QueryWrapperContext<Portfolio> {
     private String identifierLIKE;
 
     /**
-     * 是否星标EQ
-     */
-    @JsonProperty("n_is_favorite_eq")
-    @JSONField(name = "n_is_favorite_eq")
-    @ApiModelProperty("是否星标EQ")
-    private String isFavoriteEQ;
-
-    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")

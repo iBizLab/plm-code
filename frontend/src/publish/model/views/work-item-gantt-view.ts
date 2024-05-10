@@ -715,6 +715,8 @@ export default {
     {
       detoolbarItems: [
         {
+          actionLevel: 100,
+          buttonStyle: 'STYLE3',
           detoolbarItems: [
             {
               actionLevel: 100,
@@ -746,6 +748,10 @@ export default {
           valid: true,
           caption: '新建计划',
           itemType: 'ITEMS',
+          sysImage: {
+            cssClass: 'fa fa-plus',
+            glyph: 'xf067@FontAwesome',
+          },
           tooltip: '新建计划',
           showCaption: true,
           showIcon: true,

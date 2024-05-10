@@ -173,6 +173,36 @@ public interface TicketTypeService extends IService<TicketType> {
     }
 
     /**
+     * get_con_ticket
+     * 
+     * @param key
+     * @return
+     */
+    default TicketType getConTicket(String key) {
+        return getSelf().getConTicket(new TicketType().setId(key));
+    }
+
+    /**
+     * nothing
+     * 
+     * @param dto
+     * @return
+     */
+    default TicketType nothing(TicketType dto) {
+        return dto;
+    }
+
+    /**
+     * get_con_ticket
+     * 
+     * @param et
+     * @return
+     */
+    default TicketType getConTicket(TicketType et) {
+        return et;
+    }
+
+    /**
      * searchDefault
      * 
      * @param context
@@ -186,6 +216,21 @@ public interface TicketTypeService extends IService<TicketType> {
      * @return
      */
     List<TicketType> listDefault(TicketTypeSearchContext context);
+
+    /**
+     * searchnot_exists_ticket_type
+     * 
+     * @param context
+     * @return
+     */
+    Page<TicketType> searchNotExistsTicketType(TicketTypeSearchContext context);
+    /**
+     * listnot_exists_ticket_type
+     * 
+     * @param context
+     * @return
+     */
+    List<TicketType> listNotExistsTicketType(TicketTypeSearchContext context);
 
     /**
      * 创建实体对象

@@ -204,7 +204,7 @@ public interface WorkItemService extends IService<WorkItem> {
 
     /**
      * archive
-     * 归档归档
+     * 
      * @param dto
      * @return
      */
@@ -303,6 +303,26 @@ public interface WorkItemService extends IService<WorkItem> {
     }
 
     /**
+     * fill_project_member
+     * 
+     * @param dto
+     * @return
+     */
+    default WorkItem fillProjectMember(WorkItem dto) {
+        return dto;
+    }
+
+    /**
+     * fix_commit
+     * 
+     * @param dto
+     * @return
+     */
+    default WorkItem fixCommit(WorkItem dto) {
+        return dto;
+    }
+
+    /**
      * get_attention
      * 
      * @param key
@@ -393,6 +413,16 @@ public interface WorkItemService extends IService<WorkItem> {
     }
 
     /**
+     * shift_in_baseline
+     * 
+     * @param dto
+     * @return
+     */
+    default WorkItem shiftInBaseline(WorkItem dto) {
+        return dto;
+    }
+
+    /**
      * shift_in_kanban
      * 
      * @param dto
@@ -419,6 +449,16 @@ public interface WorkItemService extends IService<WorkItem> {
      * @return
      */
     default WorkItem shiftInVersion(WorkItem dto) {
+        return dto;
+    }
+
+    /**
+     * shift_out_baseline
+     * 
+     * @param dto
+     * @return
+     */
+    default WorkItem shiftOutBaseline(WorkItem dto) {
         return dto;
     }
 
@@ -516,6 +556,21 @@ public interface WorkItemService extends IService<WorkItem> {
      * @return
      */
     List<WorkItem> listBacklogStateDistribution(WorkItemSearchContext context);
+
+    /**
+     * searchbaseline_choose_work_item
+     * 
+     * @param context
+     * @return
+     */
+    Page<WorkItem> searchBaselineChooseWorkItem(WorkItemSearchContext context);
+    /**
+     * listbaseline_choose_work_item
+     * 
+     * @param context
+     * @return
+     */
+    List<WorkItem> listBaselineChooseWorkItem(WorkItemSearchContext context);
 
     /**
      * searchbug
@@ -908,21 +963,6 @@ public interface WorkItemService extends IService<WorkItem> {
     List<WorkItem> listOverviewChart(WorkItemSearchContext context);
 
     /**
-     * searchplan
-     * 
-     * @param context
-     * @return
-     */
-    Page<WorkItem> searchPlan(WorkItemSearchContext context);
-    /**
-     * listplan
-     * 
-     * @param context
-     * @return
-     */
-    List<WorkItem> listPlan(WorkItemSearchContext context);
-
-    /**
      * searchproperty_distribution
      * 
      * @param context
@@ -951,6 +991,36 @@ public interface WorkItemService extends IService<WorkItem> {
      * @return
      */
     List<WorkItem> listRecentWorkItem(WorkItemSearchContext context);
+
+    /**
+     * searchrelease
+     * 
+     * @param context
+     * @return
+     */
+    Page<WorkItem> searchRelease(WorkItemSearchContext context);
+    /**
+     * listrelease
+     * 
+     * @param context
+     * @return
+     */
+    List<WorkItem> listRelease(WorkItemSearchContext context);
+
+    /**
+     * searchrelease_plan
+     * 
+     * @param context
+     * @return
+     */
+    Page<WorkItem> searchReleasePlan(WorkItemSearchContext context);
+    /**
+     * listrelease_plan
+     * 
+     * @param context
+     * @return
+     */
+    List<WorkItem> listReleasePlan(WorkItemSearchContext context);
 
     /**
      * searchrequirement
@@ -1011,36 +1081,6 @@ public interface WorkItemService extends IService<WorkItem> {
      * @return
      */
     List<WorkItem> listRunRelationWorkItem(WorkItemSearchContext context);
-
-    /**
-     * searchsprint_user_stat
-     * 
-     * @param context
-     * @return
-     */
-    Page<WorkItem> searchSprintUserStat(WorkItemSearchContext context);
-    /**
-     * listsprint_user_stat
-     * 
-     * @param context
-     * @return
-     */
-    List<WorkItem> listSprintUserStat(WorkItemSearchContext context);
-
-    /**
-     * searchtemp_speed_report
-     * 
-     * @param context
-     * @return
-     */
-    Page<WorkItem> searchTempSpeedReport(WorkItemSearchContext context);
-    /**
-     * listtemp_speed_report
-     * 
-     * @param context
-     * @return
-     */
-    List<WorkItem> listTempSpeedReport(WorkItemSearchContext context);
 
     /**
      * searchtest_case_relation_bug
@@ -1146,21 +1186,6 @@ public interface WorkItemService extends IService<WorkItem> {
      * @return
      */
     List<WorkItem> listUnderWork(WorkItemSearchContext context);
-
-    /**
-     * searchwork_item_distribution
-     * 
-     * @param context
-     * @return
-     */
-    Page<WorkItem> searchWorkItemDistribution(WorkItemSearchContext context);
-    /**
-     * listwork_item_distribution
-     * 
-     * @param context
-     * @return
-     */
-    List<WorkItem> listWorkItemDistribution(WorkItemSearchContext context);
 
     /**
      * searchwork_item_relation_work_item

@@ -1,7 +1,7 @@
 export default {
   showDataInfoBar: true,
   loadDefault: true,
-  deviewCodeName: 'category_tree__exp_view',
+  deviewCodeName: 'category_tree_exp_view',
   deviewId: 'c45f3874df70ea4daeedc00add29d019',
   accUserMode: 2,
   capLanguageRes: {
@@ -461,6 +461,6 @@ export default {
   showCaptionBar: true,
   modelId: '1235950d05def5bc67b319010be8c7ce',
   modelType: 'PSAPPDEVIEW',
-  name: 'spacecategory_tree__exp_view',
+  name: 'spacecategory_tree_exp_view',
   id: 'plmweb.space_category_tree_exp_view',
 };

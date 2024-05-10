@@ -8,4 +8,5 @@ export default {
   appDataEntityId: 'plmweb.transition_history',
   redirectView: false,
   modalOption: {},
+  appId: '',
 };

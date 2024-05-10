@@ -175,6 +175,16 @@ public interface SprintService extends IService<Sprint> {
     }
 
     /**
+     * delete_categories
+     * 
+     * @param dto
+     * @return
+     */
+    default Sprint deleteCategories(Sprint dto) {
+        return dto;
+    }
+
+    /**
      * end_sprint
      * 
      * @param dto

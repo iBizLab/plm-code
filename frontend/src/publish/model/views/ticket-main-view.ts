@@ -726,6 +726,16 @@ export default {
             caption: '栅格容器',
             itemStyle: 'DEFAULT',
             itemType: 'CONTAINER',
+            controlLogics: [
+              {
+                itemName: 'CONTAINER_VIEW_BOTTOM',
+                logicTag: 'layoutpanel',
+                logicType: 'SCRIPT',
+                scriptCode: 'context.srfreadonly != true',
+                triggerType: 'ITEMVISIBLE',
+                id: 'logic_hiden',
+              },
+            ],
             layoutPos: {
               grow: 0,
               shrink: 0,
@@ -788,6 +798,16 @@ export default {
         name: 'LOGIC',
         id: 'logic',
       },
+      {
+        eventNames: 'onCreated',
+        logicTrigger: 'VIEWEVENT',
+        logicType: 'APPDEUILOGIC',
+        appDEUILogicId: 'test_get_only_read',
+        appDataEntityId: 'plmweb.ticket',
+        builtinLogic: true,
+        name: 'READONLY_LOGIC',
+        id: 'readonly_logic',
+      },
     ],
     controls: [
       {
@@ -800,6 +820,16 @@ export default {
             valid: true,
             caption: '附件',
             itemType: 'DEUIACTION',
+            controlLogics: [
+              {
+                itemName: 'deuiaction1',
+                logicTag: 'toolbar',
+                logicType: 'SCRIPT',
+                scriptCode: 'context.srfreadonly != true',
+                triggerType: 'ITEMVISIBLE',
+                id: 'deuiaction1',
+              },
+            ],
             sysImage: {
               cssClass: 'fa fa-upload',
               glyph: 'xf093@FontAwesome',
@@ -810,6 +840,7 @@ export default {
             id: 'deuiaction1',
           },
           {
+            actionLevel: 100,
             detoolbarItems: [
               {
                 actionLevel: 100,
@@ -866,6 +897,16 @@ export default {
             valid: true,
             caption: '关联',
             itemType: 'ITEMS',
+            controlLogics: [
+              {
+                itemName: 'items2',
+                logicTag: 'toolbar',
+                logicType: 'SCRIPT',
+                scriptCode: 'context.srfreadonly != true',
+                triggerType: 'ITEMVISIBLE',
+                id: 'items2',
+              },
+            ],
             sysImage: {
               cssClass: 'fa fa-link',
               glyph: 'xf0c1@FontAwesome',
@@ -876,6 +917,7 @@ export default {
             id: 'items2',
           },
           {
+            actionLevel: 100,
             detoolbarItems: [
               {
                 actionLevel: 100,
@@ -951,6 +993,16 @@ export default {
             valid: true,
             caption: '更多',
             itemType: 'ITEMS',
+            controlLogics: [
+              {
+                itemName: 'items1',
+                logicTag: 'toolbar',
+                logicType: 'SCRIPT',
+                scriptCode: 'context.srfreadonly != true',
+                triggerType: 'ITEMVISIBLE',
+                id: 'items1',
+              },
+            ],
             sysImage: {
               cssClass: 'fa fa-list-ul',
               glyph: 'xf0ca@FontAwesome',
@@ -1047,6 +1099,136 @@ export default {
                       layout: 'TABLE_24COL',
                     },
                     id: 'title',
+                  },
+                  {
+                    layout: {
+                      align: 'flex-start',
+                      dir: 'row',
+                      layout: 'FLEX',
+                      valign: 'center',
+                    },
+                    deformDetails: [
+                      {
+                        rawItem: {
+                          sysImage: {
+                            cssClass: 'fa fa-warning',
+                            glyph: 'xf071@FontAwesome',
+                          },
+                          contentType: 'IMAGE',
+                          id: 'rawitem1',
+                        },
+                        codeName: 'rawitem1',
+                        detailStyle: 'DEFAULT',
+                        detailType: 'RAWITEM',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        sysImage: {
+                          cssClass: 'fa fa-warning',
+                          glyph: 'xf071@FontAwesome',
+                        },
+                        showCaption: true,
+                        id: 'rawitem1',
+                      },
+                      {
+                        dataType: 25,
+                        enableCond: 3,
+                        ignoreInput: 3,
+                        labelPos: 'NONE',
+                        noPrivDisplayMode: 1,
+                        appDEFieldId: 'update_man',
+                        editor: {
+                          halign: 'LEFT',
+                          valign: 'MIDDLE',
+                          wrapMode: 'NOWRAP',
+                          appCodeListId: 'plmweb.sysoperator',
+                          editorType: 'SPAN',
+                          valueType: 'SIMPLE',
+                          editable: true,
+                          id: 'formitem',
+                        },
+                        allowEmpty: true,
+                        convertToCodeItemText: true,
+                        capLanguageRes: {
+                          lanResTag: 'DEF.LNAME.UPDATE_MAN',
+                        },
+                        caption: '更新人',
+                        codeName: 'formitem',
+                        detailStyle: 'DEFAULT',
+                        detailType: 'FORMITEM',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        id: 'formitem',
+                      },
+                      {
+                        rawItem: {
+                          content: '<p>于{{data.update_time}}归档了工单</p>',
+                          contentType: 'HTML',
+                          templateMode: true,
+                          id: 'rawitem2',
+                        },
+                        codeName: 'rawitem2',
+                        detailStyle: 'DEFAULT',
+                        detailType: 'RAWITEM',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        showCaption: true,
+                        id: 'rawitem2',
+                      },
+                      {
+                        actionType: 'UIACTION',
+                        uiactionId: 'toolbar_activate@ticket',
+                        tooltip: '激活',
+                        uiactionTarget: 'MULTIKEY',
+                        caption: '激活',
+                        codeName: 'button1',
+                        detailStyle: 'DEFAULT',
+                        detailType: 'BUTTON',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        sysCss: {
+                          cssName: 'activate_button',
+                        },
+                        sysImage: {
+                          cssClass: 'key',
+                        },
+                        showCaption: true,
+                        id: 'button1',
+                      },
+                    ],
+                    codeName: 'archiv_info',
+                    detailStyle: 'DEFAULT',
+                    detailType: 'GROUPPANEL',
+                    defdgroupLogics: [
+                      {
+                        logicCat: 'PANELVISIBLE',
+                        relatedDetailNames: ['is_archived'],
+                        groupOP: 'AND',
+                        defdlogics: [
+                          {
+                            condOP: 'EQ',
+                            defdname: 'is_archived',
+                            value: '1',
+                            logicType: 'SINGLE',
+                          },
+                        ],
+                        logicType: 'GROUP',
+                        id: '表单成员[archiv_info][面板显示]逻辑',
+                      },
+                    ],
+                    layoutPos: {
+                      colLG: 24,
+                      colMD: 24,
+                      layout: 'TABLE_24COL',
+                    },
+                    id: 'archiv_info',
                   },
                   {
                     dataType: 25,
@@ -1201,6 +1383,9 @@ export default {
                     editor: {
                       singleSelect: true,
                       appCodeListId: 'plmweb.prodmgmt__ticket_priority',
+                      editorParams: {
+                        overflowMode: 'ellipsis',
+                      },
                       editorType: 'DROPDOWNLIST',
                       valueType: 'SIMPLE',
                       editable: true,
@@ -1770,7 +1955,8 @@ export default {
                         },
                         deformDetails: [
                           {
-                            appViewId: 'plmweb.idea_ticket_re_idea_grid_view',
+                            appViewId:
+                              'plmweb.relation_ticket_re_idea_grid_view',
                             navigateContexts: [
                               {
                                 key: 'TARGET_TYPE',
@@ -1826,7 +2012,7 @@ export default {
                         deformDetails: [
                           {
                             appViewId:
-                              'plmweb.work_item_ticket_re_work_item_gridview',
+                              'plmweb.relation_ticket_re_work_item_grid_view',
                             navigateContexts: [
                               {
                                 key: 'TARGET_TYPE',
@@ -1882,7 +2068,7 @@ export default {
                         deformDetails: [
                           {
                             appViewId:
-                              'plmweb.ticket_ticket_re_ticket_grid_view',
+                              'plmweb.relation_ticket_re_self_grid_view',
                             navigateContexts: [
                               {
                                 key: 'PRODUCT',
@@ -2645,6 +2831,7 @@ export default {
         tabHeaderPos: 'TOP',
         noTabHeader: true,
         autoLoad: true,
+        enableItemPrivilege: true,
         showBusyIndicator: true,
         appCounterRefs: [
           {

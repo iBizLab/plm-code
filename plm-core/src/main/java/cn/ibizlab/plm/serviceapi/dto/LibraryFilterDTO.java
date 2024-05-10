@@ -63,19 +63,19 @@ public class LibraryFilterDTO extends FilterBase implements Serializable {
 	private Integer isDeletedEQ;
 
     /**
-     * 是否星标EQ
+     * 所属EQ
      */
-    @JsonProperty("n_is_favorite_eq")
-    @JSONField(name = "n_is_favorite_eq")
-    @ApiModelProperty(value = "是否星标EQ", position = 60)
-	private String isFavoriteEQ;
+    @JsonProperty("n_scope_type_eq")
+    @JSONField(name = "n_scope_type_eq")
+    @ApiModelProperty(value = "所属EQ", position = 70)
+	private String scopeTypeEQ;
 
     /**
      * 标识NOTEQ
      */
     @JsonProperty("n_id_noteq")
     @JSONField(name = "n_id_noteq")
-    @ApiModelProperty(value = "标识NOTEQ", position = 80)
+    @ApiModelProperty(value = "标识NOTEQ", position = 100)
 	private String idNOTEQ;
 
     /**
@@ -83,7 +83,7 @@ public class LibraryFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 81)
+    @ApiModelProperty(value = "标识EQ", position = 101)
 	private String idEQ;
 
     /**
@@ -91,7 +91,7 @@ public class LibraryFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "测试库名称LIKE", position = 90)
+    @ApiModelProperty(value = "测试库名称LIKE", position = 110)
 	private String nameLIKE;
 
 

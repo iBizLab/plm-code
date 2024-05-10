@@ -39,19 +39,19 @@ public class SpaceFilterDTO extends FilterBase implements Serializable {
 	private String visibilityEQ;
 
     /**
-     * 是否星标EQ
+     * 所属EQ
      */
-    @JsonProperty("n_is_favorite_eq")
-    @JSONField(name = "n_is_favorite_eq")
-    @ApiModelProperty(value = "是否星标EQ", position = 50)
-	private String isFavoriteEQ;
+    @JsonProperty("n_scope_type_eq")
+    @JSONField(name = "n_scope_type_eq")
+    @ApiModelProperty(value = "所属EQ", position = 70)
+	private String scopeTypeEQ;
 
     /**
      * 空间名称LIKE
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "空间名称LIKE", position = 80)
+    @ApiModelProperty(value = "空间名称LIKE", position = 100)
 	private String nameLIKE;
 
     /**
@@ -59,7 +59,7 @@ public class SpaceFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 90)
+    @ApiModelProperty(value = "标识EQ", position = 110)
 	private String idEQ;
 
     /**
@@ -67,7 +67,7 @@ public class SpaceFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_category_id_eq")
     @JSONField(name = "n_category_id_eq")
-    @ApiModelProperty(value = "分类EQ", position = 140)
+    @ApiModelProperty(value = "分类EQ", position = 160)
 	private String categoryIdEQ;
 
     /**
@@ -75,7 +75,7 @@ public class SpaceFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_category_name_eq")
     @JSONField(name = "n_category_name_eq")
-    @ApiModelProperty(value = "分类EQ", position = 150)
+    @ApiModelProperty(value = "分类EQ", position = 170)
 	private String categoryNameEQ;
 
     /**
@@ -83,7 +83,7 @@ public class SpaceFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_category_name_like")
     @JSONField(name = "n_category_name_like")
-    @ApiModelProperty(value = "分类LIKE", position = 151)
+    @ApiModelProperty(value = "分类LIKE", position = 171)
 	private String categoryNameLIKE;
 
 

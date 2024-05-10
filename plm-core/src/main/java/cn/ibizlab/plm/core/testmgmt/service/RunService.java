@@ -201,6 +201,16 @@ public interface RunService extends IService<Run> {
     }
 
     /**
+     * fill_library_member
+     * 
+     * @param dto
+     * @return
+     */
+    default Run fillLibraryMember(Run dto) {
+        return dto;
+    }
+
+    /**
      * get_actual_workload
      * 
      * @param key
@@ -499,6 +509,14 @@ public interface RunService extends IService<Run> {
     * @return
     */
     boolean saveByTestPlan(TestPlan testPlan,List<Run> list);
+
+    /**
+    * saveRelByTestCaseLatestRun
+    * @param testCase
+    * @param list
+    * @return
+    */
+    boolean saveByTestCaseLatestRun(TestCase testCase,List<Run> list);
 
     default List<RunHistory> getRunHistories(Run et) {
         return new ArrayList<>();

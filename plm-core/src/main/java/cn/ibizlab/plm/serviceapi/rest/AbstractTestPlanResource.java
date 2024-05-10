@@ -505,6 +505,21 @@ public abstract class AbstractTestPlanResource {
     }
 
     /**
+    * test_plan_report_survey 测试计划
+    * 
+    *
+    * @param id id
+    * @return ResponseEntity<TestPlanDTO>
+    */
+    @ApiOperation(value = "test_plan_report_survey", tags = {"测试计划" },  notes = "TestPlan-test_plan_report_survey ")
+    @GetMapping("test_plans/{id}/test_plan_report_survey")
+    public ResponseEntity<TestPlanDTO> testPlanReportSurveyById
+            (@PathVariable("id") String id) {
+        TestPlan rt = testPlanService.testPlanReportSurvey(id);
+        return ResponseEntity.status(HttpStatus.OK).body(testPlanDtoMapping.toDto(rt));
+    }
+
+    /**
     * 查询fetch_default 测试计划
     * 
     *
@@ -721,6 +736,22 @@ public abstract class AbstractTestPlanResource {
         TestPlan domain = testPlanDtoMapping.toDomain(dto);
         domain.setLibraryId(libraryId);
         TestPlan rt = testPlanService.getDraft(domain);
+        return ResponseEntity.status(HttpStatus.OK).body(testPlanDtoMapping.toDto(rt));
+    }
+
+    /**
+    * test_plan_report_survey 测试计划
+    * 
+    *
+    * @param libraryId libraryId
+    * @param id id
+    * @return ResponseEntity<TestPlanDTO>
+    */
+    @ApiOperation(value = "test_plan_report_survey", tags = {"测试计划" },  notes = "TestPlan-test_plan_report_survey ")
+    @GetMapping("libraries/{libraryId}/test_plans/{id}/test_plan_report_survey")
+    public ResponseEntity<TestPlanDTO> testPlanReportSurveyByLibraryIdAndId
+            (@PathVariable("libraryId") String libraryId, @PathVariable("id") String id) {
+        TestPlan rt = testPlanService.testPlanReportSurvey(id);
         return ResponseEntity.status(HttpStatus.OK).body(testPlanDtoMapping.toDto(rt));
     }
 

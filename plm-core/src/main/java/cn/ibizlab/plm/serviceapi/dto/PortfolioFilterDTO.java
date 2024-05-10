@@ -47,14 +47,6 @@ public class PortfolioFilterDTO extends FilterBase implements Serializable {
 	private String identifierLIKE;
 
     /**
-     * 是否星标EQ
-     */
-    @JsonProperty("n_is_favorite_eq")
-    @JSONField(name = "n_is_favorite_eq")
-    @ApiModelProperty(value = "是否星标EQ", position = 60)
-	private String isFavoriteEQ;
-
-    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")

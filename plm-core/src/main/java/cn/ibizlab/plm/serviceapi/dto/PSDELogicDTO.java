@@ -222,11 +222,11 @@ public class PSDELogicDTO extends DTOBase implements Serializable {
     private String psdeLogicId;
 
     /**
-     * 实体处理逻辑名称
+     * 名称
      */
     @JsonProperty("psdelogicname")
     @JSONField(name = "psdelogicname")
-    @ApiModelProperty(value = "实体处理逻辑名称", position = 23)
+    @ApiModelProperty(value = "名称", position = 23)
     private String psdeLogicName;
 
     /**
@@ -476,7 +476,7 @@ public class PSDELogicDTO extends DTOBase implements Serializable {
     }
 
     /**
-     * 设置 [实体处理逻辑名称]
+     * 设置 [名称]
      */
     public PSDELogicDTO setPsdeLogicName(String psdeLogicName) {
         this.psdeLogicName = psdeLogicName;

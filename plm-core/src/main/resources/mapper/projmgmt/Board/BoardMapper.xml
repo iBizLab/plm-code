@@ -46,6 +46,10 @@
          <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`NAME`, t1.`PROJECT_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `BOARD` t1   ]]>  
     </sql>
 
+    <sql id="curProjectBoard" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`NAME`, t1.`PROJECT_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `BOARD` t1   ]]>  where  <![CDATA[ ( t1.`ID` <> #{ctx.webcontext.project} ) ]]> 
+    </sql>
+
     <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.BoardSearchContext"  resultMap="BoardResultMap">
         select t1.* 
         from (
@@ -61,6 +65,27 @@
         select t1.*
         from (
             <include refid="default"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchCurProjectBoard"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.BoardSearchContext"  resultMap="BoardResultMap">
+        select t1.* 
+        from (
+            <include refid="curProjectBoard"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listCurProjectBoard"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.BoardSearchContext"  resultMap="BoardResultMap">
+        select t1.*
+        from (
+            <include refid="curProjectBoard"/>
         ) t1
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>

@@ -260,6 +260,16 @@ public class Ticket extends EntityMP implements Serializable
     private List<Attention> attentions;
 
     /**
+     * 关注人
+     */
+    @TableField(value = "attentions_imp" , exist = false)
+    @DEField(name = "attentions_imp")
+    @JsonProperty("attentions_imp")
+    @JSONField(name = "attentions_imp")
+    @ApiModelProperty(value = "attentions_imp", notes = "关注人")
+    private String attentionsImp;
+
+    /**
      * 更新时间
      */
     @TableField(value = "update_time")
@@ -578,6 +588,15 @@ public class Ticket extends EntityMP implements Serializable
     public Ticket setAttentions(List<Attention> attentions) {
         this.attentions = attentions;
         this.modify("attentions", attentions);
+        return this;
+    }
+
+    /**
+     * 设置 [关注人]
+     */
+    public Ticket setAttentionsImp(String attentionsImp) {
+        this.attentionsImp = attentionsImp;
+        this.modify("attentions_imp", attentionsImp);
         return this;
     }
 

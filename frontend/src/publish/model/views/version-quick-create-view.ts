@@ -12,7 +12,7 @@ export default {
   },
   caption: '建立版本',
   codeName: 'version_quick_create_view',
-  height: 400,
+  height: 450,
   appDataEntityId: 'plmweb.version',
   appViewEngines: [
     {
@@ -65,6 +65,30 @@ export default {
                 layout: 'TABLE_24COL',
               },
               deformDetails: [
+                {
+                  dataType: 25,
+                  labelPos: 'TOP',
+                  labelWidth: 130,
+                  noPrivDisplayMode: 1,
+                  editor: {
+                    editorType: 'TEXTBOX',
+                    valueType: 'SIMPLE',
+                    editable: true,
+                    id: 'cur_version_name',
+                  },
+                  allowEmpty: true,
+                  caption: '当前版本',
+                  codeName: 'cur_version_name',
+                  detailStyle: 'DEFAULT',
+                  detailType: 'FORMITEM',
+                  layoutPos: {
+                    colLG: 12,
+                    colMD: 12,
+                    layout: 'TABLE_24COL',
+                  },
+                  showCaption: true,
+                  id: 'cur_version_name',
+                },
                 {
                   dataType: 25,
                   enableCond: 3,
@@ -149,8 +173,7 @@ export default {
                   detailStyle: 'DEFAULT',
                   detailType: 'FORMITEM',
                   layoutPos: {
-                    colLG: 12,
-                    colMD: 12,
+                    colMD: 24,
                     layout: 'TABLE_24COL',
                   },
                   showCaption: true,
@@ -178,8 +201,7 @@ export default {
                   detailStyle: 'DEFAULT',
                   detailType: 'FORMITEM',
                   layoutPos: {
-                    colLG: 12,
-                    colMD: 12,
+                    colMD: 24,
                     layout: 'TABLE_24COL',
                   },
                   showCaption: true,
@@ -241,7 +263,7 @@ export default {
       noTabHeader: true,
       autoLoad: true,
       showBusyIndicator: true,
-      codeName: 'quick_create',
+      codeName: 'quick_create_form',
       controlType: 'FORM',
       logicName: '建立版本操作视图_表单',
       appDataEntityId: 'plmweb.version',
@@ -251,7 +273,7 @@ export default {
       modelId: '9D061749-8502-4FDC-964D-365E19D52F26',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
-      id: 'plmweb.version.quick_create',
+      id: 'plmweb.version.quick_create_form',
     },
     {
       codeName: 'quick_create_view_datainfobar',

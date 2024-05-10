@@ -113,18 +113,24 @@ export default {
           id: 'deuiaction3',
         },
         {
+          itemType: 'SEPERATOR',
+          id: 'seperator1',
+        },
+        {
+          actionLevel: 100,
+          buttonStyle: 'STYLE2',
           detoolbarItems: [
             {
               actionLevel: 100,
               noPrivDisplayMode: 2,
-              uiactionId: 'import_work_item_backlog@work_item',
+              uiactionId: 'waterfall_work_item_import_data@work_item',
               uiactionTarget: 'NONE',
               valid: true,
               caption: '导入需求',
               itemType: 'DEUIACTION',
               sysImage: {
-                cssClass: 'fa fa-upload',
-                glyph: 'xf093@FontAwesome',
+                cssClass: 'fa fa-cloud-upload',
+                glyph: 'xf0ee@FontAwesome',
               },
               tooltip: '导入需求',
               showCaption: true,
@@ -874,6 +880,7 @@ export default {
               id: 'deuiaction10',
             },
             {
+              actionLevel: 100,
               detoolbarItems: [
                 {
                   actionLevel: 100,
@@ -949,6 +956,10 @@ export default {
               valid: true,
               caption: '更多',
               itemType: 'ITEMS',
+              sysImage: {
+                cssClass: 'fa fa-list-ul',
+                glyph: 'xf0ca@FontAwesome',
+              },
               tooltip: '更多',
               showCaption: true,
               showIcon: true,

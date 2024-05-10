@@ -91,7 +91,7 @@ public class CustomerFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 150)
+    @ApiModelProperty(value = "标识EQ", position = 160)
 	private String idEQ;
 
     /**
@@ -99,7 +99,7 @@ public class CustomerFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "客户名称LIKE", position = 170)
+    @ApiModelProperty(value = "客户名称LIKE", position = 180)
 	private String nameLIKE;
 
     /**
@@ -107,7 +107,7 @@ public class CustomerFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_product_id_eq")
     @JSONField(name = "n_product_id_eq")
-    @ApiModelProperty(value = "产品标识EQ", position = 210)
+    @ApiModelProperty(value = "产品标识EQ", position = 220)
 	private String productIdEQ;
 
 

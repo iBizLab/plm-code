@@ -174,6 +174,36 @@ public interface MemberService extends IService<Member> {
     }
 
     /**
+     * change_role
+     * 
+     * @param dto
+     * @return
+     */
+    default Member changeRole(Member dto) {
+        return dto;
+    }
+
+    /**
+     * create_member
+     * 
+     * @param dto
+     * @return
+     */
+    default Member createMember(Member dto) {
+        return dto;
+    }
+
+    /**
+     * nothing
+     * 
+     * @param dto
+     * @return
+     */
+    default Member nothing(Member dto) {
+        return dto;
+    }
+
+    /**
      * searchDefault
      * 
      * @param context
@@ -187,6 +217,21 @@ public interface MemberService extends IService<Member> {
      * @return
      */
     List<Member> listDefault(MemberSearchContext context);
+
+    /**
+     * searchuser_group_admin
+     * 
+     * @param context
+     * @return
+     */
+    Page<Member> searchUserGroupAdmin(MemberSearchContext context);
+    /**
+     * listuser_group_admin
+     * 
+     * @param context
+     * @return
+     */
+    List<Member> listUserGroupAdmin(MemberSearchContext context);
 
     /**
      * 创建实体对象

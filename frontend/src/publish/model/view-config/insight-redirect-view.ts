@@ -8,4 +8,5 @@ export default {
   appDataEntityId: 'plmweb.insight',
   redirectView: true,
   modalOption: {},
+  appId: '',
 };

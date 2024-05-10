@@ -55,6 +55,9 @@ public interface AuthLogFeignClient  {
     @PutMapping("authlogs/{logId}")
     AuthLog updateByLogId(@PathVariable("logId") String logId, @Validated @RequestBody AuthLog dto) ;
 
+    @PostMapping("authlogs/fetchcuruser")
+    Page<AuthLog> fetchCurUser(@Validated @RequestBody AuthLogSearchContext dto) ;
+
     @PostMapping("authlogs/fetchdefault")
     Page<AuthLog> fetchDefault(@Validated @RequestBody AuthLogSearchContext dto) ;
 

@@ -5,13 +5,20 @@ export default {
   accUserMode: 2,
   caption: '新建产品',
   codeName: 'product_create_wizard_view',
-  height: 650,
+  height: 700,
   appDataEntityId: 'plmweb.product',
   appViewEngines: [
     {
       engineCat: 'VIEW',
       engineType: 'WizardView',
       id: 'engine',
+    },
+  ],
+  appViewNavParams: [
+    {
+      key: 'srfdefaulttype',
+      value: 'scope_type',
+      id: 'srfdefaulttype',
     },
   ],
   controls: [
@@ -40,9 +47,11 @@ export default {
           },
           dewizardForm: {
             formTag: 'fill_info',
+            goFinishEnableScriptCode: 'data.scope_type !== "organization"',
+            goNextEnableScriptCode: 'data.scope_type === "organization"',
             deformName: '新建表单',
             dewizardStepId: '产品信息',
-            stepActions: ['NEXT'],
+            stepActions: ['NEXT', 'FINISH'],
             firstForm: true,
             id: 'fill_info',
           },
@@ -109,7 +118,7 @@ export default {
                     {
                       rawItem: {
                         content:
-                          '<p class="template-name"><strong>产品</strong></p>\n<div class="template-desc"><span style="color: #95a5a6;">产品与需求池管理，提供多维度的需求规划工具，打通客户、业务团队和产研团队之间的协作。</span></div>\n<div class="template-tips">\n<div class="template-tip ng-star-inserted" style="padding-left: 40px;"><span style="color: #95a5a6;">模块化需求管理，构建清晰且统一的需求池</span></div>\n<div class="template-tip ng-star-inserted" style="padding-left: 40px;"><span style="color: #95a5a6;">标准化评估需求分数，统一衡量需求优先级</span></div>\n<div class="template-tip ng-star-inserted" style="padding-left: 40px;"><span style="color: #95a5a6;">多渠道收集整理工单，搭建与客户之间的沟通平台</span></div>\n</div>',
+                          '<h2 class="template-name" style="margin: 0 0 6px; padding-left: 40px;"><strong>产品</strong></h2>\n<div class="template-desc" style="padding: 0 40px; margin-bottom: 16px;"><span style="color: #95a5a6;">产品与需求池管理，提供多维度的需求规划工具，打通客户、业务团队和产研团队之间的协作。</span></div>\n<div class="template-tips">\n<div class="template-tip ng-star-inserted" style="padding-left: 40px; margin-bottom: 12px;">\n<ul>\n<li style="color: #95a5a6;">模块化需求管理，构建清晰且统一的需求池</li>\n</ul>\n</div>\n<div class="template-tip ng-star-inserted" style="padding-left: 40px; margin-bottom: 12px;">\n<ul>\n<li style="color: #95a5a6;">标准化评估需求分数，统一衡量需求优先级</li>\n</ul>\n</div>\n<div class="template-tip ng-star-inserted" style="padding-left: 40px; margin-bottom: 12px;">\n<ul>\n<li style="color: #95a5a6;">多渠道收集整理工单，搭建与客户之间的沟通平台</li>\n</ul>\n</div>\n</div>',
                         contentType: 'HTML',
                         id: 'rawitem1',
                       },
@@ -140,6 +149,80 @@ export default {
                     layout: 'TABLE_24COL',
                   },
                   deformDetails: [
+                    {
+                      dataType: 25,
+                      enableCond: 3,
+                      labelPos: 'TOP',
+                      labelWidth: 130,
+                      noPrivDisplayMode: 1,
+                      appDEFieldId: 'scope_id',
+                      editor: {
+                        editorType: 'HIDDEN',
+                        valueType: 'SIMPLE',
+                        editable: true,
+                        id: 'scope_id',
+                      },
+                      allowEmpty: true,
+                      hidden: true,
+                      caption: '所属对象',
+                      codeName: 'scope_id',
+                      detailStyle: 'DEFAULT',
+                      detailType: 'FORMITEM',
+                      layoutPos: {
+                        colMD: 24,
+                        layout: 'TABLE_24COL',
+                      },
+                      showCaption: true,
+                      id: 'scope_id',
+                    },
+                    {
+                      dataType: 25,
+                      enableCond: 3,
+                      labelPos: 'TOP',
+                      labelWidth: 130,
+                      noPrivDisplayMode: 1,
+                      appDEFieldId: 'scope_type',
+                      editor: {
+                        enablePickupView: true,
+                        singleSelect: true,
+                        handlerType: 'PickupText',
+                        appDEACModeId: 'default',
+                        appDEDataSetId: 'fetch_default',
+                        appDataEntityId: 'plmweb.group',
+                        enableAC: true,
+                        forceSelection: true,
+                        showTrigger: true,
+                        valueItemName: 'scope_id',
+                        editorParams: {
+                          AC: 'TRUE',
+                          fillMap:
+                            '{"user":"user","user_group":"user_group","organization":"organization"}',
+                          enablePerson: 'false',
+                          PICKUPVIEW: 'TRUE',
+                        },
+                        editorStyle: 'TEAM_PICKER',
+                        editorType: 'PICKER',
+                        editorItems: [
+                          {
+                            id: 'scope_id',
+                          },
+                        ],
+                        sysPFPluginId: 'team_picker',
+                        valueType: 'SIMPLE',
+                        editable: true,
+                        id: 'scope_type',
+                      },
+                      caption: '所属',
+                      codeName: 'scope_type',
+                      detailStyle: 'DEFAULT',
+                      detailType: 'FORMITEM',
+                      layoutPos: {
+                        colMD: 24,
+                        layout: 'TABLE_24COL',
+                      },
+                      showCaption: true,
+                      id: 'scope_type',
+                    },
                     {
                       dataType: 25,
                       enableCond: 3,
@@ -423,7 +506,7 @@ export default {
                     {
                       rawItem: {
                         content:
-                          '<p class="template-name"><strong>产品</strong></p>\n<div class="template-desc"><span style="color: #95a5a6;">产品与需求池管理，提供多维度的需求规划工具，打通客户、业务团队和产研团队之间的协作。</span></div>\n<div class="template-tips">\n<div class="template-tip ng-star-inserted" style="padding-left: 40px;"><span style="color: #95a5a6;">模块化需求管理，构建清晰且统一的需求池</span></div>\n<div class="template-tip ng-star-inserted" style="padding-left: 40px;"><span style="color: #95a5a6;">标准化评估需求分数，统一衡量需求优先级</span></div>\n<div class="template-tip ng-star-inserted" style="padding-left: 40px;"><span style="color: #95a5a6;">多渠道收集整理工单，搭建与客户之间的沟通平台</span></div>\n</div>',
+                          '<h2 class="template-name" style="margin: 0 0 6px; padding-left: 40px;"><strong>产品</strong></h2>\n<div class="template-desc" style="padding: 0 40px; margin-bottom: 16px;"><span style="color: #95a5a6;">产品与需求池管理，提供多维度的需求规划工具，打通客户、业务团队和产研团队之间的协作。</span></div>\n<div class="template-tips">\n<div class="template-tip ng-star-inserted" style="padding-left: 40px; margin-bottom: 12px;">\n<ul>\n<li style="color: #95a5a6;">模块化需求管理，构建清晰且统一的需求池</li>\n</ul>\n</div>\n<div class="template-tip ng-star-inserted" style="padding-left: 40px; margin-bottom: 12px;">\n<ul>\n<li style="color: #95a5a6;">标准化评估需求分数，统一衡量需求优先级</li>\n</ul>\n</div>\n<div class="template-tip ng-star-inserted" style="padding-left: 40px; margin-bottom: 12px;">\n<ul>\n<li style="color: #95a5a6;">多渠道收集整理工单，搭建与客户之间的沟通平台</li>\n</ul>\n</div>\n</div>',
                         contentType: 'HTML',
                         id: 'rawitem1',
                       },
@@ -711,9 +794,11 @@ export default {
         dewizardForms: [
           {
             formTag: 'fill_info',
+            goFinishEnableScriptCode: 'data.scope_type !== "organization"',
+            goNextEnableScriptCode: 'data.scope_type === "organization"',
             deformName: '新建表单',
             dewizardStepId: '产品信息',
-            stepActions: ['NEXT'],
+            stepActions: ['NEXT', 'FINISH'],
             firstForm: true,
             id: 'fill_info',
           },

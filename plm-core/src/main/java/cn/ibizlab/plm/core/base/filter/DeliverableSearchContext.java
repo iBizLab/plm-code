@@ -80,7 +80,7 @@ public class DeliverableSearchContext extends QueryWrapperContext<Deliverable> {
     public void setQuery(String query) {
         this.query=query;
         if(!ObjectUtils.isEmpty(query))
-            this.getFilter().and(QueryFilter.createQuery().or(QueryFilter.createQuery().like("name",query)));
+            this.getFilter().and(QueryFilter.createQuery().or(QueryFilter.createQuery().like("title",query)));
     }
 
     @JsonIgnore

@@ -91,6 +91,15 @@ public class DupCheckAspect {
         check(point, "searchDefault");
     }
     /**
+     * 实体[Review]
+     *
+     * @param point
+     */
+    @AfterReturning(value = "execution(* cn.ibizlab.plm.core.*.service.ReviewService.create*(..))||execution(* cn.ibizlab.plm.core.*.service.ReviewService.update*(..))")
+    public void checkReview(JoinPoint point) {
+        check(point, "searchDefault");
+    }
+    /**
      * 实体[Space]
      *
      * @param point

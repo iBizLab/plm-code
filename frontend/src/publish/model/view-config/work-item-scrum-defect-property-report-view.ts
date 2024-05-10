@@ -8,4 +8,5 @@ export default {
   appDataEntityId: 'plmweb.work_item',
   redirectView: false,
   modalOption: {},
+  appId: '',
 };

@@ -377,6 +377,16 @@ export default {
             valid: true,
             caption: '添加回复',
             itemType: 'DEUIACTION',
+            controlLogics: [
+              {
+                itemName: 'deuiaction1',
+                logicTag: 'toolbar',
+                logicType: 'SCRIPT',
+                scriptCode: 'context.srfreadonly != true',
+                triggerType: 'ITEMVISIBLE',
+                id: 'deuiaction1',
+              },
+            ],
             sysImage: {
               cssClass: 'fa fa-plus',
               glyph: 'xf067@FontAwesome',
@@ -666,6 +676,16 @@ export default {
                       caption: '容器',
                       itemStyle: 'DEFAULT',
                       itemType: 'CONTAINER',
+                      controlLogics: [
+                        {
+                          itemName: 'CONTAINER2',
+                          logicTag: 'list_itempanel',
+                          logicType: 'SCRIPT',
+                          scriptCode: 'context.srfreadonly != true',
+                          triggerType: 'ITEMVISIBLE',
+                          id: 'show_logic',
+                        },
+                      ],
                       layoutPos: {
                         shrink: 1,
                         layout: 'FLEX',
@@ -926,19 +946,10 @@ export default {
             id: 'create_man',
           },
           {
-            appDEFieldId: 'pid',
-            dataType: 25,
-            id: 'pid',
-          },
-          {
-            appDEFieldId: 'id',
-            dataType: 25,
-            id: 'id',
-          },
-          {
-            appDEFieldId: 'pcontent',
-            dataType: 21,
-            id: 'pcontent',
+            appDEFieldId: 'create_time',
+            dataType: 5,
+            format: 'YYYY-MM-DD HH:mm:ss',
+            id: 'create_time',
           },
           {
             appDEFieldId: 'content',
@@ -946,10 +957,19 @@ export default {
             id: 'content',
           },
           {
-            appDEFieldId: 'create_time',
-            dataType: 5,
-            format: 'YYYY-MM-DD HH:mm:ss',
-            id: 'create_time',
+            appDEFieldId: 'pcontent',
+            dataType: 21,
+            id: 'pcontent',
+          },
+          {
+            appDEFieldId: 'id',
+            dataType: 25,
+            id: 'id',
+          },
+          {
+            appDEFieldId: 'pid',
+            dataType: 25,
+            id: 'pid',
           },
           {
             appDEFieldId: 'pcreate_man',

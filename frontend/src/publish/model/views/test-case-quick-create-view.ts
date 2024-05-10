@@ -21,6 +21,19 @@ export default {
       id: 'engine',
     },
   ],
+  appViewLogics: [
+    {
+      eventNames: 'onLoadSuccess',
+      logicTrigger: 'CTRLEVENT',
+      logicType: 'APPDEUILOGIC',
+      appDEUILogicId: 'clean_attentions',
+      appDataEntityId: 'plmweb.test_case',
+      ctrlName: 'form',
+      builtinLogic: true,
+      name: 'CLEAN_ATTENTIONS',
+      id: 'clean_attentions',
+    },
+  ],
   appViewNavParams: [
     {
       key: 'suite_id',
@@ -1374,6 +1387,7 @@ export default {
       detoolbarItems: [
         {
           actionLevel: 100,
+          buttonStyle: 'PRIMARY',
           noPrivDisplayMode: 2,
           uiactionId: 'choose_case_template@test_case',
           uiactionTarget: 'NONE',
@@ -1381,8 +1395,8 @@ export default {
           caption: '选择模板',
           itemType: 'DEUIACTION',
           sysImage: {
-            cssClass: 'fa fa-lightbulb-o',
-            glyph: 'xf0eb@FontAwesome',
+            rawContent:
+              '<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1713508300087" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4303" width="16" height="16" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M140.8 140.8h313.6c6.4 0 12.8 6.4 12.8 12.8v313.6c0 6.4-6.4 12.8-12.8 12.8H140.8c-6.4 0-12.8-6.4-12.8-12.8V153.6c0-6.4 6.4-12.8 12.8-12.8z m0 403.2h313.6c6.4 0 12.8 6.4 12.8 12.8v313.6c0 6.4-6.4 12.8-12.8 12.8H140.8c-6.4 0-12.8-6.4-12.8-12.8V556.8c0-6.4 6.4-12.8 12.8-12.8z m428.8-403.2h313.6c6.4 0 12.8 6.4 12.8 12.8v313.6c0 6.4-6.4 12.8-12.8 12.8H569.6c-6.4 0-12.8-6.4-12.8-12.8V153.6c0-6.4 6.4-12.8 12.8-12.8z m115.2 531.2v-128H768v128h128v83.2h-128v128h-83.2v-128h-128v-83.2h128z" fill="#2c2c2c" p-id="4304"></path></svg>',
           },
           tooltip: '选择模板',
           showIcon: true,

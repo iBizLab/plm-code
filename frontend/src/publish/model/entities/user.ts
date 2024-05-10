@@ -372,6 +372,16 @@ export default {
           id: 'n_department_id_eq',
         },
         {
+          codeName: 'n_department_id_isnull',
+          logicName: '部门标识',
+          appDEFieldId: 'department_id',
+          sourceType: 'DEFSEARCHMODE',
+          stdDataType: 25,
+          type: 'SIMPLE',
+          allowEmpty: true,
+          id: 'n_department_id_isnull',
+        },
+        {
           codeName: 'n_department_name_eq',
           logicName: '部门名称',
           appDEFieldId: 'department_name',

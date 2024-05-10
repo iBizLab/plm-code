@@ -165,7 +165,7 @@ public interface ProductTicketTypeService extends IService<ProductTicketType> {
                 this.getSelf().save(et);
                 rt.setSuccess(rt.getSuccess()+1);
             }catch (Exception ex){
-                rt.addItem(i+1,et.getName(),ex.getMessage());
+                rt.addItem(i+1,et.getTicketTypeName(),ex.getMessage());
                 if(!ignoreError)
                     break;
             }

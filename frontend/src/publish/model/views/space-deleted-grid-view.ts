@@ -66,15 +66,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '空间编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.SPACE.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.space_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       realOpenMode: 'POPUPMODAL',
       realTitle: '空间信息',
       realTitleLanguageRes: {
@@ -83,6 +74,15 @@ export default {
       refAppViewId: 'plmweb.space_info_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realTitle: '空间编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.SPACE.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.space_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -180,8 +180,8 @@ export default {
                 tooltip: '恢复',
                 showIcon: true,
                 sysImage: {
-                  cssClass: 'fa fa-retweet',
-                  glyph: 'xf079@FontAwesome',
+                  cssClass: 'fa fa-refresh',
+                  glyph: 'xf021@FontAwesome',
                 },
                 id: 'ub9bb800',
               },
@@ -246,11 +246,6 @@ export default {
           dataType: 25,
           id: 'srfmajortext',
         },
-        {
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'srfmstag',
-        },
       ],
       degridEditItems: [
         {
@@ -301,6 +296,23 @@ export default {
       groupMode: 'SINGLE',
       quickSearchMode: 1,
       enableQuickSearch: true,
+      codeName: 'query_search_bar',
+      controlType: 'SEARCHBAR',
+      logicName: '快速搜索栏',
+      appDataEntityId: 'plmweb.space',
+      controlParam: {
+        ctrlParams: {
+          TELEPORTFLAG: 'true',
+        },
+        id: 'tabsearchbar',
+      },
+      modelId: 'B8BE30FB-56A4-4143-B85A-8D320AB4CEAC',
+      modelType: 'PSSYSSEARCHBAR',
+      name: 'tabsearchbar',
+      id: 'plmweb.space.query_search_bar',
+    },
+    {
+      groupMode: 'SINGLE',
       controlType: 'SEARCHBAR',
       appDataEntityId: 'plmweb.space',
       controlParam: {
@@ -336,7 +348,7 @@ export default {
   viewStyle: 'DEFAULT',
   viewType: 'DEGRIDVIEW',
   enableDP: true,
-  showCaptionBar: true,
+  showCaptionBar: false,
   modelId: '2817d88d093e3e048dfd54eb83851d2c',
   modelType: 'PSAPPDEVIEW',
   name: 'spacedeleted_grid_view',

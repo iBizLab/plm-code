@@ -260,11 +260,6 @@ export default {
           dataType: 25,
           id: 'srfmajortext',
         },
-        {
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'srfmstag',
-        },
       ],
       degridEditItems: [
         {
@@ -302,6 +297,17 @@ export default {
       controlType: 'GRID',
       logicName: '主表格',
       appDataEntityId: 'plmweb.library',
+      controlLogics: [
+        {
+          eventNames: 'onLoadSuccess',
+          logicTag: 'grid',
+          logicType: 'APPDEUILOGIC',
+          appDEUILogicId: 'calc_column_action_state',
+          appDataEntityId: 'plmweb.library',
+          triggerType: 'CTRLEVENT',
+          id: 'calc_button_state',
+        },
+      ],
       controlParam: {
         id: 'grid',
       },

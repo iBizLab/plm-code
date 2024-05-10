@@ -17,6 +17,7 @@
         <association property="stencil" javaType="cn.ibizlab.plm.core.wiki.domain.Stencil" column="owner_id" select="cn.ibizlab.plm.core.wiki.mapper.StencilMapper.selectById" fetchType="lazy"></association>
         <association property="idea" javaType="cn.ibizlab.plm.core.prodmgmt.domain.Idea" column="owner_id" select="cn.ibizlab.plm.core.prodmgmt.mapper.IdeaMapper.selectById" fetchType="lazy"></association>
         <association property="page" javaType="cn.ibizlab.plm.core.wiki.domain.ArticlePage" column="owner_id" select="cn.ibizlab.plm.core.wiki.mapper.ArticlePageMapper.selectById" fetchType="lazy"></association>
+        <association property="review" javaType="cn.ibizlab.plm.core.testmgmt.domain.Review" column="owner_id" select="cn.ibizlab.plm.core.testmgmt.mapper.ReviewMapper.selectById" fetchType="lazy"></association>
         <association property="testCase" javaType="cn.ibizlab.plm.core.testmgmt.domain.TestCase" column="owner_id" select="cn.ibizlab.plm.core.testmgmt.mapper.TestCaseMapper.selectById" fetchType="lazy"></association>
         <association property="ticket" javaType="cn.ibizlab.plm.core.prodmgmt.domain.Ticket" column="owner_id" select="cn.ibizlab.plm.core.prodmgmt.mapper.TicketMapper.selectById" fetchType="lazy"></association>
         <association property="workItem" javaType="cn.ibizlab.plm.core.projmgmt.domain.WorkItem" column="owner_id" select="cn.ibizlab.plm.core.projmgmt.mapper.WorkItemMapper.selectById" fetchType="lazy"></association>
@@ -124,6 +125,13 @@
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
         
+    </select>
+
+    <select id="findByOwnerId" resultMap="AttachmentResultMap">
+        select t1.* from (
+            <include refid="default"/>
+        ) t1
+        where owner_id in <foreach item="id" index="index" collection="ownerIds" open="(" separator="," close=")">#{id}</foreach> 
     </select>
 
     <select id="findByOwnerId" resultMap="AttachmentResultMap">

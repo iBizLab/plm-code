@@ -93,6 +93,39 @@ export default {
       id: 'update_man',
     },
   ],
+  appDELogics: [
+    {
+      codeName: 'nothing',
+      defaultParamName: 'Default',
+      logicName: '无操作',
+      logicSubType: 'NONE',
+      delogicNodes: [
+        {
+          codeName: 'Begin',
+          leftPos: 200,
+          logicNodeType: 'BEGIN',
+          topPos: 200,
+          parallelOutput: true,
+          name: '开始',
+          id: 'begin',
+        },
+      ],
+      delogicParams: [
+        {
+          codeName: 'Default',
+          default: true,
+          entityParam: true,
+          paramAppDataEntityId: 'plmweb.project_tag',
+          name: '传入变量',
+          id: 'default',
+        },
+      ],
+      startDELogicNodeId: 'begin',
+      valid: true,
+      name: '无操作',
+      id: 'nothing',
+    },
+  ],
   appDEMethodDTOs: [
     {
       codeName: 'project_tag_dto',
@@ -283,6 +316,26 @@ export default {
       dataSetType: 'REMOTE',
       name: 'GetDraft',
       id: 'get_draft',
+    },
+    {
+      codeName: 'nothing',
+      methodType: 'DEACTION',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'project_tag_dto',
+        type: 'DTO',
+        name: 'NothingInput',
+        id: 'nothinginput',
+      },
+      appDEMethodReturn: {
+        type: 'VOID',
+        name: 'NothingResult',
+        id: 'nothingresult',
+      },
+      actionMode: 'CUSTOM',
+      actionType: 'DELOGIC',
+      appDELogicId: 'nothing',
+      dataSetType: 'REMOTE',
+      id: 'nothing',
     },
     {
       codeName: 'remove',

@@ -43,6 +43,25 @@ public interface BoardMapper extends BaseMapper<Board> {
     List<Board> listDefault(@Param("ctx") BoardSearchContext context, @Param("ew") Wrapper<Board> wrapper);
 
     /**
+     * 数据集合cur_project_board分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Board> searchCurProjectBoard(IPage<Board> page, @Param("ctx") BoardSearchContext context, @Param("ew") Wrapper<Board> wrapper);
+    
+    /**
+     * 数据集合cur_project_board查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Board> listCurProjectBoard(@Param("ctx") BoardSearchContext context, @Param("ew") Wrapper<Board> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

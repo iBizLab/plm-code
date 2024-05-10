@@ -174,12 +174,32 @@ public interface ProductMemberService extends IService<ProductMember> {
     }
 
     /**
+     * change_role
+     * 
+     * @param dto
+     * @return
+     */
+    default ProductMember changeRole(ProductMember dto) {
+        return dto;
+    }
+
+    /**
      * create_product_member
      * 
      * @param dto
      * @return
      */
     default ProductMember createProductMember(ProductMember dto) {
+        return dto;
+    }
+
+    /**
+     * nothing
+     * 
+     * @param dto
+     * @return
+     */
+    default ProductMember nothing(ProductMember dto) {
         return dto;
     }
 

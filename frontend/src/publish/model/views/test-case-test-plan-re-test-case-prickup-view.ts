@@ -755,8 +755,7 @@ export default {
     ],
     codeName: 'usr0123151638',
     controlType: 'VIEWLAYOUTPANEL',
-    logicName:
-      'test_plan_re_test_case_prickup_view多项选择视图(左右关系)布局面板',
+    logicName: '多项选择视图(左右关系)布局面板(固定左侧树宽度)',
     appDataEntityId: 'plmweb.test_case',
     controlParam: {},
     modelId: '82218f671f3810568f77706c73381de7',

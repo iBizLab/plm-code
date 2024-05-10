@@ -18,10 +18,10 @@ export default {
       id: 'projmgmt_project_update_after',
     },
     {
-      codeName: 'testmgmt_run_update_after',
+      codeName: 'testmgmt_run_save_run_history_after',
       text: '更新执行用例',
-      value: 'TestMgmt.run.update.AFTER',
-      id: 'testmgmt_run_update_after',
+      value: 'TestMgmt.run.save_run_history.AFTER',
+      id: 'testmgmt_run_save_run_history_after',
     },
   ],
   enableCache: true,

@@ -249,55 +249,55 @@ public interface SearchAttachmentService extends IService<SearchAttachment> {
      * @return
      */
     default boolean saveByOwnerId(String ownerId,List<SearchAttachment> list) {
-        return getSelf().saveByCustomer(new Customer().setId(ownerId),list);
+        return getSelf().saveByDerCustomer(new Customer().setId(ownerId),list);
     }
     /**
-    * saveRelByCustomer
+    * saveRelByDerCustomer
     * @param customer
     * @param list
     * @return
     */
-    boolean saveByCustomer(Customer customer,List<SearchAttachment> list);
+    boolean saveByDerCustomer(Customer customer,List<SearchAttachment> list);
 
     /**
-    * saveRelByIdea
+    * saveRelByDerIdea
     * @param idea
     * @param list
     * @return
     */
-    boolean saveByIdea(Idea idea,List<SearchAttachment> list);
+    boolean saveByDerIdea(Idea idea,List<SearchAttachment> list);
 
     /**
-    * saveRelByPage
+    * saveRelByDerPage
     * @param articlePage
     * @param list
     * @return
     */
-    boolean saveByPage(ArticlePage articlePage,List<SearchAttachment> list);
+    boolean saveByDerPage(ArticlePage articlePage,List<SearchAttachment> list);
 
     /**
-    * saveRelByTestCase
+    * saveRelByDerTestCase
     * @param testCase
     * @param list
     * @return
     */
-    boolean saveByTestCase(TestCase testCase,List<SearchAttachment> list);
+    boolean saveByDerTestCase(TestCase testCase,List<SearchAttachment> list);
 
     /**
-    * saveRelByTicket
+    * saveRelByDerTicket
     * @param ticket
     * @param list
     * @return
     */
-    boolean saveByTicket(Ticket ticket,List<SearchAttachment> list);
+    boolean saveByDerTicket(Ticket ticket,List<SearchAttachment> list);
 
     /**
-    * saveRelByWorkItem
+    * saveRelByDerWorkItem
     * @param workItem
     * @param list
     * @return
     */
-    boolean saveByWorkItem(WorkItem workItem,List<SearchAttachment> list);
+    boolean saveByDerWorkItem(WorkItem workItem,List<SearchAttachment> list);
 
 
     /**

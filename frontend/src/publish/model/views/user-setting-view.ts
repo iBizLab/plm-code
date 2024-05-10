@@ -62,7 +62,7 @@ export default {
         {
           dedrbarGroupId: 'usrdrgroup0407620995',
           caption: '登录日志',
-          appViewId: 'plmweb.user_edit_view',
+          appViewId: 'plmweb.login_log_grid_view',
           id: 'login',
         },
       ],

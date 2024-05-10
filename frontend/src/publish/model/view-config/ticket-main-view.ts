@@ -8,4 +8,5 @@ export default {
   appDataEntityId: 'plmweb.ticket',
   redirectView: false,
   modalOption: {},
+  appId: '',
 };

@@ -159,8 +159,8 @@ export default {
                 uiactionId: 'recover@library',
                 showIcon: true,
                 sysImage: {
-                  cssClass: 'fa fa-retweet',
-                  glyph: 'xf079@FontAwesome',
+                  cssClass: 'fa fa-refresh',
+                  glyph: 'xf021@FontAwesome',
                 },
                 id: 'u0fccb24',
               },
@@ -218,11 +218,6 @@ export default {
           valueType: 'SIMPLE',
           dataType: 25,
           id: 'srfmajortext',
-        },
-        {
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'srfmstag',
         },
       ],
       degridEditItems: [
@@ -312,6 +307,23 @@ export default {
       groupMode: 'SINGLE',
       quickSearchMode: 1,
       enableQuickSearch: true,
+      codeName: 'query_search_bar',
+      controlType: 'SEARCHBAR',
+      logicName: '快速搜索栏',
+      appDataEntityId: 'plmweb.library',
+      controlParam: {
+        ctrlParams: {
+          TELEPORTFLAG: 'true',
+        },
+        id: 'tabsearchbar',
+      },
+      modelId: 'B1CD8686-5BAD-4D75-818C-EAE5E3D93803',
+      modelType: 'PSSYSSEARCHBAR',
+      name: 'tabsearchbar',
+      id: 'plmweb.library.query_search_bar',
+    },
+    {
+      groupMode: 'SINGLE',
       controlType: 'SEARCHBAR',
       appDataEntityId: 'plmweb.library',
       controlParam: {
@@ -347,7 +359,7 @@ export default {
   viewStyle: 'DEFAULT',
   viewType: 'DEGRIDVIEW',
   enableDP: true,
-  showCaptionBar: true,
+  showCaptionBar: false,
   modelId: '4f3e28cab8b878e18434eaa5a5b3e5fb',
   modelType: 'PSAPPDEVIEW',
   name: 'librarydeleted_grid_view',

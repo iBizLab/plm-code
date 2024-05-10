@@ -206,6 +206,46 @@ public class WorkItemUsuallyDTO extends DTOBase implements Serializable {
     @ApiModelProperty(value = "所属项目", position = 20)
     private String projectName;
 
+    /**
+     * 迭代标识
+     */
+    @JsonProperty("sprint_id")
+    @JSONField(name = "sprint_id")
+    @ApiModelProperty(value = "迭代标识", position = 21)
+    private String sprintId;
+
+    /**
+     * 需求类型
+     */
+    @JsonProperty("backlog_type")
+    @JSONField(name = "backlog_type")
+    @ApiModelProperty(value = "需求类型", position = 22)
+    private String backlogType;
+
+    /**
+     * 需求来源
+     */
+    @JsonProperty("backlog_from")
+    @JSONField(name = "backlog_from")
+    @ApiModelProperty(value = "需求来源", position = 23)
+    private String backlogFrom;
+
+    /**
+     * 风险
+     */
+    @JsonProperty("risk")
+    @JSONField(name = "risk")
+    @ApiModelProperty(value = "风险", position = 24)
+    private String risk;
+
+    /**
+     * 迭代名称
+     */
+    @JsonProperty("sprint_name")
+    @JSONField(name = "sprint_name")
+    @ApiModelProperty(value = "迭代名称", position = 25)
+    private String sprintName;
+
 
     /**
      * 设置 [标题]
@@ -375,6 +415,51 @@ public class WorkItemUsuallyDTO extends DTOBase implements Serializable {
     public WorkItemUsuallyDTO setProjectName(String projectName) {
         this.projectName = projectName;
         this.modify("project_name", projectName);
+        return this;
+    }
+
+    /**
+     * 设置 [迭代标识]
+     */
+    public WorkItemUsuallyDTO setSprintId(String sprintId) {
+        this.sprintId = sprintId;
+        this.modify("sprint_id", sprintId);
+        return this;
+    }
+
+    /**
+     * 设置 [需求类型]
+     */
+    public WorkItemUsuallyDTO setBacklogType(String backlogType) {
+        this.backlogType = backlogType;
+        this.modify("backlog_type", backlogType);
+        return this;
+    }
+
+    /**
+     * 设置 [需求来源]
+     */
+    public WorkItemUsuallyDTO setBacklogFrom(String backlogFrom) {
+        this.backlogFrom = backlogFrom;
+        this.modify("backlog_from", backlogFrom);
+        return this;
+    }
+
+    /**
+     * 设置 [风险]
+     */
+    public WorkItemUsuallyDTO setRisk(String risk) {
+        this.risk = risk;
+        this.modify("risk", risk);
+        return this;
+    }
+
+    /**
+     * 设置 [迭代名称]
+     */
+    public WorkItemUsuallyDTO setSprintName(String sprintName) {
+        this.sprintName = sprintName;
+        this.modify("sprint_name", sprintName);
         return this;
     }
 

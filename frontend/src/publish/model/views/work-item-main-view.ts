@@ -537,6 +537,16 @@ export default {
             caption: '栅格容器',
             itemStyle: 'DEFAULT',
             itemType: 'CONTAINER',
+            controlLogics: [
+              {
+                itemName: 'CONTAINER_VIEW_BOTTOM',
+                logicTag: 'layoutpanel',
+                logicType: 'SCRIPT',
+                scriptCode: 'context.srfreadonly != true',
+                triggerType: 'ITEMVISIBLE',
+                id: 'show_logic',
+              },
+            ],
             layoutPos: {
               grow: 0,
               shrink: 0,
@@ -587,10 +597,20 @@ export default {
         logicType: 'SCRIPT',
         ctrlName: 'form',
         scriptCode:
-          "const type = view.layoutPanel.panelItems.form.control.data.work_item_type_id;\r\nconst hiddenList = ['scrum_task', 'scrum_bug', 'kanban_bug', 'kanban_task', 'waterfall_bug']\r\nif (hiddenList.includes(type)) {\r\n    ctrl.details.tabpanel1_child.state.visible = false;\r\n    view.layoutPanel.panelItems.toolbar.control.state.buttonsState.deuiaction1.visible = false;\r\n}",
+          "const type = view.layoutPanel.panelItems.form.control.data.work_item_type_id;\r\nconst hiddenList = ['scrum_task', 'scrum_bug', 'kanban_bug', 'kanban_task', 'waterfall_bug']\r\nif (hiddenList.includes(type)) {\r\n    ctrl.details.tabpanel1_child.state.visible = false;\r\n    view.layoutPanel.panelItems.toolbar.control.state.buttonsState.deuiaction1.visible = false;\r\n}\r\n",
         builtinLogic: true,
         name: 'LOGIC2',
         id: 'logic2',
+      },
+      {
+        eventNames: 'onCreated',
+        logicTrigger: 'VIEWEVENT',
+        logicType: 'APPDEUILOGIC',
+        appDEUILogicId: 'test_get_only_read',
+        appDataEntityId: 'plmweb.work_item',
+        builtinLogic: true,
+        name: 'READPNLY',
+        id: 'readpnly',
       },
     ],
     controls: [
@@ -604,6 +624,16 @@ export default {
             valid: true,
             caption: '附件',
             itemType: 'DEUIACTION',
+            controlLogics: [
+              {
+                itemName: 'deuiaction2',
+                logicTag: 'toolbar',
+                logicType: 'SCRIPT',
+                scriptCode: 'context.srfreadonly != true',
+                triggerType: 'ITEMVISIBLE',
+                id: 'deuiaction2',
+              },
+            ],
             sysImage: {
               cssClass: 'fa fa-upload',
               glyph: 'xf093@FontAwesome',
@@ -614,6 +644,7 @@ export default {
             id: 'deuiaction2',
           },
           {
+            actionLevel: 100,
             detoolbarItems: [
               {
                 actionLevel: 100,
@@ -687,6 +718,16 @@ export default {
             valid: true,
             caption: '关联',
             itemType: 'ITEMS',
+            controlLogics: [
+              {
+                itemName: 'items1',
+                logicTag: 'toolbar',
+                logicType: 'SCRIPT',
+                scriptCode: 'context.srfreadonly != true',
+                triggerType: 'ITEMVISIBLE',
+                id: 'items1',
+              },
+            ],
             sysImage: {
               cssClass: 'fa fa-link',
               glyph: 'xf0c1@FontAwesome',
@@ -698,9 +739,20 @@ export default {
           },
           {
             itemType: 'SEPERATOR',
+            controlLogics: [
+              {
+                itemName: 'seperator1',
+                logicTag: 'toolbar',
+                logicType: 'SCRIPT',
+                scriptCode: 'context.srfreadonly != true',
+                triggerType: 'ITEMVISIBLE',
+                id: 'seperator1',
+              },
+            ],
             id: 'seperator1',
           },
           {
+            actionLevel: 100,
             detoolbarItems: [
               {
                 actionLevel: 100,
@@ -739,8 +791,8 @@ export default {
               {
                 actionLevel: 100,
                 noPrivDisplayMode: 2,
-                uiactionId: 'move@work_item',
-                uiactionTarget: 'MULTIKEY',
+                uiactionId: 'move_in_form@work_item',
+                uiactionTarget: 'SINGLEKEY',
                 valid: true,
                 caption: '移动',
                 itemType: 'DEUIACTION',
@@ -827,6 +879,16 @@ export default {
             valid: true,
             caption: '更多',
             itemType: 'ITEMS',
+            controlLogics: [
+              {
+                itemName: 'items2',
+                logicTag: 'toolbar',
+                logicType: 'SCRIPT',
+                scriptCode: 'context.srfreadonly != true',
+                triggerType: 'ITEMVISIBLE',
+                id: 'items2',
+              },
+            ],
             sysImage: {
               cssClass: 'fa fa-list-ul',
               glyph: 'xf0ca@FontAwesome',
@@ -1889,7 +1951,7 @@ export default {
                         deformDetails: [
                           {
                             appViewId:
-                              'plmweb.idea_work_item_re_idea_grid_view',
+                              'plmweb.relation_work_item_re_idea_grid_view',
                             navigateContexts: [
                               {
                                 key: 'TARGET_TYPE',
@@ -1984,7 +2046,8 @@ export default {
                         },
                         deformDetails: [
                           {
-                            appViewId: 'plmweb.work_item_re_self_grid_view',
+                            appViewId:
+                              'plmweb.relation_work_item_re_self_grid_view',
                             navigateContexts: [
                               {
                                 key: 'CURPROJECT',
@@ -2018,6 +2081,11 @@ export default {
                                 key: 'principal_id',
                                 value: 'work_item',
                                 id: 'principal_id',
+                              },
+                              {
+                                key: 'srfversionid',
+                                value: 'cur_version_id',
+                                id: 'srfversionid',
                               },
                             ],
                             parentDataJO: {
@@ -2084,7 +2152,7 @@ export default {
                         deformDetails: [
                           {
                             appViewId:
-                              'plmweb.ticket_work_item_re_ticket_grid_view',
+                              'plmweb.relation_work_item_re_ticket_grid_view',
                             navigateContexts: [
                               {
                                 key: 'TARGET_TYPE',
@@ -2106,6 +2174,11 @@ export default {
                                 key: 'principal_id',
                                 value: 'work_item',
                                 id: 'principal_id',
+                              },
+                              {
+                                key: 'srfversionid',
+                                value: 'cur_version_id',
+                                id: 'srfversionid',
                               },
                             ],
                             parentDataJO: {
@@ -2140,7 +2213,7 @@ export default {
                         deformDetails: [
                           {
                             appViewId:
-                              'plmweb.test_case_work_item_re_case_grid_view',
+                              'plmweb.relation_work_item_re_test_case_grid_view',
                             navigateContexts: [
                               {
                                 key: 'TARGET_TYPE',
@@ -2162,6 +2235,11 @@ export default {
                                 key: 'principal_id',
                                 value: 'work_item',
                                 id: 'principal_id',
+                              },
+                              {
+                                key: 'srfversionid',
+                                value: 'cur_version_id',
+                                id: 'srfversionid',
                               },
                             ],
                             parentDataJO: {
@@ -2203,6 +2281,12 @@ export default {
                                 rawValue: true,
                                 name: 'OWNER_TYPE',
                                 id: 'owner_type',
+                              },
+                              {
+                                key: 'COMPARE_VERSION',
+                                value: 'cur_version_id',
+                                name: 'COMPARE_VERSION',
+                                id: 'compare_version',
                               },
                               {
                                 key: 'OWNER_ID',
@@ -2947,6 +3031,118 @@ export default {
                         },
                         showCaption: true,
                         id: 'grouppanel2',
+                      },
+                      {
+                        layout: {
+                          columnCount: 24,
+                          layout: 'TABLE_24COL',
+                        },
+                        deformDetails: [
+                          {
+                            dataType: 25,
+                            enableCond: 3,
+                            ignoreInput: 3,
+                            labelPos: 'LEFT',
+                            labelWidth: 130,
+                            noPrivDisplayMode: 1,
+                            appDEFieldId: 'cur_version_id',
+                            editor: {
+                              halign: 'LEFT',
+                              valign: 'MIDDLE',
+                              wrapMode: 'NOWRAP',
+                              appCodeListId: 'plmweb.base__version',
+                              editorParams: {
+                                'SRFNAVPARAM.owner_id': '%id%',
+                              },
+                              editorType: 'SPAN',
+                              valueType: 'SIMPLE',
+                              editable: true,
+                              navigateParams: [
+                                {
+                                  key: 'owner_id',
+                                  value: 'id',
+                                  id: 'owner_id',
+                                },
+                              ],
+                              id: 'cur_version_name',
+                            },
+                            allowEmpty: true,
+                            convertToCodeItemText: true,
+                            caption: '版本',
+                            codeName: 'cur_version_name',
+                            detailStyle: 'DEFAULT',
+                            detailType: 'FORMITEM',
+                            layoutPos: {
+                              colMD: 24,
+                              layout: 'TABLE_24COL',
+                            },
+                            showCaption: true,
+                            id: 'cur_version_name',
+                          },
+                          {
+                            dataType: 25,
+                            enableCond: 3,
+                            labelPos: 'LEFT',
+                            labelWidth: 130,
+                            noPrivDisplayMode: 1,
+                            appDEFieldId: 'cur_version_id',
+                            editor: {
+                              editorType: 'HIDDEN',
+                              valueType: 'SIMPLE',
+                              editable: true,
+                              id: 'cur_version_id',
+                            },
+                            allowEmpty: true,
+                            hidden: true,
+                            caption: '当前版本标识',
+                            codeName: 'cur_version_id',
+                            detailStyle: 'DEFAULT',
+                            detailType: 'FORMITEM',
+                            layoutPos: {
+                              colMD: 24,
+                              layout: 'TABLE_24COL',
+                            },
+                            showCaption: true,
+                            id: 'cur_version_id',
+                          },
+                          {
+                            dataType: 25,
+                            enableCond: 3,
+                            labelPos: 'LEFT',
+                            labelWidth: 130,
+                            noPrivDisplayMode: 1,
+                            editor: {
+                              halign: 'LEFT',
+                              valign: 'MIDDLE',
+                              wrapMode: 'NOWRAP',
+                              editorType: 'SPAN',
+                              valueType: 'SIMPLE',
+                              editable: true,
+                              id: 'baseline_name',
+                            },
+                            allowEmpty: true,
+                            caption: '基线',
+                            codeName: 'baseline_name',
+                            detailStyle: 'DEFAULT',
+                            detailType: 'FORMITEM',
+                            layoutPos: {
+                              colMD: 24,
+                              layout: 'TABLE_24COL',
+                            },
+                            showCaption: true,
+                            id: 'baseline_name',
+                          },
+                        ],
+                        caption: '变更',
+                        codeName: 'grouppanel10',
+                        detailStyle: 'DEFAULT',
+                        detailType: 'GROUPPANEL',
+                        layoutPos: {
+                          colMD: 24,
+                          layout: 'TABLE_24COL',
+                        },
+                        showCaption: true,
+                        id: 'grouppanel10',
                       },
                       {
                         layout: {

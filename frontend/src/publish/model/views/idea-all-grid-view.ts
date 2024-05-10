@@ -323,22 +323,29 @@ export default {
             id: 'deuiaction1',
           },
           {
+            itemType: 'SEPERATOR',
+            id: 'seperator1',
+          },
+          {
+            actionLevel: 100,
+            buttonStyle: 'STYLE2',
             detoolbarItems: [
               {
                 actionLevel: 100,
                 noPrivDisplayMode: 2,
-                uiactionId: 'import',
+                uiactionId: 'custom_import_data@idea',
+                uiactionTarget: 'NONE',
                 valid: true,
                 caption: '导入需求',
                 itemType: 'DEUIACTION',
                 sysImage: {
-                  cssClass: 'fa fa-upload',
-                  glyph: 'xf093@FontAwesome',
+                  cssClass: 'fa fa-cloud-upload',
+                  glyph: 'xf0ee@FontAwesome',
                 },
                 tooltip: '导入需求',
                 showCaption: true,
                 showIcon: true,
-                id: 'deuiaction2',
+                id: 'deuiaction4',
               },
               {
                 actionLevel: 100,
@@ -440,7 +447,7 @@ export default {
           },
           {
             clconvertMode: 'FRONT',
-            dataItemName: 'state',
+            dataItemName: 'state_text',
             excelCaption: '状态',
             appCodeListId: 'plmweb.prodmgmt__idea_state',
             appDEFieldId: 'state',
@@ -518,6 +525,12 @@ export default {
             valueType: 'SIMPLE',
             dataType: 25,
             id: 'title',
+          },
+          {
+            appDEFieldId: 'state',
+            valueType: 'SIMPLE',
+            dataType: 25,
+            id: 'state_text',
           },
           {
             appDEFieldId: 'state',
@@ -614,6 +627,11 @@ export default {
               singleSelect: true,
               appCodeListId: 'plmweb.prodmgmt__idea_state',
               editorType: 'DROPDOWNLIST',
+              editorItems: [
+                {
+                  id: 'state',
+                },
+              ],
               valueType: 'SIMPLE',
               editable: true,
               id: 'state',
@@ -794,6 +812,7 @@ export default {
                 id: 'deuiaction3',
               },
               {
+                actionLevel: 100,
                 detoolbarItems: [
                   {
                     actionLevel: 100,
@@ -848,8 +867,8 @@ export default {
                       },
                     ],
                     sysImage: {
-                      cssClass: 'fa fa-folder',
-                      glyph: 'xf07b@FontAwesome',
+                      cssClass: 'fa fa-archive',
+                      glyph: 'xf187@FontAwesome',
                     },
                     tooltip: '归档',
                     showCaption: true,

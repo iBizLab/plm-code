@@ -115,7 +115,7 @@ export default {
                 id: 'u6efbb95',
               },
               {
-                actionLevel: 200,
+                actionLevel: 250,
                 afterItemType: 'NONE',
                 beforeItemType: 'NONE',
                 detailType: 'DEUIACTION',
@@ -371,11 +371,6 @@ export default {
           dataType: 25,
           id: 'srfmajortext',
         },
-        {
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'srfmstag',
-        },
       ],
       degridEditItems: [
         {
@@ -414,6 +409,17 @@ export default {
       controlType: 'GRID',
       logicName: '项目集表格',
       appDataEntityId: 'plmweb.portfolio',
+      controlLogics: [
+        {
+          eventNames: 'onLoadSuccess',
+          logicTag: 'grid',
+          logicType: 'APPDEUILOGIC',
+          appDEUILogicId: 'calc_column_action_state',
+          appDataEntityId: 'plmweb.portfolio',
+          triggerType: 'CTRLEVENT',
+          id: 'calc_column_action_state',
+        },
+      ],
       controlParam: {
         id: 'grid',
       },
@@ -520,7 +526,8 @@ export default {
         {
           actionLevel: 100,
           noPrivDisplayMode: 2,
-          uiactionId: 'new_item_set',
+          uiactionId: 'create_project_set@portfolio',
+          uiactionTarget: 'NONE',
           valid: true,
           caption: '新建项目集',
           itemType: 'DEUIACTION',

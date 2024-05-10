@@ -53,7 +53,7 @@ public class WorkItemType extends EntityMP implements Serializable
      * 是否系统类型
      */
     @TableField(value = "is_system")
-    @DEField(name = "is_system" , dict = "YesNo")
+    @DEField(name = "is_system" , defaultValue = "0" , dict = "YesNo")
     @JsonProperty("is_system")
     @JSONField(name = "is_system")
     @ApiModelProperty(value = "is_system", notes = "是否系统类型")

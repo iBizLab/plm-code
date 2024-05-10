@@ -7,12 +7,13 @@
 		<id property="id" column="id" /><!--主键字段映射-->
 		<result property="ownerId" column="owner_id" />
 		<result property="ownerType" column="owner_type" />
-		<result property="ownerVersionId" column="owner_version_id" />
 		<result property="createMan" column="create_man" />
 		<result property="createTime" column="create_time" />
 		<result property="updateTime" column="update_time" />
 		<result property="updateMan" column="update_man" />
+        <association property="idea" javaType="cn.ibizlab.plm.core.prodmgmt.domain.Idea" column="owner_id" select="cn.ibizlab.plm.core.prodmgmt.mapper.IdeaMapper.selectById" fetchType="lazy"></association>
         <association property="page" javaType="cn.ibizlab.plm.core.wiki.domain.ArticlePage" column="owner_id" select="cn.ibizlab.plm.core.wiki.mapper.ArticlePageMapper.selectById" fetchType="lazy"></association>
+        <association property="testCase" javaType="cn.ibizlab.plm.core.testmgmt.domain.TestCase" column="owner_id" select="cn.ibizlab.plm.core.testmgmt.mapper.TestCaseMapper.selectById" fetchType="lazy"></association>
         <association property="workItem" javaType="cn.ibizlab.plm.core.projmgmt.domain.WorkItem" column="owner_id" select="cn.ibizlab.plm.core.projmgmt.mapper.WorkItemMapper.selectById" fetchType="lazy"></association>
     </resultMap>
 
@@ -42,11 +43,15 @@
     </delete>
 
     <sql id="default" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`FILTER`, t1.`ID`, t1.`IDENTIFIER`, t1.`MANUAL`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_TYPE`, t1.`OWNER_VERSION_ID`, t1.`RESTORABLE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `VERSION` t1   ]]>  
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`MANUAL`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_TYPE`, t1.`RESTORABLE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `VERSION` t1   ]]>  
     </sql>
 
     <sql id="view" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DATA`, t1.`DESCRIPTION`, t1.`FILTER`, t1.`ID`, t1.`IDENTIFIER`, t1.`MANUAL`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_TYPE`, t1.`OWNER_VERSION_ID`, t1.`RESTORABLE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `VERSION` t1   ]]>  
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DATA`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`MANUAL`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_TYPE`, t1.`RESTORABLE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `VERSION` t1   ]]>  
+    </sql>
+
+    <sql id="owner" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`MANUAL`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_TYPE`, t1.`RESTORABLE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `VERSION` t1   ]]>  where  <![CDATA[ ( t1.`OWNER_ID` = #{ctx.datacontext.owner_id} ) ]]> 
     </sql>
 
     <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.base.filter.VersionSearchContext"  resultMap="VersionResultMap">
@@ -68,6 +73,41 @@
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
         
+    </select>
+
+    <select id="searchOwner"  parameterType="cn.ibizlab.plm.core.base.filter.VersionSearchContext"  resultMap="VersionResultMap">
+        select t1.* 
+        from (
+            <include refid="owner"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listOwner"  parameterType="cn.ibizlab.plm.core.base.filter.VersionSearchContext"  resultMap="VersionResultMap">
+        select t1.*
+        from (
+            <include refid="owner"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="findByOwnerId" resultMap="VersionResultMap">
+        select t1.* from (
+            <include refid="default"/>
+        ) t1
+        where owner_id in <foreach item="id" index="index" collection="ownerIds" open="(" separator="," close=")">#{id}</foreach> 
+    </select>
+
+    <select id="findByOwnerId" resultMap="VersionResultMap">
+        select t1.* from (
+            <include refid="default"/>
+        ) t1
+        where owner_id in <foreach item="id" index="index" collection="ownerIds" open="(" separator="," close=")">#{id}</foreach> 
     </select>
 
     <select id="findByOwnerId" resultMap="VersionResultMap">

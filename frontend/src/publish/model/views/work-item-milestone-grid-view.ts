@@ -115,6 +115,12 @@ export default {
           id: 'deuiaction1',
         },
         {
+          itemType: 'SEPERATOR',
+          id: 'seperator1',
+        },
+        {
+          actionLevel: 100,
+          buttonStyle: 'STYLE2',
           detoolbarItems: [
             {
               actionLevel: 100,

@@ -46,12 +46,12 @@ public class SpaceSearchContext extends QueryWrapperContext<Space> {
     private String visibilityEQ;
 
     /**
-     * 是否星标EQ
+     * 所属EQ
      */
-    @JsonProperty("n_is_favorite_eq")
-    @JSONField(name = "n_is_favorite_eq")
-    @ApiModelProperty("是否星标EQ")
-    private String isFavoriteEQ;
+    @JsonProperty("n_scope_type_eq")
+    @JSONField(name = "n_scope_type_eq")
+    @ApiModelProperty("所属EQ")
+    private String scopeTypeEQ;
 
     /**
      * 空间名称LIKE

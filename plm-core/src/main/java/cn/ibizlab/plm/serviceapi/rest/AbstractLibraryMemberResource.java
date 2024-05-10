@@ -126,6 +126,44 @@ public abstract class AbstractLibraryMemberResource {
     }
 
     /**
+    * change_role 测试库成员
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<LibraryMemberDTO>
+    */
+    @ApiOperation(value = "change_role", tags = {"测试库成员" },  notes = "LibraryMember-change_role ")
+    @PostMapping("library_members/{id}/change_role")
+    public ResponseEntity<ResponseWrapper<LibraryMemberDTO>> changeRoleById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<LibraryMemberDTO> dto) {
+        ResponseWrapper<LibraryMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(changeRoleById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(changeRoleById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * change_role 测试库成员
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<LibraryMemberDTO>
+    */   
+    public LibraryMemberDTO changeRoleById
+            (String id, LibraryMemberDTO dto) {
+        LibraryMember domain = libraryMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        LibraryMember rt = libraryMemberService.changeRole(domain);
+        return libraryMemberDtoMapping.toDto(rt);
+    }
+
+    /**
     * create_library_member 测试库成员
     * 
     *
@@ -272,6 +310,46 @@ public abstract class AbstractLibraryMemberResource {
         domain.setId(id);
         libraryMemberService.update(domain);
         LibraryMember rt = domain;
+        return libraryMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * change_role 测试库成员
+    * 
+    *
+    * @param libraryId libraryId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<LibraryMemberDTO>
+    */
+    @ApiOperation(value = "change_role", tags = {"测试库成员" },  notes = "LibraryMember-change_role ")
+    @PostMapping("libraries/{libraryId}/library_members/{id}/change_role")
+    public ResponseEntity<ResponseWrapper<LibraryMemberDTO>> changeRoleByLibraryIdAndId
+            (@PathVariable("libraryId") String libraryId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<LibraryMemberDTO> dto) {
+        ResponseWrapper<LibraryMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(changeRoleByLibraryIdAndId(libraryId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(changeRoleByLibraryIdAndId(libraryId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * change_role 测试库成员
+    * 
+    *
+    * @param libraryId libraryId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<LibraryMemberDTO>
+    */   
+    public LibraryMemberDTO changeRoleByLibraryIdAndId
+            (String libraryId, String id, LibraryMemberDTO dto) {
+        LibraryMember domain = libraryMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        LibraryMember rt = libraryMemberService.changeRole(domain);
         return libraryMemberDtoMapping.toDto(rt);
     }
 
@@ -428,6 +506,46 @@ public abstract class AbstractLibraryMemberResource {
         domain.setId(id);
         libraryMemberService.update(domain);
         LibraryMember rt = domain;
+        return libraryMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * change_role 测试库成员
+    * 
+    *
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<LibraryMemberDTO>
+    */
+    @ApiOperation(value = "change_role", tags = {"测试库成员" },  notes = "LibraryMember-change_role ")
+    @PostMapping("users/{userId}/library_members/{id}/change_role")
+    public ResponseEntity<ResponseWrapper<LibraryMemberDTO>> changeRoleByUserIdAndId
+            (@PathVariable("userId") String userId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<LibraryMemberDTO> dto) {
+        ResponseWrapper<LibraryMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(changeRoleByUserIdAndId(userId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(changeRoleByUserIdAndId(userId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * change_role 测试库成员
+    * 
+    *
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<LibraryMemberDTO>
+    */   
+    public LibraryMemberDTO changeRoleByUserIdAndId
+            (String userId, String id, LibraryMemberDTO dto) {
+        LibraryMember domain = libraryMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        LibraryMember rt = libraryMemberService.changeRole(domain);
         return libraryMemberDtoMapping.toDto(rt);
     }
 

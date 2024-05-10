@@ -26,6 +26,30 @@ export default {
   ],
   appDEFields: [
     {
+      codeName: 'type',
+      logicName: '看板类型',
+      stdDataType: 25,
+      stringLength: 100,
+      name: 'TYPE',
+      id: 'type',
+    },
+    {
+      codeName: 'owner_type',
+      logicName: '所属数据类型',
+      stdDataType: 25,
+      stringLength: 100,
+      name: 'OWNER_TYPE',
+      id: 'owner_type',
+    },
+    {
+      codeName: 'owner_id',
+      logicName: '所属数据标识',
+      stdDataType: 25,
+      stringLength: 100,
+      name: 'OWNER_ID',
+      id: 'owner_id',
+    },
+    {
       codeName: 'update_man',
       lnlanguageRes: {
         lanResTag: 'DEF.LNAME.UPDATE_MAN',
@@ -123,6 +147,36 @@ export default {
     {
       codeName: 'dyna_dashboard_dto',
       appDEMethodDTOFields: [
+        {
+          codeName: 'type',
+          logicName: '看板类型',
+          appDEFieldId: 'type',
+          sourceType: 'DEFIELD',
+          stdDataType: 25,
+          type: 'SIMPLE',
+          allowEmpty: true,
+          id: 'type',
+        },
+        {
+          codeName: 'owner_type',
+          logicName: '所属数据类型',
+          appDEFieldId: 'owner_type',
+          sourceType: 'DEFIELD',
+          stdDataType: 25,
+          type: 'SIMPLE',
+          allowEmpty: true,
+          id: 'owner_type',
+        },
+        {
+          codeName: 'owner_id',
+          logicName: '所属数据标识',
+          appDEFieldId: 'owner_id',
+          sourceType: 'DEFIELD',
+          stdDataType: 25,
+          type: 'SIMPLE',
+          allowEmpty: true,
+          id: 'owner_id',
+        },
         {
           codeName: 'app_id',
           logicName: '应用标识',

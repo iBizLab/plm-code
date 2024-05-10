@@ -126,6 +126,45 @@ public abstract class AbstractActivityResource {
     }
 
     /**
+    * get_activity_obj_detail 活动
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ActivityDTO>
+    */
+    @ApiOperation(value = "get_activity_obj_detail", tags = {"活动" },  notes = "Activity-get_activity_obj_detail ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Activity-get_activity_obj_detail-all') or hasPermission(this.activityDtoMapping.toDomain(#dto),'ibizplm-Activity-get_activity_obj_detail')")
+    @PutMapping("activities/{id}/get_activity_obj_detail")
+    public ResponseEntity<ResponseWrapper<ActivityDTO>> getActivityObjDetailById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ActivityDTO> dto) {
+        ResponseWrapper<ActivityDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(getActivityObjDetailById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(getActivityObjDetailById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * get_activity_obj_detail 活动
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ActivityDTO>
+    */   
+    public ActivityDTO getActivityObjDetailById
+            (String id, ActivityDTO dto) {
+        Activity domain = activityDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Activity rt = activityService.getActivityObjDetail(domain);
+        return activityDtoMapping.toDto(rt);
+    }
+
+    /**
     * 保存Save 活动
     * 
     *

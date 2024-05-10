@@ -73,24 +73,12 @@ export default {
   ],
   appViewNavParams: [
     {
-      key: 'n_release_id_eq',
+      key: 'release_id',
       value: 'release',
-      id: 'n_release_id_eq',
-    },
-    {
-      key: 'n_version_id_eq',
-      value: 'version',
-      id: 'n_version_id_eq',
+      id: 'release_id',
     },
   ],
   appViewRefs: [
-    {
-      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realTitle: '工作项',
-      refAppViewId: 'plmweb.work_item_main_view',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
     {
       realTitle: '工作项编辑视图',
       realTitleLanguageRes: {
@@ -99,6 +87,13 @@ export default {
       refAppViewId: 'plmweb.work_item_edit_view',
       name: 'NEWDATA',
       id: 'newdata',
+    },
+    {
+      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realTitle: '工作项',
+      refAppViewId: 'plmweb.work_item_main_view',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
   ],
   controls: [
@@ -839,7 +834,7 @@ export default {
       enableCustomized: true,
       enablePagingBar: true,
       fetchControlAction: {
-        appDEMethodId: 'fetch_common',
+        appDEMethodId: 'fetch_release',
         appDataEntityId: 'plmweb.work_item',
         id: 'fetch',
       },
@@ -940,6 +935,7 @@ export default {
               id: 'deuiaction10',
             },
             {
+              actionLevel: 100,
               detoolbarItems: [
                 {
                   actionLevel: 100,
@@ -1015,6 +1011,10 @@ export default {
               valid: true,
               caption: '更多',
               itemType: 'ITEMS',
+              sysImage: {
+                cssClass: 'fa fa-list-ul',
+                glyph: 'xf0ca@FontAwesome',
+              },
               tooltip: '更多',
               showCaption: true,
               showIcon: true,

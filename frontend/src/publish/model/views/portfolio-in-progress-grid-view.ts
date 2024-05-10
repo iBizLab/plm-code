@@ -65,6 +65,15 @@ export default {
   ],
   appViewRefs: [
     {
+      realTitle: '文件夹数据重定向视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.PORTFOLIO.REDIRECTVIEW',
+      },
+      refAppViewId: 'plmweb.portfolio_redirect_view',
+      name: 'EDITDATA',
+      id: 'editdata',
+    },
+    {
       realOpenMode: 'POPUPMODAL',
       realTitle: '项目集信息展示视图',
       realTitleLanguageRes: {
@@ -73,15 +82,6 @@ export default {
       refAppViewId: 'plmweb.portfolio_project_show_view',
       name: 'NEWDATA',
       id: 'newdata',
-    },
-    {
-      realTitle: '文件夹数据重定向视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.PORTFOLIO.REDIRECTVIEW',
-      },
-      refAppViewId: 'plmweb.portfolio_redirect_view',
-      name: 'EDITDATA',
-      id: 'editdata',
     },
   ],
   controls: [
@@ -164,8 +164,8 @@ export default {
                 uiactionId: 'delete_project_set@portfolio',
                 showIcon: true,
                 sysImage: {
-                  cssClass: 'fa fa-trash',
-                  glyph: 'xf1f8@FontAwesome',
+                  cssClass: 'fa fa-trash-o',
+                  glyph: 'xf014@FontAwesome',
                 },
                 id: 'u1975dc7',
               },
@@ -224,11 +224,6 @@ export default {
           dataType: 25,
           id: 'srfmajortext',
         },
-        {
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'srfmstag',
-        },
       ],
       degridEditItems: [
         {
@@ -278,6 +273,23 @@ export default {
       groupMode: 'SINGLE',
       quickSearchMode: 1,
       enableQuickSearch: true,
+      codeName: 'query_search_bar',
+      controlType: 'SEARCHBAR',
+      logicName: '快速搜索栏',
+      appDataEntityId: 'plmweb.portfolio',
+      controlParam: {
+        ctrlParams: {
+          TELEPORTFLAG: 'true',
+        },
+        id: 'tabsearchbar',
+      },
+      modelId: '2C8D1281-DFEB-4568-A0B9-4D1FA3E2BBAE',
+      modelType: 'PSSYSSEARCHBAR',
+      name: 'tabsearchbar',
+      id: 'plmweb.portfolio.query_search_bar',
+    },
+    {
+      groupMode: 'SINGLE',
       controlType: 'SEARCHBAR',
       appDataEntityId: 'plmweb.portfolio',
       controlParam: {
@@ -313,7 +325,7 @@ export default {
   viewStyle: 'DEFAULT',
   viewType: 'DEGRIDVIEW',
   enableDP: true,
-  showCaptionBar: true,
+  showCaptionBar: false,
   modelId: '02ff81f4ee0ee5820f7f6e9946ad9436',
   modelType: 'PSAPPDEVIEW',
   name: 'portfolioin_progress_grid_view',

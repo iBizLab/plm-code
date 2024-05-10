@@ -172,6 +172,16 @@ public interface ActivityService extends IService<Activity> {
     }
 
     /**
+     * get_activity_obj_detail
+     * 
+     * @param dto
+     * @return
+     */
+    default Activity getActivityObjDetail(Activity dto) {
+        return dto;
+    }
+
+    /**
      * searchALL
      * 
      * @param context

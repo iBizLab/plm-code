@@ -91,7 +91,8 @@ export default {
         {
           actionLevel: 100,
           noPrivDisplayMode: 2,
-          uiactionId: 'new_space',
+          uiactionId: 'create_space@space',
+          uiactionTarget: 'NONE',
           valid: true,
           caption: '新建空间',
           itemType: 'DEUIACTION',
@@ -359,11 +360,6 @@ export default {
           valueType: 'SIMPLE',
           dataType: 25,
           id: 'srfmajortext',
-        },
-        {
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'srfmstag',
         },
       ],
       degridEditItems: [

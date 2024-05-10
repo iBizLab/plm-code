@@ -37,6 +37,36 @@ public class DynaDashboard extends EntityMP implements Serializable
 {
 
     /**
+     * 看板类型
+     */
+    @TableField(value = "type")
+    @DEField(name = "type" , defaultValue = "personal")
+    @JsonProperty("type")
+    @JSONField(name = "type")
+    @ApiModelProperty(value = "type", notes = "看板类型")
+    private String type;
+
+    /**
+     * 所属数据类型
+     */
+    @TableField(value = "owner_type")
+    @DEField(name = "owner_type")
+    @JsonProperty("owner_type")
+    @JSONField(name = "owner_type")
+    @ApiModelProperty(value = "owner_type", notes = "所属数据类型")
+    private String ownerType;
+
+    /**
+     * 所属数据标识
+     */
+    @TableField(value = "owner_id")
+    @DEField(name = "owner_id")
+    @JsonProperty("owner_id")
+    @JSONField(name = "owner_id")
+    @ApiModelProperty(value = "owner_id", notes = "所属数据标识")
+    private String ownerId;
+
+    /**
      * 更新人
      */
     @TableField(value = "update_man")
@@ -138,6 +168,33 @@ public class DynaDashboard extends EntityMP implements Serializable
     @JSONField(name = "createdate" , format = "yyyy-MM-dd HH:mm:ss")
     @ApiModelProperty(value = "createdate", notes = "建立时间")
     private Date createDate;
+
+    /**
+     * 设置 [看板类型]
+     */
+    public DynaDashboard setType(String type) {
+        this.type = type;
+        this.modify("type", type);
+        return this;
+    }
+
+    /**
+     * 设置 [所属数据类型]
+     */
+    public DynaDashboard setOwnerType(String ownerType) {
+        this.ownerType = ownerType;
+        this.modify("owner_type", ownerType);
+        return this;
+    }
+
+    /**
+     * 设置 [所属数据标识]
+     */
+    public DynaDashboard setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+        this.modify("owner_id", ownerId);
+        return this;
+    }
 
     /**
      * 设置 [用户标识]

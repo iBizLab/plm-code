@@ -183,7 +183,7 @@ export default {
         },
         {
           clconvertMode: 'FRONT',
-          dataItemName: 'state',
+          dataItemName: 'state_text',
           excelCaption: '状态',
           appCodeListId: 'plmweb.prodmgmt__idea_state',
           appDEFieldId: 'state',
@@ -262,6 +262,12 @@ export default {
           valueType: 'SIMPLE',
           dataType: 25,
           id: 'plan_at',
+        },
+        {
+          appDEFieldId: 'state',
+          valueType: 'SIMPLE',
+          dataType: 25,
+          id: 'state_text',
         },
         {
           appDEFieldId: 'state',
@@ -356,6 +362,11 @@ export default {
             singleSelect: true,
             appCodeListId: 'plmweb.prodmgmt__idea_state',
             editorType: 'DROPDOWNLIST',
+            editorItems: [
+              {
+                id: 'state',
+              },
+            ],
             valueType: 'SIMPLE',
             editable: true,
             id: 'state',

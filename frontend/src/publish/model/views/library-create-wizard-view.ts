@@ -17,6 +17,13 @@ export default {
       id: 'engine',
     },
   ],
+  appViewNavParams: [
+    {
+      key: 'srfdefaulttype',
+      value: 'scope_type',
+      id: 'srfdefaulttype',
+    },
+  ],
   controls: [
     {
       finishControlAction: {
@@ -43,9 +50,11 @@ export default {
           },
           dewizardForm: {
             formTag: 'fill_info',
+            goFinishEnableScriptCode: 'data.scope_type !== "organization"',
+            goNextEnableScriptCode: 'data.scope_type === "organization"',
             deformName: '新建表单',
             dewizardStepId: '测试库信息',
-            stepActions: ['NEXT'],
+            stepActions: ['NEXT', 'FINISH'],
             firstForm: true,
             id: 'fill_info',
           },
@@ -112,7 +121,7 @@ export default {
                     {
                       rawItem: {
                         content:
-                          '<div class="template-tips">\n<div class="template-tip ng-star-inserted"><strong>敏捷测试</strong></div>\n<div class="template-tip ng-star-inserted">\n<div class="template-desc"><span style="color: #95a5a6;">敏捷测试是遵守敏捷开发原则之下的软件测试过程实践，通过持续的测试反馈保证企业完成高质量的业务价值交付。</span></div>\n<div class="template-tips">\n<div class="template-tip ng-star-inserted" style="padding-left: 40px;"><span style="color: #95a5a6;">支持分级管理测试用例，明确用例步骤与预期结果</span></div>\n<div class="template-tip ng-star-inserted" style="padding-left: 40px;"><span style="color: #95a5a6;">能够组织测试计划，快速规划测试用例并执行</span></div>\n<div class="template-tip ng-star-inserted" style="padding-left: 40px;"><span style="color: #95a5a6;">实时生成测试计划报告与多维度数据报表</span></div>\n</div>\n</div>\n</div>',
+                          '<h2 class="template-name" style="margin: 0 0 6px; padding-left: 40px;"><strong>敏捷测试</strong></h2>\n<div class="template-desc" style="padding: 0 40px; margin-bottom: 16px;"><span style="color: #95a5a6;">敏捷测试是遵守敏捷开发原则之下的软件测试过程实践，通过持续的测试反馈保证企业完成高质量的业务价值交付。</span></div>\n<div class="template-tips">\n<div class="template-tip ng-star-inserted" style="padding-left: 40px; margin-bottom: 12px;">\n<ul>\n<li style="color: #95a5a6;">支持分级管理测试用例，明确用例步骤与预期结果</li>\n</ul>\n</div>\n<div class="template-tip ng-star-inserted" style="padding-left: 40px; margin-bottom: 12px;">\n<ul>\n<li style="color: #95a5a6;">能够组织测试计划，快速规划测试用例并执行</li>\n</ul>\n</div>\n<div class="template-tip ng-star-inserted" style="padding-left: 40px; margin-bottom: 12px;">\n<ul>\n<li style="color: #95a5a6;">实时生成测试计划报告与多维度数据报表</li>\n</ul>\n</div>\n</div>',
                         contentType: 'HTML',
                         id: 'rawitem1',
                       },
@@ -143,6 +152,80 @@ export default {
                     layout: 'TABLE_24COL',
                   },
                   deformDetails: [
+                    {
+                      dataType: 25,
+                      enableCond: 3,
+                      labelPos: 'TOP',
+                      labelWidth: 130,
+                      noPrivDisplayMode: 1,
+                      appDEFieldId: 'scope_id',
+                      editor: {
+                        editorType: 'HIDDEN',
+                        valueType: 'SIMPLE',
+                        editable: true,
+                        id: 'scope_id',
+                      },
+                      allowEmpty: true,
+                      hidden: true,
+                      caption: '所属对象',
+                      codeName: 'scope_id',
+                      detailStyle: 'DEFAULT',
+                      detailType: 'FORMITEM',
+                      layoutPos: {
+                        colMD: 24,
+                        layout: 'TABLE_24COL',
+                      },
+                      showCaption: true,
+                      id: 'scope_id',
+                    },
+                    {
+                      dataType: 25,
+                      enableCond: 3,
+                      labelPos: 'TOP',
+                      labelWidth: 130,
+                      noPrivDisplayMode: 1,
+                      appDEFieldId: 'scope_type',
+                      editor: {
+                        enablePickupView: true,
+                        singleSelect: true,
+                        handlerType: 'PickupText',
+                        appDEACModeId: 'default',
+                        appDEDataSetId: 'fetch_default',
+                        appDataEntityId: 'plmweb.group',
+                        enableAC: true,
+                        forceSelection: true,
+                        showTrigger: true,
+                        valueItemName: 'scope_id',
+                        editorParams: {
+                          AC: 'TRUE',
+                          fillMap:
+                            '{"user":"user","user_group":"user_group","organization":"organization"}',
+                          enablePerson: 'false',
+                          PICKUPVIEW: 'TRUE',
+                        },
+                        editorStyle: 'TEAM_PICKER',
+                        editorType: 'PICKER',
+                        editorItems: [
+                          {
+                            id: 'scope_id',
+                          },
+                        ],
+                        sysPFPluginId: 'team_picker',
+                        valueType: 'SIMPLE',
+                        editable: true,
+                        id: 'scope_type',
+                      },
+                      caption: '所属',
+                      codeName: 'scope_type',
+                      detailStyle: 'DEFAULT',
+                      detailType: 'FORMITEM',
+                      layoutPos: {
+                        colMD: 24,
+                        layout: 'TABLE_24COL',
+                      },
+                      showCaption: true,
+                      id: 'scope_type',
+                    },
                     {
                       dataType: 25,
                       enableCond: 3,
@@ -426,7 +509,7 @@ export default {
                     {
                       rawItem: {
                         content:
-                          '<div class="template-tips">\n<div class="template-tip ng-star-inserted"><strong>敏捷测试</strong></div>\n<div class="template-tip ng-star-inserted">\n<div class="template-desc"><span style="color: #95a5a6;">敏捷测试是遵守敏捷开发原则之下的软件测试过程实践，通过持续的测试反馈保证企业完成高质量的业务价值交付。</span></div>\n<div class="template-tips">\n<div class="template-tip ng-star-inserted" style="padding-left: 40px;"><span style="color: #95a5a6;">支持分级管理测试用例，明确用例步骤与预期结果</span></div>\n<div class="template-tip ng-star-inserted" style="padding-left: 40px;"><span style="color: #95a5a6;">能够组织测试计划，快速规划测试用例并执行</span></div>\n<div class="template-tip ng-star-inserted" style="padding-left: 40px;"><span style="color: #95a5a6;">实时生成测试计划报告与多维度数据报表</span></div>\n</div>\n</div>\n</div>',
+                          '<h2 class="template-name" style="margin: 0 0 6px; padding-left: 40px;"><strong>敏捷测试</strong></h2>\n<div class="template-desc" style="padding: 0 40px; margin-bottom: 16px;"><span style="color: #95a5a6;">敏捷测试是遵守敏捷开发原则之下的软件测试过程实践，通过持续的测试反馈保证企业完成高质量的业务价值交付。</span></div>\n<div class="template-tips">\n<div class="template-tip ng-star-inserted" style="padding-left: 40px; margin-bottom: 12px;">\n<ul>\n<li style="color: #95a5a6;">支持分级管理测试用例，明确用例步骤与预期结果</li>\n</ul>\n</div>\n<div class="template-tip ng-star-inserted" style="padding-left: 40px; margin-bottom: 12px;">\n<ul>\n<li style="color: #95a5a6;">能够组织测试计划，快速规划测试用例并执行</li>\n</ul>\n</div>\n<div class="template-tip ng-star-inserted" style="padding-left: 40px; margin-bottom: 12px;">\n<ul>\n<li style="color: #95a5a6;">实时生成测试计划报告与多维度数据报表</li>\n</ul>\n</div>\n</div>',
                         contentType: 'HTML',
                         id: 'rawitem1',
                       },
@@ -714,9 +797,11 @@ export default {
         dewizardForms: [
           {
             formTag: 'fill_info',
+            goFinishEnableScriptCode: 'data.scope_type !== "organization"',
+            goNextEnableScriptCode: 'data.scope_type === "organization"',
             deformName: '新建表单',
             dewizardStepId: '测试库信息',
-            stepActions: ['NEXT'],
+            stepActions: ['NEXT', 'FINISH'],
             firstForm: true,
             id: 'fill_info',
           },

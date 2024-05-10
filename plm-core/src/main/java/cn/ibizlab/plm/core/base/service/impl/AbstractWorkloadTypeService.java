@@ -3,6 +3,7 @@
  */
 package cn.ibizlab.plm.core.base.service.impl;
 
+import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
@@ -136,12 +137,16 @@ public abstract class AbstractWorkloadTypeService extends ServiceImpl<WorkloadTy
     }
 
     public Page<WorkloadType> searchDefault(WorkloadTypeSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("SEQUENCE,ASC");
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkloadType> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<WorkloadType> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
     public List<WorkloadType> listDefault(WorkloadTypeSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("SEQUENCE,ASC");
         List<WorkloadType> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
     }

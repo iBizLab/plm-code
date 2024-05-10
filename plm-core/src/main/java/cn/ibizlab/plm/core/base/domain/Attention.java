@@ -23,6 +23,7 @@ import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import cn.ibizlab.plm.core.prodmgmt.domain.Customer;
 import cn.ibizlab.plm.core.prodmgmt.domain.Idea;
 import cn.ibizlab.plm.core.wiki.domain.ArticlePage;
+import cn.ibizlab.plm.core.testmgmt.domain.Review;
 import cn.ibizlab.plm.core.testmgmt.domain.Run;
 import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
 import cn.ibizlab.plm.core.prodmgmt.domain.Ticket;
@@ -87,7 +88,7 @@ public class Attention extends EntityMP implements Serializable
      * 关注类型
      */
     @TableField(value = "type")
-    @DEField(name = "type" , dict = "attention_type")
+    @DEField(name = "type" , defaultValue = "40" , dict = "attention_type")
     @JsonProperty("type")
     @JSONField(name = "type")
     @ApiModelProperty(value = "type", notes = "关注类型")
@@ -185,6 +186,16 @@ public class Attention extends EntityMP implements Serializable
     @Transient
     @ApiModelProperty(value = "page", notes = "页面-关注")
     private ArticlePage page;
+
+    /**
+     * 评审
+     */
+    @JsonIgnore
+    @JSONField(serialize = false)
+    @TableField(exist = false)
+    @Transient
+    @ApiModelProperty(value = "review", notes = "评审_关注")
+    private Review review;
 
     /**
      * 执行用例

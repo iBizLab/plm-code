@@ -47,12 +47,21 @@ public class WorkloadFilterDTO extends FilterBase implements Serializable {
 	private String principalIdEQ;
 
     /**
+     * 工作日期EQ
+     */
+    @JsonProperty("n_register_date_eq")
+    @JsonFormat(pattern = "yyyy-MM-dd", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_register_date_eq" , format = "yyyy-MM-dd")
+    @ApiModelProperty(value = "工作日期EQ", position = 60)
+	private Date registerDateEQ;
+
+    /**
      * 工作日期GTANDEQ
      */
     @JsonProperty("n_register_date_gtandeq")
     @JsonFormat(pattern = "yyyy-MM-dd", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "n_register_date_gtandeq" , format = "yyyy-MM-dd")
-    @ApiModelProperty(value = "工作日期GTANDEQ", position = 60)
+    @ApiModelProperty(value = "工作日期GTANDEQ", position = 61)
 	private Date registerDateGTANDEQ;
 
     /**
@@ -60,7 +69,7 @@ public class WorkloadFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_register_date_in")
     @JSONField(name = "n_register_date_in")
-    @ApiModelProperty(value = "工作日期IN", position = 61)
+    @ApiModelProperty(value = "工作日期IN", position = 62)
 	private String registerDateIN;
 
     /**
@@ -69,7 +78,7 @@ public class WorkloadFilterDTO extends FilterBase implements Serializable {
     @JsonProperty("n_register_date_ltandeq")
     @JsonFormat(pattern = "yyyy-MM-dd", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "n_register_date_ltandeq" , format = "yyyy-MM-dd")
-    @ApiModelProperty(value = "工作日期LTANDEQ", position = 62)
+    @ApiModelProperty(value = "工作日期LTANDEQ", position = 63)
 	private Date registerDateLTANDEQ;
 
     /**
@@ -79,6 +88,14 @@ public class WorkloadFilterDTO extends FilterBase implements Serializable {
     @JSONField(name = "n_recent_parent_eq")
     @ApiModelProperty(value = "访问父类EQ", position = 80)
 	private String recentParentEQ;
+
+    /**
+     * 编号LIKE
+     */
+    @JsonProperty("n_show_identifier_like")
+    @JSONField(name = "n_show_identifier_like")
+    @ApiModelProperty(value = "编号LIKE", position = 90)
+	private String showIdentifierLIKE;
 
     /**
      * 工作项EXISTS
@@ -293,7 +310,7 @@ public class WorkloadFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_test_case_exists__n_state_eq")
     @JSONField(name = "n_test_case_exists__n_state_eq")
-    @ApiModelProperty(value = "用例EXISTS评审状态EQ", position = 136)
+    @ApiModelProperty(value = "用例EXISTS状态EQ", position = 136)
 	private String testCaseEXISTSstateEQ;
 
     /**

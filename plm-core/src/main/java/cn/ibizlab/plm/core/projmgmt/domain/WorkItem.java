@@ -485,6 +485,46 @@ public class WorkItem extends EntityMP implements Serializable
     private String stateType;
 
     /**
+     * 当前版本名称
+     */
+    @TableField(value = "cur_version_name" , exist = false)
+    @DEField(name = "cur_version_name")
+    @JsonProperty("cur_version_name")
+    @JSONField(name = "cur_version_name")
+    @ApiModelProperty(value = "cur_version_name", notes = "当前版本名称")
+    private String curVersionName;
+
+    /**
+     * 选择版本标识
+     */
+    @TableField(value = "choose_version_id" , exist = false)
+    @DEField(name = "choose_version_id")
+    @JsonProperty("choose_version_id")
+    @JSONField(name = "choose_version_id")
+    @ApiModelProperty(value = "choose_version_id", notes = "选择版本标识")
+    private String chooseVersionId;
+
+    /**
+     * 选择版本名称
+     */
+    @TableField(value = "choose_version_name" , exist = false)
+    @DEField(name = "choose_version_name")
+    @JsonProperty("choose_version_name")
+    @JSONField(name = "choose_version_name")
+    @ApiModelProperty(value = "choose_version_name", notes = "选择版本名称")
+    private String chooseVersionName;
+
+    /**
+     * 关注人
+     */
+    @TableField(value = "attentions_imp" , exist = false)
+    @DEField(name = "attentions_imp")
+    @JsonProperty("attentions_imp")
+    @JSONField(name = "attentions_imp")
+    @ApiModelProperty(value = "attentions_imp", notes = "关注人")
+    private String attentionsImp;
+
+    /**
      * 更新人
      */
     @TableField(value = "update_man")
@@ -696,6 +736,16 @@ public class WorkItem extends EntityMP implements Serializable
     @JSONField(name = "release_id")
     @ApiModelProperty(value = "release_id", notes = "项目发布标识")
     private String releaseId;
+
+    /**
+     * 项目发布名称
+     */
+    @TableField(value = "release_name" , exist = false)
+    @DEField(name = "release_name")
+    @JsonProperty("release_name")
+    @JSONField(name = "release_name")
+    @ApiModelProperty(value = "release_name", notes = "项目发布名称")
+    private String releaseName;
 
     /**
      * 看板
@@ -1177,6 +1227,42 @@ public class WorkItem extends EntityMP implements Serializable
     }
 
     /**
+     * 设置 [当前版本名称]
+     */
+    public WorkItem setCurVersionName(String curVersionName) {
+        this.curVersionName = curVersionName;
+        this.modify("cur_version_name", curVersionName);
+        return this;
+    }
+
+    /**
+     * 设置 [选择版本标识]
+     */
+    public WorkItem setChooseVersionId(String chooseVersionId) {
+        this.chooseVersionId = chooseVersionId;
+        this.modify("choose_version_id", chooseVersionId);
+        return this;
+    }
+
+    /**
+     * 设置 [选择版本名称]
+     */
+    public WorkItem setChooseVersionName(String chooseVersionName) {
+        this.chooseVersionName = chooseVersionName;
+        this.modify("choose_version_name", chooseVersionName);
+        return this;
+    }
+
+    /**
+     * 设置 [关注人]
+     */
+    public WorkItem setAttentionsImp(String attentionsImp) {
+        this.attentionsImp = attentionsImp;
+        this.modify("attentions_imp", attentionsImp);
+        return this;
+    }
+
+    /**
      * 设置 [项目]
      */
     public WorkItem setProjectId(String projectId) {
@@ -1317,6 +1403,15 @@ public class WorkItem extends EntityMP implements Serializable
     public WorkItem setReleaseId(String releaseId) {
         this.releaseId = releaseId;
         this.modify("release_id", releaseId);
+        return this;
+    }
+
+    /**
+     * 设置 [项目发布名称]
+     */
+    public WorkItem setReleaseName(String releaseName) {
+        this.releaseName = releaseName;
+        this.modify("release_name", releaseName);
         return this;
     }
 

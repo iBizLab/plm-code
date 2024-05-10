@@ -77,6 +77,14 @@ export default {
     {
       openMode: 'POPUPMODAL',
       realOpenMode: 'POPUPMODAL',
+      realTitle: '用例模板新建',
+      refAppViewId: 'plmweb.test_case_template_new_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
+    },
+    {
+      openMode: 'POPUPMODAL',
+      realOpenMode: 'POPUPMODAL',
       realTitle: '用例模板编辑视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.TEST_CASE_TEMPLATE.EDITVIEW',
@@ -84,14 +92,6 @@ export default {
       refAppViewId: 'plmweb.test_case_template_edit_view',
       name: 'EDITDATA',
       id: 'editdata',
-    },
-    {
-      openMode: 'POPUPMODAL',
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '用例模板新建',
-      refAppViewId: 'plmweb.test_case_template_new_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
     },
   ],
   controls: [
@@ -141,12 +141,15 @@ export default {
       degridColumns: [
         {
           clconvertMode: 'NONE',
-          dataItemName: 'title',
+          dataItemName: 'name',
           excelCaption: '模板名称',
-          appDEFieldId: 'title',
+          appDEFieldId: 'name',
           valueType: 'SIMPLE',
           aggMode: 'NONE',
           align: 'LEFT',
+          capLanguageRes: {
+            lanResTag: 'DEF.LNAME.NAME',
+          },
           caption: '模板名称',
           codeName: 'name',
           columnType: 'DEFGRIDCOLUMN',
@@ -198,13 +201,60 @@ export default {
           enableSort: true,
           id: 'update_time',
         },
+        {
+          deuiactionGroup: {
+            uiactionGroupDetails: [
+              {
+                actionLevel: 200,
+                afterItemType: 'NONE',
+                beforeItemType: 'NONE',
+                detailType: 'DEUIACTION',
+                uiactionId: 'template_edit@test_case_template',
+                tooltip: '编辑模板',
+                showIcon: true,
+                sysImage: {
+                  cssClass: 'fa fa-pencil',
+                  glyph: 'xf040@FontAwesome',
+                },
+                id: 'u7e70a79',
+              },
+              {
+                actionLevel: 200,
+                afterItemType: 'NONE',
+                beforeItemType: 'NONE',
+                detailType: 'DEUIACTION',
+                uiactionId: 'template_delete@test_case_template',
+                tooltip: '删除模板',
+                showIcon: true,
+                sysImage: {
+                  cssClass: 'fa fa-trash-o',
+                  glyph: 'xf014@FontAwesome',
+                },
+                id: 'u6d1c7bc',
+              },
+            ],
+            appDataEntityId: 'plmweb.test_case_template',
+            uniqueTag: 'test_case_template__Usr0415103295',
+            name: '表格界面行为组（删除、编辑）',
+            id: 'usr0415103295',
+          },
+          aggMode: 'NONE',
+          align: 'CENTER',
+          caption: '操作',
+          codeName: 'uagridcolumn1',
+          columnType: 'UAGRIDCOLUMN',
+          noPrivDisplayMode: 1,
+          width: 150,
+          widthUnit: 'PX',
+          id: 'uagridcolumn1',
+        },
       ],
       degridDataItems: [
         {
-          appDEFieldId: 'title',
+          appDEFieldId: 'name',
           valueType: 'SIMPLE',
           dataType: 25,
-          id: 'title',
+          id: 'name',
         },
         {
           appDEFieldId: 'update_man',
@@ -270,6 +320,7 @@ export default {
       sortMode: 'REMOTE',
       enableCustomized: true,
       enablePagingBar: true,
+      singleSelect: true,
       fetchControlAction: {
         appDEMethodId: 'fetch_default',
         appDataEntityId: 'plmweb.test_case_template',

@@ -92,11 +92,27 @@ public class SpaceDTO extends DTOBase implements Serializable {
     private String categories;
 
     /**
+     * 所属
+     */
+    @JsonProperty("scope_type")
+    @JSONField(name = "scope_type")
+    @ApiModelProperty(value = "所属", position = 7)
+    private String scopeType;
+
+    /**
+     * 所属对象
+     */
+    @JsonProperty("scope_id")
+    @JSONField(name = "scope_id")
+    @ApiModelProperty(value = "所属对象", position = 8)
+    private String scopeId;
+
+    /**
      * 成员
      */
     @JsonProperty("members")
     @JSONField(name = "members")
-    @ApiModelProperty(value = "成员", position = 7)
+    @ApiModelProperty(value = "成员", position = 9)
     private List<SpaceMemberDTO> members;
 
     /**
@@ -104,7 +120,7 @@ public class SpaceDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("category_id")
     @JSONField(name = "category_id")
-    @ApiModelProperty(value = "分类", position = 8)
+    @ApiModelProperty(value = "分类", position = 10)
     private String categoryId;
 
     /**
@@ -112,7 +128,7 @@ public class SpaceDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("category_name")
     @JSONField(name = "category_name")
-    @ApiModelProperty(value = "分类", position = 9)
+    @ApiModelProperty(value = "分类", position = 11)
     private String categoryName;
 
     /**
@@ -120,7 +136,7 @@ public class SpaceDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 10)
+    @ApiModelProperty(value = "建立人", position = 12)
     private String createMan;
 
     /**
@@ -129,7 +145,7 @@ public class SpaceDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 11)
+    @ApiModelProperty(value = "建立时间", position = 13)
     private Date createTime;
 
     /**
@@ -137,7 +153,7 @@ public class SpaceDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 12)
+    @ApiModelProperty(value = "标识", position = 14)
     private String id;
 
     /**
@@ -145,7 +161,7 @@ public class SpaceDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "空间名称", position = 13)
+    @ApiModelProperty(value = "空间名称", position = 15)
     private String name;
 
     /**
@@ -153,7 +169,7 @@ public class SpaceDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 14)
+    @ApiModelProperty(value = "更新人", position = 16)
     private String updateMan;
 
     /**
@@ -162,7 +178,7 @@ public class SpaceDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 15)
+    @ApiModelProperty(value = "更新时间", position = 17)
     private Date updateTime;
 
 
@@ -226,6 +242,24 @@ public class SpaceDTO extends DTOBase implements Serializable {
     public SpaceDTO setCategories(String categories) {
         this.categories = categories;
         this.modify("categories", categories);
+        return this;
+    }
+
+    /**
+     * 设置 [所属]
+     */
+    public SpaceDTO setScopeType(String scopeType) {
+        this.scopeType = scopeType;
+        this.modify("scope_type", scopeType);
+        return this;
+    }
+
+    /**
+     * 设置 [所属对象]
+     */
+    public SpaceDTO setScopeId(String scopeId) {
+        this.scopeId = scopeId;
+        this.modify("scope_id", scopeId);
         return this;
     }
 

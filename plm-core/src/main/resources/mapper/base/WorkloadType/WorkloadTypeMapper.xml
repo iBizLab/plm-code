@@ -37,11 +37,11 @@
     </delete>
 
     <sql id="default" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `WORKLOAD_TYPE` t1   ]]>  
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`NAME`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `WORKLOAD_TYPE` t1   ]]>  
     </sql>
 
     <sql id="view" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `WORKLOAD_TYPE` t1   ]]>  
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`NAME`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `WORKLOAD_TYPE` t1   ]]>  
     </sql>
 
     <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.base.filter.WorkloadTypeSearchContext"  resultMap="WorkloadTypeResultMap">

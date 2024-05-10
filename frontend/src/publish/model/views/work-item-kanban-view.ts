@@ -58,6 +58,22 @@ export default {
                             },
                             id: 'u243d7d9',
                           },
+                          {
+                            actionLevel: 100,
+                            afterItemType: 'NONE',
+                            beforeItemType: 'NONE',
+                            caption: '看板管理',
+                            detailType: 'DEUIACTION',
+                            uiactionId: 'board_management@board',
+                            tooltip: '看板管理',
+                            showCaption: true,
+                            showIcon: true,
+                            sysImage: {
+                              cssClass: 'fa fa-sun-o',
+                              glyph: 'xf185@FontAwesome',
+                            },
+                            id: 'u8a50616',
+                          },
                         ],
                         appDataEntityId: 'plmweb.board',
                         uniqueTag: 'board__Usr1225361038',
@@ -348,6 +364,8 @@ export default {
       {
         detoolbarItems: [
           {
+            actionLevel: 100,
+            buttonStyle: 'STYLE3',
             detoolbarItems: [
               {
                 actionLevel: 100,
@@ -392,6 +410,10 @@ export default {
             valid: true,
             caption: '新建',
             itemType: 'ITEMS',
+            sysImage: {
+              cssClass: 'fa fa-plus',
+              glyph: 'xf067@FontAwesome',
+            },
             tooltip: '新建',
             showCaption: true,
             showIcon: true,
@@ -1077,7 +1099,7 @@ export default {
                               controlRenders: [
                                 {
                                   layoutPanelModel:
-                                    'data.start_at.startsWith(new Date().getFullYear()) ? data.start_at.slice(5, -9) : data.start_at.slice(0, -9)\r\n\r\n',
+                                    'data.start_at.startsWith(new Date().getFullYear()) ? data.start_at.slice(5) : data.start_at.slice(0)\r\n\r\n',
                                   renderType: 'LAYOUTPANEL_MODEL',
                                   id: 'logic',
                                 },
@@ -1193,7 +1215,7 @@ export default {
                               controlRenders: [
                                 {
                                   layoutPanelModel:
-                                    'data.end_at.startsWith(new Date().getFullYear()) ? data.end_at.slice(5, -9) : data.end_at.slice(0, -9)',
+                                    'data.end_at.startsWith(new Date().getFullYear()) ? data.end_at.slice(5) : data.end_at.slice(0)',
                                   renderType: 'LAYOUTPANEL_MODEL',
                                   id: 'logic2',
                                 },
@@ -1301,14 +1323,14 @@ export default {
         minorSortAppDEFieldId: 'entry_position',
         dedataViewDataItems: [
           {
-            appDEFieldId: 'title',
-            dataType: 25,
-            id: 'title',
-          },
-          {
             appDEFieldId: 'identifier',
             dataType: 25,
             id: 'identifier',
+          },
+          {
+            appDEFieldId: 'title',
+            dataType: 25,
+            id: 'title',
           },
           {
             appDEFieldId: 'id',
@@ -1388,24 +1410,6 @@ export default {
           },
         ],
         dedataViewItems: [
-          {
-            caption: '标题',
-            dataItemName: 'title',
-            itemType: 'DATAITEM',
-            appDEFieldId: 'title',
-            enableSort: true,
-            name: 'TITLE',
-            id: 'title',
-          },
-          {
-            caption: '编号',
-            dataItemName: 'identifier',
-            itemType: 'DATAITEM',
-            appDEFieldId: 'identifier',
-            enableSort: true,
-            name: 'IDENTIFIER',
-            id: 'identifier',
-          },
           {
             dataItemName: 'operate',
             itemType: 'ACTIONITEM',
@@ -1615,6 +1619,24 @@ export default {
             name: 'OPERATE',
             id: 'operate',
           },
+          {
+            caption: '编号',
+            dataItemName: 'identifier',
+            itemType: 'DATAITEM',
+            appDEFieldId: 'identifier',
+            enableSort: true,
+            name: 'IDENTIFIER',
+            id: 'identifier',
+          },
+          {
+            caption: '标题',
+            dataItemName: 'title',
+            itemType: 'DATAITEM',
+            appDEFieldId: 'title',
+            enableSort: true,
+            name: 'TITLE',
+            id: 'title',
+          },
         ],
         pagingSize: 1000,
         appendDEItems: true,
@@ -1628,7 +1650,7 @@ export default {
           id: 'create',
         },
         fetchControlAction: {
-          appDEMethodId: 'fetch_default',
+          appDEMethodId: 'fetch_normal',
           appDataEntityId: 'plmweb.work_item',
           id: 'fetch',
         },

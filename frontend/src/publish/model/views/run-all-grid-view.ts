@@ -113,6 +113,26 @@ export default {
   ],
   appViewRefs: [
     {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '执行用例主视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.RUN.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.run_main_view',
+      name: 'OPENDATA',
+      id: 'opendata',
+    },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '执行用例主视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.RUN.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.run_main_view',
+      name: 'NEWDATA',
+      id: 'newdata',
+    },
+    {
       openMode: 'INDEXVIEWTAB_POPUPMODAL',
       navigateContexts: [
         {
@@ -140,26 +160,6 @@ export default {
       },
       name: 'EDITDATA',
       id: 'editdata',
-    },
-    {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '执行用例主视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.RUN.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.run_main_view',
-      name: 'OPENDATA',
-      id: 'opendata',
-    },
-    {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '执行用例主视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.RUN.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.run_main_view',
-      name: 'NEWDATA',
-      id: 'newdata',
     },
     {
       realOpenMode: 'POPUPMODAL',
@@ -193,6 +193,12 @@ export default {
           id: 'deuiaction1',
         },
         {
+          itemType: 'SEPERATOR',
+          id: 'seperator1',
+        },
+        {
+          actionLevel: 100,
+          buttonStyle: 'STYLE2',
           detoolbarItems: [
             {
               actionLevel: 100,
@@ -850,8 +856,8 @@ export default {
               caption: '移出',
               itemType: 'DEUIACTION',
               sysImage: {
-                cssClass: 'fa fa-mail-reply-all',
-                glyph: 'xf122@FontAwesome',
+                cssClass: 'fa fa-reply',
+                glyph: 'xf112@FontAwesome',
               },
               tooltip: '移出',
               showCaption: true,

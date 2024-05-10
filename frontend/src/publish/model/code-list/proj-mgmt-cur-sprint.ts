@@ -8,6 +8,6 @@ export default {
   textAppDEFieldId: 'name',
   valueAppDEFieldId: 'id',
   enableCache: true,
-  name: '当前项目迭代',
+  name: '正常迭代',
   id: 'plmweb.projmgmt__cur_sprint',
 };

@@ -8,4 +8,5 @@ export default {
   appDataEntityId: 'plmweb.psdefield',
   redirectView: false,
   modalOption: {},
+  appId: '',
 };

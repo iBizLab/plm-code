@@ -161,11 +161,11 @@ export default {
               id: 'node_4',
             },
             {
-              text: '测试库配置',
+              text: '评审配置',
               nodeType: 'node_5',
               treeNodeType: 'STATIC',
               disableSelect: true,
-              name: '测试库配置',
+              name: '评审配置',
               id: 'node_5',
             },
             {

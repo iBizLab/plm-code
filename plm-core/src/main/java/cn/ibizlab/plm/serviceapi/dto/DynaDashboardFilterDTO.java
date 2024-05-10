@@ -35,7 +35,7 @@ public class DynaDashboardFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_dynadashboardid_eq")
     @JSONField(name = "n_dynadashboardid_eq")
-    @ApiModelProperty(value = "动态数据看板标识EQ", position = 60)
+    @ApiModelProperty(value = "动态数据看板标识EQ", position = 90)
 	private String dynaDashboardIdEQ;
 
 

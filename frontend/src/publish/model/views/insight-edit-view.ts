@@ -36,7 +36,8 @@ export default {
           caption: '保存',
           itemType: 'DEUIACTION',
           sysImage: {
-            cssClass: 'sx-tb-saveandclose',
+            cssClass: 'fa fa-save',
+            glyph: 'xf0c7@FontAwesome',
           },
           tooltip: '保存',
           tooltipLanguageRes: {
@@ -142,6 +143,7 @@ export default {
                   appDEFieldId: 'type',
                   editor: {
                     singleSelect: true,
+                    appCodeListId: 'plmweb.base__report_type',
                     editorType: 'DROPDOWNLIST',
                     valueType: 'SIMPLE',
                     editable: true,

@@ -112,6 +112,26 @@ public class Space extends EntityMP implements Serializable
     private String categories;
 
     /**
+     * 所属
+     */
+    @TableField(value = "scope_type")
+    @DEField(name = "scope_type" , dict = "space_scope_type")
+    @JsonProperty("scope_type")
+    @JSONField(name = "scope_type")
+    @ApiModelProperty(value = "scope_type", notes = "所属")
+    private String scopeType;
+
+    /**
+     * 所属对象
+     */
+    @TableField(value = "scope_id")
+    @DEField(name = "scope_id")
+    @JsonProperty("scope_id")
+    @JSONField(name = "scope_id")
+    @ApiModelProperty(value = "scope_id", notes = "所属对象")
+    private String scopeId;
+
+    /**
      * 成员
      */
     @TableField(exist = false)
@@ -274,6 +294,24 @@ public class Space extends EntityMP implements Serializable
     public Space setCategories(String categories) {
         this.categories = categories;
         this.modify("categories", categories);
+        return this;
+    }
+
+    /**
+     * 设置 [所属]
+     */
+    public Space setScopeType(String scopeType) {
+        this.scopeType = scopeType;
+        this.modify("scope_type", scopeType);
+        return this;
+    }
+
+    /**
+     * 设置 [所属对象]
+     */
+    public Space setScopeId(String scopeId) {
+        this.scopeId = scopeId;
+        this.modify("scope_id", scopeId);
         return this;
     }
 

@@ -8,6 +8,7 @@ export default {
   accUserMode: 2,
   caption: '基本信息',
   codeName: 'project_baseinfo_over_view',
+  height: 345,
   appDataEntityId: 'plmweb.project',
   appViewEngines: [
     {

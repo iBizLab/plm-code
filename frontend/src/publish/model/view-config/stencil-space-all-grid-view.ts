@@ -8,4 +8,5 @@ export default {
   appDataEntityId: 'plmweb.stencil',
   redirectView: false,
   modalOption: {},
+  appId: '',
 };

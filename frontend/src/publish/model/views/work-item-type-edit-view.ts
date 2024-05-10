@@ -34,7 +34,8 @@ export default {
           caption: '保存',
           itemType: 'DEUIACTION',
           sysImage: {
-            cssClass: 'sx-tb-saveandclose',
+            cssClass: 'fa fa-save',
+            glyph: 'xf0c7@FontAwesome',
           },
           tooltip: '保存',
           tooltipLanguageRes: {
@@ -229,6 +230,7 @@ export default {
                     editable: true,
                     id: 'sequence',
                   },
+                  allowEmpty: true,
                   caption: '序号',
                   codeName: 'sequence',
                   detailStyle: 'DEFAULT',

@@ -172,6 +172,46 @@ public abstract class AbstractProductPlanResource {
     }
 
     /**
+    * delete_categories 排期
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProductPlanDTO>
+    */
+    @ApiOperation(value = "delete_categories", tags = {"排期" },  notes = "ProductPlan-delete_categories ")
+    @PostMapping("products/{productId}/product_plans/{id}/delete_categories")
+    public ResponseEntity<ResponseWrapper<ProductPlanDTO>> deleteCategoriesByProductIdAndId
+            (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProductPlanDTO> dto) {
+        ResponseWrapper<ProductPlanDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(deleteCategoriesByProductIdAndId(productId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(deleteCategoriesByProductIdAndId(productId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * delete_categories 排期
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProductPlanDTO>
+    */   
+    public ProductPlanDTO deleteCategoriesByProductIdAndId
+            (String productId, String id, ProductPlanDTO dto) {
+        ProductPlan domain = productPlanDtoMapping.toDomain(dto);
+        domain.setId(id);
+        ProductPlan rt = productPlanService.deleteCategories(domain);
+        return productPlanDtoMapping.toDto(rt);
+    }
+
+    /**
     * product_plan_relation_idea 排期
     * 
     *

@@ -90,6 +90,15 @@ export default {
   ],
   appViewRefs: [
     {
+      realTitle: '工作项编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.work_item_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
+    },
+    {
       openMode: 'INDEXVIEWTAB_POPUPMODAL',
       navigateContexts: [
         {
@@ -105,20 +114,13 @@ export default {
       name: 'EDITDATA',
       id: 'editdata',
     },
-    {
-      realTitle: '工作项编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.work_item_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
   ],
   controls: [
     {
       detoolbarItems: [
         {
+          actionLevel: 100,
+          buttonStyle: 'STYLE3',
           detoolbarItems: [
             {
               actionLevel: 100,
@@ -199,23 +201,29 @@ export default {
           id: 'items1',
         },
         {
+          itemType: 'SEPERATOR',
+          id: 'seperator1',
+        },
+        {
+          actionLevel: 100,
+          buttonStyle: 'STYLE2',
           detoolbarItems: [
             {
               actionLevel: 100,
               noPrivDisplayMode: 2,
-              uiactionId: 'import_work_item_kanban@work_item',
+              uiactionId: 'waterfall_work_item_import_data@work_item',
               uiactionTarget: 'NONE',
               valid: true,
               caption: '导入工作项',
               itemType: 'DEUIACTION',
               sysImage: {
-                cssClass: 'fa fa-upload',
-                glyph: 'xf093@FontAwesome',
+                cssClass: 'fa fa-cloud-upload',
+                glyph: 'xf0ee@FontAwesome',
               },
               tooltip: '导入工作项',
               showCaption: true,
               showIcon: true,
-              id: 'deuiaction2',
+              id: 'deuiaction4',
             },
             {
               actionLevel: 100,
@@ -254,12 +262,12 @@ export default {
       xdataControlName: 'grid',
       codeName: 'all_scrum_grid_view_toolbar',
       controlType: 'TOOLBAR',
-      logicName: '新建工作项（看板）',
+      logicName: '新建工作项（scrum）',
       appDataEntityId: 'plmweb.work_item',
       controlParam: {
         id: 'toolbar',
       },
-      modelId: 'fe45239d889da6c9e29cc6c6b2409005',
+      modelId: '661B8348-1FBE-4226-8154-1E363F1D1D6C',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'all_scrum_grid_view_toolbar',
@@ -1070,6 +1078,7 @@ export default {
               id: 'deuiaction10',
             },
             {
+              actionLevel: 100,
               detoolbarItems: [
                 {
                   actionLevel: 100,
@@ -1145,6 +1154,10 @@ export default {
               valid: true,
               caption: '更多',
               itemType: 'ITEMS',
+              sysImage: {
+                cssClass: 'fa fa-list-ul',
+                glyph: 'xf0ca@FontAwesome',
+              },
               tooltip: '更多',
               showCaption: true,
               showIcon: true,

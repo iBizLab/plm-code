@@ -15,6 +15,7 @@ import cn.ibizlab.plm.core.base.filter.AttentionSearchContext;
 import cn.ibizlab.plm.core.prodmgmt.domain.Customer;
 import cn.ibizlab.plm.core.prodmgmt.domain.Idea;
 import cn.ibizlab.plm.core.wiki.domain.ArticlePage;
+import cn.ibizlab.plm.core.testmgmt.domain.Review;
 import cn.ibizlab.plm.core.testmgmt.domain.Run;
 import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
 import cn.ibizlab.plm.core.prodmgmt.domain.Ticket;
@@ -305,6 +306,14 @@ public interface AttentionService extends IService<Attention> {
     * @return
     */
     boolean saveByPage(ArticlePage articlePage,List<Attention> list);
+
+    /**
+    * saveRelByReview
+    * @param review
+    * @param list
+    * @return
+    */
+    boolean saveByReview(Review review,List<Attention> list);
 
     /**
     * saveRelByRun

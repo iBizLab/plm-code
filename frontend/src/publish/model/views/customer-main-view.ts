@@ -556,11 +556,22 @@ export default {
         name: 'LOGIC',
         id: 'logic',
       },
+      {
+        eventNames: 'onCreated',
+        logicTrigger: 'VIEWEVENT',
+        logicType: 'APPDEUILOGIC',
+        appDEUILogicId: 'test_get_only_read',
+        appDataEntityId: 'plmweb.customer',
+        builtinLogic: true,
+        name: 'READONLY',
+        id: 'readonly',
+      },
     ],
     controls: [
       {
         detoolbarItems: [
           {
+            actionLevel: 100,
             detoolbarItems: [
               {
                 actionLevel: 100,
@@ -583,6 +594,16 @@ export default {
             valid: true,
             caption: '更多',
             itemType: 'ITEMS',
+            controlLogics: [
+              {
+                itemName: 'items1',
+                logicTag: 'toolbar',
+                logicType: 'SCRIPT',
+                scriptCode: 'context.srfreadonly != true',
+                triggerType: 'ITEMVISIBLE',
+                id: 'items1',
+              },
+            ],
             sysImage: {
               cssClass: 'fa fa-list-ul',
               glyph: 'xf0ca@FontAwesome',

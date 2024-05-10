@@ -24,6 +24,18 @@ import com.baomidou.mybatisplus.core.enums.SqlMethod;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import cn.ibizlab.plm.core.testmgmt.domain.Library;
+import cn.ibizlab.plm.core.testmgmt.service.LibraryService;
+import cn.ibizlab.plm.core.prodmgmt.domain.Product;
+import cn.ibizlab.plm.core.prodmgmt.service.ProductService;
+import cn.ibizlab.plm.core.projmgmt.domain.Project;
+import cn.ibizlab.plm.core.projmgmt.service.ProjectService;
+import cn.ibizlab.plm.core.prodmgmt.domain.BaselineIdea;
+import cn.ibizlab.plm.core.prodmgmt.service.BaselineIdeaService;
+import cn.ibizlab.plm.core.testmgmt.domain.BaselineTestCase;
+import cn.ibizlab.plm.core.testmgmt.service.BaselineTestCaseService;
+import cn.ibizlab.plm.core.projmgmt.domain.BaselineWorkItem;
+import cn.ibizlab.plm.core.projmgmt.service.BaselineWorkItemService;
 import cn.ibizlab.plm.core.base.domain.Relation;
 import cn.ibizlab.plm.core.base.service.RelationService;
 
@@ -34,6 +46,30 @@ import cn.ibizlab.plm.core.base.service.RelationService;
  */
 @Slf4j
 public abstract class AbstractBaselineService extends ServiceImpl<BaselineMapper,Baseline> implements BaselineService {
+
+    @Autowired
+    @Lazy
+    protected LibraryService libraryService;
+
+    @Autowired
+    @Lazy
+    protected ProductService productService;
+
+    @Autowired
+    @Lazy
+    protected ProjectService projectService;
+
+    @Autowired
+    @Lazy
+    protected BaselineIdeaService baselineIdeaService;
+
+    @Autowired
+    @Lazy
+    protected BaselineTestCaseService baselineTestCaseService;
+
+    @Autowired
+    @Lazy
+    protected BaselineWorkItemService baselineWorkItemService;
 
     @Autowired
     @Lazy
@@ -53,7 +89,20 @@ public abstract class AbstractBaselineService extends ServiceImpl<BaselineMapper
         return this.baseMapper.selectEntities(entities);
     }
 
+    public void fillParentData(Baseline et) {
+        if(Entities.LIBRARY.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setOwnerId((String)et.getContextParentKey());
+        }
+        if(Entities.PRODUCT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setOwnerId((String)et.getContextParentKey());
+        }
+        if(Entities.PROJECT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setOwnerId((String)et.getContextParentKey());
+        }
+    }
+
     public Baseline getDraft(Baseline et) {
+        fillParentData(et);
         return et;
     }
 
@@ -64,6 +113,7 @@ public abstract class AbstractBaselineService extends ServiceImpl<BaselineMapper
     @Override
     @Transactional
     public boolean create(Baseline et) {
+        fillParentData(et);
         if(this.baseMapper.insert(et) < 1)
             return false;
         get(et);
@@ -72,6 +122,7 @@ public abstract class AbstractBaselineService extends ServiceImpl<BaselineMapper
 
     @Transactional
     public boolean createBatch(List<Baseline> list) {
+        list.forEach(this::fillParentData);
         this.saveBatch(list, batchSize);
         return true;
     }
@@ -144,6 +195,99 @@ public abstract class AbstractBaselineService extends ServiceImpl<BaselineMapper
     public List<Baseline> listDefault(BaselineSearchContext context) {
         List<Baseline> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
+    }
+
+    public List<Baseline> findByOwnerId(List<String> ownerIds) {
+        List<Baseline> list = baseMapper.findByOwnerId(ownerIds);
+        return list;
+    }
+    public boolean removeByOwnerId(String ownerId) {
+        return this.remove(Wrappers.<Baseline>lambdaQuery().eq(Baseline::getOwnerId,ownerId));
+    }
+
+    public boolean resetByOwnerId(String ownerId) {
+        return this.update(Wrappers.<Baseline>lambdaUpdate().eq(Baseline::getOwnerId,ownerId));
+    }
+
+    public boolean saveByLibrary(Library library,List<Baseline> list) {
+        if(list==null)
+            return true;
+        Map<String,Baseline> before = findByOwnerId(library.getId()).stream().collect(Collectors.toMap(Baseline::getId,e->e));
+        List<Baseline> update = new ArrayList<>();
+        List<Baseline> create = new ArrayList<>();
+
+        for(Baseline sub:list) {
+            sub.setOwnerId(library.getId());
+            sub.setLibrary(library);
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().createBatch(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+            return false;
+        else
+            return true;
+    }
+
+    public boolean saveByProduct(Product product,List<Baseline> list) {
+        if(list==null)
+            return true;
+        Map<String,Baseline> before = findByOwnerId(product.getId()).stream().collect(Collectors.toMap(Baseline::getId,e->e));
+        List<Baseline> update = new ArrayList<>();
+        List<Baseline> create = new ArrayList<>();
+
+        for(Baseline sub:list) {
+            sub.setOwnerId(product.getId());
+            sub.setProduct(product);
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().createBatch(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+            return false;
+        else
+            return true;
+    }
+
+    public boolean saveByProject(Project project,List<Baseline> list) {
+        if(list==null)
+            return true;
+        Map<String,Baseline> before = findByOwnerId(project.getId()).stream().collect(Collectors.toMap(Baseline::getId,e->e));
+        List<Baseline> update = new ArrayList<>();
+        List<Baseline> create = new ArrayList<>();
+
+        for(Baseline sub:list) {
+            sub.setOwnerId(project.getId());
+            sub.setProject(project);
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().createBatch(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+            return false;
+        else
+            return true;
     }
 
     @Override

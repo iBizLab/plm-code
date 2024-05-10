@@ -207,6 +207,45 @@ public abstract class AbstractRunResource {
     }
 
     /**
+    * fill_library_member 执行用例
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */
+    @ApiOperation(value = "fill_library_member", tags = {"执行用例" },  notes = "Run-fill_library_member ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fill_library_member-all') or hasPermission(this.runDtoMapping.toDomain(#dto),'ibizplm-Run-fill_library_member')")
+    @PostMapping("runs/{id}/fill_library_member")
+    public ResponseEntity<ResponseWrapper<RunDTO>> fillLibraryMemberById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
+        ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(fillLibraryMemberById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(fillLibraryMemberById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * fill_library_member 执行用例
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */   
+    public RunDTO fillLibraryMemberById
+            (String id, RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Run rt = runService.fillLibraryMember(domain);
+        return runDtoMapping.toDto(rt);
+    }
+
+    /**
     * other_relation_run 执行用例
     * 
     *
@@ -625,6 +664,47 @@ public abstract class AbstractRunResource {
         Run domain = runDtoMapping.toDomain(dto);
         domain.setId(id);
         Run rt = runService.batchSaveRunHistory(domain);
+        return runDtoMapping.toDto(rt);
+    }
+
+    /**
+    * fill_library_member 执行用例
+    * 
+    *
+    * @param caseId caseId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */
+    @ApiOperation(value = "fill_library_member", tags = {"执行用例" },  notes = "Run-fill_library_member ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fill_library_member-all') or hasPermission('test_case',#caseId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-fill_library_member')")
+    @PostMapping("test_cases/{caseId}/runs/{id}/fill_library_member")
+    public ResponseEntity<ResponseWrapper<RunDTO>> fillLibraryMemberByCaseIdAndId
+            (@PathVariable("caseId") String caseId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
+        ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(fillLibraryMemberByCaseIdAndId(caseId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(fillLibraryMemberByCaseIdAndId(caseId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * fill_library_member 执行用例
+    * 
+    *
+    * @param caseId caseId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */   
+    public RunDTO fillLibraryMemberByCaseIdAndId
+            (String caseId, String id, RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Run rt = runService.fillLibraryMember(domain);
         return runDtoMapping.toDto(rt);
     }
 
@@ -1071,6 +1151,49 @@ public abstract class AbstractRunResource {
         Run domain = runDtoMapping.toDomain(dto);
         domain.setId(id);
         Run rt = runService.batchSaveRunHistory(domain);
+        return runDtoMapping.toDto(rt);
+    }
+
+    /**
+    * fill_library_member 执行用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param caseId caseId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */
+    @ApiOperation(value = "fill_library_member", tags = {"执行用例" },  notes = "Run-fill_library_member ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fill_library_member-all') or hasPermission('library',#testLibraryId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-fill_library_member')")
+    @PostMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/{id}/fill_library_member")
+    public ResponseEntity<ResponseWrapper<RunDTO>> fillLibraryMemberByTestLibraryIdAndCaseIdAndId
+            (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
+        ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(fillLibraryMemberByTestLibraryIdAndCaseIdAndId(testLibraryId, caseId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(fillLibraryMemberByTestLibraryIdAndCaseIdAndId(testLibraryId, caseId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * fill_library_member 执行用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param caseId caseId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */   
+    public RunDTO fillLibraryMemberByTestLibraryIdAndCaseIdAndId
+            (String testLibraryId, String caseId, String id, RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Run rt = runService.fillLibraryMember(domain);
         return runDtoMapping.toDto(rt);
     }
 
@@ -1527,6 +1650,47 @@ public abstract class AbstractRunResource {
     }
 
     /**
+    * fill_library_member 执行用例
+    * 
+    *
+    * @param planId planId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */
+    @ApiOperation(value = "fill_library_member", tags = {"执行用例" },  notes = "Run-fill_library_member ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fill_library_member-all') or hasPermission('test_plan',#planId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-fill_library_member')")
+    @PostMapping("test_plans/{planId}/runs/{id}/fill_library_member")
+    public ResponseEntity<ResponseWrapper<RunDTO>> fillLibraryMemberByPlanIdAndId
+            (@PathVariable("planId") String planId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
+        ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(fillLibraryMemberByPlanIdAndId(planId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(fillLibraryMemberByPlanIdAndId(planId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * fill_library_member 执行用例
+    * 
+    *
+    * @param planId planId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */   
+    public RunDTO fillLibraryMemberByPlanIdAndId
+            (String planId, String id, RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Run rt = runService.fillLibraryMember(domain);
+        return runDtoMapping.toDto(rt);
+    }
+
+    /**
     * other_relation_run 执行用例
     * 
     *
@@ -1969,6 +2133,49 @@ public abstract class AbstractRunResource {
         Run domain = runDtoMapping.toDomain(dto);
         domain.setId(id);
         Run rt = runService.batchSaveRunHistory(domain);
+        return runDtoMapping.toDto(rt);
+    }
+
+    /**
+    * fill_library_member 执行用例
+    * 
+    *
+    * @param libraryId libraryId
+    * @param planId planId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */
+    @ApiOperation(value = "fill_library_member", tags = {"执行用例" },  notes = "Run-fill_library_member ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fill_library_member-all') or hasPermission('library',#libraryId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-fill_library_member')")
+    @PostMapping("libraries/{libraryId}/test_plans/{planId}/runs/{id}/fill_library_member")
+    public ResponseEntity<ResponseWrapper<RunDTO>> fillLibraryMemberByLibraryIdAndPlanIdAndId
+            (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
+        ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(fillLibraryMemberByLibraryIdAndPlanIdAndId(libraryId, planId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(fillLibraryMemberByLibraryIdAndPlanIdAndId(libraryId, planId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * fill_library_member 执行用例
+    * 
+    *
+    * @param libraryId libraryId
+    * @param planId planId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */   
+    public RunDTO fillLibraryMemberByLibraryIdAndPlanIdAndId
+            (String libraryId, String planId, String id, RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Run rt = runService.fillLibraryMember(domain);
         return runDtoMapping.toDto(rt);
     }
 

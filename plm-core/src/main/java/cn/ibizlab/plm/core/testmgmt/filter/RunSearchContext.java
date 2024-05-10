@@ -202,6 +202,8 @@ public class RunSearchContext extends QueryWrapperContext<Run> {
             this.getFilter().eq("case_id",contextParentKey);
         if(Entities.TEST_PLAN.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("plan_id",contextParentKey);
+        if(Entities.TEST_CASE.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("case_id",contextParentKey);
     }
 
     @Override

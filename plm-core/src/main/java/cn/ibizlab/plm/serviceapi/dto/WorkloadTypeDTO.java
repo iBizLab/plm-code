@@ -4,6 +4,7 @@
 package cn.ibizlab.plm.serviceapi.dto;
 
 import java.util.*;
+import java.math.BigDecimal;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -36,11 +37,19 @@ public class WorkloadTypeDTO extends DTOBase implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
+     * 序号
+     */
+    @JsonProperty("sequence")
+    @JSONField(name = "sequence")
+    @ApiModelProperty(value = "序号", position = 0)
+    private BigDecimal sequence;
+
+    /**
      * 建立人
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 0)
+    @ApiModelProperty(value = "建立人", position = 1)
     private String createMan;
 
     /**
@@ -49,7 +58,7 @@ public class WorkloadTypeDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 1)
+    @ApiModelProperty(value = "建立时间", position = 2)
     private Date createTime;
 
     /**
@@ -57,7 +66,7 @@ public class WorkloadTypeDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 2)
+    @ApiModelProperty(value = "标识", position = 3)
     private String id;
 
     /**
@@ -65,7 +74,7 @@ public class WorkloadTypeDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 3)
+    @ApiModelProperty(value = "名称", position = 4)
     private String name;
 
     /**
@@ -73,7 +82,7 @@ public class WorkloadTypeDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 4)
+    @ApiModelProperty(value = "更新人", position = 5)
     private String updateMan;
 
     /**
@@ -82,7 +91,7 @@ public class WorkloadTypeDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 5)
+    @ApiModelProperty(value = "更新时间", position = 6)
     private Date updateTime;
 
 

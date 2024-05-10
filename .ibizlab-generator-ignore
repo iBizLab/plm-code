@@ -23,3 +23,7 @@ Dockerfile-serviceapi
 **/SystemExtensionNotifySettingFeignClient.java
 **/AppSyncJob
 **/AuditAspect
+**/ReviewContent.java
+**/ReviewDTO.java
+**/Review.java
+**/ReviewContentExtendMapper.xml

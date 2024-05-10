@@ -20,6 +20,13 @@ export default {
       id: 'engine',
     },
   ],
+  appViewNavParams: [
+    {
+      key: 'n_department_id_isnull',
+      value: 'department_id_isnull',
+      id: 'n_department_id_isnull',
+    },
+  ],
   controls: [
     {
       aggMode: 'NONE',
@@ -265,6 +272,6 @@ export default {
   showCaptionBar: true,
   modelId: 'dbd7f24a1f3a771ca2bf5b2c834aa41f',
   modelType: 'PSAPPDEVIEW',
-  name: 'choose_pick_up_grid_view',
+  name: 'userchoose_pick_up_grid_view',
   id: 'plmweb.user_choose_pick_up_grid_view',
 };

@@ -235,15 +235,6 @@ export default {
     ],
     appViewRefs: [
       {
-        realTitle: '工时数据重定向视图',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.WORKLOAD.REDIRECTVIEW',
-        },
-        refAppViewId: 'plmweb.workload_redirect_view',
-        name: 'EDITDATA',
-        id: 'editdata',
-      },
-      {
         realTitle: '工时编辑视图',
         realTitleLanguageRes: {
           lanResTag: 'PAGE.TITLE.WORKLOAD.EDITVIEW',
@@ -251,6 +242,15 @@ export default {
         refAppViewId: 'plmweb.workload_edit_view',
         name: 'NEWDATA',
         id: 'newdata',
+      },
+      {
+        realTitle: '工时数据重定向视图',
+        realTitleLanguageRes: {
+          lanResTag: 'PAGE.TITLE.WORKLOAD.REDIRECTVIEW',
+        },
+        refAppViewId: 'plmweb.workload_redirect_view',
+        name: 'EDITDATA',
+        id: 'editdata',
       },
     ],
     controls: [
@@ -299,7 +299,7 @@ export default {
             dataItemName: 'duration',
             excelCaption: '总登记工时',
             appDEFieldId: 'duration',
-            deuiactionId: 'library_duration_link@workload',
+            deuiactionId: 'parent_dimension@workload',
             valueFormat: '#0.0',
             valueType: 'SIMPLE',
             aggMode: 'NONE',
@@ -389,6 +389,18 @@ export default {
           appDataEntityId: 'plmweb.workload',
           id: 'fetch',
         },
+        controlNavParams: [
+          {
+            key: 'n_register_date_eq',
+            value: 'date',
+            id: 'n_register_date_eq',
+          },
+          {
+            key: 'n_recent_parent_eq',
+            value: 'recent_parent',
+            id: 'n_recent_parent_eq',
+          },
+        ],
         removeControlAction: {
           appDEMethodId: 'remove',
           appDataEntityId: 'plmweb.workload',
@@ -404,6 +416,9 @@ export default {
         controlParam: {
           ctrlParams: {
             DATERANGE: 'date_range',
+            'SRFNAVPARAM.N_REGISTER_DATE_EQ': '%date%',
+            OPENVIEW: 'workload_day_link_grid_view',
+            'SRFNAVPARAM.N_RECENT_PARENT_EQ': '%recent_parent%',
           },
           id: 'grid',
         },
@@ -462,6 +477,12 @@ export default {
                     attrName: 'clearable',
                     attrValue: 'false',
                     id: 'logic_clearable',
+                  },
+                  {
+                    attrName: 'shortcuts',
+                    attrValue:
+                      "[\r\n    {\r\n    text: '最近7天',\r\n    value: () => {\r\n        const end_at = new Date();\r\n        const start_at = new Date();\r\n        start_at.setDate(end_at.getDate() - 6);\r\n        return [start_at, end_at];\r\n    },\r\n    },\r\n    {\r\n    text: '最近30天',\r\n    value: () => {\r\n        const end_at = new Date();\r\n        const start_at = new Date();\r\n        start_at.setDate(end_at.getDate() - 29);\r\n        return [start_at, end_at];\r\n    },\r\n    },\r\n    {\r\n    text: '本周',\r\n    value: () => {\r\n        const end_at = new Date();\r\n        const currentDay = end_at.getDay();\r\n        const start_at = new Date(end_at);\r\n\r\n        // 计算本周的开始日期 (周一)\r\n        start_at.setDate(\r\n        end_at.getDate() - currentDay + (currentDay === 0 ? -6 : 1),\r\n        );\r\n        return [start_at, end_at];\r\n    },\r\n    },\r\n    {\r\n    text: '本月',\r\n    value: () => {\r\n        const end_at = new Date();\r\n        const start_at = new Date(end_at);\r\n\r\n        // 将日期设置为本月第一天\r\n        start_at.setDate(1);\r\n        return [start_at, end_at];\r\n    },\r\n    },\r\n]",
+                    id: 'date_range_shortcuts',
                   },
                 ],
                 layoutPos: {

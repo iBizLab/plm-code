@@ -621,6 +621,7 @@ export default {
         {
           detoolbarItems: [
             {
+              actionLevel: 100,
               detoolbarItems: [
                 {
                   actionLevel: 100,

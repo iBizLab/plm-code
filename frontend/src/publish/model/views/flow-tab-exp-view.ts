@@ -28,11 +28,6 @@ export default {
           appViewId: 'plmweb.template_flow_data_view',
           id: 'temp',
         },
-        {
-          caption: '触发器',
-          appViewId: 'plmweb.flow_tree_exp_view',
-          id: 'trigger',
-        },
       ],
       editItemCaption: '实体处理逻辑',
       uniqueTag: 'flow_tab_exp_view__tabexppanel',

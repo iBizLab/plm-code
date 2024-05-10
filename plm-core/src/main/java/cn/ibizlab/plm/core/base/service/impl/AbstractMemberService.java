@@ -26,6 +26,7 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import cn.ibizlab.plm.core.base.domain.User;
 import cn.ibizlab.plm.core.base.domain.Group;
+import cn.ibizlab.plm.core.base.service.GroupService;
 
 /**
  * 实体[成员] 服务对象接口实现
@@ -34,6 +35,10 @@ import cn.ibizlab.plm.core.base.domain.Group;
  */
 @Slf4j
 public abstract class AbstractMemberService extends ServiceImpl<MemberMapper,Member> implements MemberService {
+
+    @Autowired
+    @Lazy
+    protected GroupService groupService;
 
     protected int batchSize = 500;
 
@@ -54,6 +59,9 @@ public abstract class AbstractMemberService extends ServiceImpl<MemberMapper,Mem
     }
 
     public void fillParentData(Member et) {
+        if(Entities.GROUP.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setOwnerId((String)et.getContextParentKey());
+        }
     }
 
     public Member getDraft(Member et) {
@@ -164,6 +172,17 @@ public abstract class AbstractMemberService extends ServiceImpl<MemberMapper,Mem
 
     public List<Member> listDefault(MemberSearchContext context) {
         List<Member> list = baseMapper.listDefault(context,context.getSelectCond());
+        return list;
+    }
+
+    public Page<Member> searchUserGroupAdmin(MemberSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Member> pages=baseMapper.searchUserGroupAdmin(context.getPages(),context,context.getSelectCond());
+        List<Member> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Member> listUserGroupAdmin(MemberSearchContext context) {
+        List<Member> list = baseMapper.listUserGroupAdmin(context,context.getSelectCond());
         return list;
     }
 

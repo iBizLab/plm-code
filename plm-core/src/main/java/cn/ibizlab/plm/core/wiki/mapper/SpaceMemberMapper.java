@@ -43,6 +43,25 @@ public interface SpaceMemberMapper extends BaseMapper<SpaceMember> {
     List<SpaceMember> listDefault(@Param("ctx") SpaceMemberSearchContext context, @Param("ew") Wrapper<SpaceMember> wrapper);
 
     /**
+     * 数据集合cur_space分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<SpaceMember> searchCurSpace(IPage<SpaceMember> page, @Param("ctx") SpaceMemberSearchContext context, @Param("ew") Wrapper<SpaceMember> wrapper);
+    
+    /**
+     * 数据集合cur_space查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<SpaceMember> listCurSpace(@Param("ctx") SpaceMemberSearchContext context, @Param("ew") Wrapper<SpaceMember> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

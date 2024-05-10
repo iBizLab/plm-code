@@ -64,6 +64,13 @@ export default {
       id: 'opendata',
     },
   ],
+  appViewNavParams: [
+    {
+      key: 'n_scope_type_eq',
+      value: 'scope_type',
+      id: 'n_scope_type_eq',
+    },
+  ],
   appViewRefs: [
     {
       realTitle: '空间',
@@ -91,7 +98,8 @@ export default {
         {
           actionLevel: 100,
           noPrivDisplayMode: 2,
-          uiactionId: 'new_space',
+          uiactionId: 'create_space@space',
+          uiactionTarget: 'NONE',
           valid: true,
           caption: '新建空间',
           itemType: 'DEUIACTION',
@@ -362,11 +370,6 @@ export default {
           dataType: 25,
           id: 'srfmajortext',
         },
-        {
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'srfmstag',
-        },
       ],
       degridEditItems: [
         {
@@ -402,40 +405,6 @@ export default {
       autoLoad: true,
       enableItemPrivilege: true,
       showBusyIndicator: true,
-      controls: [
-        {
-          detoolbarItems: [
-            {
-              actionLevel: 100,
-              noPrivDisplayMode: 2,
-              uiactionId: 'move_out_category@space',
-              uiactionTarget: 'MULTIKEY',
-              valid: true,
-              caption: '移除',
-              itemType: 'DEUIACTION',
-              sysImage: {
-                cssClass: 'fa fa-mail-reply',
-                glyph: 'xf112@FontAwesome',
-              },
-              tooltip: '移除',
-              showCaption: true,
-              showIcon: true,
-              id: 'deuiaction1',
-            },
-          ],
-          codeName: 'all_grid_view_grid_batchtoolbar',
-          controlType: 'TOOLBAR',
-          logicName: '分类下空间工具栏',
-          appDataEntityId: 'plmweb.space',
-          controlParam: {
-            id: 'grid_batchtoolbar',
-          },
-          modelId: '2d63581c6ba4dabc275de95d3780fa3f',
-          modelType: 'PSDETOOLBAR',
-          name: 'grid_batchtoolbar',
-          id: 'all_grid_view_grid_batchtoolbar',
-        },
-      ],
       codeName: 'main',
       controlType: 'GRID',
       logicName: '主表格',

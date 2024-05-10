@@ -124,6 +124,8 @@ public abstract class AbstractTicketTypeService extends ServiceImpl<TicketTypeMa
 
     @Transactional
     public boolean remove(TicketType et) {
+        String key = et.getId();
+        productTicketTypeService.removeByTicketTypeId(key);
         if(!remove(Wrappers.<TicketType>lambdaQuery().eq(TicketType::getId, et.getId())))
             return false;
         return true;
@@ -131,7 +133,9 @@ public abstract class AbstractTicketTypeService extends ServiceImpl<TicketTypeMa
 
     @Transactional
     public boolean removeByEntities(List<TicketType> entities) {
-        this.baseMapper.deleteEntities(entities);
+        for (TicketType et : entities)
+            if(!getSelf().remove(et))
+                return false;
         return true;
     }
 
@@ -143,6 +147,17 @@ public abstract class AbstractTicketTypeService extends ServiceImpl<TicketTypeMa
 
     public List<TicketType> listDefault(TicketTypeSearchContext context) {
         List<TicketType> list = baseMapper.listDefault(context,context.getSelectCond());
+        return list;
+    }
+
+    public Page<TicketType> searchNotExistsTicketType(TicketTypeSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TicketType> pages=baseMapper.searchNotExistsTicketType(context.getPages(),context,context.getSelectCond());
+        List<TicketType> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<TicketType> listNotExistsTicketType(TicketTypeSearchContext context) {
+        List<TicketType> list = baseMapper.listNotExistsTicketType(context,context.getSelectCond());
         return list;
     }
 

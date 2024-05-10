@@ -899,6 +899,28 @@ export default {
       id: 'start_test_plan',
     },
     {
+      codeName: 'test_plan_report_survey',
+      methodType: 'DEACTION',
+      appDEMethodInput: {
+        keyAppDEFieldId: 'id',
+        type: 'KEYFIELD',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'test_plan_dto',
+        type: 'DTO',
+        id: '返回对象',
+      },
+      requestMethod: 'GET',
+      requestParamType: 'ENTITY',
+      requestPath: '/test_plan_report_survey',
+      needResourceKey: true,
+      actionMode: 'READ',
+      actionType: 'REMOTE',
+      dataSetType: 'REMOTE',
+      id: 'test_plan_report_survey',
+    },
+    {
       codeName: 'update',
       methodType: 'DEACTION',
       appDEMethodInput: {
@@ -1056,6 +1078,28 @@ export default {
       id: 'fetch_query_no_shift_in',
     },
     {
+      codeName: 'fetch_test_plan_report_survey',
+      methodType: 'FETCH',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'test_plan_filter_dto',
+        type: 'DTO',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'test_plan_dto',
+        type: 'PAGE',
+        id: '返回对象',
+      },
+      requestMethod: 'POST',
+      requestParamType: 'ENTITY',
+      requestPath: '/fetch_test_plan_report_survey',
+      actionType: 'REMOTE',
+      dataSetName: 'test_plan_report_survey',
+      dataSetTag: 'test_plan_report_survey',
+      dataSetType: 'REMOTE',
+      id: 'fetch_test_plan_report_survey',
+    },
+    {
       codeName: 'fetch_un_join_plan',
       methodType: 'FETCH',
       appDEMethodInput: {
@@ -1174,10 +1218,8 @@ export default {
       caption: '结束测试',
       codeName: 'end_test_plan',
       confirmMsg: '确认结束该测试？',
-      dataAccessAction: 'COMPLETED',
       fullCodeName: 'test_plan_end_test_plan',
       appDEMethodId: 'end_test_plan',
-      deopprivId: 'completed',
       sysImage: {
         cssClass: 'fa fa-dot-circle-o',
         glyph: 'xf192@FontAwesome',
@@ -1268,10 +1310,8 @@ export default {
       caption: '开始测试',
       codeName: 'start_test_plan',
       confirmMsg: '确认开始该测试？',
-      dataAccessAction: 'IN_PROGRESS',
       fullCodeName: 'test_plan_start_test_plan',
       appDEMethodId: 'start_test_plan',
-      deopprivId: 'in_progress',
       sysImage: {
         cssClass: 'fa fa-play-circle-o',
         glyph: 'xf01d@FontAwesome',
@@ -1461,6 +1501,72 @@ export default {
     },
   ],
   appDEUILogics: [
+    {
+      codeName: 'calc_column_action_state',
+      defaultParamName: 'Default',
+      logicName: '计算表格列行为状态(library)',
+      deuilogicNodes: [
+        {
+          codeName: 'Begin',
+          leftPos: 200,
+          logicNodeType: 'BEGIN',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'rawjscode1',
+              srcDEUILogicNodeId: 'begin',
+              id: '连接名称',
+            },
+          ],
+          topPos: 200,
+          parallelOutput: true,
+          name: '开始',
+          id: 'begin',
+        },
+        {
+          codeName: 'END1',
+          leftPos: 200,
+          logicNodeType: 'END',
+          topPos: 571,
+          name: '结束',
+          id: 'end1',
+        },
+        {
+          code: "\tconst rows = uiLogic.grid.state.rows;\r\n\tif (rows && rows.length > 0) {\r\n\t\trows.forEach(row => {\r\n\t\t\tconst titleColumn = row.uiActionGroupStates.name;\r\n\t\t\tconst status = row.data.status;\r\n\t\t\tif (titleColumn && Object.values(titleColumn).length > 0) {\r\n\t\t\t\tObject.values(titleColumn).forEach(action => {\r\n\t\t\t\t\t// 收藏\r\n\t\t\t\t\tif (action.uiActionId === 'start_test_plan@test_plan') {\r\n\t\t\t\t\t\taction.visible = status == 'pending';\r\n\t\t\t\t\t} else if (action.uiActionId === 'end_test_plan@test_plan') {\r\n\t\t\t\t\t\t// 取消收藏\r\n\t\t\t\t\t\taction.visible = status == 'in_progress';\r\n\t\t\t\t\t}\r\n\t\t\t\t})\r\n\t\t\t}\r\n\t\t})\r\n\t}\r\n",
+          codeName: 'RAWJSCODE1',
+          leftPos: 160,
+          logicNodeType: 'RAWJSCODE',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'end1',
+              srcDEUILogicNodeId: 'rawjscode1',
+              id: '连接名称',
+            },
+          ],
+          topPos: 420,
+          name: '注入脚本代码',
+          id: 'rawjscode1',
+        },
+      ],
+      deuilogicParams: [
+        {
+          codeName: 'Grid',
+          activeCtrlParam: true,
+          ctrlParam: true,
+          name: '表格',
+          id: 'grid',
+        },
+        {
+          codeName: 'Default',
+          default: true,
+          entityParam: true,
+          name: '传入变量',
+          id: 'default',
+        },
+      ],
+      startDEUILogicNodeId: 'begin',
+      name: '计算表格列行为状态(library)',
+      id: 'calc_column_action_state',
+    },
     {
       codeName: 'create_category',
       defaultParamName: 'Default',
@@ -1898,6 +2004,139 @@ export default {
       id: 'remove_section_or_category',
     },
     {
+      codeName: 'set_portlet_search_date',
+      defaultParamName: 'Default',
+      logicName: '设置门户默认搜索时间',
+      deuilogicNodes: [
+        {
+          codeName: 'Begin',
+          leftPos: 200,
+          logicNodeType: 'BEGIN',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'preparejsparam1',
+              srcDEUILogicNodeId: 'begin',
+              id: '连接名称',
+            },
+          ],
+          topPos: 200,
+          parallelOutput: true,
+          name: '开始',
+          id: 'begin',
+        },
+        {
+          code: "const currentDate = new Date();\r\nconst lastDate = new Date(currentDate.getTime() - 604800000);\r\n\r\nconst curYear = currentDate.getFullYear();\r\nconst curMonth = (currentDate.getMonth() + 1).toString().padStart(2, '0');\r\nconst curDay = currentDate.getDate().toString().padStart(2, '0');\r\nconst lastYear = lastDate.getFullYear();\r\nconst lastMonth = (lastDate.getMonth() + 1).toString().padStart(2, '0');\r\nconst lastDay = lastDate.getDate().toString().padStart(2, '0');\r\n\r\nuiLogic.defaultDate = {\r\n    n_create_time_gtandeq: `${lastYear}-${lastMonth}-${lastDay}`,\r\n    n_create_time_ltandeq: `${curYear}-${curMonth}-${curDay}`\r\n}",
+          codeName: 'RAWJSCODE2',
+          leftPos: 803,
+          logicNodeType: 'RAWJSCODE',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'rawjscode3',
+              srcDEUILogicNodeId: 'rawjscode2',
+              id: '连接名称',
+            },
+          ],
+          topPos: 208,
+          name: '设置默认时间',
+          id: 'rawjscode2',
+        },
+        {
+          codeName: 'PREPAREJSPARAM1',
+          leftPos: 604,
+          logicNodeType: 'PREPAREJSPARAM',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'rawjscode2',
+              srcDEUILogicNodeId: 'preparejsparam1',
+              id: '连接名称',
+            },
+          ],
+          deuilogicNodeParams: [
+            {
+              dstDEUILogicParamId: 'daily_test',
+              paramAction: 'SETPARAMVALUE',
+              srcFieldName: 'portlets.daily_test',
+              srcDEUILogicParamId: 'dashboard',
+              srcValueType: 'SRCDLPARAM',
+              id: 'dashboard[portlets.daily_test] ==> daily_test',
+            },
+            {
+              dstDEUILogicParamId: 'daily_tendencies',
+              paramAction: 'SETPARAMVALUE',
+              srcFieldName: 'portlets.daily_tendencies',
+              srcDEUILogicParamId: 'dashboard',
+              srcValueType: 'SRCDLPARAM',
+              id: 'dashboard[portlets.daily_tendencies] ==> daily_tendencies',
+            },
+          ],
+          topPos: 208,
+          name: '获取门户控制器',
+          id: 'preparejsparam1',
+        },
+        {
+          codeName: 'END1',
+          leftPos: 1347,
+          logicNodeType: 'END',
+          topPos: 200,
+          name: '结束',
+          id: 'end1',
+        },
+        {
+          code: 'const { daily_test, daily_tendencies } = uiLogic;\r\nif (daily_test) {\r\n    Object.assign(daily_test.params, uiLogic.defaultDate);\r\n}\r\nif (daily_tendencies) {\r\n    Object.assign(daily_tendencies.params, uiLogic.defaultDate);\r\n}',
+          codeName: 'RAWJSCODE3',
+          leftPos: 1045,
+          logicNodeType: 'RAWJSCODE',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'end1',
+              srcDEUILogicNodeId: 'rawjscode3',
+              id: '连接名称',
+            },
+          ],
+          topPos: 208,
+          name: '设置门户参数',
+          id: 'rawjscode3',
+        },
+      ],
+      deuilogicParams: [
+        {
+          codeName: 'defaultDate',
+          entityParam: true,
+          name: '默认时间',
+          id: 'defaultdate',
+        },
+        {
+          codeName: 'daily_test',
+          entityParam: true,
+          name: '每日测试门户',
+          id: 'daily_test',
+        },
+        {
+          codeName: 'Default',
+          default: true,
+          entityParam: true,
+          name: '传入变量',
+          id: 'default',
+        },
+        {
+          codeName: 'daily_tendencies',
+          entityParam: true,
+          name: '每日执行门户',
+          id: 'daily_tendencies',
+        },
+        {
+          codeName: 'dashboard',
+          activeCtrlParam: true,
+          ctrlParam: true,
+          name: '部件',
+          id: 'dashboard',
+        },
+      ],
+      startDEUILogicNodeId: 'begin',
+      name: '设置门户默认搜索时间',
+      id: 'set_portlet_search_date',
+    },
+    {
       codeName: 'shift_in_test_plan',
       defaultParamName: 'Default',
       logicName: '移入计划',
@@ -2056,6 +2295,14 @@ export default {
       id: 'shift_in_test_plan',
     },
   ],
+  appPortletCats: [
+    {
+      codeName: 'Ungroup',
+      ungroup: true,
+      name: '（未分类）',
+      id: 'ungroup',
+    },
+  ],
   demainStates: [
     {
       codeName: 'completed',
@@ -2113,9 +2360,16 @@ export default {
   ],
   deopprivs: [
     {
-      logicName: 'completed',
+      logicName: '结束',
       name: 'COMPLETED',
       id: 'completed',
+    },
+    {
+      logicName: '结束',
+      mapDEName: 'LIBRARY',
+      mapDEOPPrivName: 'SUBDATA',
+      name: 'COMPLETED',
+      id: 'library__completed',
     },
     {
       logicName: '建立',
@@ -2142,9 +2396,16 @@ export default {
       id: 'delete',
     },
     {
-      logicName: 'in_progress',
+      logicName: '开始',
       name: 'IN_PROGRESS',
       id: 'in_progress',
+    },
+    {
+      logicName: '开始',
+      mapDEName: 'LIBRARY',
+      mapDEOPPrivName: 'SUBDATA',
+      name: 'IN_PROGRESS',
+      id: 'library__in_progress',
     },
     {
       logicName: '读取',

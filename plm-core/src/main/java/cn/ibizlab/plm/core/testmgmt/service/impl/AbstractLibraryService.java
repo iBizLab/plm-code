@@ -36,6 +36,8 @@ import cn.ibizlab.plm.core.testmgmt.domain.TestPlan;
 import cn.ibizlab.plm.core.testmgmt.service.TestPlanService;
 import cn.ibizlab.plm.core.testmgmt.domain.TestSuite;
 import cn.ibizlab.plm.core.testmgmt.service.TestSuiteService;
+import cn.ibizlab.plm.core.base.domain.Baseline;
+import cn.ibizlab.plm.core.base.service.BaselineService;
 import cn.ibizlab.plm.core.base.domain.ReferencesIndex;
 import cn.ibizlab.plm.core.base.service.ReferencesIndexService;
 
@@ -70,6 +72,10 @@ public abstract class AbstractLibraryService extends ServiceImpl<LibraryMapper,L
     @Autowired
     @Lazy
     protected TestSuiteService testSuiteService;
+
+    @Autowired
+    @Lazy
+    protected BaselineService baselineService;
 
     @Autowired
     @Lazy

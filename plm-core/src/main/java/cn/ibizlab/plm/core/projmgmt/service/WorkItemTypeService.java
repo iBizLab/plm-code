@@ -175,6 +175,16 @@ public interface WorkItemTypeService extends IService<WorkItemType> {
     }
 
     /**
+     * nothing
+     * 
+     * @param dto
+     * @return
+     */
+    default WorkItemType nothing(WorkItemType dto) {
+        return dto;
+    }
+
+    /**
      * searchDefault
      * 
      * @param context

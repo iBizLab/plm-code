@@ -5,6 +5,8 @@
         <!--通过mybatis将查询结果注入到entity中,通过配置autoMapping="true"由mybatis自动处理映射关系 -->
     <resultMap id="DynaDashboardResultMap" type="cn.ibizlab.plm.core.base.domain.DynaDashboard" autoMapping="true">
 		<id property="dynaDashboardId" column="dynadashboardid" /><!--主键字段映射-->
+		<result property="ownerType" column="owner_type" />
+		<result property="ownerId" column="owner_id" />
 		<result property="updateMan" column="update_man" />
 		<result property="updateTime" column="update_time" />
     </resultMap>
@@ -35,11 +37,11 @@
     </delete>
 
     <sql id="default" databaseId="mysql">
-         <![CDATA[ SELECT t1.`APPID`, t1.`CREATEDATE`, t1.`CREATEMAN`, t1.`DYNADASHBOARDID`, t1.`DYNADASHBOARDNAME`, t1.`MODELID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`USERID` FROM `DYNADASHBOARD` t1   ]]>  
+         <![CDATA[ SELECT t1.`APPID`, t1.`CREATEDATE`, t1.`CREATEMAN`, t1.`DYNADASHBOARDID`, t1.`DYNADASHBOARDNAME`, t1.`MODELID`, t1.`OWNER_ID`, t1.`OWNER_TYPE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`USERID` FROM `DYNADASHBOARD` t1   ]]>  
     </sql>
 
     <sql id="view" databaseId="mysql">
-         <![CDATA[ SELECT t1.`APPID`, t1.`CREATEDATE`, t1.`CREATEMAN`, t1.`DYNADASHBOARDID`, t1.`DYNADASHBOARDNAME`, t1.`MODEL`, t1.`MODELID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`USERID` FROM `DYNADASHBOARD` t1   ]]>  
+         <![CDATA[ SELECT t1.`APPID`, t1.`CREATEDATE`, t1.`CREATEMAN`, t1.`DYNADASHBOARDID`, t1.`DYNADASHBOARDNAME`, t1.`MODEL`, t1.`MODELID`, t1.`OWNER_ID`, t1.`OWNER_TYPE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`USERID` FROM `DYNADASHBOARD` t1   ]]>  
     </sql>
 
     <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.base.filter.DynaDashboardSearchContext"  resultMap="DynaDashboardResultMap">

@@ -43,6 +43,462 @@ public interface RelationMapper extends BaseMapper<Relation> {
     List<Relation> listDefault(@Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
 
     /**
+     * 数据集合all分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Relation> searchAll(IPage<Relation> page, @Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+    
+    /**
+     * 数据集合all查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Relation> listAll(@Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+
+    /**
+     * 数据集合exists_run_relation_bug分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Relation> searchExistsRunRelationBug(IPage<Relation> page, @Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+    
+    /**
+     * 数据集合exists_run_relation_bug查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Relation> listExistsRunRelationBug(@Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+
+    /**
+     * 数据集合idea_re_customer分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Relation> searchIdeaReCustomer(IPage<Relation> page, @Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+    
+    /**
+     * 数据集合idea_re_customer查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Relation> listIdeaReCustomer(@Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+
+    /**
+     * 数据集合idea_re_idea分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Relation> searchIdeaReIdea(IPage<Relation> page, @Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+    
+    /**
+     * 数据集合idea_re_idea查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Relation> listIdeaReIdea(@Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+
+    /**
+     * 数据集合idea_re_test_case分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Relation> searchIdeaReTestCase(IPage<Relation> page, @Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+    
+    /**
+     * 数据集合idea_re_test_case查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Relation> listIdeaReTestCase(@Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+
+    /**
+     * 数据集合idea_re_ticket分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Relation> searchIdeaReTicket(IPage<Relation> page, @Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+    
+    /**
+     * 数据集合idea_re_ticket查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Relation> listIdeaReTicket(@Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+
+    /**
+     * 数据集合idea_re_work_item分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Relation> searchIdeaReWorkItem(IPage<Relation> page, @Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+    
+    /**
+     * 数据集合idea_re_work_item查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Relation> listIdeaReWorkItem(@Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+
+    /**
+     * 数据集合idea_version_relation分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Relation> searchIdeaVersionRelation(IPage<Relation> page, @Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+    
+    /**
+     * 数据集合idea_version_relation查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Relation> listIdeaVersionRelation(@Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+
+    /**
+     * 数据集合review_re_test_case分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Relation> searchReviewReTestCase(IPage<Relation> page, @Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+    
+    /**
+     * 数据集合review_re_test_case查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Relation> listReviewReTestCase(@Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+
+    /**
+     * 数据集合run_re_bug分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Relation> searchRunReBug(IPage<Relation> page, @Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+    
+    /**
+     * 数据集合run_re_bug查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Relation> listRunReBug(@Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+
+    /**
+     * 数据集合run_re_idea分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Relation> searchRunReIdea(IPage<Relation> page, @Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+    
+    /**
+     * 数据集合run_re_idea查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Relation> listRunReIdea(@Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+
+    /**
+     * 数据集合run_re_work_item分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Relation> searchRunReWorkItem(IPage<Relation> page, @Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+    
+    /**
+     * 数据集合run_re_work_item查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Relation> listRunReWorkItem(@Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+
+    /**
+     * 数据集合test_case_re_bug分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Relation> searchTestCaseReBug(IPage<Relation> page, @Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+    
+    /**
+     * 数据集合test_case_re_bug查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Relation> listTestCaseReBug(@Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+
+    /**
+     * 数据集合test_case_re_idea分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Relation> searchTestCaseReIdea(IPage<Relation> page, @Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+    
+    /**
+     * 数据集合test_case_re_idea查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Relation> listTestCaseReIdea(@Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+
+    /**
+     * 数据集合test_case_re_work_item分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Relation> searchTestCaseReWorkItem(IPage<Relation> page, @Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+    
+    /**
+     * 数据集合test_case_re_work_item查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Relation> listTestCaseReWorkItem(@Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+
+    /**
+     * 数据集合test_case_version_relation分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Relation> searchTestCaseVersionRelation(IPage<Relation> page, @Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+    
+    /**
+     * 数据集合test_case_version_relation查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Relation> listTestCaseVersionRelation(@Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+
+    /**
+     * 数据集合ticket_re_idea分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Relation> searchTicketReIdea(IPage<Relation> page, @Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+    
+    /**
+     * 数据集合ticket_re_idea查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Relation> listTicketReIdea(@Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+
+    /**
+     * 数据集合ticket_re_self分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Relation> searchTicketReSelf(IPage<Relation> page, @Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+    
+    /**
+     * 数据集合ticket_re_self查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Relation> listTicketReSelf(@Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+
+    /**
+     * 数据集合ticket_re_work_item分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Relation> searchTicketReWorkItem(IPage<Relation> page, @Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+    
+    /**
+     * 数据集合ticket_re_work_item查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Relation> listTicketReWorkItem(@Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+
+    /**
+     * 数据集合work_item_relation_idea分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Relation> searchWorkItemRelationIdea(IPage<Relation> page, @Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+    
+    /**
+     * 数据集合work_item_relation_idea查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Relation> listWorkItemRelationIdea(@Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+
+    /**
+     * 数据集合work_item_relation_self分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Relation> searchWorkItemRelationSelf(IPage<Relation> page, @Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+    
+    /**
+     * 数据集合work_item_relation_self查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Relation> listWorkItemRelationSelf(@Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+
+    /**
+     * 数据集合work_item_relation_test_case分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Relation> searchWorkItemRelationTestCase(IPage<Relation> page, @Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+    
+    /**
+     * 数据集合work_item_relation_test_case查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Relation> listWorkItemRelationTestCase(@Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+
+    /**
+     * 数据集合work_item_relation_ticket分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Relation> searchWorkItemRelationTicket(IPage<Relation> page, @Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+    
+    /**
+     * 数据集合work_item_relation_ticket查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Relation> listWorkItemRelationTicket(@Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+
+    /**
+     * 数据集合work_item_version_relation分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Relation> searchWorkItemVersionRelation(IPage<Relation> page, @Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+    
+    /**
+     * 数据集合work_item_version_relation查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Relation> listWorkItemVersionRelation(@Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -159,6 +615,14 @@ public interface RelationMapper extends BaseMapper<Relation> {
      * @return
      */
     List<Relation> findByPrincipalId(@Param("principalIds") List<String> principalIds);
+
+    /**
+     * 根据id查询
+     *
+     * @param ids
+     * @return
+     */
+    List<Relation> findById(@Param("ids") List<String> ids);
 
     /**
      * 根据targetId查询

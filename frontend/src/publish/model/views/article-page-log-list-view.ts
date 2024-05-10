@@ -202,10 +202,6 @@ export default {
           dataType: 25,
           id: 'parent_id',
         },
-        {
-          dataType: 25,
-          id: 'srfmstag',
-        },
       ],
       pagingSize: 1000,
       showHeader: true,

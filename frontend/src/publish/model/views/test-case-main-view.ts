@@ -557,6 +557,16 @@ export default {
         name: 'LOGIC',
         id: 'logic',
       },
+      {
+        eventNames: 'onCreated',
+        logicTrigger: 'VIEWEVENT',
+        logicType: 'APPDEUILOGIC',
+        appDEUILogicId: 'test_get_only_read',
+        appDataEntityId: 'plmweb.test_case',
+        builtinLogic: true,
+        name: 'READONLY',
+        id: 'readonly',
+      },
     ],
     controls: [
       {
@@ -569,6 +579,16 @@ export default {
             valid: true,
             caption: '移入计划',
             itemType: 'DEUIACTION',
+            controlLogics: [
+              {
+                itemName: 'deuiaction1',
+                logicTag: 'toolbar',
+                logicType: 'SCRIPT',
+                scriptCode: 'context.srfreadonly != true',
+                triggerType: 'ITEMVISIBLE',
+                id: 'deuiaction1',
+              },
+            ],
             sysImage: {
               cssClass: 'fa fa-send-o',
               glyph: 'xf1d9@FontAwesome',
@@ -586,6 +606,16 @@ export default {
             valid: true,
             caption: '附件',
             itemType: 'DEUIACTION',
+            controlLogics: [
+              {
+                itemName: 'deuiaction2',
+                logicTag: 'toolbar',
+                logicType: 'SCRIPT',
+                scriptCode: 'context.srfreadonly != true',
+                triggerType: 'ITEMVISIBLE',
+                id: 'deuiaction2',
+              },
+            ],
             sysImage: {
               cssClass: 'fa fa-upload',
               glyph: 'xf093@FontAwesome',
@@ -596,6 +626,7 @@ export default {
             id: 'deuiaction2',
           },
           {
+            actionLevel: 100,
             detoolbarItems: [
               {
                 actionLevel: 100,
@@ -640,8 +671,8 @@ export default {
                 caption: '缺陷',
                 itemType: 'DEUIACTION',
                 sysImage: {
-                  cssClass: 'fa fa-bug',
-                  glyph: 'xf188@FontAwesome',
+                  rawContent:
+                    '<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1713952180776" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4288" width="18" height="18" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M128 0h768a128 128 0 0 1 128 128v768a128 128 0 0 1-128 128H128a128 128 0 0 1-128-128V128a128 128 0 0 1 128-128z m648.128 290.368l-23.744 23.232c17.792 23.168 23.744 52.16 23.744 86.976 17.92-23.232 41.6-40.576 59.52-57.984 11.84-11.584 11.84-34.816-5.952-52.224-11.904-11.584-35.712-11.584-53.568 0z m-576.768 0c-17.856 17.408-17.856 40.64 0 57.984l53.504 52.224c-5.952-28.992 5.952-57.984 23.808-87.04-5.952-11.52-11.904-17.344-17.856-23.168-17.856-17.408-41.6-17.408-59.456 0zM128 563.008c0 17.344 17.856 34.752 41.6 34.752h77.312V516.48H157.76c-17.92 5.76-29.76 23.232-29.76 46.4z m166.528 260.928c11.84-5.76 17.792-17.408 29.696-23.232-17.856-23.168-29.696-46.4-47.552-69.568l-35.712 34.816c-17.792 11.52-11.84 34.752 0 52.16 11.904 17.408 35.712 17.408 53.568 5.76z m184.32 5.76c5.952 0 5.952 0 0 0 5.952-23.168 5.952-359.552 0-359.552 0-23.168-11.904-46.4-35.712-63.808-35.648-23.168-77.312-46.336-112.96-69.568-5.952-5.76-11.904 0-11.904 0A94.912 94.912 0 0 0 288.64 406.4v174.016c5.952 23.168 0 52.16 5.952 75.392 11.84 52.16 41.6 98.56 83.2 133.376 35.712 28.992 53.568 34.816 101.12 40.576z m0-475.52a63.808 63.808 0 0 0 77.312 0c41.6-23.168 77.248-46.4 118.912-69.568 5.952 0 5.952-5.824 5.952-5.824C675.072 197.568 603.712 128 520.448 128h-17.856c-83.2 11.584-142.72 75.392-142.72 150.784l5.952 5.76c35.712 23.232 77.312 46.464 113.024 69.632z m89.152 475.52c59.52-5.76 89.216-34.752 130.816-86.976 23.808-34.816 41.6-75.392 41.6-115.968V394.752c0-28.992-11.84-52.16-29.696-69.568-5.952 0-5.952-5.76-11.904 0-35.648 23.168-71.296 40.576-107.008 63.808-29.696 17.344-41.6 40.576-41.6 75.392 0 17.408-5.952 353.728-5.952 365.312h23.744z m225.984-11.52c11.904-11.648 17.856-40.64 5.952-52.224l-35.712-34.816c-17.792 23.168-29.696 46.4-47.552 69.568 5.952 5.76 11.904 17.408 23.808 23.232 17.856 11.52 41.6 11.52 53.504-5.76z m59.52-220.416c23.68 0 47.488-17.408 41.6-40.64 0-23.168-17.92-40.576-41.6-40.576h-77.376V597.76h77.312z" fill="#FF7171" p-id="4289"></path></svg>',
                 },
                 tooltip: '缺陷',
                 showCaption: true,
@@ -652,6 +683,16 @@ export default {
             valid: true,
             caption: '关联',
             itemType: 'ITEMS',
+            controlLogics: [
+              {
+                itemName: 'items1',
+                logicTag: 'toolbar',
+                logicType: 'SCRIPT',
+                scriptCode: 'context.srfreadonly != true',
+                triggerType: 'ITEMVISIBLE',
+                id: 'items1',
+              },
+            ],
             sysImage: {
               cssClass: 'fa fa-link',
               glyph: 'xf0c1@FontAwesome',
@@ -662,9 +703,20 @@ export default {
           },
           {
             itemType: 'SEPERATOR',
+            controlLogics: [
+              {
+                itemName: 'seperator1',
+                logicTag: 'toolbar',
+                logicType: 'SCRIPT',
+                scriptCode: 'context.srfreadonly != true',
+                triggerType: 'ITEMVISIBLE',
+                id: 'seperator1',
+              },
+            ],
             id: 'seperator1',
           },
           {
+            actionLevel: 100,
             detoolbarItems: [
               {
                 actionLevel: 100,
@@ -738,6 +790,16 @@ export default {
             valid: true,
             caption: '更多',
             itemType: 'ITEMS',
+            controlLogics: [
+              {
+                itemName: 'items2',
+                logicTag: 'toolbar',
+                logicType: 'SCRIPT',
+                scriptCode: 'context.srfreadonly != true',
+                triggerType: 'ITEMVISIBLE',
+                id: 'items2',
+              },
+            ],
             sysImage: {
               cssClass: 'fa fa-list-ul',
               glyph: 'xf0ca@FontAwesome',
@@ -778,7 +840,7 @@ export default {
           id: 'loaddraft',
         },
         getControlAction: {
-          appDEMethodId: 'newest_run',
+          appDEMethodId: 'get',
           appDataEntityId: 'plmweb.test_case',
           id: 'load',
         },
@@ -962,7 +1024,7 @@ export default {
                     appDEFieldId: 'state',
                     editor: {
                       singleSelect: true,
-                      appCodeListId: 'plmweb.testmgmt__test_case_state',
+                      appCodeListId: 'plmweb.testmgmt__case_state',
                       editorType: 'DROPDOWNLIST',
                       valueType: 'SIMPLE',
                       editable: true,
@@ -1865,7 +1927,7 @@ export default {
                         deformDetails: [
                           {
                             appViewId:
-                              'plmweb.idea_test_case_re_idea_grid_view',
+                              'plmweb.relation_test_case_re_idea_grid_view',
                             navigateContexts: [
                               {
                                 key: 'TARGET_TYPE',
@@ -1887,6 +1949,11 @@ export default {
                                 key: 'principal_id',
                                 value: 'test_case',
                                 id: 'principal_id',
+                              },
+                              {
+                                key: 'srfversionid',
+                                value: 'cur_version_id',
+                                id: 'srfversionid',
                               },
                             ],
                             parentDataJO: {
@@ -1921,7 +1988,7 @@ export default {
                         deformDetails: [
                           {
                             appViewId:
-                              'plmweb.work_item_test_case_re_work_item_grid_view',
+                              'plmweb.relation_test_case_re_work_item_grid_view',
                             navigateContexts: [
                               {
                                 key: 'TARGET_TYPE',
@@ -1943,6 +2010,11 @@ export default {
                                 key: 'principal_id',
                                 value: 'test_case',
                                 id: 'principal_id',
+                              },
+                              {
+                                key: 'srfversionid',
+                                value: 'cur_version_id',
+                                id: 'srfversionid',
                               },
                             ],
                             parentDataJO: {
@@ -1977,11 +2049,11 @@ export default {
                         deformDetails: [
                           {
                             appViewId:
-                              'plmweb.work_item_test_case_re_bug_grid_view',
+                              'plmweb.relation_test_case_re_bug_grid_view',
                             navigateContexts: [
                               {
                                 key: 'TARGET_TYPE',
-                                value: 'bug',
+                                value: 'work_item',
                                 rawValue: true,
                                 name: 'TARGET_TYPE',
                                 id: 'target_type',
@@ -1999,6 +2071,11 @@ export default {
                                 key: 'principal_id',
                                 value: 'test_case',
                                 id: 'principal_id',
+                              },
+                              {
+                                key: 'srfversionid',
+                                value: 'cur_version_id',
+                                id: 'srfversionid',
                               },
                             ],
                             parentDataJO: {
@@ -2075,6 +2152,12 @@ export default {
                                 rawValue: true,
                                 name: 'OWNER_TYPE',
                                 id: 'owner_type',
+                              },
+                              {
+                                key: 'COMPARE_VERSION',
+                                value: 'cur_version_id',
+                                name: 'COMPARE_VERSION',
+                                id: 'compare_version',
                               },
                               {
                                 key: 'OWNER_ID',
@@ -2266,53 +2349,35 @@ export default {
                           {
                             dataType: 25,
                             enableCond: 3,
-                            labelPos: 'LEFT',
-                            labelWidth: 130,
-                            noPrivDisplayMode: 1,
-                            appDEFieldId: 'test_plan_name',
-                            editor: {
-                              halign: 'LEFT',
-                              valign: 'MIDDLE',
-                              wrapMode: 'NOWRAP',
-                              editorType: 'SPAN',
-                              valueType: 'SIMPLE',
-                              editable: true,
-                              id: 'test_plan_name',
-                            },
-                            allowEmpty: true,
-                            caption: '计划',
-                            codeName: 'test_plan_name',
-                            detailStyle: 'DEFAULT',
-                            detailType: 'FORMITEM',
-                            layoutPos: {
-                              colMD: 24,
-                              layout: 'TABLE_24COL',
-                            },
-                            showCaption: true,
-                            id: 'test_plan_name',
-                          },
-                          {
-                            dataType: 25,
-                            enableCond: 3,
                             ignoreInput: 3,
                             labelPos: 'LEFT',
                             labelWidth: 130,
                             noPrivDisplayMode: 1,
-                            appDEFieldId: 'run_status',
+                            appDEFieldId: 'cur_version_id',
                             editor: {
                               halign: 'LEFT',
                               valign: 'MIDDLE',
                               wrapMode: 'NOWRAP',
-                              appCodeListId: 'plmweb.testmgmt__run_status',
+                              appCodeListId: 'plmweb.base__version',
+                              editorParams: {
+                                'SRFNAVPARAM.owner_id': '%id%',
+                              },
                               editorType: 'SPAN',
                               valueType: 'SIMPLE',
                               editable: true,
-                              id: 'run_status',
+                              navigateParams: [
+                                {
+                                  key: 'owner_id',
+                                  value: 'id',
+                                  id: 'owner_id',
+                                },
+                              ],
+                              id: 'cur_version_name',
                             },
                             allowEmpty: true,
                             convertToCodeItemText: true,
-                            caption: '执行结果',
-                            codeName: 'run_status',
+                            caption: '版本',
+                            codeName: 'cur_version_name',
                             detailStyle: 'DEFAULT',
                             detailType: 'FORMITEM',
                             layoutPos: {
@@ -2320,7 +2385,7 @@ export default {
                               layout: 'TABLE_24COL',
                             },
                             showCaption: true,
-                            id: 'run_status',
+                            id: 'cur_version_name',
                           },
                           {
                             dataType: 25,
@@ -2328,19 +2393,17 @@ export default {
                             labelPos: 'LEFT',
                             labelWidth: 130,
                             noPrivDisplayMode: 1,
-                            appDEFieldId: 'executor_name',
+                            appDEFieldId: 'cur_version_id',
                             editor: {
-                              halign: 'LEFT',
-                              valign: 'MIDDLE',
-                              wrapMode: 'NOWRAP',
-                              editorType: 'SPAN',
+                              editorType: 'HIDDEN',
                               valueType: 'SIMPLE',
                               editable: true,
-                              id: 'executor_name',
+                              id: 'cur_version_id',
                             },
                             allowEmpty: true,
-                            caption: '执行人',
-                            codeName: 'executor_name',
+                            hidden: true,
+                            caption: '当前版本标识',
+                            codeName: 'cur_version_id',
                             detailStyle: 'DEFAULT',
                             detailType: 'FORMITEM',
                             layoutPos: {
@@ -2348,15 +2411,14 @@ export default {
                               layout: 'TABLE_24COL',
                             },
                             showCaption: true,
-                            id: 'executor_name',
+                            id: 'cur_version_id',
                           },
                           {
-                            dataType: 5,
+                            dataType: 25,
                             enableCond: 3,
                             labelPos: 'LEFT',
                             labelWidth: 130,
                             noPrivDisplayMode: 1,
-                            appDEFieldId: 'executed_at',
                             editor: {
                               halign: 'LEFT',
                               valign: 'MIDDLE',
@@ -2364,12 +2426,11 @@ export default {
                               editorType: 'SPAN',
                               valueType: 'SIMPLE',
                               editable: true,
-                              id: 'executed_at',
+                              id: 'baseline_name',
                             },
-                            valueFormat: 'YYYY-MM-DD HH:mm:ss',
                             allowEmpty: true,
-                            caption: '执行时间',
-                            codeName: 'executed_at',
+                            caption: '基线',
+                            codeName: 'baseline_name',
                             detailStyle: 'DEFAULT',
                             detailType: 'FORMITEM',
                             layoutPos: {
@@ -2377,7 +2438,266 @@ export default {
                               layout: 'TABLE_24COL',
                             },
                             showCaption: true,
-                            id: 'executed_at',
+                            id: 'baseline_name',
+                          },
+                        ],
+                        caption: '变更',
+                        codeName: 'grouppanel10',
+                        detailStyle: 'DEFAULT',
+                        detailType: 'GROUPPANEL',
+                        layoutPos: {
+                          colMD: 24,
+                          layout: 'TABLE_24COL',
+                        },
+                        showCaption: true,
+                        id: 'grouppanel10',
+                      },
+                      {
+                        layout: {
+                          columnCount: 24,
+                          layout: 'TABLE_24COL',
+                        },
+                        deformDetails: [
+                          {
+                            contentControl: {
+                              createControlAction: {
+                                appDEMethodId: 'create',
+                                appDataEntityId: 'plmweb.run',
+                                id: 'create',
+                              },
+                              getDraftFromControlAction: {
+                                appDataEntityId: 'plmweb.run',
+                                id: 'loaddraftfrom',
+                              },
+                              getDraftControlAction: {
+                                appDEMethodId: 'get_draft',
+                                appDataEntityId: 'plmweb.run',
+                                id: 'loaddraft',
+                              },
+                              getControlAction: {
+                                appDEMethodId: 'get',
+                                appDataEntityId: 'plmweb.run',
+                                id: 'load',
+                              },
+                              removeControlAction: {
+                                appDEMethodId: 'remove',
+                                appDataEntityId: 'plmweb.run',
+                                id: 'remove',
+                              },
+                              updateControlAction: {
+                                appDEMethodId: 'update',
+                                appDataEntityId: 'plmweb.run',
+                                id: 'update',
+                              },
+                              deformPages: [
+                                {
+                                  layout: {
+                                    columnCount: 24,
+                                    layout: 'TABLE_24COL',
+                                  },
+                                  deformDetails: [
+                                    {
+                                      layout: {
+                                        columnCount: 24,
+                                        layout: 'TABLE_24COL',
+                                      },
+                                      deformDetails: [
+                                        {
+                                          dataType: 25,
+                                          enableCond: 3,
+                                          labelPos: 'LEFT',
+                                          labelWidth: 130,
+                                          noPrivDisplayMode: 1,
+                                          appDEFieldId: 'plan_name',
+                                          editor: {
+                                            halign: 'LEFT',
+                                            valign: 'MIDDLE',
+                                            wrapMode: 'NOWRAP',
+                                            editorType: 'SPAN',
+                                            valueType: 'SIMPLE',
+                                            editable: true,
+                                            id: 'plan_name',
+                                          },
+                                          allowEmpty: true,
+                                          caption: '计划',
+                                          codeName: 'plan_name',
+                                          detailStyle: 'DEFAULT',
+                                          detailType: 'FORMITEM',
+                                          layoutPos: {
+                                            colMD: 24,
+                                            layout: 'TABLE_24COL',
+                                          },
+                                          showCaption: true,
+                                          id: 'plan_name',
+                                        },
+                                        {
+                                          dataType: 25,
+                                          enableCond: 3,
+                                          ignoreInput: 3,
+                                          labelPos: 'LEFT',
+                                          labelWidth: 130,
+                                          noPrivDisplayMode: 1,
+                                          appDEFieldId: 'status',
+                                          editor: {
+                                            halign: 'LEFT',
+                                            valign: 'MIDDLE',
+                                            wrapMode: 'NOWRAP',
+                                            appCodeListId:
+                                              'plmweb.testmgmt__run_status',
+                                            editorType: 'SPAN',
+                                            valueType: 'SIMPLE',
+                                            editable: true,
+                                            id: 'status',
+                                          },
+                                          allowEmpty: true,
+                                          convertToCodeItemText: true,
+                                          caption: '执行结果',
+                                          codeName: 'status',
+                                          detailStyle: 'DEFAULT',
+                                          detailType: 'FORMITEM',
+                                          layoutPos: {
+                                            colMD: 24,
+                                            layout: 'TABLE_24COL',
+                                          },
+                                          showCaption: true,
+                                          id: 'status',
+                                        },
+                                        {
+                                          dataType: 25,
+                                          labelPos: 'LEFT',
+                                          labelWidth: 130,
+                                          noPrivDisplayMode: 1,
+                                          appDEFieldId: 'executor_name',
+                                          editor: {
+                                            halign: 'LEFT',
+                                            valign: 'MIDDLE',
+                                            wrapMode: 'NOWRAP',
+                                            editorType: 'SPAN',
+                                            valueType: 'SIMPLE',
+                                            editable: true,
+                                            id: 'executor_name',
+                                          },
+                                          allowEmpty: true,
+                                          caption: '执行人',
+                                          codeName: 'executor_name',
+                                          detailStyle: 'DEFAULT',
+                                          detailType: 'FORMITEM',
+                                          layoutPos: {
+                                            colMD: 24,
+                                            layout: 'TABLE_24COL',
+                                          },
+                                          showCaption: true,
+                                          id: 'executor_name',
+                                        },
+                                        {
+                                          dataType: 5,
+                                          enableCond: 3,
+                                          labelPos: 'LEFT',
+                                          labelWidth: 130,
+                                          noPrivDisplayMode: 1,
+                                          appDEFieldId: 'executed_at',
+                                          editor: {
+                                            halign: 'LEFT',
+                                            valign: 'MIDDLE',
+                                            wrapMode: 'NOWRAP',
+                                            editorType: 'SPAN',
+                                            valueType: 'SIMPLE',
+                                            editable: true,
+                                            id: 'executed_at',
+                                          },
+                                          valueFormat: 'YYYY-MM-DD HH:mm:ss',
+                                          allowEmpty: true,
+                                          caption: '执行时间',
+                                          codeName: 'executed_at',
+                                          detailStyle: 'DEFAULT',
+                                          detailType: 'FORMITEM',
+                                          layoutPos: {
+                                            colMD: 24,
+                                            layout: 'TABLE_24COL',
+                                          },
+                                          showCaption: true,
+                                          id: 'executed_at',
+                                        },
+                                      ],
+                                      caption: '最近执行',
+                                      codeName: 'group1',
+                                      detailStyle: 'DEFAULT',
+                                      detailType: 'GROUPPANEL',
+                                      layoutPos: {
+                                        colMD: 24,
+                                        layout: 'TABLE_24COL',
+                                      },
+                                      id: 'group1',
+                                    },
+                                    {
+                                      dataType: 25,
+                                      enableCond: 3,
+                                      labelPos: 'LEFT',
+                                      labelWidth: 130,
+                                      noPrivDisplayMode: 1,
+                                      appDEFieldId: 'id',
+                                      editor: {
+                                        editorType: 'HIDDEN',
+                                        valueType: 'SIMPLE',
+                                        editable: true,
+                                        id: 'id',
+                                      },
+                                      allowEmpty: true,
+                                      hidden: true,
+                                      capLanguageRes: {
+                                        lanResTag: 'DEF.LNAME.ID',
+                                      },
+                                      caption: '标识',
+                                      codeName: 'id',
+                                      detailStyle: 'DEFAULT',
+                                      detailType: 'FORMITEM',
+                                      layoutPos: {
+                                        colMD: 24,
+                                        layout: 'TABLE_24COL',
+                                      },
+                                      showCaption: true,
+                                      id: 'id',
+                                    },
+                                  ],
+                                  caption: '基本信息',
+                                  codeName: 'formpage1',
+                                  detailStyle: 'DEFAULT',
+                                  detailType: 'FORMPAGE',
+                                  id: 'formpage1',
+                                },
+                              ],
+                              layout: {
+                                columnCount: 24,
+                                layout: 'TABLE_24COL',
+                              },
+                              tabHeaderPos: 'TOP',
+                              noTabHeader: true,
+                              autoLoad: true,
+                              showBusyIndicator: true,
+                              codeName: 'case_latest_executed_form',
+                              controlType: 'FORM',
+                              logicName: '测试用例最近执行_表单',
+                              appDataEntityId: 'plmweb.run',
+                              controlParam: {},
+                              modelId: '9B2A0579-29A7-4F9D-B723-58C2CC1AE28D',
+                              modelType: 'PSDEFORM_EDITFORM',
+                              name: 'latest_executed_form',
+                              id: 'plmweb.run.case_latest_executed_form',
+                            },
+                            contentType: 'FORM',
+                            layout: {
+                              columnCount: 24,
+                              layout: 'TABLE_24COL',
+                            },
+                            caption: '最近执行',
+                            codeName: 'latest_executed',
+                            detailStyle: 'DEFAULT',
+                            detailType: 'MDCTRL',
+                            layoutPos: {
+                              colMD: 24,
+                              layout: 'TABLE_24COL',
+                            },
+                            id: 'latest_executed',
                           },
                         ],
                         caption: '最近执行',
@@ -2950,6 +3270,7 @@ export default {
         tabHeaderPos: 'TOP',
         noTabHeader: true,
         autoLoad: true,
+        enableItemPrivilege: true,
         showBusyIndicator: true,
         appCounterRefs: [
           {

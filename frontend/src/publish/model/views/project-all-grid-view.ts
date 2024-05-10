@@ -64,6 +64,13 @@ export default {
       id: 'opendata',
     },
   ],
+  appViewNavParams: [
+    {
+      key: 'n_scope_type_eq',
+      value: 'scope_type',
+      id: 'n_scope_type_eq',
+    },
+  ],
   appViewRefs: [
     {
       realTitle: '项目数据重定向视图',
@@ -73,17 +80,17 @@ export default {
     },
     {
       realOpenMode: 'POPUPMODAL',
-      realTitle: '项目快速建立',
-      refAppViewId: 'plmweb.project_quick_create_view',
-      name: 'OPENDATA',
-      id: 'opendata',
-    },
-    {
-      realOpenMode: 'POPUPMODAL',
       realTitle: '新建项目',
       refAppViewId: 'plmweb.project_create_wizard_view',
       name: 'NEWDATA',
       id: 'newdata',
+    },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '项目快速建立',
+      refAppViewId: 'plmweb.project_quick_create_view',
+      name: 'OPENDATA',
+      id: 'opendata',
     },
   ],
   controls: [
@@ -92,7 +99,8 @@ export default {
         {
           actionLevel: 100,
           noPrivDisplayMode: 2,
-          uiactionId: 'new_project',
+          uiactionId: 'create_project@project',
+          uiactionTarget: 'NONE',
           valid: true,
           caption: '新建项目',
           itemType: 'DEUIACTION',
@@ -403,11 +411,6 @@ export default {
           dataType: 25,
           id: 'srfmajortext',
         },
-        {
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'srfmstag',
-        },
       ],
       degridEditItems: [
         {
@@ -447,6 +450,17 @@ export default {
       controlType: 'GRID',
       logicName: '主表格',
       appDataEntityId: 'plmweb.project',
+      controlLogics: [
+        {
+          eventNames: 'onLoadSuccess',
+          logicTag: 'grid',
+          logicType: 'APPDEUILOGIC',
+          appDEUILogicId: 'calc_column_action_state',
+          appDataEntityId: 'plmweb.project',
+          triggerType: 'CTRLEVENT',
+          id: 'calc_column_action_state',
+        },
+      ],
       controlParam: {
         id: 'grid',
       },

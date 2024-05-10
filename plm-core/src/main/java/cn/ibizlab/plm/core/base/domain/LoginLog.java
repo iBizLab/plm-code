@@ -34,6 +34,16 @@ public class LoginLog extends EntityBase implements Serializable
 {
 
     /**
+     * 登录时间
+     */
+    @DEField(name = "authtime")
+    @JsonProperty("authtime")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "authtime" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "authtime", notes = "登录时间")
+    private Date authTime;
+
+    /**
      * 区/县
      */
     @DEField(name = "county")
@@ -124,6 +134,33 @@ public class LoginLog extends EntityBase implements Serializable
     private String isp;
 
     /**
+     * 认证结果
+     */
+    @DEField(name = "authcode" , dict = "AuthCode")
+    @JsonProperty("authcode")
+    @JSONField(name = "authcode")
+    @ApiModelProperty(value = "authcode", notes = "认证结果")
+    private String authCode;
+
+    /**
+     * 活跃成员数
+     */
+    @DEField(name = "active_members")
+    @JsonProperty("active_members")
+    @JSONField(name = "active_members")
+    @ApiModelProperty(value = "active_members", notes = "活跃成员数")
+    private String activeMembers;
+
+    /**
+     * 活跃率
+     */
+    @DEField(name = "active_rate")
+    @JsonProperty("active_rate")
+    @JSONField(name = "active_rate")
+    @ApiModelProperty(value = "active_rate", notes = "活跃率")
+    private String activeRate;
+
+    /**
      * 标识
      */
     @Id
@@ -171,13 +208,13 @@ public class LoginLog extends EntityBase implements Serializable
     private String updateMan;
 
     /**
-     * 登录时间
+     * 建立时间
      */
     @DEField(name = "create_time" , preType = DEPredefinedFieldType.CREATEDATE)
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "create_time", notes = "登录时间")
+    @ApiModelProperty(value = "create_time", notes = "建立时间")
     private Date createTime;
 
 

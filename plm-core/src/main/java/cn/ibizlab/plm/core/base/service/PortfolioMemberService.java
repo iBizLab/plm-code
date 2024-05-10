@@ -174,6 +174,26 @@ public interface PortfolioMemberService extends IService<PortfolioMember> {
     }
 
     /**
+     * change_role
+     * 
+     * @param dto
+     * @return
+     */
+    default PortfolioMember changeRole(PortfolioMember dto) {
+        return dto;
+    }
+
+    /**
+     * nothing
+     * 
+     * @param dto
+     * @return
+     */
+    default PortfolioMember nothing(PortfolioMember dto) {
+        return dto;
+    }
+
+    /**
      * searchDefault
      * 
      * @param context
@@ -187,6 +207,21 @@ public interface PortfolioMemberService extends IService<PortfolioMember> {
      * @return
      */
     List<PortfolioMember> listDefault(PortfolioMemberSearchContext context);
+
+    /**
+     * searchcur_project_set
+     * 
+     * @param context
+     * @return
+     */
+    Page<PortfolioMember> searchCurProjectSet(PortfolioMemberSearchContext context);
+    /**
+     * listcur_project_set
+     * 
+     * @param context
+     * @return
+     */
+    List<PortfolioMember> listCurProjectSet(PortfolioMemberSearchContext context);
 
     /**
      * 创建实体对象

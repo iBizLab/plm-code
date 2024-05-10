@@ -126,6 +126,44 @@ public abstract class AbstractSprintResource {
     }
 
     /**
+    * delete_categories 迭代
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<SprintDTO>
+    */
+    @ApiOperation(value = "delete_categories", tags = {"迭代" },  notes = "Sprint-delete_categories ")
+    @PostMapping("sprints/{id}/delete_categories")
+    public ResponseEntity<ResponseWrapper<SprintDTO>> deleteCategoriesById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<SprintDTO> dto) {
+        ResponseWrapper<SprintDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(deleteCategoriesById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(deleteCategoriesById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * delete_categories 迭代
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<SprintDTO>
+    */   
+    public SprintDTO deleteCategoriesById
+            (String id, SprintDTO dto) {
+        Sprint domain = sprintDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Sprint rt = sprintService.deleteCategories(domain);
+        return sprintDtoMapping.toDto(rt);
+    }
+
+    /**
     * end_sprint 迭代
     * 
     *
@@ -316,6 +354,46 @@ public abstract class AbstractSprintResource {
         domain.setId(id);
         sprintService.update(domain);
         Sprint rt = domain;
+        return sprintDtoMapping.toDto(rt);
+    }
+
+    /**
+    * delete_categories 迭代
+    * 
+    *
+    * @param projectId projectId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<SprintDTO>
+    */
+    @ApiOperation(value = "delete_categories", tags = {"迭代" },  notes = "Sprint-delete_categories ")
+    @PostMapping("projects/{projectId}/sprints/{id}/delete_categories")
+    public ResponseEntity<ResponseWrapper<SprintDTO>> deleteCategoriesByProjectIdAndId
+            (@PathVariable("projectId") String projectId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<SprintDTO> dto) {
+        ResponseWrapper<SprintDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(deleteCategoriesByProjectIdAndId(projectId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(deleteCategoriesByProjectIdAndId(projectId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * delete_categories 迭代
+    * 
+    *
+    * @param projectId projectId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<SprintDTO>
+    */   
+    public SprintDTO deleteCategoriesByProjectIdAndId
+            (String projectId, String id, SprintDTO dto) {
+        Sprint domain = sprintDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Sprint rt = sprintService.deleteCategories(domain);
         return sprintDtoMapping.toDto(rt);
     }
 

@@ -31,11 +31,37 @@ import io.swagger.annotations.ApiModelProperty;
 public class LoginLogFilterDTO extends FilterBase implements Serializable {
 
     /**
+     * 登录时间GTANDEQ
+     */
+    @JsonProperty("n_authtime_gtandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_authtime_gtandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "登录时间GTANDEQ", position = 0)
+	private Date authTimeGTANDEQ;
+
+    /**
+     * 登录时间LTANDEQ
+     */
+    @JsonProperty("n_authtime_ltandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_authtime_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "登录时间LTANDEQ", position = 1)
+	private Date authTimeLTANDEQ;
+
+    /**
+     * 认证结果EQ
+     */
+    @JsonProperty("n_authcode_eq")
+    @JSONField(name = "n_authcode_eq")
+    @ApiModelProperty(value = "认证结果EQ", position = 110)
+	private String authCodeEQ;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 100)
+    @ApiModelProperty(value = "标识EQ", position = 140)
 	private String idEQ;
 
     /**
@@ -43,7 +69,7 @@ public class LoginLogFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 110)
+    @ApiModelProperty(value = "名称LIKE", position = 150)
 	private String nameLIKE;
 
 

@@ -88,9 +88,9 @@ export default {
         },
         {
           clconvertMode: 'FRONT',
-          dataItemName: 'status',
+          dataItemName: 'status_text',
           excelCaption: '阶段',
-          appCodeListId: 'plmweb.projmgmt__version_status',
+          appCodeListId: 'plmweb.projmgmt__release_stage',
           appDEFieldId: 'status',
           valueType: 'SIMPLE',
           enableRowEdit: true,
@@ -191,6 +191,12 @@ export default {
           appDEFieldId: 'status',
           valueType: 'SIMPLE',
           dataType: 25,
+          id: 'status_text',
+        },
+        {
+          appDEFieldId: 'status',
+          valueType: 'SIMPLE',
+          dataType: 25,
           id: 'status',
         },
         {
@@ -258,8 +264,13 @@ export default {
           appDEFieldId: 'status',
           editor: {
             singleSelect: true,
-            appCodeListId: 'plmweb.projmgmt__version_status',
+            appCodeListId: 'plmweb.projmgmt__release_stage',
             editorType: 'DROPDOWNLIST',
+            editorItems: [
+              {
+                id: 'status',
+              },
+            ],
             valueType: 'SIMPLE',
             editable: true,
             id: 'status',

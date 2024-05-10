@@ -31,11 +31,19 @@ import io.swagger.annotations.ApiModelProperty;
 public class StencilFilterDTO extends FilterBase implements Serializable {
 
     /**
+     * 正文格式EQ
+     */
+    @JsonProperty("n_format_type_eq")
+    @JSONField(name = "n_format_type_eq")
+    @ApiModelProperty(value = "正文格式EQ", position = 0)
+	private String formatTypeEQ;
+
+    /**
      * 名称LIKE
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 40)
+    @ApiModelProperty(value = "名称LIKE", position = 50)
 	private String nameLIKE;
 
     /**
@@ -43,7 +51,7 @@ public class StencilFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 50)
+    @ApiModelProperty(value = "标识EQ", position = 60)
 	private String idEQ;
 
     /**
@@ -51,7 +59,7 @@ public class StencilFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_space_id_eq")
     @JSONField(name = "n_space_id_eq")
-    @ApiModelProperty(value = "空间标识EQ", position = 90)
+    @ApiModelProperty(value = "空间标识EQ", position = 100)
 	private String spaceIdEQ;
 
     /**
@@ -59,7 +67,7 @@ public class StencilFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_space_id_isnull")
     @JSONField(name = "n_space_id_isnull")
-    @ApiModelProperty(value = "空间标识ISNULL", position = 91)
+    @ApiModelProperty(value = "空间标识ISNULL", position = 101)
 	private String spaceIdISNULL;
 
     /**
@@ -67,7 +75,7 @@ public class StencilFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_space_name_eq")
     @JSONField(name = "n_space_name_eq")
-    @ApiModelProperty(value = "空间名称EQ", position = 100)
+    @ApiModelProperty(value = "空间名称EQ", position = 110)
 	private String spaceNameEQ;
 
     /**
@@ -75,7 +83,7 @@ public class StencilFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_space_name_like")
     @JSONField(name = "n_space_name_like")
-    @ApiModelProperty(value = "空间名称LIKE", position = 101)
+    @ApiModelProperty(value = "空间名称LIKE", position = 111)
 	private String spaceNameLIKE;
 
 

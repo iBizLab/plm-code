@@ -40,6 +40,16 @@ public class Stencil extends EntityMP implements Serializable
 {
 
     /**
+     * 正文格式
+     */
+    @TableField(value = "format_type")
+    @DEField(name = "format_type" , dict = "CodeList54")
+    @JsonProperty("format_type")
+    @JSONField(name = "format_type")
+    @ApiModelProperty(value = "format_type", notes = "正文格式")
+    private String formatType;
+
+    /**
      * 正文
      */
     @TableField(value = "content")
@@ -161,6 +171,15 @@ public class Stencil extends EntityMP implements Serializable
     @Transient
     @ApiModelProperty(value = "space", notes = "空间模板")
     private Space space;
+
+    /**
+     * 设置 [正文格式]
+     */
+    public Stencil setFormatType(String formatType) {
+        this.formatType = formatType;
+        this.modify("format_type", formatType);
+        return this;
+    }
 
     /**
      * 设置 [正文]

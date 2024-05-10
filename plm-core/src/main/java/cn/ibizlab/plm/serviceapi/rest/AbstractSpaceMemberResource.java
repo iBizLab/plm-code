@@ -126,6 +126,44 @@ public abstract class AbstractSpaceMemberResource {
     }
 
     /**
+    * change_role 空间成员
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<SpaceMemberDTO>
+    */
+    @ApiOperation(value = "change_role", tags = {"空间成员" },  notes = "SpaceMember-change_role ")
+    @PostMapping("space_members/{id}/change_role")
+    public ResponseEntity<ResponseWrapper<SpaceMemberDTO>> changeRoleById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<SpaceMemberDTO> dto) {
+        ResponseWrapper<SpaceMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(changeRoleById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(changeRoleById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * change_role 空间成员
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<SpaceMemberDTO>
+    */   
+    public SpaceMemberDTO changeRoleById
+            (String id, SpaceMemberDTO dto) {
+        SpaceMember domain = spaceMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        SpaceMember rt = spaceMemberService.changeRole(domain);
+        return spaceMemberDtoMapping.toDto(rt);
+    }
+
+    /**
     * 保存Save 空间成员
     * 
     *
@@ -238,6 +276,46 @@ public abstract class AbstractSpaceMemberResource {
         domain.setId(id);
         spaceMemberService.update(domain);
         SpaceMember rt = domain;
+        return spaceMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * change_role 空间成员
+    * 
+    *
+    * @param spaceId spaceId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<SpaceMemberDTO>
+    */
+    @ApiOperation(value = "change_role", tags = {"空间成员" },  notes = "SpaceMember-change_role ")
+    @PostMapping("spaces/{spaceId}/space_members/{id}/change_role")
+    public ResponseEntity<ResponseWrapper<SpaceMemberDTO>> changeRoleBySpaceIdAndId
+            (@PathVariable("spaceId") String spaceId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<SpaceMemberDTO> dto) {
+        ResponseWrapper<SpaceMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(changeRoleBySpaceIdAndId(spaceId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(changeRoleBySpaceIdAndId(spaceId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * change_role 空间成员
+    * 
+    *
+    * @param spaceId spaceId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<SpaceMemberDTO>
+    */   
+    public SpaceMemberDTO changeRoleBySpaceIdAndId
+            (String spaceId, String id, SpaceMemberDTO dto) {
+        SpaceMember domain = spaceMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        SpaceMember rt = spaceMemberService.changeRole(domain);
         return spaceMemberDtoMapping.toDto(rt);
     }
 
@@ -361,6 +439,46 @@ public abstract class AbstractSpaceMemberResource {
     }
 
     /**
+    * change_role 空间成员
+    * 
+    *
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<SpaceMemberDTO>
+    */
+    @ApiOperation(value = "change_role", tags = {"空间成员" },  notes = "SpaceMember-change_role ")
+    @PostMapping("users/{userId}/space_members/{id}/change_role")
+    public ResponseEntity<ResponseWrapper<SpaceMemberDTO>> changeRoleByUserIdAndId
+            (@PathVariable("userId") String userId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<SpaceMemberDTO> dto) {
+        ResponseWrapper<SpaceMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(changeRoleByUserIdAndId(userId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(changeRoleByUserIdAndId(userId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * change_role 空间成员
+    * 
+    *
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<SpaceMemberDTO>
+    */   
+    public SpaceMemberDTO changeRoleByUserIdAndId
+            (String userId, String id, SpaceMemberDTO dto) {
+        SpaceMember domain = spaceMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        SpaceMember rt = spaceMemberService.changeRole(domain);
+        return spaceMemberDtoMapping.toDto(rt);
+    }
+
+    /**
     * 保存Save 空间成员
     * 
     *
@@ -464,6 +582,28 @@ public abstract class AbstractSpaceMemberResource {
     }
 
     /**
+    * 查询fetch_cur_space 空间成员
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<SpaceMemberDTO>>
+    */
+    @ApiOperation(value = "查询fetch_cur_space", tags = {"空间成员" },  notes = "SpaceMember-fetch_cur_space ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-SpaceMember-fetch_cur_space-all') or hasPermission(#dto,'ibizplm-SpaceMember-fetch_cur_space')")
+    @PostMapping("space_members/fetch_cur_space")
+    public ResponseEntity<List<SpaceMemberDTO>> fetchCurSpace
+            (@Validated @RequestBody SpaceMemberFilterDTO dto) {
+        SpaceMemberSearchContext context = spaceMemberFilterDtoMapping.toDomain(dto);
+        Page<SpaceMember> domains = spaceMemberService.searchCurSpace(context) ;
+        List<SpaceMemberDTO> list = spaceMemberDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
     * 查询fetch_default 空间成员
     * 
     *
@@ -553,6 +693,30 @@ public abstract class AbstractSpaceMemberResource {
         domain.setSpaceId(spaceId);
         SpaceMember rt = spaceMemberService.getDraft(domain);
         return ResponseEntity.status(HttpStatus.OK).body(spaceMemberDtoMapping.toDto(rt));
+    }
+
+    /**
+    * 查询fetch_cur_space 空间成员
+    * 
+    *
+    * @param spaceId spaceId
+    * @param dto dto
+    * @return ResponseEntity<List<SpaceMemberDTO>>
+    */
+    @ApiOperation(value = "查询fetch_cur_space", tags = {"空间成员" },  notes = "SpaceMember-fetch_cur_space ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-SpaceMember-fetch_cur_space-all') or hasPermission('space',#spaceId,#dto,'ibizplm-SpaceMember-fetch_cur_space')")
+    @PostMapping("spaces/{spaceId}/space_members/fetch_cur_space")
+    public ResponseEntity<List<SpaceMemberDTO>> fetchCurSpaceBySpaceId
+            (@PathVariable("spaceId") String spaceId, @Validated @RequestBody SpaceMemberFilterDTO dto) {
+        dto.setSpaceIdEQ(spaceId);
+        SpaceMemberSearchContext context = spaceMemberFilterDtoMapping.toDomain(dto);
+        Page<SpaceMember> domains = spaceMemberService.searchCurSpace(context) ;
+        List<SpaceMemberDTO> list = spaceMemberDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
     }
 
     /**
@@ -647,6 +811,30 @@ public abstract class AbstractSpaceMemberResource {
         domain.setUserId(userId);
         SpaceMember rt = spaceMemberService.getDraft(domain);
         return ResponseEntity.status(HttpStatus.OK).body(spaceMemberDtoMapping.toDto(rt));
+    }
+
+    /**
+    * 查询fetch_cur_space 空间成员
+    * 
+    *
+    * @param userId userId
+    * @param dto dto
+    * @return ResponseEntity<List<SpaceMemberDTO>>
+    */
+    @ApiOperation(value = "查询fetch_cur_space", tags = {"空间成员" },  notes = "SpaceMember-fetch_cur_space ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-SpaceMember-fetch_cur_space-all') or hasPermission('user',#userId,#dto,'ibizplm-SpaceMember-fetch_cur_space')")
+    @PostMapping("users/{userId}/space_members/fetch_cur_space")
+    public ResponseEntity<List<SpaceMemberDTO>> fetchCurSpaceByUserId
+            (@PathVariable("userId") String userId, @Validated @RequestBody SpaceMemberFilterDTO dto) {
+        dto.setUserIdEQ(userId);
+        SpaceMemberSearchContext context = spaceMemberFilterDtoMapping.toDomain(dto);
+        Page<SpaceMember> domains = spaceMemberService.searchCurSpace(context) ;
+        List<SpaceMemberDTO> list = spaceMemberDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
     }
 
     /**

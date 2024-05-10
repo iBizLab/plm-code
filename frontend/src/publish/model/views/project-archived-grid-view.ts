@@ -61,16 +61,16 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '项目编辑视图',
-      refAppViewId: 'plmweb.project_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       realTitle: '项目数据重定向视图',
       refAppViewId: 'plmweb.project_redirect_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realTitle: '项目编辑视图',
+      refAppViewId: 'plmweb.project_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -168,8 +168,8 @@ export default {
                 tooltip: '删除',
                 showIcon: true,
                 sysImage: {
-                  cssClass: 'fa fa-trash',
-                  glyph: 'xf1f8@FontAwesome',
+                  cssClass: 'fa fa-trash-o',
+                  glyph: 'xf014@FontAwesome',
                 },
                 id: 'ue08bbc0',
               },
@@ -227,11 +227,6 @@ export default {
           valueType: 'SIMPLE',
           dataType: 25,
           id: 'srfmajortext',
-        },
-        {
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'srfmstag',
         },
       ],
       degridEditItems: [
@@ -318,6 +313,23 @@ export default {
       groupMode: 'SINGLE',
       quickSearchMode: 1,
       enableQuickSearch: true,
+      codeName: 'query_search_bar',
+      controlType: 'SEARCHBAR',
+      logicName: '快速搜索栏',
+      appDataEntityId: 'plmweb.project',
+      controlParam: {
+        ctrlParams: {
+          TELEPORTFLAG: 'true',
+        },
+        id: 'tabsearchbar',
+      },
+      modelId: '4A0157AD-FCC4-4615-AD9E-55E6746048D0',
+      modelType: 'PSSYSSEARCHBAR',
+      name: 'tabsearchbar',
+      id: 'plmweb.project.query_search_bar',
+    },
+    {
+      groupMode: 'SINGLE',
       controlType: 'SEARCHBAR',
       appDataEntityId: 'plmweb.project',
       controlParam: {
@@ -350,7 +362,7 @@ export default {
   viewStyle: 'DEFAULT',
   viewType: 'DEGRIDVIEW',
   enableDP: true,
-  showCaptionBar: true,
+  showCaptionBar: false,
   modelId: '67a9e2ea7060ae1ae205ff85919d3021',
   modelType: 'PSAPPDEVIEW',
   name: 'projectarchived_grid_view',

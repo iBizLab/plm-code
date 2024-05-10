@@ -177,6 +177,16 @@ public interface ReleaseService extends IService<Release> {
     }
 
     /**
+     * delete_categories
+     * 
+     * @param dto
+     * @return
+     */
+    default Release deleteCategories(Release dto) {
+        return dto;
+    }
+
+    /**
      * plan_work_item
      * 
      * @param dto

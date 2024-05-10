@@ -30,6 +30,11 @@ export default {
           },
           id: 'user',
         },
+        {
+          caption: '团队管理',
+          appViewId: 'plmweb.group_tree_exp_view',
+          id: 'group',
+        },
       ],
       editItemCapLanguageRes: {
         lanResTag: 'DE.LNAME.USER',

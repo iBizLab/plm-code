@@ -30,6 +30,8 @@ import cn.ibizlab.plm.core.prodmgmt.domain.Idea;
 import cn.ibizlab.plm.core.prodmgmt.service.IdeaService;
 import cn.ibizlab.plm.core.wiki.domain.ArticlePage;
 import cn.ibizlab.plm.core.wiki.service.ArticlePageService;
+import cn.ibizlab.plm.core.testmgmt.domain.Review;
+import cn.ibizlab.plm.core.testmgmt.service.ReviewService;
 import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
 import cn.ibizlab.plm.core.testmgmt.service.TestCaseService;
 import cn.ibizlab.plm.core.prodmgmt.domain.Ticket;
@@ -56,6 +58,10 @@ public abstract class AbstractAttachmentService extends ServiceImpl<AttachmentMa
     @Autowired
     @Lazy
     protected ArticlePageService articlePageService;
+
+    @Autowired
+    @Lazy
+    protected ReviewService reviewService;
 
     @Autowired
     @Lazy
@@ -91,6 +97,9 @@ public abstract class AbstractAttachmentService extends ServiceImpl<AttachmentMa
             et.setOwnerId((String)et.getContextParentKey());
         }
         if(Entities.ARTICLE_PAGE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setOwnerId((String)et.getContextParentKey());
+        }
+        if(Entities.REVIEW.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
             et.setOwnerId((String)et.getContextParentKey());
         }
         if(Entities.TEST_CASE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
@@ -298,6 +307,33 @@ public abstract class AbstractAttachmentService extends ServiceImpl<AttachmentMa
         for(Attachment sub:list) {
             sub.setOwnerId(articlePage.getId());
             sub.setPage(articlePage);
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().createBatch(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+            return false;
+        else
+            return true;
+    }
+
+    public boolean saveByReview(Review review,List<Attachment> list) {
+        if(list==null)
+            return true;
+        Map<String,Attachment> before = findByOwnerId(review.getId()).stream().collect(Collectors.toMap(Attachment::getId,e->e));
+        List<Attachment> update = new ArrayList<>();
+        List<Attachment> create = new ArrayList<>();
+
+        for(Attachment sub:list) {
+            sub.setOwnerId(review.getId());
+            sub.setReview(review);
             if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
                 before.remove(sub.getId());
                 update.add(sub);

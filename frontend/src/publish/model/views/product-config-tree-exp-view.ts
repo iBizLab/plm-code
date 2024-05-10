@@ -57,6 +57,18 @@ export default {
           name: 'EXPITEM:node',
           id: 'expitem:node',
         },
+        {
+          realTitle: '需求配置',
+          refAppViewId: 'plmweb.idea_config_tab_exp_view',
+          name: 'EXPITEM:node_1',
+          id: 'expitem:node_1',
+        },
+        {
+          realTitle: '工单配置',
+          refAppViewId: 'plmweb.ticket_type_config_tab_exp_view',
+          name: 'EXPITEM:node_2',
+          id: 'expitem:node_2',
+        },
       ],
       controls: [
         {
@@ -132,17 +144,17 @@ export default {
             },
             {
               text: '需求配置',
+              navAppViewId: 'plmweb.idea_config_tab_exp_view',
               nodeType: 'node_1',
               treeNodeType: 'STATIC',
-              disableSelect: true,
               name: '需求配置',
               id: 'node_1',
             },
             {
               text: '工单配置',
+              navAppViewId: 'plmweb.ticket_type_config_tab_exp_view',
               nodeType: 'node_2',
               treeNodeType: 'STATIC',
-              disableSelect: true,
               name: '工单配置',
               id: 'node_2',
             },
@@ -150,7 +162,6 @@ export default {
               text: '产品配置',
               nodeType: 'node_3',
               treeNodeType: 'STATIC',
-              disableSelect: true,
               name: '产品配置',
               id: 'node_3',
             },

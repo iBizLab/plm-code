@@ -69,19 +69,11 @@ public class VersionDTO extends DTOBase implements Serializable {
     private String ownerType;
 
     /**
-     * 所属对象版本标识
-     */
-    @JsonProperty("owner_version_id")
-    @JSONField(name = "owner_version_id")
-    @ApiModelProperty(value = "所属对象版本标识", position = 4)
-    private String ownerVersionId;
-
-    /**
      * 数据
      */
     @JsonProperty("data")
     @JSONField(name = "data")
-    @ApiModelProperty(value = "数据", position = 5)
+    @ApiModelProperty(value = "数据", position = 4)
     private String data;
 
     /**
@@ -89,7 +81,7 @@ public class VersionDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("restorable")
     @JSONField(name = "restorable")
-    @ApiModelProperty(value = "支持恢复", position = 6)
+    @ApiModelProperty(value = "支持恢复", position = 5)
     private String restorable;
 
     /**
@@ -97,23 +89,15 @@ public class VersionDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("manual")
     @JSONField(name = "manual")
-    @ApiModelProperty(value = "手动提交", position = 7)
+    @ApiModelProperty(value = "手动提交", position = 6)
     private Integer manual;
-
-    /**
-     * 过滤属性
-     */
-    @JsonProperty("filter")
-    @JSONField(name = "filter")
-    @ApiModelProperty(value = "过滤属性", position = 8)
-    private String filter;
 
     /**
      * 建立人
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 9)
+    @ApiModelProperty(value = "建立人", position = 7)
     private String createMan;
 
     /**
@@ -122,7 +106,7 @@ public class VersionDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 10)
+    @ApiModelProperty(value = "建立时间", position = 8)
     private Date createTime;
 
     /**
@@ -130,7 +114,7 @@ public class VersionDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 11)
+    @ApiModelProperty(value = "标识", position = 9)
     private String id;
 
     /**
@@ -138,7 +122,7 @@ public class VersionDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 12)
+    @ApiModelProperty(value = "名称", position = 10)
     private String name;
 
     /**
@@ -146,7 +130,7 @@ public class VersionDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 13)
+    @ApiModelProperty(value = "更新人", position = 11)
     private String updateMan;
 
     /**
@@ -155,7 +139,7 @@ public class VersionDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 14)
+    @ApiModelProperty(value = "更新时间", position = 12)
     private Date updateTime;
 
 
@@ -201,15 +185,6 @@ public class VersionDTO extends DTOBase implements Serializable {
     public VersionDTO setManual(Integer manual) {
         this.manual = manual;
         this.modify("manual", manual);
-        return this;
-    }
-
-    /**
-     * 设置 [过滤属性]
-     */
-    public VersionDTO setFilter(String filter) {
-        this.filter = filter;
-        this.modify("filter", filter);
         return this;
     }
 

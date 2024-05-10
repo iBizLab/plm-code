@@ -323,6 +323,11 @@ export default {
             id: 'usrdrgroup1227573935',
           },
           {
+            caption: '基线',
+            name: '基线',
+            id: 'usrdrgroup0424036679',
+          },
+          {
             caption: '报表',
             name: '报表',
             id: 'usrdrgroup0322162391',
@@ -345,6 +350,12 @@ export default {
             caption: '用例',
             appViewId: 'plmweb.test_suite_tree_exp_view',
             id: 'test_suite',
+          },
+          {
+            dedrbarGroupId: 'usrdrgroup0424036679',
+            caption: '基线',
+            appViewId: 'plmweb.baseline_library_tree_exp_view',
+            id: 'baseline',
           },
           {
             dedrbarGroupId: 'usrdrgroup0322162391',
@@ -474,6 +485,16 @@ export default {
             valid: true,
             caption: '设置星标',
             itemType: 'DEUIACTION',
+            controlLogics: [
+              {
+                itemName: 'deuiaction1',
+                logicTag: 'toolbar',
+                logicType: 'SCRIPT',
+                scriptCode: 'data.is_favorite == 0',
+                triggerType: 'ITEMVISIBLE',
+                id: 'deuiaction1',
+              },
+            ],
             sysImage: {
               rawContent:
                 '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="design-iconfont" width="16" height="16">\n  <path d="M9.54013,6.48742551 L8,3.36677551 L6.45987,6.48742551 L3.01604,6.98784551 L5.50802,9.41692551 L4.91975,12.8468255 L8,11.2274255 L11.08025,12.8468255 L10.49195,9.41692551 L12.98395,6.98784551 L9.54013,6.48742551 Z M14.53135,6.20219551 C14.77745,6.23794551 14.87565,6.54033551 14.69765,6.71389551 L11.56645,9.76604551 L12.30565,14.0757255 C12.34765,14.3208255 12.09045,14.5077255 11.87035,14.3920255 L8,12.3572255 L4.12966,14.3920255 C3.90957,14.5077255 3.65234,14.3208255 3.69437,14.0757255 L4.43354,9.76604551 L1.30237,6.71389551 C1.12431,6.54033551 1.22256,6.23794551 1.46863,6.20219551 L5.79581,5.57341551 L7.73098,1.65232551 C7.84103,1.42934551 8.15898,1.42935551 8.26902,1.65232551 L10.20415,5.57341551 L14.53135,6.20219551 Z" fill-opacity=".9" fill="#557DA5" fill-rule="nonzero"></path>\n</svg>',
@@ -490,6 +511,16 @@ export default {
             valid: true,
             caption: '取消星标',
             itemType: 'DEUIACTION',
+            controlLogics: [
+              {
+                itemName: 'deuiaction2',
+                logicTag: 'toolbar',
+                logicType: 'SCRIPT',
+                scriptCode: 'data.is_favorite == 1',
+                triggerType: 'ITEMVISIBLE',
+                id: 'deuiaction2',
+              },
+            ],
             sysImage: {
               rawContent:
                 '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="design-iconfont" width="16" height="16">\n  <path d="M14.53135,6.20219551 C14.77745,6.23794551 14.87565,6.54033551 14.69765,6.71389551 L11.56645,9.76604551 L12.30565,14.0757255 C12.34765,14.3208255 12.09045,14.5077255 11.87035,14.3920255 L8,12.3572255 L4.12966,14.3920255 C3.90957,14.5077255 3.65234,14.3208255 3.69437,14.0757255 L4.43354,9.76604551 L1.30237,6.71389551 C1.12431,6.54033551 1.22256,6.23794551 1.46863,6.20219551 L5.79581,5.57341551 L7.73098,1.65232551 C7.84103,1.42934551 8.15898,1.42935551 8.26902,1.65232551 L10.20415,5.57341551 L14.53135,6.20219551 Z" fill-opacity=".9" fill="#FFB31A" fill-rule="nonzero"></path>\n</svg>',
@@ -499,6 +530,7 @@ export default {
             id: 'deuiaction2',
           },
           {
+            actionLevel: 100,
             detoolbarItems: [
               {
                 actionLevel: 100,
@@ -598,6 +630,7 @@ export default {
             id: 'items2',
           },
         ],
+        toolbarStyle: 'USER',
         codeName: 'index_view_toolbar',
         controlType: 'TOOLBAR',
         logicName: '测试库主视图工具栏',

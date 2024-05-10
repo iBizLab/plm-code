@@ -12,6 +12,12 @@ import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
 import cn.ibizlab.plm.core.base.domain.Baseline;
 import cn.ibizlab.plm.core.base.filter.BaselineSearchContext;
+import cn.ibizlab.plm.core.testmgmt.domain.Library;
+import cn.ibizlab.plm.core.prodmgmt.domain.Product;
+import cn.ibizlab.plm.core.projmgmt.domain.Project;
+import cn.ibizlab.plm.core.prodmgmt.domain.BaselineIdea;
+import cn.ibizlab.plm.core.testmgmt.domain.BaselineTestCase;
+import cn.ibizlab.plm.core.projmgmt.domain.BaselineWorkItem;
 import cn.ibizlab.plm.core.base.domain.Relation;
 
 /**
@@ -173,12 +179,32 @@ public interface BaselineService extends IService<Baseline> {
     }
 
     /**
-     * set_complete
+     * set_complete_library
      * 
      * @param dto
      * @return
      */
-    default Baseline setComplete(Baseline dto) {
+    default Baseline setCompleteLibrary(Baseline dto) {
+        return dto;
+    }
+
+    /**
+     * set_complete_product
+     * 
+     * @param dto
+     * @return
+     */
+    default Baseline setCompleteProduct(Baseline dto) {
+        return dto;
+    }
+
+    /**
+     * set_complete_project
+     * 
+     * @param dto
+     * @return
+     */
+    default Baseline setCompleteProject(Baseline dto) {
         return dto;
     }
 
@@ -211,6 +237,60 @@ public interface BaselineService extends IService<Baseline> {
     default BaselineSearchContext getSearchContext() {
         return new BaselineSearchContext();
     }
+    /**
+     * selectRelByOwnerId
+     * @param ownerIds
+     * @return
+     */
+    List<Baseline> findByOwnerId(List<String> ownerIds);
+    default List<Baseline> findByOwnerId(String ownerId) {
+        return findByOwnerId(Arrays.asList(ownerId));
+    }
+    /**
+     * removeRelByOwnerId
+     * @param ownerId
+     * @return
+     */
+    boolean removeByOwnerId(String ownerId);
+    /**
+     * resetRelByOwnerId
+     * @param ownerId
+     * @return
+     */
+    boolean resetByOwnerId(String ownerId);
+    /**
+     * saveRelByOwnerId
+     * @param ownerId
+     * @param list
+     * @return
+     */
+    default boolean saveByOwnerId(String ownerId,List<Baseline> list) {
+        return getSelf().saveByLibrary(new Library().setId(ownerId),list);
+    }
+    /**
+    * saveRelByLibrary
+    * @param library
+    * @param list
+    * @return
+    */
+    boolean saveByLibrary(Library library,List<Baseline> list);
+
+    /**
+    * saveRelByProduct
+    * @param product
+    * @param list
+    * @return
+    */
+    boolean saveByProduct(Product product,List<Baseline> list);
+
+    /**
+    * saveRelByProject
+    * @param project
+    * @param list
+    * @return
+    */
+    boolean saveByProject(Project project,List<Baseline> list);
+
 
     /**
      * 自定义查询SQL

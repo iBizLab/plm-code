@@ -19,6 +19,8 @@ import cn.ibizlab.plm.core.testmgmt.filter.ReviewSearchContext;
 import cn.ibizlab.plm.core.testmgmt.service.ReviewService;
 import cn.ibizlab.plm.core.testmgmt.mapper.ReviewMapper;
 import cn.ibizlab.plm.util.enums.Entities;
+import cn.hutool.core.convert.Convert;
+import cn.ibizlab.util.enums.FlowEventType;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.enums.SqlMethod;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -26,8 +28,14 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import cn.ibizlab.plm.core.testmgmt.domain.Library;
 import cn.ibizlab.plm.core.testmgmt.service.LibraryService;
+import cn.ibizlab.plm.core.base.domain.Attention;
+import cn.ibizlab.plm.core.base.service.AttentionService;
 import cn.ibizlab.plm.core.base.domain.Relation;
 import cn.ibizlab.plm.core.base.service.RelationService;
+import cn.ibizlab.plm.core.base.domain.Attachment;
+import cn.ibizlab.plm.core.base.service.AttachmentService;
+import cn.ibizlab.plm.core.testmgmt.domain.ReviewContent;
+import cn.ibizlab.plm.core.testmgmt.service.ReviewContentService;
 
 /**
  * 实体[评审] 服务对象接口实现
@@ -43,7 +51,19 @@ public abstract class AbstractReviewService extends ServiceImpl<ReviewMapper,Rev
 
     @Autowired
     @Lazy
+    protected AttentionService attentionService;
+
+    @Autowired
+    @Lazy
     protected RelationService relationService;
+
+    @Autowired
+    @Lazy
+    protected AttachmentService attachmentService;
+
+    @Autowired
+    @Lazy
+    protected ReviewContentService reviewContentService;
 
     protected int batchSize = 500;
 
@@ -52,6 +72,12 @@ public abstract class AbstractReviewService extends ServiceImpl<ReviewMapper,Rev
         if(rt == null)
             throw new NotFoundException("数据不存在",Entities.REVIEW.toString(),et.getId());
         rt.copyTo(et,true);
+        //设置 [关注]
+        getAttentions(et);
+        //设置 [附件]
+        getAttachments(et);
+        //设置 [评审内容]
+        getContents(et);
         return et;
     }
 
@@ -62,6 +88,16 @@ public abstract class AbstractReviewService extends ServiceImpl<ReviewMapper,Rev
     public void fillParentData(Review et) {
         if(Entities.LIBRARY.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
             et.setLibraryId((String)et.getContextParentKey());
+            Library library = et.getLibrary();
+            if(library == null) {
+                library = libraryService.getById(et.getLibraryId());
+                et.setLibrary(library);
+            }
+            if(!ObjectUtils.isEmpty(library)) {
+                et.setLibraryIdentifier(library.getIdentifier());
+                et.setLibraryId(library.getId());
+                et.setLibraryName(library.getName());
+            }
         }
     }
 
@@ -80,6 +116,9 @@ public abstract class AbstractReviewService extends ServiceImpl<ReviewMapper,Rev
         fillParentData(et);
         if(this.baseMapper.insert(et) < 1)
             return false;
+        attentionService.saveByReview(et,et.getAttentions());
+        attachmentService.saveByReview(et,et.getAttachments());
+        reviewContentService.saveByReview(et,et.getContents());
         get(et);
         return true;
     }
@@ -97,6 +136,9 @@ public abstract class AbstractReviewService extends ServiceImpl<ReviewMapper,Rev
         qw.eq("id", et.getId());
         if(!update(et, qw))
             return false;
+        attentionService.saveByReview(et,et.getAttentions());
+        attachmentService.saveByReview(et,et.getAttachments());
+        reviewContentService.saveByReview(et,et.getContents());
         get(et);
         return true;
     }
@@ -151,7 +193,10 @@ public abstract class AbstractReviewService extends ServiceImpl<ReviewMapper,Rev
     }
 
     public Page<Review> searchDefault(ReviewSearchContext context) {
+        Map<String,Map<String,Object>> businesskeys = fillWFTaskContext(context);
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Review> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
+        if(!ObjectUtils.isEmpty(context.getSrfWF()))
+            fillWFParam(pages,businesskeys);
         List<Review> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
@@ -163,6 +208,15 @@ public abstract class AbstractReviewService extends ServiceImpl<ReviewMapper,Rev
 
     public List<Review> findByLibraryId(List<String> libraryIds) {
         List<Review> list = baseMapper.findByLibraryId(libraryIds);
+        if(!ObjectUtils.isEmpty(list))
+            attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
+            attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
+            reviewContentService.findByPrincipalId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getPrincipalId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setContents(sub.getValue())));
         return list;
     }
     public boolean removeByLibraryId(String libraryId) {
@@ -198,6 +252,84 @@ public abstract class AbstractReviewService extends ServiceImpl<ReviewMapper,Rev
             return false;
         else
             return true;
+    }
+
+    @Override
+    public List<Attention> getAttentions(Review et) {
+        List<Attention> list = attentionService.findByOwnerId(et.getId());
+        et.setAttentions(list);
+        return list;
+    }
+
+    @Override
+    public List<Attachment> getAttachments(Review et) {
+        List<Attachment> list = attachmentService.findByOwnerId(et.getId());
+        et.setAttachments(list);
+        return list;
+    }
+
+    @Override
+    public List<ReviewContent> getContents(Review et) {
+        List<ReviewContent> list = reviewContentService.findByPrincipalId(et.getId());
+        et.setContents(list);
+        return list;
+    }
+
+    @Autowired
+    protected cn.ibizlab.util.client.FlowFeignClient flowFeignClient;
+
+    /**
+     * 查询统一工作流待办
+     * @param context
+     */
+    protected Map<String,Map<String,Object>> fillWFTaskContext(ReviewSearchContext context){
+        Map<String, Map<String, Object>> businessKeys = null;
+        if(!ObjectUtils.isEmpty(context.getSrfWF())){
+            businessKeys = flowFeignClient.toDoKeys("ibizplm","review",context.getProcessDefinitionKey(),context.getUserTaskId(),null);
+            if(!ObjectUtils.isEmpty(businessKeys)) {
+                context.getSelectCond().in("id", businessKeys.keySet());
+            }
+            else {
+                context.getSelectCond().apply("1<>1");
+            }
+        }
+        return businessKeys;
+    }
+
+    /**
+     * 填充工作流参数
+     * @param pages
+     * @param businessKeys
+     */
+    protected void fillWFParam(com.baomidou.mybatisplus.extension.plugins.pagination.Page<Review> pages, Map<String, Map<String, Object>> businessKeys) {
+        if (!ObjectUtils.isEmpty(businessKeys)) {
+            pages.getRecords().forEach(entity->{
+                Object id = entity.getId();
+                if (!ObjectUtils.isEmpty(id) && businessKeys.containsKey(id.toString())) {
+                    businessKeys.get(id.toString()).entrySet().forEach(entry->{
+                        entity.set(entry.getKey(),entry.getValue());
+                    });
+                }
+            });
+        }
+    }
+
+    @Override
+    public boolean onFlowEvent(String eventType, Review et) {
+        switch (FlowEventType.valueOf(eventType.toUpperCase())) {
+            case PROCESS_STARTED:
+                this.getSelf().update(et);
+                break;
+            case ACTIVITY_STARTED:
+                this.getSelf().update(et);
+                break;
+            case PROCESS_COMPLETED:
+                this.getSelf().update(et);
+                break;
+            case TASK_COMPLETED:
+                break;
+        }
+        return true;
     }
 
     @Override

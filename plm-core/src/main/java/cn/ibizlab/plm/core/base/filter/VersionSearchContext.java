@@ -47,6 +47,14 @@ public class VersionSearchContext extends QueryWrapperContext<Version> {
     private String ownerIdEQ;
 
     /**
+     * 所属数据标识IN
+     */
+    @JsonProperty("n_owner_id_in")
+    @JSONField(name = "n_owner_id_in")
+    @ApiModelProperty("所属数据标识IN")
+    private String ownerIdIN;
+
+    /**
      * 所属数据对象EQ
      */
     @JsonProperty("n_owner_type_eq")
@@ -63,6 +71,14 @@ public class VersionSearchContext extends QueryWrapperContext<Version> {
     private String nameLIKE;
 
     /**
+     * 标识IN
+     */
+    @JsonProperty("n_id_in")
+    @JSONField(name = "n_id_in")
+    @ApiModelProperty("标识IN")
+    private String idIN;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
@@ -73,7 +89,11 @@ public class VersionSearchContext extends QueryWrapperContext<Version> {
     @Override
     public void setContextParentKey(Serializable contextParentKey) {
         super.setContextParentKey(contextParentKey);
+        if(Entities.IDEA.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("owner_id",contextParentKey);
         if(Entities.ARTICLE_PAGE.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("owner_id",contextParentKey);
+        if(Entities.TEST_CASE.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("owner_id",contextParentKey);
         if(Entities.WORK_ITEM.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("owner_id",contextParentKey);

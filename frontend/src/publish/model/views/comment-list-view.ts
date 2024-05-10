@@ -507,6 +507,16 @@ export default {
                       caption: '容器',
                       itemStyle: 'DEFAULT',
                       itemType: 'CONTAINER',
+                      controlLogics: [
+                        {
+                          itemName: 'CONTAINER2',
+                          logicTag: 'list_itempanel',
+                          logicType: 'SCRIPT',
+                          scriptCode: 'context.srfreadonly != true',
+                          triggerType: 'ITEMVISIBLE',
+                          id: 'show_logic',
+                        },
+                      ],
                       layoutPos: {
                         shrink: 1,
                         layout: 'FLEX',
@@ -751,30 +761,14 @@ export default {
         minorSortAppDEFieldId: 'create_time',
         delistDataItems: [
           {
-            appDEFieldId: 'pcontent',
-            dataType: 21,
-            id: 'pcontent',
-          },
-          {
-            appDEFieldId: 'pid',
-            dataType: 25,
-            id: 'pid',
-          },
-          {
-            appDEFieldId: 'content',
-            dataType: 21,
-            id: 'content',
-          },
-          {
             appDEFieldId: 'id',
             dataType: 25,
             id: 'id',
           },
           {
-            appDEFieldId: 'pcreate_man',
-            frontCodeListId: 'plmweb.sysoperator',
-            dataType: 25,
-            id: 'pcreate_man',
+            appDEFieldId: 'content',
+            dataType: 21,
+            id: 'content',
           },
           {
             appDEFieldId: 'create_man',
@@ -783,10 +777,26 @@ export default {
             id: 'create_man',
           },
           {
+            appDEFieldId: 'pcontent',
+            dataType: 21,
+            id: 'pcontent',
+          },
+          {
             appDEFieldId: 'create_time',
             dataType: 5,
             format: 'YYYY-MM-DD HH:mm:ss',
             id: 'create_time',
+          },
+          {
+            appDEFieldId: 'pcreate_man',
+            frontCodeListId: 'plmweb.sysoperator',
+            dataType: 25,
+            id: 'pcreate_man',
+          },
+          {
+            appDEFieldId: 'pid',
+            dataType: 25,
+            id: 'pid',
           },
           {
             appDEFieldId: 'id',

@@ -250,63 +250,63 @@ public interface SearchCommentService extends IService<SearchComment> {
      * @return
      */
     default boolean saveByPrincipalId(String principalId,List<SearchComment> list) {
-        return getSelf().saveByCustomer(new Customer().setId(principalId),list);
+        return getSelf().saveByDerCustomer(new Customer().setId(principalId),list);
     }
     /**
-    * saveRelByCustomer
+    * saveRelByDerCustomer
     * @param customer
     * @param list
     * @return
     */
-    boolean saveByCustomer(Customer customer,List<SearchComment> list);
+    boolean saveByDerCustomer(Customer customer,List<SearchComment> list);
 
     /**
-    * saveRelByIdea
+    * saveRelByDerIdea
     * @param idea
     * @param list
     * @return
     */
-    boolean saveByIdea(Idea idea,List<SearchComment> list);
+    boolean saveByDerIdea(Idea idea,List<SearchComment> list);
 
     /**
-    * saveRelByPage
+    * saveRelByDerPage
     * @param articlePage
     * @param list
     * @return
     */
-    boolean saveByPage(ArticlePage articlePage,List<SearchComment> list);
+    boolean saveByDerPage(ArticlePage articlePage,List<SearchComment> list);
 
     /**
-    * saveRelByRun
+    * saveRelByDerRun
     * @param run
     * @param list
     * @return
     */
-    boolean saveByRun(Run run,List<SearchComment> list);
+    boolean saveByDerRun(Run run,List<SearchComment> list);
 
     /**
-    * saveRelByTestCase
+    * saveRelByDerTestCase
     * @param testCase
     * @param list
     * @return
     */
-    boolean saveByTestCase(TestCase testCase,List<SearchComment> list);
+    boolean saveByDerTestCase(TestCase testCase,List<SearchComment> list);
 
     /**
-    * saveRelByTicket
+    * saveRelByDerTicket
     * @param ticket
     * @param list
     * @return
     */
-    boolean saveByTicket(Ticket ticket,List<SearchComment> list);
+    boolean saveByDerTicket(Ticket ticket,List<SearchComment> list);
 
     /**
-    * saveRelByWorkItem
+    * saveRelByDerWorkItem
     * @param workItem
     * @param list
     * @return
     */
-    boolean saveByWorkItem(WorkItem workItem,List<SearchComment> list);
+    boolean saveByDerWorkItem(WorkItem workItem,List<SearchComment> list);
 
 
     /**

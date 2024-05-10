@@ -139,6 +139,9 @@ public abstract class AbstractRunService extends ServiceImpl<RunMapper,Run> impl
                 et.setPlanId(testPlan.getId());
             }
         }
+        if(Entities.TEST_CASE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setCaseId((String)et.getContextParentKey());
+        }
     }
 
     public Run getDraft(Run et) {
@@ -407,6 +410,37 @@ public abstract class AbstractRunService extends ServiceImpl<RunMapper,Run> impl
         for(Run sub:list) {
             sub.setPlanId(testPlan.getId());
             sub.setTestPlan(testPlan);
+            if(ObjectUtils.isEmpty(sub.getId()))
+                before.values().stream()
+                        .filter(e->ObjectUtils.nullSafeEquals(sub.getDefaultKey(true),e.getDefaultKey(true)))
+                        .findFirst().ifPresent(e->sub.setId(e.getId()));
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().createBatch(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+            return false;
+        else
+            return true;
+    }
+
+    public boolean saveByTestCaseLatestRun(TestCase testCase,List<Run> list) {
+        if(list==null)
+            return true;
+        Map<String,Run> before = findByCaseId(testCase.getId()).stream().collect(Collectors.toMap(Run::getId,e->e));
+        List<Run> update = new ArrayList<>();
+        List<Run> create = new ArrayList<>();
+
+        for(Run sub:list) {
+            sub.setCaseId(testCase.getId());
+            sub.setTestCaseLatestRun(testCase);
             if(ObjectUtils.isEmpty(sub.getId()))
                 before.values().stream()
                         .filter(e->ObjectUtils.nullSafeEquals(sub.getDefaultKey(true),e.getDefaultKey(true)))

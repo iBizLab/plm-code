@@ -148,6 +148,8 @@ public abstract class AbstractEntryService extends ServiceImpl<EntryMapper,Entry
 
     @Transactional
     public boolean remove(Entry et) {
+        String key = et.getId();
+        workItemService.resetByEntryId(key);
         if(!remove(Wrappers.<Entry>lambdaQuery().eq(Entry::getId, et.getId())))
             return false;
         return true;
@@ -155,7 +157,9 @@ public abstract class AbstractEntryService extends ServiceImpl<EntryMapper,Entry
 
     @Transactional
     public boolean removeByEntities(List<Entry> entities) {
-        this.baseMapper.deleteEntities(entities);
+        for (Entry et : entities)
+            if(!getSelf().remove(et))
+                return false;
         return true;
     }
 
@@ -183,7 +187,11 @@ public abstract class AbstractEntryService extends ServiceImpl<EntryMapper,Entry
         return list;
     }
     public boolean removeByBoardId(String boardId) {
-        return this.remove(Wrappers.<Entry>lambdaQuery().eq(Entry::getBoardId,boardId));
+        List<String> ids = baseMapper.findByBoardId(Arrays.asList(boardId)).stream().map(e->e.getId()).collect(Collectors.toList());
+        if(!ObjectUtils.isEmpty(ids))
+            return this.removeBatch(ids);
+        else
+            return true;
     }
 
     public boolean resetByBoardId(String boardId) {
@@ -218,7 +226,11 @@ public abstract class AbstractEntryService extends ServiceImpl<EntryMapper,Entry
     }
 
     public boolean removeByProjectId(String projectId) {
-        return this.remove(Wrappers.<Entry>lambdaQuery().eq(Entry::getProjectId,projectId));
+        List<String> ids = baseMapper.findByProjectId(Arrays.asList(projectId)).stream().map(e->e.getId()).collect(Collectors.toList());
+        if(!ObjectUtils.isEmpty(ids))
+            return this.removeBatch(ids);
+        else
+            return true;
     }
 
     public boolean resetByProjectId(String projectId) {

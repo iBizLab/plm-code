@@ -1160,40 +1160,6 @@ export default {
           id: 'begin',
         },
         {
-          codeName: 'PREPAREJSPARAM3',
-          leftPos: 200,
-          logicNodeType: 'PREPAREJSPARAM',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'end1',
-              srcDEUILogicNodeId: 'preparejsparam3',
-              id: '连接名称',
-            },
-          ],
-          deuilogicNodeParams: [
-            {
-              dstFieldName: 'state.keepAlive',
-              dstDEUILogicParamId: 'grid',
-              paramAction: 'SETPARAMVALUE',
-              srcValue: 'true',
-              srcValueType: 'SRCVALUE',
-              name: '直接值[true] ==> grid[state.keepAlive]',
-              id: '直接值[true] ==> grid[state.keepalive]',
-            },
-            {
-              dstFieldName: 'state.visible',
-              dstDEUILogicParamId: 'grid',
-              paramAction: 'SETPARAMVALUE',
-              srcValue: 'false',
-              srcValueType: 'SRCVALUE',
-              id: '直接值[false] ==> grid[state.visible]',
-            },
-          ],
-          topPos: 440,
-          name: '设置表格隐藏',
-          id: 'preparejsparam3',
-        },
-        {
           codeName: 'PREPAREJSPARAM1',
           leftPos: 350,
           logicNodeType: 'PREPAREJSPARAM',
@@ -1257,7 +1223,7 @@ export default {
           logicNodeType: 'PREPAREJSPARAM',
           deuilogicLinks: [
             {
-              dstDEUILogicNodeId: 'end1',
+              dstDEUILogicNodeId: 'rawjscode1',
               srcDEUILogicNodeId: 'preparejsparam2',
               id: '连接名称',
             },
@@ -1294,14 +1260,58 @@ export default {
           name: '结束',
           id: 'end1',
         },
+        {
+          codeName: 'PREPAREJSPARAM3',
+          leftPos: 200,
+          logicNodeType: 'PREPAREJSPARAM',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'end1',
+              srcDEUILogicNodeId: 'preparejsparam3',
+              id: '连接名称',
+            },
+          ],
+          deuilogicNodeParams: [
+            {
+              dstFieldName: 'state.keepAlive',
+              dstDEUILogicParamId: 'grid',
+              paramAction: 'SETPARAMVALUE',
+              srcValue: 'true',
+              srcValueType: 'SRCVALUE',
+              name: '直接值[true] ==> grid[state.keepAlive]',
+              id: '直接值[true] ==> grid[state.keepalive]',
+            },
+            {
+              dstFieldName: 'state.visible',
+              dstDEUILogicParamId: 'grid',
+              paramAction: 'SETPARAMVALUE',
+              srcValue: 'false',
+              srcValueType: 'SRCVALUE',
+              id: '直接值[false] ==> grid[state.visible]',
+            },
+          ],
+          topPos: 440,
+          name: '设置表格隐藏',
+          id: 'preparejsparam3',
+        },
+        {
+          code: 'const rows = uiLogic.grid.mdController.state.rows;\r\nconst srfreadonly = context.srfreadonly;\r\nif (rows && rows.length > 0) {\r\n\trows.forEach(row => {\r\n        // 删除附件行为禁用\r\n\t\tconst uiActionId = row.uaColStates.uagridcolumn1.u44d00e2;\r\n        if(srfreadonly == true){\r\n            uiActionId.disabled = true;\r\n        }    \r\n\t})\r\n}\t\r\n',
+          codeName: 'RAWJSCODE1',
+          leftPos: 460,
+          logicNodeType: 'RAWJSCODE',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'end1',
+              srcDEUILogicNodeId: 'rawjscode1',
+              id: '连接名称',
+            },
+          ],
+          topPos: 550,
+          name: '上下文中srfreadonly禁用删除附件行为',
+          id: 'rawjscode1',
+        },
       ],
       deuilogicParams: [
-        {
-          codeName: 'grid',
-          ctrlParam: true,
-          name: '重复器表格',
-          id: 'grid',
-        },
         {
           codeName: 'form',
           ctrlParam: true,
@@ -1314,6 +1324,12 @@ export default {
           entityParam: true,
           name: '传入变量',
           id: 'default',
+        },
+        {
+          codeName: 'grid',
+          ctrlParam: true,
+          name: '重复器表格',
+          id: 'grid',
         },
       ],
       startDEUILogicNodeId: 'begin',
@@ -1731,6 +1747,16 @@ export default {
     },
     {
       actionRSMode: 1,
+      codeName: 'REVIEW',
+      majorAppDataEntityId: 'plmweb.review',
+      parentAppDEFieldId: 'owner_id',
+      rsmode: 1,
+      rstype: 'DER1N',
+      name: 'DERCUSTOM_REVIEW_ATTACHMENT',
+      id: 'review',
+    },
+    {
+      actionRSMode: 1,
       codeName: 'STENCIL',
       majorAppDataEntityId: 'plmweb.stencil',
       parentAppDEFieldId: 'owner_id',
@@ -1836,6 +1862,7 @@ export default {
     'stencils/${stencil}/attachments/${attachment}',
     'ideas/${idea}/attachments/${attachment}',
     'article_pages/${article_page}/attachments/${attachment}',
+    'reviews/${review}/attachments/${attachment}',
     'test_cases/${test_case}/attachments/${attachment}',
     'tickets/${ticket}/attachments/${attachment}',
     'work_items/${work_item}/attachments/${attachment}',

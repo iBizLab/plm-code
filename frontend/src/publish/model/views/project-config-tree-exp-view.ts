@@ -63,6 +63,12 @@ export default {
           id: 'expitem:node_1',
         },
         {
+          realTitle: '工时类别',
+          refAppViewId: 'plmweb.workload_type_pick_up_tap_exp_view',
+          name: 'EXPITEM:node_14',
+          id: 'expitem:node_14',
+        },
+        {
           realTitle: '项目集管理分页导航视图',
           refAppViewId: 'plmweb.portfolio_project_set_tab_exp_view',
           name: 'EXPITEM:node_2',
@@ -80,6 +86,12 @@ export default {
           name: 'EXPITEM:node_6',
           id: 'expitem:node_6',
         },
+        {
+          realTitle: '发布配置',
+          refAppViewId: 'plmweb.dictionary_data_global_tab_exp_view',
+          name: 'EXPITEM:node_8',
+          id: 'expitem:node_8',
+        },
       ],
       controls: [
         {
@@ -92,19 +104,19 @@ export default {
               id: '通用 - 项目管理',
             },
             {
+              childDETreeNodeId: 'node_6',
+              parentDETreeNodeId: 'node_12',
+              parentValueLevel: 1,
+              searchMode: 3,
+              id: '配置 - 工作项配置',
+            },
+            {
               childDETreeNodeId: 'node_3',
               parentDETreeNodeId: 'node_11',
               parentValueLevel: 1,
               searchMode: 3,
               name: '流程 - Scrum项目',
               id: '流程 - scrum项目',
-            },
-            {
-              childDETreeNodeId: 'node_6',
-              parentDETreeNodeId: 'node_12',
-              parentValueLevel: 1,
-              searchMode: 3,
-              id: '配置 - 工作项配置',
             },
             {
               childDETreeNodeId: 'node_9',
@@ -121,26 +133,12 @@ export default {
               id: '默认根节点 - 通用',
             },
             {
-              childDETreeNodeId: 'node_2',
-              parentDETreeNodeId: 'node_10',
-              parentValueLevel: 1,
-              searchMode: 3,
-              id: '通用 - 项目集管理',
-            },
-            {
               childDETreeNodeId: 'node_4',
               parentDETreeNodeId: 'node_11',
               parentValueLevel: 1,
               searchMode: 3,
               name: '流程 - Kanban项目',
               id: '流程 - kanban项目',
-            },
-            {
-              childDETreeNodeId: 'node_7',
-              parentDETreeNodeId: 'node_12',
-              parentValueLevel: 1,
-              searchMode: 3,
-              id: '配置 - 项目配置',
             },
             {
               childDETreeNodeId: 'node_11',
@@ -150,11 +148,18 @@ export default {
               id: '默认根节点 - 流程',
             },
             {
-              childDETreeNodeId: 'node_1',
+              childDETreeNodeId: 'node_2',
               parentDETreeNodeId: 'node_10',
               parentValueLevel: 1,
               searchMode: 3,
-              id: '通用 - 标签管理',
+              id: '通用 - 项目集管理',
+            },
+            {
+              childDETreeNodeId: 'node_7',
+              parentDETreeNodeId: 'node_12',
+              parentValueLevel: 1,
+              searchMode: 3,
+              id: '配置 - 项目配置',
             },
             {
               childDETreeNodeId: 'node_5',
@@ -164,6 +169,20 @@ export default {
               id: '流程 - 瀑布项目',
             },
             {
+              childDETreeNodeId: 'node_12',
+              parentDETreeNodeId: 'root',
+              parentValueLevel: 1,
+              searchMode: 3,
+              id: '默认根节点 - 配置',
+            },
+            {
+              childDETreeNodeId: 'node_1',
+              parentDETreeNodeId: 'node_10',
+              parentValueLevel: 1,
+              searchMode: 3,
+              id: '通用 - 标签管理',
+            },
+            {
               childDETreeNodeId: 'node_8',
               parentDETreeNodeId: 'node_12',
               parentValueLevel: 1,
@@ -171,11 +190,11 @@ export default {
               id: '配置 - 发布配置',
             },
             {
-              childDETreeNodeId: 'node_12',
-              parentDETreeNodeId: 'root',
+              childDETreeNodeId: 'node_14',
+              parentDETreeNodeId: 'node_10',
               parentValueLevel: 1,
               searchMode: 3,
-              id: '默认根节点 - 配置',
+              id: '通用 - 工时设置',
             },
           ],
           detreeNodes: [
@@ -243,6 +262,14 @@ export default {
               id: 'node_13',
             },
             {
+              text: '工时设置',
+              navAppViewId: 'plmweb.workload_type_pick_up_tap_exp_view',
+              nodeType: 'node_14',
+              treeNodeType: 'STATIC',
+              name: '工时设置',
+              id: 'node_14',
+            },
+            {
               text: '项目集管理',
               navAppViewId: 'plmweb.portfolio_project_set_tab_exp_view',
               nodeType: 'node_2',
@@ -292,9 +319,9 @@ export default {
             },
             {
               text: '发布配置',
+              navAppViewId: 'plmweb.dictionary_data_global_tab_exp_view',
               nodeType: 'node_8',
               treeNodeType: 'STATIC',
-              disableSelect: true,
               name: '发布配置',
               id: 'node_8',
             },

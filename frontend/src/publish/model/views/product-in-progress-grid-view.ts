@@ -154,8 +154,8 @@ export default {
                 tooltip: '归档',
                 showIcon: true,
                 sysImage: {
-                  cssClass: 'fa fa-archive',
-                  glyph: 'xf187@FontAwesome',
+                  cssClass: 'fa fa-file-archive-o',
+                  glyph: 'xf1c6@FontAwesome',
                 },
                 id: 'u43d4a28',
               },
@@ -168,8 +168,8 @@ export default {
                 tooltip: '删除',
                 showIcon: true,
                 sysImage: {
-                  cssClass: 'fa fa-trash',
-                  glyph: 'xf1f8@FontAwesome',
+                  cssClass: 'fa fa-trash-o',
+                  glyph: 'xf014@FontAwesome',
                 },
                 id: 'u4e994a6',
               },
@@ -227,11 +227,6 @@ export default {
           valueType: 'SIMPLE',
           dataType: 25,
           id: 'srfmajortext',
-        },
-        {
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'srfmstag',
         },
       ],
       degridEditItems: [
@@ -318,6 +313,23 @@ export default {
       groupMode: 'SINGLE',
       quickSearchMode: 1,
       enableQuickSearch: true,
+      codeName: 'query_search_bar',
+      controlType: 'SEARCHBAR',
+      logicName: '快速搜索栏',
+      appDataEntityId: 'plmweb.product',
+      controlParam: {
+        ctrlParams: {
+          TELEPORTFLAG: 'true',
+        },
+        id: 'tabsearchbar',
+      },
+      modelId: '1DCF1D34-7F8B-4549-99A9-4B45D74F4AC4',
+      modelType: 'PSSYSSEARCHBAR',
+      name: 'tabsearchbar',
+      id: 'plmweb.product.query_search_bar',
+    },
+    {
+      groupMode: 'SINGLE',
       controlType: 'SEARCHBAR',
       appDataEntityId: 'plmweb.product',
       controlParam: {
@@ -350,7 +362,7 @@ export default {
   viewStyle: 'DEFAULT',
   viewType: 'DEGRIDVIEW',
   enableDP: true,
-  showCaptionBar: true,
+  showCaptionBar: false,
   modelId: 'da35f8390e102e6c31e03a69262b298f',
   modelType: 'PSAPPDEVIEW',
   name: 'productin_progress_grid_view',

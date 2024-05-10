@@ -191,6 +191,21 @@ public interface BoardService extends IService<Board> {
     List<Board> listDefault(BoardSearchContext context);
 
     /**
+     * searchcur_project_board
+     * 
+     * @param context
+     * @return
+     */
+    Page<Board> searchCurProjectBoard(BoardSearchContext context);
+    /**
+     * listcur_project_board
+     * 
+     * @param context
+     * @return
+     */
+    List<Board> listCurProjectBoard(BoardSearchContext context);
+
+    /**
      * 创建实体对象
      * @return
      */

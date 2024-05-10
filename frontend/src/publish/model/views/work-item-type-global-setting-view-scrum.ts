@@ -1147,11 +1147,11 @@ export default {
       delistDataItems: [
         {
           dataType: 25,
-          id: 'id',
+          id: 'name',
         },
         {
           dataType: 25,
-          id: 'name',
+          id: 'id',
         },
         {
           dataType: 21,

@@ -72,30 +72,6 @@ export default {
             actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
-                actionType: 'UIACTION',
-                buttonStyle: 'DEFAULT',
-                buttonType: 'PANELBUTTON',
-                uiactionId: 'switch_show_mode@work_item',
-                renderMode: 'BUTTON',
-                tooltip: '树状',
-                uiactionTarget: 'NONE',
-                caption: '树状',
-                itemStyle: 'DEFAULT',
-                itemType: 'BUTTON',
-                layoutPos: {
-                  shrink: 1,
-                  halignSelf: 'LEFT',
-                  layout: 'FLEX',
-                },
-                sysImage: {
-                  cssClass: 'fa fa-reorder',
-                  glyph: 'xf0c9@FontAwesome',
-                },
-                sysPFPluginId: 'switch_show_mode',
-                showCaption: true,
-                id: 'button_calluilogic',
-              },
-              {
                 actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
@@ -124,6 +100,30 @@ export default {
                   layout: 'FLEX',
                 },
                 id: 'view_toolbar',
+              },
+              {
+                actionType: 'UIACTION',
+                buttonStyle: 'DEFAULT',
+                buttonType: 'PANELBUTTON',
+                uiactionId: 'switch_show_mode@work_item',
+                renderMode: 'BUTTON',
+                tooltip: '树状',
+                uiactionTarget: 'NONE',
+                caption: '树状',
+                itemStyle: 'DEFAULT',
+                itemType: 'BUTTON',
+                layoutPos: {
+                  shrink: 1,
+                  halignSelf: 'LEFT',
+                  layout: 'FLEX',
+                },
+                sysImage: {
+                  cssClass: 'fa fa-reorder',
+                  glyph: 'xf0c9@FontAwesome',
+                },
+                sysPFPluginId: 'switch_show_mode',
+                showCaption: true,
+                id: 'button_calluilogic',
               },
               {
                 actionGroupExtractMode: 'ITEM',
@@ -349,6 +349,8 @@ export default {
       {
         detoolbarItems: [
           {
+            actionLevel: 100,
+            buttonStyle: 'STYLE3',
             detoolbarItems: [
               {
                 actionLevel: 100,
@@ -403,23 +405,29 @@ export default {
             id: 'items2',
           },
           {
+            itemType: 'SEPERATOR',
+            id: 'seperator1',
+          },
+          {
+            actionLevel: 100,
+            buttonStyle: 'STYLE2',
             detoolbarItems: [
               {
                 actionLevel: 100,
                 noPrivDisplayMode: 2,
-                uiactionId: 'import_work_item_backlog@work_item',
+                uiactionId: 'scrum_backlog_import_data@work_item',
                 uiactionTarget: 'NONE',
                 valid: true,
                 caption: '导入需求',
                 itemType: 'DEUIACTION',
                 sysImage: {
-                  cssClass: 'fa fa-upload',
-                  glyph: 'xf093@FontAwesome',
+                  cssClass: 'fa fa-cloud-upload',
+                  glyph: 'xf0ee@FontAwesome',
                 },
                 tooltip: '导入需求',
                 showCaption: true,
                 showIcon: true,
-                id: 'deuiaction2',
+                id: 'deuiaction4',
               },
               {
                 actionLevel: 100,
@@ -1287,6 +1295,7 @@ export default {
                 id: 'deuiaction10',
               },
               {
+                actionLevel: 100,
                 detoolbarItems: [
                   {
                     actionLevel: 100,
@@ -1362,6 +1371,10 @@ export default {
                 valid: true,
                 caption: '更多',
                 itemType: 'ITEMS',
+                sysImage: {
+                  cssClass: 'fa fa-list-ul',
+                  glyph: 'xf0ca@FontAwesome',
+                },
                 tooltip: '更多',
                 showCaption: true,
                 showIcon: true,

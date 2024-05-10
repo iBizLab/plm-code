@@ -87,7 +87,7 @@ public class Release extends EntityMP implements Serializable
      * 状态
      */
     @TableField(value = "status")
-    @DEField(name = "status" , defaultValue = "pending" , dict = "version_status")
+    @DEField(name = "status" , defaultValue = "10" , dict = "release_stage")
     @JsonProperty("status")
     @JSONField(name = "status")
     @ApiModelProperty(value = "status", notes = "状态")

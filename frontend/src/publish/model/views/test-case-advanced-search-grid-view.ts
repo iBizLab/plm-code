@@ -152,13 +152,13 @@ export default {
         {
           clconvertMode: 'FRONT',
           dataItemName: 'state',
-          excelCaption: '评审状态',
+          excelCaption: '状态',
           appCodeListId: 'plmweb.testmgmt__test_case_state',
           appDEFieldId: 'state',
           valueType: 'SIMPLE',
           aggMode: 'NONE',
           align: 'LEFT',
-          caption: '评审状态',
+          caption: '状态',
           codeName: 'state',
           columnType: 'DEFGRIDCOLUMN',
           noPrivDisplayMode: 1,
@@ -390,6 +390,9 @@ export default {
                   editor: {
                     singleSelect: true,
                     appCodeListId: 'plmweb.testmgmt__library_list',
+                    editorParams: {
+                      overflowMode: 'ellipsis',
+                    },
                     editorType: 'DROPDOWNLIST',
                     placeHolder: '选择测试库',
                     valueType: 'SIMPLE',

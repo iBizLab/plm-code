@@ -13,8 +13,14 @@ import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
 import cn.ibizlab.plm.core.base.domain.Version;
 import cn.ibizlab.plm.core.base.filter.VersionSearchContext;
+import cn.ibizlab.plm.core.prodmgmt.domain.Idea;
 import cn.ibizlab.plm.core.wiki.domain.ArticlePage;
+import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
+import cn.ibizlab.plm.core.prodmgmt.domain.BaselineIdea;
+import cn.ibizlab.plm.core.testmgmt.domain.BaselineTestCase;
+import cn.ibizlab.plm.core.projmgmt.domain.BaselineWorkItem;
+import cn.ibizlab.plm.core.testmgmt.domain.ReviewContent;
 
 /**
  * 版本服务接口[VersionService]
@@ -195,6 +201,16 @@ public interface VersionService extends IService<Version> {
     }
 
     /**
+     * fix_commit
+     * 
+     * @param dto
+     * @return
+     */
+    default Version fixCommit(Version dto) {
+        return dto;
+    }
+
+    /**
      * searchDefault
      * 
      * @param context
@@ -208,6 +224,21 @@ public interface VersionService extends IService<Version> {
      * @return
      */
     List<Version> listDefault(VersionSearchContext context);
+
+    /**
+     * searchowner
+     * 
+     * @param context
+     * @return
+     */
+    Page<Version> searchOwner(VersionSearchContext context);
+    /**
+     * listowner
+     * 
+     * @param context
+     * @return
+     */
+    List<Version> listOwner(VersionSearchContext context);
 
     /**
      * 创建实体对象
@@ -251,8 +282,16 @@ public interface VersionService extends IService<Version> {
      * @return
      */
     default boolean saveByOwnerId(String ownerId,List<Version> list) {
-        return getSelf().saveByPage(new ArticlePage().setId(ownerId),list);
+        return getSelf().saveByIdea(new Idea().setId(ownerId),list);
     }
+    /**
+    * saveRelByIdea
+    * @param idea
+    * @param list
+    * @return
+    */
+    boolean saveByIdea(Idea idea,List<Version> list);
+
     /**
     * saveRelByPage
     * @param articlePage
@@ -260,6 +299,14 @@ public interface VersionService extends IService<Version> {
     * @return
     */
     boolean saveByPage(ArticlePage articlePage,List<Version> list);
+
+    /**
+    * saveRelByTestCase
+    * @param testCase
+    * @param list
+    * @return
+    */
+    boolean saveByTestCase(TestCase testCase,List<Version> list);
 
     /**
     * saveRelByWorkItem

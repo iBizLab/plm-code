@@ -658,6 +658,7 @@ export default {
           },
         ],
         dechartDataGrid: {
+          dataGridPos: 'BOTTOM',
           id: '0',
         },
         dechartLegend: {

@@ -5,13 +5,20 @@ export default {
   accUserMode: 2,
   caption: '新建项目',
   codeName: 'project_create_wizard_view',
-  height: 650,
+  height: 700,
   appDataEntityId: 'plmweb.project',
   appViewEngines: [
     {
       engineCat: 'VIEW',
       engineType: 'WizardView',
       id: 'engine',
+    },
+  ],
+  appViewNavParams: [
+    {
+      key: 'srfdefaulttype',
+      value: 'scope_type',
+      id: 'srfdefaulttype',
     },
   ],
   controls: [
@@ -40,9 +47,11 @@ export default {
           },
           dewizardForm: {
             formTag: 'fill_info',
+            goFinishEnableScriptCode: 'data.scope_type !== "organization"',
+            goNextEnableScriptCode: 'data.scope_type === "organization"',
             deformName: '新建表单',
             dewizardStepId: '项目信息',
-            stepActions: ['NEXT'],
+            stepActions: ['NEXT', 'FINISH'],
             firstForm: true,
             id: 'fill_info',
           },
@@ -115,7 +124,7 @@ export default {
                         {
                           rawItem: {
                             content:
-                              '<p></p>\n<h1>Scrum 项目</h1>\n<p>Scrum 是一种敏捷开发方法，强调团队合作、迭代开发和及时反馈。</p>\n<ul>\n<li>迭代开发</li>\n<li>团队合作</li>\n<li>灵活性和可适应性</li>\n</ul>',
+                              '<h2 class="template-name" style="margin: 0 0 6px; padding-left: 40px;"><strong>Scrum 项目</strong></h2>\n<div class="template-desc" style="padding: 0 40px; margin-bottom: 16px;"><span style="color: #95a5a6;">Scrum是一种敏捷开发方法，强调团队合作、迭代开发和及时反馈。</span></div>\n<div class="template-tips">\n<div class="template-tip ng-star-inserted" style="padding-left: 40px; margin-bottom: 12px;">\n<ul>\n<li style="color: #95a5a6;">迭代开发</li>\n</ul>\n</div>\n<div class="template-tip ng-star-inserted" style="padding-left: 40px; margin-bottom: 12px;">\n<ul>\n<li style="color: #95a5a6;">团队合作</li>\n</ul>\n</div>\n<div class="template-tip ng-star-inserted" style="padding-left: 40px; margin-bottom: 12px;">\n<ul>\n<li style="color: #95a5a6;">灵活性和可适应性</li>\n</ul>\n</div>\n</div>',
                             contentType: 'HTML',
                             id: 'rawitem1',
                           },
@@ -149,7 +158,7 @@ export default {
                         {
                           rawItem: {
                             content:
-                              '<p>&nbsp;</p>\n<h1>Kanban 项目</h1>\n<p>Kanban 是一种项目管理方法，注重于可视化工作流程和限制在工作中的工作量。</p>\n<ul>\n<li>可视化工作流程</li>\n<li>任务卡片</li>\n<li>实时监控</li>\n</ul>',
+                              '<h2 class="template-name" style="margin: 0 0 6px; padding-left: 40px;"><strong>Kanban 项目</strong></h2>\n<div class="template-desc" style="padding: 0 40px; margin-bottom: 16px;"><span style="color: #95a5a6;">Kanban是一种项目管理方法，注重于可视化工作流程和限制在工作中的工作量。</span></div>\n<div class="template-tips">\n<div class="template-tip ng-star-inserted" style="padding-left: 40px; margin-bottom: 12px;">\n<ul>\n<li style="color: #95a5a6;">可视化工作流程</li>\n</ul>\n</div>\n<div class="template-tip ng-star-inserted" style="padding-left: 40px; margin-bottom: 12px;">\n<ul>\n<li style="color: #95a5a6;">任务卡片</li>\n</ul>\n</div>\n<div class="template-tip ng-star-inserted" style="padding-left: 40px; margin-bottom: 12px;">\n<ul>\n<li style="color: #95a5a6;">实时监控</li>\n</ul>\n</div>\n</div>',
                             contentType: 'HTML',
                             id: 'rawitem2',
                           },
@@ -183,7 +192,7 @@ export default {
                         {
                           rawItem: {
                             content:
-                              '<p>&nbsp;</p>\n<h1>瀑布 项目</h1>\n<p>瀑布模型是一种传统的项目管理方法，将项目划分为一系列线性的阶段，每个阶段依赖于上一个阶段的完成。</p>\n<ul>\n<li>线性阶段</li>\n<li>详细规划</li>\n<li>阶段依赖</li>\n</ul>',
+                              '<h2 class="template-name" style="margin: 0 0 6px; padding-left: 40px;"><strong>瀑布 项目</strong></h2>\n<div class="template-desc" style="padding: 0 40px; margin-bottom: 16px;"><span style="color: #95a5a6;">瀑布模型是一种传统的项目管理方法，将项目划分为一系列线性的阶段，每个阶段依赖于上一个阶段的完成。</span></div>\n<div class="template-tips">\n<div class="template-tip ng-star-inserted" style="padding-left: 40px; margin-bottom: 12px;">\n<ul>\n<li style="color: #95a5a6;">线性阶段</li>\n</ul>\n</div>\n<div class="template-tip ng-star-inserted" style="padding-left: 40px; margin-bottom: 12px;">\n<ul>\n<li style="color: #95a5a6;">详细规划</li>\n</ul>\n</div>\n<div class="template-tip ng-star-inserted" style="padding-left: 40px; margin-bottom: 12px;">\n<ul>\n<li style="color: #95a5a6;">阶段依赖</li>\n</ul>\n</div>\n</div>',
                             contentType: 'HTML',
                             id: 'rawitem3',
                           },
@@ -231,6 +240,80 @@ export default {
                         layout: 'TABLE_24COL',
                       },
                       deformDetails: [
+                        {
+                          dataType: 25,
+                          enableCond: 3,
+                          labelPos: 'TOP',
+                          labelWidth: 130,
+                          noPrivDisplayMode: 1,
+                          appDEFieldId: 'scope_id',
+                          editor: {
+                            editorType: 'HIDDEN',
+                            valueType: 'SIMPLE',
+                            editable: true,
+                            id: 'scope_id',
+                          },
+                          allowEmpty: true,
+                          hidden: true,
+                          caption: '所属对象',
+                          codeName: 'scope_id',
+                          detailStyle: 'DEFAULT',
+                          detailType: 'FORMITEM',
+                          layoutPos: {
+                            colMD: 24,
+                            layout: 'TABLE_24COL',
+                          },
+                          showCaption: true,
+                          id: 'scope_id',
+                        },
+                        {
+                          dataType: 25,
+                          enableCond: 3,
+                          labelPos: 'TOP',
+                          labelWidth: 130,
+                          noPrivDisplayMode: 1,
+                          appDEFieldId: 'scope_type',
+                          editor: {
+                            enablePickupView: true,
+                            singleSelect: true,
+                            handlerType: 'PickupText',
+                            appDEACModeId: 'default',
+                            appDEDataSetId: 'fetch_default',
+                            appDataEntityId: 'plmweb.group',
+                            enableAC: true,
+                            forceSelection: true,
+                            showTrigger: true,
+                            valueItemName: 'scope_id',
+                            editorParams: {
+                              AC: 'TRUE',
+                              fillMap:
+                                '{"user":"user","user_group":"user_group","organization":"organization"}',
+                              enablePerson: 'false',
+                              PICKUPVIEW: 'TRUE',
+                            },
+                            editorStyle: 'TEAM_PICKER',
+                            editorType: 'PICKER',
+                            editorItems: [
+                              {
+                                id: 'scope_id',
+                              },
+                            ],
+                            sysPFPluginId: 'team_picker',
+                            valueType: 'SIMPLE',
+                            editable: true,
+                            id: 'scope_type',
+                          },
+                          caption: '所属',
+                          codeName: 'scope_type',
+                          detailStyle: 'DEFAULT',
+                          detailType: 'FORMITEM',
+                          layoutPos: {
+                            colMD: 24,
+                            layout: 'TABLE_24COL',
+                          },
+                          showCaption: true,
+                          id: 'scope_type',
+                        },
                         {
                           dataType: 25,
                           enableCond: 3,
@@ -575,7 +658,7 @@ export default {
                         {
                           rawItem: {
                             content:
-                              '<p></p>\n<h1>Scrum 项目</h1>\n<p>Scrum 是一种敏捷开发方法，强调团队合作、迭代开发和及时反馈。</p>\n<ul>\n<li>迭代开发</li>\n<li>团队合作</li>\n<li>灵活性和可适应性</li>\n</ul>',
+                              '<h2 class="template-name" style="margin: 0 0 6px; padding-left: 40px;"><strong>Scrum 项目</strong></h2>\n<div class="template-desc" style="padding: 0 40px; margin-bottom: 16px;"><span style="color: #95a5a6;">Scrum是一种敏捷开发方法，强调团队合作、迭代开发和及时反馈。</span></div>\n<div class="template-tips">\n<div class="template-tip ng-star-inserted" style="padding-left: 40px; margin-bottom: 12px;">\n<ul>\n<li style="color: #95a5a6;">迭代开发</li>\n</ul>\n</div>\n<div class="template-tip ng-star-inserted" style="padding-left: 40px; margin-bottom: 12px;">\n<ul>\n<li style="color: #95a5a6;">团队合作</li>\n</ul>\n</div>\n<div class="template-tip ng-star-inserted" style="padding-left: 40px; margin-bottom: 12px;">\n<ul>\n<li style="color: #95a5a6;">灵活性和可适应性</li>\n</ul>\n</div>\n</div>',
                             contentType: 'HTML',
                             id: 'rawitem1',
                           },
@@ -609,7 +692,7 @@ export default {
                         {
                           rawItem: {
                             content:
-                              '<p>&nbsp;</p>\n<h1>Kanban 项目</h1>\n<p>Kanban 是一种项目管理方法，注重于可视化工作流程和限制在工作中的工作量。</p>\n<ul>\n<li>可视化工作流程</li>\n<li>任务卡片</li>\n<li>实时监控</li>\n</ul>',
+                              '<h2 class="template-name" style="margin: 0 0 6px; padding-left: 40px;"><strong>Kanban 项目</strong></h2>\n<div class="template-desc" style="padding: 0 40px; margin-bottom: 16px;"><span style="color: #95a5a6;">Kanban是一种项目管理方法，注重于可视化工作流程和限制在工作中的工作量。</span></div>\n<div class="template-tips">\n<div class="template-tip ng-star-inserted" style="padding-left: 40px; margin-bottom: 12px;">\n<ul>\n<li style="color: #95a5a6;">可视化工作流程</li>\n</ul>\n</div>\n<div class="template-tip ng-star-inserted" style="padding-left: 40px; margin-bottom: 12px;">\n<ul>\n<li style="color: #95a5a6;">任务卡片</li>\n</ul>\n</div>\n<div class="template-tip ng-star-inserted" style="padding-left: 40px; margin-bottom: 12px;">\n<ul>\n<li style="color: #95a5a6;">实时监控</li>\n</ul>\n</div>\n</div>',
                             contentType: 'HTML',
                             id: 'rawitem2',
                           },
@@ -643,7 +726,7 @@ export default {
                         {
                           rawItem: {
                             content:
-                              '<p>&nbsp;</p>\n<h1>瀑布 项目</h1>\n<p>瀑布模型是一种传统的项目管理方法，将项目划分为一系列线性的阶段，每个阶段依赖于上一个阶段的完成。</p>\n<ul>\n<li>线性阶段</li>\n<li>详细规划</li>\n<li>阶段依赖</li>\n</ul>',
+                              '<h2 class="template-name" style="margin: 0 0 6px; padding-left: 40px;"><strong>瀑布 项目</strong></h2>\n<div class="template-desc" style="padding: 0 40px; margin-bottom: 16px;"><span style="color: #95a5a6;">瀑布模型是一种传统的项目管理方法，将项目划分为一系列线性的阶段，每个阶段依赖于上一个阶段的完成。</span></div>\n<div class="template-tips">\n<div class="template-tip ng-star-inserted" style="padding-left: 40px; margin-bottom: 12px;">\n<ul>\n<li style="color: #95a5a6;">线性阶段</li>\n</ul>\n</div>\n<div class="template-tip ng-star-inserted" style="padding-left: 40px; margin-bottom: 12px;">\n<ul>\n<li style="color: #95a5a6;">详细规划</li>\n</ul>\n</div>\n<div class="template-tip ng-star-inserted" style="padding-left: 40px; margin-bottom: 12px;">\n<ul>\n<li style="color: #95a5a6;">阶段依赖</li>\n</ul>\n</div>\n</div>',
                             contentType: 'HTML',
                             id: 'rawitem3',
                           },
@@ -1003,9 +1086,11 @@ export default {
         dewizardForms: [
           {
             formTag: 'fill_info',
+            goFinishEnableScriptCode: 'data.scope_type !== "organization"',
+            goNextEnableScriptCode: 'data.scope_type === "organization"',
             deformName: '新建表单',
             dewizardStepId: '项目信息',
-            stepActions: ['NEXT'],
+            stepActions: ['NEXT', 'FINISH'],
             firstForm: true,
             id: 'fill_info',
           },

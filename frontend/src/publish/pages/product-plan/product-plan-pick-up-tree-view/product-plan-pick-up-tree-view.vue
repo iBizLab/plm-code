@@ -6,7 +6,7 @@
     :model-data="model"
   >
     <template #tree="slotProps">
-      <i-biz-treeview-control v-bind="slotProps" />
+      <i-biz-tree-control v-bind="slotProps" />
     </template>
   </i-biz-view>
 </template>

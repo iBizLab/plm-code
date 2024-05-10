@@ -4,8 +4,9 @@ export default {
   openMode: 'INDEXVIEWTAB',
   viewType: 'DEEDITVIEW',
   width: 0,
-  height: 0,
+  height: 345,
   appDataEntityId: 'plmweb.project',
   redirectView: false,
   modalOption: {},
+  appId: '',
 };

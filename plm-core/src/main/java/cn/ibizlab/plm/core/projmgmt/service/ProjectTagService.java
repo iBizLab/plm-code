@@ -172,6 +172,16 @@ public interface ProjectTagService extends IService<ProjectTag> {
     }
 
     /**
+     * nothing
+     * 
+     * @param dto
+     * @return
+     */
+    default ProjectTag nothing(ProjectTag dto) {
+        return dto;
+    }
+
+    /**
      * searchDefault
      * 
      * @param context

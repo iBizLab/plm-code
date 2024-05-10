@@ -214,6 +214,9 @@ export default {
                   labelWidth: 130,
                   noPrivDisplayMode: 1,
                   editor: {
+                    editorParams: {
+                      autocomplete: 'false',
+                    },
                     editorType: 'PASSWORD',
                     placeHolder: '请输入旧密码',
                     valueType: 'SIMPLE',
@@ -238,6 +241,9 @@ export default {
                   labelWidth: 130,
                   noPrivDisplayMode: 1,
                   editor: {
+                    editorParams: {
+                      autocomplete: 'false',
+                    },
                     editorType: 'PASSWORD',
                     placeHolder: '请输入新密码',
                     valueType: 'SIMPLE',
@@ -262,6 +268,9 @@ export default {
                   labelWidth: 130,
                   noPrivDisplayMode: 1,
                   editor: {
+                    editorParams: {
+                      autocomplete: 'false',
+                    },
                     editorType: 'PASSWORD',
                     placeHolder: '请再次输入新密码',
                     valueType: 'SIMPLE',

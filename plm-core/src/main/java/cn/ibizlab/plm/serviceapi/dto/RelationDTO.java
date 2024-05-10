@@ -84,19 +84,115 @@ public class RelationDTO extends DTOBase implements Serializable {
     private String parentVersionId;
 
     /**
+     * 目标对象版本标识
+     */
+    @JsonProperty("target_version_id")
+    @JSONField(name = "target_version_id")
+    @ApiModelProperty(value = "目标对象版本标识", position = 6)
+    private String targetVersionId;
+
+    /**
+     * 工作项
+     */
+    @JsonProperty("work_item")
+    @JSONField(name = "work_item")
+    @ApiModelProperty(value = "工作项", position = 7)
+    private WorkItemDTO workItem;
+
+    /**
+     * 产品需求
+     */
+    @JsonProperty("idea")
+    @JSONField(name = "idea")
+    @ApiModelProperty(value = "产品需求", position = 8)
+    private IdeaDTO idea;
+
+    /**
+     * 工单
+     */
+    @JsonProperty("ticket")
+    @JSONField(name = "ticket")
+    @ApiModelProperty(value = "工单", position = 9)
+    private TicketDTO ticket;
+
+    /**
+     * 客户
+     */
+    @JsonProperty("customer")
+    @JSONField(name = "customer")
+    @ApiModelProperty(value = "客户", position = 10)
+    private CustomerDTO customer;
+
+    /**
+     * 测试用例
+     */
+    @JsonProperty("test_case")
+    @JSONField(name = "test_case")
+    @ApiModelProperty(value = "测试用例", position = 11)
+    private TestCaseDTO testCase;
+
+    /**
      * 当前版本标识
      */
     @JsonProperty("cur_version_id")
     @JSONField(name = "cur_version_id")
-    @ApiModelProperty(value = "当前版本标识", position = 6)
+    @ApiModelProperty(value = "当前版本标识", position = 12)
     private String curVersionId;
+
+    /**
+     * 目标对象编号
+     */
+    @JsonProperty("target_identifier")
+    @JSONField(name = "target_identifier")
+    @ApiModelProperty(value = "目标对象编号", position = 13)
+    private String targetIdentifier;
+
+    /**
+     * 目标对象标题
+     */
+    @JsonProperty("target_title")
+    @JSONField(name = "target_title")
+    @ApiModelProperty(value = "目标对象标题", position = 14)
+    private String targetTitle;
+
+    /**
+     * 目标对象状态
+     */
+    @JsonProperty("target_state")
+    @JSONField(name = "target_state")
+    @ApiModelProperty(value = "目标对象状态", position = 15)
+    private String targetState;
+
+    /**
+     * 目标对象负责人
+     */
+    @JsonProperty("target_assignee")
+    @JSONField(name = "target_assignee")
+    @ApiModelProperty(value = "目标对象负责人", position = 16)
+    private String targetAssignee;
+
+    /**
+     * 目标对象优先级
+     */
+    @JsonProperty("target_priority")
+    @JSONField(name = "target_priority")
+    @ApiModelProperty(value = "目标对象优先级", position = 17)
+    private String targetPriority;
+
+    /**
+     * 目标对象父标识
+     */
+    @JsonProperty("target_parent_id")
+    @JSONField(name = "target_parent_id")
+    @ApiModelProperty(value = "目标对象父标识", position = 18)
+    private String targetParentId;
 
     /**
      * 建立人
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 7)
+    @ApiModelProperty(value = "建立人", position = 19)
     private String createMan;
 
     /**
@@ -105,7 +201,7 @@ public class RelationDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 8)
+    @ApiModelProperty(value = "建立时间", position = 20)
     private Date createTime;
 
     /**
@@ -113,7 +209,7 @@ public class RelationDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 9)
+    @ApiModelProperty(value = "标识", position = 21)
     private String id;
 
     /**
@@ -121,7 +217,7 @@ public class RelationDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 10)
+    @ApiModelProperty(value = "名称", position = 22)
     private String name;
 
     /**
@@ -129,7 +225,7 @@ public class RelationDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 11)
+    @ApiModelProperty(value = "更新人", position = 23)
     private String updateMan;
 
     /**
@@ -138,7 +234,7 @@ public class RelationDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 12)
+    @ApiModelProperty(value = "更新时间", position = 24)
     private Date updateTime;
 
 
@@ -184,6 +280,114 @@ public class RelationDTO extends DTOBase implements Serializable {
     public RelationDTO setTargetId(String targetId) {
         this.targetId = targetId;
         this.modify("target_id", targetId);
+        return this;
+    }
+
+    /**
+     * 设置 [目标对象版本标识]
+     */
+    public RelationDTO setTargetVersionId(String targetVersionId) {
+        this.targetVersionId = targetVersionId;
+        this.modify("target_version_id", targetVersionId);
+        return this;
+    }
+
+    /**
+     * 设置 [工作项]
+     */
+    public RelationDTO setWorkItem(WorkItemDTO workItem) {
+        this.workItem = workItem;
+        this.modify("work_item", workItem);
+        return this;
+    }
+
+    /**
+     * 设置 [产品需求]
+     */
+    public RelationDTO setIdea(IdeaDTO idea) {
+        this.idea = idea;
+        this.modify("idea", idea);
+        return this;
+    }
+
+    /**
+     * 设置 [工单]
+     */
+    public RelationDTO setTicket(TicketDTO ticket) {
+        this.ticket = ticket;
+        this.modify("ticket", ticket);
+        return this;
+    }
+
+    /**
+     * 设置 [客户]
+     */
+    public RelationDTO setCustomer(CustomerDTO customer) {
+        this.customer = customer;
+        this.modify("customer", customer);
+        return this;
+    }
+
+    /**
+     * 设置 [测试用例]
+     */
+    public RelationDTO setTestCase(TestCaseDTO testCase) {
+        this.testCase = testCase;
+        this.modify("test_case", testCase);
+        return this;
+    }
+
+    /**
+     * 设置 [目标对象编号]
+     */
+    public RelationDTO setTargetIdentifier(String targetIdentifier) {
+        this.targetIdentifier = targetIdentifier;
+        this.modify("target_identifier", targetIdentifier);
+        return this;
+    }
+
+    /**
+     * 设置 [目标对象标题]
+     */
+    public RelationDTO setTargetTitle(String targetTitle) {
+        this.targetTitle = targetTitle;
+        this.modify("target_title", targetTitle);
+        return this;
+    }
+
+    /**
+     * 设置 [目标对象状态]
+     */
+    public RelationDTO setTargetState(String targetState) {
+        this.targetState = targetState;
+        this.modify("target_state", targetState);
+        return this;
+    }
+
+    /**
+     * 设置 [目标对象负责人]
+     */
+    public RelationDTO setTargetAssignee(String targetAssignee) {
+        this.targetAssignee = targetAssignee;
+        this.modify("target_assignee", targetAssignee);
+        return this;
+    }
+
+    /**
+     * 设置 [目标对象优先级]
+     */
+    public RelationDTO setTargetPriority(String targetPriority) {
+        this.targetPriority = targetPriority;
+        this.modify("target_priority", targetPriority);
+        return this;
+    }
+
+    /**
+     * 设置 [目标对象父标识]
+     */
+    public RelationDTO setTargetParentId(String targetParentId) {
+        this.targetParentId = targetParentId;
+        this.modify("target_parent_id", targetParentId);
         return this;
     }
 

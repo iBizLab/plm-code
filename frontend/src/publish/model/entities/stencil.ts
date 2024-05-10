@@ -26,6 +26,14 @@ export default {
   ],
   appDEFields: [
     {
+      codeName: 'format_type',
+      logicName: '正文格式',
+      stdDataType: 25,
+      stringLength: 60,
+      name: 'FORMAT_TYPE',
+      id: 'format_type',
+    },
+    {
       codeName: 'content',
       logicName: '正文',
       stdDataType: 21,
@@ -170,6 +178,16 @@ export default {
       codeName: 'stencil_dto',
       appDEMethodDTOFields: [
         {
+          codeName: 'format_type',
+          logicName: '正文格式',
+          appDEFieldId: 'format_type',
+          sourceType: 'DEFIELD',
+          stdDataType: 25,
+          type: 'SIMPLE',
+          allowEmpty: true,
+          id: 'format_type',
+        },
+        {
           codeName: 'content',
           logicName: '正文',
           appDEFieldId: 'content',
@@ -286,6 +304,16 @@ export default {
     {
       codeName: 'stencil_filter_dto',
       appDEMethodDTOFields: [
+        {
+          codeName: 'n_format_type_eq',
+          logicName: '正文格式',
+          appDEFieldId: 'format_type',
+          sourceType: 'DEFSEARCHMODE',
+          stdDataType: 25,
+          type: 'SIMPLE',
+          allowEmpty: true,
+          id: 'n_format_type_eq',
+        },
         {
           codeName: 'n_id_eq',
           logicName: '标识',
@@ -726,8 +754,8 @@ export default {
       fullCodeName: 'stencil_delete',
       appDEMethodId: 'remove',
       sysImage: {
-        cssClass: 'fa fa-trash',
-        glyph: 'xf1f8@FontAwesome',
+        cssClass: 'fa fa-trash-o',
+        glyph: 'xf014@FontAwesome',
       },
       refreshMode: 1,
       successMsg: '删除成功',
@@ -749,7 +777,7 @@ export default {
       caption: '编辑',
       codeName: 'edit_stencil',
       dataAccessAction: 'UPDATE',
-      frontAppViewId: 'plmweb.stencil_model_edit_view',
+      frontAppViewId: 'plmweb.stencil_edit_view',
       frontProcessType: 'WIZARD',
       fullCodeName: 'stencil_edit_stencil',
       deopprivId: 'update',

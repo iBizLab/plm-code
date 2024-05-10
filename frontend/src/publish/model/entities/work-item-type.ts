@@ -139,6 +139,39 @@ export default {
       id: 'update_time',
     },
   ],
+  appDELogics: [
+    {
+      codeName: 'nothing',
+      defaultParamName: 'Default',
+      logicName: '无操作',
+      logicSubType: 'NONE',
+      delogicNodes: [
+        {
+          codeName: 'Begin',
+          leftPos: 200,
+          logicNodeType: 'BEGIN',
+          topPos: 200,
+          parallelOutput: true,
+          name: '开始',
+          id: 'begin',
+        },
+      ],
+      delogicParams: [
+        {
+          codeName: 'Default',
+          default: true,
+          entityParam: true,
+          paramAppDataEntityId: 'plmweb.work_item_type',
+          name: '传入变量',
+          id: 'default',
+        },
+      ],
+      startDELogicNodeId: 'begin',
+      valid: true,
+      name: '无操作',
+      id: 'nothing',
+    },
+  ],
   appDEMethodDTOs: [
     {
       codeName: 'work_item_type_dto',
@@ -150,6 +183,7 @@ export default {
           sourceType: 'DEFIELD',
           stdDataType: 6,
           type: 'SIMPLE',
+          allowEmpty: true,
           id: 'sequence',
         },
         {
@@ -420,6 +454,26 @@ export default {
       id: 'get_draft',
     },
     {
+      codeName: 'nothing',
+      methodType: 'DEACTION',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'work_item_type_dto',
+        type: 'DTO',
+        name: 'NothingInput',
+        id: 'nothinginput',
+      },
+      appDEMethodReturn: {
+        type: 'VOID',
+        name: 'NothingResult',
+        id: 'nothingresult',
+      },
+      actionMode: 'CUSTOM',
+      actionType: 'DELOGIC',
+      appDELogicId: 'nothing',
+      dataSetType: 'REMOTE',
+      id: 'nothing',
+    },
+    {
       codeName: 'remove',
       methodType: 'DEACTION',
       appDEMethodInput: {
@@ -627,6 +681,32 @@ export default {
   appDEUIActions: [
     {
       actionLevel: 100,
+      actionTarget: 'NONE',
+      caption: '新建工作项类型',
+      codeName: 'create_type',
+      dialogResult: 'OK',
+      frontAppViewId: 'plmweb.work_item_type_global_create_view',
+      frontProcessType: 'WIZARD',
+      fullCodeName: 'work_item_type_create_type',
+      sysImage: {
+        cssClass: 'fa fa-plus',
+        glyph: 'xf067@FontAwesome',
+      },
+      refreshMode: 1,
+      timeout: 60000,
+      uiactionMode: 'FRONT',
+      uiactionTag: 'create_type',
+      uiactionType: 'DEUIACTION',
+      closeEditView: true,
+      reloadData: true,
+      showBusyIndicator: true,
+      noPrivDisplayMode: 2,
+      appDataEntityId: 'plmweb.work_item_type',
+      name: '新建工作项类型',
+      id: 'create_type@work_item_type',
+    },
+    {
+      actionLevel: 100,
       actionTarget: 'SINGLEDATA',
       caption: '通知配置',
       codeName: 'panel_usr12299058218_button_link3_click',
@@ -656,7 +736,7 @@ export default {
       actionTarget: 'SINGLEDATA',
       caption: '设计',
       codeName: 'panel_usr12299058218_button_link_click',
-      frontAppViewId: 'plmweb.psdelogicmslogicdesign',
+      frontAppViewId: 'plmweb.psdelogicmslogicdesign_modal',
       frontProcessType: 'WIZARD',
       fullCodeName: 'work_item_type_panel_usr12299058218_button_link_click',
       navigateContexts: [
@@ -708,7 +788,7 @@ export default {
       actionTarget: 'SINGLEDATA',
       caption: '表单设计',
       codeName: 'panel_usr1229905828_button_link1_click',
-      frontAppViewId: 'plmweb.psdeformdesign',
+      frontAppViewId: 'plmweb.psdeformdesign_modal',
       frontProcessType: 'WIZARD',
       fullCodeName: 'work_item_type_panel_usr1229905828_button_link1_click',
       navigateContexts: [
@@ -761,7 +841,7 @@ export default {
       actionTarget: 'SINGLEDATA',
       caption: '设计',
       codeName: 'panel_usr1229905828_button_link_click',
-      frontAppViewId: 'plmweb.psdelogicmslogicdesign',
+      frontAppViewId: 'plmweb.psdelogicmslogicdesign_modal',
       frontProcessType: 'WIZARD',
       fullCodeName: 'work_item_type_panel_usr1229905828_button_link_click',
       navigateContexts: [

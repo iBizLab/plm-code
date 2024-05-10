@@ -164,7 +164,7 @@ public interface DeliverableService extends IService<Deliverable> {
                 this.getSelf().save(et);
                 rt.setSuccess(rt.getSuccess()+1);
             }catch (Exception ex){
-                rt.addItem(i+1,et.getName(),ex.getMessage());
+                rt.addItem(i+1,et.getTitle(),ex.getMessage());
                 if(!ignoreError)
                     break;
             }

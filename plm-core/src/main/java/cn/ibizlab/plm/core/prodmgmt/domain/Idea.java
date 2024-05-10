@@ -31,6 +31,7 @@ import cn.ibizlab.plm.core.base.domain.SearchAttachment;
 import cn.ibizlab.plm.core.base.domain.SearchComment;
 import cn.ibizlab.plm.core.base.domain.Workload;
 import cn.ibizlab.plm.core.base.domain.Relation;
+import cn.ibizlab.plm.core.base.domain.Version;
 import cn.ibizlab.plm.core.base.domain.Attachment;
 import cn.ibizlab.plm.core.base.domain.Attention;
 
@@ -255,6 +256,16 @@ public class Idea extends EntityMP implements Serializable
     private String assigneeId;
 
     /**
+     * 当前版本标识
+     */
+    @TableField(value = "cur_version_id")
+    @DEField(name = "cur_version_id" , preType = DEPredefinedFieldType.VERSIONID)
+    @JsonProperty("cur_version_id")
+    @JSONField(name = "cur_version_id")
+    @ApiModelProperty(value = "cur_version_id", notes = "当前版本标识")
+    private String curVersionId;
+
+    /**
      * 子产品名称
      */
     @TableField(value = "section_name" , exist = false)
@@ -315,6 +326,26 @@ public class Idea extends EntityMP implements Serializable
     private String categories;
 
     /**
+     * 需求来源
+     */
+    @TableField(value = "idea_from")
+    @DEField(name = "idea_from" , dict = "demand_sources")
+    @JsonProperty("idea_from")
+    @JSONField(name = "idea_from")
+    @ApiModelProperty(value = "idea_from", notes = "需求来源")
+    private String ideaFrom;
+
+    /**
+     * 需求类型
+     */
+    @TableField(value = "idea_type")
+    @DEField(name = "idea_type" , dict = "requirement_type")
+    @JsonProperty("idea_type")
+    @JSONField(name = "idea_type")
+    @ApiModelProperty(value = "idea_type", notes = "需求类型")
+    private String ideaType;
+
+    /**
      * 工时进度
      */
     @TableField(value = "workload_schedule" , exist = false)
@@ -353,6 +384,46 @@ public class Idea extends EntityMP implements Serializable
     @JSONField(name = "actual_workload")
     @ApiModelProperty(value = "actual_workload", notes = "实际工时")
     private BigDecimal actualWorkload;
+
+    /**
+     * 当前版本名称
+     */
+    @TableField(value = "cur_version_name" , exist = false)
+    @DEField(name = "cur_version_name")
+    @JsonProperty("cur_version_name")
+    @JSONField(name = "cur_version_name")
+    @ApiModelProperty(value = "cur_version_name", notes = "当前版本名称")
+    private String curVersionName;
+
+    /**
+     * 选择版本标识
+     */
+    @TableField(value = "choose_version_id" , exist = false)
+    @DEField(name = "choose_version_id")
+    @JsonProperty("choose_version_id")
+    @JSONField(name = "choose_version_id")
+    @ApiModelProperty(value = "choose_version_id", notes = "选择版本标识")
+    private String chooseVersionId;
+
+    /**
+     * 选择版本名称
+     */
+    @TableField(value = "choose_version_name" , exist = false)
+    @DEField(name = "choose_version_name")
+    @JsonProperty("choose_version_name")
+    @JSONField(name = "choose_version_name")
+    @ApiModelProperty(value = "choose_version_name", notes = "选择版本名称")
+    private String chooseVersionName;
+
+    /**
+     * 关注人
+     */
+    @TableField(value = "attentions_imp" , exist = false)
+    @DEField(name = "attentions_imp")
+    @JsonProperty("attentions_imp")
+    @JSONField(name = "attentions_imp")
+    @ApiModelProperty(value = "attentions_imp", notes = "关注人")
+    private String attentionsImp;
 
     /**
      * 标识
@@ -722,6 +793,24 @@ public class Idea extends EntityMP implements Serializable
     }
 
     /**
+     * 设置 [需求来源]
+     */
+    public Idea setIdeaFrom(String ideaFrom) {
+        this.ideaFrom = ideaFrom;
+        this.modify("idea_from", ideaFrom);
+        return this;
+    }
+
+    /**
+     * 设置 [需求类型]
+     */
+    public Idea setIdeaType(String ideaType) {
+        this.ideaType = ideaType;
+        this.modify("idea_type", ideaType);
+        return this;
+    }
+
+    /**
      * 设置 [工时进度]
      */
     public Idea setWorkloadSchedule(BigDecimal workloadSchedule) {
@@ -754,6 +843,42 @@ public class Idea extends EntityMP implements Serializable
     public Idea setActualWorkload(BigDecimal actualWorkload) {
         this.actualWorkload = actualWorkload;
         this.modify("actual_workload", actualWorkload);
+        return this;
+    }
+
+    /**
+     * 设置 [当前版本名称]
+     */
+    public Idea setCurVersionName(String curVersionName) {
+        this.curVersionName = curVersionName;
+        this.modify("cur_version_name", curVersionName);
+        return this;
+    }
+
+    /**
+     * 设置 [选择版本标识]
+     */
+    public Idea setChooseVersionId(String chooseVersionId) {
+        this.chooseVersionId = chooseVersionId;
+        this.modify("choose_version_id", chooseVersionId);
+        return this;
+    }
+
+    /**
+     * 设置 [选择版本名称]
+     */
+    public Idea setChooseVersionName(String chooseVersionName) {
+        this.chooseVersionName = chooseVersionName;
+        this.modify("choose_version_name", chooseVersionName);
+        return this;
+    }
+
+    /**
+     * 设置 [关注人]
+     */
+    public Idea setAttentionsImp(String attentionsImp) {
+        this.attentionsImp = attentionsImp;
+        this.modify("attentions_imp", attentionsImp);
         return this;
     }
 

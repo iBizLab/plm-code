@@ -431,6 +431,16 @@ export default {
             valid: true,
             caption: '添加交付目标',
             itemType: 'DEUIACTION',
+            controlLogics: [
+              {
+                itemName: 'deuiaction1',
+                logicTag: 'toolbar',
+                logicType: 'SCRIPT',
+                scriptCode: 'context.srfreadonly != true',
+                triggerType: 'ITEMVISIBLE',
+                id: 'logic',
+              },
+            ],
             sysImage: {
               cssClass: 'fa fa-plus',
               glyph: 'xf067@FontAwesome',
@@ -631,7 +641,7 @@ export default {
             id: 'srfdataaccaction',
           },
           {
-            appDEFieldId: 'name',
+            appDEFieldId: 'title',
             valueType: 'SIMPLE',
             dataType: 25,
             id: 'srfmajortext',
@@ -677,6 +687,17 @@ export default {
         controlType: 'GRID',
         logicName: '交付目标_表格',
         appDataEntityId: 'plmweb.deliverable',
+        controlLogics: [
+          {
+            eventNames: 'onLoadSuccess',
+            logicTag: 'grid',
+            logicType: 'APPDEUILOGIC',
+            appDEUILogicId: 'calc_column_action_state',
+            appDataEntityId: 'plmweb.deliverable',
+            triggerType: 'CTRLEVENT',
+            id: 'logic',
+          },
+        ],
         controlParam: {
           id: 'grid',
         },

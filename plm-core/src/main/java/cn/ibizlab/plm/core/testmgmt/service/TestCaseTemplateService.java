@@ -176,6 +176,16 @@ public interface TestCaseTemplateService extends IService<TestCaseTemplate> {
     }
 
     /**
+     * nothing
+     * 
+     * @param dto
+     * @return
+     */
+    default TestCaseTemplate nothing(TestCaseTemplate dto) {
+        return dto;
+    }
+
+    /**
      * searchDefault
      * 
      * @param context

@@ -421,7 +421,7 @@ export default {
                 appDEFieldId: 'state',
                 editor: {
                   singleSelect: true,
-                  appCodeListId: 'plmweb.testmgmt__test_case_state',
+                  appCodeListId: 'plmweb.testmgmt__case_state',
                   editorType: 'DROPDOWNLIST',
                   placeHolder: '选择评审状态',
                   valueType: 'SIMPLE',

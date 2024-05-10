@@ -48,13 +48,13 @@ export default {
       builtinAppUILogic: {
         openDataAppView: {
           openMode: 'POPUPMODAL',
-          refAppViewId: 'plmweb.stencil_model_edit_view',
+          refAppViewId: 'plmweb.stencil_edit_view',
         },
         editMode: true,
         appUILogicRefViews: [
           {
             openMode: 'POPUPMODAL',
-            refAppViewId: 'plmweb.stencil_model_edit_view',
+            refAppViewId: 'plmweb.stencil_edit_view',
           },
         ],
         builtinLogic: true,
@@ -68,20 +68,23 @@ export default {
   ],
   appViewRefs: [
     {
-      openMode: 'POPUPMODAL',
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '页面模板编辑视图',
-      refAppViewId: 'plmweb.stencil_model_edit_view',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
-    {
       openMode: 'INDEXVIEWTAB_POPUPMODAL',
       realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
       realTitle: '页面模板编辑视图',
       refAppViewId: 'plmweb.stencil_model_edit_view',
       name: 'NEWDATA',
       id: 'newdata',
+    },
+    {
+      openMode: 'POPUPMODAL',
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '页面模板编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.STENCIL.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.stencil_edit_view',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
   ],
   controls: [
@@ -200,6 +203,7 @@ export default {
                 beforeItemType: 'NONE',
                 detailType: 'DEUIACTION',
                 uiactionId: 'edit',
+                tooltip: '编辑',
                 tooltipLanguageRes: {
                   lanResTag: 'TBB.TOOLTIP.*.EDIT',
                 },
@@ -218,8 +222,8 @@ export default {
                 uiactionId: 'delete@stencil',
                 showIcon: true,
                 sysImage: {
-                  cssClass: 'fa fa-trash',
-                  glyph: 'xf1f8@FontAwesome',
+                  cssClass: 'fa fa-trash-o',
+                  glyph: 'xf014@FontAwesome',
                 },
                 id: 'u6fac85a',
               },
@@ -235,7 +239,7 @@ export default {
           codeName: 'uagridcolumn1',
           columnType: 'UAGRIDCOLUMN',
           noPrivDisplayMode: 1,
-          width: 200,
+          width: 100,
           widthUnit: 'PX',
           id: 'uagridcolumn1',
         },
@@ -305,6 +309,7 @@ export default {
       sortMode: 'REMOTE',
       enableCustomized: true,
       enablePagingBar: true,
+      singleSelect: true,
       fetchControlAction: {
         appDEMethodId: 'fetch_no_space_stencil',
         appDataEntityId: 'plmweb.stencil',

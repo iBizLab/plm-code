@@ -38,6 +38,26 @@ public class TicketType extends EntityMP implements Serializable
 {
 
     /**
+     * 描述
+     */
+    @TableField(value = "description")
+    @DEField(name = "description")
+    @JsonProperty("description")
+    @JSONField(name = "description")
+    @ApiModelProperty(value = "description", notes = "描述")
+    private String description;
+
+    /**
+     * 是否系统默认
+     */
+    @TableField(value = "is_system")
+    @DEField(name = "is_system" , defaultValue = "0" , dict = "YesNo")
+    @JsonProperty("is_system")
+    @JSONField(name = "is_system")
+    @ApiModelProperty(value = "is_system", notes = "是否系统默认")
+    private Integer isSystem;
+
+    /**
      * 建立人
      */
     @TableField(value = "create_man" , fill = FieldFill.INSERT)
@@ -99,6 +119,24 @@ public class TicketType extends EntityMP implements Serializable
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
     @ApiModelProperty(value = "update_time", notes = "更新时间")
     private Date updateTime;
+
+    /**
+     * 设置 [描述]
+     */
+    public TicketType setDescription(String description) {
+        this.description = description;
+        this.modify("description", description);
+        return this;
+    }
+
+    /**
+     * 设置 [是否系统默认]
+     */
+    public TicketType setIsSystem(Integer isSystem) {
+        this.isSystem = isSystem;
+        this.modify("is_system", isSystem);
+        return this;
+    }
 
     /**
      * 设置 [名称]

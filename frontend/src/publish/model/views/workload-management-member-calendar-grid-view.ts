@@ -288,9 +288,12 @@ export default {
             codeName: 'create_man',
             columnType: 'DEFGRIDCOLUMN',
             noPrivDisplayMode: 1,
-            width: 200,
+            width: 150,
             widthUnit: 'STAR',
             enableSort: true,
+            userParam: {
+              DEFAULTSORT: 'asc',
+            },
             id: 'create_man',
           },
           {
@@ -377,6 +380,18 @@ export default {
           appDataEntityId: 'plmweb.workload',
           id: 'fetch',
         },
+        controlNavParams: [
+          {
+            key: 'n_create_man_eq',
+            value: 'create_man',
+            id: 'n_create_man_eq',
+          },
+          {
+            key: 'n_register_date_eq',
+            value: 'date',
+            id: 'n_register_date_eq',
+          },
+        ],
         removeControlAction: {
           appDEMethodId: 'remove',
           appDataEntityId: 'plmweb.workload',
@@ -391,7 +406,10 @@ export default {
         appDataEntityId: 'plmweb.workload',
         controlParam: {
           ctrlParams: {
+            'SRFNAVPARAM.N_CREATE_MAN_EQ': '%create_man%',
             DATERANGE: 'date_range',
+            'SRFNAVPARAM.N_REGISTER_DATE_EQ': '%date%',
+            OPENVIEW: 'workload_day_link_management_grid_view',
           },
           id: 'grid',
         },
@@ -450,6 +468,12 @@ export default {
                     attrName: 'clearable',
                     attrValue: 'false',
                     id: 'logic_clearable',
+                  },
+                  {
+                    attrName: 'shortcuts',
+                    attrValue:
+                      "[\r\n    {\r\n    text: '最近7天',\r\n    value: () => {\r\n        const end_at = new Date();\r\n        const start_at = new Date();\r\n        start_at.setDate(end_at.getDate() - 6);\r\n        return [start_at, end_at];\r\n    },\r\n    },\r\n    {\r\n    text: '最近30天',\r\n    value: () => {\r\n        const end_at = new Date();\r\n        const start_at = new Date();\r\n        start_at.setDate(end_at.getDate() - 29);\r\n        return [start_at, end_at];\r\n    },\r\n    },\r\n    {\r\n    text: '本周',\r\n    value: () => {\r\n        const end_at = new Date();\r\n        const currentDay = end_at.getDay();\r\n        const start_at = new Date(end_at);\r\n\r\n        // 计算本周的开始日期 (周一)\r\n        start_at.setDate(\r\n        end_at.getDate() - currentDay + (currentDay === 0 ? -6 : 1),\r\n        );\r\n        return [start_at, end_at];\r\n    },\r\n    },\r\n    {\r\n    text: '本月',\r\n    value: () => {\r\n        const end_at = new Date();\r\n        const start_at = new Date(end_at);\r\n\r\n        // 将日期设置为本月第一天\r\n        start_at.setDate(1);\r\n        return [start_at, end_at];\r\n    },\r\n    },\r\n]",
+                    id: 'date_range_shortcuts',
                   },
                 ],
                 layoutPos: {

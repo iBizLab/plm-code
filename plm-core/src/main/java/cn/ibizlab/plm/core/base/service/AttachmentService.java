@@ -15,6 +15,7 @@ import cn.ibizlab.plm.core.base.filter.AttachmentSearchContext;
 import cn.ibizlab.plm.core.wiki.domain.Stencil;
 import cn.ibizlab.plm.core.prodmgmt.domain.Idea;
 import cn.ibizlab.plm.core.wiki.domain.ArticlePage;
+import cn.ibizlab.plm.core.testmgmt.domain.Review;
 import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
 import cn.ibizlab.plm.core.prodmgmt.domain.Ticket;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
@@ -289,6 +290,14 @@ public interface AttachmentService extends IService<Attachment> {
     * @return
     */
     boolean saveByPage(ArticlePage articlePage,List<Attachment> list);
+
+    /**
+    * saveRelByReview
+    * @param review
+    * @param list
+    * @return
+    */
+    boolean saveByReview(Review review,List<Attachment> list);
 
     /**
     * saveRelByTestCase

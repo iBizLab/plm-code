@@ -169,8 +169,8 @@ export default {
           caption: '删除',
           itemType: 'DEUIACTION',
           sysImage: {
-            cssClass: 'fa fa-remove',
-            glyph: 'xf00d@FontAwesome',
+            cssClass: 'fa fa-trash-o',
+            glyph: 'xf014@FontAwesome',
           },
           tooltip: '删除',
           tooltipLanguageRes: {
@@ -211,6 +211,7 @@ export default {
           id: 'tbitem10',
         },
         {
+          actionLevel: 100,
           detoolbarItems: [
             {
               actionLevel: 100,
@@ -347,7 +348,7 @@ export default {
                 id: 'u6efbb95',
               },
               {
-                actionLevel: 200,
+                actionLevel: 250,
                 afterItemType: 'NONE',
                 beforeItemType: 'NONE',
                 detailType: 'DEUIACTION',
@@ -603,11 +604,6 @@ export default {
           dataType: 25,
           id: 'srfmajortext',
         },
-        {
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'srfmstag',
-        },
       ],
       degridEditItems: [
         {
@@ -644,6 +640,17 @@ export default {
       controlType: 'GRID',
       logicName: '项目集表格',
       appDataEntityId: 'plmweb.portfolio',
+      controlLogics: [
+        {
+          eventNames: 'onLoadSuccess',
+          logicTag: 'grid',
+          logicType: 'APPDEUILOGIC',
+          appDEUILogicId: 'calc_column_action_state',
+          appDataEntityId: 'plmweb.portfolio',
+          triggerType: 'CTRLEVENT',
+          id: 'calc_column_action_state',
+        },
+      ],
       controlParam: {
         id: 'grid',
       },

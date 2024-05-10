@@ -39,6 +39,16 @@ public class ProductTicketType extends EntityMP implements Serializable
 {
 
     /**
+     * 描述
+     */
+    @TableField(value = "description" , exist = false)
+    @DEField(name = "description")
+    @JsonProperty("description")
+    @JSONField(name = "description")
+    @ApiModelProperty(value = "description", notes = "描述")
+    private String description;
+
+    /**
      * 更新人
      */
     @TableField(value = "update_man")
@@ -122,6 +132,16 @@ public class ProductTicketType extends EntityMP implements Serializable
     private String productId;
 
     /**
+     * 名称
+     */
+    @TableField(value = "ticket_type_name" , exist = false)
+    @DEField(name = "ticket_type_name")
+    @JsonProperty("ticket_type_name")
+    @JSONField(name = "ticket_type_name")
+    @ApiModelProperty(value = "ticket_type_name", notes = "名称")
+    private String ticketTypeName;
+
+    /**
      * 产品
      */
     @JsonIgnore
@@ -140,6 +160,15 @@ public class ProductTicketType extends EntityMP implements Serializable
     @Transient
     @ApiModelProperty(value = "ticket_type", notes = "工单类型")
     private TicketType ticketType;
+
+    /**
+     * 设置 [描述]
+     */
+    public ProductTicketType setDescription(String description) {
+        this.description = description;
+        this.modify("description", description);
+        return this;
+    }
 
     /**
      * 设置 [名称]
@@ -166,6 +195,26 @@ public class ProductTicketType extends EntityMP implements Serializable
         this.productId = productId;
         this.modify("product_id", productId);
         return this;
+    }
+
+    /**
+     * 设置 [名称]
+     */
+    public ProductTicketType setTicketTypeName(String ticketTypeName) {
+        this.ticketTypeName = ticketTypeName;
+        this.modify("ticket_type_name", ticketTypeName);
+        return this;
+    }
+
+
+    @Override
+    public Serializable getDefaultKey(boolean gen) {
+        //Assert.notNull(getProductId(),"未设置产品标识");
+        //Assert.notNull(getTicketTypeId(),"未设置工单类型标识");
+        String key = String.format("%s||%s"
+            ,getProductId(),getTicketTypeId());
+        key = DigestUtils.md5DigestAsHex(key.getBytes());    
+        return key;
     }
 
     /**

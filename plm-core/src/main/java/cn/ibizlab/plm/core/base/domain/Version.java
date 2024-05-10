@@ -21,8 +21,14 @@ import lombok.experimental.Accessors;
 import io.swagger.annotations.*;
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
+import cn.ibizlab.plm.core.prodmgmt.domain.Idea;
 import cn.ibizlab.plm.core.wiki.domain.ArticlePage;
+import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
+import cn.ibizlab.plm.core.prodmgmt.domain.BaselineIdea;
+import cn.ibizlab.plm.core.testmgmt.domain.BaselineTestCase;
+import cn.ibizlab.plm.core.projmgmt.domain.BaselineWorkItem;
+import cn.ibizlab.plm.core.testmgmt.domain.ReviewContent;
 
 /**
  * 版本实体类[Version]
@@ -80,16 +86,6 @@ public class Version extends EntityMP implements Serializable
     private BigDecimal identifier;
 
     /**
-     * 所属对象版本标识
-     */
-    @TableField(value = "owner_version_id")
-    @DEField(name = "owner_version_id" , preType = DEPredefinedFieldType.PARENTVERSIONID)
-    @JsonProperty("owner_version_id")
-    @JSONField(name = "owner_version_id")
-    @ApiModelProperty(value = "owner_version_id", notes = "所属对象版本标识")
-    private String ownerVersionId;
-
-    /**
      * 数据
      */
     @TableField(value = "data")
@@ -118,16 +114,6 @@ public class Version extends EntityMP implements Serializable
     @JSONField(name = "manual")
     @ApiModelProperty(value = "manual", notes = "手动提交")
     private Integer manual;
-
-    /**
-     * 过滤属性
-     */
-    @TableField(value = "filter")
-    @DEField(name = "filter")
-    @JsonProperty("filter")
-    @JSONField(name = "filter")
-    @ApiModelProperty(value = "filter", notes = "过滤属性")
-    private String filter;
 
     /**
      * 名称
@@ -193,6 +179,16 @@ public class Version extends EntityMP implements Serializable
     private String updateMan;
 
     /**
+     * 需求
+     */
+    @JsonIgnore
+    @JSONField(serialize = false)
+    @TableField(exist = false)
+    @Transient
+    @ApiModelProperty(value = "idea", notes = "需求-版本")
+    private Idea idea;
+
+    /**
      * 页面
      */
     @JsonIgnore
@@ -201,6 +197,16 @@ public class Version extends EntityMP implements Serializable
     @Transient
     @ApiModelProperty(value = "page", notes = "页面-版本")
     private ArticlePage page;
+
+    /**
+     * 用例
+     */
+    @JsonIgnore
+    @JSONField(serialize = false)
+    @TableField(exist = false)
+    @Transient
+    @ApiModelProperty(value = "test_case", notes = "测试用例-版本")
+    private TestCase testCase;
 
     /**
      * 工作项
@@ -254,15 +260,6 @@ public class Version extends EntityMP implements Serializable
     public Version setManual(Integer manual) {
         this.manual = manual;
         this.modify("manual", manual);
-        return this;
-    }
-
-    /**
-     * 设置 [过滤属性]
-     */
-    public Version setFilter(String filter) {
-        this.filter = filter;
-        this.modify("filter", filter);
         return this;
     }
 

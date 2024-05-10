@@ -38,6 +38,14 @@ import cn.ibizlab.plm.core.prodmgmt.domain.TicketType;
 public class TicketTypeSearchContext extends QueryWrapperContext<TicketType> {
 
     /**
+     * 是否系统默认EQ
+     */
+    @JsonProperty("n_is_system_eq")
+    @JSONField(name = "n_is_system_eq")
+    @ApiModelProperty("是否系统默认EQ")
+    private Integer isSystemEQ;
+
+    /**
      * 名称LIKE
      */
     @JsonProperty("n_name_like")

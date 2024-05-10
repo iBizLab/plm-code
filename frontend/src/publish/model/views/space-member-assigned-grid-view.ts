@@ -196,8 +196,8 @@ export default {
                 uiactionId: 'remove_member@space_member',
                 showIcon: true,
                 sysImage: {
-                  cssClass: 'fa fa-trash',
-                  glyph: 'xf1f8@FontAwesome',
+                  cssClass: 'fa fa-trash-o',
+                  glyph: 'xf014@FontAwesome',
                 },
                 id: 'uafbf3eb',
               },

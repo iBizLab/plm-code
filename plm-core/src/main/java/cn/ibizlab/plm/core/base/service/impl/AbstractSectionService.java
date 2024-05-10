@@ -27,6 +27,8 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import cn.ibizlab.plm.core.base.domain.Category;
 import cn.ibizlab.plm.core.base.service.CategoryService;
+import cn.ibizlab.plm.core.base.domain.Group;
+import cn.ibizlab.plm.core.base.service.GroupService;
 
 /**
  * 实体[分组] 服务对象接口实现
@@ -39,6 +41,10 @@ public abstract class AbstractSectionService extends ServiceImpl<SectionMapper,S
     @Autowired
     @Lazy
     protected CategoryService categoryService;
+
+    @Autowired
+    @Lazy
+    protected GroupService groupService;
 
     protected int batchSize = 500;
 

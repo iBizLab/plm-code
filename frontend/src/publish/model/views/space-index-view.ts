@@ -500,6 +500,7 @@ export default {
             id: 'deuiaction2',
           },
           {
+            actionLevel: 100,
             detoolbarItems: [
               {
                 actionLevel: 100,
@@ -582,6 +583,7 @@ export default {
             id: 'items1',
           },
         ],
+        toolbarStyle: 'USER',
         codeName: 'index_view_toolbar',
         controlType: 'TOOLBAR',
         logicName: '空间主视图工具栏',

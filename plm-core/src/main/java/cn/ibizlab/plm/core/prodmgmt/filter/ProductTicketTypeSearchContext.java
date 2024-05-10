@@ -69,6 +69,22 @@ public class ProductTicketTypeSearchContext extends QueryWrapperContext<ProductT
     @ApiModelProperty("产品标识EQ")
     private String productIdEQ;
 
+    /**
+     * 名称EQ
+     */
+    @JsonProperty("n_ticket_type_name_eq")
+    @JSONField(name = "n_ticket_type_name_eq")
+    @ApiModelProperty("名称EQ")
+    private String ticketTypeNameEQ;
+
+    /**
+     * 名称LIKE
+     */
+    @JsonProperty("n_ticket_type_name_like")
+    @JSONField(name = "n_ticket_type_name_like")
+    @ApiModelProperty("名称LIKE")
+    private String ticketTypeNameLIKE;
+
     @Override
     public void setContextParentKey(Serializable contextParentKey) {
         super.setContextParentKey(contextParentKey);
@@ -82,7 +98,7 @@ public class ProductTicketTypeSearchContext extends QueryWrapperContext<ProductT
     public void setQuery(String query) {
         this.query=query;
         if(!ObjectUtils.isEmpty(query))
-            this.getFilter().and(QueryFilter.createQuery().or(QueryFilter.createQuery().like("name",query)));
+            this.getFilter().and(QueryFilter.createQuery().or(QueryFilter.createQuery().like("ticket_type_name",query)));
     }
 
     @JsonIgnore

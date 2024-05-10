@@ -79,19 +79,19 @@ export default {
   ],
   appViewRefs: [
     {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '新建缺陷',
-      refAppViewId: 'plmweb.work_item_quick_create_bug_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       openMode: 'INDEXVIEWTAB_POPUPMODAL',
       realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
       realTitle: '工作项',
       refAppViewId: 'plmweb.work_item_main_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '新建缺陷',
+      refAppViewId: 'plmweb.work_item_quick_create_bug_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -115,23 +115,29 @@ export default {
           id: 'deuiaction1',
         },
         {
+          itemType: 'SEPERATOR',
+          id: 'seperator1',
+        },
+        {
+          actionLevel: 100,
+          buttonStyle: 'STYLE2',
           detoolbarItems: [
             {
               actionLevel: 100,
               noPrivDisplayMode: 2,
-              uiactionId: 'import_work_item_bug@work_item',
+              uiactionId: 'scrum_bug_import_data@work_item',
               uiactionTarget: 'NONE',
               valid: true,
               caption: '导入缺陷',
               itemType: 'DEUIACTION',
               sysImage: {
-                cssClass: 'fa fa-upload',
-                glyph: 'xf093@FontAwesome',
+                cssClass: 'fa fa-cloud-upload',
+                glyph: 'xf0ee@FontAwesome',
               },
               tooltip: '导入缺陷',
               showCaption: true,
               showIcon: true,
-              id: 'deuiaction2',
+              id: 'deuiaction4',
             },
             {
               actionLevel: 100,
@@ -988,6 +994,7 @@ export default {
               id: 'deuiaction10',
             },
             {
+              actionLevel: 100,
               detoolbarItems: [
                 {
                   actionLevel: 100,
@@ -1063,6 +1070,10 @@ export default {
               valid: true,
               caption: '更多',
               itemType: 'ITEMS',
+              sysImage: {
+                cssClass: 'fa fa-list-ul',
+                glyph: 'xf0ca@FontAwesome',
+              },
               tooltip: '更多',
               showCaption: true,
               showIcon: true,

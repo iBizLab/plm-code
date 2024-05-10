@@ -160,6 +160,40 @@ public abstract class AbstractVersionResource {
     }
 
     /**
+    * fix_commit 版本
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<VersionDTO>
+    */
+    @ApiOperation(value = "fix_commit", tags = {"版本" },  notes = "Version-fix_commit ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Version-fix_commit-all') or hasPermission(this.versionDtoMapping.toDomain(#dto),'ibizplm-Version-fix_commit')")
+    @PostMapping("versions/fix_commit")
+    public ResponseEntity<ResponseWrapper<VersionDTO>> fixCommit
+            (@Validated @RequestBody RequestWrapper<VersionDTO> dto) {
+        ResponseWrapper<VersionDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(fixCommit(item)));
+        else
+            rt.set(fixCommit(dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * fix_commit 版本
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<VersionDTO>
+    */   
+    public VersionDTO fixCommit
+            (VersionDTO dto) {
+        Version domain = versionDtoMapping.toDomain(dto);
+        Version rt = versionService.fixCommit(domain);
+        return versionDtoMapping.toDto(rt);
+    }
+
+    /**
     * Restore 版本
     * 
     *
@@ -312,6 +346,28 @@ public abstract class AbstractVersionResource {
             (@Validated @RequestBody VersionFilterDTO dto) {
         VersionSearchContext context = versionFilterDtoMapping.toDomain(dto);
         Page<Version> domains = versionService.searchDefault(context) ;
+        List<VersionDTO> list = versionDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_owner 版本
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<VersionDTO>>
+    */
+    @ApiOperation(value = "查询fetch_owner", tags = {"版本" },  notes = "Version-fetch_owner ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Version-fetch_owner-all') or hasPermission(#dto,'ibizplm-Version-fetch_owner')")
+    @PostMapping("versions/fetch_owner")
+    public ResponseEntity<List<VersionDTO>> fetchOwner
+            (@Validated @RequestBody VersionFilterDTO dto) {
+        VersionSearchContext context = versionFilterDtoMapping.toDomain(dto);
+        Page<Version> domains = versionService.searchOwner(context) ;
         List<VersionDTO> list = versionDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

@@ -153,7 +153,7 @@ public abstract class AbstractTestPlanService extends ServiceImpl<TestPlanMapper
         fillParentData(et);
         if(this.baseMapper.insert(et) < 1)
             return false;
-        relationService.saveByTestPlan(et,et.getWorkItemRelations());
+        relationService.saveByPrincipalTestPlan(et,et.getWorkItemRelations());
         get(et);
         return true;
     }
@@ -171,7 +171,7 @@ public abstract class AbstractTestPlanService extends ServiceImpl<TestPlanMapper
         qw.eq("id", et.getId());
         if(!update(et, qw))
             return false;
-        relationService.saveByTestPlan(et,et.getWorkItemRelations());
+        relationService.saveByPrincipalTestPlan(et,et.getWorkItemRelations());
         get(et);
         return true;
     }

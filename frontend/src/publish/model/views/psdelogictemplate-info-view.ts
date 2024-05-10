@@ -153,9 +153,9 @@ export default {
                     buttonType: 'PANELBUTTON',
                     uiactionId: 'create_by_template@psdelogic',
                     renderMode: 'BUTTON',
-                    tooltip: '确定',
+                    tooltip: '使用此模板建立规则',
                     uiactionTarget: 'NONE',
-                    caption: '确定',
+                    caption: '使用此模板建立规则',
                     itemStyle: 'DEFAULT',
                     itemType: 'BUTTON',
                     layoutPos: {

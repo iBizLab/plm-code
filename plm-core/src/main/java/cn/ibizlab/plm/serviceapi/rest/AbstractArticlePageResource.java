@@ -359,6 +359,7 @@ public abstract class AbstractArticlePageResource {
     * @return ResponseEntity<ArticlePageDTO>
     */
     @ApiOperation(value = "recover", tags = {"页面" },  notes = "ArticlePage-recover ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-recover-all') or hasPermission(this.articlePageDtoMapping.toDomain(#dto),'ibizplm-ArticlePage-recover')")
     @PostMapping("article_pages/{id}/recover")
     public ResponseEntity<ResponseWrapper<ArticlePageDTO>> recoverById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ArticlePageDTO> dto) {
@@ -397,6 +398,7 @@ public abstract class AbstractArticlePageResource {
     * @return ResponseEntity<ArticlePageDTO>
     */
     @ApiOperation(value = "recover_version", tags = {"页面" },  notes = "ArticlePage-recover_version ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-recover_version-all') or hasPermission(this.articlePageDtoMapping.toDomain(#dto),'ibizplm-ArticlePage-recover_version')")
     @PostMapping("article_pages/{id}/recover_version")
     public ResponseEntity<ResponseWrapper<ArticlePageDTO>> recoverVersionById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ArticlePageDTO> dto) {
@@ -866,6 +868,7 @@ public abstract class AbstractArticlePageResource {
     * @return ResponseEntity<ArticlePageDTO>
     */
     @ApiOperation(value = "recover", tags = {"页面" },  notes = "ArticlePage-recover ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-recover-all') or hasPermission('space',#spaceId,this.articlePageDtoMapping.toDomain(#dto),'ibizplm-ArticlePage-recover')")
     @PostMapping("spaces/{spaceId}/article_pages/{id}/recover")
     public ResponseEntity<ResponseWrapper<ArticlePageDTO>> recoverBySpaceIdAndId
             (@PathVariable("spaceId") String spaceId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ArticlePageDTO> dto) {
@@ -906,6 +909,7 @@ public abstract class AbstractArticlePageResource {
     * @return ResponseEntity<ArticlePageDTO>
     */
     @ApiOperation(value = "recover_version", tags = {"页面" },  notes = "ArticlePage-recover_version ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-recover_version-all') or hasPermission('space',#spaceId,this.articlePageDtoMapping.toDomain(#dto),'ibizplm-ArticlePage-recover_version')")
     @PostMapping("spaces/{spaceId}/article_pages/{id}/recover_version")
     public ResponseEntity<ResponseWrapper<ArticlePageDTO>> recoverVersionBySpaceIdAndId
             (@PathVariable("spaceId") String spaceId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ArticlePageDTO> dto) {

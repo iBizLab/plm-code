@@ -11,69 +11,277 @@ export default {
   caption: '测试计划',
   codeName: 'test_plan_main_view',
   appDataEntityId: 'plmweb.test_plan',
-  appViewEngines: [
-    {
-      engineCat: 'VIEW',
-      engineType: 'TabExpView',
-      id: 'engine',
-    },
-  ],
-  controls: [
-    {
-      dedrtabPages: [
-        {
-          caption: '执行用例',
-          appViewId: 'plmweb.run_tree_exp_view',
-          id: 'run',
-        },
-        {
-          caption: '缺陷',
-          appViewId: 'plmweb.work_item_test_plan_bug_grid_view',
-          id: 'relation_bug',
-        },
-      ],
-      editItemCapLanguageRes: {
-        lanResTag: 'DE.LNAME.TEST_PLAN',
-      },
-      editItemCaption: '测试计划',
-      uniqueTag: 'test_plan_main_view__tabexppanel',
-      hideEditItem: true,
-      autoLoad: true,
-      showBusyIndicator: true,
-      codeName: 'main_view_dr',
-      controlType: 'DRTAB',
-      appDataEntityId: 'plmweb.test_plan',
-      controlParam: {
-        id: 'tabexppanel',
-      },
-      modelId: 'fc1f4c424326f12907383b49b506dc9c',
-      modelType: 'PSDEDRTAB',
-      name: 'tabexppanel',
-      id: 'main_view_dr',
-    },
-    {
-      capLanguageRes: {
-        lanResTag: 'DE.LNAME.TEST_PLAN',
-      },
-      caption: '测试计划',
-      codeName: 'main_view_captionbar',
-      controlType: 'CAPTIONBAR',
-      appDataEntityId: 'plmweb.test_plan',
-      controlParam: {},
-      name: 'captionbar',
-      id: 'main_view_captionbar',
-    },
-  ],
   viewLayoutPanel: {
-    layoutBodyOnly: true,
-    useDefaultLayout: true,
+    viewProxyMode: true,
+    layoutMode: 'FLEX',
+    layout: {
+      layout: 'FLEX',
+    },
+    rootPanelItems: [
+      {
+        actionGroupExtractMode: 'ITEM',
+        panelItems: [
+          {
+            actionGroupExtractMode: 'ITEM',
+            panelItems: [
+              {
+                caption: '标题栏',
+                itemStyle: 'DEFAULT',
+                itemType: 'CTRLPOS',
+                layoutPos: {
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                showCaption: true,
+                id: 'captionbar',
+              },
+            ],
+            layout: {
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            caption: '容器',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              shrink: 1,
+              layout: 'FLEX',
+            },
+            id: 'view_captionbar',
+          },
+          {
+            actionGroupExtractMode: 'ITEM',
+            panelItems: [
+              {
+                caption: '分页导航',
+                itemStyle: 'DEFAULT',
+                itemType: 'CTRLPOS',
+                layoutPos: {
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                showCaption: true,
+                id: 'tabexppanel',
+              },
+            ],
+            layout: {
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            caption: '容器',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              grow: 1,
+              shrink: 1,
+              layout: 'FLEX',
+            },
+            id: 'view_tabexppanel',
+          },
+        ],
+        predefinedType: 'VIEWHEADER',
+        layout: {
+          dir: 'row',
+          layout: 'FLEX',
+          valign: 'center',
+        },
+        dataRegionType: 'INHERIT',
+        caption: '容器',
+        itemStyle: 'DEFAULT',
+        itemType: 'CONTAINER',
+        layoutPos: {
+          shrink: 0,
+          layout: 'FLEX',
+        },
+        id: 'view_header',
+      },
+      {
+        actionGroupExtractMode: 'ITEM',
+        panelItems: [
+          {
+            actionGroupExtractMode: 'ITEM',
+            layout: {
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            caption: '容器',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              shrink: 0,
+              layout: 'FLEX',
+            },
+            id: 'view_tabexppanel_left',
+          },
+          {
+            actionGroupExtractMode: 'ITEM',
+            panelItems: [
+              {
+                actionGroupExtractMode: 'ITEM',
+                layout: {
+                  layout: 'FLEX',
+                },
+                dataRegionType: 'INHERIT',
+                caption: '容器',
+                itemStyle: 'DEFAULT',
+                itemType: 'CONTAINER',
+                layoutPos: {
+                  shrink: 0,
+                  layout: 'FLEX',
+                },
+                id: 'view_tabexppanel_bottom',
+              },
+              {
+                actionGroupExtractMode: 'ITEM',
+                panelItems: [
+                  {
+                    rawItem: {
+                      predefinedType: 'NAV_POS',
+                      id: 'nav_pos',
+                    },
+                    caption: '导航区占位',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'RAWITEM',
+                    layoutPos: {
+                      grow: 1,
+                      shrink: 1,
+                      layout: 'FLEX',
+                    },
+                    showCaption: true,
+                    id: 'nav_pos',
+                  },
+                ],
+                predefinedType: 'VIEWCONTENT',
+                layout: {
+                  layout: 'FLEX',
+                },
+                dataRegionType: 'INHERIT',
+                caption: '容器',
+                cssStyle: 'padding:0',
+                itemStyle: 'DEFAULT',
+                itemType: 'CONTAINER',
+                layoutPos: {
+                  grow: 1,
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                id: 'view_content',
+              },
+            ],
+            layout: {
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            caption: '容器',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              grow: 1,
+              shrink: 1,
+              layout: 'FLEX',
+            },
+            id: 'container1',
+          },
+          {
+            actionGroupExtractMode: 'ITEM',
+            layout: {
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            caption: '容器',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              shrink: 0,
+              layout: 'FLEX',
+            },
+            id: 'view_tabexppanel_right',
+          },
+        ],
+        layout: {
+          dir: 'row',
+          layout: 'FLEX',
+        },
+        dataRegionType: 'INHERIT',
+        caption: '容器',
+        itemStyle: 'DEFAULT',
+        itemType: 'CONTAINER',
+        layoutPos: {
+          grow: 1,
+          shrink: 1,
+          layout: 'FLEX',
+        },
+        id: 'container',
+      },
+    ],
     layoutPanel: true,
-    codeName: 'layoutpanel',
-    controlStyle: 'APPDETABEXPVIEW',
+    appViewEngines: [
+      {
+        engineCat: 'VIEW',
+        engineType: 'TabExpView',
+        id: 'engine',
+      },
+    ],
+    controls: [
+      {
+        dedrtabPages: [
+          {
+            caption: '执行用例',
+            appViewId: 'plmweb.run_tree_exp_view',
+            id: 'run',
+          },
+          {
+            caption: '缺陷',
+            appViewId: 'plmweb.work_item_test_plan_bug_grid_view',
+            id: 'relation_bug',
+          },
+          {
+            caption: '测试报告',
+            appViewId: 'plmweb.test_plan_report_dashboard_view',
+            id: 'report',
+          },
+        ],
+        editItemCapLanguageRes: {
+          lanResTag: 'DE.LNAME.TEST_PLAN',
+        },
+        editItemCaption: '测试计划',
+        uniqueTag: 'test_plan_main_view__tabexppanel',
+        hideEditItem: true,
+        autoLoad: true,
+        showBusyIndicator: true,
+        codeName: 'main_view_dr',
+        controlType: 'DRTAB',
+        appDataEntityId: 'plmweb.test_plan',
+        controlParam: {
+          id: 'tabexppanel',
+        },
+        modelId: 'fc1f4c424326f12907383b49b506dc9c',
+        modelType: 'PSDEDRTAB',
+        name: 'tabexppanel',
+        id: 'main_view_dr',
+      },
+      {
+        capLanguageRes: {
+          lanResTag: 'DE.LNAME.TEST_PLAN',
+        },
+        caption: '测试计划',
+        codeName: 'main_view_captionbar',
+        controlType: 'CAPTIONBAR',
+        appDataEntityId: 'plmweb.test_plan',
+        controlParam: {},
+        name: 'captionbar',
+        id: 'main_view_captionbar',
+      },
+    ],
+    codeName: 'usr0428391709',
     controlType: 'VIEWLAYOUTPANEL',
+    logicName: 'main_view分页导航视图布局面板',
     appDataEntityId: 'plmweb.test_plan',
     controlParam: {},
-    id: 'layoutpanel',
+    modelId: '7E8B4FEB-BD7E-4A2D-A17A-61A74554B858',
+    modelType: 'PSSYSVIEWLAYOUTPANEL',
+    name: 'layoutpanel',
+    id: 'usr0428391709',
   },
   title: '测试计划',
   viewStyle: 'DEFAULT',

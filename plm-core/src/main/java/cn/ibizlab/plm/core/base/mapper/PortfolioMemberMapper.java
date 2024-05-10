@@ -43,6 +43,25 @@ public interface PortfolioMemberMapper extends BaseMapper<PortfolioMember> {
     List<PortfolioMember> listDefault(@Param("ctx") PortfolioMemberSearchContext context, @Param("ew") Wrapper<PortfolioMember> wrapper);
 
     /**
+     * 数据集合cur_project_set分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<PortfolioMember> searchCurProjectSet(IPage<PortfolioMember> page, @Param("ctx") PortfolioMemberSearchContext context, @Param("ew") Wrapper<PortfolioMember> wrapper);
+    
+    /**
+     * 数据集合cur_project_set查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<PortfolioMember> listCurProjectSet(@Param("ctx") PortfolioMemberSearchContext context, @Param("ew") Wrapper<PortfolioMember> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

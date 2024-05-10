@@ -159,8 +159,8 @@ export default {
                 uiactionId: 'archive@library',
                 showIcon: true,
                 sysImage: {
-                  cssClass: 'fa fa-archive',
-                  glyph: 'xf187@FontAwesome',
+                  cssClass: 'fa fa-file-archive-o',
+                  glyph: 'xf1c6@FontAwesome',
                 },
                 id: 'uf444d6d',
               },
@@ -172,8 +172,8 @@ export default {
                 uiactionId: 'delete@library',
                 showIcon: true,
                 sysImage: {
-                  cssClass: 'fa fa-trash',
-                  glyph: 'xf1f8@FontAwesome',
+                  cssClass: 'fa fa-trash-o',
+                  glyph: 'xf014@FontAwesome',
                 },
                 id: 'uc3bf41b',
               },
@@ -231,11 +231,6 @@ export default {
           valueType: 'SIMPLE',
           dataType: 25,
           id: 'srfmajortext',
-        },
-        {
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'srfmstag',
         },
       ],
       degridEditItems: [
@@ -325,6 +320,23 @@ export default {
       groupMode: 'SINGLE',
       quickSearchMode: 1,
       enableQuickSearch: true,
+      codeName: 'query_search_bar',
+      controlType: 'SEARCHBAR',
+      logicName: '快速搜索栏',
+      appDataEntityId: 'plmweb.library',
+      controlParam: {
+        ctrlParams: {
+          TELEPORTFLAG: 'true',
+        },
+        id: 'tabsearchbar',
+      },
+      modelId: 'B1CD8686-5BAD-4D75-818C-EAE5E3D93803',
+      modelType: 'PSSYSSEARCHBAR',
+      name: 'tabsearchbar',
+      id: 'plmweb.library.query_search_bar',
+    },
+    {
+      groupMode: 'SINGLE',
       controlType: 'SEARCHBAR',
       appDataEntityId: 'plmweb.library',
       controlParam: {
@@ -360,7 +372,7 @@ export default {
   viewStyle: 'DEFAULT',
   viewType: 'DEGRIDVIEW',
   enableDP: true,
-  showCaptionBar: true,
+  showCaptionBar: false,
   modelId: '415c0ba036246ff1e95365cec767a6e1',
   modelType: 'PSAPPDEVIEW',
   name: 'libraryin_progress_grid_view',

@@ -245,6 +245,83 @@ public abstract class AbstractCustomerResource {
     }
 
     /**
+    * delete_categories 客户
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<CustomerDTO>
+    */
+    @ApiOperation(value = "delete_categories", tags = {"客户" },  notes = "Customer-delete_categories ")
+    @PostMapping("customers/{id}/delete_categories")
+    public ResponseEntity<ResponseWrapper<CustomerDTO>> deleteCategoriesById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<CustomerDTO> dto) {
+        ResponseWrapper<CustomerDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(deleteCategoriesById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(deleteCategoriesById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * delete_categories 客户
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<CustomerDTO>
+    */   
+    public CustomerDTO deleteCategoriesById
+            (String id, CustomerDTO dto) {
+        Customer domain = customerDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Customer rt = customerService.deleteCategories(domain);
+        return customerDtoMapping.toDto(rt);
+    }
+
+    /**
+    * fill_product_member 客户
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<CustomerDTO>
+    */
+    @ApiOperation(value = "fill_product_member", tags = {"客户" },  notes = "Customer-fill_product_member ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Customer-fill_product_member-all') or hasPermission(this.customerDtoMapping.toDomain(#dto),'ibizplm-Customer-fill_product_member')")
+    @PostMapping("customers/{id}/fill_product_member")
+    public ResponseEntity<ResponseWrapper<CustomerDTO>> fillProductMemberById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<CustomerDTO> dto) {
+        ResponseWrapper<CustomerDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(fillProductMemberById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(fillProductMemberById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * fill_product_member 客户
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<CustomerDTO>
+    */   
+    public CustomerDTO fillProductMemberById
+            (String id, CustomerDTO dto) {
+        Customer domain = customerDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Customer rt = customerService.fillProductMember(domain);
+        return customerDtoMapping.toDto(rt);
+    }
+
+    /**
     * others_relation_customer 客户
     * 
     *
@@ -555,6 +632,87 @@ public abstract class AbstractCustomerResource {
         Customer domain = customerDtoMapping.toDomain(dto);
         domain.setId(id);
         Customer rt = customerService.delRelation(domain);
+        return customerDtoMapping.toDto(rt);
+    }
+
+    /**
+    * delete_categories 客户
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<CustomerDTO>
+    */
+    @ApiOperation(value = "delete_categories", tags = {"客户" },  notes = "Customer-delete_categories ")
+    @PostMapping("products/{productId}/customers/{id}/delete_categories")
+    public ResponseEntity<ResponseWrapper<CustomerDTO>> deleteCategoriesByProductIdAndId
+            (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<CustomerDTO> dto) {
+        ResponseWrapper<CustomerDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(deleteCategoriesByProductIdAndId(productId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(deleteCategoriesByProductIdAndId(productId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * delete_categories 客户
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<CustomerDTO>
+    */   
+    public CustomerDTO deleteCategoriesByProductIdAndId
+            (String productId, String id, CustomerDTO dto) {
+        Customer domain = customerDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Customer rt = customerService.deleteCategories(domain);
+        return customerDtoMapping.toDto(rt);
+    }
+
+    /**
+    * fill_product_member 客户
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<CustomerDTO>
+    */
+    @ApiOperation(value = "fill_product_member", tags = {"客户" },  notes = "Customer-fill_product_member ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Customer-fill_product_member-all') or hasPermission('product',#productId,this.customerDtoMapping.toDomain(#dto),'ibizplm-Customer-fill_product_member')")
+    @PostMapping("products/{productId}/customers/{id}/fill_product_member")
+    public ResponseEntity<ResponseWrapper<CustomerDTO>> fillProductMemberByProductIdAndId
+            (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<CustomerDTO> dto) {
+        ResponseWrapper<CustomerDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(fillProductMemberByProductIdAndId(productId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(fillProductMemberByProductIdAndId(productId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * fill_product_member 客户
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<CustomerDTO>
+    */   
+    public CustomerDTO fillProductMemberByProductIdAndId
+            (String productId, String id, CustomerDTO dto) {
+        Customer domain = customerDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Customer rt = customerService.fillProductMember(domain);
         return customerDtoMapping.toDto(rt);
     }
 

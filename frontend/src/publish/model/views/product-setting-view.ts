@@ -120,6 +120,11 @@ export default {
           id: 'usrdrgroup0314526198',
         },
         {
+          caption: '配置',
+          name: '配置',
+          id: 'usrdrgroup0418793617',
+        },
+        {
           caption: '设置',
           name: '设置',
           id: 'usrdrgroup0314383150',
@@ -147,6 +152,14 @@ export default {
           enableMode: 'DEOPPRIV',
           appViewId: 'plmweb.product_recover_tab_exp_view',
           id: 'recycle',
+        },
+        {
+          dedrbarGroupId: 'usrdrgroup0418793617',
+          caption: '工单类型',
+          dataAccessAction: 'UPDATE',
+          enableMode: 'DEOPPRIV',
+          appViewId: 'plmweb.ticket_config_tab_exp_view',
+          id: 'workconfig',
         },
         {
           dedrbarGroupId: 'usrdrgroup0314383150',

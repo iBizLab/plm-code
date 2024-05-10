@@ -61,16 +61,16 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '项目数据重定向视图',
-      refAppViewId: 'plmweb.project_redirect_view',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
-    {
       realTitle: '项目编辑视图',
       refAppViewId: 'plmweb.project_edit_view',
       name: 'NEWDATA',
       id: 'newdata',
+    },
+    {
+      realTitle: '项目数据重定向视图',
+      refAppViewId: 'plmweb.project_redirect_view',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
   ],
   controls: [
@@ -154,8 +154,8 @@ export default {
                 tooltip: '恢复',
                 showIcon: true,
                 sysImage: {
-                  cssClass: 'fa fa-retweet',
-                  glyph: 'xf079@FontAwesome',
+                  cssClass: 'fa fa-refresh',
+                  glyph: 'xf021@FontAwesome',
                 },
                 id: 'u5b3a614',
               },
@@ -213,11 +213,6 @@ export default {
           valueType: 'SIMPLE',
           dataType: 25,
           id: 'srfmajortext',
-        },
-        {
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'srfmstag',
         },
       ],
       degridEditItems: [
@@ -304,6 +299,23 @@ export default {
       groupMode: 'SINGLE',
       quickSearchMode: 1,
       enableQuickSearch: true,
+      codeName: 'query_search_bar',
+      controlType: 'SEARCHBAR',
+      logicName: '快速搜索栏',
+      appDataEntityId: 'plmweb.project',
+      controlParam: {
+        ctrlParams: {
+          TELEPORTFLAG: 'true',
+        },
+        id: 'tabsearchbar',
+      },
+      modelId: '4A0157AD-FCC4-4615-AD9E-55E6746048D0',
+      modelType: 'PSSYSSEARCHBAR',
+      name: 'tabsearchbar',
+      id: 'plmweb.project.query_search_bar',
+    },
+    {
+      groupMode: 'SINGLE',
       controlType: 'SEARCHBAR',
       appDataEntityId: 'plmweb.project',
       controlParam: {
@@ -336,7 +348,7 @@ export default {
   viewStyle: 'DEFAULT',
   viewType: 'DEGRIDVIEW',
   enableDP: true,
-  showCaptionBar: true,
+  showCaptionBar: false,
   modelId: '63778a07c0f76c97733ddd4ba89de0fb',
   modelType: 'PSAPPDEVIEW',
   name: 'projectdeleted_grid_view',

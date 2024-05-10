@@ -44,6 +44,8 @@ import cn.ibizlab.plm.core.base.domain.Workload;
 import cn.ibizlab.plm.core.base.service.WorkloadService;
 import cn.ibizlab.plm.core.base.domain.Relation;
 import cn.ibizlab.plm.core.base.service.RelationService;
+import cn.ibizlab.plm.core.base.domain.Version;
+import cn.ibizlab.plm.core.base.service.VersionService;
 
 /**
  * 实体[需求] 服务对象接口实现
@@ -88,6 +90,10 @@ public abstract class AbstractIdeaService extends ServiceImpl<IdeaMapper,Idea> i
     @Autowired
     @Lazy
     protected RelationService relationService;
+
+    @Autowired
+    @Lazy
+    protected VersionService versionService;
 
     protected int batchSize = 500;
 
@@ -268,6 +274,21 @@ public abstract class AbstractIdeaService extends ServiceImpl<IdeaMapper,Idea> i
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("IDENTIFIER,ASC");
         List<Idea> list = baseMapper.listArchived(context,context.getSelectCond());
+        return list;
+    }
+
+    public Page<Idea> searchBaselineChooseIdea(IdeaSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Idea> pages=baseMapper.searchBaselineChooseIdea(context.getPages(),context,context.getSelectCond());
+        List<Idea> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Idea> listBaselineChooseIdea(IdeaSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        List<Idea> list = baseMapper.listBaselineChooseIdea(context,context.getSelectCond());
         return list;
     }
 

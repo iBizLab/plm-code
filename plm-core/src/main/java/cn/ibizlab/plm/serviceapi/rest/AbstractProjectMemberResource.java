@@ -126,6 +126,44 @@ public abstract class AbstractProjectMemberResource {
     }
 
     /**
+    * change_role 项目成员
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProjectMemberDTO>
+    */
+    @ApiOperation(value = "change_role", tags = {"项目成员" },  notes = "ProjectMember-change_role ")
+    @PostMapping("project_members/{id}/change_role")
+    public ResponseEntity<ResponseWrapper<ProjectMemberDTO>> changeRoleById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProjectMemberDTO> dto) {
+        ResponseWrapper<ProjectMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(changeRoleById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(changeRoleById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * change_role 项目成员
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProjectMemberDTO>
+    */   
+    public ProjectMemberDTO changeRoleById
+            (String id, ProjectMemberDTO dto) {
+        ProjectMember domain = projectMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        ProjectMember rt = projectMemberService.changeRole(domain);
+        return projectMemberDtoMapping.toDto(rt);
+    }
+
+    /**
     * 保存Save 项目成员
     * 
     *
@@ -238,6 +276,46 @@ public abstract class AbstractProjectMemberResource {
         domain.setId(id);
         projectMemberService.update(domain);
         ProjectMember rt = domain;
+        return projectMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * change_role 项目成员
+    * 
+    *
+    * @param projectId projectId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProjectMemberDTO>
+    */
+    @ApiOperation(value = "change_role", tags = {"项目成员" },  notes = "ProjectMember-change_role ")
+    @PostMapping("projects/{projectId}/project_members/{id}/change_role")
+    public ResponseEntity<ResponseWrapper<ProjectMemberDTO>> changeRoleByProjectIdAndId
+            (@PathVariable("projectId") String projectId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProjectMemberDTO> dto) {
+        ResponseWrapper<ProjectMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(changeRoleByProjectIdAndId(projectId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(changeRoleByProjectIdAndId(projectId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * change_role 项目成员
+    * 
+    *
+    * @param projectId projectId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProjectMemberDTO>
+    */   
+    public ProjectMemberDTO changeRoleByProjectIdAndId
+            (String projectId, String id, ProjectMemberDTO dto) {
+        ProjectMember domain = projectMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        ProjectMember rt = projectMemberService.changeRole(domain);
         return projectMemberDtoMapping.toDto(rt);
     }
 
@@ -357,6 +435,46 @@ public abstract class AbstractProjectMemberResource {
         domain.setId(id);
         projectMemberService.update(domain);
         ProjectMember rt = domain;
+        return projectMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * change_role 项目成员
+    * 
+    *
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProjectMemberDTO>
+    */
+    @ApiOperation(value = "change_role", tags = {"项目成员" },  notes = "ProjectMember-change_role ")
+    @PostMapping("users/{userId}/project_members/{id}/change_role")
+    public ResponseEntity<ResponseWrapper<ProjectMemberDTO>> changeRoleByUserIdAndId
+            (@PathVariable("userId") String userId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProjectMemberDTO> dto) {
+        ResponseWrapper<ProjectMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(changeRoleByUserIdAndId(userId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(changeRoleByUserIdAndId(userId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * change_role 项目成员
+    * 
+    *
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProjectMemberDTO>
+    */   
+    public ProjectMemberDTO changeRoleByUserIdAndId
+            (String userId, String id, ProjectMemberDTO dto) {
+        ProjectMember domain = projectMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        ProjectMember rt = projectMemberService.changeRole(domain);
         return projectMemberDtoMapping.toDto(rt);
     }
 

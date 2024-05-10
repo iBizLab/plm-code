@@ -107,6 +107,9 @@ export default {
                       renderMode: 'TEXT_DYNAMIC',
                       valign: 'MIDDLE',
                       wrapMode: 'NOWRAP',
+                      editorParams: {
+                        SHOWNAMETEXT: 'false',
+                      },
                       editorStyle: 'PERSONNEL_INFO',
                       editorType: 'SPAN',
                       sysPFPluginId: 'personnel_info',

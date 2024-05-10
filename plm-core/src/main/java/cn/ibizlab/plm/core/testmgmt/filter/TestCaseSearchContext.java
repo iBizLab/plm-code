@@ -119,19 +119,19 @@ public class TestCaseSearchContext extends QueryWrapperContext<TestCase> {
     private Integer isDeletedEQ;
 
     /**
-     * 评审状态EQ
+     * 状态EQ
      */
     @JsonProperty("n_state_eq")
     @JSONField(name = "n_state_eq")
-    @ApiModelProperty("评审状态EQ")
+    @ApiModelProperty("状态EQ")
     private String stateEQ;
 
     /**
-     * 评审状态NOTIN
+     * 状态NOTIN
      */
     @JsonProperty("n_state_notin")
     @JSONField(name = "n_state_notin")
-    @ApiModelProperty("评审状态NOTIN")
+    @ApiModelProperty("状态NOTIN")
     private String stateNOTIN;
 
     /**
@@ -189,6 +189,22 @@ public class TestCaseSearchContext extends QueryWrapperContext<TestCase> {
     @JSONField(name = "n_show_identifier_like")
     @ApiModelProperty("编号LIKE")
     private String showIdentifierLIKE;
+
+    /**
+     * 评审结果EQ
+     */
+    @JsonProperty("n_review_result_state_eq")
+    @JSONField(name = "n_review_result_state_eq")
+    @ApiModelProperty("评审结果EQ")
+    private String reviewResultStateEQ;
+
+    /**
+     * 标识IN
+     */
+    @JsonProperty("n_id_in")
+    @JSONField(name = "n_id_in")
+    @ApiModelProperty("标识IN")
+    private String idIN;
 
     /**
      * 标识NOTEQ
@@ -272,6 +288,14 @@ public class TestCaseSearchContext extends QueryWrapperContext<TestCase> {
     @JSONField(name = "n_suite_id_eq")
     @ApiModelProperty("用例模块标识EQ")
     private String suiteIdEQ;
+
+    /**
+     * 用例模块标识ISNOTNULL
+     */
+    @JsonProperty("n_suite_id_isnotnull")
+    @JSONField(name = "n_suite_id_isnotnull")
+    @ApiModelProperty("用例模块标识ISNOTNULL")
+    private String suiteIdISNOTNULL;
 
     /**
      * 用例模块标识ISNULL

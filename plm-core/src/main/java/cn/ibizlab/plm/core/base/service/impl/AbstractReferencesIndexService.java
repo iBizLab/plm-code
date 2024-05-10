@@ -52,7 +52,7 @@ public abstract class AbstractReferencesIndexService extends ServiceImpl<Referen
     }
 
     public Integer checkKey(ReferencesIndex et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ReferencesIndex>lambdaQuery())>0)?1:0;
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ReferencesIndex>lambdaQuery().eq(ReferencesIndex::getId, et.getId()))>0)?1:0;
     }
 
     @Override

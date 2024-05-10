@@ -543,11 +543,6 @@ export default {
             dataType: 25,
             id: 'srfmajortext',
           },
-          {
-            valueType: 'SIMPLE',
-            dataType: 25,
-            id: 'srfmstag',
-          },
         ],
         degridEditItems: [
           {
@@ -569,6 +564,7 @@ export default {
         sortMode: 'REMOTE',
         enableCustomized: true,
         enablePagingBar: true,
+        singleSelect: true,
         fetchControlAction: {
           appDEMethodId: 'fetch_only_page',
           appDataEntityId: 'plmweb.article_page',

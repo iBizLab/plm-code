@@ -197,6 +197,16 @@ public class Customer extends EntityMP implements Serializable
     private Integer ticketFinish;
 
     /**
+     * 关注人
+     */
+    @TableField(value = "attentions_imp" , exist = false)
+    @DEField(name = "attentions_imp")
+    @JsonProperty("attentions_imp")
+    @JSONField(name = "attentions_imp")
+    @ApiModelProperty(value = "attentions_imp", notes = "关注人")
+    private String attentionsImp;
+
+    /**
      * 标识
      */
     @Id
@@ -421,6 +431,15 @@ public class Customer extends EntityMP implements Serializable
     public Customer setTicketFinish(Integer ticketFinish) {
         this.ticketFinish = ticketFinish;
         this.modify("ticket_finish", ticketFinish);
+        return this;
+    }
+
+    /**
+     * 设置 [关注人]
+     */
+    public Customer setAttentionsImp(String attentionsImp) {
+        this.attentionsImp = attentionsImp;
+        this.modify("attentions_imp", attentionsImp);
         return this;
     }
 

@@ -175,6 +175,16 @@ public interface WorkItemStateService extends IService<WorkItemState> {
     }
 
     /**
+     * nothing
+     * 
+     * @param dto
+     * @return
+     */
+    default WorkItemState nothing(WorkItemState dto) {
+        return dto;
+    }
+
+    /**
      * searchDefault
      * 
      * @param context

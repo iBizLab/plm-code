@@ -220,8 +220,8 @@ export default {
                 uiactionId: 'remove_member@portfolio_member',
                 showIcon: true,
                 sysImage: {
-                  cssClass: 'fa fa-trash',
-                  glyph: 'xf1f8@FontAwesome',
+                  cssClass: 'fa fa-trash-o',
+                  glyph: 'xf014@FontAwesome',
                 },
                 id: 'u53f5978',
               },

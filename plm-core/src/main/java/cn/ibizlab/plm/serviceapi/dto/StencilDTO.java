@@ -36,11 +36,19 @@ public class StencilDTO extends DTOBase implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
+     * 正文格式
+     */
+    @JsonProperty("format_type")
+    @JSONField(name = "format_type")
+    @ApiModelProperty(value = "正文格式", position = 0)
+    private String formatType;
+
+    /**
      * 正文
      */
     @JsonProperty("content")
     @JSONField(name = "content")
-    @ApiModelProperty(value = "正文", position = 0)
+    @ApiModelProperty(value = "正文", position = 1)
     private String content;
 
     /**
@@ -48,7 +56,7 @@ public class StencilDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("is_global")
     @JSONField(name = "is_global")
-    @ApiModelProperty(value = "全局模板", position = 1)
+    @ApiModelProperty(value = "全局模板", position = 2)
     private Integer isGlobal;
 
     /**
@@ -56,7 +64,7 @@ public class StencilDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("attachments")
     @JSONField(name = "attachments")
-    @ApiModelProperty(value = "附件", position = 2)
+    @ApiModelProperty(value = "附件", position = 3)
     private List<AttachmentDTO> attachments;
 
     /**
@@ -64,7 +72,7 @@ public class StencilDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 3)
+    @ApiModelProperty(value = "建立人", position = 4)
     private String createMan;
 
     /**
@@ -73,7 +81,7 @@ public class StencilDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 4)
+    @ApiModelProperty(value = "建立时间", position = 5)
     private Date createTime;
 
     /**
@@ -81,7 +89,7 @@ public class StencilDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 5)
+    @ApiModelProperty(value = "标识", position = 6)
     private String id;
 
     /**
@@ -89,7 +97,7 @@ public class StencilDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 6)
+    @ApiModelProperty(value = "名称", position = 7)
     private String name;
 
     /**
@@ -97,7 +105,7 @@ public class StencilDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("space_id")
     @JSONField(name = "space_id")
-    @ApiModelProperty(value = "空间标识", position = 7)
+    @ApiModelProperty(value = "空间标识", position = 8)
     private String spaceId;
 
     /**
@@ -105,7 +113,7 @@ public class StencilDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("space_name")
     @JSONField(name = "space_name")
-    @ApiModelProperty(value = "空间名称", position = 8)
+    @ApiModelProperty(value = "空间名称", position = 9)
     private String spaceName;
 
     /**
@@ -113,7 +121,7 @@ public class StencilDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 9)
+    @ApiModelProperty(value = "更新人", position = 10)
     private String updateMan;
 
     /**
@@ -122,9 +130,18 @@ public class StencilDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 10)
+    @ApiModelProperty(value = "更新时间", position = 11)
     private Date updateTime;
 
+
+    /**
+     * 设置 [正文格式]
+     */
+    public StencilDTO setFormatType(String formatType) {
+        this.formatType = formatType;
+        this.modify("format_type", formatType);
+        return this;
+    }
 
     /**
      * 设置 [正文]

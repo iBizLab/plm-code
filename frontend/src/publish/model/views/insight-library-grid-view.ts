@@ -126,8 +126,8 @@ export default {
           codeName: 'name',
           columnType: 'DEFGRIDCOLUMN',
           noPrivDisplayMode: 1,
-          width: 250,
-          widthUnit: 'PX',
+          width: 200,
+          widthUnit: 'STAR',
           enableSort: true,
           id: 'name',
         },
@@ -161,7 +161,7 @@ export default {
           codeName: 'desc',
           columnType: 'DEFGRIDCOLUMN',
           noPrivDisplayMode: 1,
-          width: 100,
+          width: 200,
           widthUnit: 'STAR',
           id: 'desc',
         },
@@ -169,7 +169,10 @@ export default {
       degridDataItems: [
         {
           appDEFieldId: 'name',
+          scriptCode:
+            'data.type === \'10\' ? \'<i class="ibiz-icon fa fa-bar-chart" style="display: inline-block;height: 32px;margin-right: 7px;overflow: unset;"></i>\' + data.name :\r\n       data.type === \'20\' ? \'<i class="ibiz-icon fa fa-pie-chart" style="display: inline-block;height: 32px;margin-right: 7px;overflow: unset;"></i>\' + data.name :\r\n       data.type === \'30\' ? \'<i class="ibiz-icon fa fa-line-chart" style="display: inline-block;height: 32px;margin-right: 7px;overflow: unset;"></i>\' + data.name :\r\n       data.type === \'40\' ? \'<i class="ibiz-icon fa fa-area-chart" style="display: inline-block;height: 32px;margin-right: 7px;overflow: unset;"></i>\' + data.name :\r\n       data.name',
           valueType: 'SIMPLE',
+          customCode: true,
           dataType: 25,
           id: 'name',
         },

@@ -33,8 +33,8 @@ import java.util.*;
  *
  * @author generator
  */
-//@Aspect
-//@Component
+@Aspect
+@Component
 public class AuditAspect
 {
     private final ExpressionParser parser = new SpelExpressionParser();

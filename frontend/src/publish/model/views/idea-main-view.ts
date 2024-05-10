@@ -521,6 +521,16 @@ export default {
             caption: '栅格容器',
             itemStyle: 'DEFAULT',
             itemType: 'CONTAINER',
+            controlLogics: [
+              {
+                itemName: 'CONTAINER_VIEW_BOTTOM',
+                logicTag: 'layoutpanel',
+                logicType: 'SCRIPT',
+                scriptCode: 'context.srfreadonly != true',
+                triggerType: 'ITEMVISIBLE',
+                id: 'logic_hiden',
+              },
+            ],
             layoutPos: {
               grow: 0,
               shrink: 0,
@@ -564,6 +574,16 @@ export default {
         name: 'LOGIC',
         id: 'logic',
       },
+      {
+        eventNames: 'onCreated',
+        logicTrigger: 'VIEWEVENT',
+        logicType: 'APPDEUILOGIC',
+        appDEUILogicId: 'test_get_only_read',
+        appDataEntityId: 'plmweb.idea',
+        builtinLogic: true,
+        name: 'READONLY_MEMBER',
+        id: 'readonly_member',
+      },
     ],
     controls: [
       {
@@ -576,6 +596,16 @@ export default {
             valid: true,
             caption: '附件',
             itemType: 'DEUIACTION',
+            controlLogics: [
+              {
+                itemName: 'deuiaction1',
+                logicTag: 'toolbar',
+                logicType: 'SCRIPT',
+                scriptCode: 'context.srfreadonly != true',
+                triggerType: 'ITEMVISIBLE',
+                id: 'deuiaction1',
+              },
+            ],
             sysImage: {
               cssClass: 'fa fa-upload',
               glyph: 'xf093@FontAwesome',
@@ -586,6 +616,7 @@ export default {
             id: 'deuiaction1',
           },
           {
+            actionLevel: 100,
             detoolbarItems: [
               {
                 actionLevel: 100,
@@ -659,6 +690,16 @@ export default {
             valid: true,
             caption: '关联',
             itemType: 'ITEMS',
+            controlLogics: [
+              {
+                itemName: 'items1',
+                logicTag: 'toolbar',
+                logicType: 'SCRIPT',
+                scriptCode: 'context.srfreadonly != true',
+                triggerType: 'ITEMVISIBLE',
+                id: 'items1',
+              },
+            ],
             sysImage: {
               cssClass: 'fa fa-link',
               glyph: 'xf0c1@FontAwesome',
@@ -673,6 +714,7 @@ export default {
             id: 'seperator2',
           },
           {
+            actionLevel: 100,
             detoolbarItems: [
               {
                 actionLevel: 100,
@@ -715,7 +757,7 @@ export default {
               {
                 actionLevel: 100,
                 noPrivDisplayMode: 2,
-                uiactionId: 'idea_move@idea',
+                uiactionId: 'idea_move_toolbar@idea',
                 uiactionTarget: 'MULTIKEY',
                 valid: true,
                 caption: '移动',
@@ -803,6 +845,16 @@ export default {
             valid: true,
             caption: '更多',
             itemType: 'ITEMS',
+            controlLogics: [
+              {
+                itemName: 'items2',
+                logicTag: 'toolbar',
+                logicType: 'SCRIPT',
+                scriptCode: 'context.srfreadonly != true',
+                triggerType: 'ITEMVISIBLE',
+                id: 'items2',
+              },
+            ],
             sysImage: {
               cssClass: 'fa fa-list-ul',
               glyph: 'xf0ca@FontAwesome',
@@ -860,20 +912,6 @@ export default {
         enableAutoSave: true,
         deformItemUpdates: [
           {
-            codeName: 'remaining_update',
-            defiupdateDetails: [
-              {
-                id: 'workload_schedule',
-              },
-            ],
-            scriptCode:
-              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload; \r\nvar remaining_workload = form_data.remaining_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n}\r\nvar remaining = 0;\r\nif(remaining_workload){\r\n\tremaining = Number(remaining_workload);\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}\r\n',
-            customCode: true,
-            showBusyIndicator: false,
-            name: '剩余工时表单项更新',
-            id: 'remaining_update',
-          },
-          {
             codeName: 'estimated_update',
             defiupdateDetails: [
               {
@@ -889,6 +927,20 @@ export default {
             showBusyIndicator: false,
             name: '预估工时表单项更新',
             id: 'estimated_update',
+          },
+          {
+            codeName: 'remaining_update',
+            defiupdateDetails: [
+              {
+                id: 'workload_schedule',
+              },
+            ],
+            scriptCode:
+              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload; \r\nvar remaining_workload = form_data.remaining_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n}\r\nvar remaining = 0;\r\nif(remaining_workload){\r\n\tremaining = Number(remaining_workload);\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}\r\n',
+            customCode: true,
+            showBusyIndicator: false,
+            name: '剩余工时表单项更新',
+            id: 'remaining_update',
           },
         ],
         deformPages: [
@@ -1729,7 +1781,7 @@ export default {
                         deformDetails: [
                           {
                             appViewId:
-                              'plmweb.customer_idea_re_customer_grid_view',
+                              'plmweb.relation_idea_re_customer_grid_view',
                             navigateContexts: [
                               {
                                 key: 'TARGET_TYPE',
@@ -1751,6 +1803,11 @@ export default {
                                 key: 'principal_id',
                                 value: 'idea',
                                 id: 'principal_id',
+                              },
+                              {
+                                key: 'srfversionid',
+                                value: 'cur_version_id',
+                                id: 'srfversionid',
                               },
                             ],
                             parentDataJO: {
@@ -1784,7 +1841,7 @@ export default {
                         },
                         deformDetails: [
                           {
-                            appViewId: 'plmweb.idea_re_self_grid_view',
+                            appViewId: 'plmweb.relation_idea_re_idea_grid_view',
                             navigateContexts: [
                               {
                                 key: 'PRODUCT',
@@ -1819,6 +1876,11 @@ export default {
                                 value: 'idea',
                                 id: 'principal_id',
                               },
+                              {
+                                key: 'srfversionid',
+                                value: 'cur_version_id',
+                                id: 'srfversionid',
+                              },
                             ],
                             parentDataJO: {
                               srfparentdename: 'IDEA',
@@ -1851,7 +1913,8 @@ export default {
                         },
                         deformDetails: [
                           {
-                            appViewId: 'plmweb.ticket_idea_re_ticket_grid_view',
+                            appViewId:
+                              'plmweb.relation_idea_re_ticket_grid_view',
                             navigateContexts: [
                               {
                                 key: 'TARGET_TYPE',
@@ -1879,6 +1942,11 @@ export default {
                                 key: 'principal_id',
                                 value: 'idea',
                                 id: 'principal_id',
+                              },
+                              {
+                                key: 'srfversionid',
+                                value: 'cur_version_id',
+                                id: 'srfversionid',
                               },
                             ],
                             parentDataJO: {
@@ -1913,7 +1981,7 @@ export default {
                         deformDetails: [
                           {
                             appViewId:
-                              'plmweb.work_item_idea_re_work_item_grid_view',
+                              'plmweb.relation_idea_re_work_item_grid_view',
                             navigateContexts: [
                               {
                                 key: 'TARGET_TYPE',
@@ -1935,6 +2003,11 @@ export default {
                                 key: 'principal_id',
                                 value: 'idea',
                                 id: 'principal_id',
+                              },
+                              {
+                                key: 'srfversionid',
+                                value: 'cur_version_id',
+                                id: 'srfversionid',
                               },
                             ],
                             parentDataJO: {
@@ -1969,7 +2042,7 @@ export default {
                         deformDetails: [
                           {
                             appViewId:
-                              'plmweb.test_case_idea_re_test_case_grid_view',
+                              'plmweb.relation_idea_re_test_case_grid_view',
                             navigateContexts: [
                               {
                                 key: 'TARGET_TYPE',
@@ -1991,6 +2064,11 @@ export default {
                                 key: 'principal_id',
                                 value: 'idea',
                                 id: 'principal_id',
+                              },
+                              {
+                                key: 'srfversionid',
+                                value: 'cur_version_id',
+                                id: 'srfversionid',
                               },
                             ],
                             parentDataJO: {
@@ -2016,6 +2094,66 @@ export default {
                         appCounterRefId: 'e7055521eeb711936d36f027b585c5d3',
                         showCaption: true,
                         id: 'tabpanel1_test_case',
+                      },
+                      {
+                        layout: {
+                          columnCount: 24,
+                          layout: 'TABLE_24COL',
+                        },
+                        deformDetails: [
+                          {
+                            appViewId: 'plmweb.version_idea_grid_view',
+                            navigateContexts: [
+                              {
+                                key: 'OWNER_TYPE',
+                                value: 'IDEA',
+                                rawValue: true,
+                                name: 'OWNER_TYPE',
+                                id: 'owner_type',
+                              },
+                              {
+                                key: 'COMPARE_VERSION',
+                                value: 'cur_version_id',
+                                name: 'COMPARE_VERSION',
+                                id: 'compare_version',
+                              },
+                              {
+                                key: 'OWNER_ID',
+                                value: 'idea',
+                                name: 'OWNER_ID',
+                                id: 'owner_id',
+                              },
+                            ],
+                            navigateParams: [
+                              {
+                                key: 'n_owner_id_eq',
+                                value: 'idea',
+                                id: 'n_owner_id_eq',
+                              },
+                            ],
+                            parentDataJO: {
+                              srfparentdename: 'IDEA',
+                              SRFPARENTTYPE: 'CUSTOM',
+                            },
+                            codeName: 'tabpanel1_version_druipart',
+                            detailStyle: 'DEFAULT',
+                            detailType: 'DRUIPART',
+                            layoutPos: {
+                              colMD: 24,
+                              layout: 'TABLE_24COL',
+                            },
+                            showCaption: true,
+                            id: 'tabpanel1_version_druipart',
+                          },
+                        ],
+                        caption: '版本记录',
+                        codeName: 'tabpanel1_version',
+                        counterId: 'idea_version',
+                        detailStyle: 'DEFAULT',
+                        detailType: 'TABPAGE',
+                        appCounterRefId: 'e7055521eeb711936d36f027b585c5d3',
+                        showCaption: true,
+                        id: 'tabpanel1_version',
                       },
                     ],
                     codeName: 'tabpanel1',
@@ -2202,6 +2340,63 @@ export default {
                             showCaption: true,
                             id: 'category_id',
                           },
+                          {
+                            dataType: 25,
+                            enableCond: 3,
+                            labelPos: 'LEFT',
+                            labelWidth: 130,
+                            noPrivDisplayMode: 1,
+                            appDEFieldId: 'idea_from',
+                            editor: {
+                              singleSelect: true,
+                              appCodeListId: 'plmweb.projmgmt__demand_sources',
+                              editorType: 'DROPDOWNLIST',
+                              valueType: 'SIMPLE',
+                              editable: true,
+                              id: 'idea_from',
+                            },
+                            allowEmpty: true,
+                            needCodeListConfig: true,
+                            caption: '需求来源',
+                            codeName: 'idea_from',
+                            detailStyle: 'DEFAULT',
+                            detailType: 'FORMITEM',
+                            layoutPos: {
+                              colMD: 24,
+                              layout: 'TABLE_24COL',
+                            },
+                            showCaption: true,
+                            id: 'idea_from',
+                          },
+                          {
+                            dataType: 25,
+                            enableCond: 3,
+                            labelPos: 'LEFT',
+                            labelWidth: 130,
+                            noPrivDisplayMode: 1,
+                            appDEFieldId: 'idea_type',
+                            editor: {
+                              singleSelect: true,
+                              appCodeListId:
+                                'plmweb.projmgmt__requirement_type',
+                              editorType: 'DROPDOWNLIST',
+                              valueType: 'SIMPLE',
+                              editable: true,
+                              id: 'idea_type',
+                            },
+                            allowEmpty: true,
+                            needCodeListConfig: true,
+                            caption: '需求类型',
+                            codeName: 'idea_type',
+                            detailStyle: 'DEFAULT',
+                            detailType: 'FORMITEM',
+                            layoutPos: {
+                              colMD: 24,
+                              layout: 'TABLE_24COL',
+                            },
+                            showCaption: true,
+                            id: 'idea_type',
+                          },
                         ],
                         capLanguageRes: {
                           lanResTag:
@@ -2217,6 +2412,120 @@ export default {
                         },
                         showCaption: true,
                         id: 'grouppanel1',
+                      },
+                      {
+                        layout: {
+                          columnCount: 24,
+                          layout: 'TABLE_24COL',
+                        },
+                        deformDetails: [
+                          {
+                            dataType: 25,
+                            enableCond: 3,
+                            ignoreInput: 3,
+                            labelPos: 'LEFT',
+                            labelWidth: 130,
+                            noPrivDisplayMode: 1,
+                            appDEFieldId: 'cur_version_id',
+                            editor: {
+                              halign: 'LEFT',
+                              valign: 'MIDDLE',
+                              wrapMode: 'NOWRAP',
+                              appCodeListId: 'plmweb.base__version',
+                              editorParams: {
+                                'SRFNAVPARAM.owner_id': '%id%',
+                              },
+                              editorType: 'SPAN',
+                              valueType: 'SIMPLE',
+                              editable: true,
+                              navigateParams: [
+                                {
+                                  key: 'owner_id',
+                                  value: 'id',
+                                  id: 'owner_id',
+                                },
+                              ],
+                              id: 'cur_version_name',
+                            },
+                            allowEmpty: true,
+                            convertToCodeItemText: true,
+                            caption: '版本',
+                            codeName: 'cur_version_name',
+                            detailStyle: 'DEFAULT',
+                            detailType: 'FORMITEM',
+                            layoutPos: {
+                              colMD: 24,
+                              layout: 'TABLE_24COL',
+                            },
+                            showCaption: true,
+                            id: 'cur_version_name',
+                          },
+                          {
+                            createDV: 'srfreadonly',
+                            createDVT: 'APPDATA',
+                            dataType: 25,
+                            enableCond: 3,
+                            labelPos: 'LEFT',
+                            labelWidth: 130,
+                            noPrivDisplayMode: 1,
+                            editor: {
+                              editorType: 'HIDDEN',
+                              valueType: 'SIMPLE',
+                              editable: true,
+                              id: 'is_readonly',
+                            },
+                            updateDV: 'srfreadonly',
+                            updateDVT: 'APPDATA',
+                            allowEmpty: true,
+                            hidden: true,
+                            caption: '是否只读',
+                            codeName: 'is_readonly',
+                            detailStyle: 'DEFAULT',
+                            detailType: 'FORMITEM',
+                            layoutPos: {
+                              colMD: 24,
+                              layout: 'TABLE_24COL',
+                            },
+                            showCaption: true,
+                            id: 'is_readonly',
+                          },
+                          {
+                            dataType: 25,
+                            enableCond: 3,
+                            labelPos: 'LEFT',
+                            labelWidth: 130,
+                            noPrivDisplayMode: 1,
+                            appDEFieldId: 'cur_version_id',
+                            editor: {
+                              editorType: 'HIDDEN',
+                              valueType: 'SIMPLE',
+                              editable: true,
+                              id: 'cur_version_id',
+                            },
+                            allowEmpty: true,
+                            hidden: true,
+                            caption: '当前版本标识',
+                            codeName: 'cur_version_id',
+                            detailStyle: 'DEFAULT',
+                            detailType: 'FORMITEM',
+                            layoutPos: {
+                              colMD: 24,
+                              layout: 'TABLE_24COL',
+                            },
+                            showCaption: true,
+                            id: 'cur_version_id',
+                          },
+                        ],
+                        caption: '变更',
+                        codeName: 'grouppanel6',
+                        detailStyle: 'DEFAULT',
+                        detailType: 'GROUPPANEL',
+                        layoutPos: {
+                          colMD: 24,
+                          layout: 'TABLE_24COL',
+                        },
+                        showCaption: true,
+                        id: 'grouppanel6',
                       },
                       {
                         layout: {
@@ -2336,14 +2645,29 @@ export default {
                                 defdgroupLogics: [
                                   {
                                     logicCat: 'PANELVISIBLE',
-                                    relatedDetailNames: ['is_deleted'],
+                                    relatedDetailNames: [
+                                      'is_deleted',
+                                      'is_readonly',
+                                    ],
                                     groupOP: 'AND',
                                     defdlogics: [
                                       {
-                                        condOP: 'EQ',
-                                        defdname: 'is_deleted',
-                                        value: '0',
-                                        logicType: 'SINGLE',
+                                        groupOP: 'OR',
+                                        defdlogics: [
+                                          {
+                                            condOP: 'EQ',
+                                            defdname: 'is_deleted',
+                                            value: '0',
+                                            logicType: 'SINGLE',
+                                          },
+                                          {
+                                            condOP: 'NOTEQ',
+                                            defdname: 'is_readonly',
+                                            value: 'true',
+                                            logicType: 'SINGLE',
+                                          },
+                                        ],
+                                        logicType: 'GROUP',
                                       },
                                     ],
                                     logicType: 'GROUP',
@@ -2805,6 +3129,7 @@ export default {
         tabHeaderPos: 'TOP',
         noTabHeader: true,
         autoLoad: true,
+        enableItemPrivilege: true,
         showBusyIndicator: true,
         appCounterRefs: [
           {

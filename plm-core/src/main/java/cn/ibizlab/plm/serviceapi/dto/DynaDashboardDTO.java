@@ -36,11 +36,35 @@ public class DynaDashboardDTO extends DTOBase implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
+     * 看板类型
+     */
+    @JsonProperty("type")
+    @JSONField(name = "type")
+    @ApiModelProperty(value = "看板类型", position = 0)
+    private String type;
+
+    /**
+     * 所属数据类型
+     */
+    @JsonProperty("owner_type")
+    @JSONField(name = "owner_type")
+    @ApiModelProperty(value = "所属数据类型", position = 1)
+    private String ownerType;
+
+    /**
+     * 所属数据标识
+     */
+    @JsonProperty("owner_id")
+    @JSONField(name = "owner_id")
+    @ApiModelProperty(value = "所属数据标识", position = 2)
+    private String ownerId;
+
+    /**
      * 应用标识
      */
     @JsonProperty("app_id")
     @JSONField(name = "app_id")
-    @ApiModelProperty(value = "应用标识", position = 0)
+    @ApiModelProperty(value = "应用标识", position = 3)
     private String appId;
 
     /**
@@ -49,7 +73,7 @@ public class DynaDashboardDTO extends DTOBase implements Serializable {
     @JsonProperty("create_date")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_date" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 1)
+    @ApiModelProperty(value = "建立时间", position = 4)
     private Date createDate;
 
     /**
@@ -57,7 +81,7 @@ public class DynaDashboardDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 2)
+    @ApiModelProperty(value = "建立人", position = 5)
     private String createMan;
 
     /**
@@ -65,7 +89,7 @@ public class DynaDashboardDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("dyna_dashboard_id")
     @JSONField(name = "dyna_dashboard_id")
-    @ApiModelProperty(value = "动态数据看板标识", position = 3)
+    @ApiModelProperty(value = "动态数据看板标识", position = 6)
     private String dynaDashboardId;
 
     /**
@@ -73,7 +97,7 @@ public class DynaDashboardDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("dyna_dashboard_name")
     @JSONField(name = "dyna_dashboard_name")
-    @ApiModelProperty(value = "动态数据看板名称", position = 4)
+    @ApiModelProperty(value = "动态数据看板名称", position = 7)
     private String dynaDashboardName;
 
     /**
@@ -81,7 +105,7 @@ public class DynaDashboardDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("model")
     @JSONField(name = "model")
-    @ApiModelProperty(value = "模型", position = 5)
+    @ApiModelProperty(value = "模型", position = 8)
     private String model;
 
     /**
@@ -89,7 +113,7 @@ public class DynaDashboardDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("model_id")
     @JSONField(name = "model_id")
-    @ApiModelProperty(value = "模型标识", position = 6)
+    @ApiModelProperty(value = "模型标识", position = 9)
     private String modelId;
 
     /**
@@ -97,7 +121,7 @@ public class DynaDashboardDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 7)
+    @ApiModelProperty(value = "更新人", position = 10)
     private String updateMan;
 
     /**
@@ -106,7 +130,7 @@ public class DynaDashboardDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 8)
+    @ApiModelProperty(value = "更新时间", position = 11)
     private Date updateTime;
 
     /**
@@ -114,9 +138,36 @@ public class DynaDashboardDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("user_id")
     @JSONField(name = "user_id")
-    @ApiModelProperty(value = "用户标识", position = 9)
+    @ApiModelProperty(value = "用户标识", position = 12)
     private String userId;
 
+
+    /**
+     * 设置 [看板类型]
+     */
+    public DynaDashboardDTO setType(String type) {
+        this.type = type;
+        this.modify("type", type);
+        return this;
+    }
+
+    /**
+     * 设置 [所属数据类型]
+     */
+    public DynaDashboardDTO setOwnerType(String ownerType) {
+        this.ownerType = ownerType;
+        this.modify("owner_type", ownerType);
+        return this;
+    }
+
+    /**
+     * 设置 [所属数据标识]
+     */
+    public DynaDashboardDTO setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+        this.modify("owner_id", ownerId);
+        return this;
+    }
 
     /**
      * 设置 [应用标识]

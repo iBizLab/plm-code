@@ -8,4 +8,5 @@ export default {
   appDataEntityId: 'plmweb.comment',
   redirectView: false,
   modalOption: {},
+  appId: '',
 };

@@ -198,6 +198,26 @@ public interface TestPlanService extends IService<TestPlan> {
     }
 
     /**
+     * test_plan_report_survey
+     * 
+     * @param key
+     * @return
+     */
+    default TestPlan testPlanReportSurvey(String key) {
+        return getSelf().testPlanReportSurvey(new TestPlan().setId(key));
+    }
+
+    /**
+     * test_plan_report_survey
+     * 
+     * @param et
+     * @return
+     */
+    default TestPlan testPlanReportSurvey(TestPlan et) {
+        return et;
+    }
+
+    /**
      * searchDefault
      * 
      * @param context

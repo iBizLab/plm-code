@@ -5,12 +5,6 @@
     :modal="props.modal"
     :model-data="model"
   >
-    <template #pickupviewpanel="slotProps">
-      <i-biz-pickup-view-panel-control v-bind="slotProps" />
-    </template>
-    <template #simplelist="slotProps">
-      <i-biz-control-shell v-bind="slotProps" />
-    </template>
   </i-biz-view>
 </template>
 <script setup lang="ts">

@@ -275,18 +275,21 @@ export default {
         logicTrigger: 'VIEWEVENT',
         logicType: 'SCRIPT',
         scriptCode:
-          "view.layoutPanel.panelItems.choose_data.state.visible = view.context.srfshowchoose || false;\n\n// 初始化默认隐藏表格\nview.layoutPanel.panelItems.grid.state.keepAlive = true;\nview.layoutPanel.panelItems.grid.state.visible = false;\nconst form = view.getController('form');\nconsole.log('项显示逻辑执行了');\nif (form) {\n    form.evt.on('onFormDetailEvent', event =>{\n        const panelItems = view.layoutPanel.panelItems;\n        if (!panelItems.comment) {\n            return;\n        }\n        if (event.formDetailName === 'tabpage1') {\n            panelItems.comment.state.visible = true;\n        } else {\n            panelItems.comment.state.visible = false;\n        }\n    });\n}\n\n// 初始化隐藏发送和清空按钮\nview.layoutPanel.panelItems.button_calluilogic1.state.visible = false\nview.layoutPanel.panelItems.button_calluilogic.state.visible = false",
+          '// 初始化默认隐藏表格\r\nview.layoutPanel.panelItems.grid.state.keepAlive = true;\r\nview.layoutPanel.panelItems.grid.state.visible = false;',
         builtinLogic: true,
+        name: 'VIEWMOUNTED',
         id: 'viewmounted',
       },
       {
         eventNames: 'onLoadSuccess',
-        logicTrigger: 'VIEWEVENT',
+        logicTrigger: 'CTRLEVENT',
         logicType: 'APPDEUILOGIC',
-        appDEUILogicId: 'get_idea_total',
-        appDataEntityId: 'plmweb.idea',
+        appDEUILogicId: 'get_version_total',
+        appDataEntityId: 'plmweb.version',
+        ctrlName: 'grid',
         builtinLogic: true,
-        id: 'onloadsuccess',
+        name: 'GET_TOTAL',
+        id: 'get_total',
       },
       {
         logicTrigger: 'CUSTOM',
@@ -315,7 +318,21 @@ export default {
         builtinAppUILogic: {
           openDataAppView: {
             openMode: 'POPUPMODAL',
+            navigateContexts: [
+              {
+                key: 'SRFREADONLY',
+                value: 'true',
+                rawValue: true,
+                name: 'SRFREADONLY',
+                id: 'srfreadonly',
+              },
+            ],
             navigateParams: [
+              {
+                key: 'srfcustomtag',
+                value: 'id',
+                id: 'srfcustomtag',
+              },
               {
                 key: 'srfversionid',
                 value: 'id',
@@ -328,7 +345,21 @@ export default {
           appUILogicRefViews: [
             {
               openMode: 'POPUPMODAL',
+              navigateContexts: [
+                {
+                  key: 'SRFREADONLY',
+                  value: 'true',
+                  rawValue: true,
+                  name: 'SRFREADONLY',
+                  id: 'srfreadonly',
+                },
+              ],
               navigateParams: [
+                {
+                  key: 'srfcustomtag',
+                  value: 'id',
+                  id: 'srfcustomtag',
+                },
                 {
                   key: 'srfversionid',
                   value: 'id',
@@ -350,7 +381,21 @@ export default {
     appViewRefs: [
       {
         openMode: 'POPUPMODAL',
+        navigateContexts: [
+          {
+            key: 'SRFREADONLY',
+            value: 'true',
+            rawValue: true,
+            name: 'SRFREADONLY',
+            id: 'srfreadonly',
+          },
+        ],
         navigateParams: [
+          {
+            key: 'srfcustomtag',
+            value: 'id',
+            id: 'srfcustomtag',
+          },
           {
             key: 'srfversionid',
             value: 'id',
@@ -380,7 +425,7 @@ export default {
         columnEnableLink: 2,
         groupMode: 'NONE',
         minorSortDir: 'DESC',
-        minorSortAppDEFieldId: 'create_time',
+        minorSortAppDEFieldId: 'identifier',
         degridColumns: [
           {
             clconvertMode: 'NONE',
@@ -422,7 +467,7 @@ export default {
           {
             clconvertMode: 'FRONT',
             dataItemName: 'create_man',
-            excelCaption: '建立人',
+            excelCaption: '创建人',
             appCodeListId: 'plmweb.sysoperator',
             appDEFieldId: 'create_man',
             valueType: 'SIMPLE',
@@ -431,7 +476,7 @@ export default {
             capLanguageRes: {
               lanResTag: 'DEF.LNAME.CREATE_MAN',
             },
-            caption: '建立人',
+            caption: '创建人',
             codeName: 'create_man',
             columnType: 'DEFGRIDCOLUMN',
             noPrivDisplayMode: 1,
@@ -443,8 +488,62 @@ export default {
           {
             clconvertMode: 'NONE',
             dataItemName: 'create_time',
-            excelCaption: '建立时间',
+            excelCaption: '创建时间',
             appDEFieldId: 'create_time',
+            deuiactionGroup: {
+              uiactionGroupDetails: [
+                {
+                  actionLevel: 100,
+                  afterItemType: 'NONE',
+                  beforeItemType: 'NONE',
+                  caption: '编辑版本',
+                  detailType: 'DEUIACTION',
+                  uiactionId: 'edit_version@version',
+                  showCaption: true,
+                  showIcon: true,
+                  sysImage: {
+                    cssClass: 'fa fa-edit',
+                    glyph: 'xf044@FontAwesome',
+                  },
+                  id: 'uaf180f6',
+                },
+                {
+                  actionLevel: 100,
+                  afterItemType: 'NONE',
+                  beforeItemType: 'NONE',
+                  caption: '恢复版本',
+                  detailType: 'DEUIACTION',
+                  uiactionId: 'restore@version',
+                  showCaption: true,
+                  showIcon: true,
+                  sysImage: {
+                    cssClass: 'fa fa-refresh',
+                    glyph: 'xf021@FontAwesome',
+                  },
+                  id: 'u327de75',
+                },
+                {
+                  actionLevel: 100,
+                  afterItemType: 'NONE',
+                  beforeItemType: 'NONE',
+                  caption: '版本对比',
+                  detailType: 'DEUIACTION',
+                  uiactionId: 'work_item_version_comparison@version',
+                  tooltip: '版本对比',
+                  showCaption: true,
+                  showIcon: true,
+                  sysImage: {
+                    cssClass: 'fa fa-exchange',
+                    glyph: 'xf0ec@FontAwesome',
+                  },
+                  id: 'uef49e11',
+                },
+              ],
+              appDataEntityId: 'plmweb.version',
+              uniqueTag: 'version__work_item_operate',
+              name: '工作项版本表格操作列',
+              id: 'work_item_operate',
+            },
             valueFormat: 'YYYY-MM-DD HH:mm:ss',
             valueType: 'SIMPLE',
             aggMode: 'NONE',
@@ -452,11 +551,11 @@ export default {
             capLanguageRes: {
               lanResTag: 'DEF.LNAME.CREATE_TIME',
             },
-            caption: '建立时间',
+            caption: '创建时间',
             codeName: 'create_time',
             columnType: 'DEFGRIDCOLUMN',
             noPrivDisplayMode: 1,
-            width: 160,
+            width: 200,
             widthUnit: 'PX',
             enableSort: true,
             id: 'create_time',
@@ -487,6 +586,18 @@ export default {
             valueType: 'SIMPLE',
             dataType: 5,
             id: 'create_time',
+          },
+          {
+            appDEFieldId: 'id',
+            valueType: 'SIMPLE',
+            dataType: 25,
+            id: 'id',
+          },
+          {
+            appDEFieldId: 'identifier',
+            valueType: 'SIMPLE',
+            dataType: 6,
+            id: 'identifier',
           },
           {
             appDEFieldId: 'id',
@@ -542,6 +653,17 @@ export default {
         controlType: 'GRID',
         logicName: '主表格',
         appDataEntityId: 'plmweb.version',
+        controlLogics: [
+          {
+            eventNames: 'onLoadSuccess',
+            logicTag: 'grid',
+            logicType: 'APPDEUILOGIC',
+            appDEUILogicId: 'calc_column_button_state',
+            appDataEntityId: 'plmweb.version',
+            triggerType: 'CTRLEVENT',
+            id: 'calc_column_action_state',
+          },
+        ],
         controlParam: {
           id: 'grid',
         },
@@ -596,28 +718,38 @@ export default {
             uiactionId: 'create_new_version@version',
             uiactionTarget: 'NONE',
             valid: true,
-            caption: '建立新版本',
+            caption: '创建新版本',
             itemType: 'DEUIACTION',
+            controlLogics: [
+              {
+                itemName: 'deuiaction1',
+                logicTag: 'toolbar',
+                logicType: 'SCRIPT',
+                scriptCode: 'context.srfreadonly != true',
+                triggerType: 'ITEMVISIBLE',
+                id: 'logic',
+              },
+            ],
             sysImage: {
               cssClass: 'fa fa-plus',
               glyph: 'xf067@FontAwesome',
             },
-            tooltip: '建立新版本',
+            tooltip: '创建新版本',
             showCaption: true,
             showIcon: true,
-            id: 'deuiaction1_create_new_version',
+            id: 'deuiaction1',
           },
         ],
         toolbarStyle: 'USER',
         xdataControlName: 'grid',
         codeName: 'work_item_grid_view_toolbar',
         controlType: 'TOOLBAR',
-        logicName: '工具栏模板（只有一个实体界面行为组）',
+        logicName: '创建新版本',
         appDataEntityId: 'plmweb.version',
         controlParam: {
           id: 'toolbar',
         },
-        modelId: '97b647cbe00cc608f9a368e2d0874c1e',
+        modelId: '5ACAD5F0-9ED6-46D4-8A55-5964F08AE447',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'work_item_grid_view_toolbar',

@@ -3,6 +3,8 @@ export default {
   codeListType: 'DYNAMIC',
   codeName: 'Base__workload_type',
   emptyText: '未定义',
+  minorSortDir: 'ASC',
+  minorSortAppDEFieldId: 'sequence',
   appDEDataSetId: 'fetch_default',
   appDataEntityId: 'plmweb.workload_type',
   textAppDEFieldId: 'name',

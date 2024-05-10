@@ -184,6 +184,16 @@ public interface ProductPlanService extends IService<ProductPlan> {
     }
 
     /**
+     * delete_categories
+     * 
+     * @param dto
+     * @return
+     */
+    default ProductPlan deleteCategories(ProductPlan dto) {
+        return dto;
+    }
+
+    /**
      * product_plan_relation_idea
      * 
      * @param dto

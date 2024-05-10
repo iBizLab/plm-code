@@ -23,9 +23,11 @@ import cn.ibizlab.plm.core.base.domain.Attention;
 import cn.ibizlab.plm.core.base.domain.Comment;
 import cn.ibizlab.plm.core.base.domain.Relation;
 import cn.ibizlab.plm.core.base.domain.Attachment;
+import cn.ibizlab.plm.core.testmgmt.domain.ReviewContent;
 import cn.ibizlab.plm.core.base.domain.SearchAttachment;
 import cn.ibizlab.plm.core.base.domain.SearchComment;
 import cn.ibizlab.plm.core.base.domain.Workload;
+import cn.ibizlab.plm.core.base.domain.Version;
 
 /**
  * 用例服务接口[TestCaseService]
@@ -196,6 +198,16 @@ public interface TestCaseService extends IService<TestCase> {
     }
 
     /**
+     * choose_case_template
+     * 
+     * @param dto
+     * @return
+     */
+    default TestCase chooseCaseTemplate(TestCase dto) {
+        return dto;
+    }
+
+    /**
      * copy_case
      * 
      * @param dto
@@ -222,6 +234,16 @@ public interface TestCaseService extends IService<TestCase> {
      * @return
      */
     default TestCase delete(TestCase dto) {
+        return dto;
+    }
+
+    /**
+     * fill_library_member
+     * 
+     * @param dto
+     * @return
+     */
+    default TestCase fillLibraryMember(TestCase dto) {
         return dto;
     }
 
@@ -262,6 +284,16 @@ public interface TestCaseService extends IService<TestCase> {
      * @return
      */
     default TestCase othersRelationCase(TestCase dto) {
+        return dto;
+    }
+
+    /**
+     * program_test_case
+     * 
+     * @param dto
+     * @return
+     */
+    default TestCase programTestCase(TestCase dto) {
         return dto;
     }
 
@@ -399,6 +431,21 @@ public interface TestCaseService extends IService<TestCase> {
      * @return
      */
     List<TestCase> listAssessmentResult(TestCaseSearchContext context);
+
+    /**
+     * searchbaseline_choose_case
+     * 基线选择用例
+     * @param context
+     * @return
+     */
+    Page<TestCase> searchBaselineChooseCase(TestCaseSearchContext context);
+    /**
+     * listbaseline_choose_case
+     * 基线选择用例
+     * @param context
+     * @return
+     */
+    List<TestCase> listBaselineChooseCase(TestCaseSearchContext context);
 
     /**
      * searchcasePerson
@@ -848,6 +895,10 @@ public interface TestCaseService extends IService<TestCase> {
     }
 
     default List<Attachment> getAttachments(TestCase et) {
+        return new ArrayList<>();
+    }
+
+    default List<Run> getLatestExecuted(TestCase et) {
         return new ArrayList<>();
     }
 

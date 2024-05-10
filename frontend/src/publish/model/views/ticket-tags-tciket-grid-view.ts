@@ -128,7 +128,7 @@ export default {
         },
         {
           clconvertMode: 'FRONT',
-          dataItemName: 'state',
+          dataItemName: 'state_text',
           excelCaption: '状态',
           appCodeListId: 'plmweb.prodmgmt__ticket_state',
           appDEFieldId: 'state',
@@ -259,6 +259,12 @@ export default {
           appDEFieldId: 'state',
           valueType: 'SIMPLE',
           dataType: 25,
+          id: 'state_text',
+        },
+        {
+          appDEFieldId: 'state',
+          valueType: 'SIMPLE',
+          dataType: 25,
           id: 'state',
         },
         {
@@ -383,6 +389,11 @@ export default {
             singleSelect: true,
             appCodeListId: 'plmweb.prodmgmt__ticket_state',
             editorType: 'DROPDOWNLIST',
+            editorItems: [
+              {
+                id: 'state',
+              },
+            ],
             valueType: 'SIMPLE',
             editable: true,
             id: 'state',
@@ -616,6 +627,7 @@ export default {
               id: 'deuiaction2',
             },
             {
+              actionLevel: 100,
               detoolbarItems: [
                 {
                   actionLevel: 100,

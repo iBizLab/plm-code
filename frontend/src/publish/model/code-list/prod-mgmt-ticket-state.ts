@@ -1,9 +1,11 @@
 export default {
   codeListTag: 'ProdMgmt__ticket_state',
-  codeListType: 'STATIC',
+  codeListType: 'DYNAMIC',
   codeName: 'ProdMgmt__ticket_state',
+  colorAppDEFieldId: 'color',
   emptyText: '未定义',
-  appDataEntityId: 'plmweb.ticket',
+  appDEDataSetId: 'fetch_ticket_state',
+  appDataEntityId: 'plmweb.dictionary_data',
   codeItems: [
     {
       codeName: 'item_10',
@@ -41,6 +43,8 @@ export default {
       id: 'item_50',
     },
   ],
+  textAppDEFieldId: 'name',
+  valueAppDEFieldId: 'val',
   enableCache: true,
   name: '工单状态',
   id: 'plmweb.prodmgmt__ticket_state',

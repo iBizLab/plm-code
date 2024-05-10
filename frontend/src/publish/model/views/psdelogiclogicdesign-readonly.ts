@@ -27,6 +27,7 @@ export default {
     controlParam: {},
     id: 'layoutpanel',
   },
+  priority: 90,
   title: '设计',
   viewStyle: 'DEFAULT',
   viewType: 'DESUBAPPREFVIEW',

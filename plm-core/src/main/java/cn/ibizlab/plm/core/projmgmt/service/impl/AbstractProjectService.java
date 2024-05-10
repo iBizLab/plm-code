@@ -44,6 +44,8 @@ import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
 import cn.ibizlab.plm.core.projmgmt.service.WorkItemService;
 import cn.ibizlab.plm.core.base.domain.Favorite;
 import cn.ibizlab.plm.core.base.service.FavoriteService;
+import cn.ibizlab.plm.core.base.domain.Baseline;
+import cn.ibizlab.plm.core.base.service.BaselineService;
 import cn.ibizlab.plm.core.base.domain.Work;
 import cn.ibizlab.plm.core.base.service.WorkService;
 import cn.ibizlab.plm.core.base.domain.ReferencesIndex;
@@ -96,6 +98,10 @@ public abstract class AbstractProjectService extends ServiceImpl<ProjectMapper,P
     @Autowired
     @Lazy
     protected FavoriteService favoriteService;
+
+    @Autowired
+    @Lazy
+    protected BaselineService baselineService;
 
     @Autowired
     @Lazy

@@ -228,11 +228,6 @@ export default {
           dataType: 25,
           id: 'srfmajortext',
         },
-        {
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'srfmstag',
-        },
       ],
       degridEditItems: [
         {
@@ -375,6 +370,7 @@ export default {
                     forceSelection: true,
                     showTrigger: true,
                     editorParams: {
+                      overflowMode: 'ellipsis',
                       AC: 'TRUE',
                       TRIGGER: 'TRUE',
                       PICKUPVIEW: 'FALSE',

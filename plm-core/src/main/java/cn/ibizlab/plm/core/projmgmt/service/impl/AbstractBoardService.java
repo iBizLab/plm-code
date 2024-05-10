@@ -151,6 +151,10 @@ public abstract class AbstractBoardService extends ServiceImpl<BoardMapper,Board
 
     @Transactional
     public boolean remove(Board et) {
+        String key = et.getId();
+        entryService.removeByBoardId(key);
+        swimlaneService.removeByBoardId(key);
+        workItemService.resetByBoardId(key);
         if(!remove(Wrappers.<Board>lambdaQuery().eq(Board::getId, et.getId())))
             return false;
         return true;
@@ -158,7 +162,9 @@ public abstract class AbstractBoardService extends ServiceImpl<BoardMapper,Board
 
     @Transactional
     public boolean removeByEntities(List<Board> entities) {
-        this.baseMapper.deleteEntities(entities);
+        for (Board et : entities)
+            if(!getSelf().remove(et))
+                return false;
         return true;
     }
 
@@ -173,12 +179,27 @@ public abstract class AbstractBoardService extends ServiceImpl<BoardMapper,Board
         return list;
     }
 
+    public Page<Board> searchCurProjectBoard(BoardSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Board> pages=baseMapper.searchCurProjectBoard(context.getPages(),context,context.getSelectCond());
+        List<Board> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Board> listCurProjectBoard(BoardSearchContext context) {
+        List<Board> list = baseMapper.listCurProjectBoard(context,context.getSelectCond());
+        return list;
+    }
+
     public List<Board> findByProjectId(List<String> projectIds) {
         List<Board> list = baseMapper.findByProjectId(projectIds);
         return list;
     }
     public boolean removeByProjectId(String projectId) {
-        return this.remove(Wrappers.<Board>lambdaQuery().eq(Board::getProjectId,projectId));
+        List<String> ids = baseMapper.findByProjectId(Arrays.asList(projectId)).stream().map(e->e.getId()).collect(Collectors.toList());
+        if(!ObjectUtils.isEmpty(ids))
+            return this.removeBatch(ids);
+        else
+            return true;
     }
 
     public boolean resetByProjectId(String projectId) {

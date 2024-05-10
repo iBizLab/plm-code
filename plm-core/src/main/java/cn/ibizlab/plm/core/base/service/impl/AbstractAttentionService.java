@@ -30,6 +30,8 @@ import cn.ibizlab.plm.core.prodmgmt.domain.Idea;
 import cn.ibizlab.plm.core.prodmgmt.service.IdeaService;
 import cn.ibizlab.plm.core.wiki.domain.ArticlePage;
 import cn.ibizlab.plm.core.wiki.service.ArticlePageService;
+import cn.ibizlab.plm.core.testmgmt.domain.Review;
+import cn.ibizlab.plm.core.testmgmt.service.ReviewService;
 import cn.ibizlab.plm.core.testmgmt.domain.Run;
 import cn.ibizlab.plm.core.testmgmt.service.RunService;
 import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
@@ -58,6 +60,10 @@ public abstract class AbstractAttentionService extends ServiceImpl<AttentionMapp
     @Autowired
     @Lazy
     protected ArticlePageService articlePageService;
+
+    @Autowired
+    @Lazy
+    protected ReviewService reviewService;
 
     @Autowired
     @Lazy
@@ -101,6 +107,9 @@ public abstract class AbstractAttentionService extends ServiceImpl<AttentionMapp
             et.setOwnerId((String)et.getContextParentKey());
         }
         if(Entities.ARTICLE_PAGE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setOwnerId((String)et.getContextParentKey());
+        }
+        if(Entities.REVIEW.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
             et.setOwnerId((String)et.getContextParentKey());
         }
         if(Entities.RUN.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
@@ -342,6 +351,37 @@ public abstract class AbstractAttentionService extends ServiceImpl<AttentionMapp
         for(Attention sub:list) {
             sub.setOwnerId(articlePage.getId());
             sub.setPage(articlePage);
+            if(ObjectUtils.isEmpty(sub.getId()))
+                before.values().stream()
+                        .filter(e->ObjectUtils.nullSafeEquals(sub.getDefaultKey(true),e.getDefaultKey(true)))
+                        .findFirst().ifPresent(e->sub.setId(e.getId()));
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().createBatch(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+            return false;
+        else
+            return true;
+    }
+
+    public boolean saveByReview(Review review,List<Attention> list) {
+        if(list==null)
+            return true;
+        Map<String,Attention> before = findByOwnerId(review.getId()).stream().collect(Collectors.toMap(Attention::getId,e->e));
+        List<Attention> update = new ArrayList<>();
+        List<Attention> create = new ArrayList<>();
+
+        for(Attention sub:list) {
+            sub.setOwnerId(review.getId());
+            sub.setReview(review);
             if(ObjectUtils.isEmpty(sub.getId()))
                 before.values().stream()
                         .filter(e->ObjectUtils.nullSafeEquals(sub.getDefaultKey(true),e.getDefaultKey(true)))

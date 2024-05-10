@@ -55,6 +55,15 @@ public class WorkloadSearchContext extends QueryWrapperContext<Workload> {
     private String principalIdEQ;
 
     /**
+     * 工作日期EQ
+     */
+    @JsonProperty("n_register_date_eq")
+    @JsonFormat(pattern = "yyyy-MM-dd", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_register_date_eq" , format = "yyyy-MM-dd")
+    @ApiModelProperty("工作日期EQ")
+    private Date registerDateEQ;
+
+    /**
      * 工作日期GTANDEQ
      */
     @JsonProperty("n_register_date_gtandeq")
@@ -87,6 +96,14 @@ public class WorkloadSearchContext extends QueryWrapperContext<Workload> {
     @JSONField(name = "n_recent_parent_eq")
     @ApiModelProperty("访问父类EQ")
     private String recentParentEQ;
+
+    /**
+     * 编号LIKE
+     */
+    @JsonProperty("n_show_identifier_like")
+    @JSONField(name = "n_show_identifier_like")
+    @ApiModelProperty("编号LIKE")
+    private String showIdentifierLIKE;
 
     /**
      * 工作项EXISTS

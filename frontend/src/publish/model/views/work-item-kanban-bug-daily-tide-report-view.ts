@@ -289,12 +289,12 @@ export default {
     ],
     appViewLogics: [
       {
-        eventNames: 'onBeforeLoadDraft',
-        logicTrigger: 'CTRLEVENT',
-        logicType: 'APPDEUILOGIC',
-        appDEUILogicId: 'set_date_range',
-        appDataEntityId: 'plmweb.work_item',
+        eventNames: 'onCreated',
+        logicTrigger: 'VIEWEVENT',
+        logicType: 'SCRIPT',
         ctrlName: 'searchform',
+        scriptCode:
+          "view.ctx.evt.on('onRegister', (name, c) => {\r\n    if(name==='searchform'){\r\n        const time = new Date();\r\n        const preTime = new Date(time.getTime() - 604800000);\r\n        const n_create_time_gtandeq = preTime.getFullYear() +'-' +(preTime.getMonth() + 1 < 10 ? '0' + (preTime.getMonth() + 1): preTime.getMonth() + 1) +'-' +(preTime.getDate() < 10 ? '0' + preTime.getDate() : preTime.getDate()) \r\n        const n_create_time_ltandeq = time.getFullYear() +'-' +(time.getMonth() + 1 < 10 ? '0' + (time.getMonth() + 1): time.getMonth() + 1) +'-' +(time.getDate() < 10 ? '0' + time.getDate() : time.getDate())\r\n        const date_range = n_create_time_gtandeq + ',' + n_create_time_ltandeq;\r\n        Object.assign(c.params, {n_create_time_gtandeq,n_create_time_ltandeq,date_range})\r\n    }\r\n});",
         builtinLogic: true,
         name: 'SET_DATE_RANGE',
         id: 'set_date_range',

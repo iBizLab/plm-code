@@ -174,6 +174,26 @@ public interface SpaceMemberService extends IService<SpaceMember> {
     }
 
     /**
+     * change_role
+     * 
+     * @param dto
+     * @return
+     */
+    default SpaceMember changeRole(SpaceMember dto) {
+        return dto;
+    }
+
+    /**
+     * nothing
+     * 
+     * @param dto
+     * @return
+     */
+    default SpaceMember nothing(SpaceMember dto) {
+        return dto;
+    }
+
+    /**
      * searchDefault
      * 
      * @param context
@@ -187,6 +207,21 @@ public interface SpaceMemberService extends IService<SpaceMember> {
      * @return
      */
     List<SpaceMember> listDefault(SpaceMemberSearchContext context);
+
+    /**
+     * searchcur_space
+     * 
+     * @param context
+     * @return
+     */
+    Page<SpaceMember> searchCurSpace(SpaceMemberSearchContext context);
+    /**
+     * listcur_space
+     * 
+     * @param context
+     * @return
+     */
+    List<SpaceMember> listCurSpace(SpaceMemberSearchContext context);
 
     /**
      * 创建实体对象

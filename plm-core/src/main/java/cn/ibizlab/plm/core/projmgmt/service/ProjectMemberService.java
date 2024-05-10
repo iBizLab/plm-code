@@ -175,12 +175,32 @@ public interface ProjectMemberService extends IService<ProjectMember> {
     }
 
     /**
+     * change_role
+     * 
+     * @param dto
+     * @return
+     */
+    default ProjectMember changeRole(ProjectMember dto) {
+        return dto;
+    }
+
+    /**
      * create_project_member
      * 
      * @param dto
      * @return
      */
     default ProjectMember createProjectMember(ProjectMember dto) {
+        return dto;
+    }
+
+    /**
+     * nothing
+     * 
+     * @param dto
+     * @return
+     */
+    default ProjectMember nothing(ProjectMember dto) {
         return dto;
     }
 

@@ -43,6 +43,25 @@ public interface TicketTypeMapper extends BaseMapper<TicketType> {
     List<TicketType> listDefault(@Param("ctx") TicketTypeSearchContext context, @Param("ew") Wrapper<TicketType> wrapper);
 
     /**
+     * 数据集合not_exists_ticket_type分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<TicketType> searchNotExistsTicketType(IPage<TicketType> page, @Param("ctx") TicketTypeSearchContext context, @Param("ew") Wrapper<TicketType> wrapper);
+    
+    /**
+     * 数据集合not_exists_ticket_type查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<TicketType> listNotExistsTicketType(@Param("ctx") TicketTypeSearchContext context, @Param("ew") Wrapper<TicketType> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

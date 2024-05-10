@@ -236,7 +236,7 @@ public abstract class AbstractSearchCommentService extends ServiceImpl<SearchCom
         return this.update(Wrappers.<SearchComment>lambdaUpdate().eq(SearchComment::getPrincipalId,principalId));
     }
 
-    public boolean saveByCustomer(Customer customer,List<SearchComment> list) {
+    public boolean saveByDerCustomer(Customer customer,List<SearchComment> list) {
         if(list==null)
             return true;
         Map<String,SearchComment> before = findByPrincipalId(customer.getId()).stream().collect(Collectors.toMap(SearchComment::getId,e->e));
@@ -245,7 +245,7 @@ public abstract class AbstractSearchCommentService extends ServiceImpl<SearchCom
 
         for(SearchComment sub:list) {
             sub.setPrincipalId(customer.getId());
-            sub.setCustomer(customer);
+            sub.setDerCustomer(customer);
             if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
                 before.remove(sub.getId());
                 update.add(sub);
@@ -263,7 +263,7 @@ public abstract class AbstractSearchCommentService extends ServiceImpl<SearchCom
             return true;
     }
 
-    public boolean saveByIdea(Idea idea,List<SearchComment> list) {
+    public boolean saveByDerIdea(Idea idea,List<SearchComment> list) {
         if(list==null)
             return true;
         Map<String,SearchComment> before = findByPrincipalId(idea.getId()).stream().collect(Collectors.toMap(SearchComment::getId,e->e));
@@ -272,7 +272,7 @@ public abstract class AbstractSearchCommentService extends ServiceImpl<SearchCom
 
         for(SearchComment sub:list) {
             sub.setPrincipalId(idea.getId());
-            sub.setIdea(idea);
+            sub.setDerIdea(idea);
             if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
                 before.remove(sub.getId());
                 update.add(sub);
@@ -290,7 +290,7 @@ public abstract class AbstractSearchCommentService extends ServiceImpl<SearchCom
             return true;
     }
 
-    public boolean saveByPage(ArticlePage articlePage,List<SearchComment> list) {
+    public boolean saveByDerPage(ArticlePage articlePage,List<SearchComment> list) {
         if(list==null)
             return true;
         Map<String,SearchComment> before = findByPrincipalId(articlePage.getId()).stream().collect(Collectors.toMap(SearchComment::getId,e->e));
@@ -299,7 +299,7 @@ public abstract class AbstractSearchCommentService extends ServiceImpl<SearchCom
 
         for(SearchComment sub:list) {
             sub.setPrincipalId(articlePage.getId());
-            sub.setPage(articlePage);
+            sub.setDerPage(articlePage);
             if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
                 before.remove(sub.getId());
                 update.add(sub);
@@ -317,7 +317,7 @@ public abstract class AbstractSearchCommentService extends ServiceImpl<SearchCom
             return true;
     }
 
-    public boolean saveByRun(Run run,List<SearchComment> list) {
+    public boolean saveByDerRun(Run run,List<SearchComment> list) {
         if(list==null)
             return true;
         Map<String,SearchComment> before = findByPrincipalId(run.getId()).stream().collect(Collectors.toMap(SearchComment::getId,e->e));
@@ -326,7 +326,7 @@ public abstract class AbstractSearchCommentService extends ServiceImpl<SearchCom
 
         for(SearchComment sub:list) {
             sub.setPrincipalId(run.getId());
-            sub.setRun(run);
+            sub.setDerRun(run);
             if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
                 before.remove(sub.getId());
                 update.add(sub);
@@ -344,7 +344,7 @@ public abstract class AbstractSearchCommentService extends ServiceImpl<SearchCom
             return true;
     }
 
-    public boolean saveByTestCase(TestCase testCase,List<SearchComment> list) {
+    public boolean saveByDerTestCase(TestCase testCase,List<SearchComment> list) {
         if(list==null)
             return true;
         Map<String,SearchComment> before = findByPrincipalId(testCase.getId()).stream().collect(Collectors.toMap(SearchComment::getId,e->e));
@@ -353,7 +353,7 @@ public abstract class AbstractSearchCommentService extends ServiceImpl<SearchCom
 
         for(SearchComment sub:list) {
             sub.setPrincipalId(testCase.getId());
-            sub.setTestCase(testCase);
+            sub.setDerTestCase(testCase);
             if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
                 before.remove(sub.getId());
                 update.add(sub);
@@ -371,7 +371,7 @@ public abstract class AbstractSearchCommentService extends ServiceImpl<SearchCom
             return true;
     }
 
-    public boolean saveByTicket(Ticket ticket,List<SearchComment> list) {
+    public boolean saveByDerTicket(Ticket ticket,List<SearchComment> list) {
         if(list==null)
             return true;
         Map<String,SearchComment> before = findByPrincipalId(ticket.getId()).stream().collect(Collectors.toMap(SearchComment::getId,e->e));
@@ -380,7 +380,7 @@ public abstract class AbstractSearchCommentService extends ServiceImpl<SearchCom
 
         for(SearchComment sub:list) {
             sub.setPrincipalId(ticket.getId());
-            sub.setTicket(ticket);
+            sub.setDerTicket(ticket);
             if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
                 before.remove(sub.getId());
                 update.add(sub);
@@ -398,7 +398,7 @@ public abstract class AbstractSearchCommentService extends ServiceImpl<SearchCom
             return true;
     }
 
-    public boolean saveByWorkItem(WorkItem workItem,List<SearchComment> list) {
+    public boolean saveByDerWorkItem(WorkItem workItem,List<SearchComment> list) {
         if(list==null)
             return true;
         Map<String,SearchComment> before = findByPrincipalId(workItem.getId()).stream().collect(Collectors.toMap(SearchComment::getId,e->e));
@@ -407,7 +407,7 @@ public abstract class AbstractSearchCommentService extends ServiceImpl<SearchCom
 
         for(SearchComment sub:list) {
             sub.setPrincipalId(workItem.getId());
-            sub.setWorkItem(workItem);
+            sub.setDerWorkItem(workItem);
             if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
                 before.remove(sub.getId());
                 update.add(sub);

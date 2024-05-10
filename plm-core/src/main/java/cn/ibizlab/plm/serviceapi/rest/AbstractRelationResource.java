@@ -126,6 +126,120 @@ public abstract class AbstractRelationResource {
     }
 
     /**
+    * del_relation 关联
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<RelationDTO>
+    */
+    @ApiOperation(value = "del_relation", tags = {"关联" },  notes = "Relation-del_relation ")
+    @PostMapping("relations/{id}/del_relation")
+    public ResponseEntity<ResponseWrapper<RelationDTO>> delRelationById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RelationDTO> dto) {
+        ResponseWrapper<RelationDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(delRelationById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(delRelationById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * del_relation 关联
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<RelationDTO>
+    */   
+    public RelationDTO delRelationById
+            (String id, RelationDTO dto) {
+        Relation domain = relationDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Relation rt = relationService.delRelation(domain);
+        return relationDtoMapping.toDto(rt);
+    }
+
+    /**
+    * program_test_case 关联
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<RelationDTO>
+    */
+    @ApiOperation(value = "program_test_case", tags = {"关联" },  notes = "Relation-program_test_case ")
+    @PostMapping("relations/{id}/program_test_case")
+    public ResponseEntity<ResponseWrapper<RelationDTO>> programTestCaseById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RelationDTO> dto) {
+        ResponseWrapper<RelationDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(programTestCaseById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(programTestCaseById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * program_test_case 关联
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<RelationDTO>
+    */   
+    public RelationDTO programTestCaseById
+            (String id, RelationDTO dto) {
+        Relation domain = relationDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Relation rt = relationService.programTestCase(domain);
+        return relationDtoMapping.toDto(rt);
+    }
+
+    /**
+    * run_del_relation_bug 关联
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<RelationDTO>
+    */
+    @ApiOperation(value = "run_del_relation_bug", tags = {"关联" },  notes = "Relation-run_del_relation_bug ")
+    @PostMapping("relations/{id}/run_del_relation_bug")
+    public ResponseEntity<ResponseWrapper<RelationDTO>> runDelRelationBugById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RelationDTO> dto) {
+        ResponseWrapper<RelationDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(runDelRelationBugById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(runDelRelationBugById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * run_del_relation_bug 关联
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<RelationDTO>
+    */   
+    public RelationDTO runDelRelationBugById
+            (String id, RelationDTO dto) {
+        Relation domain = relationDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Relation rt = relationService.runDelRelationBug(domain);
+        return relationDtoMapping.toDto(rt);
+    }
+
+    /**
     * 保存Save 关联
     * 
     *
@@ -157,6 +271,82 @@ public abstract class AbstractRelationResource {
         Relation domain = relationDtoMapping.toDomain(dto);
         relationService.save(domain);
         Relation rt = domain;
+        return relationDtoMapping.toDto(rt);
+    }
+
+    /**
+    * test_case_del_relation_bug 关联
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<RelationDTO>
+    */
+    @ApiOperation(value = "test_case_del_relation_bug", tags = {"关联" },  notes = "Relation-test_case_del_relation_bug ")
+    @PostMapping("relations/{id}/test_case_del_relation_bug")
+    public ResponseEntity<ResponseWrapper<RelationDTO>> testCaseDelRelationBugById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RelationDTO> dto) {
+        ResponseWrapper<RelationDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(testCaseDelRelationBugById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(testCaseDelRelationBugById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * test_case_del_relation_bug 关联
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<RelationDTO>
+    */   
+    public RelationDTO testCaseDelRelationBugById
+            (String id, RelationDTO dto) {
+        Relation domain = relationDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Relation rt = relationService.testCaseDelRelationBug(domain);
+        return relationDtoMapping.toDto(rt);
+    }
+
+    /**
+    * work_item_del_relation_case 关联
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<RelationDTO>
+    */
+    @ApiOperation(value = "work_item_del_relation_case", tags = {"关联" },  notes = "Relation-work_item_del_relation_case ")
+    @PostMapping("relations/{id}/work_item_del_relation_case")
+    public ResponseEntity<ResponseWrapper<RelationDTO>> workItemDelRelationCaseById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RelationDTO> dto) {
+        ResponseWrapper<RelationDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(workItemDelRelationCaseById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(workItemDelRelationCaseById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * work_item_del_relation_case 关联
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<RelationDTO>
+    */   
+    public RelationDTO workItemDelRelationCaseById
+            (String id, RelationDTO dto) {
+        Relation domain = relationDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Relation rt = relationService.workItemDelRelationCase(domain);
         return relationDtoMapping.toDto(rt);
     }
 
@@ -226,6 +416,28 @@ public abstract class AbstractRelationResource {
     }
 
     /**
+    * 查询fetch_all 关联
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<RelationDTO>>
+    */
+    @ApiOperation(value = "查询fetch_all", tags = {"关联" },  notes = "Relation-fetch_all ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Relation-fetch_all-all') or hasPermission(#dto,'ibizplm-Relation-fetch_all')")
+    @PostMapping("relations/fetch_all")
+    public ResponseEntity<List<RelationDTO>> fetchAll
+            (@Validated @RequestBody RelationFilterDTO dto) {
+        RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
+        Page<Relation> domains = relationService.searchAll(context) ;
+        List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
     * 查询fetch_default 关联
     * 
     *
@@ -239,6 +451,507 @@ public abstract class AbstractRelationResource {
             (@Validated @RequestBody RelationFilterDTO dto) {
         RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
         Page<Relation> domains = relationService.searchDefault(context) ;
+        List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_exists_run_relation_bug 关联
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<RelationDTO>>
+    */
+    @ApiOperation(value = "查询fetch_exists_run_relation_bug", tags = {"关联" },  notes = "Relation-fetch_exists_run_relation_bug ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Relation-fetch_exists_run_relation_bug-all') or hasPermission(#dto,'ibizplm-Relation-fetch_exists_run_relation_bug')")
+    @PostMapping("relations/fetch_exists_run_relation_bug")
+    public ResponseEntity<List<RelationDTO>> fetchExistsRunRelationBug
+            (@Validated @RequestBody RelationFilterDTO dto) {
+        RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
+        Page<Relation> domains = relationService.searchExistsRunRelationBug(context) ;
+        List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_idea_re_customer 关联
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<RelationDTO>>
+    */
+    @ApiOperation(value = "查询fetch_idea_re_customer", tags = {"关联" },  notes = "Relation-fetch_idea_re_customer ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Relation-fetch_idea_re_customer-all') or hasPermission(#dto,'ibizplm-Relation-fetch_idea_re_customer')")
+    @PostMapping("relations/fetch_idea_re_customer")
+    public ResponseEntity<List<RelationDTO>> fetchIdeaReCustomer
+            (@Validated @RequestBody RelationFilterDTO dto) {
+        RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
+        Page<Relation> domains = relationService.searchIdeaReCustomer(context) ;
+        List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_idea_re_idea 关联
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<RelationDTO>>
+    */
+    @ApiOperation(value = "查询fetch_idea_re_idea", tags = {"关联" },  notes = "Relation-fetch_idea_re_idea ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Relation-fetch_idea_re_idea-all') or hasPermission(#dto,'ibizplm-Relation-fetch_idea_re_idea')")
+    @PostMapping("relations/fetch_idea_re_idea")
+    public ResponseEntity<List<RelationDTO>> fetchIdeaReIdea
+            (@Validated @RequestBody RelationFilterDTO dto) {
+        RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
+        Page<Relation> domains = relationService.searchIdeaReIdea(context) ;
+        List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_idea_re_test_case 关联
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<RelationDTO>>
+    */
+    @ApiOperation(value = "查询fetch_idea_re_test_case", tags = {"关联" },  notes = "Relation-fetch_idea_re_test_case ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Relation-fetch_idea_re_test_case-all') or hasPermission(#dto,'ibizplm-Relation-fetch_idea_re_test_case')")
+    @PostMapping("relations/fetch_idea_re_test_case")
+    public ResponseEntity<List<RelationDTO>> fetchIdeaReTestCase
+            (@Validated @RequestBody RelationFilterDTO dto) {
+        RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
+        Page<Relation> domains = relationService.searchIdeaReTestCase(context) ;
+        List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_idea_re_ticket 关联
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<RelationDTO>>
+    */
+    @ApiOperation(value = "查询fetch_idea_re_ticket", tags = {"关联" },  notes = "Relation-fetch_idea_re_ticket ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Relation-fetch_idea_re_ticket-all') or hasPermission(#dto,'ibizplm-Relation-fetch_idea_re_ticket')")
+    @PostMapping("relations/fetch_idea_re_ticket")
+    public ResponseEntity<List<RelationDTO>> fetchIdeaReTicket
+            (@Validated @RequestBody RelationFilterDTO dto) {
+        RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
+        Page<Relation> domains = relationService.searchIdeaReTicket(context) ;
+        List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_idea_re_work_item 关联
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<RelationDTO>>
+    */
+    @ApiOperation(value = "查询fetch_idea_re_work_item", tags = {"关联" },  notes = "Relation-fetch_idea_re_work_item ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Relation-fetch_idea_re_work_item-all') or hasPermission(#dto,'ibizplm-Relation-fetch_idea_re_work_item')")
+    @PostMapping("relations/fetch_idea_re_work_item")
+    public ResponseEntity<List<RelationDTO>> fetchIdeaReWorkItem
+            (@Validated @RequestBody RelationFilterDTO dto) {
+        RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
+        Page<Relation> domains = relationService.searchIdeaReWorkItem(context) ;
+        List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_idea_version_relation 关联
+    * 主实体版本创建时，查询关联principal_type为需求的数据存入version_data
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<RelationDTO>>
+    */
+    @ApiOperation(value = "查询fetch_idea_version_relation", tags = {"关联" },  notes = "Relation-fetch_idea_version_relation 主实体版本创建时，查询关联principal_type为需求的数据存入version_data")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Relation-fetch_idea_version_relation-all') or hasPermission(#dto,'ibizplm-Relation-fetch_idea_version_relation')")
+    @PostMapping("relations/fetch_idea_version_relation")
+    public ResponseEntity<List<RelationDTO>> fetchIdeaVersionRelation
+            (@Validated @RequestBody RelationFilterDTO dto) {
+        RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
+        Page<Relation> domains = relationService.searchIdeaVersionRelation(context) ;
+        List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_review_re_test_case 关联
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<RelationDTO>>
+    */
+    @ApiOperation(value = "查询fetch_review_re_test_case", tags = {"关联" },  notes = "Relation-fetch_review_re_test_case ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Relation-fetch_review_re_test_case-all') or hasPermission(#dto,'ibizplm-Relation-fetch_review_re_test_case')")
+    @PostMapping("relations/fetch_review_re_test_case")
+    public ResponseEntity<List<RelationDTO>> fetchReviewReTestCase
+            (@Validated @RequestBody RelationFilterDTO dto) {
+        RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
+        Page<Relation> domains = relationService.searchReviewReTestCase(context) ;
+        List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_run_re_bug 关联
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<RelationDTO>>
+    */
+    @ApiOperation(value = "查询fetch_run_re_bug", tags = {"关联" },  notes = "Relation-fetch_run_re_bug ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Relation-fetch_run_re_bug-all') or hasPermission(#dto,'ibizplm-Relation-fetch_run_re_bug')")
+    @PostMapping("relations/fetch_run_re_bug")
+    public ResponseEntity<List<RelationDTO>> fetchRunReBug
+            (@Validated @RequestBody RelationFilterDTO dto) {
+        RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
+        Page<Relation> domains = relationService.searchRunReBug(context) ;
+        List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_run_re_idea 关联
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<RelationDTO>>
+    */
+    @ApiOperation(value = "查询fetch_run_re_idea", tags = {"关联" },  notes = "Relation-fetch_run_re_idea ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Relation-fetch_run_re_idea-all') or hasPermission(#dto,'ibizplm-Relation-fetch_run_re_idea')")
+    @PostMapping("relations/fetch_run_re_idea")
+    public ResponseEntity<List<RelationDTO>> fetchRunReIdea
+            (@Validated @RequestBody RelationFilterDTO dto) {
+        RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
+        Page<Relation> domains = relationService.searchRunReIdea(context) ;
+        List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_run_re_work_item 关联
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<RelationDTO>>
+    */
+    @ApiOperation(value = "查询fetch_run_re_work_item", tags = {"关联" },  notes = "Relation-fetch_run_re_work_item ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Relation-fetch_run_re_work_item-all') or hasPermission(#dto,'ibizplm-Relation-fetch_run_re_work_item')")
+    @PostMapping("relations/fetch_run_re_work_item")
+    public ResponseEntity<List<RelationDTO>> fetchRunReWorkItem
+            (@Validated @RequestBody RelationFilterDTO dto) {
+        RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
+        Page<Relation> domains = relationService.searchRunReWorkItem(context) ;
+        List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_test_case_re_bug 关联
+    * 仅关联缺陷类型工作项
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<RelationDTO>>
+    */
+    @ApiOperation(value = "查询fetch_test_case_re_bug", tags = {"关联" },  notes = "Relation-fetch_test_case_re_bug 仅关联缺陷类型工作项")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Relation-fetch_test_case_re_bug-all') or hasPermission(#dto,'ibizplm-Relation-fetch_test_case_re_bug')")
+    @PostMapping("relations/fetch_test_case_re_bug")
+    public ResponseEntity<List<RelationDTO>> fetchTestCaseReBug
+            (@Validated @RequestBody RelationFilterDTO dto) {
+        RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
+        Page<Relation> domains = relationService.searchTestCaseReBug(context) ;
+        List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_test_case_re_idea 关联
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<RelationDTO>>
+    */
+    @ApiOperation(value = "查询fetch_test_case_re_idea", tags = {"关联" },  notes = "Relation-fetch_test_case_re_idea ")
+    @PostMapping("relations/fetch_test_case_re_idea")
+    public ResponseEntity<List<RelationDTO>> fetchTestCaseReIdea
+            (@Validated @RequestBody RelationFilterDTO dto) {
+        RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
+        Page<Relation> domains = relationService.searchTestCaseReIdea(context) ;
+        List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_test_case_re_work_item 关联
+    * 排除了缺陷类型的工作项
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<RelationDTO>>
+    */
+    @ApiOperation(value = "查询fetch_test_case_re_work_item", tags = {"关联" },  notes = "Relation-fetch_test_case_re_work_item 排除了缺陷类型的工作项")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Relation-fetch_test_case_re_work_item-all') or hasPermission(#dto,'ibizplm-Relation-fetch_test_case_re_work_item')")
+    @PostMapping("relations/fetch_test_case_re_work_item")
+    public ResponseEntity<List<RelationDTO>> fetchTestCaseReWorkItem
+            (@Validated @RequestBody RelationFilterDTO dto) {
+        RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
+        Page<Relation> domains = relationService.searchTestCaseReWorkItem(context) ;
+        List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_test_case_version_relation 关联
+    * 主实体版本创建时，查询关联principal_type为用例的数据存入version_data
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<RelationDTO>>
+    */
+    @ApiOperation(value = "查询fetch_test_case_version_relation", tags = {"关联" },  notes = "Relation-fetch_test_case_version_relation 主实体版本创建时，查询关联principal_type为用例的数据存入version_data")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Relation-fetch_test_case_version_relation-all') or hasPermission(#dto,'ibizplm-Relation-fetch_test_case_version_relation')")
+    @PostMapping("relations/fetch_test_case_version_relation")
+    public ResponseEntity<List<RelationDTO>> fetchTestCaseVersionRelation
+            (@Validated @RequestBody RelationFilterDTO dto) {
+        RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
+        Page<Relation> domains = relationService.searchTestCaseVersionRelation(context) ;
+        List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_ticket_re_idea 关联
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<RelationDTO>>
+    */
+    @ApiOperation(value = "查询fetch_ticket_re_idea", tags = {"关联" },  notes = "Relation-fetch_ticket_re_idea ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Relation-fetch_ticket_re_idea-all') or hasPermission(#dto,'ibizplm-Relation-fetch_ticket_re_idea')")
+    @PostMapping("relations/fetch_ticket_re_idea")
+    public ResponseEntity<List<RelationDTO>> fetchTicketReIdea
+            (@Validated @RequestBody RelationFilterDTO dto) {
+        RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
+        Page<Relation> domains = relationService.searchTicketReIdea(context) ;
+        List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_ticket_re_self 关联
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<RelationDTO>>
+    */
+    @ApiOperation(value = "查询fetch_ticket_re_self", tags = {"关联" },  notes = "Relation-fetch_ticket_re_self ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Relation-fetch_ticket_re_self-all') or hasPermission(#dto,'ibizplm-Relation-fetch_ticket_re_self')")
+    @PostMapping("relations/fetch_ticket_re_self")
+    public ResponseEntity<List<RelationDTO>> fetchTicketReSelf
+            (@Validated @RequestBody RelationFilterDTO dto) {
+        RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
+        Page<Relation> domains = relationService.searchTicketReSelf(context) ;
+        List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_ticket_re_work_item 关联
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<RelationDTO>>
+    */
+    @ApiOperation(value = "查询fetch_ticket_re_work_item", tags = {"关联" },  notes = "Relation-fetch_ticket_re_work_item ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Relation-fetch_ticket_re_work_item-all') or hasPermission(#dto,'ibizplm-Relation-fetch_ticket_re_work_item')")
+    @PostMapping("relations/fetch_ticket_re_work_item")
+    public ResponseEntity<List<RelationDTO>> fetchTicketReWorkItem
+            (@Validated @RequestBody RelationFilterDTO dto) {
+        RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
+        Page<Relation> domains = relationService.searchTicketReWorkItem(context) ;
+        List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_work_item_relation_idea 关联
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<RelationDTO>>
+    */
+    @ApiOperation(value = "查询fetch_work_item_relation_idea", tags = {"关联" },  notes = "Relation-fetch_work_item_relation_idea ")
+    @PostMapping("relations/fetch_work_item_relation_idea")
+    public ResponseEntity<List<RelationDTO>> fetchWorkItemRelationIdea
+            (@Validated @RequestBody RelationFilterDTO dto) {
+        RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
+        Page<Relation> domains = relationService.searchWorkItemRelationIdea(context) ;
+        List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_work_item_relation_self 关联
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<RelationDTO>>
+    */
+    @ApiOperation(value = "查询fetch_work_item_relation_self", tags = {"关联" },  notes = "Relation-fetch_work_item_relation_self ")
+    @PostMapping("relations/fetch_work_item_relation_self")
+    public ResponseEntity<List<RelationDTO>> fetchWorkItemRelationSelf
+            (@Validated @RequestBody RelationFilterDTO dto) {
+        RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
+        Page<Relation> domains = relationService.searchWorkItemRelationSelf(context) ;
+        List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_work_item_relation_test_case 关联
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<RelationDTO>>
+    */
+    @ApiOperation(value = "查询fetch_work_item_relation_test_case", tags = {"关联" },  notes = "Relation-fetch_work_item_relation_test_case ")
+    @PostMapping("relations/fetch_work_item_relation_test_case")
+    public ResponseEntity<List<RelationDTO>> fetchWorkItemRelationTestCase
+            (@Validated @RequestBody RelationFilterDTO dto) {
+        RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
+        Page<Relation> domains = relationService.searchWorkItemRelationTestCase(context) ;
+        List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_work_item_relation_ticket 关联
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<RelationDTO>>
+    */
+    @ApiOperation(value = "查询fetch_work_item_relation_ticket", tags = {"关联" },  notes = "Relation-fetch_work_item_relation_ticket ")
+    @PostMapping("relations/fetch_work_item_relation_ticket")
+    public ResponseEntity<List<RelationDTO>> fetchWorkItemRelationTicket
+            (@Validated @RequestBody RelationFilterDTO dto) {
+        RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
+        Page<Relation> domains = relationService.searchWorkItemRelationTicket(context) ;
+        List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_work_item_version_relation 关联
+    * 主实体版本创建时，查询关联principal_type为工作项的数据存入version_data
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<RelationDTO>>
+    */
+    @ApiOperation(value = "查询fetch_work_item_version_relation", tags = {"关联" },  notes = "Relation-fetch_work_item_version_relation 主实体版本创建时，查询关联principal_type为工作项的数据存入version_data")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Relation-fetch_work_item_version_relation-all') or hasPermission(#dto,'ibizplm-Relation-fetch_work_item_version_relation')")
+    @PostMapping("relations/fetch_work_item_version_relation")
+    public ResponseEntity<List<RelationDTO>> fetchWorkItemVersionRelation
+            (@Validated @RequestBody RelationFilterDTO dto) {
+        RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
+        Page<Relation> domains = relationService.searchWorkItemVersionRelation(context) ;
         List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

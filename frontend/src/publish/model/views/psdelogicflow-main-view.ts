@@ -2,11 +2,13 @@ export default {
   tabLayout: 'TOP',
   loadDefault: true,
   showDataInfoBar: true,
+  openMode: 'POPUPMODAL',
   deviewCodeName: 'flow_main_view',
   deviewId: '48f2c489669fa4c75b9abd419a371ae4',
   accUserMode: 2,
   caption: '自动化规则',
   codeName: 'psdelogicflow_main_view',
+  height: 90,
   appDataEntityId: 'plmweb.psdelogic',
   appViewEngines: [
     {
@@ -69,6 +71,7 @@ export default {
   title: '自动化规则',
   viewStyle: 'DEFAULT',
   viewType: 'DETABEXPVIEW',
+  width: 90,
   enableDP: true,
   showCaptionBar: false,
   modelId: '87b71456d48ee1b5fa816ee2617d0977',

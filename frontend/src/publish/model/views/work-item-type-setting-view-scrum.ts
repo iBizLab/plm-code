@@ -1197,16 +1197,16 @@ export default {
       },
       delistDataItems: [
         {
-          dataType: 21,
-          id: 'icon',
-        },
-        {
           dataType: 25,
           id: 'id',
         },
         {
           dataType: 25,
           id: 'name',
+        },
+        {
+          dataType: 21,
+          id: 'icon',
         },
         {
           appDEFieldId: 'id',

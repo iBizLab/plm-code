@@ -47,6 +47,11 @@ export default {
           appViewId: 'plmweb.work_item_state_grid_view',
           id: 'dritem2',
         },
+        {
+          caption: '工作项类型',
+          appViewId: 'plmweb.work_item_type_global_grid_view',
+          id: 'dritem3',
+        },
       ],
       editItemCapLanguageRes: {
         lanResTag: 'DE.LNAME.WORK_ITEM',

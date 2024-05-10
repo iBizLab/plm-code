@@ -62,6 +62,14 @@ public class MemberSearchContext extends QueryWrapperContext<Member> {
     private String userIdEQ;
 
     /**
+     * 角色EQ
+     */
+    @JsonProperty("n_role_id_eq")
+    @JSONField(name = "n_role_id_eq")
+    @ApiModelProperty("角色EQ")
+    private String roleIdEQ;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")

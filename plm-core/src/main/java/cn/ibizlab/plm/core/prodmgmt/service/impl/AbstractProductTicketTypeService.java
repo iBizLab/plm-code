@@ -56,6 +56,10 @@ public abstract class AbstractProductTicketTypeService extends ServiceImpl<Produ
     }
 
     public List<ProductTicketType> getByEntities(List<ProductTicketType> entities) {
+        entities.forEach(et->{
+            if(ObjectUtils.isEmpty(et.getId()))
+                et.setId((String)et.getDefaultKey(true));
+            });
         return this.baseMapper.selectEntities(entities);
     }
 
@@ -65,6 +69,16 @@ public abstract class AbstractProductTicketTypeService extends ServiceImpl<Produ
         }
         if(Entities.TICKET_TYPE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
             et.setTicketTypeId((String)et.getContextParentKey());
+            TicketType ticketType = et.getTicketType();
+            if(ticketType == null) {
+                ticketType = ticketTypeService.getById(et.getTicketTypeId());
+                et.setTicketType(ticketType);
+            }
+            if(!ObjectUtils.isEmpty(ticketType)) {
+                et.setDescription(ticketType.getDescription());
+                et.setTicketTypeId(ticketType.getId());
+                et.setTicketTypeName(ticketType.getName());
+            }
         }
     }
 
@@ -74,6 +88,8 @@ public abstract class AbstractProductTicketTypeService extends ServiceImpl<Produ
     }
 
     public Integer checkKey(ProductTicketType et) {
+        if(ObjectUtils.isEmpty(et.getId()))
+            et.setId((String)et.getDefaultKey(true));
         return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ProductTicketType>lambdaQuery().eq(ProductTicketType::getId, et.getId()))>0)?1:0;
     }
 
@@ -81,6 +97,8 @@ public abstract class AbstractProductTicketTypeService extends ServiceImpl<Produ
     @Transactional
     public boolean create(ProductTicketType et) {
         fillParentData(et);
+        if(ObjectUtils.isEmpty(et.getId()))
+            et.setId((String)et.getDefaultKey(true));
         if(this.baseMapper.insert(et) < 1)
             return false;
         get(et);
@@ -90,6 +108,10 @@ public abstract class AbstractProductTicketTypeService extends ServiceImpl<Produ
     @Transactional
     public boolean createBatch(List<ProductTicketType> list) {
         list.forEach(this::fillParentData);
+        list.forEach(et->{
+            if(ObjectUtils.isEmpty(et.getId()))
+                et.setId((String)et.getDefaultKey(true));
+            });
         this.saveBatch(list, batchSize);
         return true;
     }
@@ -127,6 +149,10 @@ public abstract class AbstractProductTicketTypeService extends ServiceImpl<Produ
         List<ProductTicketType> create = new ArrayList<>();
         List<ProductTicketType> update = new ArrayList<>();
         list.forEach(sub->{
+            if(ObjectUtils.isEmpty(sub.getId()))
+                before.values().stream()
+                        .filter(e->ObjectUtils.nullSafeEquals(sub.getDefaultKey(true),e.getDefaultKey(true)))
+                        .findFirst().ifPresent(e->sub.setId(e.getId()));
             if(!ObjectUtils.isEmpty(sub.getId()) && before.containsKey(sub.getId()))
                 update.add(sub);
             else
@@ -190,6 +216,10 @@ public abstract class AbstractProductTicketTypeService extends ServiceImpl<Produ
         for(ProductTicketType sub:list) {
             sub.setProductId(product.getId());
             sub.setProduct(product);
+            if(ObjectUtils.isEmpty(sub.getId()))
+                before.values().stream()
+                        .filter(e->ObjectUtils.nullSafeEquals(sub.getDefaultKey(true),e.getDefaultKey(true)))
+                        .findFirst().ifPresent(e->sub.setId(e.getId()));
             if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
                 before.remove(sub.getId());
                 update.add(sub);
@@ -225,6 +255,10 @@ public abstract class AbstractProductTicketTypeService extends ServiceImpl<Produ
         for(ProductTicketType sub:list) {
             sub.setTicketTypeId(ticketType.getId());
             sub.setTicketType(ticketType);
+            if(ObjectUtils.isEmpty(sub.getId()))
+                before.values().stream()
+                        .filter(e->ObjectUtils.nullSafeEquals(sub.getDefaultKey(true),e.getDefaultKey(true)))
+                        .findFirst().ifPresent(e->sub.setId(e.getId()));
             if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
                 before.remove(sub.getId());
                 update.add(sub);

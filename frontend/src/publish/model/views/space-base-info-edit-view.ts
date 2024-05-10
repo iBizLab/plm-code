@@ -174,6 +174,23 @@ export default {
                       codeName: 'visibility',
                       detailStyle: 'DEFAULT',
                       detailType: 'FORMITEM',
+                      defdgroupLogics: [
+                        {
+                          logicCat: 'ITEMENABLE',
+                          relatedDetailNames: ['scope_type'],
+                          groupOP: 'AND',
+                          defdlogics: [
+                            {
+                              condOP: 'NOTEQ',
+                              defdname: 'scope_type',
+                              value: 'user',
+                              logicType: 'SINGLE',
+                            },
+                          ],
+                          logicType: 'GROUP',
+                          id: '表单成员[visibility][表单项启用]逻辑',
+                        },
+                      ],
                       layoutPos: {
                         colLG: 12,
                         colMD: 12,
@@ -317,6 +334,32 @@ export default {
                   },
                   showCaption: true,
                   id: 'category_id',
+                },
+                {
+                  dataType: 25,
+                  enableCond: 3,
+                  labelPos: 'TOP',
+                  labelWidth: 130,
+                  noPrivDisplayMode: 1,
+                  appDEFieldId: 'scope_type',
+                  editor: {
+                    editorType: 'HIDDEN',
+                    valueType: 'SIMPLE',
+                    editable: true,
+                    id: 'scope_type',
+                  },
+                  allowEmpty: true,
+                  hidden: true,
+                  caption: '所属',
+                  codeName: 'scope_type',
+                  detailStyle: 'DEFAULT',
+                  detailType: 'FORMITEM',
+                  layoutPos: {
+                    colMD: 24,
+                    layout: 'TABLE_24COL',
+                  },
+                  showCaption: true,
+                  id: 'scope_type',
                 },
                 {
                   layout: {

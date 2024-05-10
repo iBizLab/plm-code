@@ -90,19 +90,18 @@ export default {
       },
       deformItemUpdates: [
         {
-          codeName: 'set_type_bug',
-          appDEMethodId: 'set_type_bug',
+          codeName: 'calc_parent_work_item_type',
           defiupdateDetails: [
-            {
-              id: 'work_item_type_id',
-            },
             {
               id: 'work_item_type_name',
             },
           ],
+          scriptCode:
+            "if (ctrl.scheduler) {\r\n    ctrl.scheduler.triggerControlEvent(\r\n        'work_item_type_name',\r\n        'onChange',\r\n        null,\r\n    );\r\n}\r\nconsole.log(223)",
+          customCode: true,
           showBusyIndicator: true,
-          name: '设置缺陷类型',
-          id: 'set_type_bug',
+          name: '计算父工作项类型',
+          id: 'calc_parent_work_item_type',
         },
         {
           codeName: 'set_default_entry',
@@ -117,18 +116,19 @@ export default {
           id: 'set_default_entry',
         },
         {
-          codeName: 'calc_parent_work_item_type',
+          codeName: 'set_type_bug',
+          appDEMethodId: 'set_type_bug',
           defiupdateDetails: [
+            {
+              id: 'work_item_type_id',
+            },
             {
               id: 'work_item_type_name',
             },
           ],
-          scriptCode:
-            "if (ctrl.scheduler) {\r\n    ctrl.scheduler.triggerControlEvent(\r\n        'work_item_type_name',\r\n        'onChange',\r\n        null,\r\n    );\r\n}\r\nconsole.log(223)",
-          customCode: true,
           showBusyIndicator: true,
-          name: '计算父工作项类型',
-          id: 'calc_parent_work_item_type',
+          name: '设置缺陷类型',
+          id: 'set_type_bug',
         },
       ],
       deformItemVRs: [
@@ -1051,6 +1051,7 @@ export default {
                         showTrigger: true,
                         valueItemName: 'project_id',
                         editorParams: {
+                          overflowMode: 'ellipsis',
                           AC: 'TRUE',
                           PICKUPVIEW: 'TRUE',
                         },
@@ -1414,6 +1415,7 @@ export default {
                         showTrigger: true,
                         valueItemName: 'pid',
                         editorParams: {
+                          overflowMode: 'ellipsis',
                           'SRFNAVPARAM.n_work_item_type_id_in':
                             '%n_work_item_type_id_in%',
                           'SRFNAVCTX.PROJECT': '%project_id%',

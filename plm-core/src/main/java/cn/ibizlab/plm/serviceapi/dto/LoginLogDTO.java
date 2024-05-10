@@ -36,11 +36,20 @@ public class LoginLogDTO extends DTOBase implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
+     * 登录时间
+     */
+    @JsonProperty("auth_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "auth_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "登录时间", position = 0)
+    private Date authTime;
+
+    /**
      * 区/县
      */
     @JsonProperty("county")
     @JSONField(name = "county")
-    @ApiModelProperty(value = "区/县", position = 0)
+    @ApiModelProperty(value = "区/县", position = 1)
     private String county;
 
     /**
@@ -48,7 +57,7 @@ public class LoginLogDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("country")
     @JSONField(name = "country")
-    @ApiModelProperty(value = "国家", position = 1)
+    @ApiModelProperty(value = "国家", position = 2)
     private String country;
 
     /**
@@ -56,7 +65,7 @@ public class LoginLogDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("city")
     @JSONField(name = "city")
-    @ApiModelProperty(value = "城市", position = 2)
+    @ApiModelProperty(value = "城市", position = 3)
     private String city;
 
     /**
@@ -64,7 +73,7 @@ public class LoginLogDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("ip")
     @JSONField(name = "ip")
-    @ApiModelProperty(value = "IP地址", position = 3)
+    @ApiModelProperty(value = "IP地址", position = 4)
     private String ip;
 
     /**
@@ -72,7 +81,7 @@ public class LoginLogDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("login_method")
     @JSONField(name = "login_method")
-    @ApiModelProperty(value = "登录方式", position = 4)
+    @ApiModelProperty(value = "登录方式", position = 5)
     private String loginMethod;
 
     /**
@@ -80,7 +89,7 @@ public class LoginLogDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("province")
     @JSONField(name = "province")
-    @ApiModelProperty(value = "省", position = 5)
+    @ApiModelProperty(value = "省", position = 6)
     private String province;
 
     /**
@@ -88,7 +97,7 @@ public class LoginLogDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("user_agent")
     @JSONField(name = "user_agent")
-    @ApiModelProperty(value = "客户端", position = 6)
+    @ApiModelProperty(value = "客户端", position = 7)
     private String userAgent;
 
     /**
@@ -96,7 +105,7 @@ public class LoginLogDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("user_id")
     @JSONField(name = "user_id")
-    @ApiModelProperty(value = "用户标识", position = 7)
+    @ApiModelProperty(value = "用户标识", position = 8)
     private String userId;
 
     /**
@@ -104,7 +113,7 @@ public class LoginLogDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("user_name")
     @JSONField(name = "user_name")
-    @ApiModelProperty(value = "用户名称", position = 8)
+    @ApiModelProperty(value = "用户名称", position = 9)
     private String userName;
 
     /**
@@ -112,24 +121,48 @@ public class LoginLogDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("isp")
     @JSONField(name = "isp")
-    @ApiModelProperty(value = "网络提供商", position = 9)
+    @ApiModelProperty(value = "网络提供商", position = 10)
     private String isp;
+
+    /**
+     * 认证结果
+     */
+    @JsonProperty("auth_code")
+    @JSONField(name = "auth_code")
+    @ApiModelProperty(value = "认证结果", position = 11)
+    private String authCode;
+
+    /**
+     * 活跃成员数
+     */
+    @JsonProperty("active_members")
+    @JSONField(name = "active_members")
+    @ApiModelProperty(value = "活跃成员数", position = 12)
+    private String activeMembers;
+
+    /**
+     * 活跃率
+     */
+    @JsonProperty("active_rate")
+    @JSONField(name = "active_rate")
+    @ApiModelProperty(value = "活跃率", position = 13)
+    private String activeRate;
 
     /**
      * 建立人
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 10)
+    @ApiModelProperty(value = "建立人", position = 14)
     private String createMan;
 
     /**
-     * 登录时间
+     * 建立时间
      */
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "登录时间", position = 11)
+    @ApiModelProperty(value = "建立时间", position = 15)
     private Date createTime;
 
     /**
@@ -137,7 +170,7 @@ public class LoginLogDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 12)
+    @ApiModelProperty(value = "标识", position = 16)
     private String id;
 
     /**
@@ -145,7 +178,7 @@ public class LoginLogDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 13)
+    @ApiModelProperty(value = "名称", position = 17)
     private String name;
 
     /**
@@ -153,7 +186,7 @@ public class LoginLogDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 14)
+    @ApiModelProperty(value = "更新人", position = 18)
     private String updateMan;
 
     /**
@@ -162,9 +195,18 @@ public class LoginLogDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 15)
+    @ApiModelProperty(value = "更新时间", position = 19)
     private Date updateTime;
 
+
+    /**
+     * 设置 [登录时间]
+     */
+    public LoginLogDTO setAuthTime(Date authTime) {
+        this.authTime = authTime;
+        this.modify("auth_time", authTime);
+        return this;
+    }
 
     /**
      * 设置 [区/县]
@@ -253,6 +295,33 @@ public class LoginLogDTO extends DTOBase implements Serializable {
     public LoginLogDTO setIsp(String isp) {
         this.isp = isp;
         this.modify("isp", isp);
+        return this;
+    }
+
+    /**
+     * 设置 [认证结果]
+     */
+    public LoginLogDTO setAuthCode(String authCode) {
+        this.authCode = authCode;
+        this.modify("auth_code", authCode);
+        return this;
+    }
+
+    /**
+     * 设置 [活跃成员数]
+     */
+    public LoginLogDTO setActiveMembers(String activeMembers) {
+        this.activeMembers = activeMembers;
+        this.modify("active_members", activeMembers);
+        return this;
+    }
+
+    /**
+     * 设置 [活跃率]
+     */
+    public LoginLogDTO setActiveRate(String activeRate) {
+        this.activeRate = activeRate;
+        this.modify("active_rate", activeRate);
         return this;
     }
 

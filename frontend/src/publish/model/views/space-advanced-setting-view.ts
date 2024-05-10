@@ -115,9 +115,9 @@ export default {
                 {
                   actionType: 'UIACTION',
                   uiactionId: 'in_progress_into_archived@space',
-                  tooltip: '归档产品',
+                  tooltip: '归档空间',
                   uiactionTarget: 'SINGLEKEY',
-                  caption: '归档产品',
+                  caption: '归档空间',
                   codeName: 'button2',
                   detailStyle: 'DEFAULT',
                   detailType: 'BUTTON',
@@ -170,9 +170,9 @@ export default {
                 {
                   actionType: 'UIACTION',
                   uiactionId: 'in_progress_into_deleted@space',
-                  tooltip: '删除产品',
+                  tooltip: '删除空间',
                   uiactionTarget: 'SINGLEKEY',
-                  caption: '删除产品',
+                  caption: '删除空间',
                   codeName: 'button3',
                   detailStyle: 'DEFAULT',
                   detailType: 'BUTTON',

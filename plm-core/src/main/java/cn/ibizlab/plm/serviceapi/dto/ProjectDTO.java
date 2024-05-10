@@ -126,11 +126,27 @@ public class ProjectDTO extends DTOBase implements Serializable {
     private String isFavorite;
 
     /**
+     * 所属
+     */
+    @JsonProperty("scope_type")
+    @JSONField(name = "scope_type")
+    @ApiModelProperty(value = "所属", position = 11)
+    private String scopeType;
+
+    /**
+     * 所属对象
+     */
+    @JsonProperty("scope_id")
+    @JSONField(name = "scope_id")
+    @ApiModelProperty(value = "所属对象", position = 12)
+    private String scopeId;
+
+    /**
      * 是否本地配置
      */
     @JsonProperty("is_local_configure")
     @JSONField(name = "is_local_configure")
-    @ApiModelProperty(value = "是否本地配置", position = 11)
+    @ApiModelProperty(value = "是否本地配置", position = 13)
     private Integer isLocalConfigure;
 
     /**
@@ -138,7 +154,7 @@ public class ProjectDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("members")
     @JSONField(name = "members")
-    @ApiModelProperty(value = "成员", position = 12)
+    @ApiModelProperty(value = "成员", position = 14)
     private List<ProjectMemberDTO> members;
 
     /**
@@ -146,7 +162,7 @@ public class ProjectDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("assignee_name")
     @JSONField(name = "assignee_name")
-    @ApiModelProperty(value = "负责人", position = 13)
+    @ApiModelProperty(value = "负责人", position = 15)
     private String assigneeName;
 
     /**
@@ -154,7 +170,7 @@ public class ProjectDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("assignee_id")
     @JSONField(name = "assignee_id")
-    @ApiModelProperty(value = "负责人标识", position = 14)
+    @ApiModelProperty(value = "负责人标识", position = 16)
     private String assigneeId;
 
     /**
@@ -162,7 +178,7 @@ public class ProjectDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 15)
+    @ApiModelProperty(value = "建立人", position = 17)
     private String createMan;
 
     /**
@@ -171,7 +187,7 @@ public class ProjectDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 16)
+    @ApiModelProperty(value = "建立时间", position = 18)
     private Date createTime;
 
     /**
@@ -179,7 +195,7 @@ public class ProjectDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 17)
+    @ApiModelProperty(value = "标识", position = 19)
     private String id;
 
     /**
@@ -187,7 +203,7 @@ public class ProjectDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "项目名称", position = 18)
+    @ApiModelProperty(value = "项目名称", position = 20)
     private String name;
 
     /**
@@ -195,7 +211,7 @@ public class ProjectDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 19)
+    @ApiModelProperty(value = "更新人", position = 21)
     private String updateMan;
 
     /**
@@ -204,7 +220,7 @@ public class ProjectDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 20)
+    @ApiModelProperty(value = "更新时间", position = 22)
     private Date updateTime;
 
 
@@ -304,6 +320,24 @@ public class ProjectDTO extends DTOBase implements Serializable {
     public ProjectDTO setIsFavorite(String isFavorite) {
         this.isFavorite = isFavorite;
         this.modify("is_favorite", isFavorite);
+        return this;
+    }
+
+    /**
+     * 设置 [所属]
+     */
+    public ProjectDTO setScopeType(String scopeType) {
+        this.scopeType = scopeType;
+        this.modify("scope_type", scopeType);
+        return this;
+    }
+
+    /**
+     * 设置 [所属对象]
+     */
+    public ProjectDTO setScopeId(String scopeId) {
+        this.scopeId = scopeId;
+        this.modify("scope_id", scopeId);
         return this;
     }
 

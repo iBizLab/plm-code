@@ -9,7 +9,7 @@
       <i-biz-grid-control v-bind="slotProps" />
     </template>
     <template #tabsearchform="slotProps">
-      <i-biz-searchform-control v-bind="slotProps" />
+      <i-biz-search-form-control v-bind="slotProps" />
     </template>
   </i-biz-view>
 </template>

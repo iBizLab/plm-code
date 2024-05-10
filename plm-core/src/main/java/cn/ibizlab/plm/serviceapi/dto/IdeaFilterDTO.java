@@ -163,7 +163,7 @@ public class IdeaFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_section_id_eq")
     @JSONField(name = "n_section_id_eq")
-    @ApiModelProperty(value = "子产品标识EQ", position = 220)
+    @ApiModelProperty(value = "子产品标识EQ", position = 230)
 	private String sectionIdEQ;
 
     /**
@@ -171,15 +171,47 @@ public class IdeaFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_show_identifier_like")
     @JSONField(name = "n_show_identifier_like")
-    @ApiModelProperty(value = "编号LIKE", position = 240)
+    @ApiModelProperty(value = "编号LIKE", position = 250)
 	private String showIdentifierLIKE;
+
+    /**
+     * 类别路径LIKE
+     */
+    @JsonProperty("n_categories_like")
+    @JSONField(name = "n_categories_like")
+    @ApiModelProperty(value = "类别路径LIKE", position = 260)
+	private String categoriesLIKE;
+
+    /**
+     * 需求来源EQ
+     */
+    @JsonProperty("n_idea_from_eq")
+    @JSONField(name = "n_idea_from_eq")
+    @ApiModelProperty(value = "需求来源EQ", position = 270)
+	private String ideaFromEQ;
+
+    /**
+     * 需求类型EQ
+     */
+    @JsonProperty("n_idea_type_eq")
+    @JSONField(name = "n_idea_type_eq")
+    @ApiModelProperty(value = "需求类型EQ", position = 280)
+	private String ideaTypeEQ;
+
+    /**
+     * 标识IN
+     */
+    @JsonProperty("n_id_in")
+    @JSONField(name = "n_id_in")
+    @ApiModelProperty(value = "标识IN", position = 370)
+	private String idIN;
 
     /**
      * 标识NOTEQ
      */
     @JsonProperty("n_id_noteq")
     @JSONField(name = "n_id_noteq")
-    @ApiModelProperty(value = "标识NOTEQ", position = 300)
+    @ApiModelProperty(value = "标识NOTEQ", position = 371)
 	private String idNOTEQ;
 
     /**
@@ -187,7 +219,7 @@ public class IdeaFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 301)
+    @ApiModelProperty(value = "标识EQ", position = 372)
 	private String idEQ;
 
     /**
@@ -196,7 +228,7 @@ public class IdeaFilterDTO extends FilterBase implements Serializable {
     @JsonProperty("n_create_time_eq")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "n_create_time_eq" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间EQ", position = 310)
+    @ApiModelProperty(value = "建立时间EQ", position = 380)
 	private Date createTimeEQ;
 
     /**
@@ -205,7 +237,7 @@ public class IdeaFilterDTO extends FilterBase implements Serializable {
     @JsonProperty("n_create_time_gtandeq")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "n_create_time_gtandeq" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间GTANDEQ", position = 311)
+    @ApiModelProperty(value = "建立时间GTANDEQ", position = 381)
 	private Date createTimeGTANDEQ;
 
     /**
@@ -214,7 +246,7 @@ public class IdeaFilterDTO extends FilterBase implements Serializable {
     @JsonProperty("n_create_time_ltandeq")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "n_create_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间LTANDEQ", position = 312)
+    @ApiModelProperty(value = "建立时间LTANDEQ", position = 382)
 	private Date createTimeLTANDEQ;
 
     /**
@@ -222,7 +254,7 @@ public class IdeaFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_create_man_eq")
     @JSONField(name = "n_create_man_eq")
-    @ApiModelProperty(value = "建立人EQ", position = 330)
+    @ApiModelProperty(value = "建立人EQ", position = 400)
 	private String createManEQ;
 
     /**
@@ -230,7 +262,7 @@ public class IdeaFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 350)
+    @ApiModelProperty(value = "名称LIKE", position = 420)
 	private String nameLIKE;
 
     /**
@@ -238,7 +270,7 @@ public class IdeaFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_product_id_eq")
     @JSONField(name = "n_product_id_eq")
-    @ApiModelProperty(value = "产品EQ", position = 360)
+    @ApiModelProperty(value = "产品EQ", position = 430)
 	private String productIdEQ;
 
     /**
@@ -246,7 +278,7 @@ public class IdeaFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_product_id_isnull")
     @JSONField(name = "n_product_id_isnull")
-    @ApiModelProperty(value = "产品ISNULL", position = 361)
+    @ApiModelProperty(value = "产品ISNULL", position = 431)
 	private String productIdISNULL;
 
     /**
@@ -254,7 +286,7 @@ public class IdeaFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_product_name_eq")
     @JSONField(name = "n_product_name_eq")
-    @ApiModelProperty(value = "所属产品EQ", position = 370)
+    @ApiModelProperty(value = "所属产品EQ", position = 440)
 	private String productNameEQ;
 
     /**
@@ -262,7 +294,7 @@ public class IdeaFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_product_name_like")
     @JSONField(name = "n_product_name_like")
-    @ApiModelProperty(value = "所属产品LIKE", position = 371)
+    @ApiModelProperty(value = "所属产品LIKE", position = 441)
 	private String productNameLIKE;
 
     /**
@@ -270,7 +302,7 @@ public class IdeaFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_category_id_eq")
     @JSONField(name = "n_category_id_eq")
-    @ApiModelProperty(value = "类别标识EQ", position = 380)
+    @ApiModelProperty(value = "类别标识EQ", position = 450)
 	private String categoryIdEQ;
 
     /**
@@ -278,7 +310,7 @@ public class IdeaFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_category_name_eq")
     @JSONField(name = "n_category_name_eq")
-    @ApiModelProperty(value = "名称EQ", position = 390)
+    @ApiModelProperty(value = "名称EQ", position = 460)
 	private String categoryNameEQ;
 
     /**
@@ -286,7 +318,7 @@ public class IdeaFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_category_name_like")
     @JSONField(name = "n_category_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 391)
+    @ApiModelProperty(value = "名称LIKE", position = 461)
 	private String categoryNameLIKE;
 
 

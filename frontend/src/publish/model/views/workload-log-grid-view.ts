@@ -184,17 +184,6 @@ export default {
     ],
     appViewLogics: [
       {
-        eventNames: 'onActive',
-        logicTrigger: 'CTRLEVENT',
-        logicType: 'APPDEUILOGIC',
-        appDEUILogicId: 'open_main_view',
-        appDataEntityId: 'plmweb.workload',
-        ctrlName: 'grid',
-        builtinLogic: true,
-        name: 'OPENDATA',
-        id: 'opendata',
-      },
-      {
         eventNames: 'onBeforeLoadDraft',
         logicTrigger: 'CTRLEVENT',
         logicType: 'SCRIPT',
@@ -226,6 +215,29 @@ export default {
         builtinLogic: true,
         id: 'newdata',
       },
+      {
+        logicTrigger: 'CUSTOM',
+        logicType: 'APPUILOGIC',
+        builtinAppUILogic: {
+          openDataAppView: {
+            openMode: 'POPUPMODAL',
+            refAppViewId: 'plmweb.workload_update_view',
+          },
+          editMode: true,
+          appUILogicRefViews: [
+            {
+              openMode: 'POPUPMODAL',
+              refAppViewId: 'plmweb.workload_update_view',
+            },
+          ],
+          builtinLogic: true,
+          logicType: 'PREDEFINED',
+          viewLogicType: 'APP_OPENDATA',
+          id: '打开数据',
+        },
+        builtinLogic: true,
+        id: 'opendata',
+      },
     ],
     appViewRefs: [
       {
@@ -238,11 +250,9 @@ export default {
         id: 'newdata',
       },
       {
-        realTitle: '工时编辑视图',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.WORKLOAD.EDITVIEW',
-        },
-        refAppViewId: 'plmweb.workload_edit_view',
+        realOpenMode: 'POPUPMODAL',
+        realTitle: '修改实际工时视图',
+        refAppViewId: 'plmweb.workload_update_view',
         name: 'EDITDATA',
         id: 'editdata',
       },
@@ -297,6 +307,7 @@ export default {
             dataItemName: 'name',
             excelCaption: '事项',
             appDEFieldId: 'name',
+            deuiactionId: 'open_main_view@workload',
             valueType: 'SIMPLE',
             aggMode: 'NONE',
             align: 'LEFT',
@@ -567,6 +578,14 @@ export default {
                 codeName: 'date_range',
                 detailStyle: 'DEFAULT',
                 detailType: 'FORMITEM',
+                controlAttributes: [
+                  {
+                    attrName: 'shortcuts',
+                    attrValue:
+                      "[\r\n    {\r\n    text: '最近7天',\r\n    value: () => {\r\n        const end_at = new Date();\r\n        const start_at = new Date();\r\n        start_at.setDate(end_at.getDate() - 6);\r\n        return [start_at, end_at];\r\n    },\r\n    },\r\n    {\r\n    text: '最近30天',\r\n    value: () => {\r\n        const end_at = new Date();\r\n        const start_at = new Date();\r\n        start_at.setDate(end_at.getDate() - 29);\r\n        return [start_at, end_at];\r\n    },\r\n    },\r\n    {\r\n    text: '本周',\r\n    value: () => {\r\n        const end_at = new Date();\r\n        const currentDay = end_at.getDay();\r\n        const start_at = new Date(end_at);\r\n\r\n        // 计算本周的开始日期 (周一)\r\n        start_at.setDate(\r\n        end_at.getDate() - currentDay + (currentDay === 0 ? -6 : 1),\r\n        );\r\n        return [start_at, end_at];\r\n    },\r\n    },\r\n    {\r\n    text: '本月',\r\n    value: () => {\r\n        const end_at = new Date();\r\n        const start_at = new Date(end_at);\r\n\r\n        // 将日期设置为本月第一天\r\n        start_at.setDate(1);\r\n        return [start_at, end_at];\r\n    },\r\n    },\r\n]",
+                    id: 'date_range_shortcuts',
+                  },
+                ],
                 layoutPos: {
                   colLG: 4,
                   colMD: 4,
@@ -581,27 +600,27 @@ export default {
                 enableCond: 3,
                 labelPos: 'NONE',
                 noPrivDisplayMode: 1,
-                appDEFieldId: 'identifier',
+                appDEFieldId: 'show_identifier',
                 editor: {
                   editorType: 'TEXTBOX',
                   placeHolder: '编号',
                   valueType: 'SIMPLE',
                   editable: true,
-                  id: 'n_identifier_like',
+                  id: 'n_show_identifier_like',
                 },
                 allowEmpty: true,
                 caption: '编号',
-                codeName: 'n_identifier_like',
+                codeName: 'n_show_identifier_like',
                 detailStyle: 'DEFAULT',
                 detailType: 'FORMITEM',
                 layoutPos: {
-                  colLG: 3,
-                  colMD: 3,
-                  colSM: 8,
-                  colXS: 8,
+                  colLG: 4,
+                  colMD: 4,
+                  colSM: 6,
+                  colXS: 6,
                   layout: 'TABLE_24COL',
                 },
-                id: 'n_identifier_like',
+                id: 'n_show_identifier_like',
               },
               {
                 dataType: 25,

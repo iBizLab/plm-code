@@ -15,20 +15,20 @@
     <select id="selectEntity" parameterType="cn.ibizlab.plm.core.base.domain.ReferencesIndex" resultMap="ReferencesIndexResultMap">
         <include refid="view" /> 
          where 
-         ()
+         (t1.id = #{ id })
     </select>
 
     <select id="selectEntities" parameterType="java.util.List" resultMap="ReferencesIndexResultMap">
         <include refid="view" /> 
          where 
-         ()
-         in (<foreach collection="list" item="item" index="index" separator=","> () </foreach>)
+         (t1.id)
+         in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.id }) </foreach>)
     </select>
 
     <delete id="deleteEntities" parameterType="java.util.List">
     delete from REFERENCES_INDEX
-    where ()
-         in (<foreach collection="list" item="item" index="index" separator=","> () </foreach>)
+    where (id)
+         in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.id }) </foreach>)
     </delete>
 
     <sql id="default" databaseId="mysql">

@@ -246,6 +246,14 @@ export default {
               text: '未分配部门',
               navAppViewId: 'plmweb.user_unassigned_dept_grid_view',
               nodeType: 'unassigned_dept',
+              navigateParams: [
+                {
+                  key: 'department_id_isnull',
+                  value: '1',
+                  rawValue: true,
+                  id: 'department_id_isnull',
+                },
+              ],
               treeNodeType: 'STATIC',
               name: '未分配部门',
               id: 'unassigned_dept',

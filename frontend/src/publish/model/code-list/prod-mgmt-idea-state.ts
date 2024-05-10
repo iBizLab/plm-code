@@ -1,9 +1,11 @@
 export default {
   codeListTag: 'ProdMgmt__idea_state',
-  codeListType: 'STATIC',
+  codeListType: 'DYNAMIC',
   codeName: 'ProdMgmt__idea_state',
+  colorAppDEFieldId: 'color',
   emptyText: '未定义',
-  appDataEntityId: 'plmweb.idea',
+  appDEDataSetId: 'fetch_idea_state',
+  appDataEntityId: 'plmweb.dictionary_data',
   codeItems: [
     {
       codeName: 'item_10',
@@ -56,6 +58,8 @@ export default {
       id: 'item_50',
     },
   ],
+  textAppDEFieldId: 'name',
+  valueAppDEFieldId: 'val',
   enableCache: true,
   name: '需求状态',
   id: 'plmweb.prodmgmt__idea_state',

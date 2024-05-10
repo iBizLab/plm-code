@@ -227,7 +227,7 @@ public abstract class AbstractSearchAttachmentService extends ServiceImpl<Search
         return this.update(Wrappers.<SearchAttachment>lambdaUpdate().eq(SearchAttachment::getOwnerId,ownerId));
     }
 
-    public boolean saveByCustomer(Customer customer,List<SearchAttachment> list) {
+    public boolean saveByDerCustomer(Customer customer,List<SearchAttachment> list) {
         if(list==null)
             return true;
         Map<String,SearchAttachment> before = findByOwnerId(customer.getId()).stream().collect(Collectors.toMap(SearchAttachment::getId,e->e));
@@ -236,7 +236,7 @@ public abstract class AbstractSearchAttachmentService extends ServiceImpl<Search
 
         for(SearchAttachment sub:list) {
             sub.setOwnerId(customer.getId());
-            sub.setCustomer(customer);
+            sub.setDerCustomer(customer);
             if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
                 before.remove(sub.getId());
                 update.add(sub);
@@ -254,7 +254,7 @@ public abstract class AbstractSearchAttachmentService extends ServiceImpl<Search
             return true;
     }
 
-    public boolean saveByIdea(Idea idea,List<SearchAttachment> list) {
+    public boolean saveByDerIdea(Idea idea,List<SearchAttachment> list) {
         if(list==null)
             return true;
         Map<String,SearchAttachment> before = findByOwnerId(idea.getId()).stream().collect(Collectors.toMap(SearchAttachment::getId,e->e));
@@ -263,7 +263,7 @@ public abstract class AbstractSearchAttachmentService extends ServiceImpl<Search
 
         for(SearchAttachment sub:list) {
             sub.setOwnerId(idea.getId());
-            sub.setIdea(idea);
+            sub.setDerIdea(idea);
             if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
                 before.remove(sub.getId());
                 update.add(sub);
@@ -281,7 +281,7 @@ public abstract class AbstractSearchAttachmentService extends ServiceImpl<Search
             return true;
     }
 
-    public boolean saveByPage(ArticlePage articlePage,List<SearchAttachment> list) {
+    public boolean saveByDerPage(ArticlePage articlePage,List<SearchAttachment> list) {
         if(list==null)
             return true;
         Map<String,SearchAttachment> before = findByOwnerId(articlePage.getId()).stream().collect(Collectors.toMap(SearchAttachment::getId,e->e));
@@ -290,7 +290,7 @@ public abstract class AbstractSearchAttachmentService extends ServiceImpl<Search
 
         for(SearchAttachment sub:list) {
             sub.setOwnerId(articlePage.getId());
-            sub.setPage(articlePage);
+            sub.setDerPage(articlePage);
             if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
                 before.remove(sub.getId());
                 update.add(sub);
@@ -308,7 +308,7 @@ public abstract class AbstractSearchAttachmentService extends ServiceImpl<Search
             return true;
     }
 
-    public boolean saveByTestCase(TestCase testCase,List<SearchAttachment> list) {
+    public boolean saveByDerTestCase(TestCase testCase,List<SearchAttachment> list) {
         if(list==null)
             return true;
         Map<String,SearchAttachment> before = findByOwnerId(testCase.getId()).stream().collect(Collectors.toMap(SearchAttachment::getId,e->e));
@@ -317,7 +317,7 @@ public abstract class AbstractSearchAttachmentService extends ServiceImpl<Search
 
         for(SearchAttachment sub:list) {
             sub.setOwnerId(testCase.getId());
-            sub.setTestCase(testCase);
+            sub.setDerTestCase(testCase);
             if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
                 before.remove(sub.getId());
                 update.add(sub);
@@ -335,7 +335,7 @@ public abstract class AbstractSearchAttachmentService extends ServiceImpl<Search
             return true;
     }
 
-    public boolean saveByTicket(Ticket ticket,List<SearchAttachment> list) {
+    public boolean saveByDerTicket(Ticket ticket,List<SearchAttachment> list) {
         if(list==null)
             return true;
         Map<String,SearchAttachment> before = findByOwnerId(ticket.getId()).stream().collect(Collectors.toMap(SearchAttachment::getId,e->e));
@@ -344,7 +344,7 @@ public abstract class AbstractSearchAttachmentService extends ServiceImpl<Search
 
         for(SearchAttachment sub:list) {
             sub.setOwnerId(ticket.getId());
-            sub.setTicket(ticket);
+            sub.setDerTicket(ticket);
             if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
                 before.remove(sub.getId());
                 update.add(sub);
@@ -362,7 +362,7 @@ public abstract class AbstractSearchAttachmentService extends ServiceImpl<Search
             return true;
     }
 
-    public boolean saveByWorkItem(WorkItem workItem,List<SearchAttachment> list) {
+    public boolean saveByDerWorkItem(WorkItem workItem,List<SearchAttachment> list) {
         if(list==null)
             return true;
         Map<String,SearchAttachment> before = findByOwnerId(workItem.getId()).stream().collect(Collectors.toMap(SearchAttachment::getId,e->e));
@@ -371,7 +371,7 @@ public abstract class AbstractSearchAttachmentService extends ServiceImpl<Search
 
         for(SearchAttachment sub:list) {
             sub.setOwnerId(workItem.getId());
-            sub.setWorkItem(workItem);
+            sub.setDerWorkItem(workItem);
             if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
                 before.remove(sub.getId());
                 update.add(sub);

@@ -1,6 +1,4 @@
 export default {
-  enableRowEdit: true,
-  rowEditDefault: true,
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'config_grid_view',
@@ -81,6 +79,15 @@ export default {
   ],
   appViewRefs: [
     {
+      realTitle: '产品成员数据重定向视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.PRODUCT_MEMBER.REDIRECTVIEW',
+      },
+      refAppViewId: 'plmweb.product_member_redirect_view',
+      name: 'EDITDATA',
+      id: 'editdata',
+    },
+    {
       openMode: 'POPUPMODAL',
       realOpenMode: 'POPUPMODAL',
       realTitle: '产品成员编辑视图',
@@ -90,15 +97,6 @@ export default {
       refAppViewId: 'plmweb.product_member_edit_view',
       name: 'NEWDATA',
       id: 'newdata',
-    },
-    {
-      realTitle: '产品成员数据重定向视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.PRODUCT_MEMBER.REDIRECTVIEW',
-      },
-      refAppViewId: 'plmweb.product_member_redirect_view',
-      name: 'EDITDATA',
-      id: 'editdata',
     },
     {
       name: 'MPICKUPVIEW:PRODUCT',
@@ -179,7 +177,6 @@ export default {
           appCodeListId: 'plmweb.base__role_type',
           appDEFieldId: 'role_id',
           valueType: 'SIMPLE',
-          enableRowEdit: true,
           aggMode: 'NONE',
           align: 'LEFT',
           caption: '角色',
@@ -293,23 +290,6 @@ export default {
       ],
       degridEditItems: [
         {
-          caption: '角色',
-          codeName: 'role_id',
-          enableCond: 3,
-          appDEFieldId: 'role_id',
-          editor: {
-            singleSelect: true,
-            appCodeListId: 'plmweb.base__role_type',
-            editorType: 'DROPDOWNLIST',
-            valueType: 'SIMPLE',
-            editable: true,
-            id: 'role_id',
-          },
-          allowEmpty: true,
-          needCodeListConfig: true,
-          id: 'role_id',
-        },
-        {
           caption: '标识',
           codeName: 'srfkey',
           enableCond: 3,
@@ -328,43 +308,38 @@ export default {
       sortMode: 'REMOTE',
       enableCustomized: true,
       enablePagingBar: true,
-      enableRowEdit: true,
-      enableRowNew: true,
-      createControlAction: {
-        appDEMethodId: 'create',
-        appDataEntityId: 'plmweb.product_member',
-        id: 'create',
-      },
       fetchControlAction: {
         appDEMethodId: 'fetch_default',
         appDataEntityId: 'plmweb.product_member',
         id: 'fetch',
-      },
-      getDraftControlAction: {
-        appDEMethodId: 'get_draft',
-        appDataEntityId: 'plmweb.product_member',
-        id: 'loaddraft',
-      },
-      getControlAction: {
-        appDEMethodId: 'get',
-        appDataEntityId: 'plmweb.product_member',
-        id: 'load',
       },
       removeControlAction: {
         appDEMethodId: 'remove',
         appDataEntityId: 'plmweb.product_member',
         id: 'remove',
       },
-      updateControlAction: {
-        appDEMethodId: 'update',
-        appDataEntityId: 'plmweb.product_member',
-        id: 'update',
-      },
       autoLoad: true,
       showBusyIndicator: true,
       controls: [
         {
           detoolbarItems: [
+            {
+              actionLevel: 100,
+              noPrivDisplayMode: 1,
+              uiactionId: 'setting_role@product_member',
+              uiactionTarget: 'MULTIKEY',
+              valid: true,
+              caption: '设置',
+              itemType: 'DEUIACTION',
+              sysImage: {
+                cssClass: 'fa fa-sun-o',
+                glyph: 'xf185@FontAwesome',
+              },
+              tooltip: '设置角色',
+              showCaption: true,
+              showIcon: true,
+              id: 'deuiaction1',
+            },
             {
               actionLevel: 100,
               noPrivDisplayMode: 1,
@@ -377,8 +352,8 @@ export default {
               caption: '删除',
               itemType: 'DEUIACTION',
               sysImage: {
-                cssClass: 'fa fa-remove',
-                glyph: 'xf00d@FontAwesome',
+                cssClass: 'fa fa-trash-o',
+                glyph: 'xf014@FontAwesome',
               },
               tooltip: '删除',
               tooltipLanguageRes: {
@@ -391,12 +366,12 @@ export default {
           ],
           codeName: 'config_grid_view_grid_batchtoolbar',
           controlType: 'TOOLBAR',
-          logicName: '工具栏模板（表格批量操作）',
+          logicName: '删除&&设置角色',
           appDataEntityId: 'plmweb.product_member',
           controlParam: {
             id: 'grid_batchtoolbar',
           },
-          modelId: '824333fc6aa069bfea300fcc0b94336d',
+          modelId: 'DF1CE5E4-8970-4B83-81A8-B84EE37560ED',
           modelType: 'PSDETOOLBAR',
           name: 'grid_batchtoolbar',
           id: 'config_grid_view_grid_batchtoolbar',

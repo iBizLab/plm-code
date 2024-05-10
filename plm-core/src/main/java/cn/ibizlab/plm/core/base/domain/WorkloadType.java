@@ -4,6 +4,7 @@
 package cn.ibizlab.plm.core.base.domain;
 
 import java.util.*;
+import java.math.BigDecimal;
 import cn.ibizlab.util.domain.IEntity;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.*;
@@ -36,6 +37,16 @@ import cn.ibizlab.plm.core.base.domain.Workload;
 @ApiModel(value = "WORKLOAD_TYPE", description = "工时类别")
 public class WorkloadType extends EntityMP implements Serializable
 {
+
+    /**
+     * 序号
+     */
+    @TableField(value = "sequence")
+    @DEField(name = "sequence" , preType = DEPredefinedFieldType.ORDERVALUE)
+    @JsonProperty("sequence")
+    @JSONField(name = "sequence")
+    @ApiModelProperty(value = "sequence", notes = "序号")
+    private BigDecimal sequence;
 
     /**
      * 标识

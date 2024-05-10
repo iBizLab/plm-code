@@ -152,4 +152,12 @@ public interface BaselineMapper extends BaseMapper<Baseline> {
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
 
+    /**
+     * 根据ownerId查询
+     *
+     * @param ownerIds
+     * @return
+     */
+    List<Baseline> findByOwnerId(@Param("ownerIds") List<String> ownerIds);
+
 }

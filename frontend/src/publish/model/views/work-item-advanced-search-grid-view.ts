@@ -468,6 +468,9 @@ export default {
                   editor: {
                     singleSelect: true,
                     appCodeListId: 'plmweb.projmgmt__usrcodelist0122047845',
+                    editorParams: {
+                      overflowMode: 'ellipsis',
+                    },
                     editorType: 'DROPDOWNLIST',
                     placeHolder: '选择项目',
                     valueType: 'SIMPLE',

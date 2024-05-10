@@ -210,6 +210,26 @@ public interface CustomerService extends IService<Customer> {
     }
 
     /**
+     * delete_categories
+     * 
+     * @param dto
+     * @return
+     */
+    default Customer deleteCategories(Customer dto) {
+        return dto;
+    }
+
+    /**
+     * fill_product_member
+     * 
+     * @param dto
+     * @return
+     */
+    default Customer fillProductMember(Customer dto) {
+        return dto;
+    }
+
+    /**
      * get_attention
      * 
      * @param key

@@ -46,6 +46,22 @@ public class RelationSearchContext extends QueryWrapperContext<Relation> {
     private String principalIdEQ;
 
     /**
+     * 关联主体类型EQ
+     */
+    @JsonProperty("n_principal_type_eq")
+    @JSONField(name = "n_principal_type_eq")
+    @ApiModelProperty("关联主体类型EQ")
+    private String principalTypeEQ;
+
+    /**
+     * 关联目标类型EQ
+     */
+    @JsonProperty("n_target_type_eq")
+    @JSONField(name = "n_target_type_eq")
+    @ApiModelProperty("关联目标类型EQ")
+    private String targetTypeEQ;
+
+    /**
      * 关联目标标识EQ
      */
     @JsonProperty("n_target_id_eq")
@@ -74,8 +90,12 @@ public class RelationSearchContext extends QueryWrapperContext<Relation> {
         super.setContextParentKey(contextParentKey);
         if(Entities.BASELINE.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("principal_id",contextParentKey);
+        if(Entities.IDEA.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("principal_id",contextParentKey);
         if(Entities.REVIEW.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("principal_id",contextParentKey);
+        if(Entities.REVIEW_CONTENT_EXTEND.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("id",contextParentKey);
         if(Entities.CUSTOMER.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("target_id",contextParentKey);
         if(Entities.IDEA.equals(this.getContextParentEntity())&&contextParentKey!=null)
@@ -88,6 +108,8 @@ public class RelationSearchContext extends QueryWrapperContext<Relation> {
             this.getFilter().eq("target_id",contextParentKey);
         if(Entities.WORK_ITEM.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("target_id",contextParentKey);
+        if(Entities.TEST_CASE.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("principal_id",contextParentKey);
         if(Entities.TEST_PLAN.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("principal_id",contextParentKey);
         if(Entities.WORK_ITEM.equals(this.getContextParentEntity())&&contextParentKey!=null)

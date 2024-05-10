@@ -51,6 +51,7 @@ export default {
                 accUserMode: 2,
                 caption: '基本信息',
                 codeName: 'project_baseinfo_over_view',
+                height: 345,
                 appDataEntityId: 'plmweb.project',
                 appViewEngines: [
                   {
@@ -581,6 +582,8 @@ export default {
               },
               layoutPos: {
                 colMD: 24,
+                height: 350,
+                heightMode: 'PX',
                 layout: 'TABLE_24COL',
               },
               portletType: 'VIEW',
@@ -589,7 +592,7 @@ export default {
               showBusyIndicator: true,
               codeName: 'overview_baseinfo',
               controlType: 'PORTLET',
-              height: 300,
+              height: 350,
               appDataEntityId: 'plmweb.project',
               controlParam: {},
               modelId: '2f517b7f2a541ae3899559372c91cb9f',

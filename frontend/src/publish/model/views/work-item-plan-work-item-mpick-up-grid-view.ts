@@ -293,7 +293,7 @@ export default {
       forceFit: true,
       singleSelect: true,
       fetchControlAction: {
-        appDEMethodId: 'fetch_plan',
+        appDEMethodId: 'fetch_release_plan',
         appDataEntityId: 'plmweb.work_item',
         id: 'fetch',
       },

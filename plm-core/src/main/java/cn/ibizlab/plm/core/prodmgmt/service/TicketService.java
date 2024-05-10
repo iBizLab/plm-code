@@ -261,6 +261,16 @@ public interface TicketService extends IService<Ticket> {
     }
 
     /**
+     * fill_product_member
+     * 
+     * @param dto
+     * @return
+     */
+    default Ticket fillProductMember(Ticket dto) {
+        return dto;
+    }
+
+    /**
      * get_attention
      * 
      * @param key
@@ -268,16 +278,6 @@ public interface TicketService extends IService<Ticket> {
      */
     default Ticket getAttention(String key) {
         return null;
-    }
-
-    /**
-     * get_product_member
-     * 
-     * @param key
-     * @return
-     */
-    default Ticket getProductMember(String key) {
-        return getSelf().getProductMember(new Ticket().setId(key));
     }
 
     /**
@@ -328,16 +328,6 @@ public interface TicketService extends IService<Ticket> {
      */
     default Ticket testGetArchivedInfo(String key) {
         return getSelf().testGetArchivedInfo(new Ticket().setId(key));
-    }
-
-    /**
-     * get_product_member
-     * 
-     * @param et
-     * @return
-     */
-    default Ticket getProductMember(Ticket et) {
-        return et;
     }
 
     /**

@@ -102,10 +102,6 @@ export default {
           dataType: 25,
           id: 'srfmajortext',
         },
-        {
-          dataType: 25,
-          id: 'srfmstag',
-        },
       ],
       pagingSize: 1000,
       showHeader: true,

@@ -4,8 +4,9 @@ export default {
   openMode: 'POPUPMODAL',
   viewType: 'DEWIZARDVIEW',
   width: 1024,
-  height: 650,
+  height: 700,
   appDataEntityId: 'plmweb.space',
   redirectView: false,
   modalOption: {},
+  appId: '',
 };

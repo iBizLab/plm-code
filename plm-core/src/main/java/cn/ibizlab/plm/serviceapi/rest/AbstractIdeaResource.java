@@ -181,6 +181,7 @@ public abstract class AbstractIdeaResource {
     * @return ResponseEntity<IdeaDTO>
     */
     @ApiOperation(value = "archive", tags = {"需求" },  notes = "Idea-archive ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-archive-all') or hasPermission(this.ideaDtoMapping.toDomain(#dto),'ibizplm-Idea-archive')")
     @PostMapping("ideas/{id}/archive")
     public ResponseEntity<ResponseWrapper<IdeaDTO>> archiveById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<IdeaDTO> dto) {
@@ -295,6 +296,7 @@ public abstract class AbstractIdeaResource {
     * @return ResponseEntity<IdeaDTO>
     */
     @ApiOperation(value = "delete", tags = {"需求" },  notes = "Idea-delete ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-delete-all') or hasPermission(this.ideaDtoMapping.toDomain(#dto),'ibizplm-Idea-delete')")
     @PostMapping("ideas/{id}/delete")
     public ResponseEntity<ResponseWrapper<IdeaDTO>> deleteById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<IdeaDTO> dto) {
@@ -321,6 +323,45 @@ public abstract class AbstractIdeaResource {
         Idea domain = ideaDtoMapping.toDomain(dto);
         domain.setId(id);
         Idea rt = ideaService.delete(domain);
+        return ideaDtoMapping.toDto(rt);
+    }
+
+    /**
+    * fill_product_member 需求
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<IdeaDTO>
+    */
+    @ApiOperation(value = "fill_product_member", tags = {"需求" },  notes = "Idea-fill_product_member ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-fill_product_member-all') or hasPermission(this.ideaDtoMapping.toDomain(#dto),'ibizplm-Idea-fill_product_member')")
+    @PostMapping("ideas/{id}/fill_product_member")
+    public ResponseEntity<ResponseWrapper<IdeaDTO>> fillProductMemberById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<IdeaDTO> dto) {
+        ResponseWrapper<IdeaDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(fillProductMemberById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(fillProductMemberById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * fill_product_member 需求
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<IdeaDTO>
+    */   
+    public IdeaDTO fillProductMemberById
+            (String id, IdeaDTO dto) {
+        Idea domain = ideaDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Idea rt = ideaService.fillProductMember(domain);
         return ideaDtoMapping.toDto(rt);
     }
 
@@ -601,6 +642,7 @@ public abstract class AbstractIdeaResource {
     * @return ResponseEntity<IdeaDTO>
     */
     @ApiOperation(value = "recover", tags = {"需求" },  notes = "Idea-recover ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-recover-all') or hasPermission(this.ideaDtoMapping.toDomain(#dto),'ibizplm-Idea-recover')")
     @PostMapping("ideas/{id}/recover")
     public ResponseEntity<ResponseWrapper<IdeaDTO>> recoverById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<IdeaDTO> dto) {
@@ -797,6 +839,7 @@ public abstract class AbstractIdeaResource {
     * @return ResponseEntity<IdeaDTO>
     */
     @ApiOperation(value = "archive", tags = {"需求" },  notes = "Idea-archive ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-archive-all') or hasPermission('product',#productId,this.ideaDtoMapping.toDomain(#dto),'ibizplm-Idea-archive')")
     @PostMapping("products/{productId}/ideas/{id}/archive")
     public ResponseEntity<ResponseWrapper<IdeaDTO>> archiveByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<IdeaDTO> dto) {
@@ -917,6 +960,7 @@ public abstract class AbstractIdeaResource {
     * @return ResponseEntity<IdeaDTO>
     */
     @ApiOperation(value = "delete", tags = {"需求" },  notes = "Idea-delete ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-delete-all') or hasPermission('product',#productId,this.ideaDtoMapping.toDomain(#dto),'ibizplm-Idea-delete')")
     @PostMapping("products/{productId}/ideas/{id}/delete")
     public ResponseEntity<ResponseWrapper<IdeaDTO>> deleteByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<IdeaDTO> dto) {
@@ -944,6 +988,47 @@ public abstract class AbstractIdeaResource {
         Idea domain = ideaDtoMapping.toDomain(dto);
         domain.setId(id);
         Idea rt = ideaService.delete(domain);
+        return ideaDtoMapping.toDto(rt);
+    }
+
+    /**
+    * fill_product_member 需求
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<IdeaDTO>
+    */
+    @ApiOperation(value = "fill_product_member", tags = {"需求" },  notes = "Idea-fill_product_member ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-fill_product_member-all') or hasPermission('product',#productId,this.ideaDtoMapping.toDomain(#dto),'ibizplm-Idea-fill_product_member')")
+    @PostMapping("products/{productId}/ideas/{id}/fill_product_member")
+    public ResponseEntity<ResponseWrapper<IdeaDTO>> fillProductMemberByProductIdAndId
+            (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<IdeaDTO> dto) {
+        ResponseWrapper<IdeaDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(fillProductMemberByProductIdAndId(productId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(fillProductMemberByProductIdAndId(productId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * fill_product_member 需求
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<IdeaDTO>
+    */   
+    public IdeaDTO fillProductMemberByProductIdAndId
+            (String productId, String id, IdeaDTO dto) {
+        Idea domain = ideaDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Idea rt = ideaService.fillProductMember(domain);
         return ideaDtoMapping.toDto(rt);
     }
 
@@ -1239,6 +1324,7 @@ public abstract class AbstractIdeaResource {
     * @return ResponseEntity<IdeaDTO>
     */
     @ApiOperation(value = "recover", tags = {"需求" },  notes = "Idea-recover ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-recover-all') or hasPermission('product',#productId,this.ideaDtoMapping.toDomain(#dto),'ibizplm-Idea-recover')")
     @PostMapping("products/{productId}/ideas/{id}/recover")
     public ResponseEntity<ResponseWrapper<IdeaDTO>> recoverByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<IdeaDTO> dto) {
@@ -1423,6 +1509,28 @@ public abstract class AbstractIdeaResource {
             (@Validated @RequestBody IdeaFilterDTO dto) {
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
         Page<Idea> domains = ideaService.searchArchived(context) ;
+        List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_baseline_choose_idea 需求
+    * 基线选择需求
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<IdeaDTO>>
+    */
+    @ApiOperation(value = "查询fetch_baseline_choose_idea", tags = {"需求" },  notes = "Idea-fetch_baseline_choose_idea 基线选择需求")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-fetch_baseline_choose_idea-all') or hasPermission(#dto,'ibizplm-Idea-fetch_baseline_choose_idea')")
+    @PostMapping("ideas/fetch_baseline_choose_idea")
+    public ResponseEntity<List<IdeaDTO>> fetchBaselineChooseIdea
+            (@Validated @RequestBody IdeaFilterDTO dto) {
+        IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
+        Page<Idea> domains = ideaService.searchBaselineChooseIdea(context) ;
         List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1922,6 +2030,30 @@ public abstract class AbstractIdeaResource {
         dto.setProductIdEQ(productId);
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
         Page<Idea> domains = ideaService.searchArchived(context) ;
+        List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_baseline_choose_idea 需求
+    * 基线选择需求
+    *
+    * @param productId productId
+    * @param dto dto
+    * @return ResponseEntity<List<IdeaDTO>>
+    */
+    @ApiOperation(value = "查询fetch_baseline_choose_idea", tags = {"需求" },  notes = "Idea-fetch_baseline_choose_idea 基线选择需求")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-fetch_baseline_choose_idea-all') or hasPermission('product',#productId,#dto,'ibizplm-Idea-fetch_baseline_choose_idea')")
+    @PostMapping("products/{productId}/ideas/fetch_baseline_choose_idea")
+    public ResponseEntity<List<IdeaDTO>> fetchBaselineChooseIdeaByProductId
+            (@PathVariable("productId") String productId, @Validated @RequestBody IdeaFilterDTO dto) {
+        dto.setProductIdEQ(productId);
+        IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
+        Page<Idea> domains = ideaService.searchBaselineChooseIdea(context) ;
         List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

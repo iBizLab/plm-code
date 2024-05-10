@@ -26,12 +26,14 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import cn.ibizlab.plm.core.base.domain.Baseline;
 import cn.ibizlab.plm.core.base.service.BaselineService;
-import cn.ibizlab.plm.core.testmgmt.domain.Review;
-import cn.ibizlab.plm.core.testmgmt.service.ReviewService;
-import cn.ibizlab.plm.core.prodmgmt.domain.Customer;
-import cn.ibizlab.plm.core.prodmgmt.service.CustomerService;
 import cn.ibizlab.plm.core.prodmgmt.domain.Idea;
 import cn.ibizlab.plm.core.prodmgmt.service.IdeaService;
+import cn.ibizlab.plm.core.testmgmt.domain.Review;
+import cn.ibizlab.plm.core.testmgmt.service.ReviewService;
+import cn.ibizlab.plm.core.testmgmt.domain.ReviewContentExtend;
+import cn.ibizlab.plm.core.testmgmt.service.ReviewContentExtendService;
+import cn.ibizlab.plm.core.prodmgmt.domain.Customer;
+import cn.ibizlab.plm.core.prodmgmt.service.CustomerService;
 import cn.ibizlab.plm.core.prodmgmt.domain.ProductPlan;
 import cn.ibizlab.plm.core.prodmgmt.service.ProductPlanService;
 import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
@@ -57,15 +59,19 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
 
     @Autowired
     @Lazy
+    protected IdeaService ideaService;
+
+    @Autowired
+    @Lazy
     protected ReviewService reviewService;
 
     @Autowired
     @Lazy
-    protected CustomerService customerService;
+    protected ReviewContentExtendService reviewContentExtendService;
 
     @Autowired
     @Lazy
-    protected IdeaService ideaService;
+    protected CustomerService customerService;
 
     @Autowired
     @Lazy
@@ -109,8 +115,14 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
         if(Entities.BASELINE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
             et.setPrincipalId((String)et.getContextParentKey());
         }
+        if(Entities.IDEA.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setPrincipalId((String)et.getContextParentKey());
+        }
         if(Entities.REVIEW.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
             et.setPrincipalId((String)et.getContextParentKey());
+        }
+        if(Entities.REVIEW_CONTENT_EXTEND.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setId((String)et.getContextParentKey());
         }
         if(Entities.CUSTOMER.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
             et.setTargetId((String)et.getContextParentKey());
@@ -129,6 +141,9 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
         }
         if(Entities.WORK_ITEM.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
             et.setTargetId((String)et.getContextParentKey());
+        }
+        if(Entities.TEST_CASE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setPrincipalId((String)et.getContextParentKey());
         }
         if(Entities.TEST_PLAN.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
             et.setPrincipalId((String)et.getContextParentKey());
@@ -246,8 +261,292 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
         return list;
     }
 
+    public Page<Relation> searchAll(RelationSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Relation> pages=baseMapper.searchAll(context.getPages(),context,context.getSelectCond());
+        List<Relation> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Relation> listAll(RelationSearchContext context) {
+        List<Relation> list = baseMapper.listAll(context,context.getSelectCond());
+        return list;
+    }
+
+    public Page<Relation> searchExistsRunRelationBug(RelationSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Relation> pages=baseMapper.searchExistsRunRelationBug(context.getPages(),context,context.getSelectCond());
+        List<Relation> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Relation> listExistsRunRelationBug(RelationSearchContext context) {
+        List<Relation> list = baseMapper.listExistsRunRelationBug(context,context.getSelectCond());
+        return list;
+    }
+
+    public Page<Relation> searchIdeaReCustomer(RelationSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Relation> pages=baseMapper.searchIdeaReCustomer(context.getPages(),context,context.getSelectCond());
+        List<Relation> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Relation> listIdeaReCustomer(RelationSearchContext context) {
+        List<Relation> list = baseMapper.listIdeaReCustomer(context,context.getSelectCond());
+        return list;
+    }
+
+    public Page<Relation> searchIdeaReIdea(RelationSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Relation> pages=baseMapper.searchIdeaReIdea(context.getPages(),context,context.getSelectCond());
+        List<Relation> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Relation> listIdeaReIdea(RelationSearchContext context) {
+        List<Relation> list = baseMapper.listIdeaReIdea(context,context.getSelectCond());
+        return list;
+    }
+
+    public Page<Relation> searchIdeaReTestCase(RelationSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Relation> pages=baseMapper.searchIdeaReTestCase(context.getPages(),context,context.getSelectCond());
+        List<Relation> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Relation> listIdeaReTestCase(RelationSearchContext context) {
+        List<Relation> list = baseMapper.listIdeaReTestCase(context,context.getSelectCond());
+        return list;
+    }
+
+    public Page<Relation> searchIdeaReTicket(RelationSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Relation> pages=baseMapper.searchIdeaReTicket(context.getPages(),context,context.getSelectCond());
+        List<Relation> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Relation> listIdeaReTicket(RelationSearchContext context) {
+        List<Relation> list = baseMapper.listIdeaReTicket(context,context.getSelectCond());
+        return list;
+    }
+
+    public Page<Relation> searchIdeaReWorkItem(RelationSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Relation> pages=baseMapper.searchIdeaReWorkItem(context.getPages(),context,context.getSelectCond());
+        List<Relation> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Relation> listIdeaReWorkItem(RelationSearchContext context) {
+        List<Relation> list = baseMapper.listIdeaReWorkItem(context,context.getSelectCond());
+        return list;
+    }
+
+    public Page<Relation> searchIdeaVersionRelation(RelationSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Relation> pages=baseMapper.searchIdeaVersionRelation(context.getPages(),context,context.getSelectCond());
+        List<Relation> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Relation> listIdeaVersionRelation(RelationSearchContext context) {
+        List<Relation> list = baseMapper.listIdeaVersionRelation(context,context.getSelectCond());
+        return list;
+    }
+
+    public Page<Relation> searchReviewReTestCase(RelationSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Relation> pages=baseMapper.searchReviewReTestCase(context.getPages(),context,context.getSelectCond());
+        List<Relation> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Relation> listReviewReTestCase(RelationSearchContext context) {
+        List<Relation> list = baseMapper.listReviewReTestCase(context,context.getSelectCond());
+        return list;
+    }
+
+    public Page<Relation> searchRunReBug(RelationSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Relation> pages=baseMapper.searchRunReBug(context.getPages(),context,context.getSelectCond());
+        List<Relation> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Relation> listRunReBug(RelationSearchContext context) {
+        List<Relation> list = baseMapper.listRunReBug(context,context.getSelectCond());
+        return list;
+    }
+
+    public Page<Relation> searchRunReIdea(RelationSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Relation> pages=baseMapper.searchRunReIdea(context.getPages(),context,context.getSelectCond());
+        List<Relation> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Relation> listRunReIdea(RelationSearchContext context) {
+        List<Relation> list = baseMapper.listRunReIdea(context,context.getSelectCond());
+        return list;
+    }
+
+    public Page<Relation> searchRunReWorkItem(RelationSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Relation> pages=baseMapper.searchRunReWorkItem(context.getPages(),context,context.getSelectCond());
+        List<Relation> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Relation> listRunReWorkItem(RelationSearchContext context) {
+        List<Relation> list = baseMapper.listRunReWorkItem(context,context.getSelectCond());
+        return list;
+    }
+
+    public Page<Relation> searchTestCaseReBug(RelationSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Relation> pages=baseMapper.searchTestCaseReBug(context.getPages(),context,context.getSelectCond());
+        List<Relation> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Relation> listTestCaseReBug(RelationSearchContext context) {
+        List<Relation> list = baseMapper.listTestCaseReBug(context,context.getSelectCond());
+        return list;
+    }
+
+    public Page<Relation> searchTestCaseReIdea(RelationSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Relation> pages=baseMapper.searchTestCaseReIdea(context.getPages(),context,context.getSelectCond());
+        List<Relation> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Relation> listTestCaseReIdea(RelationSearchContext context) {
+        List<Relation> list = baseMapper.listTestCaseReIdea(context,context.getSelectCond());
+        return list;
+    }
+
+    public Page<Relation> searchTestCaseReWorkItem(RelationSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Relation> pages=baseMapper.searchTestCaseReWorkItem(context.getPages(),context,context.getSelectCond());
+        List<Relation> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Relation> listTestCaseReWorkItem(RelationSearchContext context) {
+        List<Relation> list = baseMapper.listTestCaseReWorkItem(context,context.getSelectCond());
+        return list;
+    }
+
+    public Page<Relation> searchTestCaseVersionRelation(RelationSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Relation> pages=baseMapper.searchTestCaseVersionRelation(context.getPages(),context,context.getSelectCond());
+        List<Relation> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Relation> listTestCaseVersionRelation(RelationSearchContext context) {
+        List<Relation> list = baseMapper.listTestCaseVersionRelation(context,context.getSelectCond());
+        return list;
+    }
+
+    public Page<Relation> searchTicketReIdea(RelationSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Relation> pages=baseMapper.searchTicketReIdea(context.getPages(),context,context.getSelectCond());
+        List<Relation> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Relation> listTicketReIdea(RelationSearchContext context) {
+        List<Relation> list = baseMapper.listTicketReIdea(context,context.getSelectCond());
+        return list;
+    }
+
+    public Page<Relation> searchTicketReSelf(RelationSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Relation> pages=baseMapper.searchTicketReSelf(context.getPages(),context,context.getSelectCond());
+        List<Relation> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Relation> listTicketReSelf(RelationSearchContext context) {
+        List<Relation> list = baseMapper.listTicketReSelf(context,context.getSelectCond());
+        return list;
+    }
+
+    public Page<Relation> searchTicketReWorkItem(RelationSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Relation> pages=baseMapper.searchTicketReWorkItem(context.getPages(),context,context.getSelectCond());
+        List<Relation> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Relation> listTicketReWorkItem(RelationSearchContext context) {
+        List<Relation> list = baseMapper.listTicketReWorkItem(context,context.getSelectCond());
+        return list;
+    }
+
+    public Page<Relation> searchWorkItemRelationIdea(RelationSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("CREATE_TIME,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Relation> pages=baseMapper.searchWorkItemRelationIdea(context.getPages(),context,context.getSelectCond());
+        List<Relation> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Relation> listWorkItemRelationIdea(RelationSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("CREATE_TIME,DESC");
+        List<Relation> list = baseMapper.listWorkItemRelationIdea(context,context.getSelectCond());
+        return list;
+    }
+
+    public Page<Relation> searchWorkItemRelationSelf(RelationSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("CREATE_TIME,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Relation> pages=baseMapper.searchWorkItemRelationSelf(context.getPages(),context,context.getSelectCond());
+        List<Relation> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Relation> listWorkItemRelationSelf(RelationSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("CREATE_TIME,DESC");
+        List<Relation> list = baseMapper.listWorkItemRelationSelf(context,context.getSelectCond());
+        return list;
+    }
+
+    public Page<Relation> searchWorkItemRelationTestCase(RelationSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("CREATE_TIME,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Relation> pages=baseMapper.searchWorkItemRelationTestCase(context.getPages(),context,context.getSelectCond());
+        List<Relation> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Relation> listWorkItemRelationTestCase(RelationSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("CREATE_TIME,DESC");
+        List<Relation> list = baseMapper.listWorkItemRelationTestCase(context,context.getSelectCond());
+        return list;
+    }
+
+    public Page<Relation> searchWorkItemRelationTicket(RelationSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("CREATE_TIME,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Relation> pages=baseMapper.searchWorkItemRelationTicket(context.getPages(),context,context.getSelectCond());
+        List<Relation> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Relation> listWorkItemRelationTicket(RelationSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("CREATE_TIME,DESC");
+        List<Relation> list = baseMapper.listWorkItemRelationTicket(context,context.getSelectCond());
+        return list;
+    }
+
+    public Page<Relation> searchWorkItemVersionRelation(RelationSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Relation> pages=baseMapper.searchWorkItemVersionRelation(context.getPages(),context,context.getSelectCond());
+        List<Relation> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+    public List<Relation> listWorkItemVersionRelation(RelationSearchContext context) {
+        List<Relation> list = baseMapper.listWorkItemVersionRelation(context,context.getSelectCond());
+        return list;
+    }
+
     public List<Relation> findByPrincipalId(List<String> principalIds) {
         List<Relation> list = baseMapper.findByPrincipalId(principalIds);
+        return list;
+    }
+    public List<Relation> findById(List<String> ids) {
+        List<Relation> list = baseMapper.findById(ids);
         return list;
     }
     public List<Relation> findByTargetId(List<String> targetIds) {
@@ -262,7 +561,7 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
         return this.update(Wrappers.<Relation>lambdaUpdate().eq(Relation::getPrincipalId,principalId));
     }
 
-    public boolean saveByBaseline(Baseline baseline,List<Relation> list) {
+    public boolean saveByPrincipalBaseline(Baseline baseline,List<Relation> list) {
         if(list==null)
             return true;
         Map<String,Relation> before = findByPrincipalId(baseline.getId()).stream().collect(Collectors.toMap(Relation::getId,e->e));
@@ -271,7 +570,7 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
 
         for(Relation sub:list) {
             sub.setPrincipalId(baseline.getId());
-            sub.setBaseline(baseline);
+            sub.setPrincipalBaseline(baseline);
             if(ObjectUtils.isEmpty(sub.getId()))
                 before.values().stream()
                         .filter(e->ObjectUtils.nullSafeEquals(sub.getDefaultKey(true),e.getDefaultKey(true)))
@@ -293,7 +592,38 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
             return true;
     }
 
-    public boolean saveByReview(Review review,List<Relation> list) {
+    public boolean saveByPrincipalIdea(Idea idea,List<Relation> list) {
+        if(list==null)
+            return true;
+        Map<String,Relation> before = findByPrincipalId(idea.getId()).stream().collect(Collectors.toMap(Relation::getId,e->e));
+        List<Relation> update = new ArrayList<>();
+        List<Relation> create = new ArrayList<>();
+
+        for(Relation sub:list) {
+            sub.setPrincipalId(idea.getId());
+            sub.setPrincipalIdea(idea);
+            if(ObjectUtils.isEmpty(sub.getId()))
+                before.values().stream()
+                        .filter(e->ObjectUtils.nullSafeEquals(sub.getDefaultKey(true),e.getDefaultKey(true)))
+                        .findFirst().ifPresent(e->sub.setId(e.getId()));
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().createBatch(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+            return false;
+        else
+            return true;
+    }
+
+    public boolean saveByPrincipalReview(Review review,List<Relation> list) {
         if(list==null)
             return true;
         Map<String,Relation> before = findByPrincipalId(review.getId()).stream().collect(Collectors.toMap(Relation::getId,e->e));
@@ -302,7 +632,46 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
 
         for(Relation sub:list) {
             sub.setPrincipalId(review.getId());
-            sub.setReview(review);
+            sub.setPrincipalReview(review);
+            if(ObjectUtils.isEmpty(sub.getId()))
+                before.values().stream()
+                        .filter(e->ObjectUtils.nullSafeEquals(sub.getDefaultKey(true),e.getDefaultKey(true)))
+                        .findFirst().ifPresent(e->sub.setId(e.getId()));
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().createBatch(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+            return false;
+        else
+            return true;
+    }
+
+    public boolean removeById(String id) {
+        return this.remove(Wrappers.<Relation>lambdaQuery().eq(Relation::getId,id));
+    }
+
+    public boolean resetById(String id) {
+        return this.update(Wrappers.<Relation>lambdaUpdate().eq(Relation::getId,id));
+    }
+
+    public boolean saveByReviewContentExtend(ReviewContentExtend reviewContentExtend,List<Relation> list) {
+        if(list==null)
+            return true;
+        Map<String,Relation> before = findById(reviewContentExtend.getId()).stream().collect(Collectors.toMap(Relation::getId,e->e));
+        List<Relation> update = new ArrayList<>();
+        List<Relation> create = new ArrayList<>();
+
+        for(Relation sub:list) {
+            sub.setId(reviewContentExtend.getId());
+            sub.setReviewContentExtend(reviewContentExtend);
             if(ObjectUtils.isEmpty(sub.getId()))
                 before.values().stream()
                         .filter(e->ObjectUtils.nullSafeEquals(sub.getDefaultKey(true),e.getDefaultKey(true)))
@@ -518,16 +887,16 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
             return true;
     }
 
-    public boolean saveByTestPlan(TestPlan testPlan,List<Relation> list) {
+    public boolean saveByPrincipalTestCase(TestCase testCase,List<Relation> list) {
         if(list==null)
             return true;
-        Map<String,Relation> before = findByPrincipalId(testPlan.getId()).stream().collect(Collectors.toMap(Relation::getId,e->e));
+        Map<String,Relation> before = findByPrincipalId(testCase.getId()).stream().collect(Collectors.toMap(Relation::getId,e->e));
         List<Relation> update = new ArrayList<>();
         List<Relation> create = new ArrayList<>();
 
         for(Relation sub:list) {
-            sub.setPrincipalId(testPlan.getId());
-            sub.setTestPlan(testPlan);
+            sub.setPrincipalId(testCase.getId());
+            sub.setPrincipalTestCase(testCase);
             if(ObjectUtils.isEmpty(sub.getId()))
                 before.values().stream()
                         .filter(e->ObjectUtils.nullSafeEquals(sub.getDefaultKey(true),e.getDefaultKey(true)))
@@ -549,7 +918,38 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
             return true;
     }
 
-    public boolean saveByWorkItem(WorkItem workItem,List<Relation> list) {
+    public boolean saveByPrincipalTestPlan(TestPlan testPlan,List<Relation> list) {
+        if(list==null)
+            return true;
+        Map<String,Relation> before = findByPrincipalId(testPlan.getId()).stream().collect(Collectors.toMap(Relation::getId,e->e));
+        List<Relation> update = new ArrayList<>();
+        List<Relation> create = new ArrayList<>();
+
+        for(Relation sub:list) {
+            sub.setPrincipalId(testPlan.getId());
+            sub.setPrincipalTestPlan(testPlan);
+            if(ObjectUtils.isEmpty(sub.getId()))
+                before.values().stream()
+                        .filter(e->ObjectUtils.nullSafeEquals(sub.getDefaultKey(true),e.getDefaultKey(true)))
+                        .findFirst().ifPresent(e->sub.setId(e.getId()));
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().createBatch(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+            return false;
+        else
+            return true;
+    }
+
+    public boolean saveByPrincipalWorkItem(WorkItem workItem,List<Relation> list) {
         if(list==null)
             return true;
         Map<String,Relation> before = findByPrincipalId(workItem.getId()).stream().collect(Collectors.toMap(Relation::getId,e->e));
@@ -558,7 +958,7 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
 
         for(Relation sub:list) {
             sub.setPrincipalId(workItem.getId());
-            sub.setWorkItem(workItem);
+            sub.setPrincipalWorkItem(workItem);
             if(ObjectUtils.isEmpty(sub.getId()))
                 before.values().stream()
                         .filter(e->ObjectUtils.nullSafeEquals(sub.getDefaultKey(true),e.getDefaultKey(true)))

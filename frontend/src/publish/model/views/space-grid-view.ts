@@ -236,8 +236,8 @@ export default {
           caption: '删除',
           itemType: 'DEUIACTION',
           sysImage: {
-            cssClass: 'fa fa-remove',
-            glyph: 'xf00d@FontAwesome',
+            cssClass: 'fa fa-trash-o',
+            glyph: 'xf014@FontAwesome',
           },
           tooltip: '删除',
           tooltipLanguageRes: {
@@ -278,6 +278,7 @@ export default {
           id: 'tbitem10',
         },
         {
+          actionLevel: 100,
           detoolbarItems: [
             {
               actionLevel: 100,
@@ -630,11 +631,6 @@ export default {
           dataType: 25,
           id: 'srfmajortext',
         },
-        {
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'srfmstag',
-        },
       ],
       degridEditItems: [
         {
@@ -668,40 +664,6 @@ export default {
       },
       autoLoad: true,
       showBusyIndicator: true,
-      controls: [
-        {
-          detoolbarItems: [
-            {
-              actionLevel: 100,
-              noPrivDisplayMode: 2,
-              uiactionId: 'move_out_category@space',
-              uiactionTarget: 'MULTIKEY',
-              valid: true,
-              caption: '移除',
-              itemType: 'DEUIACTION',
-              sysImage: {
-                cssClass: 'fa fa-mail-reply',
-                glyph: 'xf112@FontAwesome',
-              },
-              tooltip: '移除',
-              showCaption: true,
-              showIcon: true,
-              id: 'deuiaction1',
-            },
-          ],
-          codeName: 'grid_view_grid_batchtoolbar',
-          controlType: 'TOOLBAR',
-          logicName: '分类下空间工具栏',
-          appDataEntityId: 'plmweb.space',
-          controlParam: {
-            id: 'grid_batchtoolbar',
-          },
-          modelId: '2d63581c6ba4dabc275de95d3780fa3f',
-          modelType: 'PSDETOOLBAR',
-          name: 'grid_batchtoolbar',
-          id: 'grid_view_grid_batchtoolbar',
-        },
-      ],
       codeName: 'main',
       controlType: 'GRID',
       logicName: '主表格',

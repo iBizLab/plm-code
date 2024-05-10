@@ -183,6 +183,38 @@ public class IdeaSearchContext extends QueryWrapperContext<Idea> {
     private String showIdentifierLIKE;
 
     /**
+     * 类别路径LIKE
+     */
+    @JsonProperty("n_categories_like")
+    @JSONField(name = "n_categories_like")
+    @ApiModelProperty("类别路径LIKE")
+    private String categoriesLIKE;
+
+    /**
+     * 需求来源EQ
+     */
+    @JsonProperty("n_idea_from_eq")
+    @JSONField(name = "n_idea_from_eq")
+    @ApiModelProperty("需求来源EQ")
+    private String ideaFromEQ;
+
+    /**
+     * 需求类型EQ
+     */
+    @JsonProperty("n_idea_type_eq")
+    @JSONField(name = "n_idea_type_eq")
+    @ApiModelProperty("需求类型EQ")
+    private String ideaTypeEQ;
+
+    /**
+     * 标识IN
+     */
+    @JsonProperty("n_id_in")
+    @JSONField(name = "n_id_in")
+    @ApiModelProperty("标识IN")
+    private String idIN;
+
+    /**
      * 标识NOTEQ
      */
     @JsonProperty("n_id_noteq")

@@ -28,6 +28,7 @@ import cn.ibizlab.plm.core.prodmgmt.domain.ProductMember;
 import cn.ibizlab.plm.core.prodmgmt.domain.ProductTag;
 import cn.ibizlab.plm.core.prodmgmt.domain.ProductTicketType;
 import cn.ibizlab.plm.core.prodmgmt.domain.Ticket;
+import cn.ibizlab.plm.core.base.domain.Baseline;
 import cn.ibizlab.plm.core.base.domain.Favorite;
 import cn.ibizlab.plm.core.base.domain.ReferencesIndex;
 import cn.ibizlab.plm.core.prodmgmt.domain.ProductMember;
@@ -37,7 +38,6 @@ import cn.ibizlab.plm.core.prodmgmt.domain.ProductMember;
  *
  * @author generator
  */
-@Audit
 @Getter
 @Setter
 @NoArgsConstructor
@@ -127,6 +127,26 @@ public class Product extends EntityMP implements Serializable
     @JSONField(name = "members")
     @ApiModelProperty(value = "members", notes = "产品成员")
     private List<ProductMember> members;
+
+    /**
+     * 所属
+     */
+    @TableField(value = "scope_type")
+    @DEField(name = "scope_type" , dict = "scope_type")
+    @JsonProperty("scope_type")
+    @JSONField(name = "scope_type")
+    @ApiModelProperty(value = "scope_type", notes = "所属")
+    private String scopeType;
+
+    /**
+     * 所属对象
+     */
+    @TableField(value = "scope_id")
+    @DEField(name = "scope_id")
+    @JsonProperty("scope_id")
+    @JSONField(name = "scope_id")
+    @ApiModelProperty(value = "scope_id", notes = "所属对象")
+    private String scopeId;
 
     /**
      * 建立人
@@ -260,6 +280,24 @@ public class Product extends EntityMP implements Serializable
     public Product setMembers(List<ProductMember> members) {
         this.members = members;
         this.modify("members", members);
+        return this;
+    }
+
+    /**
+     * 设置 [所属]
+     */
+    public Product setScopeType(String scopeType) {
+        this.scopeType = scopeType;
+        this.modify("scope_type", scopeType);
+        return this;
+    }
+
+    /**
+     * 设置 [所属对象]
+     */
+    public Product setScopeId(String scopeId) {
+        this.scopeId = scopeId;
+        this.modify("scope_id", scopeId);
         return this;
     }
 

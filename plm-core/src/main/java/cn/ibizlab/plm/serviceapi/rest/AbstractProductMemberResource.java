@@ -126,6 +126,44 @@ public abstract class AbstractProductMemberResource {
     }
 
     /**
+    * change_role 产品成员
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProductMemberDTO>
+    */
+    @ApiOperation(value = "change_role", tags = {"产品成员" },  notes = "ProductMember-change_role ")
+    @PostMapping("product_members/{id}/change_role")
+    public ResponseEntity<ResponseWrapper<ProductMemberDTO>> changeRoleById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProductMemberDTO> dto) {
+        ResponseWrapper<ProductMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(changeRoleById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(changeRoleById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * change_role 产品成员
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProductMemberDTO>
+    */   
+    public ProductMemberDTO changeRoleById
+            (String id, ProductMemberDTO dto) {
+        ProductMember domain = productMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        ProductMember rt = productMemberService.changeRole(domain);
+        return productMemberDtoMapping.toDto(rt);
+    }
+
+    /**
     * create_product_member 产品成员
     * 
     *
@@ -272,6 +310,46 @@ public abstract class AbstractProductMemberResource {
         domain.setId(id);
         productMemberService.update(domain);
         ProductMember rt = domain;
+        return productMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * change_role 产品成员
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProductMemberDTO>
+    */
+    @ApiOperation(value = "change_role", tags = {"产品成员" },  notes = "ProductMember-change_role ")
+    @PostMapping("products/{productId}/product_members/{id}/change_role")
+    public ResponseEntity<ResponseWrapper<ProductMemberDTO>> changeRoleByProductIdAndId
+            (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProductMemberDTO> dto) {
+        ResponseWrapper<ProductMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(changeRoleByProductIdAndId(productId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(changeRoleByProductIdAndId(productId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * change_role 产品成员
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProductMemberDTO>
+    */   
+    public ProductMemberDTO changeRoleByProductIdAndId
+            (String productId, String id, ProductMemberDTO dto) {
+        ProductMember domain = productMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        ProductMember rt = productMemberService.changeRole(domain);
         return productMemberDtoMapping.toDto(rt);
     }
 
@@ -428,6 +506,46 @@ public abstract class AbstractProductMemberResource {
         domain.setId(id);
         productMemberService.update(domain);
         ProductMember rt = domain;
+        return productMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * change_role 产品成员
+    * 
+    *
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProductMemberDTO>
+    */
+    @ApiOperation(value = "change_role", tags = {"产品成员" },  notes = "ProductMember-change_role ")
+    @PostMapping("users/{userId}/product_members/{id}/change_role")
+    public ResponseEntity<ResponseWrapper<ProductMemberDTO>> changeRoleByUserIdAndId
+            (@PathVariable("userId") String userId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProductMemberDTO> dto) {
+        ResponseWrapper<ProductMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(changeRoleByUserIdAndId(userId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(changeRoleByUserIdAndId(userId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * change_role 产品成员
+    * 
+    *
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProductMemberDTO>
+    */   
+    public ProductMemberDTO changeRoleByUserIdAndId
+            (String userId, String id, ProductMemberDTO dto) {
+        ProductMember domain = productMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        ProductMember rt = productMemberService.changeRole(domain);
         return productMemberDtoMapping.toDto(rt);
     }
 

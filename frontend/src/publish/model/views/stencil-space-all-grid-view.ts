@@ -77,18 +77,18 @@ export default {
     {
       openMode: 'POPUPMODAL',
       realOpenMode: 'POPUPMODAL',
-      realTitle: '页面模板编辑视图',
-      refAppViewId: 'plmweb.stencil_model_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
-      openMode: 'POPUPMODAL',
-      realOpenMode: 'POPUPMODAL',
       realTitle: '页面模板编辑视图_展示',
       refAppViewId: 'plmweb.stencil_show_edit_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      openMode: 'POPUPMODAL',
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '页面模板编辑视图',
+      refAppViewId: 'plmweb.stencil_model_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -207,6 +207,7 @@ export default {
                 beforeItemType: 'NONE',
                 detailType: 'DEUIACTION',
                 uiactionId: 'edit',
+                tooltip: '编辑',
                 tooltipLanguageRes: {
                   lanResTag: 'TBB.TOOLTIP.*.EDIT',
                 },
@@ -225,8 +226,8 @@ export default {
                 uiactionId: 'delete@stencil',
                 showIcon: true,
                 sysImage: {
-                  cssClass: 'fa fa-trash',
-                  glyph: 'xf1f8@FontAwesome',
+                  cssClass: 'fa fa-trash-o',
+                  glyph: 'xf014@FontAwesome',
                 },
                 id: 'u6fac85a',
               },
@@ -242,7 +243,7 @@ export default {
           codeName: 'uagridcolumn1',
           columnType: 'UAGRIDCOLUMN',
           noPrivDisplayMode: 1,
-          width: 200,
+          width: 100,
           widthUnit: 'PX',
           id: 'uagridcolumn1',
         },
@@ -312,6 +313,7 @@ export default {
       sortMode: 'REMOTE',
       enableCustomized: true,
       enablePagingBar: true,
+      singleSelect: true,
       fetchControlAction: {
         appDEMethodId: 'fetch_space_stencil',
         appDataEntityId: 'plmweb.stencil',

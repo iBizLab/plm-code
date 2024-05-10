@@ -26,6 +26,7 @@ import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
 import cn.ibizlab.plm.core.testmgmt.domain.TestCaseTemplate;
 import cn.ibizlab.plm.core.testmgmt.domain.TestPlan;
 import cn.ibizlab.plm.core.testmgmt.domain.TestSuite;
+import cn.ibizlab.plm.core.base.domain.Baseline;
 import cn.ibizlab.plm.core.base.domain.ReferencesIndex;
 import cn.ibizlab.plm.core.testmgmt.domain.LibraryMember;
 
@@ -113,6 +114,26 @@ public class Library extends EntityMP implements Serializable
     @JSONField(name = "is_favorite")
     @ApiModelProperty(value = "is_favorite", notes = "是否星标")
     private String isFavorite;
+
+    /**
+     * 所属
+     */
+    @TableField(value = "scope_type")
+    @DEField(name = "scope_type" , dict = "scope_type")
+    @JsonProperty("scope_type")
+    @JSONField(name = "scope_type")
+    @ApiModelProperty(value = "scope_type", notes = "所属")
+    private String scopeType;
+
+    /**
+     * 所属对象
+     */
+    @TableField(value = "scope_id")
+    @DEField(name = "scope_id")
+    @JsonProperty("scope_id")
+    @JSONField(name = "scope_id")
+    @ApiModelProperty(value = "scope_id", notes = "所属对象")
+    private String scopeId;
 
     /**
      * 成员
@@ -247,6 +268,24 @@ public class Library extends EntityMP implements Serializable
     public Library setIsFavorite(String isFavorite) {
         this.isFavorite = isFavorite;
         this.modify("is_favorite", isFavorite);
+        return this;
+    }
+
+    /**
+     * 设置 [所属]
+     */
+    public Library setScopeType(String scopeType) {
+        this.scopeType = scopeType;
+        this.modify("scope_type", scopeType);
+        return this;
+    }
+
+    /**
+     * 设置 [所属对象]
+     */
+    public Library setScopeId(String scopeId) {
+        this.scopeId = scopeId;
+        this.modify("scope_id", scopeId);
         return this;
     }
 

@@ -160,6 +160,125 @@ public abstract class AbstractProductTicketTypeResource {
         return productTicketTypeDtoMapping.toDto(rt);
     }
 
+    /**
+    * 创建Create 产品工单类型
+    * 
+    *
+    * @param productId productId
+    * @param dto dto
+    * @return ResponseEntity<ProductTicketTypeDTO>
+    */
+    @ApiOperation(value = "创建Create", tags = {"产品工单类型" },  notes = "ProductTicketType-Create ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductTicketType-Create-all') or hasPermission('product',#productId,this.productTicketTypeDtoMapping.toDomain(#dto),'ibizplm-ProductTicketType-Create')")
+    @PostMapping("products/{productId}/product_ticket_types")
+    public ResponseEntity<ResponseWrapper<ProductTicketTypeDTO>> createByProductId
+            (@PathVariable("productId") String productId, @Validated @RequestBody RequestWrapper<ProductTicketTypeDTO> dto) {
+        ResponseWrapper<ProductTicketTypeDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(createByProductId(productId, item)));
+        else
+            rt.set(createByProductId(productId, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * 创建Create 产品工单类型
+    * 
+    *
+    * @param productId productId
+    * @param dto dto
+    * @return ResponseEntity<ProductTicketTypeDTO>
+    */   
+    public ProductTicketTypeDTO createByProductId
+            (String productId, ProductTicketTypeDTO dto) {
+        ProductTicketType domain = productTicketTypeDtoMapping.toDomain(dto);
+        domain.setProductId(productId);
+        productTicketTypeService.create(domain);
+        ProductTicketType rt = domain;
+        return productTicketTypeDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 更新Update 产品工单类型
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProductTicketTypeDTO>
+    */
+    @ApiOperation(value = "更新Update", tags = {"产品工单类型" },  notes = "ProductTicketType-Update ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductTicketType-Update-all') or hasPermission('product',#productId,this.productTicketTypeService.get(#id),'ibizplm-ProductTicketType-Update')")
+    @VersionCheck(entity = "producttickettype" , versionfield = "updateTime")
+    @PutMapping("products/{productId}/product_ticket_types/{id}")
+    public ResponseEntity<ResponseWrapper<ProductTicketTypeDTO>> updateByProductIdAndId
+            (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProductTicketTypeDTO> dto) {
+        ResponseWrapper<ProductTicketTypeDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(updateByProductIdAndId(productId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(updateByProductIdAndId(productId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * 更新Update 产品工单类型
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProductTicketTypeDTO>
+    */   
+    public ProductTicketTypeDTO updateByProductIdAndId
+            (String productId, String id, ProductTicketTypeDTO dto) {
+        ProductTicketType domain = productTicketTypeDtoMapping.toDomain(dto);
+        domain.setId(id);
+        productTicketTypeService.update(domain);
+        ProductTicketType rt = domain;
+        return productTicketTypeDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 保存Save 产品工单类型
+    * 
+    *
+    * @param productId productId
+    * @param dto dto
+    * @return ResponseEntity<ProductTicketTypeDTO>
+    */
+    @ApiOperation(value = "保存Save", tags = {"产品工单类型" },  notes = "ProductTicketType-Save ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductTicketType-Save-all') or hasPermission('product',#productId,this.productTicketTypeDtoMapping.toDomain(#dto),'ibizplm-ProductTicketType-Save')")
+    @PostMapping("products/{productId}/product_ticket_types/save")
+    public ResponseEntity<ResponseWrapper<ProductTicketTypeDTO>> saveByProductId
+            (@PathVariable("productId") String productId, @Validated @RequestBody RequestWrapper<ProductTicketTypeDTO> dto) {
+        ResponseWrapper<ProductTicketTypeDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(saveByProductId(productId, item)));
+        else
+            rt.set(saveByProductId(productId, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * 保存Save 产品工单类型
+    * 
+    *
+    * @param productId productId
+    * @param dto dto
+    * @return ResponseEntity<ProductTicketTypeDTO>
+    */   
+    public ProductTicketTypeDTO saveByProductId
+            (String productId, ProductTicketTypeDTO dto) {
+        ProductTicketType domain = productTicketTypeDtoMapping.toDomain(dto);
+        domain.setProductId(productId);
+        productTicketTypeService.save(domain);
+        ProductTicketType rt = domain;
+        return productTicketTypeDtoMapping.toDto(rt);
+    }
+
 
     /**
     * 获取Get 产品工单类型
@@ -237,6 +356,100 @@ public abstract class AbstractProductTicketTypeResource {
     @PostMapping("product_ticket_types/fetch_default")
     public ResponseEntity<List<ProductTicketTypeDTO>> fetchDefault
             (@Validated @RequestBody ProductTicketTypeFilterDTO dto) {
+        ProductTicketTypeSearchContext context = productTicketTypeFilterDtoMapping.toDomain(dto);
+        Page<ProductTicketType> domains = productTicketTypeService.searchDefault(context) ;
+        List<ProductTicketTypeDTO> list = productTicketTypeDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 获取Get 产品工单类型
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @return ResponseEntity<ProductTicketTypeDTO>
+    */
+    @ApiOperation(value = "获取Get", tags = {"产品工单类型" },  notes = "ProductTicketType-Get ")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductTicketType-Get-all')  or hasPermission('product',#productId,this.productTicketTypeDtoMapping.toDomain(returnObject.body),'ibizplm-ProductTicketType-Get')")
+    @GetMapping("products/{productId}/product_ticket_types/{id}")
+    public ResponseEntity<ProductTicketTypeDTO> getByProductIdAndId
+            (@PathVariable("productId") String productId, @PathVariable("id") String id) {
+        ProductTicketType rt = productTicketTypeService.get(id);
+        return ResponseEntity.status(HttpStatus.OK).body(productTicketTypeDtoMapping.toDto(rt));
+    }
+
+    /**
+    * 删除Remove 产品工单类型
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @return ResponseEntity<Boolean>
+    */
+    @ApiOperation(value = "删除Remove", tags = {"产品工单类型" },  notes = "ProductTicketType-Remove ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductTicketType-Remove-all') or hasPermission('product',#productId,this.productTicketTypeService.get(#id),'ibizplm-ProductTicketType-Remove')")
+    @DeleteMapping("products/{productId}/product_ticket_types/{id}")
+    public ResponseEntity<Boolean> removeByProductIdAndId
+            (@PathVariable("productId") String productId, @PathVariable("id") String id) {
+        Boolean rt = productTicketTypeService.remove(id);
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * 校验CheckKey 产品工单类型
+    * 
+    *
+    * @param productId productId
+    * @param dto dto
+    * @return ResponseEntity<Integer>
+    */
+    @ApiOperation(value = "校验CheckKey", tags = {"产品工单类型" },  notes = "ProductTicketType-CheckKey ")
+    @PostMapping("products/{productId}/product_ticket_types/check_key")
+    public ResponseEntity<Integer> checkKeyByProductId
+            (@PathVariable("productId") String productId, @Validated @RequestBody ProductTicketTypeDTO dto) {
+        ProductTicketType domain = productTicketTypeDtoMapping.toDomain(dto);
+        domain.setProductId(productId);
+        Integer rt = productTicketTypeService.checkKey(domain);
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * 草稿GetDraft 产品工单类型
+    * 
+    *
+    * @param productId productId
+    * @param dto dto
+    * @return ResponseEntity<ProductTicketTypeDTO>
+    */
+    @ApiOperation(value = "草稿GetDraft", tags = {"产品工单类型" },  notes = "ProductTicketType-GetDraft ")
+    @GetMapping("products/{productId}/product_ticket_types/get_draft")
+    public ResponseEntity<ProductTicketTypeDTO> getDraftByProductId
+            (@PathVariable("productId") String productId, @SpringQueryMap ProductTicketTypeDTO dto) {
+        ProductTicketType domain = productTicketTypeDtoMapping.toDomain(dto);
+        domain.setProductId(productId);
+        ProductTicketType rt = productTicketTypeService.getDraft(domain);
+        return ResponseEntity.status(HttpStatus.OK).body(productTicketTypeDtoMapping.toDto(rt));
+    }
+
+    /**
+    * 查询fetch_default 产品工单类型
+    * 
+    *
+    * @param productId productId
+    * @param dto dto
+    * @return ResponseEntity<List<ProductTicketTypeDTO>>
+    */
+    @ApiOperation(value = "查询fetch_default", tags = {"产品工单类型" },  notes = "ProductTicketType-fetch_default ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductTicketType-fetch_default-all') or hasPermission('product',#productId,#dto,'ibizplm-ProductTicketType-fetch_default')")
+    @PostMapping("products/{productId}/product_ticket_types/fetch_default")
+    public ResponseEntity<List<ProductTicketTypeDTO>> fetchDefaultByProductId
+            (@PathVariable("productId") String productId, @Validated @RequestBody ProductTicketTypeFilterDTO dto) {
+        dto.setProductIdEQ(productId);
         ProductTicketTypeSearchContext context = productTicketTypeFilterDtoMapping.toDomain(dto);
         Page<ProductTicketType> domains = productTicketTypeService.searchDefault(context) ;
         List<ProductTicketTypeDTO> list = productTicketTypeDtoMapping.toDto(domains.getContent());

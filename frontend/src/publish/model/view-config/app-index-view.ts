@@ -8,4 +8,5 @@ export default {
   appDataEntityId: undefined,
   redirectView: false,
   modalOption: {},
+  appId: '',
 };

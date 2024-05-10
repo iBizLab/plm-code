@@ -3,6 +3,7 @@
  */
 package cn.ibizlab.plm.core.base.service;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 import org.springframework.data.domain.Page;
@@ -170,6 +171,16 @@ public interface WorkloadTypeService extends IService<WorkloadType> {
             }
         }
         return rt;
+    }
+
+    /**
+     * nothing
+     * 
+     * @param dto
+     * @return
+     */
+    default WorkloadType nothing(WorkloadType dto) {
+        return dto;
     }
 
     /**

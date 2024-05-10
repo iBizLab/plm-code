@@ -131,6 +131,46 @@ public abstract class AbstractReleaseResource {
     }
 
     /**
+    * delete_categories 项目发布
+    * 
+    *
+    * @param projectId projectId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ReleaseDTO>
+    */
+    @ApiOperation(value = "delete_categories", tags = {"项目发布" },  notes = "Release-delete_categories ")
+    @PostMapping("projects/{projectId}/releases/{id}/delete_categories")
+    public ResponseEntity<ResponseWrapper<ReleaseDTO>> deleteCategoriesByProjectIdAndId
+            (@PathVariable("projectId") String projectId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ReleaseDTO> dto) {
+        ResponseWrapper<ReleaseDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(deleteCategoriesByProjectIdAndId(projectId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(deleteCategoriesByProjectIdAndId(projectId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * delete_categories 项目发布
+    * 
+    *
+    * @param projectId projectId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ReleaseDTO>
+    */   
+    public ReleaseDTO deleteCategoriesByProjectIdAndId
+            (String projectId, String id, ReleaseDTO dto) {
+        Release domain = releaseDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Release rt = releaseService.deleteCategories(domain);
+        return releaseDtoMapping.toDto(rt);
+    }
+
+    /**
     * plan_work_item 项目发布
     * 
     *

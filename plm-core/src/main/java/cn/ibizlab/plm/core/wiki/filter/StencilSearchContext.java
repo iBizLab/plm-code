@@ -38,6 +38,14 @@ import cn.ibizlab.plm.core.wiki.domain.Stencil;
 public class StencilSearchContext extends QueryWrapperContext<Stencil> {
 
     /**
+     * 正文格式EQ
+     */
+    @JsonProperty("n_format_type_eq")
+    @JSONField(name = "n_format_type_eq")
+    @ApiModelProperty("正文格式EQ")
+    private String formatTypeEQ;
+
+    /**
      * 名称LIKE
      */
     @JsonProperty("n_name_like")

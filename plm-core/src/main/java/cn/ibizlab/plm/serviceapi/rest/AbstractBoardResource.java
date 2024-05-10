@@ -345,6 +345,28 @@ public abstract class AbstractBoardResource {
     }
 
     /**
+    * 查询fetch_cur_project_board 看板
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<BoardDTO>>
+    */
+    @ApiOperation(value = "查询fetch_cur_project_board", tags = {"看板" },  notes = "Board-fetch_cur_project_board ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Board-fetch_cur_project_board-all') or hasPermission(#dto,'ibizplm-Board-fetch_cur_project_board')")
+    @PostMapping("boards/fetch_cur_project_board")
+    public ResponseEntity<List<BoardDTO>> fetchCurProjectBoard
+            (@Validated @RequestBody BoardFilterDTO dto) {
+        BoardSearchContext context = boardFilterDtoMapping.toDomain(dto);
+        Page<Board> domains = boardService.searchCurProjectBoard(context) ;
+        List<BoardDTO> list = boardDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
     * 查询fetch_default 看板
     * 
     *
@@ -434,6 +456,30 @@ public abstract class AbstractBoardResource {
         domain.setProjectId(projectId);
         Board rt = boardService.getDraft(domain);
         return ResponseEntity.status(HttpStatus.OK).body(boardDtoMapping.toDto(rt));
+    }
+
+    /**
+    * 查询fetch_cur_project_board 看板
+    * 
+    *
+    * @param projectId projectId
+    * @param dto dto
+    * @return ResponseEntity<List<BoardDTO>>
+    */
+    @ApiOperation(value = "查询fetch_cur_project_board", tags = {"看板" },  notes = "Board-fetch_cur_project_board ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Board-fetch_cur_project_board-all') or hasPermission('project',#projectId,#dto,'ibizplm-Board-fetch_cur_project_board')")
+    @PostMapping("projects/{projectId}/boards/fetch_cur_project_board")
+    public ResponseEntity<List<BoardDTO>> fetchCurProjectBoardByProjectId
+            (@PathVariable("projectId") String projectId, @Validated @RequestBody BoardFilterDTO dto) {
+        dto.setProjectIdEQ(projectId);
+        BoardSearchContext context = boardFilterDtoMapping.toDomain(dto);
+        Page<Board> domains = boardService.searchCurProjectBoard(context) ;
+        List<BoardDTO> list = boardDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
     }
 
     /**

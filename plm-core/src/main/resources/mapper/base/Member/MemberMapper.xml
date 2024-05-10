@@ -9,10 +9,12 @@
 		<result property="ownerType" column="owner_type" />
 		<result property="userId" column="user_id" />
 		<result property="ownerSubtype" column="owner_subtype" />
+		<result property="roleId" column="role_id" />
 		<result property="updateTime" column="update_time" />
 		<result property="createMan" column="create_man" />
 		<result property="updateMan" column="update_man" />
 		<result property="createTime" column="create_time" />
+        <association property="group" javaType="cn.ibizlab.plm.core.base.domain.Group" column="owner_id" select="cn.ibizlab.plm.core.base.mapper.GroupMapper.selectById" fetchType="lazy"></association>
     </resultMap>
 
     <select id="selectById"  resultMap="MemberResultMap">
@@ -41,11 +43,15 @@
     </delete>
 
     <sql id="default" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`USER_ID` FROM `MEMBER` t1   ]]>  
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`ROLE_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`USER_ID` FROM `MEMBER` t1   ]]>  
     </sql>
 
     <sql id="view" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`USER_ID` FROM `MEMBER` t1   ]]>  
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`ROLE_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`USER_ID` FROM `MEMBER` t1   ]]>  
+    </sql>
+
+    <sql id="userGroupAdmin" databaseId="mysql">
+         <![CDATA[ SELECT t1.`ID`, t1.`USER_ID` FROM `MEMBER` t1   ]]>  where  <![CDATA[ ( t1.`ROLE_ID` = 'admin'  AND  t1.`OWNER_TYPE` = 'GROUP' ) ]]> 
     </sql>
 
     <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.base.filter.MemberSearchContext"  resultMap="MemberResultMap">
@@ -63,6 +69,27 @@
         select t1.*
         from (
             <include refid="default"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchUserGroupAdmin"  parameterType="cn.ibizlab.plm.core.base.filter.MemberSearchContext"  resultMap="MemberResultMap">
+        select t1.* 
+        from (
+            <include refid="userGroupAdmin"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listUserGroupAdmin"  parameterType="cn.ibizlab.plm.core.base.filter.MemberSearchContext"  resultMap="MemberResultMap">
+        select t1.*
+        from (
+            <include refid="userGroupAdmin"/>
         ) t1
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>

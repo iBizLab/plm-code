@@ -112,22 +112,29 @@ export default {
           id: 'deuiaction1',
         },
         {
+          itemType: 'SEPERATOR',
+          id: 'seperator1',
+        },
+        {
+          actionLevel: 100,
+          buttonStyle: 'STYLE2',
           detoolbarItems: [
             {
               actionLevel: 100,
               noPrivDisplayMode: 2,
-              uiactionId: 'import',
+              uiactionId: 'test_case_import_data@test_case',
+              uiactionTarget: 'NONE',
               valid: true,
               caption: '导入用例',
               itemType: 'DEUIACTION',
               sysImage: {
-                cssClass: 'fa fa-upload',
-                glyph: 'xf093@FontAwesome',
+                cssClass: 'fa fa-cloud-upload',
+                glyph: 'xf0ee@FontAwesome',
               },
               tooltip: '导入用例',
               showCaption: true,
               showIcon: true,
-              id: 'deuiaction2',
+              id: 'deuiaction4',
             },
             {
               actionLevel: 100,
@@ -226,22 +233,16 @@ export default {
                 actionLevel: 100,
                 afterItemType: 'NONE',
                 beforeItemType: 'NONE',
-                capLanguageRes: {
-                  lanResTag: 'TBB.TEXT.*.COPY',
-                },
-                caption: '复制',
+                caption: '复制用例',
                 detailType: 'DEUIACTION',
-                uiactionId: 'copy',
-                tooltipLanguageRes: {
-                  lanResTag: 'TBB.TOOLTIP.*.COPY',
-                },
+                uiactionId: 'copy_test_case@test_case',
                 showCaption: true,
                 showIcon: true,
                 sysImage: {
                   cssClass: 'fa fa-copy',
                   glyph: 'xf0c5@FontAwesome',
                 },
-                id: 'u86cee9d',
+                id: 'uc5b9282',
               },
               {
                 actionLevel: 100,
@@ -307,14 +308,14 @@ export default {
         {
           clconvertMode: 'FRONT',
           dataItemName: 'state',
-          excelCaption: '评审状态',
-          appCodeListId: 'plmweb.testmgmt__test_case_state',
+          excelCaption: '状态',
+          appCodeListId: 'plmweb.testmgmt__case_state',
           appDEFieldId: 'state',
           valueType: 'SIMPLE',
           enableRowEdit: true,
           aggMode: 'NONE',
           align: 'LEFT',
-          caption: '评审状态',
+          caption: '状态',
           codeName: 'state',
           columnType: 'DEFGRIDCOLUMN',
           noPrivDisplayMode: 1,
@@ -616,13 +617,13 @@ export default {
           id: 'title',
         },
         {
-          caption: '评审状态',
+          caption: '状态',
           codeName: 'state',
           enableCond: 3,
           appDEFieldId: 'state',
           editor: {
             singleSelect: true,
-            appCodeListId: 'plmweb.testmgmt__test_case_state',
+            appCodeListId: 'plmweb.testmgmt__case_state',
             editorType: 'DROPDOWNLIST',
             valueType: 'SIMPLE',
             editable: true,
@@ -915,6 +916,7 @@ export default {
               id: 'deuiaction4',
             },
             {
+              actionLevel: 100,
               detoolbarItems: [
                 {
                   actionLevel: 100,

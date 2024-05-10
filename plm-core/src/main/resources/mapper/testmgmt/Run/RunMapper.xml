@@ -25,6 +25,7 @@
 		<result property="caseName" column="case_name" />
         <association property="testCase" javaType="cn.ibizlab.plm.core.testmgmt.domain.TestCase" column="case_id" select="cn.ibizlab.plm.core.testmgmt.mapper.TestCaseMapper.selectById" fetchType="lazy"></association>
         <association property="testPlan" javaType="cn.ibizlab.plm.core.testmgmt.domain.TestPlan" column="plan_id" select="cn.ibizlab.plm.core.testmgmt.mapper.TestPlanMapper.selectById" fetchType="lazy"></association>
+        <association property="testCaseLatestRun" javaType="cn.ibizlab.plm.core.testmgmt.domain.TestCase" column="case_id" select="cn.ibizlab.plm.core.testmgmt.mapper.TestCaseMapper.selectById" fetchType="lazy"></association>
     </resultMap>
 
     <select id="selectById"  resultMap="RunResultMap">
@@ -226,6 +227,13 @@
             <include refid="default"/>
         ) t1
         where plan_id in <foreach item="id" index="index" collection="planIds" open="(" separator="," close=")">#{id}</foreach>  order by IDENTIFIER ASC
+    </select>
+
+    <select id="findByCaseId" resultMap="RunResultMap">
+        select t1.* from (
+            <include refid="default"/>
+        ) t1
+        where case_id in <foreach item="id" index="index" collection="caseIds" open="(" separator="," close=")">#{id}</foreach>  order by IDENTIFIER ASC
     </select>
 
 

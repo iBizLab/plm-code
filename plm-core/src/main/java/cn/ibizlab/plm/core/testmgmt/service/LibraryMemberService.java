@@ -184,12 +184,32 @@ public interface LibraryMemberService extends IService<LibraryMember> {
     }
 
     /**
+     * change_role
+     * 
+     * @param dto
+     * @return
+     */
+    default LibraryMember changeRole(LibraryMember dto) {
+        return dto;
+    }
+
+    /**
      * create_library_member
      * 
      * @param dto
      * @return
      */
     default LibraryMember createLibraryMember(LibraryMember dto) {
+        return dto;
+    }
+
+    /**
+     * nothing
+     * 
+     * @param dto
+     * @return
+     */
+    default LibraryMember nothing(LibraryMember dto) {
         return dto;
     }
 

@@ -148,6 +148,8 @@ public abstract class AbstractSwimlaneService extends ServiceImpl<SwimlaneMapper
 
     @Transactional
     public boolean remove(Swimlane et) {
+        String key = et.getId();
+        workItemService.resetBySwimlaneId(key);
         if(!remove(Wrappers.<Swimlane>lambdaQuery().eq(Swimlane::getId, et.getId())))
             return false;
         return true;
@@ -155,7 +157,9 @@ public abstract class AbstractSwimlaneService extends ServiceImpl<SwimlaneMapper
 
     @Transactional
     public boolean removeByEntities(List<Swimlane> entities) {
-        this.baseMapper.deleteEntities(entities);
+        for (Swimlane et : entities)
+            if(!getSelf().remove(et))
+                return false;
         return true;
     }
 
@@ -179,7 +183,11 @@ public abstract class AbstractSwimlaneService extends ServiceImpl<SwimlaneMapper
         return list;
     }
     public boolean removeByBoardId(String boardId) {
-        return this.remove(Wrappers.<Swimlane>lambdaQuery().eq(Swimlane::getBoardId,boardId));
+        List<String> ids = baseMapper.findByBoardId(Arrays.asList(boardId)).stream().map(e->e.getId()).collect(Collectors.toList());
+        if(!ObjectUtils.isEmpty(ids))
+            return this.removeBatch(ids);
+        else
+            return true;
     }
 
     public boolean resetByBoardId(String boardId) {
@@ -214,7 +222,11 @@ public abstract class AbstractSwimlaneService extends ServiceImpl<SwimlaneMapper
     }
 
     public boolean removeByProjectId(String projectId) {
-        return this.remove(Wrappers.<Swimlane>lambdaQuery().eq(Swimlane::getProjectId,projectId));
+        List<String> ids = baseMapper.findByProjectId(Arrays.asList(projectId)).stream().map(e->e.getId()).collect(Collectors.toList());
+        if(!ObjectUtils.isEmpty(ids))
+            return this.removeBatch(ids);
+        else
+            return true;
     }
 
     public boolean resetByProjectId(String projectId) {
