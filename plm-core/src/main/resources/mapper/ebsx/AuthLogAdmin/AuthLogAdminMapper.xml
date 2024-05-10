@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper	namespace="cn.ibizlab.plm.core.ebsx.mapper.AuthLogAdminMapper">
+
+        <!--通过mybatis将查询结果注入到entity中,通过配置autoMapping="true"由mybatis自动处理映射关系 -->
+    <resultMap id="AuthLogAdminResultMap" type="cn.ibizlab.plm.core.ebsx.domain.AuthLogAdmin" autoMapping="true">
+		<id property="logId" column="logid" /><!--主键字段映射-->
+		<result property="domain" column="domains" />
+    </resultMap>
+
+    <select id="selectById"  resultMap="AuthLogAdminResultMap">
+        <include refid="view" /> 
+         where 
+         t1.logid=#{ logId }
+    </select>
+
+    <select id="selectEntity" parameterType="cn.ibizlab.plm.core.ebsx.domain.AuthLogAdmin" resultMap="AuthLogAdminResultMap">
+        <include refid="view" /> 
+         where 
+         (t1.logid = #{ logId })
+    </select>
+
+    <select id="selectEntities" parameterType="java.util.List" resultMap="AuthLogAdminResultMap">
+        <include refid="view" /> 
+         where 
+         (t1.logid)
+         in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.logId }) </foreach>)
+    </select>
+
+    <delete id="deleteEntities" parameterType="java.util.List">
+    delete from IBZAUTHLOG
+    where (logid)
+         in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.logId }) </foreach>)
+    </delete>
+
+    <sql id="default" databaseId="mysql">
+         <![CDATA[ SELECT t1.`AUTHAGENT`, t1.`AUTHCODE`, t1.`AUTHTIME`, t1.`DOMAINS`, t1.`IPADDR`, t1.`LOGID`, t1.`MACADDR`, t1.`PERSONNAME`, t1.`USERAGENT`, t1.`USERID`, t1.`USERNAME` FROM `IBZAUTHLOG` t1   ]]>  
+    </sql>
+
+    <sql id="view" databaseId="mysql">
+         <![CDATA[ SELECT t1.`AUTHAGENT`, t1.`AUTHCODE`, t1.`AUTHTIME`, t1.`DOMAINS`, t1.`IPADDR`, t1.`LOGID`, t1.`MACADDR`, t1.`PERSONNAME`, t1.`USERAGENT`, t1.`USERID`, t1.`USERNAME` FROM `IBZAUTHLOG` t1   ]]>  
+    </sql>
+
+    <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.ebsx.filter.AuthLogAdminSearchContext"  resultMap="AuthLogAdminResultMap">
+        select t1.* 
+        from (
+            <include refid="default"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listDefault"  parameterType="cn.ibizlab.plm.core.ebsx.filter.AuthLogAdminSearchContext"  resultMap="AuthLogAdminResultMap">
+        select t1.*
+        from (
+            <include refid="default"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchGroupByData"  parameterType="cn.ibizlab.plm.core.ebsx.filter.AuthLogAdminSearchContext"  resultType="java.util.HashMap">
+        select DATE(AUTHTIME) as authtime_group,count(1) as count 
+        from (
+            <include refid="default"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+         group by DATE(AUTHTIME)
+    </select>
+
+
+    <select id="listGroupByData"  parameterType="cn.ibizlab.plm.core.ebsx.filter.AuthLogAdminSearchContext"  resultType="java.util.HashMap">
+        select DATE(AUTHTIME) as authtime_group,count(1) as count
+        from (
+            <include refid="default"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+         group by DATE(AUTHTIME)
+    </select>
+
+
+</mapper>

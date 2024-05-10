@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper	namespace="cn.ibizlab.plm.core.base.mapper.DictionaryDataMapper">
+
+        <!--通过mybatis将查询结果注入到entity中,通过配置autoMapping="true"由mybatis自动处理映射关系 -->
+    <resultMap id="DictionaryDataResultMap" type="cn.ibizlab.plm.core.base.domain.DictionaryData" autoMapping="true">
+		<id property="id" column="id" /><!--主键字段映射-->
+		<result property="isSystem" column="is_system" />
+		<result property="updateMan" column="update_man" />
+		<result property="updateTime" column="update_time" />
+		<result property="createTime" column="create_time" />
+		<result property="createMan" column="create_man" />
+    </resultMap>
+
+    <select id="selectById"  resultMap="DictionaryDataResultMap">
+        <include refid="view" /> 
+         where 
+         t1.id=#{ id }
+    </select>
+
+    <select id="selectEntity" parameterType="cn.ibizlab.plm.core.base.domain.DictionaryData" resultMap="DictionaryDataResultMap">
+        <include refid="view" /> 
+         where 
+         (t1.id = #{ id })
+    </select>
+
+    <select id="selectEntities" parameterType="java.util.List" resultMap="DictionaryDataResultMap">
+        <include refid="view" /> 
+         where 
+         (t1.id)
+         in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.id }) </foreach>)
+    </select>
+
+    <delete id="deleteEntities" parameterType="java.util.List">
+    delete from DICTIONARY
+    where (id)
+         in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.id }) </foreach>)
+    </delete>
+
+    <sql id="default" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CATALOG`, t1.`COLOR`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_SYSTEM`, t1.`NAME`, t1.`SEQUENCE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VAL` FROM `DICTIONARY` t1   ]]>  
+    </sql>
+
+    <sql id="view" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CATALOG`, t1.`COLOR`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_SYSTEM`, t1.`NAME`, t1.`SEQUENCE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VAL` FROM `DICTIONARY` t1   ]]>  
+    </sql>
+
+    <sql id="ideaState" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CATALOG`, t1.`COLOR`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_SYSTEM`, t1.`NAME`, t1.`SEQUENCE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VAL` FROM `DICTIONARY` t1   ]]>  where  <![CDATA[ ( t1.`CATALOG` = 'idea_state' ) ]]> 
+    </sql>
+
+    <sql id="releaseStage" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CATALOG`, t1.`COLOR`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_SYSTEM`, t1.`NAME`, t1.`SEQUENCE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VAL` FROM `DICTIONARY` t1   ]]>  where  <![CDATA[ ( t1.`CATALOG` = 'release_stage' ) ]]> 
+    </sql>
+
+    <sql id="ticketState" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CATALOG`, t1.`COLOR`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_SYSTEM`, t1.`NAME`, t1.`SEQUENCE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VAL` FROM `DICTIONARY` t1   ]]>  where  <![CDATA[ ( t1.`CATALOG` = 'ticket_state' ) ]]> 
+    </sql>
+
+    <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.base.filter.DictionaryDataSearchContext"  resultMap="DictionaryDataResultMap">
+        select t1.* 
+        from (
+            <include refid="default"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listDefault"  parameterType="cn.ibizlab.plm.core.base.filter.DictionaryDataSearchContext"  resultMap="DictionaryDataResultMap">
+        select t1.*
+        from (
+            <include refid="default"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchIdeaState"  parameterType="cn.ibizlab.plm.core.base.filter.DictionaryDataSearchContext"  resultMap="DictionaryDataResultMap">
+        select t1.* 
+        from (
+            <include refid="ideaState"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listIdeaState"  parameterType="cn.ibizlab.plm.core.base.filter.DictionaryDataSearchContext"  resultMap="DictionaryDataResultMap">
+        select t1.*
+        from (
+            <include refid="ideaState"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchReleaseStage"  parameterType="cn.ibizlab.plm.core.base.filter.DictionaryDataSearchContext"  resultMap="DictionaryDataResultMap">
+        select t1.* 
+        from (
+            <include refid="releaseStage"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listReleaseStage"  parameterType="cn.ibizlab.plm.core.base.filter.DictionaryDataSearchContext"  resultMap="DictionaryDataResultMap">
+        select t1.*
+        from (
+            <include refid="releaseStage"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchTicketState"  parameterType="cn.ibizlab.plm.core.base.filter.DictionaryDataSearchContext"  resultMap="DictionaryDataResultMap">
+        select t1.* 
+        from (
+            <include refid="ticketState"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listTicketState"  parameterType="cn.ibizlab.plm.core.base.filter.DictionaryDataSearchContext"  resultMap="DictionaryDataResultMap">
+        select t1.*
+        from (
+            <include refid="ticketState"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+</mapper>

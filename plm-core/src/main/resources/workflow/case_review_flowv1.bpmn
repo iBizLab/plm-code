@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:flowable="http://flowable.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.flowable.org/processdef">
+    <process id="ibizplm-case_review_flowv1" isClosed="false" isExecutable="true" name="用例评审 v1" processType="None">
+        <extensionElements>
+            <flowable:eventListener delegateExpression="${processInstanceListener}"  />
+            <flowable:field name="refgroups">
+                <flowable:string></flowable:string>
+            </flowable:field>
+            <flowable:field name="bookings">
+                <flowable:string>review</flowable:string>
+            </flowable:field>    
+            <flowable:field name="bookingapps_reviews">
+                <flowable:string>plmweb</flowable:string>
+            </flowable:field>       
+
+            <flowable:field name="wfstepfield_review">
+                <flowable:string>state</flowable:string>
+            </flowable:field>    
+            <flowable:field name="udstatefield_review">
+                <flowable:string>state</flowable:string>
+            </flowable:field>    
+            <flowable:field name="udstateingval_review">
+                <flowable:string>10</flowable:string>
+            </flowable:field>
+            <flowable:field name="wffinishval_review">
+                <flowable:string>30</flowable:string>
+            </flowable:field>
+            <flowable:field name="wferrorval_review">
+                <flowable:string>40</flowable:string>
+            </flowable:field>
+            <flowable:field name="majortext_review">
+                <flowable:string>name</flowable:string>
+            </flowable:field>    
+            <flowable:field name="isvalid"><flowable:string>1</flowable:string></flowable:field>
+        </extensionElements>
+        <startEvent id="sid-START_01" name="开始事件">
+        </startEvent>
+        <serviceTask id="sid-PROCESS_02" name="通过" flowable:expression="${wfCoreService.execute(execution, activedata)}" >
+            <extensionElements>
+                <flowable:field name="service-entity"><flowable:string>review</flowable:string></flowable:field>
+                <flowable:field name="service-deaction"><flowable:string>Update</flowable:string></flowable:field>
+                <flowable:field name="params-state"><flowable:string>30</flowable:string></flowable:field>                                
+            </extensionElements>
+        </serviceTask>
+        <serviceTask id="sid-PROCESS_01" name="进入评审中" flowable:expression="${wfCoreService.execute(execution, activedata)}" >
+            <extensionElements>
+                <flowable:field name="service-entity"><flowable:string>review</flowable:string></flowable:field>
+                <flowable:field name="service-deaction"><flowable:string>Update</flowable:string></flowable:field>
+                <flowable:field name="params-state"><flowable:string>20</flowable:string></flowable:field>                                
+            </extensionElements>
+        </serviceTask>
+        <serviceTask id="sid-PROCESS_04" name="废弃" flowable:expression="${wfCoreService.execute(execution, activedata)}" >
+            <extensionElements>
+                <flowable:field name="service-entity"><flowable:string>review</flowable:string></flowable:field>
+                <flowable:field name="service-deaction"><flowable:string>Update</flowable:string></flowable:field>
+                <flowable:field name="params-state"><flowable:string>50</flowable:string></flowable:field>                                
+            </extensionElements>
+        </serviceTask>
+        <endEvent id="sid-END_01" name="结束事件">
+        </endEvent>
+        <serviceTask id="sid-PROCESS_03" name="不通过" flowable:expression="${wfCoreService.execute(execution, activedata)}" >
+            <extensionElements>
+                <flowable:field name="service-entity"><flowable:string>review</flowable:string></flowable:field>
+                <flowable:field name="service-deaction"><flowable:string>Update</flowable:string></flowable:field>
+                <flowable:field name="params-state"><flowable:string>40</flowable:string></flowable:field>                                
+            </extensionElements>
+        </serviceTask>
+        <userTask flowable:category="${businessKey}" flowable:candidateUsers="${activedata.create_man}" flowable:exclusive="true" 
+         id="tid-20-INTERACTIVE_01" 
+         name="上级审批" >
+            <documentation>${majortext}</documentation>
+            <extensionElements>
+                <flowable:form process-form="main_view_form"  isEditable="false"  candidateUsers="${activedata.create_man}" /> 
+            </extensionElements>
+        </userTask>
+
+        <sequenceFlow id="rid-b3b3a1ec4a6f263f3b05e19c963a1377" sourceRef="sid-START_01" targetRef="sid-PROCESS_01" name="">
+        </sequenceFlow>    
+        <sequenceFlow id="rid-764af95462d265df1b2fef856962ed44" sourceRef="sid-PROCESS_02" targetRef="sid-END_01" name="">
+        </sequenceFlow>    
+        <sequenceFlow id="rid-21da9dde66b549f684ffcee86e865208" sourceRef="sid-PROCESS_01" targetRef="tid-20-INTERACTIVE_01" name="">
+        </sequenceFlow>    
+        <sequenceFlow id="lid-IAACTION1-4b9e009b8a492878f18050cbcfb531a1" sourceRef="tid-20-INTERACTIVE_01" targetRef="sid-PROCESS_04" name="废弃">
+            <conditionExpression  xsi:type="tFormalExpression" ><![CDATA[${sequenceFlowId=="lid-IAACTION1-4b9e009b8a492878f18050cbcfb531a1"}]]></conditionExpression>
+            <extensionElements>
+                <flowable:form nextCondition="ANY"  /> 
+            </extensionElements>    
+        </sequenceFlow>    
+        <sequenceFlow id="lid-通过-6ba8d10efd69ab634aed5cb62312efc0" sourceRef="tid-20-INTERACTIVE_01" targetRef="sid-PROCESS_02" name="通过">
+            <conditionExpression  xsi:type="tFormalExpression" ><![CDATA[${sequenceFlowId=="lid-通过-6ba8d10efd69ab634aed5cb62312efc0"}]]></conditionExpression>
+            <extensionElements>
+                <flowable:form nextCondition="ANY"  /> 
+            </extensionElements>    
+        </sequenceFlow>    
+        <sequenceFlow id="lid-IAACTION-5c0b79c1148a1f0042266dd87b45c431" sourceRef="tid-20-INTERACTIVE_01" targetRef="sid-PROCESS_03" name="不通过">
+            <conditionExpression  xsi:type="tFormalExpression" ><![CDATA[${sequenceFlowId=="lid-IAACTION-5c0b79c1148a1f0042266dd87b45c431"}]]></conditionExpression>
+            <extensionElements>
+                <flowable:form nextCondition="ANY"  /> 
+            </extensionElements>    
+        </sequenceFlow>    
+        <sequenceFlow id="rid-0d69685dcb78202f2f3105b2be2af4d7" sourceRef="sid-PROCESS_04" targetRef="sid-END_01" name="">
+        </sequenceFlow>    
+        <sequenceFlow id="rid-f80357f89cd6899c51f77fe64ca393de" sourceRef="sid-PROCESS_03" targetRef="sid-END_01" name="">
+        </sequenceFlow>    
+    </process>
+    
+    <bpmndi:BPMNDiagram id="BPMNDiagram_ibizplm-case_review_flowv1">
+        <bpmndi:BPMNPlane id="BPMNPlane_ibizplm-case_review_flowv1" bpmnElement="ibizplm-case_review_flowv1">
+            <bpmndi:BPMNShape id="BPMNShape-sid-START_01" bpmnElement="sid-START_01">
+                <omgdi:Bounds x="460" y="140" width="30" height="30" />
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="BPMNShape-sid-PROCESS_02" bpmnElement="sid-PROCESS_02">
+                <omgdi:Bounds x="270" y="620" width="100" height="80" />
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="BPMNShape-sid-PROCESS_01" bpmnElement="sid-PROCESS_01">
+                <omgdi:Bounds x="430" y="260" width="100" height="80" />
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="BPMNShape-tid-20-INTERACTIVE_01" bpmnElement="tid-20-INTERACTIVE_01">
+                <omgdi:Bounds x="430" y="380" width="100" height="80" />
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="BPMNShape-sid-PROCESS_04" bpmnElement="sid-PROCESS_04">
+                <omgdi:Bounds x="430" y="620" width="100" height="80" />
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="BPMNShape-sid-END_01" bpmnElement="sid-END_01">
+                <omgdi:Bounds x="460" y="830" width="30" height="30" />
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="BPMNShape-sid-PROCESS_03" bpmnElement="sid-PROCESS_03">
+                <omgdi:Bounds x="590" y="620" width="100" height="80" />
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNEdge id="BPMNEdge-rid-b3b3a1ec4a6f263f3b05e19c963a1377" bpmnElement="rid-b3b3a1ec4a6f263f3b05e19c963a1377">
+                <omgdi:waypoint x="0" y="0" />
+                <omgdi:waypoint x="0" y="0" />
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="BPMNEdge-rid-764af95462d265df1b2fef856962ed44" bpmnElement="rid-764af95462d265df1b2fef856962ed44">
+                <omgdi:waypoint x="0" y="0" />
+                <omgdi:waypoint x="0" y="0" />
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="BPMNEdge-rid-21da9dde66b549f684ffcee86e865208" bpmnElement="rid-21da9dde66b549f684ffcee86e865208">
+                <omgdi:waypoint x="0" y="0" />
+                <omgdi:waypoint x="0" y="0" />
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="BPMNEdge-lid-IAACTION1-4b9e009b8a492878f18050cbcfb531a1" bpmnElement="lid-IAACTION1-4b9e009b8a492878f18050cbcfb531a1">
+                <omgdi:waypoint x="0" y="0" />
+                <omgdi:waypoint x="0" y="0" />
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="BPMNEdge-lid-通过-6ba8d10efd69ab634aed5cb62312efc0" bpmnElement="lid-通过-6ba8d10efd69ab634aed5cb62312efc0">
+                <omgdi:waypoint x="0" y="0" />
+                <omgdi:waypoint x="0" y="0" />
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="BPMNEdge-lid-IAACTION-5c0b79c1148a1f0042266dd87b45c431" bpmnElement="lid-IAACTION-5c0b79c1148a1f0042266dd87b45c431">
+                <omgdi:waypoint x="0" y="0" />
+                <omgdi:waypoint x="0" y="0" />
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="BPMNEdge-rid-0d69685dcb78202f2f3105b2be2af4d7" bpmnElement="rid-0d69685dcb78202f2f3105b2be2af4d7">
+                <omgdi:waypoint x="0" y="0" />
+                <omgdi:waypoint x="0" y="0" />
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="BPMNEdge-rid-f80357f89cd6899c51f77fe64ca393de" bpmnElement="rid-f80357f89cd6899c51f77fe64ca393de">
+                <omgdi:waypoint x="0" y="0" />
+                <omgdi:waypoint x="0" y="0" />
+            </bpmndi:BPMNEdge>
+        </bpmndi:BPMNPlane>
+    </bpmndi:BPMNDiagram>
+</definitions>

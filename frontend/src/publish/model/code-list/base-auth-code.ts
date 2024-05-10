@@ -1,0 +1,45 @@
+export default {
+  codeListTag: 'Base__AuthCode',
+  codeListType: 'STATIC',
+  codeName: 'Base__AuthCode',
+  emptyText: '未定义',
+  appDataEntityId: 'plmweb.login_log',
+  codeItems: [
+    {
+      codeName: 'item_200',
+      text: '成功',
+      value: '200',
+      id: 'item_200',
+    },
+    {
+      codeName: 'item_400',
+      color: '#F90404',
+      text: '用户不存在',
+      value: '400',
+      id: 'item_400',
+    },
+    {
+      codeName: 'item_3',
+      color: 'rgba(22, 9, 170, 1)',
+      text: '配置错误',
+      value: '401.2',
+      id: 'item_3',
+    },
+    {
+      codeName: 'item_4',
+      text: '密码错误',
+      value: '401.1',
+      id: 'item_4',
+    },
+    {
+      codeName: 'item_5',
+      color: 'rgba(0, 72, 255, 1)',
+      text: '地址被拒绝',
+      value: '403.6',
+      id: 'item_5',
+    },
+  ],
+  enableCache: true,
+  name: '登录结果',
+  id: 'plmweb.base__authcode',
+};
