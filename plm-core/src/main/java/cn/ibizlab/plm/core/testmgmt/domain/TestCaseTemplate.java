@@ -8,9 +8,6 @@ import java.math.BigDecimal;
 import cn.ibizlab.util.domain.IEntity;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.*;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
-import org.springframework.util.*;
 import org.springframework.data.annotation.*;
 import cn.ibizlab.util.annotation.*;
 import cn.ibizlab.util.enums.*;
@@ -20,11 +17,6 @@ import lombok.*;
 import lombok.experimental.Accessors;
 import io.swagger.annotations.*;
 import com.baomidou.mybatisplus.annotation.*;
-import com.baomidou.mybatisplus.core.toolkit.IdWorker;
-import cn.ibizlab.plm.core.testmgmt.domain.Library;
-import cn.ibizlab.plm.core.testmgmt.domain.TestSuite;
-import cn.ibizlab.plm.core.testmgmt.domain.Step;
-import cn.ibizlab.plm.core.testmgmt.domain.Step;
 
 /**
  * 用例模板实体类[TestCaseTemplate]
@@ -215,7 +207,7 @@ public class TestCaseTemplate extends EntityMP implements Serializable
     /**
      * 预估工时
      */
-    @TableField(value = "estimated_workload")
+    @TableField(exist = false)
     @DEField(name = "estimated_workload")
     @JsonProperty("estimated_workload")
     @JSONField(name = "estimated_workload")
@@ -225,7 +217,7 @@ public class TestCaseTemplate extends EntityMP implements Serializable
     /**
      * 剩余工时
      */
-    @TableField(value = "remaining_workload")
+    @TableField(exist = false)
     @DEField(name = "remaining_workload")
     @JsonProperty("remaining_workload")
     @JSONField(name = "remaining_workload")
@@ -235,7 +227,7 @@ public class TestCaseTemplate extends EntityMP implements Serializable
     /**
      * 实际工时
      */
-    @TableField(value = "actual_workload")
+    @TableField(exist = false)
     @DEField(name = "actual_workload")
     @JsonProperty("actual_workload")
     @JSONField(name = "actual_workload")
