@@ -151,5 +151,4 @@ public interface VersionDataMapper extends BaseMapper<VersionData> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
 }

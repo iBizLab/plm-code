@@ -68,7 +68,7 @@ export default {
             parentDER1N: {
               masterRS: 32,
               pickupDEFName: 'SECTION_ID',
-              removeActionType: 1,
+              removeActionType: 2,
               codeName: 'section',
               dertype: 'DER1N',
               logicName: '分组-类别',
@@ -90,7 +90,7 @@ export default {
             parentDER1N: {
               masterRS: 48,
               pickupDEFName: 'PID',
-              removeActionType: 1,
+              removeActionType: 2,
               recursiveRS: true,
               codeName: 'category',
               dertype: 'DER1N',
@@ -113,7 +113,7 @@ export default {
             parentDER1N: {
               masterRS: 48,
               pickupDEFName: 'PID',
-              removeActionType: 1,
+              removeActionType: 2,
               recursiveRS: true,
               codeName: 'category',
               dertype: 'DER1N',

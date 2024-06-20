@@ -1498,13 +1498,13 @@ export default {
                       },
                       {
                         clconvertMode: 'NONE',
-                        dataItemName: 'show_identifier',
-                        excelCaption: '编号',
-                        appDEFieldId: 'show_identifier',
+                        dataItemName: 'recent_parent_identifier',
+                        excelCaption: '访问父类编号',
+                        appDEFieldId: 'recent_parent_identifier',
                         valueType: 'SIMPLE',
                         aggMode: 'NONE',
                         align: 'LEFT',
-                        caption: '编号',
+                        caption: '访问父类编号',
                         cellSysCss: {
                           cssName: 'recent_identified_style',
                         },
@@ -1548,10 +1548,10 @@ export default {
                         id: 'owner_subtype',
                       },
                       {
-                        appDEFieldId: 'show_identifier',
+                        appDEFieldId: 'recent_parent_identifier',
                         valueType: 'SIMPLE',
                         dataType: 25,
-                        id: 'show_identifier',
+                        id: 'recent_parent_identifier',
                       },
                       {
                         appDEFieldId: 'name',

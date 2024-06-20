@@ -58,7 +58,7 @@ export default {
     },
     {
       codeName: 'status',
-      logicName: '状态',
+      logicName: '阶段',
       stdDataType: 25,
       stringLength: 60,
       name: 'STATUS',
@@ -71,6 +71,14 @@ export default {
       stringLength: 2000,
       name: 'CATEGORIES',
       id: 'categories',
+    },
+    {
+      codeName: 'categories_name',
+      logicName: '类别',
+      stdDataType: 25,
+      stringLength: 2000,
+      name: 'CATEGORIES_NAME',
+      id: 'categories_name',
     },
     {
       codeName: 'assignee_name',
@@ -89,6 +97,17 @@ export default {
       id: 'assignee_id',
     },
     {
+      codeName: 'id',
+      lnlanguageRes: {
+        lanResTag: 'DEF.LNAME.ID',
+      },
+      logicName: '标识',
+      stdDataType: 25,
+      stringLength: 100,
+      name: 'ID',
+      id: 'id',
+    },
+    {
       codeName: 'name',
       lnlanguageRes: {
         lanResTag: 'DEF.LNAME.NAME',
@@ -99,17 +118,6 @@ export default {
       enableQuickSearch: true,
       name: 'NAME',
       id: 'name',
-    },
-    {
-      codeName: 'update_man',
-      lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.UPDATE_MAN',
-      },
-      logicName: '更新人',
-      stdDataType: 25,
-      stringLength: 100,
-      name: 'UPDATE_MAN',
-      id: 'update_man',
     },
     {
       codeName: 'create_man',
@@ -123,17 +131,6 @@ export default {
       id: 'create_man',
     },
     {
-      codeName: 'id',
-      lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.ID',
-      },
-      logicName: '标识',
-      stdDataType: 25,
-      stringLength: 100,
-      name: 'ID',
-      id: 'id',
-    },
-    {
       codeName: 'create_time',
       lnlanguageRes: {
         lanResTag: 'DEF.LNAME.CREATE_TIME',
@@ -143,6 +140,17 @@ export default {
       valueFormat: 'YYYY-MM-DD HH:mm:ss',
       name: 'CREATE_TIME',
       id: 'create_time',
+    },
+    {
+      codeName: 'update_man',
+      lnlanguageRes: {
+        lanResTag: 'DEF.LNAME.UPDATE_MAN',
+      },
+      logicName: '更新人',
+      stdDataType: 25,
+      stringLength: 100,
+      name: 'UPDATE_MAN',
+      id: 'update_man',
     },
     {
       codeName: 'update_time',
@@ -220,7 +228,7 @@ export default {
         },
         {
           codeName: 'status',
-          logicName: '状态',
+          logicName: '阶段',
           appDEFieldId: 'status',
           sourceType: 'DEFIELD',
           stdDataType: 25,
@@ -237,6 +245,16 @@ export default {
           type: 'SIMPLE',
           allowEmpty: true,
           id: 'categories',
+        },
+        {
+          codeName: 'categories_name',
+          logicName: '类别',
+          appDEFieldId: 'categories_name',
+          sourceType: 'DEFIELD',
+          stdDataType: 25,
+          type: 'SIMPLE',
+          allowEmpty: true,
+          id: 'categories_name',
         },
         {
           codeName: 'assignee_name',
@@ -402,7 +420,7 @@ export default {
         },
         {
           codeName: 'n_status_eq',
-          logicName: '状态',
+          logicName: '阶段',
           appDEFieldId: 'status',
           sourceType: 'DEFSEARCHMODE',
           stdDataType: 25,
@@ -652,6 +670,28 @@ export default {
       dataSetTag: 'Default',
       dataSetType: 'REMOTE',
       id: 'fetch_default',
+    },
+    {
+      codeName: 'fetch_not_finish',
+      methodType: 'FETCH',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'release_filter_dto',
+        type: 'DTO',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'release_dto',
+        type: 'PAGE',
+        id: '返回对象',
+      },
+      requestMethod: 'POST',
+      requestParamType: 'ENTITY',
+      requestPath: '/fetch_not_finish',
+      actionType: 'REMOTE',
+      dataSetName: 'not_finish',
+      dataSetTag: 'not_finish',
+      dataSetType: 'REMOTE',
+      id: 'fetch_not_finish',
     },
     {
       codeName: 'FilterCreate',
@@ -1378,24 +1418,6 @@ export default {
           id: 'preparejsparam1',
         },
         {
-          dstAppDEActionId: 'delete_categories',
-          dstAppDataEntityId: 'plmweb.release',
-          codeName: 'DEACTION1',
-          dstDEUILogicParamId: 'node_data',
-          leftPos: 390,
-          logicNodeType: 'DEACTION',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'viewctrlinvoke1',
-              srcDEUILogicNodeId: 'deaction1',
-              id: '连接名称',
-            },
-          ],
-          topPos: 630,
-          name: '删除计划的相应类别',
-          id: 'deaction1',
-        },
-        {
           codeName: 'DEBUGPARAM1',
           dstDEUILogicParamId: 'treeexpbar_tree',
           leftPos: 390,
@@ -1466,8 +1488,32 @@ export default {
           name: '调试逻辑参数',
           id: 'debugparam1',
         },
+        {
+          dstAppDEActionId: 'delete_categories',
+          dstAppDataEntityId: 'plmweb.release',
+          codeName: 'DEACTION1',
+          dstDEUILogicParamId: 'node_data',
+          leftPos: 390,
+          logicNodeType: 'DEACTION',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'viewctrlinvoke1',
+              srcDEUILogicNodeId: 'deaction1',
+              id: '连接名称',
+            },
+          ],
+          topPos: 630,
+          name: '删除计划的相应类别',
+          id: 'deaction1',
+        },
       ],
       deuilogicParams: [
+        {
+          codeName: 'view',
+          activeViewParam: true,
+          name: '当前视图',
+          id: 'view',
+        },
         {
           codeName: 'treeexpbar_tree',
           ctrlParam: true,
@@ -1475,10 +1521,11 @@ export default {
           id: 'treeexpbar_tree',
         },
         {
-          codeName: 'node_data',
-          entityParam: true,
-          name: '节点数据',
-          id: 'node_data',
+          codeName: 'node_param',
+          stdDataType: 25,
+          simpleParam: true,
+          name: '节点参数',
+          id: 'node_param',
         },
         {
           codeName: 'Default',
@@ -1488,17 +1535,10 @@ export default {
           id: 'default',
         },
         {
-          codeName: 'view',
-          activeViewParam: true,
-          name: '当前视图',
-          id: 'view',
-        },
-        {
-          codeName: 'node_param',
-          stdDataType: 25,
-          simpleParam: true,
-          name: '节点参数',
-          id: 'node_param',
+          codeName: 'node_data',
+          entityParam: true,
+          name: '节点数据',
+          id: 'node_data',
         },
       ],
       startDEUILogicNodeId: 'begin',

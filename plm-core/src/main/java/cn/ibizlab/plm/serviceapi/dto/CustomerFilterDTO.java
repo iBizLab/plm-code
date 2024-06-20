@@ -87,6 +87,38 @@ public class CustomerFilterDTO extends FilterBase implements Serializable {
 	private String assigneeIdEQ;
 
     /**
+     * 负责人标识IN
+     */
+    @JsonProperty("n_assignee_id_in")
+    @JSONField(name = "n_assignee_id_in")
+    @ApiModelProperty(value = "负责人标识IN", position = 111)
+	private String assigneeIdIN;
+
+    /**
+     * 负责人标识ISNOTNULL
+     */
+    @JsonProperty("n_assignee_id_isnotnull")
+    @JSONField(name = "n_assignee_id_isnotnull")
+    @ApiModelProperty(value = "负责人标识ISNOTNULL", position = 112)
+	private String assigneeIdISNOTNULL;
+
+    /**
+     * 负责人标识ISNULL
+     */
+    @JsonProperty("n_assignee_id_isnull")
+    @JSONField(name = "n_assignee_id_isnull")
+    @ApiModelProperty(value = "负责人标识ISNULL", position = 113)
+	private String assigneeIdISNULL;
+
+    /**
+     * 负责人标识NOTIN
+     */
+    @JsonProperty("n_assignee_id_notin")
+    @JSONField(name = "n_assignee_id_notin")
+    @ApiModelProperty(value = "负责人标识NOTIN", position = 114)
+	private String assigneeIdNOTIN;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
@@ -99,8 +131,48 @@ public class CustomerFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "客户名称LIKE", position = 180)
+    @ApiModelProperty(value = "客户名称LIKE", position = 170)
 	private String nameLIKE;
+
+    /**
+     * 建立人EQ
+     */
+    @JsonProperty("n_create_man_eq")
+    @JSONField(name = "n_create_man_eq")
+    @ApiModelProperty(value = "建立人EQ", position = 180)
+	private String createManEQ;
+
+    /**
+     * 建立人IN
+     */
+    @JsonProperty("n_create_man_in")
+    @JSONField(name = "n_create_man_in")
+    @ApiModelProperty(value = "建立人IN", position = 181)
+	private String createManIN;
+
+    /**
+     * 建立人ISNOTNULL
+     */
+    @JsonProperty("n_create_man_isnotnull")
+    @JSONField(name = "n_create_man_isnotnull")
+    @ApiModelProperty(value = "建立人ISNOTNULL", position = 182)
+	private String createManISNOTNULL;
+
+    /**
+     * 建立人ISNULL
+     */
+    @JsonProperty("n_create_man_isnull")
+    @JSONField(name = "n_create_man_isnull")
+    @ApiModelProperty(value = "建立人ISNULL", position = 183)
+	private String createManISNULL;
+
+    /**
+     * 建立人NOTIN
+     */
+    @JsonProperty("n_create_man_notin")
+    @JSONField(name = "n_create_man_notin")
+    @ApiModelProperty(value = "建立人NOTIN", position = 184)
+	private String createManNOTIN;
 
     /**
      * 产品标识EQ

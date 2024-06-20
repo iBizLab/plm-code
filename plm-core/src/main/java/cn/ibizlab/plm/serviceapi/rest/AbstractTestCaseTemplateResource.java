@@ -254,7 +254,7 @@ public abstract class AbstractTestCaseTemplateResource {
             (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseTemplateFilterDTO dto) {
         dto.setTestLibraryIdEQ(testLibraryId);
         TestCaseTemplateSearchContext context = testCaseTemplateFilterDtoMapping.toDomain(dto);
-        Page<TestCaseTemplate> domains = testCaseTemplateService.searchDefault(context) ;
+        Page<TestCaseTemplate> domains = testCaseTemplateService.fetchDefault(context) ;
         List<TestCaseTemplateDTO> list = testCaseTemplateDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

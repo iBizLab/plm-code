@@ -51,7 +51,7 @@ public class NotifySettingFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 40)
+    @ApiModelProperty(value = "名称LIKE", position = 30)
 	private String nameLIKE;
 
 

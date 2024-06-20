@@ -41,39 +41,6 @@ public abstract class AbstractRecentService extends ServiceImpl<RecentMapper,Rec
 
     protected int batchSize = 500;
 
-    public Recent get(Recent et) {
-        Recent rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.RECENT.toString(),et.getId());
-        rt.copyTo(et,true);
-        return et;
-    }
-
-    public List<Recent> getByEntities(List<Recent> entities) {
-        entities.forEach(et->{
-            if(ObjectUtils.isEmpty(et.getId()))
-                et.setId((String)et.getDefaultKey(true));
-            });
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public void fillParentData(Recent et) {
-        if(Entities.WORK_ITEM.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
-            et.setOwnerId((String)et.getContextParentKey());
-        }
-    }
-
-    public Recent getDraft(Recent et) {
-        fillParentData(et);
-        return et;
-    }
-
-    public Integer checkKey(Recent et) {
-        if(ObjectUtils.isEmpty(et.getId()))
-            et.setId((String)et.getDefaultKey(true));
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Recent>lambdaQuery().eq(Recent::getId, et.getId()))>0)?1:0;
-    }
-
     @Override
     @Transactional
     public boolean create(Recent et) {
@@ -85,9 +52,9 @@ public abstract class AbstractRecentService extends ServiceImpl<RecentMapper,Rec
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<Recent> list) {
+    public boolean create(List<Recent> list) {
         list.forEach(this::fillParentData);
         list.forEach(et->{
             if(ObjectUtils.isEmpty(et.getId()))
@@ -96,7 +63,7 @@ public abstract class AbstractRecentService extends ServiceImpl<RecentMapper,Rec
         this.saveBatch(list, batchSize);
         return true;
     }
-
+	
     @Transactional
     public boolean update(Recent et) {
         UpdateWrapper<Recent> qw = et.getUpdateWrapper(true);
@@ -108,11 +75,50 @@ public abstract class AbstractRecentService extends ServiceImpl<RecentMapper,Rec
     }
 
     @Transactional
-    public boolean updateBatch(List<Recent> list) {
+    public boolean update(List<Recent> list) {
         updateBatchById(list, batchSize);
         return true;
     }
+	
+   @Transactional
+    public boolean remove(Recent et) {
+        if(!remove(Wrappers.<Recent>lambdaQuery().eq(Recent::getId, et.getId())))
+            return false;
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<Recent> entities) {
+        this.baseMapper.deleteEntities(entities);
+        return true;
+    }		
+    public Recent get(Recent et) {
+        Recent rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.RECENT.toString(),et.getId());
+        rt.copyTo(et,true);
+        return et;
+    }	
+
+    public List<Recent> get(List<Recent> entities) {
+        entities.forEach(et->{
+            if(ObjectUtils.isEmpty(et.getId()))
+                et.setId((String)et.getDefaultKey(true));
+            });
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public Recent getDraft(Recent et) {
+        fillParentData(et);
+        return et;
+    }
+	
+    public Integer checkKey(Recent et) {
+        if(ObjectUtils.isEmpty(et.getId()))
+            et.setId((String)et.getDefaultKey(true));
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Recent>lambdaQuery().eq(Recent::getId, et.getId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(Recent et) {
@@ -123,10 +129,10 @@ public abstract class AbstractRecentService extends ServiceImpl<RecentMapper,Rec
     }
 
     @Transactional
-    public boolean saveBatch(List<Recent> list) {
+    public boolean save(List<Recent> list) {
         if(ObjectUtils.isEmpty(list))
             return true;
-        Map<String,Recent> before = getByEntities(list).stream().collect(Collectors.toMap(Recent::getId,e->e));
+        Map<String,Recent> before = get(list).stream().collect(Collectors.toMap(Recent::getId,e->e));
         List<Recent> create = new ArrayList<>();
         List<Recent> update = new ArrayList<>();
         list.forEach(sub->{
@@ -141,37 +147,24 @@ public abstract class AbstractRecentService extends ServiceImpl<RecentMapper,Rec
         });
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
         else
             return true;
     }
-
-    @Transactional
-    public boolean remove(Recent et) {
-        if(!remove(Wrappers.<Recent>lambdaQuery().eq(Recent::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<Recent> entities) {
-        this.baseMapper.deleteEntities(entities);
-        return true;
-    }
-
-    public Page<Recent> searchDefault(RecentSearchContext context) {
+	
+   public Page<Recent> fetchDefault(RecentSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Recent> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<Recent> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Recent> listDefault(RecentSearchContext context) {
+   public List<Recent> listDefault(RecentSearchContext context) {
         List<Recent> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Recent> searchRecentAccess(RecentSearchContext context) {
+   }
+	
+   public Page<Recent> fetchRecentAccess(RecentSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("UPDATE_TIME,DESC");
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Recent> pages=baseMapper.searchRecentAccess(context.getPages(),context,context.getSelectCond());
@@ -179,14 +172,14 @@ public abstract class AbstractRecentService extends ServiceImpl<RecentMapper,Rec
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Recent> listRecentAccess(RecentSearchContext context) {
+   public List<Recent> listRecentAccess(RecentSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("UPDATE_TIME,DESC");
         List<Recent> list = baseMapper.listRecentAccess(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Recent> searchRecentCurproductTicket(RecentSearchContext context) {
+   }
+	
+   public Page<Recent> fetchRecentCurproductTicket(RecentSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("UPDATE_TIME,DESC");
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Recent> pages=baseMapper.searchRecentCurproductTicket(context.getPages(),context,context.getSelectCond());
@@ -194,36 +187,36 @@ public abstract class AbstractRecentService extends ServiceImpl<RecentMapper,Rec
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Recent> listRecentCurproductTicket(RecentSearchContext context) {
+   public List<Recent> listRecentCurproductTicket(RecentSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("UPDATE_TIME,DESC");
         List<Recent> list = baseMapper.listRecentCurproductTicket(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Recent> searchRecentCurprojectChildWorkItem(RecentSearchContext context) {
+   }
+	
+   public Page<Recent> fetchRecentCurprojectChildWorkItem(RecentSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Recent> pages=baseMapper.searchRecentCurprojectChildWorkItem(context.getPages(),context,context.getSelectCond());
         List<Recent> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Recent> listRecentCurprojectChildWorkItem(RecentSearchContext context) {
+   public List<Recent> listRecentCurprojectChildWorkItem(RecentSearchContext context) {
         List<Recent> list = baseMapper.listRecentCurprojectChildWorkItem(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Recent> searchRecentCurprojectWorkItem(RecentSearchContext context) {
+   }
+	
+   public Page<Recent> fetchRecentCurprojectWorkItem(RecentSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Recent> pages=baseMapper.searchRecentCurprojectWorkItem(context.getPages(),context,context.getSelectCond());
         List<Recent> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Recent> listRecentCurprojectWorkItem(RecentSearchContext context) {
+   public List<Recent> listRecentCurprojectWorkItem(RecentSearchContext context) {
         List<Recent> list = baseMapper.listRecentCurprojectWorkItem(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Recent> searchRecentIdea(RecentSearchContext context) {
+   }
+	
+   public Page<Recent> fetchRecentIdea(RecentSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("UPDATE_TIME,DESC");
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Recent> pages=baseMapper.searchRecentIdea(context.getPages(),context,context.getSelectCond());
@@ -231,14 +224,14 @@ public abstract class AbstractRecentService extends ServiceImpl<RecentMapper,Rec
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Recent> listRecentIdea(RecentSearchContext context) {
+   public List<Recent> listRecentIdea(RecentSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("UPDATE_TIME,DESC");
         List<Recent> list = baseMapper.listRecentIdea(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Recent> searchRecentPage(RecentSearchContext context) {
+   }
+	
+   public Page<Recent> fetchRecentPage(RecentSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("UPDATE_TIME,DESC");
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Recent> pages=baseMapper.searchRecentPage(context.getPages(),context,context.getSelectCond());
@@ -246,14 +239,14 @@ public abstract class AbstractRecentService extends ServiceImpl<RecentMapper,Rec
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Recent> listRecentPage(RecentSearchContext context) {
+   public List<Recent> listRecentPage(RecentSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("UPDATE_TIME,DESC");
         List<Recent> list = baseMapper.listRecentPage(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Recent> searchRecentProject(RecentSearchContext context) {
+   }
+	
+   public Page<Recent> fetchRecentProject(RecentSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("UPDATE_TIME,DESC");
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Recent> pages=baseMapper.searchRecentProject(context.getPages(),context,context.getSelectCond());
@@ -261,14 +254,14 @@ public abstract class AbstractRecentService extends ServiceImpl<RecentMapper,Rec
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Recent> listRecentProject(RecentSearchContext context) {
+   public List<Recent> listRecentProject(RecentSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("UPDATE_TIME,DESC");
         List<Recent> list = baseMapper.listRecentProject(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Recent> searchRecentTestCase(RecentSearchContext context) {
+   }
+	
+   public Page<Recent> fetchRecentTestCase(RecentSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("UPDATE_TIME,DESC");
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Recent> pages=baseMapper.searchRecentTestCase(context.getPages(),context,context.getSelectCond());
@@ -276,14 +269,14 @@ public abstract class AbstractRecentService extends ServiceImpl<RecentMapper,Rec
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Recent> listRecentTestCase(RecentSearchContext context) {
+   public List<Recent> listRecentTestCase(RecentSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("UPDATE_TIME,DESC");
         List<Recent> list = baseMapper.listRecentTestCase(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Recent> searchRecentTestCaseIndex(RecentSearchContext context) {
+   }
+	
+   public Page<Recent> fetchRecentTestCaseIndex(RecentSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("UPDATE_TIME,DESC");
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Recent> pages=baseMapper.searchRecentTestCaseIndex(context.getPages(),context,context.getSelectCond());
@@ -291,14 +284,14 @@ public abstract class AbstractRecentService extends ServiceImpl<RecentMapper,Rec
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Recent> listRecentTestCaseIndex(RecentSearchContext context) {
+   public List<Recent> listRecentTestCaseIndex(RecentSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("UPDATE_TIME,DESC");
         List<Recent> list = baseMapper.listRecentTestCaseIndex(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Recent> searchRecentTicket(RecentSearchContext context) {
+   }
+	
+   public Page<Recent> fetchRecentTicket(RecentSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("UPDATE_TIME,DESC");
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Recent> pages=baseMapper.searchRecentTicket(context.getPages(),context,context.getSelectCond());
@@ -306,14 +299,14 @@ public abstract class AbstractRecentService extends ServiceImpl<RecentMapper,Rec
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Recent> listRecentTicket(RecentSearchContext context) {
+   public List<Recent> listRecentTicket(RecentSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("UPDATE_TIME,DESC");
         List<Recent> list = baseMapper.listRecentTicket(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Recent> searchRecentUse(RecentSearchContext context) {
+   }
+	
+   public Page<Recent> fetchRecentUse(RecentSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("UPDATE_TIME,DESC");
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Recent> pages=baseMapper.searchRecentUse(context.getPages(),context,context.getSelectCond());
@@ -321,14 +314,14 @@ public abstract class AbstractRecentService extends ServiceImpl<RecentMapper,Rec
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Recent> listRecentUse(RecentSearchContext context) {
+   public List<Recent> listRecentUse(RecentSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("UPDATE_TIME,DESC");
         List<Recent> list = baseMapper.listRecentUse(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Recent> searchRecentWorkItem(RecentSearchContext context) {
+   }
+	
+   public Page<Recent> fetchRecentWorkItem(RecentSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("UPDATE_TIME,DESC");
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Recent> pages=baseMapper.searchRecentWorkItem(context.getPages(),context,context.getSelectCond());
@@ -336,14 +329,14 @@ public abstract class AbstractRecentService extends ServiceImpl<RecentMapper,Rec
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Recent> listRecentWorkItem(RecentSearchContext context) {
+   public List<Recent> listRecentWorkItem(RecentSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("UPDATE_TIME,DESC");
         List<Recent> list = baseMapper.listRecentWorkItem(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Recent> searchRecentWorkItemAndNobug(RecentSearchContext context) {
+   }
+	
+   public Page<Recent> fetchRecentWorkItemAndNobug(RecentSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("UPDATE_TIME,DESC");
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Recent> pages=baseMapper.searchRecentWorkItemAndNobug(context.getPages(),context,context.getSelectCond());
@@ -351,14 +344,14 @@ public abstract class AbstractRecentService extends ServiceImpl<RecentMapper,Rec
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Recent> listRecentWorkItemAndNobug(RecentSearchContext context) {
+   public List<Recent> listRecentWorkItemAndNobug(RecentSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("UPDATE_TIME,DESC");
         List<Recent> list = baseMapper.listRecentWorkItemAndNobug(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Recent> searchRecentWorkItemBug(RecentSearchContext context) {
+   }
+	
+   public Page<Recent> fetchRecentWorkItemBug(RecentSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("UPDATE_TIME,DESC");
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Recent> pages=baseMapper.searchRecentWorkItemBug(context.getPages(),context,context.getSelectCond());
@@ -366,40 +359,45 @@ public abstract class AbstractRecentService extends ServiceImpl<RecentMapper,Rec
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Recent> listRecentWorkItemBug(RecentSearchContext context) {
+   public List<Recent> listRecentWorkItemBug(RecentSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("UPDATE_TIME,DESC");
         List<Recent> list = baseMapper.listRecentWorkItemBug(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Recent> searchUser(RecentSearchContext context) {
+   }
+	
+   public Page<Recent> fetchUser(RecentSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Recent> pages=baseMapper.searchUser(context.getPages(),context,context.getSelectCond());
         List<Recent> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Recent> listUser(RecentSearchContext context) {
+   public List<Recent> listUser(RecentSearchContext context) {
         List<Recent> list = baseMapper.listUser(context,context.getSelectCond());
         return list;
-    }
-
-    public List<Recent> findByOwnerId(List<String> ownerIds) {
+   }
+	
+	public List<Recent> findByOwnerId(List<String> ownerIds){
         List<Recent> list = baseMapper.findByOwnerId(ownerIds);
-        return list;
-    }
-    public boolean removeByOwnerId(String ownerId) {
+        return list;	
+	}
+
+	public boolean removeByOwnerId(String ownerId){
         return this.remove(Wrappers.<Recent>lambdaQuery().eq(Recent::getOwnerId,ownerId));
-    }
+	}
 
-    public boolean resetByOwnerId(String ownerId) {
-        return this.update(Wrappers.<Recent>lambdaUpdate().eq(Recent::getOwnerId,ownerId));
-    }
-
-    public boolean saveByDercustomRecentWorkItem(WorkItem workItem,List<Recent> list) {
+	public boolean resetByOwnerId(String ownerId){
+		return this.update(Wrappers.<Recent>lambdaUpdate().eq(Recent::getOwnerId,ownerId));
+	}
+	public boolean saveByDercustomRecentWorkItem(WorkItem workItem, List<Recent> list){
         if(list==null)
             return true;
-        Map<String,Recent> before = findByOwnerId(workItem.getId()).stream().collect(Collectors.toMap(Recent::getId,e->e));
+        Map<String,Recent> before = this.baseMapper.selectList(Wrappers.<Recent>lambdaQuery()
+                        .eq(Recent::getOwnerId, workItem.getId())
+                        .eq(Recent::getOwnerType,"WORK_ITEM").isNull(Recent::getOwnerSubtype))
+                        .stream()
+                        .collect(Collectors.toMap(Recent::getId,e->e));
+
         List<Recent> update = new ArrayList<>();
         List<Recent> create = new ArrayList<>();
 
@@ -419,18 +417,21 @@ public abstract class AbstractRecentService extends ServiceImpl<RecentMapper,Rec
         }
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
             return false;
         else
             return true;
+			
+	}
+
+    public void fillParentData(Recent et) {
+        if(Entities.WORK_ITEM.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setOwnerId((String)et.getContextParentKey());
+        }
     }
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -450,8 +451,8 @@ public abstract class AbstractRecentService extends ServiceImpl<RecentMapper,Rec
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return RecentMapper.class;
     }
@@ -460,4 +461,5 @@ public abstract class AbstractRecentService extends ServiceImpl<RecentMapper,Rec
     protected Class currentModelClass() {
         return Recent.class;
     }
+
 }

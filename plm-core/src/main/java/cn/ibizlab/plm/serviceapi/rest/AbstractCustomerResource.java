@@ -207,6 +207,45 @@ public abstract class AbstractCustomerResource {
     }
 
     /**
+    * customer_readonly_recognize 客户
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<CustomerDTO>
+    */
+    @ApiOperation(value = "customer_readonly_recognize", tags = {"客户" },  notes = "Customer-customer_readonly_recognize ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Customer-customer_readonly_recognize-all') or hasPermission(this.customerDtoMapping.toDomain(#dto),'ibizplm-Customer-customer_readonly_recognize')")
+    @PostMapping("customers/{id}/customer_readonly_recognize")
+    public ResponseEntity<ResponseWrapper<CustomerDTO>> customerReadonlyRecognizeById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<CustomerDTO> dto) {
+        ResponseWrapper<CustomerDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(customerReadonlyRecognizeById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(customerReadonlyRecognizeById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * customer_readonly_recognize 客户
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<CustomerDTO>
+    */   
+    public CustomerDTO customerReadonlyRecognizeById
+            (String id, CustomerDTO dto) {
+        Customer domain = customerDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Customer rt = customerService.customerReadonlyRecognize(domain);
+        return customerDtoMapping.toDto(rt);
+    }
+
+    /**
     * del_relation 客户
     * 
     *
@@ -248,21 +287,18 @@ public abstract class AbstractCustomerResource {
     * delete_categories 客户
     * 
     *
-    * @param id id
     * @param dto dto
     * @return ResponseEntity<CustomerDTO>
     */
     @ApiOperation(value = "delete_categories", tags = {"客户" },  notes = "Customer-delete_categories ")
-    @PostMapping("customers/{id}/delete_categories")
-    public ResponseEntity<ResponseWrapper<CustomerDTO>> deleteCategoriesById
-            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<CustomerDTO> dto) {
+    @PostMapping("customers/delete_categories")
+    public ResponseEntity<ResponseWrapper<CustomerDTO>> deleteCategories
+            (@Validated @RequestBody RequestWrapper<CustomerDTO> dto) {
         ResponseWrapper<CustomerDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(deleteCategoriesById(ids[i], dto.getList().get(i))));
-        }
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(deleteCategories(item)));
         else
-            rt.set(deleteCategoriesById(id, dto.getDto()));
+            rt.set(deleteCategories(dto.getDto()));
         return ResponseEntity.status(HttpStatus.OK).body(rt);
     }
 
@@ -270,54 +306,13 @@ public abstract class AbstractCustomerResource {
     * delete_categories 客户
     * 
     *
-    * @param id id
     * @param dto dto
     * @return ResponseEntity<CustomerDTO>
     */   
-    public CustomerDTO deleteCategoriesById
-            (String id, CustomerDTO dto) {
+    public CustomerDTO deleteCategories
+            (CustomerDTO dto) {
         Customer domain = customerDtoMapping.toDomain(dto);
-        domain.setId(id);
         Customer rt = customerService.deleteCategories(domain);
-        return customerDtoMapping.toDto(rt);
-    }
-
-    /**
-    * fill_product_member 客户
-    * 
-    *
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<CustomerDTO>
-    */
-    @ApiOperation(value = "fill_product_member", tags = {"客户" },  notes = "Customer-fill_product_member ")
-    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Customer-fill_product_member-all') or hasPermission(this.customerDtoMapping.toDomain(#dto),'ibizplm-Customer-fill_product_member')")
-    @PostMapping("customers/{id}/fill_product_member")
-    public ResponseEntity<ResponseWrapper<CustomerDTO>> fillProductMemberById
-            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<CustomerDTO> dto) {
-        ResponseWrapper<CustomerDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(fillProductMemberById(ids[i], dto.getList().get(i))));
-        }
-        else
-            rt.set(fillProductMemberById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
-    }
-
-    /**
-    * fill_product_member 客户
-    * 
-    *
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<CustomerDTO>
-    */   
-    public CustomerDTO fillProductMemberById
-            (String id, CustomerDTO dto) {
-        Customer domain = customerDtoMapping.toDomain(dto);
-        domain.setId(id);
-        Customer rt = customerService.fillProductMember(domain);
         return customerDtoMapping.toDto(rt);
     }
 
@@ -596,6 +591,47 @@ public abstract class AbstractCustomerResource {
     }
 
     /**
+    * customer_readonly_recognize 客户
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<CustomerDTO>
+    */
+    @ApiOperation(value = "customer_readonly_recognize", tags = {"客户" },  notes = "Customer-customer_readonly_recognize ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Customer-customer_readonly_recognize-all') or hasPermission('product',#productId,this.customerDtoMapping.toDomain(#dto),'ibizplm-Customer-customer_readonly_recognize')")
+    @PostMapping("products/{productId}/customers/{id}/customer_readonly_recognize")
+    public ResponseEntity<ResponseWrapper<CustomerDTO>> customerReadonlyRecognizeByProductIdAndId
+            (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<CustomerDTO> dto) {
+        ResponseWrapper<CustomerDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(customerReadonlyRecognizeByProductIdAndId(productId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(customerReadonlyRecognizeByProductIdAndId(productId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * customer_readonly_recognize 客户
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<CustomerDTO>
+    */   
+    public CustomerDTO customerReadonlyRecognizeByProductIdAndId
+            (String productId, String id, CustomerDTO dto) {
+        Customer domain = customerDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Customer rt = customerService.customerReadonlyRecognize(domain);
+        return customerDtoMapping.toDto(rt);
+    }
+
+    /**
     * del_relation 客户
     * 
     *
@@ -640,21 +676,18 @@ public abstract class AbstractCustomerResource {
     * 
     *
     * @param productId productId
-    * @param id id
     * @param dto dto
     * @return ResponseEntity<CustomerDTO>
     */
     @ApiOperation(value = "delete_categories", tags = {"客户" },  notes = "Customer-delete_categories ")
-    @PostMapping("products/{productId}/customers/{id}/delete_categories")
-    public ResponseEntity<ResponseWrapper<CustomerDTO>> deleteCategoriesByProductIdAndId
-            (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<CustomerDTO> dto) {
+    @PostMapping("products/{productId}/customers/delete_categories")
+    public ResponseEntity<ResponseWrapper<CustomerDTO>> deleteCategoriesByProductId
+            (@PathVariable("productId") String productId, @Validated @RequestBody RequestWrapper<CustomerDTO> dto) {
         ResponseWrapper<CustomerDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(deleteCategoriesByProductIdAndId(productId, ids[i], dto.getList().get(i))));
-        }
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(deleteCategoriesByProductId(productId, item)));
         else
-            rt.set(deleteCategoriesByProductIdAndId(productId, id, dto.getDto()));
+            rt.set(deleteCategoriesByProductId(productId, dto.getDto()));
         return ResponseEntity.status(HttpStatus.OK).body(rt);
     }
 
@@ -663,56 +696,14 @@ public abstract class AbstractCustomerResource {
     * 
     *
     * @param productId productId
-    * @param id id
     * @param dto dto
     * @return ResponseEntity<CustomerDTO>
     */   
-    public CustomerDTO deleteCategoriesByProductIdAndId
-            (String productId, String id, CustomerDTO dto) {
+    public CustomerDTO deleteCategoriesByProductId
+            (String productId, CustomerDTO dto) {
         Customer domain = customerDtoMapping.toDomain(dto);
-        domain.setId(id);
+        domain.setProductId(productId);
         Customer rt = customerService.deleteCategories(domain);
-        return customerDtoMapping.toDto(rt);
-    }
-
-    /**
-    * fill_product_member 客户
-    * 
-    *
-    * @param productId productId
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<CustomerDTO>
-    */
-    @ApiOperation(value = "fill_product_member", tags = {"客户" },  notes = "Customer-fill_product_member ")
-    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Customer-fill_product_member-all') or hasPermission('product',#productId,this.customerDtoMapping.toDomain(#dto),'ibizplm-Customer-fill_product_member')")
-    @PostMapping("products/{productId}/customers/{id}/fill_product_member")
-    public ResponseEntity<ResponseWrapper<CustomerDTO>> fillProductMemberByProductIdAndId
-            (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<CustomerDTO> dto) {
-        ResponseWrapper<CustomerDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(fillProductMemberByProductIdAndId(productId, ids[i], dto.getList().get(i))));
-        }
-        else
-            rt.set(fillProductMemberByProductIdAndId(productId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
-    }
-
-    /**
-    * fill_product_member 客户
-    * 
-    *
-    * @param productId productId
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<CustomerDTO>
-    */   
-    public CustomerDTO fillProductMemberByProductIdAndId
-            (String productId, String id, CustomerDTO dto) {
-        Customer domain = customerDtoMapping.toDomain(dto);
-        domain.setId(id);
-        Customer rt = customerService.fillProductMember(domain);
         return customerDtoMapping.toDto(rt);
     }
 
@@ -929,7 +920,7 @@ public abstract class AbstractCustomerResource {
     public ResponseEntity<List<CustomerAssigneeDTO>> fetchCommentNotifyAssignee
             (@Validated @RequestBody CustomerFilterDTO dto) {
         CustomerSearchContext context = customerFilterDtoMapping.toDomain(dto);
-        Page<Customer> domains = customerService.searchCommentNotifyAssignee(context) ;
+        Page<Customer> domains = customerService.fetchCommentNotifyAssignee(context) ;
         List<CustomerAssigneeDTO> list = customerAssigneeDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -951,7 +942,7 @@ public abstract class AbstractCustomerResource {
     public ResponseEntity<List<CustomerDTO>> fetchDefault
             (@Validated @RequestBody CustomerFilterDTO dto) {
         CustomerSearchContext context = customerFilterDtoMapping.toDomain(dto);
-        Page<Customer> domains = customerService.searchDefault(context) ;
+        Page<Customer> domains = customerService.fetchDefault(context) ;
         List<CustomerDTO> list = customerDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -973,7 +964,7 @@ public abstract class AbstractCustomerResource {
     public ResponseEntity<List<CustomerDTO>> fetchIdeaNotreCustomer
             (@Validated @RequestBody CustomerFilterDTO dto) {
         CustomerSearchContext context = customerFilterDtoMapping.toDomain(dto);
-        Page<Customer> domains = customerService.searchIdeaNotreCustomer(context) ;
+        Page<Customer> domains = customerService.fetchIdeaNotreCustomer(context) ;
         List<CustomerDTO> list = customerDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -995,7 +986,7 @@ public abstract class AbstractCustomerResource {
     public ResponseEntity<List<CustomerDTO>> fetchIdeaRelationCustomer
             (@Validated @RequestBody CustomerFilterDTO dto) {
         CustomerSearchContext context = customerFilterDtoMapping.toDomain(dto);
-        Page<Customer> domains = customerService.searchIdeaRelationCustomer(context) ;
+        Page<Customer> domains = customerService.fetchIdeaRelationCustomer(context) ;
         List<CustomerDTO> list = customerDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1017,7 +1008,7 @@ public abstract class AbstractCustomerResource {
     public ResponseEntity<List<CustomerDTO>> fetchNormal
             (@Validated @RequestBody CustomerFilterDTO dto) {
         CustomerSearchContext context = customerFilterDtoMapping.toDomain(dto);
-        Page<Customer> domains = customerService.searchNormal(context) ;
+        Page<Customer> domains = customerService.fetchNormal(context) ;
         List<CustomerDTO> list = customerDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1039,7 +1030,7 @@ public abstract class AbstractCustomerResource {
     public ResponseEntity<List<CustomerAssigneeDTO>> fetchNotifyAssignee
             (@Validated @RequestBody CustomerFilterDTO dto) {
         CustomerSearchContext context = customerFilterDtoMapping.toDomain(dto);
-        Page<Customer> domains = customerService.searchNotifyAssignee(context) ;
+        Page<Customer> domains = customerService.fetchNotifyAssignee(context) ;
         List<CustomerAssigneeDTO> list = customerAssigneeDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1150,7 +1141,7 @@ public abstract class AbstractCustomerResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody CustomerFilterDTO dto) {
         dto.setProductIdEQ(productId);
         CustomerSearchContext context = customerFilterDtoMapping.toDomain(dto);
-        Page<Customer> domains = customerService.searchCommentNotifyAssignee(context) ;
+        Page<Customer> domains = customerService.fetchCommentNotifyAssignee(context) ;
         List<CustomerAssigneeDTO> list = customerAssigneeDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1174,7 +1165,7 @@ public abstract class AbstractCustomerResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody CustomerFilterDTO dto) {
         dto.setProductIdEQ(productId);
         CustomerSearchContext context = customerFilterDtoMapping.toDomain(dto);
-        Page<Customer> domains = customerService.searchDefault(context) ;
+        Page<Customer> domains = customerService.fetchDefault(context) ;
         List<CustomerDTO> list = customerDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1198,7 +1189,7 @@ public abstract class AbstractCustomerResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody CustomerFilterDTO dto) {
         dto.setProductIdEQ(productId);
         CustomerSearchContext context = customerFilterDtoMapping.toDomain(dto);
-        Page<Customer> domains = customerService.searchIdeaNotreCustomer(context) ;
+        Page<Customer> domains = customerService.fetchIdeaNotreCustomer(context) ;
         List<CustomerDTO> list = customerDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1222,7 +1213,7 @@ public abstract class AbstractCustomerResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody CustomerFilterDTO dto) {
         dto.setProductIdEQ(productId);
         CustomerSearchContext context = customerFilterDtoMapping.toDomain(dto);
-        Page<Customer> domains = customerService.searchIdeaRelationCustomer(context) ;
+        Page<Customer> domains = customerService.fetchIdeaRelationCustomer(context) ;
         List<CustomerDTO> list = customerDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1246,7 +1237,7 @@ public abstract class AbstractCustomerResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody CustomerFilterDTO dto) {
         dto.setProductIdEQ(productId);
         CustomerSearchContext context = customerFilterDtoMapping.toDomain(dto);
-        Page<Customer> domains = customerService.searchNormal(context) ;
+        Page<Customer> domains = customerService.fetchNormal(context) ;
         List<CustomerDTO> list = customerDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1270,7 +1261,7 @@ public abstract class AbstractCustomerResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody CustomerFilterDTO dto) {
         dto.setProductIdEQ(productId);
         CustomerSearchContext context = customerFilterDtoMapping.toDomain(dto);
-        Page<Customer> domains = customerService.searchNotifyAssignee(context) ;
+        Page<Customer> domains = customerService.fetchNotifyAssignee(context) ;
         List<CustomerAssigneeDTO> list = customerAssigneeDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1289,7 +1280,7 @@ public abstract class AbstractCustomerResource {
     @ApiOperation(value = "批量新建客户", tags = {"客户" },  notes = "批量新建客户")
 	@PostMapping("customers/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<CustomerDTO> dtos) {
-        customerService.createBatch(customerDtoMapping.toDomain(dtos));
+        customerService.create(customerDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -1302,7 +1293,7 @@ public abstract class AbstractCustomerResource {
     @ApiOperation(value = "批量删除客户", tags = {"客户" },  notes = "批量删除客户")
 	@DeleteMapping("customers/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        customerService.removeBatch(ids);
+        customerService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -1315,7 +1306,7 @@ public abstract class AbstractCustomerResource {
     @ApiOperation(value = "批量更新客户", tags = {"客户" },  notes = "批量更新客户")
 	@PutMapping("customers/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<CustomerDTO> dtos) {
-        customerService.updateBatch(customerDtoMapping.toDomain(dtos));
+        customerService.update(customerDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -1328,7 +1319,7 @@ public abstract class AbstractCustomerResource {
     @ApiOperation(value = "批量保存客户", tags = {"客户" },  notes = "批量保存客户")
 	@PostMapping("customers/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<CustomerDTO> dtos) {
-        customerService.saveBatch(customerDtoMapping.toDomain(dtos));
+        customerService.save(customerDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

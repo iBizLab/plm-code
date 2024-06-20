@@ -45,6 +45,7 @@ export default {
   ],
   controls: [
     {
+      title: '产品',
       xdataControlName: 'treeexpbar_tree',
       enableCounter: true,
       showTitleBar: true,
@@ -68,6 +69,12 @@ export default {
           refAppViewId: 'plmweb.ticket_type_config_tab_exp_view',
           name: 'EXPITEM:node_2',
           id: 'expitem:node_2',
+        },
+        {
+          realTitle: '组件设置',
+          refAppViewId: 'plmweb.addon_setting_grid_view',
+          name: 'EXPITEM:node_3',
+          id: 'expitem:node_3',
         },
       ],
       controls: [
@@ -160,7 +167,22 @@ export default {
             },
             {
               text: '产品配置',
+              navAppViewId: 'plmweb.addon_setting_grid_view',
               nodeType: 'node_3',
+              navigateParams: [
+                {
+                  key: 'n_owner_type_eq',
+                  value: 'product',
+                  rawValue: true,
+                  id: 'n_owner_type_eq',
+                },
+                {
+                  key: 'n_owner_id_isnull',
+                  value: '1',
+                  rawValue: true,
+                  id: 'n_owner_id_isnull',
+                },
+              ],
               treeNodeType: 'STATIC',
               name: '产品配置',
               id: 'node_3',
@@ -257,6 +279,40 @@ export default {
           modelType: 'PSDETREEVIEW',
           name: 'treeexpbar_tree',
           id: 'plmweb.product.tree_exp_view_setting_tree_view',
+        },
+        {
+          detoolbarItems: [
+            {
+              actionLevel: 100,
+              buttonStyle: 'STYLE2',
+              noPrivDisplayMode: 2,
+              uiactionId: 'back@management',
+              uiactionTarget: 'NONE',
+              valid: true,
+              caption: '返回',
+              itemType: 'DEUIACTION',
+              sysImage: {
+                cssClass: 'fa fa-chevron-left',
+                glyph: 'xf053@FontAwesome',
+              },
+              tooltip: '返回',
+              showCaption: true,
+              showIcon: true,
+              id: 'deuiaction1',
+            },
+          ],
+          toolbarStyle: 'USER',
+          codeName: 'config_tree_exp_view_treeexpbar_toolbar',
+          controlType: 'TOOLBAR',
+          logicName: '工具栏模板（只有一个返回按钮）',
+          appDataEntityId: 'plmweb.product',
+          controlParam: {
+            id: 'treeexpbar_toolbar',
+          },
+          modelId: 'A18F0469-F5DB-4EF1-BB2F-832EA9AE889C',
+          modelType: 'PSDETOOLBAR',
+          name: 'treeexpbar_toolbar',
+          id: 'config_tree_exp_view_treeexpbar_toolbar',
         },
       ],
       codeName: 'config_tree_exp_view_treeexpbar',

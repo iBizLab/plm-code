@@ -62,6 +62,25 @@ public interface GroupMapper extends BaseMapper<Group> {
     List<Group> listNoSection(@Param("ctx") GroupSearchContext context, @Param("ew") Wrapper<Group> wrapper);
 
     /**
+     * 数据集合reader分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Group> searchReader(IPage<Group> page, @Param("ctx") GroupSearchContext context, @Param("ew") Wrapper<Group> wrapper);
+    
+    /**
+     * 数据集合reader查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Group> listReader(@Param("ctx") GroupSearchContext context, @Param("ew") Wrapper<Group> wrapper);
+
+    /**
      * 数据集合user_group_admin分页查询
      * 
      * @param page
@@ -79,6 +98,14 @@ public interface GroupMapper extends BaseMapper<Group> {
      * @return
      */
     List<Group> listUserGroupAdmin(@Param("ctx") GroupSearchContext context, @Param("ew") Wrapper<Group> wrapper);
+
+    /**
+    * 根据sectionId查询
+    *
+    * @param sectionIds
+    * @return
+    */
+    List<Group> findBySectionId(@Param("sectionIds") List<String> sectionIds);
 
     /**
      * 主键查询
@@ -189,13 +216,4 @@ public interface GroupMapper extends BaseMapper<Group> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据sectionId查询
-     *
-     * @param sectionIds
-     * @return
-     */
-    List<Group> findBySectionId(@Param("sectionIds") List<String> sectionIds);
-
 }

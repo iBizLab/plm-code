@@ -35,26 +35,6 @@ public abstract class AbstractAuthLogAdminService extends ServiceImpl<AuthLogAdm
 
     protected int batchSize = 500;
 
-    public AuthLogAdmin get(AuthLogAdmin et) {
-        AuthLogAdmin rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.AUTH_LOG_ADMIN.toString(),et.getLogId());
-        rt.copyTo(et,true);
-        return et;
-    }
-
-    public List<AuthLogAdmin> getByEntities(List<AuthLogAdmin> entities) {
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public AuthLogAdmin getDraft(AuthLogAdmin et) {
-        return et;
-    }
-
-    public Integer checkKey(AuthLogAdmin et) {
-        return (!ObjectUtils.isEmpty(et.getLogId()) && this.count(Wrappers.<AuthLogAdmin>lambdaQuery().eq(AuthLogAdmin::getLogId, et.getLogId()))>0)?1:0;
-    }
-
     @Override
     @Transactional
     public boolean create(AuthLogAdmin et) {
@@ -63,13 +43,13 @@ public abstract class AbstractAuthLogAdminService extends ServiceImpl<AuthLogAdm
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<AuthLogAdmin> list) {
+    public boolean create(List<AuthLogAdmin> list) {
         this.saveBatch(list, batchSize);
         return true;
     }
-
+	
     @Transactional
     public boolean update(AuthLogAdmin et) {
         UpdateWrapper<AuthLogAdmin> qw = et.getUpdateWrapper(true);
@@ -81,11 +61,43 @@ public abstract class AbstractAuthLogAdminService extends ServiceImpl<AuthLogAdm
     }
 
     @Transactional
-    public boolean updateBatch(List<AuthLogAdmin> list) {
+    public boolean update(List<AuthLogAdmin> list) {
         updateBatchById(list, batchSize);
         return true;
     }
+	
+   @Transactional
+    public boolean remove(AuthLogAdmin et) {
+        if(!remove(Wrappers.<AuthLogAdmin>lambdaQuery().eq(AuthLogAdmin::getLogId, et.getLogId())))
+            return false;
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<AuthLogAdmin> entities) {
+        this.baseMapper.deleteEntities(entities);
+        return true;
+    }		
+    public AuthLogAdmin get(AuthLogAdmin et) {
+        AuthLogAdmin rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.AUTH_LOG_ADMIN.toString(),et.getLogId());
+        rt.copyTo(et,true);
+        return et;
+    }	
+
+    public List<AuthLogAdmin> get(List<AuthLogAdmin> entities) {
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public AuthLogAdmin getDraft(AuthLogAdmin et) {
+        return et;
+    }
+	
+    public Integer checkKey(AuthLogAdmin et) {
+        return (!ObjectUtils.isEmpty(et.getLogId()) && this.count(Wrappers.<AuthLogAdmin>lambdaQuery().eq(AuthLogAdmin::getLogId, et.getLogId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(AuthLogAdmin et) {
@@ -96,10 +108,10 @@ public abstract class AbstractAuthLogAdminService extends ServiceImpl<AuthLogAdm
     }
 
     @Transactional
-    public boolean saveBatch(List<AuthLogAdmin> list) {
+    public boolean save(List<AuthLogAdmin> list) {
         if(ObjectUtils.isEmpty(list))
             return true;
-        Map<String,AuthLogAdmin> before = getByEntities(list).stream().collect(Collectors.toMap(AuthLogAdmin::getLogId,e->e));
+        Map<String,AuthLogAdmin> before = get(list).stream().collect(Collectors.toMap(AuthLogAdmin::getLogId,e->e));
         List<AuthLogAdmin> create = new ArrayList<>();
         List<AuthLogAdmin> update = new ArrayList<>();
         list.forEach(sub->{
@@ -110,49 +122,42 @@ public abstract class AbstractAuthLogAdminService extends ServiceImpl<AuthLogAdm
         });
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
         else
             return true;
     }
-
-    @Transactional
-    public boolean remove(AuthLogAdmin et) {
-        if(!remove(Wrappers.<AuthLogAdmin>lambdaQuery().eq(AuthLogAdmin::getLogId, et.getLogId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<AuthLogAdmin> entities) {
-        this.baseMapper.deleteEntities(entities);
-        return true;
-    }
-
-    public Page<AuthLogAdmin> searchDefault(AuthLogAdminSearchContext context) {
+	
+   public Page<AuthLogAdmin> fetchDefault(AuthLogAdminSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<AuthLogAdmin> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<AuthLogAdmin> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<AuthLogAdmin> listDefault(AuthLogAdminSearchContext context) {
+   public List<AuthLogAdmin> listDefault(AuthLogAdminSearchContext context) {
         List<AuthLogAdmin> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
+   }
+	
+   public Page<AuthLogAdmin> fetchDistinctUserid(AuthLogAdminSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchDistinctUserid(context.getPages(),context,context.getSelectCond());
+        return new PageImpl<AuthLogAdmin>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),AuthLogAdmin.class), context.getPageable(), pages.getTotal());
     }
 
-    public Page<AuthLogAdmin> searchGroupByData(AuthLogAdminSearchContext context) {
+   public List<AuthLogAdmin> listDistinctUserid(AuthLogAdminSearchContext context) {
+        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listDistinctUserid(context,context.getSelectCond()),AuthLogAdmin.class);
+   }
+	
+   public Page<AuthLogAdmin> fetchGroupByData(AuthLogAdminSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchGroupByData(context.getPages(),context,context.getSelectCond());
         return new PageImpl<AuthLogAdmin>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),AuthLogAdmin.class), context.getPageable(), pages.getTotal());
     }
 
-    public List<AuthLogAdmin> listGroupByData(AuthLogAdminSearchContext context) {
+   public List<AuthLogAdmin> listGroupByData(AuthLogAdminSearchContext context) {
         return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listGroupByData(context,context.getSelectCond()),AuthLogAdmin.class);
-    }
+   }
+	
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -172,8 +177,8 @@ public abstract class AbstractAuthLogAdminService extends ServiceImpl<AuthLogAdm
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return AuthLogAdminMapper.class;
     }
@@ -182,4 +187,5 @@ public abstract class AbstractAuthLogAdminService extends ServiceImpl<AuthLogAdm
     protected Class currentModelClass() {
         return AuthLogAdmin.class;
     }
+
 }

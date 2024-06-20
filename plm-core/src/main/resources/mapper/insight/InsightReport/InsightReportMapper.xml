@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper	namespace="cn.ibizlab.plm.core.insight.mapper.InsightReportMapper">
+
+        <!--通过mybatis将查询结果注入到entity中,通过配置autoMapping="true"由mybatis自动处理映射关系 -->
+    <resultMap id="InsightReportResultMap" type="cn.ibizlab.plm.core.insight.domain.InsightReport" autoMapping="true">
+		<id property="id" column="id" /><!--主键字段映射-->
+		<result property="chartType" column="chart_type" />
+		<result property="createMan" column="create_man" />
+		<result property="createTime" column="create_time" />
+		<result property="updateMan" column="update_man" />
+		<result property="updateTime" column="update_time" />
+		<result property="viewId" column="view_id" />
+        <association property="insightView" javaType="cn.ibizlab.plm.core.insight.domain.InsightView" column="view_id" select="cn.ibizlab.plm.core.insight.mapper.InsightViewMapper.selectById" fetchType="lazy"></association>
+    </resultMap>
+
+    <select id="selectById"  resultMap="InsightReportResultMap">
+        <include refid="view" /> 
+         where 
+         t1.id=#{ id }
+    </select>
+
+    <select id="selectEntity" parameterType="cn.ibizlab.plm.core.insight.domain.InsightReport" resultMap="InsightReportResultMap">
+        <include refid="view" /> 
+         where 
+         (t1.id = #{ id })
+    </select>
+
+    <select id="selectEntities" parameterType="java.util.List" resultMap="InsightReportResultMap">
+        <include refid="view" /> 
+         where 
+         (t1.id)
+         in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.id }) </foreach>)
+    </select>
+
+    <delete id="deleteEntities" parameterType="java.util.List">
+    delete from INSIGHT_REPORT
+    where (id)
+         in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.id }) </foreach>)
+    </delete>
+
+    <sql id="default" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CATEGORIES`, t1.`CHART_TYPE`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESC`, t1.`GROUP`, t1.`ID`, t1.`NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VIEW_ID` FROM `INSIGHT_REPORT` t1   ]]>  
+    </sql>
+
+    <sql id="view" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CATEGORIES`, t1.`CHART_TYPE`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESC`, t1.`GROUP`, t1.`ID`, t1.`NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VIEW_ID` FROM `INSIGHT_REPORT` t1   ]]>  
+    </sql>
+
+    <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.insight.filter.InsightReportSearchContext"  resultMap="InsightReportResultMap">
+        select t1.* 
+        from (
+            <include refid="default"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listDefault"  parameterType="cn.ibizlab.plm.core.insight.filter.InsightReportSearchContext"  resultMap="InsightReportResultMap">
+        select t1.*
+        from (
+            <include refid="default"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="findByViewId" resultMap="InsightReportResultMap">
+        select t1.* from (
+            <include refid="default"/>
+        ) t1
+        where view_id in <foreach item="id" index="index" collection="viewIds" open="(" separator="," close=")">#{id}</foreach> 
+    </select>
+
+
+</mapper>

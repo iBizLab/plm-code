@@ -89,17 +89,6 @@ export default {
       id: 'name',
     },
     {
-      codeName: 'create_time',
-      lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.CREATE_TIME',
-      },
-      logicName: '建立时间',
-      stdDataType: 5,
-      valueFormat: 'YYYY-MM-DD HH:mm:ss',
-      name: 'CREATE_TIME',
-      id: 'create_time',
-    },
-    {
       codeName: 'create_man',
       lnlanguageRes: {
         lanResTag: 'DEF.LNAME.CREATE_MAN',
@@ -109,6 +98,17 @@ export default {
       stringLength: 100,
       name: 'CREATE_MAN',
       id: 'create_man',
+    },
+    {
+      codeName: 'create_time',
+      lnlanguageRes: {
+        lanResTag: 'DEF.LNAME.CREATE_TIME',
+      },
+      logicName: '建立时间',
+      stdDataType: 5,
+      valueFormat: 'YYYY-MM-DD HH:mm:ss',
+      name: 'CREATE_TIME',
+      id: 'create_time',
     },
     {
       codeName: 'update_man',

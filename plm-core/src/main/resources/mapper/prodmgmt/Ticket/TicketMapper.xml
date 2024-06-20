@@ -15,10 +15,10 @@
 		<result property="submitterName" column="submitter_name" />
 		<result property="showIdentifier" column="show_identifier" />
 		<result property="productIdentifier" column="product_identifier" />
-		<result property="updateTime" column="update_time" />
 		<result property="createMan" column="create_man" />
 		<result property="createTime" column="create_time" />
 		<result property="updateMan" column="update_man" />
+		<result property="updateTime" column="update_time" />
 		<result property="productId" column="product_id" />
 		<result property="customerId" column="customer_id" />
 		<result property="customerName" column="customer_name" />

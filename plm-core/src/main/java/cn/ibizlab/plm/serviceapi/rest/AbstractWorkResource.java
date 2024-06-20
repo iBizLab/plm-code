@@ -513,7 +513,7 @@ public abstract class AbstractWorkResource {
     public ResponseEntity<List<WorkDTO>> fetchDefault
             (@Validated @RequestBody WorkFilterDTO dto) {
         WorkSearchContext context = workFilterDtoMapping.toDomain(dto);
-        Page<Work> domains = workService.searchDefault(context) ;
+        Page<Work> domains = workService.fetchDefault(context) ;
         List<WorkDTO> list = workDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -535,7 +535,7 @@ public abstract class AbstractWorkResource {
     public ResponseEntity<List<WorkDTO>> fetchItemSetOwner
             (@Validated @RequestBody WorkFilterDTO dto) {
         WorkSearchContext context = workFilterDtoMapping.toDomain(dto);
-        Page<Work> domains = workService.searchItemSetOwner(context) ;
+        Page<Work> domains = workService.fetchItemSetOwner(context) ;
         List<WorkDTO> list = workDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -629,7 +629,7 @@ public abstract class AbstractWorkResource {
             (@PathVariable("portfolioId") String portfolioId, @Validated @RequestBody WorkFilterDTO dto) {
         dto.setPortfolioIdEQ(portfolioId);
         WorkSearchContext context = workFilterDtoMapping.toDomain(dto);
-        Page<Work> domains = workService.searchDefault(context) ;
+        Page<Work> domains = workService.fetchDefault(context) ;
         List<WorkDTO> list = workDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -653,7 +653,7 @@ public abstract class AbstractWorkResource {
             (@PathVariable("portfolioId") String portfolioId, @Validated @RequestBody WorkFilterDTO dto) {
         dto.setPortfolioIdEQ(portfolioId);
         WorkSearchContext context = workFilterDtoMapping.toDomain(dto);
-        Page<Work> domains = workService.searchItemSetOwner(context) ;
+        Page<Work> domains = workService.fetchItemSetOwner(context) ;
         List<WorkDTO> list = workDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -672,7 +672,7 @@ public abstract class AbstractWorkResource {
     @ApiOperation(value = "批量新建工作", tags = {"工作" },  notes = "批量新建工作")
 	@PostMapping("works/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<WorkDTO> dtos) {
-        workService.createBatch(workDtoMapping.toDomain(dtos));
+        workService.create(workDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -685,7 +685,7 @@ public abstract class AbstractWorkResource {
     @ApiOperation(value = "批量删除工作", tags = {"工作" },  notes = "批量删除工作")
 	@DeleteMapping("works/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        workService.removeBatch(ids);
+        workService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -698,7 +698,7 @@ public abstract class AbstractWorkResource {
     @ApiOperation(value = "批量更新工作", tags = {"工作" },  notes = "批量更新工作")
 	@PutMapping("works/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<WorkDTO> dtos) {
-        workService.updateBatch(workDtoMapping.toDomain(dtos));
+        workService.update(workDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -711,7 +711,7 @@ public abstract class AbstractWorkResource {
     @ApiOperation(value = "批量保存工作", tags = {"工作" },  notes = "批量保存工作")
 	@PostMapping("works/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<WorkDTO> dtos) {
-        workService.saveBatch(workDtoMapping.toDomain(dtos));
+        workService.save(workDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

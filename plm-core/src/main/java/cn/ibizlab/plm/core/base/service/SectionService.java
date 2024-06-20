@@ -33,89 +33,32 @@ public interface SectionService extends IService<Section> {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    Section get(Section et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default Section get(String key) {
-        return getSelf().get(new Section().setId(key));
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<Section> getByIds(Collection<String> ids) {
-        List<Section> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Section().setId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<Section> getByEntities(List<Section> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    Section getDraft(Section et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(Section et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(Section et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<Section> list);
+    boolean create(List<Section> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(Section et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<Section> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    @Override
-    boolean save(Section et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<Section> list);
+    boolean update(List<Section> list);
 
     /**
      * 主键删除
@@ -125,14 +68,7 @@ public interface SectionService extends IService<Section> {
     default boolean remove(String key) {
         return getSelf().remove(new Section().setId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -142,13 +78,13 @@ public interface SectionService extends IService<Section> {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<Section> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Section().setId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new Section().setId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -156,7 +92,118 @@ public interface SectionService extends IService<Section> {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<Section> entities);
+    boolean remove(List<Section> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default Section get(String key) {
+        return getSelf().get(new Section().setId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    Section get(Section et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<Section> get(Collection<String> keys) {
+        List<Section> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new Section().setId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<Section> get(List<Section> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    Section getDraft(Section et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(Section et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(Section et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<Section> list);
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<Section> fetchDefault(SectionSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<Section> listDefault(SectionSearchContext context);
+
+    /**
+    * fetchThisProductSection
+    * 
+    * @param context
+    * @return
+    */
+    Page<Section> fetchThisProductSection(SectionSearchContext context);
+
+    /**
+    * listThisProductSection
+    * 
+    * @param context
+    * @return
+    */
+    List<Section> listThisProductSection(SectionSearchContext context);
+
+    /**
+    * fetchCheckName
+    * 
+    * @param context
+    * @return
+    */
+    Page<Section> fetchCheckName(SectionSearchContext context);
+
+    /**
+    * listCheckName
+    * 
+    * @param context
+    * @return
+    */
+    List<Section> listCheckName(SectionSearchContext context);
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<Section> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -173,37 +220,7 @@ public interface SectionService extends IService<Section> {
         }
         return rt;
     }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<Section> searchDefault(SectionSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<Section> listDefault(SectionSearchContext context);
-
-    /**
-     * searchThis_product_section
-     * 
-     * @param context
-     * @return
-     */
-    Page<Section> searchThisProductSection(SectionSearchContext context);
-    /**
-     * listThis_product_section
-     * 
-     * @param context
-     * @return
-     */
-    List<Section> listThisProductSection(SectionSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -211,6 +228,7 @@ public interface SectionService extends IService<Section> {
     default Section getEntity() {
         return new Section();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -219,20 +237,12 @@ public interface SectionService extends IService<Section> {
         return new SectionSearchContext();
     }
 
-    /**
-     * 自定义查询SQL
-     * @param sql  select * from table where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
-    List<JSONObject> select(String sql, Map<String,Object> param);
 
     /**
-     * 自定义SQL
-     * @param sql  update table  set name ='test' where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
+    * 自定义SQL
+    * @param sql  update table  set name ='test' where id =#{et.param}
+    * @param param 参数列表  param.put("param","1");
+    * @return
+    */
     boolean execute(String sql, Map<String,Object> param);
-
 }

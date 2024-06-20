@@ -43,6 +43,22 @@ public interface SwimlaneMapper extends BaseMapper<Swimlane> {
     List<Swimlane> listDefault(@Param("ctx") SwimlaneSearchContext context, @Param("ew") Wrapper<Swimlane> wrapper);
 
     /**
+    * 根据boardId查询
+    *
+    * @param boardIds
+    * @return
+    */
+    List<Swimlane> findByBoardId(@Param("boardIds") List<String> boardIds);
+
+    /**
+    * 根据projectId查询
+    *
+    * @param projectIds
+    * @return
+    */
+    List<Swimlane> findByProjectId(@Param("projectIds") List<String> projectIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -151,21 +167,4 @@ public interface SwimlaneMapper extends BaseMapper<Swimlane> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据boardId查询
-     *
-     * @param boardIds
-     * @return
-     */
-    List<Swimlane> findByBoardId(@Param("boardIds") List<String> boardIds);
-
-    /**
-     * 根据projectId查询
-     *
-     * @param projectIds
-     * @return
-     */
-    List<Swimlane> findByProjectId(@Param("projectIds") List<String> projectIds);
-
 }

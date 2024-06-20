@@ -138,6 +138,22 @@ public interface CustomerMapper extends BaseMapper<Customer> {
     List<Customer> listNotifyAssignee(@Param("ctx") CustomerSearchContext context, @Param("ew") Wrapper<Customer> wrapper);
 
     /**
+    * 根据productId查询
+    *
+    * @param productIds
+    * @return
+    */
+    List<Customer> findByProductId(@Param("productIds") List<String> productIds);
+
+    /**
+    * 根据assigneeId查询
+    *
+    * @param assigneeIds
+    * @return
+    */
+    List<Customer> findByAssigneeId(@Param("assigneeIds") List<String> assigneeIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -246,21 +262,4 @@ public interface CustomerMapper extends BaseMapper<Customer> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据productId查询
-     *
-     * @param productIds
-     * @return
-     */
-    List<Customer> findByProductId(@Param("productIds") List<String> productIds);
-
-    /**
-     * 根据assigneeId查询
-     *
-     * @param assigneeIds
-     * @return
-     */
-    List<Customer> findByAssigneeId(@Param("assigneeIds") List<String> assigneeIds);
-
 }

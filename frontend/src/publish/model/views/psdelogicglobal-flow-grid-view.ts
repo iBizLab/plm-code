@@ -165,6 +165,7 @@ export default {
       columnEnableFilter: 2,
       columnEnableLink: 2,
       groupMode: 'NONE',
+      orderValueAppDEFieldId: 'ordervalue',
       degridColumns: [
         {
           clconvertMode: 'NONE',

@@ -6,10 +6,12 @@
     <resultMap id="ReviewContentExtendResultMap" type="cn.ibizlab.plm.core.testmgmt.domain.ReviewContentExtend" autoMapping="true">
 		<id property="id" column="id" /><!--主键字段映射-->
 		<result property="changeType" column="change_type" />
-		<result property="updateMan" column="update_man" />
+		<result property="changeVersion" column="change_version" />
+		<result property="finalStageResults" column="final_stage_results" />
 		<result property="createMan" column="create_man" />
-		<result property="updateTime" column="update_time" />
 		<result property="createTime" column="create_time" />
+		<result property="updateMan" column="update_man" />
+		<result property="updateTime" column="update_time" />
     </resultMap>
 
     <select id="selectById"  resultMap="ReviewContentExtendResultMap">
@@ -38,11 +40,11 @@
     </delete>
 
     <sql id="default" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CHANGE_TYPE`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `REVIEW_CONTENT_EXTEND` t1   ]]>  
+         <![CDATA[ SELECT t1.`CHANGE_TYPE`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`FINAL_STAGE_RESULTS`, t1.`ID`, t1.`NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `REVIEW_CONTENT_EXTEND` t1   ]]>  
     </sql>
 
     <sql id="view" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CHANGE_TYPE`, t1.`CHANGE_VERSION`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `REVIEW_CONTENT_EXTEND` t1   ]]>  
+         <![CDATA[ SELECT t1.`CHANGE_TYPE`, t1.`CHANGE_VERSION`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`FINAL_STAGE_RESULTS`, t1.`ID`, t1.`NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `REVIEW_CONTENT_EXTEND` t1   ]]>  
     </sql>
 
     <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.ReviewContentExtendSearchContext"  resultMap="ReviewContentExtendResultMap">

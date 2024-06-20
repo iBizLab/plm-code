@@ -36,32 +36,6 @@ public abstract class AbstractExtendStorageService extends ServiceImpl<ExtendSto
 
     protected int batchSize = 500;
 
-    public ExtendStorage get(ExtendStorage et) {
-        ExtendStorage rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.EXTEND_STORAGE.toString(),et.getId());
-        rt.copyTo(et,true);
-        return et;
-    }
-
-    public List<ExtendStorage> getByEntities(List<ExtendStorage> entities) {
-        entities.forEach(et->{
-            if(ObjectUtils.isEmpty(et.getId()))
-                et.setId((String)et.getDefaultKey(true));
-            });
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public ExtendStorage getDraft(ExtendStorage et) {
-        return et;
-    }
-
-    public Integer checkKey(ExtendStorage et) {
-        if(ObjectUtils.isEmpty(et.getId()))
-            et.setId((String)et.getDefaultKey(true));
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ExtendStorage>lambdaQuery().eq(ExtendStorage::getId, et.getId()))>0)?1:0;
-    }
-
     @Override
     @Transactional
     public boolean create(ExtendStorage et) {
@@ -72,9 +46,9 @@ public abstract class AbstractExtendStorageService extends ServiceImpl<ExtendSto
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<ExtendStorage> list) {
+    public boolean create(List<ExtendStorage> list) {
         list.forEach(et->{
             if(ObjectUtils.isEmpty(et.getId()))
                 et.setId((String)et.getDefaultKey(true));
@@ -82,7 +56,7 @@ public abstract class AbstractExtendStorageService extends ServiceImpl<ExtendSto
         this.saveBatch(list, batchSize);
         return true;
     }
-
+	
     @Transactional
     public boolean update(ExtendStorage et) {
         UpdateWrapper<ExtendStorage> qw = et.getUpdateWrapper(true);
@@ -94,11 +68,49 @@ public abstract class AbstractExtendStorageService extends ServiceImpl<ExtendSto
     }
 
     @Transactional
-    public boolean updateBatch(List<ExtendStorage> list) {
+    public boolean update(List<ExtendStorage> list) {
         updateBatchById(list, batchSize);
         return true;
     }
+	
+   @Transactional
+    public boolean remove(ExtendStorage et) {
+        if(!remove(Wrappers.<ExtendStorage>lambdaQuery().eq(ExtendStorage::getId, et.getId())))
+            return false;
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<ExtendStorage> entities) {
+        this.baseMapper.deleteEntities(entities);
+        return true;
+    }		
+    public ExtendStorage get(ExtendStorage et) {
+        ExtendStorage rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.EXTEND_STORAGE.toString(),et.getId());
+        rt.copyTo(et,true);
+        return et;
+    }	
+
+    public List<ExtendStorage> get(List<ExtendStorage> entities) {
+        entities.forEach(et->{
+            if(ObjectUtils.isEmpty(et.getId()))
+                et.setId((String)et.getDefaultKey(true));
+            });
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public ExtendStorage getDraft(ExtendStorage et) {
+        return et;
+    }
+	
+    public Integer checkKey(ExtendStorage et) {
+        if(ObjectUtils.isEmpty(et.getId()))
+            et.setId((String)et.getDefaultKey(true));
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ExtendStorage>lambdaQuery().eq(ExtendStorage::getId, et.getId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(ExtendStorage et) {
@@ -109,10 +121,10 @@ public abstract class AbstractExtendStorageService extends ServiceImpl<ExtendSto
     }
 
     @Transactional
-    public boolean saveBatch(List<ExtendStorage> list) {
+    public boolean save(List<ExtendStorage> list) {
         if(ObjectUtils.isEmpty(list))
             return true;
-        Map<String,ExtendStorage> before = getByEntities(list).stream().collect(Collectors.toMap(ExtendStorage::getId,e->e));
+        Map<String,ExtendStorage> before = get(list).stream().collect(Collectors.toMap(ExtendStorage::getId,e->e));
         List<ExtendStorage> create = new ArrayList<>();
         List<ExtendStorage> update = new ArrayList<>();
         list.forEach(sub->{
@@ -127,40 +139,24 @@ public abstract class AbstractExtendStorageService extends ServiceImpl<ExtendSto
         });
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
         else
             return true;
     }
-
-    @Transactional
-    public boolean remove(ExtendStorage et) {
-        if(!remove(Wrappers.<ExtendStorage>lambdaQuery().eq(ExtendStorage::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<ExtendStorage> entities) {
-        this.baseMapper.deleteEntities(entities);
-        return true;
-    }
-
-    public Page<ExtendStorage> searchDefault(ExtendStorageSearchContext context) {
+	
+   public Page<ExtendStorage> fetchDefault(ExtendStorageSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<ExtendStorage> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<ExtendStorage> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<ExtendStorage> listDefault(ExtendStorageSearchContext context) {
+   public List<ExtendStorage> listDefault(ExtendStorageSearchContext context) {
         List<ExtendStorage> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
-    }
+   }
+	
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -180,8 +176,8 @@ public abstract class AbstractExtendStorageService extends ServiceImpl<ExtendSto
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return ExtendStorageMapper.class;
     }
@@ -190,4 +186,5 @@ public abstract class AbstractExtendStorageService extends ServiceImpl<ExtendSto
     protected Class currentModelClass() {
         return ExtendStorage.class;
     }
+
 }

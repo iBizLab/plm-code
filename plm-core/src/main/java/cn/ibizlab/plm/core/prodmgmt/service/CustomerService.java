@@ -38,89 +38,32 @@ public interface CustomerService extends IService<Customer> {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    Customer get(Customer et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default Customer get(String key) {
-        return getSelf().get(new Customer().setId(key));
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<Customer> getByIds(Collection<String> ids) {
-        List<Customer> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Customer().setId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<Customer> getByEntities(List<Customer> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    Customer getDraft(Customer et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(Customer et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(Customer et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<Customer> list);
+    boolean create(List<Customer> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(Customer et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<Customer> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    @Override
-    boolean save(Customer et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<Customer> list);
+    boolean update(List<Customer> list);
 
     /**
      * 主键删除
@@ -130,14 +73,7 @@ public interface CustomerService extends IService<Customer> {
     default boolean remove(String key) {
         return getSelf().remove(new Customer().setId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -147,13 +83,13 @@ public interface CustomerService extends IService<Customer> {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<Customer> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Customer().setId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new Customer().setId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -161,7 +97,344 @@ public interface CustomerService extends IService<Customer> {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<Customer> entities);
+    boolean remove(List<Customer> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default Customer get(String key) {
+        return getSelf().get(new Customer().setId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    Customer get(Customer et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<Customer> get(Collection<String> keys) {
+        List<Customer> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new Customer().setId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<Customer> get(List<Customer> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    Customer getDraft(Customer et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(Customer et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(Customer et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<Customer> list);
+
+    /**
+    * addCategories
+    * 
+    * @param et
+    * @return
+    */
+    default Customer addCategories(Customer et) {
+        return et;
+    }
+
+    /**
+    * customerChooseTicket
+    * 
+    * @param et
+    * @return
+    */
+    default Customer customerChooseTicket(Customer et) {
+        return et;
+    }
+
+    /**
+    * customerReadonlyRecognize
+    * 
+    * @param et
+    * @return
+    */
+    default Customer customerReadonlyRecognize(Customer et) {
+        return et;
+    }
+
+    /**
+    * delRelation
+    * 
+    * @param et
+    * @return
+    */
+    default Customer delRelation(Customer et) {
+        return et;
+    }
+
+    /**
+    * deleteCategories
+    * 
+    * @param et
+    * @return
+    */
+    default Customer deleteCategories(Customer et) {
+        return et;
+    }
+
+    /**
+    * getAttention
+    * 
+    * @param key
+    * @return
+    */
+    default Customer getAttention(String key) {
+        return null;
+    }
+
+    /**
+    * nothing
+    * 
+    * @param et
+    * @return
+    */
+    default Customer nothing(Customer et) {
+        return et;
+    }
+
+    /**
+    * othersRelationCustomer
+    * 
+    * @param et
+    * @return
+    */
+    default Customer othersRelationCustomer(Customer et) {
+        return et;
+    }
+
+    /**
+    * productCustomerReCounters
+    * 
+    * @param et
+    * @return
+    */
+    default Customer productCustomerReCounters(Customer et) {
+        return et;
+    }
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<Customer> fetchDefault(CustomerSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<Customer> listDefault(CustomerSearchContext context);
+
+    /**
+    * fetchCommentNotifyAssignee
+    * 
+    * @param context
+    * @return
+    */
+    Page<Customer> fetchCommentNotifyAssignee(CustomerSearchContext context);
+
+    /**
+    * listCommentNotifyAssignee
+    * 
+    * @param context
+    * @return
+    */
+    List<Customer> listCommentNotifyAssignee(CustomerSearchContext context);
+
+    /**
+    * fetchIdeaNotreCustomer
+    * 
+    * @param context
+    * @return
+    */
+    Page<Customer> fetchIdeaNotreCustomer(CustomerSearchContext context);
+
+    /**
+    * listIdeaNotreCustomer
+    * 
+    * @param context
+    * @return
+    */
+    List<Customer> listIdeaNotreCustomer(CustomerSearchContext context);
+
+    /**
+    * fetchIdeaRelationCustomer
+    * 
+    * @param context
+    * @return
+    */
+    Page<Customer> fetchIdeaRelationCustomer(CustomerSearchContext context);
+
+    /**
+    * listIdeaRelationCustomer
+    * 
+    * @param context
+    * @return
+    */
+    List<Customer> listIdeaRelationCustomer(CustomerSearchContext context);
+
+    /**
+    * fetchNormal
+    * 
+    * @param context
+    * @return
+    */
+    Page<Customer> fetchNormal(CustomerSearchContext context);
+
+    /**
+    * listNormal
+    * 
+    * @param context
+    * @return
+    */
+    List<Customer> listNormal(CustomerSearchContext context);
+
+    /**
+    * fetchNotifyAssignee
+    * 
+    * @param context
+    * @return
+    */
+    Page<Customer> fetchNotifyAssignee(CustomerSearchContext context);
+
+    /**
+    * listNotifyAssignee
+    * 
+    * @param context
+    * @return
+    */
+    List<Customer> listNotifyAssignee(CustomerSearchContext context);
+
+    /**
+    * findByProductId
+    * @param productIds
+    * @return
+    */
+    List<Customer> findByProductId(List<String> productIds);
+    default List<Customer> findByProductId(String productId){
+        return findByProductId(Arrays.asList(productId));
+    }
+
+    /**
+    * removeByProductId
+    * @param productId
+    * @return
+    */
+    boolean removeByProductId(String productId);
+
+    /**
+    * resetByProductId
+    * @param productId
+    * @return
+    */
+    boolean resetByProductId(String productId);
+
+    /**
+    * saveByProductId
+    * @param productId
+    * @param list
+    * @return
+    */
+    default boolean saveByProductId(String productId, List<Customer> list){
+        return getSelf().saveByProduct(new Product().setId(productId),list);
+    }
+
+    /**
+    * saveByProduct
+    * @param product
+    * @param list
+    * @return
+    */
+    boolean saveByProduct(Product product, List<Customer> list);
+
+    /**
+    * findByAssigneeId
+    * @param assigneeIds
+    * @return
+    */
+    List<Customer> findByAssigneeId(List<String> assigneeIds);
+    default List<Customer> findByAssigneeId(String assigneeId){
+        return findByAssigneeId(Arrays.asList(assigneeId));
+    }
+
+    /**
+    * removeByAssigneeId
+    * @param assigneeId
+    * @return
+    */
+    boolean removeByAssigneeId(String assigneeId);
+
+    /**
+    * resetByAssigneeId
+    * @param assigneeId
+    * @return
+    */
+    boolean resetByAssigneeId(String assigneeId);
+
+    /**
+    * saveByAssigneeId
+    * @param assigneeId
+    * @param list
+    * @return
+    */
+    default boolean saveByAssigneeId(String assigneeId, List<Customer> list){
+        return getSelf().saveByUser(new User().setId(assigneeId),list);
+    }
+
+    /**
+    * saveByUser
+    * @param user
+    * @param list
+    * @return
+    */
+    boolean saveByUser(User user, List<Customer> list);
+
+    default List<Attention> getAttentions(Customer et) {
+        return new ArrayList<>();
+    }
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<Customer> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -178,187 +451,7 @@ public interface CustomerService extends IService<Customer> {
         }
         return rt;
     }
-
-    /**
-     * add_categories
-     * 
-     * @param dto
-     * @return
-     */
-    default Customer addCategories(Customer dto) {
-        return dto;
-    }
-
-    /**
-     * customer_choose_ticket
-     * 
-     * @param dto
-     * @return
-     */
-    default Customer customerChooseTicket(Customer dto) {
-        return dto;
-    }
-
-    /**
-     * del_relation
-     * 
-     * @param dto
-     * @return
-     */
-    default Customer delRelation(Customer dto) {
-        return dto;
-    }
-
-    /**
-     * delete_categories
-     * 
-     * @param dto
-     * @return
-     */
-    default Customer deleteCategories(Customer dto) {
-        return dto;
-    }
-
-    /**
-     * fill_product_member
-     * 
-     * @param dto
-     * @return
-     */
-    default Customer fillProductMember(Customer dto) {
-        return dto;
-    }
-
-    /**
-     * get_attention
-     * 
-     * @param key
-     * @return
-     */
-    default Customer getAttention(String key) {
-        return null;
-    }
-
-    /**
-     * nothing
-     * 
-     * @param dto
-     * @return
-     */
-    default Customer nothing(Customer dto) {
-        return dto;
-    }
-
-    /**
-     * others_relation_customer
-     * 
-     * @param dto
-     * @return
-     */
-    default Customer othersRelationCustomer(Customer dto) {
-        return dto;
-    }
-
-    /**
-     * product_customer_re_counters
-     * 
-     * @param dto
-     * @return
-     */
-    default Customer productCustomerReCounters(Customer dto) {
-        return dto;
-    }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<Customer> searchDefault(CustomerSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<Customer> listDefault(CustomerSearchContext context);
-
-    /**
-     * searchcomment_notify_assignee
-     * 
-     * @param context
-     * @return
-     */
-    Page<Customer> searchCommentNotifyAssignee(CustomerSearchContext context);
-    /**
-     * listcomment_notify_assignee
-     * 
-     * @param context
-     * @return
-     */
-    List<Customer> listCommentNotifyAssignee(CustomerSearchContext context);
-
-    /**
-     * searchidea_notre_customer
-     * 
-     * @param context
-     * @return
-     */
-    Page<Customer> searchIdeaNotreCustomer(CustomerSearchContext context);
-    /**
-     * listidea_notre_customer
-     * 
-     * @param context
-     * @return
-     */
-    List<Customer> listIdeaNotreCustomer(CustomerSearchContext context);
-
-    /**
-     * searchidea_relation_customer
-     * 
-     * @param context
-     * @return
-     */
-    Page<Customer> searchIdeaRelationCustomer(CustomerSearchContext context);
-    /**
-     * listidea_relation_customer
-     * 
-     * @param context
-     * @return
-     */
-    List<Customer> listIdeaRelationCustomer(CustomerSearchContext context);
-
-    /**
-     * searchnormal
-     * 
-     * @param context
-     * @return
-     */
-    Page<Customer> searchNormal(CustomerSearchContext context);
-    /**
-     * listnormal
-     * 
-     * @param context
-     * @return
-     */
-    List<Customer> listNormal(CustomerSearchContext context);
-
-    /**
-     * searchnotify_assignee
-     * 
-     * @param context
-     * @return
-     */
-    Page<Customer> searchNotifyAssignee(CustomerSearchContext context);
-    /**
-     * listnotify_assignee
-     * 
-     * @param context
-     * @return
-     */
-    List<Customer> listNotifyAssignee(CustomerSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -366,6 +459,7 @@ public interface CustomerService extends IService<Customer> {
     default Customer getEntity() {
         return new Customer();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -373,101 +467,13 @@ public interface CustomerService extends IService<Customer> {
     default CustomerSearchContext getSearchContext() {
         return new CustomerSearchContext();
     }
+
+
     /**
-     * selectRelByProductId
-     * @param productIds
-     * @return
-     */
-    List<Customer> findByProductId(List<String> productIds);
-    default List<Customer> findByProductId(String productId) {
-        return findByProductId(Arrays.asList(productId));
-    }
-    /**
-     * removeRelByProductId
-     * @param productId
-     * @return
-     */
-    boolean removeByProductId(String productId);
-    /**
-     * resetRelByProductId
-     * @param productId
-     * @return
-     */
-    boolean resetByProductId(String productId);
-    /**
-     * saveRelByProductId
-     * @param productId
-     * @param list
-     * @return
-     */
-    default boolean saveByProductId(String productId,List<Customer> list) {
-        return getSelf().saveByProduct(new Product().setId(productId),list);
-    }
-    /**
-    * saveRelByProduct
-    * @param product
-    * @param list
+    * 自定义SQL
+    * @param sql  update table  set name ='test' where id =#{et.param}
+    * @param param 参数列表  param.put("param","1");
     * @return
     */
-    boolean saveByProduct(Product product,List<Customer> list);
-
-    /**
-     * selectRelByAssigneeId
-     * @param assigneeIds
-     * @return
-     */
-    List<Customer> findByAssigneeId(List<String> assigneeIds);
-    default List<Customer> findByAssigneeId(String assigneeId) {
-        return findByAssigneeId(Arrays.asList(assigneeId));
-    }
-    /**
-     * removeRelByAssigneeId
-     * @param assigneeId
-     * @return
-     */
-    boolean removeByAssigneeId(String assigneeId);
-    /**
-     * resetRelByAssigneeId
-     * @param assigneeId
-     * @return
-     */
-    boolean resetByAssigneeId(String assigneeId);
-    /**
-     * saveRelByAssigneeId
-     * @param assigneeId
-     * @param list
-     * @return
-     */
-    default boolean saveByAssigneeId(String assigneeId,List<Customer> list) {
-        return getSelf().saveByUser(new User().setId(assigneeId),list);
-    }
-    /**
-    * saveRelByUser
-    * @param user
-    * @param list
-    * @return
-    */
-    boolean saveByUser(User user,List<Customer> list);
-
-    default List<Attention> getAttentions(Customer et) {
-        return new ArrayList<>();
-    }
-
-
-    /**
-     * 自定义查询SQL
-     * @param sql  select * from table where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
-    List<JSONObject> select(String sql, Map<String,Object> param);
-
-    /**
-     * 自定义SQL
-     * @param sql  update table  set name ='test' where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
     boolean execute(String sql, Map<String,Object> param);
-
 }

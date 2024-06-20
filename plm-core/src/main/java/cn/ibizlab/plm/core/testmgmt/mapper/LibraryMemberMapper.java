@@ -62,6 +62,22 @@ public interface LibraryMemberMapper extends BaseMapper<LibraryMember> {
     List<LibraryMember> listCurLibraryMember(@Param("ctx") LibraryMemberSearchContext context, @Param("ew") Wrapper<LibraryMember> wrapper);
 
     /**
+    * 根据libraryId查询
+    *
+    * @param libraryIds
+    * @return
+    */
+    List<LibraryMember> findByLibraryId(@Param("libraryIds") List<String> libraryIds);
+
+    /**
+    * 根据userId查询
+    *
+    * @param userIds
+    * @return
+    */
+    List<LibraryMember> findByUserId(@Param("userIds") List<String> userIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -170,21 +186,4 @@ public interface LibraryMemberMapper extends BaseMapper<LibraryMember> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据libraryId查询
-     *
-     * @param libraryIds
-     * @return
-     */
-    List<LibraryMember> findByLibraryId(@Param("libraryIds") List<String> libraryIds);
-
-    /**
-     * 根据userId查询
-     *
-     * @param userIds
-     * @return
-     */
-    List<LibraryMember> findByUserId(@Param("userIds") List<String> userIds);
-
 }

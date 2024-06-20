@@ -1237,6 +1237,686 @@ public abstract class AbstractCommentResource {
     * 创建Create 评论
     * 
     *
+    * @param topicId topicId
+    * @param principalId principalId
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */
+    @ApiOperation(value = "创建Create", tags = {"评论" },  notes = "Comment-Create ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Comment-Create-all') or hasPermission('discuss_topic',#topicId,this.commentDtoMapping.toDomain(#dto),'ibizplm-Comment-Create')")
+    @PostMapping("discuss_topics/{topicId}/discuss_posts/{principalId}/comments")
+    public ResponseEntity<ResponseWrapper<CommentDTO>> createByTopicIdAndPrincipalId
+            (@PathVariable("topicId") String topicId, @PathVariable("principalId") String principalId, @Validated @RequestBody RequestWrapper<CommentDTO> dto) {
+        ResponseWrapper<CommentDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(createByTopicIdAndPrincipalId(topicId, principalId, item)));
+        else
+            rt.set(createByTopicIdAndPrincipalId(topicId, principalId, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * 创建Create 评论
+    * 
+    *
+    * @param topicId topicId
+    * @param principalId principalId
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */   
+    public CommentDTO createByTopicIdAndPrincipalId
+            (String topicId, String principalId, CommentDTO dto) {
+        Comment domain = commentDtoMapping.toDomain(dto);
+        domain.setPrincipalId(principalId);
+        commentService.create(domain);
+        Comment rt = domain;
+        return commentDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 更新Update 评论
+    * 
+    *
+    * @param topicId topicId
+    * @param principalId principalId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */
+    @ApiOperation(value = "更新Update", tags = {"评论" },  notes = "Comment-Update ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Comment-Update-all') or hasPermission('discuss_topic',#topicId,this.commentService.get(#id),'ibizplm-Comment-Update')")
+    @VersionCheck(entity = "comment" , versionfield = "updateTime")
+    @PutMapping("discuss_topics/{topicId}/discuss_posts/{principalId}/comments/{id}")
+    public ResponseEntity<ResponseWrapper<CommentDTO>> updateByTopicIdAndPrincipalIdAndId
+            (@PathVariable("topicId") String topicId, @PathVariable("principalId") String principalId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<CommentDTO> dto) {
+        ResponseWrapper<CommentDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(updateByTopicIdAndPrincipalIdAndId(topicId, principalId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(updateByTopicIdAndPrincipalIdAndId(topicId, principalId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * 更新Update 评论
+    * 
+    *
+    * @param topicId topicId
+    * @param principalId principalId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */   
+    public CommentDTO updateByTopicIdAndPrincipalIdAndId
+            (String topicId, String principalId, String id, CommentDTO dto) {
+        Comment domain = commentDtoMapping.toDomain(dto);
+        domain.setId(id);
+        commentService.update(domain);
+        Comment rt = domain;
+        return commentDtoMapping.toDto(rt);
+    }
+
+    /**
+    * delete 评论
+    * 
+    *
+    * @param topicId topicId
+    * @param principalId principalId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */
+    @ApiOperation(value = "delete", tags = {"评论" },  notes = "Comment-delete ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Comment-delete-all') or hasPermission('discuss_topic',#topicId,this.commentDtoMapping.toDomain(#dto),'ibizplm-Comment-delete')")
+    @PostMapping("discuss_topics/{topicId}/discuss_posts/{principalId}/comments/{id}/delete")
+    public ResponseEntity<ResponseWrapper<CommentDTO>> deleteByTopicIdAndPrincipalIdAndId
+            (@PathVariable("topicId") String topicId, @PathVariable("principalId") String principalId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<CommentDTO> dto) {
+        ResponseWrapper<CommentDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(deleteByTopicIdAndPrincipalIdAndId(topicId, principalId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(deleteByTopicIdAndPrincipalIdAndId(topicId, principalId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * delete 评论
+    * 
+    *
+    * @param topicId topicId
+    * @param principalId principalId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */   
+    public CommentDTO deleteByTopicIdAndPrincipalIdAndId
+            (String topicId, String principalId, String id, CommentDTO dto) {
+        Comment domain = commentDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Comment rt = commentService.delete(domain);
+        return commentDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 保存Save 评论
+    * 
+    *
+    * @param topicId topicId
+    * @param principalId principalId
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */
+    @ApiOperation(value = "保存Save", tags = {"评论" },  notes = "Comment-Save ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Comment-Save-all') or hasPermission('discuss_topic',#topicId,this.commentDtoMapping.toDomain(#dto),'ibizplm-Comment-Save')")
+    @PostMapping("discuss_topics/{topicId}/discuss_posts/{principalId}/comments/save")
+    public ResponseEntity<ResponseWrapper<CommentDTO>> saveByTopicIdAndPrincipalId
+            (@PathVariable("topicId") String topicId, @PathVariable("principalId") String principalId, @Validated @RequestBody RequestWrapper<CommentDTO> dto) {
+        ResponseWrapper<CommentDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(saveByTopicIdAndPrincipalId(topicId, principalId, item)));
+        else
+            rt.set(saveByTopicIdAndPrincipalId(topicId, principalId, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * 保存Save 评论
+    * 
+    *
+    * @param topicId topicId
+    * @param principalId principalId
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */   
+    public CommentDTO saveByTopicIdAndPrincipalId
+            (String topicId, String principalId, CommentDTO dto) {
+        Comment domain = commentDtoMapping.toDomain(dto);
+        domain.setPrincipalId(principalId);
+        commentService.save(domain);
+        Comment rt = domain;
+        return commentDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 创建Create 评论
+    * 
+    *
+    * @param postId postId
+    * @param principalId principalId
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */
+    @ApiOperation(value = "创建Create", tags = {"评论" },  notes = "Comment-Create ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Comment-Create-all') or hasPermission('discuss_post',#postId,this.commentDtoMapping.toDomain(#dto),'ibizplm-Comment-Create')")
+    @PostMapping("discuss_posts/{postId}/discuss_replies/{principalId}/comments")
+    public ResponseEntity<ResponseWrapper<CommentDTO>> createByPostIdAndPrincipalId
+            (@PathVariable("postId") String postId, @PathVariable("principalId") String principalId, @Validated @RequestBody RequestWrapper<CommentDTO> dto) {
+        ResponseWrapper<CommentDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(createByPostIdAndPrincipalId(postId, principalId, item)));
+        else
+            rt.set(createByPostIdAndPrincipalId(postId, principalId, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * 创建Create 评论
+    * 
+    *
+    * @param postId postId
+    * @param principalId principalId
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */   
+    public CommentDTO createByPostIdAndPrincipalId
+            (String postId, String principalId, CommentDTO dto) {
+        Comment domain = commentDtoMapping.toDomain(dto);
+        domain.setPrincipalId(principalId);
+        commentService.create(domain);
+        Comment rt = domain;
+        return commentDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 更新Update 评论
+    * 
+    *
+    * @param postId postId
+    * @param principalId principalId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */
+    @ApiOperation(value = "更新Update", tags = {"评论" },  notes = "Comment-Update ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Comment-Update-all') or hasPermission('discuss_post',#postId,this.commentService.get(#id),'ibizplm-Comment-Update')")
+    @VersionCheck(entity = "comment" , versionfield = "updateTime")
+    @PutMapping("discuss_posts/{postId}/discuss_replies/{principalId}/comments/{id}")
+    public ResponseEntity<ResponseWrapper<CommentDTO>> updateByPostIdAndPrincipalIdAndId
+            (@PathVariable("postId") String postId, @PathVariable("principalId") String principalId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<CommentDTO> dto) {
+        ResponseWrapper<CommentDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(updateByPostIdAndPrincipalIdAndId(postId, principalId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(updateByPostIdAndPrincipalIdAndId(postId, principalId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * 更新Update 评论
+    * 
+    *
+    * @param postId postId
+    * @param principalId principalId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */   
+    public CommentDTO updateByPostIdAndPrincipalIdAndId
+            (String postId, String principalId, String id, CommentDTO dto) {
+        Comment domain = commentDtoMapping.toDomain(dto);
+        domain.setId(id);
+        commentService.update(domain);
+        Comment rt = domain;
+        return commentDtoMapping.toDto(rt);
+    }
+
+    /**
+    * delete 评论
+    * 
+    *
+    * @param postId postId
+    * @param principalId principalId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */
+    @ApiOperation(value = "delete", tags = {"评论" },  notes = "Comment-delete ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Comment-delete-all') or hasPermission('discuss_post',#postId,this.commentDtoMapping.toDomain(#dto),'ibizplm-Comment-delete')")
+    @PostMapping("discuss_posts/{postId}/discuss_replies/{principalId}/comments/{id}/delete")
+    public ResponseEntity<ResponseWrapper<CommentDTO>> deleteByPostIdAndPrincipalIdAndId
+            (@PathVariable("postId") String postId, @PathVariable("principalId") String principalId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<CommentDTO> dto) {
+        ResponseWrapper<CommentDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(deleteByPostIdAndPrincipalIdAndId(postId, principalId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(deleteByPostIdAndPrincipalIdAndId(postId, principalId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * delete 评论
+    * 
+    *
+    * @param postId postId
+    * @param principalId principalId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */   
+    public CommentDTO deleteByPostIdAndPrincipalIdAndId
+            (String postId, String principalId, String id, CommentDTO dto) {
+        Comment domain = commentDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Comment rt = commentService.delete(domain);
+        return commentDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 保存Save 评论
+    * 
+    *
+    * @param postId postId
+    * @param principalId principalId
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */
+    @ApiOperation(value = "保存Save", tags = {"评论" },  notes = "Comment-Save ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Comment-Save-all') or hasPermission('discuss_post',#postId,this.commentDtoMapping.toDomain(#dto),'ibizplm-Comment-Save')")
+    @PostMapping("discuss_posts/{postId}/discuss_replies/{principalId}/comments/save")
+    public ResponseEntity<ResponseWrapper<CommentDTO>> saveByPostIdAndPrincipalId
+            (@PathVariable("postId") String postId, @PathVariable("principalId") String principalId, @Validated @RequestBody RequestWrapper<CommentDTO> dto) {
+        ResponseWrapper<CommentDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(saveByPostIdAndPrincipalId(postId, principalId, item)));
+        else
+            rt.set(saveByPostIdAndPrincipalId(postId, principalId, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * 保存Save 评论
+    * 
+    *
+    * @param postId postId
+    * @param principalId principalId
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */   
+    public CommentDTO saveByPostIdAndPrincipalId
+            (String postId, String principalId, CommentDTO dto) {
+        Comment domain = commentDtoMapping.toDomain(dto);
+        domain.setPrincipalId(principalId);
+        commentService.save(domain);
+        Comment rt = domain;
+        return commentDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 创建Create 评论
+    * 
+    *
+    * @param topicId topicId
+    * @param postId postId
+    * @param principalId principalId
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */
+    @ApiOperation(value = "创建Create", tags = {"评论" },  notes = "Comment-Create ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Comment-Create-all') or hasPermission('discuss_topic',#topicId,this.commentDtoMapping.toDomain(#dto),'ibizplm-Comment-Create')")
+    @PostMapping("discuss_topics/{topicId}/discuss_posts/{postId}/discuss_replies/{principalId}/comments")
+    public ResponseEntity<ResponseWrapper<CommentDTO>> createByTopicIdAndPostIdAndPrincipalId
+            (@PathVariable("topicId") String topicId, @PathVariable("postId") String postId, @PathVariable("principalId") String principalId, @Validated @RequestBody RequestWrapper<CommentDTO> dto) {
+        ResponseWrapper<CommentDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(createByTopicIdAndPostIdAndPrincipalId(topicId, postId, principalId, item)));
+        else
+            rt.set(createByTopicIdAndPostIdAndPrincipalId(topicId, postId, principalId, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * 创建Create 评论
+    * 
+    *
+    * @param topicId topicId
+    * @param postId postId
+    * @param principalId principalId
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */   
+    public CommentDTO createByTopicIdAndPostIdAndPrincipalId
+            (String topicId, String postId, String principalId, CommentDTO dto) {
+        Comment domain = commentDtoMapping.toDomain(dto);
+        domain.setPrincipalId(principalId);
+        commentService.create(domain);
+        Comment rt = domain;
+        return commentDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 更新Update 评论
+    * 
+    *
+    * @param topicId topicId
+    * @param postId postId
+    * @param principalId principalId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */
+    @ApiOperation(value = "更新Update", tags = {"评论" },  notes = "Comment-Update ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Comment-Update-all') or hasPermission('discuss_topic',#topicId,this.commentService.get(#id),'ibizplm-Comment-Update')")
+    @VersionCheck(entity = "comment" , versionfield = "updateTime")
+    @PutMapping("discuss_topics/{topicId}/discuss_posts/{postId}/discuss_replies/{principalId}/comments/{id}")
+    public ResponseEntity<ResponseWrapper<CommentDTO>> updateByTopicIdAndPostIdAndPrincipalIdAndId
+            (@PathVariable("topicId") String topicId, @PathVariable("postId") String postId, @PathVariable("principalId") String principalId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<CommentDTO> dto) {
+        ResponseWrapper<CommentDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(updateByTopicIdAndPostIdAndPrincipalIdAndId(topicId, postId, principalId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(updateByTopicIdAndPostIdAndPrincipalIdAndId(topicId, postId, principalId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * 更新Update 评论
+    * 
+    *
+    * @param topicId topicId
+    * @param postId postId
+    * @param principalId principalId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */   
+    public CommentDTO updateByTopicIdAndPostIdAndPrincipalIdAndId
+            (String topicId, String postId, String principalId, String id, CommentDTO dto) {
+        Comment domain = commentDtoMapping.toDomain(dto);
+        domain.setId(id);
+        commentService.update(domain);
+        Comment rt = domain;
+        return commentDtoMapping.toDto(rt);
+    }
+
+    /**
+    * delete 评论
+    * 
+    *
+    * @param topicId topicId
+    * @param postId postId
+    * @param principalId principalId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */
+    @ApiOperation(value = "delete", tags = {"评论" },  notes = "Comment-delete ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Comment-delete-all') or hasPermission('discuss_topic',#topicId,this.commentDtoMapping.toDomain(#dto),'ibizplm-Comment-delete')")
+    @PostMapping("discuss_topics/{topicId}/discuss_posts/{postId}/discuss_replies/{principalId}/comments/{id}/delete")
+    public ResponseEntity<ResponseWrapper<CommentDTO>> deleteByTopicIdAndPostIdAndPrincipalIdAndId
+            (@PathVariable("topicId") String topicId, @PathVariable("postId") String postId, @PathVariable("principalId") String principalId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<CommentDTO> dto) {
+        ResponseWrapper<CommentDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(deleteByTopicIdAndPostIdAndPrincipalIdAndId(topicId, postId, principalId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(deleteByTopicIdAndPostIdAndPrincipalIdAndId(topicId, postId, principalId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * delete 评论
+    * 
+    *
+    * @param topicId topicId
+    * @param postId postId
+    * @param principalId principalId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */   
+    public CommentDTO deleteByTopicIdAndPostIdAndPrincipalIdAndId
+            (String topicId, String postId, String principalId, String id, CommentDTO dto) {
+        Comment domain = commentDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Comment rt = commentService.delete(domain);
+        return commentDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 保存Save 评论
+    * 
+    *
+    * @param topicId topicId
+    * @param postId postId
+    * @param principalId principalId
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */
+    @ApiOperation(value = "保存Save", tags = {"评论" },  notes = "Comment-Save ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Comment-Save-all') or hasPermission('discuss_topic',#topicId,this.commentDtoMapping.toDomain(#dto),'ibizplm-Comment-Save')")
+    @PostMapping("discuss_topics/{topicId}/discuss_posts/{postId}/discuss_replies/{principalId}/comments/save")
+    public ResponseEntity<ResponseWrapper<CommentDTO>> saveByTopicIdAndPostIdAndPrincipalId
+            (@PathVariable("topicId") String topicId, @PathVariable("postId") String postId, @PathVariable("principalId") String principalId, @Validated @RequestBody RequestWrapper<CommentDTO> dto) {
+        ResponseWrapper<CommentDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(saveByTopicIdAndPostIdAndPrincipalId(topicId, postId, principalId, item)));
+        else
+            rt.set(saveByTopicIdAndPostIdAndPrincipalId(topicId, postId, principalId, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * 保存Save 评论
+    * 
+    *
+    * @param topicId topicId
+    * @param postId postId
+    * @param principalId principalId
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */   
+    public CommentDTO saveByTopicIdAndPostIdAndPrincipalId
+            (String topicId, String postId, String principalId, CommentDTO dto) {
+        Comment domain = commentDtoMapping.toDomain(dto);
+        domain.setPrincipalId(principalId);
+        commentService.save(domain);
+        Comment rt = domain;
+        return commentDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 创建Create 评论
+    * 
+    *
+    * @param libraryId libraryId
+    * @param principalId principalId
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */
+    @ApiOperation(value = "创建Create", tags = {"评论" },  notes = "Comment-Create ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Comment-Create-all') or hasPermission('library',#libraryId,this.commentDtoMapping.toDomain(#dto),'ibizplm-Comment-Create')")
+    @PostMapping("libraries/{libraryId}/reviews/{principalId}/comments")
+    public ResponseEntity<ResponseWrapper<CommentDTO>> createByLibraryIdAndPrincipalId
+            (@PathVariable("libraryId") String libraryId, @PathVariable("principalId") String principalId, @Validated @RequestBody RequestWrapper<CommentDTO> dto) {
+        ResponseWrapper<CommentDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(createByLibraryIdAndPrincipalId(libraryId, principalId, item)));
+        else
+            rt.set(createByLibraryIdAndPrincipalId(libraryId, principalId, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * 创建Create 评论
+    * 
+    *
+    * @param libraryId libraryId
+    * @param principalId principalId
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */   
+    public CommentDTO createByLibraryIdAndPrincipalId
+            (String libraryId, String principalId, CommentDTO dto) {
+        Comment domain = commentDtoMapping.toDomain(dto);
+        domain.setPrincipalId(principalId);
+        commentService.create(domain);
+        Comment rt = domain;
+        return commentDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 更新Update 评论
+    * 
+    *
+    * @param libraryId libraryId
+    * @param principalId principalId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */
+    @ApiOperation(value = "更新Update", tags = {"评论" },  notes = "Comment-Update ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Comment-Update-all') or hasPermission('library',#libraryId,this.commentService.get(#id),'ibizplm-Comment-Update')")
+    @VersionCheck(entity = "comment" , versionfield = "updateTime")
+    @PutMapping("libraries/{libraryId}/reviews/{principalId}/comments/{id}")
+    public ResponseEntity<ResponseWrapper<CommentDTO>> updateByLibraryIdAndPrincipalIdAndId
+            (@PathVariable("libraryId") String libraryId, @PathVariable("principalId") String principalId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<CommentDTO> dto) {
+        ResponseWrapper<CommentDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(updateByLibraryIdAndPrincipalIdAndId(libraryId, principalId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(updateByLibraryIdAndPrincipalIdAndId(libraryId, principalId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * 更新Update 评论
+    * 
+    *
+    * @param libraryId libraryId
+    * @param principalId principalId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */   
+    public CommentDTO updateByLibraryIdAndPrincipalIdAndId
+            (String libraryId, String principalId, String id, CommentDTO dto) {
+        Comment domain = commentDtoMapping.toDomain(dto);
+        domain.setId(id);
+        commentService.update(domain);
+        Comment rt = domain;
+        return commentDtoMapping.toDto(rt);
+    }
+
+    /**
+    * delete 评论
+    * 
+    *
+    * @param libraryId libraryId
+    * @param principalId principalId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */
+    @ApiOperation(value = "delete", tags = {"评论" },  notes = "Comment-delete ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Comment-delete-all') or hasPermission('library',#libraryId,this.commentDtoMapping.toDomain(#dto),'ibizplm-Comment-delete')")
+    @PostMapping("libraries/{libraryId}/reviews/{principalId}/comments/{id}/delete")
+    public ResponseEntity<ResponseWrapper<CommentDTO>> deleteByLibraryIdAndPrincipalIdAndId
+            (@PathVariable("libraryId") String libraryId, @PathVariable("principalId") String principalId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<CommentDTO> dto) {
+        ResponseWrapper<CommentDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(deleteByLibraryIdAndPrincipalIdAndId(libraryId, principalId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(deleteByLibraryIdAndPrincipalIdAndId(libraryId, principalId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * delete 评论
+    * 
+    *
+    * @param libraryId libraryId
+    * @param principalId principalId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */   
+    public CommentDTO deleteByLibraryIdAndPrincipalIdAndId
+            (String libraryId, String principalId, String id, CommentDTO dto) {
+        Comment domain = commentDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Comment rt = commentService.delete(domain);
+        return commentDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 保存Save 评论
+    * 
+    *
+    * @param libraryId libraryId
+    * @param principalId principalId
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */
+    @ApiOperation(value = "保存Save", tags = {"评论" },  notes = "Comment-Save ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Comment-Save-all') or hasPermission('library',#libraryId,this.commentDtoMapping.toDomain(#dto),'ibizplm-Comment-Save')")
+    @PostMapping("libraries/{libraryId}/reviews/{principalId}/comments/save")
+    public ResponseEntity<ResponseWrapper<CommentDTO>> saveByLibraryIdAndPrincipalId
+            (@PathVariable("libraryId") String libraryId, @PathVariable("principalId") String principalId, @Validated @RequestBody RequestWrapper<CommentDTO> dto) {
+        ResponseWrapper<CommentDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(saveByLibraryIdAndPrincipalId(libraryId, principalId, item)));
+        else
+            rt.set(saveByLibraryIdAndPrincipalId(libraryId, principalId, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * 保存Save 评论
+    * 
+    *
+    * @param libraryId libraryId
+    * @param principalId principalId
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */   
+    public CommentDTO saveByLibraryIdAndPrincipalId
+            (String libraryId, String principalId, CommentDTO dto) {
+        Comment domain = commentDtoMapping.toDomain(dto);
+        domain.setPrincipalId(principalId);
+        commentService.save(domain);
+        Comment rt = domain;
+        return commentDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 创建Create 评论
+    * 
+    *
     * @param testLibraryId testLibraryId
     * @param principalId principalId
     * @param dto dto
@@ -1655,7 +2335,7 @@ public abstract class AbstractCommentResource {
             (@PathVariable("principalId") String principalId, @Validated @RequestBody CommentFilterDTO dto) {
         dto.setPrincipalIdEQ(principalId);
         CommentSearchContext context = commentFilterDtoMapping.toDomain(dto);
-        Page<Comment> domains = commentService.searchDefault(context) ;
+        Page<Comment> domains = commentService.fetchDefault(context) ;
         List<CommentDTO> list = commentDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1754,7 +2434,7 @@ public abstract class AbstractCommentResource {
             (@PathVariable("spaceId") String spaceId, @PathVariable("principalId") String principalId, @Validated @RequestBody CommentFilterDTO dto) {
         dto.setPrincipalIdEQ(principalId);
         CommentSearchContext context = commentFilterDtoMapping.toDomain(dto);
-        Page<Comment> domains = commentService.searchDefault(context) ;
+        Page<Comment> domains = commentService.fetchDefault(context) ;
         List<CommentDTO> list = commentDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1853,7 +2533,7 @@ public abstract class AbstractCommentResource {
             (@PathVariable("caseId") String caseId, @PathVariable("principalId") String principalId, @Validated @RequestBody CommentFilterDTO dto) {
         dto.setPrincipalIdEQ(principalId);
         CommentSearchContext context = commentFilterDtoMapping.toDomain(dto);
-        Page<Comment> domains = commentService.searchDefault(context) ;
+        Page<Comment> domains = commentService.fetchDefault(context) ;
         List<CommentDTO> list = commentDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1957,7 +2637,7 @@ public abstract class AbstractCommentResource {
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @PathVariable("principalId") String principalId, @Validated @RequestBody CommentFilterDTO dto) {
         dto.setPrincipalIdEQ(principalId);
         CommentSearchContext context = commentFilterDtoMapping.toDomain(dto);
-        Page<Comment> domains = commentService.searchDefault(context) ;
+        Page<Comment> domains = commentService.fetchDefault(context) ;
         List<CommentDTO> list = commentDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2056,7 +2736,7 @@ public abstract class AbstractCommentResource {
             (@PathVariable("planId") String planId, @PathVariable("principalId") String principalId, @Validated @RequestBody CommentFilterDTO dto) {
         dto.setPrincipalIdEQ(principalId);
         CommentSearchContext context = commentFilterDtoMapping.toDomain(dto);
-        Page<Comment> domains = commentService.searchDefault(context) ;
+        Page<Comment> domains = commentService.fetchDefault(context) ;
         List<CommentDTO> list = commentDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2160,7 +2840,7 @@ public abstract class AbstractCommentResource {
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @PathVariable("principalId") String principalId, @Validated @RequestBody CommentFilterDTO dto) {
         dto.setPrincipalIdEQ(principalId);
         CommentSearchContext context = commentFilterDtoMapping.toDomain(dto);
-        Page<Comment> domains = commentService.searchDefault(context) ;
+        Page<Comment> domains = commentService.fetchDefault(context) ;
         List<CommentDTO> list = commentDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2259,7 +2939,408 @@ public abstract class AbstractCommentResource {
             (@PathVariable("productId") String productId, @PathVariable("principalId") String principalId, @Validated @RequestBody CommentFilterDTO dto) {
         dto.setPrincipalIdEQ(principalId);
         CommentSearchContext context = commentFilterDtoMapping.toDomain(dto);
-        Page<Comment> domains = commentService.searchDefault(context) ;
+        Page<Comment> domains = commentService.fetchDefault(context) ;
+        List<CommentDTO> list = commentDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 获取Get 评论
+    * 
+    *
+    * @param topicId topicId
+    * @param principalId principalId
+    * @param id id
+    * @return ResponseEntity<CommentDTO>
+    */
+    @ApiOperation(value = "获取Get", tags = {"评论" },  notes = "Comment-Get ")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Comment-Get-all')  or hasPermission('discuss_topic',#topicId,this.commentDtoMapping.toDomain(returnObject.body),'ibizplm-Comment-Get')")
+    @GetMapping("discuss_topics/{topicId}/discuss_posts/{principalId}/comments/{id}")
+    public ResponseEntity<CommentDTO> getByTopicIdAndPrincipalIdAndId
+            (@PathVariable("topicId") String topicId, @PathVariable("principalId") String principalId, @PathVariable("id") String id) {
+        Comment rt = commentService.get(id);
+        return ResponseEntity.status(HttpStatus.OK).body(commentDtoMapping.toDto(rt));
+    }
+
+    /**
+    * 删除Remove 评论
+    * 
+    *
+    * @param topicId topicId
+    * @param principalId principalId
+    * @param id id
+    * @return ResponseEntity<Boolean>
+    */
+    @ApiOperation(value = "删除Remove", tags = {"评论" },  notes = "Comment-Remove ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Comment-Remove-all') or hasPermission('discuss_topic',#topicId,this.commentService.get(#id),'ibizplm-Comment-Remove')")
+    @DeleteMapping("discuss_topics/{topicId}/discuss_posts/{principalId}/comments/{id}")
+    public ResponseEntity<Boolean> removeByTopicIdAndPrincipalIdAndId
+            (@PathVariable("topicId") String topicId, @PathVariable("principalId") String principalId, @PathVariable("id") String id) {
+        Boolean rt = commentService.remove(id);
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * 校验CheckKey 评论
+    * 
+    *
+    * @param topicId topicId
+    * @param principalId principalId
+    * @param dto dto
+    * @return ResponseEntity<Integer>
+    */
+    @ApiOperation(value = "校验CheckKey", tags = {"评论" },  notes = "Comment-CheckKey ")
+    @PostMapping("discuss_topics/{topicId}/discuss_posts/{principalId}/comments/check_key")
+    public ResponseEntity<Integer> checkKeyByTopicIdAndPrincipalId
+            (@PathVariable("topicId") String topicId, @PathVariable("principalId") String principalId, @Validated @RequestBody CommentDTO dto) {
+        Comment domain = commentDtoMapping.toDomain(dto);
+        domain.setPrincipalId(principalId);
+        Integer rt = commentService.checkKey(domain);
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * 草稿GetDraft 评论
+    * 
+    *
+    * @param topicId topicId
+    * @param principalId principalId
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */
+    @ApiOperation(value = "草稿GetDraft", tags = {"评论" },  notes = "Comment-GetDraft ")
+    @GetMapping("discuss_topics/{topicId}/discuss_posts/{principalId}/comments/get_draft")
+    public ResponseEntity<CommentDTO> getDraftByTopicIdAndPrincipalId
+            (@PathVariable("topicId") String topicId, @PathVariable("principalId") String principalId, @SpringQueryMap CommentDTO dto) {
+        Comment domain = commentDtoMapping.toDomain(dto);
+        domain.setPrincipalId(principalId);
+        Comment rt = commentService.getDraft(domain);
+        return ResponseEntity.status(HttpStatus.OK).body(commentDtoMapping.toDto(rt));
+    }
+
+    /**
+    * 查询fetch_default 评论
+    * 
+    *
+    * @param topicId topicId
+    * @param principalId principalId
+    * @param dto dto
+    * @return ResponseEntity<List<CommentDTO>>
+    */
+    @ApiOperation(value = "查询fetch_default", tags = {"评论" },  notes = "Comment-fetch_default ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Comment-fetch_default-all') or hasPermission('discuss_topic',#topicId,#dto,'ibizplm-Comment-fetch_default')")
+    @PostMapping("discuss_topics/{topicId}/discuss_posts/{principalId}/comments/fetch_default")
+    public ResponseEntity<List<CommentDTO>> fetchDefaultByTopicIdAndPrincipalId
+            (@PathVariable("topicId") String topicId, @PathVariable("principalId") String principalId, @Validated @RequestBody CommentFilterDTO dto) {
+        dto.setPrincipalIdEQ(principalId);
+        CommentSearchContext context = commentFilterDtoMapping.toDomain(dto);
+        Page<Comment> domains = commentService.fetchDefault(context) ;
+        List<CommentDTO> list = commentDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 获取Get 评论
+    * 
+    *
+    * @param postId postId
+    * @param principalId principalId
+    * @param id id
+    * @return ResponseEntity<CommentDTO>
+    */
+    @ApiOperation(value = "获取Get", tags = {"评论" },  notes = "Comment-Get ")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Comment-Get-all')  or hasPermission('discuss_post',#postId,this.commentDtoMapping.toDomain(returnObject.body),'ibizplm-Comment-Get')")
+    @GetMapping("discuss_posts/{postId}/discuss_replies/{principalId}/comments/{id}")
+    public ResponseEntity<CommentDTO> getByPostIdAndPrincipalIdAndId
+            (@PathVariable("postId") String postId, @PathVariable("principalId") String principalId, @PathVariable("id") String id) {
+        Comment rt = commentService.get(id);
+        return ResponseEntity.status(HttpStatus.OK).body(commentDtoMapping.toDto(rt));
+    }
+
+    /**
+    * 删除Remove 评论
+    * 
+    *
+    * @param postId postId
+    * @param principalId principalId
+    * @param id id
+    * @return ResponseEntity<Boolean>
+    */
+    @ApiOperation(value = "删除Remove", tags = {"评论" },  notes = "Comment-Remove ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Comment-Remove-all') or hasPermission('discuss_post',#postId,this.commentService.get(#id),'ibizplm-Comment-Remove')")
+    @DeleteMapping("discuss_posts/{postId}/discuss_replies/{principalId}/comments/{id}")
+    public ResponseEntity<Boolean> removeByPostIdAndPrincipalIdAndId
+            (@PathVariable("postId") String postId, @PathVariable("principalId") String principalId, @PathVariable("id") String id) {
+        Boolean rt = commentService.remove(id);
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * 校验CheckKey 评论
+    * 
+    *
+    * @param postId postId
+    * @param principalId principalId
+    * @param dto dto
+    * @return ResponseEntity<Integer>
+    */
+    @ApiOperation(value = "校验CheckKey", tags = {"评论" },  notes = "Comment-CheckKey ")
+    @PostMapping("discuss_posts/{postId}/discuss_replies/{principalId}/comments/check_key")
+    public ResponseEntity<Integer> checkKeyByPostIdAndPrincipalId
+            (@PathVariable("postId") String postId, @PathVariable("principalId") String principalId, @Validated @RequestBody CommentDTO dto) {
+        Comment domain = commentDtoMapping.toDomain(dto);
+        domain.setPrincipalId(principalId);
+        Integer rt = commentService.checkKey(domain);
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * 草稿GetDraft 评论
+    * 
+    *
+    * @param postId postId
+    * @param principalId principalId
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */
+    @ApiOperation(value = "草稿GetDraft", tags = {"评论" },  notes = "Comment-GetDraft ")
+    @GetMapping("discuss_posts/{postId}/discuss_replies/{principalId}/comments/get_draft")
+    public ResponseEntity<CommentDTO> getDraftByPostIdAndPrincipalId
+            (@PathVariable("postId") String postId, @PathVariable("principalId") String principalId, @SpringQueryMap CommentDTO dto) {
+        Comment domain = commentDtoMapping.toDomain(dto);
+        domain.setPrincipalId(principalId);
+        Comment rt = commentService.getDraft(domain);
+        return ResponseEntity.status(HttpStatus.OK).body(commentDtoMapping.toDto(rt));
+    }
+
+    /**
+    * 查询fetch_default 评论
+    * 
+    *
+    * @param postId postId
+    * @param principalId principalId
+    * @param dto dto
+    * @return ResponseEntity<List<CommentDTO>>
+    */
+    @ApiOperation(value = "查询fetch_default", tags = {"评论" },  notes = "Comment-fetch_default ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Comment-fetch_default-all') or hasPermission('discuss_post',#postId,#dto,'ibizplm-Comment-fetch_default')")
+    @PostMapping("discuss_posts/{postId}/discuss_replies/{principalId}/comments/fetch_default")
+    public ResponseEntity<List<CommentDTO>> fetchDefaultByPostIdAndPrincipalId
+            (@PathVariable("postId") String postId, @PathVariable("principalId") String principalId, @Validated @RequestBody CommentFilterDTO dto) {
+        dto.setPrincipalIdEQ(principalId);
+        CommentSearchContext context = commentFilterDtoMapping.toDomain(dto);
+        Page<Comment> domains = commentService.fetchDefault(context) ;
+        List<CommentDTO> list = commentDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 获取Get 评论
+    * 
+    *
+    * @param topicId topicId
+    * @param postId postId
+    * @param principalId principalId
+    * @param id id
+    * @return ResponseEntity<CommentDTO>
+    */
+    @ApiOperation(value = "获取Get", tags = {"评论" },  notes = "Comment-Get ")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Comment-Get-all')  or hasPermission('discuss_topic',#topicId,this.commentDtoMapping.toDomain(returnObject.body),'ibizplm-Comment-Get')")
+    @GetMapping("discuss_topics/{topicId}/discuss_posts/{postId}/discuss_replies/{principalId}/comments/{id}")
+    public ResponseEntity<CommentDTO> getByTopicIdAndPostIdAndPrincipalIdAndId
+            (@PathVariable("topicId") String topicId, @PathVariable("postId") String postId, @PathVariable("principalId") String principalId, @PathVariable("id") String id) {
+        Comment rt = commentService.get(id);
+        return ResponseEntity.status(HttpStatus.OK).body(commentDtoMapping.toDto(rt));
+    }
+
+    /**
+    * 删除Remove 评论
+    * 
+    *
+    * @param topicId topicId
+    * @param postId postId
+    * @param principalId principalId
+    * @param id id
+    * @return ResponseEntity<Boolean>
+    */
+    @ApiOperation(value = "删除Remove", tags = {"评论" },  notes = "Comment-Remove ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Comment-Remove-all') or hasPermission('discuss_topic',#topicId,this.commentService.get(#id),'ibizplm-Comment-Remove')")
+    @DeleteMapping("discuss_topics/{topicId}/discuss_posts/{postId}/discuss_replies/{principalId}/comments/{id}")
+    public ResponseEntity<Boolean> removeByTopicIdAndPostIdAndPrincipalIdAndId
+            (@PathVariable("topicId") String topicId, @PathVariable("postId") String postId, @PathVariable("principalId") String principalId, @PathVariable("id") String id) {
+        Boolean rt = commentService.remove(id);
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * 校验CheckKey 评论
+    * 
+    *
+    * @param topicId topicId
+    * @param postId postId
+    * @param principalId principalId
+    * @param dto dto
+    * @return ResponseEntity<Integer>
+    */
+    @ApiOperation(value = "校验CheckKey", tags = {"评论" },  notes = "Comment-CheckKey ")
+    @PostMapping("discuss_topics/{topicId}/discuss_posts/{postId}/discuss_replies/{principalId}/comments/check_key")
+    public ResponseEntity<Integer> checkKeyByTopicIdAndPostIdAndPrincipalId
+            (@PathVariable("topicId") String topicId, @PathVariable("postId") String postId, @PathVariable("principalId") String principalId, @Validated @RequestBody CommentDTO dto) {
+        Comment domain = commentDtoMapping.toDomain(dto);
+        domain.setPrincipalId(principalId);
+        Integer rt = commentService.checkKey(domain);
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * 草稿GetDraft 评论
+    * 
+    *
+    * @param topicId topicId
+    * @param postId postId
+    * @param principalId principalId
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */
+    @ApiOperation(value = "草稿GetDraft", tags = {"评论" },  notes = "Comment-GetDraft ")
+    @GetMapping("discuss_topics/{topicId}/discuss_posts/{postId}/discuss_replies/{principalId}/comments/get_draft")
+    public ResponseEntity<CommentDTO> getDraftByTopicIdAndPostIdAndPrincipalId
+            (@PathVariable("topicId") String topicId, @PathVariable("postId") String postId, @PathVariable("principalId") String principalId, @SpringQueryMap CommentDTO dto) {
+        Comment domain = commentDtoMapping.toDomain(dto);
+        domain.setPrincipalId(principalId);
+        Comment rt = commentService.getDraft(domain);
+        return ResponseEntity.status(HttpStatus.OK).body(commentDtoMapping.toDto(rt));
+    }
+
+    /**
+    * 查询fetch_default 评论
+    * 
+    *
+    * @param topicId topicId
+    * @param postId postId
+    * @param principalId principalId
+    * @param dto dto
+    * @return ResponseEntity<List<CommentDTO>>
+    */
+    @ApiOperation(value = "查询fetch_default", tags = {"评论" },  notes = "Comment-fetch_default ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Comment-fetch_default-all') or hasPermission('discuss_topic',#topicId,#dto,'ibizplm-Comment-fetch_default')")
+    @PostMapping("discuss_topics/{topicId}/discuss_posts/{postId}/discuss_replies/{principalId}/comments/fetch_default")
+    public ResponseEntity<List<CommentDTO>> fetchDefaultByTopicIdAndPostIdAndPrincipalId
+            (@PathVariable("topicId") String topicId, @PathVariable("postId") String postId, @PathVariable("principalId") String principalId, @Validated @RequestBody CommentFilterDTO dto) {
+        dto.setPrincipalIdEQ(principalId);
+        CommentSearchContext context = commentFilterDtoMapping.toDomain(dto);
+        Page<Comment> domains = commentService.fetchDefault(context) ;
+        List<CommentDTO> list = commentDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 获取Get 评论
+    * 
+    *
+    * @param libraryId libraryId
+    * @param principalId principalId
+    * @param id id
+    * @return ResponseEntity<CommentDTO>
+    */
+    @ApiOperation(value = "获取Get", tags = {"评论" },  notes = "Comment-Get ")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Comment-Get-all')  or hasPermission('library',#libraryId,this.commentDtoMapping.toDomain(returnObject.body),'ibizplm-Comment-Get')")
+    @GetMapping("libraries/{libraryId}/reviews/{principalId}/comments/{id}")
+    public ResponseEntity<CommentDTO> getByLibraryIdAndPrincipalIdAndId
+            (@PathVariable("libraryId") String libraryId, @PathVariable("principalId") String principalId, @PathVariable("id") String id) {
+        Comment rt = commentService.get(id);
+        return ResponseEntity.status(HttpStatus.OK).body(commentDtoMapping.toDto(rt));
+    }
+
+    /**
+    * 删除Remove 评论
+    * 
+    *
+    * @param libraryId libraryId
+    * @param principalId principalId
+    * @param id id
+    * @return ResponseEntity<Boolean>
+    */
+    @ApiOperation(value = "删除Remove", tags = {"评论" },  notes = "Comment-Remove ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Comment-Remove-all') or hasPermission('library',#libraryId,this.commentService.get(#id),'ibizplm-Comment-Remove')")
+    @DeleteMapping("libraries/{libraryId}/reviews/{principalId}/comments/{id}")
+    public ResponseEntity<Boolean> removeByLibraryIdAndPrincipalIdAndId
+            (@PathVariable("libraryId") String libraryId, @PathVariable("principalId") String principalId, @PathVariable("id") String id) {
+        Boolean rt = commentService.remove(id);
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * 校验CheckKey 评论
+    * 
+    *
+    * @param libraryId libraryId
+    * @param principalId principalId
+    * @param dto dto
+    * @return ResponseEntity<Integer>
+    */
+    @ApiOperation(value = "校验CheckKey", tags = {"评论" },  notes = "Comment-CheckKey ")
+    @PostMapping("libraries/{libraryId}/reviews/{principalId}/comments/check_key")
+    public ResponseEntity<Integer> checkKeyByLibraryIdAndPrincipalId
+            (@PathVariable("libraryId") String libraryId, @PathVariable("principalId") String principalId, @Validated @RequestBody CommentDTO dto) {
+        Comment domain = commentDtoMapping.toDomain(dto);
+        domain.setPrincipalId(principalId);
+        Integer rt = commentService.checkKey(domain);
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * 草稿GetDraft 评论
+    * 
+    *
+    * @param libraryId libraryId
+    * @param principalId principalId
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */
+    @ApiOperation(value = "草稿GetDraft", tags = {"评论" },  notes = "Comment-GetDraft ")
+    @GetMapping("libraries/{libraryId}/reviews/{principalId}/comments/get_draft")
+    public ResponseEntity<CommentDTO> getDraftByLibraryIdAndPrincipalId
+            (@PathVariable("libraryId") String libraryId, @PathVariable("principalId") String principalId, @SpringQueryMap CommentDTO dto) {
+        Comment domain = commentDtoMapping.toDomain(dto);
+        domain.setPrincipalId(principalId);
+        Comment rt = commentService.getDraft(domain);
+        return ResponseEntity.status(HttpStatus.OK).body(commentDtoMapping.toDto(rt));
+    }
+
+    /**
+    * 查询fetch_default 评论
+    * 
+    *
+    * @param libraryId libraryId
+    * @param principalId principalId
+    * @param dto dto
+    * @return ResponseEntity<List<CommentDTO>>
+    */
+    @ApiOperation(value = "查询fetch_default", tags = {"评论" },  notes = "Comment-fetch_default ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Comment-fetch_default-all') or hasPermission('library',#libraryId,#dto,'ibizplm-Comment-fetch_default')")
+    @PostMapping("libraries/{libraryId}/reviews/{principalId}/comments/fetch_default")
+    public ResponseEntity<List<CommentDTO>> fetchDefaultByLibraryIdAndPrincipalId
+            (@PathVariable("libraryId") String libraryId, @PathVariable("principalId") String principalId, @Validated @RequestBody CommentFilterDTO dto) {
+        dto.setPrincipalIdEQ(principalId);
+        CommentSearchContext context = commentFilterDtoMapping.toDomain(dto);
+        Page<Comment> domains = commentService.fetchDefault(context) ;
         List<CommentDTO> list = commentDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2358,7 +3439,7 @@ public abstract class AbstractCommentResource {
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("principalId") String principalId, @Validated @RequestBody CommentFilterDTO dto) {
         dto.setPrincipalIdEQ(principalId);
         CommentSearchContext context = commentFilterDtoMapping.toDomain(dto);
-        Page<Comment> domains = commentService.searchDefault(context) ;
+        Page<Comment> domains = commentService.fetchDefault(context) ;
         List<CommentDTO> list = commentDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2457,7 +3538,7 @@ public abstract class AbstractCommentResource {
             (@PathVariable("projectId") String projectId, @PathVariable("principalId") String principalId, @Validated @RequestBody CommentFilterDTO dto) {
         dto.setPrincipalIdEQ(principalId);
         CommentSearchContext context = commentFilterDtoMapping.toDomain(dto);
-        Page<Comment> domains = commentService.searchDefault(context) ;
+        Page<Comment> domains = commentService.fetchDefault(context) ;
         List<CommentDTO> list = commentDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

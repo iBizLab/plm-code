@@ -25,8 +25,11 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import cn.ibizlab.plm.core.base.domain.User;
+import cn.ibizlab.plm.core.base.domain.CommonFlow;
 import cn.ibizlab.plm.core.base.domain.Group;
 import cn.ibizlab.plm.core.base.service.GroupService;
+import cn.ibizlab.plm.core.projmgmt.domain.Project;
+import cn.ibizlab.plm.core.projmgmt.service.ProjectService;
 
 /**
  * 实体[成员] 服务对象接口实现
@@ -40,41 +43,11 @@ public abstract class AbstractMemberService extends ServiceImpl<MemberMapper,Mem
     @Lazy
     protected GroupService groupService;
 
+    @Autowired
+    @Lazy
+    protected ProjectService projectService;
+
     protected int batchSize = 500;
-
-    public Member get(Member et) {
-        Member rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.MEMBER.toString(),et.getId());
-        rt.copyTo(et,true);
-        return et;
-    }
-
-    public List<Member> getByEntities(List<Member> entities) {
-        entities.forEach(et->{
-            if(ObjectUtils.isEmpty(et.getId()))
-                et.setId((String)et.getDefaultKey(true));
-            });
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public void fillParentData(Member et) {
-        if(Entities.GROUP.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
-            et.setOwnerId((String)et.getContextParentKey());
-        }
-    }
-
-    public Member getDraft(Member et) {
-        fillParentData(et);
-        return et;
-    }
-
-    public Integer checkKey(Member et) {
-        fillParentData(et);
-        if(ObjectUtils.isEmpty(et.getId()))
-            et.setId((String)et.getDefaultKey(true));
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Member>lambdaQuery().eq(Member::getId, et.getId()))>0)?1:0;
-    }
 
     @Override
     @Transactional
@@ -87,9 +60,9 @@ public abstract class AbstractMemberService extends ServiceImpl<MemberMapper,Mem
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<Member> list) {
+    public boolean create(List<Member> list) {
         list.forEach(this::fillParentData);
         list.forEach(et->{
             if(ObjectUtils.isEmpty(et.getId()))
@@ -98,7 +71,7 @@ public abstract class AbstractMemberService extends ServiceImpl<MemberMapper,Mem
         this.saveBatch(list, batchSize);
         return true;
     }
-
+	
     @Transactional
     public boolean update(Member et) {
         fillParentData(et);
@@ -111,12 +84,52 @@ public abstract class AbstractMemberService extends ServiceImpl<MemberMapper,Mem
     }
 
     @Transactional
-    public boolean updateBatch(List<Member> list) {
+    public boolean update(List<Member> list) {
         list.forEach(this::fillParentData);
         updateBatchById(list, batchSize);
         return true;
     }
+	
+   @Transactional
+    public boolean remove(Member et) {
+        if(!remove(Wrappers.<Member>lambdaQuery().eq(Member::getId, et.getId())))
+            return false;
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<Member> entities) {
+        this.baseMapper.deleteEntities(entities);
+        return true;
+    }		
+    public Member get(Member et) {
+        Member rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.MEMBER.toString(),et.getId());
+        rt.copyTo(et,true);
+        return et;
+    }	
+
+    public List<Member> get(List<Member> entities) {
+        entities.forEach(et->{
+            if(ObjectUtils.isEmpty(et.getId()))
+                et.setId((String)et.getDefaultKey(true));
+            });
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public Member getDraft(Member et) {
+        fillParentData(et);
+        return et;
+    }
+	
+    public Integer checkKey(Member et) {
+        fillParentData(et);
+        if(ObjectUtils.isEmpty(et.getId()))
+            et.setId((String)et.getDefaultKey(true));
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Member>lambdaQuery().eq(Member::getId, et.getId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(Member et) {
@@ -127,10 +140,10 @@ public abstract class AbstractMemberService extends ServiceImpl<MemberMapper,Mem
     }
 
     @Transactional
-    public boolean saveBatch(List<Member> list) {
+    public boolean save(List<Member> list) {
         if(ObjectUtils.isEmpty(list))
             return true;
-        Map<String,Member> before = getByEntities(list).stream().collect(Collectors.toMap(Member::getId,e->e));
+        Map<String,Member> before = get(list).stream().collect(Collectors.toMap(Member::getId,e->e));
         List<Member> create = new ArrayList<>();
         List<Member> update = new ArrayList<>();
         list.forEach(sub->{
@@ -145,67 +158,51 @@ public abstract class AbstractMemberService extends ServiceImpl<MemberMapper,Mem
         });
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
         else
             return true;
     }
-
-    @Transactional
-    public boolean remove(Member et) {
-        if(!remove(Wrappers.<Member>lambdaQuery().eq(Member::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<Member> entities) {
-        this.baseMapper.deleteEntities(entities);
-        return true;
-    }
-
-    public Page<Member> searchDefault(MemberSearchContext context) {
+	
+   public Page<Member> fetchDefault(MemberSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Member> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<Member> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Member> listDefault(MemberSearchContext context) {
+   public List<Member> listDefault(MemberSearchContext context) {
         List<Member> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Member> searchUserGroupAdmin(MemberSearchContext context) {
+   }
+	
+   public Page<Member> fetchUserGroupAdmin(MemberSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Member> pages=baseMapper.searchUserGroupAdmin(context.getPages(),context,context.getSelectCond());
         List<Member> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Member> listUserGroupAdmin(MemberSearchContext context) {
+   public List<Member> listUserGroupAdmin(MemberSearchContext context) {
         List<Member> list = baseMapper.listUserGroupAdmin(context,context.getSelectCond());
         return list;
-    }
-
-    public List<Member> findByUserId(List<String> userIds) {
+   }
+	
+	public List<Member> findByUserId(List<String> userIds){
         List<Member> list = baseMapper.findByUserId(userIds);
-        return list;
-    }
-    public List<Member> findByOwnerId(List<String> ownerIds) {
-        List<Member> list = baseMapper.findByOwnerId(ownerIds);
-        return list;
-    }
-    public boolean removeByUserId(String userId) {
+        return list;	
+	}
+
+	public boolean removeByUserId(String userId){
         return this.remove(Wrappers.<Member>lambdaQuery().eq(Member::getUserId,userId));
-    }
+	}
 
-    public boolean resetByUserId(String userId) {
-        return this.update(Wrappers.<Member>lambdaUpdate().eq(Member::getUserId,userId));
-    }
-
-    public boolean saveByUser(User user,List<Member> list) {
+	public boolean resetByUserId(String userId){
+		return this.update(Wrappers.<Member>lambdaUpdate().eq(Member::getUserId,userId));
+	}
+	public boolean saveByUser(User user, List<Member> list){
         if(list==null)
             return true;
         Map<String,Member> before = findByUserId(user.getId()).stream().collect(Collectors.toMap(Member::getId,e->e));
+
         List<Member> update = new ArrayList<>();
         List<Member> create = new ArrayList<>();
 
@@ -225,32 +222,41 @@ public abstract class AbstractMemberService extends ServiceImpl<MemberMapper,Mem
         }
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
             return false;
         else
             return true;
-    }
+			
+	}
+	public List<Member> findById(List<String> ids){
+        List<Member> list = baseMapper.findById(ids);
+        return list;	
+	}
 
-    public boolean removeByOwnerId(String ownerId) {
-        return this.remove(Wrappers.<Member>lambdaQuery().eq(Member::getOwnerId,ownerId));
-    }
+	public boolean removeById(String id){
+        return this.remove(Wrappers.<Member>lambdaQuery().eq(Member::getId,id));
+	}
 
-    public boolean resetByOwnerId(String ownerId) {
-        return this.update(Wrappers.<Member>lambdaUpdate().eq(Member::getOwnerId,ownerId));
-    }
-
-    public boolean saveByGroup(Group group,List<Member> list) {
+	public boolean resetById(String id){
+		return this.update(Wrappers.<Member>lambdaUpdate().eq(Member::getId,id));
+	}
+	public boolean saveByMemberCommonFlow(CommonFlow commonFlow, List<Member> list){
         if(list==null)
             return true;
-        Map<String,Member> before = findByOwnerId(group.getId()).stream().collect(Collectors.toMap(Member::getId,e->e));
+        Map<String,Member> before = this.baseMapper.selectList(Wrappers.<Member>lambdaQuery()
+                        .eq(Member::getId, commonFlow.getId())
+                        .eq(Member::getOwnerType,"COMMON_FLOW").isNull(Member::getOwnerSubtype))
+                        .stream()
+                        .collect(Collectors.toMap(Member::getId,e->e));
+
         List<Member> update = new ArrayList<>();
         List<Member> create = new ArrayList<>();
 
         for(Member sub:list) {
-            sub.setOwnerId(group.getId());
-            sub.setGroup(group);
+            sub.setId(commonFlow.getId());
+            sub.setMemberCommonFlow(commonFlow);
             if(ObjectUtils.isEmpty(sub.getId()))
                 before.values().stream()
                         .filter(e->ObjectUtils.nullSafeEquals(sub.getDefaultKey(true),e.getDefaultKey(true)))
@@ -264,18 +270,110 @@ public abstract class AbstractMemberService extends ServiceImpl<MemberMapper,Mem
         }
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
             return false;
         else
             return true;
+			
+	}
+	public List<Member> findByOwnerId(List<String> ownerIds){
+        List<Member> list = baseMapper.findByOwnerId(ownerIds);
+        return list;	
+	}
+
+	public boolean removeByOwnerId(String ownerId){
+        return this.remove(Wrappers.<Member>lambdaQuery().eq(Member::getOwnerId,ownerId));
+	}
+
+	public boolean resetByOwnerId(String ownerId){
+		return this.update(Wrappers.<Member>lambdaUpdate().eq(Member::getOwnerId,ownerId));
+	}
+	public boolean saveByMemberGroup(Group group, List<Member> list){
+        if(list==null)
+            return true;
+        Map<String,Member> before = this.baseMapper.selectList(Wrappers.<Member>lambdaQuery()
+                        .eq(Member::getOwnerId, group.getId())
+                        .eq(Member::getOwnerType,"GROUP")
+                        .eq(Member::getOwnerSubtype,"GROUP"))
+                        .stream()
+                        .collect(Collectors.toMap(Member::getId,e->e));
+
+        List<Member> update = new ArrayList<>();
+        List<Member> create = new ArrayList<>();
+
+        for(Member sub:list) {
+            sub.setOwnerId(group.getId());
+            sub.setMemberGroup(group);
+            if(ObjectUtils.isEmpty(sub.getId()))
+                before.values().stream()
+                        .filter(e->ObjectUtils.nullSafeEquals(sub.getDefaultKey(true),e.getDefaultKey(true)))
+                        .findFirst().ifPresent(e->sub.setId(e.getId()));
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
+	public boolean saveByProjectResource(Project project, List<Member> list){
+        if(list==null)
+            return true;
+        Map<String,Member> before = this.baseMapper.selectList(Wrappers.<Member>lambdaQuery()
+                        .eq(Member::getOwnerId, project.getId())
+                        .eq(Member::getOwnerType,"PROJECT")
+                        .eq(Member::getOwnerSubtype,"PROJECT_RESOURCE"))
+                        .stream()
+                        .collect(Collectors.toMap(Member::getId,e->e));
+
+        List<Member> update = new ArrayList<>();
+        List<Member> create = new ArrayList<>();
+
+        for(Member sub:list) {
+            sub.setOwnerId(project.getId());
+            sub.setProjectResource(project);
+            if(ObjectUtils.isEmpty(sub.getId()))
+                before.values().stream()
+                        .filter(e->ObjectUtils.nullSafeEquals(sub.getDefaultKey(true),e.getDefaultKey(true)))
+                        .findFirst().ifPresent(e->sub.setId(e.getId()));
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
+
+    public void fillParentData(Member et) {
+        if(Entities.GROUP.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setOwnerId((String)et.getContextParentKey());
+        }
+        if(Entities.PROJECT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setOwnerId((String)et.getContextParentKey());
+        }
     }
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -295,8 +393,8 @@ public abstract class AbstractMemberService extends ServiceImpl<MemberMapper,Mem
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return MemberMapper.class;
     }
@@ -305,4 +403,5 @@ public abstract class AbstractMemberService extends ServiceImpl<MemberMapper,Mem
     protected Class currentModelClass() {
         return Member.class;
     }
+
 }

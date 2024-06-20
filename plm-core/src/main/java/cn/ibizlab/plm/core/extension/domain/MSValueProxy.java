@@ -32,13 +32,12 @@ import io.swagger.annotations.*;
 @ApiModel(value = "MSVALUEPROXY", description = "主状态值代理")
 public class MSValueProxy extends EntityBase implements Serializable
 {
-
     /**
      * 颜色
      */
     @DEField(name = "color")
-    @JsonProperty("color")
     @JSONField(name = "color")
+    @JsonProperty("color")
     @ApiModelProperty(value = "color", notes = "颜色")
     private String color;
 
@@ -46,8 +45,8 @@ public class MSValueProxy extends EntityBase implements Serializable
      * 背景颜色
      */
     @DEField(name = "bkcolor")
-    @JsonProperty("bkcolor")
     @JSONField(name = "bkcolor")
+    @JsonProperty("bkcolor")
     @ApiModelProperty(value = "bkcolor", notes = "背景颜色")
     private String bkColor;
 
@@ -56,45 +55,26 @@ public class MSValueProxy extends EntityBase implements Serializable
      */
     @Id
     @DEField(name = "msvalueproxyid" , isKeyField = true)
-    @JsonProperty("msvalueproxyid")
     @JSONField(name = "msvalueproxyid")
+    @JsonProperty("msvalueproxyid")
     @ApiModelProperty(value = "msvalueproxyid", notes = "主状态值代理标识")
     private String msValueProxyId;
-
-    /**
-     * 更新人
-     */
-    @DEField(name = "updateman" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
-    @JsonProperty("updateman")
-    @JSONField(name = "updateman")
-    @ApiModelProperty(value = "updateman", notes = "更新人")
-    private String updateMan;
 
     /**
      * 主状态值代理名称
      */
     @DEField(name = "msvalueproxyname")
-    @JsonProperty("msvalueproxyname")
     @JSONField(name = "msvalueproxyname")
+    @JsonProperty("msvalueproxyname")
     @ApiModelProperty(value = "msvalueproxyname", notes = "主状态值代理名称")
     private String msValueProxyName;
-
-    /**
-     * 更新时间
-     */
-    @DEField(name = "updatedate" , preType = DEPredefinedFieldType.UPDATEDATE)
-    @JsonProperty("updatedate")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "updatedate" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "updatedate", notes = "更新时间")
-    private Date updateDate;
 
     /**
      * 建立人
      */
     @DEField(name = "createman" , preType = DEPredefinedFieldType.CREATEMAN , dict = "SysOperator")
-    @JsonProperty("createman")
     @JSONField(name = "createman")
+    @JsonProperty("createman")
     @ApiModelProperty(value = "createman", notes = "建立人")
     private String createMan;
 
@@ -102,11 +82,57 @@ public class MSValueProxy extends EntityBase implements Serializable
      * 建立时间
      */
     @DEField(name = "createdate" , preType = DEPredefinedFieldType.CREATEDATE)
-    @JsonProperty("createdate")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "createdate" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("createdate")
     @ApiModelProperty(value = "createdate", notes = "建立时间")
     private Date createDate;
+
+    /**
+     * 更新人
+     */
+    @DEField(name = "updateman" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
+    @JSONField(name = "updateman")
+    @JsonProperty("updateman")
+    @ApiModelProperty(value = "updateman", notes = "更新人")
+    private String updateMan;
+
+    /**
+     * 更新时间
+     */
+    @DEField(name = "updatedate" , preType = DEPredefinedFieldType.UPDATEDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "updatedate" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("updatedate")
+    @ApiModelProperty(value = "updatedate", notes = "更新时间")
+    private Date updateDate;
+
+    /**
+    * 设置 [颜色]
+    */
+    public MSValueProxy setColor(String color) {
+        this.color = color;
+        this.modify("color", color);
+        return this;
+    }
+
+    /**
+    * 设置 [背景颜色]
+    */
+    public MSValueProxy setBkColor(String bkColor) {
+        this.bkColor = bkColor;
+        this.modify("bkcolor", bkColor);
+        return this;
+    }
+
+    /**
+    * 设置 [主状态值代理名称]
+    */
+    public MSValueProxy setMsValueProxyName(String msValueProxyName) {
+        this.msValueProxyName = msValueProxyName;
+        this.modify("msvalueproxyname", msValueProxyName);
+        return this;
+    }
 
 
     /**

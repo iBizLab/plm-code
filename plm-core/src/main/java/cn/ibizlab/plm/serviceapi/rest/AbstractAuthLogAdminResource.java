@@ -236,7 +236,29 @@ public abstract class AbstractAuthLogAdminResource {
     public ResponseEntity<List<AuthLogAdminDTO>> fetchDefault
             (@Validated @RequestBody AuthLogAdminFilterDTO dto) {
         AuthLogAdminSearchContext context = authLogAdminFilterDtoMapping.toDomain(dto);
-        Page<AuthLogAdmin> domains = authLogAdminService.searchDefault(context) ;
+        Page<AuthLogAdmin> domains = authLogAdminService.fetchDefault(context) ;
+        List<AuthLogAdminDTO> list = authLogAdminDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询FetchDistinct_userid 认证日志
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<AuthLogAdminDTO>>
+    */
+    @ApiOperation(value = "查询FetchDistinct_userid", tags = {"认证日志" },  notes = "AuthLogAdmin-FetchDistinct_userid ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-AuthLogAdmin-FetchDistinct_userid-all')")
+    @PostMapping("auth_log_admins/fetchdistinct_userid")
+    public ResponseEntity<List<AuthLogAdminDTO>> fetchDistinctUserid
+            (@Validated @RequestBody AuthLogAdminFilterDTO dto) {
+        AuthLogAdminSearchContext context = authLogAdminFilterDtoMapping.toDomain(dto);
+        Page<AuthLogAdmin> domains = authLogAdminService.fetchDistinctUserid(context) ;
         List<AuthLogAdminDTO> list = authLogAdminDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -258,7 +280,7 @@ public abstract class AbstractAuthLogAdminResource {
     public ResponseEntity<List<AuthLogAdminDTO>> fetchGroupByData
             (@Validated @RequestBody AuthLogAdminFilterDTO dto) {
         AuthLogAdminSearchContext context = authLogAdminFilterDtoMapping.toDomain(dto);
-        Page<AuthLogAdmin> domains = authLogAdminService.searchGroupByData(context) ;
+        Page<AuthLogAdmin> domains = authLogAdminService.fetchGroupByData(context) ;
         List<AuthLogAdminDTO> list = authLogAdminDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -277,7 +299,7 @@ public abstract class AbstractAuthLogAdminResource {
     @ApiOperation(value = "批量新建认证日志", tags = {"认证日志" },  notes = "批量新建认证日志")
 	@PostMapping("auth_log_admins/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<AuthLogAdminDTO> dtos) {
-        authLogAdminService.createBatch(authLogAdminDtoMapping.toDomain(dtos));
+        authLogAdminService.create(authLogAdminDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -290,7 +312,7 @@ public abstract class AbstractAuthLogAdminResource {
     @ApiOperation(value = "批量删除认证日志", tags = {"认证日志" },  notes = "批量删除认证日志")
 	@DeleteMapping("auth_log_admins/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        authLogAdminService.removeBatch(ids);
+        authLogAdminService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -303,7 +325,7 @@ public abstract class AbstractAuthLogAdminResource {
     @ApiOperation(value = "批量更新认证日志", tags = {"认证日志" },  notes = "批量更新认证日志")
 	@PutMapping("auth_log_admins/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<AuthLogAdminDTO> dtos) {
-        authLogAdminService.updateBatch(authLogAdminDtoMapping.toDomain(dtos));
+        authLogAdminService.update(authLogAdminDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -316,7 +338,7 @@ public abstract class AbstractAuthLogAdminResource {
     @ApiOperation(value = "批量保存认证日志", tags = {"认证日志" },  notes = "批量保存认证日志")
 	@PostMapping("auth_log_admins/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<AuthLogAdminDTO> dtos) {
-        authLogAdminService.saveBatch(authLogAdminDtoMapping.toDomain(dtos));
+        authLogAdminService.save(authLogAdminDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

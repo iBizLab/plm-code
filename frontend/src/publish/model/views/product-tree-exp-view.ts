@@ -72,7 +72,7 @@ export default {
         },
         {
           realTitle: '组织产品',
-          refAppViewId: 'plmweb.product_group_grid_view',
+          refAppViewId: 'plmweb.product_org_grid_view',
           name: 'EXPITEM:node_3',
           id: 'expitem:node_3',
         },
@@ -215,7 +215,7 @@ export default {
             },
             {
               text: '组织产品',
-              navAppViewId: 'plmweb.product_group_grid_view',
+              navAppViewId: 'plmweb.product_org_grid_view',
               nodeType: 'node_3',
               navigateContexts: [
                 {

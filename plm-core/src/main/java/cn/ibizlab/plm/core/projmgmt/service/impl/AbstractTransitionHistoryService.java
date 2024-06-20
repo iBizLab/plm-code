@@ -41,33 +41,6 @@ public abstract class AbstractTransitionHistoryService extends ServiceImpl<Trans
 
     protected int batchSize = 500;
 
-    public TransitionHistory get(TransitionHistory et) {
-        TransitionHistory rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.TRANSITION_HISTORY.toString(),et.getId());
-        rt.copyTo(et,true);
-        return et;
-    }
-
-    public List<TransitionHistory> getByEntities(List<TransitionHistory> entities) {
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public void fillParentData(TransitionHistory et) {
-        if(Entities.WORK_ITEM.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
-            et.setOwnerId((String)et.getContextParentKey());
-        }
-    }
-
-    public TransitionHistory getDraft(TransitionHistory et) {
-        fillParentData(et);
-        return et;
-    }
-
-    public Integer checkKey(TransitionHistory et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<TransitionHistory>lambdaQuery().eq(TransitionHistory::getId, et.getId()))>0)?1:0;
-    }
-
     @Override
     @Transactional
     public boolean create(TransitionHistory et) {
@@ -77,14 +50,14 @@ public abstract class AbstractTransitionHistoryService extends ServiceImpl<Trans
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<TransitionHistory> list) {
+    public boolean create(List<TransitionHistory> list) {
         list.forEach(this::fillParentData);
         this.saveBatch(list, batchSize);
         return true;
     }
-
+	
     @Transactional
     public boolean update(TransitionHistory et) {
         UpdateWrapper<TransitionHistory> qw = et.getUpdateWrapper(true);
@@ -96,11 +69,44 @@ public abstract class AbstractTransitionHistoryService extends ServiceImpl<Trans
     }
 
     @Transactional
-    public boolean updateBatch(List<TransitionHistory> list) {
+    public boolean update(List<TransitionHistory> list) {
         updateBatchById(list, batchSize);
         return true;
     }
+	
+   @Transactional
+    public boolean remove(TransitionHistory et) {
+        if(!remove(Wrappers.<TransitionHistory>lambdaQuery().eq(TransitionHistory::getId, et.getId())))
+            return false;
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<TransitionHistory> entities) {
+        this.baseMapper.deleteEntities(entities);
+        return true;
+    }		
+    public TransitionHistory get(TransitionHistory et) {
+        TransitionHistory rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.TRANSITION_HISTORY.toString(),et.getId());
+        rt.copyTo(et,true);
+        return et;
+    }	
+
+    public List<TransitionHistory> get(List<TransitionHistory> entities) {
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public TransitionHistory getDraft(TransitionHistory et) {
+        fillParentData(et);
+        return et;
+    }
+	
+    public Integer checkKey(TransitionHistory et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<TransitionHistory>lambdaQuery().eq(TransitionHistory::getId, et.getId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(TransitionHistory et) {
@@ -111,10 +117,10 @@ public abstract class AbstractTransitionHistoryService extends ServiceImpl<Trans
     }
 
     @Transactional
-    public boolean saveBatch(List<TransitionHistory> list) {
+    public boolean save(List<TransitionHistory> list) {
         if(ObjectUtils.isEmpty(list))
             return true;
-        Map<String,TransitionHistory> before = getByEntities(list).stream().collect(Collectors.toMap(TransitionHistory::getId,e->e));
+        Map<String,TransitionHistory> before = get(list).stream().collect(Collectors.toMap(TransitionHistory::getId,e->e));
         List<TransitionHistory> create = new ArrayList<>();
         List<TransitionHistory> update = new ArrayList<>();
         list.forEach(sub->{
@@ -125,52 +131,44 @@ public abstract class AbstractTransitionHistoryService extends ServiceImpl<Trans
         });
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
         else
             return true;
     }
-
-    @Transactional
-    public boolean remove(TransitionHistory et) {
-        if(!remove(Wrappers.<TransitionHistory>lambdaQuery().eq(TransitionHistory::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<TransitionHistory> entities) {
-        this.baseMapper.deleteEntities(entities);
-        return true;
-    }
-
-    public Page<TransitionHistory> searchDefault(TransitionHistorySearchContext context) {
+	
+   public Page<TransitionHistory> fetchDefault(TransitionHistorySearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<TransitionHistory> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<TransitionHistory> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<TransitionHistory> listDefault(TransitionHistorySearchContext context) {
+   public List<TransitionHistory> listDefault(TransitionHistorySearchContext context) {
         List<TransitionHistory> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
-    }
-
-    public List<TransitionHistory> findByOwnerId(List<String> ownerIds) {
+   }
+	
+	public List<TransitionHistory> findByOwnerId(List<String> ownerIds){
         List<TransitionHistory> list = baseMapper.findByOwnerId(ownerIds);
-        return list;
-    }
-    public boolean removeByOwnerId(String ownerId) {
+        return list;	
+	}
+
+	public boolean removeByOwnerId(String ownerId){
         return this.remove(Wrappers.<TransitionHistory>lambdaQuery().eq(TransitionHistory::getOwnerId,ownerId));
-    }
+	}
 
-    public boolean resetByOwnerId(String ownerId) {
-        return this.update(Wrappers.<TransitionHistory>lambdaUpdate().eq(TransitionHistory::getOwnerId,ownerId));
-    }
-
-    public boolean saveByWorkItem(WorkItem workItem,List<TransitionHistory> list) {
+	public boolean resetByOwnerId(String ownerId){
+		return this.update(Wrappers.<TransitionHistory>lambdaUpdate().eq(TransitionHistory::getOwnerId,ownerId));
+	}
+	public boolean saveByWorkItem(WorkItem workItem, List<TransitionHistory> list){
         if(list==null)
             return true;
-        Map<String,TransitionHistory> before = findByOwnerId(workItem.getId()).stream().collect(Collectors.toMap(TransitionHistory::getId,e->e));
+        Map<String,TransitionHistory> before = this.baseMapper.selectList(Wrappers.<TransitionHistory>lambdaQuery()
+                        .eq(TransitionHistory::getOwnerId, workItem.getId())
+                        .eq(TransitionHistory::getOwnerType,"WORK_ITEM").isNull(TransitionHistory::getOwnerSubtype))
+                        .stream()
+                        .collect(Collectors.toMap(TransitionHistory::getId,e->e));
+
         List<TransitionHistory> update = new ArrayList<>();
         List<TransitionHistory> create = new ArrayList<>();
 
@@ -186,18 +184,21 @@ public abstract class AbstractTransitionHistoryService extends ServiceImpl<Trans
         }
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
             return false;
         else
             return true;
+			
+	}
+
+    public void fillParentData(TransitionHistory et) {
+        if(Entities.WORK_ITEM.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setOwnerId((String)et.getContextParentKey());
+        }
     }
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -217,8 +218,8 @@ public abstract class AbstractTransitionHistoryService extends ServiceImpl<Trans
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return TransitionHistoryMapper.class;
     }
@@ -227,4 +228,5 @@ public abstract class AbstractTransitionHistoryService extends ServiceImpl<Trans
     protected Class currentModelClass() {
         return TransitionHistory.class;
     }
+
 }

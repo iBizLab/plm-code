@@ -30,89 +30,32 @@ public interface ProjectTagService extends IService<ProjectTag> {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    ProjectTag get(ProjectTag et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default ProjectTag get(String key) {
-        return getSelf().get(new ProjectTag().setId(key));
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<ProjectTag> getByIds(Collection<String> ids) {
-        List<ProjectTag> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new ProjectTag().setId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<ProjectTag> getByEntities(List<ProjectTag> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    ProjectTag getDraft(ProjectTag et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(ProjectTag et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(ProjectTag et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<ProjectTag> list);
+    boolean create(List<ProjectTag> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(ProjectTag et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<ProjectTag> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    @Override
-    boolean save(ProjectTag et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<ProjectTag> list);
+    boolean update(List<ProjectTag> list);
 
     /**
      * 主键删除
@@ -122,14 +65,7 @@ public interface ProjectTagService extends IService<ProjectTag> {
     default boolean remove(String key) {
         return getSelf().remove(new ProjectTag().setId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -139,13 +75,13 @@ public interface ProjectTagService extends IService<ProjectTag> {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<ProjectTag> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new ProjectTag().setId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new ProjectTag().setId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -153,7 +89,126 @@ public interface ProjectTagService extends IService<ProjectTag> {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<ProjectTag> entities);
+    boolean remove(List<ProjectTag> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default ProjectTag get(String key) {
+        return getSelf().get(new ProjectTag().setId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    ProjectTag get(ProjectTag et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<ProjectTag> get(Collection<String> keys) {
+        List<ProjectTag> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new ProjectTag().setId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<ProjectTag> get(List<ProjectTag> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    ProjectTag getDraft(ProjectTag et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(ProjectTag et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(ProjectTag et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<ProjectTag> list);
+
+    /**
+    * deleteTag
+    * 
+    * @param et
+    * @return
+    */
+    default ProjectTag deleteTag(ProjectTag et) {
+        return et;
+    }
+
+    /**
+    * getConProjectTag
+    * 
+    * @param key
+    * @return
+    */
+    default ProjectTag getConProjectTag(String key) {
+        return getSelf().getConProjectTag(new ProjectTag().setId(key));
+    }
+
+    /**
+    * nothing
+    * 
+    * @param et
+    * @return
+    */
+    default ProjectTag nothing(ProjectTag et) {
+        return et;
+    }
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<ProjectTag> fetchDefault(ProjectTagSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<ProjectTag> listDefault(ProjectTagSearchContext context);
+
+    /**
+    * getConProjectTag
+    * 
+    * @param et
+    * @return
+    */
+    default ProjectTag getConProjectTag(ProjectTag et) {
+        return et;
+    }
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<ProjectTag> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -170,32 +225,7 @@ public interface ProjectTagService extends IService<ProjectTag> {
         }
         return rt;
     }
-
-    /**
-     * nothing
-     * 
-     * @param dto
-     * @return
-     */
-    default ProjectTag nothing(ProjectTag dto) {
-        return dto;
-    }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<ProjectTag> searchDefault(ProjectTagSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<ProjectTag> listDefault(ProjectTagSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -203,6 +233,7 @@ public interface ProjectTagService extends IService<ProjectTag> {
     default ProjectTag getEntity() {
         return new ProjectTag();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -211,20 +242,12 @@ public interface ProjectTagService extends IService<ProjectTag> {
         return new ProjectTagSearchContext();
     }
 
-    /**
-     * 自定义查询SQL
-     * @param sql  select * from table where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
-    List<JSONObject> select(String sql, Map<String,Object> param);
 
     /**
-     * 自定义SQL
-     * @param sql  update table  set name ='test' where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
+    * 自定义SQL
+    * @param sql  update table  set name ='test' where id =#{et.param}
+    * @param param 参数列表  param.put("param","1");
+    * @return
+    */
     boolean execute(String sql, Map<String,Object> param);
-
 }

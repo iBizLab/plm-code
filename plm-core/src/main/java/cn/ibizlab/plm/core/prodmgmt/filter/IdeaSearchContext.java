@@ -167,6 +167,46 @@ public class IdeaSearchContext extends QueryWrapperContext<Idea> {
     private String assigneeIdEQ;
 
     /**
+     * 负责人IN
+     */
+    @JsonProperty("n_assignee_id_in")
+    @JSONField(name = "n_assignee_id_in")
+    @ApiModelProperty("负责人IN")
+    private String assigneeIdIN;
+
+    /**
+     * 负责人ISNOTNULL
+     */
+    @JsonProperty("n_assignee_id_isnotnull")
+    @JSONField(name = "n_assignee_id_isnotnull")
+    @ApiModelProperty("负责人ISNOTNULL")
+    private String assigneeIdISNOTNULL;
+
+    /**
+     * 负责人ISNULL
+     */
+    @JsonProperty("n_assignee_id_isnull")
+    @JSONField(name = "n_assignee_id_isnull")
+    @ApiModelProperty("负责人ISNULL")
+    private String assigneeIdISNULL;
+
+    /**
+     * 负责人NOTEQ
+     */
+    @JsonProperty("n_assignee_id_noteq")
+    @JSONField(name = "n_assignee_id_noteq")
+    @ApiModelProperty("负责人NOTEQ")
+    private String assigneeIdNOTEQ;
+
+    /**
+     * 负责人NOTIN
+     */
+    @JsonProperty("n_assignee_id_notin")
+    @JSONField(name = "n_assignee_id_notin")
+    @ApiModelProperty("负责人NOTIN")
+    private String assigneeIdNOTIN;
+
+    /**
      * 子产品标识EQ
      */
     @JsonProperty("n_section_id_eq")
@@ -231,6 +271,54 @@ public class IdeaSearchContext extends QueryWrapperContext<Idea> {
     private String idEQ;
 
     /**
+     * 建立人EQ
+     */
+    @JsonProperty("n_create_man_eq")
+    @JSONField(name = "n_create_man_eq")
+    @ApiModelProperty("建立人EQ")
+    private String createManEQ;
+
+    /**
+     * 建立人IN
+     */
+    @JsonProperty("n_create_man_in")
+    @JSONField(name = "n_create_man_in")
+    @ApiModelProperty("建立人IN")
+    private String createManIN;
+
+    /**
+     * 建立人ISNOTNULL
+     */
+    @JsonProperty("n_create_man_isnotnull")
+    @JSONField(name = "n_create_man_isnotnull")
+    @ApiModelProperty("建立人ISNOTNULL")
+    private String createManISNOTNULL;
+
+    /**
+     * 建立人ISNULL
+     */
+    @JsonProperty("n_create_man_isnull")
+    @JSONField(name = "n_create_man_isnull")
+    @ApiModelProperty("建立人ISNULL")
+    private String createManISNULL;
+
+    /**
+     * 建立人NOTEQ
+     */
+    @JsonProperty("n_create_man_noteq")
+    @JSONField(name = "n_create_man_noteq")
+    @ApiModelProperty("建立人NOTEQ")
+    private String createManNOTEQ;
+
+    /**
+     * 建立人NOTIN
+     */
+    @JsonProperty("n_create_man_notin")
+    @JSONField(name = "n_create_man_notin")
+    @ApiModelProperty("建立人NOTIN")
+    private String createManNOTIN;
+
+    /**
      * 建立时间EQ
      */
     @JsonProperty("n_create_time_eq")
@@ -256,14 +344,6 @@ public class IdeaSearchContext extends QueryWrapperContext<Idea> {
     @JSONField(name = "n_create_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
     @ApiModelProperty("建立时间LTANDEQ")
     private Date createTimeLTANDEQ;
-
-    /**
-     * 建立人EQ
-     */
-    @JsonProperty("n_create_man_eq")
-    @JSONField(name = "n_create_man_eq")
-    @ApiModelProperty("建立人EQ")
-    private String createManEQ;
 
     /**
      * 名称LIKE

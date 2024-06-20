@@ -51,7 +51,7 @@ public class RunHistoryFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 100)
+    @ApiModelProperty(value = "名称LIKE", position = 80)
 	private String nameLIKE;
 
     /**

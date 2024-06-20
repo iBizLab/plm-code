@@ -70,20 +70,20 @@ public class RecentSearchContext extends QueryWrapperContext<Recent> {
     private String showIdentifierLIKE;
 
     /**
-     * 名称LIKE
-     */
-    @JsonProperty("n_name_like")
-    @JSONField(name = "n_name_like")
-    @ApiModelProperty("名称LIKE")
-    private String nameLIKE;
-
-    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
     @ApiModelProperty("标识EQ")
     private String idEQ;
+
+    /**
+     * 名称LIKE
+     */
+    @JsonProperty("n_name_like")
+    @JSONField(name = "n_name_like")
+    @ApiModelProperty("名称LIKE")
+    private String nameLIKE;
 
     /**
      * 建立人EQ

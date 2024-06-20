@@ -189,6 +189,10 @@ export default {
                         panelItems: [
                           {
                             editor: {
+                              appDEACModeId: 'aichat',
+                              appDEDataSetId: 'fetch_default',
+                              appDataEntityId: 'plmweb.work_item',
+                              enableAC: true,
                               editorParams: {
                                 USERINSCRIPT:
                                   'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
@@ -198,6 +202,7 @@ export default {
                                   '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype"}',
                                 QUOTEPARAMS:
                                   '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                AC: 'TRUE',
                                 QUOTEINSCRIPT:
                                   'value.replaceAll(/\\#\\{\\"id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\",\\"identifier\\":\\"(.+?)\\",\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })}).replaceAll(/\\#\\{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })})',
                                 USERSCRIPT:
@@ -690,11 +695,11 @@ export default {
                             EMITMODE: 'AUTOMATIC',
                             RENDERMODE: 'JSON',
                             USERURL:
-                              "`${context.library ? `libraries/${context.library}/library_members/fetchdefault` : context.product ? `products/${context.product}/product_members/fetchdefault` : context.project ? `projects/${context.project}/project_members/fetchdefault` : ''}`",
+                              "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                             USERFIELDMAP: '{"id":"user_id","name":"name"}',
                             INSERTKEYS:
                               '[{"index":66,"keys":["marker"]},{"index":5,"keys":["paintformat"]}]',
-                            QUOTEURL: '`recents/fetchrecent_access`',
+                            QUOTEURL: '`recents/fetch_recent_access`',
                           },
                           editorStyle: 'COLLAPSE',
                           editorType: 'HTMLEDITOR',

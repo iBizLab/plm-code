@@ -43,6 +43,52 @@ public interface BaselineMapper extends BaseMapper<Baseline> {
     List<Baseline> listDefault(@Param("ctx") BaselineSearchContext context, @Param("ew") Wrapper<Baseline> wrapper);
 
     /**
+     * 数据集合baseline分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Baseline> searchBaseline(IPage<Baseline> page, @Param("ctx") BaselineSearchContext context, @Param("ew") Wrapper<Baseline> wrapper);
+    
+    /**
+     * 数据集合baseline查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Baseline> listBaseline(@Param("ctx") BaselineSearchContext context, @Param("ew") Wrapper<Baseline> wrapper);
+
+    /**
+     * 数据集合snapshot分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Baseline> searchSnapshot(IPage<Baseline> page, @Param("ctx") BaselineSearchContext context, @Param("ew") Wrapper<Baseline> wrapper);
+    
+    /**
+     * 数据集合snapshot查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Baseline> listSnapshot(@Param("ctx") BaselineSearchContext context, @Param("ew") Wrapper<Baseline> wrapper);
+
+    /**
+    * 根据ownerId查询
+    *
+    * @param ownerIds
+    * @return
+    */
+    List<Baseline> findByOwnerId(@Param("ownerIds") List<String> ownerIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -151,13 +197,4 @@ public interface BaselineMapper extends BaseMapper<Baseline> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据ownerId查询
-     *
-     * @param ownerIds
-     * @return
-     */
-    List<Baseline> findByOwnerId(@Param("ownerIds") List<String> ownerIds);
-
 }

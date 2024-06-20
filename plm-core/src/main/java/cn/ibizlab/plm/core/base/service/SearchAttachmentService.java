@@ -36,89 +36,32 @@ public interface SearchAttachmentService extends IService<SearchAttachment> {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    SearchAttachment get(SearchAttachment et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default SearchAttachment get(String key) {
-        return getSelf().get(new SearchAttachment().setId(key));
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<SearchAttachment> getByIds(Collection<String> ids) {
-        List<SearchAttachment> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new SearchAttachment().setId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<SearchAttachment> getByEntities(List<SearchAttachment> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    SearchAttachment getDraft(SearchAttachment et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(SearchAttachment et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(SearchAttachment et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<SearchAttachment> list);
+    boolean create(List<SearchAttachment> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(SearchAttachment et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<SearchAttachment> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    @Override
-    boolean save(SearchAttachment et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<SearchAttachment> list);
+    boolean update(List<SearchAttachment> list);
 
     /**
      * 主键删除
@@ -128,14 +71,7 @@ public interface SearchAttachmentService extends IService<SearchAttachment> {
     default boolean remove(String key) {
         return getSelf().remove(new SearchAttachment().setId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -145,13 +81,13 @@ public interface SearchAttachmentService extends IService<SearchAttachment> {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<SearchAttachment> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new SearchAttachment().setId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new SearchAttachment().setId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -159,7 +95,184 @@ public interface SearchAttachmentService extends IService<SearchAttachment> {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<SearchAttachment> entities);
+    boolean remove(List<SearchAttachment> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default SearchAttachment get(String key) {
+        return getSelf().get(new SearchAttachment().setId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    SearchAttachment get(SearchAttachment et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<SearchAttachment> get(Collection<String> keys) {
+        List<SearchAttachment> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new SearchAttachment().setId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<SearchAttachment> get(List<SearchAttachment> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    SearchAttachment getDraft(SearchAttachment et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(SearchAttachment et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(SearchAttachment et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<SearchAttachment> list);
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<SearchAttachment> fetchDefault(SearchAttachmentSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<SearchAttachment> listDefault(SearchAttachmentSearchContext context);
+
+    /**
+    * fetchRelation
+    * 
+    * @param context
+    * @return
+    */
+    Page<SearchAttachment> fetchRelation(SearchAttachmentSearchContext context);
+
+    /**
+    * listRelation
+    * 
+    * @param context
+    * @return
+    */
+    List<SearchAttachment> listRelation(SearchAttachmentSearchContext context);
+
+    /**
+    * findByOwnerId
+    * @param ownerIds
+    * @return
+    */
+    List<SearchAttachment> findByOwnerId(List<String> ownerIds);
+    default List<SearchAttachment> findByOwnerId(String ownerId){
+        return findByOwnerId(Arrays.asList(ownerId));
+    }
+
+    /**
+    * removeByOwnerId
+    * @param ownerId
+    * @return
+    */
+    boolean removeByOwnerId(String ownerId);
+
+    /**
+    * resetByOwnerId
+    * @param ownerId
+    * @return
+    */
+    boolean resetByOwnerId(String ownerId);
+
+    /**
+    * saveByOwnerId
+    * @param ownerId
+    * @param list
+    * @return
+    */
+    default boolean saveByOwnerId(String ownerId, List<SearchAttachment> list){
+        return getSelf().saveByDerCustomer(new Customer().setId(ownerId),list);
+    }
+
+    /**
+    * saveByDerCustomer
+    * @param customer
+    * @param list
+    * @return
+    */
+    boolean saveByDerCustomer(Customer customer, List<SearchAttachment> list);
+
+    /**
+    * saveByDerIdea
+    * @param idea
+    * @param list
+    * @return
+    */
+    boolean saveByDerIdea(Idea idea, List<SearchAttachment> list);
+
+    /**
+    * saveByDerPage
+    * @param articlePage
+    * @param list
+    * @return
+    */
+    boolean saveByDerPage(ArticlePage articlePage, List<SearchAttachment> list);
+
+    /**
+    * saveByDerTestCase
+    * @param testCase
+    * @param list
+    * @return
+    */
+    boolean saveByDerTestCase(TestCase testCase, List<SearchAttachment> list);
+
+    /**
+    * saveByDerTicket
+    * @param ticket
+    * @param list
+    * @return
+    */
+    boolean saveByDerTicket(Ticket ticket, List<SearchAttachment> list);
+
+    /**
+    * saveByDerWorkItem
+    * @param workItem
+    * @param list
+    * @return
+    */
+    boolean saveByDerWorkItem(WorkItem workItem, List<SearchAttachment> list);
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<SearchAttachment> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -176,37 +289,7 @@ public interface SearchAttachmentService extends IService<SearchAttachment> {
         }
         return rt;
     }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<SearchAttachment> searchDefault(SearchAttachmentSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<SearchAttachment> listDefault(SearchAttachmentSearchContext context);
-
-    /**
-     * searchrelation
-     * 
-     * @param context
-     * @return
-     */
-    Page<SearchAttachment> searchRelation(SearchAttachmentSearchContext context);
-    /**
-     * listrelation
-     * 
-     * @param context
-     * @return
-     */
-    List<SearchAttachment> listRelation(SearchAttachmentSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -214,6 +297,7 @@ public interface SearchAttachmentService extends IService<SearchAttachment> {
     default SearchAttachment getEntity() {
         return new SearchAttachment();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -221,99 +305,13 @@ public interface SearchAttachmentService extends IService<SearchAttachment> {
     default SearchAttachmentSearchContext getSearchContext() {
         return new SearchAttachmentSearchContext();
     }
+
+
     /**
-     * selectRelByOwnerId
-     * @param ownerIds
-     * @return
-     */
-    List<SearchAttachment> findByOwnerId(List<String> ownerIds);
-    default List<SearchAttachment> findByOwnerId(String ownerId) {
-        return findByOwnerId(Arrays.asList(ownerId));
-    }
-    /**
-     * removeRelByOwnerId
-     * @param ownerId
-     * @return
-     */
-    boolean removeByOwnerId(String ownerId);
-    /**
-     * resetRelByOwnerId
-     * @param ownerId
-     * @return
-     */
-    boolean resetByOwnerId(String ownerId);
-    /**
-     * saveRelByOwnerId
-     * @param ownerId
-     * @param list
-     * @return
-     */
-    default boolean saveByOwnerId(String ownerId,List<SearchAttachment> list) {
-        return getSelf().saveByDerCustomer(new Customer().setId(ownerId),list);
-    }
-    /**
-    * saveRelByDerCustomer
-    * @param customer
-    * @param list
+    * 自定义SQL
+    * @param sql  update table  set name ='test' where id =#{et.param}
+    * @param param 参数列表  param.put("param","1");
     * @return
     */
-    boolean saveByDerCustomer(Customer customer,List<SearchAttachment> list);
-
-    /**
-    * saveRelByDerIdea
-    * @param idea
-    * @param list
-    * @return
-    */
-    boolean saveByDerIdea(Idea idea,List<SearchAttachment> list);
-
-    /**
-    * saveRelByDerPage
-    * @param articlePage
-    * @param list
-    * @return
-    */
-    boolean saveByDerPage(ArticlePage articlePage,List<SearchAttachment> list);
-
-    /**
-    * saveRelByDerTestCase
-    * @param testCase
-    * @param list
-    * @return
-    */
-    boolean saveByDerTestCase(TestCase testCase,List<SearchAttachment> list);
-
-    /**
-    * saveRelByDerTicket
-    * @param ticket
-    * @param list
-    * @return
-    */
-    boolean saveByDerTicket(Ticket ticket,List<SearchAttachment> list);
-
-    /**
-    * saveRelByDerWorkItem
-    * @param workItem
-    * @param list
-    * @return
-    */
-    boolean saveByDerWorkItem(WorkItem workItem,List<SearchAttachment> list);
-
-
-    /**
-     * 自定义查询SQL
-     * @param sql  select * from table where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
-    List<JSONObject> select(String sql, Map<String,Object> param);
-
-    /**
-     * 自定义SQL
-     * @param sql  update table  set name ='test' where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
     boolean execute(String sql, Map<String,Object> param);
-
 }

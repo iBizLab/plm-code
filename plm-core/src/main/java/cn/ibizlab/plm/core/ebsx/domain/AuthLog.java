@@ -38,8 +38,8 @@ public class AuthLog extends EntityClient implements Serializable
      */
     @Id
     @DEField(name = "logid" , isKeyField = true)
-    @JsonProperty("logid")
     @JSONField(name = "logid")
+    @JsonProperty("logid")
     @ApiModelProperty(value = "logid", notes = "标识")
     private String logId;
 
@@ -47,8 +47,8 @@ public class AuthLog extends EntityClient implements Serializable
      * 用户全局名
      */
     @DEField(name = "username")
-    @JsonProperty("username")
     @JSONField(name = "username")
+    @JsonProperty("username")
     @ApiModelProperty(value = "username", notes = "用户全局名")
     private String userName;
 
@@ -56,8 +56,8 @@ public class AuthLog extends EntityClient implements Serializable
      * 用户全局标识
      */
     @DEField(name = "userid")
-    @JsonProperty("userid")
     @JSONField(name = "userid")
+    @JsonProperty("userid")
     @ApiModelProperty(value = "userid", notes = "用户全局标识")
     private String userId;
 
@@ -65,8 +65,8 @@ public class AuthLog extends EntityClient implements Serializable
      * 用户名称
      */
     @DEField(name = "personname")
-    @JsonProperty("personname")
     @JSONField(name = "personname")
+    @JsonProperty("personname")
     @ApiModelProperty(value = "personname", notes = "用户名称")
     private String personName;
 
@@ -74,8 +74,8 @@ public class AuthLog extends EntityClient implements Serializable
      * 域
      */
     @DEField(name = "domains")
-    @JsonProperty("domain")
     @JSONField(name = "domain")
+    @JsonProperty("domain")
     @ApiModelProperty(value = "domains", notes = "域")
     private String domain;
 
@@ -83,9 +83,9 @@ public class AuthLog extends EntityClient implements Serializable
      * 认证时间
      */
     @DEField(name = "authtime" , preType = DEPredefinedFieldType.CREATEDATE)
-    @JsonProperty("authtime")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "authtime" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("authtime")
     @ApiModelProperty(value = "authtime", notes = "认证时间")
     private Date authTime;
 
@@ -93,8 +93,8 @@ public class AuthLog extends EntityClient implements Serializable
      * IP地址
      */
     @DEField(name = "ipaddr")
-    @JsonProperty("ipaddr")
     @JSONField(name = "ipaddr")
+    @JsonProperty("ipaddr")
     @ApiModelProperty(value = "ipaddr", notes = "IP地址")
     private String ipAddr;
 
@@ -102,8 +102,8 @@ public class AuthLog extends EntityClient implements Serializable
      * MAC地址
      */
     @DEField(name = "macaddr")
-    @JsonProperty("macaddr")
     @JSONField(name = "macaddr")
+    @JsonProperty("macaddr")
     @ApiModelProperty(value = "macaddr", notes = "MAC地址")
     private String macAddr;
 
@@ -111,8 +111,8 @@ public class AuthLog extends EntityClient implements Serializable
      * 客户端
      */
     @DEField(name = "useragent")
-    @JsonProperty("useragent")
     @JSONField(name = "useragent")
+    @JsonProperty("useragent")
     @ApiModelProperty(value = "useragent", notes = "客户端")
     private String userAgent;
 
@@ -120,8 +120,8 @@ public class AuthLog extends EntityClient implements Serializable
      * 认证结果
      */
     @DEField(name = "authcode" , dict = "AuthCode")
-    @JsonProperty("authcode")
     @JSONField(name = "authcode")
+    @JsonProperty("authcode")
     @ApiModelProperty(value = "authcode", notes = "认证结果")
     private String authCode;
 
@@ -129,14 +129,14 @@ public class AuthLog extends EntityClient implements Serializable
      * 认证方式
      */
     @DEField(name = "authagent")
-    @JsonProperty("authagent")
     @JSONField(name = "authagent")
+    @JsonProperty("authagent")
     @ApiModelProperty(value = "authagent", notes = "认证方式")
     private String authAgent;
 
     /**
-     * 设置 [用户全局名]
-     */
+    * 设置 [用户全局名]
+    */
     public AuthLog setUserName(String userName) {
         this.userName = userName;
         this.modify("username", userName);
@@ -144,8 +144,8 @@ public class AuthLog extends EntityClient implements Serializable
     }
 
     /**
-     * 设置 [用户全局标识]
-     */
+    * 设置 [用户全局标识]
+    */
     public AuthLog setUserId(String userId) {
         this.userId = userId;
         this.modify("userid", userId);
@@ -153,8 +153,8 @@ public class AuthLog extends EntityClient implements Serializable
     }
 
     /**
-     * 设置 [用户名称]
-     */
+    * 设置 [用户名称]
+    */
     public AuthLog setPersonName(String personName) {
         this.personName = personName;
         this.modify("personname", personName);
@@ -162,8 +162,8 @@ public class AuthLog extends EntityClient implements Serializable
     }
 
     /**
-     * 设置 [域]
-     */
+    * 设置 [域]
+    */
     public AuthLog setDomain(String domain) {
         this.domain = domain;
         this.modify("domain", domain);
@@ -171,8 +171,8 @@ public class AuthLog extends EntityClient implements Serializable
     }
 
     /**
-     * 设置 [IP地址]
-     */
+    * 设置 [IP地址]
+    */
     public AuthLog setIpAddr(String ipAddr) {
         this.ipAddr = ipAddr;
         this.modify("ipaddr", ipAddr);
@@ -180,8 +180,8 @@ public class AuthLog extends EntityClient implements Serializable
     }
 
     /**
-     * 设置 [MAC地址]
-     */
+    * 设置 [MAC地址]
+    */
     public AuthLog setMacAddr(String macAddr) {
         this.macAddr = macAddr;
         this.modify("macaddr", macAddr);
@@ -189,8 +189,8 @@ public class AuthLog extends EntityClient implements Serializable
     }
 
     /**
-     * 设置 [客户端]
-     */
+    * 设置 [客户端]
+    */
     public AuthLog setUserAgent(String userAgent) {
         this.userAgent = userAgent;
         this.modify("useragent", userAgent);
@@ -198,8 +198,8 @@ public class AuthLog extends EntityClient implements Serializable
     }
 
     /**
-     * 设置 [认证结果]
-     */
+    * 设置 [认证结果]
+    */
     public AuthLog setAuthCode(String authCode) {
         this.authCode = authCode;
         this.modify("authcode", authCode);
@@ -207,14 +207,15 @@ public class AuthLog extends EntityClient implements Serializable
     }
 
     /**
-     * 设置 [认证方式]
-     */
+    * 设置 [认证方式]
+    */
     public AuthLog setAuthAgent(String authAgent) {
         this.authAgent = authAgent;
         this.modify("authagent", authAgent);
         return this;
     }
 
+	
     /**
      * 复制当前对象数据到目标对象(粘贴重置)
      * @param targetEntity 目标数据对象

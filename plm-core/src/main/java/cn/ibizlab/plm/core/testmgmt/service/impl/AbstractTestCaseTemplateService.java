@@ -49,17 +49,193 @@ public abstract class AbstractTestCaseTemplateService extends ServiceImpl<TestCa
 
     protected int batchSize = 500;
 
+    @Override
+    @Transactional
+    public boolean create(TestCaseTemplate et) {
+        fillParentData(et);
+        if(this.baseMapper.insert(et) < 1)
+            return false;
+        get(et);
+        return true;
+    }
+	
+    @Transactional
+    public boolean create(List<TestCaseTemplate> list) {
+        list.forEach(this::fillParentData);
+        this.saveBatch(list, batchSize);
+        return true;
+    }
+	
+    @Transactional
+    public boolean update(TestCaseTemplate et) {
+        UpdateWrapper<TestCaseTemplate> qw = et.getUpdateWrapper(true);
+        qw.eq("id", et.getId());
+        if(!update(et, qw))
+            return false;
+        get(et);
+        return true;
+    }
+
+    @Transactional
+    public boolean update(List<TestCaseTemplate> list) {
+        updateBatchById(list, batchSize);
+        return true;
+    }
+	
+   @Transactional
+    public boolean remove(TestCaseTemplate et) {
+        if(!remove(Wrappers.<TestCaseTemplate>lambdaQuery().eq(TestCaseTemplate::getId, et.getId())))
+            return false;
+        return true;
+    }
+
+    @Transactional
+    public boolean remove(List<TestCaseTemplate> entities) {
+        this.baseMapper.deleteEntities(entities);
+        return true;
+    }		
     public TestCaseTemplate get(TestCaseTemplate et) {
         TestCaseTemplate rt = this.baseMapper.selectEntity(et);
         if(rt == null)
             throw new NotFoundException("数据不存在",Entities.TEST_CASE_TEMPLATE.toString(),et.getId());
         rt.copyTo(et,true);
         return et;
+    }	
+
+    public List<TestCaseTemplate> get(List<TestCaseTemplate> entities) {
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public TestCaseTemplate getDraft(TestCaseTemplate et) {
+        fillParentData(et);
+        return et;
+    }
+	
+    public Integer checkKey(TestCaseTemplate et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<TestCaseTemplate>lambdaQuery().eq(TestCaseTemplate::getId, et.getId()))>0)?1:0;
+    }
+	
+    @Override
+    @Transactional
+    public boolean save(TestCaseTemplate et) {
+        if(checkKey(et) > 0)
+            return getSelf().update(et);
+        else
+            return getSelf().create(et);
     }
 
-    public List<TestCaseTemplate> getByEntities(List<TestCaseTemplate> entities) {
-        return this.baseMapper.selectEntities(entities);
+    @Transactional
+    public boolean save(List<TestCaseTemplate> list) {
+        if(ObjectUtils.isEmpty(list))
+            return true;
+        Map<String,TestCaseTemplate> before = get(list).stream().collect(Collectors.toMap(TestCaseTemplate::getId,e->e));
+        List<TestCaseTemplate> create = new ArrayList<>();
+        List<TestCaseTemplate> update = new ArrayList<>();
+        list.forEach(sub->{
+            if(!ObjectUtils.isEmpty(sub.getId()) && before.containsKey(sub.getId()))
+                update.add(sub);
+            else
+                create.add(sub);
+        });
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else
+            return true;
     }
+	
+   public Page<TestCaseTemplate> fetchDefault(TestCaseTemplateSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestCaseTemplate> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
+        List<TestCaseTemplate> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<TestCaseTemplate> listDefault(TestCaseTemplateSearchContext context) {
+        List<TestCaseTemplate> list = baseMapper.listDefault(context,context.getSelectCond());
+        return list;
+   }
+	
+	public List<TestCaseTemplate> findByTestLibraryId(List<String> testLibraryIds){
+        List<TestCaseTemplate> list = baseMapper.findByTestLibraryId(testLibraryIds);
+        return list;	
+	}
+
+	public boolean removeByTestLibraryId(String testLibraryId){
+        return this.remove(Wrappers.<TestCaseTemplate>lambdaQuery().eq(TestCaseTemplate::getTestLibraryId,testLibraryId));
+	}
+
+	public boolean resetByTestLibraryId(String testLibraryId){
+		return this.update(Wrappers.<TestCaseTemplate>lambdaUpdate().eq(TestCaseTemplate::getTestLibraryId,testLibraryId));
+	}
+	public boolean saveByLibrary(Library library, List<TestCaseTemplate> list){
+        if(list==null)
+            return true;
+        Map<String,TestCaseTemplate> before = findByTestLibraryId(library.getId()).stream().collect(Collectors.toMap(TestCaseTemplate::getId,e->e));
+
+        List<TestCaseTemplate> update = new ArrayList<>();
+        List<TestCaseTemplate> create = new ArrayList<>();
+
+        for(TestCaseTemplate sub:list) {
+            sub.setTestLibraryId(library.getId());
+            sub.setLibrary(library);
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
+	public List<TestCaseTemplate> findBySuiteId(List<String> suiteIds){
+        List<TestCaseTemplate> list = baseMapper.findBySuiteId(suiteIds);
+        return list;	
+	}
+
+	public boolean removeBySuiteId(String suiteId){
+        return this.remove(Wrappers.<TestCaseTemplate>lambdaQuery().eq(TestCaseTemplate::getSuiteId,suiteId));
+	}
+
+	public boolean resetBySuiteId(String suiteId){
+		return this.update(Wrappers.<TestCaseTemplate>lambdaUpdate().eq(TestCaseTemplate::getSuiteId,suiteId));
+	}
+	public boolean saveByTestSuite(TestSuite testSuite, List<TestCaseTemplate> list){
+        if(list==null)
+            return true;
+        Map<String,TestCaseTemplate> before = findBySuiteId(testSuite.getId()).stream().collect(Collectors.toMap(TestCaseTemplate::getId,e->e));
+
+        List<TestCaseTemplate> update = new ArrayList<>();
+        List<TestCaseTemplate> create = new ArrayList<>();
+
+        for(TestCaseTemplate sub:list) {
+            sub.setSuiteId(testSuite.getId());
+            sub.setTestSuite(testSuite);
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
 
     public void fillParentData(TestCaseTemplate et) {
         if(Entities.LIBRARY.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
@@ -89,184 +265,6 @@ public abstract class AbstractTestCaseTemplateService extends ServiceImpl<TestCa
         }
     }
 
-    public TestCaseTemplate getDraft(TestCaseTemplate et) {
-        fillParentData(et);
-        return et;
-    }
-
-    public Integer checkKey(TestCaseTemplate et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<TestCaseTemplate>lambdaQuery().eq(TestCaseTemplate::getId, et.getId()))>0)?1:0;
-    }
-
-    @Override
-    @Transactional
-    public boolean create(TestCaseTemplate et) {
-        fillParentData(et);
-        if(this.baseMapper.insert(et) < 1)
-            return false;
-        get(et);
-        return true;
-    }
-
-    @Transactional
-    public boolean createBatch(List<TestCaseTemplate> list) {
-        list.forEach(this::fillParentData);
-        this.saveBatch(list, batchSize);
-        return true;
-    }
-
-    @Transactional
-    public boolean update(TestCaseTemplate et) {
-        UpdateWrapper<TestCaseTemplate> qw = et.getUpdateWrapper(true);
-        qw.eq("id", et.getId());
-        if(!update(et, qw))
-            return false;
-        get(et);
-        return true;
-    }
-
-    @Transactional
-    public boolean updateBatch(List<TestCaseTemplate> list) {
-        updateBatchById(list, batchSize);
-        return true;
-    }
-
-    @Override
-    @Transactional
-    public boolean save(TestCaseTemplate et) {
-        if(checkKey(et) > 0)
-            return getSelf().update(et);
-        else
-            return getSelf().create(et);
-    }
-
-    @Transactional
-    public boolean saveBatch(List<TestCaseTemplate> list) {
-        if(ObjectUtils.isEmpty(list))
-            return true;
-        Map<String,TestCaseTemplate> before = getByEntities(list).stream().collect(Collectors.toMap(TestCaseTemplate::getId,e->e));
-        List<TestCaseTemplate> create = new ArrayList<>();
-        List<TestCaseTemplate> update = new ArrayList<>();
-        list.forEach(sub->{
-            if(!ObjectUtils.isEmpty(sub.getId()) && before.containsKey(sub.getId()))
-                update.add(sub);
-            else
-                create.add(sub);
-        });
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else
-            return true;
-    }
-
-    @Transactional
-    public boolean remove(TestCaseTemplate et) {
-        if(!remove(Wrappers.<TestCaseTemplate>lambdaQuery().eq(TestCaseTemplate::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<TestCaseTemplate> entities) {
-        this.baseMapper.deleteEntities(entities);
-        return true;
-    }
-
-    public Page<TestCaseTemplate> searchDefault(TestCaseTemplateSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestCaseTemplate> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
-        List<TestCaseTemplate> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<TestCaseTemplate> listDefault(TestCaseTemplateSearchContext context) {
-        List<TestCaseTemplate> list = baseMapper.listDefault(context,context.getSelectCond());
-        return list;
-    }
-
-    public List<TestCaseTemplate> findByTestLibraryId(List<String> testLibraryIds) {
-        List<TestCaseTemplate> list = baseMapper.findByTestLibraryId(testLibraryIds);
-        return list;
-    }
-    public List<TestCaseTemplate> findBySuiteId(List<String> suiteIds) {
-        List<TestCaseTemplate> list = baseMapper.findBySuiteId(suiteIds);
-        return list;
-    }
-    public boolean removeByTestLibraryId(String testLibraryId) {
-        return this.remove(Wrappers.<TestCaseTemplate>lambdaQuery().eq(TestCaseTemplate::getTestLibraryId,testLibraryId));
-    }
-
-    public boolean resetByTestLibraryId(String testLibraryId) {
-        return this.update(Wrappers.<TestCaseTemplate>lambdaUpdate().eq(TestCaseTemplate::getTestLibraryId,testLibraryId));
-    }
-
-    public boolean saveByLibrary(Library library,List<TestCaseTemplate> list) {
-        if(list==null)
-            return true;
-        Map<String,TestCaseTemplate> before = findByTestLibraryId(library.getId()).stream().collect(Collectors.toMap(TestCaseTemplate::getId,e->e));
-        List<TestCaseTemplate> update = new ArrayList<>();
-        List<TestCaseTemplate> create = new ArrayList<>();
-
-        for(TestCaseTemplate sub:list) {
-            sub.setTestLibraryId(library.getId());
-            sub.setLibrary(library);
-            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
-                before.remove(sub.getId());
-                update.add(sub);
-            }
-            else
-                create.add(sub);
-        }
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
-            return false;
-        else
-            return true;
-    }
-
-    public boolean removeBySuiteId(String suiteId) {
-        return this.remove(Wrappers.<TestCaseTemplate>lambdaQuery().eq(TestCaseTemplate::getSuiteId,suiteId));
-    }
-
-    public boolean resetBySuiteId(String suiteId) {
-        return this.update(Wrappers.<TestCaseTemplate>lambdaUpdate().eq(TestCaseTemplate::getSuiteId,suiteId));
-    }
-
-    public boolean saveByTestSuite(TestSuite testSuite,List<TestCaseTemplate> list) {
-        if(list==null)
-            return true;
-        Map<String,TestCaseTemplate> before = findBySuiteId(testSuite.getId()).stream().collect(Collectors.toMap(TestCaseTemplate::getId,e->e));
-        List<TestCaseTemplate> update = new ArrayList<>();
-        List<TestCaseTemplate> create = new ArrayList<>();
-
-        for(TestCaseTemplate sub:list) {
-            sub.setSuiteId(testSuite.getId());
-            sub.setTestSuite(testSuite);
-            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
-                before.remove(sub.getId());
-                update.add(sub);
-            }
-            else
-                create.add(sub);
-        }
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
-            return false;
-        else
-            return true;
-    }
-
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -286,8 +284,8 @@ public abstract class AbstractTestCaseTemplateService extends ServiceImpl<TestCa
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return TestCaseTemplateMapper.class;
     }
@@ -296,4 +294,5 @@ public abstract class AbstractTestCaseTemplateService extends ServiceImpl<TestCa
     protected Class currentModelClass() {
         return TestCaseTemplate.class;
     }
+
 }

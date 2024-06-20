@@ -44,6 +44,25 @@ public interface AuthLogAdminMapper extends BaseMapper<AuthLogAdmin> {
     List<AuthLogAdmin> listDefault(@Param("ctx") AuthLogAdminSearchContext context, @Param("ew") Wrapper<AuthLogAdmin> wrapper);
 
     /**
+     * 数据集合distinct_userid分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Map> searchDistinctUserid(IPage<AuthLogAdmin> page, @Param("ctx") AuthLogAdminSearchContext context, @Param("ew") Wrapper<AuthLogAdmin> wrapper);
+    
+    /**
+     * 数据集合distinct_userid查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Map> listDistinctUserid(@Param("ctx") AuthLogAdminSearchContext context, @Param("ew") Wrapper<AuthLogAdmin> wrapper);
+
+    /**
      * 数据集合group_by_data分页查询
      * 
      * @param page
@@ -171,5 +190,4 @@ public interface AuthLogAdminMapper extends BaseMapper<AuthLogAdmin> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
 }

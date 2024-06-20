@@ -55,6 +55,14 @@ public class MemberFilterDTO extends FilterBase implements Serializable {
 	private String userIdEQ;
 
     /**
+     * 登录名NOTIN
+     */
+    @JsonProperty("n_user_id_notin")
+    @JSONField(name = "n_user_id_notin")
+    @ApiModelProperty(value = "登录名NOTIN", position = 21)
+	private String userIdNOTIN;
+
+    /**
      * 角色EQ
      */
     @JsonProperty("n_role_id_eq")

@@ -36,11 +36,11 @@ public class InsightDTO extends DTOBase implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 报表类型
+     * 图表类型
      */
     @JsonProperty("type")
     @JSONField(name = "type")
-    @ApiModelProperty(value = "报表类型", position = 0)
+    @ApiModelProperty(value = "图表类型", position = 0)
     private String type;
 
     /**
@@ -127,7 +127,7 @@ public class InsightDTO extends DTOBase implements Serializable {
 
 
     /**
-     * 设置 [报表类型]
+     * 设置 [图表类型]
      */
     public InsightDTO setType(String type) {
         this.type = type;

@@ -62,6 +62,14 @@ public class ReviewSearchContext extends QueryWrapperContext<Review> {
     private String stateEQ;
 
     /**
+     * 标识EQ
+     */
+    @JsonProperty("n_id_eq")
+    @JSONField(name = "n_id_eq")
+    @ApiModelProperty("标识EQ")
+    private String idEQ;
+
+    /**
      * 名称LIKE
      */
     @JsonProperty("n_name_like")
@@ -70,12 +78,12 @@ public class ReviewSearchContext extends QueryWrapperContext<Review> {
     private String nameLIKE;
 
     /**
-     * 标识EQ
+     * 建立人EQ
      */
-    @JsonProperty("n_id_eq")
-    @JSONField(name = "n_id_eq")
-    @ApiModelProperty("标识EQ")
-    private String idEQ;
+    @JsonProperty("n_create_man_eq")
+    @JSONField(name = "n_create_man_eq")
+    @ApiModelProperty("建立人EQ")
+    private String createManEQ;
 
     /**
      * 测试库标识EQ
@@ -101,9 +109,19 @@ public class ReviewSearchContext extends QueryWrapperContext<Review> {
     @ApiModelProperty("测试库名称LIKE")
     private String libraryNameLIKE;
 
+    /**
+     * 流程准则标识EQ
+     */
+    @JsonProperty("n_guideline_id_eq")
+    @JSONField(name = "n_guideline_id_eq")
+    @ApiModelProperty("流程准则标识EQ")
+    private String guidelineIdEQ;
+
     @Override
     public void setContextParentKey(Serializable contextParentKey) {
         super.setContextParentKey(contextParentKey);
+        if(Entities.GUIDELINE.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("guideline_id",contextParentKey);
         if(Entities.LIBRARY.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("library_id",contextParentKey);
     }

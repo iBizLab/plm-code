@@ -89,13 +89,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '新建标签',
-      refAppViewId: 'plmweb.product_tag_new_option_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       openMode: 'POPUPMODAL',
       navigateParams: [
         {
@@ -109,6 +102,13 @@ export default {
       refAppViewId: 'plmweb.ticket_tags_tciket_grid_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '新建标签',
+      refAppViewId: 'plmweb.product_tag_new_option_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -244,8 +244,8 @@ export default {
                 tooltip: '删除标签',
                 showIcon: true,
                 sysImage: {
-                  cssClass: 'fa fa-trash',
-                  glyph: 'xf1f8@FontAwesome',
+                  cssClass: 'fa fa-trash-o',
+                  glyph: 'xf014@FontAwesome',
                 },
                 id: 'ub539582',
               },
@@ -331,6 +331,7 @@ export default {
       sortMode: 'REMOTE',
       enableCustomized: true,
       enablePagingBar: true,
+      singleSelect: true,
       fetchControlAction: {
         appDEMethodId: 'fetch_default',
         appDataEntityId: 'plmweb.product_tag',

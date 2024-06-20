@@ -42,26 +42,6 @@ public abstract class AbstractWorkloadTypeService extends ServiceImpl<WorkloadTy
 
     protected int batchSize = 500;
 
-    public WorkloadType get(WorkloadType et) {
-        WorkloadType rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.WORKLOAD_TYPE.toString(),et.getId());
-        rt.copyTo(et,true);
-        return et;
-    }
-
-    public List<WorkloadType> getByEntities(List<WorkloadType> entities) {
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public WorkloadType getDraft(WorkloadType et) {
-        return et;
-    }
-
-    public Integer checkKey(WorkloadType et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<WorkloadType>lambdaQuery().eq(WorkloadType::getId, et.getId()))>0)?1:0;
-    }
-
     @Override
     @Transactional
     public boolean create(WorkloadType et) {
@@ -70,13 +50,13 @@ public abstract class AbstractWorkloadTypeService extends ServiceImpl<WorkloadTy
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<WorkloadType> list) {
+    public boolean create(List<WorkloadType> list) {
         this.saveBatch(list, batchSize);
         return true;
     }
-
+	
     @Transactional
     public boolean update(WorkloadType et) {
         UpdateWrapper<WorkloadType> qw = et.getUpdateWrapper(true);
@@ -88,11 +68,43 @@ public abstract class AbstractWorkloadTypeService extends ServiceImpl<WorkloadTy
     }
 
     @Transactional
-    public boolean updateBatch(List<WorkloadType> list) {
+    public boolean update(List<WorkloadType> list) {
         updateBatchById(list, batchSize);
         return true;
     }
+	
+   @Transactional
+    public boolean remove(WorkloadType et) {
+        if(!remove(Wrappers.<WorkloadType>lambdaQuery().eq(WorkloadType::getId, et.getId())))
+            return false;
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<WorkloadType> entities) {
+        this.baseMapper.deleteEntities(entities);
+        return true;
+    }		
+    public WorkloadType get(WorkloadType et) {
+        WorkloadType rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.WORKLOAD_TYPE.toString(),et.getId());
+        rt.copyTo(et,true);
+        return et;
+    }	
+
+    public List<WorkloadType> get(List<WorkloadType> entities) {
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public WorkloadType getDraft(WorkloadType et) {
+        return et;
+    }
+	
+    public Integer checkKey(WorkloadType et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<WorkloadType>lambdaQuery().eq(WorkloadType::getId, et.getId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(WorkloadType et) {
@@ -103,10 +115,10 @@ public abstract class AbstractWorkloadTypeService extends ServiceImpl<WorkloadTy
     }
 
     @Transactional
-    public boolean saveBatch(List<WorkloadType> list) {
+    public boolean save(List<WorkloadType> list) {
         if(ObjectUtils.isEmpty(list))
             return true;
-        Map<String,WorkloadType> before = getByEntities(list).stream().collect(Collectors.toMap(WorkloadType::getId,e->e));
+        Map<String,WorkloadType> before = get(list).stream().collect(Collectors.toMap(WorkloadType::getId,e->e));
         List<WorkloadType> create = new ArrayList<>();
         List<WorkloadType> update = new ArrayList<>();
         list.forEach(sub->{
@@ -117,26 +129,13 @@ public abstract class AbstractWorkloadTypeService extends ServiceImpl<WorkloadTy
         });
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
         else
             return true;
     }
-
-    @Transactional
-    public boolean remove(WorkloadType et) {
-        if(!remove(Wrappers.<WorkloadType>lambdaQuery().eq(WorkloadType::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<WorkloadType> entities) {
-        this.baseMapper.deleteEntities(entities);
-        return true;
-    }
-
-    public Page<WorkloadType> searchDefault(WorkloadTypeSearchContext context) {
+	
+   public Page<WorkloadType> fetchDefault(WorkloadTypeSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("SEQUENCE,ASC");
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkloadType> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
@@ -144,17 +143,14 @@ public abstract class AbstractWorkloadTypeService extends ServiceImpl<WorkloadTy
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<WorkloadType> listDefault(WorkloadTypeSearchContext context) {
+   public List<WorkloadType> listDefault(WorkloadTypeSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("SEQUENCE,ASC");
         List<WorkloadType> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
-    }
+   }
+	
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -174,8 +170,8 @@ public abstract class AbstractWorkloadTypeService extends ServiceImpl<WorkloadTy
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return WorkloadTypeMapper.class;
     }
@@ -184,4 +180,5 @@ public abstract class AbstractWorkloadTypeService extends ServiceImpl<WorkloadTy
     protected Class currentModelClass() {
         return WorkloadType.class;
     }
+
 }

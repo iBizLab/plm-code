@@ -43,6 +43,22 @@ public interface EntryMapper extends BaseMapper<Entry> {
     List<Entry> listDefault(@Param("ctx") EntrySearchContext context, @Param("ew") Wrapper<Entry> wrapper);
 
     /**
+    * 根据boardId查询
+    *
+    * @param boardIds
+    * @return
+    */
+    List<Entry> findByBoardId(@Param("boardIds") List<String> boardIds);
+
+    /**
+    * 根据projectId查询
+    *
+    * @param projectIds
+    * @return
+    */
+    List<Entry> findByProjectId(@Param("projectIds") List<String> projectIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -151,21 +167,4 @@ public interface EntryMapper extends BaseMapper<Entry> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据boardId查询
-     *
-     * @param boardIds
-     * @return
-     */
-    List<Entry> findByBoardId(@Param("boardIds") List<String> boardIds);
-
-    /**
-     * 根据projectId查询
-     *
-     * @param projectIds
-     * @return
-     */
-    List<Entry> findByProjectId(@Param("projectIds") List<String> projectIds);
-
 }

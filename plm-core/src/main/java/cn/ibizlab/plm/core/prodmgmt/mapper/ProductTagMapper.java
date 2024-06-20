@@ -43,6 +43,33 @@ public interface ProductTagMapper extends BaseMapper<ProductTag> {
     List<ProductTag> listDefault(@Param("ctx") ProductTagSearchContext context, @Param("ew") Wrapper<ProductTag> wrapper);
 
     /**
+     * 数据集合cur_product_tag分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<ProductTag> searchCurProductTag(IPage<ProductTag> page, @Param("ctx") ProductTagSearchContext context, @Param("ew") Wrapper<ProductTag> wrapper);
+    
+    /**
+     * 数据集合cur_product_tag查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<ProductTag> listCurProductTag(@Param("ctx") ProductTagSearchContext context, @Param("ew") Wrapper<ProductTag> wrapper);
+
+    /**
+    * 根据productId查询
+    *
+    * @param productIds
+    * @return
+    */
+    List<ProductTag> findByProductId(@Param("productIds") List<String> productIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -151,13 +178,4 @@ public interface ProductTagMapper extends BaseMapper<ProductTag> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据productId查询
-     *
-     * @param productIds
-     * @return
-     */
-    List<ProductTag> findByProductId(@Param("productIds") List<String> productIds);
-
 }

@@ -36,26 +36,6 @@ public abstract class AbstractDictionaryDataService extends ServiceImpl<Dictiona
 
     protected int batchSize = 500;
 
-    public DictionaryData get(DictionaryData et) {
-        DictionaryData rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.DICTIONARY_DATA.toString(),et.getId());
-        rt.copyTo(et,true);
-        return et;
-    }
-
-    public List<DictionaryData> getByEntities(List<DictionaryData> entities) {
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public DictionaryData getDraft(DictionaryData et) {
-        return et;
-    }
-
-    public Integer checkKey(DictionaryData et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<DictionaryData>lambdaQuery().eq(DictionaryData::getId, et.getId()))>0)?1:0;
-    }
-
     @Override
     @Transactional
     public boolean create(DictionaryData et) {
@@ -64,13 +44,13 @@ public abstract class AbstractDictionaryDataService extends ServiceImpl<Dictiona
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<DictionaryData> list) {
+    public boolean create(List<DictionaryData> list) {
         this.saveBatch(list, batchSize);
         return true;
     }
-
+	
     @Transactional
     public boolean update(DictionaryData et) {
         UpdateWrapper<DictionaryData> qw = et.getUpdateWrapper(true);
@@ -82,11 +62,43 @@ public abstract class AbstractDictionaryDataService extends ServiceImpl<Dictiona
     }
 
     @Transactional
-    public boolean updateBatch(List<DictionaryData> list) {
+    public boolean update(List<DictionaryData> list) {
         updateBatchById(list, batchSize);
         return true;
     }
+	
+   @Transactional
+    public boolean remove(DictionaryData et) {
+        if(!remove(Wrappers.<DictionaryData>lambdaQuery().eq(DictionaryData::getId, et.getId())))
+            return false;
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<DictionaryData> entities) {
+        this.baseMapper.deleteEntities(entities);
+        return true;
+    }		
+    public DictionaryData get(DictionaryData et) {
+        DictionaryData rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.DICTIONARY_DATA.toString(),et.getId());
+        rt.copyTo(et,true);
+        return et;
+    }	
+
+    public List<DictionaryData> get(List<DictionaryData> entities) {
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public DictionaryData getDraft(DictionaryData et) {
+        return et;
+    }
+	
+    public Integer checkKey(DictionaryData et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<DictionaryData>lambdaQuery().eq(DictionaryData::getId, et.getId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(DictionaryData et) {
@@ -97,10 +109,10 @@ public abstract class AbstractDictionaryDataService extends ServiceImpl<Dictiona
     }
 
     @Transactional
-    public boolean saveBatch(List<DictionaryData> list) {
+    public boolean save(List<DictionaryData> list) {
         if(ObjectUtils.isEmpty(list))
             return true;
-        Map<String,DictionaryData> before = getByEntities(list).stream().collect(Collectors.toMap(DictionaryData::getId,e->e));
+        Map<String,DictionaryData> before = get(list).stream().collect(Collectors.toMap(DictionaryData::getId,e->e));
         List<DictionaryData> create = new ArrayList<>();
         List<DictionaryData> update = new ArrayList<>();
         list.forEach(sub->{
@@ -111,26 +123,13 @@ public abstract class AbstractDictionaryDataService extends ServiceImpl<Dictiona
         });
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
         else
             return true;
     }
-
-    @Transactional
-    public boolean remove(DictionaryData et) {
-        if(!remove(Wrappers.<DictionaryData>lambdaQuery().eq(DictionaryData::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<DictionaryData> entities) {
-        this.baseMapper.deleteEntities(entities);
-        return true;
-    }
-
-    public Page<DictionaryData> searchDefault(DictionaryDataSearchContext context) {
+	
+   public Page<DictionaryData> fetchDefault(DictionaryDataSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("SEQUENCE,ASC");
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<DictionaryData> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
@@ -138,50 +137,47 @@ public abstract class AbstractDictionaryDataService extends ServiceImpl<Dictiona
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<DictionaryData> listDefault(DictionaryDataSearchContext context) {
+   public List<DictionaryData> listDefault(DictionaryDataSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("SEQUENCE,ASC");
         List<DictionaryData> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<DictionaryData> searchIdeaState(DictionaryDataSearchContext context) {
+   }
+	
+   public Page<DictionaryData> fetchIdeaState(DictionaryDataSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<DictionaryData> pages=baseMapper.searchIdeaState(context.getPages(),context,context.getSelectCond());
         List<DictionaryData> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<DictionaryData> listIdeaState(DictionaryDataSearchContext context) {
+   public List<DictionaryData> listIdeaState(DictionaryDataSearchContext context) {
         List<DictionaryData> list = baseMapper.listIdeaState(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<DictionaryData> searchReleaseStage(DictionaryDataSearchContext context) {
+   }
+	
+   public Page<DictionaryData> fetchReleaseStage(DictionaryDataSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<DictionaryData> pages=baseMapper.searchReleaseStage(context.getPages(),context,context.getSelectCond());
         List<DictionaryData> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<DictionaryData> listReleaseStage(DictionaryDataSearchContext context) {
+   public List<DictionaryData> listReleaseStage(DictionaryDataSearchContext context) {
         List<DictionaryData> list = baseMapper.listReleaseStage(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<DictionaryData> searchTicketState(DictionaryDataSearchContext context) {
+   }
+	
+   public Page<DictionaryData> fetchTicketState(DictionaryDataSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<DictionaryData> pages=baseMapper.searchTicketState(context.getPages(),context,context.getSelectCond());
         List<DictionaryData> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<DictionaryData> listTicketState(DictionaryDataSearchContext context) {
+   public List<DictionaryData> listTicketState(DictionaryDataSearchContext context) {
         List<DictionaryData> list = baseMapper.listTicketState(context,context.getSelectCond());
         return list;
-    }
+   }
+	
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -201,8 +197,8 @@ public abstract class AbstractDictionaryDataService extends ServiceImpl<Dictiona
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return DictionaryDataMapper.class;
     }
@@ -211,4 +207,5 @@ public abstract class AbstractDictionaryDataService extends ServiceImpl<Dictiona
     protected Class currentModelClass() {
         return DictionaryData.class;
     }
+
 }

@@ -126,6 +126,44 @@ public abstract class AbstractBoardResource {
     }
 
     /**
+    * check_board_is_deleted 看板
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<BoardDTO>
+    */
+    @ApiOperation(value = "check_board_is_deleted", tags = {"看板" },  notes = "Board-check_board_is_deleted ")
+    @PostMapping("boards/{id}/check_board_is_deleted")
+    public ResponseEntity<ResponseWrapper<BoardDTO>> checkBoardIsDeletedById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<BoardDTO> dto) {
+        ResponseWrapper<BoardDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(checkBoardIsDeletedById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(checkBoardIsDeletedById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * check_board_is_deleted 看板
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<BoardDTO>
+    */   
+    public BoardDTO checkBoardIsDeletedById
+            (String id, BoardDTO dto) {
+        Board domain = boardDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Board rt = boardService.checkBoardIsDeleted(domain);
+        return boardDtoMapping.toDto(rt);
+    }
+
+    /**
     * 保存Save 看板
     * 
     *
@@ -242,6 +280,46 @@ public abstract class AbstractBoardResource {
     }
 
     /**
+    * check_board_is_deleted 看板
+    * 
+    *
+    * @param projectId projectId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<BoardDTO>
+    */
+    @ApiOperation(value = "check_board_is_deleted", tags = {"看板" },  notes = "Board-check_board_is_deleted ")
+    @PostMapping("projects/{projectId}/boards/{id}/check_board_is_deleted")
+    public ResponseEntity<ResponseWrapper<BoardDTO>> checkBoardIsDeletedByProjectIdAndId
+            (@PathVariable("projectId") String projectId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<BoardDTO> dto) {
+        ResponseWrapper<BoardDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(checkBoardIsDeletedByProjectIdAndId(projectId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(checkBoardIsDeletedByProjectIdAndId(projectId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * check_board_is_deleted 看板
+    * 
+    *
+    * @param projectId projectId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<BoardDTO>
+    */   
+    public BoardDTO checkBoardIsDeletedByProjectIdAndId
+            (String projectId, String id, BoardDTO dto) {
+        Board domain = boardDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Board rt = boardService.checkBoardIsDeleted(domain);
+        return boardDtoMapping.toDto(rt);
+    }
+
+    /**
     * 保存Save 看板
     * 
     *
@@ -345,6 +423,28 @@ public abstract class AbstractBoardResource {
     }
 
     /**
+    * 查询fetch_cur_board_upload 看板
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<BoardDTO>>
+    */
+    @ApiOperation(value = "查询fetch_cur_board_upload", tags = {"看板" },  notes = "Board-fetch_cur_board_upload ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Board-fetch_cur_board_upload-all') or hasPermission(#dto,'ibizplm-Board-fetch_cur_board_upload')")
+    @PostMapping("boards/fetch_cur_board_upload")
+    public ResponseEntity<List<BoardDTO>> fetchCurBoardUpload
+            (@Validated @RequestBody BoardFilterDTO dto) {
+        BoardSearchContext context = boardFilterDtoMapping.toDomain(dto);
+        Page<Board> domains = boardService.fetchCurBoardUpload(context) ;
+        List<BoardDTO> list = boardDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
     * 查询fetch_cur_project_board 看板
     * 
     *
@@ -357,7 +457,7 @@ public abstract class AbstractBoardResource {
     public ResponseEntity<List<BoardDTO>> fetchCurProjectBoard
             (@Validated @RequestBody BoardFilterDTO dto) {
         BoardSearchContext context = boardFilterDtoMapping.toDomain(dto);
-        Page<Board> domains = boardService.searchCurProjectBoard(context) ;
+        Page<Board> domains = boardService.fetchCurProjectBoard(context) ;
         List<BoardDTO> list = boardDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -379,7 +479,7 @@ public abstract class AbstractBoardResource {
     public ResponseEntity<List<BoardDTO>> fetchDefault
             (@Validated @RequestBody BoardFilterDTO dto) {
         BoardSearchContext context = boardFilterDtoMapping.toDomain(dto);
-        Page<Board> domains = boardService.searchDefault(context) ;
+        Page<Board> domains = boardService.fetchDefault(context) ;
         List<BoardDTO> list = boardDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -459,6 +559,30 @@ public abstract class AbstractBoardResource {
     }
 
     /**
+    * 查询fetch_cur_board_upload 看板
+    * 
+    *
+    * @param projectId projectId
+    * @param dto dto
+    * @return ResponseEntity<List<BoardDTO>>
+    */
+    @ApiOperation(value = "查询fetch_cur_board_upload", tags = {"看板" },  notes = "Board-fetch_cur_board_upload ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Board-fetch_cur_board_upload-all') or hasPermission('project',#projectId,#dto,'ibizplm-Board-fetch_cur_board_upload')")
+    @PostMapping("projects/{projectId}/boards/fetch_cur_board_upload")
+    public ResponseEntity<List<BoardDTO>> fetchCurBoardUploadByProjectId
+            (@PathVariable("projectId") String projectId, @Validated @RequestBody BoardFilterDTO dto) {
+        dto.setProjectIdEQ(projectId);
+        BoardSearchContext context = boardFilterDtoMapping.toDomain(dto);
+        Page<Board> domains = boardService.fetchCurBoardUpload(context) ;
+        List<BoardDTO> list = boardDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
     * 查询fetch_cur_project_board 看板
     * 
     *
@@ -473,7 +597,7 @@ public abstract class AbstractBoardResource {
             (@PathVariable("projectId") String projectId, @Validated @RequestBody BoardFilterDTO dto) {
         dto.setProjectIdEQ(projectId);
         BoardSearchContext context = boardFilterDtoMapping.toDomain(dto);
-        Page<Board> domains = boardService.searchCurProjectBoard(context) ;
+        Page<Board> domains = boardService.fetchCurProjectBoard(context) ;
         List<BoardDTO> list = boardDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -497,7 +621,7 @@ public abstract class AbstractBoardResource {
             (@PathVariable("projectId") String projectId, @Validated @RequestBody BoardFilterDTO dto) {
         dto.setProjectIdEQ(projectId);
         BoardSearchContext context = boardFilterDtoMapping.toDomain(dto);
-        Page<Board> domains = boardService.searchDefault(context) ;
+        Page<Board> domains = boardService.fetchDefault(context) ;
         List<BoardDTO> list = boardDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -516,7 +640,7 @@ public abstract class AbstractBoardResource {
     @ApiOperation(value = "批量新建看板", tags = {"看板" },  notes = "批量新建看板")
 	@PostMapping("boards/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<BoardDTO> dtos) {
-        boardService.createBatch(boardDtoMapping.toDomain(dtos));
+        boardService.create(boardDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -529,7 +653,7 @@ public abstract class AbstractBoardResource {
     @ApiOperation(value = "批量删除看板", tags = {"看板" },  notes = "批量删除看板")
 	@DeleteMapping("boards/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        boardService.removeBatch(ids);
+        boardService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -542,7 +666,7 @@ public abstract class AbstractBoardResource {
     @ApiOperation(value = "批量更新看板", tags = {"看板" },  notes = "批量更新看板")
 	@PutMapping("boards/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<BoardDTO> dtos) {
-        boardService.updateBatch(boardDtoMapping.toDomain(dtos));
+        boardService.update(boardDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -555,7 +679,7 @@ public abstract class AbstractBoardResource {
     @ApiOperation(value = "批量保存看板", tags = {"看板" },  notes = "批量保存看板")
 	@PostMapping("boards/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<BoardDTO> dtos) {
-        boardService.saveBatch(boardDtoMapping.toDomain(dtos));
+        boardService.save(boardDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

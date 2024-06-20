@@ -238,7 +238,7 @@ public abstract class AbstractParameterResource {
     public ResponseEntity<List<ParameterDTO>> fetchDefault
             (@Validated @RequestBody ParameterFilterDTO dto) {
         ParameterSearchContext context = parameterFilterDtoMapping.toDomain(dto);
-        Page<Parameter> domains = parameterService.searchDefault(context) ;
+        Page<Parameter> domains = parameterService.fetchDefault(context) ;
         List<ParameterDTO> list = parameterDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -257,7 +257,7 @@ public abstract class AbstractParameterResource {
     @ApiOperation(value = "批量新建系统参数", tags = {"系统参数" },  notes = "批量新建系统参数")
 	@PostMapping("parameters/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<ParameterDTO> dtos) {
-        parameterService.createBatch(parameterDtoMapping.toDomain(dtos));
+        parameterService.create(parameterDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -270,7 +270,7 @@ public abstract class AbstractParameterResource {
     @ApiOperation(value = "批量删除系统参数", tags = {"系统参数" },  notes = "批量删除系统参数")
 	@DeleteMapping("parameters/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        parameterService.removeBatch(ids);
+        parameterService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -283,7 +283,7 @@ public abstract class AbstractParameterResource {
     @ApiOperation(value = "批量更新系统参数", tags = {"系统参数" },  notes = "批量更新系统参数")
 	@PutMapping("parameters/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<ParameterDTO> dtos) {
-        parameterService.updateBatch(parameterDtoMapping.toDomain(dtos));
+        parameterService.update(parameterDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -296,7 +296,7 @@ public abstract class AbstractParameterResource {
     @ApiOperation(value = "批量保存系统参数", tags = {"系统参数" },  notes = "批量保存系统参数")
 	@PostMapping("parameters/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<ParameterDTO> dtos) {
-        parameterService.saveBatch(parameterDtoMapping.toDomain(dtos));
+        parameterService.save(parameterDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

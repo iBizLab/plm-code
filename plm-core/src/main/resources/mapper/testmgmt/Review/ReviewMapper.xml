@@ -10,13 +10,18 @@
 		<result property="libraryIdentifier" column="library_identifier" />
 		<result property="submitterId" column="submitter_id" />
 		<result property="submitterName" column="submitter_name" />
+        <result property="rule" column="rule" jdbcType="VARCHAR" typeHandler="cn.ibizlab.plm.core.testmgmt.domain.handlers.ReviewRuleTypeHandler" />
+        <result property="stage" column="stage" jdbcType="VARCHAR" typeHandler="cn.ibizlab.plm.core.testmgmt.domain.handlers.ReviewStageTypeHandler" />
+		<result property="actionRule" column="action_rule" jdbcType="VARCHAR" typeHandler="cn.ibizlab.plm.core.testmgmt.domain.handlers.ReviewActionRuleTypeHandler" />
 		<result property="showIdentifier" column="show_identifier" />
-		<result property="createTime" column="create_time" />
-		<result property="updateTime" column="update_time" />
 		<result property="createMan" column="create_man" />
+		<result property="createTime" column="create_time" />
 		<result property="updateMan" column="update_man" />
+		<result property="updateTime" column="update_time" />
 		<result property="libraryId" column="library_id" />
 		<result property="libraryName" column="library_name" />
+		<result property="guidelineId" column="guideline_id" />
+        <association property="guideline" javaType="cn.ibizlab.plm.core.testmgmt.domain.Guideline" column="guideline_id" select="cn.ibizlab.plm.core.testmgmt.mapper.GuidelineMapper.selectById" fetchType="lazy"></association>
         <association property="library" javaType="cn.ibizlab.plm.core.testmgmt.domain.Library" column="library_id" select="cn.ibizlab.plm.core.testmgmt.mapper.LibraryMapper.selectById" fetchType="lazy"></association>
     </resultMap>
 
@@ -46,11 +51,19 @@
     </delete>
 
     <sql id="default" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CATEGORIES`, t1.`COMPLETED_AT`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`LIBRARY_ID`, t11.`IDENTIFIER` AS `LIBRARY_IDENTIFIER`, t11.`NAME` AS `LIBRARY_NAME`, t1.`NAME`, concat(t11.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`STATE`, t1.`SUBMITTED_AT`, t1.`SUBMITTER_ID`, t1.`SUBMITTER_NAME`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `REVIEW` t1  LEFT JOIN `LIBRARY` t11 ON t1.`LIBRARY_ID` = t11.`ID`   ]]>  
+         <![CDATA[ SELECT t1.`CATEGORIES`, t1.`COMPLETED_AT`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`GUIDELINE_ID`, t1.`ID`, t1.`IDENTIFIER`, t1.`LIBRARY_ID`, t11.`IDENTIFIER` AS `LIBRARY_IDENTIFIER`, t11.`NAME` AS `LIBRARY_NAME`, t1.`NAME`, concat(t11.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`STATE`, t1.`SUBMITTED_AT`, t1.`SUBMITTER_ID`, t1.`SUBMITTER_NAME`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `REVIEW` t1  LEFT JOIN `LIBRARY` t11 ON t1.`LIBRARY_ID` = t11.`ID`   ]]>  
     </sql>
 
     <sql id="view" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CATEGORIES`, t1.`COMPLETED_AT`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`LIBRARY_ID`, t11.`IDENTIFIER` AS `LIBRARY_IDENTIFIER`, t11.`NAME` AS `LIBRARY_NAME`, t1.`NAME`, concat(t11.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`STATE`, t1.`SUBMITTED_AT`, t1.`SUBMITTER_ID`, t1.`SUBMITTER_NAME`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `REVIEW` t1  LEFT JOIN `LIBRARY` t11 ON t1.`LIBRARY_ID` = t11.`ID`   ]]>  
+         <![CDATA[ SELECT t1.`ACTION_RULE`, t1.`CATEGORIES`, t1.`COMPLETED_AT`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`GUIDELINE_ID`, t1.`ID`, t1.`IDENTIFIER`, t1.`LIBRARY_ID`, t11.`IDENTIFIER` AS `LIBRARY_IDENTIFIER`, t11.`NAME` AS `LIBRARY_NAME`, t1.`NAME`, t1.`RULE`, concat(t11.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`STAGE`, t1.`STATE`, t1.`SUBMITTED_AT`, t1.`SUBMITTER_ID`, t1.`SUBMITTER_NAME`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `REVIEW` t1  LEFT JOIN `LIBRARY` t11 ON t1.`LIBRARY_ID` = t11.`ID`   ]]>  
+    </sql>
+
+    <sql id="myAttention" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CATEGORIES`, t1.`COMPLETED_AT`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`GUIDELINE_ID`, t1.`ID`, t1.`IDENTIFIER`, t1.`LIBRARY_ID`, t11.`IDENTIFIER` AS `LIBRARY_IDENTIFIER`, t11.`NAME` AS `LIBRARY_NAME`, t1.`NAME`, concat(t11.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`STATE`, t1.`SUBMITTED_AT`, t1.`SUBMITTER_ID`, t1.`SUBMITTER_NAME`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `REVIEW` t1  LEFT JOIN `LIBRARY` t11 ON t1.`LIBRARY_ID` = t11.`ID`   ]]>  where  <![CDATA[ EXISTS(SELECT * FROM `ATTENTION` t21   WHERE   t1.`ID` = t21.`OWNER_ID`  AND  t21.`OWNER_TYPE` = 'REVIEW'  AND  t21.`OWNER_SUBTYPE` = 'REVIEW'  AND  ( t21.`USER_ID` = #{ctx.sessioncontext.srfpersonid}  AND  t21.`TYPE` IN ('20','30','40') ) ) ]]> 
+    </sql>
+
+    <sql id="myReviewed" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CATEGORIES`, t1.`COMPLETED_AT`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`GUIDELINE_ID`, t1.`ID`, t1.`IDENTIFIER`, t1.`LIBRARY_ID`, t11.`IDENTIFIER` AS `LIBRARY_IDENTIFIER`, t11.`NAME` AS `LIBRARY_NAME`, t1.`NAME`, concat(t11.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`STATE`, t1.`SUBMITTED_AT`, t1.`SUBMITTER_ID`, t1.`SUBMITTER_NAME`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `REVIEW` t1  LEFT JOIN `LIBRARY` t11 ON t1.`LIBRARY_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`STAGE` LIKE CONCAT('%',#{ctx.sessioncontext.srfpersonid},'%') ) ]]> 
     </sql>
 
     <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.ReviewSearchContext"  resultMap="ReviewResultMap">
@@ -72,6 +85,55 @@
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
         
+    </select>
+
+    <select id="searchMyAttention"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.ReviewSearchContext"  resultMap="ReviewResultMap">
+        select t1.* 
+        from (
+            <include refid="myAttention"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listMyAttention"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.ReviewSearchContext"  resultMap="ReviewResultMap">
+        select t1.*
+        from (
+            <include refid="myAttention"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchMyReviewed"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.ReviewSearchContext"  resultMap="ReviewResultMap">
+        select t1.* 
+        from (
+            <include refid="myReviewed"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listMyReviewed"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.ReviewSearchContext"  resultMap="ReviewResultMap">
+        select t1.*
+        from (
+            <include refid="myReviewed"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="findByGuidelineId" resultMap="ReviewResultMap">
+        select t1.* from (
+            <include refid="default"/>
+        ) t1
+        where guideline_id in <foreach item="id" index="index" collection="guidelineIds" open="(" separator="," close=")">#{id}</foreach> 
     </select>
 
     <select id="findByLibraryId" resultMap="ReviewResultMap">

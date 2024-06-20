@@ -127,12 +127,60 @@ public class TicketFilterDTO extends FilterBase implements Serializable {
 	private Integer isDeletedEQ;
 
     /**
+     * 标签LIKE
+     */
+    @JsonProperty("n_tags_like")
+    @JSONField(name = "n_tags_like")
+    @ApiModelProperty(value = "标签LIKE", position = 120)
+	private String tagsLIKE;
+
+    /**
      * 负责人标识EQ
      */
     @JsonProperty("n_assignee_id_eq")
     @JSONField(name = "n_assignee_id_eq")
     @ApiModelProperty(value = "负责人标识EQ", position = 140)
 	private String assigneeIdEQ;
+
+    /**
+     * 负责人标识IN
+     */
+    @JsonProperty("n_assignee_id_in")
+    @JSONField(name = "n_assignee_id_in")
+    @ApiModelProperty(value = "负责人标识IN", position = 141)
+	private String assigneeIdIN;
+
+    /**
+     * 负责人标识ISNOTNULL
+     */
+    @JsonProperty("n_assignee_id_isnotnull")
+    @JSONField(name = "n_assignee_id_isnotnull")
+    @ApiModelProperty(value = "负责人标识ISNOTNULL", position = 142)
+	private String assigneeIdISNOTNULL;
+
+    /**
+     * 负责人标识ISNULL
+     */
+    @JsonProperty("n_assignee_id_isnull")
+    @JSONField(name = "n_assignee_id_isnull")
+    @ApiModelProperty(value = "负责人标识ISNULL", position = 143)
+	private String assigneeIdISNULL;
+
+    /**
+     * 负责人标识NOTEQ
+     */
+    @JsonProperty("n_assignee_id_noteq")
+    @JSONField(name = "n_assignee_id_noteq")
+    @ApiModelProperty(value = "负责人标识NOTEQ", position = 144)
+	private String assigneeIdNOTEQ;
+
+    /**
+     * 负责人标识NOTIN
+     */
+    @JsonProperty("n_assignee_id_notin")
+    @JSONField(name = "n_assignee_id_notin")
+    @ApiModelProperty(value = "负责人标识NOTIN", position = 145)
+	private String assigneeIdNOTIN;
 
     /**
      * 编号LIKE
@@ -143,12 +191,60 @@ public class TicketFilterDTO extends FilterBase implements Serializable {
 	private String showIdentifierLIKE;
 
     /**
+     * 标识NOTEQ
+     */
+    @JsonProperty("n_id_noteq")
+    @JSONField(name = "n_id_noteq")
+    @ApiModelProperty(value = "标识NOTEQ", position = 220)
+	private String idNOTEQ;
+
+    /**
+     * 标识EQ
+     */
+    @JsonProperty("n_id_eq")
+    @JSONField(name = "n_id_eq")
+    @ApiModelProperty(value = "标识EQ", position = 221)
+	private String idEQ;
+
+    /**
      * 建立人EQ
      */
     @JsonProperty("n_create_man_eq")
     @JSONField(name = "n_create_man_eq")
     @ApiModelProperty(value = "建立人EQ", position = 230)
 	private String createManEQ;
+
+    /**
+     * 建立人IN
+     */
+    @JsonProperty("n_create_man_in")
+    @JSONField(name = "n_create_man_in")
+    @ApiModelProperty(value = "建立人IN", position = 231)
+	private String createManIN;
+
+    /**
+     * 建立人ISNOTNULL
+     */
+    @JsonProperty("n_create_man_isnotnull")
+    @JSONField(name = "n_create_man_isnotnull")
+    @ApiModelProperty(value = "建立人ISNOTNULL", position = 232)
+	private String createManISNOTNULL;
+
+    /**
+     * 建立人ISNULL
+     */
+    @JsonProperty("n_create_man_isnull")
+    @JSONField(name = "n_create_man_isnull")
+    @ApiModelProperty(value = "建立人ISNULL", position = 233)
+	private String createManISNULL;
+
+    /**
+     * 建立人NOTIN
+     */
+    @JsonProperty("n_create_man_notin")
+    @JSONField(name = "n_create_man_notin")
+    @ApiModelProperty(value = "建立人NOTIN", position = 234)
+	private String createManNOTIN;
 
     /**
      * 建立时间EQ
@@ -176,22 +272,6 @@ public class TicketFilterDTO extends FilterBase implements Serializable {
     @JSONField(name = "n_create_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
     @ApiModelProperty(value = "建立时间LTANDEQ", position = 242)
 	private Date createTimeLTANDEQ;
-
-    /**
-     * 标识NOTEQ
-     */
-    @JsonProperty("n_id_noteq")
-    @JSONField(name = "n_id_noteq")
-    @ApiModelProperty(value = "标识NOTEQ", position = 250)
-	private String idNOTEQ;
-
-    /**
-     * 标识EQ
-     */
-    @JsonProperty("n_id_eq")
-    @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 251)
-	private String idEQ;
 
     /**
      * 名称LIKE

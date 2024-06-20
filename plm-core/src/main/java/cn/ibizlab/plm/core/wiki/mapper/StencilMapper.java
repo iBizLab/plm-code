@@ -100,6 +100,14 @@ public interface StencilMapper extends BaseMapper<Stencil> {
     List<Stencil> listSpaceStencil(@Param("ctx") StencilSearchContext context, @Param("ew") Wrapper<Stencil> wrapper);
 
     /**
+    * 根据spaceId查询
+    *
+    * @param spaceIds
+    * @return
+    */
+    List<Stencil> findBySpaceId(@Param("spaceIds") List<String> spaceIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -208,13 +216,4 @@ public interface StencilMapper extends BaseMapper<Stencil> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据spaceId查询
-     *
-     * @param spaceIds
-     * @return
-     */
-    List<Stencil> findBySpaceId(@Param("spaceIds") List<String> spaceIds);
-
 }

@@ -46,6 +46,14 @@ public class ProjectMemberSearchContext extends QueryWrapperContext<ProjectMembe
     private String userIdEQ;
 
     /**
+     * 登录名NOTIN
+     */
+    @JsonProperty("n_user_id_notin")
+    @JSONField(name = "n_user_id_notin")
+    @ApiModelProperty("登录名NOTIN")
+    private String userIdNOTIN;
+
+    /**
      * 角色EQ
      */
     @JsonProperty("n_role_id_eq")

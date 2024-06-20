@@ -32,89 +32,42 @@ public interface LibraryMemberService extends IService<LibraryMember> {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    LibraryMember get(LibraryMember et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default LibraryMember get(String key) {
-        return getSelf().get(new LibraryMember().setId(key));
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<LibraryMember> getByIds(Collection<String> ids) {
-        List<LibraryMember> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new LibraryMember().setId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<LibraryMember> getByEntities(List<LibraryMember> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    LibraryMember getDraft(LibraryMember et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(LibraryMember et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(LibraryMember et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<LibraryMember> list);
+    boolean create(List<LibraryMember> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * createTemp
+    * 
+    * @param et
+    * @return
+    */
+    default LibraryMember createTemp(LibraryMember et) {
+        return et;
+    }
+
+    /**
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(LibraryMember et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<LibraryMember> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    @Override
-    boolean save(LibraryMember et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<LibraryMember> list);
+    boolean update(List<LibraryMember> list);
 
     /**
      * 主键删除
@@ -124,14 +77,7 @@ public interface LibraryMemberService extends IService<LibraryMember> {
     default boolean remove(String key) {
         return getSelf().remove(new LibraryMember().setId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -141,13 +87,13 @@ public interface LibraryMemberService extends IService<LibraryMember> {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<LibraryMember> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new LibraryMember().setId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new LibraryMember().setId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -155,7 +101,216 @@ public interface LibraryMemberService extends IService<LibraryMember> {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<LibraryMember> entities);
+    boolean remove(List<LibraryMember> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default LibraryMember get(String key) {
+        return getSelf().get(new LibraryMember().setId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    LibraryMember get(LibraryMember et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<LibraryMember> get(Collection<String> keys) {
+        List<LibraryMember> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new LibraryMember().setId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<LibraryMember> get(List<LibraryMember> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    LibraryMember getDraft(LibraryMember et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(LibraryMember et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(LibraryMember et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<LibraryMember> list);
+
+    /**
+    * changeRole
+    * 
+    * @param et
+    * @return
+    */
+    default LibraryMember changeRole(LibraryMember et) {
+        return et;
+    }
+
+    /**
+    * createLibraryMember
+    * 
+    * @param et
+    * @return
+    */
+    default LibraryMember createLibraryMember(LibraryMember et) {
+        return et;
+    }
+
+    /**
+    * nothing
+    * 
+    * @param et
+    * @return
+    */
+    default LibraryMember nothing(LibraryMember et) {
+        return et;
+    }
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<LibraryMember> fetchDefault(LibraryMemberSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<LibraryMember> listDefault(LibraryMemberSearchContext context);
+
+    /**
+    * fetchCurLibraryMember
+    * 
+    * @param context
+    * @return
+    */
+    Page<LibraryMember> fetchCurLibraryMember(LibraryMemberSearchContext context);
+
+    /**
+    * listCurLibraryMember
+    * 
+    * @param context
+    * @return
+    */
+    List<LibraryMember> listCurLibraryMember(LibraryMemberSearchContext context);
+
+    /**
+    * findByLibraryId
+    * @param libraryIds
+    * @return
+    */
+    List<LibraryMember> findByLibraryId(List<String> libraryIds);
+    default List<LibraryMember> findByLibraryId(String libraryId){
+        return findByLibraryId(Arrays.asList(libraryId));
+    }
+
+    /**
+    * removeByLibraryId
+    * @param libraryId
+    * @return
+    */
+    boolean removeByLibraryId(String libraryId);
+
+    /**
+    * resetByLibraryId
+    * @param libraryId
+    * @return
+    */
+    boolean resetByLibraryId(String libraryId);
+
+    /**
+    * saveByLibraryId
+    * @param libraryId
+    * @param list
+    * @return
+    */
+    default boolean saveByLibraryId(String libraryId, List<LibraryMember> list){
+        return getSelf().saveByLibrary(new Library().setId(libraryId),list);
+    }
+
+    /**
+    * saveByLibrary
+    * @param library
+    * @param list
+    * @return
+    */
+    boolean saveByLibrary(Library library, List<LibraryMember> list);
+
+    /**
+    * findByUserId
+    * @param userIds
+    * @return
+    */
+    List<LibraryMember> findByUserId(List<String> userIds);
+    default List<LibraryMember> findByUserId(String userId){
+        return findByUserId(Arrays.asList(userId));
+    }
+
+    /**
+    * removeByUserId
+    * @param userId
+    * @return
+    */
+    boolean removeByUserId(String userId);
+
+    /**
+    * resetByUserId
+    * @param userId
+    * @return
+    */
+    boolean resetByUserId(String userId);
+
+    /**
+    * saveByUserId
+    * @param userId
+    * @param list
+    * @return
+    */
+    default boolean saveByUserId(String userId, List<LibraryMember> list){
+        return getSelf().saveByUser(new User().setId(userId),list);
+    }
+
+    /**
+    * saveByUser
+    * @param user
+    * @param list
+    * @return
+    */
+    boolean saveByUser(User user, List<LibraryMember> list);
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<LibraryMember> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -172,77 +327,7 @@ public interface LibraryMemberService extends IService<LibraryMember> {
         }
         return rt;
     }
-
-    /**
-     * CreateTemp
-     * 
-     * @param dto
-     * @return
-     */
-    default LibraryMember createTemp(LibraryMember dto) {
-        return dto;
-    }
-
-    /**
-     * change_role
-     * 
-     * @param dto
-     * @return
-     */
-    default LibraryMember changeRole(LibraryMember dto) {
-        return dto;
-    }
-
-    /**
-     * create_library_member
-     * 
-     * @param dto
-     * @return
-     */
-    default LibraryMember createLibraryMember(LibraryMember dto) {
-        return dto;
-    }
-
-    /**
-     * nothing
-     * 
-     * @param dto
-     * @return
-     */
-    default LibraryMember nothing(LibraryMember dto) {
-        return dto;
-    }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<LibraryMember> searchDefault(LibraryMemberSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<LibraryMember> listDefault(LibraryMemberSearchContext context);
-
-    /**
-     * searchcur_library_member
-     * 
-     * @param context
-     * @return
-     */
-    Page<LibraryMember> searchCurLibraryMember(LibraryMemberSearchContext context);
-    /**
-     * listcur_library_member
-     * 
-     * @param context
-     * @return
-     */
-    List<LibraryMember> listCurLibraryMember(LibraryMemberSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -250,6 +335,7 @@ public interface LibraryMemberService extends IService<LibraryMember> {
     default LibraryMember getEntity() {
         return new LibraryMember();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -257,97 +343,13 @@ public interface LibraryMemberService extends IService<LibraryMember> {
     default LibraryMemberSearchContext getSearchContext() {
         return new LibraryMemberSearchContext();
     }
+
+
     /**
-     * selectRelByLibraryId
-     * @param libraryIds
-     * @return
-     */
-    List<LibraryMember> findByLibraryId(List<String> libraryIds);
-    default List<LibraryMember> findByLibraryId(String libraryId) {
-        return findByLibraryId(Arrays.asList(libraryId));
-    }
-    /**
-     * removeRelByLibraryId
-     * @param libraryId
-     * @return
-     */
-    boolean removeByLibraryId(String libraryId);
-    /**
-     * resetRelByLibraryId
-     * @param libraryId
-     * @return
-     */
-    boolean resetByLibraryId(String libraryId);
-    /**
-     * saveRelByLibraryId
-     * @param libraryId
-     * @param list
-     * @return
-     */
-    default boolean saveByLibraryId(String libraryId,List<LibraryMember> list) {
-        return getSelf().saveByLibrary(new Library().setId(libraryId),list);
-    }
-    /**
-    * saveRelByLibrary
-    * @param library
-    * @param list
+    * 自定义SQL
+    * @param sql  update table  set name ='test' where id =#{et.param}
+    * @param param 参数列表  param.put("param","1");
     * @return
     */
-    boolean saveByLibrary(Library library,List<LibraryMember> list);
-
-    /**
-     * selectRelByUserId
-     * @param userIds
-     * @return
-     */
-    List<LibraryMember> findByUserId(List<String> userIds);
-    default List<LibraryMember> findByUserId(String userId) {
-        return findByUserId(Arrays.asList(userId));
-    }
-    /**
-     * removeRelByUserId
-     * @param userId
-     * @return
-     */
-    boolean removeByUserId(String userId);
-    /**
-     * resetRelByUserId
-     * @param userId
-     * @return
-     */
-    boolean resetByUserId(String userId);
-    /**
-     * saveRelByUserId
-     * @param userId
-     * @param list
-     * @return
-     */
-    default boolean saveByUserId(String userId,List<LibraryMember> list) {
-        return getSelf().saveByUser(new User().setId(userId),list);
-    }
-    /**
-    * saveRelByUser
-    * @param user
-    * @param list
-    * @return
-    */
-    boolean saveByUser(User user,List<LibraryMember> list);
-
-
-    /**
-     * 自定义查询SQL
-     * @param sql  select * from table where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
-    List<JSONObject> select(String sql, Map<String,Object> param);
-
-    /**
-     * 自定义SQL
-     * @param sql  update table  set name ='test' where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
     boolean execute(String sql, Map<String,Object> param);
-
 }

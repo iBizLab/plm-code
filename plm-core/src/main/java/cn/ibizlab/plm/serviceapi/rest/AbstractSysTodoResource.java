@@ -254,7 +254,7 @@ public abstract class AbstractSysTodoResource {
     public ResponseEntity<List<SysTodoDTO>> fetchCurUser
             (@Validated @RequestBody SysTodoFilterDTO dto) {
         SysTodoSearchContext context = sysTodoFilterDtoMapping.toDomain(dto);
-        Page<SysTodo> domains = sysTodoService.searchCurUser(context) ;
+        Page<SysTodo> domains = sysTodoService.fetchCurUser(context) ;
         List<SysTodoDTO> list = sysTodoDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -276,7 +276,7 @@ public abstract class AbstractSysTodoResource {
     public ResponseEntity<List<SysTodoDTO>> fetchDefault
             (@Validated @RequestBody SysTodoFilterDTO dto) {
         SysTodoSearchContext context = sysTodoFilterDtoMapping.toDomain(dto);
-        Page<SysTodo> domains = sysTodoService.searchDefault(context) ;
+        Page<SysTodo> domains = sysTodoService.fetchDefault(context) ;
         List<SysTodoDTO> list = sysTodoDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -295,7 +295,7 @@ public abstract class AbstractSysTodoResource {
     @ApiOperation(value = "批量新建待办", tags = {"待办" },  notes = "批量新建待办")
 	@PostMapping("systodos/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<SysTodoDTO> dtos) {
-        sysTodoService.createBatch(sysTodoDtoMapping.toDomain(dtos));
+        sysTodoService.create(sysTodoDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -308,7 +308,7 @@ public abstract class AbstractSysTodoResource {
     @ApiOperation(value = "批量删除待办", tags = {"待办" },  notes = "批量删除待办")
 	@DeleteMapping("systodos/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        sysTodoService.removeBatch(ids);
+        sysTodoService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -321,7 +321,7 @@ public abstract class AbstractSysTodoResource {
     @ApiOperation(value = "批量更新待办", tags = {"待办" },  notes = "批量更新待办")
 	@PutMapping("systodos/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<SysTodoDTO> dtos) {
-        sysTodoService.updateBatch(sysTodoDtoMapping.toDomain(dtos));
+        sysTodoService.update(sysTodoDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -334,7 +334,7 @@ public abstract class AbstractSysTodoResource {
     @ApiOperation(value = "批量保存待办", tags = {"待办" },  notes = "批量保存待办")
 	@PostMapping("systodos/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<SysTodoDTO> dtos) {
-        sysTodoService.saveBatch(sysTodoDtoMapping.toDomain(dtos));
+        sysTodoService.save(sysTodoDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

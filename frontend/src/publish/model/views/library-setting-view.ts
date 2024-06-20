@@ -170,6 +170,12 @@ export default {
           appViewId: 'plmweb.library_advanced_setting_edit_view',
           id: 'adv',
         },
+        {
+          dedrbarGroupId: 'usrdrgroup0319461775',
+          caption: '评审规则',
+          appViewId: 'plmweb.guideline_library_all_grid_view',
+          id: 'guideline',
+        },
       ],
       uniqueTag: 'library_setting_view__drbar',
       hideEditItem: true,

@@ -594,7 +594,7 @@ public abstract class AbstractPortfolioMemberResource {
     public ResponseEntity<List<PortfolioMemberDTO>> fetchCurProjectSet
             (@Validated @RequestBody PortfolioMemberFilterDTO dto) {
         PortfolioMemberSearchContext context = portfolioMemberFilterDtoMapping.toDomain(dto);
-        Page<PortfolioMember> domains = portfolioMemberService.searchCurProjectSet(context) ;
+        Page<PortfolioMember> domains = portfolioMemberService.fetchCurProjectSet(context) ;
         List<PortfolioMemberDTO> list = portfolioMemberDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -616,7 +616,7 @@ public abstract class AbstractPortfolioMemberResource {
     public ResponseEntity<List<PortfolioMemberDTO>> fetchDefault
             (@Validated @RequestBody PortfolioMemberFilterDTO dto) {
         PortfolioMemberSearchContext context = portfolioMemberFilterDtoMapping.toDomain(dto);
-        Page<PortfolioMember> domains = portfolioMemberService.searchDefault(context) ;
+        Page<PortfolioMember> domains = portfolioMemberService.fetchDefault(context) ;
         List<PortfolioMemberDTO> list = portfolioMemberDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -710,7 +710,7 @@ public abstract class AbstractPortfolioMemberResource {
             (@PathVariable("portfolioId") String portfolioId, @Validated @RequestBody PortfolioMemberFilterDTO dto) {
         dto.setPortfolioIdEQ(portfolioId);
         PortfolioMemberSearchContext context = portfolioMemberFilterDtoMapping.toDomain(dto);
-        Page<PortfolioMember> domains = portfolioMemberService.searchCurProjectSet(context) ;
+        Page<PortfolioMember> domains = portfolioMemberService.fetchCurProjectSet(context) ;
         List<PortfolioMemberDTO> list = portfolioMemberDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -734,7 +734,7 @@ public abstract class AbstractPortfolioMemberResource {
             (@PathVariable("portfolioId") String portfolioId, @Validated @RequestBody PortfolioMemberFilterDTO dto) {
         dto.setPortfolioIdEQ(portfolioId);
         PortfolioMemberSearchContext context = portfolioMemberFilterDtoMapping.toDomain(dto);
-        Page<PortfolioMember> domains = portfolioMemberService.searchDefault(context) ;
+        Page<PortfolioMember> domains = portfolioMemberService.fetchDefault(context) ;
         List<PortfolioMemberDTO> list = portfolioMemberDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -828,7 +828,7 @@ public abstract class AbstractPortfolioMemberResource {
             (@PathVariable("userId") String userId, @Validated @RequestBody PortfolioMemberFilterDTO dto) {
         dto.setUserIdEQ(userId);
         PortfolioMemberSearchContext context = portfolioMemberFilterDtoMapping.toDomain(dto);
-        Page<PortfolioMember> domains = portfolioMemberService.searchCurProjectSet(context) ;
+        Page<PortfolioMember> domains = portfolioMemberService.fetchCurProjectSet(context) ;
         List<PortfolioMemberDTO> list = portfolioMemberDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -852,7 +852,7 @@ public abstract class AbstractPortfolioMemberResource {
             (@PathVariable("userId") String userId, @Validated @RequestBody PortfolioMemberFilterDTO dto) {
         dto.setUserIdEQ(userId);
         PortfolioMemberSearchContext context = portfolioMemberFilterDtoMapping.toDomain(dto);
-        Page<PortfolioMember> domains = portfolioMemberService.searchDefault(context) ;
+        Page<PortfolioMember> domains = portfolioMemberService.fetchDefault(context) ;
         List<PortfolioMemberDTO> list = portfolioMemberDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -871,7 +871,7 @@ public abstract class AbstractPortfolioMemberResource {
     @ApiOperation(value = "批量新建文件夹成员", tags = {"文件夹成员" },  notes = "批量新建文件夹成员")
 	@PostMapping("portfolio_members/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<PortfolioMemberDTO> dtos) {
-        portfolioMemberService.createBatch(portfolioMemberDtoMapping.toDomain(dtos));
+        portfolioMemberService.create(portfolioMemberDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -884,7 +884,7 @@ public abstract class AbstractPortfolioMemberResource {
     @ApiOperation(value = "批量删除文件夹成员", tags = {"文件夹成员" },  notes = "批量删除文件夹成员")
 	@DeleteMapping("portfolio_members/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        portfolioMemberService.removeBatch(ids);
+        portfolioMemberService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -897,7 +897,7 @@ public abstract class AbstractPortfolioMemberResource {
     @ApiOperation(value = "批量更新文件夹成员", tags = {"文件夹成员" },  notes = "批量更新文件夹成员")
 	@PutMapping("portfolio_members/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<PortfolioMemberDTO> dtos) {
-        portfolioMemberService.updateBatch(portfolioMemberDtoMapping.toDomain(dtos));
+        portfolioMemberService.update(portfolioMemberDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -910,7 +910,7 @@ public abstract class AbstractPortfolioMemberResource {
     @ApiOperation(value = "批量保存文件夹成员", tags = {"文件夹成员" },  notes = "批量保存文件夹成员")
 	@PostMapping("portfolio_members/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<PortfolioMemberDTO> dtos) {
-        portfolioMemberService.saveBatch(portfolioMemberDtoMapping.toDomain(dtos));
+        portfolioMemberService.save(portfolioMemberDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

@@ -151,5 +151,4 @@ public interface ParameterMapper extends BaseMapper<Parameter> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
 }

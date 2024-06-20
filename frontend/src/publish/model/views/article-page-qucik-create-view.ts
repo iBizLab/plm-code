@@ -32,6 +32,20 @@ export default {
       id: 'mounted',
     },
   ],
+  appViewNavContexts: [
+    {
+      rawValue: true,
+      key: 'ARTICLE_PAGE',
+      name: 'ARTICLE_PAGE',
+      id: 'article_page',
+    },
+    {
+      key: 'PAGE_P',
+      value: 'article_page',
+      name: 'PAGE_P',
+      id: 'page_p',
+    },
+  ],
   appViewNavParams: [
     {
       key: 'space',
@@ -450,6 +464,36 @@ export default {
               },
               showCaption: true,
               id: 'space_id',
+            },
+            {
+              createDV: 'page_p',
+              createDVT: 'APPDATA',
+              dataType: 25,
+              enableCond: 3,
+              labelPos: 'LEFT',
+              labelWidth: 130,
+              noPrivDisplayMode: 1,
+              appDEFieldId: 'parent_id',
+              editor: {
+                editorType: 'HIDDEN',
+                valueType: 'SIMPLE',
+                editable: true,
+                id: 'parent_id',
+              },
+              updateDV: 'page_p',
+              updateDVT: 'APPDATA',
+              allowEmpty: true,
+              hidden: true,
+              caption: '父页面',
+              codeName: 'parent_id',
+              detailStyle: 'DEFAULT',
+              detailType: 'FORMITEM',
+              layoutPos: {
+                colMD: 24,
+                layout: 'TABLE_24COL',
+              },
+              showCaption: true,
+              id: 'parent_id',
             },
             {
               rawItem: {

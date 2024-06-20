@@ -250,44 +250,6 @@ public abstract class AbstractIdeaResource {
     }
 
     /**
-    * del_relation 需求
-    * 取消关联，删除相应的正反向关联数据
-    *
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<IdeaDTO>
-    */
-    @ApiOperation(value = "del_relation", tags = {"需求" },  notes = "Idea-del_relation 取消关联，删除相应的正反向关联数据")
-    @PostMapping("ideas/{id}/del_relation")
-    public ResponseEntity<ResponseWrapper<IdeaDTO>> delRelationById
-            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<IdeaDTO> dto) {
-        ResponseWrapper<IdeaDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(delRelationById(ids[i], dto.getList().get(i))));
-        }
-        else
-            rt.set(delRelationById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
-    }
-
-    /**
-    * del_relation 需求
-    * 取消关联，删除相应的正反向关联数据
-    *
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<IdeaDTO>
-    */   
-    public IdeaDTO delRelationById
-            (String id, IdeaDTO dto) {
-        Idea domain = ideaDtoMapping.toDomain(dto);
-        domain.setId(id);
-        Idea rt = ideaService.delRelation(domain);
-        return ideaDtoMapping.toDto(rt);
-    }
-
-    /**
     * delete 需求
     * 
     *
@@ -323,45 +285,6 @@ public abstract class AbstractIdeaResource {
         Idea domain = ideaDtoMapping.toDomain(dto);
         domain.setId(id);
         Idea rt = ideaService.delete(domain);
-        return ideaDtoMapping.toDto(rt);
-    }
-
-    /**
-    * fill_product_member 需求
-    * 
-    *
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<IdeaDTO>
-    */
-    @ApiOperation(value = "fill_product_member", tags = {"需求" },  notes = "Idea-fill_product_member ")
-    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-fill_product_member-all') or hasPermission(this.ideaDtoMapping.toDomain(#dto),'ibizplm-Idea-fill_product_member')")
-    @PostMapping("ideas/{id}/fill_product_member")
-    public ResponseEntity<ResponseWrapper<IdeaDTO>> fillProductMemberById
-            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<IdeaDTO> dto) {
-        ResponseWrapper<IdeaDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(fillProductMemberById(ids[i], dto.getList().get(i))));
-        }
-        else
-            rt.set(fillProductMemberById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
-    }
-
-    /**
-    * fill_product_member 需求
-    * 
-    *
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<IdeaDTO>
-    */   
-    public IdeaDTO fillProductMemberById
-            (String id, IdeaDTO dto) {
-        Idea domain = ideaDtoMapping.toDomain(dto);
-        domain.setId(id);
-        Idea rt = ideaService.fillProductMember(domain);
         return ideaDtoMapping.toDto(rt);
     }
 
@@ -515,6 +438,45 @@ public abstract class AbstractIdeaResource {
         Idea domain = ideaDtoMapping.toDomain(dto);
         domain.setId(id);
         Idea rt = ideaService.ideaRePlan(domain);
+        return ideaDtoMapping.toDto(rt);
+    }
+
+    /**
+    * idea_readonly_recognize 需求
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<IdeaDTO>
+    */
+    @ApiOperation(value = "idea_readonly_recognize", tags = {"需求" },  notes = "Idea-idea_readonly_recognize ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-idea_readonly_recognize-all') or hasPermission(this.ideaDtoMapping.toDomain(#dto),'ibizplm-Idea-idea_readonly_recognize')")
+    @PostMapping("ideas/{id}/idea_readonly_recognize")
+    public ResponseEntity<ResponseWrapper<IdeaDTO>> ideaReadonlyRecognizeById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<IdeaDTO> dto) {
+        ResponseWrapper<IdeaDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(ideaReadonlyRecognizeById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(ideaReadonlyRecognizeById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * idea_readonly_recognize 需求
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<IdeaDTO>
+    */   
+    public IdeaDTO ideaReadonlyRecognizeById
+            (String id, IdeaDTO dto) {
+        Idea domain = ideaDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Idea rt = ideaService.ideaReadonlyRecognize(domain);
         return ideaDtoMapping.toDto(rt);
     }
 
@@ -911,46 +873,6 @@ public abstract class AbstractIdeaResource {
     }
 
     /**
-    * del_relation 需求
-    * 取消关联，删除相应的正反向关联数据
-    *
-    * @param productId productId
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<IdeaDTO>
-    */
-    @ApiOperation(value = "del_relation", tags = {"需求" },  notes = "Idea-del_relation 取消关联，删除相应的正反向关联数据")
-    @PostMapping("products/{productId}/ideas/{id}/del_relation")
-    public ResponseEntity<ResponseWrapper<IdeaDTO>> delRelationByProductIdAndId
-            (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<IdeaDTO> dto) {
-        ResponseWrapper<IdeaDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(delRelationByProductIdAndId(productId, ids[i], dto.getList().get(i))));
-        }
-        else
-            rt.set(delRelationByProductIdAndId(productId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
-    }
-
-    /**
-    * del_relation 需求
-    * 取消关联，删除相应的正反向关联数据
-    *
-    * @param productId productId
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<IdeaDTO>
-    */   
-    public IdeaDTO delRelationByProductIdAndId
-            (String productId, String id, IdeaDTO dto) {
-        Idea domain = ideaDtoMapping.toDomain(dto);
-        domain.setId(id);
-        Idea rt = ideaService.delRelation(domain);
-        return ideaDtoMapping.toDto(rt);
-    }
-
-    /**
     * delete 需求
     * 
     *
@@ -988,47 +910,6 @@ public abstract class AbstractIdeaResource {
         Idea domain = ideaDtoMapping.toDomain(dto);
         domain.setId(id);
         Idea rt = ideaService.delete(domain);
-        return ideaDtoMapping.toDto(rt);
-    }
-
-    /**
-    * fill_product_member 需求
-    * 
-    *
-    * @param productId productId
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<IdeaDTO>
-    */
-    @ApiOperation(value = "fill_product_member", tags = {"需求" },  notes = "Idea-fill_product_member ")
-    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-fill_product_member-all') or hasPermission('product',#productId,this.ideaDtoMapping.toDomain(#dto),'ibizplm-Idea-fill_product_member')")
-    @PostMapping("products/{productId}/ideas/{id}/fill_product_member")
-    public ResponseEntity<ResponseWrapper<IdeaDTO>> fillProductMemberByProductIdAndId
-            (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<IdeaDTO> dto) {
-        ResponseWrapper<IdeaDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(fillProductMemberByProductIdAndId(productId, ids[i], dto.getList().get(i))));
-        }
-        else
-            rt.set(fillProductMemberByProductIdAndId(productId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
-    }
-
-    /**
-    * fill_product_member 需求
-    * 
-    *
-    * @param productId productId
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<IdeaDTO>
-    */   
-    public IdeaDTO fillProductMemberByProductIdAndId
-            (String productId, String id, IdeaDTO dto) {
-        Idea domain = ideaDtoMapping.toDomain(dto);
-        domain.setId(id);
-        Idea rt = ideaService.fillProductMember(domain);
         return ideaDtoMapping.toDto(rt);
     }
 
@@ -1190,6 +1071,47 @@ public abstract class AbstractIdeaResource {
         Idea domain = ideaDtoMapping.toDomain(dto);
         domain.setId(id);
         Idea rt = ideaService.ideaRePlan(domain);
+        return ideaDtoMapping.toDto(rt);
+    }
+
+    /**
+    * idea_readonly_recognize 需求
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<IdeaDTO>
+    */
+    @ApiOperation(value = "idea_readonly_recognize", tags = {"需求" },  notes = "Idea-idea_readonly_recognize ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-idea_readonly_recognize-all') or hasPermission('product',#productId,this.ideaDtoMapping.toDomain(#dto),'ibizplm-Idea-idea_readonly_recognize')")
+    @PostMapping("products/{productId}/ideas/{id}/idea_readonly_recognize")
+    public ResponseEntity<ResponseWrapper<IdeaDTO>> ideaReadonlyRecognizeByProductIdAndId
+            (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<IdeaDTO> dto) {
+        ResponseWrapper<IdeaDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(ideaReadonlyRecognizeByProductIdAndId(productId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(ideaReadonlyRecognizeByProductIdAndId(productId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * idea_readonly_recognize 需求
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<IdeaDTO>
+    */   
+    public IdeaDTO ideaReadonlyRecognizeByProductIdAndId
+            (String productId, String id, IdeaDTO dto) {
+        Idea domain = ideaDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Idea rt = ideaService.ideaReadonlyRecognize(domain);
         return ideaDtoMapping.toDto(rt);
     }
 
@@ -1459,6 +1381,22 @@ public abstract class AbstractIdeaResource {
     }
 
     /**
+    * get_baseline_name 需求
+    * 
+    *
+    * @param id id
+    * @return ResponseEntity<IdeaDTO>
+    */
+    @ApiOperation(value = "get_baseline_name", tags = {"需求" },  notes = "Idea-get_baseline_name ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-get_baseline_name-all') or hasPermission(this.ideaService.get(#id),'ibizplm-Idea-get_baseline_name')")
+    @GetMapping("ideas/{id}/get_baseline_name")
+    public ResponseEntity<IdeaDTO> getBaselineNameById
+            (@PathVariable("id") String id) {
+        Idea rt = ideaService.getBaselineName(id);
+        return ResponseEntity.status(HttpStatus.OK).body(ideaDtoMapping.toDto(rt));
+    }
+
+    /**
     * 草稿GetDraft 需求
     * 
     *
@@ -1486,7 +1424,7 @@ public abstract class AbstractIdeaResource {
     public ResponseEntity<List<IdeaAdvancedSearchDTO>> fetchAdvancedSearch
             (@Validated @RequestBody IdeaFilterDTO dto) {
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchAdvancedSearch(context) ;
+        Page<Idea> domains = ideaService.fetchAdvancedSearch(context) ;
         List<IdeaAdvancedSearchDTO> list = ideaAdvancedSearchDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1508,7 +1446,7 @@ public abstract class AbstractIdeaResource {
     public ResponseEntity<List<IdeaDTO>> fetchArchived
             (@Validated @RequestBody IdeaFilterDTO dto) {
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchArchived(context) ;
+        Page<Idea> domains = ideaService.fetchArchived(context) ;
         List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1530,7 +1468,7 @@ public abstract class AbstractIdeaResource {
     public ResponseEntity<List<IdeaDTO>> fetchBaselineChooseIdea
             (@Validated @RequestBody IdeaFilterDTO dto) {
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchBaselineChooseIdea(context) ;
+        Page<Idea> domains = ideaService.fetchBaselineChooseIdea(context) ;
         List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1552,7 +1490,7 @@ public abstract class AbstractIdeaResource {
     public ResponseEntity<List<IdeaAssigneeDTO>> fetchCommentNotifyAssignee
             (@Validated @RequestBody IdeaFilterDTO dto) {
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchCommentNotifyAssignee(context) ;
+        Page<Idea> domains = ideaService.fetchCommentNotifyAssignee(context) ;
         List<IdeaAssigneeDTO> list = ideaAssigneeDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1574,7 +1512,7 @@ public abstract class AbstractIdeaResource {
     public ResponseEntity<List<IdeaDTO>> fetchCommon
             (@Validated @RequestBody IdeaFilterDTO dto) {
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchCommon(context) ;
+        Page<Idea> domains = ideaService.fetchCommon(context) ;
         List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1596,7 +1534,7 @@ public abstract class AbstractIdeaResource {
     public ResponseEntity<List<IdeaDTO>> fetchDefault
             (@Validated @RequestBody IdeaFilterDTO dto) {
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchDefault(context) ;
+        Page<Idea> domains = ideaService.fetchDefault(context) ;
         List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1618,28 +1556,7 @@ public abstract class AbstractIdeaResource {
     public ResponseEntity<List<IdeaDTO>> fetchDeleted
             (@Validated @RequestBody IdeaFilterDTO dto) {
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchDeleted(context) ;
-        List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
-            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
-            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
-            .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
-    }
-
-    /**
-    * 查询fetch_idea_relation_idea 需求
-    * 需求关联需求表格调用
-    *
-    * @param dto dto
-    * @return ResponseEntity<List<IdeaDTO>>
-    */
-    @ApiOperation(value = "查询fetch_idea_relation_idea", tags = {"需求" },  notes = "Idea-fetch_idea_relation_idea 需求关联需求表格调用")
-    @PostMapping("ideas/fetch_idea_relation_idea")
-    public ResponseEntity<List<IdeaDTO>> fetchIdeaRelationIdea
-            (@Validated @RequestBody IdeaFilterDTO dto) {
-        IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchIdeaRelationIdea(context) ;
+        Page<Idea> domains = ideaService.fetchDeleted(context) ;
         List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1660,7 +1577,7 @@ public abstract class AbstractIdeaResource {
     public ResponseEntity<List<IdeaDTO>> fetchMyAssign
             (@Validated @RequestBody IdeaFilterDTO dto) {
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchMyAssign(context) ;
+        Page<Idea> domains = ideaService.fetchMyAssign(context) ;
         List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1682,7 +1599,7 @@ public abstract class AbstractIdeaResource {
     public ResponseEntity<List<IdeaDTO>> fetchMyAssigneeCount
             (@Validated @RequestBody IdeaFilterDTO dto) {
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchMyAssigneeCount(context) ;
+        Page<Idea> domains = ideaService.fetchMyAssigneeCount(context) ;
         List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1703,7 +1620,7 @@ public abstract class AbstractIdeaResource {
     public ResponseEntity<List<IdeaDTO>> fetchMyAttention
             (@Validated @RequestBody IdeaFilterDTO dto) {
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchMyAttention(context) ;
+        Page<Idea> domains = ideaService.fetchMyAttention(context) ;
         List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1724,7 +1641,7 @@ public abstract class AbstractIdeaResource {
     public ResponseEntity<List<IdeaDTO>> fetchMyCreated
             (@Validated @RequestBody IdeaFilterDTO dto) {
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchMyCreated(context) ;
+        Page<Idea> domains = ideaService.fetchMyCreated(context) ;
         List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1746,7 +1663,7 @@ public abstract class AbstractIdeaResource {
     public ResponseEntity<List<IdeaDTO>> fetchNormal
             (@Validated @RequestBody IdeaFilterDTO dto) {
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchNormal(context) ;
+        Page<Idea> domains = ideaService.fetchNormal(context) ;
         List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1768,7 +1685,7 @@ public abstract class AbstractIdeaResource {
     public ResponseEntity<List<IdeaDTO>> fetchNotExsistsRelation
             (@Validated @RequestBody IdeaFilterDTO dto) {
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchNotExsistsRelation(context) ;
+        Page<Idea> domains = ideaService.fetchNotExsistsRelation(context) ;
         List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1790,7 +1707,7 @@ public abstract class AbstractIdeaResource {
     public ResponseEntity<List<IdeaAssigneeDTO>> fetchNotifyAssignee
             (@Validated @RequestBody IdeaFilterDTO dto) {
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchNotifyAssignee(context) ;
+        Page<Idea> domains = ideaService.fetchNotifyAssignee(context) ;
         List<IdeaAssigneeDTO> list = ideaAssigneeDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1811,7 +1728,7 @@ public abstract class AbstractIdeaResource {
     public ResponseEntity<List<IdeaDTO>> fetchPlanRelationIdea
             (@Validated @RequestBody IdeaFilterDTO dto) {
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchPlanRelationIdea(context) ;
+        Page<Idea> domains = ideaService.fetchPlanRelationIdea(context) ;
         List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1832,70 +1749,7 @@ public abstract class AbstractIdeaResource {
     public ResponseEntity<List<IdeaDTO>> fetchRecentIdea
             (@Validated @RequestBody IdeaFilterDTO dto) {
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchRecentIdea(context) ;
-        List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
-            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
-            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
-            .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
-    }
-
-    /**
-    * 查询fetch_test_case_relation 需求
-    * 测试用例关联需求表格调用；
-    *
-    * @param dto dto
-    * @return ResponseEntity<List<IdeaDTO>>
-    */
-    @ApiOperation(value = "查询fetch_test_case_relation", tags = {"需求" },  notes = "Idea-fetch_test_case_relation 测试用例关联需求表格调用；")
-    @PostMapping("ideas/fetch_test_case_relation")
-    public ResponseEntity<List<IdeaDTO>> fetchTestCaseRelation
-            (@Validated @RequestBody IdeaFilterDTO dto) {
-        IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchTestCaseRelation(context) ;
-        List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
-            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
-            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
-            .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
-    }
-
-    /**
-    * 查询fetch_ticket_relation_idea 需求
-    * 工单关联需求表格调用
-    *
-    * @param dto dto
-    * @return ResponseEntity<List<IdeaDTO>>
-    */
-    @ApiOperation(value = "查询fetch_ticket_relation_idea", tags = {"需求" },  notes = "Idea-fetch_ticket_relation_idea 工单关联需求表格调用")
-    @PostMapping("ideas/fetch_ticket_relation_idea")
-    public ResponseEntity<List<IdeaDTO>> fetchTicketRelationIdea
-            (@Validated @RequestBody IdeaFilterDTO dto) {
-        IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchTicketRelationIdea(context) ;
-        List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
-            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
-            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
-            .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
-    }
-
-    /**
-    * 查询fetch_work_item_relation_idea 需求
-    * 工作项关联需求表格调用
-    *
-    * @param dto dto
-    * @return ResponseEntity<List<IdeaDTO>>
-    */
-    @ApiOperation(value = "查询fetch_work_item_relation_idea", tags = {"需求" },  notes = "Idea-fetch_work_item_relation_idea 工作项关联需求表格调用")
-    @PostMapping("ideas/fetch_work_item_relation_idea")
-    public ResponseEntity<List<IdeaDTO>> fetchWorkItemRelationIdea
-            (@Validated @RequestBody IdeaFilterDTO dto) {
-        IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchWorkItemRelationIdea(context) ;
+        Page<Idea> domains = ideaService.fetchRecentIdea(context) ;
         List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1974,6 +1828,23 @@ public abstract class AbstractIdeaResource {
     }
 
     /**
+    * get_baseline_name 需求
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @return ResponseEntity<IdeaDTO>
+    */
+    @ApiOperation(value = "get_baseline_name", tags = {"需求" },  notes = "Idea-get_baseline_name ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-get_baseline_name-all') or hasPermission('product',#productId,this.ideaService.get(#id),'ibizplm-Idea-get_baseline_name')")
+    @GetMapping("products/{productId}/ideas/{id}/get_baseline_name")
+    public ResponseEntity<IdeaDTO> getBaselineNameByProductIdAndId
+            (@PathVariable("productId") String productId, @PathVariable("id") String id) {
+        Idea rt = ideaService.getBaselineName(id);
+        return ResponseEntity.status(HttpStatus.OK).body(ideaDtoMapping.toDto(rt));
+    }
+
+    /**
     * 草稿GetDraft 需求
     * 
     *
@@ -2005,7 +1876,7 @@ public abstract class AbstractIdeaResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody IdeaFilterDTO dto) {
         dto.setProductIdEQ(productId);
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchAdvancedSearch(context) ;
+        Page<Idea> domains = ideaService.fetchAdvancedSearch(context) ;
         List<IdeaAdvancedSearchDTO> list = ideaAdvancedSearchDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2029,7 +1900,7 @@ public abstract class AbstractIdeaResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody IdeaFilterDTO dto) {
         dto.setProductIdEQ(productId);
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchArchived(context) ;
+        Page<Idea> domains = ideaService.fetchArchived(context) ;
         List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2053,7 +1924,7 @@ public abstract class AbstractIdeaResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody IdeaFilterDTO dto) {
         dto.setProductIdEQ(productId);
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchBaselineChooseIdea(context) ;
+        Page<Idea> domains = ideaService.fetchBaselineChooseIdea(context) ;
         List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2077,7 +1948,7 @@ public abstract class AbstractIdeaResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody IdeaFilterDTO dto) {
         dto.setProductIdEQ(productId);
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchCommentNotifyAssignee(context) ;
+        Page<Idea> domains = ideaService.fetchCommentNotifyAssignee(context) ;
         List<IdeaAssigneeDTO> list = ideaAssigneeDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2101,7 +1972,7 @@ public abstract class AbstractIdeaResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody IdeaFilterDTO dto) {
         dto.setProductIdEQ(productId);
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchCommon(context) ;
+        Page<Idea> domains = ideaService.fetchCommon(context) ;
         List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2125,7 +1996,7 @@ public abstract class AbstractIdeaResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody IdeaFilterDTO dto) {
         dto.setProductIdEQ(productId);
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchDefault(context) ;
+        Page<Idea> domains = ideaService.fetchDefault(context) ;
         List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2149,30 +2020,7 @@ public abstract class AbstractIdeaResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody IdeaFilterDTO dto) {
         dto.setProductIdEQ(productId);
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchDeleted(context) ;
-        List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
-            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
-            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
-            .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
-    }
-
-    /**
-    * 查询fetch_idea_relation_idea 需求
-    * 需求关联需求表格调用
-    *
-    * @param productId productId
-    * @param dto dto
-    * @return ResponseEntity<List<IdeaDTO>>
-    */
-    @ApiOperation(value = "查询fetch_idea_relation_idea", tags = {"需求" },  notes = "Idea-fetch_idea_relation_idea 需求关联需求表格调用")
-    @PostMapping("products/{productId}/ideas/fetch_idea_relation_idea")
-    public ResponseEntity<List<IdeaDTO>> fetchIdeaRelationIdeaByProductId
-            (@PathVariable("productId") String productId, @Validated @RequestBody IdeaFilterDTO dto) {
-        dto.setProductIdEQ(productId);
-        IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchIdeaRelationIdea(context) ;
+        Page<Idea> domains = ideaService.fetchDeleted(context) ;
         List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2195,7 +2043,7 @@ public abstract class AbstractIdeaResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody IdeaFilterDTO dto) {
         dto.setProductIdEQ(productId);
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchMyAssign(context) ;
+        Page<Idea> domains = ideaService.fetchMyAssign(context) ;
         List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2219,7 +2067,7 @@ public abstract class AbstractIdeaResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody IdeaFilterDTO dto) {
         dto.setProductIdEQ(productId);
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchMyAssigneeCount(context) ;
+        Page<Idea> domains = ideaService.fetchMyAssigneeCount(context) ;
         List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2242,7 +2090,7 @@ public abstract class AbstractIdeaResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody IdeaFilterDTO dto) {
         dto.setProductIdEQ(productId);
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchMyAttention(context) ;
+        Page<Idea> domains = ideaService.fetchMyAttention(context) ;
         List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2265,7 +2113,7 @@ public abstract class AbstractIdeaResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody IdeaFilterDTO dto) {
         dto.setProductIdEQ(productId);
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchMyCreated(context) ;
+        Page<Idea> domains = ideaService.fetchMyCreated(context) ;
         List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2289,7 +2137,7 @@ public abstract class AbstractIdeaResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody IdeaFilterDTO dto) {
         dto.setProductIdEQ(productId);
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchNormal(context) ;
+        Page<Idea> domains = ideaService.fetchNormal(context) ;
         List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2313,7 +2161,7 @@ public abstract class AbstractIdeaResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody IdeaFilterDTO dto) {
         dto.setProductIdEQ(productId);
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchNotExsistsRelation(context) ;
+        Page<Idea> domains = ideaService.fetchNotExsistsRelation(context) ;
         List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2337,7 +2185,7 @@ public abstract class AbstractIdeaResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody IdeaFilterDTO dto) {
         dto.setProductIdEQ(productId);
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchNotifyAssignee(context) ;
+        Page<Idea> domains = ideaService.fetchNotifyAssignee(context) ;
         List<IdeaAssigneeDTO> list = ideaAssigneeDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2360,7 +2208,7 @@ public abstract class AbstractIdeaResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody IdeaFilterDTO dto) {
         dto.setProductIdEQ(productId);
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchPlanRelationIdea(context) ;
+        Page<Idea> domains = ideaService.fetchPlanRelationIdea(context) ;
         List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2383,76 +2231,7 @@ public abstract class AbstractIdeaResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody IdeaFilterDTO dto) {
         dto.setProductIdEQ(productId);
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchRecentIdea(context) ;
-        List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
-            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
-            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
-            .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
-    }
-
-    /**
-    * 查询fetch_test_case_relation 需求
-    * 测试用例关联需求表格调用；
-    *
-    * @param productId productId
-    * @param dto dto
-    * @return ResponseEntity<List<IdeaDTO>>
-    */
-    @ApiOperation(value = "查询fetch_test_case_relation", tags = {"需求" },  notes = "Idea-fetch_test_case_relation 测试用例关联需求表格调用；")
-    @PostMapping("products/{productId}/ideas/fetch_test_case_relation")
-    public ResponseEntity<List<IdeaDTO>> fetchTestCaseRelationByProductId
-            (@PathVariable("productId") String productId, @Validated @RequestBody IdeaFilterDTO dto) {
-        dto.setProductIdEQ(productId);
-        IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchTestCaseRelation(context) ;
-        List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
-            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
-            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
-            .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
-    }
-
-    /**
-    * 查询fetch_ticket_relation_idea 需求
-    * 工单关联需求表格调用
-    *
-    * @param productId productId
-    * @param dto dto
-    * @return ResponseEntity<List<IdeaDTO>>
-    */
-    @ApiOperation(value = "查询fetch_ticket_relation_idea", tags = {"需求" },  notes = "Idea-fetch_ticket_relation_idea 工单关联需求表格调用")
-    @PostMapping("products/{productId}/ideas/fetch_ticket_relation_idea")
-    public ResponseEntity<List<IdeaDTO>> fetchTicketRelationIdeaByProductId
-            (@PathVariable("productId") String productId, @Validated @RequestBody IdeaFilterDTO dto) {
-        dto.setProductIdEQ(productId);
-        IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchTicketRelationIdea(context) ;
-        List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
-            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
-            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
-            .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
-    }
-
-    /**
-    * 查询fetch_work_item_relation_idea 需求
-    * 工作项关联需求表格调用
-    *
-    * @param productId productId
-    * @param dto dto
-    * @return ResponseEntity<List<IdeaDTO>>
-    */
-    @ApiOperation(value = "查询fetch_work_item_relation_idea", tags = {"需求" },  notes = "Idea-fetch_work_item_relation_idea 工作项关联需求表格调用")
-    @PostMapping("products/{productId}/ideas/fetch_work_item_relation_idea")
-    public ResponseEntity<List<IdeaDTO>> fetchWorkItemRelationIdeaByProductId
-            (@PathVariable("productId") String productId, @Validated @RequestBody IdeaFilterDTO dto) {
-        dto.setProductIdEQ(productId);
-        IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
-        Page<Idea> domains = ideaService.searchWorkItemRelationIdea(context) ;
+        Page<Idea> domains = ideaService.fetchRecentIdea(context) ;
         List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2471,7 +2250,7 @@ public abstract class AbstractIdeaResource {
     @ApiOperation(value = "批量新建需求", tags = {"需求" },  notes = "批量新建需求")
 	@PostMapping("ideas/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<IdeaDTO> dtos) {
-        ideaService.createBatch(ideaDtoMapping.toDomain(dtos));
+        ideaService.create(ideaDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -2484,7 +2263,7 @@ public abstract class AbstractIdeaResource {
     @ApiOperation(value = "批量删除需求", tags = {"需求" },  notes = "批量删除需求")
 	@DeleteMapping("ideas/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        ideaService.removeBatch(ids);
+        ideaService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -2497,7 +2276,7 @@ public abstract class AbstractIdeaResource {
     @ApiOperation(value = "批量更新需求", tags = {"需求" },  notes = "批量更新需求")
 	@PutMapping("ideas/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<IdeaDTO> dtos) {
-        ideaService.updateBatch(ideaDtoMapping.toDomain(dtos));
+        ideaService.update(ideaDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -2510,7 +2289,7 @@ public abstract class AbstractIdeaResource {
     @ApiOperation(value = "批量保存需求", tags = {"需求" },  notes = "批量保存需求")
 	@PostMapping("ideas/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<IdeaDTO> dtos) {
-        ideaService.saveBatch(ideaDtoMapping.toDomain(dtos));
+        ideaService.save(ideaDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

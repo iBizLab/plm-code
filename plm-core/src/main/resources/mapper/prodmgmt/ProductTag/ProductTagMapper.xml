@@ -47,6 +47,10 @@
          <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`NAME`, t1.`PRODUCT_ID`, t11.`NAME` AS `PRODUCT_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PRODUCT_TAG` t1  LEFT JOIN `PRODUCT` t11 ON t1.`PRODUCT_ID` = t11.`ID`   ]]>  
     </sql>
 
+    <sql id="curProductTag" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`NAME`, t1.`PRODUCT_ID`, t11.`NAME` AS `PRODUCT_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PRODUCT_TAG` t1  LEFT JOIN `PRODUCT` t11 ON t1.`PRODUCT_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`PRODUCT_ID` = #{ctx.datacontext.product} ) ]]> 
+    </sql>
+
     <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.prodmgmt.filter.ProductTagSearchContext"  resultMap="ProductTagResultMap">
         select t1.* 
         from (
@@ -62,6 +66,27 @@
         select t1.*
         from (
             <include refid="default"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchCurProductTag"  parameterType="cn.ibizlab.plm.core.prodmgmt.filter.ProductTagSearchContext"  resultMap="ProductTagResultMap">
+        select t1.* 
+        from (
+            <include refid="curProductTag"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listCurProductTag"  parameterType="cn.ibizlab.plm.core.prodmgmt.filter.ProductTagSearchContext"  resultMap="ProductTagResultMap">
+        select t1.*
+        from (
+            <include refid="curProductTag"/>
         ) t1
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>

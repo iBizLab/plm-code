@@ -9,10 +9,10 @@
 		<result property="ownerType" column="owner_type" />
 		<result property="ownerSubtype" column="owner_subtype" />
 		<result property="isLeaf" column="is_leaf" />
-		<result property="createTime" column="create_time" />
-		<result property="updateTime" column="update_time" />
-		<result property="updateMan" column="update_man" />
 		<result property="createMan" column="create_man" />
+		<result property="createTime" column="create_time" />
+		<result property="updateMan" column="update_man" />
+		<result property="updateTime" column="update_time" />
     </resultMap>
 
     <select id="selectById"  resultMap="SectionResultMap">
@@ -46,6 +46,10 @@
 
     <sql id="view" databaseId="mysql">
          <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_LEAF`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `SECTION` t1   ]]>  
+    </sql>
+
+    <sql id="checkName" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_LEAF`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `SECTION` t1   ]]>  where  <![CDATA[ ( t1.`ID` <> #{ctx.datacontext.id}  AND  t1.`NAME` = #{ctx.datacontext.name}  AND  t1.`OWNER_ID` = #{ctx.datacontext.owner_id}  AND  t1.`OWNER_TYPE` = #{ctx.datacontext.owner_type}  AND  t1.`OWNER_SUBTYPE` = #{ctx.datacontext.owner_subtype} ) ]]> 
     </sql>
 
     <sql id="thisProductSection" databaseId="mysql">
@@ -88,6 +92,27 @@
         select t1.*
         from (
             <include refid="thisProductSection"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchCheckName"  parameterType="cn.ibizlab.plm.core.base.filter.SectionSearchContext"  resultMap="SectionResultMap">
+        select t1.* 
+        from (
+            <include refid="checkName"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listCheckName"  parameterType="cn.ibizlab.plm.core.base.filter.SectionSearchContext"  resultMap="SectionResultMap">
+        select t1.*
+        from (
+            <include refid="checkName"/>
         ) t1
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>

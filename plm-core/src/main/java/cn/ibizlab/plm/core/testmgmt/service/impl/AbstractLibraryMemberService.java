@@ -42,50 +42,6 @@ public abstract class AbstractLibraryMemberService extends ServiceImpl<LibraryMe
 
     protected int batchSize = 500;
 
-    public LibraryMember get(LibraryMember et) {
-        LibraryMember rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.LIBRARY_MEMBER.toString(),et.getId());
-        rt.copyTo(et,true);
-        return et;
-    }
-
-    public List<LibraryMember> getByEntities(List<LibraryMember> entities) {
-        entities.forEach(et->{
-            if(ObjectUtils.isEmpty(et.getId()))
-                et.setId((String)et.getDefaultKey(true));
-            });
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public void fillParentData(LibraryMember et) {
-        if(Entities.LIBRARY.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
-            et.setLibraryId((String)et.getContextParentKey());
-            Library library = et.getLibrary();
-            if(library == null) {
-                library = libraryService.getById(et.getLibraryId());
-                et.setLibrary(library);
-            }
-            if(!ObjectUtils.isEmpty(library)) {
-                et.setLibraryName(library.getName());
-                et.setLibraryIdentifier(library.getIdentifier());
-                et.setLibraryId(library.getId());
-            }
-        }
-    }
-
-    public LibraryMember getDraft(LibraryMember et) {
-        fillParentData(et);
-        return et;
-    }
-
-    public Integer checkKey(LibraryMember et) {
-        fillParentData(et);
-        if(ObjectUtils.isEmpty(et.getId()))
-            et.setId((String)et.getDefaultKey(true));
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<LibraryMember>lambdaQuery().eq(LibraryMember::getId, et.getId()))>0)?1:0;
-    }
-
     @Override
     @Transactional
     public boolean create(LibraryMember et) {
@@ -97,9 +53,9 @@ public abstract class AbstractLibraryMemberService extends ServiceImpl<LibraryMe
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<LibraryMember> list) {
+    public boolean create(List<LibraryMember> list) {
         list.forEach(this::fillParentData);
         list.forEach(et->{
             if(ObjectUtils.isEmpty(et.getId()))
@@ -108,7 +64,7 @@ public abstract class AbstractLibraryMemberService extends ServiceImpl<LibraryMe
         this.saveBatch(list, batchSize);
         return true;
     }
-
+	
     @Transactional
     public boolean update(LibraryMember et) {
         fillParentData(et);
@@ -121,12 +77,52 @@ public abstract class AbstractLibraryMemberService extends ServiceImpl<LibraryMe
     }
 
     @Transactional
-    public boolean updateBatch(List<LibraryMember> list) {
+    public boolean update(List<LibraryMember> list) {
         list.forEach(this::fillParentData);
         updateBatchById(list, batchSize);
         return true;
     }
+	
+   @Transactional
+    public boolean remove(LibraryMember et) {
+        if(!remove(Wrappers.<LibraryMember>lambdaQuery().eq(LibraryMember::getId, et.getId())))
+            return false;
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<LibraryMember> entities) {
+        this.baseMapper.deleteEntities(entities);
+        return true;
+    }		
+    public LibraryMember get(LibraryMember et) {
+        LibraryMember rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.LIBRARY_MEMBER.toString(),et.getId());
+        rt.copyTo(et,true);
+        return et;
+    }	
+
+    public List<LibraryMember> get(List<LibraryMember> entities) {
+        entities.forEach(et->{
+            if(ObjectUtils.isEmpty(et.getId()))
+                et.setId((String)et.getDefaultKey(true));
+            });
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public LibraryMember getDraft(LibraryMember et) {
+        fillParentData(et);
+        return et;
+    }
+	
+    public Integer checkKey(LibraryMember et) {
+        fillParentData(et);
+        if(ObjectUtils.isEmpty(et.getId()))
+            et.setId((String)et.getDefaultKey(true));
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<LibraryMember>lambdaQuery().eq(LibraryMember::getId, et.getId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(LibraryMember et) {
@@ -137,10 +133,10 @@ public abstract class AbstractLibraryMemberService extends ServiceImpl<LibraryMe
     }
 
     @Transactional
-    public boolean saveBatch(List<LibraryMember> list) {
+    public boolean save(List<LibraryMember> list) {
         if(ObjectUtils.isEmpty(list))
             return true;
-        Map<String,LibraryMember> before = getByEntities(list).stream().collect(Collectors.toMap(LibraryMember::getId,e->e));
+        Map<String,LibraryMember> before = get(list).stream().collect(Collectors.toMap(LibraryMember::getId,e->e));
         List<LibraryMember> create = new ArrayList<>();
         List<LibraryMember> update = new ArrayList<>();
         list.forEach(sub->{
@@ -155,67 +151,51 @@ public abstract class AbstractLibraryMemberService extends ServiceImpl<LibraryMe
         });
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
         else
             return true;
     }
-
-    @Transactional
-    public boolean remove(LibraryMember et) {
-        if(!remove(Wrappers.<LibraryMember>lambdaQuery().eq(LibraryMember::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<LibraryMember> entities) {
-        this.baseMapper.deleteEntities(entities);
-        return true;
-    }
-
-    public Page<LibraryMember> searchDefault(LibraryMemberSearchContext context) {
+	
+   public Page<LibraryMember> fetchDefault(LibraryMemberSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<LibraryMember> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<LibraryMember> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<LibraryMember> listDefault(LibraryMemberSearchContext context) {
+   public List<LibraryMember> listDefault(LibraryMemberSearchContext context) {
         List<LibraryMember> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<LibraryMember> searchCurLibraryMember(LibraryMemberSearchContext context) {
+   }
+	
+   public Page<LibraryMember> fetchCurLibraryMember(LibraryMemberSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<LibraryMember> pages=baseMapper.searchCurLibraryMember(context.getPages(),context,context.getSelectCond());
         List<LibraryMember> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<LibraryMember> listCurLibraryMember(LibraryMemberSearchContext context) {
+   public List<LibraryMember> listCurLibraryMember(LibraryMemberSearchContext context) {
         List<LibraryMember> list = baseMapper.listCurLibraryMember(context,context.getSelectCond());
         return list;
-    }
-
-    public List<LibraryMember> findByLibraryId(List<String> libraryIds) {
+   }
+	
+	public List<LibraryMember> findByLibraryId(List<String> libraryIds){
         List<LibraryMember> list = baseMapper.findByLibraryId(libraryIds);
-        return list;
-    }
-    public List<LibraryMember> findByUserId(List<String> userIds) {
-        List<LibraryMember> list = baseMapper.findByUserId(userIds);
-        return list;
-    }
-    public boolean removeByLibraryId(String libraryId) {
+        return list;	
+	}
+
+	public boolean removeByLibraryId(String libraryId){
         return this.remove(Wrappers.<LibraryMember>lambdaQuery().eq(LibraryMember::getLibraryId,libraryId));
-    }
+	}
 
-    public boolean resetByLibraryId(String libraryId) {
-        return this.update(Wrappers.<LibraryMember>lambdaUpdate().eq(LibraryMember::getLibraryId,libraryId));
-    }
-
-    public boolean saveByLibrary(Library library,List<LibraryMember> list) {
+	public boolean resetByLibraryId(String libraryId){
+		return this.update(Wrappers.<LibraryMember>lambdaUpdate().eq(LibraryMember::getLibraryId,libraryId));
+	}
+	public boolean saveByLibrary(Library library, List<LibraryMember> list){
         if(list==null)
             return true;
         Map<String,LibraryMember> before = findByLibraryId(library.getId()).stream().collect(Collectors.toMap(LibraryMember::getId,e->e));
+
         List<LibraryMember> update = new ArrayList<>();
         List<LibraryMember> create = new ArrayList<>();
 
@@ -235,26 +215,31 @@ public abstract class AbstractLibraryMemberService extends ServiceImpl<LibraryMe
         }
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
             return false;
         else
             return true;
-    }
+			
+	}
+	public List<LibraryMember> findByUserId(List<String> userIds){
+        List<LibraryMember> list = baseMapper.findByUserId(userIds);
+        return list;	
+	}
 
-    public boolean removeByUserId(String userId) {
+	public boolean removeByUserId(String userId){
         return this.remove(Wrappers.<LibraryMember>lambdaQuery().eq(LibraryMember::getUserId,userId));
-    }
+	}
 
-    public boolean resetByUserId(String userId) {
-        return this.update(Wrappers.<LibraryMember>lambdaUpdate().eq(LibraryMember::getUserId,userId));
-    }
-
-    public boolean saveByUser(User user,List<LibraryMember> list) {
+	public boolean resetByUserId(String userId){
+		return this.update(Wrappers.<LibraryMember>lambdaUpdate().eq(LibraryMember::getUserId,userId));
+	}
+	public boolean saveByUser(User user, List<LibraryMember> list){
         if(list==null)
             return true;
         Map<String,LibraryMember> before = findByUserId(user.getId()).stream().collect(Collectors.toMap(LibraryMember::getId,e->e));
+
         List<LibraryMember> update = new ArrayList<>();
         List<LibraryMember> create = new ArrayList<>();
 
@@ -274,18 +259,31 @@ public abstract class AbstractLibraryMemberService extends ServiceImpl<LibraryMe
         }
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
             return false;
         else
             return true;
+			
+	}
+
+    public void fillParentData(LibraryMember et) {
+        if(Entities.LIBRARY.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setLibraryId((String)et.getContextParentKey());
+            Library library = et.getLibrary();
+            if(library == null) {
+                library = libraryService.getById(et.getLibraryId());
+                et.setLibrary(library);
+            }
+            if(!ObjectUtils.isEmpty(library)) {
+                et.setLibraryName(library.getName());
+                et.setLibraryIdentifier(library.getIdentifier());
+                et.setLibraryId(library.getId());
+            }
+        }
     }
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -305,8 +303,8 @@ public abstract class AbstractLibraryMemberService extends ServiceImpl<LibraryMe
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return LibraryMemberMapper.class;
     }
@@ -315,4 +313,5 @@ public abstract class AbstractLibraryMemberService extends ServiceImpl<LibraryMe
     protected Class currentModelClass() {
         return LibraryMember.class;
     }
+
 }

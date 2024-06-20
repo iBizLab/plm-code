@@ -43,7 +43,7 @@ public class TestSuiteFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 70)
+    @ApiModelProperty(value = "名称LIKE", position = 40)
 	private String nameLIKE;
 
     /**

@@ -107,6 +107,20 @@ export default {
       },
       deformItemUpdates: [
         {
+          codeName: 'remaining_update',
+          defiupdateDetails: [
+            {
+              id: 'workload_schedule',
+            },
+          ],
+          scriptCode:
+            'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload; \r\nvar remaining_workload = form_data.remaining_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n}\r\nvar remaining = 0;\r\nif(remaining_workload){\r\n\tremaining = Number(remaining_workload);\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}\r\n',
+          customCode: true,
+          showBusyIndicator: false,
+          name: '剩余工时表单项更新',
+          id: 'remaining_update',
+        },
+        {
           codeName: 'estimated_update',
           defiupdateDetails: [
             {
@@ -122,20 +136,6 @@ export default {
           showBusyIndicator: false,
           name: '预估工时表单项更新',
           id: 'estimated_update',
-        },
-        {
-          codeName: 'remaining_update',
-          defiupdateDetails: [
-            {
-              id: 'workload_schedule',
-            },
-          ],
-          scriptCode:
-            'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload; \r\nvar remaining_workload = form_data.remaining_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n}\r\nvar remaining = 0;\r\nif(remaining_workload){\r\n\tremaining = Number(remaining_workload);\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}\r\n',
-          customCode: true,
-          showBusyIndicator: false,
-          name: '剩余工时表单项更新',
-          id: 'remaining_update',
         },
       ],
       deformPages: [
@@ -464,12 +464,12 @@ export default {
                                   QUOTESCRIPT:
                                     '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","icon":"${data.icon}"}`',
                                   USERURL:
-                                    "`${context.library ? `libraries/${context.library}/library_members/fetchdefault` : context.product ? `products/${context.product}/product_members/fetchdefault` : context.project ? `projects/${context.project}/project_members/fetchdefault` : ''}`",
+                                    "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                   USERFIELDMAP:
                                     '{"id":"user_id","name":"name"}',
                                   INSERTKEYS:
                                     '[{"index":66,"keys":["marker"]},{"index":5,"keys":["paintformat"]}]',
-                                  QUOTEURL: '`recents/fetchrecent_access`',
+                                  QUOTEURL: '`recents/fetch_recent_access`',
                                 },
                                 editorStyle: 'COLLAPSE',
                                 editorType: 'HTMLEDITOR',
@@ -1652,6 +1652,70 @@ export default {
                           id: 'cur_version_name',
                         },
                         {
+                          dataType: 25,
+                          enableCond: 3,
+                          labelPos: 'LEFT',
+                          labelWidth: 130,
+                          noPrivDisplayMode: 1,
+                          editor: {
+                            halign: 'LEFT',
+                            valign: 'MIDDLE',
+                            wrapMode: 'NOWRAP',
+                            editorType: 'SPAN',
+                            valueType: 'SIMPLE',
+                            editable: true,
+                            id: 'baseline_name',
+                          },
+                          allowEmpty: true,
+                          caption: '基线',
+                          codeName: 'baseline_name',
+                          detailStyle: 'DEFAULT',
+                          detailType: 'FORMITEM',
+                          layoutPos: {
+                            colLG: 21,
+                            colMD: 21,
+                            layout: 'TABLE_24COL',
+                          },
+                          showCaption: true,
+                          id: 'baseline_name',
+                        },
+                        {
+                          layout: {
+                            columnCount: 24,
+                            layout: 'TABLE_24COL',
+                          },
+                          deformDetails: [
+                            {
+                              actionType: 'UIACTION',
+                              uiactionId: 'check_baseline_version@test_case',
+                              tooltip: '已规划基线',
+                              uiactionTarget: 'SINGLEDATA',
+                              caption: '已规划基线',
+                              codeName: 'button3',
+                              detailStyle: 'STYLE2',
+                              detailType: 'BUTTON',
+                              layoutPos: {
+                                colMD: 24,
+                                layout: 'TABLE_24COL',
+                              },
+                              sysImage: {
+                                cssClass: 'fa fa-arrow-circle-o-right',
+                                glyph: 'xf18e@FontAwesome',
+                              },
+                              id: 'button3',
+                            },
+                          ],
+                          codeName: 'grouppanel7',
+                          detailStyle: 'DEFAULT',
+                          detailType: 'GROUPPANEL',
+                          layoutPos: {
+                            colLG: 3,
+                            colMD: 3,
+                            layout: 'TABLE_24COL',
+                          },
+                          id: 'grouppanel7',
+                        },
+                        {
                           createDV: 'srfreadonly',
                           createDVT: 'APPDATA',
                           dataType: 25,
@@ -1705,6 +1769,35 @@ export default {
                           },
                           showCaption: true,
                           id: 'cur_version_id',
+                        },
+                        {
+                          dataType: 25,
+                          enableCond: 3,
+                          labelPos: 'LEFT',
+                          labelWidth: 130,
+                          noPrivDisplayMode: 1,
+                          appDEFieldId: 'id',
+                          editor: {
+                            editorType: 'HIDDEN',
+                            valueType: 'SIMPLE',
+                            editable: true,
+                            id: 'id',
+                          },
+                          allowEmpty: true,
+                          hidden: true,
+                          capLanguageRes: {
+                            lanResTag: 'DEF.LNAME.ID',
+                          },
+                          caption: '标识',
+                          codeName: 'id',
+                          detailStyle: 'DEFAULT',
+                          detailType: 'FORMITEM',
+                          layoutPos: {
+                            colMD: 24,
+                            layout: 'TABLE_24COL',
+                          },
+                          showCaption: true,
+                          id: 'id',
                         },
                       ],
                       caption: '变更',
@@ -2262,6 +2355,63 @@ export default {
                   },
                   id: 'grouppanel9',
                 },
+                {
+                  layout: {
+                    columnCount: 24,
+                    layout: 'TABLE_24COL',
+                  },
+                  deformDetails: [
+                    {
+                      appViewId:
+                        'plmweb.baseline_idea_relation_version_list_view',
+                      navigateContexts: [
+                        {
+                          key: 'BASE_VERSION',
+                          value: 'cur_version_id',
+                          name: 'BASE_VERSION',
+                          id: 'base_version',
+                        },
+                      ],
+                      parentDataJO: {
+                        srfparentdename: 'IDEA',
+                        SRFPARENTTYPE: 'CUSTOM',
+                      },
+                      codeName: 'druipart5',
+                      detailStyle: 'DEFAULT',
+                      detailType: 'DRUIPART',
+                      layoutPos: {
+                        colMD: 24,
+                        layout: 'TABLE_24COL',
+                      },
+                      showCaption: true,
+                      id: 'druipart5',
+                    },
+                  ],
+                  codeName: 'baseline',
+                  detailStyle: 'DEFAULT',
+                  detailType: 'GROUPPANEL',
+                  defdgroupLogics: [
+                    {
+                      logicCat: 'PANELVISIBLE',
+                      relatedDetailNames: ['id'],
+                      groupOP: 'AND',
+                      defdlogics: [
+                        {
+                          condOP: 'ISNULL',
+                          defdname: 'id',
+                          logicType: 'SINGLE',
+                        },
+                      ],
+                      logicType: 'GROUP',
+                      id: '表单成员[baseline][面板显示]逻辑',
+                    },
+                  ],
+                  layoutPos: {
+                    colMD: 24,
+                    layout: 'TABLE_24COL',
+                  },
+                  id: 'baseline',
+                },
               ],
               codeName: 'right_grouppanel',
               detailStyle: 'DEFAULT',
@@ -2272,35 +2422,6 @@ export default {
                 layout: 'TABLE_24COL',
               },
               id: 'right_grouppanel',
-            },
-            {
-              dataType: 25,
-              enableCond: 3,
-              labelPos: 'LEFT',
-              labelWidth: 130,
-              noPrivDisplayMode: 1,
-              appDEFieldId: 'id',
-              editor: {
-                editorType: 'HIDDEN',
-                valueType: 'SIMPLE',
-                editable: true,
-                id: 'id',
-              },
-              allowEmpty: true,
-              hidden: true,
-              capLanguageRes: {
-                lanResTag: 'DEF.LNAME.ID',
-              },
-              caption: '标识',
-              codeName: 'id',
-              detailStyle: 'DEFAULT',
-              detailType: 'FORMITEM',
-              layoutPos: {
-                colMD: 24,
-                layout: 'TABLE_24COL',
-              },
-              showCaption: true,
-              id: 'id',
             },
           ],
           capLanguageRes: {

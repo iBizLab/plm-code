@@ -219,6 +219,7 @@ export default {
                 itemStyle: 'DEFAULT',
                 itemType: 'RAWITEM',
                 layoutPos: {
+                  grow: 1,
                   shrink: 1,
                   layout: 'FLEX',
                 },

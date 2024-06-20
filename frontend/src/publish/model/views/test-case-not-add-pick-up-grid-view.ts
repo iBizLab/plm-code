@@ -212,7 +212,7 @@ export default {
       enableCustomized: true,
       enablePagingBar: true,
       fetchControlAction: {
-        appDEMethodId: 'fetch_not_add_case',
+        appDEMethodId: 'fetch_review_data',
         appDataEntityId: 'plmweb.test_case',
         id: 'fetch',
       },
@@ -335,7 +335,7 @@ export default {
   viewStyle: 'DEFAULT',
   viewType: 'DEPICKUPGRIDVIEW',
   enableDP: true,
-  showCaptionBar: true,
+  showCaptionBar: false,
   modelId: '7b5266f3f2d211d62212d43d1f0720a8',
   modelType: 'PSAPPDEVIEW',
   name: 'test_casenot_add_pick_up_grid_view',

@@ -923,10 +923,12 @@ export default {
                       {
                         dataType: 21,
                         enableCond: 3,
+                        itemHeight: 1,
                         labelPos: 'NONE',
                         noPrivDisplayMode: 1,
                         appDEFieldId: 'summary',
                         editor: {
+                          editorHeight: 1,
                           editorParams: {
                             USERINSCRIPT:
                               'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
@@ -947,11 +949,11 @@ export default {
                             QUOTESCRIPT:
                               '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","icon":"${data.icon}"}`',
                             USERURL:
-                              "`${context.library ? `libraries/${context.library}/library_members/fetchdefault` : context.product ? `products/${context.product}/product_members/fetchdefault` : context.project ? `projects/${context.project}/project_members/fetchdefault` : ''}`",
+                              "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                             USERFIELDMAP: '{"id":"user_id","name":"name"}',
                             INSERTKEYS:
                               '[{"index":66,"keys":["marker"]},{"index":5,"keys":["paintformat"]}]',
-                            QUOTEURL: '`recents/fetchrecent_access`',
+                            QUOTEURL: '`recents/fetch_recent_access`',
                           },
                           editorStyle: 'COLLAPSE',
                           editorType: 'HTMLEDITOR',
@@ -1421,7 +1423,7 @@ export default {
                 'EC.dataZoom':
                   '[{"type":"slider","xAxisIndex":0,"start":0,"end":20}]',
                 'EC.showGridPrcent': 'true',
-                'EC.showGridCaption': 'true',
+                'EC.showGridCaption': 'false',
                 'EC.groupSerieMode': 'true',
                 'EC.grid': '{"left":75,"right":75,"top":75,"bottom":75}',
               },
@@ -1903,17 +1905,6 @@ export default {
               height: 1,
               logicName: 'dailyTendencies_report',
               appDataEntityId: 'plmweb.run',
-              controlLogics: [
-                {
-                  eventNames: 'onBeforeLoad',
-                  logicTag: 'dashboard_sysportlet4_chart',
-                  logicType: 'SCRIPT',
-                  scriptCode:
-                    "const time = new Date();\r\nconst preTime = new Date(time.getTime() - 604800000);\r\nconst n_create_time_gtandeq = preTime.getFullYear() +'-' +(preTime.getMonth() + 1 < 10 ? '0' + (preTime.getMonth() + 1): preTime.getMonth() + 1) +'-' +(preTime.getDate() < 10 ? '0' + preTime.getDate() : preTime.getDate()) \r\nconst n_create_time_ltandeq = time.getFullYear() +'-' +(time.getMonth() + 1 < 10 ? '0' + (time.getMonth() + 1): time.getMonth() + 1) +'-' +(time.getDate() < 10 ? '0' + time.getDate() : time.getDate())\r\nconst date_range = n_create_time_gtandeq + ',' + n_create_time_ltandeq;\r\nObject.assign(viewParam, { n_create_time_gtandeq, n_create_time_ltandeq, date_range});",
-                  triggerType: 'CTRLEVENT',
-                  id: 'time_logic',
-                },
-              ],
               controlParam: {},
               sysPFPluginId: 'chart_grid',
               modelId: 'F27AF657-0FD3-4362-841A-FB6D72E4B259',
@@ -1940,7 +1931,7 @@ export default {
       ],
       codeName: 'dashboard',
       controlType: 'DASHBOARD',
-      logicName: 'test_plan_report',
+      logicName: '测试报告概览',
       appDataEntityId: 'plmweb.test_plan',
       controlLogics: [
         {

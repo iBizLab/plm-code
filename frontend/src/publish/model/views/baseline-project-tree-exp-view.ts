@@ -100,7 +100,7 @@ export default {
               parentDETreeNodeId: 'root',
               parentValueLevel: 1,
               searchMode: 3,
-              id: '默认根节点 - 全部迭代',
+              id: '默认根节点 - 全部基线',
             },
             {
               childDETreeNodeId: 'node_2',
@@ -108,7 +108,7 @@ export default {
               parentDER1N: {
                 masterRS: 32,
                 pickupDEFName: 'SECTION_ID',
-                removeActionType: 1,
+                removeActionType: 2,
                 codeName: 'section',
                 dertype: 'DER1N',
                 logicName: '分组-类别',
@@ -123,20 +123,6 @@ export default {
               parentValueLevel: 1,
               searchMode: 3,
               id: '基线分组 - 基线类型',
-            },
-            {
-              childDETreeNodeId: 'node_4',
-              parentDETreeNodeId: 'root',
-              parentValueLevel: 1,
-              searchMode: 3,
-              id: '默认根节点 - 工作项基线',
-            },
-            {
-              childDETreeNodeId: 'node_5',
-              parentDETreeNodeId: 'root',
-              parentValueLevel: 1,
-              searchMode: 3,
-              id: '默认根节点 - 规划基线',
             },
             {
               childDETreeNodeId: 'node_1',
@@ -209,6 +195,16 @@ export default {
                     valid: true,
                     caption: '编辑',
                     itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction1',
+                        logicTag: 'node_1_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!context.srfreadonly',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction1',
+                      },
+                    ],
                     sysImage: {
                       cssClass: 'fa fa-edit',
                       glyph: 'xf044@FontAwesome',
@@ -227,6 +223,16 @@ export default {
                     valid: true,
                     caption: '删除',
                     itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction2',
+                        logicTag: 'node_1_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!context.srfreadonly',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction2',
+                      },
+                    ],
                     sysImage: {
                       cssClass: 'fa fa-trash-o',
                       glyph: 'xf014@FontAwesome',
@@ -285,6 +291,16 @@ export default {
                     valid: true,
                     caption: '编辑',
                     itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction1',
+                        logicTag: 'node_2_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!context.srfreadonly',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction1',
+                      },
+                    ],
                     sysImage: {
                       cssClass: 'fa fa-edit',
                       glyph: 'xf044@FontAwesome',
@@ -303,6 +319,16 @@ export default {
                     valid: true,
                     caption: '删除',
                     itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction2',
+                        logicTag: 'node_2_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!context.srfreadonly',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction2',
+                      },
+                    ],
                     sysImage: {
                       cssClass: 'fa fa-trash-o',
                       glyph: 'xf014@FontAwesome',
@@ -366,6 +392,16 @@ export default {
                     valid: true,
                     caption: '编辑',
                     itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction1',
+                        logicTag: 'node_3_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!context.srfreadonly',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction1',
+                      },
+                    ],
                     sysImage: {
                       cssClass: 'fa fa-edit',
                       glyph: 'xf044@FontAwesome',
@@ -384,6 +420,16 @@ export default {
                     valid: true,
                     caption: '删除',
                     itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction2',
+                        logicTag: 'node_3_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!context.srfreadonly',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction2',
+                      },
+                    ],
                     sysImage: {
                       cssClass: 'fa fa-trash-o',
                       glyph: 'xf014@FontAwesome',
@@ -488,6 +534,16 @@ export default {
                   valid: true,
                   caption: '编辑',
                   itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction1',
+                      logicTag: 'node_1_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction1',
+                    },
+                  ],
                   sysImage: {
                     cssClass: 'fa fa-edit',
                     glyph: 'xf044@FontAwesome',
@@ -506,6 +562,16 @@ export default {
                   valid: true,
                   caption: '删除',
                   itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction2',
+                      logicTag: 'node_1_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction2',
+                    },
+                  ],
                   sysImage: {
                     cssClass: 'fa fa-trash-o',
                     glyph: 'xf014@FontAwesome',
@@ -535,63 +601,21 @@ export default {
                   actionLevel: 100,
                   noPrivDisplayMode: 2,
                   uiactionId:
-                    'toolbar_project_tree_exp_view_node2_cm_deuiaction1_click@baseline',
-                  uiactionTarget: 'SINGLEDATA',
-                  valid: true,
-                  caption: '编辑',
-                  itemType: 'DEUIACTION',
-                  sysImage: {
-                    cssClass: 'fa fa-edit',
-                    glyph: 'xf044@FontAwesome',
-                  },
-                  tooltip: '编辑',
-                  showCaption: true,
-                  showIcon: true,
-                  id: 'deuiaction1',
-                },
-                {
-                  actionLevel: 100,
-                  noPrivDisplayMode: 2,
-                  uiactionId:
-                    'toolbar_project_tree_exp_view_node2_cm_deuiaction2_click@baseline',
-                  uiactionTarget: 'SINGLEDATA',
-                  valid: true,
-                  caption: '删除',
-                  itemType: 'DEUIACTION',
-                  sysImage: {
-                    cssClass: 'fa fa-trash-o',
-                    glyph: 'xf014@FontAwesome',
-                  },
-                  tooltip: '删除',
-                  showCaption: true,
-                  showIcon: true,
-                  id: 'deuiaction2',
-                },
-              ],
-              toolbarStyle: 'CONTEXTMENU',
-              codeName: 'project_tree_exp_view_node2_cm',
-              controlType: 'CONTEXTMENU',
-              logicName: '树节点上下文菜单',
-              appDataEntityId: 'plmweb.baseline',
-              controlParam: {
-                id: 'node_2_cm',
-              },
-              modelId: '90ce9a30940cfaa299547e13a27b8161',
-              modelType: 'PSDETOOLBAR',
-              name: 'node_2_cm',
-              id: 'project_tree_exp_view_node2_cm',
-            },
-            {
-              detoolbarItems: [
-                {
-                  actionLevel: 100,
-                  noPrivDisplayMode: 2,
-                  uiactionId:
                     'toolbar_project_tree_exp_view_node3_cm_deuiaction1_click@baseline',
                   uiactionTarget: 'SINGLEDATA',
                   valid: true,
                   caption: '编辑',
                   itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction1',
+                      logicTag: 'node_3_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction1',
+                    },
+                  ],
                   sysImage: {
                     cssClass: 'fa fa-edit',
                     glyph: 'xf044@FontAwesome',
@@ -610,6 +634,16 @@ export default {
                   valid: true,
                   caption: '删除',
                   itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction2',
+                      logicTag: 'node_3_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction2',
+                    },
+                  ],
                   sysImage: {
                     cssClass: 'fa fa-trash-o',
                     glyph: 'xf014@FontAwesome',
@@ -632,6 +666,78 @@ export default {
               modelType: 'PSDETOOLBAR',
               name: 'node_3_cm',
               id: 'project_tree_exp_view_node3_cm',
+            },
+            {
+              detoolbarItems: [
+                {
+                  actionLevel: 100,
+                  noPrivDisplayMode: 2,
+                  uiactionId:
+                    'toolbar_project_tree_exp_view_node2_cm_deuiaction1_click@baseline',
+                  uiactionTarget: 'SINGLEDATA',
+                  valid: true,
+                  caption: '编辑',
+                  itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction1',
+                      logicTag: 'node_2_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction1',
+                    },
+                  ],
+                  sysImage: {
+                    cssClass: 'fa fa-edit',
+                    glyph: 'xf044@FontAwesome',
+                  },
+                  tooltip: '编辑',
+                  showCaption: true,
+                  showIcon: true,
+                  id: 'deuiaction1',
+                },
+                {
+                  actionLevel: 100,
+                  noPrivDisplayMode: 2,
+                  uiactionId:
+                    'toolbar_project_tree_exp_view_node2_cm_deuiaction2_click@baseline',
+                  uiactionTarget: 'SINGLEDATA',
+                  valid: true,
+                  caption: '删除',
+                  itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction2',
+                      logicTag: 'node_2_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction2',
+                    },
+                  ],
+                  sysImage: {
+                    cssClass: 'fa fa-trash-o',
+                    glyph: 'xf014@FontAwesome',
+                  },
+                  tooltip: '删除',
+                  showCaption: true,
+                  showIcon: true,
+                  id: 'deuiaction2',
+                },
+              ],
+              toolbarStyle: 'CONTEXTMENU',
+              codeName: 'project_tree_exp_view_node2_cm',
+              controlType: 'CONTEXTMENU',
+              logicName: '树节点上下文菜单',
+              appDataEntityId: 'plmweb.baseline',
+              controlParam: {
+                id: 'node_2_cm',
+              },
+              modelId: '90ce9a30940cfaa299547e13a27b8161',
+              modelType: 'PSDETOOLBAR',
+              name: 'node_2_cm',
+              id: 'project_tree_exp_view_node2_cm',
             },
           ],
           codeName: 'project_baseline_tree_view',
@@ -709,6 +815,16 @@ export default {
               valid: true,
               caption: '新建',
               itemType: 'ITEMS',
+              controlLogics: [
+                {
+                  itemName: 'items1',
+                  logicTag: 'treeexpbar_toolbar',
+                  logicType: 'SCRIPT',
+                  scriptCode: '!context.srfreadonly',
+                  triggerType: 'ITEMVISIBLE',
+                  id: 'items1',
+                },
+              ],
               sysImage: {
                 cssClass: 'fa fa-plus',
                 glyph: 'xf067@FontAwesome',
@@ -724,6 +840,16 @@ export default {
               valid: true,
               caption: '刷新',
               itemType: 'DEUIACTION',
+              controlLogics: [
+                {
+                  itemName: 'deuiaction3',
+                  logicTag: 'treeexpbar_toolbar',
+                  logicType: 'SCRIPT',
+                  scriptCode: '!context.srfreadonly',
+                  triggerType: 'ITEMVISIBLE',
+                  id: 'deuiaction3',
+                },
+              ],
               sysImage: {
                 cssClass: 'fa fa-refresh',
                 glyph: 'xf021@FontAwesome',

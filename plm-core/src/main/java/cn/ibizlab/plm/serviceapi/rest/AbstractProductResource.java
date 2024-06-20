@@ -204,6 +204,44 @@ public abstract class AbstractProductResource {
     }
 
     /**
+    * change_admin_role 产品
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProductDTO>
+    */
+    @ApiOperation(value = "change_admin_role", tags = {"产品" },  notes = "Product-change_admin_role ")
+    @PostMapping("products/{id}/change_admin_role")
+    public ResponseEntity<ResponseWrapper<ProductDTO>> changeAdminRoleById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProductDTO> dto) {
+        ResponseWrapper<ProductDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(changeAdminRoleById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(changeAdminRoleById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * change_admin_role 产品
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProductDTO>
+    */   
+    public ProductDTO changeAdminRoleById
+            (String id, ProductDTO dto) {
+        Product domain = productDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Product rt = productService.changeAdminRole(domain);
+        return productDtoMapping.toDto(rt);
+    }
+
+    /**
     * delete 产品
     * 
     *
@@ -355,6 +393,123 @@ public abstract class AbstractProductResource {
         Product domain = productDtoMapping.toDomain(dto);
         domain.setId(id);
         Product rt = productService.productCounters(domain);
+        return productDtoMapping.toDto(rt);
+    }
+
+    /**
+    * product_index_addon_counter 产品
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProductDTO>
+    */
+    @ApiOperation(value = "product_index_addon_counter", tags = {"产品" },  notes = "Product-product_index_addon_counter ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Product-product_index_addon_counter-all') or hasPermission(this.productDtoMapping.toDomain(#dto),'ibizplm-Product-product_index_addon_counter')")
+    @PostMapping("products/{id}/product_index_addon_counter")
+    public ResponseEntity<ResponseWrapper<ProductDTO>> productIndexAddonCounterById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProductDTO> dto) {
+        ResponseWrapper<ProductDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(productIndexAddonCounterById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(productIndexAddonCounterById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * product_index_addon_counter 产品
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProductDTO>
+    */   
+    public ProductDTO productIndexAddonCounterById
+            (String id, ProductDTO dto) {
+        Product domain = productDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Product rt = productService.productIndexAddonCounter(domain);
+        return productDtoMapping.toDto(rt);
+    }
+
+    /**
+    * product_move 产品
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProductDTO>
+    */
+    @ApiOperation(value = "product_move", tags = {"产品" },  notes = "Product-product_move ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Product-product_move-all') or hasPermission(this.productDtoMapping.toDomain(#dto),'ibizplm-Product-product_move')")
+    @PutMapping("products/{id}/product_move")
+    public ResponseEntity<ResponseWrapper<ProductDTO>> productMoveById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProductDTO> dto) {
+        ResponseWrapper<ProductDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(productMoveById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(productMoveById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * product_move 产品
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProductDTO>
+    */   
+    public ProductDTO productMoveById
+            (String id, ProductDTO dto) {
+        Product domain = productDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Product rt = productService.productMove(domain);
+        return productDtoMapping.toDto(rt);
+    }
+
+    /**
+    * product_readonly_recognize 产品
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProductDTO>
+    */
+    @ApiOperation(value = "product_readonly_recognize", tags = {"产品" },  notes = "Product-product_readonly_recognize ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Product-product_readonly_recognize-all') or hasPermission(this.productDtoMapping.toDomain(#dto),'ibizplm-Product-product_readonly_recognize')")
+    @PostMapping("products/{id}/product_readonly_recognize")
+    public ResponseEntity<ResponseWrapper<ProductDTO>> productReadonlyRecognizeById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProductDTO> dto) {
+        ResponseWrapper<ProductDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(productReadonlyRecognizeById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(productReadonlyRecognizeById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * product_readonly_recognize 产品
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProductDTO>
+    */   
+    public ProductDTO productReadonlyRecognizeById
+            (String id, ProductDTO dto) {
+        Product domain = productDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Product rt = productService.productReadonlyRecognize(domain);
         return productDtoMapping.toDto(rt);
     }
 
@@ -549,7 +704,7 @@ public abstract class AbstractProductResource {
     public ResponseEntity<List<ProductDTO>> fetchAdmin
             (@Validated @RequestBody ProductFilterDTO dto) {
         ProductSearchContext context = productFilterDtoMapping.toDomain(dto);
-        Page<Product> domains = productService.searchAdmin(context) ;
+        Page<Product> domains = productService.fetchAdmin(context) ;
         List<ProductDTO> list = productDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -571,7 +726,7 @@ public abstract class AbstractProductResource {
     public ResponseEntity<List<ProductDTO>> fetchArchived
             (@Validated @RequestBody ProductFilterDTO dto) {
         ProductSearchContext context = productFilterDtoMapping.toDomain(dto);
-        Page<Product> domains = productService.searchArchived(context) ;
+        Page<Product> domains = productService.fetchArchived(context) ;
         List<ProductDTO> list = productDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -593,7 +748,7 @@ public abstract class AbstractProductResource {
     public ResponseEntity<List<ProductDTO>> fetchDefault
             (@Validated @RequestBody ProductFilterDTO dto) {
         ProductSearchContext context = productFilterDtoMapping.toDomain(dto);
-        Page<Product> domains = productService.searchDefault(context) ;
+        Page<Product> domains = productService.fetchDefault(context) ;
         List<ProductDTO> list = productDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -615,7 +770,7 @@ public abstract class AbstractProductResource {
     public ResponseEntity<List<ProductDTO>> fetchDeleted
             (@Validated @RequestBody ProductFilterDTO dto) {
         ProductSearchContext context = productFilterDtoMapping.toDomain(dto);
-        Page<Product> domains = productService.searchDeleted(context) ;
+        Page<Product> domains = productService.fetchDeleted(context) ;
         List<ProductDTO> list = productDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -637,7 +792,29 @@ public abstract class AbstractProductResource {
     public ResponseEntity<List<ProductDTO>> fetchFavorite
             (@Validated @RequestBody ProductFilterDTO dto) {
         ProductSearchContext context = productFilterDtoMapping.toDomain(dto);
-        Page<Product> domains = productService.searchFavorite(context) ;
+        Page<Product> domains = productService.fetchFavorite(context) ;
+        List<ProductDTO> list = productDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_main 产品
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<ProductDTO>>
+    */
+    @ApiOperation(value = "查询fetch_main", tags = {"产品" },  notes = "Product-fetch_main ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Product-fetch_main-all') or hasPermission(#dto,'ibizplm-Product-fetch_main')")
+    @PostMapping("products/fetch_main")
+    public ResponseEntity<List<ProductDTO>> fetchMain
+            (@Validated @RequestBody ProductFilterDTO dto) {
+        ProductSearchContext context = productFilterDtoMapping.toDomain(dto);
+        Page<Product> domains = productService.fetchMain(context) ;
         List<ProductDTO> list = productDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -659,7 +836,29 @@ public abstract class AbstractProductResource {
     public ResponseEntity<List<ProductDTO>> fetchNormal
             (@Validated @RequestBody ProductFilterDTO dto) {
         ProductSearchContext context = productFilterDtoMapping.toDomain(dto);
-        Page<Product> domains = productService.searchNormal(context) ;
+        Page<Product> domains = productService.fetchNormal(context) ;
+        List<ProductDTO> list = productDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_quick_user 产品
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<ProductDTO>>
+    */
+    @ApiOperation(value = "查询fetch_quick_user", tags = {"产品" },  notes = "Product-fetch_quick_user ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Product-fetch_quick_user-all') or hasPermission(#dto,'ibizplm-Product-fetch_quick_user')")
+    @PostMapping("products/fetch_quick_user")
+    public ResponseEntity<List<ProductDTO>> fetchQuickUser
+            (@Validated @RequestBody ProductFilterDTO dto) {
+        ProductSearchContext context = productFilterDtoMapping.toDomain(dto);
+        Page<Product> domains = productService.fetchQuickUser(context) ;
         List<ProductDTO> list = productDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -681,7 +880,7 @@ public abstract class AbstractProductResource {
     public ResponseEntity<List<ProductDTO>> fetchReader
             (@Validated @RequestBody ProductFilterDTO dto) {
         ProductSearchContext context = productFilterDtoMapping.toDomain(dto);
-        Page<Product> domains = productService.searchReader(context) ;
+        Page<Product> domains = productService.fetchReader(context) ;
         List<ProductDTO> list = productDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -703,7 +902,7 @@ public abstract class AbstractProductResource {
     public ResponseEntity<List<ProductDTO>> fetchUser
             (@Validated @RequestBody ProductFilterDTO dto) {
         ProductSearchContext context = productFilterDtoMapping.toDomain(dto);
-        Page<Product> domains = productService.searchUser(context) ;
+        Page<Product> domains = productService.fetchUser(context) ;
         List<ProductDTO> list = productDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -722,7 +921,7 @@ public abstract class AbstractProductResource {
     @ApiOperation(value = "批量新建产品", tags = {"产品" },  notes = "批量新建产品")
 	@PostMapping("products/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<ProductDTO> dtos) {
-        productService.createBatch(productDtoMapping.toDomain(dtos));
+        productService.create(productDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -735,7 +934,7 @@ public abstract class AbstractProductResource {
     @ApiOperation(value = "批量删除产品", tags = {"产品" },  notes = "批量删除产品")
 	@DeleteMapping("products/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        productService.removeBatch(ids);
+        productService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -748,7 +947,7 @@ public abstract class AbstractProductResource {
     @ApiOperation(value = "批量更新产品", tags = {"产品" },  notes = "批量更新产品")
 	@PutMapping("products/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<ProductDTO> dtos) {
-        productService.updateBatch(productDtoMapping.toDomain(dtos));
+        productService.update(productDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -761,7 +960,7 @@ public abstract class AbstractProductResource {
     @ApiOperation(value = "批量保存产品", tags = {"产品" },  notes = "批量保存产品")
 	@PostMapping("products/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<ProductDTO> dtos) {
-        productService.saveBatch(productDtoMapping.toDomain(dtos));
+        productService.save(productDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

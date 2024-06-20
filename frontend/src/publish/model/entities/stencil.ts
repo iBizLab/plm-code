@@ -57,15 +57,15 @@ export default {
       id: 'attachments',
     },
     {
-      codeName: 'create_man',
+      codeName: 'id',
       lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.CREATE_MAN',
+        lanResTag: 'DEF.LNAME.ID',
       },
-      logicName: '建立人',
+      logicName: '标识',
       stdDataType: 25,
       stringLength: 100,
-      name: 'CREATE_MAN',
-      id: 'create_man',
+      name: 'ID',
+      id: 'id',
     },
     {
       codeName: 'name',
@@ -80,15 +80,15 @@ export default {
       id: 'name',
     },
     {
-      codeName: 'id',
+      codeName: 'create_man',
       lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.ID',
+        lanResTag: 'DEF.LNAME.CREATE_MAN',
       },
-      logicName: '标识',
+      logicName: '建立人',
       stdDataType: 25,
       stringLength: 100,
-      name: 'ID',
-      id: 'id',
+      name: 'CREATE_MAN',
+      id: 'create_man',
     },
     {
       codeName: 'create_time',

@@ -46,12 +46,14 @@ export default {
       logicType: 'APPUILOGIC',
       builtinAppUILogic: {
         openDataAppView: {
-          refAppViewId: 'plmweb.portfolio_redirect_view',
+          openMode: 'POPUPMODAL',
+          refAppViewId: 'plmweb.portfolio_project_show_view',
         },
         editMode: true,
         appUILogicRefViews: [
           {
-            refAppViewId: 'plmweb.portfolio_redirect_view',
+            openMode: 'POPUPMODAL',
+            refAppViewId: 'plmweb.portfolio_project_show_view',
           },
         ],
         builtinLogic: true,
@@ -65,15 +67,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '文件夹数据重定向视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.PORTFOLIO.REDIRECTVIEW',
-      },
-      refAppViewId: 'plmweb.portfolio_redirect_view',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
-    {
       realOpenMode: 'POPUPMODAL',
       realTitle: '项目集信息展示视图',
       realTitleLanguageRes: {
@@ -82,6 +75,16 @@ export default {
       refAppViewId: 'plmweb.portfolio_project_show_view',
       name: 'NEWDATA',
       id: 'newdata',
+    },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '项目集信息展示视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.PORTFOLIO.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.portfolio_project_show_view',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
   ],
   controls: [

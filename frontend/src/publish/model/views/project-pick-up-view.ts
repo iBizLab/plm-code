@@ -3,7 +3,7 @@ export default {
   deviewCodeName: 'pick_up_view',
   deviewId: '0375749f915dc8adbc5d18192665384f',
   accUserMode: 2,
-  caption: '项目',
+  caption: '选择项目',
   codeName: 'project_pick_up_view',
   appDataEntityId: 'plmweb.project',
   appViewEngines: [
@@ -26,7 +26,7 @@ export default {
       id: 'pick_up_view_pickupviewpanel',
     },
     {
-      caption: '项目',
+      caption: '选择项目',
       codeName: 'pick_up_view_captionbar',
       controlType: 'CAPTIONBAR',
       appDataEntityId: 'plmweb.project',
@@ -50,9 +50,9 @@ export default {
   viewStyle: 'DEFAULT',
   viewType: 'DEPICKUPVIEW',
   enableDP: true,
-  showCaptionBar: false,
+  showCaptionBar: true,
   modelId: '0f8e8be36bf57a1f18475a9c355fe213',
   modelType: 'PSAPPDEVIEW',
-  name: 'projectPickupView',
+  name: 'projectpick_up_view',
   id: 'plmweb.project_pick_up_view',
 };

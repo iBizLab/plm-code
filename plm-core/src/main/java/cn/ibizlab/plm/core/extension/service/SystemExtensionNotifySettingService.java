@@ -17,7 +17,7 @@ import cn.ibizlab.plm.core.extension.filter.SystemExtensionNotifySettingSearchCo
  *
  * @author generator
  */
-public interface SystemExtensionNotifySettingService {
+public interface SystemExtensionNotifySettingService{
 
     /**
      * 获取当前Service
@@ -29,91 +29,32 @@ public interface SystemExtensionNotifySettingService {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    SystemExtensionNotifySetting get(SystemExtensionNotifySetting et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default SystemExtensionNotifySetting get(String key) {
-        return getById(key);
-    }
-    default SystemExtensionNotifySetting getById(String key) {
-        return null;
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<SystemExtensionNotifySetting> getByIds(Collection<String> ids) {
-        List<SystemExtensionNotifySetting> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new SystemExtensionNotifySetting().setId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<SystemExtensionNotifySetting> getByEntities(List<SystemExtensionNotifySetting> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    SystemExtensionNotifySetting getDraft(SystemExtensionNotifySetting et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(SystemExtensionNotifySetting et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(SystemExtensionNotifySetting et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<SystemExtensionNotifySetting> list);
+    boolean create(List<SystemExtensionNotifySetting> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(SystemExtensionNotifySetting et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<SystemExtensionNotifySetting> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    boolean save(SystemExtensionNotifySetting et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<SystemExtensionNotifySetting> list);
+    boolean update(List<SystemExtensionNotifySetting> list);
 
     /**
      * 主键删除
@@ -123,14 +64,7 @@ public interface SystemExtensionNotifySettingService {
     default boolean remove(String key) {
         return getSelf().remove(new SystemExtensionNotifySetting().setId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -140,13 +74,13 @@ public interface SystemExtensionNotifySettingService {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<SystemExtensionNotifySetting> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new SystemExtensionNotifySetting().setId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new SystemExtensionNotifySetting().setId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -154,7 +88,102 @@ public interface SystemExtensionNotifySettingService {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<SystemExtensionNotifySetting> entities);
+    boolean remove(List<SystemExtensionNotifySetting> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default SystemExtensionNotifySetting get(String key) {
+        return getSelf().get(new SystemExtensionNotifySetting().setId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    SystemExtensionNotifySetting get(SystemExtensionNotifySetting et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<SystemExtensionNotifySetting> get(Collection<String> keys) {
+        List<SystemExtensionNotifySetting> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new SystemExtensionNotifySetting().setId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<SystemExtensionNotifySetting> get(List<SystemExtensionNotifySetting> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    SystemExtensionNotifySetting getDraft(SystemExtensionNotifySetting et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(SystemExtensionNotifySetting et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(SystemExtensionNotifySetting et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<SystemExtensionNotifySetting> list);
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<SystemExtensionNotifySetting> fetchDefault(SystemExtensionNotifySettingSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<SystemExtensionNotifySetting> listDefault(SystemExtensionNotifySettingSearchContext context);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<SystemExtensionNotifySetting> fetchView(SystemExtensionNotifySettingSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<SystemExtensionNotifySetting> listView(SystemExtensionNotifySettingSearchContext context);
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<SystemExtensionNotifySetting> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -171,37 +200,7 @@ public interface SystemExtensionNotifySettingService {
         }
         return rt;
     }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<SystemExtensionNotifySetting> searchDefault(SystemExtensionNotifySettingSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<SystemExtensionNotifySetting> listDefault(SystemExtensionNotifySettingSearchContext context);
-
-    /**
-     * searchView
-     * 
-     * @param context
-     * @return
-     */
-    Page<SystemExtensionNotifySetting> searchView(SystemExtensionNotifySettingSearchContext context);
-    /**
-     * listView
-     * 
-     * @param context
-     * @return
-     */
-    List<SystemExtensionNotifySetting> listView(SystemExtensionNotifySettingSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -209,6 +208,7 @@ public interface SystemExtensionNotifySettingService {
     default SystemExtensionNotifySetting getEntity() {
         return new SystemExtensionNotifySetting();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -216,4 +216,5 @@ public interface SystemExtensionNotifySettingService {
     default SystemExtensionNotifySettingSearchContext getSearchContext() {
         return new SystemExtensionNotifySettingSearchContext();
     }
+
 }

@@ -39,89 +39,32 @@ public interface TicketService extends IService<Ticket> {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    Ticket get(Ticket et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default Ticket get(String key) {
-        return getSelf().get(new Ticket().setId(key));
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<Ticket> getByIds(Collection<String> ids) {
-        List<Ticket> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Ticket().setId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<Ticket> getByEntities(List<Ticket> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    Ticket getDraft(Ticket et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(Ticket et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(Ticket et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<Ticket> list);
+    boolean create(List<Ticket> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(Ticket et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<Ticket> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    @Override
-    boolean save(Ticket et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<Ticket> list);
+    boolean update(List<Ticket> list);
 
     /**
      * 主键删除
@@ -131,14 +74,7 @@ public interface TicketService extends IService<Ticket> {
     default boolean remove(String key) {
         return getSelf().remove(new Ticket().setId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -148,13 +84,13 @@ public interface TicketService extends IService<Ticket> {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<Ticket> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Ticket().setId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new Ticket().setId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -162,7 +98,674 @@ public interface TicketService extends IService<Ticket> {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<Ticket> entities);
+    boolean remove(List<Ticket> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default Ticket get(String key) {
+        return getSelf().get(new Ticket().setId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    Ticket get(Ticket et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<Ticket> get(Collection<String> keys) {
+        List<Ticket> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new Ticket().setId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<Ticket> get(List<Ticket> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    Ticket getDraft(Ticket et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(Ticket et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(Ticket et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<Ticket> list);
+
+    /**
+    * activate
+    * 
+    * @param et
+    * @return
+    */
+    default Ticket activate(Ticket et) {
+        return et;
+    }
+
+    /**
+    * allocatePerson
+    * 
+    * @param et
+    * @return
+    */
+    default Ticket allocatePerson(Ticket et) {
+        return et;
+    }
+
+    /**
+    * archive
+    * 
+    * @param et
+    * @return
+    */
+    default Ticket archive(Ticket et) {
+        return et;
+    }
+
+    /**
+    * chooseTag
+    * 
+    * @param et
+    * @return
+    */
+    default Ticket chooseTag(Ticket et) {
+        return et;
+    }
+
+    /**
+    * customerChooseTicket
+    * 
+    * @param et
+    * @return
+    */
+    default Ticket customerChooseTicket(Ticket et) {
+        return et;
+    }
+
+    /**
+    * customerDelTicket
+    * 
+    * @param et
+    * @return
+    */
+    default Ticket customerDelTicket(Ticket et) {
+        return et;
+    }
+
+    /**
+    * delete
+    * 
+    * @param et
+    * @return
+    */
+    default Ticket delete(Ticket et) {
+        return et;
+    }
+
+    /**
+    * getAttention
+    * 
+    * @param key
+    * @return
+    */
+    default Ticket getAttention(String key) {
+        return null;
+    }
+
+    /**
+    * nothing
+    * 
+    * @param et
+    * @return
+    */
+    default Ticket nothing(Ticket et) {
+        return et;
+    }
+
+    /**
+    * othersRelationTicket
+    * 
+    * @param et
+    * @return
+    */
+    default Ticket othersRelationTicket(Ticket et) {
+        return et;
+    }
+
+    /**
+    * productTicketReCounters
+    * 
+    * @param et
+    * @return
+    */
+    default Ticket productTicketReCounters(Ticket et) {
+        return et;
+    }
+
+    /**
+    * recover
+    * 
+    * @param et
+    * @return
+    */
+    default Ticket recover(Ticket et) {
+        return et;
+    }
+
+    /**
+    * testGetArchivedInfo
+    * 
+    * @param key
+    * @return
+    */
+    default Ticket testGetArchivedInfo(String key) {
+        return getSelf().testGetArchivedInfo(new Ticket().setId(key));
+    }
+
+    /**
+    * ticketReadonlyRecognize
+    * 
+    * @param et
+    * @return
+    */
+    default Ticket ticketReadonlyRecognize(Ticket et) {
+        return et;
+    }
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<Ticket> fetchDefault(TicketSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<Ticket> listDefault(TicketSearchContext context);
+
+    /**
+    * fetchAdvancedSearch
+    * 
+    * @param context
+    * @return
+    */
+    Page<Ticket> fetchAdvancedSearch(TicketSearchContext context);
+
+    /**
+    * listAdvancedSearch
+    * 
+    * @param context
+    * @return
+    */
+    List<Ticket> listAdvancedSearch(TicketSearchContext context);
+
+    /**
+    * fetchArchived
+    * 
+    * @param context
+    * @return
+    */
+    Page<Ticket> fetchArchived(TicketSearchContext context);
+
+    /**
+    * listArchived
+    * 
+    * @param context
+    * @return
+    */
+    List<Ticket> listArchived(TicketSearchContext context);
+
+    /**
+    * fetchCommentNotifyAssignee
+    * 
+    * @param context
+    * @return
+    */
+    Page<Ticket> fetchCommentNotifyAssignee(TicketSearchContext context);
+
+    /**
+    * listCommentNotifyAssignee
+    * 
+    * @param context
+    * @return
+    */
+    List<Ticket> listCommentNotifyAssignee(TicketSearchContext context);
+
+    /**
+    * fetchCommon
+    * 
+    * @param context
+    * @return
+    */
+    Page<Ticket> fetchCommon(TicketSearchContext context);
+
+    /**
+    * listCommon
+    * 
+    * @param context
+    * @return
+    */
+    List<Ticket> listCommon(TicketSearchContext context);
+
+    /**
+    * fetchCustomerNotreTicket
+    * 
+    * @param context
+    * @return
+    */
+    Page<Ticket> fetchCustomerNotreTicket(TicketSearchContext context);
+
+    /**
+    * listCustomerNotreTicket
+    * 
+    * @param context
+    * @return
+    */
+    List<Ticket> listCustomerNotreTicket(TicketSearchContext context);
+
+    /**
+    * fetchCustomerRelationTicket
+    * 
+    * @param context
+    * @return
+    */
+    Page<Ticket> fetchCustomerRelationTicket(TicketSearchContext context);
+
+    /**
+    * listCustomerRelationTicket
+    * 
+    * @param context
+    * @return
+    */
+    List<Ticket> listCustomerRelationTicket(TicketSearchContext context);
+
+    /**
+    * fetchDeleted
+    * 
+    * @param context
+    * @return
+    */
+    Page<Ticket> fetchDeleted(TicketSearchContext context);
+
+    /**
+    * listDeleted
+    * 
+    * @param context
+    * @return
+    */
+    List<Ticket> listDeleted(TicketSearchContext context);
+
+    /**
+    * fetchIdeaRelationTicket
+    * 
+    * @param context
+    * @return
+    */
+    Page<Ticket> fetchIdeaRelationTicket(TicketSearchContext context);
+
+    /**
+    * listIdeaRelationTicket
+    * 
+    * @param context
+    * @return
+    */
+    List<Ticket> listIdeaRelationTicket(TicketSearchContext context);
+
+    /**
+    * fetchMyAssign
+    * 
+    * @param context
+    * @return
+    */
+    Page<Ticket> fetchMyAssign(TicketSearchContext context);
+
+    /**
+    * listMyAssign
+    * 
+    * @param context
+    * @return
+    */
+    List<Ticket> listMyAssign(TicketSearchContext context);
+
+    /**
+    * fetchMyAssigneeCount
+    * 
+    * @param context
+    * @return
+    */
+    Page<Ticket> fetchMyAssigneeCount(TicketSearchContext context);
+
+    /**
+    * listMyAssigneeCount
+    * 
+    * @param context
+    * @return
+    */
+    List<Ticket> listMyAssigneeCount(TicketSearchContext context);
+
+    /**
+    * fetchMyAttention
+    * 
+    * @param context
+    * @return
+    */
+    Page<Ticket> fetchMyAttention(TicketSearchContext context);
+
+    /**
+    * listMyAttention
+    * 
+    * @param context
+    * @return
+    */
+    List<Ticket> listMyAttention(TicketSearchContext context);
+
+    /**
+    * fetchMyCreated
+    * 
+    * @param context
+    * @return
+    */
+    Page<Ticket> fetchMyCreated(TicketSearchContext context);
+
+    /**
+    * listMyCreated
+    * 
+    * @param context
+    * @return
+    */
+    List<Ticket> listMyCreated(TicketSearchContext context);
+
+    /**
+    * fetchNormal
+    * 
+    * @param context
+    * @return
+    */
+    Page<Ticket> fetchNormal(TicketSearchContext context);
+
+    /**
+    * listNormal
+    * 
+    * @param context
+    * @return
+    */
+    List<Ticket> listNormal(TicketSearchContext context);
+
+    /**
+    * fetchNotExsistsRelation
+    * 
+    * @param context
+    * @return
+    */
+    Page<Ticket> fetchNotExsistsRelation(TicketSearchContext context);
+
+    /**
+    * listNotExsistsRelation
+    * 
+    * @param context
+    * @return
+    */
+    List<Ticket> listNotExsistsRelation(TicketSearchContext context);
+
+    /**
+    * fetchNotifyAssignee
+    * 
+    * @param context
+    * @return
+    */
+    Page<Ticket> fetchNotifyAssignee(TicketSearchContext context);
+
+    /**
+    * listNotifyAssignee
+    * 
+    * @param context
+    * @return
+    */
+    List<Ticket> listNotifyAssignee(TicketSearchContext context);
+
+    /**
+    * fetchRecentTicket
+    * 
+    * @param context
+    * @return
+    */
+    Page<Ticket> fetchRecentTicket(TicketSearchContext context);
+
+    /**
+    * listRecentTicket
+    * 
+    * @param context
+    * @return
+    */
+    List<Ticket> listRecentTicket(TicketSearchContext context);
+
+    /**
+    * fetchTicketReProductTag
+    * 
+    * @param context
+    * @return
+    */
+    Page<Ticket> fetchTicketReProductTag(TicketSearchContext context);
+
+    /**
+    * listTicketReProductTag
+    * 
+    * @param context
+    * @return
+    */
+    List<Ticket> listTicketReProductTag(TicketSearchContext context);
+
+    /**
+    * fetchTicketRelationTicket
+    * 
+    * @param context
+    * @return
+    */
+    Page<Ticket> fetchTicketRelationTicket(TicketSearchContext context);
+
+    /**
+    * listTicketRelationTicket
+    * 
+    * @param context
+    * @return
+    */
+    List<Ticket> listTicketRelationTicket(TicketSearchContext context);
+
+    /**
+    * fetchWorkItemRelationTicket
+    * 
+    * @param context
+    * @return
+    */
+    Page<Ticket> fetchWorkItemRelationTicket(TicketSearchContext context);
+
+    /**
+    * listWorkItemRelationTicket
+    * 
+    * @param context
+    * @return
+    */
+    List<Ticket> listWorkItemRelationTicket(TicketSearchContext context);
+
+    /**
+    * findByCustomerId
+    * @param customerIds
+    * @return
+    */
+    List<Ticket> findByCustomerId(List<String> customerIds);
+    default List<Ticket> findByCustomerId(String customerId){
+        return findByCustomerId(Arrays.asList(customerId));
+    }
+
+    /**
+    * removeByCustomerId
+    * @param customerId
+    * @return
+    */
+    boolean removeByCustomerId(String customerId);
+
+    /**
+    * resetByCustomerId
+    * @param customerId
+    * @return
+    */
+    boolean resetByCustomerId(String customerId);
+
+    /**
+    * saveByCustomerId
+    * @param customerId
+    * @param list
+    * @return
+    */
+    default boolean saveByCustomerId(String customerId, List<Ticket> list){
+        return getSelf().saveByCustomer(new Customer().setId(customerId),list);
+    }
+
+    /**
+    * saveByCustomer
+    * @param customer
+    * @param list
+    * @return
+    */
+    boolean saveByCustomer(Customer customer, List<Ticket> list);
+
+    /**
+    * findByProductId
+    * @param productIds
+    * @return
+    */
+    List<Ticket> findByProductId(List<String> productIds);
+    default List<Ticket> findByProductId(String productId){
+        return findByProductId(Arrays.asList(productId));
+    }
+
+    /**
+    * removeByProductId
+    * @param productId
+    * @return
+    */
+    boolean removeByProductId(String productId);
+
+    /**
+    * resetByProductId
+    * @param productId
+    * @return
+    */
+    boolean resetByProductId(String productId);
+
+    /**
+    * saveByProductId
+    * @param productId
+    * @param list
+    * @return
+    */
+    default boolean saveByProductId(String productId, List<Ticket> list){
+        return getSelf().saveByProduct(new Product().setId(productId),list);
+    }
+
+    /**
+    * saveByProduct
+    * @param product
+    * @param list
+    * @return
+    */
+    boolean saveByProduct(Product product, List<Ticket> list);
+
+    /**
+    * findByAssigneeId
+    * @param assigneeIds
+    * @return
+    */
+    List<Ticket> findByAssigneeId(List<String> assigneeIds);
+    default List<Ticket> findByAssigneeId(String assigneeId){
+        return findByAssigneeId(Arrays.asList(assigneeId));
+    }
+
+    /**
+    * removeByAssigneeId
+    * @param assigneeId
+    * @return
+    */
+    boolean removeByAssigneeId(String assigneeId);
+
+    /**
+    * resetByAssigneeId
+    * @param assigneeId
+    * @return
+    */
+    boolean resetByAssigneeId(String assigneeId);
+
+    /**
+    * saveByAssigneeId
+    * @param assigneeId
+    * @param list
+    * @return
+    */
+    default boolean saveByAssigneeId(String assigneeId, List<Ticket> list){
+        return getSelf().saveByUser(new User().setId(assigneeId),list);
+    }
+
+    /**
+    * saveByUser
+    * @param user
+    * @param list
+    * @return
+    */
+    boolean saveByUser(User user, List<Ticket> list);
+
+    default List<Attention> getAttentions(Ticket et) {
+        return new ArrayList<>();
+    }
+
+    default List<Attachment> getAttachments(Ticket et) {
+        return new ArrayList<>();
+    }
+
+    /**
+    * testGetArchivedInfo
+    * 
+    * @param et
+    * @return
+    */
+    default Ticket testGetArchivedInfo(Ticket et) {
+        return et;
+    }
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<Ticket> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -179,467 +782,7 @@ public interface TicketService extends IService<Ticket> {
         }
         return rt;
     }
-
-    /**
-     * activate
-     * 
-     * @param dto
-     * @return
-     */
-    default Ticket activate(Ticket dto) {
-        return dto;
-    }
-
-    /**
-     * allocate_person
-     * 
-     * @param dto
-     * @return
-     */
-    default Ticket allocatePerson(Ticket dto) {
-        return dto;
-    }
-
-    /**
-     * archive
-     * 
-     * @param dto
-     * @return
-     */
-    default Ticket archive(Ticket dto) {
-        return dto;
-    }
-
-    /**
-     * choose_tag
-     * 
-     * @param dto
-     * @return
-     */
-    default Ticket chooseTag(Ticket dto) {
-        return dto;
-    }
-
-    /**
-     * customer_choose_ticket
-     * 
-     * @param dto
-     * @return
-     */
-    default Ticket customerChooseTicket(Ticket dto) {
-        return dto;
-    }
-
-    /**
-     * customer_del_ticket
-     * 
-     * @param dto
-     * @return
-     */
-    default Ticket customerDelTicket(Ticket dto) {
-        return dto;
-    }
-
-    /**
-     * del_relation
-     * 
-     * @param dto
-     * @return
-     */
-    default Ticket delRelation(Ticket dto) {
-        return dto;
-    }
-
-    /**
-     * delete
-     * 
-     * @param dto
-     * @return
-     */
-    default Ticket delete(Ticket dto) {
-        return dto;
-    }
-
-    /**
-     * fill_product_member
-     * 
-     * @param dto
-     * @return
-     */
-    default Ticket fillProductMember(Ticket dto) {
-        return dto;
-    }
-
-    /**
-     * get_attention
-     * 
-     * @param key
-     * @return
-     */
-    default Ticket getAttention(String key) {
-        return null;
-    }
-
-    /**
-     * nothing
-     * 
-     * @param dto
-     * @return
-     */
-    default Ticket nothing(Ticket dto) {
-        return dto;
-    }
-
-    /**
-     * others_relation_ticket
-     * 
-     * @param dto
-     * @return
-     */
-    default Ticket othersRelationTicket(Ticket dto) {
-        return dto;
-    }
-
-    /**
-     * product_ticket_re_counters
-     * 
-     * @param dto
-     * @return
-     */
-    default Ticket productTicketReCounters(Ticket dto) {
-        return dto;
-    }
-
-    /**
-     * recover
-     * 
-     * @param dto
-     * @return
-     */
-    default Ticket recover(Ticket dto) {
-        return dto;
-    }
-
-    /**
-     * test_get_archived_info
-     * 
-     * @param key
-     * @return
-     */
-    default Ticket testGetArchivedInfo(String key) {
-        return getSelf().testGetArchivedInfo(new Ticket().setId(key));
-    }
-
-    /**
-     * test_get_archived_info
-     * 
-     * @param et
-     * @return
-     */
-    default Ticket testGetArchivedInfo(Ticket et) {
-        return et;
-    }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<Ticket> searchDefault(TicketSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<Ticket> listDefault(TicketSearchContext context);
-
-    /**
-     * searchadvanced_search
-     * 
-     * @param context
-     * @return
-     */
-    Page<Ticket> searchAdvancedSearch(TicketSearchContext context);
-    /**
-     * listadvanced_search
-     * 
-     * @param context
-     * @return
-     */
-    List<Ticket> listAdvancedSearch(TicketSearchContext context);
-
-    /**
-     * searcharchived
-     * 
-     * @param context
-     * @return
-     */
-    Page<Ticket> searchArchived(TicketSearchContext context);
-    /**
-     * listarchived
-     * 
-     * @param context
-     * @return
-     */
-    List<Ticket> listArchived(TicketSearchContext context);
-
-    /**
-     * searchcomment_notify_assignee
-     * 
-     * @param context
-     * @return
-     */
-    Page<Ticket> searchCommentNotifyAssignee(TicketSearchContext context);
-    /**
-     * listcomment_notify_assignee
-     * 
-     * @param context
-     * @return
-     */
-    List<Ticket> listCommentNotifyAssignee(TicketSearchContext context);
-
-    /**
-     * searchcommon
-     * 通用查询，非删除数据
-     * @param context
-     * @return
-     */
-    Page<Ticket> searchCommon(TicketSearchContext context);
-    /**
-     * listcommon
-     * 通用查询，非删除数据
-     * @param context
-     * @return
-     */
-    List<Ticket> listCommon(TicketSearchContext context);
-
-    /**
-     * searchcustomer_notre_ticket
-     * 查询未关联工单的数据；客户关联工单表格调用
-     * @param context
-     * @return
-     */
-    Page<Ticket> searchCustomerNotreTicket(TicketSearchContext context);
-    /**
-     * listcustomer_notre_ticket
-     * 查询未关联工单的数据；客户关联工单表格调用
-     * @param context
-     * @return
-     */
-    List<Ticket> listCustomerNotreTicket(TicketSearchContext context);
-
-    /**
-     * searchcustomer_relation_ticket
-     * 
-     * @param context
-     * @return
-     */
-    Page<Ticket> searchCustomerRelationTicket(TicketSearchContext context);
-    /**
-     * listcustomer_relation_ticket
-     * 
-     * @param context
-     * @return
-     */
-    List<Ticket> listCustomerRelationTicket(TicketSearchContext context);
-
-    /**
-     * searchdeleted
-     * 
-     * @param context
-     * @return
-     */
-    Page<Ticket> searchDeleted(TicketSearchContext context);
-    /**
-     * listdeleted
-     * 
-     * @param context
-     * @return
-     */
-    List<Ticket> listDeleted(TicketSearchContext context);
-
-    /**
-     * searchidea_relation_ticket
-     * 产品关联工单表格调用
-     * @param context
-     * @return
-     */
-    Page<Ticket> searchIdeaRelationTicket(TicketSearchContext context);
-    /**
-     * listidea_relation_ticket
-     * 产品关联工单表格调用
-     * @param context
-     * @return
-     */
-    List<Ticket> listIdeaRelationTicket(TicketSearchContext context);
-
-    /**
-     * searchmy_assign
-     * 首页我负责的工单表格调用
-     * @param context
-     * @return
-     */
-    Page<Ticket> searchMyAssign(TicketSearchContext context);
-    /**
-     * listmy_assign
-     * 首页我负责的工单表格调用
-     * @param context
-     * @return
-     */
-    List<Ticket> listMyAssign(TicketSearchContext context);
-
-    /**
-     * searchmy_assignee_count
-     * 首页我负责的工单表格调用
-     * @param context
-     * @return
-     */
-    Page<Ticket> searchMyAssigneeCount(TicketSearchContext context);
-    /**
-     * listmy_assignee_count
-     * 首页我负责的工单表格调用
-     * @param context
-     * @return
-     */
-    List<Ticket> listMyAssigneeCount(TicketSearchContext context);
-
-    /**
-     * searchmy_attention
-     * 
-     * @param context
-     * @return
-     */
-    Page<Ticket> searchMyAttention(TicketSearchContext context);
-    /**
-     * listmy_attention
-     * 
-     * @param context
-     * @return
-     */
-    List<Ticket> listMyAttention(TicketSearchContext context);
-
-    /**
-     * searchmy_created
-     * 
-     * @param context
-     * @return
-     */
-    Page<Ticket> searchMyCreated(TicketSearchContext context);
-    /**
-     * listmy_created
-     * 
-     * @param context
-     * @return
-     */
-    List<Ticket> listMyCreated(TicketSearchContext context);
-
-    /**
-     * searchnormal
-     * 非归档，非删除数据
-     * @param context
-     * @return
-     */
-    Page<Ticket> searchNormal(TicketSearchContext context);
-    /**
-     * listnormal
-     * 非归档，非删除数据
-     * @param context
-     * @return
-     */
-    List<Ticket> listNormal(TicketSearchContext context);
-
-    /**
-     * searchnot_exsists_relation
-     * 
-     * @param context
-     * @return
-     */
-    Page<Ticket> searchNotExsistsRelation(TicketSearchContext context);
-    /**
-     * listnot_exsists_relation
-     * 
-     * @param context
-     * @return
-     */
-    List<Ticket> listNotExsistsRelation(TicketSearchContext context);
-
-    /**
-     * searchnotify_assignee
-     * 
-     * @param context
-     * @return
-     */
-    Page<Ticket> searchNotifyAssignee(TicketSearchContext context);
-    /**
-     * listnotify_assignee
-     * 
-     * @param context
-     * @return
-     */
-    List<Ticket> listNotifyAssignee(TicketSearchContext context);
-
-    /**
-     * searchrecent_ticket
-     * 
-     * @param context
-     * @return
-     */
-    Page<Ticket> searchRecentTicket(TicketSearchContext context);
-    /**
-     * listrecent_ticket
-     * 
-     * @param context
-     * @return
-     */
-    List<Ticket> listRecentTicket(TicketSearchContext context);
-
-    /**
-     * searchticket_re_product_tag
-     * 当前标签下工单表格视图调用
-     * @param context
-     * @return
-     */
-    Page<Ticket> searchTicketReProductTag(TicketSearchContext context);
-    /**
-     * listticket_re_product_tag
-     * 当前标签下工单表格视图调用
-     * @param context
-     * @return
-     */
-    List<Ticket> listTicketReProductTag(TicketSearchContext context);
-
-    /**
-     * searchticket_relation_ticket
-     * 
-     * @param context
-     * @return
-     */
-    Page<Ticket> searchTicketRelationTicket(TicketSearchContext context);
-    /**
-     * listticket_relation_ticket
-     * 
-     * @param context
-     * @return
-     */
-    List<Ticket> listTicketRelationTicket(TicketSearchContext context);
-
-    /**
-     * searchwork_item_relation_ticket
-     * 
-     * @param context
-     * @return
-     */
-    Page<Ticket> searchWorkItemRelationTicket(TicketSearchContext context);
-    /**
-     * listwork_item_relation_ticket
-     * 
-     * @param context
-     * @return
-     */
-    List<Ticket> listWorkItemRelationTicket(TicketSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -647,6 +790,7 @@ public interface TicketService extends IService<Ticket> {
     default Ticket getEntity() {
         return new Ticket();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -654,143 +798,13 @@ public interface TicketService extends IService<Ticket> {
     default TicketSearchContext getSearchContext() {
         return new TicketSearchContext();
     }
+
+
     /**
-     * selectRelByCustomerId
-     * @param customerIds
-     * @return
-     */
-    List<Ticket> findByCustomerId(List<String> customerIds);
-    default List<Ticket> findByCustomerId(String customerId) {
-        return findByCustomerId(Arrays.asList(customerId));
-    }
-    /**
-     * removeRelByCustomerId
-     * @param customerId
-     * @return
-     */
-    boolean removeByCustomerId(String customerId);
-    /**
-     * resetRelByCustomerId
-     * @param customerId
-     * @return
-     */
-    boolean resetByCustomerId(String customerId);
-    /**
-     * saveRelByCustomerId
-     * @param customerId
-     * @param list
-     * @return
-     */
-    default boolean saveByCustomerId(String customerId,List<Ticket> list) {
-        return getSelf().saveByCustomer(new Customer().setId(customerId),list);
-    }
-    /**
-    * saveRelByCustomer
-    * @param customer
-    * @param list
+    * 自定义SQL
+    * @param sql  update table  set name ='test' where id =#{et.param}
+    * @param param 参数列表  param.put("param","1");
     * @return
     */
-    boolean saveByCustomer(Customer customer,List<Ticket> list);
-
-    /**
-     * selectRelByProductId
-     * @param productIds
-     * @return
-     */
-    List<Ticket> findByProductId(List<String> productIds);
-    default List<Ticket> findByProductId(String productId) {
-        return findByProductId(Arrays.asList(productId));
-    }
-    /**
-     * removeRelByProductId
-     * @param productId
-     * @return
-     */
-    boolean removeByProductId(String productId);
-    /**
-     * resetRelByProductId
-     * @param productId
-     * @return
-     */
-    boolean resetByProductId(String productId);
-    /**
-     * saveRelByProductId
-     * @param productId
-     * @param list
-     * @return
-     */
-    default boolean saveByProductId(String productId,List<Ticket> list) {
-        return getSelf().saveByProduct(new Product().setId(productId),list);
-    }
-    /**
-    * saveRelByProduct
-    * @param product
-    * @param list
-    * @return
-    */
-    boolean saveByProduct(Product product,List<Ticket> list);
-
-    /**
-     * selectRelByAssigneeId
-     * @param assigneeIds
-     * @return
-     */
-    List<Ticket> findByAssigneeId(List<String> assigneeIds);
-    default List<Ticket> findByAssigneeId(String assigneeId) {
-        return findByAssigneeId(Arrays.asList(assigneeId));
-    }
-    /**
-     * removeRelByAssigneeId
-     * @param assigneeId
-     * @return
-     */
-    boolean removeByAssigneeId(String assigneeId);
-    /**
-     * resetRelByAssigneeId
-     * @param assigneeId
-     * @return
-     */
-    boolean resetByAssigneeId(String assigneeId);
-    /**
-     * saveRelByAssigneeId
-     * @param assigneeId
-     * @param list
-     * @return
-     */
-    default boolean saveByAssigneeId(String assigneeId,List<Ticket> list) {
-        return getSelf().saveByUser(new User().setId(assigneeId),list);
-    }
-    /**
-    * saveRelByUser
-    * @param user
-    * @param list
-    * @return
-    */
-    boolean saveByUser(User user,List<Ticket> list);
-
-    default List<Attention> getAttentions(Ticket et) {
-        return new ArrayList<>();
-    }
-
-    default List<Attachment> getAttachments(Ticket et) {
-        return new ArrayList<>();
-    }
-
-
-    /**
-     * 自定义查询SQL
-     * @param sql  select * from table where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
-    List<JSONObject> select(String sql, Map<String,Object> param);
-
-    /**
-     * 自定义SQL
-     * @param sql  update table  set name ='test' where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
     boolean execute(String sql, Map<String,Object> param);
-
 }

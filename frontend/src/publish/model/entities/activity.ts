@@ -71,17 +71,6 @@ export default {
       id: 'create_time',
     },
     {
-      codeName: 'update_time',
-      lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.UPDATE_TIME',
-      },
-      logicName: '更新时间',
-      stdDataType: 5,
-      valueFormat: 'YYYY-MM-DD HH:mm:ss',
-      name: 'UPDATE_TIME',
-      id: 'update_time',
-    },
-    {
       codeName: 'update_man',
       lnlanguageRes: {
         lanResTag: 'DEF.LNAME.UPDATE_MAN',
@@ -91,6 +80,17 @@ export default {
       stringLength: 100,
       name: 'UPDATE_MAN',
       id: 'update_man',
+    },
+    {
+      codeName: 'update_time',
+      lnlanguageRes: {
+        lanResTag: 'DEF.LNAME.UPDATE_TIME',
+      },
+      logicName: '更新时间',
+      stdDataType: 5,
+      valueFormat: 'YYYY-MM-DD HH:mm:ss',
+      name: 'UPDATE_TIME',
+      id: 'update_time',
     },
     {
       codeName: 'audit_info',
@@ -676,28 +676,9 @@ export default {
           id: 'debugparam1',
         },
         {
-          dstAppDEActionId: 'get_activity_obj_detail',
-          dstAppDataEntityId: 'plmweb.activity',
-          retDEUILogicParamId: 'obj_info',
-          codeName: 'DEACTION1',
-          dstDEUILogicParamId: 'default',
-          leftPos: 426,
-          logicNodeType: 'DEACTION',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'debugparam2',
-              srcDEUILogicNodeId: 'deaction1',
-              id: '连接名称',
-            },
-          ],
-          topPos: 208,
-          name: '实体行为',
-          id: 'deaction1',
-        },
-        {
           codeName: 'DEBUGPARAM2',
           dstDEUILogicParamId: 'obj_info',
-          leftPos: 664,
+          leftPos: 614,
           logicNodeType: 'DEBUGPARAM',
           deuilogicLinks: [
             {
@@ -718,19 +699,38 @@ export default {
           name: '结束',
           id: 'end1',
         },
+        {
+          dstAppDEActionId: 'get_activity_obj_detail',
+          dstAppDataEntityId: 'plmweb.activity',
+          retDEUILogicParamId: 'obj_info',
+          codeName: 'DEACTION1',
+          dstDEUILogicParamId: 'default',
+          leftPos: 426,
+          logicNodeType: 'DEACTION',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'debugparam2',
+              srcDEUILogicNodeId: 'deaction1',
+              id: '连接名称',
+            },
+          ],
+          topPos: 208,
+          name: '实体行为',
+          id: 'deaction1',
+        },
       ],
       deuilogicParams: [
-        {
-          codeName: 'list',
-          ctrlParam: true,
-          name: '列表部件',
-          id: 'list',
-        },
         {
           codeName: 'obj_info',
           entityParam: true,
           name: '活动对象详情信息',
           id: 'obj_info',
+        },
+        {
+          codeName: 'list',
+          ctrlParam: true,
+          name: '列表部件',
+          id: 'list',
         },
         {
           codeName: 'view',

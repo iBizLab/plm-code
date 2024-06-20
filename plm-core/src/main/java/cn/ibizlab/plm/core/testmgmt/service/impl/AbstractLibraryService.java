@@ -28,6 +28,8 @@ import cn.ibizlab.plm.core.testmgmt.domain.LibraryMember;
 import cn.ibizlab.plm.core.testmgmt.service.LibraryMemberService;
 import cn.ibizlab.plm.core.testmgmt.domain.Review;
 import cn.ibizlab.plm.core.testmgmt.service.ReviewService;
+import cn.ibizlab.plm.core.testmgmt.domain.ReviewWizard;
+import cn.ibizlab.plm.core.testmgmt.service.ReviewWizardService;
 import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
 import cn.ibizlab.plm.core.testmgmt.service.TestCaseService;
 import cn.ibizlab.plm.core.testmgmt.domain.TestCaseTemplate;
@@ -36,8 +38,12 @@ import cn.ibizlab.plm.core.testmgmt.domain.TestPlan;
 import cn.ibizlab.plm.core.testmgmt.service.TestPlanService;
 import cn.ibizlab.plm.core.testmgmt.domain.TestSuite;
 import cn.ibizlab.plm.core.testmgmt.service.TestSuiteService;
+import cn.ibizlab.plm.core.base.domain.Addon;
+import cn.ibizlab.plm.core.base.service.AddonService;
 import cn.ibizlab.plm.core.base.domain.Baseline;
 import cn.ibizlab.plm.core.base.service.BaselineService;
+import cn.ibizlab.plm.core.testmgmt.domain.Guideline;
+import cn.ibizlab.plm.core.testmgmt.service.GuidelineService;
 import cn.ibizlab.plm.core.base.domain.ReferencesIndex;
 import cn.ibizlab.plm.core.base.service.ReferencesIndexService;
 
@@ -59,6 +65,10 @@ public abstract class AbstractLibraryService extends ServiceImpl<LibraryMapper,L
 
     @Autowired
     @Lazy
+    protected ReviewWizardService reviewWizardService;
+
+    @Autowired
+    @Lazy
     protected TestCaseService testCaseService;
 
     @Autowired
@@ -75,7 +85,15 @@ public abstract class AbstractLibraryService extends ServiceImpl<LibraryMapper,L
 
     @Autowired
     @Lazy
+    protected AddonService addonService;
+
+    @Autowired
+    @Lazy
     protected BaselineService baselineService;
+
+    @Autowired
+    @Lazy
+    protected GuidelineService guidelineService;
 
     @Autowired
     @Lazy
@@ -87,28 +105,6 @@ public abstract class AbstractLibraryService extends ServiceImpl<LibraryMapper,L
 
     protected int batchSize = 500;
 
-    public Library get(Library et) {
-        Library rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.LIBRARY.toString(),et.getId());
-        rt.copyTo(et,true);
-        //设置 [测试库成员]
-        getMembers(et);
-        return et;
-    }
-
-    public List<Library> getByEntities(List<Library> entities) {
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public Library getDraft(Library et) {
-        return et;
-    }
-
-    public Integer checkKey(Library et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Library>lambdaQuery().eq(Library::getId, et.getId()))>0)?1:0;
-    }
-
     @Override
     @Transactional
     public boolean create(Library et) {
@@ -118,13 +114,13 @@ public abstract class AbstractLibraryService extends ServiceImpl<LibraryMapper,L
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<Library> list) {
+    public boolean create(List<Library> list) {
         list.forEach(et->getSelf().create(et));
         return true;
     }
-
+	
     @Transactional
     public boolean update(Library et) {
         UpdateWrapper<Library> qw = et.getUpdateWrapper(true);
@@ -137,11 +133,47 @@ public abstract class AbstractLibraryService extends ServiceImpl<LibraryMapper,L
     }
 
     @Transactional
-    public boolean updateBatch(List<Library> list) {
+    public boolean update(List<Library> list) {
         list.forEach(et->getSelf().update(et));
         return true;
     }
+	
+   @Transactional
+    public boolean remove(Library et) {
+        if(!remove(Wrappers.<Library>lambdaQuery().eq(Library::getId, et.getId())))
+            return false;
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<Library> entities) {
+        for (Library et : entities)
+            if(!getSelf().remove(et))
+                return false;
+        return true;
+    }		
+    public Library get(Library et) {
+        Library rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.LIBRARY.toString(),et.getId());
+        rt.copyTo(et,true);
+        //设置 [测试库成员]
+        getMembers(et);
+        return et;
+    }	
+
+    public List<Library> get(List<Library> entities) {
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public Library getDraft(Library et) {
+        return et;
+    }
+	
+    public Integer checkKey(Library et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Library>lambdaQuery().eq(Library::getId, et.getId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(Library et) {
@@ -152,10 +184,10 @@ public abstract class AbstractLibraryService extends ServiceImpl<LibraryMapper,L
     }
 
     @Transactional
-    public boolean saveBatch(List<Library> list) {
+    public boolean save(List<Library> list) {
         if(ObjectUtils.isEmpty(list))
             return true;
-        Map<String,Library> before = getByEntities(list).stream().collect(Collectors.toMap(Library::getId,e->e));
+        Map<String,Library> before = get(list).stream().collect(Collectors.toMap(Library::getId,e->e));
         List<Library> create = new ArrayList<>();
         List<Library> update = new ArrayList<>();
         list.forEach(sub->{
@@ -166,83 +198,79 @@ public abstract class AbstractLibraryService extends ServiceImpl<LibraryMapper,L
         });
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
         else
             return true;
     }
-
-    @Transactional
-    public boolean remove(Library et) {
-        if(!remove(Wrappers.<Library>lambdaQuery().eq(Library::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<Library> entities) {
-        for (Library et : entities)
-            if(!getSelf().remove(et))
-                return false;
-        return true;
-    }
-
-    public Page<Library> searchDefault(LibrarySearchContext context) {
+	
+   public Page<Library> fetchDefault(LibrarySearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Library> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<Library> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Library> listDefault(LibrarySearchContext context) {
+   public List<Library> listDefault(LibrarySearchContext context) {
         List<Library> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Library> searchAdmin(LibrarySearchContext context) {
+   }
+	
+   public Page<Library> fetchAdmin(LibrarySearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Library> pages=baseMapper.searchAdmin(context.getPages(),context,context.getSelectCond());
         List<Library> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Library> listAdmin(LibrarySearchContext context) {
+   public List<Library> listAdmin(LibrarySearchContext context) {
         List<Library> list = baseMapper.listAdmin(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Library> searchArchived(LibrarySearchContext context) {
+   }
+	
+   public Page<Library> fetchArchived(LibrarySearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Library> pages=baseMapper.searchArchived(context.getPages(),context,context.getSelectCond());
         List<Library> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Library> listArchived(LibrarySearchContext context) {
+   public List<Library> listArchived(LibrarySearchContext context) {
         List<Library> list = baseMapper.listArchived(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Library> searchDeleted(LibrarySearchContext context) {
+   }
+	
+   public Page<Library> fetchDeleted(LibrarySearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Library> pages=baseMapper.searchDeleted(context.getPages(),context,context.getSelectCond());
         List<Library> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Library> listDeleted(LibrarySearchContext context) {
+   public List<Library> listDeleted(LibrarySearchContext context) {
         List<Library> list = baseMapper.listDeleted(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Library> searchFavorite(LibrarySearchContext context) {
+   }
+	
+   public Page<Library> fetchFavorite(LibrarySearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Library> pages=baseMapper.searchFavorite(context.getPages(),context,context.getSelectCond());
         List<Library> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Library> listFavorite(LibrarySearchContext context) {
+   public List<Library> listFavorite(LibrarySearchContext context) {
         List<Library> list = baseMapper.listFavorite(context,context.getSelectCond());
         return list;
+   }
+	
+   public Page<Library> fetchMain(LibrarySearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Library> pages=baseMapper.searchMain(context.getPages(),context,context.getSelectCond());
+        List<Library> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public Page<Library> searchNormal(LibrarySearchContext context) {
+   public List<Library> listMain(LibrarySearchContext context) {
+        List<Library> list = baseMapper.listMain(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Library> fetchNormal(LibrarySearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("NAME,DESC");
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Library> pages=baseMapper.searchNormal(context.getPages(),context,context.getSelectCond());
@@ -250,14 +278,14 @@ public abstract class AbstractLibraryService extends ServiceImpl<LibraryMapper,L
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Library> listNormal(LibrarySearchContext context) {
+   public List<Library> listNormal(LibrarySearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("NAME,DESC");
         List<Library> list = baseMapper.listNormal(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Library> searchProjectRelationLibrary(LibrarySearchContext context) {
+   }
+	
+   public Page<Library> fetchProjectRelationLibrary(LibrarySearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("NAME,DESC");
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Library> pages=baseMapper.searchProjectRelationLibrary(context.getPages(),context,context.getSelectCond());
@@ -265,46 +293,54 @@ public abstract class AbstractLibraryService extends ServiceImpl<LibraryMapper,L
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Library> listProjectRelationLibrary(LibrarySearchContext context) {
+   public List<Library> listProjectRelationLibrary(LibrarySearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("NAME,DESC");
         List<Library> list = baseMapper.listProjectRelationLibrary(context,context.getSelectCond());
         return list;
+   }
+	
+   public Page<Library> fetchQuickUser(LibrarySearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Library> pages=baseMapper.searchQuickUser(context.getPages(),context,context.getSelectCond());
+        List<Library> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public Page<Library> searchReader(LibrarySearchContext context) {
+   public List<Library> listQuickUser(LibrarySearchContext context) {
+        List<Library> list = baseMapper.listQuickUser(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Library> fetchReader(LibrarySearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Library> pages=baseMapper.searchReader(context.getPages(),context,context.getSelectCond());
         List<Library> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Library> listReader(LibrarySearchContext context) {
+   public List<Library> listReader(LibrarySearchContext context) {
         List<Library> list = baseMapper.listReader(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Library> searchUser(LibrarySearchContext context) {
+   }
+	
+   public Page<Library> fetchUser(LibrarySearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Library> pages=baseMapper.searchUser(context.getPages(),context,context.getSelectCond());
         List<Library> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Library> listUser(LibrarySearchContext context) {
+   public List<Library> listUser(LibrarySearchContext context) {
         List<Library> list = baseMapper.listUser(context,context.getSelectCond());
         return list;
-    }
-
-    @Override
+   }
+	
+	@Override
     public List<LibraryMember> getMembers(Library et) {
         List<LibraryMember> list = libraryMemberService.findByLibraryId(et.getId());
         et.setMembers(list);
         return list;
     }
+	
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -324,8 +360,8 @@ public abstract class AbstractLibraryService extends ServiceImpl<LibraryMapper,L
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return LibraryMapper.class;
     }
@@ -334,4 +370,5 @@ public abstract class AbstractLibraryService extends ServiceImpl<LibraryMapper,L
     protected Class currentModelClass() {
         return Library.class;
     }
+
 }

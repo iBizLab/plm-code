@@ -35,26 +35,6 @@ public abstract class AbstractInsightService extends ServiceImpl<InsightMapper,I
 
     protected int batchSize = 500;
 
-    public Insight get(Insight et) {
-        Insight rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.INSIGHT.toString(),et.getId());
-        rt.copyTo(et,true);
-        return et;
-    }
-
-    public List<Insight> getByEntities(List<Insight> entities) {
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public Insight getDraft(Insight et) {
-        return et;
-    }
-
-    public Integer checkKey(Insight et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Insight>lambdaQuery().eq(Insight::getId, et.getId()))>0)?1:0;
-    }
-
     @Override
     @Transactional
     public boolean create(Insight et) {
@@ -63,13 +43,13 @@ public abstract class AbstractInsightService extends ServiceImpl<InsightMapper,I
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<Insight> list) {
+    public boolean create(List<Insight> list) {
         this.saveBatch(list, batchSize);
         return true;
     }
-
+	
     @Transactional
     public boolean update(Insight et) {
         UpdateWrapper<Insight> qw = et.getUpdateWrapper(true);
@@ -81,11 +61,43 @@ public abstract class AbstractInsightService extends ServiceImpl<InsightMapper,I
     }
 
     @Transactional
-    public boolean updateBatch(List<Insight> list) {
+    public boolean update(List<Insight> list) {
         updateBatchById(list, batchSize);
         return true;
     }
+	
+   @Transactional
+    public boolean remove(Insight et) {
+        if(!remove(Wrappers.<Insight>lambdaQuery().eq(Insight::getId, et.getId())))
+            return false;
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<Insight> entities) {
+        this.baseMapper.deleteEntities(entities);
+        return true;
+    }		
+    public Insight get(Insight et) {
+        Insight rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.INSIGHT.toString(),et.getId());
+        rt.copyTo(et,true);
+        return et;
+    }	
+
+    public List<Insight> get(List<Insight> entities) {
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public Insight getDraft(Insight et) {
+        return et;
+    }
+	
+    public Integer checkKey(Insight et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Insight>lambdaQuery().eq(Insight::getId, et.getId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(Insight et) {
@@ -96,10 +108,10 @@ public abstract class AbstractInsightService extends ServiceImpl<InsightMapper,I
     }
 
     @Transactional
-    public boolean saveBatch(List<Insight> list) {
+    public boolean save(List<Insight> list) {
         if(ObjectUtils.isEmpty(list))
             return true;
-        Map<String,Insight> before = getByEntities(list).stream().collect(Collectors.toMap(Insight::getId,e->e));
+        Map<String,Insight> before = get(list).stream().collect(Collectors.toMap(Insight::getId,e->e));
         List<Insight> create = new ArrayList<>();
         List<Insight> update = new ArrayList<>();
         list.forEach(sub->{
@@ -110,40 +122,24 @@ public abstract class AbstractInsightService extends ServiceImpl<InsightMapper,I
         });
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
         else
             return true;
     }
-
-    @Transactional
-    public boolean remove(Insight et) {
-        if(!remove(Wrappers.<Insight>lambdaQuery().eq(Insight::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<Insight> entities) {
-        this.baseMapper.deleteEntities(entities);
-        return true;
-    }
-
-    public Page<Insight> searchDefault(InsightSearchContext context) {
+	
+   public Page<Insight> fetchDefault(InsightSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Insight> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<Insight> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Insight> listDefault(InsightSearchContext context) {
+   public List<Insight> listDefault(InsightSearchContext context) {
         List<Insight> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
-    }
+   }
+	
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -163,8 +159,8 @@ public abstract class AbstractInsightService extends ServiceImpl<InsightMapper,I
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return InsightMapper.class;
     }
@@ -173,4 +169,5 @@ public abstract class AbstractInsightService extends ServiceImpl<InsightMapper,I
     protected Class currentModelClass() {
         return Insight.class;
     }
+
 }

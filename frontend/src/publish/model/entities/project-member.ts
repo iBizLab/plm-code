@@ -138,6 +138,29 @@ export default {
       id: 'id',
     },
     {
+      codeName: 'name',
+      lnlanguageRes: {
+        lanResTag: 'DEF.LNAME.NAME',
+      },
+      logicName: '姓名',
+      stdDataType: 25,
+      stringLength: 200,
+      enableQuickSearch: true,
+      name: 'NAME',
+      id: 'name',
+    },
+    {
+      codeName: 'create_man',
+      lnlanguageRes: {
+        lanResTag: 'DEF.LNAME.CREATE_MAN',
+      },
+      logicName: '建立人',
+      stdDataType: 25,
+      stringLength: 100,
+      name: 'CREATE_MAN',
+      id: 'create_man',
+    },
+    {
       codeName: 'create_time',
       lnlanguageRes: {
         lanResTag: 'DEF.LNAME.CREATE_TIME',
@@ -169,29 +192,6 @@ export default {
       valueFormat: 'YYYY-MM-DD HH:mm:ss',
       name: 'UPDATE_TIME',
       id: 'update_time',
-    },
-    {
-      codeName: 'create_man',
-      lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.CREATE_MAN',
-      },
-      logicName: '建立人',
-      stdDataType: 25,
-      stringLength: 100,
-      name: 'CREATE_MAN',
-      id: 'create_man',
-    },
-    {
-      codeName: 'name',
-      lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.NAME',
-      },
-      logicName: '姓名',
-      stdDataType: 25,
-      stringLength: 200,
-      enableQuickSearch: true,
-      name: 'NAME',
-      id: 'name',
     },
     {
       codeName: 'project_id',

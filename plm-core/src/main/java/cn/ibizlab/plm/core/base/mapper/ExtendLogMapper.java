@@ -170,5 +170,4 @@ public interface ExtendLogMapper extends BaseMapper<ExtendLog> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
 }

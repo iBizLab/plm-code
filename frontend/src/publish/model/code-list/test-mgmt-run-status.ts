@@ -2,7 +2,7 @@ export default {
   codeListTag: 'TestMgmt__run_status',
   codeListType: 'STATIC',
   codeName: 'TestMgmt__run_status',
-  emptyText: '未定义',
+  emptyText: '未设置',
   appDataEntityId: 'plmweb.run',
   codeItems: [
     {

@@ -238,7 +238,7 @@ public abstract class AbstractSystemExtensionNotifySettingResource {
     public ResponseEntity<List<SystemExtensionNotifySettingDTO>> fetchDefault
             (@Validated @RequestBody SystemExtensionNotifySettingFilterDTO dto) {
         SystemExtensionNotifySettingSearchContext context = systemExtensionNotifySettingFilterDtoMapping.toDomain(dto);
-        Page<SystemExtensionNotifySetting> domains = systemExtensionNotifySettingService.searchDefault(context) ;
+        Page<SystemExtensionNotifySetting> domains = systemExtensionNotifySettingService.fetchDefault(context) ;
         List<SystemExtensionNotifySettingDTO> list = systemExtensionNotifySettingDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -260,7 +260,7 @@ public abstract class AbstractSystemExtensionNotifySettingResource {
     public ResponseEntity<List<SystemExtensionNotifySettingDTO>> fetchView
             (@Validated @RequestBody SystemExtensionNotifySettingFilterDTO dto) {
         SystemExtensionNotifySettingSearchContext context = systemExtensionNotifySettingFilterDtoMapping.toDomain(dto);
-        Page<SystemExtensionNotifySetting> domains = systemExtensionNotifySettingService.searchView(context) ;
+        Page<SystemExtensionNotifySetting> domains = systemExtensionNotifySettingService.fetchView(context) ;
         List<SystemExtensionNotifySettingDTO> list = systemExtensionNotifySettingDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -279,7 +279,7 @@ public abstract class AbstractSystemExtensionNotifySettingResource {
     @ApiOperation(value = "批量新建通知设置", tags = {"通知设置" },  notes = "批量新建通知设置")
 	@PostMapping("system_extension_notify_settings/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<SystemExtensionNotifySettingDTO> dtos) {
-        systemExtensionNotifySettingService.createBatch(systemExtensionNotifySettingDtoMapping.toDomain(dtos));
+        systemExtensionNotifySettingService.create(systemExtensionNotifySettingDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -292,7 +292,7 @@ public abstract class AbstractSystemExtensionNotifySettingResource {
     @ApiOperation(value = "批量删除通知设置", tags = {"通知设置" },  notes = "批量删除通知设置")
 	@DeleteMapping("system_extension_notify_settings/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        systemExtensionNotifySettingService.removeBatch(ids);
+        systemExtensionNotifySettingService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -305,7 +305,7 @@ public abstract class AbstractSystemExtensionNotifySettingResource {
     @ApiOperation(value = "批量更新通知设置", tags = {"通知设置" },  notes = "批量更新通知设置")
 	@PutMapping("system_extension_notify_settings/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<SystemExtensionNotifySettingDTO> dtos) {
-        systemExtensionNotifySettingService.updateBatch(systemExtensionNotifySettingDtoMapping.toDomain(dtos));
+        systemExtensionNotifySettingService.update(systemExtensionNotifySettingDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -318,7 +318,7 @@ public abstract class AbstractSystemExtensionNotifySettingResource {
     @ApiOperation(value = "批量保存通知设置", tags = {"通知设置" },  notes = "批量保存通知设置")
 	@PostMapping("system_extension_notify_settings/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<SystemExtensionNotifySettingDTO> dtos) {
-        systemExtensionNotifySettingService.saveBatch(systemExtensionNotifySettingDtoMapping.toDomain(dtos));
+        systemExtensionNotifySettingService.save(systemExtensionNotifySettingDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

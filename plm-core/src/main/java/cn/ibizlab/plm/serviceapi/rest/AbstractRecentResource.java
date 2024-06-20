@@ -353,7 +353,7 @@ public abstract class AbstractRecentResource {
     public ResponseEntity<List<RecentDTO>> fetchDefault
             (@Validated @RequestBody RecentFilterDTO dto) {
         RecentSearchContext context = recentFilterDtoMapping.toDomain(dto);
-        Page<Recent> domains = recentService.searchDefault(context) ;
+        Page<Recent> domains = recentService.fetchDefault(context) ;
         List<RecentDTO> list = recentDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -374,7 +374,7 @@ public abstract class AbstractRecentResource {
     public ResponseEntity<List<RecentDTO>> fetchRecentAccess
             (@Validated @RequestBody RecentFilterDTO dto) {
         RecentSearchContext context = recentFilterDtoMapping.toDomain(dto);
-        Page<Recent> domains = recentService.searchRecentAccess(context) ;
+        Page<Recent> domains = recentService.fetchRecentAccess(context) ;
         List<RecentDTO> list = recentDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -395,7 +395,7 @@ public abstract class AbstractRecentResource {
     public ResponseEntity<List<RecentDTO>> fetchRecentCurproductTicket
             (@Validated @RequestBody RecentFilterDTO dto) {
         RecentSearchContext context = recentFilterDtoMapping.toDomain(dto);
-        Page<Recent> domains = recentService.searchRecentCurproductTicket(context) ;
+        Page<Recent> domains = recentService.fetchRecentCurproductTicket(context) ;
         List<RecentDTO> list = recentDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -416,7 +416,7 @@ public abstract class AbstractRecentResource {
     public ResponseEntity<List<RecentDTO>> fetchRecentCurprojectChildWorkItem
             (@Validated @RequestBody RecentFilterDTO dto) {
         RecentSearchContext context = recentFilterDtoMapping.toDomain(dto);
-        Page<Recent> domains = recentService.searchRecentCurprojectChildWorkItem(context) ;
+        Page<Recent> domains = recentService.fetchRecentCurprojectChildWorkItem(context) ;
         List<RecentDTO> list = recentDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -438,7 +438,7 @@ public abstract class AbstractRecentResource {
     public ResponseEntity<List<RecentDTO>> fetchRecentCurprojectWorkItem
             (@Validated @RequestBody RecentFilterDTO dto) {
         RecentSearchContext context = recentFilterDtoMapping.toDomain(dto);
-        Page<Recent> domains = recentService.searchRecentCurprojectWorkItem(context) ;
+        Page<Recent> domains = recentService.fetchRecentCurprojectWorkItem(context) ;
         List<RecentDTO> list = recentDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -459,7 +459,7 @@ public abstract class AbstractRecentResource {
     public ResponseEntity<List<RecentDTO>> fetchRecentIdea
             (@Validated @RequestBody RecentFilterDTO dto) {
         RecentSearchContext context = recentFilterDtoMapping.toDomain(dto);
-        Page<Recent> domains = recentService.searchRecentIdea(context) ;
+        Page<Recent> domains = recentService.fetchRecentIdea(context) ;
         List<RecentDTO> list = recentDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -480,7 +480,7 @@ public abstract class AbstractRecentResource {
     public ResponseEntity<List<RecentDTO>> fetchRecentPage
             (@Validated @RequestBody RecentFilterDTO dto) {
         RecentSearchContext context = recentFilterDtoMapping.toDomain(dto);
-        Page<Recent> domains = recentService.searchRecentPage(context) ;
+        Page<Recent> domains = recentService.fetchRecentPage(context) ;
         List<RecentDTO> list = recentDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -501,7 +501,7 @@ public abstract class AbstractRecentResource {
     public ResponseEntity<List<RecentDTO>> fetchRecentProject
             (@Validated @RequestBody RecentFilterDTO dto) {
         RecentSearchContext context = recentFilterDtoMapping.toDomain(dto);
-        Page<Recent> domains = recentService.searchRecentProject(context) ;
+        Page<Recent> domains = recentService.fetchRecentProject(context) ;
         List<RecentDTO> list = recentDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -522,7 +522,7 @@ public abstract class AbstractRecentResource {
     public ResponseEntity<List<RecentDTO>> fetchRecentTestCase
             (@Validated @RequestBody RecentFilterDTO dto) {
         RecentSearchContext context = recentFilterDtoMapping.toDomain(dto);
-        Page<Recent> domains = recentService.searchRecentTestCase(context) ;
+        Page<Recent> domains = recentService.fetchRecentTestCase(context) ;
         List<RecentDTO> list = recentDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -543,7 +543,7 @@ public abstract class AbstractRecentResource {
     public ResponseEntity<List<RecentDTO>> fetchRecentTestCaseIndex
             (@Validated @RequestBody RecentFilterDTO dto) {
         RecentSearchContext context = recentFilterDtoMapping.toDomain(dto);
-        Page<Recent> domains = recentService.searchRecentTestCaseIndex(context) ;
+        Page<Recent> domains = recentService.fetchRecentTestCaseIndex(context) ;
         List<RecentDTO> list = recentDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -564,7 +564,7 @@ public abstract class AbstractRecentResource {
     public ResponseEntity<List<RecentDTO>> fetchRecentTicket
             (@Validated @RequestBody RecentFilterDTO dto) {
         RecentSearchContext context = recentFilterDtoMapping.toDomain(dto);
-        Page<Recent> domains = recentService.searchRecentTicket(context) ;
+        Page<Recent> domains = recentService.fetchRecentTicket(context) ;
         List<RecentDTO> list = recentDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -586,7 +586,7 @@ public abstract class AbstractRecentResource {
     public ResponseEntity<List<RecentDTO>> fetchRecentUse
             (@Validated @RequestBody RecentFilterDTO dto) {
         RecentSearchContext context = recentFilterDtoMapping.toDomain(dto);
-        Page<Recent> domains = recentService.searchRecentUse(context) ;
+        Page<Recent> domains = recentService.fetchRecentUse(context) ;
         List<RecentDTO> list = recentDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -607,7 +607,7 @@ public abstract class AbstractRecentResource {
     public ResponseEntity<List<RecentDTO>> fetchRecentWorkItem
             (@Validated @RequestBody RecentFilterDTO dto) {
         RecentSearchContext context = recentFilterDtoMapping.toDomain(dto);
-        Page<Recent> domains = recentService.searchRecentWorkItem(context) ;
+        Page<Recent> domains = recentService.fetchRecentWorkItem(context) ;
         List<RecentDTO> list = recentDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -629,7 +629,7 @@ public abstract class AbstractRecentResource {
     public ResponseEntity<List<RecentDTO>> fetchRecentWorkItemAndNobug
             (@Validated @RequestBody RecentFilterDTO dto) {
         RecentSearchContext context = recentFilterDtoMapping.toDomain(dto);
-        Page<Recent> domains = recentService.searchRecentWorkItemAndNobug(context) ;
+        Page<Recent> domains = recentService.fetchRecentWorkItemAndNobug(context) ;
         List<RecentDTO> list = recentDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -650,7 +650,7 @@ public abstract class AbstractRecentResource {
     public ResponseEntity<List<RecentDTO>> fetchRecentWorkItemBug
             (@Validated @RequestBody RecentFilterDTO dto) {
         RecentSearchContext context = recentFilterDtoMapping.toDomain(dto);
-        Page<Recent> domains = recentService.searchRecentWorkItemBug(context) ;
+        Page<Recent> domains = recentService.fetchRecentWorkItemBug(context) ;
         List<RecentDTO> list = recentDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -672,7 +672,7 @@ public abstract class AbstractRecentResource {
     public ResponseEntity<List<RecentDTO>> fetchUser
             (@Validated @RequestBody RecentFilterDTO dto) {
         RecentSearchContext context = recentFilterDtoMapping.toDomain(dto);
-        Page<Recent> domains = recentService.searchUser(context) ;
+        Page<Recent> domains = recentService.fetchUser(context) ;
         List<RecentDTO> list = recentDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -691,7 +691,7 @@ public abstract class AbstractRecentResource {
     @ApiOperation(value = "批量新建最近访问", tags = {"最近访问" },  notes = "批量新建最近访问")
 	@PostMapping("recents/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<RecentDTO> dtos) {
-        recentService.createBatch(recentDtoMapping.toDomain(dtos));
+        recentService.create(recentDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -704,7 +704,7 @@ public abstract class AbstractRecentResource {
     @ApiOperation(value = "批量删除最近访问", tags = {"最近访问" },  notes = "批量删除最近访问")
 	@DeleteMapping("recents/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        recentService.removeBatch(ids);
+        recentService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -717,7 +717,7 @@ public abstract class AbstractRecentResource {
     @ApiOperation(value = "批量更新最近访问", tags = {"最近访问" },  notes = "批量更新最近访问")
 	@PutMapping("recents/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<RecentDTO> dtos) {
-        recentService.updateBatch(recentDtoMapping.toDomain(dtos));
+        recentService.update(recentDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -730,7 +730,7 @@ public abstract class AbstractRecentResource {
     @ApiOperation(value = "批量保存最近访问", tags = {"最近访问" },  notes = "批量保存最近访问")
 	@PostMapping("recents/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<RecentDTO> dtos) {
-        recentService.saveBatch(recentDtoMapping.toDomain(dtos));
+        recentService.save(recentDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

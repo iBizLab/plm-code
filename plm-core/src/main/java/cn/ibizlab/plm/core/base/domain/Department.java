@@ -33,13 +33,22 @@ import cn.ibizlab.plm.core.base.domain.User;
 @ApiModel(value = "DEPARTMENT", description = "部门")
 public class Department extends EntityBase implements Serializable
 {
+    /**
+     * 标识
+     */
+    @Id
+    @DEField(name = "id" , isKeyField = true)
+    @JSONField(name = "id")
+    @JsonProperty("id")
+    @ApiModelProperty(value = "id", notes = "标识")
+    private String id;
 
     /**
      * 名称
      */
     @DEField(name = "name")
-    @JsonProperty("name")
     @JSONField(name = "name")
+    @JsonProperty("name")
     @ApiModelProperty(value = "name", notes = "名称")
     private String name;
 
@@ -47,38 +56,18 @@ public class Department extends EntityBase implements Serializable
      * 建立人
      */
     @DEField(name = "create_man" , preType = DEPredefinedFieldType.CREATEMAN , dict = "SysOperator")
-    @JsonProperty("create_man")
     @JSONField(name = "create_man")
+    @JsonProperty("create_man")
     @ApiModelProperty(value = "create_man", notes = "建立人")
     private String createMan;
-
-    /**
-     * 标识
-     */
-    @Id
-    @DEField(name = "id" , isKeyField = true)
-    @JsonProperty("id")
-    @JSONField(name = "id")
-    @ApiModelProperty(value = "id", notes = "标识")
-    private String id;
-
-    /**
-     * 更新时间
-     */
-    @DEField(name = "update_time" , preType = DEPredefinedFieldType.UPDATEDATE)
-    @JsonProperty("update_time")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "update_time", notes = "更新时间")
-    private Date updateTime;
 
     /**
      * 建立时间
      */
     @DEField(name = "create_time" , preType = DEPredefinedFieldType.CREATEDATE)
-    @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("create_time")
     @ApiModelProperty(value = "create_time", notes = "建立时间")
     private Date createTime;
 
@@ -86,17 +75,27 @@ public class Department extends EntityBase implements Serializable
      * 更新人
      */
     @DEField(name = "update_man" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
-    @JsonProperty("update_man")
     @JSONField(name = "update_man")
+    @JsonProperty("update_man")
     @ApiModelProperty(value = "update_man", notes = "更新人")
     private String updateMan;
+
+    /**
+     * 更新时间
+     */
+    @DEField(name = "update_time" , preType = DEPredefinedFieldType.UPDATEDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("update_time")
+    @ApiModelProperty(value = "update_time", notes = "更新时间")
+    private Date updateTime;
 
     /**
      * 部门负责人标识
      */
     @DEField(name = "head_id")
-    @JsonProperty("head_id")
     @JSONField(name = "head_id")
+    @JsonProperty("head_id")
     @ApiModelProperty(value = "head_id", notes = "部门负责人标识")
     private String headId;
 
@@ -104,26 +103,55 @@ public class Department extends EntityBase implements Serializable
      * 父部门标识
      */
     @DEField(name = "parent_id")
-    @JsonProperty("parent_id")
     @JSONField(name = "parent_id")
+    @JsonProperty("parent_id")
     @ApiModelProperty(value = "parent_id", notes = "父部门标识")
     private String parentId;
 
     /**
-     * 部门
+     * 父部门
      */
-    @JSONField(name = "department")
-    @JsonProperty("department")
+    @DEField()
+    @JsonIgnore
+    @JSONField(serialize = false)
     @ApiModelProperty(value = "department", notes = "父部门")
     private Department department;
 
     /**
-     * 企业用户
+     * 部门负责人
      */
-    @JSONField(name = "user")
-    @JsonProperty("user")
+    @DEField()
+    @JsonIgnore
+    @JSONField(serialize = false)
     @ApiModelProperty(value = "user", notes = "部门负责人")
     private User user;
+
+    /**
+    * 设置 [名称]
+    */
+    public Department setName(String name) {
+        this.name = name;
+        this.modify("name", name);
+        return this;
+    }
+
+    /**
+    * 设置 [部门负责人标识]
+    */
+    public Department setHeadId(String headId) {
+        this.headId = headId;
+        this.modify("head_id", headId);
+        return this;
+    }
+
+    /**
+    * 设置 [父部门标识]
+    */
+    public Department setParentId(String parentId) {
+        this.parentId = parentId;
+        this.modify("parent_id", parentId);
+        return this;
+    }
 
 
     /**

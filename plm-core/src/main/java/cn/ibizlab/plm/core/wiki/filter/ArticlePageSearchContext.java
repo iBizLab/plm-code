@@ -47,6 +47,14 @@ public class ArticlePageSearchContext extends QueryWrapperContext<ArticlePage> {
     private String identifierEQ;
 
     /**
+     * 编号LIKE
+     */
+    @JsonProperty("n_identifier_like")
+    @JSONField(name = "n_identifier_like")
+    @ApiModelProperty("编号LIKE")
+    private String identifierLIKE;
+
+    /**
      * 正文格式EQ
      */
     @JsonProperty("n_format_type_eq")
@@ -69,6 +77,22 @@ public class ArticlePageSearchContext extends QueryWrapperContext<ArticlePage> {
     @JSONField(name = "n_type_eq")
     @ApiModelProperty("类型EQ")
     private String typeEQ;
+
+    /**
+     * 类别路径LIKE
+     */
+    @JsonProperty("n_categories_like")
+    @JSONField(name = "n_categories_like")
+    @ApiModelProperty("类别路径LIKE")
+    private String categoriesLIKE;
+
+    /**
+     * 是否已删除EQ
+     */
+    @JsonProperty("n_is_deleted_eq")
+    @JSONField(name = "n_is_deleted_eq")
+    @ApiModelProperty("是否已删除EQ")
+    private Integer isDeletedEQ;
 
     /**
      * 发布时间GTANDEQ
@@ -97,6 +121,22 @@ public class ArticlePageSearchContext extends QueryWrapperContext<ArticlePage> {
     private String publishManEQ;
 
     /**
+     * 标识EQ
+     */
+    @JsonProperty("n_id_eq")
+    @JSONField(name = "n_id_eq")
+    @ApiModelProperty("标识EQ")
+    private String idEQ;
+
+    /**
+     * 标识IN
+     */
+    @JsonProperty("n_id_in")
+    @JSONField(name = "n_id_in")
+    @ApiModelProperty("标识IN")
+    private String idIN;
+
+    /**
      * 标识NOTEQ
      */
     @JsonProperty("n_id_noteq")
@@ -105,12 +145,20 @@ public class ArticlePageSearchContext extends QueryWrapperContext<ArticlePage> {
     private String idNOTEQ;
 
     /**
-     * 标识EQ
+     * 主题LIKE
      */
-    @JsonProperty("n_id_eq")
-    @JSONField(name = "n_id_eq")
-    @ApiModelProperty("标识EQ")
-    private String idEQ;
+    @JsonProperty("n_name_like")
+    @JSONField(name = "n_name_like")
+    @ApiModelProperty("主题LIKE")
+    private String nameLIKE;
+
+    /**
+     * 建立人EQ
+     */
+    @JsonProperty("n_create_man_eq")
+    @JSONField(name = "n_create_man_eq")
+    @ApiModelProperty("建立人EQ")
+    private String createManEQ;
 
     /**
      * 建立时间EQ
@@ -140,22 +188,6 @@ public class ArticlePageSearchContext extends QueryWrapperContext<ArticlePage> {
     private Date createTimeLTANDEQ;
 
     /**
-     * 主题LIKE
-     */
-    @JsonProperty("n_name_like")
-    @JSONField(name = "n_name_like")
-    @ApiModelProperty("主题LIKE")
-    private String nameLIKE;
-
-    /**
-     * 建立人EQ
-     */
-    @JsonProperty("n_create_man_eq")
-    @JSONField(name = "n_create_man_eq")
-    @ApiModelProperty("建立人EQ")
-    private String createManEQ;
-
-    /**
      * 空间标识EQ
      */
     @JsonProperty("n_space_id_eq")
@@ -170,6 +202,14 @@ public class ArticlePageSearchContext extends QueryWrapperContext<ArticlePage> {
     @JSONField(name = "n_parent_id_eq")
     @ApiModelProperty("父页面标识EQ")
     private String parentIdEQ;
+
+    /**
+     * 父页面标识ISNOTNULL
+     */
+    @JsonProperty("n_parent_id_isnotnull")
+    @JSONField(name = "n_parent_id_isnotnull")
+    @ApiModelProperty("父页面标识ISNOTNULL")
+    private String parentIdISNOTNULL;
 
     /**
      * 父页面标识ISNULL

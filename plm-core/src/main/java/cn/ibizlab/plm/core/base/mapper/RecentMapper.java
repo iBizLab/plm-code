@@ -328,6 +328,14 @@ public interface RecentMapper extends BaseMapper<Recent> {
     List<Recent> listUser(@Param("ctx") RecentSearchContext context, @Param("ew") Wrapper<Recent> wrapper);
 
     /**
+    * 根据ownerId查询
+    *
+    * @param ownerIds
+    * @return
+    */
+    List<Recent> findByOwnerId(@Param("ownerIds") List<String> ownerIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -436,13 +444,4 @@ public interface RecentMapper extends BaseMapper<Recent> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据ownerId查询
-     *
-     * @param ownerIds
-     * @return
-     */
-    List<Recent> findByOwnerId(@Param("ownerIds") List<String> ownerIds);
-
 }

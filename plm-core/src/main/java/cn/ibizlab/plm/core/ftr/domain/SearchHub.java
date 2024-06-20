@@ -1,5 +1,5 @@
 /**
- * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{entities@NoSQL}}.java.hbs
+ * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{entities@NONE}}.java.hbs
  */
 package cn.ibizlab.plm.core.ftr.domain;
 
@@ -8,13 +8,12 @@ import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
-import org.springframework.data.mongodb.core.mapping.*;
 import org.springframework.util.*;
 import org.springframework.data.annotation.*;
 import cn.ibizlab.util.annotation.*;
 import cn.ibizlab.util.enums.*;
 import cn.ibizlab.util.domain.IEntity;
-import cn.ibizlab.util.domain.EntityMongo;
+import cn.ibizlab.util.domain.EntityBase;
 import java.io.Serializable;
 import lombok.*;
 import lombok.experimental.Accessors;
@@ -30,17 +29,15 @@ import io.swagger.annotations.*;
 @NoArgsConstructor
 @Accessors(chain = true)
 @JsonIgnoreProperties(value = "handler")
-@Document(collection = "SearchHub")
 @ApiModel(value = "SEARCH_HUB", description = "检索中心")
-public class SearchHub extends EntityMongo implements Serializable
+public class SearchHub extends EntityBase implements Serializable
 {
-
     /**
      * 编号
      */
     @DEField(name = "identifier")
-    @JsonProperty("identifier")
     @JSONField(name = "identifier")
+    @JsonProperty("identifier")
     @ApiModelProperty(value = "identifier", notes = "编号")
     private String identifier;
 
@@ -48,8 +45,8 @@ public class SearchHub extends EntityMongo implements Serializable
      * 类型
      */
     @DEField(name = "type")
-    @JsonProperty("type")
     @JSONField(name = "type")
+    @JsonProperty("type")
     @ApiModelProperty(value = "type", notes = "类型")
     private String type;
 
@@ -57,8 +54,8 @@ public class SearchHub extends EntityMongo implements Serializable
      * 所属
      */
     @DEField(name = "belong_to")
-    @JsonProperty("belong_to")
     @JSONField(name = "belong_to")
+    @JsonProperty("belong_to")
     @ApiModelProperty(value = "belong_to", notes = "所属")
     private String belongTo;
 
@@ -66,8 +63,8 @@ public class SearchHub extends EntityMongo implements Serializable
      * 负责人
      */
     @DEField(name = "assignee_name")
-    @JsonProperty("assignee_name")
     @JSONField(name = "assignee_name")
+    @JsonProperty("assignee_name")
     @ApiModelProperty(value = "assignee_name", notes = "负责人")
     private String assigneeName;
 
@@ -75,8 +72,8 @@ public class SearchHub extends EntityMongo implements Serializable
      * 描述
      */
     @DEField(name = "description")
-    @JsonProperty("description")
     @JSONField(name = "description")
+    @JsonProperty("description")
     @ApiModelProperty(value = "description", notes = "描述")
     private String description;
 
@@ -84,8 +81,8 @@ public class SearchHub extends EntityMongo implements Serializable
      * 标签
      */
     @DEField(name = "tags")
-    @JsonProperty("tags")
     @JSONField(name = "tags")
+    @JsonProperty("tags")
     @ApiModelProperty(value = "tags", notes = "标签")
     private String tags;
 
@@ -94,8 +91,8 @@ public class SearchHub extends EntityMongo implements Serializable
      */
     @Id
     @DEField(name = "id" , isKeyField = true)
-    @JsonProperty("id")
     @JSONField(name = "id")
+    @JsonProperty("id")
     @ApiModelProperty(value = "id", notes = "标识")
     private String id;
 
@@ -103,14 +100,14 @@ public class SearchHub extends EntityMongo implements Serializable
      * 名称
      */
     @DEField(name = "title")
-    @JsonProperty("title")
     @JSONField(name = "title")
+    @JsonProperty("title")
     @ApiModelProperty(value = "title", notes = "名称")
     private String title;
 
     /**
-     * 设置 [编号]
-     */
+    * 设置 [编号]
+    */
     public SearchHub setIdentifier(String identifier) {
         this.identifier = identifier;
         this.modify("identifier", identifier);
@@ -118,8 +115,8 @@ public class SearchHub extends EntityMongo implements Serializable
     }
 
     /**
-     * 设置 [类型]
-     */
+    * 设置 [类型]
+    */
     public SearchHub setType(String type) {
         this.type = type;
         this.modify("type", type);
@@ -127,8 +124,8 @@ public class SearchHub extends EntityMongo implements Serializable
     }
 
     /**
-     * 设置 [所属]
-     */
+    * 设置 [所属]
+    */
     public SearchHub setBelongTo(String belongTo) {
         this.belongTo = belongTo;
         this.modify("belong_to", belongTo);
@@ -136,8 +133,8 @@ public class SearchHub extends EntityMongo implements Serializable
     }
 
     /**
-     * 设置 [负责人]
-     */
+    * 设置 [负责人]
+    */
     public SearchHub setAssigneeName(String assigneeName) {
         this.assigneeName = assigneeName;
         this.modify("assignee_name", assigneeName);
@@ -145,8 +142,8 @@ public class SearchHub extends EntityMongo implements Serializable
     }
 
     /**
-     * 设置 [描述]
-     */
+    * 设置 [描述]
+    */
     public SearchHub setDescription(String description) {
         this.description = description;
         this.modify("description", description);
@@ -154,8 +151,8 @@ public class SearchHub extends EntityMongo implements Serializable
     }
 
     /**
-     * 设置 [标签]
-     */
+    * 设置 [标签]
+    */
     public SearchHub setTags(String tags) {
         this.tags = tags;
         this.modify("tags", tags);
@@ -163,13 +160,14 @@ public class SearchHub extends EntityMongo implements Serializable
     }
 
     /**
-     * 设置 [名称]
-     */
+    * 设置 [名称]
+    */
     public SearchHub setTitle(String title) {
         this.title = title;
         this.modify("title", title);
         return this;
     }
+
 
     /**
      * 复制当前对象数据到目标对象(粘贴重置)

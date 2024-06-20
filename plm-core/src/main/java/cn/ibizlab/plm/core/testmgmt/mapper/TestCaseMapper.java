@@ -537,6 +537,30 @@ public interface TestCaseMapper extends BaseMapper<TestCase> {
     List<TestCase> listWorkItemRelationTestCase(@Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
 
     /**
+    * 根据testLibraryId查询
+    *
+    * @param testLibraryIds
+    * @return
+    */
+    List<TestCase> findByTestLibraryId(@Param("testLibraryIds") List<String> testLibraryIds);
+
+    /**
+    * 根据suiteId查询
+    *
+    * @param suiteIds
+    * @return
+    */
+    List<TestCase> findBySuiteId(@Param("suiteIds") List<String> suiteIds);
+
+    /**
+    * 根据maintenanceId查询
+    *
+    * @param maintenanceIds
+    * @return
+    */
+    List<TestCase> findByMaintenanceId(@Param("maintenanceIds") List<String> maintenanceIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -645,29 +669,4 @@ public interface TestCaseMapper extends BaseMapper<TestCase> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据testLibraryId查询
-     *
-     * @param testLibraryIds
-     * @return
-     */
-    List<TestCase> findByTestLibraryId(@Param("testLibraryIds") List<String> testLibraryIds);
-
-    /**
-     * 根据suiteId查询
-     *
-     * @param suiteIds
-     * @return
-     */
-    List<TestCase> findBySuiteId(@Param("suiteIds") List<String> suiteIds);
-
-    /**
-     * 根据maintenanceId查询
-     *
-     * @param maintenanceIds
-     * @return
-     */
-    List<TestCase> findByMaintenanceId(@Param("maintenanceIds") List<String> maintenanceIds);
-
 }

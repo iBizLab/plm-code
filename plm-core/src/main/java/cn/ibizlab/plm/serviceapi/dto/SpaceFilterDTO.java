@@ -47,20 +47,28 @@ public class SpaceFilterDTO extends FilterBase implements Serializable {
 	private String scopeTypeEQ;
 
     /**
-     * 空间名称LIKE
+     * 所属对象EQ
      */
-    @JsonProperty("n_name_like")
-    @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "空间名称LIKE", position = 100)
-	private String nameLIKE;
+    @JsonProperty("n_scope_id_eq")
+    @JSONField(name = "n_scope_id_eq")
+    @ApiModelProperty(value = "所属对象EQ", position = 80)
+	private String scopeIdEQ;
 
     /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 110)
+    @ApiModelProperty(value = "标识EQ", position = 100)
 	private String idEQ;
+
+    /**
+     * 空间名称LIKE
+     */
+    @JsonProperty("n_name_like")
+    @JSONField(name = "n_name_like")
+    @ApiModelProperty(value = "空间名称LIKE", position = 110)
+	private String nameLIKE;
 
     /**
      * 分类EQ

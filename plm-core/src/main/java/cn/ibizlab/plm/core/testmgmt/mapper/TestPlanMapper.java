@@ -157,6 +157,46 @@ public interface TestPlanMapper extends BaseMapper<TestPlan> {
     List<TestPlan> listUnJoinPlan(@Param("ctx") TestPlanSearchContext context, @Param("ew") Wrapper<TestPlan> wrapper);
 
     /**
+    * 根据libraryId查询
+    *
+    * @param libraryIds
+    * @return
+    */
+    List<TestPlan> findByLibraryId(@Param("libraryIds") List<String> libraryIds);
+
+    /**
+    * 根据projectId查询
+    *
+    * @param projectIds
+    * @return
+    */
+    List<TestPlan> findByProjectId(@Param("projectIds") List<String> projectIds);
+
+    /**
+    * 根据releaseId查询
+    *
+    * @param releaseIds
+    * @return
+    */
+    List<TestPlan> findByReleaseId(@Param("releaseIds") List<String> releaseIds);
+
+    /**
+    * 根据sprintId查询
+    *
+    * @param sprintIds
+    * @return
+    */
+    List<TestPlan> findBySprintId(@Param("sprintIds") List<String> sprintIds);
+
+    /**
+    * 根据id查询
+    *
+    * @param ids
+    * @return
+    */
+    List<TestPlan> findById(@Param("ids") List<String> ids);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -265,37 +305,4 @@ public interface TestPlanMapper extends BaseMapper<TestPlan> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据libraryId查询
-     *
-     * @param libraryIds
-     * @return
-     */
-    List<TestPlan> findByLibraryId(@Param("libraryIds") List<String> libraryIds);
-
-    /**
-     * 根据projectId查询
-     *
-     * @param projectIds
-     * @return
-     */
-    List<TestPlan> findByProjectId(@Param("projectIds") List<String> projectIds);
-
-    /**
-     * 根据releaseId查询
-     *
-     * @param releaseIds
-     * @return
-     */
-    List<TestPlan> findByReleaseId(@Param("releaseIds") List<String> releaseIds);
-
-    /**
-     * 根据sprintId查询
-     *
-     * @param sprintIds
-     * @return
-     */
-    List<TestPlan> findBySprintId(@Param("sprintIds") List<String> sprintIds);
-
 }

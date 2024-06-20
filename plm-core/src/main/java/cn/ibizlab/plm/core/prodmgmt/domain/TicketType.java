@@ -38,91 +38,91 @@ public class TicketType extends EntityMP implements Serializable
 {
 
     /**
-     * 描述
-     */
+    * 描述
+    */
     @TableField(value = "description")
     @DEField(name = "description")
-    @JsonProperty("description")
     @JSONField(name = "description")
+    @JsonProperty("description")
     @ApiModelProperty(value = "description", notes = "描述")
     private String description;
 
     /**
-     * 是否系统默认
-     */
+    * 是否系统默认
+    */
     @TableField(value = "is_system")
     @DEField(name = "is_system" , defaultValue = "0" , dict = "YesNo")
-    @JsonProperty("is_system")
     @JSONField(name = "is_system")
+    @JsonProperty("is_system")
     @ApiModelProperty(value = "is_system", notes = "是否系统默认")
     private Integer isSystem;
 
     /**
-     * 建立人
-     */
-    @TableField(value = "create_man" , fill = FieldFill.INSERT)
-    @DEField(name = "create_man" , preType = DEPredefinedFieldType.CREATEMAN , dict = "SysOperator")
-    @JsonProperty("create_man")
-    @JSONField(name = "create_man")
-    @ApiModelProperty(value = "create_man", notes = "建立人")
-    private String createMan;
-
-    /**
-     * 名称
-     */
-    @TableField(value = "name")
-    @DEField(name = "name")
-    @JsonProperty("name")
-    @JSONField(name = "name")
-    @ApiModelProperty(value = "name", notes = "名称")
-    private String name;
-
-    /**
-     * 更新人
-     */
-    @TableField(value = "update_man")
-    @DEField(name = "update_man" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
-    @JsonProperty("update_man")
-    @JSONField(name = "update_man")
-    @ApiModelProperty(value = "update_man", notes = "更新人")
-    private String updateMan;
-
-    /**
-     * 建立时间
-     */
-    @TableField(value = "create_time" , fill = FieldFill.INSERT)
-    @DEField(name = "create_time" , preType = DEPredefinedFieldType.CREATEDATE)
-    @JsonProperty("create_time")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "create_time", notes = "建立时间")
-    private Date createTime;
-
-    /**
-     * 标识
-     */
+    * 标识
+    */
     @Id
     @TableId(value = "id" , type = IdType.ASSIGN_UUID)
     @DEField(name = "id" , isKeyField = true)
-    @JsonProperty("id")
     @JSONField(name = "id")
+    @JsonProperty("id")
     @ApiModelProperty(value = "id", notes = "标识")
     private String id;
 
     /**
-     * 更新时间
-     */
+    * 名称
+    */
+    @TableField(value = "name")
+    @DEField(name = "name" , dupCheck = DupCheck.ALL)
+    @JSONField(name = "name")
+    @JsonProperty("name")
+    @ApiModelProperty(value = "name", notes = "名称")
+    private String name;
+
+    /**
+    * 建立人
+    */
+    @TableField(value = "create_man" , fill = FieldFill.INSERT)
+    @DEField(name = "create_man" , preType = DEPredefinedFieldType.CREATEMAN , dict = "SysOperator")
+    @JSONField(name = "create_man")
+    @JsonProperty("create_man")
+    @ApiModelProperty(value = "create_man", notes = "建立人")
+    private String createMan;
+
+    /**
+    * 建立时间
+    */
+    @TableField(value = "create_time" , fill = FieldFill.INSERT)
+    @DEField(name = "create_time" , preType = DEPredefinedFieldType.CREATEDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("create_time")
+    @ApiModelProperty(value = "create_time", notes = "建立时间")
+    private Date createTime;
+
+    /**
+    * 更新人
+    */
+    @TableField(value = "update_man")
+    @DEField(name = "update_man" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
+    @JSONField(name = "update_man")
+    @JsonProperty("update_man")
+    @ApiModelProperty(value = "update_man", notes = "更新人")
+    private String updateMan;
+
+    /**
+    * 更新时间
+    */
     @TableField(value = "update_time")
     @DEField(name = "update_time" , preType = DEPredefinedFieldType.UPDATEDATE)
-    @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("update_time")
     @ApiModelProperty(value = "update_time", notes = "更新时间")
     private Date updateTime;
 
     /**
-     * 设置 [描述]
-     */
+    * 设置 [描述]
+    */
     public TicketType setDescription(String description) {
         this.description = description;
         this.modify("description", description);
@@ -130,8 +130,8 @@ public class TicketType extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [是否系统默认]
-     */
+    * 设置 [是否系统默认]
+    */
     public TicketType setIsSystem(Integer isSystem) {
         this.isSystem = isSystem;
         this.modify("is_system", isSystem);
@@ -139,13 +139,14 @@ public class TicketType extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [名称]
-     */
+    * 设置 [名称]
+    */
     public TicketType setName(String name) {
         this.name = name;
         this.modify("name", name);
         return this;
     }
+
 
     /**
      * 复制当前对象数据到目标对象(粘贴重置)

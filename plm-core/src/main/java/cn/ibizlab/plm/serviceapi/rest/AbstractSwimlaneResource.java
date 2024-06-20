@@ -357,7 +357,7 @@ public abstract class AbstractSwimlaneResource {
     public ResponseEntity<List<SwimlaneDTO>> fetchDefault
             (@Validated @RequestBody SwimlaneFilterDTO dto) {
         SwimlaneSearchContext context = swimlaneFilterDtoMapping.toDomain(dto);
-        Page<Swimlane> domains = swimlaneService.searchDefault(context) ;
+        Page<Swimlane> domains = swimlaneService.fetchDefault(context) ;
         List<SwimlaneDTO> list = swimlaneDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -451,7 +451,7 @@ public abstract class AbstractSwimlaneResource {
             (@PathVariable("projectId") String projectId, @Validated @RequestBody SwimlaneFilterDTO dto) {
         dto.setProjectIdEQ(projectId);
         SwimlaneSearchContext context = swimlaneFilterDtoMapping.toDomain(dto);
-        Page<Swimlane> domains = swimlaneService.searchDefault(context) ;
+        Page<Swimlane> domains = swimlaneService.fetchDefault(context) ;
         List<SwimlaneDTO> list = swimlaneDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -470,7 +470,7 @@ public abstract class AbstractSwimlaneResource {
     @ApiOperation(value = "批量新建泳道", tags = {"泳道" },  notes = "批量新建泳道")
 	@PostMapping("swimlanes/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<SwimlaneDTO> dtos) {
-        swimlaneService.createBatch(swimlaneDtoMapping.toDomain(dtos));
+        swimlaneService.create(swimlaneDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -483,7 +483,7 @@ public abstract class AbstractSwimlaneResource {
     @ApiOperation(value = "批量删除泳道", tags = {"泳道" },  notes = "批量删除泳道")
 	@DeleteMapping("swimlanes/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        swimlaneService.removeBatch(ids);
+        swimlaneService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -496,7 +496,7 @@ public abstract class AbstractSwimlaneResource {
     @ApiOperation(value = "批量更新泳道", tags = {"泳道" },  notes = "批量更新泳道")
 	@PutMapping("swimlanes/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<SwimlaneDTO> dtos) {
-        swimlaneService.updateBatch(swimlaneDtoMapping.toDomain(dtos));
+        swimlaneService.update(swimlaneDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -509,7 +509,7 @@ public abstract class AbstractSwimlaneResource {
     @ApiOperation(value = "批量保存泳道", tags = {"泳道" },  notes = "批量保存泳道")
 	@PostMapping("swimlanes/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<SwimlaneDTO> dtos) {
-        swimlaneService.saveBatch(swimlaneDtoMapping.toDomain(dtos));
+        swimlaneService.save(swimlaneDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

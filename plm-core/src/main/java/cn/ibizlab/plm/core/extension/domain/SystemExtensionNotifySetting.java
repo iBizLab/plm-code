@@ -38,8 +38,8 @@ public class SystemExtensionNotifySetting extends EntityClient implements Serial
      * 所有者类型
      */
     @DEField(name = "owner_type" , defaultValue = "PERSONAL")
-    @JsonProperty("owner_type")
     @JSONField(name = "owner_type")
+    @JsonProperty("owner_type")
     @ApiModelProperty(value = "owner_type", notes = "所有者类型")
     private String ownerType;
 
@@ -47,74 +47,74 @@ public class SystemExtensionNotifySetting extends EntityClient implements Serial
      * 所有者标识
      */
     @DEField(name = "owner_id" , defaultValue = "srfpersonid" , defaultValueType = DEFieldDefaultValueType.SESSION)
-    @JsonProperty("owner_id")
     @JSONField(name = "owner_id")
+    @JsonProperty("owner_id")
     @ApiModelProperty(value = "owner_id", notes = "所有者标识")
     private String ownerId;
-
-    /**
-     * 名称
-     */
-    @DEField(name = "name")
-    @JsonProperty("name")
-    @JSONField(name = "name")
-    @ApiModelProperty(value = "name", notes = "名称")
-    private String name;
 
     /**
      * 标识
      */
     @Id
     @DEField(name = "id" , isKeyField = true)
-    @JsonProperty("id")
     @JSONField(name = "id")
+    @JsonProperty("id")
     @ApiModelProperty(value = "id", notes = "标识")
     private String id;
 
     /**
-     * 更新人
+     * 名称
      */
-    @DEField(name = "update_man" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
-    @JsonProperty("update_man")
-    @JSONField(name = "update_man")
-    @ApiModelProperty(value = "update_man", notes = "更新人")
-    private String updateMan;
-
-    /**
-     * 建立时间
-     */
-    @DEField(name = "create_time" , preType = DEPredefinedFieldType.CREATEDATE)
-    @JsonProperty("create_time")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "create_time", notes = "建立时间")
-    private Date createTime;
-
-    /**
-     * 更新时间
-     */
-    @DEField(name = "update_time" , preType = DEPredefinedFieldType.UPDATEDATE)
-    @JsonProperty("update_time")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "update_time", notes = "更新时间")
-    private Date updateTime;
+    @DEField(name = "name")
+    @JSONField(name = "name")
+    @JsonProperty("name")
+    @ApiModelProperty(value = "name", notes = "名称")
+    private String name;
 
     /**
      * 建立人
      */
     @DEField(name = "create_man" , preType = DEPredefinedFieldType.CREATEMAN , dict = "SysOperator")
-    @JsonProperty("create_man")
     @JSONField(name = "create_man")
+    @JsonProperty("create_man")
     @ApiModelProperty(value = "create_man", notes = "建立人")
     private String createMan;
+
+    /**
+     * 建立时间
+     */
+    @DEField(name = "create_time" , preType = DEPredefinedFieldType.CREATEDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("create_time")
+    @ApiModelProperty(value = "create_time", notes = "建立时间")
+    private Date createTime;
+
+    /**
+     * 更新人
+     */
+    @DEField(name = "update_man" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
+    @JSONField(name = "update_man")
+    @JsonProperty("update_man")
+    @ApiModelProperty(value = "update_man", notes = "更新人")
+    private String updateMan;
+
+    /**
+     * 更新时间
+     */
+    @DEField(name = "update_time" , preType = DEPredefinedFieldType.UPDATEDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("update_time")
+    @ApiModelProperty(value = "update_time", notes = "更新时间")
+    private Date updateTime;
 
     /**
      * 系统标记
      */
     @DEField(name = "system_tag" , defaultValue = "srfdcsystemid" , defaultValueType = DEFieldDefaultValueType.SESSION)
-    @JsonProperty("system_tag")
     @JSONField(name = "system_tag")
+    @JsonProperty("system_tag")
     @ApiModelProperty(value = "system_tag", notes = "系统标记")
     private String systemTag;
 
@@ -122,14 +122,14 @@ public class SystemExtensionNotifySetting extends EntityClient implements Serial
      * 设置模型
      */
     @DEField(name = "setting_model")
-    @JsonProperty("setting_model")
     @JSONField(name = "setting_model")
+    @JsonProperty("setting_model")
     @ApiModelProperty(value = "setting_model", notes = "设置模型")
     private List<NotifyEvent> settingModel;
 
     /**
-     * 设置 [所有者类型]
-     */
+    * 设置 [所有者类型]
+    */
     public SystemExtensionNotifySetting setOwnerType(String ownerType) {
         this.ownerType = ownerType;
         this.modify("owner_type", ownerType);
@@ -137,8 +137,8 @@ public class SystemExtensionNotifySetting extends EntityClient implements Serial
     }
 
     /**
-     * 设置 [所有者标识]
-     */
+    * 设置 [所有者标识]
+    */
     public SystemExtensionNotifySetting setOwnerId(String ownerId) {
         this.ownerId = ownerId;
         this.modify("owner_id", ownerId);
@@ -146,8 +146,8 @@ public class SystemExtensionNotifySetting extends EntityClient implements Serial
     }
 
     /**
-     * 设置 [名称]
-     */
+    * 设置 [名称]
+    */
     public SystemExtensionNotifySetting setName(String name) {
         this.name = name;
         this.modify("name", name);
@@ -155,8 +155,8 @@ public class SystemExtensionNotifySetting extends EntityClient implements Serial
     }
 
     /**
-     * 设置 [系统标记]
-     */
+    * 设置 [系统标记]
+    */
     public SystemExtensionNotifySetting setSystemTag(String systemTag) {
         this.systemTag = systemTag;
         this.modify("system_tag", systemTag);
@@ -164,14 +164,15 @@ public class SystemExtensionNotifySetting extends EntityClient implements Serial
     }
 
     /**
-     * 设置 [设置模型]
-     */
+    * 设置 [设置模型]
+    */
     public SystemExtensionNotifySetting setSettingModel(List<NotifyEvent> settingModel) {
         this.settingModel = settingModel;
         this.modify("setting_model", settingModel);
         return this;
     }
 
+	
     /**
      * 复制当前对象数据到目标对象(粘贴重置)
      * @param targetEntity 目标数据对象

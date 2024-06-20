@@ -47,42 +47,6 @@ public abstract class AbstractFavoriteService extends ServiceImpl<FavoriteMapper
 
     protected int batchSize = 500;
 
-    public Favorite get(Favorite et) {
-        Favorite rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.FAVORITE.toString(),et.getId());
-        rt.copyTo(et,true);
-        return et;
-    }
-
-    public List<Favorite> getByEntities(List<Favorite> entities) {
-        entities.forEach(et->{
-            if(ObjectUtils.isEmpty(et.getId()))
-                et.setId((String)et.getDefaultKey(true));
-            });
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public void fillParentData(Favorite et) {
-        if(Entities.PROJECT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
-            et.setOwnerId((String)et.getContextParentKey());
-        }
-        if(Entities.PRODUCT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
-            et.setOwnerId((String)et.getContextParentKey());
-        }
-    }
-
-    public Favorite getDraft(Favorite et) {
-        fillParentData(et);
-        return et;
-    }
-
-    public Integer checkKey(Favorite et) {
-        if(ObjectUtils.isEmpty(et.getId()))
-            et.setId((String)et.getDefaultKey(true));
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Favorite>lambdaQuery().eq(Favorite::getId, et.getId()))>0)?1:0;
-    }
-
     @Override
     @Transactional
     public boolean create(Favorite et) {
@@ -94,9 +58,9 @@ public abstract class AbstractFavoriteService extends ServiceImpl<FavoriteMapper
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<Favorite> list) {
+    public boolean create(List<Favorite> list) {
         list.forEach(this::fillParentData);
         list.forEach(et->{
             if(ObjectUtils.isEmpty(et.getId()))
@@ -105,7 +69,7 @@ public abstract class AbstractFavoriteService extends ServiceImpl<FavoriteMapper
         this.saveBatch(list, batchSize);
         return true;
     }
-
+	
     @Transactional
     public boolean update(Favorite et) {
         UpdateWrapper<Favorite> qw = et.getUpdateWrapper(true);
@@ -117,11 +81,50 @@ public abstract class AbstractFavoriteService extends ServiceImpl<FavoriteMapper
     }
 
     @Transactional
-    public boolean updateBatch(List<Favorite> list) {
+    public boolean update(List<Favorite> list) {
         updateBatchById(list, batchSize);
         return true;
     }
+	
+   @Transactional
+    public boolean remove(Favorite et) {
+        if(!remove(Wrappers.<Favorite>lambdaQuery().eq(Favorite::getId, et.getId())))
+            return false;
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<Favorite> entities) {
+        this.baseMapper.deleteEntities(entities);
+        return true;
+    }		
+    public Favorite get(Favorite et) {
+        Favorite rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.FAVORITE.toString(),et.getId());
+        rt.copyTo(et,true);
+        return et;
+    }	
+
+    public List<Favorite> get(List<Favorite> entities) {
+        entities.forEach(et->{
+            if(ObjectUtils.isEmpty(et.getId()))
+                et.setId((String)et.getDefaultKey(true));
+            });
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public Favorite getDraft(Favorite et) {
+        fillParentData(et);
+        return et;
+    }
+	
+    public Integer checkKey(Favorite et) {
+        if(ObjectUtils.isEmpty(et.getId()))
+            et.setId((String)et.getDefaultKey(true));
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Favorite>lambdaQuery().eq(Favorite::getId, et.getId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(Favorite et) {
@@ -132,10 +135,10 @@ public abstract class AbstractFavoriteService extends ServiceImpl<FavoriteMapper
     }
 
     @Transactional
-    public boolean saveBatch(List<Favorite> list) {
+    public boolean save(List<Favorite> list) {
         if(ObjectUtils.isEmpty(list))
             return true;
-        Map<String,Favorite> before = getByEntities(list).stream().collect(Collectors.toMap(Favorite::getId,e->e));
+        Map<String,Favorite> before = get(list).stream().collect(Collectors.toMap(Favorite::getId,e->e));
         List<Favorite> create = new ArrayList<>();
         List<Favorite> update = new ArrayList<>();
         list.forEach(sub->{
@@ -150,52 +153,45 @@ public abstract class AbstractFavoriteService extends ServiceImpl<FavoriteMapper
         });
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
         else
             return true;
     }
-
-    @Transactional
-    public boolean remove(Favorite et) {
-        if(!remove(Wrappers.<Favorite>lambdaQuery().eq(Favorite::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<Favorite> entities) {
-        this.baseMapper.deleteEntities(entities);
-        return true;
-    }
-
-    public Page<Favorite> searchDefault(FavoriteSearchContext context) {
+	
+   public Page<Favorite> fetchDefault(FavoriteSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Favorite> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<Favorite> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Favorite> listDefault(FavoriteSearchContext context) {
+   public List<Favorite> listDefault(FavoriteSearchContext context) {
         List<Favorite> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
-    }
-
-    public List<Favorite> findByOwnerId(List<String> ownerIds) {
+   }
+	
+	public List<Favorite> findByOwnerId(List<String> ownerIds){
         List<Favorite> list = baseMapper.findByOwnerId(ownerIds);
-        return list;
-    }
-    public boolean removeByOwnerId(String ownerId) {
+        return list;	
+	}
+
+	public boolean removeByOwnerId(String ownerId){
         return this.remove(Wrappers.<Favorite>lambdaQuery().eq(Favorite::getOwnerId,ownerId));
-    }
+	}
 
-    public boolean resetByOwnerId(String ownerId) {
-        return this.update(Wrappers.<Favorite>lambdaUpdate().eq(Favorite::getOwnerId,ownerId));
-    }
-
-    public boolean saveByProject(Project project,List<Favorite> list) {
+	public boolean resetByOwnerId(String ownerId){
+		return this.update(Wrappers.<Favorite>lambdaUpdate().eq(Favorite::getOwnerId,ownerId));
+	}
+	public boolean saveByProject(Project project, List<Favorite> list){
         if(list==null)
             return true;
-        Map<String,Favorite> before = findByOwnerId(project.getId()).stream().collect(Collectors.toMap(Favorite::getId,e->e));
+        Map<String,Favorite> before = this.baseMapper.selectList(Wrappers.<Favorite>lambdaQuery()
+                        .eq(Favorite::getOwnerId, project.getId())
+                        .eq(Favorite::getOwnerType,"PROJECT")
+                        .eq(Favorite::getOwnerSubtype,"project"))
+                        .stream()
+                        .collect(Collectors.toMap(Favorite::getId,e->e));
+
         List<Favorite> update = new ArrayList<>();
         List<Favorite> create = new ArrayList<>();
 
@@ -215,18 +211,23 @@ public abstract class AbstractFavoriteService extends ServiceImpl<FavoriteMapper
         }
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
             return false;
         else
             return true;
-    }
-
-    public boolean saveByProduct(Product product,List<Favorite> list) {
+			
+	}
+	public boolean saveByProduct(Product product, List<Favorite> list){
         if(list==null)
             return true;
-        Map<String,Favorite> before = findByOwnerId(product.getId()).stream().collect(Collectors.toMap(Favorite::getId,e->e));
+        Map<String,Favorite> before = this.baseMapper.selectList(Wrappers.<Favorite>lambdaQuery()
+                        .eq(Favorite::getOwnerId, product.getId())
+                        .eq(Favorite::getOwnerType,"PRODUCT").isNull(Favorite::getOwnerSubtype))
+                        .stream()
+                        .collect(Collectors.toMap(Favorite::getId,e->e));
+
         List<Favorite> update = new ArrayList<>();
         List<Favorite> create = new ArrayList<>();
 
@@ -246,18 +247,24 @@ public abstract class AbstractFavoriteService extends ServiceImpl<FavoriteMapper
         }
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
             return false;
         else
             return true;
+			
+	}
+
+    public void fillParentData(Favorite et) {
+        if(Entities.PROJECT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setOwnerId((String)et.getContextParentKey());
+        }
+        if(Entities.PRODUCT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setOwnerId((String)et.getContextParentKey());
+        }
     }
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -277,8 +284,8 @@ public abstract class AbstractFavoriteService extends ServiceImpl<FavoriteMapper
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return FavoriteMapper.class;
     }
@@ -287,4 +294,5 @@ public abstract class AbstractFavoriteService extends ServiceImpl<FavoriteMapper
     protected Class currentModelClass() {
         return Favorite.class;
     }
+
 }

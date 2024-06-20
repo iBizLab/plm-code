@@ -157,6 +157,25 @@ public interface ProjectMapper extends BaseMapper<Project> {
     List<Project> listFavorite(@Param("ctx") ProjectSearchContext context, @Param("ew") Wrapper<Project> wrapper);
 
     /**
+     * 数据集合main分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Project> searchMain(IPage<Project> page, @Param("ctx") ProjectSearchContext context, @Param("ew") Wrapper<Project> wrapper);
+    
+    /**
+     * 数据集合main查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Project> listMain(@Param("ctx") ProjectSearchContext context, @Param("ew") Wrapper<Project> wrapper);
+
+    /**
      * 数据集合normal分页查询
      * 
      * @param page
@@ -174,6 +193,25 @@ public interface ProjectMapper extends BaseMapper<Project> {
      * @return
      */
     List<Project> listNormal(@Param("ctx") ProjectSearchContext context, @Param("ew") Wrapper<Project> wrapper);
+
+    /**
+     * 数据集合quick_user分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Project> searchQuickUser(IPage<Project> page, @Param("ctx") ProjectSearchContext context, @Param("ew") Wrapper<Project> wrapper);
+    
+    /**
+     * 数据集合quick_user查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Project> listQuickUser(@Param("ctx") ProjectSearchContext context, @Param("ew") Wrapper<Project> wrapper);
 
     /**
      * 数据集合reader分页查询
@@ -269,6 +307,14 @@ public interface ProjectMapper extends BaseMapper<Project> {
      * @return
      */
     List<Project> listWorkProject(@Param("ctx") ProjectSearchContext context, @Param("ew") Wrapper<Project> wrapper);
+
+    /**
+    * 根据id查询
+    *
+    * @param ids
+    * @return
+    */
+    List<Project> findById(@Param("ids") List<String> ids);
 
     /**
      * 主键查询
@@ -379,5 +425,4 @@ public interface ProjectMapper extends BaseMapper<Project> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
 }

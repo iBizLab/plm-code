@@ -48,26 +48,6 @@ public abstract class AbstractSectionService extends ServiceImpl<SectionMapper,S
 
     protected int batchSize = 500;
 
-    public Section get(Section et) {
-        Section rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.SECTION.toString(),et.getId());
-        rt.copyTo(et,true);
-        return et;
-    }
-
-    public List<Section> getByEntities(List<Section> entities) {
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public Section getDraft(Section et) {
-        return et;
-    }
-
-    public Integer checkKey(Section et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Section>lambdaQuery().eq(Section::getId, et.getId()))>0)?1:0;
-    }
-
     @Override
     @Transactional
     public boolean create(Section et) {
@@ -76,13 +56,13 @@ public abstract class AbstractSectionService extends ServiceImpl<SectionMapper,S
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<Section> list) {
+    public boolean create(List<Section> list) {
         this.saveBatch(list, batchSize);
         return true;
     }
-
+	
     @Transactional
     public boolean update(Section et) {
         UpdateWrapper<Section> qw = et.getUpdateWrapper(true);
@@ -94,11 +74,48 @@ public abstract class AbstractSectionService extends ServiceImpl<SectionMapper,S
     }
 
     @Transactional
-    public boolean updateBatch(List<Section> list) {
+    public boolean update(List<Section> list) {
         updateBatchById(list, batchSize);
         return true;
     }
+	
+   @Transactional
+    public boolean remove(Section et) {
+        String key = et.getId();
+        categoryService.resetBySectionId(key);
+        groupService.resetBySectionId(key);
+        if(!remove(Wrappers.<Section>lambdaQuery().eq(Section::getId, et.getId())))
+            return false;
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<Section> entities) {
+        for (Section et : entities)
+            if(!getSelf().remove(et))
+                return false;
+        return true;
+    }		
+    public Section get(Section et) {
+        Section rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.SECTION.toString(),et.getId());
+        rt.copyTo(et,true);
+        return et;
+    }	
+
+    public List<Section> get(List<Section> entities) {
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public Section getDraft(Section et) {
+        return et;
+    }
+	
+    public Integer checkKey(Section et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Section>lambdaQuery().eq(Section::getId, et.getId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(Section et) {
@@ -109,10 +126,10 @@ public abstract class AbstractSectionService extends ServiceImpl<SectionMapper,S
     }
 
     @Transactional
-    public boolean saveBatch(List<Section> list) {
+    public boolean save(List<Section> list) {
         if(ObjectUtils.isEmpty(list))
             return true;
-        Map<String,Section> before = getByEntities(list).stream().collect(Collectors.toMap(Section::getId,e->e));
+        Map<String,Section> before = get(list).stream().collect(Collectors.toMap(Section::getId,e->e));
         List<Section> create = new ArrayList<>();
         List<Section> update = new ArrayList<>();
         list.forEach(sub->{
@@ -123,55 +140,46 @@ public abstract class AbstractSectionService extends ServiceImpl<SectionMapper,S
         });
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
         else
             return true;
     }
-
-    @Transactional
-    public boolean remove(Section et) {
-        String key = et.getId();
-        categoryService.removeBySectionId(key);
-        if(!remove(Wrappers.<Section>lambdaQuery().eq(Section::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<Section> entities) {
-        for (Section et : entities)
-            if(!getSelf().remove(et))
-                return false;
-        return true;
-    }
-
-    public Page<Section> searchDefault(SectionSearchContext context) {
+	
+   public Page<Section> fetchDefault(SectionSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Section> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<Section> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Section> listDefault(SectionSearchContext context) {
+   public List<Section> listDefault(SectionSearchContext context) {
         List<Section> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Section> searchThisProductSection(SectionSearchContext context) {
+   }
+	
+   public Page<Section> fetchThisProductSection(SectionSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Section> pages=baseMapper.searchThisProductSection(context.getPages(),context,context.getSelectCond());
         List<Section> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Section> listThisProductSection(SectionSearchContext context) {
+   public List<Section> listThisProductSection(SectionSearchContext context) {
         List<Section> list = baseMapper.listThisProductSection(context,context.getSelectCond());
         return list;
+   }
+	
+   public Page<Section> fetchCheckName(SectionSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Section> pages=baseMapper.searchCheckName(context.getPages(),context,context.getSelectCond());
+        List<Section> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
+   public List<Section> listCheckName(SectionSearchContext context) {
+        List<Section> list = baseMapper.listCheckName(context,context.getSelectCond());
+        return list;
+   }
+	
+
 
     @Override
     @Transactional
@@ -191,8 +199,8 @@ public abstract class AbstractSectionService extends ServiceImpl<SectionMapper,S
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return SectionMapper.class;
     }
@@ -201,4 +209,5 @@ public abstract class AbstractSectionService extends ServiceImpl<SectionMapper,S
     protected Class currentModelClass() {
         return Section.class;
     }
+
 }

@@ -30,89 +30,32 @@ public interface ReferencesIndexService extends IService<ReferencesIndex> {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    ReferencesIndex get(ReferencesIndex et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default ReferencesIndex get(String key) {
-        return getSelf().get(new ReferencesIndex().setId(key));
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<ReferencesIndex> getByIds(Collection<String> ids) {
-        List<ReferencesIndex> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new ReferencesIndex().setId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<ReferencesIndex> getByEntities(List<ReferencesIndex> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    ReferencesIndex getDraft(ReferencesIndex et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(ReferencesIndex et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(ReferencesIndex et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<ReferencesIndex> list);
+    boolean create(List<ReferencesIndex> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(ReferencesIndex et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<ReferencesIndex> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    @Override
-    boolean save(ReferencesIndex et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<ReferencesIndex> list);
+    boolean update(List<ReferencesIndex> list);
 
     /**
      * 主键删除
@@ -122,14 +65,7 @@ public interface ReferencesIndexService extends IService<ReferencesIndex> {
     default boolean remove(String key) {
         return getSelf().remove(new ReferencesIndex().setId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -139,13 +75,13 @@ public interface ReferencesIndexService extends IService<ReferencesIndex> {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<ReferencesIndex> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new ReferencesIndex().setId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new ReferencesIndex().setId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -153,7 +89,86 @@ public interface ReferencesIndexService extends IService<ReferencesIndex> {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<ReferencesIndex> entities);
+    boolean remove(List<ReferencesIndex> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default ReferencesIndex get(String key) {
+        return getSelf().get(new ReferencesIndex().setId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    ReferencesIndex get(ReferencesIndex et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<ReferencesIndex> get(Collection<String> keys) {
+        List<ReferencesIndex> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new ReferencesIndex().setId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<ReferencesIndex> get(List<ReferencesIndex> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    ReferencesIndex getDraft(ReferencesIndex et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(ReferencesIndex et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(ReferencesIndex et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<ReferencesIndex> list);
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<ReferencesIndex> fetchDefault(ReferencesIndexSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<ReferencesIndex> listDefault(ReferencesIndexSearchContext context);
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<ReferencesIndex> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -170,22 +185,7 @@ public interface ReferencesIndexService extends IService<ReferencesIndex> {
         }
         return rt;
     }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<ReferencesIndex> searchDefault(ReferencesIndexSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<ReferencesIndex> listDefault(ReferencesIndexSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -193,6 +193,7 @@ public interface ReferencesIndexService extends IService<ReferencesIndex> {
     default ReferencesIndex getEntity() {
         return new ReferencesIndex();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -201,20 +202,12 @@ public interface ReferencesIndexService extends IService<ReferencesIndex> {
         return new ReferencesIndexSearchContext();
     }
 
-    /**
-     * 自定义查询SQL
-     * @param sql  select * from table where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
-    List<JSONObject> select(String sql, Map<String,Object> param);
 
     /**
-     * 自定义SQL
-     * @param sql  update table  set name ='test' where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
+    * 自定义SQL
+    * @param sql  update table  set name ='test' where id =#{et.param}
+    * @param param 参数列表  param.put("param","1");
+    * @return
+    */
     boolean execute(String sql, Map<String,Object> param);
-
 }

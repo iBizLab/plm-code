@@ -35,26 +35,6 @@ public abstract class AbstractExtendLogService extends ServiceImpl<ExtendLogMapp
 
     protected int batchSize = 500;
 
-    public ExtendLog get(ExtendLog et) {
-        ExtendLog rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.EXTEND_LOG.toString(),et.getId());
-        rt.copyTo(et,true);
-        return et;
-    }
-
-    public List<ExtendLog> getByEntities(List<ExtendLog> entities) {
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public ExtendLog getDraft(ExtendLog et) {
-        return et;
-    }
-
-    public Integer checkKey(ExtendLog et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ExtendLog>lambdaQuery().eq(ExtendLog::getId, et.getId()))>0)?1:0;
-    }
-
     @Override
     @Transactional
     public boolean create(ExtendLog et) {
@@ -63,13 +43,13 @@ public abstract class AbstractExtendLogService extends ServiceImpl<ExtendLogMapp
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<ExtendLog> list) {
+    public boolean create(List<ExtendLog> list) {
         this.saveBatch(list, batchSize);
         return true;
     }
-
+	
     @Transactional
     public boolean update(ExtendLog et) {
         UpdateWrapper<ExtendLog> qw = et.getUpdateWrapper(true);
@@ -81,11 +61,43 @@ public abstract class AbstractExtendLogService extends ServiceImpl<ExtendLogMapp
     }
 
     @Transactional
-    public boolean updateBatch(List<ExtendLog> list) {
+    public boolean update(List<ExtendLog> list) {
         updateBatchById(list, batchSize);
         return true;
     }
+	
+   @Transactional
+    public boolean remove(ExtendLog et) {
+        if(!remove(Wrappers.<ExtendLog>lambdaQuery().eq(ExtendLog::getId, et.getId())))
+            return false;
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<ExtendLog> entities) {
+        this.baseMapper.deleteEntities(entities);
+        return true;
+    }		
+    public ExtendLog get(ExtendLog et) {
+        ExtendLog rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.EXTEND_LOG.toString(),et.getId());
+        rt.copyTo(et,true);
+        return et;
+    }	
+
+    public List<ExtendLog> get(List<ExtendLog> entities) {
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public ExtendLog getDraft(ExtendLog et) {
+        return et;
+    }
+	
+    public Integer checkKey(ExtendLog et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ExtendLog>lambdaQuery().eq(ExtendLog::getId, et.getId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(ExtendLog et) {
@@ -96,10 +108,10 @@ public abstract class AbstractExtendLogService extends ServiceImpl<ExtendLogMapp
     }
 
     @Transactional
-    public boolean saveBatch(List<ExtendLog> list) {
+    public boolean save(List<ExtendLog> list) {
         if(ObjectUtils.isEmpty(list))
             return true;
-        Map<String,ExtendLog> before = getByEntities(list).stream().collect(Collectors.toMap(ExtendLog::getId,e->e));
+        Map<String,ExtendLog> before = get(list).stream().collect(Collectors.toMap(ExtendLog::getId,e->e));
         List<ExtendLog> create = new ArrayList<>();
         List<ExtendLog> update = new ArrayList<>();
         list.forEach(sub->{
@@ -110,49 +122,33 @@ public abstract class AbstractExtendLogService extends ServiceImpl<ExtendLogMapp
         });
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
         else
             return true;
     }
-
-    @Transactional
-    public boolean remove(ExtendLog et) {
-        if(!remove(Wrappers.<ExtendLog>lambdaQuery().eq(ExtendLog::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<ExtendLog> entities) {
-        this.baseMapper.deleteEntities(entities);
-        return true;
-    }
-
-    public Page<ExtendLog> searchDefault(ExtendLogSearchContext context) {
+	
+   public Page<ExtendLog> fetchDefault(ExtendLogSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<ExtendLog> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<ExtendLog> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<ExtendLog> listDefault(ExtendLogSearchContext context) {
+   public List<ExtendLog> listDefault(ExtendLogSearchContext context) {
         List<ExtendLog> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<ExtendLog> searchExecutionStatistics(ExtendLogSearchContext context) {
+   }
+	
+   public Page<ExtendLog> fetchExecutionStatistics(ExtendLogSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchExecutionStatistics(context.getPages(),context,context.getSelectCond());
         return new PageImpl<ExtendLog>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),ExtendLog.class), context.getPageable(), pages.getTotal());
     }
 
-    public List<ExtendLog> listExecutionStatistics(ExtendLogSearchContext context) {
+   public List<ExtendLog> listExecutionStatistics(ExtendLogSearchContext context) {
         return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listExecutionStatistics(context,context.getSelectCond()),ExtendLog.class);
-    }
+   }
+	
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -172,8 +168,8 @@ public abstract class AbstractExtendLogService extends ServiceImpl<ExtendLogMapp
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return ExtendLogMapper.class;
     }
@@ -182,4 +178,5 @@ public abstract class AbstractExtendLogService extends ServiceImpl<ExtendLogMapp
     protected Class currentModelClass() {
         return ExtendLog.class;
     }
+
 }

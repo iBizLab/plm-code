@@ -45,13 +45,11 @@ export default {
       logicType: 'APPUILOGIC',
       builtinAppUILogic: {
         openDataAppView: {
-          openMode: 'POPUPMODAL',
           refAppViewId: 'plmweb.idea_plan_count_grid_view',
         },
         editMode: true,
         appUILogicRefViews: [
           {
-            openMode: 'POPUPMODAL',
             refAppViewId: 'plmweb.idea_plan_count_grid_view',
           },
         ],
@@ -73,8 +71,15 @@ export default {
   ],
   appViewRefs: [
     {
-      openMode: 'POPUPMODAL',
-      realOpenMode: 'POPUPMODAL',
+      realTitle: '计划内容',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.IDEA.MAIN_VIEW_PLAN',
+      },
+      refAppViewId: 'plmweb.idea_plan_count_grid_view',
+      name: 'OPENDATA',
+      id: 'opendata',
+    },
+    {
       realTitle: '计划内容',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.IDEA.MAIN_VIEW_PLAN',
@@ -90,15 +95,6 @@ export default {
       name: 'NEWDATA',
       id: 'newdata',
     },
-    {
-      realTitle: '计划内容',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.IDEA.MAIN_VIEW_PLAN',
-      },
-      refAppViewId: 'plmweb.idea_plan_count_grid_view',
-      name: 'OPENDATA',
-      id: 'opendata',
-    },
   ],
   controls: [
     {
@@ -106,7 +102,7 @@ export default {
         {
           actionLevel: 100,
           noPrivDisplayMode: 2,
-          uiactionId: 'new',
+          uiactionId: 'new_subdata',
           valid: true,
           capLanguageRes: {
             lanResTag: 'TBB.TEXT.*.NEW',
@@ -210,7 +206,6 @@ export default {
           appCodeListId: 'plmweb.prodmgmt__category',
           appDEFieldId: 'categories',
           valueType: 'SIMPLE',
-          enableRowEdit: true,
           aggMode: 'NONE',
           align: 'LEFT',
           caption: '类别',
@@ -342,26 +337,6 @@ export default {
         },
       ],
       degridEditItems: [
-        {
-          caption: '类别',
-          codeName: 'categorys',
-          enableCond: 3,
-          appDEFieldId: 'categories',
-          editor: {
-            appCodeListId: 'plmweb.prodmgmt__category',
-            editorParams: {
-              readonly: 'true',
-            },
-            editorType: 'MDROPDOWNLIST',
-            valueType: 'SIMPLE',
-            editable: true,
-            readOnly: true,
-            id: 'categorys',
-          },
-          allowEmpty: true,
-          needCodeListConfig: true,
-          id: 'categorys',
-        },
         {
           caption: '负责人',
           codeName: 'assignee_name',

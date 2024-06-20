@@ -350,8 +350,16 @@ public class WorkloadFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_create_man_eq")
     @JSONField(name = "n_create_man_eq")
-    @ApiModelProperty(value = "建立人EQ", position = 170)
+    @ApiModelProperty(value = "建立人EQ", position = 160)
 	private String createManEQ;
+
+    /**
+     * 建立人IN
+     */
+    @JsonProperty("n_create_man_in")
+    @JSONField(name = "n_create_man_in")
+    @ApiModelProperty(value = "建立人IN", position = 161)
+	private String createManIN;
 
     /**
      * 类别EQ

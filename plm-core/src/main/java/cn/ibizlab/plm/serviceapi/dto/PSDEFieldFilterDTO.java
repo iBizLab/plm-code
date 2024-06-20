@@ -35,7 +35,7 @@ public class PSDEFieldFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_psdefieldid_eq")
     @JSONField(name = "n_psdefieldid_eq")
-    @ApiModelProperty(value = "实体属性标识EQ", position = 10)
+    @ApiModelProperty(value = "实体属性标识EQ", position = 0)
 	private String psdeFieldIdEQ;
 
     /**
@@ -43,7 +43,7 @@ public class PSDEFieldFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_psdefieldname_like")
     @JSONField(name = "n_psdefieldname_like")
-    @ApiModelProperty(value = "实体属性名称LIKE", position = 30)
+    @ApiModelProperty(value = "实体属性名称LIKE", position = 10)
 	private String psdeFieldNameLIKE;
 
     /**
@@ -77,6 +77,86 @@ public class PSDEFieldFilterDTO extends FilterBase implements Serializable {
     @JSONField(name = "n_psdename_like")
     @ApiModelProperty(value = "实体LIKE", position = 101)
 	private String psdeNameLIKE;
+
+    /**
+     * 属性标记2EQ
+     */
+    @JsonProperty("n_fieldtag2_eq")
+    @JSONField(name = "n_fieldtag2_eq")
+    @ApiModelProperty(value = "属性标记2EQ", position = 160)
+	private String fieldTag2EQ;
+
+    /**
+     * 属性标记EQ
+     */
+    @JsonProperty("n_fieldtag_eq")
+    @JSONField(name = "n_fieldtag_eq")
+    @ApiModelProperty(value = "属性标记EQ", position = 170)
+	private String fieldTagEQ;
+
+    /**
+     * 用户标记2EQ
+     */
+    @JsonProperty("n_usertag2_eq")
+    @JSONField(name = "n_usertag2_eq")
+    @ApiModelProperty(value = "用户标记2EQ", position = 180)
+	private String userTag2EQ;
+
+    /**
+     * 用户标记2NOTEQ
+     */
+    @JsonProperty("n_usertag2_noteq")
+    @JSONField(name = "n_usertag2_noteq")
+    @ApiModelProperty(value = "用户标记2NOTEQ", position = 181)
+	private String userTag2NOTEQ;
+
+    /**
+     * 用户标记3EQ
+     */
+    @JsonProperty("n_usertag3_eq")
+    @JSONField(name = "n_usertag3_eq")
+    @ApiModelProperty(value = "用户标记3EQ", position = 190)
+	private String userTag3EQ;
+
+    /**
+     * 用户标记3NOTEQ
+     */
+    @JsonProperty("n_usertag3_noteq")
+    @JSONField(name = "n_usertag3_noteq")
+    @ApiModelProperty(value = "用户标记3NOTEQ", position = 191)
+	private String userTag3NOTEQ;
+
+    /**
+     * 用户标记EQ
+     */
+    @JsonProperty("n_usertag_eq")
+    @JSONField(name = "n_usertag_eq")
+    @ApiModelProperty(value = "用户标记EQ", position = 200)
+	private String userTagEQ;
+
+    /**
+     * 用户标记NOTEQ
+     */
+    @JsonProperty("n_usertag_noteq")
+    @JSONField(name = "n_usertag_noteq")
+    @ApiModelProperty(value = "用户标记NOTEQ", position = 201)
+	private String userTagNOTEQ;
+
+    /**
+     * 用户标记4EQ
+     */
+    @JsonProperty("n_usertag4_eq")
+    @JSONField(name = "n_usertag4_eq")
+    @ApiModelProperty(value = "用户标记4EQ", position = 210)
+	private String userTag4EQ;
+
+    /**
+     * 用户标记4NOTEQ
+     */
+    @JsonProperty("n_usertag4_noteq")
+    @JSONField(name = "n_usertag4_noteq")
+    @ApiModelProperty(value = "用户标记4NOTEQ", position = 211)
+	private String userTag4NOTEQ;
 
 
 }

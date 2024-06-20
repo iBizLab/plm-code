@@ -15,11 +15,13 @@ import cn.ibizlab.plm.core.prodmgmt.filter.ProductSearchContext;
 import cn.ibizlab.plm.core.prodmgmt.domain.Channel;
 import cn.ibizlab.plm.core.prodmgmt.domain.Customer;
 import cn.ibizlab.plm.core.prodmgmt.domain.Idea;
+import cn.ibizlab.plm.core.prodmgmt.domain.IdeaTemplate;
 import cn.ibizlab.plm.core.prodmgmt.domain.ProductPlan;
 import cn.ibizlab.plm.core.prodmgmt.domain.ProductMember;
 import cn.ibizlab.plm.core.prodmgmt.domain.ProductTag;
 import cn.ibizlab.plm.core.prodmgmt.domain.ProductTicketType;
 import cn.ibizlab.plm.core.prodmgmt.domain.Ticket;
+import cn.ibizlab.plm.core.base.domain.Addon;
 import cn.ibizlab.plm.core.base.domain.Baseline;
 import cn.ibizlab.plm.core.base.domain.Favorite;
 import cn.ibizlab.plm.core.base.domain.ReferencesIndex;
@@ -41,89 +43,72 @@ public interface ProductService extends IService<Product> {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    Product get(Product et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default Product get(String key) {
-        return getSelf().get(new Product().setId(key));
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<Product> getByIds(Collection<String> ids) {
-        List<Product> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Product().setId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<Product> getByEntities(List<Product> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    Product getDraft(Product et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(Product et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(Product et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<Product> list);
+    boolean create(List<Product> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * createTemp
+    * 
+    * @param et
+    * @return
+    */
+    default Product createTemp(Product et) {
+        return et;
+    }
+
+    /**
+    * createTempMajor
+    * 
+    * @param et
+    * @return
+    */
+    default Product createTempMajor(Product et) {
+        return et;
+    }
+
+    /**
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(Product et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<Product> list);
+    boolean update(List<Product> list);
 
     /**
-     * 保存
-     * @param et
-     * @return
-     */
-    @Override
-    boolean save(Product et);
+    * updateTemp
+    * 
+    * @param et
+    * @return
+    */
+    default Product updateTemp(Product et) {
+        return et;
+    }
+
     /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<Product> list);
+    * updateTempMajor
+    * 
+    * @param et
+    * @return
+    */
+    default Product updateTempMajor(Product et) {
+        return et;
+    }
 
     /**
      * 主键删除
@@ -133,14 +118,7 @@ public interface ProductService extends IService<Product> {
     default boolean remove(String key) {
         return getSelf().remove(new Product().setId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -150,13 +128,13 @@ public interface ProductService extends IService<Product> {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<Product> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Product().setId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new Product().setId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -164,7 +142,424 @@ public interface ProductService extends IService<Product> {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<Product> entities);
+    boolean remove(List<Product> entities);
+
+    /**
+    * removeTemp
+    * 
+    * @param keys
+    * @return
+    */
+    default List<String> removeTemp(List<String> keys) {
+        return keys;
+    }
+
+    /**
+    * removeTempMajor
+    * 
+    * @param keys
+    * @return
+    */
+    default List<String> removeTempMajor(List<String> keys) {
+        return keys;
+    }
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default Product get(String key) {
+        return getSelf().get(new Product().setId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    Product get(Product et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<Product> get(Collection<String> keys) {
+        List<Product> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new Product().setId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<Product> get(List<Product> entities);
+
+    /**
+    * getTemp
+    * 
+    * @param key
+    * @return
+    */
+    default Product getTemp(String key) {
+        return null;
+    }
+
+    /**
+    * getTempMajor
+    * 
+    * @param key
+    * @return
+    */
+    default Product getTempMajor(String key) {
+        return null;
+    }
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    Product getDraft(Product et);
+
+    /**
+    * getDraftTemp
+    * 
+    * @param et
+    * @return
+    */
+    default Product getDraftTemp(Product et) {
+        return et;
+    }
+
+    /**
+    * getDraftTempMajor
+    * 
+    * @param et
+    * @return
+    */
+    default Product getDraftTempMajor(Product et) {
+        return et;
+    }
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(Product et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(Product et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<Product> list);
+
+    /**
+    * activate
+    * 
+    * @param et
+    * @return
+    */
+    default Product activate(Product et) {
+        return et;
+    }
+
+    /**
+    * archive
+    * 
+    * @param et
+    * @return
+    */
+    default Product archive(Product et) {
+        return et;
+    }
+
+    /**
+    * changeAdminRole
+    * 
+    * @param et
+    * @return
+    */
+    default Product changeAdminRole(Product et) {
+        return et;
+    }
+
+    /**
+    * delete
+    * 
+    * @param et
+    * @return
+    */
+    default Product delete(Product et) {
+        return et;
+    }
+
+    /**
+    * favorite
+    * 
+    * @param et
+    * @return
+    */
+    default Product favorite(Product et) {
+        return et;
+    }
+
+    /**
+    * nothing
+    * 
+    * @param et
+    * @return
+    */
+    default Product nothing(Product et) {
+        return et;
+    }
+
+    /**
+    * otherReSpace
+    * 
+    * @param et
+    * @return
+    */
+    default Product otherReSpace(Product et) {
+        return et;
+    }
+
+    /**
+    * productCounters
+    * 
+    * @param et
+    * @return
+    */
+    default Product productCounters(Product et) {
+        return et;
+    }
+
+    /**
+    * productIndexAddonCounter
+    * 
+    * @param et
+    * @return
+    */
+    default Product productIndexAddonCounter(Product et) {
+        return et;
+    }
+
+    /**
+    * productMove
+    * 
+    * @param et
+    * @return
+    */
+    default Product productMove(Product et) {
+        return et;
+    }
+
+    /**
+    * productReadonlyRecognize
+    * 
+    * @param et
+    * @return
+    */
+    default Product productReadonlyRecognize(Product et) {
+        return et;
+    }
+
+    /**
+    * recover
+    * 
+    * @param et
+    * @return
+    */
+    default Product recover(Product et) {
+        return et;
+    }
+
+    /**
+    * unFavorite
+    * 
+    * @param et
+    * @return
+    */
+    default Product unFavorite(Product et) {
+        return et;
+    }
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<Product> fetchDefault(ProductSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<Product> listDefault(ProductSearchContext context);
+
+    /**
+    * fetchAdmin
+    * 
+    * @param context
+    * @return
+    */
+    Page<Product> fetchAdmin(ProductSearchContext context);
+
+    /**
+    * listAdmin
+    * 
+    * @param context
+    * @return
+    */
+    List<Product> listAdmin(ProductSearchContext context);
+
+    /**
+    * fetchArchived
+    * 
+    * @param context
+    * @return
+    */
+    Page<Product> fetchArchived(ProductSearchContext context);
+
+    /**
+    * listArchived
+    * 
+    * @param context
+    * @return
+    */
+    List<Product> listArchived(ProductSearchContext context);
+
+    /**
+    * fetchDeleted
+    * 
+    * @param context
+    * @return
+    */
+    Page<Product> fetchDeleted(ProductSearchContext context);
+
+    /**
+    * listDeleted
+    * 
+    * @param context
+    * @return
+    */
+    List<Product> listDeleted(ProductSearchContext context);
+
+    /**
+    * fetchFavorite
+    * 
+    * @param context
+    * @return
+    */
+    Page<Product> fetchFavorite(ProductSearchContext context);
+
+    /**
+    * listFavorite
+    * 
+    * @param context
+    * @return
+    */
+    List<Product> listFavorite(ProductSearchContext context);
+
+    /**
+    * fetchMain
+    * 
+    * @param context
+    * @return
+    */
+    Page<Product> fetchMain(ProductSearchContext context);
+
+    /**
+    * listMain
+    * 
+    * @param context
+    * @return
+    */
+    List<Product> listMain(ProductSearchContext context);
+
+    /**
+    * fetchNormal
+    * 
+    * @param context
+    * @return
+    */
+    Page<Product> fetchNormal(ProductSearchContext context);
+
+    /**
+    * listNormal
+    * 
+    * @param context
+    * @return
+    */
+    List<Product> listNormal(ProductSearchContext context);
+
+    /**
+    * fetchQuickUser
+    * 
+    * @param context
+    * @return
+    */
+    Page<Product> fetchQuickUser(ProductSearchContext context);
+
+    /**
+    * listQuickUser
+    * 
+    * @param context
+    * @return
+    */
+    List<Product> listQuickUser(ProductSearchContext context);
+
+    /**
+    * fetchReader
+    * 
+    * @param context
+    * @return
+    */
+    Page<Product> fetchReader(ProductSearchContext context);
+
+    /**
+    * listReader
+    * 
+    * @param context
+    * @return
+    */
+    List<Product> listReader(ProductSearchContext context);
+
+    /**
+    * fetchUser
+    * 
+    * @param context
+    * @return
+    */
+    Page<Product> fetchUser(ProductSearchContext context);
+
+    /**
+    * listUser
+    * 
+    * @param context
+    * @return
+    */
+    List<Product> listUser(ProductSearchContext context);
+
+    default List<ProductMember> getMembers(Product et) {
+        return new ArrayList<>();
+    }
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<Product> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -181,307 +576,7 @@ public interface ProductService extends IService<Product> {
         }
         return rt;
     }
-
-    /**
-     * CreateTemp
-     * 
-     * @param dto
-     * @return
-     */
-    default Product createTemp(Product dto) {
-        return dto;
-    }
-
-    /**
-     * CreateTempMajor
-     * 
-     * @param dto
-     * @return
-     */
-    default Product createTempMajor(Product dto) {
-        return dto;
-    }
-
-    /**
-     * UpdateTemp
-     * 
-     * @param dto
-     * @return
-     */
-    default Product updateTemp(Product dto) {
-        return dto;
-    }
-
-    /**
-     * UpdateTempMajor
-     * 
-     * @param dto
-     * @return
-     */
-    default Product updateTempMajor(Product dto) {
-        return dto;
-    }
-
-    /**
-     * RemoveTemp
-     * 
-     * @param keys
-     * @return
-     */
-    default List<String> removeTemp(List<String> keys) {
-        return keys;
-    }
-
-    /**
-     * RemoveTempMajor
-     * 
-     * @param keys
-     * @return
-     */
-    default List<String> removeTempMajor(List<String> keys) {
-        return keys;
-    }
-
-    /**
-     * GetTemp
-     * 
-     * @param key
-     * @return
-     */
-    default Product getTemp(String key) {
-        return null;
-    }
-
-    /**
-     * GetTempMajor
-     * 
-     * @param key
-     * @return
-     */
-    default Product getTempMajor(String key) {
-        return null;
-    }
-
-    /**
-     * GetDraftTemp
-     * 
-     * @param dto
-     * @return
-     */
-    default Product getDraftTemp(Product dto) {
-        return dto;
-    }
-
-    /**
-     * GetDraftTempMajor
-     * 
-     * @param dto
-     * @return
-     */
-    default Product getDraftTempMajor(Product dto) {
-        return dto;
-    }
-
-    /**
-     * activate
-     * 
-     * @param dto
-     * @return
-     */
-    default Product activate(Product dto) {
-        return dto;
-    }
-
-    /**
-     * archive
-     * 
-     * @param dto
-     * @return
-     */
-    default Product archive(Product dto) {
-        return dto;
-    }
-
-    /**
-     * delete
-     * 
-     * @param dto
-     * @return
-     */
-    default Product delete(Product dto) {
-        return dto;
-    }
-
-    /**
-     * favorite
-     * 
-     * @param dto
-     * @return
-     */
-    default Product favorite(Product dto) {
-        return dto;
-    }
-
-    /**
-     * other_re_space
-     * 
-     * @param dto
-     * @return
-     */
-    default Product otherReSpace(Product dto) {
-        return dto;
-    }
-
-    /**
-     * product_counters
-     * 
-     * @param dto
-     * @return
-     */
-    default Product productCounters(Product dto) {
-        return dto;
-    }
-
-    /**
-     * recover
-     * 
-     * @param dto
-     * @return
-     */
-    default Product recover(Product dto) {
-        return dto;
-    }
-
-    /**
-     * un_favorite
-     * 
-     * @param dto
-     * @return
-     */
-    default Product unFavorite(Product dto) {
-        return dto;
-    }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<Product> searchDefault(ProductSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<Product> listDefault(ProductSearchContext context);
-
-    /**
-     * searchadmin
-     * 
-     * @param context
-     * @return
-     */
-    Page<Product> searchAdmin(ProductSearchContext context);
-    /**
-     * listadmin
-     * 
-     * @param context
-     * @return
-     */
-    List<Product> listAdmin(ProductSearchContext context);
-
-    /**
-     * searcharchived
-     * 
-     * @param context
-     * @return
-     */
-    Page<Product> searchArchived(ProductSearchContext context);
-    /**
-     * listarchived
-     * 
-     * @param context
-     * @return
-     */
-    List<Product> listArchived(ProductSearchContext context);
-
-    /**
-     * searchdeleted
-     * 
-     * @param context
-     * @return
-     */
-    Page<Product> searchDeleted(ProductSearchContext context);
-    /**
-     * listdeleted
-     * 
-     * @param context
-     * @return
-     */
-    List<Product> listDeleted(ProductSearchContext context);
-
-    /**
-     * searchfavorite
-     * 
-     * @param context
-     * @return
-     */
-    Page<Product> searchFavorite(ProductSearchContext context);
-    /**
-     * listfavorite
-     * 
-     * @param context
-     * @return
-     */
-    List<Product> listFavorite(ProductSearchContext context);
-
-    /**
-     * searchnormal
-     * 
-     * @param context
-     * @return
-     */
-    Page<Product> searchNormal(ProductSearchContext context);
-    /**
-     * listnormal
-     * 
-     * @param context
-     * @return
-     */
-    List<Product> listNormal(ProductSearchContext context);
-
-    /**
-     * searchreader
-     * 
-     * @param context
-     * @return
-     */
-    Page<Product> searchReader(ProductSearchContext context);
-    /**
-     * listreader
-     * 
-     * @param context
-     * @return
-     */
-    List<Product> listReader(ProductSearchContext context);
-
-    /**
-     * searchuser
-     * 
-     * @param context
-     * @return
-     */
-    Page<Product> searchUser(ProductSearchContext context);
-    /**
-     * listuser
-     * 
-     * @param context
-     * @return
-     */
-    List<Product> listUser(ProductSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -489,6 +584,7 @@ public interface ProductService extends IService<Product> {
     default Product getEntity() {
         return new Product();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -496,25 +592,13 @@ public interface ProductService extends IService<Product> {
     default ProductSearchContext getSearchContext() {
         return new ProductSearchContext();
     }
-    default List<ProductMember> getMembers(Product et) {
-        return new ArrayList<>();
-    }
 
 
     /**
-     * 自定义查询SQL
-     * @param sql  select * from table where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
-    List<JSONObject> select(String sql, Map<String,Object> param);
-
-    /**
-     * 自定义SQL
-     * @param sql  update table  set name ='test' where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
+    * 自定义SQL
+    * @param sql  update table  set name ='test' where id =#{et.param}
+    * @param param 参数列表  param.put("param","1");
+    * @return
+    */
     boolean execute(String sql, Map<String,Object> param);
-
 }

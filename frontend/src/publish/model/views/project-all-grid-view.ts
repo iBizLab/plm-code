@@ -73,10 +73,11 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '项目数据重定向视图',
-      refAppViewId: 'plmweb.project_redirect_view',
-      name: 'EDITDATA',
-      id: 'editdata',
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '项目快速建立',
+      refAppViewId: 'plmweb.project_quick_create_view',
+      name: 'OPENDATA',
+      id: 'opendata',
     },
     {
       realOpenMode: 'POPUPMODAL',
@@ -86,11 +87,10 @@ export default {
       id: 'newdata',
     },
     {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '项目快速建立',
-      refAppViewId: 'plmweb.project_quick_create_view',
-      name: 'OPENDATA',
-      id: 'opendata',
+      realTitle: '项目数据重定向视图',
+      refAppViewId: 'plmweb.project_redirect_view',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
   ],
   controls: [
@@ -132,8 +132,6 @@ export default {
       columnEnableFilter: 2,
       columnEnableLink: 2,
       groupMode: 'NONE',
-      minorSortDir: 'DESC',
-      minorSortAppDEFieldId: 'update_time',
       degridColumns: [
         {
           clconvertMode: 'NONE',
@@ -434,7 +432,7 @@ export default {
       enablePagingBar: true,
       singleSelect: true,
       fetchControlAction: {
-        appDEMethodId: 'fetch_normal',
+        appDEMethodId: 'fetch_main',
         appDataEntityId: 'plmweb.project',
         id: 'fetch',
       },

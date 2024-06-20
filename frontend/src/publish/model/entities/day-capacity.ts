@@ -54,6 +54,17 @@ export default {
       id: 'work_item_count',
     },
     {
+      codeName: 'id',
+      lnlanguageRes: {
+        lanResTag: 'DEF.LNAME.ID',
+      },
+      logicName: '标识',
+      stdDataType: 25,
+      stringLength: 100,
+      name: 'ID',
+      id: 'id',
+    },
+    {
       codeName: 'name',
       lnlanguageRes: {
         lanResTag: 'DEF.LNAME.NAME',
@@ -64,17 +75,6 @@ export default {
       enableQuickSearch: true,
       name: 'NAME',
       id: 'name',
-    },
-    {
-      codeName: 'id',
-      lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.ID',
-      },
-      logicName: '标识',
-      stdDataType: 25,
-      stringLength: 100,
-      name: 'ID',
-      id: 'id',
     },
   ],
   appDEMethodDTOs: [

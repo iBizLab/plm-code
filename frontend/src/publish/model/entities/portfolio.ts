@@ -130,17 +130,6 @@ export default {
       id: 'assignee_id',
     },
     {
-      codeName: 'create_man',
-      lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.CREATE_MAN',
-      },
-      logicName: '建立人',
-      stdDataType: 25,
-      stringLength: 100,
-      name: 'CREATE_MAN',
-      id: 'create_man',
-    },
-    {
       codeName: 'id',
       lnlanguageRes: {
         lanResTag: 'DEF.LNAME.ID',
@@ -162,6 +151,17 @@ export default {
       enableQuickSearch: true,
       name: 'NAME',
       id: 'name',
+    },
+    {
+      codeName: 'create_man',
+      lnlanguageRes: {
+        lanResTag: 'DEF.LNAME.CREATE_MAN',
+      },
+      logicName: '建立人',
+      stdDataType: 25,
+      stringLength: 100,
+      name: 'CREATE_MAN',
+      id: 'create_man',
     },
     {
       codeName: 'create_time',

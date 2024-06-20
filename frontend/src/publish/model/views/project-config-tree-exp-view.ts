@@ -44,9 +44,10 @@ export default {
   ],
   controls: [
     {
-      title: '项目管理',
+      title: '项目',
       xdataControlName: 'treeexpbar_tree',
       enableCounter: true,
+      showTitleBar: true,
       autoLoad: true,
       showBusyIndicator: true,
       appViewRefs: [
@@ -188,13 +189,6 @@ export default {
               parentValueLevel: 1,
               searchMode: 3,
               id: '配置 - 发布配置',
-            },
-            {
-              childDETreeNodeId: 'node_14',
-              parentDETreeNodeId: 'node_10',
-              parentValueLevel: 1,
-              searchMode: 3,
-              id: '通用 - 工时设置',
             },
           ],
           detreeNodes: [
@@ -390,6 +384,40 @@ export default {
           modelType: 'PSDETREEVIEW',
           name: 'treeexpbar_tree',
           id: 'plmweb.project.tree_exp_view_config_tree_view',
+        },
+        {
+          detoolbarItems: [
+            {
+              actionLevel: 100,
+              buttonStyle: 'STYLE2',
+              noPrivDisplayMode: 2,
+              uiactionId: 'back@management',
+              uiactionTarget: 'NONE',
+              valid: true,
+              caption: '返回',
+              itemType: 'DEUIACTION',
+              sysImage: {
+                cssClass: 'fa fa-chevron-left',
+                glyph: 'xf053@FontAwesome',
+              },
+              tooltip: '返回',
+              showCaption: true,
+              showIcon: true,
+              id: 'deuiaction1',
+            },
+          ],
+          toolbarStyle: 'USER',
+          codeName: 'config_tree_exp_view_treeexpbar_toolbar',
+          controlType: 'TOOLBAR',
+          logicName: '工具栏模板（只有一个返回按钮）',
+          appDataEntityId: 'plmweb.project',
+          controlParam: {
+            id: 'treeexpbar_toolbar',
+          },
+          modelId: 'A18F0469-F5DB-4EF1-BB2F-832EA9AE889C',
+          modelType: 'PSDETOOLBAR',
+          name: 'treeexpbar_toolbar',
+          id: 'config_tree_exp_view_treeexpbar_toolbar',
         },
       ],
       codeName: 'config_tree_exp_view_treeexpbar',

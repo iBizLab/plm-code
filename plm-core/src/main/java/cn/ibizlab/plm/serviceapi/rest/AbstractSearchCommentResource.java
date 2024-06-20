@@ -63,7 +63,7 @@ public abstract class AbstractSearchCommentResource {
     public ResponseEntity<List<SearchCommentDTO>> fetchDefault
             (@Validated @RequestBody SearchCommentFilterDTO dto) {
         SearchCommentSearchContext context = searchCommentFilterDtoMapping.toDomain(dto);
-        Page<SearchComment> domains = searchCommentService.searchDefault(context) ;
+        Page<SearchComment> domains = searchCommentService.fetchDefault(context) ;
         List<SearchCommentDTO> list = searchCommentDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -85,7 +85,7 @@ public abstract class AbstractSearchCommentResource {
     public ResponseEntity<List<SearchCommentDTO>> fetchRelation
             (@Validated @RequestBody SearchCommentFilterDTO dto) {
         SearchCommentSearchContext context = searchCommentFilterDtoMapping.toDomain(dto);
-        Page<SearchComment> domains = searchCommentService.searchRelation(context) ;
+        Page<SearchComment> domains = searchCommentService.fetchRelation(context) ;
         List<SearchCommentDTO> list = searchCommentDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

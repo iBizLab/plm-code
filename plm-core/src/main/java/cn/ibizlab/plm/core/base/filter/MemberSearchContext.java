@@ -62,6 +62,14 @@ public class MemberSearchContext extends QueryWrapperContext<Member> {
     private String userIdEQ;
 
     /**
+     * 登录名NOTIN
+     */
+    @JsonProperty("n_user_id_notin")
+    @JSONField(name = "n_user_id_notin")
+    @ApiModelProperty("登录名NOTIN")
+    private String userIdNOTIN;
+
+    /**
      * 角色EQ
      */
     @JsonProperty("n_role_id_eq")
@@ -90,7 +98,11 @@ public class MemberSearchContext extends QueryWrapperContext<Member> {
         super.setContextParentKey(contextParentKey);
         if(Entities.USER.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("user_id",contextParentKey);
+        if(Entities.COMMON_FLOW.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("id",contextParentKey);
         if(Entities.GROUP.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("owner_id",contextParentKey);
+        if(Entities.PROJECT.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("owner_id",contextParentKey);
     }
 

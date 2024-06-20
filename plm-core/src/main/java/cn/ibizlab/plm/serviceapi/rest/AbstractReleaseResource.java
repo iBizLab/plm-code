@@ -335,7 +335,31 @@ public abstract class AbstractReleaseResource {
             (@PathVariable("projectId") String projectId, @Validated @RequestBody ReleaseFilterDTO dto) {
         dto.setProjectIdEQ(projectId);
         ReleaseSearchContext context = releaseFilterDtoMapping.toDomain(dto);
-        Page<Release> domains = releaseService.searchDefault(context) ;
+        Page<Release> domains = releaseService.fetchDefault(context) ;
+        List<ReleaseDTO> list = releaseDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_not_finish 项目发布
+    * 
+    *
+    * @param projectId projectId
+    * @param dto dto
+    * @return ResponseEntity<List<ReleaseDTO>>
+    */
+    @ApiOperation(value = "查询fetch_not_finish", tags = {"项目发布" },  notes = "Release-fetch_not_finish ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Release-fetch_not_finish-all') or hasPermission('project',#projectId,#dto,'ibizplm-Release-fetch_not_finish')")
+    @PostMapping("projects/{projectId}/releases/fetch_not_finish")
+    public ResponseEntity<List<ReleaseDTO>> fetchNotFinishByProjectId
+            (@PathVariable("projectId") String projectId, @Validated @RequestBody ReleaseFilterDTO dto) {
+        dto.setProjectIdEQ(projectId);
+        ReleaseSearchContext context = releaseFilterDtoMapping.toDomain(dto);
+        Page<Release> domains = releaseService.fetchNotFinish(context) ;
         List<ReleaseDTO> list = releaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

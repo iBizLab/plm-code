@@ -432,6 +432,17 @@ export default {
       controlType: 'GRID',
       logicName: '分类下空间',
       appDataEntityId: 'plmweb.space',
+      controlLogics: [
+        {
+          eventNames: 'onLoadSuccess',
+          logicTag: 'grid',
+          logicType: 'APPDEUILOGIC',
+          appDEUILogicId: 'calc_column_action_state',
+          appDataEntityId: 'plmweb.space',
+          triggerType: 'CTRLEVENT',
+          id: 'calc_button_state',
+        },
+      ],
       controlParam: {
         id: 'grid',
       },

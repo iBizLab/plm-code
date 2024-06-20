@@ -62,6 +62,30 @@ public interface ReviewContentMapper extends BaseMapper<ReviewContent> {
     List<ReviewContent> listAll(@Param("ctx") ReviewContentSearchContext context, @Param("ew") Wrapper<ReviewContent> wrapper);
 
     /**
+    * 根据principalId查询
+    *
+    * @param principalIds
+    * @return
+    */
+    List<ReviewContent> findByPrincipalId(@Param("principalIds") List<String> principalIds);
+
+    /**
+    * 根据targetVersionId查询
+    *
+    * @param targetVersionIds
+    * @return
+    */
+    List<ReviewContent> findByTargetVersionId(@Param("targetVersionIds") List<String> targetVersionIds);
+
+    /**
+    * 根据targetId查询
+    *
+    * @param targetIds
+    * @return
+    */
+    List<ReviewContent> findByTargetId(@Param("targetIds") List<String> targetIds);
+
+    /**
      * 主键查询
      *
      * @param id
@@ -125,29 +149,4 @@ public interface ReviewContentMapper extends BaseMapper<ReviewContent> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据principalId查询
-     *
-     * @param principalIds
-     * @return
-     */
-    List<ReviewContent> findByPrincipalId(@Param("principalIds") List<String> principalIds);
-
-    /**
-     * 根据targetVersionId查询
-     *
-     * @param targetVersionIds
-     * @return
-     */
-    List<ReviewContent> findByTargetVersionId(@Param("targetVersionIds") List<String> targetVersionIds);
-
-    /**
-     * 根据targetId查询
-     *
-     * @param targetIds
-     * @return
-     */
-    List<ReviewContent> findByTargetId(@Param("targetIds") List<String> targetIds);
-
 }

@@ -31,89 +31,32 @@ public interface RecentService extends IService<Recent> {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    Recent get(Recent et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default Recent get(String key) {
-        return getSelf().get(new Recent().setId(key));
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<Recent> getByIds(Collection<String> ids) {
-        List<Recent> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Recent().setId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<Recent> getByEntities(List<Recent> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    Recent getDraft(Recent et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(Recent et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(Recent et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<Recent> list);
+    boolean create(List<Recent> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(Recent et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<Recent> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    @Override
-    boolean save(Recent et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<Recent> list);
+    boolean update(List<Recent> list);
 
     /**
      * 主键删除
@@ -123,14 +66,7 @@ public interface RecentService extends IService<Recent> {
     default boolean remove(String key) {
         return getSelf().remove(new Recent().setId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -140,13 +76,13 @@ public interface RecentService extends IService<Recent> {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<Recent> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Recent().setId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new Recent().setId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -154,7 +90,398 @@ public interface RecentService extends IService<Recent> {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<Recent> entities);
+    boolean remove(List<Recent> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default Recent get(String key) {
+        return getSelf().get(new Recent().setId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    Recent get(Recent et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<Recent> get(Collection<String> keys) {
+        List<Recent> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new Recent().setId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<Recent> get(List<Recent> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    Recent getDraft(Recent et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(Recent et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(Recent et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<Recent> list);
+
+    /**
+    * myChargeEntry
+    * 
+    * @param et
+    * @return
+    */
+    default Recent myChargeEntry(Recent et) {
+        return et;
+    }
+
+    /**
+    * myCreatedEntry
+    * 
+    * @param et
+    * @return
+    */
+    default Recent myCreatedEntry(Recent et) {
+        return et;
+    }
+
+    /**
+    * recentClean
+    * 
+    * @param et
+    * @return
+    */
+    default Recent recentClean(Recent et) {
+        return et;
+    }
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<Recent> fetchDefault(RecentSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<Recent> listDefault(RecentSearchContext context);
+
+    /**
+    * fetchRecentAccess
+    * 
+    * @param context
+    * @return
+    */
+    Page<Recent> fetchRecentAccess(RecentSearchContext context);
+
+    /**
+    * listRecentAccess
+    * 
+    * @param context
+    * @return
+    */
+    List<Recent> listRecentAccess(RecentSearchContext context);
+
+    /**
+    * fetchRecentCurproductTicket
+    * 
+    * @param context
+    * @return
+    */
+    Page<Recent> fetchRecentCurproductTicket(RecentSearchContext context);
+
+    /**
+    * listRecentCurproductTicket
+    * 
+    * @param context
+    * @return
+    */
+    List<Recent> listRecentCurproductTicket(RecentSearchContext context);
+
+    /**
+    * fetchRecentCurprojectChildWorkItem
+    * 
+    * @param context
+    * @return
+    */
+    Page<Recent> fetchRecentCurprojectChildWorkItem(RecentSearchContext context);
+
+    /**
+    * listRecentCurprojectChildWorkItem
+    * 
+    * @param context
+    * @return
+    */
+    List<Recent> listRecentCurprojectChildWorkItem(RecentSearchContext context);
+
+    /**
+    * fetchRecentCurprojectWorkItem
+    * 
+    * @param context
+    * @return
+    */
+    Page<Recent> fetchRecentCurprojectWorkItem(RecentSearchContext context);
+
+    /**
+    * listRecentCurprojectWorkItem
+    * 
+    * @param context
+    * @return
+    */
+    List<Recent> listRecentCurprojectWorkItem(RecentSearchContext context);
+
+    /**
+    * fetchRecentIdea
+    * 
+    * @param context
+    * @return
+    */
+    Page<Recent> fetchRecentIdea(RecentSearchContext context);
+
+    /**
+    * listRecentIdea
+    * 
+    * @param context
+    * @return
+    */
+    List<Recent> listRecentIdea(RecentSearchContext context);
+
+    /**
+    * fetchRecentPage
+    * 
+    * @param context
+    * @return
+    */
+    Page<Recent> fetchRecentPage(RecentSearchContext context);
+
+    /**
+    * listRecentPage
+    * 
+    * @param context
+    * @return
+    */
+    List<Recent> listRecentPage(RecentSearchContext context);
+
+    /**
+    * fetchRecentProject
+    * 
+    * @param context
+    * @return
+    */
+    Page<Recent> fetchRecentProject(RecentSearchContext context);
+
+    /**
+    * listRecentProject
+    * 
+    * @param context
+    * @return
+    */
+    List<Recent> listRecentProject(RecentSearchContext context);
+
+    /**
+    * fetchRecentTestCase
+    * 
+    * @param context
+    * @return
+    */
+    Page<Recent> fetchRecentTestCase(RecentSearchContext context);
+
+    /**
+    * listRecentTestCase
+    * 
+    * @param context
+    * @return
+    */
+    List<Recent> listRecentTestCase(RecentSearchContext context);
+
+    /**
+    * fetchRecentTestCaseIndex
+    * 
+    * @param context
+    * @return
+    */
+    Page<Recent> fetchRecentTestCaseIndex(RecentSearchContext context);
+
+    /**
+    * listRecentTestCaseIndex
+    * 
+    * @param context
+    * @return
+    */
+    List<Recent> listRecentTestCaseIndex(RecentSearchContext context);
+
+    /**
+    * fetchRecentTicket
+    * 
+    * @param context
+    * @return
+    */
+    Page<Recent> fetchRecentTicket(RecentSearchContext context);
+
+    /**
+    * listRecentTicket
+    * 
+    * @param context
+    * @return
+    */
+    List<Recent> listRecentTicket(RecentSearchContext context);
+
+    /**
+    * fetchRecentUse
+    * 
+    * @param context
+    * @return
+    */
+    Page<Recent> fetchRecentUse(RecentSearchContext context);
+
+    /**
+    * listRecentUse
+    * 
+    * @param context
+    * @return
+    */
+    List<Recent> listRecentUse(RecentSearchContext context);
+
+    /**
+    * fetchRecentWorkItem
+    * 
+    * @param context
+    * @return
+    */
+    Page<Recent> fetchRecentWorkItem(RecentSearchContext context);
+
+    /**
+    * listRecentWorkItem
+    * 
+    * @param context
+    * @return
+    */
+    List<Recent> listRecentWorkItem(RecentSearchContext context);
+
+    /**
+    * fetchRecentWorkItemAndNobug
+    * 
+    * @param context
+    * @return
+    */
+    Page<Recent> fetchRecentWorkItemAndNobug(RecentSearchContext context);
+
+    /**
+    * listRecentWorkItemAndNobug
+    * 
+    * @param context
+    * @return
+    */
+    List<Recent> listRecentWorkItemAndNobug(RecentSearchContext context);
+
+    /**
+    * fetchRecentWorkItemBug
+    * 
+    * @param context
+    * @return
+    */
+    Page<Recent> fetchRecentWorkItemBug(RecentSearchContext context);
+
+    /**
+    * listRecentWorkItemBug
+    * 
+    * @param context
+    * @return
+    */
+    List<Recent> listRecentWorkItemBug(RecentSearchContext context);
+
+    /**
+    * fetchUser
+    * 
+    * @param context
+    * @return
+    */
+    Page<Recent> fetchUser(RecentSearchContext context);
+
+    /**
+    * listUser
+    * 
+    * @param context
+    * @return
+    */
+    List<Recent> listUser(RecentSearchContext context);
+
+    /**
+    * findByOwnerId
+    * @param ownerIds
+    * @return
+    */
+    List<Recent> findByOwnerId(List<String> ownerIds);
+    default List<Recent> findByOwnerId(String ownerId){
+        return findByOwnerId(Arrays.asList(ownerId));
+    }
+
+    /**
+    * removeByOwnerId
+    * @param ownerId
+    * @return
+    */
+    boolean removeByOwnerId(String ownerId);
+
+    /**
+    * resetByOwnerId
+    * @param ownerId
+    * @return
+    */
+    boolean resetByOwnerId(String ownerId);
+
+    /**
+    * saveByOwnerId
+    * @param ownerId
+    * @param list
+    * @return
+    */
+    default boolean saveByOwnerId(String ownerId, List<Recent> list){
+        return getSelf().saveByDercustomRecentWorkItem(new WorkItem().setId(ownerId),list);
+    }
+
+    /**
+    * saveByDercustomRecentWorkItem
+    * @param workItem
+    * @param list
+    * @return
+    */
+    boolean saveByDercustomRecentWorkItem(WorkItem workItem, List<Recent> list);
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<Recent> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -171,277 +498,7 @@ public interface RecentService extends IService<Recent> {
         }
         return rt;
     }
-
-    /**
-     * my_charge_entry
-     * 
-     * @param dto
-     * @return
-     */
-    default Recent myChargeEntry(Recent dto) {
-        return dto;
-    }
-
-    /**
-     * my_created_entry
-     * 
-     * @param dto
-     * @return
-     */
-    default Recent myCreatedEntry(Recent dto) {
-        return dto;
-    }
-
-    /**
-     * recent_clean
-     * 每天定时清理最近访问数据，每人每个访问类型数据只保留100条
-     * @param dto
-     * @return
-     */
-    default Recent recentClean(Recent dto) {
-        return dto;
-    }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<Recent> searchDefault(RecentSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<Recent> listDefault(RecentSearchContext context);
-
-    /**
-     * searchrecent_access
-     * 
-     * @param context
-     * @return
-     */
-    Page<Recent> searchRecentAccess(RecentSearchContext context);
-    /**
-     * listrecent_access
-     * 
-     * @param context
-     * @return
-     */
-    List<Recent> listRecentAccess(RecentSearchContext context);
-
-    /**
-     * searchrecent_curproduct_ticket
-     * 
-     * @param context
-     * @return
-     */
-    Page<Recent> searchRecentCurproductTicket(RecentSearchContext context);
-    /**
-     * listrecent_curproduct_ticket
-     * 
-     * @param context
-     * @return
-     */
-    List<Recent> listRecentCurproductTicket(RecentSearchContext context);
-
-    /**
-     * searchrecent_curproject_child_work_item
-     * 
-     * @param context
-     * @return
-     */
-    Page<Recent> searchRecentCurprojectChildWorkItem(RecentSearchContext context);
-    /**
-     * listrecent_curproject_child_work_item
-     * 
-     * @param context
-     * @return
-     */
-    List<Recent> listRecentCurprojectChildWorkItem(RecentSearchContext context);
-
-    /**
-     * searchrecent_curproject_work_item
-     * 
-     * @param context
-     * @return
-     */
-    Page<Recent> searchRecentCurprojectWorkItem(RecentSearchContext context);
-    /**
-     * listrecent_curproject_work_item
-     * 
-     * @param context
-     * @return
-     */
-    List<Recent> listRecentCurprojectWorkItem(RecentSearchContext context);
-
-    /**
-     * searchrecent_idea
-     * 
-     * @param context
-     * @return
-     */
-    Page<Recent> searchRecentIdea(RecentSearchContext context);
-    /**
-     * listrecent_idea
-     * 
-     * @param context
-     * @return
-     */
-    List<Recent> listRecentIdea(RecentSearchContext context);
-
-    /**
-     * searchrecent_page
-     * 
-     * @param context
-     * @return
-     */
-    Page<Recent> searchRecentPage(RecentSearchContext context);
-    /**
-     * listrecent_page
-     * 
-     * @param context
-     * @return
-     */
-    List<Recent> listRecentPage(RecentSearchContext context);
-
-    /**
-     * searchrecent_project
-     * 
-     * @param context
-     * @return
-     */
-    Page<Recent> searchRecentProject(RecentSearchContext context);
-    /**
-     * listrecent_project
-     * 
-     * @param context
-     * @return
-     */
-    List<Recent> listRecentProject(RecentSearchContext context);
-
-    /**
-     * searchrecent_test_case
-     * 
-     * @param context
-     * @return
-     */
-    Page<Recent> searchRecentTestCase(RecentSearchContext context);
-    /**
-     * listrecent_test_case
-     * 
-     * @param context
-     * @return
-     */
-    List<Recent> listRecentTestCase(RecentSearchContext context);
-
-    /**
-     * searchrecent_test_case_index
-     * 
-     * @param context
-     * @return
-     */
-    Page<Recent> searchRecentTestCaseIndex(RecentSearchContext context);
-    /**
-     * listrecent_test_case_index
-     * 
-     * @param context
-     * @return
-     */
-    List<Recent> listRecentTestCaseIndex(RecentSearchContext context);
-
-    /**
-     * searchrecent_ticket
-     * 
-     * @param context
-     * @return
-     */
-    Page<Recent> searchRecentTicket(RecentSearchContext context);
-    /**
-     * listrecent_ticket
-     * 
-     * @param context
-     * @return
-     */
-    List<Recent> listRecentTicket(RecentSearchContext context);
-
-    /**
-     * searchrecent_use
-     * 
-     * @param context
-     * @return
-     */
-    Page<Recent> searchRecentUse(RecentSearchContext context);
-    /**
-     * listrecent_use
-     * 
-     * @param context
-     * @return
-     */
-    List<Recent> listRecentUse(RecentSearchContext context);
-
-    /**
-     * searchrecent_work_item
-     * 
-     * @param context
-     * @return
-     */
-    Page<Recent> searchRecentWorkItem(RecentSearchContext context);
-    /**
-     * listrecent_work_item
-     * 
-     * @param context
-     * @return
-     */
-    List<Recent> listRecentWorkItem(RecentSearchContext context);
-
-    /**
-     * searchrecent_work_item_and_nobug
-     * 
-     * @param context
-     * @return
-     */
-    Page<Recent> searchRecentWorkItemAndNobug(RecentSearchContext context);
-    /**
-     * listrecent_work_item_and_nobug
-     * 
-     * @param context
-     * @return
-     */
-    List<Recent> listRecentWorkItemAndNobug(RecentSearchContext context);
-
-    /**
-     * searchrecent_work_item_bug
-     * 
-     * @param context
-     * @return
-     */
-    Page<Recent> searchRecentWorkItemBug(RecentSearchContext context);
-    /**
-     * listrecent_work_item_bug
-     * 
-     * @param context
-     * @return
-     */
-    List<Recent> listRecentWorkItemBug(RecentSearchContext context);
-
-    /**
-     * searchuser
-     * 
-     * @param context
-     * @return
-     */
-    Page<Recent> searchUser(RecentSearchContext context);
-    /**
-     * listuser
-     * 
-     * @param context
-     * @return
-     */
-    List<Recent> listUser(RecentSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -449,6 +506,7 @@ public interface RecentService extends IService<Recent> {
     default Recent getEntity() {
         return new Recent();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -456,59 +514,13 @@ public interface RecentService extends IService<Recent> {
     default RecentSearchContext getSearchContext() {
         return new RecentSearchContext();
     }
+
+
     /**
-     * selectRelByOwnerId
-     * @param ownerIds
-     * @return
-     */
-    List<Recent> findByOwnerId(List<String> ownerIds);
-    default List<Recent> findByOwnerId(String ownerId) {
-        return findByOwnerId(Arrays.asList(ownerId));
-    }
-    /**
-     * removeRelByOwnerId
-     * @param ownerId
-     * @return
-     */
-    boolean removeByOwnerId(String ownerId);
-    /**
-     * resetRelByOwnerId
-     * @param ownerId
-     * @return
-     */
-    boolean resetByOwnerId(String ownerId);
-    /**
-     * saveRelByOwnerId
-     * @param ownerId
-     * @param list
-     * @return
-     */
-    default boolean saveByOwnerId(String ownerId,List<Recent> list) {
-        return getSelf().saveByDercustomRecentWorkItem(new WorkItem().setId(ownerId),list);
-    }
-    /**
-    * saveRelByDercustomRecentWorkItem
-    * @param workItem
-    * @param list
+    * 自定义SQL
+    * @param sql  update table  set name ='test' where id =#{et.param}
+    * @param param 参数列表  param.put("param","1");
     * @return
     */
-    boolean saveByDercustomRecentWorkItem(WorkItem workItem,List<Recent> list);
-
-
-    /**
-     * 自定义查询SQL
-     * @param sql  select * from table where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
-    List<JSONObject> select(String sql, Map<String,Object> param);
-
-    /**
-     * 自定义SQL
-     * @param sql  update table  set name ='test' where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
     boolean execute(String sql, Map<String,Object> param);
-
 }

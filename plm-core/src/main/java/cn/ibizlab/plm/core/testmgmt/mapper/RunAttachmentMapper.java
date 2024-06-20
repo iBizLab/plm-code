@@ -43,6 +43,14 @@ public interface RunAttachmentMapper extends BaseMapper<RunAttachment> {
     List<RunAttachment> listDefault(@Param("ctx") RunAttachmentSearchContext context, @Param("ew") Wrapper<RunAttachment> wrapper);
 
     /**
+    * 根据ownerId查询
+    *
+    * @param ownerIds
+    * @return
+    */
+    List<RunAttachment> findByOwnerId(@Param("ownerIds") List<String> ownerIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -151,13 +159,4 @@ public interface RunAttachmentMapper extends BaseMapper<RunAttachment> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据ownerId查询
-     *
-     * @param ownerIds
-     * @return
-     */
-    List<RunAttachment> findByOwnerId(@Param("ownerIds") List<String> ownerIds);
-
 }

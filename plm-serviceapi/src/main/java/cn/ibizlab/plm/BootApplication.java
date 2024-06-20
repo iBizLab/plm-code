@@ -3,23 +3,22 @@
  */
 package cn.ibizlab.plm;
 
-import cn.ibizlab.util.web.SearchContextHandlerMethodArgumentResolver;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.openfeign.EnableFeignClients;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.scheduling.annotation.EnableAsync;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.boot.SpringApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import java.util.List;
+import cn.ibizlab.util.web.SearchContextHandlerMethodArgumentResolver;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Slf4j
 @EnableDiscoveryClient
@@ -27,9 +26,9 @@ import java.util.List;
 @EnableTransactionManagement
 @EnableFeignClients(basePackages = {"cn.ibizlab.util","cn.ibizlab.plm"})
 @SpringBootApplication(exclude = {
-            com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure.class,
             org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration.class,
             org.springframework.boot.autoconfigure.data.mongo.MongoRepositoriesAutoConfiguration.class,
+            com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure.class
 })
 @ComponentScan(basePackages = {"cn.ibizlab.plm.util.config","cn.ibizlab.util","cn.ibizlab.plm"}
 //        ,excludeFilters = {

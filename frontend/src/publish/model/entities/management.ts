@@ -26,6 +26,17 @@ export default {
   ],
   appDEFields: [
     {
+      codeName: 'id',
+      lnlanguageRes: {
+        lanResTag: 'DEF.LNAME.ID',
+      },
+      logicName: '标识',
+      stdDataType: 25,
+      stringLength: 100,
+      name: 'ID',
+      id: 'id',
+    },
+    {
       codeName: 'name',
       lnlanguageRes: {
         lanResTag: 'DEF.LNAME.NAME',
@@ -36,17 +47,6 @@ export default {
       enableQuickSearch: true,
       name: 'NAME',
       id: 'name',
-    },
-    {
-      codeName: 'id',
-      lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.ID',
-      },
-      logicName: '标识',
-      stdDataType: 25,
-      stringLength: 100,
-      name: 'ID',
-      id: 'id',
     },
     {
       codeName: 'create_man',
@@ -443,6 +443,31 @@ export default {
       dataSetType: 'REMOTE',
       name: 'FILTERUPDATE',
       id: 'filterupdate',
+    },
+  ],
+  appDEUIActions: [
+    {
+      actionLevel: 100,
+      actionTarget: 'NONE',
+      caption: '返回',
+      codeName: 'back',
+      frontProcessType: 'OTHER',
+      fullCodeName: 'management_back',
+      sysImage: {
+        cssClass: 'fa fa-chevron-left',
+        glyph: 'xf053@FontAwesome',
+      },
+      scriptCode:
+        'window.location.hash=`/-/index/-/management_tab_exp_view/srfnav=config/management_setting_view/srfnav=workload/workload_type_setup_grid_view/-`',
+      timeout: 60000,
+      uiactionMode: 'FRONT',
+      uiactionTag: 'back',
+      uiactionType: 'DEUIACTION',
+      showBusyIndicator: true,
+      noPrivDisplayMode: 2,
+      appDataEntityId: 'plmweb.management',
+      name: '返回',
+      id: 'back@management',
     },
   ],
   deopprivs: [

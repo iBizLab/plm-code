@@ -43,6 +43,44 @@ public interface CategoryMapper extends BaseMapper<Category> {
     List<Category> listDefault(@Param("ctx") CategorySearchContext context, @Param("ew") Wrapper<Category> wrapper);
 
     /**
+     * 数据集合check_name分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Category> searchCheckName(IPage<Category> page, @Param("ctx") CategorySearchContext context, @Param("ew") Wrapper<Category> wrapper);
+    
+    /**
+     * 数据集合check_name查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Category> listCheckName(@Param("ctx") CategorySearchContext context, @Param("ew") Wrapper<Category> wrapper);
+
+    /**
+     * 数据集合common_categories分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Category> searchCommonCategories(IPage<Category> page, @Param("ctx") CategorySearchContext context, @Param("ew") Wrapper<Category> wrapper);
+    
+    /**
+     * 数据集合common_categories查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Category> listCommonCategories(@Param("ctx") CategorySearchContext context, @Param("ew") Wrapper<Category> wrapper);
+
+    /**
      * 数据集合no_section分页查询
      * 
      * @param page
@@ -136,6 +174,22 @@ public interface CategoryMapper extends BaseMapper<Category> {
      * @return
      */
     List<Category> listSpaceCategoryTop(@Param("ctx") CategorySearchContext context, @Param("ew") Wrapper<Category> wrapper);
+
+    /**
+    * 根据pid查询
+    *
+    * @param pids
+    * @return
+    */
+    List<Category> findByPid(@Param("pids") List<String> pids);
+
+    /**
+    * 根据sectionId查询
+    *
+    * @param sectionIds
+    * @return
+    */
+    List<Category> findBySectionId(@Param("sectionIds") List<String> sectionIds);
 
     /**
      * 主键查询
@@ -246,21 +300,4 @@ public interface CategoryMapper extends BaseMapper<Category> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据pid查询
-     *
-     * @param pids
-     * @return
-     */
-    List<Category> findByPid(@Param("pids") List<String> pids);
-
-    /**
-     * 根据sectionId查询
-     *
-     * @param sectionIds
-     * @return
-     */
-    List<Category> findBySectionId(@Param("sectionIds") List<String> sectionIds);
-
 }

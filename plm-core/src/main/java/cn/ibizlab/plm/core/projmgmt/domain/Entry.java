@@ -40,141 +40,141 @@ public class Entry extends EntityMP implements Serializable
 {
 
     /**
-     * 排序
-     */
+    * 排序
+    */
     @TableField(value = "showorder")
     @DEField(name = "showorder")
-    @JsonProperty("showorder")
     @JSONField(name = "showorder")
+    @JsonProperty("showorder")
     @ApiModelProperty(value = "showorder", notes = "排序")
     private Integer showOrder;
 
     /**
-     * 是否系统标记
-     */
+    * 是否系统标记
+    */
     @TableField(value = "is_system")
     @DEField(name = "is_system" , defaultValue = "0" , dict = "YesNo")
-    @JsonProperty("is_system")
     @JSONField(name = "is_system")
+    @JsonProperty("is_system")
     @ApiModelProperty(value = "is_system", notes = "是否系统标记")
     private Integer isSystem;
 
     /**
-     * 是否将看板栏拆分为进行中和已完成
-     */
+    * 是否将看板栏拆分为进行中和已完成
+    */
     @TableField(value = "is_split")
     @DEField(name = "is_split" , defaultValue = "0" , dict = "YesNo")
-    @JsonProperty("is_split")
     @JSONField(name = "is_split")
+    @JsonProperty("is_split")
     @ApiModelProperty(value = "is_split", notes = "是否将看板栏拆分为进行中和已完成")
     private Integer isSplit;
 
     /**
-     * 更新人
-     */
-    @TableField(value = "update_man")
-    @DEField(name = "update_man" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
-    @JsonProperty("update_man")
-    @JSONField(name = "update_man")
-    @ApiModelProperty(value = "update_man", notes = "更新人")
-    private String updateMan;
-
-    /**
-     * 建立时间
-     */
-    @TableField(value = "create_time" , fill = FieldFill.INSERT)
-    @DEField(name = "create_time" , preType = DEPredefinedFieldType.CREATEDATE)
-    @JsonProperty("create_time")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "create_time", notes = "建立时间")
-    private Date createTime;
-
-    /**
-     * 名称
-     */
-    @TableField(value = "name")
-    @DEField(name = "name")
-    @JsonProperty("name")
-    @JSONField(name = "name")
-    @ApiModelProperty(value = "name", notes = "名称")
-    private String name;
-
-    /**
-     * 标识
-     */
+    * 标识
+    */
     @Id
     @TableId(value = "id" , type = IdType.ASSIGN_UUID)
     @DEField(name = "id" , isKeyField = true)
-    @JsonProperty("id")
     @JSONField(name = "id")
+    @JsonProperty("id")
     @ApiModelProperty(value = "id", notes = "标识")
     private String id;
 
     /**
-     * 建立人
-     */
+    * 名称
+    */
+    @TableField(value = "name")
+    @DEField(name = "name")
+    @JSONField(name = "name")
+    @JsonProperty("name")
+    @ApiModelProperty(value = "name", notes = "名称")
+    private String name;
+
+    /**
+    * 建立人
+    */
     @TableField(value = "create_man" , fill = FieldFill.INSERT)
     @DEField(name = "create_man" , preType = DEPredefinedFieldType.CREATEMAN , dict = "SysOperator")
-    @JsonProperty("create_man")
     @JSONField(name = "create_man")
+    @JsonProperty("create_man")
     @ApiModelProperty(value = "create_man", notes = "建立人")
     private String createMan;
 
     /**
-     * 更新时间
-     */
+    * 建立时间
+    */
+    @TableField(value = "create_time" , fill = FieldFill.INSERT)
+    @DEField(name = "create_time" , preType = DEPredefinedFieldType.CREATEDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("create_time")
+    @ApiModelProperty(value = "create_time", notes = "建立时间")
+    private Date createTime;
+
+    /**
+    * 更新人
+    */
+    @TableField(value = "update_man")
+    @DEField(name = "update_man" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
+    @JSONField(name = "update_man")
+    @JsonProperty("update_man")
+    @ApiModelProperty(value = "update_man", notes = "更新人")
+    private String updateMan;
+
+    /**
+    * 更新时间
+    */
     @TableField(value = "update_time")
     @DEField(name = "update_time" , preType = DEPredefinedFieldType.UPDATEDATE)
-    @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("update_time")
     @ApiModelProperty(value = "update_time", notes = "更新时间")
     private Date updateTime;
 
     /**
-     * 看板标识
-     */
+    * 看板标识
+    */
     @TableField(value = "board_id")
     @DEField(name = "board_id")
-    @JsonProperty("board_id")
     @JSONField(name = "board_id")
+    @JsonProperty("board_id")
     @ApiModelProperty(value = "board_id", notes = "看板标识")
     private String boardId;
 
     /**
-     * 项目标识
-     */
+    * 项目标识
+    */
     @TableField(value = "project_id")
     @DEField(name = "project_id")
-    @JsonProperty("project_id")
     @JSONField(name = "project_id")
+    @JsonProperty("project_id")
     @ApiModelProperty(value = "project_id", notes = "项目标识")
     private String projectId;
 
     /**
-     * 看板
-     */
+    * 看板栏
+    */
+    @Transient
+    @TableField(exist = false)
     @JsonIgnore
     @JSONField(serialize = false)
-    @TableField(exist = false)
-    @Transient
     @ApiModelProperty(value = "board", notes = "看板栏")
     private Board board;
 
     /**
-     * 项目
-     */
+    * 项目-看板项
+    */
+    @Transient
+    @TableField(exist = false)
     @JsonIgnore
     @JSONField(serialize = false)
-    @TableField(exist = false)
-    @Transient
     @ApiModelProperty(value = "project", notes = "项目-看板项")
     private Project project;
 
     /**
-     * 设置 [排序]
-     */
+    * 设置 [排序]
+    */
     public Entry setShowOrder(Integer showOrder) {
         this.showOrder = showOrder;
         this.modify("showorder", showOrder);
@@ -182,8 +182,8 @@ public class Entry extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [是否系统标记]
-     */
+    * 设置 [是否系统标记]
+    */
     public Entry setIsSystem(Integer isSystem) {
         this.isSystem = isSystem;
         this.modify("is_system", isSystem);
@@ -191,8 +191,8 @@ public class Entry extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [是否将看板栏拆分为进行中和已完成]
-     */
+    * 设置 [是否将看板栏拆分为进行中和已完成]
+    */
     public Entry setIsSplit(Integer isSplit) {
         this.isSplit = isSplit;
         this.modify("is_split", isSplit);
@@ -200,8 +200,8 @@ public class Entry extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [名称]
-     */
+    * 设置 [名称]
+    */
     public Entry setName(String name) {
         this.name = name;
         this.modify("name", name);
@@ -209,8 +209,8 @@ public class Entry extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [看板标识]
-     */
+    * 设置 [看板标识]
+    */
     public Entry setBoardId(String boardId) {
         this.boardId = boardId;
         this.modify("board_id", boardId);
@@ -218,13 +218,14 @@ public class Entry extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [项目标识]
-     */
+    * 设置 [项目标识]
+    */
     public Entry setProjectId(String projectId) {
         this.projectId = projectId;
         this.modify("project_id", projectId);
         return this;
     }
+
 
     /**
      * 复制当前对象数据到目标对象(粘贴重置)

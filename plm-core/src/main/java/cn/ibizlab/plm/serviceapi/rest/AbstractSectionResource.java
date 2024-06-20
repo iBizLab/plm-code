@@ -226,6 +226,28 @@ public abstract class AbstractSectionResource {
     }
 
     /**
+    * 查询fetch_check_name 分组
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<SectionDTO>>
+    */
+    @ApiOperation(value = "查询fetch_check_name", tags = {"分组" },  notes = "Section-fetch_check_name ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Section-fetch_check_name-all') or hasPermission(#dto,'ibizplm-Section-fetch_check_name')")
+    @PostMapping("sections/fetch_check_name")
+    public ResponseEntity<List<SectionDTO>> fetchCheckName
+            (@Validated @RequestBody SectionFilterDTO dto) {
+        SectionSearchContext context = sectionFilterDtoMapping.toDomain(dto);
+        Page<Section> domains = sectionService.fetchCheckName(context) ;
+        List<SectionDTO> list = sectionDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
     * 查询fetch_default 分组
     * 
     *
@@ -238,7 +260,7 @@ public abstract class AbstractSectionResource {
     public ResponseEntity<List<SectionDTO>> fetchDefault
             (@Validated @RequestBody SectionFilterDTO dto) {
         SectionSearchContext context = sectionFilterDtoMapping.toDomain(dto);
-        Page<Section> domains = sectionService.searchDefault(context) ;
+        Page<Section> domains = sectionService.fetchDefault(context) ;
         List<SectionDTO> list = sectionDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -260,7 +282,7 @@ public abstract class AbstractSectionResource {
     public ResponseEntity<List<SectionDTO>> fetchThisProductSection
             (@Validated @RequestBody SectionFilterDTO dto) {
         SectionSearchContext context = sectionFilterDtoMapping.toDomain(dto);
-        Page<Section> domains = sectionService.searchThisProductSection(context) ;
+        Page<Section> domains = sectionService.fetchThisProductSection(context) ;
         List<SectionDTO> list = sectionDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -279,7 +301,7 @@ public abstract class AbstractSectionResource {
     @ApiOperation(value = "批量新建分组", tags = {"分组" },  notes = "批量新建分组")
 	@PostMapping("sections/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<SectionDTO> dtos) {
-        sectionService.createBatch(sectionDtoMapping.toDomain(dtos));
+        sectionService.create(sectionDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -292,7 +314,7 @@ public abstract class AbstractSectionResource {
     @ApiOperation(value = "批量删除分组", tags = {"分组" },  notes = "批量删除分组")
 	@DeleteMapping("sections/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        sectionService.removeBatch(ids);
+        sectionService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -305,7 +327,7 @@ public abstract class AbstractSectionResource {
     @ApiOperation(value = "批量更新分组", tags = {"分组" },  notes = "批量更新分组")
 	@PutMapping("sections/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<SectionDTO> dtos) {
-        sectionService.updateBatch(sectionDtoMapping.toDomain(dtos));
+        sectionService.update(sectionDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -318,7 +340,7 @@ public abstract class AbstractSectionResource {
     @ApiOperation(value = "批量保存分组", tags = {"分组" },  notes = "批量保存分组")
 	@PostMapping("sections/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<SectionDTO> dtos) {
-        sectionService.saveBatch(sectionDtoMapping.toDomain(dtos));
+        sectionService.save(sectionDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

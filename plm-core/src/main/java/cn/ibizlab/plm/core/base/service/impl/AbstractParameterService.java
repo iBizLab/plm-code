@@ -35,26 +35,6 @@ public abstract class AbstractParameterService extends ServiceImpl<ParameterMapp
 
     protected int batchSize = 500;
 
-    public Parameter get(Parameter et) {
-        Parameter rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.PARAMETER.toString(),et.getId());
-        rt.copyTo(et,true);
-        return et;
-    }
-
-    public List<Parameter> getByEntities(List<Parameter> entities) {
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public Parameter getDraft(Parameter et) {
-        return et;
-    }
-
-    public Integer checkKey(Parameter et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Parameter>lambdaQuery().eq(Parameter::getId, et.getId()))>0)?1:0;
-    }
-
     @Override
     @Transactional
     public boolean create(Parameter et) {
@@ -63,13 +43,13 @@ public abstract class AbstractParameterService extends ServiceImpl<ParameterMapp
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<Parameter> list) {
+    public boolean create(List<Parameter> list) {
         this.saveBatch(list, batchSize);
         return true;
     }
-
+	
     @Transactional
     public boolean update(Parameter et) {
         UpdateWrapper<Parameter> qw = et.getUpdateWrapper(true);
@@ -81,11 +61,43 @@ public abstract class AbstractParameterService extends ServiceImpl<ParameterMapp
     }
 
     @Transactional
-    public boolean updateBatch(List<Parameter> list) {
+    public boolean update(List<Parameter> list) {
         updateBatchById(list, batchSize);
         return true;
     }
+	
+   @Transactional
+    public boolean remove(Parameter et) {
+        if(!remove(Wrappers.<Parameter>lambdaQuery().eq(Parameter::getId, et.getId())))
+            return false;
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<Parameter> entities) {
+        this.baseMapper.deleteEntities(entities);
+        return true;
+    }		
+    public Parameter get(Parameter et) {
+        Parameter rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.PARAMETER.toString(),et.getId());
+        rt.copyTo(et,true);
+        return et;
+    }	
+
+    public List<Parameter> get(List<Parameter> entities) {
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public Parameter getDraft(Parameter et) {
+        return et;
+    }
+	
+    public Integer checkKey(Parameter et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Parameter>lambdaQuery().eq(Parameter::getId, et.getId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(Parameter et) {
@@ -96,10 +108,10 @@ public abstract class AbstractParameterService extends ServiceImpl<ParameterMapp
     }
 
     @Transactional
-    public boolean saveBatch(List<Parameter> list) {
+    public boolean save(List<Parameter> list) {
         if(ObjectUtils.isEmpty(list))
             return true;
-        Map<String,Parameter> before = getByEntities(list).stream().collect(Collectors.toMap(Parameter::getId,e->e));
+        Map<String,Parameter> before = get(list).stream().collect(Collectors.toMap(Parameter::getId,e->e));
         List<Parameter> create = new ArrayList<>();
         List<Parameter> update = new ArrayList<>();
         list.forEach(sub->{
@@ -110,40 +122,24 @@ public abstract class AbstractParameterService extends ServiceImpl<ParameterMapp
         });
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
         else
             return true;
     }
-
-    @Transactional
-    public boolean remove(Parameter et) {
-        if(!remove(Wrappers.<Parameter>lambdaQuery().eq(Parameter::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<Parameter> entities) {
-        this.baseMapper.deleteEntities(entities);
-        return true;
-    }
-
-    public Page<Parameter> searchDefault(ParameterSearchContext context) {
+	
+   public Page<Parameter> fetchDefault(ParameterSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Parameter> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<Parameter> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Parameter> listDefault(ParameterSearchContext context) {
+   public List<Parameter> listDefault(ParameterSearchContext context) {
         List<Parameter> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
-    }
+   }
+	
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -163,8 +159,8 @@ public abstract class AbstractParameterService extends ServiceImpl<ParameterMapp
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return ParameterMapper.class;
     }
@@ -173,4 +169,5 @@ public abstract class AbstractParameterService extends ServiceImpl<ParameterMapp
     protected Class currentModelClass() {
         return Parameter.class;
     }
+
 }

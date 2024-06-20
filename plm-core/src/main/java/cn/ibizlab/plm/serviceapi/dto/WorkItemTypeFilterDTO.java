@@ -55,11 +55,19 @@ public class WorkItemTypeFilterDTO extends FilterBase implements Serializable {
 	private String codeIN;
 
     /**
+     * 标识LIKE
+     */
+    @JsonProperty("n_id_like")
+    @JSONField(name = "n_id_like")
+    @ApiModelProperty(value = "标识LIKE", position = 70)
+	private String idLIKE;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 70)
+    @ApiModelProperty(value = "标识EQ", position = 71)
 	private String idEQ;
 
     /**
@@ -69,6 +77,14 @@ public class WorkItemTypeFilterDTO extends FilterBase implements Serializable {
     @JSONField(name = "n_name_like")
     @ApiModelProperty(value = "名称LIKE", position = 80)
 	private String nameLIKE;
+
+    /**
+     * 项目标识EQ
+     */
+    @JsonProperty("n_project_id_eq")
+    @JSONField(name = "n_project_id_eq")
+    @ApiModelProperty(value = "项目标识EQ", position = 130)
+	private String projectIdEQ;
 
 
 }

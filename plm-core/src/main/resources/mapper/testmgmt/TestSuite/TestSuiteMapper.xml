@@ -6,10 +6,10 @@
     <resultMap id="TestSuiteResultMap" type="cn.ibizlab.plm.core.testmgmt.domain.TestSuite" autoMapping="true">
 		<id property="id" column="id" /><!--主键字段映射-->
 		<result property="isLeaf" column="is_leaf" />
-		<result property="createTime" column="create_time" />
-		<result property="updateTime" column="update_time" />
-		<result property="updateMan" column="update_man" />
 		<result property="createMan" column="create_man" />
+		<result property="createTime" column="create_time" />
+		<result property="updateMan" column="update_man" />
+		<result property="updateTime" column="update_time" />
 		<result property="libraryId" column="library_id" />
 		<result property="pid" column="pid" />
 		<result property="libraryName" column="library_name" />
@@ -50,6 +50,10 @@
          <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_LEAF`, t1.`LIBRARY_ID`, t21.`NAME` AS `LIBRARY_NAME`, t1.`NAME`, t1.`PID`, t11.`NAME` AS `PNAME`, t1.`SEQUENCE`, t1.`SUITES`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `TEST_SUITE` t1  LEFT JOIN `TEST_SUITE` t11 ON t1.`PID` = t11.`ID`  LEFT JOIN `LIBRARY` t21 ON t1.`LIBRARY_ID` = t21.`ID`   ]]>  
     </sql>
 
+    <sql id="curTestSuite" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_LEAF`, t1.`LIBRARY_ID`, t21.`NAME` AS `LIBRARY_NAME`, t1.`NAME`, t1.`PID`, t11.`NAME` AS `PNAME`, t1.`SEQUENCE`, t1.`SUITES`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `TEST_SUITE` t1  LEFT JOIN `TEST_SUITE` t11 ON t1.`PID` = t11.`ID`  LEFT JOIN `LIBRARY` t21 ON t1.`LIBRARY_ID` = t21.`ID`   ]]>  where  <![CDATA[ ( t1.`LIBRARY_ID` = #{ctx.datacontext.library} ) ]]> 
+    </sql>
+
     <sql id="noParent" databaseId="mysql">
          <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_LEAF`, t1.`LIBRARY_ID`, t21.`NAME` AS `LIBRARY_NAME`, t1.`NAME`, t1.`PID`, t11.`NAME` AS `PNAME`, t1.`SEQUENCE`, t1.`SUITES`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `TEST_SUITE` t1  LEFT JOIN `TEST_SUITE` t11 ON t1.`PID` = t11.`ID`  LEFT JOIN `LIBRARY` t21 ON t1.`LIBRARY_ID` = t21.`ID`   ]]>  where  <![CDATA[ ( t1.`PID` IS NULL ) ]]> 
     </sql>
@@ -77,6 +81,27 @@
         select t1.*
         from (
             <include refid="default"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchCurTestSuite"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestSuiteSearchContext"  resultMap="TestSuiteResultMap">
+        select t1.* 
+        from (
+            <include refid="curTestSuite"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listCurTestSuite"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestSuiteSearchContext"  resultMap="TestSuiteResultMap">
+        select t1.*
+        from (
+            <include refid="curTestSuite"/>
         ) t1
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>

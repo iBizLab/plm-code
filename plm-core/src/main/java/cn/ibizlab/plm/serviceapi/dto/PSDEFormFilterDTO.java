@@ -31,20 +31,20 @@ import io.swagger.annotations.ApiModelProperty;
 public class PSDEFormFilterDTO extends FilterBase implements Serializable {
 
     /**
-     * 实体表单名称LIKE
-     */
-    @JsonProperty("n_psdeformname_like")
-    @JSONField(name = "n_psdeformname_like")
-    @ApiModelProperty(value = "实体表单名称LIKE", position = 10)
-	private String psdeFormNameLIKE;
-
-    /**
      * 实体表单标识EQ
      */
     @JsonProperty("n_psdeformid_eq")
     @JSONField(name = "n_psdeformid_eq")
-    @ApiModelProperty(value = "实体表单标识EQ", position = 30)
+    @ApiModelProperty(value = "实体表单标识EQ", position = 10)
 	private String psdeFormIdEQ;
+
+    /**
+     * 实体表单名称LIKE
+     */
+    @JsonProperty("n_psdeformname_like")
+    @JSONField(name = "n_psdeformname_like")
+    @ApiModelProperty(value = "实体表单名称LIKE", position = 20)
+	private String psdeFormNameLIKE;
 
     /**
      * 表单类型EQ

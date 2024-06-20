@@ -41,6 +41,14 @@ export default {
       id: 'group',
     },
     {
+      codeName: 'id',
+      logicName: '标识',
+      stdDataType: 25,
+      stringLength: 100,
+      name: 'ID',
+      id: 'id',
+    },
+    {
       codeName: 'name',
       logicName: '名称',
       stdDataType: 25,
@@ -48,14 +56,6 @@ export default {
       enableQuickSearch: true,
       name: 'NAME',
       id: 'name',
-    },
-    {
-      codeName: 'id',
-      logicName: '标识',
-      stdDataType: 25,
-      stringLength: 100,
-      name: 'ID',
-      id: 'id',
     },
   ],
   appDEMethodDTOs: [
@@ -400,6 +400,89 @@ export default {
       dataSetType: 'REMOTE',
       name: 'FILTERUPDATE',
       id: 'filterupdate',
+    },
+  ],
+  appDEUILogics: [
+    {
+      codeName: 'save_list_mdctrl',
+      defaultParamName: 'Default',
+      logicName: '保存列表多数据部件',
+      deuilogicNodes: [
+        {
+          codeName: 'Begin',
+          leftPos: 200,
+          logicNodeType: 'BEGIN',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'preparejsparam1',
+              srcDEUILogicNodeId: 'begin',
+              id: '连接名称',
+            },
+          ],
+          topPos: 200,
+          parallelOutput: true,
+          name: '开始',
+          id: 'begin',
+        },
+        {
+          code: "const list = uiLogic.setting_model_list;\r\nconst items = list.getAllData() || [];\r\nif (uiLogic.listservice) {\r\n    uiLogic.listservice.updateBatch(list.context, items).then((res) => {\r\n        if (res.data) {\r\n            list.setData(res.data);\r\n        }\r\n        list.evt.emit('onSaveSuccess', undefined);\r\n    })\r\n}",
+          codeName: 'RAWJSCODE1',
+          leftPos: 583,
+          logicNodeType: 'RAWJSCODE',
+          topPos: 208,
+          name: '更新列表数据',
+          id: 'rawjscode1',
+        },
+        {
+          codeName: 'PREPAREJSPARAM1',
+          leftPos: 368,
+          logicNodeType: 'PREPAREJSPARAM',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'rawjscode1',
+              srcDEUILogicNodeId: 'preparejsparam1',
+              id: '连接名称',
+            },
+          ],
+          deuilogicNodeParams: [
+            {
+              dstDEUILogicParamId: 'listservice',
+              paramAction: 'SETPARAMVALUE',
+              srcFieldName: 'service',
+              srcDEUILogicParamId: 'setting_model_list',
+              srcValueType: 'SRCDLPARAM',
+              id: 'setting_model_list[service] ==> listservice',
+            },
+          ],
+          topPos: 208,
+          name: '准备列表服务',
+          id: 'preparejsparam1',
+        },
+      ],
+      deuilogicParams: [
+        {
+          codeName: 'listservice',
+          entityParam: true,
+          name: '列表服务',
+          id: 'listservice',
+        },
+        {
+          codeName: 'setting_model_list',
+          ctrlParam: true,
+          name: '列表部件',
+          id: 'setting_model_list',
+        },
+        {
+          codeName: 'Default',
+          default: true,
+          entityParam: true,
+          name: '传入变量',
+          id: 'default',
+        },
+      ],
+      startDEUILogicNodeId: 'begin',
+      name: '保存列表多数据部件',
+      id: 'save_list_mdctrl',
     },
   ],
   deopprivs: [

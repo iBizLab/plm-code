@@ -31,89 +31,32 @@ public interface DeliverableService extends IService<Deliverable> {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    Deliverable get(Deliverable et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default Deliverable get(String key) {
-        return getSelf().get(new Deliverable().setId(key));
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<Deliverable> getByIds(Collection<String> ids) {
-        List<Deliverable> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Deliverable().setId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<Deliverable> getByEntities(List<Deliverable> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    Deliverable getDraft(Deliverable et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(Deliverable et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(Deliverable et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<Deliverable> list);
+    boolean create(List<Deliverable> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(Deliverable et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<Deliverable> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    @Override
-    boolean save(Deliverable et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<Deliverable> list);
+    boolean update(List<Deliverable> list);
 
     /**
      * 主键删除
@@ -123,14 +66,7 @@ public interface DeliverableService extends IService<Deliverable> {
     default boolean remove(String key) {
         return getSelf().remove(new Deliverable().setId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -140,13 +76,13 @@ public interface DeliverableService extends IService<Deliverable> {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<Deliverable> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Deliverable().setId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new Deliverable().setId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -154,7 +90,154 @@ public interface DeliverableService extends IService<Deliverable> {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<Deliverable> entities);
+    boolean remove(List<Deliverable> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default Deliverable get(String key) {
+        return getSelf().get(new Deliverable().setId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    Deliverable get(Deliverable et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<Deliverable> get(Collection<String> keys) {
+        List<Deliverable> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new Deliverable().setId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<Deliverable> get(List<Deliverable> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    Deliverable getDraft(Deliverable et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(Deliverable et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(Deliverable et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<Deliverable> list);
+
+    /**
+    * nothing
+    * 
+    * @param et
+    * @return
+    */
+    default Deliverable nothing(Deliverable et) {
+        return et;
+    }
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<Deliverable> fetchDefault(DeliverableSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<Deliverable> listDefault(DeliverableSearchContext context);
+
+    /**
+    * fetchProjectDeliverable
+    * 
+    * @param context
+    * @return
+    */
+    Page<Deliverable> fetchProjectDeliverable(DeliverableSearchContext context);
+
+    /**
+    * listProjectDeliverable
+    * 
+    * @param context
+    * @return
+    */
+    List<Deliverable> listProjectDeliverable(DeliverableSearchContext context);
+
+    /**
+    * findByOwnerId
+    * @param ownerIds
+    * @return
+    */
+    List<Deliverable> findByOwnerId(List<String> ownerIds);
+    default List<Deliverable> findByOwnerId(String ownerId){
+        return findByOwnerId(Arrays.asList(ownerId));
+    }
+
+    /**
+    * removeByOwnerId
+    * @param ownerId
+    * @return
+    */
+    boolean removeByOwnerId(String ownerId);
+
+    /**
+    * resetByOwnerId
+    * @param ownerId
+    * @return
+    */
+    boolean resetByOwnerId(String ownerId);
+
+    /**
+    * saveByOwnerId
+    * @param ownerId
+    * @param list
+    * @return
+    */
+    default boolean saveByOwnerId(String ownerId, List<Deliverable> list){
+        return getSelf().saveByWorkItem(new WorkItem().setId(ownerId),list);
+    }
+
+    /**
+    * saveByWorkItem
+    * @param workItem
+    * @param list
+    * @return
+    */
+    boolean saveByWorkItem(WorkItem workItem, List<Deliverable> list);
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<Deliverable> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -171,37 +254,7 @@ public interface DeliverableService extends IService<Deliverable> {
         }
         return rt;
     }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<Deliverable> searchDefault(DeliverableSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<Deliverable> listDefault(DeliverableSearchContext context);
-
-    /**
-     * searchproject_deliverable
-     * 
-     * @param context
-     * @return
-     */
-    Page<Deliverable> searchProjectDeliverable(DeliverableSearchContext context);
-    /**
-     * listproject_deliverable
-     * 
-     * @param context
-     * @return
-     */
-    List<Deliverable> listProjectDeliverable(DeliverableSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -209,6 +262,7 @@ public interface DeliverableService extends IService<Deliverable> {
     default Deliverable getEntity() {
         return new Deliverable();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -216,59 +270,13 @@ public interface DeliverableService extends IService<Deliverable> {
     default DeliverableSearchContext getSearchContext() {
         return new DeliverableSearchContext();
     }
+
+
     /**
-     * selectRelByOwnerId
-     * @param ownerIds
-     * @return
-     */
-    List<Deliverable> findByOwnerId(List<String> ownerIds);
-    default List<Deliverable> findByOwnerId(String ownerId) {
-        return findByOwnerId(Arrays.asList(ownerId));
-    }
-    /**
-     * removeRelByOwnerId
-     * @param ownerId
-     * @return
-     */
-    boolean removeByOwnerId(String ownerId);
-    /**
-     * resetRelByOwnerId
-     * @param ownerId
-     * @return
-     */
-    boolean resetByOwnerId(String ownerId);
-    /**
-     * saveRelByOwnerId
-     * @param ownerId
-     * @param list
-     * @return
-     */
-    default boolean saveByOwnerId(String ownerId,List<Deliverable> list) {
-        return getSelf().saveByWorkItem(new WorkItem().setId(ownerId),list);
-    }
-    /**
-    * saveRelByWorkItem
-    * @param workItem
-    * @param list
+    * 自定义SQL
+    * @param sql  update table  set name ='test' where id =#{et.param}
+    * @param param 参数列表  param.put("param","1");
     * @return
     */
-    boolean saveByWorkItem(WorkItem workItem,List<Deliverable> list);
-
-
-    /**
-     * 自定义查询SQL
-     * @param sql  select * from table where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
-    List<JSONObject> select(String sql, Map<String,Object> param);
-
-    /**
-     * 自定义SQL
-     * @param sql  update table  set name ='test' where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
     boolean execute(String sql, Map<String,Object> param);
-
 }

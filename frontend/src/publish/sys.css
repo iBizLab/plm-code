@@ -128,6 +128,7 @@ margin: 0;
 .main-info-common-view  .ibiz-form-item--title .ibiz-input.is-textarea.ibiz-input--readonly {
     font-size: var(--ibiz-font-size-header-3);
     padding: 5px 11px;
+    height: 100%;
 }
     .main-info-common-view .ibiz-form-item-container--top .ibiz-autocomplete--readonly {
   padding: 0 11px;
@@ -195,7 +196,7 @@ margin: 0;
 }
 .main-info-common-view .ibiz-grid-container--container_view_bottom .ibiz-panel-field--field_textbox {
   position: relative;
-  z-index: 99998;
+  z-index: 998;
 }
 .main-info-common-view .ibiz-grid-container--container_view_bottom .ibiz-html-comment {
   position: absolute;
@@ -208,7 +209,7 @@ margin: 0;
 }
 .main-info-common-view .ibiz-grid-container--container_view_bottom .ibiz-panel-button--comment__cancel,
 .main-info-common-view .ibiz-grid-container--container_view_bottom .ibiz-panel-button--comment__send {
-  z-index: 99999;
+  z-index: 999;
 }
     .main-info-common-view .ibiz-control-form > .ibiz-form-page > .ibiz-form-page-item > .ibiz-col--grid:first-child > .ibiz-form-group{
     padding-left: 5px;
@@ -361,7 +362,7 @@ width: calc(100% - 4px);
 min-height: 48px;
 padding-right: 32px;
 position: absolute;
-bottom: 0;
+top: 0;
 }
 /* 时间范围宽度 */
 .main-info-common-view .ibiz-date-range-picker {
@@ -447,6 +448,15 @@ font-size: 16px;
   padding: var(--ibiz-panel-view-content-padding);
 }
 
+    .ibiz-view-detabexpview .ibiz-panel-view-content:has(.ibiz-nav-pos) {
+  padding-top: 0;
+}
+
+    .delete-button .el-button{
+    color: #fff;
+    background-color: #ff7575;
+    border-color: #ff7575;
+}
     .recycle-bin .ibiz-form-group-header .ibiz-form-group-header__right {
 	display: none;
 }
@@ -481,6 +491,9 @@ font-size: 16px;
 }
     .ibiz-nav-pos > .ibiz-view-detreeexpview .ibiz-panel-ctrl-pos--treeexpbar_tree > .ibiz-control-treeview {
   padding-left: 0;
+}
+.ibiz-nav-pos > .ibiz-view-detreeexpview .ibiz-panel-ctrl-pos--treeexpbar_tree > .ibiz-control-treeview .ibiz-control-treeview-tree {
+    padding-left: 0;
 }
 
     .recentdata-custom>div>div>div:nth-child(2) {
@@ -566,6 +579,28 @@ margin-left: -8px;
 /* 适配分隔符在后面 */
 .ibiz-control-toolbar__menu--style2 + .ibiz-control-toolbar__item-separator {
 margin-left: -4px;
+}
+/* 分组按钮样式 */
+.ibiz-control-toolbar__menu--style2.el-menu--horizontal>.el-sub-menu.is-active .el-sub-menu__title {
+border: none;
+}
+    
+/* 窗口缩小样式 */
+.ibiz-control-toolbar--user .ibiz-control-toolbar__item.is-short-cut .el-button{
+color: var(--ibiz-color-primary);
+}
+.ibiz-control-toolbar--user .ibiz-control-toolbar__item.is-short-cut .el-button:hover,
+.ibiz-control-toolbar--user .ibiz-control-toolbar__item.is-short-cut .el-button:hover i{
+  font-weight: 600;
+}
+.ibiz-control-toolbar--user .ibiz-control-toolbar__item.is-short-cut .el-button svg,
+.ibiz-control-toolbar--user .ibiz-control-toolbar__item.is-short-cut .el-button svg path {
+  fill: var(--ibiz-color-primary) !important;
+}
+
+.ibiz-control-toolbar--user .ibiz-control-toolbar__item.is-short-cut .el-button .icon>path {
+stroke: var(--ibiz-color-primary) !important;
+stroke-width: 30 !important;
 }
     /*工具栏分组项按钮3样式*/
 .ibiz-control-toolbar__submenu-popper--style3 .el-menu .el-menu-item,
@@ -724,7 +759,20 @@ height: 63px;
     .activate_button .el-button{
     background: none;
     color: #4ba7f1;
-    margin-left: -5px;
+    margin-left: 5px;
+    height: 0px;
+
+}
+.activate_button .ibiz-rawitem__text{
+    color: #999;
+}
+.activate_button .ibiz-span.ibiz-panel-field-content{
+    color: #999;
+}
+
+.activate_button .ibiz-panel-button.ibiz-panel-button--default{
+        height: 15px;
+    padding: 0px;
 }
     .todo-tips{
     height: 80px;
@@ -853,6 +901,19 @@ padding: var(--ibiz-spacing-tight) var(--ibiz-spacing-super-tight);
   text-decoration: underline;
 }
 
+    /* 控制项标题文字过多导致的样式异常 */
+.create_work_item_choose_parent_style .ibiz-panel-field--show_identifier .ibiz-panel-field-content{
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
+    text-overflow: ellipsis;
+}
+.create_work_item_choose_parent_style .ibiz-panel-field--title .ibiz-panel-field-content{
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
+    text-overflow: ellipsis;
+}
     /* 星标及切换背景颜色 */
 .star_css .ibiz-control-toolbar__menu .ibiz-control-toolbar-submenu .el-sub-menu__title:hover,
 .star_css button:hover {
@@ -1026,6 +1087,25 @@ width: 100%;
     background-color: #ffdcaf;
     vertical-align: inherit;
 }
+    .active-members-font-postion >.ibiz-rawitem>.ibiz-rawitem__text{
+    position: relative;
+    bottom: -34px;
+    left: -1px;
+}
+    .active-members-grey-color>.ibiz-rawitem>.ibiz-rawitem__text{
+    color: #999;
+}
+    .active-members-view{
+    padding: 24px 0px 0 0;
+    .ibiz-panel-field>.ibiz-span{
+        font-size: 48px;
+        color: #333;
+    }
+    .ibiz-grid-container--container_grid{
+        width: 75%;
+        margin: 0 auto;
+    }
+}
     .transition-time .ibiz-span{
   font-size: var(--ibiz-font-size-small);
   color: var(--ibiz-color-disabled-text);
@@ -1181,18 +1261,20 @@ width: 100%;
 .test-plan-report-view .ibiz-control-dashboard .ibiz-portlet-layout-content {
   padding: 0 28px;
 }
-    .ibiz-portlet-layout__toolbar--portlet-chart-daily_test .el-dropdown__list,
-.ibiz-portlet-layout__toolbar--portlet-chart-daily_tendencies .el-dropdown__list,
-.ibiz-portlet-layout__toolbar--portlet-chart-members_distribution .el-dropdown__list,
-.ibiz-portlet-layout__toolbar--portlet-chart-results_report .el-dropdown__list {
+    .ibiz-portlet-layout__toolbar--test_plan_report_dashboard_view .el-dropdown__list {
   background-color: var(--ibiz-color-bg-3) !important;
 }
-.ibiz-portlet-layout__toolbar--portlet-chart-daily_test .el-dropdown-menu,
-.ibiz-portlet-layout__toolbar--portlet-chart-daily_tendencies .el-dropdown-menu,
-.ibiz-portlet-layout__toolbar--portlet-chart-members_distribution .el-dropdown-menu,
-.ibiz-portlet-layout__toolbar--portlet-chart-results_report .el-dropdown-menu {
+.ibiz-portlet-layout__toolbar--test_plan_report_dashboard_view .el-dropdown-menu {
   background-color: transparent !important;
 }
+.ibiz-portlet-layout__toolbar--test_plan_report_dashboard_view .el-dropdown-menu__item {
+  color: var(--ibiz-color-text-3) !important;
+  background-color: transparent !important;
+}
+.ibiz-portlet-layout__toolbar--test_plan_report_dashboard_view .el-dropdown-menu__item:hover {
+  background-color: var(--ibiz-color-bg-0) !important;
+}
+
     .test-plan-report-view .ibiz-portlet-view--report_conclude .ibiz-portlet-layout-content,
 .test-plan-report-view .ibiz-portlet-view--report_conclude .ibiz-portlet-layout-content .ibiz-panel-view-content--view_content {
 	overflow: visible;
@@ -1206,19 +1288,6 @@ width: 100%;
 	position: unset;
 }
 
-    .ibiz-portlet-layout__toolbar--portlet-chart-daily_test .el-dropdown-menu__item,
-.ibiz-portlet-layout__toolbar--portlet-chart-daily_tendencies .el-dropdown-menu__item,
-.ibiz-portlet-layout__toolbar--portlet-chart-members_distribution .el-dropdown-menu__item,
-.ibiz-portlet-layout__toolbar--portlet-chart-results_report .el-dropdown-menu__item {
-  color: var(--ibiz-color-text-3) !important;
-  background-color: transparent !important;
-}
-.ibiz-portlet-layout__toolbar--portlet-chart-daily_test .el-dropdown-menu__item:hover,
-.ibiz-portlet-layout__toolbar--portlet-chart-daily_tendencies .el-dropdown-menu__item:hover,
-.ibiz-portlet-layout__toolbar--portlet-chart-members_distribution .el-dropdown-menu__item:hover,
-.ibiz-portlet-layout__toolbar--portlet-chart-results_report .el-dropdown-menu__item:hover {
-  background-color: var(--ibiz-color-bg-0) !important;
-}
     .grey-span{
 width: 58px;
     height: 24px;
@@ -1571,6 +1640,31 @@ color: var(--ibiz-color-primary);
   background-color: var(--ibiz-color-primary-light-default);
 }
 
+    .discuss_reply_padding .ibiz-form-group-content{
+    padding-left: 5px;
+}
+.discuss_reply_padding .ibiz-form-group-content .ibiz-control-list-item{
+    padding-left: 0;
+}
+.discuss_reply_padding .ibiz-form-group-content .ibiz-control-list-item ibiz-panel-button--style2 .el-button{
+    padding-left: 0;
+}
+    .discuss-comment-btn{
+    width: 100px;
+}
+.discuss-comment-btn .el-button{
+    min-height: var(--ibiz-height-control-default);
+    min-width: var(--ibiz-height-control-default);
+    background: transparent;
+    border: none;
+    color: var(--ibiz-color-text-3);
+    font-size: var(--ibiz-font-size-header-6);
+    padding: 8px;
+}
+.discuss-comment-btn .el-button:hover {
+  color: var(--ibiz-color-primary);
+  background-color: var(--ibiz-color-primary-light-default);
+}
     .comment-list-height-auto .ibiz-no-data {
   padding: 0;
   --el-empty-image-width: 64px;

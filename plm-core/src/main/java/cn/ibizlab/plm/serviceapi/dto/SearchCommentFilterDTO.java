@@ -63,12 +63,20 @@ public class SearchCommentFilterDTO extends FilterBase implements Serializable {
 	private String nameLIKE;
 
     /**
+     * 建立人EQ
+     */
+    @JsonProperty("n_create_man_eq")
+    @JSONField(name = "n_create_man_eq")
+    @ApiModelProperty(value = "建立人EQ", position = 180)
+	private String createManEQ;
+
+    /**
      * 建立时间GTANDEQ
      */
     @JsonProperty("n_create_time_gtandeq")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "n_create_time_gtandeq" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间GTANDEQ", position = 200)
+    @ApiModelProperty(value = "建立时间GTANDEQ", position = 190)
 	private Date createTimeGTANDEQ;
 
     /**
@@ -77,16 +85,8 @@ public class SearchCommentFilterDTO extends FilterBase implements Serializable {
     @JsonProperty("n_create_time_ltandeq")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "n_create_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间LTANDEQ", position = 201)
+    @ApiModelProperty(value = "建立时间LTANDEQ", position = 191)
 	private Date createTimeLTANDEQ;
-
-    /**
-     * 建立人EQ
-     */
-    @JsonProperty("n_create_man_eq")
-    @JSONField(name = "n_create_man_eq")
-    @ApiModelProperty(value = "建立人EQ", position = 210)
-	private String createManEQ;
 
 
 }

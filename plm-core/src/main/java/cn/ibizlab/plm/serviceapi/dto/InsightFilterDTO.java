@@ -31,11 +31,11 @@ import io.swagger.annotations.ApiModelProperty;
 public class InsightFilterDTO extends FilterBase implements Serializable {
 
     /**
-     * 报表类型EQ
+     * 图表类型EQ
      */
     @JsonProperty("n_type_eq")
     @JSONField(name = "n_type_eq")
-    @ApiModelProperty(value = "报表类型EQ", position = 0)
+    @ApiModelProperty(value = "图表类型EQ", position = 0)
 	private String typeEQ;
 
     /**
@@ -59,7 +59,7 @@ public class InsightFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 90)
+    @ApiModelProperty(value = "标识EQ", position = 50)
 	private String idEQ;
 
     /**
@@ -67,7 +67,7 @@ public class InsightFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 100)
+    @ApiModelProperty(value = "名称LIKE", position = 60)
 	private String nameLIKE;
 
 

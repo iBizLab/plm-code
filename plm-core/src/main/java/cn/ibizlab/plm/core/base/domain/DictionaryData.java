@@ -38,131 +38,131 @@ public class DictionaryData extends EntityMP implements Serializable
 {
 
     /**
-     * 类型
-     */
+    * 类型
+    */
     @TableField(value = "type")
     @DEField(name = "type" , dict = "dictionary_type")
-    @JsonProperty("type")
     @JSONField(name = "type")
+    @JsonProperty("type")
     @ApiModelProperty(value = "type", notes = "类型")
     private String type;
 
     /**
-     * 序号
-     */
+    * 序号
+    */
     @TableField(value = "sequence")
     @DEField(name = "sequence")
-    @JsonProperty("sequence")
     @JSONField(name = "sequence")
+    @JsonProperty("sequence")
     @ApiModelProperty(value = "sequence", notes = "序号")
     private BigDecimal sequence;
 
     /**
-     * 值
-     */
+    * 值
+    */
     @TableField(value = "val")
     @DEField(name = "val" , defaultValueType = DEFieldDefaultValueType.UNIQUEID)
-    @JsonProperty("val")
     @JSONField(name = "val")
+    @JsonProperty("val")
     @ApiModelProperty(value = "val", notes = "值")
     private String val;
 
     /**
-     * 是否系统默认
-     */
+    * 是否系统默认
+    */
     @TableField(value = "is_system")
     @DEField(name = "is_system" , defaultValue = "0" , dict = "YesNo")
-    @JsonProperty("is_system")
     @JSONField(name = "is_system")
+    @JsonProperty("is_system")
     @ApiModelProperty(value = "is_system", notes = "是否系统默认")
     private Integer isSystem;
 
     /**
-     * 颜色
-     */
+    * 颜色
+    */
     @TableField(value = "color")
     @DEField(name = "color")
-    @JsonProperty("color")
     @JSONField(name = "color")
+    @JsonProperty("color")
     @ApiModelProperty(value = "color", notes = "颜色")
     private String color;
 
     /**
-     * 字典目录
-     */
+    * 字典目录
+    */
     @TableField(value = "catalog")
     @DEField(name = "catalog" , dict = "dictionary_catalog")
-    @JsonProperty("catalog")
     @JSONField(name = "catalog")
+    @JsonProperty("catalog")
     @ApiModelProperty(value = "catalog", notes = "字典目录")
     private String catalog;
 
     /**
-     * 名称
-     */
-    @TableField(value = "name")
-    @DEField(name = "name")
-    @JsonProperty("name")
-    @JSONField(name = "name")
-    @ApiModelProperty(value = "name", notes = "名称")
-    private String name;
-
-    /**
-     * 标识
-     */
+    * 标识
+    */
     @Id
     @TableId(value = "id" , type = IdType.ASSIGN_UUID)
     @DEField(name = "id" , isKeyField = true)
-    @JsonProperty("id")
     @JSONField(name = "id")
+    @JsonProperty("id")
     @ApiModelProperty(value = "id", notes = "标识")
     private String id;
 
     /**
-     * 更新人
-     */
-    @TableField(value = "update_man")
-    @DEField(name = "update_man" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
-    @JsonProperty("update_man")
-    @JSONField(name = "update_man")
-    @ApiModelProperty(value = "update_man", notes = "更新人")
-    private String updateMan;
+    * 名称
+    */
+    @TableField(value = "name")
+    @DEField(name = "name" , dupCheck = DupCheck.ALL , dupCheckField = "catalog")
+    @JSONField(name = "name")
+    @JsonProperty("name")
+    @ApiModelProperty(value = "name", notes = "名称")
+    private String name;
 
     /**
-     * 更新时间
-     */
-    @TableField(value = "update_time")
-    @DEField(name = "update_time" , preType = DEPredefinedFieldType.UPDATEDATE)
-    @JsonProperty("update_time")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "update_time", notes = "更新时间")
-    private Date updateTime;
-
-    /**
-     * 建立时间
-     */
-    @TableField(value = "create_time" , fill = FieldFill.INSERT)
-    @DEField(name = "create_time" , preType = DEPredefinedFieldType.CREATEDATE)
-    @JsonProperty("create_time")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "create_time", notes = "建立时间")
-    private Date createTime;
-
-    /**
-     * 建立人
-     */
+    * 建立人
+    */
     @TableField(value = "create_man" , fill = FieldFill.INSERT)
     @DEField(name = "create_man" , preType = DEPredefinedFieldType.CREATEMAN , dict = "SysOperator")
-    @JsonProperty("create_man")
     @JSONField(name = "create_man")
+    @JsonProperty("create_man")
     @ApiModelProperty(value = "create_man", notes = "建立人")
     private String createMan;
 
     /**
-     * 设置 [类型]
-     */
+    * 建立时间
+    */
+    @TableField(value = "create_time" , fill = FieldFill.INSERT)
+    @DEField(name = "create_time" , preType = DEPredefinedFieldType.CREATEDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("create_time")
+    @ApiModelProperty(value = "create_time", notes = "建立时间")
+    private Date createTime;
+
+    /**
+    * 更新人
+    */
+    @TableField(value = "update_man")
+    @DEField(name = "update_man" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
+    @JSONField(name = "update_man")
+    @JsonProperty("update_man")
+    @ApiModelProperty(value = "update_man", notes = "更新人")
+    private String updateMan;
+
+    /**
+    * 更新时间
+    */
+    @TableField(value = "update_time")
+    @DEField(name = "update_time" , preType = DEPredefinedFieldType.UPDATEDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("update_time")
+    @ApiModelProperty(value = "update_time", notes = "更新时间")
+    private Date updateTime;
+
+    /**
+    * 设置 [类型]
+    */
     public DictionaryData setType(String type) {
         this.type = type;
         this.modify("type", type);
@@ -170,8 +170,8 @@ public class DictionaryData extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [序号]
-     */
+    * 设置 [序号]
+    */
     public DictionaryData setSequence(BigDecimal sequence) {
         this.sequence = sequence;
         this.modify("sequence", sequence);
@@ -179,8 +179,8 @@ public class DictionaryData extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [值]
-     */
+    * 设置 [值]
+    */
     public DictionaryData setVal(String val) {
         this.val = val;
         this.modify("val", val);
@@ -188,8 +188,8 @@ public class DictionaryData extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [是否系统默认]
-     */
+    * 设置 [是否系统默认]
+    */
     public DictionaryData setIsSystem(Integer isSystem) {
         this.isSystem = isSystem;
         this.modify("is_system", isSystem);
@@ -197,8 +197,8 @@ public class DictionaryData extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [颜色]
-     */
+    * 设置 [颜色]
+    */
     public DictionaryData setColor(String color) {
         this.color = color;
         this.modify("color", color);
@@ -206,8 +206,8 @@ public class DictionaryData extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [字典目录]
-     */
+    * 设置 [字典目录]
+    */
     public DictionaryData setCatalog(String catalog) {
         this.catalog = catalog;
         this.modify("catalog", catalog);
@@ -215,13 +215,14 @@ public class DictionaryData extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [名称]
-     */
+    * 设置 [名称]
+    */
     public DictionaryData setName(String name) {
         this.name = name;
         this.modify("name", name);
         return this;
     }
+
 
     /**
      * 复制当前对象数据到目标对象(粘贴重置)

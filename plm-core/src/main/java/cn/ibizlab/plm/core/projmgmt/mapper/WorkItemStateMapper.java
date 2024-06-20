@@ -43,6 +43,14 @@ public interface WorkItemStateMapper extends BaseMapper<WorkItemState> {
     List<WorkItemState> listDefault(@Param("ctx") WorkItemStateSearchContext context, @Param("ew") Wrapper<WorkItemState> wrapper);
 
     /**
+    * 根据workItemTypeId查询
+    *
+    * @param workItemTypeIds
+    * @return
+    */
+    List<WorkItemState> findByWorkItemTypeId(@Param("workItemTypeIds") List<String> workItemTypeIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -151,13 +159,4 @@ public interface WorkItemStateMapper extends BaseMapper<WorkItemState> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据workItemTypeId查询
-     *
-     * @param workItemTypeIds
-     * @return
-     */
-    List<WorkItemState> findByWorkItemTypeId(@Param("workItemTypeIds") List<String> workItemTypeIds);
-
 }

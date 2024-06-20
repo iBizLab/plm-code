@@ -62,6 +62,25 @@ public interface SprintMapper extends BaseMapper<Sprint> {
     List<Sprint> listChooseMove(@Param("ctx") SprintSearchContext context, @Param("ew") Wrapper<Sprint> wrapper);
 
     /**
+     * 数据集合cur_sprint_not_finish分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Sprint> searchCurSprintNotFinish(IPage<Sprint> page, @Param("ctx") SprintSearchContext context, @Param("ew") Wrapper<Sprint> wrapper);
+    
+    /**
+     * 数据集合cur_sprint_not_finish查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Sprint> listCurSprintNotFinish(@Param("ctx") SprintSearchContext context, @Param("ew") Wrapper<Sprint> wrapper);
+
+    /**
      * 数据集合not_finish分页查询
      * 
      * @param page
@@ -79,6 +98,22 @@ public interface SprintMapper extends BaseMapper<Sprint> {
      * @return
      */
     List<Sprint> listNotFinish(@Param("ctx") SprintSearchContext context, @Param("ew") Wrapper<Sprint> wrapper);
+
+    /**
+    * 根据projectId查询
+    *
+    * @param projectIds
+    * @return
+    */
+    List<Sprint> findByProjectId(@Param("projectIds") List<String> projectIds);
+
+    /**
+    * 根据pid查询
+    *
+    * @param pids
+    * @return
+    */
+    List<Sprint> findByPid(@Param("pids") List<String> pids);
 
     /**
      * 主键查询
@@ -189,21 +224,4 @@ public interface SprintMapper extends BaseMapper<Sprint> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据projectId查询
-     *
-     * @param projectIds
-     * @return
-     */
-    List<Sprint> findByProjectId(@Param("projectIds") List<String> projectIds);
-
-    /**
-     * 根据pid查询
-     *
-     * @param pids
-     * @return
-     */
-    List<Sprint> findByPid(@Param("pids") List<String> pids);
-
 }

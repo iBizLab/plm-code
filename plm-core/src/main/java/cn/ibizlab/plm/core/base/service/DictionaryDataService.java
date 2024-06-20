@@ -31,89 +31,32 @@ public interface DictionaryDataService extends IService<DictionaryData> {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    DictionaryData get(DictionaryData et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default DictionaryData get(String key) {
-        return getSelf().get(new DictionaryData().setId(key));
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<DictionaryData> getByIds(Collection<String> ids) {
-        List<DictionaryData> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new DictionaryData().setId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<DictionaryData> getByEntities(List<DictionaryData> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    DictionaryData getDraft(DictionaryData et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(DictionaryData et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(DictionaryData et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<DictionaryData> list);
+    boolean create(List<DictionaryData> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(DictionaryData et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<DictionaryData> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    @Override
-    boolean save(DictionaryData et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<DictionaryData> list);
+    boolean update(List<DictionaryData> list);
 
     /**
      * 主键删除
@@ -123,14 +66,7 @@ public interface DictionaryDataService extends IService<DictionaryData> {
     default boolean remove(String key) {
         return getSelf().remove(new DictionaryData().setId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -140,13 +76,13 @@ public interface DictionaryDataService extends IService<DictionaryData> {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<DictionaryData> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new DictionaryData().setId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new DictionaryData().setId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -154,7 +90,144 @@ public interface DictionaryDataService extends IService<DictionaryData> {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<DictionaryData> entities);
+    boolean remove(List<DictionaryData> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default DictionaryData get(String key) {
+        return getSelf().get(new DictionaryData().setId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    DictionaryData get(DictionaryData et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<DictionaryData> get(Collection<String> keys) {
+        List<DictionaryData> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new DictionaryData().setId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<DictionaryData> get(List<DictionaryData> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    DictionaryData getDraft(DictionaryData et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(DictionaryData et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(DictionaryData et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<DictionaryData> list);
+
+    /**
+    * nothing
+    * 
+    * @param et
+    * @return
+    */
+    default DictionaryData nothing(DictionaryData et) {
+        return et;
+    }
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<DictionaryData> fetchDefault(DictionaryDataSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<DictionaryData> listDefault(DictionaryDataSearchContext context);
+
+    /**
+    * fetchIdeaState
+    * 
+    * @param context
+    * @return
+    */
+    Page<DictionaryData> fetchIdeaState(DictionaryDataSearchContext context);
+
+    /**
+    * listIdeaState
+    * 
+    * @param context
+    * @return
+    */
+    List<DictionaryData> listIdeaState(DictionaryDataSearchContext context);
+
+    /**
+    * fetchReleaseStage
+    * 
+    * @param context
+    * @return
+    */
+    Page<DictionaryData> fetchReleaseStage(DictionaryDataSearchContext context);
+
+    /**
+    * listReleaseStage
+    * 
+    * @param context
+    * @return
+    */
+    List<DictionaryData> listReleaseStage(DictionaryDataSearchContext context);
+
+    /**
+    * fetchTicketState
+    * 
+    * @param context
+    * @return
+    */
+    Page<DictionaryData> fetchTicketState(DictionaryDataSearchContext context);
+
+    /**
+    * listTicketState
+    * 
+    * @param context
+    * @return
+    */
+    List<DictionaryData> listTicketState(DictionaryDataSearchContext context);
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<DictionaryData> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -171,77 +244,7 @@ public interface DictionaryDataService extends IService<DictionaryData> {
         }
         return rt;
     }
-
-    /**
-     * nothing
-     * 
-     * @param dto
-     * @return
-     */
-    default DictionaryData nothing(DictionaryData dto) {
-        return dto;
-    }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<DictionaryData> searchDefault(DictionaryDataSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<DictionaryData> listDefault(DictionaryDataSearchContext context);
-
-    /**
-     * searchidea_state
-     * 
-     * @param context
-     * @return
-     */
-    Page<DictionaryData> searchIdeaState(DictionaryDataSearchContext context);
-    /**
-     * listidea_state
-     * 
-     * @param context
-     * @return
-     */
-    List<DictionaryData> listIdeaState(DictionaryDataSearchContext context);
-
-    /**
-     * searchrelease_stage
-     * 
-     * @param context
-     * @return
-     */
-    Page<DictionaryData> searchReleaseStage(DictionaryDataSearchContext context);
-    /**
-     * listrelease_stage
-     * 
-     * @param context
-     * @return
-     */
-    List<DictionaryData> listReleaseStage(DictionaryDataSearchContext context);
-
-    /**
-     * searchticket_state
-     * 
-     * @param context
-     * @return
-     */
-    Page<DictionaryData> searchTicketState(DictionaryDataSearchContext context);
-    /**
-     * listticket_state
-     * 
-     * @param context
-     * @return
-     */
-    List<DictionaryData> listTicketState(DictionaryDataSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -249,6 +252,7 @@ public interface DictionaryDataService extends IService<DictionaryData> {
     default DictionaryData getEntity() {
         return new DictionaryData();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -257,20 +261,12 @@ public interface DictionaryDataService extends IService<DictionaryData> {
         return new DictionaryDataSearchContext();
     }
 
-    /**
-     * 自定义查询SQL
-     * @param sql  select * from table where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
-    List<JSONObject> select(String sql, Map<String,Object> param);
 
     /**
-     * 自定义SQL
-     * @param sql  update table  set name ='test' where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
+    * 自定义SQL
+    * @param sql  update table  set name ='test' where id =#{et.param}
+    * @param param 参数列表  param.put("param","1");
+    * @return
+    */
     boolean execute(String sql, Map<String,Object> param);
-
 }

@@ -54,12 +54,12 @@ public class SpaceSearchContext extends QueryWrapperContext<Space> {
     private String scopeTypeEQ;
 
     /**
-     * 空间名称LIKE
+     * 所属对象EQ
      */
-    @JsonProperty("n_name_like")
-    @JSONField(name = "n_name_like")
-    @ApiModelProperty("空间名称LIKE")
-    private String nameLIKE;
+    @JsonProperty("n_scope_id_eq")
+    @JSONField(name = "n_scope_id_eq")
+    @ApiModelProperty("所属对象EQ")
+    private String scopeIdEQ;
 
     /**
      * 标识EQ
@@ -68,6 +68,14 @@ public class SpaceSearchContext extends QueryWrapperContext<Space> {
     @JSONField(name = "n_id_eq")
     @ApiModelProperty("标识EQ")
     private String idEQ;
+
+    /**
+     * 空间名称LIKE
+     */
+    @JsonProperty("n_name_like")
+    @JSONField(name = "n_name_like")
+    @ApiModelProperty("空间名称LIKE")
+    private String nameLIKE;
 
     /**
      * 分类EQ

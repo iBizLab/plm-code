@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper	namespace="cn.ibizlab.plm.core.insight.mapper.InsightViewMapper">
+
+        <!--通过mybatis将查询结果注入到entity中,通过配置autoMapping="true"由mybatis自动处理映射关系 -->
+    <resultMap id="InsightViewResultMap" type="cn.ibizlab.plm.core.insight.domain.InsightView" autoMapping="true">
+		<id property="id" column="id" /><!--主键字段映射-->
+		<result property="isArchived" column="is_archived" />
+		<result property="isDeleted" column="is_deleted" />
+		<result property="isFavorite" column="is_favorite" />
+		<result property="scopeType" column="scope_type" />
+		<result property="scopeId" column="scope_id" />
+		<result property="createMan" column="create_man" />
+		<result property="createTime" column="create_time" />
+		<result property="updateMan" column="update_man" />
+		<result property="updateTime" column="update_time" />
+    </resultMap>
+
+    <select id="selectById"  resultMap="InsightViewResultMap">
+        <include refid="view" /> 
+         where 
+         t1.id=#{ id }
+    </select>
+
+    <select id="selectEntity" parameterType="cn.ibizlab.plm.core.insight.domain.InsightView" resultMap="InsightViewResultMap">
+        <include refid="view" /> 
+         where 
+         (t1.id = #{ id })
+    </select>
+
+    <select id="selectEntities" parameterType="java.util.List" resultMap="InsightViewResultMap">
+        <include refid="view" /> 
+         where 
+         (t1.id)
+         in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.id }) </foreach>)
+    </select>
+
+    <delete id="deleteEntities" parameterType="java.util.List">
+    delete from INSIGHT_VIEW
+    where (id)
+         in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.id }) </foreach>)
+    </delete>
+
+    <sql id="default" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`NAME`, t1.`SCOPE_ID`, t1.`SCOPE_TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VISIBILITY` FROM `INSIGHT_VIEW` t1   ]]>  
+    </sql>
+
+    <sql id="view" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`NAME`, t1.`SCOPE_ID`, t1.`SCOPE_TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VISIBILITY` FROM `INSIGHT_VIEW` t1   ]]>  
+    </sql>
+
+    <sql id="admin" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`NAME`, t1.`SCOPE_ID`, t1.`SCOPE_TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VISIBILITY` FROM `INSIGHT_VIEW` t1   ]]>  where  <![CDATA[ EXISTS(SELECT * FROM `MEMBER` t11   WHERE   t1.`ID` = t11.`OWNER_ID`  AND  ( t11.`USER_ID` = #{ctx.sessioncontext.srfpersonid}  AND  t11.`ROLE_ID` = 'admin'  AND  t11.`OWNER_TYPE` = 'INSIGHT' ) ) ]]> 
+    </sql>
+
+    <sql id="favorite" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`NAME`, t1.`SCOPE_ID`, t1.`SCOPE_TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VISIBILITY` FROM `INSIGHT_VIEW` t1   ]]>  where  <![CDATA[ ( t1.`IS_ARCHIVED` = 0  AND  t1.`IS_DELETED` = 0  AND  (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) = '1' ) ]]> 
+    </sql>
+
+    <sql id="normal" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`NAME`, t1.`SCOPE_ID`, t1.`SCOPE_TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VISIBILITY` FROM `INSIGHT_VIEW` t1   ]]>  where  <![CDATA[ ( t1.`IS_ARCHIVED` = 0  AND  t1.`IS_DELETED` = 0 ) ]]> 
+    </sql>
+
+    <sql id="public" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`NAME`, t1.`SCOPE_ID`, t1.`SCOPE_TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VISIBILITY` FROM `INSIGHT_VIEW` t1   ]]>  where  <![CDATA[ ( t1.`VISIBILITY` = 'public' ) ]]> 
+    </sql>
+
+    <sql id="reader" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`NAME`, t1.`SCOPE_ID`, t1.`SCOPE_TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VISIBILITY` FROM `INSIGHT_VIEW` t1   ]]>  where  <![CDATA[ EXISTS(SELECT * FROM `MEMBER` t11   WHERE   t1.`ID` = t11.`OWNER_ID`  AND  ( t11.`USER_ID` = #{ctx.sessioncontext.srfpersonid}  AND  t11.`ROLE_ID` = 'reader'  AND  t11.`OWNER_TYPE` = 'INSIGHT' ) ) ]]> 
+    </sql>
+
+    <sql id="unfavorite" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`NAME`, t1.`SCOPE_ID`, t1.`SCOPE_TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VISIBILITY` FROM `INSIGHT_VIEW` t1   ]]>  where  <![CDATA[ ( t1.`IS_ARCHIVED` = 0  AND  t1.`IS_DELETED` = 0  AND  (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) = '0' ) ]]> 
+    </sql>
+
+    <sql id="user" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`NAME`, t1.`SCOPE_ID`, t1.`SCOPE_TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VISIBILITY` FROM `INSIGHT_VIEW` t1   ]]>  where  <![CDATA[ EXISTS(SELECT * FROM `MEMBER` t11   WHERE   t1.`ID` = t11.`OWNER_ID`  AND  ( t11.`USER_ID` = #{ctx.sessioncontext.srfpersonid}  AND  t11.`ROLE_ID` = 'user'  AND  t11.`OWNER_TYPE` = 'INSIGHT' ) ) ]]> 
+    </sql>
+
+    <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.insight.filter.InsightViewSearchContext"  resultMap="InsightViewResultMap">
+        select t1.* 
+        from (
+            <include refid="default"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listDefault"  parameterType="cn.ibizlab.plm.core.insight.filter.InsightViewSearchContext"  resultMap="InsightViewResultMap">
+        select t1.*
+        from (
+            <include refid="default"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchAdmin"  parameterType="cn.ibizlab.plm.core.insight.filter.InsightViewSearchContext"  resultMap="InsightViewResultMap">
+        select t1.* 
+        from (
+            <include refid="admin"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listAdmin"  parameterType="cn.ibizlab.plm.core.insight.filter.InsightViewSearchContext"  resultMap="InsightViewResultMap">
+        select t1.*
+        from (
+            <include refid="admin"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchFavorite"  parameterType="cn.ibizlab.plm.core.insight.filter.InsightViewSearchContext"  resultMap="InsightViewResultMap">
+        select t1.* 
+        from (
+            <include refid="favorite"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listFavorite"  parameterType="cn.ibizlab.plm.core.insight.filter.InsightViewSearchContext"  resultMap="InsightViewResultMap">
+        select t1.*
+        from (
+            <include refid="favorite"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchMain"  parameterType="cn.ibizlab.plm.core.insight.filter.InsightViewSearchContext"  resultMap="InsightViewResultMap">
+        select t1.* 
+        from (
+            <include refid="favorite"/>
+                 union all 
+            <include refid="unfavorite"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listMain"  parameterType="cn.ibizlab.plm.core.insight.filter.InsightViewSearchContext"  resultMap="InsightViewResultMap">
+        select t1.*
+        from (
+            <include refid="favorite"/>
+                 union all
+            <include refid="unfavorite"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchNormal"  parameterType="cn.ibizlab.plm.core.insight.filter.InsightViewSearchContext"  resultMap="InsightViewResultMap">
+        select t1.* 
+        from (
+            <include refid="normal"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listNormal"  parameterType="cn.ibizlab.plm.core.insight.filter.InsightViewSearchContext"  resultMap="InsightViewResultMap">
+        select t1.*
+        from (
+            <include refid="normal"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchReader"  parameterType="cn.ibizlab.plm.core.insight.filter.InsightViewSearchContext"  resultMap="InsightViewResultMap">
+        select t1.* 
+        from (
+            <include refid="reader"/>
+                 union all 
+            <include refid="public"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listReader"  parameterType="cn.ibizlab.plm.core.insight.filter.InsightViewSearchContext"  resultMap="InsightViewResultMap">
+        select t1.*
+        from (
+            <include refid="reader"/>
+                 union all
+            <include refid="public"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchUser"  parameterType="cn.ibizlab.plm.core.insight.filter.InsightViewSearchContext"  resultMap="InsightViewResultMap">
+        select t1.* 
+        from (
+            <include refid="user"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listUser"  parameterType="cn.ibizlab.plm.core.insight.filter.InsightViewSearchContext"  resultMap="InsightViewResultMap">
+        select t1.*
+        from (
+            <include refid="user"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+</mapper>

@@ -184,6 +184,16 @@ export default {
           valid: true,
           caption: '规划用例',
           itemType: 'DEUIACTION',
+          controlLogics: [
+            {
+              itemName: 'deuiaction1',
+              logicTag: 'toolbar',
+              logicType: 'SCRIPT',
+              scriptCode: "context.baseline_status !== '2'",
+              triggerType: 'ITEMVISIBLE',
+              id: 'logic',
+            },
+          ],
           sysImage: {
             cssClass: 'fa fa-list-ol',
             glyph: 'xf0cb@FontAwesome',
@@ -465,6 +475,16 @@ export default {
               valid: true,
               caption: '移出',
               itemType: 'DEUIACTION',
+              controlLogics: [
+                {
+                  itemName: 'deuiaction1',
+                  logicTag: 'grid_batchtoolbar',
+                  logicType: 'SCRIPT',
+                  scriptCode: "context.baseline_status !== '2'",
+                  triggerType: 'ITEMENABLE',
+                  id: 'logic',
+                },
+              ],
               sysImage: {
                 cssClass: 'fa fa-mail-reply',
                 glyph: 'xf112@FontAwesome',

@@ -36,20 +36,20 @@ import cn.ibizlab.plm.core.ebsx.domain.SysTodo;
 public class SysTodoSearchContext extends SearchContextBase {
 
     /**
-     * 标题LIKE
-     */
-    @JsonProperty("n_title_like")
-    @JSONField(name = "n_title_like")
-    @ApiModelProperty("标题LIKE")
-    private String titleLIKE;
-
-    /**
      * 待办标识EQ
      */
     @JsonProperty("n_todoid_eq")
     @JSONField(name = "n_todoid_eq")
     @ApiModelProperty("待办标识EQ")
     private String todoIdEQ;
+
+    /**
+     * 标题LIKE
+     */
+    @JsonProperty("n_title_like")
+    @JSONField(name = "n_title_like")
+    @ApiModelProperty("标题LIKE")
+    private String titleLIKE;
 
     /**
      * 待办地址类型EQ

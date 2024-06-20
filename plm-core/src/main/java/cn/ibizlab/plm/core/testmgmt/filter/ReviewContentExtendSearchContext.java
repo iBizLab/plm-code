@@ -38,12 +38,12 @@ import cn.ibizlab.plm.core.testmgmt.domain.ReviewContentExtend;
 public class ReviewContentExtendSearchContext extends QueryWrapperContext<ReviewContentExtend> {
 
     /**
-     * 名称LIKE
+     * 最终评审结果EQ
      */
-    @JsonProperty("n_name_like")
-    @JSONField(name = "n_name_like")
-    @ApiModelProperty("名称LIKE")
-    private String nameLIKE;
+    @JsonProperty("n_final_stage_results_eq")
+    @JSONField(name = "n_final_stage_results_eq")
+    @ApiModelProperty("最终评审结果EQ")
+    private String finalStageResultsEQ;
 
     /**
      * 标识EQ
@@ -52,6 +52,14 @@ public class ReviewContentExtendSearchContext extends QueryWrapperContext<Review
     @JSONField(name = "n_id_eq")
     @ApiModelProperty("标识EQ")
     private String idEQ;
+
+    /**
+     * 名称LIKE
+     */
+    @JsonProperty("n_name_like")
+    @JSONField(name = "n_name_like")
+    @ApiModelProperty("名称LIKE")
+    private String nameLIKE;
 
     @Override
     public void setQuery(String query) {

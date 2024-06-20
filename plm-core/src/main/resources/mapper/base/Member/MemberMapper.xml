@@ -10,11 +10,12 @@
 		<result property="userId" column="user_id" />
 		<result property="ownerSubtype" column="owner_subtype" />
 		<result property="roleId" column="role_id" />
-		<result property="updateTime" column="update_time" />
 		<result property="createMan" column="create_man" />
-		<result property="updateMan" column="update_man" />
 		<result property="createTime" column="create_time" />
-        <association property="group" javaType="cn.ibizlab.plm.core.base.domain.Group" column="owner_id" select="cn.ibizlab.plm.core.base.mapper.GroupMapper.selectById" fetchType="lazy"></association>
+		<result property="updateMan" column="update_man" />
+		<result property="updateTime" column="update_time" />
+        <association property="memberGroup" javaType="cn.ibizlab.plm.core.base.domain.Group" column="owner_id" select="cn.ibizlab.plm.core.base.mapper.GroupMapper.selectById" fetchType="lazy"></association>
+        <association property="projectResource" javaType="cn.ibizlab.plm.core.projmgmt.domain.Project" column="owner_id" select="cn.ibizlab.plm.core.projmgmt.mapper.ProjectMapper.selectById" fetchType="lazy"></association>
     </resultMap>
 
     <select id="selectById"  resultMap="MemberResultMap">
@@ -101,6 +102,20 @@
             <include refid="default"/>
         ) t1
         where user_id in <foreach item="id" index="index" collection="userIds" open="(" separator="," close=")">#{id}</foreach> 
+    </select>
+
+    <select id="findById" resultMap="MemberResultMap">
+        select t1.* from (
+            <include refid="default"/>
+        ) t1
+        where id in <foreach item="id" index="index" collection="ids" open="(" separator="," close=")">#{id}</foreach> 
+    </select>
+
+    <select id="findByOwnerId" resultMap="MemberResultMap">
+        select t1.* from (
+            <include refid="default"/>
+        ) t1
+        where owner_id in <foreach item="id" index="index" collection="ownerIds" open="(" separator="," close=")">#{id}</foreach> 
     </select>
 
     <select id="findByOwnerId" resultMap="MemberResultMap">

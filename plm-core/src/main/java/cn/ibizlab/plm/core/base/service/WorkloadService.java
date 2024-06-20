@@ -35,89 +35,32 @@ public interface WorkloadService extends IService<Workload> {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    Workload get(Workload et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default Workload get(String key) {
-        return getSelf().get(new Workload().setId(key));
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<Workload> getByIds(Collection<String> ids) {
-        List<Workload> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Workload().setId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<Workload> getByEntities(List<Workload> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    Workload getDraft(Workload et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(Workload et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(Workload et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<Workload> list);
+    boolean create(List<Workload> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(Workload et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<Workload> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    @Override
-    boolean save(Workload et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<Workload> list);
+    boolean update(List<Workload> list);
 
     /**
      * 主键删除
@@ -127,14 +70,7 @@ public interface WorkloadService extends IService<Workload> {
     default boolean remove(String key) {
         return getSelf().remove(new Workload().setId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -144,13 +80,13 @@ public interface WorkloadService extends IService<Workload> {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<Workload> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Workload().setId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new Workload().setId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -158,7 +94,434 @@ public interface WorkloadService extends IService<Workload> {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<Workload> entities);
+    boolean remove(List<Workload> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default Workload get(String key) {
+        return getSelf().get(new Workload().setId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    Workload get(Workload et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<Workload> get(Collection<String> keys) {
+        List<Workload> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new Workload().setId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<Workload> get(List<Workload> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    Workload getDraft(Workload et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(Workload et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(Workload et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<Workload> list);
+
+    /**
+    * createWorkload
+    * 
+    * @param et
+    * @return
+    */
+    default Workload createWorkload(Workload et) {
+        return et;
+    }
+
+    /**
+    * getRegisterWorkload
+    * 
+    * @param key
+    * @return
+    */
+    default Workload getRegisterWorkload(String key) {
+        return getSelf().getRegisterWorkload(new Workload().setId(key));
+    }
+
+    /**
+    * updateWorkload
+    * 
+    * @param et
+    * @return
+    */
+    default Workload updateWorkload(Workload et) {
+        return et;
+    }
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<Workload> fetchDefault(WorkloadSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<Workload> listDefault(WorkloadSearchContext context);
+
+    /**
+    * fetchCalendar
+    * 
+    * @param context
+    * @return
+    */
+    Page<Workload> fetchCalendar(WorkloadSearchContext context);
+
+    /**
+    * listCalendar
+    * 
+    * @param context
+    * @return
+    */
+    List<Workload> listCalendar(WorkloadSearchContext context);
+
+    /**
+    * fetchIdeaWorkload
+    * 
+    * @param context
+    * @return
+    */
+    Page<Workload> fetchIdeaWorkload(WorkloadSearchContext context);
+
+    /**
+    * listIdeaWorkload
+    * 
+    * @param context
+    * @return
+    */
+    List<Workload> listIdeaWorkload(WorkloadSearchContext context);
+
+    /**
+    * fetchLog
+    * 
+    * @param context
+    * @return
+    */
+    Page<Workload> fetchLog(WorkloadSearchContext context);
+
+    /**
+    * listLog
+    * 
+    * @param context
+    * @return
+    */
+    List<Workload> listLog(WorkloadSearchContext context);
+
+    /**
+    * fetchMemberDimension
+    * 
+    * @param context
+    * @return
+    */
+    Page<Workload> fetchMemberDimension(WorkloadSearchContext context);
+
+    /**
+    * listMemberDimension
+    * 
+    * @param context
+    * @return
+    */
+    List<Workload> listMemberDimension(WorkloadSearchContext context);
+
+    /**
+    * fetchMyCalendar
+    * 
+    * @param context
+    * @return
+    */
+    Page<Workload> fetchMyCalendar(WorkloadSearchContext context);
+
+    /**
+    * listMyCalendar
+    * 
+    * @param context
+    * @return
+    */
+    List<Workload> listMyCalendar(WorkloadSearchContext context);
+
+    /**
+    * fetchMyIdeaWorkload
+    * 
+    * @param context
+    * @return
+    */
+    Page<Workload> fetchMyIdeaWorkload(WorkloadSearchContext context);
+
+    /**
+    * listMyIdeaWorkload
+    * 
+    * @param context
+    * @return
+    */
+    List<Workload> listMyIdeaWorkload(WorkloadSearchContext context);
+
+    /**
+    * fetchMyLog
+    * 
+    * @param context
+    * @return
+    */
+    Page<Workload> fetchMyLog(WorkloadSearchContext context);
+
+    /**
+    * listMyLog
+    * 
+    * @param context
+    * @return
+    */
+    List<Workload> listMyLog(WorkloadSearchContext context);
+
+    /**
+    * fetchMyTestCaseWorkload
+    * 
+    * @param context
+    * @return
+    */
+    Page<Workload> fetchMyTestCaseWorkload(WorkloadSearchContext context);
+
+    /**
+    * listMyTestCaseWorkload
+    * 
+    * @param context
+    * @return
+    */
+    List<Workload> listMyTestCaseWorkload(WorkloadSearchContext context);
+
+    /**
+    * fetchMyTypeOf
+    * 
+    * @param context
+    * @return
+    */
+    Page<Workload> fetchMyTypeOf(WorkloadSearchContext context);
+
+    /**
+    * listMyTypeOf
+    * 
+    * @param context
+    * @return
+    */
+    List<Workload> listMyTypeOf(WorkloadSearchContext context);
+
+    /**
+    * fetchMyWorkItemWorkload
+    * 
+    * @param context
+    * @return
+    */
+    Page<Workload> fetchMyWorkItemWorkload(WorkloadSearchContext context);
+
+    /**
+    * listMyWorkItemWorkload
+    * 
+    * @param context
+    * @return
+    */
+    List<Workload> listMyWorkItemWorkload(WorkloadSearchContext context);
+
+    /**
+    * fetchTestCaseWorkload
+    * 
+    * @param context
+    * @return
+    */
+    Page<Workload> fetchTestCaseWorkload(WorkloadSearchContext context);
+
+    /**
+    * listTestCaseWorkload
+    * 
+    * @param context
+    * @return
+    */
+    List<Workload> listTestCaseWorkload(WorkloadSearchContext context);
+
+    /**
+    * fetchTypeOf
+    * 
+    * @param context
+    * @return
+    */
+    Page<Workload> fetchTypeOf(WorkloadSearchContext context);
+
+    /**
+    * listTypeOf
+    * 
+    * @param context
+    * @return
+    */
+    List<Workload> listTypeOf(WorkloadSearchContext context);
+
+    /**
+    * fetchWorkItemWorkload
+    * 
+    * @param context
+    * @return
+    */
+    Page<Workload> fetchWorkItemWorkload(WorkloadSearchContext context);
+
+    /**
+    * listWorkItemWorkload
+    * 
+    * @param context
+    * @return
+    */
+    List<Workload> listWorkItemWorkload(WorkloadSearchContext context);
+
+    /**
+    * findByTypeId
+    * @param typeIds
+    * @return
+    */
+    List<Workload> findByTypeId(List<String> typeIds);
+    default List<Workload> findByTypeId(String typeId){
+        return findByTypeId(Arrays.asList(typeId));
+    }
+
+    /**
+    * removeByTypeId
+    * @param typeId
+    * @return
+    */
+    boolean removeByTypeId(String typeId);
+
+    /**
+    * resetByTypeId
+    * @param typeId
+    * @return
+    */
+    boolean resetByTypeId(String typeId);
+
+    /**
+    * saveByTypeId
+    * @param typeId
+    * @param list
+    * @return
+    */
+    default boolean saveByTypeId(String typeId, List<Workload> list){
+        return getSelf().saveByWorkloadType(new WorkloadType().setId(typeId),list);
+    }
+
+    /**
+    * saveByWorkloadType
+    * @param workloadType
+    * @param list
+    * @return
+    */
+    boolean saveByWorkloadType(WorkloadType workloadType, List<Workload> list);
+
+    /**
+    * findByPrincipalId
+    * @param principalIds
+    * @return
+    */
+    List<Workload> findByPrincipalId(List<String> principalIds);
+    default List<Workload> findByPrincipalId(String principalId){
+        return findByPrincipalId(Arrays.asList(principalId));
+    }
+
+    /**
+    * removeByPrincipalId
+    * @param principalId
+    * @return
+    */
+    boolean removeByPrincipalId(String principalId);
+
+    /**
+    * resetByPrincipalId
+    * @param principalId
+    * @return
+    */
+    boolean resetByPrincipalId(String principalId);
+
+    /**
+    * saveByPrincipalId
+    * @param principalId
+    * @param list
+    * @return
+    */
+    default boolean saveByPrincipalId(String principalId, List<Workload> list){
+        return getSelf().saveByRelIdea(new Idea().setId(principalId),list);
+    }
+
+    /**
+    * saveByRelIdea
+    * @param idea
+    * @param list
+    * @return
+    */
+    boolean saveByRelIdea(Idea idea, List<Workload> list);
+
+    /**
+    * saveByRelTestCase
+    * @param testCase
+    * @param list
+    * @return
+    */
+    boolean saveByRelTestCase(TestCase testCase, List<Workload> list);
+
+    /**
+    * saveByRelWorkItem
+    * @param workItem
+    * @param list
+    * @return
+    */
+    boolean saveByRelWorkItem(WorkItem workItem, List<Workload> list);
+
+    /**
+    * getRegisterWorkload
+    * 
+    * @param et
+    * @return
+    */
+    default Workload getRegisterWorkload(Workload et) {
+        return et;
+    }
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<Workload> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -175,242 +538,7 @@ public interface WorkloadService extends IService<Workload> {
         }
         return rt;
     }
-
-    /**
-     * create_workload
-     * 
-     * @param dto
-     * @return
-     */
-    default Workload createWorkload(Workload dto) {
-        return dto;
-    }
-
-    /**
-     * get_register_workload
-     * 修改实际工时表单获取数据行为
-     * @param key
-     * @return
-     */
-    default Workload getRegisterWorkload(String key) {
-        return getSelf().getRegisterWorkload(new Workload().setId(key));
-    }
-
-    /**
-     * update_workload
-     * 
-     * @param dto
-     * @return
-     */
-    default Workload updateWorkload(Workload dto) {
-        return dto;
-    }
-
-    /**
-     * get_register_workload
-     * 修改实际工时表单获取数据行为
-     * @param et
-     * @return
-     */
-    default Workload getRegisterWorkload(Workload et) {
-        return et;
-    }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<Workload> searchDefault(WorkloadSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<Workload> listDefault(WorkloadSearchContext context);
-
-    /**
-     * searchcalendar
-     * 
-     * @param context
-     * @return
-     */
-    Page<Workload> searchCalendar(WorkloadSearchContext context);
-    /**
-     * listcalendar
-     * 
-     * @param context
-     * @return
-     */
-    List<Workload> listCalendar(WorkloadSearchContext context);
-
-    /**
-     * searchidea_workload
-     * 
-     * @param context
-     * @return
-     */
-    Page<Workload> searchIdeaWorkload(WorkloadSearchContext context);
-    /**
-     * listidea_workload
-     * 
-     * @param context
-     * @return
-     */
-    List<Workload> listIdeaWorkload(WorkloadSearchContext context);
-
-    /**
-     * searchlog
-     * 
-     * @param context
-     * @return
-     */
-    Page<Workload> searchLog(WorkloadSearchContext context);
-    /**
-     * listlog
-     * 
-     * @param context
-     * @return
-     */
-    List<Workload> listLog(WorkloadSearchContext context);
-
-    /**
-     * searchmy_calendar
-     * 
-     * @param context
-     * @return
-     */
-    Page<Workload> searchMyCalendar(WorkloadSearchContext context);
-    /**
-     * listmy_calendar
-     * 
-     * @param context
-     * @return
-     */
-    List<Workload> listMyCalendar(WorkloadSearchContext context);
-
-    /**
-     * searchmy_idea_workload
-     * 
-     * @param context
-     * @return
-     */
-    Page<Workload> searchMyIdeaWorkload(WorkloadSearchContext context);
-    /**
-     * listmy_idea_workload
-     * 
-     * @param context
-     * @return
-     */
-    List<Workload> listMyIdeaWorkload(WorkloadSearchContext context);
-
-    /**
-     * searchmy_log
-     * 
-     * @param context
-     * @return
-     */
-    Page<Workload> searchMyLog(WorkloadSearchContext context);
-    /**
-     * listmy_log
-     * 
-     * @param context
-     * @return
-     */
-    List<Workload> listMyLog(WorkloadSearchContext context);
-
-    /**
-     * searchmy_test_case_workload
-     * 
-     * @param context
-     * @return
-     */
-    Page<Workload> searchMyTestCaseWorkload(WorkloadSearchContext context);
-    /**
-     * listmy_test_case_workload
-     * 
-     * @param context
-     * @return
-     */
-    List<Workload> listMyTestCaseWorkload(WorkloadSearchContext context);
-
-    /**
-     * searchmy_type_of
-     * 
-     * @param context
-     * @return
-     */
-    Page<Workload> searchMyTypeOf(WorkloadSearchContext context);
-    /**
-     * listmy_type_of
-     * 
-     * @param context
-     * @return
-     */
-    List<Workload> listMyTypeOf(WorkloadSearchContext context);
-
-    /**
-     * searchmy_work_item_workload
-     * 
-     * @param context
-     * @return
-     */
-    Page<Workload> searchMyWorkItemWorkload(WorkloadSearchContext context);
-    /**
-     * listmy_work_item_workload
-     * 
-     * @param context
-     * @return
-     */
-    List<Workload> listMyWorkItemWorkload(WorkloadSearchContext context);
-
-    /**
-     * searchtest_case_workload
-     * 
-     * @param context
-     * @return
-     */
-    Page<Workload> searchTestCaseWorkload(WorkloadSearchContext context);
-    /**
-     * listtest_case_workload
-     * 
-     * @param context
-     * @return
-     */
-    List<Workload> listTestCaseWorkload(WorkloadSearchContext context);
-
-    /**
-     * searchtype_of
-     * 
-     * @param context
-     * @return
-     */
-    Page<Workload> searchTypeOf(WorkloadSearchContext context);
-    /**
-     * listtype_of
-     * 
-     * @param context
-     * @return
-     */
-    List<Workload> listTypeOf(WorkloadSearchContext context);
-
-    /**
-     * searchwork_item_workload
-     * 
-     * @param context
-     * @return
-     */
-    Page<Workload> searchWorkItemWorkload(WorkloadSearchContext context);
-    /**
-     * listwork_item_workload
-     * 
-     * @param context
-     * @return
-     */
-    List<Workload> listWorkItemWorkload(WorkloadSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -418,6 +546,7 @@ public interface WorkloadService extends IService<Workload> {
     default Workload getEntity() {
         return new Workload();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -425,113 +554,13 @@ public interface WorkloadService extends IService<Workload> {
     default WorkloadSearchContext getSearchContext() {
         return new WorkloadSearchContext();
     }
+
+
     /**
-     * selectRelByTypeId
-     * @param typeIds
-     * @return
-     */
-    List<Workload> findByTypeId(List<String> typeIds);
-    default List<Workload> findByTypeId(String typeId) {
-        return findByTypeId(Arrays.asList(typeId));
-    }
-    /**
-     * removeRelByTypeId
-     * @param typeId
-     * @return
-     */
-    boolean removeByTypeId(String typeId);
-    /**
-     * resetRelByTypeId
-     * @param typeId
-     * @return
-     */
-    boolean resetByTypeId(String typeId);
-    /**
-     * saveRelByTypeId
-     * @param typeId
-     * @param list
-     * @return
-     */
-    default boolean saveByTypeId(String typeId,List<Workload> list) {
-        return getSelf().saveByWorkloadType(new WorkloadType().setId(typeId),list);
-    }
-    /**
-    * saveRelByWorkloadType
-    * @param workloadType
-    * @param list
+    * 自定义SQL
+    * @param sql  update table  set name ='test' where id =#{et.param}
+    * @param param 参数列表  param.put("param","1");
     * @return
     */
-    boolean saveByWorkloadType(WorkloadType workloadType,List<Workload> list);
-
-    /**
-     * selectRelByPrincipalId
-     * @param principalIds
-     * @return
-     */
-    List<Workload> findByPrincipalId(List<String> principalIds);
-    default List<Workload> findByPrincipalId(String principalId) {
-        return findByPrincipalId(Arrays.asList(principalId));
-    }
-    /**
-     * removeRelByPrincipalId
-     * @param principalId
-     * @return
-     */
-    boolean removeByPrincipalId(String principalId);
-    /**
-     * resetRelByPrincipalId
-     * @param principalId
-     * @return
-     */
-    boolean resetByPrincipalId(String principalId);
-    /**
-     * saveRelByPrincipalId
-     * @param principalId
-     * @param list
-     * @return
-     */
-    default boolean saveByPrincipalId(String principalId,List<Workload> list) {
-        return getSelf().saveByRelIdea(new Idea().setId(principalId),list);
-    }
-    /**
-    * saveRelByRelIdea
-    * @param idea
-    * @param list
-    * @return
-    */
-    boolean saveByRelIdea(Idea idea,List<Workload> list);
-
-    /**
-    * saveRelByRelTestCase
-    * @param testCase
-    * @param list
-    * @return
-    */
-    boolean saveByRelTestCase(TestCase testCase,List<Workload> list);
-
-    /**
-    * saveRelByRelWorkItem
-    * @param workItem
-    * @param list
-    * @return
-    */
-    boolean saveByRelWorkItem(WorkItem workItem,List<Workload> list);
-
-
-    /**
-     * 自定义查询SQL
-     * @param sql  select * from table where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
-    List<JSONObject> select(String sql, Map<String,Object> param);
-
-    /**
-     * 自定义SQL
-     * @param sql  update table  set name ='test' where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
     boolean execute(String sql, Map<String,Object> param);
-
 }

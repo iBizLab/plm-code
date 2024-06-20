@@ -32,89 +32,32 @@ public interface WorkService extends IService<Work> {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    Work get(Work et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default Work get(String key) {
-        return getSelf().get(new Work().setId(key));
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<Work> getByIds(Collection<String> ids) {
-        List<Work> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Work().setId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<Work> getByEntities(List<Work> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    Work getDraft(Work et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(Work et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(Work et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<Work> list);
+    boolean create(List<Work> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(Work et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<Work> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    @Override
-    boolean save(Work et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<Work> list);
+    boolean update(List<Work> list);
 
     /**
      * 主键删除
@@ -124,14 +67,7 @@ public interface WorkService extends IService<Work> {
     default boolean remove(String key) {
         return getSelf().remove(new Work().setId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -141,13 +77,13 @@ public interface WorkService extends IService<Work> {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<Work> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Work().setId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new Work().setId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -155,7 +91,206 @@ public interface WorkService extends IService<Work> {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<Work> entities);
+    boolean remove(List<Work> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default Work get(String key) {
+        return getSelf().get(new Work().setId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    Work get(Work et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<Work> get(Collection<String> keys) {
+        List<Work> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new Work().setId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<Work> get(List<Work> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    Work getDraft(Work et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(Work et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(Work et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<Work> list);
+
+    /**
+    * addProject
+    * 
+    * @param et
+    * @return
+    */
+    default Work addProject(Work et) {
+        return et;
+    }
+
+    /**
+    * addProjectPortfolio
+    * 
+    * @param et
+    * @return
+    */
+    default Work addProjectPortfolio(Work et) {
+        return et;
+    }
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<Work> fetchDefault(WorkSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<Work> listDefault(WorkSearchContext context);
+
+    /**
+    * fetchItemSetOwner
+    * 
+    * @param context
+    * @return
+    */
+    Page<Work> fetchItemSetOwner(WorkSearchContext context);
+
+    /**
+    * listItemSetOwner
+    * 
+    * @param context
+    * @return
+    */
+    List<Work> listItemSetOwner(WorkSearchContext context);
+
+    /**
+    * findByPortfolioId
+    * @param portfolioIds
+    * @return
+    */
+    List<Work> findByPortfolioId(List<String> portfolioIds);
+    default List<Work> findByPortfolioId(String portfolioId){
+        return findByPortfolioId(Arrays.asList(portfolioId));
+    }
+
+    /**
+    * removeByPortfolioId
+    * @param portfolioId
+    * @return
+    */
+    boolean removeByPortfolioId(String portfolioId);
+
+    /**
+    * resetByPortfolioId
+    * @param portfolioId
+    * @return
+    */
+    boolean resetByPortfolioId(String portfolioId);
+
+    /**
+    * saveByPortfolioId
+    * @param portfolioId
+    * @param list
+    * @return
+    */
+    default boolean saveByPortfolioId(String portfolioId, List<Work> list){
+        return getSelf().saveByPortfolio(new Portfolio().setId(portfolioId),list);
+    }
+
+    /**
+    * saveByPortfolio
+    * @param portfolio
+    * @param list
+    * @return
+    */
+    boolean saveByPortfolio(Portfolio portfolio, List<Work> list);
+
+    /**
+    * findByPilotId
+    * @param pilotIds
+    * @return
+    */
+    List<Work> findByPilotId(List<String> pilotIds);
+    default List<Work> findByPilotId(String pilotId){
+        return findByPilotId(Arrays.asList(pilotId));
+    }
+
+    /**
+    * removeByPilotId
+    * @param pilotId
+    * @return
+    */
+    boolean removeByPilotId(String pilotId);
+
+    /**
+    * resetByPilotId
+    * @param pilotId
+    * @return
+    */
+    boolean resetByPilotId(String pilotId);
+
+    /**
+    * saveByPilotId
+    * @param pilotId
+    * @param list
+    * @return
+    */
+    default boolean saveByPilotId(String pilotId, List<Work> list){
+        return getSelf().saveByProject(new Project().setId(pilotId),list);
+    }
+
+    /**
+    * saveByProject
+    * @param project
+    * @param list
+    * @return
+    */
+    boolean saveByProject(Project project, List<Work> list);
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<Work> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -172,57 +307,7 @@ public interface WorkService extends IService<Work> {
         }
         return rt;
     }
-
-    /**
-     * add_project
-     * 
-     * @param dto
-     * @return
-     */
-    default Work addProject(Work dto) {
-        return dto;
-    }
-
-    /**
-     * add_project_portfolio
-     * 
-     * @param dto
-     * @return
-     */
-    default Work addProjectPortfolio(Work dto) {
-        return dto;
-    }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<Work> searchDefault(WorkSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<Work> listDefault(WorkSearchContext context);
-
-    /**
-     * searchitem_set_owner
-     * 
-     * @param context
-     * @return
-     */
-    Page<Work> searchItemSetOwner(WorkSearchContext context);
-    /**
-     * listitem_set_owner
-     * 
-     * @param context
-     * @return
-     */
-    List<Work> listItemSetOwner(WorkSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -230,6 +315,7 @@ public interface WorkService extends IService<Work> {
     default Work getEntity() {
         return new Work();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -237,97 +323,13 @@ public interface WorkService extends IService<Work> {
     default WorkSearchContext getSearchContext() {
         return new WorkSearchContext();
     }
+
+
     /**
-     * selectRelByPortfolioId
-     * @param portfolioIds
-     * @return
-     */
-    List<Work> findByPortfolioId(List<String> portfolioIds);
-    default List<Work> findByPortfolioId(String portfolioId) {
-        return findByPortfolioId(Arrays.asList(portfolioId));
-    }
-    /**
-     * removeRelByPortfolioId
-     * @param portfolioId
-     * @return
-     */
-    boolean removeByPortfolioId(String portfolioId);
-    /**
-     * resetRelByPortfolioId
-     * @param portfolioId
-     * @return
-     */
-    boolean resetByPortfolioId(String portfolioId);
-    /**
-     * saveRelByPortfolioId
-     * @param portfolioId
-     * @param list
-     * @return
-     */
-    default boolean saveByPortfolioId(String portfolioId,List<Work> list) {
-        return getSelf().saveByPortfolio(new Portfolio().setId(portfolioId),list);
-    }
-    /**
-    * saveRelByPortfolio
-    * @param portfolio
-    * @param list
+    * 自定义SQL
+    * @param sql  update table  set name ='test' where id =#{et.param}
+    * @param param 参数列表  param.put("param","1");
     * @return
     */
-    boolean saveByPortfolio(Portfolio portfolio,List<Work> list);
-
-    /**
-     * selectRelByPilotId
-     * @param pilotIds
-     * @return
-     */
-    List<Work> findByPilotId(List<String> pilotIds);
-    default List<Work> findByPilotId(String pilotId) {
-        return findByPilotId(Arrays.asList(pilotId));
-    }
-    /**
-     * removeRelByPilotId
-     * @param pilotId
-     * @return
-     */
-    boolean removeByPilotId(String pilotId);
-    /**
-     * resetRelByPilotId
-     * @param pilotId
-     * @return
-     */
-    boolean resetByPilotId(String pilotId);
-    /**
-     * saveRelByPilotId
-     * @param pilotId
-     * @param list
-     * @return
-     */
-    default boolean saveByPilotId(String pilotId,List<Work> list) {
-        return getSelf().saveByProject(new Project().setId(pilotId),list);
-    }
-    /**
-    * saveRelByProject
-    * @param project
-    * @param list
-    * @return
-    */
-    boolean saveByProject(Project project,List<Work> list);
-
-
-    /**
-     * 自定义查询SQL
-     * @param sql  select * from table where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
-    List<JSONObject> select(String sql, Map<String,Object> param);
-
-    /**
-     * 自定义SQL
-     * @param sql  update table  set name ='test' where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
     boolean execute(String sql, Map<String,Object> param);
-
 }

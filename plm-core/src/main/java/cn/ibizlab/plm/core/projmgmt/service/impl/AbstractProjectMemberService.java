@@ -43,51 +43,6 @@ public abstract class AbstractProjectMemberService extends ServiceImpl<ProjectMe
 
     protected int batchSize = 500;
 
-    public ProjectMember get(ProjectMember et) {
-        ProjectMember rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.PROJECT_MEMBER.toString(),et.getId());
-        rt.copyTo(et,true);
-        return et;
-    }
-
-    public List<ProjectMember> getByEntities(List<ProjectMember> entities) {
-        entities.forEach(et->{
-            if(ObjectUtils.isEmpty(et.getId()))
-                et.setId((String)et.getDefaultKey(true));
-            });
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public void fillParentData(ProjectMember et) {
-        if(Entities.PROJECT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
-            et.setProjectId((String)et.getContextParentKey());
-            Project project = et.getProject();
-            if(project == null) {
-                project = projectService.getById(et.getProjectId());
-                et.setProject(project);
-            }
-            if(!ObjectUtils.isEmpty(project)) {
-                et.setProjectName(project.getName());
-                et.setProjectIdentifier(project.getIdentifier());
-                et.setProjectType(project.getType());
-                et.setProjectId(project.getId());
-            }
-        }
-    }
-
-    public ProjectMember getDraft(ProjectMember et) {
-        fillParentData(et);
-        return et;
-    }
-
-    public Integer checkKey(ProjectMember et) {
-        fillParentData(et);
-        if(ObjectUtils.isEmpty(et.getId()))
-            et.setId((String)et.getDefaultKey(true));
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ProjectMember>lambdaQuery().eq(ProjectMember::getId, et.getId()))>0)?1:0;
-    }
-
     @Override
     @Transactional
     public boolean create(ProjectMember et) {
@@ -99,9 +54,9 @@ public abstract class AbstractProjectMemberService extends ServiceImpl<ProjectMe
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<ProjectMember> list) {
+    public boolean create(List<ProjectMember> list) {
         list.forEach(this::fillParentData);
         list.forEach(et->{
             if(ObjectUtils.isEmpty(et.getId()))
@@ -110,7 +65,7 @@ public abstract class AbstractProjectMemberService extends ServiceImpl<ProjectMe
         this.saveBatch(list, batchSize);
         return true;
     }
-
+	
     @Transactional
     public boolean update(ProjectMember et) {
         fillParentData(et);
@@ -123,12 +78,52 @@ public abstract class AbstractProjectMemberService extends ServiceImpl<ProjectMe
     }
 
     @Transactional
-    public boolean updateBatch(List<ProjectMember> list) {
+    public boolean update(List<ProjectMember> list) {
         list.forEach(this::fillParentData);
         updateBatchById(list, batchSize);
         return true;
     }
+	
+   @Transactional
+    public boolean remove(ProjectMember et) {
+        if(!remove(Wrappers.<ProjectMember>lambdaQuery().eq(ProjectMember::getId, et.getId())))
+            return false;
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<ProjectMember> entities) {
+        this.baseMapper.deleteEntities(entities);
+        return true;
+    }		
+    public ProjectMember get(ProjectMember et) {
+        ProjectMember rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.PROJECT_MEMBER.toString(),et.getId());
+        rt.copyTo(et,true);
+        return et;
+    }	
+
+    public List<ProjectMember> get(List<ProjectMember> entities) {
+        entities.forEach(et->{
+            if(ObjectUtils.isEmpty(et.getId()))
+                et.setId((String)et.getDefaultKey(true));
+            });
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public ProjectMember getDraft(ProjectMember et) {
+        fillParentData(et);
+        return et;
+    }
+	
+    public Integer checkKey(ProjectMember et) {
+        fillParentData(et);
+        if(ObjectUtils.isEmpty(et.getId()))
+            et.setId((String)et.getDefaultKey(true));
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ProjectMember>lambdaQuery().eq(ProjectMember::getId, et.getId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(ProjectMember et) {
@@ -139,10 +134,10 @@ public abstract class AbstractProjectMemberService extends ServiceImpl<ProjectMe
     }
 
     @Transactional
-    public boolean saveBatch(List<ProjectMember> list) {
+    public boolean save(List<ProjectMember> list) {
         if(ObjectUtils.isEmpty(list))
             return true;
-        Map<String,ProjectMember> before = getByEntities(list).stream().collect(Collectors.toMap(ProjectMember::getId,e->e));
+        Map<String,ProjectMember> before = get(list).stream().collect(Collectors.toMap(ProjectMember::getId,e->e));
         List<ProjectMember> create = new ArrayList<>();
         List<ProjectMember> update = new ArrayList<>();
         list.forEach(sub->{
@@ -157,67 +152,51 @@ public abstract class AbstractProjectMemberService extends ServiceImpl<ProjectMe
         });
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
         else
             return true;
     }
-
-    @Transactional
-    public boolean remove(ProjectMember et) {
-        if(!remove(Wrappers.<ProjectMember>lambdaQuery().eq(ProjectMember::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<ProjectMember> entities) {
-        this.baseMapper.deleteEntities(entities);
-        return true;
-    }
-
-    public Page<ProjectMember> searchDefault(ProjectMemberSearchContext context) {
+	
+   public Page<ProjectMember> fetchDefault(ProjectMemberSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<ProjectMember> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<ProjectMember> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<ProjectMember> listDefault(ProjectMemberSearchContext context) {
+   public List<ProjectMember> listDefault(ProjectMemberSearchContext context) {
         List<ProjectMember> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<ProjectMember> searchCurProject(ProjectMemberSearchContext context) {
+   }
+	
+   public Page<ProjectMember> fetchCurProject(ProjectMemberSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<ProjectMember> pages=baseMapper.searchCurProject(context.getPages(),context,context.getSelectCond());
         List<ProjectMember> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<ProjectMember> listCurProject(ProjectMemberSearchContext context) {
+   public List<ProjectMember> listCurProject(ProjectMemberSearchContext context) {
         List<ProjectMember> list = baseMapper.listCurProject(context,context.getSelectCond());
         return list;
-    }
-
-    public List<ProjectMember> findByProjectId(List<String> projectIds) {
+   }
+	
+	public List<ProjectMember> findByProjectId(List<String> projectIds){
         List<ProjectMember> list = baseMapper.findByProjectId(projectIds);
-        return list;
-    }
-    public List<ProjectMember> findByUserId(List<String> userIds) {
-        List<ProjectMember> list = baseMapper.findByUserId(userIds);
-        return list;
-    }
-    public boolean removeByProjectId(String projectId) {
+        return list;	
+	}
+
+	public boolean removeByProjectId(String projectId){
         return this.remove(Wrappers.<ProjectMember>lambdaQuery().eq(ProjectMember::getProjectId,projectId));
-    }
+	}
 
-    public boolean resetByProjectId(String projectId) {
-        return this.update(Wrappers.<ProjectMember>lambdaUpdate().eq(ProjectMember::getProjectId,projectId));
-    }
-
-    public boolean saveByProject(Project project,List<ProjectMember> list) {
+	public boolean resetByProjectId(String projectId){
+		return this.update(Wrappers.<ProjectMember>lambdaUpdate().eq(ProjectMember::getProjectId,projectId));
+	}
+	public boolean saveByProject(Project project, List<ProjectMember> list){
         if(list==null)
             return true;
         Map<String,ProjectMember> before = findByProjectId(project.getId()).stream().collect(Collectors.toMap(ProjectMember::getId,e->e));
+
         List<ProjectMember> update = new ArrayList<>();
         List<ProjectMember> create = new ArrayList<>();
 
@@ -237,26 +216,31 @@ public abstract class AbstractProjectMemberService extends ServiceImpl<ProjectMe
         }
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
             return false;
         else
             return true;
-    }
+			
+	}
+	public List<ProjectMember> findByUserId(List<String> userIds){
+        List<ProjectMember> list = baseMapper.findByUserId(userIds);
+        return list;	
+	}
 
-    public boolean removeByUserId(String userId) {
+	public boolean removeByUserId(String userId){
         return this.remove(Wrappers.<ProjectMember>lambdaQuery().eq(ProjectMember::getUserId,userId));
-    }
+	}
 
-    public boolean resetByUserId(String userId) {
-        return this.update(Wrappers.<ProjectMember>lambdaUpdate().eq(ProjectMember::getUserId,userId));
-    }
-
-    public boolean saveByUser(User user,List<ProjectMember> list) {
+	public boolean resetByUserId(String userId){
+		return this.update(Wrappers.<ProjectMember>lambdaUpdate().eq(ProjectMember::getUserId,userId));
+	}
+	public boolean saveByUser(User user, List<ProjectMember> list){
         if(list==null)
             return true;
         Map<String,ProjectMember> before = findByUserId(user.getId()).stream().collect(Collectors.toMap(ProjectMember::getId,e->e));
+
         List<ProjectMember> update = new ArrayList<>();
         List<ProjectMember> create = new ArrayList<>();
 
@@ -276,18 +260,32 @@ public abstract class AbstractProjectMemberService extends ServiceImpl<ProjectMe
         }
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
             return false;
         else
             return true;
+			
+	}
+
+    public void fillParentData(ProjectMember et) {
+        if(Entities.PROJECT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setProjectId((String)et.getContextParentKey());
+            Project project = et.getProject();
+            if(project == null) {
+                project = projectService.getById(et.getProjectId());
+                et.setProject(project);
+            }
+            if(!ObjectUtils.isEmpty(project)) {
+                et.setProjectName(project.getName());
+                et.setProjectIdentifier(project.getIdentifier());
+                et.setProjectType(project.getType());
+                et.setProjectId(project.getId());
+            }
+        }
     }
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -307,8 +305,8 @@ public abstract class AbstractProjectMemberService extends ServiceImpl<ProjectMe
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return ProjectMemberMapper.class;
     }
@@ -317,4 +315,5 @@ public abstract class AbstractProjectMemberService extends ServiceImpl<ProjectMe
     protected Class currentModelClass() {
         return ProjectMember.class;
     }
+
 }

@@ -126,6 +126,44 @@ public abstract class AbstractProductTagResource {
     }
 
     /**
+    * delete_tag 产品标签
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProductTagDTO>
+    */
+    @ApiOperation(value = "delete_tag", tags = {"产品标签" },  notes = "ProductTag-delete_tag ")
+    @PostMapping("product_tags/{id}/delete_tag")
+    public ResponseEntity<ResponseWrapper<ProductTagDTO>> deleteTagById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProductTagDTO> dto) {
+        ResponseWrapper<ProductTagDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(deleteTagById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(deleteTagById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * delete_tag 产品标签
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProductTagDTO>
+    */   
+    public ProductTagDTO deleteTagById
+            (String id, ProductTagDTO dto) {
+        ProductTag domain = productTagDtoMapping.toDomain(dto);
+        domain.setId(id);
+        ProductTag rt = productTagService.deleteTag(domain);
+        return productTagDtoMapping.toDto(rt);
+    }
+
+    /**
     * 保存Save 产品标签
     * 
     *
@@ -242,6 +280,46 @@ public abstract class AbstractProductTagResource {
     }
 
     /**
+    * delete_tag 产品标签
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProductTagDTO>
+    */
+    @ApiOperation(value = "delete_tag", tags = {"产品标签" },  notes = "ProductTag-delete_tag ")
+    @PostMapping("products/{productId}/product_tags/{id}/delete_tag")
+    public ResponseEntity<ResponseWrapper<ProductTagDTO>> deleteTagByProductIdAndId
+            (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProductTagDTO> dto) {
+        ResponseWrapper<ProductTagDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(deleteTagByProductIdAndId(productId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(deleteTagByProductIdAndId(productId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * delete_tag 产品标签
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProductTagDTO>
+    */   
+    public ProductTagDTO deleteTagByProductIdAndId
+            (String productId, String id, ProductTagDTO dto) {
+        ProductTag domain = productTagDtoMapping.toDomain(dto);
+        domain.setId(id);
+        ProductTag rt = productTagService.deleteTag(domain);
+        return productTagDtoMapping.toDto(rt);
+    }
+
+    /**
     * 保存Save 产品标签
     * 
     *
@@ -329,6 +407,22 @@ public abstract class AbstractProductTagResource {
     }
 
     /**
+    * get_con_product_tag 产品标签
+    * 
+    *
+    * @param id id
+    * @return ResponseEntity<ProductTagDTO>
+    */
+    @ApiOperation(value = "get_con_product_tag", tags = {"产品标签" },  notes = "ProductTag-get_con_product_tag ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductTag-get_con_product_tag-all') or hasPermission(this.productTagService.get(#id),'ibizplm-ProductTag-get_con_product_tag')")
+    @GetMapping("product_tags/{id}/get_con_product_tag")
+    public ResponseEntity<ProductTagDTO> getConProductTagById
+            (@PathVariable("id") String id) {
+        ProductTag rt = productTagService.getConProductTag(id);
+        return ResponseEntity.status(HttpStatus.OK).body(productTagDtoMapping.toDto(rt));
+    }
+
+    /**
     * 草稿GetDraft 产品标签
     * 
     *
@@ -345,6 +439,28 @@ public abstract class AbstractProductTagResource {
     }
 
     /**
+    * 查询fetch_cur_product_tag 产品标签
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<ProductTagDTO>>
+    */
+    @ApiOperation(value = "查询fetch_cur_product_tag", tags = {"产品标签" },  notes = "ProductTag-fetch_cur_product_tag ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductTag-fetch_cur_product_tag-all') or hasPermission(#dto,'ibizplm-ProductTag-fetch_cur_product_tag')")
+    @PostMapping("product_tags/fetch_cur_product_tag")
+    public ResponseEntity<List<ProductTagDTO>> fetchCurProductTag
+            (@Validated @RequestBody ProductTagFilterDTO dto) {
+        ProductTagSearchContext context = productTagFilterDtoMapping.toDomain(dto);
+        Page<ProductTag> domains = productTagService.fetchCurProductTag(context) ;
+        List<ProductTagDTO> list = productTagDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
     * 查询fetch_default 产品标签
     * 
     *
@@ -357,7 +473,7 @@ public abstract class AbstractProductTagResource {
     public ResponseEntity<List<ProductTagDTO>> fetchDefault
             (@Validated @RequestBody ProductTagFilterDTO dto) {
         ProductTagSearchContext context = productTagFilterDtoMapping.toDomain(dto);
-        Page<ProductTag> domains = productTagService.searchDefault(context) ;
+        Page<ProductTag> domains = productTagService.fetchDefault(context) ;
         List<ProductTagDTO> list = productTagDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -419,6 +535,23 @@ public abstract class AbstractProductTagResource {
     }
 
     /**
+    * get_con_product_tag 产品标签
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @return ResponseEntity<ProductTagDTO>
+    */
+    @ApiOperation(value = "get_con_product_tag", tags = {"产品标签" },  notes = "ProductTag-get_con_product_tag ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductTag-get_con_product_tag-all') or hasPermission('product',#productId,this.productTagService.get(#id),'ibizplm-ProductTag-get_con_product_tag')")
+    @GetMapping("products/{productId}/product_tags/{id}/get_con_product_tag")
+    public ResponseEntity<ProductTagDTO> getConProductTagByProductIdAndId
+            (@PathVariable("productId") String productId, @PathVariable("id") String id) {
+        ProductTag rt = productTagService.getConProductTag(id);
+        return ResponseEntity.status(HttpStatus.OK).body(productTagDtoMapping.toDto(rt));
+    }
+
+    /**
     * 草稿GetDraft 产品标签
     * 
     *
@@ -437,6 +570,30 @@ public abstract class AbstractProductTagResource {
     }
 
     /**
+    * 查询fetch_cur_product_tag 产品标签
+    * 
+    *
+    * @param productId productId
+    * @param dto dto
+    * @return ResponseEntity<List<ProductTagDTO>>
+    */
+    @ApiOperation(value = "查询fetch_cur_product_tag", tags = {"产品标签" },  notes = "ProductTag-fetch_cur_product_tag ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductTag-fetch_cur_product_tag-all') or hasPermission('product',#productId,#dto,'ibizplm-ProductTag-fetch_cur_product_tag')")
+    @PostMapping("products/{productId}/product_tags/fetch_cur_product_tag")
+    public ResponseEntity<List<ProductTagDTO>> fetchCurProductTagByProductId
+            (@PathVariable("productId") String productId, @Validated @RequestBody ProductTagFilterDTO dto) {
+        dto.setProductIdEQ(productId);
+        ProductTagSearchContext context = productTagFilterDtoMapping.toDomain(dto);
+        Page<ProductTag> domains = productTagService.fetchCurProductTag(context) ;
+        List<ProductTagDTO> list = productTagDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
     * 查询fetch_default 产品标签
     * 
     *
@@ -451,7 +608,7 @@ public abstract class AbstractProductTagResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody ProductTagFilterDTO dto) {
         dto.setProductIdEQ(productId);
         ProductTagSearchContext context = productTagFilterDtoMapping.toDomain(dto);
-        Page<ProductTag> domains = productTagService.searchDefault(context) ;
+        Page<ProductTag> domains = productTagService.fetchDefault(context) ;
         List<ProductTagDTO> list = productTagDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -470,7 +627,7 @@ public abstract class AbstractProductTagResource {
     @ApiOperation(value = "批量新建产品标签", tags = {"产品标签" },  notes = "批量新建产品标签")
 	@PostMapping("product_tags/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<ProductTagDTO> dtos) {
-        productTagService.createBatch(productTagDtoMapping.toDomain(dtos));
+        productTagService.create(productTagDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -483,7 +640,7 @@ public abstract class AbstractProductTagResource {
     @ApiOperation(value = "批量删除产品标签", tags = {"产品标签" },  notes = "批量删除产品标签")
 	@DeleteMapping("product_tags/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        productTagService.removeBatch(ids);
+        productTagService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -496,7 +653,7 @@ public abstract class AbstractProductTagResource {
     @ApiOperation(value = "批量更新产品标签", tags = {"产品标签" },  notes = "批量更新产品标签")
 	@PutMapping("product_tags/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<ProductTagDTO> dtos) {
-        productTagService.updateBatch(productTagDtoMapping.toDomain(dtos));
+        productTagService.update(productTagDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -509,7 +666,7 @@ public abstract class AbstractProductTagResource {
     @ApiOperation(value = "批量保存产品标签", tags = {"产品标签" },  notes = "批量保存产品标签")
 	@PostMapping("product_tags/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<ProductTagDTO> dtos) {
-        productTagService.saveBatch(productTagDtoMapping.toDomain(dtos));
+        productTagService.save(productTagDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

@@ -30,89 +30,32 @@ public interface ParameterService extends IService<Parameter> {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    Parameter get(Parameter et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default Parameter get(String key) {
-        return getSelf().get(new Parameter().setId(key));
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<Parameter> getByIds(Collection<String> ids) {
-        List<Parameter> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Parameter().setId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<Parameter> getByEntities(List<Parameter> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    Parameter getDraft(Parameter et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(Parameter et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(Parameter et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<Parameter> list);
+    boolean create(List<Parameter> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(Parameter et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<Parameter> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    @Override
-    boolean save(Parameter et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<Parameter> list);
+    boolean update(List<Parameter> list);
 
     /**
      * 主键删除
@@ -122,14 +65,7 @@ public interface ParameterService extends IService<Parameter> {
     default boolean remove(String key) {
         return getSelf().remove(new Parameter().setId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -139,13 +75,13 @@ public interface ParameterService extends IService<Parameter> {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<Parameter> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Parameter().setId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new Parameter().setId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -153,7 +89,86 @@ public interface ParameterService extends IService<Parameter> {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<Parameter> entities);
+    boolean remove(List<Parameter> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default Parameter get(String key) {
+        return getSelf().get(new Parameter().setId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    Parameter get(Parameter et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<Parameter> get(Collection<String> keys) {
+        List<Parameter> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new Parameter().setId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<Parameter> get(List<Parameter> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    Parameter getDraft(Parameter et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(Parameter et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(Parameter et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<Parameter> list);
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<Parameter> fetchDefault(ParameterSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<Parameter> listDefault(ParameterSearchContext context);
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<Parameter> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -170,22 +185,7 @@ public interface ParameterService extends IService<Parameter> {
         }
         return rt;
     }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<Parameter> searchDefault(ParameterSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<Parameter> listDefault(ParameterSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -193,6 +193,7 @@ public interface ParameterService extends IService<Parameter> {
     default Parameter getEntity() {
         return new Parameter();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -201,20 +202,12 @@ public interface ParameterService extends IService<Parameter> {
         return new ParameterSearchContext();
     }
 
-    /**
-     * 自定义查询SQL
-     * @param sql  select * from table where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
-    List<JSONObject> select(String sql, Map<String,Object> param);
 
     /**
-     * 自定义SQL
-     * @param sql  update table  set name ='test' where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
+    * 自定义SQL
+    * @param sql  update table  set name ='test' where id =#{et.param}
+    * @param param 参数列表  param.put("param","1");
+    * @return
+    */
     boolean execute(String sql, Map<String,Object> param);
-
 }

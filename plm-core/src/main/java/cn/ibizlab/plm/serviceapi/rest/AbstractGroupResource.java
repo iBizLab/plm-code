@@ -238,7 +238,7 @@ public abstract class AbstractGroupResource {
     public ResponseEntity<List<GroupDTO>> fetchDefault
             (@Validated @RequestBody GroupFilterDTO dto) {
         GroupSearchContext context = groupFilterDtoMapping.toDomain(dto);
-        Page<Group> domains = groupService.searchDefault(context) ;
+        Page<Group> domains = groupService.fetchDefault(context) ;
         List<GroupDTO> list = groupDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -260,7 +260,28 @@ public abstract class AbstractGroupResource {
     public ResponseEntity<List<GroupDTO>> fetchNoSection
             (@Validated @RequestBody GroupFilterDTO dto) {
         GroupSearchContext context = groupFilterDtoMapping.toDomain(dto);
-        Page<Group> domains = groupService.searchNoSection(context) ;
+        Page<Group> domains = groupService.fetchNoSection(context) ;
+        List<GroupDTO> list = groupDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_reader 团队
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<GroupDTO>>
+    */
+    @ApiOperation(value = "查询fetch_reader", tags = {"团队" },  notes = "Group-fetch_reader ")
+    @PostMapping("groups/fetch_reader")
+    public ResponseEntity<List<GroupDTO>> fetchReader
+            (@Validated @RequestBody GroupFilterDTO dto) {
+        GroupSearchContext context = groupFilterDtoMapping.toDomain(dto);
+        Page<Group> domains = groupService.fetchReader(context) ;
         List<GroupDTO> list = groupDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -282,7 +303,7 @@ public abstract class AbstractGroupResource {
     public ResponseEntity<List<GroupDTO>> fetchUserGroupAdmin
             (@Validated @RequestBody GroupFilterDTO dto) {
         GroupSearchContext context = groupFilterDtoMapping.toDomain(dto);
-        Page<Group> domains = groupService.searchUserGroupAdmin(context) ;
+        Page<Group> domains = groupService.fetchUserGroupAdmin(context) ;
         List<GroupDTO> list = groupDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -301,7 +322,7 @@ public abstract class AbstractGroupResource {
     @ApiOperation(value = "批量新建团队", tags = {"团队" },  notes = "批量新建团队")
 	@PostMapping("groups/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<GroupDTO> dtos) {
-        groupService.createBatch(groupDtoMapping.toDomain(dtos));
+        groupService.create(groupDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -314,7 +335,7 @@ public abstract class AbstractGroupResource {
     @ApiOperation(value = "批量删除团队", tags = {"团队" },  notes = "批量删除团队")
 	@DeleteMapping("groups/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        groupService.removeBatch(ids);
+        groupService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -327,7 +348,7 @@ public abstract class AbstractGroupResource {
     @ApiOperation(value = "批量更新团队", tags = {"团队" },  notes = "批量更新团队")
 	@PutMapping("groups/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<GroupDTO> dtos) {
-        groupService.updateBatch(groupDtoMapping.toDomain(dtos));
+        groupService.update(groupDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -340,7 +361,7 @@ public abstract class AbstractGroupResource {
     @ApiOperation(value = "批量保存团队", tags = {"团队" },  notes = "批量保存团队")
 	@PostMapping("groups/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<GroupDTO> dtos) {
-        groupService.saveBatch(groupDtoMapping.toDomain(dtos));
+        groupService.save(groupDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

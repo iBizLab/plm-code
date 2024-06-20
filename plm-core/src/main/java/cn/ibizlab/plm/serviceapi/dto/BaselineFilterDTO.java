@@ -55,11 +55,19 @@ public class BaselineFilterDTO extends FilterBase implements Serializable {
 	private String ownerTypeEQ;
 
     /**
+     * 基线类型EQ
+     */
+    @JsonProperty("n_type_eq")
+    @JSONField(name = "n_type_eq")
+    @ApiModelProperty(value = "基线类型EQ", position = 50)
+	private String typeEQ;
+
+    /**
      * 类别LIKE
      */
     @JsonProperty("n_categories_like")
     @JSONField(name = "n_categories_like")
-    @ApiModelProperty(value = "类别LIKE", position = 50)
+    @ApiModelProperty(value = "类别LIKE", position = 60)
 	private String categoriesLIKE;
 
     /**
@@ -67,7 +75,7 @@ public class BaselineFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 80)
+    @ApiModelProperty(value = "标识EQ", position = 100)
 	private String idEQ;
 
     /**
@@ -75,7 +83,7 @@ public class BaselineFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 120)
+    @ApiModelProperty(value = "名称LIKE", position = 110)
 	private String nameLIKE;
 
 

@@ -81,6 +81,14 @@ public interface AttachmentMapper extends BaseMapper<Attachment> {
     List<Attachment> listWorkItemDeliverable(@Param("ctx") AttachmentSearchContext context, @Param("ew") Wrapper<Attachment> wrapper);
 
     /**
+    * 根据ownerId查询
+    *
+    * @param ownerIds
+    * @return
+    */
+    List<Attachment> findByOwnerId(@Param("ownerIds") List<String> ownerIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -189,13 +197,4 @@ public interface AttachmentMapper extends BaseMapper<Attachment> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据ownerId查询
-     *
-     * @param ownerIds
-     * @return
-     */
-    List<Attachment> findByOwnerId(@Param("ownerIds") List<String> ownerIds);
-
 }

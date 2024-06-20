@@ -326,11 +326,45 @@ public class BaselineWorkItemDTO extends DTOBase implements Serializable {
     private String description;
 
     /**
+     * 基线
+     */
+    @JsonProperty("baseline")
+    @JSONField(name = "baseline")
+    @ApiModelProperty(value = "基线", position = 36)
+    private BaselineDTO baseline;
+
+    /**
+     * 开始时间
+     */
+    @JsonProperty("start_at")
+    @JsonFormat(pattern = "yyyy-MM-dd", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "start_at" , format = "yyyy-MM-dd")
+    @ApiModelProperty(value = "开始时间", position = 37)
+    private Date startAt;
+
+    /**
+     * 结束时间
+     */
+    @JsonProperty("end_at")
+    @JsonFormat(pattern = "yyyy-MM-dd", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "end_at" , format = "yyyy-MM-dd")
+    @ApiModelProperty(value = "结束时间", position = 38)
+    private Date endAt;
+
+    /**
+     * 是否叶子节点
+     */
+    @JsonProperty("is_leaf")
+    @JSONField(name = "is_leaf")
+    @ApiModelProperty(value = "是否叶子节点", position = 39)
+    private Integer isLeaf;
+
+    /**
      * 建立人
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 36)
+    @ApiModelProperty(value = "建立人", position = 40)
     private String createMan;
 
     /**
@@ -339,7 +373,7 @@ public class BaselineWorkItemDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 37)
+    @ApiModelProperty(value = "建立时间", position = 41)
     private Date createTime;
 
     /**
@@ -347,7 +381,7 @@ public class BaselineWorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 38)
+    @ApiModelProperty(value = "标识", position = 42)
     private String id;
 
     /**
@@ -355,7 +389,7 @@ public class BaselineWorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 39)
+    @ApiModelProperty(value = "名称", position = 43)
     private String name;
 
     /**
@@ -363,7 +397,7 @@ public class BaselineWorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 40)
+    @ApiModelProperty(value = "更新人", position = 44)
     private String updateMan;
 
     /**
@@ -372,7 +406,7 @@ public class BaselineWorkItemDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 41)
+    @ApiModelProperty(value = "更新时间", position = 45)
     private Date updateTime;
 
 
@@ -688,6 +722,42 @@ public class BaselineWorkItemDTO extends DTOBase implements Serializable {
     public BaselineWorkItemDTO setDescription(String description) {
         this.description = description;
         this.modify("description", description);
+        return this;
+    }
+
+    /**
+     * 设置 [基线]
+     */
+    public BaselineWorkItemDTO setBaseline(BaselineDTO baseline) {
+        this.baseline = baseline;
+        this.modify("baseline", baseline);
+        return this;
+    }
+
+    /**
+     * 设置 [开始时间]
+     */
+    public BaselineWorkItemDTO setStartAt(Date startAt) {
+        this.startAt = startAt;
+        this.modify("start_at", startAt);
+        return this;
+    }
+
+    /**
+     * 设置 [结束时间]
+     */
+    public BaselineWorkItemDTO setEndAt(Date endAt) {
+        this.endAt = endAt;
+        this.modify("end_at", endAt);
+        return this;
+    }
+
+    /**
+     * 设置 [是否叶子节点]
+     */
+    public BaselineWorkItemDTO setIsLeaf(Integer isLeaf) {
+        this.isLeaf = isLeaf;
+        this.modify("is_leaf", isLeaf);
         return this;
     }
 

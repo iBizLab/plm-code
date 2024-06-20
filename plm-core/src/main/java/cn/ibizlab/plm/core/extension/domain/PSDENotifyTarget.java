@@ -33,70 +33,69 @@ import cn.ibizlab.plm.core.extension.domain.PSDENotify;
 @ApiModel(value = "PSDENOTIFYTARGET", description = "消息通知目标")
 public class PSDENotifyTarget extends EntityBase implements Serializable
 {
-
-    /**
-     * 更新时间
-     */
-    @DEField(name = "update_time" , preType = DEPredefinedFieldType.UPDATEDATE)
-    @JsonProperty("update_time")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "update_time", notes = "更新时间")
-    private Date updateTime;
-
-    /**
-     * 建立时间
-     */
-    @DEField(name = "create_time" , preType = DEPredefinedFieldType.CREATEDATE)
-    @JsonProperty("create_time")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "create_time", notes = "建立时间")
-    private Date createTime;
-
-    /**
-     * 建立人
-     */
-    @DEField(name = "create_man" , preType = DEPredefinedFieldType.CREATEMAN , dict = "SysOperator")
-    @JsonProperty("create_man")
-    @JSONField(name = "create_man")
-    @ApiModelProperty(value = "create_man", notes = "建立人")
-    private String createMan;
-
-    /**
-     * 更新人
-     */
-    @DEField(name = "update_man" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
-    @JsonProperty("update_man")
-    @JSONField(name = "update_man")
-    @ApiModelProperty(value = "update_man", notes = "更新人")
-    private String updateMan;
-
-    /**
-     * 实体通知目标名称
-     */
-    @DEField(name = "psdenotifytargetname")
-    @JsonProperty("psdenotifytargetname")
-    @JSONField(name = "psdenotifytargetname")
-    @ApiModelProperty(value = "psdenotifytargetname", notes = "实体通知目标名称")
-    private String psdeNotifyTargetName;
-
     /**
      * 实体通知目标标识
      */
     @Id
     @DEField(name = "psdenotifytargetid" , isKeyField = true)
-    @JsonProperty("psdenotifytargetid")
     @JSONField(name = "psdenotifytargetid")
+    @JsonProperty("psdenotifytargetid")
     @ApiModelProperty(value = "psdenotifytargetid", notes = "实体通知目标标识")
     private String psdeNotifyTargetId;
+
+    /**
+     * 实体通知目标名称
+     */
+    @DEField(name = "psdenotifytargetname")
+    @JSONField(name = "psdenotifytargetname")
+    @JsonProperty("psdenotifytargetname")
+    @ApiModelProperty(value = "psdenotifytargetname", notes = "实体通知目标名称")
+    private String psdeNotifyTargetName;
+
+    /**
+     * 建立人
+     */
+    @DEField(name = "create_man" , preType = DEPredefinedFieldType.CREATEMAN , dict = "SysOperator")
+    @JSONField(name = "create_man")
+    @JsonProperty("create_man")
+    @ApiModelProperty(value = "create_man", notes = "建立人")
+    private String createMan;
+
+    /**
+     * 建立时间
+     */
+    @DEField(name = "create_time" , preType = DEPredefinedFieldType.CREATEDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("create_time")
+    @ApiModelProperty(value = "create_time", notes = "建立时间")
+    private Date createTime;
+
+    /**
+     * 更新人
+     */
+    @DEField(name = "update_man" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
+    @JSONField(name = "update_man")
+    @JsonProperty("update_man")
+    @ApiModelProperty(value = "update_man", notes = "更新人")
+    private String updateMan;
+
+    /**
+     * 更新时间
+     */
+    @DEField(name = "update_time" , preType = DEPredefinedFieldType.UPDATEDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("update_time")
+    @ApiModelProperty(value = "update_time", notes = "更新时间")
+    private Date updateTime;
 
     /**
      * 目标数据
      */
     @DEField(name = "data")
-    @JsonProperty("data")
     @JSONField(name = "data")
+    @JsonProperty("data")
     @ApiModelProperty(value = "data", notes = "目标数据")
     private String data;
 
@@ -104,8 +103,8 @@ public class PSDENotifyTarget extends EntityBase implements Serializable
      * 目标类型
      */
     @DEField(name = "targettype" , defaultValue = "DEFIELD" , dict = "DENotifyTargetType")
-    @JsonProperty("targettype")
     @JSONField(name = "targettype")
+    @JsonProperty("targettype")
     @ApiModelProperty(value = "targettype", notes = "目标类型")
     private String targetType;
 
@@ -113,8 +112,8 @@ public class PSDENotifyTarget extends EntityBase implements Serializable
      * 过滤项
      */
     @DEField(name = "filter")
-    @JsonProperty("filter")
     @JSONField(name = "filter")
+    @JsonProperty("filter")
     @ApiModelProperty(value = "filter", notes = "过滤项")
     private String filter;
 
@@ -122,8 +121,8 @@ public class PSDENotifyTarget extends EntityBase implements Serializable
      * 实体通知
      */
     @DEField(name = "psdenotifyid")
-    @JsonProperty("psdenotifyid")
     @JSONField(name = "psdenotifyid")
+    @JsonProperty("psdenotifyid")
     @ApiModelProperty(value = "psdenotifyid", notes = "实体通知")
     private String psdeNotifyId;
 
@@ -131,18 +130,73 @@ public class PSDENotifyTarget extends EntityBase implements Serializable
      * 实体通知
      */
     @DEField(name = "psdenotifyname")
-    @JsonProperty("psdenotifyname")
     @JSONField(name = "psdenotifyname")
+    @JsonProperty("psdenotifyname")
     @ApiModelProperty(value = "psdenotifyname", notes = "实体通知")
     private String psdeNotifyName;
 
     /**
-     * 实体通知
+     * 
      */
-    @JSONField(name = "psdenotify")
-    @JsonProperty("psdenotify")
+    @DEField()
+    @JsonIgnore
+    @JSONField(serialize = false)
     @ApiModelProperty(value = "psdenotify", notes = "")
     private PSDENotify psdeNotify;
+
+    /**
+    * 设置 [实体通知目标名称]
+    */
+    public PSDENotifyTarget setPsdeNotifyTargetName(String psdeNotifyTargetName) {
+        this.psdeNotifyTargetName = psdeNotifyTargetName;
+        this.modify("psdenotifytargetname", psdeNotifyTargetName);
+        return this;
+    }
+
+    /**
+    * 设置 [目标数据]
+    */
+    public PSDENotifyTarget setData(String data) {
+        this.data = data;
+        this.modify("data", data);
+        return this;
+    }
+
+    /**
+    * 设置 [目标类型]
+    */
+    public PSDENotifyTarget setTargetType(String targetType) {
+        this.targetType = targetType;
+        this.modify("targettype", targetType);
+        return this;
+    }
+
+    /**
+    * 设置 [过滤项]
+    */
+    public PSDENotifyTarget setFilter(String filter) {
+        this.filter = filter;
+        this.modify("filter", filter);
+        return this;
+    }
+
+    /**
+    * 设置 [实体通知]
+    */
+    public PSDENotifyTarget setPsdeNotifyId(String psdeNotifyId) {
+        this.psdeNotifyId = psdeNotifyId;
+        this.modify("psdenotifyid", psdeNotifyId);
+        return this;
+    }
+
+    /**
+    * 设置 [实体通知]
+    */
+    public PSDENotifyTarget setPsdeNotifyName(String psdeNotifyName) {
+        this.psdeNotifyName = psdeNotifyName;
+        this.modify("psdenotifyname", psdeNotifyName);
+        return this;
+    }
 
 
     /**

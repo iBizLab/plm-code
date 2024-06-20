@@ -170,5 +170,4 @@ public interface ActivityMapper extends BaseMapper<Activity> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
 }

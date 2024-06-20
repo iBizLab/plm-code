@@ -43,6 +43,22 @@ public interface TestCaseTemplateMapper extends BaseMapper<TestCaseTemplate> {
     List<TestCaseTemplate> listDefault(@Param("ctx") TestCaseTemplateSearchContext context, @Param("ew") Wrapper<TestCaseTemplate> wrapper);
 
     /**
+    * 根据testLibraryId查询
+    *
+    * @param testLibraryIds
+    * @return
+    */
+    List<TestCaseTemplate> findByTestLibraryId(@Param("testLibraryIds") List<String> testLibraryIds);
+
+    /**
+    * 根据suiteId查询
+    *
+    * @param suiteIds
+    * @return
+    */
+    List<TestCaseTemplate> findBySuiteId(@Param("suiteIds") List<String> suiteIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -151,21 +167,4 @@ public interface TestCaseTemplateMapper extends BaseMapper<TestCaseTemplate> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据testLibraryId查询
-     *
-     * @param testLibraryIds
-     * @return
-     */
-    List<TestCaseTemplate> findByTestLibraryId(@Param("testLibraryIds") List<String> testLibraryIds);
-
-    /**
-     * 根据suiteId查询
-     *
-     * @param suiteIds
-     * @return
-     */
-    List<TestCaseTemplate> findBySuiteId(@Param("suiteIds") List<String> suiteIds);
-
 }

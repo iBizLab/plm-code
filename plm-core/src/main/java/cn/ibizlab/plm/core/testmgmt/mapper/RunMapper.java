@@ -119,6 +119,25 @@ public interface RunMapper extends BaseMapper<Run> {
     List<Run> listNormal(@Param("ctx") RunSearchContext context, @Param("ew") Wrapper<Run> wrapper);
 
     /**
+     * 数据集合plan_run_history分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Run> searchPlanRunHistory(IPage<Run> page, @Param("ctx") RunSearchContext context, @Param("ew") Wrapper<Run> wrapper);
+    
+    /**
+     * 数据集合plan_run_history查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Run> listPlanRunHistory(@Param("ctx") RunSearchContext context, @Param("ew") Wrapper<Run> wrapper);
+
+    /**
      * 数据集合priorityDistributions分页查询
      * 
      * @param page
@@ -136,6 +155,22 @@ public interface RunMapper extends BaseMapper<Run> {
      * @return
      */
     List<Map> listPriorityDistributions(@Param("ctx") RunSearchContext context, @Param("ew") Wrapper<Run> wrapper);
+
+    /**
+    * 根据caseId查询
+    *
+    * @param caseIds
+    * @return
+    */
+    List<Run> findByCaseId(@Param("caseIds") List<String> caseIds);
+
+    /**
+    * 根据planId查询
+    *
+    * @param planIds
+    * @return
+    */
+    List<Run> findByPlanId(@Param("planIds") List<String> planIds);
 
     /**
      * 主键查询
@@ -246,21 +281,4 @@ public interface RunMapper extends BaseMapper<Run> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据caseId查询
-     *
-     * @param caseIds
-     * @return
-     */
-    List<Run> findByCaseId(@Param("caseIds") List<String> caseIds);
-
-    /**
-     * 根据planId查询
-     *
-     * @param planIds
-     * @return
-     */
-    List<Run> findByPlanId(@Param("planIds") List<String> planIds);
-
 }

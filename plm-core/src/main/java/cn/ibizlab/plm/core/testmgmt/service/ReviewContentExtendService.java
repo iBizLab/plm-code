@@ -32,89 +32,32 @@ public interface ReviewContentExtendService extends IService<ReviewContentExtend
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    ReviewContentExtend get(ReviewContentExtend et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default ReviewContentExtend get(String key) {
-        return getSelf().get(new ReviewContentExtend().setId(key));
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<ReviewContentExtend> getByIds(Collection<String> ids) {
-        List<ReviewContentExtend> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new ReviewContentExtend().setId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<ReviewContentExtend> getByEntities(List<ReviewContentExtend> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    ReviewContentExtend getDraft(ReviewContentExtend et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(ReviewContentExtend et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(ReviewContentExtend et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<ReviewContentExtend> list);
+    boolean create(List<ReviewContentExtend> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(ReviewContentExtend et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<ReviewContentExtend> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    @Override
-    boolean save(ReviewContentExtend et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<ReviewContentExtend> list);
+    boolean update(List<ReviewContentExtend> list);
 
     /**
      * 主键删除
@@ -124,14 +67,7 @@ public interface ReviewContentExtendService extends IService<ReviewContentExtend
     default boolean remove(String key) {
         return getSelf().remove(new ReviewContentExtend().setId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -141,13 +77,13 @@ public interface ReviewContentExtendService extends IService<ReviewContentExtend
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<ReviewContentExtend> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new ReviewContentExtend().setId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new ReviewContentExtend().setId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -155,7 +91,90 @@ public interface ReviewContentExtendService extends IService<ReviewContentExtend
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<ReviewContentExtend> entities);
+    boolean remove(List<ReviewContentExtend> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default ReviewContentExtend get(String key) {
+        return getSelf().get(new ReviewContentExtend().setId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    ReviewContentExtend get(ReviewContentExtend et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<ReviewContentExtend> get(Collection<String> keys) {
+        List<ReviewContentExtend> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new ReviewContentExtend().setId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<ReviewContentExtend> get(List<ReviewContentExtend> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    ReviewContentExtend getDraft(ReviewContentExtend et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(ReviewContentExtend et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(ReviewContentExtend et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<ReviewContentExtend> list);
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<ReviewContentExtend> fetchDefault(ReviewContentExtendSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<ReviewContentExtend> listDefault(ReviewContentExtendSearchContext context);
+
+    default List<ReviewResult> getStageResults(ReviewContentExtend et) {
+        return new ArrayList<>();
+    }
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<ReviewContentExtend> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -172,22 +191,7 @@ public interface ReviewContentExtendService extends IService<ReviewContentExtend
         }
         return rt;
     }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<ReviewContentExtend> searchDefault(ReviewContentExtendSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<ReviewContentExtend> listDefault(ReviewContentExtendSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -195,6 +199,7 @@ public interface ReviewContentExtendService extends IService<ReviewContentExtend
     default ReviewContentExtend getEntity() {
         return new ReviewContentExtend();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -202,25 +207,13 @@ public interface ReviewContentExtendService extends IService<ReviewContentExtend
     default ReviewContentExtendSearchContext getSearchContext() {
         return new ReviewContentExtendSearchContext();
     }
-    default List<ReviewResult> getStageResults(ReviewContentExtend et) {
-        return new ArrayList<>();
-    }
 
 
     /**
-     * 自定义查询SQL
-     * @param sql  select * from table where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
-    List<JSONObject> select(String sql, Map<String,Object> param);
-
-    /**
-     * 自定义SQL
-     * @param sql  update table  set name ='test' where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
+    * 自定义SQL
+    * @param sql  update table  set name ='test' where id =#{et.param}
+    * @param param 参数列表  param.put("param","1");
+    * @return
+    */
     boolean execute(String sql, Map<String,Object> param);
-
 }

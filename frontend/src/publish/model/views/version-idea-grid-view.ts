@@ -370,6 +370,15 @@ export default {
     ],
     appViewRefs: [
       {
+        realTitle: '项目发布编辑视图',
+        realTitleLanguageRes: {
+          lanResTag: 'PAGE.TITLE.VERSION.EDITVIEW',
+        },
+        refAppViewId: 'plmweb.version_edit_view',
+        name: 'NEWDATA',
+        id: 'newdata',
+      },
+      {
         openMode: 'POPUPMODAL',
         navigateContexts: [
           {
@@ -395,15 +404,6 @@ export default {
         refAppViewId: 'plmweb.idea_main_view',
         name: 'EDITDATA',
         id: 'editdata',
-      },
-      {
-        realTitle: '项目发布编辑视图',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.VERSION.EDITVIEW',
-        },
-        refAppViewId: 'plmweb.version_edit_view',
-        name: 'NEWDATA',
-        id: 'newdata',
       },
     ],
     controls: [
@@ -636,22 +636,12 @@ export default {
           id: 'remove',
         },
         autoLoad: true,
+        enableItemPrivilege: true,
         showBusyIndicator: true,
         codeName: 'idea_version_grid',
         controlType: 'GRID',
         logicName: '需求版本_表格',
         appDataEntityId: 'plmweb.version',
-        controlLogics: [
-          {
-            eventNames: 'onLoadSuccess',
-            logicTag: 'grid',
-            logicType: 'APPDEUILOGIC',
-            appDEUILogicId: 'calc_column_button_state',
-            appDataEntityId: 'plmweb.version',
-            triggerType: 'CTRLEVENT',
-            id: 'calc_column_action_state',
-          },
-        ],
         controlParam: {
           id: 'grid',
         },

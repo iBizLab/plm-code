@@ -37,6 +37,8 @@ import cn.ibizlab.plm.core.base.domain.SearchAttachment;
 import cn.ibizlab.plm.core.base.service.SearchAttachmentService;
 import cn.ibizlab.plm.core.base.domain.SearchComment;
 import cn.ibizlab.plm.core.base.service.SearchCommentService;
+import cn.ibizlab.plm.core.base.domain.Relation;
+import cn.ibizlab.plm.core.base.service.RelationService;
 import cn.ibizlab.plm.core.base.domain.Version;
 import cn.ibizlab.plm.core.base.service.VersionService;
 
@@ -74,6 +76,10 @@ public abstract class AbstractArticlePageService extends ServiceImpl<ArticlePage
 
     @Autowired
     @Lazy
+    protected RelationService relationService;
+
+    @Autowired
+    @Lazy
     protected VersionService versionService;
 
     @Autowired
@@ -82,6 +88,59 @@ public abstract class AbstractArticlePageService extends ServiceImpl<ArticlePage
 
     protected int batchSize = 500;
 
+    @Override
+    @Transactional
+    public boolean create(ArticlePage et) {
+        fillParentData(et);
+        if(this.baseMapper.insert(et) < 1)
+            return false;
+        attentionService.saveByPage(et,et.getAttentions());
+        attachmentService.saveByPage(et,et.getAttachments());
+        get(et);
+        return true;
+    }
+	
+    @Transactional
+    public boolean create(List<ArticlePage> list) {
+        list.forEach(this::fillParentData);
+        this.saveBatch(list, batchSize);
+        return true;
+    }
+	
+    @Transactional
+    public boolean update(ArticlePage et) {
+        UpdateWrapper<ArticlePage> qw = et.getUpdateWrapper(true);
+        qw.eq("id", et.getId());
+        if(!update(et, qw))
+            return false;
+        attentionService.saveByPage(et,et.getAttentions());
+        attachmentService.saveByPage(et,et.getAttachments());
+        get(et);
+        return true;
+    }
+
+    @Transactional
+    public boolean update(List<ArticlePage> list) {
+        updateBatchById(list, batchSize);
+        return true;
+    }
+	
+   @Transactional
+    public boolean remove(ArticlePage et) {
+        String key = et.getId();
+        articlePageService.resetByParentId(key);
+        if(!remove(Wrappers.<ArticlePage>lambdaQuery().eq(ArticlePage::getId, et.getId())))
+            return false;
+        return true;
+    }
+
+    @Transactional
+    public boolean remove(List<ArticlePage> entities) {
+        for (ArticlePage et : entities)
+            if(!getSelf().remove(et))
+                return false;
+        return true;
+    }		
     public ArticlePage get(ArticlePage et) {
         ArticlePage rt = this.baseMapper.selectEntity(et);
         if(rt == null)
@@ -92,11 +151,283 @@ public abstract class AbstractArticlePageService extends ServiceImpl<ArticlePage
         //设置 [附件]
         getAttachments(et);
         return et;
+    }	
+
+    public List<ArticlePage> get(List<ArticlePage> entities) {
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public ArticlePage getDraft(ArticlePage et) {
+        fillParentData(et);
+        return et;
+    }
+	
+    public Integer checkKey(ArticlePage et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ArticlePage>lambdaQuery().eq(ArticlePage::getId, et.getId()))>0)?1:0;
+    }
+	
+    @Override
+    @Transactional
+    public boolean save(ArticlePage et) {
+        if(checkKey(et) > 0)
+            return getSelf().update(et);
+        else
+            return getSelf().create(et);
     }
 
-    public List<ArticlePage> getByEntities(List<ArticlePage> entities) {
-        return this.baseMapper.selectEntities(entities);
+    @Transactional
+    public boolean save(List<ArticlePage> list) {
+        if(ObjectUtils.isEmpty(list))
+            return true;
+        Map<String,ArticlePage> before = get(list).stream().collect(Collectors.toMap(ArticlePage::getId,e->e));
+        List<ArticlePage> create = new ArrayList<>();
+        List<ArticlePage> update = new ArrayList<>();
+        list.forEach(sub->{
+            if(!ObjectUtils.isEmpty(sub.getId()) && before.containsKey(sub.getId()))
+                update.add(sub);
+            else
+                create.add(sub);
+        });
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else
+            return true;
     }
+	
+   public Page<ArticlePage> fetchDefault(ArticlePageSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ArticlePage> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
+        List<ArticlePage> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<ArticlePage> listDefault(ArticlePageSearchContext context) {
+        List<ArticlePage> list = baseMapper.listDefault(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<ArticlePage> fetchAdvancedSearch(ArticlePageSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,ASC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ArticlePage> pages=baseMapper.searchAdvancedSearch(context.getPages(),context,context.getSelectCond());
+        List<ArticlePage> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<ArticlePage> listAdvancedSearch(ArticlePageSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,ASC");
+        List<ArticlePage> list = baseMapper.listAdvancedSearch(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<ArticlePage> fetchBaselineChoosePage(ArticlePageSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ArticlePage> pages=baseMapper.searchBaselineChoosePage(context.getPages(),context,context.getSelectCond());
+        List<ArticlePage> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<ArticlePage> listBaselineChoosePage(ArticlePageSearchContext context) {
+        List<ArticlePage> list = baseMapper.listBaselineChoosePage(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<ArticlePage> fetchDraftPage(ArticlePageSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ArticlePage> pages=baseMapper.searchDraftPage(context.getPages(),context,context.getSelectCond());
+        List<ArticlePage> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<ArticlePage> listDraftPage(ArticlePageSearchContext context) {
+        List<ArticlePage> list = baseMapper.listDraftPage(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<ArticlePage> fetchHomePage(ArticlePageSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ArticlePage> pages=baseMapper.searchHomePage(context.getPages(),context,context.getSelectCond());
+        List<ArticlePage> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<ArticlePage> listHomePage(ArticlePageSearchContext context) {
+        List<ArticlePage> list = baseMapper.listHomePage(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<ArticlePage> fetchIsDeleted(ArticlePageSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ArticlePage> pages=baseMapper.searchIsDeleted(context.getPages(),context,context.getSelectCond());
+        List<ArticlePage> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<ArticlePage> listIsDeleted(ArticlePageSearchContext context) {
+        List<ArticlePage> list = baseMapper.listIsDeleted(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<ArticlePage> fetchMyFavoritePage(ArticlePageSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("UPDATE_TIME,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ArticlePage> pages=baseMapper.searchMyFavoritePage(context.getPages(),context,context.getSelectCond());
+        List<ArticlePage> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<ArticlePage> listMyFavoritePage(ArticlePageSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("UPDATE_TIME,DESC");
+        List<ArticlePage> list = baseMapper.listMyFavoritePage(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<ArticlePage> fetchNoParentPage(ArticlePageSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ArticlePage> pages=baseMapper.searchNoParentPage(context.getPages(),context,context.getSelectCond());
+        List<ArticlePage> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<ArticlePage> listNoParentPage(ArticlePageSearchContext context) {
+        List<ArticlePage> list = baseMapper.listNoParentPage(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<ArticlePage> fetchNormal(ArticlePageSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ArticlePage> pages=baseMapper.searchNormal(context.getPages(),context,context.getSelectCond());
+        List<ArticlePage> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<ArticlePage> listNormal(ArticlePageSearchContext context) {
+        List<ArticlePage> list = baseMapper.listNormal(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<ArticlePage> fetchOnlyPage(ArticlePageSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ArticlePage> pages=baseMapper.searchOnlyPage(context.getPages(),context,context.getSelectCond());
+        List<ArticlePage> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<ArticlePage> listOnlyPage(ArticlePageSearchContext context) {
+        List<ArticlePage> list = baseMapper.listOnlyPage(context,context.getSelectCond());
+        return list;
+   }
+	
+	public List<ArticlePage> findByParentId(List<String> parentIds){
+        List<ArticlePage> list = baseMapper.findByParentId(parentIds);
+        if(!ObjectUtils.isEmpty(list))
+            attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
+            attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
+        return list;	
+	}
+
+	public boolean removeByParentId(String parentId){
+        List<String> ids = baseMapper.findByParentId(Arrays.asList(parentId)).stream().map(e->e.getId()).collect(Collectors.toList());
+        if(!ObjectUtils.isEmpty(ids))
+            return this.remove(ids);
+        else
+            return true;
+	}
+
+	public boolean resetByParentId(String parentId){
+		return this.update(Wrappers.<ArticlePage>lambdaUpdate().eq(ArticlePage::getParentId,parentId));
+	}
+	public boolean saveByPage(ArticlePage articlePage, List<ArticlePage> list){
+        if(list==null)
+            return true;
+        Map<String,ArticlePage> before = findByParentId(articlePage.getId()).stream().collect(Collectors.toMap(ArticlePage::getId,e->e));
+
+        List<ArticlePage> update = new ArrayList<>();
+        List<ArticlePage> create = new ArrayList<>();
+
+        for(ArticlePage sub:list) {
+            sub.setParentId(articlePage.getId());
+            sub.setPage(articlePage);
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
+	public List<ArticlePage> findBySpaceId(List<String> spaceIds){
+        List<ArticlePage> list = baseMapper.findBySpaceId(spaceIds);
+        if(!ObjectUtils.isEmpty(list))
+            attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
+            attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
+        return list;	
+	}
+
+	public boolean removeBySpaceId(String spaceId){
+        List<String> ids = baseMapper.findBySpaceId(Arrays.asList(spaceId)).stream().map(e->e.getId()).collect(Collectors.toList());
+        if(!ObjectUtils.isEmpty(ids))
+            return this.remove(ids);
+        else
+            return true;
+	}
+
+	public boolean resetBySpaceId(String spaceId){
+		return this.update(Wrappers.<ArticlePage>lambdaUpdate().eq(ArticlePage::getSpaceId,spaceId));
+	}
+	public boolean saveBySpace(Space space, List<ArticlePage> list){
+        if(list==null)
+            return true;
+        Map<String,ArticlePage> before = findBySpaceId(space.getId()).stream().collect(Collectors.toMap(ArticlePage::getId,e->e));
+
+        List<ArticlePage> update = new ArrayList<>();
+        List<ArticlePage> create = new ArrayList<>();
+
+        for(ArticlePage sub:list) {
+            sub.setSpaceId(space.getId());
+            sub.setSpace(space);
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
+	@Override
+    public List<Attention> getAttentions(ArticlePage et) {
+        List<Attention> list = attentionService.findByOwnerId(et.getId());
+        et.setAttentions(list);
+        return list;
+    }
+	
+	@Override
+    public List<Attachment> getAttachments(ArticlePage et) {
+        List<Attachment> list = attachmentService.findByOwnerId(et.getId());
+        et.setAttachments(list);
+        return list;
+    }
+	
 
     public void fillParentData(ArticlePage et) {
         if(Entities.ARTICLE_PAGE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
@@ -117,322 +448,6 @@ public abstract class AbstractArticlePageService extends ServiceImpl<ArticlePage
         }
     }
 
-    public ArticlePage getDraft(ArticlePage et) {
-        fillParentData(et);
-        return et;
-    }
-
-    public Integer checkKey(ArticlePage et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ArticlePage>lambdaQuery().eq(ArticlePage::getId, et.getId()))>0)?1:0;
-    }
-
-    @Override
-    @Transactional
-    public boolean create(ArticlePage et) {
-        fillParentData(et);
-        if(this.baseMapper.insert(et) < 1)
-            return false;
-        attentionService.saveByPage(et,et.getAttentions());
-        attachmentService.saveByPage(et,et.getAttachments());
-        get(et);
-        return true;
-    }
-
-    @Transactional
-    public boolean createBatch(List<ArticlePage> list) {
-        list.forEach(this::fillParentData);
-        this.saveBatch(list, batchSize);
-        return true;
-    }
-
-    @Transactional
-    public boolean update(ArticlePage et) {
-        UpdateWrapper<ArticlePage> qw = et.getUpdateWrapper(true);
-        qw.eq("id", et.getId());
-        if(!update(et, qw))
-            return false;
-        attentionService.saveByPage(et,et.getAttentions());
-        attachmentService.saveByPage(et,et.getAttachments());
-        get(et);
-        return true;
-    }
-
-    @Transactional
-    public boolean updateBatch(List<ArticlePage> list) {
-        updateBatchById(list, batchSize);
-        return true;
-    }
-
-    @Override
-    @Transactional
-    public boolean save(ArticlePage et) {
-        if(checkKey(et) > 0)
-            return getSelf().update(et);
-        else
-            return getSelf().create(et);
-    }
-
-    @Transactional
-    public boolean saveBatch(List<ArticlePage> list) {
-        if(ObjectUtils.isEmpty(list))
-            return true;
-        Map<String,ArticlePage> before = getByEntities(list).stream().collect(Collectors.toMap(ArticlePage::getId,e->e));
-        List<ArticlePage> create = new ArrayList<>();
-        List<ArticlePage> update = new ArrayList<>();
-        list.forEach(sub->{
-            if(!ObjectUtils.isEmpty(sub.getId()) && before.containsKey(sub.getId()))
-                update.add(sub);
-            else
-                create.add(sub);
-        });
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else
-            return true;
-    }
-
-    @Transactional
-    public boolean remove(ArticlePage et) {
-        String key = et.getId();
-        articlePageService.resetByParentId(key);
-        if(!remove(Wrappers.<ArticlePage>lambdaQuery().eq(ArticlePage::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<ArticlePage> entities) {
-        for (ArticlePage et : entities)
-            if(!getSelf().remove(et))
-                return false;
-        return true;
-    }
-
-    public Page<ArticlePage> searchDefault(ArticlePageSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ArticlePage> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
-        List<ArticlePage> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<ArticlePage> listDefault(ArticlePageSearchContext context) {
-        List<ArticlePage> list = baseMapper.listDefault(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<ArticlePage> searchAdvancedSearch(ArticlePageSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ArticlePage> pages=baseMapper.searchAdvancedSearch(context.getPages(),context,context.getSelectCond());
-        List<ArticlePage> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<ArticlePage> listAdvancedSearch(ArticlePageSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        List<ArticlePage> list = baseMapper.listAdvancedSearch(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<ArticlePage> searchDraftPage(ArticlePageSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ArticlePage> pages=baseMapper.searchDraftPage(context.getPages(),context,context.getSelectCond());
-        List<ArticlePage> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<ArticlePage> listDraftPage(ArticlePageSearchContext context) {
-        List<ArticlePage> list = baseMapper.listDraftPage(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<ArticlePage> searchHomePage(ArticlePageSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ArticlePage> pages=baseMapper.searchHomePage(context.getPages(),context,context.getSelectCond());
-        List<ArticlePage> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<ArticlePage> listHomePage(ArticlePageSearchContext context) {
-        List<ArticlePage> list = baseMapper.listHomePage(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<ArticlePage> searchIsDeleted(ArticlePageSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ArticlePage> pages=baseMapper.searchIsDeleted(context.getPages(),context,context.getSelectCond());
-        List<ArticlePage> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<ArticlePage> listIsDeleted(ArticlePageSearchContext context) {
-        List<ArticlePage> list = baseMapper.listIsDeleted(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<ArticlePage> searchMyFavoritePage(ArticlePageSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("UPDATE_TIME,DESC");
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ArticlePage> pages=baseMapper.searchMyFavoritePage(context.getPages(),context,context.getSelectCond());
-        List<ArticlePage> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<ArticlePage> listMyFavoritePage(ArticlePageSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("UPDATE_TIME,DESC");
-        List<ArticlePage> list = baseMapper.listMyFavoritePage(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<ArticlePage> searchNoParentPage(ArticlePageSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ArticlePage> pages=baseMapper.searchNoParentPage(context.getPages(),context,context.getSelectCond());
-        List<ArticlePage> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<ArticlePage> listNoParentPage(ArticlePageSearchContext context) {
-        List<ArticlePage> list = baseMapper.listNoParentPage(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<ArticlePage> searchNormal(ArticlePageSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ArticlePage> pages=baseMapper.searchNormal(context.getPages(),context,context.getSelectCond());
-        List<ArticlePage> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<ArticlePage> listNormal(ArticlePageSearchContext context) {
-        List<ArticlePage> list = baseMapper.listNormal(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<ArticlePage> searchOnlyPage(ArticlePageSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ArticlePage> pages=baseMapper.searchOnlyPage(context.getPages(),context,context.getSelectCond());
-        List<ArticlePage> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<ArticlePage> listOnlyPage(ArticlePageSearchContext context) {
-        List<ArticlePage> list = baseMapper.listOnlyPage(context,context.getSelectCond());
-        return list;
-    }
-
-    public List<ArticlePage> findByParentId(List<String> parentIds) {
-        List<ArticlePage> list = baseMapper.findByParentId(parentIds);
-        if(!ObjectUtils.isEmpty(list))
-            attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
-        if(!ObjectUtils.isEmpty(list))
-            attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
-        return list;
-    }
-    public List<ArticlePage> findBySpaceId(List<String> spaceIds) {
-        List<ArticlePage> list = baseMapper.findBySpaceId(spaceIds);
-        if(!ObjectUtils.isEmpty(list))
-            attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
-        if(!ObjectUtils.isEmpty(list))
-            attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
-        return list;
-    }
-    public boolean removeByParentId(String parentId) {
-        List<String> ids = baseMapper.findByParentId(Arrays.asList(parentId)).stream().map(e->e.getId()).collect(Collectors.toList());
-        if(!ObjectUtils.isEmpty(ids))
-            return this.removeBatch(ids);
-        else
-            return true;
-    }
-
-    public boolean resetByParentId(String parentId) {
-        return this.update(Wrappers.<ArticlePage>lambdaUpdate().eq(ArticlePage::getParentId,parentId));
-    }
-
-    public boolean saveByPage(ArticlePage articlePage,List<ArticlePage> list) {
-        if(list==null)
-            return true;
-        Map<String,ArticlePage> before = findByParentId(articlePage.getId()).stream().collect(Collectors.toMap(ArticlePage::getId,e->e));
-        List<ArticlePage> update = new ArrayList<>();
-        List<ArticlePage> create = new ArrayList<>();
-
-        for(ArticlePage sub:list) {
-            sub.setParentId(articlePage.getId());
-            sub.setPage(articlePage);
-            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
-                before.remove(sub.getId());
-                update.add(sub);
-            }
-            else
-                create.add(sub);
-        }
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
-            return false;
-        else
-            return true;
-    }
-
-    public boolean removeBySpaceId(String spaceId) {
-        List<String> ids = baseMapper.findBySpaceId(Arrays.asList(spaceId)).stream().map(e->e.getId()).collect(Collectors.toList());
-        if(!ObjectUtils.isEmpty(ids))
-            return this.removeBatch(ids);
-        else
-            return true;
-    }
-
-    public boolean resetBySpaceId(String spaceId) {
-        return this.update(Wrappers.<ArticlePage>lambdaUpdate().eq(ArticlePage::getSpaceId,spaceId));
-    }
-
-    public boolean saveBySpace(Space space,List<ArticlePage> list) {
-        if(list==null)
-            return true;
-        Map<String,ArticlePage> before = findBySpaceId(space.getId()).stream().collect(Collectors.toMap(ArticlePage::getId,e->e));
-        List<ArticlePage> update = new ArrayList<>();
-        List<ArticlePage> create = new ArrayList<>();
-
-        for(ArticlePage sub:list) {
-            sub.setSpaceId(space.getId());
-            sub.setSpace(space);
-            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
-                before.remove(sub.getId());
-                update.add(sub);
-            }
-            else
-                create.add(sub);
-        }
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
-            return false;
-        else
-            return true;
-    }
-
-    @Override
-    public List<Attention> getAttentions(ArticlePage et) {
-        List<Attention> list = attentionService.findByOwnerId(et.getId());
-        et.setAttentions(list);
-        return list;
-    }
-
-    @Override
-    public List<Attachment> getAttachments(ArticlePage et) {
-        List<Attachment> list = attachmentService.findByOwnerId(et.getId());
-        et.setAttachments(list);
-        return list;
-    }
-
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -452,8 +467,8 @@ public abstract class AbstractArticlePageService extends ServiceImpl<ArticlePage
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return ArticlePageMapper.class;
     }
@@ -462,4 +477,5 @@ public abstract class AbstractArticlePageService extends ServiceImpl<ArticlePage
     protected Class currentModelClass() {
         return ArticlePage.class;
     }
+
 }

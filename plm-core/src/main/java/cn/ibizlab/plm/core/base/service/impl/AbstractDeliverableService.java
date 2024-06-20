@@ -41,33 +41,6 @@ public abstract class AbstractDeliverableService extends ServiceImpl<Deliverable
 
     protected int batchSize = 500;
 
-    public Deliverable get(Deliverable et) {
-        Deliverable rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.DELIVERABLE.toString(),et.getId());
-        rt.copyTo(et,true);
-        return et;
-    }
-
-    public List<Deliverable> getByEntities(List<Deliverable> entities) {
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public void fillParentData(Deliverable et) {
-        if(Entities.WORK_ITEM.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
-            et.setOwnerId((String)et.getContextParentKey());
-        }
-    }
-
-    public Deliverable getDraft(Deliverable et) {
-        fillParentData(et);
-        return et;
-    }
-
-    public Integer checkKey(Deliverable et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Deliverable>lambdaQuery().eq(Deliverable::getId, et.getId()))>0)?1:0;
-    }
-
     @Override
     @Transactional
     public boolean create(Deliverable et) {
@@ -77,14 +50,14 @@ public abstract class AbstractDeliverableService extends ServiceImpl<Deliverable
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<Deliverable> list) {
+    public boolean create(List<Deliverable> list) {
         list.forEach(this::fillParentData);
         this.saveBatch(list, batchSize);
         return true;
     }
-
+	
     @Transactional
     public boolean update(Deliverable et) {
         UpdateWrapper<Deliverable> qw = et.getUpdateWrapper(true);
@@ -96,11 +69,44 @@ public abstract class AbstractDeliverableService extends ServiceImpl<Deliverable
     }
 
     @Transactional
-    public boolean updateBatch(List<Deliverable> list) {
+    public boolean update(List<Deliverable> list) {
         updateBatchById(list, batchSize);
         return true;
     }
+	
+   @Transactional
+    public boolean remove(Deliverable et) {
+        if(!remove(Wrappers.<Deliverable>lambdaQuery().eq(Deliverable::getId, et.getId())))
+            return false;
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<Deliverable> entities) {
+        this.baseMapper.deleteEntities(entities);
+        return true;
+    }		
+    public Deliverable get(Deliverable et) {
+        Deliverable rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.DELIVERABLE.toString(),et.getId());
+        rt.copyTo(et,true);
+        return et;
+    }	
+
+    public List<Deliverable> get(List<Deliverable> entities) {
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public Deliverable getDraft(Deliverable et) {
+        fillParentData(et);
+        return et;
+    }
+	
+    public Integer checkKey(Deliverable et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Deliverable>lambdaQuery().eq(Deliverable::getId, et.getId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(Deliverable et) {
@@ -111,10 +117,10 @@ public abstract class AbstractDeliverableService extends ServiceImpl<Deliverable
     }
 
     @Transactional
-    public boolean saveBatch(List<Deliverable> list) {
+    public boolean save(List<Deliverable> list) {
         if(ObjectUtils.isEmpty(list))
             return true;
-        Map<String,Deliverable> before = getByEntities(list).stream().collect(Collectors.toMap(Deliverable::getId,e->e));
+        Map<String,Deliverable> before = get(list).stream().collect(Collectors.toMap(Deliverable::getId,e->e));
         List<Deliverable> create = new ArrayList<>();
         List<Deliverable> update = new ArrayList<>();
         list.forEach(sub->{
@@ -125,63 +131,56 @@ public abstract class AbstractDeliverableService extends ServiceImpl<Deliverable
         });
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
         else
             return true;
     }
-
-    @Transactional
-    public boolean remove(Deliverable et) {
-        if(!remove(Wrappers.<Deliverable>lambdaQuery().eq(Deliverable::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<Deliverable> entities) {
-        this.baseMapper.deleteEntities(entities);
-        return true;
-    }
-
-    public Page<Deliverable> searchDefault(DeliverableSearchContext context) {
+	
+   public Page<Deliverable> fetchDefault(DeliverableSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Deliverable> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<Deliverable> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Deliverable> listDefault(DeliverableSearchContext context) {
+   public List<Deliverable> listDefault(DeliverableSearchContext context) {
         List<Deliverable> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Deliverable> searchProjectDeliverable(DeliverableSearchContext context) {
+   }
+	
+   public Page<Deliverable> fetchProjectDeliverable(DeliverableSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Deliverable> pages=baseMapper.searchProjectDeliverable(context.getPages(),context,context.getSelectCond());
         List<Deliverable> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Deliverable> listProjectDeliverable(DeliverableSearchContext context) {
+   public List<Deliverable> listProjectDeliverable(DeliverableSearchContext context) {
         List<Deliverable> list = baseMapper.listProjectDeliverable(context,context.getSelectCond());
         return list;
-    }
-
-    public List<Deliverable> findByOwnerId(List<String> ownerIds) {
+   }
+	
+	public List<Deliverable> findByOwnerId(List<String> ownerIds){
         List<Deliverable> list = baseMapper.findByOwnerId(ownerIds);
-        return list;
-    }
-    public boolean removeByOwnerId(String ownerId) {
+        return list;	
+	}
+
+	public boolean removeByOwnerId(String ownerId){
         return this.remove(Wrappers.<Deliverable>lambdaQuery().eq(Deliverable::getOwnerId,ownerId));
-    }
+	}
 
-    public boolean resetByOwnerId(String ownerId) {
-        return this.update(Wrappers.<Deliverable>lambdaUpdate().eq(Deliverable::getOwnerId,ownerId));
-    }
-
-    public boolean saveByWorkItem(WorkItem workItem,List<Deliverable> list) {
+	public boolean resetByOwnerId(String ownerId){
+		return this.update(Wrappers.<Deliverable>lambdaUpdate().eq(Deliverable::getOwnerId,ownerId));
+	}
+	public boolean saveByWorkItem(WorkItem workItem, List<Deliverable> list){
         if(list==null)
             return true;
-        Map<String,Deliverable> before = findByOwnerId(workItem.getId()).stream().collect(Collectors.toMap(Deliverable::getId,e->e));
+        Map<String,Deliverable> before = this.baseMapper.selectList(Wrappers.<Deliverable>lambdaQuery()
+                        .eq(Deliverable::getOwnerId, workItem.getId())
+                        .eq(Deliverable::getOwnerType,"WORK_ITEM")
+                        .eq(Deliverable::getOwnerSubtype,"DELIVERABLE"))
+                        .stream()
+                        .collect(Collectors.toMap(Deliverable::getId,e->e));
+
         List<Deliverable> update = new ArrayList<>();
         List<Deliverable> create = new ArrayList<>();
 
@@ -197,18 +196,21 @@ public abstract class AbstractDeliverableService extends ServiceImpl<Deliverable
         }
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
             return false;
         else
             return true;
+			
+	}
+
+    public void fillParentData(Deliverable et) {
+        if(Entities.WORK_ITEM.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setOwnerId((String)et.getContextParentKey());
+        }
     }
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -228,8 +230,8 @@ public abstract class AbstractDeliverableService extends ServiceImpl<Deliverable
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return DeliverableMapper.class;
     }
@@ -238,4 +240,5 @@ public abstract class AbstractDeliverableService extends ServiceImpl<Deliverable
     protected Class currentModelClass() {
         return Deliverable.class;
     }
+
 }

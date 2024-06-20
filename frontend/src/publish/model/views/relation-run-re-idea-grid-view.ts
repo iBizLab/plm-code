@@ -203,7 +203,7 @@ export default {
         eventNames: 'onLoadSuccess',
         logicTrigger: 'CTRLEVENT',
         logicType: 'APPDEUILOGIC',
-        appDEUILogicId: 'get_idea_total',
+        appDEUILogicId: 'get_grid_total',
         appDataEntityId: 'plmweb.idea',
         ctrlName: 'grid',
         builtinLogic: true,

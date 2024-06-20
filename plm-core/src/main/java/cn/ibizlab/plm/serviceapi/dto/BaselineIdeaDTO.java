@@ -272,11 +272,19 @@ public class BaselineIdeaDTO extends DTOBase implements Serializable {
     private Date planAtTo;
 
     /**
+     * 基线
+     */
+    @JsonProperty("baseline")
+    @JSONField(name = "baseline")
+    @ApiModelProperty(value = "基线", position = 29)
+    private BaselineDTO baseline;
+
+    /**
      * 建立人
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 29)
+    @ApiModelProperty(value = "建立人", position = 30)
     private String createMan;
 
     /**
@@ -285,7 +293,7 @@ public class BaselineIdeaDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 30)
+    @ApiModelProperty(value = "建立时间", position = 31)
     private Date createTime;
 
     /**
@@ -293,7 +301,7 @@ public class BaselineIdeaDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 31)
+    @ApiModelProperty(value = "标识", position = 32)
     private String id;
 
     /**
@@ -301,7 +309,7 @@ public class BaselineIdeaDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 32)
+    @ApiModelProperty(value = "名称", position = 33)
     private String name;
 
     /**
@@ -309,7 +317,7 @@ public class BaselineIdeaDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 33)
+    @ApiModelProperty(value = "更新人", position = 34)
     private String updateMan;
 
     /**
@@ -318,7 +326,7 @@ public class BaselineIdeaDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 34)
+    @ApiModelProperty(value = "更新时间", position = 35)
     private Date updateTime;
 
 
@@ -571,6 +579,15 @@ public class BaselineIdeaDTO extends DTOBase implements Serializable {
     public BaselineIdeaDTO setPlanAtTo(Date planAtTo) {
         this.planAtTo = planAtTo;
         this.modify("plan_at_to", planAtTo);
+        return this;
+    }
+
+    /**
+     * 设置 [基线]
+     */
+    public BaselineIdeaDTO setBaseline(BaselineDTO baseline) {
+        this.baseline = baseline;
+        this.modify("baseline", baseline);
         return this;
     }
 

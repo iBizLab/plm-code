@@ -41,33 +41,6 @@ public abstract class AbstractChannelService extends ServiceImpl<ChannelMapper,C
 
     protected int batchSize = 500;
 
-    public Channel get(Channel et) {
-        Channel rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.CHANNEL.toString(),et.getId());
-        rt.copyTo(et,true);
-        return et;
-    }
-
-    public List<Channel> getByEntities(List<Channel> entities) {
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public void fillParentData(Channel et) {
-        if(Entities.PRODUCT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
-            et.setProductId((String)et.getContextParentKey());
-        }
-    }
-
-    public Channel getDraft(Channel et) {
-        fillParentData(et);
-        return et;
-    }
-
-    public Integer checkKey(Channel et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Channel>lambdaQuery().eq(Channel::getId, et.getId()))>0)?1:0;
-    }
-
     @Override
     @Transactional
     public boolean create(Channel et) {
@@ -77,14 +50,14 @@ public abstract class AbstractChannelService extends ServiceImpl<ChannelMapper,C
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<Channel> list) {
+    public boolean create(List<Channel> list) {
         list.forEach(this::fillParentData);
         this.saveBatch(list, batchSize);
         return true;
     }
-
+	
     @Transactional
     public boolean update(Channel et) {
         UpdateWrapper<Channel> qw = et.getUpdateWrapper(true);
@@ -96,11 +69,44 @@ public abstract class AbstractChannelService extends ServiceImpl<ChannelMapper,C
     }
 
     @Transactional
-    public boolean updateBatch(List<Channel> list) {
+    public boolean update(List<Channel> list) {
         updateBatchById(list, batchSize);
         return true;
     }
+	
+   @Transactional
+    public boolean remove(Channel et) {
+        if(!remove(Wrappers.<Channel>lambdaQuery().eq(Channel::getId, et.getId())))
+            return false;
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<Channel> entities) {
+        this.baseMapper.deleteEntities(entities);
+        return true;
+    }		
+    public Channel get(Channel et) {
+        Channel rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.CHANNEL.toString(),et.getId());
+        rt.copyTo(et,true);
+        return et;
+    }	
+
+    public List<Channel> get(List<Channel> entities) {
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public Channel getDraft(Channel et) {
+        fillParentData(et);
+        return et;
+    }
+	
+    public Integer checkKey(Channel et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Channel>lambdaQuery().eq(Channel::getId, et.getId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(Channel et) {
@@ -111,10 +117,10 @@ public abstract class AbstractChannelService extends ServiceImpl<ChannelMapper,C
     }
 
     @Transactional
-    public boolean saveBatch(List<Channel> list) {
+    public boolean save(List<Channel> list) {
         if(ObjectUtils.isEmpty(list))
             return true;
-        Map<String,Channel> before = getByEntities(list).stream().collect(Collectors.toMap(Channel::getId,e->e));
+        Map<String,Channel> before = get(list).stream().collect(Collectors.toMap(Channel::getId,e->e));
         List<Channel> create = new ArrayList<>();
         List<Channel> update = new ArrayList<>();
         list.forEach(sub->{
@@ -125,52 +131,40 @@ public abstract class AbstractChannelService extends ServiceImpl<ChannelMapper,C
         });
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
         else
             return true;
     }
-
-    @Transactional
-    public boolean remove(Channel et) {
-        if(!remove(Wrappers.<Channel>lambdaQuery().eq(Channel::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<Channel> entities) {
-        this.baseMapper.deleteEntities(entities);
-        return true;
-    }
-
-    public Page<Channel> searchDefault(ChannelSearchContext context) {
+	
+   public Page<Channel> fetchDefault(ChannelSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Channel> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<Channel> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Channel> listDefault(ChannelSearchContext context) {
+   public List<Channel> listDefault(ChannelSearchContext context) {
         List<Channel> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
-    }
-
-    public List<Channel> findByProductId(List<String> productIds) {
+   }
+	
+	public List<Channel> findByProductId(List<String> productIds){
         List<Channel> list = baseMapper.findByProductId(productIds);
-        return list;
-    }
-    public boolean removeByProductId(String productId) {
+        return list;	
+	}
+
+	public boolean removeByProductId(String productId){
         return this.remove(Wrappers.<Channel>lambdaQuery().eq(Channel::getProductId,productId));
-    }
+	}
 
-    public boolean resetByProductId(String productId) {
-        return this.update(Wrappers.<Channel>lambdaUpdate().eq(Channel::getProductId,productId));
-    }
-
-    public boolean saveByProduct(Product product,List<Channel> list) {
+	public boolean resetByProductId(String productId){
+		return this.update(Wrappers.<Channel>lambdaUpdate().eq(Channel::getProductId,productId));
+	}
+	public boolean saveByProduct(Product product, List<Channel> list){
         if(list==null)
             return true;
         Map<String,Channel> before = findByProductId(product.getId()).stream().collect(Collectors.toMap(Channel::getId,e->e));
+
         List<Channel> update = new ArrayList<>();
         List<Channel> create = new ArrayList<>();
 
@@ -186,18 +180,21 @@ public abstract class AbstractChannelService extends ServiceImpl<ChannelMapper,C
         }
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
             return false;
         else
             return true;
+			
+	}
+
+    public void fillParentData(Channel et) {
+        if(Entities.PRODUCT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setProductId((String)et.getContextParentKey());
+        }
     }
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -217,8 +214,8 @@ public abstract class AbstractChannelService extends ServiceImpl<ChannelMapper,C
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return ChannelMapper.class;
     }
@@ -227,4 +224,5 @@ public abstract class AbstractChannelService extends ServiceImpl<ChannelMapper,C
     protected Class currentModelClass() {
         return Channel.class;
     }
+
 }

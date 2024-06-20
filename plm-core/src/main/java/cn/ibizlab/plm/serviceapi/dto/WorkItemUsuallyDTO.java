@@ -246,6 +246,14 @@ public class WorkItemUsuallyDTO extends DTOBase implements Serializable {
     @ApiModelProperty(value = "迭代名称", position = 25)
     private String sprintName;
 
+    /**
+     * 当前版本标识
+     */
+    @JsonProperty("cur_version_id")
+    @JSONField(name = "cur_version_id")
+    @ApiModelProperty(value = "当前版本标识", position = 26)
+    private String curVersionId;
+
 
     /**
      * 设置 [标题]

@@ -238,7 +238,7 @@ public abstract class AbstractExtendLogResource {
     public ResponseEntity<List<ExtendLogDTO>> fetchDefault
             (@Validated @RequestBody ExtendLogFilterDTO dto) {
         ExtendLogSearchContext context = extendLogFilterDtoMapping.toDomain(dto);
-        Page<ExtendLog> domains = extendLogService.searchDefault(context) ;
+        Page<ExtendLog> domains = extendLogService.fetchDefault(context) ;
         List<ExtendLogDTO> list = extendLogDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -260,7 +260,7 @@ public abstract class AbstractExtendLogResource {
     public ResponseEntity<List<ExtendLogDTO>> fetchExecutionStatistics
             (@Validated @RequestBody ExtendLogFilterDTO dto) {
         ExtendLogSearchContext context = extendLogFilterDtoMapping.toDomain(dto);
-        Page<ExtendLog> domains = extendLogService.searchExecutionStatistics(context) ;
+        Page<ExtendLog> domains = extendLogService.fetchExecutionStatistics(context) ;
         List<ExtendLogDTO> list = extendLogDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -279,7 +279,7 @@ public abstract class AbstractExtendLogResource {
     @ApiOperation(value = "批量新建扩展日志", tags = {"扩展日志" },  notes = "批量新建扩展日志")
 	@PostMapping("extend_logs/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<ExtendLogDTO> dtos) {
-        extendLogService.createBatch(extendLogDtoMapping.toDomain(dtos));
+        extendLogService.create(extendLogDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -292,7 +292,7 @@ public abstract class AbstractExtendLogResource {
     @ApiOperation(value = "批量删除扩展日志", tags = {"扩展日志" },  notes = "批量删除扩展日志")
 	@DeleteMapping("extend_logs/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        extendLogService.removeBatch(ids);
+        extendLogService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -305,7 +305,7 @@ public abstract class AbstractExtendLogResource {
     @ApiOperation(value = "批量更新扩展日志", tags = {"扩展日志" },  notes = "批量更新扩展日志")
 	@PutMapping("extend_logs/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<ExtendLogDTO> dtos) {
-        extendLogService.updateBatch(extendLogDtoMapping.toDomain(dtos));
+        extendLogService.update(extendLogDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -318,7 +318,7 @@ public abstract class AbstractExtendLogResource {
     @ApiOperation(value = "批量保存扩展日志", tags = {"扩展日志" },  notes = "批量保存扩展日志")
 	@PostMapping("extend_logs/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<ExtendLogDTO> dtos) {
-        extendLogService.saveBatch(extendLogDtoMapping.toDomain(dtos));
+        extendLogService.save(extendLogDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

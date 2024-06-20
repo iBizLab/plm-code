@@ -43,7 +43,7 @@ public class JobFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 30)
+    @ApiModelProperty(value = "名称LIKE", position = 10)
 	private String nameLIKE;
 
 

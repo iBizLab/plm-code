@@ -62,6 +62,22 @@ public interface ProjectMemberMapper extends BaseMapper<ProjectMember> {
     List<ProjectMember> listCurProject(@Param("ctx") ProjectMemberSearchContext context, @Param("ew") Wrapper<ProjectMember> wrapper);
 
     /**
+    * 根据projectId查询
+    *
+    * @param projectIds
+    * @return
+    */
+    List<ProjectMember> findByProjectId(@Param("projectIds") List<String> projectIds);
+
+    /**
+    * 根据userId查询
+    *
+    * @param userIds
+    * @return
+    */
+    List<ProjectMember> findByUserId(@Param("userIds") List<String> userIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -170,21 +186,4 @@ public interface ProjectMemberMapper extends BaseMapper<ProjectMember> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据projectId查询
-     *
-     * @param projectIds
-     * @return
-     */
-    List<ProjectMember> findByProjectId(@Param("projectIds") List<String> projectIds);
-
-    /**
-     * 根据userId查询
-     *
-     * @param userIds
-     * @return
-     */
-    List<ProjectMember> findByUserId(@Param("userIds") List<String> userIds);
-
 }

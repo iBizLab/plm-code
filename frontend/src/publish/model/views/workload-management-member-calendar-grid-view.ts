@@ -245,15 +245,6 @@ export default {
     ],
     appViewRefs: [
       {
-        realTitle: '工时编辑视图',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.WORKLOAD.EDITVIEW',
-        },
-        refAppViewId: 'plmweb.workload_edit_view',
-        name: 'NEWDATA',
-        id: 'newdata',
-      },
-      {
         realTitle: '工时数据重定向视图',
         realTitleLanguageRes: {
           lanResTag: 'PAGE.TITLE.WORKLOAD.REDIRECTVIEW',
@@ -261,6 +252,15 @@ export default {
         refAppViewId: 'plmweb.workload_redirect_view',
         name: 'EDITDATA',
         id: 'editdata',
+      },
+      {
+        realTitle: '工时编辑视图',
+        realTitleLanguageRes: {
+          lanResTag: 'PAGE.TITLE.WORKLOAD.EDITVIEW',
+        },
+        refAppViewId: 'plmweb.workload_edit_view',
+        name: 'NEWDATA',
+        id: 'newdata',
       },
     ],
     controls: [
@@ -290,7 +290,6 @@ export default {
             noPrivDisplayMode: 1,
             width: 150,
             widthUnit: 'STAR',
-            enableSort: true,
             userParam: {
               DEFAULTSORT: 'asc',
             },
@@ -312,7 +311,6 @@ export default {
             noPrivDisplayMode: 1,
             width: 150,
             widthUnit: 'PX',
-            enableSort: true,
             id: 'duration',
           },
         ],
@@ -374,6 +372,7 @@ export default {
         pagingSize: 20,
         sortMode: 'REMOTE',
         enableGroup: true,
+        enablePagingBar: true,
         singleSelect: true,
         fetchControlAction: {
           appDEMethodId: 'fetch_member_dimension',
@@ -573,6 +572,13 @@ export default {
           {
             dataType: 25,
             labelPos: 'NONE',
+            defsearchMode: {
+              codeName: 'N_CREATE_MAN_IN',
+              stdDataType: 25,
+              valueOP: 'IN',
+              name: 'N_CREATE_MAN_IN',
+              id: 'n_create_man_in',
+            },
             editor: {
               singleSelect: true,
               enableAC: true,

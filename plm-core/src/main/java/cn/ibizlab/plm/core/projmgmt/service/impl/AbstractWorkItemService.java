@@ -42,6 +42,7 @@ import cn.ibizlab.plm.core.projmgmt.domain.WorkItemState;
 import cn.ibizlab.plm.core.projmgmt.service.WorkItemStateService;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItemType;
 import cn.ibizlab.plm.core.projmgmt.service.WorkItemTypeService;
+import cn.ibizlab.plm.core.base.domain.CommonFlow;
 import cn.ibizlab.plm.core.base.domain.Attention;
 import cn.ibizlab.plm.core.base.service.AttentionService;
 import cn.ibizlab.plm.core.base.domain.Comment;
@@ -155,6 +156,59 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
 
         protected int batchSize = 500;
 
+    @Override
+    @Transactional
+    public boolean create(WorkItem et) {
+        fillParentData(et);
+        if(this.baseMapper.insert(et) < 1)
+            return false;
+        attentionService.saveByWorkItem(et,et.getAttentions());
+        attachmentService.saveByWorkItem(et,et.getAttachments());
+        deliverableService.saveByWorkItem(et,et.getDeliverable());
+        get(et);
+        return true;
+    }
+	
+    @Transactional
+    public boolean create(List<WorkItem> list) {
+        list.forEach(this::fillParentData);
+        this.saveBatch(list, batchSize);
+        return true;
+    }
+	
+    @Transactional
+    public boolean update(WorkItem et) {
+        fillParentData(et);
+        UpdateWrapper<WorkItem> qw = et.getUpdateWrapper(true);
+        qw.eq("id", et.getId());
+        if(!update(et, qw))
+            return false;
+        attentionService.saveByWorkItem(et,et.getAttentions());
+        attachmentService.saveByWorkItem(et,et.getAttachments());
+        deliverableService.saveByWorkItem(et,et.getDeliverable());
+        get(et);
+        return true;
+    }
+
+    @Transactional
+    public boolean update(List<WorkItem> list) {
+        list.forEach(this::fillParentData);
+        updateBatchById(list, batchSize);
+        return true;
+    }
+	
+   @Transactional
+    public boolean remove(WorkItem et) {
+        if(!remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getId, et.getId())))
+            return false;
+        return true;
+    }
+
+    @Transactional
+    public boolean remove(List<WorkItem> entities) {
+        this.baseMapper.deleteEntities(entities);
+        return true;
+    }		
     public WorkItem get(WorkItem et) {
         WorkItem rt = this.baseMapper.selectEntity(et);
         if(rt == null)
@@ -167,11 +221,1285 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
         //设置 [交付物]
         getDeliverable(et);
         return et;
+    }	
+
+    public List<WorkItem> get(List<WorkItem> entities) {
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public WorkItem getDraft(WorkItem et) {
+        fillParentData(et);
+        return et;
+    }
+	
+    public Integer checkKey(WorkItem et) {
+        fillParentData(et);
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getId, et.getId()))>0)?1:0;
+    }
+	
+    @Override
+    @Transactional
+    public boolean save(WorkItem et) {
+        if(checkKey(et) > 0)
+            return getSelf().update(et);
+        else
+            return getSelf().create(et);
     }
 
-    public List<WorkItem> getByEntities(List<WorkItem> entities) {
-        return this.baseMapper.selectEntities(entities);
+    @Transactional
+    public boolean save(List<WorkItem> list) {
+        if(ObjectUtils.isEmpty(list))
+            return true;
+        Map<String,WorkItem> before = get(list).stream().collect(Collectors.toMap(WorkItem::getId,e->e));
+        List<WorkItem> create = new ArrayList<>();
+        List<WorkItem> update = new ArrayList<>();
+        list.forEach(sub->{
+            if(!ObjectUtils.isEmpty(sub.getId()) && before.containsKey(sub.getId()))
+                update.add(sub);
+            else
+                create.add(sub);
+        });
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else
+            return true;
     }
+	
+   public Page<WorkItem> fetchDefault(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,ASC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listDefault(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,ASC");
+        List<WorkItem> list = baseMapper.listDefault(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchAdvancedSearch(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("SHOW_IDENTIFIER,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchAdvancedSearch(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listAdvancedSearch(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("SHOW_IDENTIFIER,DESC");
+        List<WorkItem> list = baseMapper.listAdvancedSearch(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchArchived(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchArchived(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listArchived(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        List<WorkItem> list = baseMapper.listArchived(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchBacklogPropertyDistribution(WorkItemSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchBacklogPropertyDistribution(context.getPages(),context,context.getSelectCond());
+        return new PageImpl<WorkItem>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),WorkItem.class), context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listBacklogPropertyDistribution(WorkItemSearchContext context) {
+        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listBacklogPropertyDistribution(context,context.getSelectCond()),WorkItem.class);
+   }
+	
+   public Page<WorkItem> fetchBacklogStateDistribution(WorkItemSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchBacklogStateDistribution(context.getPages(),context,context.getSelectCond());
+        return new PageImpl<WorkItem>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),WorkItem.class), context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listBacklogStateDistribution(WorkItemSearchContext context) {
+        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listBacklogStateDistribution(context,context.getSelectCond()),WorkItem.class);
+   }
+	
+   public Page<WorkItem> fetchBaselineChooseWorkItem(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchBaselineChooseWorkItem(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listBaselineChooseWorkItem(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        List<WorkItem> list = baseMapper.listBaselineChooseWorkItem(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchBug(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchBug(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listBug(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        List<WorkItem> list = baseMapper.listBug(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchBugStateGroupGrid(WorkItemSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchBugStateGroupGrid(context.getPages(),context,context.getSelectCond());
+        return new PageImpl<WorkItem>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),WorkItem.class), context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listBugStateGroupGrid(WorkItemSearchContext context) {
+        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listBugStateGroupGrid(context,context.getSelectCond()),WorkItem.class);
+   }
+	
+   public Page<WorkItem> fetchChangeParent(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,ASC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchChangeParent(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listChangeParent(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,ASC");
+        List<WorkItem> list = baseMapper.listChangeParent(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchChild(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchChild(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listChild(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        List<WorkItem> list = baseMapper.listChild(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchChooseChild(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchChooseChild(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listChooseChild(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        List<WorkItem> list = baseMapper.listChooseChild(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchCommentNotifyAssignee(WorkItemSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchCommentNotifyAssignee(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listCommentNotifyAssignee(WorkItemSearchContext context) {
+        List<WorkItem> list = baseMapper.listCommentNotifyAssignee(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchCommon(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchCommon(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listCommon(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        List<WorkItem> list = baseMapper.listCommon(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchCommonBug(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchCommonBug(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listCommonBug(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        List<WorkItem> list = baseMapper.listCommonBug(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchDefectPropertyDistribution(WorkItemSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchDefectPropertyDistribution(context.getPages(),context,context.getSelectCond());
+        return new PageImpl<WorkItem>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),WorkItem.class), context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listDefectPropertyDistribution(WorkItemSearchContext context) {
+        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listDefectPropertyDistribution(context,context.getSelectCond()),WorkItem.class);
+   }
+	
+   public Page<WorkItem> fetchDeleted(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchDeleted(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listDeleted(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        List<WorkItem> list = baseMapper.listDeleted(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchKanbanUserStat(WorkItemSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchKanbanUserStat(context.getPages(),context,context.getSelectCond());
+        return new PageImpl<WorkItem>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),WorkItem.class), context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listKanbanUserStat(WorkItemSearchContext context) {
+        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listKanbanUserStat(context,context.getSelectCond()),WorkItem.class);
+   }
+	
+   public Page<WorkItem> fetchMilestone(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,ASC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchMilestone(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listMilestone(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,ASC");
+        List<WorkItem> list = baseMapper.listMilestone(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchMyAssignee(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("UPDATE_TIME,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchMyAssignee(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listMyAssignee(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("UPDATE_TIME,DESC");
+        List<WorkItem> list = baseMapper.listMyAssignee(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchMyAssigneeCount(WorkItemSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchMyAssigneeCount(context.getPages(),context,context.getSelectCond());
+        return new PageImpl<WorkItem>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),WorkItem.class), context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listMyAssigneeCount(WorkItemSearchContext context) {
+        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listMyAssigneeCount(context,context.getSelectCond()),WorkItem.class);
+   }
+	
+   public Page<WorkItem> fetchMyAttention(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("SHOW_IDENTIFIER,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchMyAttention(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listMyAttention(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("SHOW_IDENTIFIER,DESC");
+        List<WorkItem> list = baseMapper.listMyAttention(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchMyCreated(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("UPDATE_TIME,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchMyCreated(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listMyCreated(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("UPDATE_TIME,DESC");
+        List<WorkItem> list = baseMapper.listMyCreated(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchMyFilter(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("CREATE_TIME,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchMyFilter(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listMyFilter(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("CREATE_TIME,DESC");
+        List<WorkItem> list = baseMapper.listMyFilter(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchMyTodo(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("SHOW_IDENTIFIER,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchMyTodo(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listMyTodo(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("SHOW_IDENTIFIER,DESC");
+        List<WorkItem> list = baseMapper.listMyTodo(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchNoBugWorkItem(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchNoBugWorkItem(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listNoBugWorkItem(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        List<WorkItem> list = baseMapper.listNoBugWorkItem(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchNormal(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchNormal(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listNormal(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        List<WorkItem> list = baseMapper.listNormal(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchNotExsistsBugRelation(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchNotExsistsBugRelation(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listNotExsistsBugRelation(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        List<WorkItem> list = baseMapper.listNotExsistsBugRelation(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchNotExsistsRelation(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchNotExsistsRelation(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listNotExsistsRelation(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        List<WorkItem> list = baseMapper.listNotExsistsRelation(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchNotbugExsistsRelation(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchNotbugExsistsRelation(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listNotbugExsistsRelation(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        List<WorkItem> list = baseMapper.listNotbugExsistsRelation(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchNotifyAssignee(WorkItemSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchNotifyAssignee(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listNotifyAssignee(WorkItemSearchContext context) {
+        List<WorkItem> list = baseMapper.listNotifyAssignee(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchOverviewChart(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("WORK_ITEM_TYPE_SEQUENCE,ASC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchOverviewChart(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listOverviewChart(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("WORK_ITEM_TYPE_SEQUENCE,ASC");
+        List<WorkItem> list = baseMapper.listOverviewChart(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchPlanSnapshot(WorkItemSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchPlanSnapshot(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listPlanSnapshot(WorkItemSearchContext context) {
+        List<WorkItem> list = baseMapper.listPlanSnapshot(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchProjectResource(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchProjectResource(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listProjectResource(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        List<WorkItem> list = baseMapper.listProjectResource(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchPropertyDistribution(WorkItemSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchPropertyDistribution(context.getPages(),context,context.getSelectCond());
+        return new PageImpl<WorkItem>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),WorkItem.class), context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listPropertyDistribution(WorkItemSearchContext context) {
+        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listPropertyDistribution(context,context.getSelectCond()),WorkItem.class);
+   }
+	
+   public Page<WorkItem> fetchReader(WorkItemSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchReader(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listReader(WorkItemSearchContext context) {
+        List<WorkItem> list = baseMapper.listReader(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchRecentWorkItem(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,ASC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchRecentWorkItem(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listRecentWorkItem(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,ASC");
+        List<WorkItem> list = baseMapper.listRecentWorkItem(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchRelease(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchRelease(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listRelease(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        List<WorkItem> list = baseMapper.listRelease(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchReleasePlan(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchReleasePlan(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listReleasePlan(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        List<WorkItem> list = baseMapper.listReleasePlan(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchRequirement(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,ASC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchRequirement(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listRequirement(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,ASC");
+        List<WorkItem> list = baseMapper.listRequirement(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchRequirementTree(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchRequirementTree(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listRequirementTree(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        List<WorkItem> list = baseMapper.listRequirementTree(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchResource(WorkItemSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchResource(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listResource(WorkItemSearchContext context) {
+        List<WorkItem> list = baseMapper.listResource(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchTestPlanRelationBug(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("SHOW_IDENTIFIER,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchTestPlanRelationBug(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listTestPlanRelationBug(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("SHOW_IDENTIFIER,DESC");
+        List<WorkItem> list = baseMapper.listTestPlanRelationBug(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchTop(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,ASC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchTop(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listTop(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,ASC");
+        List<WorkItem> list = baseMapper.listTop(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchTree(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchTree(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listTree(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        List<WorkItem> list = baseMapper.listTree(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchUnderWork(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("SHOW_IDENTIFIER,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchUnderWork(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listUnderWork(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("SHOW_IDENTIFIER,DESC");
+        List<WorkItem> list = baseMapper.listUnderWork(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchUnderWorkResource(WorkItemSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchUnderWorkResource(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listUnderWorkResource(WorkItemSearchContext context) {
+        List<WorkItem> list = baseMapper.listUnderWorkResource(context,context.getSelectCond());
+        return list;
+   }
+	
+	public List<WorkItem> findByBoardId(List<String> boardIds){
+        List<WorkItem> list = baseMapper.findByBoardId(boardIds);
+        if(!ObjectUtils.isEmpty(list))
+            attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
+            attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
+            deliverableService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setDeliverable(sub.getValue())));
+        return list;	
+	}
+
+	public boolean removeByBoardId(String boardId){
+        return this.remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getBoardId,boardId));
+	}
+
+	public boolean resetByBoardId(String boardId){
+		return this.update(Wrappers.<WorkItem>lambdaUpdate().eq(WorkItem::getBoardId,boardId));
+	}
+	public boolean saveByBoard(Board board, List<WorkItem> list){
+        if(list==null)
+            return true;
+        Map<String,WorkItem> before = findByBoardId(board.getId()).stream().collect(Collectors.toMap(WorkItem::getId,e->e));
+
+        List<WorkItem> update = new ArrayList<>();
+        List<WorkItem> create = new ArrayList<>();
+
+        for(WorkItem sub:list) {
+            sub.setBoardId(board.getId());
+            sub.setBoard(board);
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
+	public List<WorkItem> findByEntryId(List<String> entryIds){
+        List<WorkItem> list = baseMapper.findByEntryId(entryIds);
+        if(!ObjectUtils.isEmpty(list))
+            attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
+            attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
+            deliverableService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setDeliverable(sub.getValue())));
+        return list;	
+	}
+
+	public boolean removeByEntryId(String entryId){
+        return this.remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getEntryId,entryId));
+	}
+
+	public boolean resetByEntryId(String entryId){
+		return this.update(Wrappers.<WorkItem>lambdaUpdate().eq(WorkItem::getEntryId,entryId));
+	}
+	public boolean saveByEntry(Entry entry, List<WorkItem> list){
+        if(list==null)
+            return true;
+        Map<String,WorkItem> before = findByEntryId(entry.getId()).stream().collect(Collectors.toMap(WorkItem::getId,e->e));
+
+        List<WorkItem> update = new ArrayList<>();
+        List<WorkItem> create = new ArrayList<>();
+
+        for(WorkItem sub:list) {
+            sub.setEntryId(entry.getId());
+            sub.setEntry(entry);
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
+	public List<WorkItem> findByProjectId(List<String> projectIds){
+        List<WorkItem> list = baseMapper.findByProjectId(projectIds);
+        if(!ObjectUtils.isEmpty(list))
+            attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
+            attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
+            deliverableService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setDeliverable(sub.getValue())));
+        return list;	
+	}
+
+	public boolean removeByProjectId(String projectId){
+        return this.remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getProjectId,projectId));
+	}
+
+	public boolean resetByProjectId(String projectId){
+		return this.update(Wrappers.<WorkItem>lambdaUpdate().eq(WorkItem::getProjectId,projectId));
+	}
+	public boolean saveByProject(Project project, List<WorkItem> list){
+        if(list==null)
+            return true;
+        Map<String,WorkItem> before = findByProjectId(project.getId()).stream().collect(Collectors.toMap(WorkItem::getId,e->e));
+
+        List<WorkItem> update = new ArrayList<>();
+        List<WorkItem> create = new ArrayList<>();
+
+        for(WorkItem sub:list) {
+            sub.setProjectId(project.getId());
+            sub.setProject(project);
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
+	public List<WorkItem> findByReleaseId(List<String> releaseIds){
+        List<WorkItem> list = baseMapper.findByReleaseId(releaseIds);
+        if(!ObjectUtils.isEmpty(list))
+            attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
+            attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
+            deliverableService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setDeliverable(sub.getValue())));
+        return list;	
+	}
+
+	public boolean removeByReleaseId(String releaseId){
+        return this.remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getReleaseId,releaseId));
+	}
+
+	public boolean resetByReleaseId(String releaseId){
+		return this.update(Wrappers.<WorkItem>lambdaUpdate().eq(WorkItem::getReleaseId,releaseId));
+	}
+	public boolean saveByRelease(Release release, List<WorkItem> list){
+        if(list==null)
+            return true;
+        Map<String,WorkItem> before = findByReleaseId(release.getId()).stream().collect(Collectors.toMap(WorkItem::getId,e->e));
+
+        List<WorkItem> update = new ArrayList<>();
+        List<WorkItem> create = new ArrayList<>();
+
+        for(WorkItem sub:list) {
+            sub.setReleaseId(release.getId());
+            sub.setRelease(release);
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
+	public List<WorkItem> findBySprintId(List<String> sprintIds){
+        List<WorkItem> list = baseMapper.findBySprintId(sprintIds);
+        if(!ObjectUtils.isEmpty(list))
+            attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
+            attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
+            deliverableService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setDeliverable(sub.getValue())));
+        return list;	
+	}
+
+	public boolean removeBySprintId(String sprintId){
+        return this.remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getSprintId,sprintId));
+	}
+
+	public boolean resetBySprintId(String sprintId){
+		return this.update(Wrappers.<WorkItem>lambdaUpdate().eq(WorkItem::getSprintId,sprintId));
+	}
+	public boolean saveBySprint(Sprint sprint, List<WorkItem> list){
+        if(list==null)
+            return true;
+        Map<String,WorkItem> before = findBySprintId(sprint.getId()).stream().collect(Collectors.toMap(WorkItem::getId,e->e));
+
+        List<WorkItem> update = new ArrayList<>();
+        List<WorkItem> create = new ArrayList<>();
+
+        for(WorkItem sub:list) {
+            sub.setSprintId(sprint.getId());
+            sub.setSprint(sprint);
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
+	public List<WorkItem> findBySwimlaneId(List<String> swimlaneIds){
+        List<WorkItem> list = baseMapper.findBySwimlaneId(swimlaneIds);
+        if(!ObjectUtils.isEmpty(list))
+            attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
+            attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
+            deliverableService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setDeliverable(sub.getValue())));
+        return list;	
+	}
+
+	public boolean removeBySwimlaneId(String swimlaneId){
+        return this.remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getSwimlaneId,swimlaneId));
+	}
+
+	public boolean resetBySwimlaneId(String swimlaneId){
+		return this.update(Wrappers.<WorkItem>lambdaUpdate().eq(WorkItem::getSwimlaneId,swimlaneId));
+	}
+	public boolean saveBySwimlane(Swimlane swimlane, List<WorkItem> list){
+        if(list==null)
+            return true;
+        Map<String,WorkItem> before = findBySwimlaneId(swimlane.getId()).stream().collect(Collectors.toMap(WorkItem::getId,e->e));
+
+        List<WorkItem> update = new ArrayList<>();
+        List<WorkItem> create = new ArrayList<>();
+
+        for(WorkItem sub:list) {
+            sub.setSwimlaneId(swimlane.getId());
+            sub.setSwimlane(swimlane);
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
+	public List<WorkItem> findByAssigneeId(List<String> assigneeIds){
+        List<WorkItem> list = baseMapper.findByAssigneeId(assigneeIds);
+        if(!ObjectUtils.isEmpty(list))
+            attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
+            attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
+            deliverableService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setDeliverable(sub.getValue())));
+        return list;	
+	}
+
+	public boolean removeByAssigneeId(String assigneeId){
+        return this.remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getAssigneeId,assigneeId));
+	}
+
+	public boolean resetByAssigneeId(String assigneeId){
+		return this.update(Wrappers.<WorkItem>lambdaUpdate().eq(WorkItem::getAssigneeId,assigneeId));
+	}
+	public boolean saveByUser(User user, List<WorkItem> list){
+        if(list==null)
+            return true;
+        Map<String,WorkItem> before = findByAssigneeId(user.getId()).stream().collect(Collectors.toMap(WorkItem::getId,e->e));
+
+        List<WorkItem> update = new ArrayList<>();
+        List<WorkItem> create = new ArrayList<>();
+
+        for(WorkItem sub:list) {
+            sub.setAssigneeId(user.getId());
+            sub.setUser(user);
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
+	public List<WorkItem> findByPid(List<String> pids){
+        List<WorkItem> list = baseMapper.findByPid(pids);
+        if(!ObjectUtils.isEmpty(list))
+            attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
+            attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
+            deliverableService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setDeliverable(sub.getValue())));
+        return list;	
+	}
+
+	public boolean removeByPid(String pid){
+        return this.remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getPid,pid));
+	}
+
+	public boolean resetByPid(String pid){
+		return this.update(Wrappers.<WorkItem>lambdaUpdate().eq(WorkItem::getPid,pid));
+	}
+	public boolean saveByWorkItem(WorkItem workItem, List<WorkItem> list){
+        if(list==null)
+            return true;
+        Map<String,WorkItem> before = findByPid(workItem.getId()).stream().collect(Collectors.toMap(WorkItem::getId,e->e));
+
+        List<WorkItem> update = new ArrayList<>();
+        List<WorkItem> create = new ArrayList<>();
+
+        for(WorkItem sub:list) {
+            sub.setPid(workItem.getId());
+            sub.setWorkItem(workItem);
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
+	public List<WorkItem> findByState(List<String> states){
+        List<WorkItem> list = baseMapper.findByState(states);
+        if(!ObjectUtils.isEmpty(list))
+            attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
+            attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
+            deliverableService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setDeliverable(sub.getValue())));
+        return list;	
+	}
+
+	public boolean removeByState(String state){
+        return this.remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getState,state));
+	}
+
+	public boolean resetByState(String state){
+		return this.update(Wrappers.<WorkItem>lambdaUpdate().eq(WorkItem::getState,state));
+	}
+	public boolean saveByWorkItemState(WorkItemState workItemState, List<WorkItem> list){
+        if(list==null)
+            return true;
+        Map<String,WorkItem> before = findByState(workItemState.getId()).stream().collect(Collectors.toMap(WorkItem::getId,e->e));
+
+        List<WorkItem> update = new ArrayList<>();
+        List<WorkItem> create = new ArrayList<>();
+
+        for(WorkItem sub:list) {
+            sub.setState(workItemState.getId());
+            sub.setWorkItemState(workItemState);
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
+	public List<WorkItem> findByTopId(List<String> topIds){
+        List<WorkItem> list = baseMapper.findByTopId(topIds);
+        if(!ObjectUtils.isEmpty(list))
+            attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
+            attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
+            deliverableService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setDeliverable(sub.getValue())));
+        return list;	
+	}
+
+	public boolean removeByTopId(String topId){
+        return this.remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getTopId,topId));
+	}
+
+	public boolean resetByTopId(String topId){
+		return this.update(Wrappers.<WorkItem>lambdaUpdate().eq(WorkItem::getTopId,topId));
+	}
+	public boolean saveByWorkItem2(WorkItem workItem, List<WorkItem> list){
+        if(list==null)
+            return true;
+        Map<String,WorkItem> before = findByTopId(workItem.getId()).stream().collect(Collectors.toMap(WorkItem::getId,e->e));
+
+        List<WorkItem> update = new ArrayList<>();
+        List<WorkItem> create = new ArrayList<>();
+
+        for(WorkItem sub:list) {
+            sub.setTopId(workItem.getId());
+            sub.setWorkItem2(workItem);
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
+	public List<WorkItem> findByWorkItemTypeId(List<String> workItemTypeIds){
+        List<WorkItem> list = baseMapper.findByWorkItemTypeId(workItemTypeIds);
+        if(!ObjectUtils.isEmpty(list))
+            attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
+            attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
+            deliverableService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setDeliverable(sub.getValue())));
+        return list;	
+	}
+
+	public boolean removeByWorkItemTypeId(String workItemTypeId){
+        return this.remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getWorkItemTypeId,workItemTypeId));
+	}
+
+	public boolean resetByWorkItemTypeId(String workItemTypeId){
+		return this.update(Wrappers.<WorkItem>lambdaUpdate().eq(WorkItem::getWorkItemTypeId,workItemTypeId));
+	}
+	public boolean saveByWorkItemType(WorkItemType workItemType, List<WorkItem> list){
+        if(list==null)
+            return true;
+        Map<String,WorkItem> before = findByWorkItemTypeId(workItemType.getId()).stream().collect(Collectors.toMap(WorkItem::getId,e->e));
+
+        List<WorkItem> update = new ArrayList<>();
+        List<WorkItem> create = new ArrayList<>();
+
+        for(WorkItem sub:list) {
+            sub.setWorkItemTypeId(workItemType.getId());
+            sub.setWorkItemType(workItemType);
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
+	public List<WorkItem> findById(List<String> ids){
+        List<WorkItem> list = baseMapper.findById(ids);
+        if(!ObjectUtils.isEmpty(list))
+            attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
+            attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
+            deliverableService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setDeliverable(sub.getValue())));
+        return list;	
+	}
+
+	public boolean removeById(String id){
+        return this.remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getId,id));
+	}
+
+	public boolean resetById(String id){
+		return this.update(Wrappers.<WorkItem>lambdaUpdate().eq(WorkItem::getId,id));
+	}
+	public boolean saveByCommonFlow(CommonFlow commonFlow, List<WorkItem> list){
+        if(list==null)
+            return true;
+        Map<String,WorkItem> before = findById(commonFlow.getId()).stream().collect(Collectors.toMap(WorkItem::getId,e->e));
+
+        List<WorkItem> update = new ArrayList<>();
+        List<WorkItem> create = new ArrayList<>();
+
+        for(WorkItem sub:list) {
+            sub.setId(commonFlow.getId());
+            sub.setCommonFlow(commonFlow);
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
+	@Override
+    public List<Attention> getAttentions(WorkItem et) {
+        List<Attention> list = attentionService.findByOwnerId(et.getId());
+        et.setAttentions(list);
+        return list;
+    }
+	
+	@Override
+    public List<Attachment> getAttachments(WorkItem et) {
+        List<Attachment> list = attachmentService.findByOwnerId(et.getId());
+        et.setAttachments(list);
+        return list;
+    }
+	
+	@Override
+    public List<Deliverable> getDeliverable(WorkItem et) {
+        List<Deliverable> list = deliverableService.findByOwnerId(et.getId());
+        et.setDeliverable(list);
+        return list;
+    }
+	
 
     public void fillParentData(WorkItem et) {
         if(Entities.BOARD.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
@@ -220,6 +1548,7 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
                 et.setRelease(release);
             }
             if(!ObjectUtils.isEmpty(release)) {
+                et.setReleaseStatus(release.getStatus());
                 et.setReleaseId(release.getId());
                 et.setReleaseName(release.getName());
             }
@@ -232,6 +1561,7 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
                 et.setSprint(sprint);
             }
             if(!ObjectUtils.isEmpty(sprint)) {
+                et.setSprintStatus(sprint.getStatus());
                 et.setSprintId(sprint.getId());
                 et.setSprintName(sprint.getName());
             }
@@ -285,1289 +1615,13 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
             if(!ObjectUtils.isEmpty(workItemType)) {
                 et.setWorkItemTypeGroup(workItemType.getGroup());
                 et.setWorkItemTypeSequence(workItemType.getSequence());
+                et.setWorkItemSubType(workItemType.getSubType());
                 et.setWorkItemTypeId(workItemType.getId());
                 et.setWorkItemTypeName(workItemType.getName());
             }
         }
     }
 
-    public WorkItem getDraft(WorkItem et) {
-        fillParentData(et);
-        return et;
-    }
-
-    public Integer checkKey(WorkItem et) {
-        fillParentData(et);
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getId, et.getId()))>0)?1:0;
-    }
-
-    @Override
-    @Transactional
-    public boolean create(WorkItem et) {
-        fillParentData(et);
-        if(this.baseMapper.insert(et) < 1)
-            return false;
-        attentionService.saveByWorkItem(et,et.getAttentions());
-        attachmentService.saveByWorkItem(et,et.getAttachments());
-        deliverableService.saveByWorkItem(et,et.getDeliverable());
-        get(et);
-        return true;
-    }
-
-    @Transactional
-    public boolean createBatch(List<WorkItem> list) {
-        list.forEach(this::fillParentData);
-        this.saveBatch(list, batchSize);
-        return true;
-    }
-
-    @Transactional
-    public boolean update(WorkItem et) {
-        fillParentData(et);
-        UpdateWrapper<WorkItem> qw = et.getUpdateWrapper(true);
-        qw.eq("id", et.getId());
-        if(!update(et, qw))
-            return false;
-        attentionService.saveByWorkItem(et,et.getAttentions());
-        attachmentService.saveByWorkItem(et,et.getAttachments());
-        deliverableService.saveByWorkItem(et,et.getDeliverable());
-        get(et);
-        return true;
-    }
-
-    @Transactional
-    public boolean updateBatch(List<WorkItem> list) {
-        list.forEach(this::fillParentData);
-        updateBatchById(list, batchSize);
-        return true;
-    }
-
-    @Override
-    @Transactional
-    public boolean save(WorkItem et) {
-        if(checkKey(et) > 0)
-            return getSelf().update(et);
-        else
-            return getSelf().create(et);
-    }
-
-    @Transactional
-    public boolean saveBatch(List<WorkItem> list) {
-        if(ObjectUtils.isEmpty(list))
-            return true;
-        Map<String,WorkItem> before = getByEntities(list).stream().collect(Collectors.toMap(WorkItem::getId,e->e));
-        List<WorkItem> create = new ArrayList<>();
-        List<WorkItem> update = new ArrayList<>();
-        list.forEach(sub->{
-            if(!ObjectUtils.isEmpty(sub.getId()) && before.containsKey(sub.getId()))
-                update.add(sub);
-            else
-                create.add(sub);
-        });
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else
-            return true;
-    }
-
-    @Transactional
-    public boolean remove(WorkItem et) {
-        if(!remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<WorkItem> entities) {
-        this.baseMapper.deleteEntities(entities);
-        return true;
-    }
-
-    public Page<WorkItem> searchDefault(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listDefault(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        List<WorkItem> list = baseMapper.listDefault(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchAdvancedSearch(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("SHOW_IDENTIFIER,ASC");
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchAdvancedSearch(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listAdvancedSearch(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("SHOW_IDENTIFIER,ASC");
-        List<WorkItem> list = baseMapper.listAdvancedSearch(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchArchived(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchArchived(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listArchived(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        List<WorkItem> list = baseMapper.listArchived(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchBacklogPropertyDistribution(WorkItemSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchBacklogPropertyDistribution(context.getPages(),context,context.getSelectCond());
-        return new PageImpl<WorkItem>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),WorkItem.class), context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listBacklogPropertyDistribution(WorkItemSearchContext context) {
-        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listBacklogPropertyDistribution(context,context.getSelectCond()),WorkItem.class);
-    }
-
-    public Page<WorkItem> searchBacklogStateDistribution(WorkItemSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchBacklogStateDistribution(context.getPages(),context,context.getSelectCond());
-        return new PageImpl<WorkItem>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),WorkItem.class), context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listBacklogStateDistribution(WorkItemSearchContext context) {
-        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listBacklogStateDistribution(context,context.getSelectCond()),WorkItem.class);
-    }
-
-    public Page<WorkItem> searchBaselineChooseWorkItem(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,DESC");
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchBaselineChooseWorkItem(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listBaselineChooseWorkItem(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,DESC");
-        List<WorkItem> list = baseMapper.listBaselineChooseWorkItem(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchBug(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchBug(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listBug(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        List<WorkItem> list = baseMapper.listBug(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchBugStateGroupGrid(WorkItemSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchBugStateGroupGrid(context.getPages(),context,context.getSelectCond());
-        return new PageImpl<WorkItem>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),WorkItem.class), context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listBugStateGroupGrid(WorkItemSearchContext context) {
-        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listBugStateGroupGrid(context,context.getSelectCond()),WorkItem.class);
-    }
-
-    public Page<WorkItem> searchChangeParent(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchChangeParent(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listChangeParent(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        List<WorkItem> list = baseMapper.listChangeParent(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchChild(WorkItemSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchChild(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listChild(WorkItemSearchContext context) {
-        List<WorkItem> list = baseMapper.listChild(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchChooseChild(WorkItemSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchChooseChild(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listChooseChild(WorkItemSearchContext context) {
-        List<WorkItem> list = baseMapper.listChooseChild(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchCommentNotifyAssignee(WorkItemSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchCommentNotifyAssignee(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listCommentNotifyAssignee(WorkItemSearchContext context) {
-        List<WorkItem> list = baseMapper.listCommentNotifyAssignee(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchCommon(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchCommon(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listCommon(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        List<WorkItem> list = baseMapper.listCommon(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchCommonBug(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchCommonBug(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listCommonBug(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        List<WorkItem> list = baseMapper.listCommonBug(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchDefectPropertyDistribution(WorkItemSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchDefectPropertyDistribution(context.getPages(),context,context.getSelectCond());
-        return new PageImpl<WorkItem>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),WorkItem.class), context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listDefectPropertyDistribution(WorkItemSearchContext context) {
-        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listDefectPropertyDistribution(context,context.getSelectCond()),WorkItem.class);
-    }
-
-    public Page<WorkItem> searchDeleted(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchDeleted(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listDeleted(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        List<WorkItem> list = baseMapper.listDeleted(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchIdeaRelationWorkItem(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchIdeaRelationWorkItem(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listIdeaRelationWorkItem(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        List<WorkItem> list = baseMapper.listIdeaRelationWorkItem(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchKanbanUserStat(WorkItemSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchKanbanUserStat(context.getPages(),context,context.getSelectCond());
-        return new PageImpl<WorkItem>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),WorkItem.class), context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listKanbanUserStat(WorkItemSearchContext context) {
-        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listKanbanUserStat(context,context.getSelectCond()),WorkItem.class);
-    }
-
-    public Page<WorkItem> searchMilestone(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchMilestone(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listMilestone(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        List<WorkItem> list = baseMapper.listMilestone(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchMyAssignee(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("UPDATE_TIME,DESC");
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchMyAssignee(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listMyAssignee(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("UPDATE_TIME,DESC");
-        List<WorkItem> list = baseMapper.listMyAssignee(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchMyAssigneeCount(WorkItemSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchMyAssigneeCount(context.getPages(),context,context.getSelectCond());
-        return new PageImpl<WorkItem>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),WorkItem.class), context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listMyAssigneeCount(WorkItemSearchContext context) {
-        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listMyAssigneeCount(context,context.getSelectCond()),WorkItem.class);
-    }
-
-    public Page<WorkItem> searchMyAttention(WorkItemSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchMyAttention(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listMyAttention(WorkItemSearchContext context) {
-        List<WorkItem> list = baseMapper.listMyAttention(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchMyCreated(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("UPDATE_TIME,DESC");
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchMyCreated(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listMyCreated(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("UPDATE_TIME,DESC");
-        List<WorkItem> list = baseMapper.listMyCreated(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchMyFilter(WorkItemSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchMyFilter(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listMyFilter(WorkItemSearchContext context) {
-        List<WorkItem> list = baseMapper.listMyFilter(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchMyTodo(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("SHOW_IDENTIFIER,ASC");
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchMyTodo(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listMyTodo(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("SHOW_IDENTIFIER,ASC");
-        List<WorkItem> list = baseMapper.listMyTodo(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchNoBugWorkItem(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchNoBugWorkItem(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listNoBugWorkItem(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        List<WorkItem> list = baseMapper.listNoBugWorkItem(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchNormal(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchNormal(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listNormal(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        List<WorkItem> list = baseMapper.listNormal(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchNotExsistsBugRelation(WorkItemSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchNotExsistsBugRelation(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listNotExsistsBugRelation(WorkItemSearchContext context) {
-        List<WorkItem> list = baseMapper.listNotExsistsBugRelation(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchNotExsistsRelation(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchNotExsistsRelation(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listNotExsistsRelation(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        List<WorkItem> list = baseMapper.listNotExsistsRelation(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchNotbugExsistsRelation(WorkItemSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchNotbugExsistsRelation(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listNotbugExsistsRelation(WorkItemSearchContext context) {
-        List<WorkItem> list = baseMapper.listNotbugExsistsRelation(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchNotifyAssignee(WorkItemSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchNotifyAssignee(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listNotifyAssignee(WorkItemSearchContext context) {
-        List<WorkItem> list = baseMapper.listNotifyAssignee(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchOverviewChart(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("WORK_ITEM_TYPE_SEQUENCE,ASC");
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchOverviewChart(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listOverviewChart(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("WORK_ITEM_TYPE_SEQUENCE,ASC");
-        List<WorkItem> list = baseMapper.listOverviewChart(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchPropertyDistribution(WorkItemSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchPropertyDistribution(context.getPages(),context,context.getSelectCond());
-        return new PageImpl<WorkItem>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),WorkItem.class), context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listPropertyDistribution(WorkItemSearchContext context) {
-        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listPropertyDistribution(context,context.getSelectCond()),WorkItem.class);
-    }
-
-    public Page<WorkItem> searchRecentWorkItem(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchRecentWorkItem(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listRecentWorkItem(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        List<WorkItem> list = baseMapper.listRecentWorkItem(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchRelease(WorkItemSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchRelease(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listRelease(WorkItemSearchContext context) {
-        List<WorkItem> list = baseMapper.listRelease(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchReleasePlan(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchReleasePlan(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listReleasePlan(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        List<WorkItem> list = baseMapper.listReleasePlan(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchRequirement(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchRequirement(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listRequirement(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        List<WorkItem> list = baseMapper.listRequirement(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchRequirementTree(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchRequirementTree(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listRequirementTree(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        List<WorkItem> list = baseMapper.listRequirementTree(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchResourceAssignment(WorkItemSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchResourceAssignment(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listResourceAssignment(WorkItemSearchContext context) {
-        List<WorkItem> list = baseMapper.listResourceAssignment(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchRunRelationWorkItem(WorkItemSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchRunRelationWorkItem(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listRunRelationWorkItem(WorkItemSearchContext context) {
-        List<WorkItem> list = baseMapper.listRunRelationWorkItem(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchTestCaseRelationBug(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchTestCaseRelationBug(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listTestCaseRelationBug(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        List<WorkItem> list = baseMapper.listTestCaseRelationBug(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchTestCaseRelationWorkItem(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchTestCaseRelationWorkItem(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listTestCaseRelationWorkItem(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        List<WorkItem> list = baseMapper.listTestCaseRelationWorkItem(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchTestPlanRelationBug(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchTestPlanRelationBug(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listTestPlanRelationBug(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        List<WorkItem> list = baseMapper.listTestPlanRelationBug(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchTicketRelationWorkItem(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchTicketRelationWorkItem(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listTicketRelationWorkItem(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        List<WorkItem> list = baseMapper.listTicketRelationWorkItem(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchTop(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchTop(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listTop(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        List<WorkItem> list = baseMapper.listTop(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchTreeTileGridQuery(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchTreeTileGridQuery(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listTreeTileGridQuery(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        List<WorkItem> list = baseMapper.listTreeTileGridQuery(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchUnderWork(WorkItemSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchUnderWork(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listUnderWork(WorkItemSearchContext context) {
-        List<WorkItem> list = baseMapper.listUnderWork(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<WorkItem> searchWorkItemRelationWorkItem(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchWorkItemRelationWorkItem(context.getPages(),context,context.getSelectCond());
-        List<WorkItem> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<WorkItem> listWorkItemRelationWorkItem(WorkItemSearchContext context) {
-        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("IDENTIFIER,ASC");
-        List<WorkItem> list = baseMapper.listWorkItemRelationWorkItem(context,context.getSelectCond());
-        return list;
-    }
-
-    public List<WorkItem> findByBoardId(List<String> boardIds) {
-        List<WorkItem> list = baseMapper.findByBoardId(boardIds);
-        if(!ObjectUtils.isEmpty(list))
-            attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
-        if(!ObjectUtils.isEmpty(list))
-            attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
-        if(!ObjectUtils.isEmpty(list))
-            deliverableService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setDeliverable(sub.getValue())));
-        return list;
-    }
-    public List<WorkItem> findByEntryId(List<String> entryIds) {
-        List<WorkItem> list = baseMapper.findByEntryId(entryIds);
-        if(!ObjectUtils.isEmpty(list))
-            attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
-        if(!ObjectUtils.isEmpty(list))
-            attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
-        if(!ObjectUtils.isEmpty(list))
-            deliverableService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setDeliverable(sub.getValue())));
-        return list;
-    }
-    public List<WorkItem> findByProjectId(List<String> projectIds) {
-        List<WorkItem> list = baseMapper.findByProjectId(projectIds);
-        if(!ObjectUtils.isEmpty(list))
-            attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
-        if(!ObjectUtils.isEmpty(list))
-            attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
-        if(!ObjectUtils.isEmpty(list))
-            deliverableService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setDeliverable(sub.getValue())));
-        return list;
-    }
-    public List<WorkItem> findByReleaseId(List<String> releaseIds) {
-        List<WorkItem> list = baseMapper.findByReleaseId(releaseIds);
-        if(!ObjectUtils.isEmpty(list))
-            attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
-        if(!ObjectUtils.isEmpty(list))
-            attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
-        if(!ObjectUtils.isEmpty(list))
-            deliverableService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setDeliverable(sub.getValue())));
-        return list;
-    }
-    public List<WorkItem> findBySprintId(List<String> sprintIds) {
-        List<WorkItem> list = baseMapper.findBySprintId(sprintIds);
-        if(!ObjectUtils.isEmpty(list))
-            attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
-        if(!ObjectUtils.isEmpty(list))
-            attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
-        if(!ObjectUtils.isEmpty(list))
-            deliverableService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setDeliverable(sub.getValue())));
-        return list;
-    }
-    public List<WorkItem> findBySwimlaneId(List<String> swimlaneIds) {
-        List<WorkItem> list = baseMapper.findBySwimlaneId(swimlaneIds);
-        if(!ObjectUtils.isEmpty(list))
-            attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
-        if(!ObjectUtils.isEmpty(list))
-            attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
-        if(!ObjectUtils.isEmpty(list))
-            deliverableService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setDeliverable(sub.getValue())));
-        return list;
-    }
-    public List<WorkItem> findByAssigneeId(List<String> assigneeIds) {
-        List<WorkItem> list = baseMapper.findByAssigneeId(assigneeIds);
-        if(!ObjectUtils.isEmpty(list))
-            attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
-        if(!ObjectUtils.isEmpty(list))
-            attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
-        if(!ObjectUtils.isEmpty(list))
-            deliverableService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setDeliverable(sub.getValue())));
-        return list;
-    }
-    public List<WorkItem> findByPid(List<String> pids) {
-        List<WorkItem> list = baseMapper.findByPid(pids);
-        if(!ObjectUtils.isEmpty(list))
-            attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
-        if(!ObjectUtils.isEmpty(list))
-            attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
-        if(!ObjectUtils.isEmpty(list))
-            deliverableService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setDeliverable(sub.getValue())));
-        return list;
-    }
-    public List<WorkItem> findByState(List<String> states) {
-        List<WorkItem> list = baseMapper.findByState(states);
-        if(!ObjectUtils.isEmpty(list))
-            attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
-        if(!ObjectUtils.isEmpty(list))
-            attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
-        if(!ObjectUtils.isEmpty(list))
-            deliverableService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setDeliverable(sub.getValue())));
-        return list;
-    }
-    public List<WorkItem> findByTopId(List<String> topIds) {
-        List<WorkItem> list = baseMapper.findByTopId(topIds);
-        if(!ObjectUtils.isEmpty(list))
-            attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
-        if(!ObjectUtils.isEmpty(list))
-            attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
-        if(!ObjectUtils.isEmpty(list))
-            deliverableService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setDeliverable(sub.getValue())));
-        return list;
-    }
-    public List<WorkItem> findByWorkItemTypeId(List<String> workItemTypeIds) {
-        List<WorkItem> list = baseMapper.findByWorkItemTypeId(workItemTypeIds);
-        if(!ObjectUtils.isEmpty(list))
-            attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
-        if(!ObjectUtils.isEmpty(list))
-            attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
-        if(!ObjectUtils.isEmpty(list))
-            deliverableService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setDeliverable(sub.getValue())));
-        return list;
-    }
-    public boolean removeByBoardId(String boardId) {
-        return this.remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getBoardId,boardId));
-    }
-
-    public boolean resetByBoardId(String boardId) {
-        return this.update(Wrappers.<WorkItem>lambdaUpdate().eq(WorkItem::getBoardId,boardId));
-    }
-
-    public boolean saveByBoard(Board board,List<WorkItem> list) {
-        if(list==null)
-            return true;
-        Map<String,WorkItem> before = findByBoardId(board.getId()).stream().collect(Collectors.toMap(WorkItem::getId,e->e));
-        List<WorkItem> update = new ArrayList<>();
-        List<WorkItem> create = new ArrayList<>();
-
-        for(WorkItem sub:list) {
-            sub.setBoardId(board.getId());
-            sub.setBoard(board);
-            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
-                before.remove(sub.getId());
-                update.add(sub);
-            }
-            else
-                create.add(sub);
-        }
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
-            return false;
-        else
-            return true;
-    }
-
-    public boolean removeByEntryId(String entryId) {
-        return this.remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getEntryId,entryId));
-    }
-
-    public boolean resetByEntryId(String entryId) {
-        return this.update(Wrappers.<WorkItem>lambdaUpdate().eq(WorkItem::getEntryId,entryId));
-    }
-
-    public boolean saveByEntry(Entry entry,List<WorkItem> list) {
-        if(list==null)
-            return true;
-        Map<String,WorkItem> before = findByEntryId(entry.getId()).stream().collect(Collectors.toMap(WorkItem::getId,e->e));
-        List<WorkItem> update = new ArrayList<>();
-        List<WorkItem> create = new ArrayList<>();
-
-        for(WorkItem sub:list) {
-            sub.setEntryId(entry.getId());
-            sub.setEntry(entry);
-            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
-                before.remove(sub.getId());
-                update.add(sub);
-            }
-            else
-                create.add(sub);
-        }
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
-            return false;
-        else
-            return true;
-    }
-
-    public boolean removeByProjectId(String projectId) {
-        return this.remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getProjectId,projectId));
-    }
-
-    public boolean resetByProjectId(String projectId) {
-        return this.update(Wrappers.<WorkItem>lambdaUpdate().eq(WorkItem::getProjectId,projectId));
-    }
-
-    public boolean saveByProject(Project project,List<WorkItem> list) {
-        if(list==null)
-            return true;
-        Map<String,WorkItem> before = findByProjectId(project.getId()).stream().collect(Collectors.toMap(WorkItem::getId,e->e));
-        List<WorkItem> update = new ArrayList<>();
-        List<WorkItem> create = new ArrayList<>();
-
-        for(WorkItem sub:list) {
-            sub.setProjectId(project.getId());
-            sub.setProject(project);
-            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
-                before.remove(sub.getId());
-                update.add(sub);
-            }
-            else
-                create.add(sub);
-        }
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
-            return false;
-        else
-            return true;
-    }
-
-    public boolean removeByReleaseId(String releaseId) {
-        return this.remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getReleaseId,releaseId));
-    }
-
-    public boolean resetByReleaseId(String releaseId) {
-        return this.update(Wrappers.<WorkItem>lambdaUpdate().eq(WorkItem::getReleaseId,releaseId));
-    }
-
-    public boolean saveByRelease(Release release,List<WorkItem> list) {
-        if(list==null)
-            return true;
-        Map<String,WorkItem> before = findByReleaseId(release.getId()).stream().collect(Collectors.toMap(WorkItem::getId,e->e));
-        List<WorkItem> update = new ArrayList<>();
-        List<WorkItem> create = new ArrayList<>();
-
-        for(WorkItem sub:list) {
-            sub.setReleaseId(release.getId());
-            sub.setRelease(release);
-            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
-                before.remove(sub.getId());
-                update.add(sub);
-            }
-            else
-                create.add(sub);
-        }
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
-            return false;
-        else
-            return true;
-    }
-
-    public boolean removeBySprintId(String sprintId) {
-        return this.remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getSprintId,sprintId));
-    }
-
-    public boolean resetBySprintId(String sprintId) {
-        return this.update(Wrappers.<WorkItem>lambdaUpdate().eq(WorkItem::getSprintId,sprintId));
-    }
-
-    public boolean saveBySprint(Sprint sprint,List<WorkItem> list) {
-        if(list==null)
-            return true;
-        Map<String,WorkItem> before = findBySprintId(sprint.getId()).stream().collect(Collectors.toMap(WorkItem::getId,e->e));
-        List<WorkItem> update = new ArrayList<>();
-        List<WorkItem> create = new ArrayList<>();
-
-        for(WorkItem sub:list) {
-            sub.setSprintId(sprint.getId());
-            sub.setSprint(sprint);
-            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
-                before.remove(sub.getId());
-                update.add(sub);
-            }
-            else
-                create.add(sub);
-        }
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
-            return false;
-        else
-            return true;
-    }
-
-    public boolean removeBySwimlaneId(String swimlaneId) {
-        return this.remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getSwimlaneId,swimlaneId));
-    }
-
-    public boolean resetBySwimlaneId(String swimlaneId) {
-        return this.update(Wrappers.<WorkItem>lambdaUpdate().eq(WorkItem::getSwimlaneId,swimlaneId));
-    }
-
-    public boolean saveBySwimlane(Swimlane swimlane,List<WorkItem> list) {
-        if(list==null)
-            return true;
-        Map<String,WorkItem> before = findBySwimlaneId(swimlane.getId()).stream().collect(Collectors.toMap(WorkItem::getId,e->e));
-        List<WorkItem> update = new ArrayList<>();
-        List<WorkItem> create = new ArrayList<>();
-
-        for(WorkItem sub:list) {
-            sub.setSwimlaneId(swimlane.getId());
-            sub.setSwimlane(swimlane);
-            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
-                before.remove(sub.getId());
-                update.add(sub);
-            }
-            else
-                create.add(sub);
-        }
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
-            return false;
-        else
-            return true;
-    }
-
-    public boolean removeByAssigneeId(String assigneeId) {
-        return this.remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getAssigneeId,assigneeId));
-    }
-
-    public boolean resetByAssigneeId(String assigneeId) {
-        return this.update(Wrappers.<WorkItem>lambdaUpdate().eq(WorkItem::getAssigneeId,assigneeId));
-    }
-
-    public boolean saveByUser(User user,List<WorkItem> list) {
-        if(list==null)
-            return true;
-        Map<String,WorkItem> before = findByAssigneeId(user.getId()).stream().collect(Collectors.toMap(WorkItem::getId,e->e));
-        List<WorkItem> update = new ArrayList<>();
-        List<WorkItem> create = new ArrayList<>();
-
-        for(WorkItem sub:list) {
-            sub.setAssigneeId(user.getId());
-            sub.setUser(user);
-            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
-                before.remove(sub.getId());
-                update.add(sub);
-            }
-            else
-                create.add(sub);
-        }
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
-            return false;
-        else
-            return true;
-    }
-
-    public boolean removeByPid(String pid) {
-        return this.remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getPid,pid));
-    }
-
-    public boolean resetByPid(String pid) {
-        return this.update(Wrappers.<WorkItem>lambdaUpdate().eq(WorkItem::getPid,pid));
-    }
-
-    public boolean saveByWorkItem(WorkItem workItem,List<WorkItem> list) {
-        if(list==null)
-            return true;
-        Map<String,WorkItem> before = findByPid(workItem.getId()).stream().collect(Collectors.toMap(WorkItem::getId,e->e));
-        List<WorkItem> update = new ArrayList<>();
-        List<WorkItem> create = new ArrayList<>();
-
-        for(WorkItem sub:list) {
-            sub.setPid(workItem.getId());
-            sub.setWorkItem(workItem);
-            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
-                before.remove(sub.getId());
-                update.add(sub);
-            }
-            else
-                create.add(sub);
-        }
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
-            return false;
-        else
-            return true;
-    }
-
-    public boolean removeByState(String state) {
-        return this.remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getState,state));
-    }
-
-    public boolean resetByState(String state) {
-        return this.update(Wrappers.<WorkItem>lambdaUpdate().eq(WorkItem::getState,state));
-    }
-
-    public boolean saveByWorkItemState(WorkItemState workItemState,List<WorkItem> list) {
-        if(list==null)
-            return true;
-        Map<String,WorkItem> before = findByState(workItemState.getId()).stream().collect(Collectors.toMap(WorkItem::getId,e->e));
-        List<WorkItem> update = new ArrayList<>();
-        List<WorkItem> create = new ArrayList<>();
-
-        for(WorkItem sub:list) {
-            sub.setState(workItemState.getId());
-            sub.setWorkItemState(workItemState);
-            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
-                before.remove(sub.getId());
-                update.add(sub);
-            }
-            else
-                create.add(sub);
-        }
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
-            return false;
-        else
-            return true;
-    }
-
-    public boolean removeByTopId(String topId) {
-        return this.remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getTopId,topId));
-    }
-
-    public boolean resetByTopId(String topId) {
-        return this.update(Wrappers.<WorkItem>lambdaUpdate().eq(WorkItem::getTopId,topId));
-    }
-
-    public boolean saveByWorkItem2(WorkItem workItem,List<WorkItem> list) {
-        if(list==null)
-            return true;
-        Map<String,WorkItem> before = findByTopId(workItem.getId()).stream().collect(Collectors.toMap(WorkItem::getId,e->e));
-        List<WorkItem> update = new ArrayList<>();
-        List<WorkItem> create = new ArrayList<>();
-
-        for(WorkItem sub:list) {
-            sub.setTopId(workItem.getId());
-            sub.setWorkItem2(workItem);
-            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
-                before.remove(sub.getId());
-                update.add(sub);
-            }
-            else
-                create.add(sub);
-        }
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
-            return false;
-        else
-            return true;
-    }
-
-    public boolean removeByWorkItemTypeId(String workItemTypeId) {
-        return this.remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getWorkItemTypeId,workItemTypeId));
-    }
-
-    public boolean resetByWorkItemTypeId(String workItemTypeId) {
-        return this.update(Wrappers.<WorkItem>lambdaUpdate().eq(WorkItem::getWorkItemTypeId,workItemTypeId));
-    }
-
-    public boolean saveByWorkItemType(WorkItemType workItemType,List<WorkItem> list) {
-        if(list==null)
-            return true;
-        Map<String,WorkItem> before = findByWorkItemTypeId(workItemType.getId()).stream().collect(Collectors.toMap(WorkItem::getId,e->e));
-        List<WorkItem> update = new ArrayList<>();
-        List<WorkItem> create = new ArrayList<>();
-
-        for(WorkItem sub:list) {
-            sub.setWorkItemTypeId(workItemType.getId());
-            sub.setWorkItemType(workItemType);
-            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
-                before.remove(sub.getId());
-                update.add(sub);
-            }
-            else
-                create.add(sub);
-        }
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
-            return false;
-        else
-            return true;
-    }
-
-    @Override
-    public List<Attention> getAttentions(WorkItem et) {
-        List<Attention> list = attentionService.findByOwnerId(et.getId());
-        et.setAttentions(list);
-        return list;
-    }
-
-    @Override
-    public List<Attachment> getAttachments(WorkItem et) {
-        List<Attachment> list = attachmentService.findByOwnerId(et.getId());
-        et.setAttachments(list);
-        return list;
-    }
-
-    @Override
-    public List<Deliverable> getDeliverable(WorkItem et) {
-        List<Deliverable> list = deliverableService.findByOwnerId(et.getId());
-        et.setDeliverable(list);
-        return list;
-    }
-
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -1587,8 +1641,8 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return WorkItemMapper.class;
     }
@@ -1597,4 +1651,5 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
     protected Class currentModelClass() {
         return WorkItem.class;
     }
+
 }

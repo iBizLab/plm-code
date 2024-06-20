@@ -43,7 +43,7 @@ public class AuthLogAdminFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_username_like")
     @JSONField(name = "n_username_like")
-    @ApiModelProperty(value = "用户全局名LIKE", position = 20)
+    @ApiModelProperty(value = "用户全局名LIKE", position = 10)
 	private String userNameLIKE;
 
     /**

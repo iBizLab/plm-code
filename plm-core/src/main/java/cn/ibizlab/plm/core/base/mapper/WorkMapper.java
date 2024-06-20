@@ -62,6 +62,22 @@ public interface WorkMapper extends BaseMapper<Work> {
     List<Work> listItemSetOwner(@Param("ctx") WorkSearchContext context, @Param("ew") Wrapper<Work> wrapper);
 
     /**
+    * 根据portfolioId查询
+    *
+    * @param portfolioIds
+    * @return
+    */
+    List<Work> findByPortfolioId(@Param("portfolioIds") List<String> portfolioIds);
+
+    /**
+    * 根据pilotId查询
+    *
+    * @param pilotIds
+    * @return
+    */
+    List<Work> findByPilotId(@Param("pilotIds") List<String> pilotIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -170,21 +186,4 @@ public interface WorkMapper extends BaseMapper<Work> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据portfolioId查询
-     *
-     * @param portfolioIds
-     * @return
-     */
-    List<Work> findByPortfolioId(@Param("portfolioIds") List<String> portfolioIds);
-
-    /**
-     * 根据pilotId查询
-     *
-     * @param pilotIds
-     * @return
-     */
-    List<Work> findByPilotId(@Param("pilotIds") List<String> pilotIds);
-
 }

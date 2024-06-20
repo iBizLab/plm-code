@@ -702,7 +702,7 @@ public abstract class AbstractLibraryMemberResource {
     public ResponseEntity<List<LibraryMemberDTO>> fetchCurLibraryMember
             (@Validated @RequestBody LibraryMemberFilterDTO dto) {
         LibraryMemberSearchContext context = libraryMemberFilterDtoMapping.toDomain(dto);
-        Page<LibraryMember> domains = libraryMemberService.searchCurLibraryMember(context) ;
+        Page<LibraryMember> domains = libraryMemberService.fetchCurLibraryMember(context) ;
         List<LibraryMemberDTO> list = libraryMemberDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -724,7 +724,7 @@ public abstract class AbstractLibraryMemberResource {
     public ResponseEntity<List<LibraryMemberDTO>> fetchDefault
             (@Validated @RequestBody LibraryMemberFilterDTO dto) {
         LibraryMemberSearchContext context = libraryMemberFilterDtoMapping.toDomain(dto);
-        Page<LibraryMember> domains = libraryMemberService.searchDefault(context) ;
+        Page<LibraryMember> domains = libraryMemberService.fetchDefault(context) ;
         List<LibraryMemberDTO> list = libraryMemberDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -818,7 +818,7 @@ public abstract class AbstractLibraryMemberResource {
             (@PathVariable("libraryId") String libraryId, @Validated @RequestBody LibraryMemberFilterDTO dto) {
         dto.setLibraryIdEQ(libraryId);
         LibraryMemberSearchContext context = libraryMemberFilterDtoMapping.toDomain(dto);
-        Page<LibraryMember> domains = libraryMemberService.searchCurLibraryMember(context) ;
+        Page<LibraryMember> domains = libraryMemberService.fetchCurLibraryMember(context) ;
         List<LibraryMemberDTO> list = libraryMemberDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -842,7 +842,7 @@ public abstract class AbstractLibraryMemberResource {
             (@PathVariable("libraryId") String libraryId, @Validated @RequestBody LibraryMemberFilterDTO dto) {
         dto.setLibraryIdEQ(libraryId);
         LibraryMemberSearchContext context = libraryMemberFilterDtoMapping.toDomain(dto);
-        Page<LibraryMember> domains = libraryMemberService.searchDefault(context) ;
+        Page<LibraryMember> domains = libraryMemberService.fetchDefault(context) ;
         List<LibraryMemberDTO> list = libraryMemberDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -936,7 +936,7 @@ public abstract class AbstractLibraryMemberResource {
             (@PathVariable("userId") String userId, @Validated @RequestBody LibraryMemberFilterDTO dto) {
         dto.setUserIdEQ(userId);
         LibraryMemberSearchContext context = libraryMemberFilterDtoMapping.toDomain(dto);
-        Page<LibraryMember> domains = libraryMemberService.searchCurLibraryMember(context) ;
+        Page<LibraryMember> domains = libraryMemberService.fetchCurLibraryMember(context) ;
         List<LibraryMemberDTO> list = libraryMemberDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -960,7 +960,7 @@ public abstract class AbstractLibraryMemberResource {
             (@PathVariable("userId") String userId, @Validated @RequestBody LibraryMemberFilterDTO dto) {
         dto.setUserIdEQ(userId);
         LibraryMemberSearchContext context = libraryMemberFilterDtoMapping.toDomain(dto);
-        Page<LibraryMember> domains = libraryMemberService.searchDefault(context) ;
+        Page<LibraryMember> domains = libraryMemberService.fetchDefault(context) ;
         List<LibraryMemberDTO> list = libraryMemberDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -979,7 +979,7 @@ public abstract class AbstractLibraryMemberResource {
     @ApiOperation(value = "批量新建测试库成员", tags = {"测试库成员" },  notes = "批量新建测试库成员")
 	@PostMapping("library_members/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<LibraryMemberDTO> dtos) {
-        libraryMemberService.createBatch(libraryMemberDtoMapping.toDomain(dtos));
+        libraryMemberService.create(libraryMemberDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -992,7 +992,7 @@ public abstract class AbstractLibraryMemberResource {
     @ApiOperation(value = "批量删除测试库成员", tags = {"测试库成员" },  notes = "批量删除测试库成员")
 	@DeleteMapping("library_members/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        libraryMemberService.removeBatch(ids);
+        libraryMemberService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -1005,7 +1005,7 @@ public abstract class AbstractLibraryMemberResource {
     @ApiOperation(value = "批量更新测试库成员", tags = {"测试库成员" },  notes = "批量更新测试库成员")
 	@PutMapping("library_members/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<LibraryMemberDTO> dtos) {
-        libraryMemberService.updateBatch(libraryMemberDtoMapping.toDomain(dtos));
+        libraryMemberService.update(libraryMemberDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -1018,7 +1018,7 @@ public abstract class AbstractLibraryMemberResource {
     @ApiOperation(value = "批量保存测试库成员", tags = {"测试库成员" },  notes = "批量保存测试库成员")
 	@PostMapping("library_members/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<LibraryMemberDTO> dtos) {
-        libraryMemberService.saveBatch(libraryMemberDtoMapping.toDomain(dtos));
+        libraryMemberService.save(libraryMemberDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

@@ -106,6 +106,46 @@ public class RunSearchContext extends QueryWrapperContext<Run> {
     private String executorIdEQ;
 
     /**
+     * 执行人标识IN
+     */
+    @JsonProperty("n_executor_id_in")
+    @JSONField(name = "n_executor_id_in")
+    @ApiModelProperty("执行人标识IN")
+    private String executorIdIN;
+
+    /**
+     * 执行人标识ISNOTNULL
+     */
+    @JsonProperty("n_executor_id_isnotnull")
+    @JSONField(name = "n_executor_id_isnotnull")
+    @ApiModelProperty("执行人标识ISNOTNULL")
+    private String executorIdISNOTNULL;
+
+    /**
+     * 执行人标识ISNULL
+     */
+    @JsonProperty("n_executor_id_isnull")
+    @JSONField(name = "n_executor_id_isnull")
+    @ApiModelProperty("执行人标识ISNULL")
+    private String executorIdISNULL;
+
+    /**
+     * 执行人标识NOTEQ
+     */
+    @JsonProperty("n_executor_id_noteq")
+    @JSONField(name = "n_executor_id_noteq")
+    @ApiModelProperty("执行人标识NOTEQ")
+    private String executorIdNOTEQ;
+
+    /**
+     * 执行人标识NOTIN
+     */
+    @JsonProperty("n_executor_id_notin")
+    @JSONField(name = "n_executor_id_notin")
+    @ApiModelProperty("执行人标识NOTIN")
+    private String executorIdNOTIN;
+
+    /**
      * 执行人EQ
      */
     @JsonProperty("n_executor_name_eq")
@@ -136,6 +176,46 @@ public class RunSearchContext extends QueryWrapperContext<Run> {
     @JSONField(name = "n_id_eq")
     @ApiModelProperty("标识EQ")
     private String idEQ;
+
+    /**
+     * 建立人EQ
+     */
+    @JsonProperty("n_create_man_eq")
+    @JSONField(name = "n_create_man_eq")
+    @ApiModelProperty("建立人EQ")
+    private String createManEQ;
+
+    /**
+     * 建立人IN
+     */
+    @JsonProperty("n_create_man_in")
+    @JSONField(name = "n_create_man_in")
+    @ApiModelProperty("建立人IN")
+    private String createManIN;
+
+    /**
+     * 建立人ISNOTNULL
+     */
+    @JsonProperty("n_create_man_isnotnull")
+    @JSONField(name = "n_create_man_isnotnull")
+    @ApiModelProperty("建立人ISNOTNULL")
+    private String createManISNOTNULL;
+
+    /**
+     * 建立人ISNULL
+     */
+    @JsonProperty("n_create_man_isnull")
+    @JSONField(name = "n_create_man_isnull")
+    @ApiModelProperty("建立人ISNULL")
+    private String createManISNULL;
+
+    /**
+     * 建立人NOTIN
+     */
+    @JsonProperty("n_create_man_notin")
+    @JSONField(name = "n_create_man_notin")
+    @ApiModelProperty("建立人NOTIN")
+    private String createManNOTIN;
 
     /**
      * 建立时间GTANDEQ
@@ -202,8 +282,6 @@ public class RunSearchContext extends QueryWrapperContext<Run> {
             this.getFilter().eq("case_id",contextParentKey);
         if(Entities.TEST_PLAN.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("plan_id",contextParentKey);
-        if(Entities.TEST_CASE.equals(this.getContextParentEntity())&&contextParentKey!=null)
-            this.getFilter().eq("case_id",contextParentKey);
     }
 
     @Override

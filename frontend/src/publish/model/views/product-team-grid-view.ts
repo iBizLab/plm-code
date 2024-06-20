@@ -128,8 +128,6 @@ export default {
       columnEnableFilter: 2,
       columnEnableLink: 2,
       groupMode: 'NONE',
-      minorSortDir: 'DESC',
-      minorSortAppDEFieldId: 'update_time',
       degridColumns: [
         {
           clconvertMode: 'NONE',

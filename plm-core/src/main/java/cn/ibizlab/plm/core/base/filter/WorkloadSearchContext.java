@@ -362,6 +362,14 @@ public class WorkloadSearchContext extends QueryWrapperContext<Workload> {
     private String createManEQ;
 
     /**
+     * 建立人IN
+     */
+    @JsonProperty("n_create_man_in")
+    @JSONField(name = "n_create_man_in")
+    @ApiModelProperty("建立人IN")
+    private String createManIN;
+
+    /**
      * 类别EQ
      */
     @JsonProperty("n_type_id_eq")

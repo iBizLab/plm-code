@@ -8,7 +8,7 @@ export default {
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORKLOAD_TYPE',
   },
-  caption: '类别设置',
+  caption: '工时设置',
   codeName: 'workload_type_setup_grid_view',
   appDataEntityId: 'plmweb.workload_type',
   appViewEngines: [
@@ -360,7 +360,7 @@ export default {
       capLanguageRes: {
         lanResTag: 'DE.LNAME.WORKLOAD_TYPE',
       },
-      caption: '类别设置',
+      caption: '工时设置',
       codeName: 'setup_grid_view_captionbar',
       controlType: 'CAPTIONBAR',
       appDataEntityId: 'plmweb.workload_type',
@@ -380,7 +380,7 @@ export default {
     controlParam: {},
     id: 'layoutpanel',
   },
-  title: '类别设置',
+  title: '工时设置',
   viewStyle: 'DEFAULT',
   viewType: 'DEGRIDVIEW',
   enableDP: true,

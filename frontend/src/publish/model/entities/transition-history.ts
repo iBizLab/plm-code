@@ -66,18 +66,6 @@ export default {
       id: 'to_state',
     },
     {
-      codeName: 'name',
-      lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.NAME',
-      },
-      logicName: '名称',
-      stdDataType: 25,
-      stringLength: 200,
-      enableQuickSearch: true,
-      name: 'NAME',
-      id: 'name',
-    },
-    {
       codeName: 'id',
       lnlanguageRes: {
         lanResTag: 'DEF.LNAME.ID',
@@ -89,26 +77,16 @@ export default {
       id: 'id',
     },
     {
-      codeName: 'update_time',
+      codeName: 'name',
       lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.UPDATE_TIME',
+        lanResTag: 'DEF.LNAME.NAME',
       },
-      logicName: '更新时间',
-      stdDataType: 5,
-      valueFormat: 'YYYY-MM-DD HH:mm:ss',
-      name: 'UPDATE_TIME',
-      id: 'update_time',
-    },
-    {
-      codeName: 'update_man',
-      lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.UPDATE_MAN',
-      },
-      logicName: '更新人',
+      logicName: '名称',
       stdDataType: 25,
-      stringLength: 100,
-      name: 'UPDATE_MAN',
-      id: 'update_man',
+      stringLength: 200,
+      enableQuickSearch: true,
+      name: 'NAME',
+      id: 'name',
     },
     {
       codeName: 'create_man',
@@ -131,6 +109,28 @@ export default {
       valueFormat: 'YYYY-MM-DD HH:mm:ss',
       name: 'CREATE_TIME',
       id: 'create_time',
+    },
+    {
+      codeName: 'update_man',
+      lnlanguageRes: {
+        lanResTag: 'DEF.LNAME.UPDATE_MAN',
+      },
+      logicName: '更新人',
+      stdDataType: 25,
+      stringLength: 100,
+      name: 'UPDATE_MAN',
+      id: 'update_man',
+    },
+    {
+      codeName: 'update_time',
+      lnlanguageRes: {
+        lanResTag: 'DEF.LNAME.UPDATE_TIME',
+      },
+      logicName: '更新时间',
+      stdDataType: 5,
+      valueFormat: 'YYYY-MM-DD HH:mm:ss',
+      name: 'UPDATE_TIME',
+      id: 'update_time',
     },
   ],
   appDEMethodDTOs: [

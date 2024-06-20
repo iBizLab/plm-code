@@ -134,136 +134,6 @@ export default {
                   id: 'title',
                 },
                 {
-                  layout: {
-                    align: 'flex-start',
-                    dir: 'row',
-                    layout: 'FLEX',
-                    valign: 'center',
-                  },
-                  deformDetails: [
-                    {
-                      rawItem: {
-                        sysImage: {
-                          cssClass: 'fa fa-warning',
-                          glyph: 'xf071@FontAwesome',
-                        },
-                        contentType: 'IMAGE',
-                        id: 'rawitem1',
-                      },
-                      codeName: 'rawitem1',
-                      detailStyle: 'DEFAULT',
-                      detailType: 'RAWITEM',
-                      layoutPos: {
-                        shrink: 1,
-                        layout: 'FLEX',
-                      },
-                      sysImage: {
-                        cssClass: 'fa fa-warning',
-                        glyph: 'xf071@FontAwesome',
-                      },
-                      showCaption: true,
-                      id: 'rawitem1',
-                    },
-                    {
-                      dataType: 25,
-                      enableCond: 3,
-                      ignoreInput: 3,
-                      labelPos: 'NONE',
-                      noPrivDisplayMode: 1,
-                      appDEFieldId: 'update_man',
-                      editor: {
-                        halign: 'LEFT',
-                        valign: 'MIDDLE',
-                        wrapMode: 'NOWRAP',
-                        appCodeListId: 'plmweb.sysoperator',
-                        editorType: 'SPAN',
-                        valueType: 'SIMPLE',
-                        editable: true,
-                        id: 'formitem',
-                      },
-                      allowEmpty: true,
-                      convertToCodeItemText: true,
-                      capLanguageRes: {
-                        lanResTag: 'DEF.LNAME.UPDATE_MAN',
-                      },
-                      caption: '更新人',
-                      codeName: 'formitem',
-                      detailStyle: 'DEFAULT',
-                      detailType: 'FORMITEM',
-                      layoutPos: {
-                        shrink: 1,
-                        layout: 'FLEX',
-                      },
-                      id: 'formitem',
-                    },
-                    {
-                      rawItem: {
-                        content: '<p>于{{data.update_time}}归档了工单</p>',
-                        contentType: 'HTML',
-                        templateMode: true,
-                        id: 'rawitem2',
-                      },
-                      codeName: 'rawitem2',
-                      detailStyle: 'DEFAULT',
-                      detailType: 'RAWITEM',
-                      layoutPos: {
-                        shrink: 1,
-                        layout: 'FLEX',
-                      },
-                      showCaption: true,
-                      id: 'rawitem2',
-                    },
-                    {
-                      actionType: 'UIACTION',
-                      uiactionId: 'toolbar_activate@ticket',
-                      tooltip: '激活',
-                      uiactionTarget: 'MULTIKEY',
-                      caption: '激活',
-                      codeName: 'button1',
-                      detailStyle: 'DEFAULT',
-                      detailType: 'BUTTON',
-                      layoutPos: {
-                        shrink: 1,
-                        layout: 'FLEX',
-                      },
-                      sysCss: {
-                        cssName: 'activate_button',
-                      },
-                      sysImage: {
-                        cssClass: 'key',
-                      },
-                      showCaption: true,
-                      id: 'button1',
-                    },
-                  ],
-                  codeName: 'archiv_info',
-                  detailStyle: 'DEFAULT',
-                  detailType: 'GROUPPANEL',
-                  defdgroupLogics: [
-                    {
-                      logicCat: 'PANELVISIBLE',
-                      relatedDetailNames: ['is_archived'],
-                      groupOP: 'AND',
-                      defdlogics: [
-                        {
-                          condOP: 'EQ',
-                          defdname: 'is_archived',
-                          value: '1',
-                          logicType: 'SINGLE',
-                        },
-                      ],
-                      logicType: 'GROUP',
-                      id: '表单成员[archiv_info][面板显示]逻辑',
-                    },
-                  ],
-                  layoutPos: {
-                    colLG: 24,
-                    colMD: 24,
-                    layout: 'TABLE_24COL',
-                  },
-                  id: 'archiv_info',
-                },
-                {
                   dataType: 25,
                   enableCond: 3,
                   labelPos: 'TOP',
@@ -506,12 +376,12 @@ export default {
                                   QUOTESCRIPT:
                                     '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","icon":"${data.icon}"}`',
                                   USERURL:
-                                    "`${context.library ? `libraries/${context.library}/library_members/fetchdefault` : context.product ? `products/${context.product}/product_members/fetchdefault` : context.project ? `projects/${context.project}/project_members/fetchdefault` : ''}`",
+                                    "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                   USERFIELDMAP:
                                     '{"id":"user_id","name":"name"}',
                                   INSERTKEYS:
                                     '[{"index":66,"keys":["marker"]},{"index":5,"keys":["paintformat"]}]',
-                                  QUOTEURL: '`recents/fetchrecent_access`',
+                                  QUOTEURL: '`recents/fetch_recent_access`',
                                 },
                                 editorStyle: 'COLLAPSE',
                                 editorType: 'HTMLEDITOR',

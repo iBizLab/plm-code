@@ -70,12 +70,12 @@ public class RelationSearchContext extends QueryWrapperContext<Relation> {
     private String targetIdEQ;
 
     /**
-     * 名称LIKE
+     * 目标对象版本标识EQ
      */
-    @JsonProperty("n_name_like")
-    @JSONField(name = "n_name_like")
-    @ApiModelProperty("名称LIKE")
-    private String nameLIKE;
+    @JsonProperty("n_target_version_id_eq")
+    @JSONField(name = "n_target_version_id_eq")
+    @ApiModelProperty("目标对象版本标识EQ")
+    private String targetVersionIdEQ;
 
     /**
      * 标识EQ
@@ -84,6 +84,14 @@ public class RelationSearchContext extends QueryWrapperContext<Relation> {
     @JSONField(name = "n_id_eq")
     @ApiModelProperty("标识EQ")
     private String idEQ;
+
+    /**
+     * 名称LIKE
+     */
+    @JsonProperty("n_name_like")
+    @JSONField(name = "n_name_like")
+    @ApiModelProperty("名称LIKE")
+    private String nameLIKE;
 
     @Override
     public void setContextParentKey(Serializable contextParentKey) {
@@ -99,6 +107,8 @@ public class RelationSearchContext extends QueryWrapperContext<Relation> {
         if(Entities.CUSTOMER.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("target_id",contextParentKey);
         if(Entities.IDEA.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("target_id",contextParentKey);
+        if(Entities.ARTICLE_PAGE.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("target_id",contextParentKey);
         if(Entities.PRODUCT_PLAN.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("target_id",contextParentKey);

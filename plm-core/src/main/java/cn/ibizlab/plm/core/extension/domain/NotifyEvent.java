@@ -32,13 +32,12 @@ import io.swagger.annotations.*;
 @ApiModel(value = "NOTIFY_EVENT", description = "通知事件")
 public class NotifyEvent extends EntityBase implements Serializable
 {
-
     /**
      * 消息类型
      */
     @DEField(name = "msg_type" , dict = "WFInfomMsgType")
-    @JsonProperty("msg_type")
     @JSONField(name = "msg_type")
+    @JsonProperty("msg_type")
     @ApiModelProperty(value = "msg_type", notes = "消息类型")
     private Integer msgType;
 
@@ -46,29 +45,56 @@ public class NotifyEvent extends EntityBase implements Serializable
      * 事件分类
      */
     @DEField(name = "group")
-    @JsonProperty("group")
     @JSONField(name = "group")
+    @JsonProperty("group")
     @ApiModelProperty(value = "group", notes = "事件分类")
     private String group;
-
-    /**
-     * 名称
-     */
-    @DEField(name = "name")
-    @JsonProperty("name")
-    @JSONField(name = "name")
-    @ApiModelProperty(value = "name", notes = "名称")
-    private String name;
 
     /**
      * 标识
      */
     @Id
     @DEField(name = "id" , isKeyField = true)
-    @JsonProperty("id")
     @JSONField(name = "id")
+    @JsonProperty("id")
     @ApiModelProperty(value = "id", notes = "标识")
     private String id;
+
+    /**
+     * 名称
+     */
+    @DEField(name = "name")
+    @JSONField(name = "name")
+    @JsonProperty("name")
+    @ApiModelProperty(value = "name", notes = "名称")
+    private String name;
+
+    /**
+    * 设置 [消息类型]
+    */
+    public NotifyEvent setMsgType(Integer msgType) {
+        this.msgType = msgType;
+        this.modify("msg_type", msgType);
+        return this;
+    }
+
+    /**
+    * 设置 [事件分类]
+    */
+    public NotifyEvent setGroup(String group) {
+        this.group = group;
+        this.modify("group", group);
+        return this;
+    }
+
+    /**
+    * 设置 [名称]
+    */
+    public NotifyEvent setName(String name) {
+        this.name = name;
+        this.modify("name", name);
+        return this;
+    }
 
 
     /**

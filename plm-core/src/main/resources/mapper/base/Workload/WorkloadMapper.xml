@@ -13,10 +13,10 @@
 		<result property="recentParent" column="recent_parent" />
 		<result property="showIdentifier" column="show_identifier" />
 		<result property="recentParentIdentifier" column="recent_parent_identifier" />
-		<result property="updateTime" column="update_time" />
 		<result property="createMan" column="create_man" />
 		<result property="createTime" column="create_time" />
 		<result property="updateMan" column="update_man" />
+		<result property="updateTime" column="update_time" />
 		<result property="typeId" column="type_id" />
 		<result property="typeName" column="type_name" />
         <association property="workloadType" javaType="cn.ibizlab.plm.core.base.domain.WorkloadType" column="type_id" select="cn.ibizlab.plm.core.base.mapper.WorkloadTypeMapper.selectById" fetchType="lazy"></association>
@@ -184,6 +184,27 @@
         select t1.*
         from (
             <include refid="log"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchMemberDimension"  parameterType="cn.ibizlab.plm.core.base.filter.WorkloadSearchContext"  resultMap="WorkloadResultMap">
+        select t1.* 
+        from (
+            <include refid="calendar"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listMemberDimension"  parameterType="cn.ibizlab.plm.core.base.filter.WorkloadSearchContext"  resultMap="WorkloadResultMap">
+        select t1.*
+        from (
+            <include refid="calendar"/>
         ) t1
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>

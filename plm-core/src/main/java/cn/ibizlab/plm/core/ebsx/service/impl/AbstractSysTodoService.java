@@ -33,22 +33,6 @@ public abstract class AbstractSysTodoService implements SysTodoService {
 
     protected int batchSize = 500;
 
-    public SysTodo get(SysTodo et) {
-        return sysTodoFeignClient.getByTodoId(et.getTodoId());
-    }
-
-    public List<SysTodo> getByEntities(List<SysTodo> entities) {
-        return null;
-    }
-
-    public SysTodo getDraft(SysTodo et) {
-        return sysTodoFeignClient.getDraft(et);
-    }
-
-    public Integer checkKey(SysTodo et) {
-        return sysTodoFeignClient.checkKey(et);
-    }
-
     @Override
     @Transactional
     public boolean create(SysTodo et) {
@@ -56,11 +40,12 @@ public abstract class AbstractSysTodoService implements SysTodoService {
         rt.copyTo(et,true);
         return true;
     }
+	
     @Transactional
-    public boolean createBatch(List<SysTodo> list) {
+    public boolean create(List<SysTodo> list) {
         return sysTodoFeignClient.createBatch(list);
     }
-
+	
     @Transactional
     public boolean update(SysTodo et) {
         SysTodo rt = sysTodoFeignClient.updateByTodoId(et.getTodoId(), et);
@@ -69,45 +54,66 @@ public abstract class AbstractSysTodoService implements SysTodoService {
     }
 
     @Transactional
-    public boolean updateBatch(List<SysTodo> list) {
+    public boolean update(List<SysTodo> list) {
         return sysTodoFeignClient.updateBatch(list);
     }
-
-    @Transactional
-    public boolean save(SysTodo et) {
-        SysTodo rt =  sysTodoFeignClient.save(et);
-        rt.copyTo(et,true);
-        return true;
-    }
-
-    @Transactional
-    public boolean saveBatch(List<SysTodo> list) {
-        return sysTodoFeignClient.saveBatch(list);
-    }
-
-    @Transactional
+	
+   @Transactional
     public boolean remove(SysTodo et) {
         return sysTodoFeignClient.removeByTodoId(et.getTodoId());
     }
 
     @Transactional
-    public boolean removeByEntities(List<SysTodo> entities) {
-        return sysTodoFeignClient.removeBatch(entities.stream().map(e->e.getTodoId()).collect(Collectors.toList()));
+    public boolean remove(List<SysTodo> entities) {
+       return sysTodoFeignClient.removeBatch(entities.stream().map(e->e.getTodoId()).collect(Collectors.toList()));
+    }		
+
+    public SysTodo get(SysTodo et) {
+        return sysTodoFeignClient.getByTodoId(et.getTodoId());
+    }	
+
+    public List<SysTodo> get(List<SysTodo> entities) {
+        return null;
+    }	
+	
+    public SysTodo getDraft(SysTodo et) {
+        return sysTodoFeignClient.getDraft(et);
+    }
+	
+    public Integer checkKey(SysTodo et) {
+         return sysTodoFeignClient.checkKey(et);
+    }
+	
+    @Override
+    @Transactional
+    public boolean save(SysTodo et) {
+       SysTodo rt =  sysTodoFeignClient.save(et);
+        rt.copyTo(et,true);
+        return true;
     }
 
-    public Page<SysTodo> searchCurUser(SysTodoSearchContext context) {
+    @Transactional
+    public boolean save(List<SysTodo> list) {
+        return sysTodoFeignClient.saveBatch(list);
+    }
+	
+     public Page<SysTodo> fetchCurUser(SysTodoSearchContext context) {
         return sysTodoFeignClient.fetchCurUser(context);
     }
+	
     public List<SysTodo> listCurUser(SysTodoSearchContext context) {
         context.setSize(Short.MAX_VALUE);
-        return searchCurUser(context).getContent();
+        return fetchCurUser(context).getContent();
     }
-    public Page<SysTodo> searchDefault(SysTodoSearchContext context) {
+	
+     public Page<SysTodo> fetchDefault(SysTodoSearchContext context) {
         return sysTodoFeignClient.fetchDefault(context);
     }
+	
     public List<SysTodo> listDefault(SysTodoSearchContext context) {
         context.setSize(Short.MAX_VALUE);
-        return searchDefault(context).getContent();
+        return fetchDefault(context).getContent();
     }
+	
 
 }

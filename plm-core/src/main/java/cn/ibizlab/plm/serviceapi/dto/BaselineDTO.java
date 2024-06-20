@@ -76,19 +76,35 @@ public class BaselineDTO extends DTOBase implements Serializable {
     private String ownerSubtype;
 
     /**
+     * 基线类型
+     */
+    @JsonProperty("type")
+    @JSONField(name = "type")
+    @ApiModelProperty(value = "基线类型", position = 5)
+    private String type;
+
+    /**
      * 类别
      */
     @JsonProperty("categories")
     @JSONField(name = "categories")
-    @ApiModelProperty(value = "类别", position = 5)
+    @ApiModelProperty(value = "类别", position = 6)
     private String categories;
+
+    /**
+     * 类别
+     */
+    @JsonProperty("categories_name")
+    @JSONField(name = "categories_name")
+    @ApiModelProperty(value = "类别", position = 7)
+    private String categoriesName;
 
     /**
      * 负责人
      */
     @JsonProperty("assignee_name")
     @JSONField(name = "assignee_name")
-    @ApiModelProperty(value = "负责人", position = 6)
+    @ApiModelProperty(value = "负责人", position = 8)
     private String assigneeName;
 
     /**
@@ -96,7 +112,7 @@ public class BaselineDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("assignee_id")
     @JSONField(name = "assignee_id")
-    @ApiModelProperty(value = "负责人标识", position = 7)
+    @ApiModelProperty(value = "负责人标识", position = 9)
     private String assigneeId;
 
     /**
@@ -104,7 +120,7 @@ public class BaselineDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 8)
+    @ApiModelProperty(value = "建立人", position = 10)
     private String createMan;
 
     /**
@@ -113,7 +129,7 @@ public class BaselineDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 9)
+    @ApiModelProperty(value = "建立时间", position = 11)
     private Date createTime;
 
     /**
@@ -121,7 +137,7 @@ public class BaselineDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 10)
+    @ApiModelProperty(value = "标识", position = 12)
     private String id;
 
     /**
@@ -129,7 +145,7 @@ public class BaselineDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 11)
+    @ApiModelProperty(value = "名称", position = 13)
     private String name;
 
     /**
@@ -137,7 +153,7 @@ public class BaselineDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 12)
+    @ApiModelProperty(value = "更新人", position = 14)
     private String updateMan;
 
     /**
@@ -146,7 +162,7 @@ public class BaselineDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 13)
+    @ApiModelProperty(value = "更新时间", position = 15)
     private Date updateTime;
 
 
@@ -169,11 +185,29 @@ public class BaselineDTO extends DTOBase implements Serializable {
     }
 
     /**
+     * 设置 [基线类型]
+     */
+    public BaselineDTO setType(String type) {
+        this.type = type;
+        this.modify("type", type);
+        return this;
+    }
+
+    /**
      * 设置 [类别]
      */
     public BaselineDTO setCategories(String categories) {
         this.categories = categories;
         this.modify("categories", categories);
+        return this;
+    }
+
+    /**
+     * 设置 [类别]
+     */
+    public BaselineDTO setCategoriesName(String categoriesName) {
+        this.categoriesName = categoriesName;
+        this.modify("categories_name", categoriesName);
         return this;
     }
 

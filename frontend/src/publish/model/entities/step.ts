@@ -96,17 +96,6 @@ export default {
       id: 'name',
     },
     {
-      codeName: 'update_time',
-      lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.UPDATE_TIME',
-      },
-      logicName: '更新时间',
-      stdDataType: 5,
-      valueFormat: 'YYYY-MM-DD HH:mm:ss',
-      name: 'UPDATE_TIME',
-      id: 'update_time',
-    },
-    {
       codeName: 'create_man',
       lnlanguageRes: {
         lanResTag: 'DEF.LNAME.CREATE_MAN',
@@ -138,6 +127,17 @@ export default {
       stringLength: 100,
       name: 'UPDATE_MAN',
       id: 'update_man',
+    },
+    {
+      codeName: 'update_time',
+      lnlanguageRes: {
+        lanResTag: 'DEF.LNAME.UPDATE_TIME',
+      },
+      logicName: '更新时间',
+      stdDataType: 5,
+      valueFormat: 'YYYY-MM-DD HH:mm:ss',
+      name: 'UPDATE_TIME',
+      id: 'update_time',
     },
     {
       codeName: 'Case_id',

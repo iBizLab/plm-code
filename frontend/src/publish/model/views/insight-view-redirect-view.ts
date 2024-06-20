@@ -1,0 +1,71 @@
+export default {
+  redirectAppViewRefs: [
+    {
+      realTitle: '效能视图编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.INSIGHT_VIEW.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.insight_view_edit_view',
+      name: 'INSIGHT_VIEW:EDITVIEW',
+      id: 'insight_view:editview',
+    },
+    {
+      realTitle: '效能视图编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.INSIGHT_VIEW.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.insight_view_edit_view',
+      name: 'EDITVIEW',
+      id: 'editview',
+    },
+  ],
+  enableWorkflow: true,
+  funcViewMode: 'REDIRECTVIEW',
+  deviewCodeName: 'RedirectView',
+  deviewId: 'b9301155728776d5f1edab110177cbbc',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.INSIGHT_VIEW',
+  },
+  caption: '效能视图',
+  codeName: 'insight_view_redirect_view',
+  appDataEntityId: 'plmweb.insight_view',
+  controls: [
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.INSIGHT_VIEW',
+      },
+      caption: '效能视图',
+      codeName: 'redirect_view_captionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.insight_view',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'redirect_view_captionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'layoutpanel',
+    controlStyle: 'APPDEREDIRECTVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.insight_view',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '效能视图数据重定向视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.INSIGHT_VIEW.REDIRECTVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEREDIRECTVIEW',
+  enableDP: true,
+  redirectView: true,
+  showCaptionBar: true,
+  modelId: '12690a358d725465e1d70f66c665eb20',
+  modelType: 'PSAPPDEVIEW',
+  name: 'insight_viewRedirectView',
+  id: 'plmweb.insight_view_redirect_view',
+};

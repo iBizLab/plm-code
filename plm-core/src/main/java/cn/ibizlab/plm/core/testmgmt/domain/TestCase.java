@@ -8,6 +8,9 @@ import java.math.BigDecimal;
 import cn.ibizlab.util.domain.IEntity;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+import org.springframework.util.*;
 import org.springframework.data.annotation.*;
 import cn.ibizlab.util.annotation.*;
 import cn.ibizlab.util.enums.*;
@@ -17,9 +20,22 @@ import lombok.*;
 import lombok.experimental.Accessors;
 import io.swagger.annotations.*;
 import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.core.toolkit.IdWorker;
+import cn.ibizlab.plm.core.testmgmt.domain.Library;
+import cn.ibizlab.plm.core.testmgmt.domain.TestSuite;
 import cn.ibizlab.plm.core.base.domain.User;
+import cn.ibizlab.plm.core.testmgmt.domain.CaseHistory;
+import cn.ibizlab.plm.core.testmgmt.domain.Run;
+import cn.ibizlab.plm.core.testmgmt.domain.Step;
 import cn.ibizlab.plm.core.base.domain.Attention;
+import cn.ibizlab.plm.core.base.domain.Comment;
+import cn.ibizlab.plm.core.base.domain.Relation;
 import cn.ibizlab.plm.core.base.domain.Attachment;
+import cn.ibizlab.plm.core.testmgmt.domain.ReviewContent;
+import cn.ibizlab.plm.core.base.domain.SearchAttachment;
+import cn.ibizlab.plm.core.base.domain.SearchComment;
+import cn.ibizlab.plm.core.base.domain.Workload;
+import cn.ibizlab.plm.core.base.domain.Version;
 
 /**
  * 用例实体类[TestCase]
@@ -38,492 +54,507 @@ public class TestCase extends EntityMP implements Serializable
 {
 
     /**
-     * 编号
-     */
+    * 编号
+    */
     @TableField(value = "identifier")
     @DEField(name = "identifier" , dupCheck = DupCheck.ALL , dupCheckField = "testLibraryId")
-    @JsonProperty("identifier")
     @JSONField(name = "identifier")
+    @JsonProperty("identifier")
     @ApiModelProperty(value = "identifier", notes = "编号")
     private String identifier;
 
     /**
-     * 标题
-     */
+    * 标题
+    */
     @TableField(value = "title")
     @DEField(name = "title")
-    @JsonProperty("title")
     @JSONField(name = "title")
+    @JsonProperty("title")
     @ApiModelProperty(value = "title", notes = "标题")
     private String title;
 
     /**
-     * 重要程度
-     */
+    * 重要程度
+    */
     @TableField(value = "level")
     @DEField(name = "level" , dict = "test_case_level")
-    @JsonProperty("level")
     @JSONField(name = "level")
+    @JsonProperty("level")
     @ApiModelProperty(value = "level", notes = "重要程度")
     private String level;
 
     /**
-     * 用例类型
-     */
+    * 用例类型
+    */
     @TableField(value = "type")
     @DEField(name = "type" , dict = "test_case_type")
-    @JsonProperty("type")
     @JSONField(name = "type")
+    @JsonProperty("type")
     @ApiModelProperty(value = "type", notes = "用例类型")
     private String type;
 
     /**
-     * 测试类型
-     */
+    * 测试类型
+    */
     @TableField(value = "test_type")
     @DEField(name = "test_type" , dict = "test_case_test_type")
-    @JsonProperty("test_type")
     @JSONField(name = "test_type")
+    @JsonProperty("test_type")
     @ApiModelProperty(value = "test_type", notes = "测试类型")
     private String testType;
 
     /**
-     * 描述
-     */
+    * 描述
+    */
     @TableField(value = "description")
     @DEField(name = "description")
-    @JsonProperty("description")
     @JSONField(name = "description")
+    @JsonProperty("description")
     @ApiModelProperty(value = "description", notes = "描述")
     private String description;
 
     /**
-     * 前置条件
-     */
+    * 前置条件
+    */
     @TableField(value = "precondition")
     @DEField(name = "precondition")
-    @JsonProperty("precondition")
     @JSONField(name = "precondition")
+    @JsonProperty("precondition")
     @ApiModelProperty(value = "precondition", notes = "前置条件")
     private String precondition;
 
     /**
-     * 是否已归档
-     */
+    * 是否已归档
+    */
     @TableField(value = "is_archived")
     @DEField(name = "is_archived" , defaultValue = "0" , dict = "YesNo")
-    @JsonProperty("is_archived")
     @JSONField(name = "is_archived")
+    @JsonProperty("is_archived")
     @ApiModelProperty(value = "is_archived", notes = "是否已归档")
     private Integer isArchived;
 
     /**
-     * 是否已删除
-     */
+    * 是否已删除
+    */
     @TableField(value = "is_deleted")
     @DEField(name = "is_deleted" , defaultValue = "0" , dict = "YesNo")
-    @JsonProperty("is_deleted")
     @JSONField(name = "is_deleted")
+    @JsonProperty("is_deleted")
     @ApiModelProperty(value = "is_deleted", notes = "是否已删除")
     private Integer isDeleted;
 
     /**
-     * 状态
-     */
+    * 状态
+    */
     @TableField(value = "state")
     @DEField(name = "state" , defaultValue = "10" , dict = "case_state")
-    @JsonProperty("state")
     @JSONField(name = "state")
+    @JsonProperty("state")
     @ApiModelProperty(value = "state", notes = "状态")
     private String state;
 
     /**
-     * 步骤
-     */
-    @TableField(value = "steps", jdbcType = org.apache.ibatis.type.JdbcType.VARCHAR, typeHandler = cn.ibizlab.plm.core.testmgmt.domain.handlers.StepTypeHandler.class)
+    * 步骤
+    */
+    @TableField(value = "steps", jdbcType = org.apache.ibatis.type.JdbcType.VARCHAR, typeHandler =cn.ibizlab.plm.core.testmgmt.domain.handlers.StepTypeHandler.class)
     @DEField(name = "steps")
-    @JsonProperty("steps")
     @JSONField(name = "steps")
+    @JsonProperty("steps")
     @ApiModelProperty(value = "steps", notes = "步骤")
     private List<Step> steps;
 
     /**
-     * 维护人
-     */
+    * 维护人
+    */
     @TableField(value = "maintenance_id")
     @DEField(name = "maintenance_id")
-    @JsonProperty("maintenance_id")
     @JSONField(name = "maintenance_id")
+    @JsonProperty("maintenance_id")
     @ApiModelProperty(value = "maintenance_id", notes = "维护人")
     private String maintenanceId;
 
     /**
-     * 当前版本标识
-     */
+    * 当前版本标识
+    */
     @TableField(value = "cur_version_id")
     @DEField(name = "cur_version_id" , preType = DEPredefinedFieldType.VERSIONID)
-    @JsonProperty("cur_version_id")
     @JSONField(name = "cur_version_id")
+    @JsonProperty("cur_version_id")
     @ApiModelProperty(value = "cur_version_id", notes = "当前版本标识")
     private String curVersionId;
 
     /**
-     * 维护人
-     */
+    * 维护人
+    */
     @TableField(value = "maintenance_name")
     @DEField(name = "maintenance_name")
-    @JsonProperty("maintenance_name")
     @JSONField(name = "maintenance_name")
+    @JsonProperty("maintenance_name")
     @ApiModelProperty(value = "maintenance_name", notes = "维护人")
     private String maintenanceName;
 
     /**
-     * 测试计划名称
-     */
+    * 测试计划名称
+    */
     @TableField(value = "test_plan_name" , exist = false)
     @DEField(name = "test_plan_name")
-    @JsonProperty("test_plan_name")
     @JSONField(name = "test_plan_name")
+    @JsonProperty("test_plan_name")
     @ApiModelProperty(value = "test_plan_name", notes = "测试计划名称")
     private String testPlanName;
 
     /**
-     * 执行时间
-     */
+    * 执行时间
+    */
     @TableField(value = "executed_at" , exist = false)
     @DEField(name = "executed_at")
-    @JsonProperty("executed_at")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "executed_at" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("executed_at")
     @ApiModelProperty(value = "executed_at", notes = "执行时间")
     private Date executedAt;
 
     /**
-     * 执行人
-     */
+    * 执行人
+    */
     @TableField(value = "executor_name" , exist = false)
     @DEField(name = "executor_name")
-    @JsonProperty("executor_name")
     @JSONField(name = "executor_name")
+    @JsonProperty("executor_name")
     @ApiModelProperty(value = "executor_name", notes = "执行人")
     private String executorName;
 
     /**
-     * 执行结果
-     */
+    * 执行结果
+    */
     @TableField(value = "run_status" , exist = false)
     @DEField(name = "run_status" , dict = "run_status")
-    @JsonProperty("run_status")
     @JSONField(name = "run_status")
+    @JsonProperty("run_status")
     @ApiModelProperty(value = "run_status", notes = "执行结果")
     private String runStatus;
 
     /**
-     * 附件
-     */
+    * 附件
+    */
+    @Transient
     @TableField(exist = false)
     @DEField(name = "attachments")
-    @JsonProperty("attachments")
     @JSONField(name = "attachments")
+    @JsonProperty("attachments")
     @ApiModelProperty(value = "attachments", notes = "附件")
     private List<Attachment> attachments;
 
     /**
-     * 模块路径
-     */
+    * 模块路径
+    */
     @TableField(value = "suites" , exist = false)
     @DEField(name = "suites")
-    @JsonProperty("suites")
     @JSONField(name = "suites")
+    @JsonProperty("suites")
     @ApiModelProperty(value = "suites", notes = "模块路径")
     private String suites;
 
     /**
-     * 目标测试库
-     */
+    * 目标测试库
+    */
     @TableField(value = "target_library_id" , exist = false)
     @DEField(name = "target_library_id")
-    @JsonProperty("target_library_id")
     @JSONField(name = "target_library_id")
+    @JsonProperty("target_library_id")
     @ApiModelProperty(value = "target_library_id", notes = "目标测试库")
     private String targetLibraryId;
 
     /**
-     * 编号
-     */
+    * 编号
+    */
     @TableField(value = "show_identifier" , exist = false)
     @DEField(name = "show_identifier")
-    @JsonProperty("show_identifier")
     @JSONField(name = "show_identifier")
+    @JsonProperty("show_identifier")
     @ApiModelProperty(value = "show_identifier", notes = "编号")
     private String showIdentifier;
 
     /**
-     * 测试库标识
-     */
+    * 测试库标识
+    */
     @TableField(value = "library_identifier" , exist = false)
     @DEField(name = "library_identifier")
-    @JsonProperty("library_identifier")
     @JSONField(name = "library_identifier")
+    @JsonProperty("library_identifier")
     @ApiModelProperty(value = "library_identifier", notes = "测试库标识")
     private String libraryIdentifier;
 
     /**
-     * 关注
-     */
+    * 关注
+    */
+    @Transient
     @TableField(exist = false)
     @DEField(name = "attentions")
-    @JsonProperty("attentions")
     @JSONField(name = "attentions")
+    @JsonProperty("attentions")
     @ApiModelProperty(value = "attentions", notes = "关注")
     private List<Attention> attentions;
 
     /**
-     * 工时进度
-     */
+    * 工时进度
+    */
     @TableField(value = "workload_schedule" , exist = false)
     @DEField(name = "workload_schedule")
-    @JsonProperty("workload_schedule")
     @JSONField(name = "workload_schedule")
+    @JsonProperty("workload_schedule")
     @ApiModelProperty(value = "workload_schedule", notes = "工时进度")
     private BigDecimal workloadSchedule;
 
     /**
-     * 预估工时
-     */
+    * 预估工时
+    */
+    @Transient
     @TableField(exist = false)
     @DEField(name = "estimated_workload")
-    @JsonProperty("estimated_workload")
     @JSONField(name = "estimated_workload")
+    @JsonProperty("estimated_workload")
     @ApiModelProperty(value = "estimated_workload", notes = "预估工时")
     private BigDecimal estimatedWorkload;
 
     /**
-     * 目标模板
-     */
+    * 目标模板
+    */
     @TableField(value = "target_template" , exist = false)
     @DEField(name = "target_template")
-    @JsonProperty("target_template")
     @JSONField(name = "target_template")
+    @JsonProperty("target_template")
     @ApiModelProperty(value = "target_template", notes = "目标模板")
     private String targetTemplate;
 
     /**
-     * 评审结果
-     */
+    * 评审结果
+    */
     @TableField(value = "review_result_state")
-    @DEField(name = "review_result_state")
-    @JsonProperty("review_result_state")
+    @DEField(name = "review_result_state" , defaultValue = "1" , dict = "review_result")
     @JSONField(name = "review_result_state")
+    @JsonProperty("review_result_state")
     @ApiModelProperty(value = "review_result_state", notes = "评审结果")
     private String reviewResultState;
 
     /**
-     * 剩余工时
-     */
+    * 剩余工时
+    */
+    @Transient
     @TableField(exist = false)
     @DEField(name = "remaining_workload")
-    @JsonProperty("remaining_workload")
     @JSONField(name = "remaining_workload")
+    @JsonProperty("remaining_workload")
     @ApiModelProperty(value = "remaining_workload", notes = "剩余工时")
     private BigDecimal remainingWorkload;
 
     /**
-     * 最新执行结果
-     */
-    @TableField(exist = false)
+    * 最新执行结果
+    */
+    @TableField(value = "latest_executed" , exist = false)
     @DEField(name = "latest_executed")
-    @JsonProperty("latest_executed")
     @JSONField(name = "latest_executed")
+    @JsonProperty("latest_executed")
     @ApiModelProperty(value = "latest_executed", notes = "最新执行结果")
-    private List<Run> latestExecuted;
+    private List<Map> latestExecuted;
 
     /**
-     * 实际工时
-     */
+    * 实际工时
+    */
+    @Transient
     @TableField(exist = false)
     @DEField(name = "actual_workload")
-    @JsonProperty("actual_workload")
     @JSONField(name = "actual_workload")
+    @JsonProperty("actual_workload")
     @ApiModelProperty(value = "actual_workload", notes = "实际工时")
     private BigDecimal actualWorkload;
 
     /**
-     * 当前版本名称
-     */
+    * 步骤
+    */
+    @TableField(value = "steps_imp" , exist = false)
+    @DEField(name = "steps_imp")
+    @JSONField(name = "steps_imp")
+    @JsonProperty("steps_imp")
+    @ApiModelProperty(value = "steps_imp", notes = "步骤")
+    private String stepsImp;
+
+    /**
+    * 当前版本名称
+    */
     @TableField(value = "cur_version_name" , exist = false)
     @DEField(name = "cur_version_name")
-    @JsonProperty("cur_version_name")
     @JSONField(name = "cur_version_name")
+    @JsonProperty("cur_version_name")
     @ApiModelProperty(value = "cur_version_name", notes = "当前版本名称")
     private String curVersionName;
 
     /**
-     * 选择版本标识
-     */
+    * 选择版本标识
+    */
     @TableField(value = "choose_version_id" , exist = false)
     @DEField(name = "choose_version_id")
-    @JsonProperty("choose_version_id")
     @JSONField(name = "choose_version_id")
+    @JsonProperty("choose_version_id")
     @ApiModelProperty(value = "choose_version_id", notes = "选择版本标识")
     private String chooseVersionId;
 
     /**
-     * 选择版本名称
-     */
+    * 选择版本名称
+    */
     @TableField(value = "choose_version_name" , exist = false)
     @DEField(name = "choose_version_name")
-    @JsonProperty("choose_version_name")
     @JSONField(name = "choose_version_name")
+    @JsonProperty("choose_version_name")
     @ApiModelProperty(value = "choose_version_name", notes = "选择版本名称")
     private String chooseVersionName;
 
     /**
-     * 关注人
-     */
+    * 关注人
+    */
     @TableField(value = "attentions_imp" , exist = false)
     @DEField(name = "attentions_imp")
-    @JsonProperty("attentions_imp")
     @JSONField(name = "attentions_imp")
+    @JsonProperty("attentions_imp")
     @ApiModelProperty(value = "attentions_imp", notes = "关注人")
     private String attentionsImp;
 
     /**
-     * 标识
-     */
+    * 标识
+    */
     @Id
     @TableId(value = "id" , type = IdType.ASSIGN_UUID)
     @DEField(name = "id" , isKeyField = true)
-    @JsonProperty("id")
     @JSONField(name = "id")
+    @JsonProperty("id")
     @ApiModelProperty(value = "id", notes = "标识")
     private String id;
 
     /**
-     * 建立时间
-     */
-    @TableField(value = "create_time" , fill = FieldFill.INSERT)
-    @DEField(name = "create_time" , preType = DEPredefinedFieldType.CREATEDATE)
-    @JsonProperty("create_time")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "create_time", notes = "建立时间")
-    private Date createTime;
-
-    /**
-     * 建立人
-     */
+    * 建立人
+    */
     @TableField(value = "create_man" , fill = FieldFill.INSERT)
     @DEField(name = "create_man" , preType = DEPredefinedFieldType.CREATEMAN , dict = "SysOperator")
-    @JsonProperty("create_man")
     @JSONField(name = "create_man")
+    @JsonProperty("create_man")
     @ApiModelProperty(value = "create_man", notes = "建立人")
     private String createMan;
 
     /**
-     * 名称
-     */
-    @TableField(value = "name")
-    @DEField(name = "name")
-    @JsonProperty("name")
-    @JSONField(name = "name")
-    @ApiModelProperty(value = "name", notes = "名称")
-    private String name;
-
-    /**
-     * 更新时间
-     */
-    @TableField(value = "update_time")
-    @DEField(name = "update_time" , preType = DEPredefinedFieldType.UPDATEDATE)
-    @JsonProperty("update_time")
+    * 建立时间
+    */
+    @TableField(value = "create_time" , fill = FieldFill.INSERT)
+    @DEField(name = "create_time" , preType = DEPredefinedFieldType.CREATEDATE)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "update_time", notes = "更新时间")
-    private Date updateTime;
+    @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("create_time")
+    @ApiModelProperty(value = "create_time", notes = "建立时间")
+    private Date createTime;
 
     /**
-     * 更新人
-     */
+    * 更新人
+    */
     @TableField(value = "update_man")
     @DEField(name = "update_man" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
-    @JsonProperty("update_man")
     @JSONField(name = "update_man")
+    @JsonProperty("update_man")
     @ApiModelProperty(value = "update_man", notes = "更新人")
     private String updateMan;
 
     /**
-     * 测试库
-     */
+    * 更新时间
+    */
+    @TableField(value = "update_time")
+    @DEField(name = "update_time" , preType = DEPredefinedFieldType.UPDATEDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("update_time")
+    @ApiModelProperty(value = "update_time", notes = "更新时间")
+    private Date updateTime;
+
+    /**
+    * 名称
+    */
+    @TableField(value = "name")
+    @DEField(name = "name")
+    @JSONField(name = "name")
+    @JsonProperty("name")
+    @ApiModelProperty(value = "name", notes = "名称")
+    private String name;
+
+    /**
+    * 测试库
+    */
     @TableField(value = "test_library_id")
     @DEField(name = "test_library_id")
-    @JsonProperty("test_library_id")
     @JSONField(name = "test_library_id")
+    @JsonProperty("test_library_id")
     @ApiModelProperty(value = "test_library_id", notes = "测试库")
     private String testLibraryId;
 
     /**
-     * 用例模块标识
-     */
+    * 用例模块标识
+    */
     @TableField(value = "suite_id")
     @DEField(name = "suite_id")
-    @JsonProperty("suite_id")
     @JSONField(name = "suite_id")
+    @JsonProperty("suite_id")
     @ApiModelProperty(value = "suite_id", notes = "用例模块标识")
     private String suiteId;
 
     /**
-     * 所属模块
-     */
+    * 所属模块
+    */
     @TableField(value = "suite_name" , exist = false)
     @DEField(name = "suite_name")
-    @JsonProperty("suite_name")
     @JSONField(name = "suite_name")
+    @JsonProperty("suite_name")
     @ApiModelProperty(value = "suite_name", notes = "所属模块")
     private String suiteName;
 
     /**
-     * 所属测试库
-     */
+    * 所属测试库
+    */
     @TableField(value = "test_library_name" , exist = false)
     @DEField(name = "test_library_name")
-    @JsonProperty("test_library_name")
     @JSONField(name = "test_library_name")
+    @JsonProperty("test_library_name")
     @ApiModelProperty(value = "test_library_name", notes = "所属测试库")
     private String testLibraryName;
 
     /**
-     * 测试库
-     */
+    * 测试库-用例
+    */
+    @Transient
+    @TableField(exist = false)
     @JsonIgnore
     @JSONField(serialize = false)
-    @TableField(exist = false)
-    @Transient
     @ApiModelProperty(value = "library", notes = "测试库-用例")
     private Library library;
 
     /**
-     * 用例模块
-     */
+    * 用例模块-用例
+    */
+    @Transient
+    @TableField(exist = false)
     @JsonIgnore
     @JSONField(serialize = false)
-    @TableField(exist = false)
-    @Transient
     @ApiModelProperty(value = "test_suite", notes = "用例模块-用例")
     private TestSuite testSuite;
 
     /**
-     * 企业用户
-     */
+    * DER1N_TEST_CASE_USER_ASSIGNEE_ID
+    */
+    @Transient
+    @TableField(exist = false)
     @JsonIgnore
     @JSONField(serialize = false)
-    @TableField(exist = false)
-    @Transient
     @ApiModelProperty(value = "user", notes = "DER1N_TEST_CASE_USER_ASSIGNEE_ID")
     private User user;
 
     /**
-     * 设置 [编号]
-     */
+    * 设置 [编号]
+    */
     public TestCase setIdentifier(String identifier) {
         this.identifier = identifier;
         this.modify("identifier", identifier);
@@ -531,8 +562,8 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [标题]
-     */
+    * 设置 [标题]
+    */
     public TestCase setTitle(String title) {
         this.title = title;
         this.modify("title", title);
@@ -540,8 +571,8 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [重要程度]
-     */
+    * 设置 [重要程度]
+    */
     public TestCase setLevel(String level) {
         this.level = level;
         this.modify("level", level);
@@ -549,8 +580,8 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [用例类型]
-     */
+    * 设置 [用例类型]
+    */
     public TestCase setType(String type) {
         this.type = type;
         this.modify("type", type);
@@ -558,8 +589,8 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [测试类型]
-     */
+    * 设置 [测试类型]
+    */
     public TestCase setTestType(String testType) {
         this.testType = testType;
         this.modify("test_type", testType);
@@ -567,8 +598,8 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [描述]
-     */
+    * 设置 [描述]
+    */
     public TestCase setDescription(String description) {
         this.description = description;
         this.modify("description", description);
@@ -576,8 +607,8 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [前置条件]
-     */
+    * 设置 [前置条件]
+    */
     public TestCase setPrecondition(String precondition) {
         this.precondition = precondition;
         this.modify("precondition", precondition);
@@ -585,8 +616,8 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [是否已归档]
-     */
+    * 设置 [是否已归档]
+    */
     public TestCase setIsArchived(Integer isArchived) {
         this.isArchived = isArchived;
         this.modify("is_archived", isArchived);
@@ -594,8 +625,8 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [是否已删除]
-     */
+    * 设置 [是否已删除]
+    */
     public TestCase setIsDeleted(Integer isDeleted) {
         this.isDeleted = isDeleted;
         this.modify("is_deleted", isDeleted);
@@ -603,8 +634,8 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [状态]
-     */
+    * 设置 [状态]
+    */
     public TestCase setState(String state) {
         this.state = state;
         this.modify("state", state);
@@ -612,8 +643,8 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [步骤]
-     */
+    * 设置 [步骤]
+    */
     public TestCase setSteps(List<Step> steps) {
         this.steps = steps;
         this.modify("steps", steps);
@@ -621,8 +652,8 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [维护人]
-     */
+    * 设置 [维护人]
+    */
     public TestCase setMaintenanceId(String maintenanceId) {
         this.maintenanceId = maintenanceId;
         this.modify("maintenance_id", maintenanceId);
@@ -630,8 +661,8 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [维护人]
-     */
+    * 设置 [维护人]
+    */
     public TestCase setMaintenanceName(String maintenanceName) {
         this.maintenanceName = maintenanceName;
         this.modify("maintenance_name", maintenanceName);
@@ -639,8 +670,8 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [测试计划名称]
-     */
+    * 设置 [测试计划名称]
+    */
     public TestCase setTestPlanName(String testPlanName) {
         this.testPlanName = testPlanName;
         this.modify("test_plan_name", testPlanName);
@@ -648,8 +679,8 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [执行时间]
-     */
+    * 设置 [执行时间]
+    */
     public TestCase setExecutedAt(Date executedAt) {
         this.executedAt = executedAt;
         this.modify("executed_at", executedAt);
@@ -657,8 +688,8 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [执行人]
-     */
+    * 设置 [执行人]
+    */
     public TestCase setExecutorName(String executorName) {
         this.executorName = executorName;
         this.modify("executor_name", executorName);
@@ -666,8 +697,8 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [执行结果]
-     */
+    * 设置 [执行结果]
+    */
     public TestCase setRunStatus(String runStatus) {
         this.runStatus = runStatus;
         this.modify("run_status", runStatus);
@@ -675,8 +706,8 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [附件]
-     */
+    * 设置 [附件]
+    */
     public TestCase setAttachments(List<Attachment> attachments) {
         this.attachments = attachments;
         this.modify("attachments", attachments);
@@ -684,8 +715,8 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [模块路径]
-     */
+    * 设置 [模块路径]
+    */
     public TestCase setSuites(String suites) {
         this.suites = suites;
         this.modify("suites", suites);
@@ -693,8 +724,8 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [目标测试库]
-     */
+    * 设置 [目标测试库]
+    */
     public TestCase setTargetLibraryId(String targetLibraryId) {
         this.targetLibraryId = targetLibraryId;
         this.modify("target_library_id", targetLibraryId);
@@ -702,8 +733,8 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [编号]
-     */
+    * 设置 [编号]
+    */
     public TestCase setShowIdentifier(String showIdentifier) {
         this.showIdentifier = showIdentifier;
         this.modify("show_identifier", showIdentifier);
@@ -711,8 +742,8 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [测试库标识]
-     */
+    * 设置 [测试库标识]
+    */
     public TestCase setLibraryIdentifier(String libraryIdentifier) {
         this.libraryIdentifier = libraryIdentifier;
         this.modify("library_identifier", libraryIdentifier);
@@ -720,8 +751,8 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [关注]
-     */
+    * 设置 [关注]
+    */
     public TestCase setAttentions(List<Attention> attentions) {
         this.attentions = attentions;
         this.modify("attentions", attentions);
@@ -729,8 +760,8 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [工时进度]
-     */
+    * 设置 [工时进度]
+    */
     public TestCase setWorkloadSchedule(BigDecimal workloadSchedule) {
         this.workloadSchedule = workloadSchedule;
         this.modify("workload_schedule", workloadSchedule);
@@ -738,8 +769,8 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [预估工时]
-     */
+    * 设置 [预估工时]
+    */
     public TestCase setEstimatedWorkload(BigDecimal estimatedWorkload) {
         this.estimatedWorkload = estimatedWorkload;
         this.modify("estimated_workload", estimatedWorkload);
@@ -747,8 +778,8 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [目标模板]
-     */
+    * 设置 [目标模板]
+    */
     public TestCase setTargetTemplate(String targetTemplate) {
         this.targetTemplate = targetTemplate;
         this.modify("target_template", targetTemplate);
@@ -756,8 +787,8 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [评审结果]
-     */
+    * 设置 [评审结果]
+    */
     public TestCase setReviewResultState(String reviewResultState) {
         this.reviewResultState = reviewResultState;
         this.modify("review_result_state", reviewResultState);
@@ -765,8 +796,8 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [剩余工时]
-     */
+    * 设置 [剩余工时]
+    */
     public TestCase setRemainingWorkload(BigDecimal remainingWorkload) {
         this.remainingWorkload = remainingWorkload;
         this.modify("remaining_workload", remainingWorkload);
@@ -774,17 +805,17 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [最新执行结果]
-     */
-    public TestCase setLatestExecuted(List<Run> latestExecuted) {
+    * 设置 [最新执行结果]
+    */
+    public TestCase setLatestExecuted(List<Map> latestExecuted) {
         this.latestExecuted = latestExecuted;
         this.modify("latest_executed", latestExecuted);
         return this;
     }
 
     /**
-     * 设置 [实际工时]
-     */
+    * 设置 [实际工时]
+    */
     public TestCase setActualWorkload(BigDecimal actualWorkload) {
         this.actualWorkload = actualWorkload;
         this.modify("actual_workload", actualWorkload);
@@ -792,8 +823,17 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [当前版本名称]
-     */
+    * 设置 [步骤]
+    */
+    public TestCase setStepsImp(String stepsImp) {
+        this.stepsImp = stepsImp;
+        this.modify("steps_imp", stepsImp);
+        return this;
+    }
+
+    /**
+    * 设置 [当前版本名称]
+    */
     public TestCase setCurVersionName(String curVersionName) {
         this.curVersionName = curVersionName;
         this.modify("cur_version_name", curVersionName);
@@ -801,8 +841,8 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [选择版本标识]
-     */
+    * 设置 [选择版本标识]
+    */
     public TestCase setChooseVersionId(String chooseVersionId) {
         this.chooseVersionId = chooseVersionId;
         this.modify("choose_version_id", chooseVersionId);
@@ -810,8 +850,8 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [选择版本名称]
-     */
+    * 设置 [选择版本名称]
+    */
     public TestCase setChooseVersionName(String chooseVersionName) {
         this.chooseVersionName = chooseVersionName;
         this.modify("choose_version_name", chooseVersionName);
@@ -819,8 +859,8 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [关注人]
-     */
+    * 设置 [关注人]
+    */
     public TestCase setAttentionsImp(String attentionsImp) {
         this.attentionsImp = attentionsImp;
         this.modify("attentions_imp", attentionsImp);
@@ -828,8 +868,8 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [名称]
-     */
+    * 设置 [名称]
+    */
     public TestCase setName(String name) {
         this.name = name;
         this.modify("name", name);
@@ -837,8 +877,8 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [测试库]
-     */
+    * 设置 [测试库]
+    */
     public TestCase setTestLibraryId(String testLibraryId) {
         this.testLibraryId = testLibraryId;
         this.modify("test_library_id", testLibraryId);
@@ -846,8 +886,8 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [用例模块标识]
-     */
+    * 设置 [用例模块标识]
+    */
     public TestCase setSuiteId(String suiteId) {
         this.suiteId = suiteId;
         this.modify("suite_id", suiteId);
@@ -855,8 +895,8 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [所属模块]
-     */
+    * 设置 [所属模块]
+    */
     public TestCase setSuiteName(String suiteName) {
         this.suiteName = suiteName;
         this.modify("suite_name", suiteName);
@@ -864,13 +904,14 @@ public class TestCase extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [所属测试库]
-     */
+    * 设置 [所属测试库]
+    */
     public TestCase setTestLibraryName(String testLibraryName) {
         this.testLibraryName = testLibraryName;
         this.modify("test_library_name", testLibraryName);
         return this;
     }
+
 
     /**
      * 复制当前对象数据到目标对象(粘贴重置)

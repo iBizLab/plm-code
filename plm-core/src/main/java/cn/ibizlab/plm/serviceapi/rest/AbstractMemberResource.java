@@ -510,7 +510,7 @@ public abstract class AbstractMemberResource {
     public ResponseEntity<List<MemberDTO>> fetchDefault
             (@Validated @RequestBody MemberFilterDTO dto) {
         MemberSearchContext context = memberFilterDtoMapping.toDomain(dto);
-        Page<Member> domains = memberService.searchDefault(context) ;
+        Page<Member> domains = memberService.fetchDefault(context) ;
         List<MemberDTO> list = memberDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -532,7 +532,7 @@ public abstract class AbstractMemberResource {
     public ResponseEntity<List<MemberDefGroupDTO>> fetchUserGroupAdmin
             (@Validated @RequestBody MemberFilterDTO dto) {
         MemberSearchContext context = memberFilterDtoMapping.toDomain(dto);
-        Page<Member> domains = memberService.searchUserGroupAdmin(context) ;
+        Page<Member> domains = memberService.fetchUserGroupAdmin(context) ;
         List<MemberDefGroupDTO> list = memberDefGroupDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -626,7 +626,7 @@ public abstract class AbstractMemberResource {
             (@PathVariable("ownerId") String ownerId, @Validated @RequestBody MemberFilterDTO dto) {
         dto.setOwnerIdEQ(ownerId);
         MemberSearchContext context = memberFilterDtoMapping.toDomain(dto);
-        Page<Member> domains = memberService.searchDefault(context) ;
+        Page<Member> domains = memberService.fetchDefault(context) ;
         List<MemberDTO> list = memberDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -650,7 +650,7 @@ public abstract class AbstractMemberResource {
             (@PathVariable("ownerId") String ownerId, @Validated @RequestBody MemberFilterDTO dto) {
         dto.setOwnerIdEQ(ownerId);
         MemberSearchContext context = memberFilterDtoMapping.toDomain(dto);
-        Page<Member> domains = memberService.searchUserGroupAdmin(context) ;
+        Page<Member> domains = memberService.fetchUserGroupAdmin(context) ;
         List<MemberDefGroupDTO> list = memberDefGroupDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -669,7 +669,7 @@ public abstract class AbstractMemberResource {
     @ApiOperation(value = "批量新建成员", tags = {"成员" },  notes = "批量新建成员")
 	@PostMapping("members/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<MemberDTO> dtos) {
-        memberService.createBatch(memberDtoMapping.toDomain(dtos));
+        memberService.create(memberDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -682,7 +682,7 @@ public abstract class AbstractMemberResource {
     @ApiOperation(value = "批量删除成员", tags = {"成员" },  notes = "批量删除成员")
 	@DeleteMapping("members/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        memberService.removeBatch(ids);
+        memberService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -695,7 +695,7 @@ public abstract class AbstractMemberResource {
     @ApiOperation(value = "批量更新成员", tags = {"成员" },  notes = "批量更新成员")
 	@PutMapping("members/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<MemberDTO> dtos) {
-        memberService.updateBatch(memberDtoMapping.toDomain(dtos));
+        memberService.update(memberDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -708,7 +708,7 @@ public abstract class AbstractMemberResource {
     @ApiOperation(value = "批量保存成员", tags = {"成员" },  notes = "批量保存成员")
 	@PostMapping("members/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<MemberDTO> dtos) {
-        memberService.saveBatch(memberDtoMapping.toDomain(dtos));
+        memberService.save(memberDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

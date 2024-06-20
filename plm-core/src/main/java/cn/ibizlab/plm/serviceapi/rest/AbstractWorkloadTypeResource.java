@@ -238,7 +238,7 @@ public abstract class AbstractWorkloadTypeResource {
     public ResponseEntity<List<WorkloadTypeDTO>> fetchDefault
             (@Validated @RequestBody WorkloadTypeFilterDTO dto) {
         WorkloadTypeSearchContext context = workloadTypeFilterDtoMapping.toDomain(dto);
-        Page<WorkloadType> domains = workloadTypeService.searchDefault(context) ;
+        Page<WorkloadType> domains = workloadTypeService.fetchDefault(context) ;
         List<WorkloadTypeDTO> list = workloadTypeDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -257,7 +257,7 @@ public abstract class AbstractWorkloadTypeResource {
     @ApiOperation(value = "批量新建工时类别", tags = {"工时类别" },  notes = "批量新建工时类别")
 	@PostMapping("workload_types/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<WorkloadTypeDTO> dtos) {
-        workloadTypeService.createBatch(workloadTypeDtoMapping.toDomain(dtos));
+        workloadTypeService.create(workloadTypeDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -270,7 +270,7 @@ public abstract class AbstractWorkloadTypeResource {
     @ApiOperation(value = "批量删除工时类别", tags = {"工时类别" },  notes = "批量删除工时类别")
 	@DeleteMapping("workload_types/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        workloadTypeService.removeBatch(ids);
+        workloadTypeService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -283,7 +283,7 @@ public abstract class AbstractWorkloadTypeResource {
     @ApiOperation(value = "批量更新工时类别", tags = {"工时类别" },  notes = "批量更新工时类别")
 	@PutMapping("workload_types/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<WorkloadTypeDTO> dtos) {
-        workloadTypeService.updateBatch(workloadTypeDtoMapping.toDomain(dtos));
+        workloadTypeService.update(workloadTypeDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -296,7 +296,7 @@ public abstract class AbstractWorkloadTypeResource {
     @ApiOperation(value = "批量保存工时类别", tags = {"工时类别" },  notes = "批量保存工时类别")
 	@PostMapping("workload_types/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<WorkloadTypeDTO> dtos) {
-        workloadTypeService.saveBatch(workloadTypeDtoMapping.toDomain(dtos));
+        workloadTypeService.save(workloadTypeDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

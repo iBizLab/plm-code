@@ -131,8 +131,6 @@ export default {
       columnEnableFilter: 2,
       columnEnableLink: 2,
       groupMode: 'NONE',
-      minorSortDir: 'DESC',
-      minorSortAppDEFieldId: 'update_time',
       degridColumns: [
         {
           clconvertMode: 'NONE',
@@ -393,7 +391,7 @@ export default {
       enablePagingBar: true,
       singleSelect: true,
       fetchControlAction: {
-        appDEMethodId: 'fetch_normal',
+        appDEMethodId: 'fetch_main',
         appDataEntityId: 'plmweb.space',
         id: 'fetch',
       },

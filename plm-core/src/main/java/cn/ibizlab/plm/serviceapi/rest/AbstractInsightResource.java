@@ -238,7 +238,7 @@ public abstract class AbstractInsightResource {
     public ResponseEntity<List<InsightDTO>> fetchDefault
             (@Validated @RequestBody InsightFilterDTO dto) {
         InsightSearchContext context = insightFilterDtoMapping.toDomain(dto);
-        Page<Insight> domains = insightService.searchDefault(context) ;
+        Page<Insight> domains = insightService.fetchDefault(context) ;
         List<InsightDTO> list = insightDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -257,7 +257,7 @@ public abstract class AbstractInsightResource {
     @ApiOperation(value = "批量新建洞察力", tags = {"洞察力" },  notes = "批量新建洞察力")
 	@PostMapping("insights/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<InsightDTO> dtos) {
-        insightService.createBatch(insightDtoMapping.toDomain(dtos));
+        insightService.create(insightDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -270,7 +270,7 @@ public abstract class AbstractInsightResource {
     @ApiOperation(value = "批量删除洞察力", tags = {"洞察力" },  notes = "批量删除洞察力")
 	@DeleteMapping("insights/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        insightService.removeBatch(ids);
+        insightService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -283,7 +283,7 @@ public abstract class AbstractInsightResource {
     @ApiOperation(value = "批量更新洞察力", tags = {"洞察力" },  notes = "批量更新洞察力")
 	@PutMapping("insights/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<InsightDTO> dtos) {
-        insightService.updateBatch(insightDtoMapping.toDomain(dtos));
+        insightService.update(insightDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -296,7 +296,7 @@ public abstract class AbstractInsightResource {
     @ApiOperation(value = "批量保存洞察力", tags = {"洞察力" },  notes = "批量保存洞察力")
 	@PostMapping("insights/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<InsightDTO> dtos) {
-        insightService.saveBatch(insightDtoMapping.toDomain(dtos));
+        insightService.save(insightDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

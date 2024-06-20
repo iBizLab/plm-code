@@ -37,39 +37,40 @@ public class ReferencesIndex extends EntityMP implements Serializable
 {
 
     /**
-     * 标识
-     */
+    * 标识
+    */
     @Id
+    @Transient
     @TableField(exist = false)
     @DEField(name = "id" , isKeyField = true)
-    @JsonProperty("id")
     @JSONField(name = "id")
+    @JsonProperty("id")
     @ApiModelProperty(value = "id", notes = "标识")
     private String id;
 
     /**
-     * 名称
-     */
+    * 名称
+    */
     @TableField(value = "name" , exist = false)
     @DEField(name = "name")
-    @JsonProperty("name")
     @JSONField(name = "name")
+    @JsonProperty("name")
     @ApiModelProperty(value = "name", notes = "名称")
     private String name;
 
     /**
-     * 索引类型
-     */
+    * 索引类型
+    */
     @TableField(value = "type" , exist = false)
     @DEField(name = "type" , dict = "index_type")
-    @JsonProperty("type")
     @JSONField(name = "type")
+    @JsonProperty("type")
     @ApiModelProperty(value = "type", notes = "索引类型")
     private String type;
 
     /**
-     * 设置 [名称]
-     */
+    * 设置 [名称]
+    */
     public ReferencesIndex setName(String name) {
         this.name = name;
         this.modify("name", name);
@@ -77,13 +78,14 @@ public class ReferencesIndex extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [索引类型]
-     */
+    * 设置 [索引类型]
+    */
     public ReferencesIndex setType(String type) {
         this.type = type;
         this.modify("type", type);
         return this;
     }
+
 
     /**
      * 复制当前对象数据到目标对象(粘贴重置)

@@ -9,9 +9,9 @@
 		<result property="endAt" column="end_at" />
 		<result property="assigneeName" column="assignee_name" />
 		<result property="assigneeId" column="assignee_id" />
-		<result property="updateMan" column="update_man" />
 		<result property="createMan" column="create_man" />
 		<result property="createTime" column="create_time" />
+		<result property="updateMan" column="update_man" />
 		<result property="updateTime" column="update_time" />
 		<result property="projectId" column="project_id" />
 		<result property="projectName" column="project_name" />
@@ -51,6 +51,10 @@
          <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`NAME`, t1.`PROGRESS`, t1.`PROJECT_ID`, t11.`NAME` AS `PROJECT_NAME`, t1.`START_AT`, t1.`STATUS`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PROJECT_RELEASE` t1  LEFT JOIN `PROJECT` t11 ON t1.`PROJECT_ID` = t11.`ID`   ]]>  
     </sql>
 
+    <sql id="notFinish" databaseId="mysql">
+         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`NAME`, t1.`PROGRESS`, t1.`PROJECT_ID`, t11.`NAME` AS `PROJECT_NAME`, t1.`START_AT`, t1.`STATUS`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PROJECT_RELEASE` t1  LEFT JOIN `PROJECT` t11 ON t1.`PROJECT_ID` = t11.`ID`   ]]>  where  <![CDATA[ NOT(EXISTS(SELECT * FROM `WORK_ITEM` t21   WHERE   t1.`ID` = t21.`RELEASE_ID`  AND  ( t21.`ID` = #{ctx.webcontext.work_item} ) )) ]]> and  <![CDATA[ ( t1.`STATUS` <> '30' ) ]]> 
+    </sql>
+
     <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.ReleaseSearchContext"  resultMap="ReleaseResultMap">
         select t1.* 
         from (
@@ -72,11 +76,32 @@
         
     </select>
 
+    <select id="searchNotFinish"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.ReleaseSearchContext"  resultMap="ReleaseResultMap">
+        select t1.* 
+        from (
+            <include refid="notFinish"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listNotFinish"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.ReleaseSearchContext"  resultMap="ReleaseResultMap">
+        select t1.*
+        from (
+            <include refid="notFinish"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
     <select id="findByProjectId" resultMap="ReleaseResultMap">
         select t1.* from (
             <include refid="default"/>
         ) t1
-        where project_id in <foreach item="id" index="index" collection="projectIds" open="(" separator="," close=")">#{id}</foreach> 
+        where project_id in <foreach item="id" index="index" collection="projectIds" open="(" separator="," close=")">#{id}</foreach>  order by UPDATE_TIME DESC
     </select>
 
 

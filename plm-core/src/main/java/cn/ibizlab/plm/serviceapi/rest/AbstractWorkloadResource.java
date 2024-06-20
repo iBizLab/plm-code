@@ -524,7 +524,7 @@ public abstract class AbstractWorkloadResource {
     public ResponseEntity<List<WorkloadDTO>> fetchCalendar
             (@Validated @RequestBody WorkloadFilterDTO dto) {
         WorkloadSearchContext context = workloadFilterDtoMapping.toDomain(dto);
-        Page<Workload> domains = workloadService.searchCalendar(context) ;
+        Page<Workload> domains = workloadService.fetchCalendar(context) ;
         List<WorkloadDTO> list = workloadDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -546,7 +546,7 @@ public abstract class AbstractWorkloadResource {
     public ResponseEntity<List<WorkloadDTO>> fetchDefault
             (@Validated @RequestBody WorkloadFilterDTO dto) {
         WorkloadSearchContext context = workloadFilterDtoMapping.toDomain(dto);
-        Page<Workload> domains = workloadService.searchDefault(context) ;
+        Page<Workload> domains = workloadService.fetchDefault(context) ;
         List<WorkloadDTO> list = workloadDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -568,7 +568,7 @@ public abstract class AbstractWorkloadResource {
     public ResponseEntity<List<WorkloadDTO>> fetchIdeaWorkload
             (@Validated @RequestBody WorkloadFilterDTO dto) {
         WorkloadSearchContext context = workloadFilterDtoMapping.toDomain(dto);
-        Page<Workload> domains = workloadService.searchIdeaWorkload(context) ;
+        Page<Workload> domains = workloadService.fetchIdeaWorkload(context) ;
         List<WorkloadDTO> list = workloadDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -590,7 +590,29 @@ public abstract class AbstractWorkloadResource {
     public ResponseEntity<List<WorkloadDTO>> fetchLog
             (@Validated @RequestBody WorkloadFilterDTO dto) {
         WorkloadSearchContext context = workloadFilterDtoMapping.toDomain(dto);
-        Page<Workload> domains = workloadService.searchLog(context) ;
+        Page<Workload> domains = workloadService.fetchLog(context) ;
+        List<WorkloadDTO> list = workloadDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_member_dimension 工时
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<WorkloadDTO>>
+    */
+    @ApiOperation(value = "查询fetch_member_dimension", tags = {"工时" },  notes = "Workload-fetch_member_dimension ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Workload-fetch_member_dimension-all') or hasPermission(#dto,'ibizplm-Workload-fetch_member_dimension')")
+    @PostMapping("workloads/fetch_member_dimension")
+    public ResponseEntity<List<WorkloadDTO>> fetchMemberDimension
+            (@Validated @RequestBody WorkloadFilterDTO dto) {
+        WorkloadSearchContext context = workloadFilterDtoMapping.toDomain(dto);
+        Page<Workload> domains = workloadService.fetchMemberDimension(context) ;
         List<WorkloadDTO> list = workloadDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -612,7 +634,7 @@ public abstract class AbstractWorkloadResource {
     public ResponseEntity<List<WorkloadDTO>> fetchMyCalendar
             (@Validated @RequestBody WorkloadFilterDTO dto) {
         WorkloadSearchContext context = workloadFilterDtoMapping.toDomain(dto);
-        Page<Workload> domains = workloadService.searchMyCalendar(context) ;
+        Page<Workload> domains = workloadService.fetchMyCalendar(context) ;
         List<WorkloadDTO> list = workloadDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -634,7 +656,7 @@ public abstract class AbstractWorkloadResource {
     public ResponseEntity<List<WorkloadDTO>> fetchMyIdeaWorkload
             (@Validated @RequestBody WorkloadFilterDTO dto) {
         WorkloadSearchContext context = workloadFilterDtoMapping.toDomain(dto);
-        Page<Workload> domains = workloadService.searchMyIdeaWorkload(context) ;
+        Page<Workload> domains = workloadService.fetchMyIdeaWorkload(context) ;
         List<WorkloadDTO> list = workloadDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -656,7 +678,7 @@ public abstract class AbstractWorkloadResource {
     public ResponseEntity<List<WorkloadDTO>> fetchMyLog
             (@Validated @RequestBody WorkloadFilterDTO dto) {
         WorkloadSearchContext context = workloadFilterDtoMapping.toDomain(dto);
-        Page<Workload> domains = workloadService.searchMyLog(context) ;
+        Page<Workload> domains = workloadService.fetchMyLog(context) ;
         List<WorkloadDTO> list = workloadDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -678,7 +700,7 @@ public abstract class AbstractWorkloadResource {
     public ResponseEntity<List<WorkloadDTO>> fetchMyTestCaseWorkload
             (@Validated @RequestBody WorkloadFilterDTO dto) {
         WorkloadSearchContext context = workloadFilterDtoMapping.toDomain(dto);
-        Page<Workload> domains = workloadService.searchMyTestCaseWorkload(context) ;
+        Page<Workload> domains = workloadService.fetchMyTestCaseWorkload(context) ;
         List<WorkloadDTO> list = workloadDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -700,7 +722,7 @@ public abstract class AbstractWorkloadResource {
     public ResponseEntity<List<WorkloadDTO>> fetchMyTypeOf
             (@Validated @RequestBody WorkloadFilterDTO dto) {
         WorkloadSearchContext context = workloadFilterDtoMapping.toDomain(dto);
-        Page<Workload> domains = workloadService.searchMyTypeOf(context) ;
+        Page<Workload> domains = workloadService.fetchMyTypeOf(context) ;
         List<WorkloadDTO> list = workloadDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -722,7 +744,7 @@ public abstract class AbstractWorkloadResource {
     public ResponseEntity<List<WorkloadDTO>> fetchMyWorkItemWorkload
             (@Validated @RequestBody WorkloadFilterDTO dto) {
         WorkloadSearchContext context = workloadFilterDtoMapping.toDomain(dto);
-        Page<Workload> domains = workloadService.searchMyWorkItemWorkload(context) ;
+        Page<Workload> domains = workloadService.fetchMyWorkItemWorkload(context) ;
         List<WorkloadDTO> list = workloadDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -744,7 +766,7 @@ public abstract class AbstractWorkloadResource {
     public ResponseEntity<List<WorkloadDTO>> fetchTestCaseWorkload
             (@Validated @RequestBody WorkloadFilterDTO dto) {
         WorkloadSearchContext context = workloadFilterDtoMapping.toDomain(dto);
-        Page<Workload> domains = workloadService.searchTestCaseWorkload(context) ;
+        Page<Workload> domains = workloadService.fetchTestCaseWorkload(context) ;
         List<WorkloadDTO> list = workloadDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -766,7 +788,7 @@ public abstract class AbstractWorkloadResource {
     public ResponseEntity<List<WorkloadDTO>> fetchTypeOf
             (@Validated @RequestBody WorkloadFilterDTO dto) {
         WorkloadSearchContext context = workloadFilterDtoMapping.toDomain(dto);
-        Page<Workload> domains = workloadService.searchTypeOf(context) ;
+        Page<Workload> domains = workloadService.fetchTypeOf(context) ;
         List<WorkloadDTO> list = workloadDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -788,7 +810,7 @@ public abstract class AbstractWorkloadResource {
     public ResponseEntity<List<WorkloadDTO>> fetchWorkItemWorkload
             (@Validated @RequestBody WorkloadFilterDTO dto) {
         WorkloadSearchContext context = workloadFilterDtoMapping.toDomain(dto);
-        Page<Workload> domains = workloadService.searchWorkItemWorkload(context) ;
+        Page<Workload> domains = workloadService.fetchWorkItemWorkload(context) ;
         List<WorkloadDTO> list = workloadDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -899,7 +921,7 @@ public abstract class AbstractWorkloadResource {
             (@PathVariable("typeId") String typeId, @Validated @RequestBody WorkloadFilterDTO dto) {
         dto.setTypeIdEQ(typeId);
         WorkloadSearchContext context = workloadFilterDtoMapping.toDomain(dto);
-        Page<Workload> domains = workloadService.searchCalendar(context) ;
+        Page<Workload> domains = workloadService.fetchCalendar(context) ;
         List<WorkloadDTO> list = workloadDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -923,7 +945,7 @@ public abstract class AbstractWorkloadResource {
             (@PathVariable("typeId") String typeId, @Validated @RequestBody WorkloadFilterDTO dto) {
         dto.setTypeIdEQ(typeId);
         WorkloadSearchContext context = workloadFilterDtoMapping.toDomain(dto);
-        Page<Workload> domains = workloadService.searchDefault(context) ;
+        Page<Workload> domains = workloadService.fetchDefault(context) ;
         List<WorkloadDTO> list = workloadDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -947,7 +969,7 @@ public abstract class AbstractWorkloadResource {
             (@PathVariable("typeId") String typeId, @Validated @RequestBody WorkloadFilterDTO dto) {
         dto.setTypeIdEQ(typeId);
         WorkloadSearchContext context = workloadFilterDtoMapping.toDomain(dto);
-        Page<Workload> domains = workloadService.searchIdeaWorkload(context) ;
+        Page<Workload> domains = workloadService.fetchIdeaWorkload(context) ;
         List<WorkloadDTO> list = workloadDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -971,7 +993,31 @@ public abstract class AbstractWorkloadResource {
             (@PathVariable("typeId") String typeId, @Validated @RequestBody WorkloadFilterDTO dto) {
         dto.setTypeIdEQ(typeId);
         WorkloadSearchContext context = workloadFilterDtoMapping.toDomain(dto);
-        Page<Workload> domains = workloadService.searchLog(context) ;
+        Page<Workload> domains = workloadService.fetchLog(context) ;
+        List<WorkloadDTO> list = workloadDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_member_dimension 工时
+    * 
+    *
+    * @param typeId typeId
+    * @param dto dto
+    * @return ResponseEntity<List<WorkloadDTO>>
+    */
+    @ApiOperation(value = "查询fetch_member_dimension", tags = {"工时" },  notes = "Workload-fetch_member_dimension ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Workload-fetch_member_dimension-all') or hasPermission('workload_type',#typeId,#dto,'ibizplm-Workload-fetch_member_dimension')")
+    @PostMapping("workload_types/{typeId}/workloads/fetch_member_dimension")
+    public ResponseEntity<List<WorkloadDTO>> fetchMemberDimensionByTypeId
+            (@PathVariable("typeId") String typeId, @Validated @RequestBody WorkloadFilterDTO dto) {
+        dto.setTypeIdEQ(typeId);
+        WorkloadSearchContext context = workloadFilterDtoMapping.toDomain(dto);
+        Page<Workload> domains = workloadService.fetchMemberDimension(context) ;
         List<WorkloadDTO> list = workloadDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -995,7 +1041,7 @@ public abstract class AbstractWorkloadResource {
             (@PathVariable("typeId") String typeId, @Validated @RequestBody WorkloadFilterDTO dto) {
         dto.setTypeIdEQ(typeId);
         WorkloadSearchContext context = workloadFilterDtoMapping.toDomain(dto);
-        Page<Workload> domains = workloadService.searchMyCalendar(context) ;
+        Page<Workload> domains = workloadService.fetchMyCalendar(context) ;
         List<WorkloadDTO> list = workloadDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1019,7 +1065,7 @@ public abstract class AbstractWorkloadResource {
             (@PathVariable("typeId") String typeId, @Validated @RequestBody WorkloadFilterDTO dto) {
         dto.setTypeIdEQ(typeId);
         WorkloadSearchContext context = workloadFilterDtoMapping.toDomain(dto);
-        Page<Workload> domains = workloadService.searchMyIdeaWorkload(context) ;
+        Page<Workload> domains = workloadService.fetchMyIdeaWorkload(context) ;
         List<WorkloadDTO> list = workloadDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1043,7 +1089,7 @@ public abstract class AbstractWorkloadResource {
             (@PathVariable("typeId") String typeId, @Validated @RequestBody WorkloadFilterDTO dto) {
         dto.setTypeIdEQ(typeId);
         WorkloadSearchContext context = workloadFilterDtoMapping.toDomain(dto);
-        Page<Workload> domains = workloadService.searchMyLog(context) ;
+        Page<Workload> domains = workloadService.fetchMyLog(context) ;
         List<WorkloadDTO> list = workloadDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1067,7 +1113,7 @@ public abstract class AbstractWorkloadResource {
             (@PathVariable("typeId") String typeId, @Validated @RequestBody WorkloadFilterDTO dto) {
         dto.setTypeIdEQ(typeId);
         WorkloadSearchContext context = workloadFilterDtoMapping.toDomain(dto);
-        Page<Workload> domains = workloadService.searchMyTestCaseWorkload(context) ;
+        Page<Workload> domains = workloadService.fetchMyTestCaseWorkload(context) ;
         List<WorkloadDTO> list = workloadDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1091,7 +1137,7 @@ public abstract class AbstractWorkloadResource {
             (@PathVariable("typeId") String typeId, @Validated @RequestBody WorkloadFilterDTO dto) {
         dto.setTypeIdEQ(typeId);
         WorkloadSearchContext context = workloadFilterDtoMapping.toDomain(dto);
-        Page<Workload> domains = workloadService.searchMyTypeOf(context) ;
+        Page<Workload> domains = workloadService.fetchMyTypeOf(context) ;
         List<WorkloadDTO> list = workloadDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1115,7 +1161,7 @@ public abstract class AbstractWorkloadResource {
             (@PathVariable("typeId") String typeId, @Validated @RequestBody WorkloadFilterDTO dto) {
         dto.setTypeIdEQ(typeId);
         WorkloadSearchContext context = workloadFilterDtoMapping.toDomain(dto);
-        Page<Workload> domains = workloadService.searchMyWorkItemWorkload(context) ;
+        Page<Workload> domains = workloadService.fetchMyWorkItemWorkload(context) ;
         List<WorkloadDTO> list = workloadDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1139,7 +1185,7 @@ public abstract class AbstractWorkloadResource {
             (@PathVariable("typeId") String typeId, @Validated @RequestBody WorkloadFilterDTO dto) {
         dto.setTypeIdEQ(typeId);
         WorkloadSearchContext context = workloadFilterDtoMapping.toDomain(dto);
-        Page<Workload> domains = workloadService.searchTestCaseWorkload(context) ;
+        Page<Workload> domains = workloadService.fetchTestCaseWorkload(context) ;
         List<WorkloadDTO> list = workloadDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1163,7 +1209,7 @@ public abstract class AbstractWorkloadResource {
             (@PathVariable("typeId") String typeId, @Validated @RequestBody WorkloadFilterDTO dto) {
         dto.setTypeIdEQ(typeId);
         WorkloadSearchContext context = workloadFilterDtoMapping.toDomain(dto);
-        Page<Workload> domains = workloadService.searchTypeOf(context) ;
+        Page<Workload> domains = workloadService.fetchTypeOf(context) ;
         List<WorkloadDTO> list = workloadDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1187,7 +1233,7 @@ public abstract class AbstractWorkloadResource {
             (@PathVariable("typeId") String typeId, @Validated @RequestBody WorkloadFilterDTO dto) {
         dto.setTypeIdEQ(typeId);
         WorkloadSearchContext context = workloadFilterDtoMapping.toDomain(dto);
-        Page<Workload> domains = workloadService.searchWorkItemWorkload(context) ;
+        Page<Workload> domains = workloadService.fetchWorkItemWorkload(context) ;
         List<WorkloadDTO> list = workloadDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1206,7 +1252,7 @@ public abstract class AbstractWorkloadResource {
     @ApiOperation(value = "批量新建工时", tags = {"工时" },  notes = "批量新建工时")
 	@PostMapping("workloads/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<WorkloadDTO> dtos) {
-        workloadService.createBatch(workloadDtoMapping.toDomain(dtos));
+        workloadService.create(workloadDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -1219,7 +1265,7 @@ public abstract class AbstractWorkloadResource {
     @ApiOperation(value = "批量删除工时", tags = {"工时" },  notes = "批量删除工时")
 	@DeleteMapping("workloads/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        workloadService.removeBatch(ids);
+        workloadService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -1232,7 +1278,7 @@ public abstract class AbstractWorkloadResource {
     @ApiOperation(value = "批量更新工时", tags = {"工时" },  notes = "批量更新工时")
 	@PutMapping("workloads/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<WorkloadDTO> dtos) {
-        workloadService.updateBatch(workloadDtoMapping.toDomain(dtos));
+        workloadService.update(workloadDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -1245,7 +1291,7 @@ public abstract class AbstractWorkloadResource {
     @ApiOperation(value = "批量保存工时", tags = {"工时" },  notes = "批量保存工时")
 	@PostMapping("workloads/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<WorkloadDTO> dtos) {
-        workloadService.saveBatch(workloadDtoMapping.toDomain(dtos));
+        workloadService.save(workloadDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

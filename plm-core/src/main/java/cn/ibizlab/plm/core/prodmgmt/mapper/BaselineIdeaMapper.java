@@ -43,6 +43,25 @@ public interface BaselineIdeaMapper extends BaseMapper<BaselineIdea> {
     List<BaselineIdea> listDefault(@Param("ctx") BaselineIdeaSearchContext context, @Param("ew") Wrapper<BaselineIdea> wrapper);
 
     /**
+     * 数据集合baseline_relation_version分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<BaselineIdea> searchBaselineRelationVersion(IPage<BaselineIdea> page, @Param("ctx") BaselineIdeaSearchContext context, @Param("ew") Wrapper<BaselineIdea> wrapper);
+    
+    /**
+     * 数据集合baseline_relation_version查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<BaselineIdea> listBaselineRelationVersion(@Param("ctx") BaselineIdeaSearchContext context, @Param("ew") Wrapper<BaselineIdea> wrapper);
+
+    /**
      * 数据集合fill_version_data分页查询
      * 
      * @param page
@@ -60,6 +79,22 @@ public interface BaselineIdeaMapper extends BaseMapper<BaselineIdea> {
      * @return
      */
     List<BaselineIdea> listFillVersionData(@Param("ctx") BaselineIdeaSearchContext context, @Param("ew") Wrapper<BaselineIdea> wrapper);
+
+    /**
+    * 根据principalId查询
+    *
+    * @param principalIds
+    * @return
+    */
+    List<BaselineIdea> findByPrincipalId(@Param("principalIds") List<String> principalIds);
+
+    /**
+    * 根据targetVersionId查询
+    *
+    * @param targetVersionIds
+    * @return
+    */
+    List<BaselineIdea> findByTargetVersionId(@Param("targetVersionIds") List<String> targetVersionIds);
 
     /**
      * 主键查询
@@ -125,21 +160,4 @@ public interface BaselineIdeaMapper extends BaseMapper<BaselineIdea> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据principalId查询
-     *
-     * @param principalIds
-     * @return
-     */
-    List<BaselineIdea> findByPrincipalId(@Param("principalIds") List<String> principalIds);
-
-    /**
-     * 根据targetVersionId查询
-     *
-     * @param targetVersionIds
-     * @return
-     */
-    List<BaselineIdea> findByTargetVersionId(@Param("targetVersionIds") List<String> targetVersionIds);
-
 }

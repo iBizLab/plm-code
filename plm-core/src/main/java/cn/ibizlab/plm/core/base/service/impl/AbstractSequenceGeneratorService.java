@@ -35,26 +35,6 @@ public abstract class AbstractSequenceGeneratorService extends ServiceImpl<Seque
 
     protected int batchSize = 500;
 
-    public SequenceGenerator get(SequenceGenerator et) {
-        SequenceGenerator rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.SEQUENCE_GENERATOR.toString(),et.getId());
-        rt.copyTo(et,true);
-        return et;
-    }
-
-    public List<SequenceGenerator> getByEntities(List<SequenceGenerator> entities) {
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public SequenceGenerator getDraft(SequenceGenerator et) {
-        return et;
-    }
-
-    public Integer checkKey(SequenceGenerator et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<SequenceGenerator>lambdaQuery().eq(SequenceGenerator::getId, et.getId()))>0)?1:0;
-    }
-
     @Override
     @Transactional
     public boolean create(SequenceGenerator et) {
@@ -63,13 +43,13 @@ public abstract class AbstractSequenceGeneratorService extends ServiceImpl<Seque
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<SequenceGenerator> list) {
+    public boolean create(List<SequenceGenerator> list) {
         this.saveBatch(list, batchSize);
         return true;
     }
-
+	
     @Transactional
     public boolean update(SequenceGenerator et) {
         UpdateWrapper<SequenceGenerator> qw = et.getUpdateWrapper(true);
@@ -81,11 +61,43 @@ public abstract class AbstractSequenceGeneratorService extends ServiceImpl<Seque
     }
 
     @Transactional
-    public boolean updateBatch(List<SequenceGenerator> list) {
+    public boolean update(List<SequenceGenerator> list) {
         updateBatchById(list, batchSize);
         return true;
     }
+	
+   @Transactional
+    public boolean remove(SequenceGenerator et) {
+        if(!remove(Wrappers.<SequenceGenerator>lambdaQuery().eq(SequenceGenerator::getId, et.getId())))
+            return false;
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<SequenceGenerator> entities) {
+        this.baseMapper.deleteEntities(entities);
+        return true;
+    }		
+    public SequenceGenerator get(SequenceGenerator et) {
+        SequenceGenerator rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.SEQUENCE_GENERATOR.toString(),et.getId());
+        rt.copyTo(et,true);
+        return et;
+    }	
+
+    public List<SequenceGenerator> get(List<SequenceGenerator> entities) {
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public SequenceGenerator getDraft(SequenceGenerator et) {
+        return et;
+    }
+	
+    public Integer checkKey(SequenceGenerator et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<SequenceGenerator>lambdaQuery().eq(SequenceGenerator::getId, et.getId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(SequenceGenerator et) {
@@ -96,10 +108,10 @@ public abstract class AbstractSequenceGeneratorService extends ServiceImpl<Seque
     }
 
     @Transactional
-    public boolean saveBatch(List<SequenceGenerator> list) {
+    public boolean save(List<SequenceGenerator> list) {
         if(ObjectUtils.isEmpty(list))
             return true;
-        Map<String,SequenceGenerator> before = getByEntities(list).stream().collect(Collectors.toMap(SequenceGenerator::getId,e->e));
+        Map<String,SequenceGenerator> before = get(list).stream().collect(Collectors.toMap(SequenceGenerator::getId,e->e));
         List<SequenceGenerator> create = new ArrayList<>();
         List<SequenceGenerator> update = new ArrayList<>();
         list.forEach(sub->{
@@ -110,40 +122,24 @@ public abstract class AbstractSequenceGeneratorService extends ServiceImpl<Seque
         });
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
         else
             return true;
     }
-
-    @Transactional
-    public boolean remove(SequenceGenerator et) {
-        if(!remove(Wrappers.<SequenceGenerator>lambdaQuery().eq(SequenceGenerator::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<SequenceGenerator> entities) {
-        this.baseMapper.deleteEntities(entities);
-        return true;
-    }
-
-    public Page<SequenceGenerator> searchDefault(SequenceGeneratorSearchContext context) {
+	
+   public Page<SequenceGenerator> fetchDefault(SequenceGeneratorSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<SequenceGenerator> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<SequenceGenerator> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<SequenceGenerator> listDefault(SequenceGeneratorSearchContext context) {
+   public List<SequenceGenerator> listDefault(SequenceGeneratorSearchContext context) {
         List<SequenceGenerator> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
-    }
+   }
+	
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -163,8 +159,8 @@ public abstract class AbstractSequenceGeneratorService extends ServiceImpl<Seque
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return SequenceGeneratorMapper.class;
     }
@@ -173,4 +169,5 @@ public abstract class AbstractSequenceGeneratorService extends ServiceImpl<Seque
     protected Class currentModelClass() {
         return SequenceGenerator.class;
     }
+
 }

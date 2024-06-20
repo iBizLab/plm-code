@@ -62,6 +62,14 @@ public interface SearchAttachmentMapper extends BaseMapper<SearchAttachment> {
     List<SearchAttachment> listRelation(@Param("ctx") SearchAttachmentSearchContext context, @Param("ew") Wrapper<SearchAttachment> wrapper);
 
     /**
+    * 根据ownerId查询
+    *
+    * @param ownerIds
+    * @return
+    */
+    List<SearchAttachment> findByOwnerId(@Param("ownerIds") List<String> ownerIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -170,13 +178,4 @@ public interface SearchAttachmentMapper extends BaseMapper<SearchAttachment> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据ownerId查询
-     *
-     * @param ownerIds
-     * @return
-     */
-    List<SearchAttachment> findByOwnerId(@Param("ownerIds") List<String> ownerIds);
-
 }

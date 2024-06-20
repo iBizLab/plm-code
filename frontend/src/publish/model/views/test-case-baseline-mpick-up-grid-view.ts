@@ -88,9 +88,10 @@ export default {
           id: 'state',
         },
         {
-          clconvertMode: 'NONE',
+          clconvertMode: 'FRONT',
           dataItemName: 'review_result_state',
           excelCaption: '评审结果',
+          appCodeListId: 'plmweb.testmgmt__review_result',
           appDEFieldId: 'review_result_state',
           valueType: 'SIMPLE',
           aggMode: 'NONE',

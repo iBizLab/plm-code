@@ -40,131 +40,131 @@ public class Group extends EntityMP implements Serializable
 {
 
     /**
-     * 序号
-     */
+    * 序号
+    */
     @TableField(value = "sequence")
     @DEField(name = "sequence" , defaultValue = "1")
-    @JsonProperty("sequence")
     @JSONField(name = "sequence")
+    @JsonProperty("sequence")
     @ApiModelProperty(value = "sequence", notes = "序号")
     private BigDecimal sequence;
 
     /**
-     * 描述
-     */
+    * 描述
+    */
     @TableField(value = "description")
     @DEField(name = "description")
-    @JsonProperty("description")
     @JSONField(name = "description")
+    @JsonProperty("description")
     @ApiModelProperty(value = "description", notes = "描述")
     private String description;
 
     /**
-     * 团队头像
-     */
+    * 团队头像
+    */
     @TableField(value = "avatar")
     @DEField(name = "avatar")
-    @JsonProperty("avatar")
     @JSONField(name = "avatar")
+    @JsonProperty("avatar")
     @ApiModelProperty(value = "avatar", notes = "团队头像")
     private String avatar;
 
     /**
-     * 更新时间
-     */
-    @TableField(value = "update_time")
-    @DEField(name = "update_time" , preType = DEPredefinedFieldType.UPDATEDATE)
-    @JsonProperty("update_time")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "update_time", notes = "更新时间")
-    private Date updateTime;
-
-    /**
-     * 团队名称
-     */
-    @TableField(value = "name")
-    @DEField(name = "name")
-    @JsonProperty("name")
-    @JSONField(name = "name")
-    @ApiModelProperty(value = "name", notes = "团队名称")
-    private String name;
-
-    /**
-     * 标识
-     */
+    * 标识
+    */
     @Id
     @TableId(value = "id" , type = IdType.ASSIGN_UUID)
     @DEField(name = "id" , isKeyField = true)
-    @JsonProperty("id")
     @JSONField(name = "id")
+    @JsonProperty("id")
     @ApiModelProperty(value = "id", notes = "标识")
     private String id;
 
     /**
-     * 建立时间
-     */
-    @TableField(value = "create_time" , fill = FieldFill.INSERT)
-    @DEField(name = "create_time" , preType = DEPredefinedFieldType.CREATEDATE)
-    @JsonProperty("create_time")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "create_time", notes = "建立时间")
-    private Date createTime;
+    * 团队名称
+    */
+    @TableField(value = "name")
+    @DEField(name = "name")
+    @JSONField(name = "name")
+    @JsonProperty("name")
+    @ApiModelProperty(value = "name", notes = "团队名称")
+    private String name;
 
     /**
-     * 更新人
-     */
-    @TableField(value = "update_man")
-    @DEField(name = "update_man" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
-    @JsonProperty("update_man")
-    @JSONField(name = "update_man")
-    @ApiModelProperty(value = "update_man", notes = "更新人")
-    private String updateMan;
-
-    /**
-     * 建立人
-     */
+    * 建立人
+    */
     @TableField(value = "create_man" , fill = FieldFill.INSERT)
     @DEField(name = "create_man" , preType = DEPredefinedFieldType.CREATEMAN , dict = "SysOperator")
-    @JsonProperty("create_man")
     @JSONField(name = "create_man")
+    @JsonProperty("create_man")
     @ApiModelProperty(value = "create_man", notes = "建立人")
     private String createMan;
 
     /**
-     * 分组标识
-     */
+    * 建立时间
+    */
+    @TableField(value = "create_time" , fill = FieldFill.INSERT)
+    @DEField(name = "create_time" , preType = DEPredefinedFieldType.CREATEDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("create_time")
+    @ApiModelProperty(value = "create_time", notes = "建立时间")
+    private Date createTime;
+
+    /**
+    * 更新人
+    */
+    @TableField(value = "update_man")
+    @DEField(name = "update_man" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
+    @JSONField(name = "update_man")
+    @JsonProperty("update_man")
+    @ApiModelProperty(value = "update_man", notes = "更新人")
+    private String updateMan;
+
+    /**
+    * 更新时间
+    */
+    @TableField(value = "update_time")
+    @DEField(name = "update_time" , preType = DEPredefinedFieldType.UPDATEDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("update_time")
+    @ApiModelProperty(value = "update_time", notes = "更新时间")
+    private Date updateTime;
+
+    /**
+    * 分组标识
+    */
     @TableField(value = "section_id")
     @DEField(name = "section_id")
-    @JsonProperty("section_id")
     @JSONField(name = "section_id")
+    @JsonProperty("section_id")
     @ApiModelProperty(value = "section_id", notes = "分组标识")
     private String sectionId;
 
     /**
-     * 所属分组
-     */
+    * 所属分组
+    */
     @TableField(value = "section_name" , exist = false)
     @DEField(name = "section_name")
-    @JsonProperty("section_name")
     @JSONField(name = "section_name")
+    @JsonProperty("section_name")
     @ApiModelProperty(value = "section_name", notes = "所属分组")
     private String sectionName;
 
     /**
-     * 分组
-     */
+    * 分组
+    */
+    @Transient
+    @TableField(exist = false)
     @JsonIgnore
     @JSONField(serialize = false)
-    @TableField(exist = false)
-    @Transient
     @ApiModelProperty(value = "section", notes = "分组")
     private Section section;
 
     /**
-     * 设置 [序号]
-     */
+    * 设置 [序号]
+    */
     public Group setSequence(BigDecimal sequence) {
         this.sequence = sequence;
         this.modify("sequence", sequence);
@@ -172,8 +172,8 @@ public class Group extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [描述]
-     */
+    * 设置 [描述]
+    */
     public Group setDescription(String description) {
         this.description = description;
         this.modify("description", description);
@@ -181,8 +181,8 @@ public class Group extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [团队头像]
-     */
+    * 设置 [团队头像]
+    */
     public Group setAvatar(String avatar) {
         this.avatar = avatar;
         this.modify("avatar", avatar);
@@ -190,8 +190,8 @@ public class Group extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [团队名称]
-     */
+    * 设置 [团队名称]
+    */
     public Group setName(String name) {
         this.name = name;
         this.modify("name", name);
@@ -199,8 +199,8 @@ public class Group extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [分组标识]
-     */
+    * 设置 [分组标识]
+    */
     public Group setSectionId(String sectionId) {
         this.sectionId = sectionId;
         this.modify("section_id", sectionId);
@@ -208,13 +208,14 @@ public class Group extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [所属分组]
-     */
+    * 设置 [所属分组]
+    */
     public Group setSectionName(String sectionName) {
         this.sectionName = sectionName;
         this.modify("section_name", sectionName);
         return this;
     }
+
 
     /**
      * 复制当前对象数据到目标对象(粘贴重置)

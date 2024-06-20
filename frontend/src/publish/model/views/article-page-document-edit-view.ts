@@ -221,12 +221,12 @@ export default {
                       QUOTESCRIPT:
                         '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","icon":"${data.icon}"}`',
                       USERURL:
-                        "`${context.library ? `libraries/${context.library}/library_members/fetchdefault` : context.product ? `products/${context.product}/product_members/fetchdefault` : context.project ? `projects/${context.project}/project_members/fetchdefault` : ''}`",
+                        '`spaces/${context.space}/space_members/fetch_default`',
                       USERFIELDMAP: '{"id":"user_id","name":"name"}',
                       INSERTKEYS: '[{"index":5,"keys":["paintformat"]}]',
-                      QUOTEURL: '`recents/fetchrecent_access`',
+                      QUOTEURL: '`recents/fetch_recent_access`',
                     },
-                    editorStyle: 'COLLAPSE',
+                    editorStyle: 'COLLAPSE_WIKI',
                     editorType: 'HTMLEDITOR',
                     sysPFPluginId: 'comment',
                     placeHolder: '请输入内容',

@@ -43,6 +43,14 @@ public interface CaseHistoryMapper extends BaseMapper<CaseHistory> {
     List<CaseHistory> listDefault(@Param("ctx") CaseHistorySearchContext context, @Param("ew") Wrapper<CaseHistory> wrapper);
 
     /**
+    * 根据caseId查询
+    *
+    * @param caseIds
+    * @return
+    */
+    List<CaseHistory> findByCaseId(@Param("caseIds") List<String> caseIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -151,13 +159,4 @@ public interface CaseHistoryMapper extends BaseMapper<CaseHistory> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据caseId查询
-     *
-     * @param caseIds
-     * @return
-     */
-    List<CaseHistory> findByCaseId(@Param("caseIds") List<String> caseIds);
-
 }

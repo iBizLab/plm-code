@@ -7,10 +7,10 @@
 		<id property="id" column="id" /><!--主键字段映射-->
 		<result property="groupTag" column="group_tag" />
 		<result property="currentValue" column="current_value" />
-		<result property="updateTime" column="update_time" />
+		<result property="createMan" column="create_man" />
 		<result property="createTime" column="create_time" />
 		<result property="updateMan" column="update_man" />
-		<result property="createMan" column="create_man" />
+		<result property="updateTime" column="update_time" />
     </resultMap>
 
     <select id="selectById"  resultMap="SequenceGeneratorResultMap">

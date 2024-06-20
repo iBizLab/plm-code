@@ -70,6 +70,14 @@ public class SearchCommentSearchContext extends QueryWrapperContext<SearchCommen
     private String nameLIKE;
 
     /**
+     * 建立人EQ
+     */
+    @JsonProperty("n_create_man_eq")
+    @JSONField(name = "n_create_man_eq")
+    @ApiModelProperty("建立人EQ")
+    private String createManEQ;
+
+    /**
      * 建立时间GTANDEQ
      */
     @JsonProperty("n_create_time_gtandeq")
@@ -86,14 +94,6 @@ public class SearchCommentSearchContext extends QueryWrapperContext<SearchCommen
     @JSONField(name = "n_create_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
     @ApiModelProperty("建立时间LTANDEQ")
     private Date createTimeLTANDEQ;
-
-    /**
-     * 建立人EQ
-     */
-    @JsonProperty("n_create_man_eq")
-    @JSONField(name = "n_create_man_eq")
-    @ApiModelProperty("建立人EQ")
-    private String createManEQ;
 
     @Override
     public void setContextParentKey(Serializable contextParentKey) {

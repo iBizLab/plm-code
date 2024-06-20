@@ -1,0 +1,88 @@
+export default {
+  getDataAppDEActionId: 'getlinkurl',
+  redirectAppViewRefs: [
+    {
+      realTitle: '待办编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.SYS_TODO.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.sys_todo_edit_view',
+      name: 'SYS_TODO:EDITVIEW',
+      id: 'sys_todo:editview',
+    },
+    {
+      realTitle: '待办编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.SYS_TODO.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.sys_todo_edit_view',
+      name: 'EDITVIEW',
+      id: 'editview',
+    },
+  ],
+  typeAppDEFieldId: 'todoid',
+  enableCustomGetDataAction: true,
+  enableWorkflow: true,
+  funcViewMode: 'REDIRECTVIEW',
+  deviewCodeName: 'RedirectView',
+  deviewId: 'bd46a8fcaefb3eae720d2f3d50d0310f',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.SYS_TODO',
+  },
+  caption: '待办',
+  codeName: 'sys_todo_redirect_view',
+  appDataEntityId: 'plmweb.systodo',
+  appViewNavParams: [
+    {
+      rawValue: true,
+      key: 'srfapp',
+      value: 'PLMWeb',
+      id: 'srfapp',
+    },
+    {
+      rawValue: true,
+      key: 'todosubtype',
+      value: 'Todo',
+      id: 'todosubtype',
+    },
+  ],
+  controls: [
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.SYS_TODO',
+      },
+      caption: '待办',
+      codeName: 'redirect_view_captionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.systodo',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'redirect_view_captionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'layoutpanel',
+    controlStyle: 'APPDEREDIRECTVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.systodo',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '待办数据重定向视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.SYS_TODO.REDIRECTVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEREDIRECTVIEW',
+  enableDP: true,
+  redirectView: true,
+  showCaptionBar: true,
+  modelId: '2d6ad58090a134e225f23edef2a91f20',
+  modelType: 'PSAPPDEVIEW',
+  name: 'SysTodoRedirectView',
+  id: 'plmweb.sys_todo_redirect_view',
+};

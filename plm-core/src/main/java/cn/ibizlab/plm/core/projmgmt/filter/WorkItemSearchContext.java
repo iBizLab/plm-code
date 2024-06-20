@@ -55,6 +55,14 @@ public class WorkItemSearchContext extends QueryWrapperContext<WorkItem> {
     private Integer isArchivedEQ;
 
     /**
+     * 是否已归档IN
+     */
+    @JsonProperty("n_is_archived_in")
+    @JSONField(name = "n_is_archived_in")
+    @ApiModelProperty("是否已归档IN")
+    private String isArchivedIN;
+
+    /**
      * 标题LIKE
      */
     @JsonProperty("n_title_like")
@@ -69,6 +77,14 @@ public class WorkItemSearchContext extends QueryWrapperContext<WorkItem> {
     @JSONField(name = "n_is_deleted_eq")
     @ApiModelProperty("是否已删除EQ")
     private Integer isDeletedEQ;
+
+    /**
+     * 是否已删除IN
+     */
+    @JsonProperty("n_is_deleted_in")
+    @JSONField(name = "n_is_deleted_in")
+    @ApiModelProperty("是否已删除IN")
+    private String isDeletedIN;
 
     /**
      * 状态EQ
@@ -143,6 +159,46 @@ public class WorkItemSearchContext extends QueryWrapperContext<WorkItem> {
     private String assigneeIdEQ;
 
     /**
+     * 负责人IN
+     */
+    @JsonProperty("n_assignee_id_in")
+    @JSONField(name = "n_assignee_id_in")
+    @ApiModelProperty("负责人IN")
+    private String assigneeIdIN;
+
+    /**
+     * 负责人ISNOTNULL
+     */
+    @JsonProperty("n_assignee_id_isnotnull")
+    @JSONField(name = "n_assignee_id_isnotnull")
+    @ApiModelProperty("负责人ISNOTNULL")
+    private String assigneeIdISNOTNULL;
+
+    /**
+     * 负责人ISNULL
+     */
+    @JsonProperty("n_assignee_id_isnull")
+    @JSONField(name = "n_assignee_id_isnull")
+    @ApiModelProperty("负责人ISNULL")
+    private String assigneeIdISNULL;
+
+    /**
+     * 负责人NOTEQ
+     */
+    @JsonProperty("n_assignee_id_noteq")
+    @JSONField(name = "n_assignee_id_noteq")
+    @ApiModelProperty("负责人NOTEQ")
+    private String assigneeIdNOTEQ;
+
+    /**
+     * 负责人NOTIN
+     */
+    @JsonProperty("n_assignee_id_notin")
+    @JSONField(name = "n_assignee_id_notin")
+    @ApiModelProperty("负责人NOTIN")
+    private String assigneeIdNOTIN;
+
+    /**
      * 严重程度EQ
      */
     @JsonProperty("n_severity_eq")
@@ -165,6 +221,14 @@ public class WorkItemSearchContext extends QueryWrapperContext<WorkItem> {
     @JSONField(name = "n_work_item_type_group_eq")
     @ApiModelProperty("工作项类型分组EQ")
     private String workItemTypeGroupEQ;
+
+    /**
+     * 标签LIKE
+     */
+    @JsonProperty("n_tags_like")
+    @JSONField(name = "n_tags_like")
+    @ApiModelProperty("标签LIKE")
+    private String tagsLIKE;
 
     /**
      * 任务类别EQ
@@ -223,6 +287,14 @@ public class WorkItemSearchContext extends QueryWrapperContext<WorkItem> {
     private String attentionsNOTEXISTSuser_idEQ;
 
     /**
+     * 最近创建日期LTANDEQ
+     */
+    @JsonProperty("n_recent_create_days_ltandeq")
+    @JSONField(name = "n_recent_create_days_ltandeq")
+    @ApiModelProperty("最近创建日期LTANDEQ")
+    private Integer recentCreateDaysLTANDEQ;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
@@ -255,6 +327,54 @@ public class WorkItemSearchContext extends QueryWrapperContext<WorkItem> {
     private String idNOTEQ;
 
     /**
+     * 建立人EQ
+     */
+    @JsonProperty("n_create_man_eq")
+    @JSONField(name = "n_create_man_eq")
+    @ApiModelProperty("建立人EQ")
+    private String createManEQ;
+
+    /**
+     * 建立人IN
+     */
+    @JsonProperty("n_create_man_in")
+    @JSONField(name = "n_create_man_in")
+    @ApiModelProperty("建立人IN")
+    private String createManIN;
+
+    /**
+     * 建立人ISNOTNULL
+     */
+    @JsonProperty("n_create_man_isnotnull")
+    @JSONField(name = "n_create_man_isnotnull")
+    @ApiModelProperty("建立人ISNOTNULL")
+    private String createManISNOTNULL;
+
+    /**
+     * 建立人ISNULL
+     */
+    @JsonProperty("n_create_man_isnull")
+    @JSONField(name = "n_create_man_isnull")
+    @ApiModelProperty("建立人ISNULL")
+    private String createManISNULL;
+
+    /**
+     * 建立人NOTEQ
+     */
+    @JsonProperty("n_create_man_noteq")
+    @JSONField(name = "n_create_man_noteq")
+    @ApiModelProperty("建立人NOTEQ")
+    private String createManNOTEQ;
+
+    /**
+     * 建立人NOTIN
+     */
+    @JsonProperty("n_create_man_notin")
+    @JSONField(name = "n_create_man_notin")
+    @ApiModelProperty("建立人NOTIN")
+    private String createManNOTIN;
+
+    /**
      * 建立时间EQ
      */
     @JsonProperty("n_create_time_eq")
@@ -280,14 +400,6 @@ public class WorkItemSearchContext extends QueryWrapperContext<WorkItem> {
     @JSONField(name = "n_create_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
     @ApiModelProperty("建立时间LTANDEQ")
     private Date createTimeLTANDEQ;
-
-    /**
-     * 建立人EQ
-     */
-    @JsonProperty("n_create_man_eq")
-    @JSONField(name = "n_create_man_eq")
-    @ApiModelProperty("建立人EQ")
-    private String createManEQ;
 
     /**
      * 项目EQ
@@ -546,6 +658,8 @@ public class WorkItemSearchContext extends QueryWrapperContext<WorkItem> {
             this.getFilter().eq("top_id",contextParentKey);
         if(Entities.WORK_ITEM_TYPE.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("work_item_type_id",contextParentKey);
+        if(Entities.COMMON_FLOW.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("id",contextParentKey);
     }
 
     @Override

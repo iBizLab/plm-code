@@ -33,22 +33,6 @@ public abstract class AbstractAuthLogService implements AuthLogService {
 
     protected int batchSize = 500;
 
-    public AuthLog get(AuthLog et) {
-        return authLogFeignClient.getByLogId(et.getLogId());
-    }
-
-    public List<AuthLog> getByEntities(List<AuthLog> entities) {
-        return null;
-    }
-
-    public AuthLog getDraft(AuthLog et) {
-        return authLogFeignClient.getDraft(et);
-    }
-
-    public Integer checkKey(AuthLog et) {
-        return authLogFeignClient.checkKey(et);
-    }
-
     @Override
     @Transactional
     public boolean create(AuthLog et) {
@@ -56,11 +40,12 @@ public abstract class AbstractAuthLogService implements AuthLogService {
         rt.copyTo(et,true);
         return true;
     }
+	
     @Transactional
-    public boolean createBatch(List<AuthLog> list) {
+    public boolean create(List<AuthLog> list) {
         return authLogFeignClient.createBatch(list);
     }
-
+	
     @Transactional
     public boolean update(AuthLog et) {
         AuthLog rt = authLogFeignClient.updateByLogId(et.getLogId(), et);
@@ -69,38 +54,57 @@ public abstract class AbstractAuthLogService implements AuthLogService {
     }
 
     @Transactional
-    public boolean updateBatch(List<AuthLog> list) {
+    public boolean update(List<AuthLog> list) {
         return authLogFeignClient.updateBatch(list);
     }
-
-    @Transactional
-    public boolean save(AuthLog et) {
-        AuthLog rt =  authLogFeignClient.save(et);
-        rt.copyTo(et,true);
-        return true;
-    }
-
-    @Transactional
-    public boolean saveBatch(List<AuthLog> list) {
-        return authLogFeignClient.saveBatch(list);
-    }
-
-    @Transactional
+	
+   @Transactional
     public boolean remove(AuthLog et) {
         return authLogFeignClient.removeByLogId(et.getLogId());
     }
 
     @Transactional
-    public boolean removeByEntities(List<AuthLog> entities) {
-        return authLogFeignClient.removeBatch(entities.stream().map(e->e.getLogId()).collect(Collectors.toList()));
+    public boolean remove(List<AuthLog> entities) {
+       return authLogFeignClient.removeBatch(entities.stream().map(e->e.getLogId()).collect(Collectors.toList()));
+    }		
+
+    public AuthLog get(AuthLog et) {
+        return authLogFeignClient.getByLogId(et.getLogId());
+    }	
+
+    public List<AuthLog> get(List<AuthLog> entities) {
+        return null;
+    }	
+	
+    public AuthLog getDraft(AuthLog et) {
+        return authLogFeignClient.getDraft(et);
+    }
+	
+    public Integer checkKey(AuthLog et) {
+         return authLogFeignClient.checkKey(et);
+    }
+	
+    @Override
+    @Transactional
+    public boolean save(AuthLog et) {
+       AuthLog rt =  authLogFeignClient.save(et);
+        rt.copyTo(et,true);
+        return true;
     }
 
-    public Page<AuthLog> searchDefault(AuthLogSearchContext context) {
+    @Transactional
+    public boolean save(List<AuthLog> list) {
+        return authLogFeignClient.saveBatch(list);
+    }
+	
+     public Page<AuthLog> fetchDefault(AuthLogSearchContext context) {
         return authLogFeignClient.fetchDefault(context);
     }
+	
     public List<AuthLog> listDefault(AuthLogSearchContext context) {
         context.setSize(Short.MAX_VALUE);
-        return searchDefault(context).getContent();
+        return fetchDefault(context).getContent();
     }
+	
 
 }

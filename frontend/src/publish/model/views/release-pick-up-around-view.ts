@@ -82,7 +82,7 @@ export default {
               parentDER1N: {
                 masterRS: 32,
                 pickupDEFName: 'SECTION_ID',
-                removeActionType: 1,
+                removeActionType: 2,
                 codeName: 'section',
                 dertype: 'DER1N',
                 logicName: '分组-类别',

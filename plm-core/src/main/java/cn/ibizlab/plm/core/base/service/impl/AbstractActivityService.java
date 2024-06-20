@@ -35,26 +35,6 @@ public abstract class AbstractActivityService extends ServiceImpl<ActivityMapper
 
     protected int batchSize = 500;
 
-    public Activity get(Activity et) {
-        Activity rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.ACTIVITY.toString(),et.getId());
-        rt.copyTo(et,true);
-        return et;
-    }
-
-    public List<Activity> getByEntities(List<Activity> entities) {
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public Activity getDraft(Activity et) {
-        return et;
-    }
-
-    public Integer checkKey(Activity et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Activity>lambdaQuery().eq(Activity::getId, et.getId()))>0)?1:0;
-    }
-
     @Override
     @Transactional
     public boolean create(Activity et) {
@@ -63,13 +43,13 @@ public abstract class AbstractActivityService extends ServiceImpl<ActivityMapper
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<Activity> list) {
+    public boolean create(List<Activity> list) {
         this.saveBatch(list, batchSize);
         return true;
     }
-
+	
     @Transactional
     public boolean update(Activity et) {
         UpdateWrapper<Activity> qw = et.getUpdateWrapper(true);
@@ -81,11 +61,43 @@ public abstract class AbstractActivityService extends ServiceImpl<ActivityMapper
     }
 
     @Transactional
-    public boolean updateBatch(List<Activity> list) {
+    public boolean update(List<Activity> list) {
         updateBatchById(list, batchSize);
         return true;
     }
+	
+   @Transactional
+    public boolean remove(Activity et) {
+        if(!remove(Wrappers.<Activity>lambdaQuery().eq(Activity::getId, et.getId())))
+            return false;
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<Activity> entities) {
+        this.baseMapper.deleteEntities(entities);
+        return true;
+    }		
+    public Activity get(Activity et) {
+        Activity rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.ACTIVITY.toString(),et.getId());
+        rt.copyTo(et,true);
+        return et;
+    }	
+
+    public List<Activity> get(List<Activity> entities) {
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public Activity getDraft(Activity et) {
+        return et;
+    }
+	
+    public Integer checkKey(Activity et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Activity>lambdaQuery().eq(Activity::getId, et.getId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(Activity et) {
@@ -96,10 +108,10 @@ public abstract class AbstractActivityService extends ServiceImpl<ActivityMapper
     }
 
     @Transactional
-    public boolean saveBatch(List<Activity> list) {
+    public boolean save(List<Activity> list) {
         if(ObjectUtils.isEmpty(list))
             return true;
-        Map<String,Activity> before = getByEntities(list).stream().collect(Collectors.toMap(Activity::getId,e->e));
+        Map<String,Activity> before = get(list).stream().collect(Collectors.toMap(Activity::getId,e->e));
         List<Activity> create = new ArrayList<>();
         List<Activity> update = new ArrayList<>();
         list.forEach(sub->{
@@ -110,51 +122,35 @@ public abstract class AbstractActivityService extends ServiceImpl<ActivityMapper
         });
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
         else
             return true;
     }
-
-    @Transactional
-    public boolean remove(Activity et) {
-        if(!remove(Wrappers.<Activity>lambdaQuery().eq(Activity::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<Activity> entities) {
-        this.baseMapper.deleteEntities(entities);
-        return true;
-    }
-
-    public Page<Activity> searchAll(ActivitySearchContext context) {
+	
+   public Page<Activity> fetchAll(ActivitySearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Activity> pages=baseMapper.searchAll(context.getPages(),context,context.getSelectCond());
         List<Activity> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Activity> listAll(ActivitySearchContext context) {
+   public List<Activity> listAll(ActivitySearchContext context) {
         List<Activity> list = baseMapper.listAll(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Activity> searchDefault(ActivitySearchContext context) {
+   }
+	
+   public Page<Activity> fetchDefault(ActivitySearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Activity> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<Activity> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Activity> listDefault(ActivitySearchContext context) {
+   public List<Activity> listDefault(ActivitySearchContext context) {
         List<Activity> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
-    }
+   }
+	
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -174,8 +170,8 @@ public abstract class AbstractActivityService extends ServiceImpl<ActivityMapper
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return ActivityMapper.class;
     }
@@ -184,4 +180,5 @@ public abstract class AbstractActivityService extends ServiceImpl<ActivityMapper
     protected Class currentModelClass() {
         return Activity.class;
     }
+
 }

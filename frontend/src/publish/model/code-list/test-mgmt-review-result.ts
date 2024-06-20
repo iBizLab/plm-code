@@ -6,18 +6,21 @@ export default {
   codeItems: [
     {
       codeName: 'item_2',
+      color: '#C6CACD',
       text: '未评审',
       value: '2',
       id: 'item_2',
     },
     {
       codeName: 'item_3',
+      color: '#3BB346',
       text: '通过',
       value: '3',
       id: 'item_3',
     },
     {
       codeName: 'item_4',
+      color: '#F9391F',
       text: '拒绝',
       value: '4',
       id: 'item_4',

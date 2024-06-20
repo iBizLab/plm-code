@@ -31,11 +31,11 @@ import io.swagger.annotations.ApiModelProperty;
 public class ReleaseFilterDTO extends FilterBase implements Serializable {
 
     /**
-     * 状态EQ
+     * 阶段EQ
      */
     @JsonProperty("n_status_eq")
     @JSONField(name = "n_status_eq")
-    @ApiModelProperty(value = "状态EQ", position = 40)
+    @ApiModelProperty(value = "阶段EQ", position = 40)
 	private String statusEQ;
 
     /**
@@ -47,27 +47,27 @@ public class ReleaseFilterDTO extends FilterBase implements Serializable {
 	private String categoriesLIKE;
 
     /**
-     * 名称LIKE
-     */
-    @JsonProperty("n_name_like")
-    @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 80)
-	private String nameLIKE;
-
-    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 110)
+    @ApiModelProperty(value = "标识EQ", position = 90)
 	private String idEQ;
+
+    /**
+     * 名称LIKE
+     */
+    @JsonProperty("n_name_like")
+    @JSONField(name = "n_name_like")
+    @ApiModelProperty(value = "名称LIKE", position = 100)
+	private String nameLIKE;
 
     /**
      * 项目标识EQ
      */
     @JsonProperty("n_project_id_eq")
     @JSONField(name = "n_project_id_eq")
-    @ApiModelProperty(value = "项目标识EQ", position = 140)
+    @ApiModelProperty(value = "项目标识EQ", position = 150)
 	private String projectIdEQ;
 
     /**
@@ -75,7 +75,7 @@ public class ReleaseFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_project_name_eq")
     @JSONField(name = "n_project_name_eq")
-    @ApiModelProperty(value = "项目名称EQ", position = 150)
+    @ApiModelProperty(value = "项目名称EQ", position = 160)
 	private String projectNameEQ;
 
     /**
@@ -83,7 +83,7 @@ public class ReleaseFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_project_name_like")
     @JSONField(name = "n_project_name_like")
-    @ApiModelProperty(value = "项目名称LIKE", position = 151)
+    @ApiModelProperty(value = "项目名称LIKE", position = 161)
 	private String projectNameLIKE;
 
 

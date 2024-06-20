@@ -10,8 +10,8 @@
         <result property="steps" column="steps" jdbcType="VARCHAR" typeHandler="cn.ibizlab.plm.core.testmgmt.domain.handlers.StepTypeHandler" />
 		<result property="executorId" column="executor_id" />
 		<result property="executorName" column="executor_name" />
-		<result property="createTime" column="create_time" />
 		<result property="createMan" column="create_man" />
+		<result property="createTime" column="create_time" />
 		<result property="updateMan" column="update_man" />
 		<result property="updateTime" column="update_time" />
 		<result property="runId" column="run_id" />

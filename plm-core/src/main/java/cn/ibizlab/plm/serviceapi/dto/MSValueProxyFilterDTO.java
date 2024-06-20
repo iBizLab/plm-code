@@ -43,7 +43,7 @@ public class MSValueProxyFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_msvalueproxyname_like")
     @JSONField(name = "n_msvalueproxyname_like")
-    @ApiModelProperty(value = "主状态值代理名称LIKE", position = 40)
+    @ApiModelProperty(value = "主状态值代理名称LIKE", position = 30)
 	private String msValueProxyNameLIKE;
 
 

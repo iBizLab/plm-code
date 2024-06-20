@@ -40,6 +40,11 @@ export default {
           name: '访问',
           id: 'usrdrgroup0407620995',
         },
+        {
+          caption: '通知',
+          name: '通知',
+          id: 'usrdrgroup0507554642',
+        },
       ],
       showTitle: true,
       editItemCapLanguageRes: {
@@ -64,6 +69,12 @@ export default {
           caption: '登录日志',
           appViewId: 'plmweb.login_log_grid_view',
           id: 'login',
+        },
+        {
+          dedrbarGroupId: 'usrdrgroup0507554642',
+          caption: '通知设置',
+          appViewId: 'plmweb.notify_setting_config_view',
+          id: 'notice',
         },
       ],
       uniqueTag: 'user_setting_view__drbar',

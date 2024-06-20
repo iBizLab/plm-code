@@ -100,6 +100,25 @@ public interface WorkloadMapper extends BaseMapper<Workload> {
     List<Workload> listLog(@Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
 
     /**
+     * 数据集合member_dimension分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Workload> searchMemberDimension(IPage<Workload> page, @Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
+    
+    /**
+     * 数据集合member_dimension查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Workload> listMemberDimension(@Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
+
+    /**
      * 数据集合my_calendar分页查询
      * 
      * @param page
@@ -271,6 +290,22 @@ public interface WorkloadMapper extends BaseMapper<Workload> {
     List<Workload> listWorkItemWorkload(@Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
 
     /**
+    * 根据typeId查询
+    *
+    * @param typeIds
+    * @return
+    */
+    List<Workload> findByTypeId(@Param("typeIds") List<String> typeIds);
+
+    /**
+    * 根据principalId查询
+    *
+    * @param principalIds
+    * @return
+    */
+    List<Workload> findByPrincipalId(@Param("principalIds") List<String> principalIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -379,21 +414,4 @@ public interface WorkloadMapper extends BaseMapper<Workload> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据typeId查询
-     *
-     * @param typeIds
-     * @return
-     */
-    List<Workload> findByTypeId(@Param("typeIds") List<String> typeIds);
-
-    /**
-     * 根据principalId查询
-     *
-     * @param principalIds
-     * @return
-     */
-    List<Workload> findByPrincipalId(@Param("principalIds") List<String> principalIds);
-
 }

@@ -97,6 +97,7 @@ export default {
               parentDER1N: {
                 masterRS: 48,
                 pickupDEFName: 'PID',
+                removeActionType: 1,
                 recursiveRS: true,
                 codeName: 'test_suite',
                 dertype: 'DER1N',
@@ -126,6 +127,7 @@ export default {
               parentDER1N: {
                 masterRS: 48,
                 pickupDEFName: 'PID',
+                removeActionType: 1,
                 recursiveRS: true,
                 codeName: 'test_suite',
                 dertype: 'DER1N',

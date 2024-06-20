@@ -20,6 +20,13 @@ export default {
       id: 'engine',
     },
   ],
+  appViewNavParams: [
+    {
+      key: 'work_item',
+      value: 'work_item',
+      id: 'work_item',
+    },
+  ],
   controls: [
     {
       aggMode: 'NONE',

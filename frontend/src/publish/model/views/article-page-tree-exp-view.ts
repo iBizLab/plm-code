@@ -490,12 +490,91 @@ export default {
                   {
                     actionLevel: 100,
                     noPrivDisplayMode: 2,
+                    uiactionId: 'create_child_document@article_page',
+                    uiactionTarget: 'NONE',
+                    valid: true,
+                    caption: '新建子文档',
+                    itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction3',
+                        logicTag: 'draft_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!context.srfreadonly',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction3',
+                      },
+                    ],
+                    sysImage: {
+                      cssClass: 'fa fa-file-text-o',
+                      glyph: 'xf0f6@FontAwesome',
+                    },
+                    tooltip: '新建子文档',
+                    showCaption: true,
+                    showIcon: true,
+                    id: 'deuiaction3',
+                  },
+                  {
+                    actionLevel: 100,
+                    noPrivDisplayMode: 2,
+                    uiactionId:
+                      'toolbar_tree_exp_view_draft_cm_deuiaction4_click@article_page',
+                    uiactionTarget: 'SINGLEDATA',
+                    valid: true,
+                    caption: '新建子分组',
+                    itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction4',
+                        logicTag: 'draft_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!context.srfreadonly',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction4',
+                      },
+                    ],
+                    sysImage: {
+                      cssClass: 'fa fa-folder-o',
+                      glyph: 'xf114@FontAwesome',
+                    },
+                    tooltip: '新建子分组',
+                    showCaption: true,
+                    showIcon: true,
+                    id: 'deuiaction4',
+                  },
+                  {
+                    itemType: 'SEPERATOR',
+                    controlLogics: [
+                      {
+                        itemName: 'seperator1',
+                        logicTag: 'draft_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!context.srfreadonly',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'seperator1',
+                      },
+                    ],
+                    id: 'seperator1',
+                  },
+                  {
+                    actionLevel: 100,
+                    noPrivDisplayMode: 2,
                     uiactionId:
                       'toolbar_tree_exp_view_draft_cm_deuiaction2_click@article_page',
                     uiactionTarget: 'SINGLEDATA',
                     valid: true,
                     caption: '重命名',
                     itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction2',
+                        logicTag: 'draft_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!context.srfreadonly',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction2',
+                      },
+                    ],
                     sysImage: {
                       cssClass: 'fa fa-edit',
                       glyph: 'xf044@FontAwesome',
@@ -514,6 +593,16 @@ export default {
                     valid: true,
                     caption: '删除',
                     itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction1',
+                        logicTag: 'draft_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!context.srfreadonly',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction1',
+                      },
+                    ],
                     sysImage: {
                       cssClass: 'fa fa-trash-o',
                       glyph: 'xf014@FontAwesome',
@@ -598,12 +687,91 @@ export default {
                   {
                     actionLevel: 100,
                     noPrivDisplayMode: 2,
+                    uiactionId: 'create_child_document@article_page',
+                    uiactionTarget: 'NONE',
+                    valid: true,
+                    caption: '新建子文档',
+                    itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction3',
+                        logicTag: 'node_1_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!context.srfreadonly',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction3',
+                      },
+                    ],
+                    sysImage: {
+                      cssClass: 'fa fa-file-text-o',
+                      glyph: 'xf0f6@FontAwesome',
+                    },
+                    tooltip: '新建子文档',
+                    showCaption: true,
+                    showIcon: true,
+                    id: 'deuiaction3',
+                  },
+                  {
+                    actionLevel: 100,
+                    noPrivDisplayMode: 2,
+                    uiactionId:
+                      'toolbar_tree_exp_view_node1_cm_deuiaction4_click@article_page',
+                    uiactionTarget: 'SINGLEDATA',
+                    valid: true,
+                    caption: '新建子分组',
+                    itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction4',
+                        logicTag: 'node_1_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!context.srfreadonly',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction4',
+                      },
+                    ],
+                    sysImage: {
+                      cssClass: 'fa fa-folder-o',
+                      glyph: 'xf114@FontAwesome',
+                    },
+                    tooltip: '新建子分组',
+                    showCaption: true,
+                    showIcon: true,
+                    id: 'deuiaction4',
+                  },
+                  {
+                    itemType: 'SEPERATOR',
+                    controlLogics: [
+                      {
+                        itemName: 'seperator1',
+                        logicTag: 'node_1_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!context.srfreadonly',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'seperator1',
+                      },
+                    ],
+                    id: 'seperator1',
+                  },
+                  {
+                    actionLevel: 100,
+                    noPrivDisplayMode: 2,
                     uiactionId:
                       'toolbar_tree_exp_view_node1_cm_deuiaction2_click@article_page',
                     uiactionTarget: 'SINGLEDATA',
                     valid: true,
                     caption: '重命名',
                     itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction2',
+                        logicTag: 'node_1_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!context.srfreadonly',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction2',
+                      },
+                    ],
                     sysImage: {
                       cssClass: 'fa fa-edit',
                       glyph: 'xf044@FontAwesome',
@@ -622,6 +790,16 @@ export default {
                     valid: true,
                     caption: '删除',
                     itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction1',
+                        logicTag: 'node_1_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!context.srfreadonly',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction1',
+                      },
+                    ],
                     sysImage: {
                       cssClass: 'fa fa-trash-o',
                       glyph: 'xf014@FontAwesome',
@@ -674,12 +852,91 @@ export default {
                   {
                     actionLevel: 100,
                     noPrivDisplayMode: 2,
+                    uiactionId: 'create_child_document@article_page',
+                    uiactionTarget: 'NONE',
+                    valid: true,
+                    caption: '新建子文档',
+                    itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction3',
+                        logicTag: 'node_2_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!context.srfreadonly',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction3',
+                      },
+                    ],
+                    sysImage: {
+                      cssClass: 'fa fa-file-text-o',
+                      glyph: 'xf0f6@FontAwesome',
+                    },
+                    tooltip: '新建子文档',
+                    showCaption: true,
+                    showIcon: true,
+                    id: 'deuiaction3',
+                  },
+                  {
+                    actionLevel: 100,
+                    noPrivDisplayMode: 2,
+                    uiactionId:
+                      'toolbar_tree_exp_view_node2_cm_deuiaction4_click@article_page',
+                    uiactionTarget: 'SINGLEDATA',
+                    valid: true,
+                    caption: '新建子分组',
+                    itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction4',
+                        logicTag: 'node_2_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!context.srfreadonly',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction4',
+                      },
+                    ],
+                    sysImage: {
+                      cssClass: 'fa fa-folder-o',
+                      glyph: 'xf114@FontAwesome',
+                    },
+                    tooltip: '新建子分组',
+                    showCaption: true,
+                    showIcon: true,
+                    id: 'deuiaction4',
+                  },
+                  {
+                    itemType: 'SEPERATOR',
+                    controlLogics: [
+                      {
+                        itemName: 'seperator1',
+                        logicTag: 'node_2_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!context.srfreadonly',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'seperator1',
+                      },
+                    ],
+                    id: 'seperator1',
+                  },
+                  {
+                    actionLevel: 100,
+                    noPrivDisplayMode: 2,
                     uiactionId:
                       'toolbar_tree_exp_view_node2_cm_deuiaction2_click@article_page',
                     uiactionTarget: 'SINGLEDATA',
                     valid: true,
                     caption: '重命名',
                     itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction2',
+                        logicTag: 'node_2_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!context.srfreadonly',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction2',
+                      },
+                    ],
                     sysImage: {
                       cssClass: 'fa fa-edit',
                       glyph: 'xf044@FontAwesome',
@@ -698,6 +955,16 @@ export default {
                     valid: true,
                     caption: '删除',
                     itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction1',
+                        logicTag: 'node_2_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!context.srfreadonly',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction1',
+                      },
+                    ],
                     sysImage: {
                       cssClass: 'fa fa-trash-o',
                       glyph: 'xf014@FontAwesome',
@@ -749,12 +1016,91 @@ export default {
                   {
                     actionLevel: 100,
                     noPrivDisplayMode: 2,
+                    uiactionId: 'create_child_document@article_page',
+                    uiactionTarget: 'NONE',
+                    valid: true,
+                    caption: '新建子文档',
+                    itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction3',
+                        logicTag: 'node_3_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!context.srfreadonly',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction3',
+                      },
+                    ],
+                    sysImage: {
+                      cssClass: 'fa fa-file-text-o',
+                      glyph: 'xf0f6@FontAwesome',
+                    },
+                    tooltip: '新建子文档',
+                    showCaption: true,
+                    showIcon: true,
+                    id: 'deuiaction3',
+                  },
+                  {
+                    actionLevel: 100,
+                    noPrivDisplayMode: 2,
+                    uiactionId:
+                      'toolbar_tree_exp_view_node3_cm_deuiaction4_click@article_page',
+                    uiactionTarget: 'SINGLEDATA',
+                    valid: true,
+                    caption: '新建子分组',
+                    itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction4',
+                        logicTag: 'node_3_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!context.srfreadonly',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction4',
+                      },
+                    ],
+                    sysImage: {
+                      cssClass: 'fa fa-folder-o',
+                      glyph: 'xf114@FontAwesome',
+                    },
+                    tooltip: '新建子分组',
+                    showCaption: true,
+                    showIcon: true,
+                    id: 'deuiaction4',
+                  },
+                  {
+                    itemType: 'SEPERATOR',
+                    controlLogics: [
+                      {
+                        itemName: 'seperator1',
+                        logicTag: 'node_3_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!context.srfreadonly',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'seperator1',
+                      },
+                    ],
+                    id: 'seperator1',
+                  },
+                  {
+                    actionLevel: 100,
+                    noPrivDisplayMode: 2,
                     uiactionId:
                       'toolbar_tree_exp_view_node3_cm_deuiaction2_click@article_page',
                     uiactionTarget: 'SINGLEDATA',
                     valid: true,
                     caption: '重命名',
                     itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction2',
+                        logicTag: 'node_3_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!context.srfreadonly',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction2',
+                      },
+                    ],
                     sysImage: {
                       cssClass: 'fa fa-edit',
                       glyph: 'xf044@FontAwesome',
@@ -773,6 +1119,16 @@ export default {
                     valid: true,
                     caption: '删除',
                     itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction1',
+                        logicTag: 'node_3_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!context.srfreadonly',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction1',
+                      },
+                    ],
                     sysImage: {
                       cssClass: 'fa fa-trash-o',
                       glyph: 'xf014@FontAwesome',
@@ -824,12 +1180,91 @@ export default {
                   {
                     actionLevel: 100,
                     noPrivDisplayMode: 2,
+                    uiactionId: 'create_child_document@article_page',
+                    uiactionTarget: 'NONE',
+                    valid: true,
+                    caption: '新建子文档',
+                    itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction3',
+                        logicTag: 'node_4_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!context.srfreadonly',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction3',
+                      },
+                    ],
+                    sysImage: {
+                      cssClass: 'fa fa-file-text-o',
+                      glyph: 'xf0f6@FontAwesome',
+                    },
+                    tooltip: '新建子文档',
+                    showCaption: true,
+                    showIcon: true,
+                    id: 'deuiaction3',
+                  },
+                  {
+                    actionLevel: 100,
+                    noPrivDisplayMode: 2,
+                    uiactionId:
+                      'toolbar_tree_exp_view_node4_cm_deuiaction4_click@article_page',
+                    uiactionTarget: 'SINGLEDATA',
+                    valid: true,
+                    caption: '新建子分组',
+                    itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction4',
+                        logicTag: 'node_4_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!context.srfreadonly',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction4',
+                      },
+                    ],
+                    sysImage: {
+                      cssClass: 'fa fa-folder-o',
+                      glyph: 'xf114@FontAwesome',
+                    },
+                    tooltip: '新建子分组',
+                    showCaption: true,
+                    showIcon: true,
+                    id: 'deuiaction4',
+                  },
+                  {
+                    itemType: 'SEPERATOR',
+                    controlLogics: [
+                      {
+                        itemName: 'seperator1',
+                        logicTag: 'node_4_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!context.srfreadonly',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'seperator1',
+                      },
+                    ],
+                    id: 'seperator1',
+                  },
+                  {
+                    actionLevel: 100,
+                    noPrivDisplayMode: 2,
                     uiactionId:
                       'toolbar_tree_exp_view_node4_cm_deuiaction2_click@article_page',
                     uiactionTarget: 'SINGLEDATA',
                     valid: true,
                     caption: '重命名',
                     itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction2',
+                        logicTag: 'node_4_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!context.srfreadonly',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction2',
+                      },
+                    ],
                     sysImage: {
                       cssClass: 'fa fa-edit',
                       glyph: 'xf044@FontAwesome',
@@ -848,6 +1283,16 @@ export default {
                     valid: true,
                     caption: '删除',
                     itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction1',
+                        logicTag: 'node_4_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!context.srfreadonly',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction1',
+                      },
+                    ],
                     sysImage: {
                       cssClass: 'fa fa-trash-o',
                       glyph: 'xf014@FontAwesome',
@@ -900,12 +1345,91 @@ export default {
                   {
                     actionLevel: 100,
                     noPrivDisplayMode: 2,
+                    uiactionId: 'create_child_document@article_page',
+                    uiactionTarget: 'NONE',
+                    valid: true,
+                    caption: '新建子文档',
+                    itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction3',
+                        logicTag: 'node_5_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!context.srfreadonly',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction3',
+                      },
+                    ],
+                    sysImage: {
+                      cssClass: 'fa fa-file-text-o',
+                      glyph: 'xf0f6@FontAwesome',
+                    },
+                    tooltip: '新建子文档',
+                    showCaption: true,
+                    showIcon: true,
+                    id: 'deuiaction3',
+                  },
+                  {
+                    actionLevel: 100,
+                    noPrivDisplayMode: 2,
+                    uiactionId:
+                      'toolbar_tree_exp_view_node5_cm_deuiaction4_click@article_page',
+                    uiactionTarget: 'SINGLEDATA',
+                    valid: true,
+                    caption: '新建子分组',
+                    itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction4',
+                        logicTag: 'node_5_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!context.srfreadonly',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction4',
+                      },
+                    ],
+                    sysImage: {
+                      cssClass: 'fa fa-folder-o',
+                      glyph: 'xf114@FontAwesome',
+                    },
+                    tooltip: '新建子分组',
+                    showCaption: true,
+                    showIcon: true,
+                    id: 'deuiaction4',
+                  },
+                  {
+                    itemType: 'SEPERATOR',
+                    controlLogics: [
+                      {
+                        itemName: 'seperator1',
+                        logicTag: 'node_5_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!context.srfreadonly',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'seperator1',
+                      },
+                    ],
+                    id: 'seperator1',
+                  },
+                  {
+                    actionLevel: 100,
+                    noPrivDisplayMode: 2,
                     uiactionId:
                       'toolbar_tree_exp_view_node5_cm_deuiaction2_click@article_page',
                     uiactionTarget: 'SINGLEDATA',
                     valid: true,
                     caption: '重命名',
                     itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction2',
+                        logicTag: 'node_5_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!context.srfreadonly',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction2',
+                      },
+                    ],
                     sysImage: {
                       cssClass: 'fa fa-edit',
                       glyph: 'xf044@FontAwesome',
@@ -924,6 +1448,16 @@ export default {
                     valid: true,
                     caption: '删除',
                     itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction1',
+                        logicTag: 'node_5_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: '!context.srfreadonly',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction1',
+                      },
+                    ],
                     sysImage: {
                       cssClass: 'fa fa-trash-o',
                       glyph: 'xf014@FontAwesome',
@@ -992,12 +1526,91 @@ export default {
                 {
                   actionLevel: 100,
                   noPrivDisplayMode: 2,
+                  uiactionId: 'create_child_document@article_page',
+                  uiactionTarget: 'NONE',
+                  valid: true,
+                  caption: '新建子文档',
+                  itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction3',
+                      logicTag: 'node_2_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction3',
+                    },
+                  ],
+                  sysImage: {
+                    cssClass: 'fa fa-file-text-o',
+                    glyph: 'xf0f6@FontAwesome',
+                  },
+                  tooltip: '新建子文档',
+                  showCaption: true,
+                  showIcon: true,
+                  id: 'deuiaction3',
+                },
+                {
+                  actionLevel: 100,
+                  noPrivDisplayMode: 2,
+                  uiactionId:
+                    'toolbar_tree_exp_view_node2_cm_deuiaction4_click@article_page',
+                  uiactionTarget: 'SINGLEDATA',
+                  valid: true,
+                  caption: '新建子分组',
+                  itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction4',
+                      logicTag: 'node_2_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction4',
+                    },
+                  ],
+                  sysImage: {
+                    cssClass: 'fa fa-folder-o',
+                    glyph: 'xf114@FontAwesome',
+                  },
+                  tooltip: '新建子分组',
+                  showCaption: true,
+                  showIcon: true,
+                  id: 'deuiaction4',
+                },
+                {
+                  itemType: 'SEPERATOR',
+                  controlLogics: [
+                    {
+                      itemName: 'seperator1',
+                      logicTag: 'node_2_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'seperator1',
+                    },
+                  ],
+                  id: 'seperator1',
+                },
+                {
+                  actionLevel: 100,
+                  noPrivDisplayMode: 2,
                   uiactionId:
                     'toolbar_tree_exp_view_node2_cm_deuiaction2_click@article_page',
                   uiactionTarget: 'SINGLEDATA',
                   valid: true,
                   caption: '重命名',
                   itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction2',
+                      logicTag: 'node_2_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction2',
+                    },
+                  ],
                   sysImage: {
                     cssClass: 'fa fa-edit',
                     glyph: 'xf044@FontAwesome',
@@ -1016,6 +1629,16 @@ export default {
                   valid: true,
                   caption: '删除',
                   itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction1',
+                      logicTag: 'node_2_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction1',
+                    },
+                  ],
                   sysImage: {
                     cssClass: 'fa fa-trash-o',
                     glyph: 'xf014@FontAwesome',
@@ -1043,12 +1666,91 @@ export default {
                 {
                   actionLevel: 100,
                   noPrivDisplayMode: 2,
+                  uiactionId: 'create_child_document@article_page',
+                  uiactionTarget: 'NONE',
+                  valid: true,
+                  caption: '新建子文档',
+                  itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction3',
+                      logicTag: 'node_3_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction3',
+                    },
+                  ],
+                  sysImage: {
+                    cssClass: 'fa fa-file-text-o',
+                    glyph: 'xf0f6@FontAwesome',
+                  },
+                  tooltip: '新建子文档',
+                  showCaption: true,
+                  showIcon: true,
+                  id: 'deuiaction3',
+                },
+                {
+                  actionLevel: 100,
+                  noPrivDisplayMode: 2,
+                  uiactionId:
+                    'toolbar_tree_exp_view_node3_cm_deuiaction4_click@article_page',
+                  uiactionTarget: 'SINGLEDATA',
+                  valid: true,
+                  caption: '新建子分组',
+                  itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction4',
+                      logicTag: 'node_3_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction4',
+                    },
+                  ],
+                  sysImage: {
+                    cssClass: 'fa fa-folder-o',
+                    glyph: 'xf114@FontAwesome',
+                  },
+                  tooltip: '新建子分组',
+                  showCaption: true,
+                  showIcon: true,
+                  id: 'deuiaction4',
+                },
+                {
+                  itemType: 'SEPERATOR',
+                  controlLogics: [
+                    {
+                      itemName: 'seperator1',
+                      logicTag: 'node_3_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'seperator1',
+                    },
+                  ],
+                  id: 'seperator1',
+                },
+                {
+                  actionLevel: 100,
+                  noPrivDisplayMode: 2,
                   uiactionId:
                     'toolbar_tree_exp_view_node3_cm_deuiaction2_click@article_page',
                   uiactionTarget: 'SINGLEDATA',
                   valid: true,
                   caption: '重命名',
                   itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction2',
+                      logicTag: 'node_3_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction2',
+                    },
+                  ],
                   sysImage: {
                     cssClass: 'fa fa-edit',
                     glyph: 'xf044@FontAwesome',
@@ -1067,6 +1769,16 @@ export default {
                   valid: true,
                   caption: '删除',
                   itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction1',
+                      logicTag: 'node_3_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction1',
+                    },
+                  ],
                   sysImage: {
                     cssClass: 'fa fa-trash-o',
                     glyph: 'xf014@FontAwesome',
@@ -1094,12 +1806,91 @@ export default {
                 {
                   actionLevel: 100,
                   noPrivDisplayMode: 2,
+                  uiactionId: 'create_child_document@article_page',
+                  uiactionTarget: 'NONE',
+                  valid: true,
+                  caption: '新建子文档',
+                  itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction3',
+                      logicTag: 'node_5_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction3',
+                    },
+                  ],
+                  sysImage: {
+                    cssClass: 'fa fa-file-text-o',
+                    glyph: 'xf0f6@FontAwesome',
+                  },
+                  tooltip: '新建子文档',
+                  showCaption: true,
+                  showIcon: true,
+                  id: 'deuiaction3',
+                },
+                {
+                  actionLevel: 100,
+                  noPrivDisplayMode: 2,
+                  uiactionId:
+                    'toolbar_tree_exp_view_node5_cm_deuiaction4_click@article_page',
+                  uiactionTarget: 'SINGLEDATA',
+                  valid: true,
+                  caption: '新建子分组',
+                  itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction4',
+                      logicTag: 'node_5_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction4',
+                    },
+                  ],
+                  sysImage: {
+                    cssClass: 'fa fa-folder-o',
+                    glyph: 'xf114@FontAwesome',
+                  },
+                  tooltip: '新建子分组',
+                  showCaption: true,
+                  showIcon: true,
+                  id: 'deuiaction4',
+                },
+                {
+                  itemType: 'SEPERATOR',
+                  controlLogics: [
+                    {
+                      itemName: 'seperator1',
+                      logicTag: 'node_5_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'seperator1',
+                    },
+                  ],
+                  id: 'seperator1',
+                },
+                {
+                  actionLevel: 100,
+                  noPrivDisplayMode: 2,
                   uiactionId:
                     'toolbar_tree_exp_view_node5_cm_deuiaction2_click@article_page',
                   uiactionTarget: 'SINGLEDATA',
                   valid: true,
                   caption: '重命名',
                   itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction2',
+                      logicTag: 'node_5_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction2',
+                    },
+                  ],
                   sysImage: {
                     cssClass: 'fa fa-edit',
                     glyph: 'xf044@FontAwesome',
@@ -1118,6 +1909,16 @@ export default {
                   valid: true,
                   caption: '删除',
                   itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction1',
+                      logicTag: 'node_5_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction1',
+                    },
+                  ],
                   sysImage: {
                     cssClass: 'fa fa-trash-o',
                     glyph: 'xf014@FontAwesome',
@@ -1145,12 +1946,91 @@ export default {
                 {
                   actionLevel: 100,
                   noPrivDisplayMode: 2,
+                  uiactionId: 'create_child_document@article_page',
+                  uiactionTarget: 'NONE',
+                  valid: true,
+                  caption: '新建子文档',
+                  itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction3',
+                      logicTag: 'node_4_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction3',
+                    },
+                  ],
+                  sysImage: {
+                    cssClass: 'fa fa-file-text-o',
+                    glyph: 'xf0f6@FontAwesome',
+                  },
+                  tooltip: '新建子文档',
+                  showCaption: true,
+                  showIcon: true,
+                  id: 'deuiaction3',
+                },
+                {
+                  actionLevel: 100,
+                  noPrivDisplayMode: 2,
+                  uiactionId:
+                    'toolbar_tree_exp_view_node4_cm_deuiaction4_click@article_page',
+                  uiactionTarget: 'SINGLEDATA',
+                  valid: true,
+                  caption: '新建子分组',
+                  itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction4',
+                      logicTag: 'node_4_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction4',
+                    },
+                  ],
+                  sysImage: {
+                    cssClass: 'fa fa-folder-o',
+                    glyph: 'xf114@FontAwesome',
+                  },
+                  tooltip: '新建子分组',
+                  showCaption: true,
+                  showIcon: true,
+                  id: 'deuiaction4',
+                },
+                {
+                  itemType: 'SEPERATOR',
+                  controlLogics: [
+                    {
+                      itemName: 'seperator1',
+                      logicTag: 'node_4_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'seperator1',
+                    },
+                  ],
+                  id: 'seperator1',
+                },
+                {
+                  actionLevel: 100,
+                  noPrivDisplayMode: 2,
                   uiactionId:
                     'toolbar_tree_exp_view_node4_cm_deuiaction2_click@article_page',
                   uiactionTarget: 'SINGLEDATA',
                   valid: true,
                   caption: '重命名',
                   itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction2',
+                      logicTag: 'node_4_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction2',
+                    },
+                  ],
                   sysImage: {
                     cssClass: 'fa fa-edit',
                     glyph: 'xf044@FontAwesome',
@@ -1169,6 +2049,16 @@ export default {
                   valid: true,
                   caption: '删除',
                   itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction1',
+                      logicTag: 'node_4_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction1',
+                    },
+                  ],
                   sysImage: {
                     cssClass: 'fa fa-trash-o',
                     glyph: 'xf014@FontAwesome',
@@ -1196,12 +2086,91 @@ export default {
                 {
                   actionLevel: 100,
                   noPrivDisplayMode: 2,
+                  uiactionId: 'create_child_document@article_page',
+                  uiactionTarget: 'NONE',
+                  valid: true,
+                  caption: '新建子文档',
+                  itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction3',
+                      logicTag: 'draft_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction3',
+                    },
+                  ],
+                  sysImage: {
+                    cssClass: 'fa fa-file-text-o',
+                    glyph: 'xf0f6@FontAwesome',
+                  },
+                  tooltip: '新建子文档',
+                  showCaption: true,
+                  showIcon: true,
+                  id: 'deuiaction3',
+                },
+                {
+                  actionLevel: 100,
+                  noPrivDisplayMode: 2,
+                  uiactionId:
+                    'toolbar_tree_exp_view_draft_cm_deuiaction4_click@article_page',
+                  uiactionTarget: 'SINGLEDATA',
+                  valid: true,
+                  caption: '新建子分组',
+                  itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction4',
+                      logicTag: 'draft_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction4',
+                    },
+                  ],
+                  sysImage: {
+                    cssClass: 'fa fa-folder-o',
+                    glyph: 'xf114@FontAwesome',
+                  },
+                  tooltip: '新建子分组',
+                  showCaption: true,
+                  showIcon: true,
+                  id: 'deuiaction4',
+                },
+                {
+                  itemType: 'SEPERATOR',
+                  controlLogics: [
+                    {
+                      itemName: 'seperator1',
+                      logicTag: 'draft_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'seperator1',
+                    },
+                  ],
+                  id: 'seperator1',
+                },
+                {
+                  actionLevel: 100,
+                  noPrivDisplayMode: 2,
                   uiactionId:
                     'toolbar_tree_exp_view_draft_cm_deuiaction2_click@article_page',
                   uiactionTarget: 'SINGLEDATA',
                   valid: true,
                   caption: '重命名',
                   itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction2',
+                      logicTag: 'draft_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction2',
+                    },
+                  ],
                   sysImage: {
                     cssClass: 'fa fa-edit',
                     glyph: 'xf044@FontAwesome',
@@ -1220,6 +2189,16 @@ export default {
                   valid: true,
                   caption: '删除',
                   itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction1',
+                      logicTag: 'draft_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction1',
+                    },
+                  ],
                   sysImage: {
                     cssClass: 'fa fa-trash-o',
                     glyph: 'xf014@FontAwesome',
@@ -1247,12 +2226,91 @@ export default {
                 {
                   actionLevel: 100,
                   noPrivDisplayMode: 2,
+                  uiactionId: 'create_child_document@article_page',
+                  uiactionTarget: 'NONE',
+                  valid: true,
+                  caption: '新建子文档',
+                  itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction3',
+                      logicTag: 'node_1_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction3',
+                    },
+                  ],
+                  sysImage: {
+                    cssClass: 'fa fa-file-text-o',
+                    glyph: 'xf0f6@FontAwesome',
+                  },
+                  tooltip: '新建子文档',
+                  showCaption: true,
+                  showIcon: true,
+                  id: 'deuiaction3',
+                },
+                {
+                  actionLevel: 100,
+                  noPrivDisplayMode: 2,
+                  uiactionId:
+                    'toolbar_tree_exp_view_node1_cm_deuiaction4_click@article_page',
+                  uiactionTarget: 'SINGLEDATA',
+                  valid: true,
+                  caption: '新建子分组',
+                  itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction4',
+                      logicTag: 'node_1_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction4',
+                    },
+                  ],
+                  sysImage: {
+                    cssClass: 'fa fa-folder-o',
+                    glyph: 'xf114@FontAwesome',
+                  },
+                  tooltip: '新建子分组',
+                  showCaption: true,
+                  showIcon: true,
+                  id: 'deuiaction4',
+                },
+                {
+                  itemType: 'SEPERATOR',
+                  controlLogics: [
+                    {
+                      itemName: 'seperator1',
+                      logicTag: 'node_1_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'seperator1',
+                    },
+                  ],
+                  id: 'seperator1',
+                },
+                {
+                  actionLevel: 100,
+                  noPrivDisplayMode: 2,
                   uiactionId:
                     'toolbar_tree_exp_view_node1_cm_deuiaction2_click@article_page',
                   uiactionTarget: 'SINGLEDATA',
                   valid: true,
                   caption: '重命名',
                   itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction2',
+                      logicTag: 'node_1_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction2',
+                    },
+                  ],
                   sysImage: {
                     cssClass: 'fa fa-edit',
                     glyph: 'xf044@FontAwesome',
@@ -1271,6 +2329,16 @@ export default {
                   valid: true,
                   caption: '删除',
                   itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction1',
+                      logicTag: 'node_1_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction1',
+                    },
+                  ],
                   sysImage: {
                     cssClass: 'fa fa-trash-o',
                     glyph: 'xf014@FontAwesome',
@@ -1538,6 +2606,16 @@ export default {
               valid: true,
               caption: '新建',
               itemType: 'ITEMS',
+              controlLogics: [
+                {
+                  itemName: 'items1',
+                  logicTag: 'treeexpbar_toolbar',
+                  logicType: 'SCRIPT',
+                  scriptCode: '!context.srfreadonly',
+                  triggerType: 'ITEMVISIBLE',
+                  id: 'items1',
+                },
+              ],
               sysImage: {
                 cssClass: 'fa fa-plus',
                 glyph: 'xf067@FontAwesome',
@@ -1553,6 +2631,16 @@ export default {
               valid: true,
               caption: '刷新',
               itemType: 'DEUIACTION',
+              controlLogics: [
+                {
+                  itemName: 'deuiaction3',
+                  logicTag: 'treeexpbar_toolbar',
+                  logicType: 'SCRIPT',
+                  scriptCode: '!context.srfreadonly',
+                  triggerType: 'ITEMVISIBLE',
+                  id: 'deuiaction3',
+                },
+              ],
               sysImage: {
                 cssClass: 'fa fa-refresh',
                 glyph: 'xf021@FontAwesome',

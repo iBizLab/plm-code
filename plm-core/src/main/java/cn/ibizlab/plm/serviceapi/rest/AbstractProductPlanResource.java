@@ -376,7 +376,7 @@ public abstract class AbstractProductPlanResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody ProductPlanFilterDTO dto) {
         dto.setProductIdEQ(productId);
         ProductPlanSearchContext context = productPlanFilterDtoMapping.toDomain(dto);
-        Page<ProductPlan> domains = productPlanService.searchDefault(context) ;
+        Page<ProductPlan> domains = productPlanService.fetchDefault(context) ;
         List<ProductPlanDTO> list = productPlanDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -400,7 +400,7 @@ public abstract class AbstractProductPlanResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody ProductPlanFilterDTO dto) {
         dto.setProductIdEQ(productId);
         ProductPlanSearchContext context = productPlanFilterDtoMapping.toDomain(dto);
-        Page<ProductPlan> domains = productPlanService.searchNormal(context) ;
+        Page<ProductPlan> domains = productPlanService.fetchNormal(context) ;
         List<ProductPlanDTO> list = productPlanDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

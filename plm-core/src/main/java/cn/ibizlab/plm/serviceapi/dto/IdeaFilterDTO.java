@@ -159,6 +159,46 @@ public class IdeaFilterDTO extends FilterBase implements Serializable {
 	private String assigneeIdEQ;
 
     /**
+     * 负责人IN
+     */
+    @JsonProperty("n_assignee_id_in")
+    @JSONField(name = "n_assignee_id_in")
+    @ApiModelProperty(value = "负责人IN", position = 191)
+	private String assigneeIdIN;
+
+    /**
+     * 负责人ISNOTNULL
+     */
+    @JsonProperty("n_assignee_id_isnotnull")
+    @JSONField(name = "n_assignee_id_isnotnull")
+    @ApiModelProperty(value = "负责人ISNOTNULL", position = 192)
+	private String assigneeIdISNOTNULL;
+
+    /**
+     * 负责人ISNULL
+     */
+    @JsonProperty("n_assignee_id_isnull")
+    @JSONField(name = "n_assignee_id_isnull")
+    @ApiModelProperty(value = "负责人ISNULL", position = 193)
+	private String assigneeIdISNULL;
+
+    /**
+     * 负责人NOTEQ
+     */
+    @JsonProperty("n_assignee_id_noteq")
+    @JSONField(name = "n_assignee_id_noteq")
+    @ApiModelProperty(value = "负责人NOTEQ", position = 194)
+	private String assigneeIdNOTEQ;
+
+    /**
+     * 负责人NOTIN
+     */
+    @JsonProperty("n_assignee_id_notin")
+    @JSONField(name = "n_assignee_id_notin")
+    @ApiModelProperty(value = "负责人NOTIN", position = 195)
+	private String assigneeIdNOTIN;
+
+    /**
      * 子产品标识EQ
      */
     @JsonProperty("n_section_id_eq")
@@ -223,12 +263,60 @@ public class IdeaFilterDTO extends FilterBase implements Serializable {
 	private String idEQ;
 
     /**
+     * 建立人EQ
+     */
+    @JsonProperty("n_create_man_eq")
+    @JSONField(name = "n_create_man_eq")
+    @ApiModelProperty(value = "建立人EQ", position = 380)
+	private String createManEQ;
+
+    /**
+     * 建立人IN
+     */
+    @JsonProperty("n_create_man_in")
+    @JSONField(name = "n_create_man_in")
+    @ApiModelProperty(value = "建立人IN", position = 381)
+	private String createManIN;
+
+    /**
+     * 建立人ISNOTNULL
+     */
+    @JsonProperty("n_create_man_isnotnull")
+    @JSONField(name = "n_create_man_isnotnull")
+    @ApiModelProperty(value = "建立人ISNOTNULL", position = 382)
+	private String createManISNOTNULL;
+
+    /**
+     * 建立人ISNULL
+     */
+    @JsonProperty("n_create_man_isnull")
+    @JSONField(name = "n_create_man_isnull")
+    @ApiModelProperty(value = "建立人ISNULL", position = 383)
+	private String createManISNULL;
+
+    /**
+     * 建立人NOTEQ
+     */
+    @JsonProperty("n_create_man_noteq")
+    @JSONField(name = "n_create_man_noteq")
+    @ApiModelProperty(value = "建立人NOTEQ", position = 384)
+	private String createManNOTEQ;
+
+    /**
+     * 建立人NOTIN
+     */
+    @JsonProperty("n_create_man_notin")
+    @JSONField(name = "n_create_man_notin")
+    @ApiModelProperty(value = "建立人NOTIN", position = 385)
+	private String createManNOTIN;
+
+    /**
      * 建立时间EQ
      */
     @JsonProperty("n_create_time_eq")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "n_create_time_eq" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间EQ", position = 380)
+    @ApiModelProperty(value = "建立时间EQ", position = 390)
 	private Date createTimeEQ;
 
     /**
@@ -237,7 +325,7 @@ public class IdeaFilterDTO extends FilterBase implements Serializable {
     @JsonProperty("n_create_time_gtandeq")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "n_create_time_gtandeq" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间GTANDEQ", position = 381)
+    @ApiModelProperty(value = "建立时间GTANDEQ", position = 391)
 	private Date createTimeGTANDEQ;
 
     /**
@@ -246,16 +334,8 @@ public class IdeaFilterDTO extends FilterBase implements Serializable {
     @JsonProperty("n_create_time_ltandeq")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "n_create_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间LTANDEQ", position = 382)
+    @ApiModelProperty(value = "建立时间LTANDEQ", position = 392)
 	private Date createTimeLTANDEQ;
-
-    /**
-     * 建立人EQ
-     */
-    @JsonProperty("n_create_man_eq")
-    @JSONField(name = "n_create_man_eq")
-    @ApiModelProperty(value = "建立人EQ", position = 400)
-	private String createManEQ;
 
     /**
      * 名称LIKE

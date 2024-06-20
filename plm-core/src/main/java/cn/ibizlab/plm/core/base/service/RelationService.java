@@ -17,6 +17,7 @@ import cn.ibizlab.plm.core.prodmgmt.domain.Idea;
 import cn.ibizlab.plm.core.testmgmt.domain.Review;
 import cn.ibizlab.plm.core.testmgmt.domain.ReviewContentExtend;
 import cn.ibizlab.plm.core.prodmgmt.domain.Customer;
+import cn.ibizlab.plm.core.wiki.domain.ArticlePage;
 import cn.ibizlab.plm.core.prodmgmt.domain.ProductPlan;
 import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
 import cn.ibizlab.plm.core.prodmgmt.domain.Ticket;
@@ -40,89 +41,32 @@ public interface RelationService extends IService<Relation> {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    Relation get(Relation et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default Relation get(String key) {
-        return getSelf().get(new Relation().setId(key));
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<Relation> getByIds(Collection<String> ids) {
-        List<Relation> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Relation().setId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<Relation> getByEntities(List<Relation> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    Relation getDraft(Relation et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(Relation et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(Relation et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<Relation> list);
+    boolean create(List<Relation> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(Relation et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<Relation> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    @Override
-    boolean save(Relation et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<Relation> list);
+    boolean update(List<Relation> list);
 
     /**
      * 主键删除
@@ -132,14 +76,7 @@ public interface RelationService extends IService<Relation> {
     default boolean remove(String key) {
         return getSelf().remove(new Relation().setId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -149,13 +86,13 @@ public interface RelationService extends IService<Relation> {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<Relation> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Relation().setId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new Relation().setId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -163,7 +100,734 @@ public interface RelationService extends IService<Relation> {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<Relation> entities);
+    boolean remove(List<Relation> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default Relation get(String key) {
+        return getSelf().get(new Relation().setId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    Relation get(Relation et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<Relation> get(Collection<String> keys) {
+        List<Relation> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new Relation().setId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<Relation> get(List<Relation> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    Relation getDraft(Relation et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(Relation et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(Relation et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<Relation> list);
+
+    /**
+    * delRelation
+    * 
+    * @param et
+    * @return
+    */
+    default Relation delRelation(Relation et) {
+        return et;
+    }
+
+    /**
+    * programTestCase
+    * 
+    * @param et
+    * @return
+    */
+    default Relation programTestCase(Relation et) {
+        return et;
+    }
+
+    /**
+    * runDelRelationBug
+    * 
+    * @param et
+    * @return
+    */
+    default Relation runDelRelationBug(Relation et) {
+        return et;
+    }
+
+    /**
+    * testCaseDelRelationBug
+    * 
+    * @param et
+    * @return
+    */
+    default Relation testCaseDelRelationBug(Relation et) {
+        return et;
+    }
+
+    /**
+    * workItemDelRelationCase
+    * 
+    * @param et
+    * @return
+    */
+    default Relation workItemDelRelationCase(Relation et) {
+        return et;
+    }
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<Relation> fetchDefault(RelationSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<Relation> listDefault(RelationSearchContext context);
+
+    /**
+    * fetchAll
+    * 
+    * @param context
+    * @return
+    */
+    Page<Relation> fetchAll(RelationSearchContext context);
+
+    /**
+    * listAll
+    * 
+    * @param context
+    * @return
+    */
+    List<Relation> listAll(RelationSearchContext context);
+
+    /**
+    * fetchExistsRunRelationBug
+    * 
+    * @param context
+    * @return
+    */
+    Page<Relation> fetchExistsRunRelationBug(RelationSearchContext context);
+
+    /**
+    * listExistsRunRelationBug
+    * 
+    * @param context
+    * @return
+    */
+    List<Relation> listExistsRunRelationBug(RelationSearchContext context);
+
+    /**
+    * fetchIdeaReCustomer
+    * 
+    * @param context
+    * @return
+    */
+    Page<Relation> fetchIdeaReCustomer(RelationSearchContext context);
+
+    /**
+    * listIdeaReCustomer
+    * 
+    * @param context
+    * @return
+    */
+    List<Relation> listIdeaReCustomer(RelationSearchContext context);
+
+    /**
+    * fetchIdeaReIdea
+    * 
+    * @param context
+    * @return
+    */
+    Page<Relation> fetchIdeaReIdea(RelationSearchContext context);
+
+    /**
+    * listIdeaReIdea
+    * 
+    * @param context
+    * @return
+    */
+    List<Relation> listIdeaReIdea(RelationSearchContext context);
+
+    /**
+    * fetchIdeaReTestCase
+    * 
+    * @param context
+    * @return
+    */
+    Page<Relation> fetchIdeaReTestCase(RelationSearchContext context);
+
+    /**
+    * listIdeaReTestCase
+    * 
+    * @param context
+    * @return
+    */
+    List<Relation> listIdeaReTestCase(RelationSearchContext context);
+
+    /**
+    * fetchIdeaReTicket
+    * 
+    * @param context
+    * @return
+    */
+    Page<Relation> fetchIdeaReTicket(RelationSearchContext context);
+
+    /**
+    * listIdeaReTicket
+    * 
+    * @param context
+    * @return
+    */
+    List<Relation> listIdeaReTicket(RelationSearchContext context);
+
+    /**
+    * fetchIdeaReWorkItem
+    * 
+    * @param context
+    * @return
+    */
+    Page<Relation> fetchIdeaReWorkItem(RelationSearchContext context);
+
+    /**
+    * listIdeaReWorkItem
+    * 
+    * @param context
+    * @return
+    */
+    List<Relation> listIdeaReWorkItem(RelationSearchContext context);
+
+    /**
+    * fetchIdeaVersionRelation
+    * 
+    * @param context
+    * @return
+    */
+    Page<Relation> fetchIdeaVersionRelation(RelationSearchContext context);
+
+    /**
+    * listIdeaVersionRelation
+    * 
+    * @param context
+    * @return
+    */
+    List<Relation> listIdeaVersionRelation(RelationSearchContext context);
+
+    /**
+    * fetchReviewReTestCase
+    * 
+    * @param context
+    * @return
+    */
+    Page<Relation> fetchReviewReTestCase(RelationSearchContext context);
+
+    /**
+    * listReviewReTestCase
+    * 
+    * @param context
+    * @return
+    */
+    List<Relation> listReviewReTestCase(RelationSearchContext context);
+
+    /**
+    * fetchRunReBug
+    * 
+    * @param context
+    * @return
+    */
+    Page<Relation> fetchRunReBug(RelationSearchContext context);
+
+    /**
+    * listRunReBug
+    * 
+    * @param context
+    * @return
+    */
+    List<Relation> listRunReBug(RelationSearchContext context);
+
+    /**
+    * fetchRunReIdea
+    * 
+    * @param context
+    * @return
+    */
+    Page<Relation> fetchRunReIdea(RelationSearchContext context);
+
+    /**
+    * listRunReIdea
+    * 
+    * @param context
+    * @return
+    */
+    List<Relation> listRunReIdea(RelationSearchContext context);
+
+    /**
+    * fetchRunReWorkItem
+    * 
+    * @param context
+    * @return
+    */
+    Page<Relation> fetchRunReWorkItem(RelationSearchContext context);
+
+    /**
+    * listRunReWorkItem
+    * 
+    * @param context
+    * @return
+    */
+    List<Relation> listRunReWorkItem(RelationSearchContext context);
+
+    /**
+    * fetchTestCaseReBug
+    * 
+    * @param context
+    * @return
+    */
+    Page<Relation> fetchTestCaseReBug(RelationSearchContext context);
+
+    /**
+    * listTestCaseReBug
+    * 
+    * @param context
+    * @return
+    */
+    List<Relation> listTestCaseReBug(RelationSearchContext context);
+
+    /**
+    * fetchTestCaseReIdea
+    * 
+    * @param context
+    * @return
+    */
+    Page<Relation> fetchTestCaseReIdea(RelationSearchContext context);
+
+    /**
+    * listTestCaseReIdea
+    * 
+    * @param context
+    * @return
+    */
+    List<Relation> listTestCaseReIdea(RelationSearchContext context);
+
+    /**
+    * fetchTestCaseReWorkItem
+    * 
+    * @param context
+    * @return
+    */
+    Page<Relation> fetchTestCaseReWorkItem(RelationSearchContext context);
+
+    /**
+    * listTestCaseReWorkItem
+    * 
+    * @param context
+    * @return
+    */
+    List<Relation> listTestCaseReWorkItem(RelationSearchContext context);
+
+    /**
+    * fetchTestCaseVersionRelation
+    * 
+    * @param context
+    * @return
+    */
+    Page<Relation> fetchTestCaseVersionRelation(RelationSearchContext context);
+
+    /**
+    * listTestCaseVersionRelation
+    * 
+    * @param context
+    * @return
+    */
+    List<Relation> listTestCaseVersionRelation(RelationSearchContext context);
+
+    /**
+    * fetchTicketReIdea
+    * 
+    * @param context
+    * @return
+    */
+    Page<Relation> fetchTicketReIdea(RelationSearchContext context);
+
+    /**
+    * listTicketReIdea
+    * 
+    * @param context
+    * @return
+    */
+    List<Relation> listTicketReIdea(RelationSearchContext context);
+
+    /**
+    * fetchTicketReSelf
+    * 
+    * @param context
+    * @return
+    */
+    Page<Relation> fetchTicketReSelf(RelationSearchContext context);
+
+    /**
+    * listTicketReSelf
+    * 
+    * @param context
+    * @return
+    */
+    List<Relation> listTicketReSelf(RelationSearchContext context);
+
+    /**
+    * fetchTicketReWorkItem
+    * 
+    * @param context
+    * @return
+    */
+    Page<Relation> fetchTicketReWorkItem(RelationSearchContext context);
+
+    /**
+    * listTicketReWorkItem
+    * 
+    * @param context
+    * @return
+    */
+    List<Relation> listTicketReWorkItem(RelationSearchContext context);
+
+    /**
+    * fetchWorkItemRelationIdea
+    * 
+    * @param context
+    * @return
+    */
+    Page<Relation> fetchWorkItemRelationIdea(RelationSearchContext context);
+
+    /**
+    * listWorkItemRelationIdea
+    * 
+    * @param context
+    * @return
+    */
+    List<Relation> listWorkItemRelationIdea(RelationSearchContext context);
+
+    /**
+    * fetchWorkItemRelationSelf
+    * 
+    * @param context
+    * @return
+    */
+    Page<Relation> fetchWorkItemRelationSelf(RelationSearchContext context);
+
+    /**
+    * listWorkItemRelationSelf
+    * 
+    * @param context
+    * @return
+    */
+    List<Relation> listWorkItemRelationSelf(RelationSearchContext context);
+
+    /**
+    * fetchWorkItemRelationTestCase
+    * 
+    * @param context
+    * @return
+    */
+    Page<Relation> fetchWorkItemRelationTestCase(RelationSearchContext context);
+
+    /**
+    * listWorkItemRelationTestCase
+    * 
+    * @param context
+    * @return
+    */
+    List<Relation> listWorkItemRelationTestCase(RelationSearchContext context);
+
+    /**
+    * fetchWorkItemRelationTicket
+    * 
+    * @param context
+    * @return
+    */
+    Page<Relation> fetchWorkItemRelationTicket(RelationSearchContext context);
+
+    /**
+    * listWorkItemRelationTicket
+    * 
+    * @param context
+    * @return
+    */
+    List<Relation> listWorkItemRelationTicket(RelationSearchContext context);
+
+    /**
+    * fetchWorkItemVersionRelation
+    * 
+    * @param context
+    * @return
+    */
+    Page<Relation> fetchWorkItemVersionRelation(RelationSearchContext context);
+
+    /**
+    * listWorkItemVersionRelation
+    * 
+    * @param context
+    * @return
+    */
+    List<Relation> listWorkItemVersionRelation(RelationSearchContext context);
+
+    /**
+    * findByPrincipalId
+    * @param principalIds
+    * @return
+    */
+    List<Relation> findByPrincipalId(List<String> principalIds);
+    default List<Relation> findByPrincipalId(String principalId){
+        return findByPrincipalId(Arrays.asList(principalId));
+    }
+
+    /**
+    * removeByPrincipalId
+    * @param principalId
+    * @return
+    */
+    boolean removeByPrincipalId(String principalId);
+
+    /**
+    * resetByPrincipalId
+    * @param principalId
+    * @return
+    */
+    boolean resetByPrincipalId(String principalId);
+
+    /**
+    * saveByPrincipalId
+    * @param principalId
+    * @param list
+    * @return
+    */
+    default boolean saveByPrincipalId(String principalId, List<Relation> list){
+        return getSelf().saveByPrincipalBaseline(new Baseline().setId(principalId),list);
+    }
+
+    /**
+    * saveByPrincipalBaseline
+    * @param baseline
+    * @param list
+    * @return
+    */
+    boolean saveByPrincipalBaseline(Baseline baseline, List<Relation> list);
+
+    /**
+    * saveByPrincipalIdea
+    * @param idea
+    * @param list
+    * @return
+    */
+    boolean saveByPrincipalIdea(Idea idea, List<Relation> list);
+
+    /**
+    * saveByPrincipalReview
+    * @param review
+    * @param list
+    * @return
+    */
+    boolean saveByPrincipalReview(Review review, List<Relation> list);
+
+    /**
+    * findById
+    * @param ids
+    * @return
+    */
+    List<Relation> findById(List<String> ids);
+    default List<Relation> findById(String id){
+        return findById(Arrays.asList(id));
+    }
+
+    /**
+    * removeById
+    * @param id
+    * @return
+    */
+    boolean removeById(String id);
+
+    /**
+    * resetById
+    * @param id
+    * @return
+    */
+    boolean resetById(String id);
+
+    /**
+    * saveById
+    * @param id
+    * @param list
+    * @return
+    */
+    default boolean saveById(String id, List<Relation> list){
+        return getSelf().saveByReviewContentExtend(new ReviewContentExtend().setId(id),list);
+    }
+
+    /**
+    * saveByReviewContentExtend
+    * @param reviewContentExtend
+    * @param list
+    * @return
+    */
+    boolean saveByReviewContentExtend(ReviewContentExtend reviewContentExtend, List<Relation> list);
+
+    /**
+    * findByTargetId
+    * @param targetIds
+    * @return
+    */
+    List<Relation> findByTargetId(List<String> targetIds);
+    default List<Relation> findByTargetId(String targetId){
+        return findByTargetId(Arrays.asList(targetId));
+    }
+
+    /**
+    * removeByTargetId
+    * @param targetId
+    * @return
+    */
+    boolean removeByTargetId(String targetId);
+
+    /**
+    * resetByTargetId
+    * @param targetId
+    * @return
+    */
+    boolean resetByTargetId(String targetId);
+
+    /**
+    * saveByTargetId
+    * @param targetId
+    * @param list
+    * @return
+    */
+    default boolean saveByTargetId(String targetId, List<Relation> list){
+        return getSelf().saveByTargetCustomer(new Customer().setId(targetId),list);
+    }
+
+    /**
+    * saveByTargetCustomer
+    * @param customer
+    * @param list
+    * @return
+    */
+    boolean saveByTargetCustomer(Customer customer, List<Relation> list);
+
+    /**
+    * saveByTargetIdea
+    * @param idea
+    * @param list
+    * @return
+    */
+    boolean saveByTargetIdea(Idea idea, List<Relation> list);
+
+    /**
+    * saveByTargetPage
+    * @param articlePage
+    * @param list
+    * @return
+    */
+    boolean saveByTargetPage(ArticlePage articlePage, List<Relation> list);
+
+    /**
+    * saveByTargetProductPlanCategory
+    * @param productPlan
+    * @param list
+    * @return
+    */
+    boolean saveByTargetProductPlanCategory(ProductPlan productPlan, List<Relation> list);
+
+    /**
+    * saveByTargetTestCase
+    * @param testCase
+    * @param list
+    * @return
+    */
+    boolean saveByTargetTestCase(TestCase testCase, List<Relation> list);
+
+    /**
+    * saveByTargetTicket
+    * @param ticket
+    * @param list
+    * @return
+    */
+    boolean saveByTargetTicket(Ticket ticket, List<Relation> list);
+
+    /**
+    * saveByTargetWorkItem
+    * @param workItem
+    * @param list
+    * @return
+    */
+    boolean saveByTargetWorkItem(WorkItem workItem, List<Relation> list);
+
+    /**
+    * saveByPrincipalTestCase
+    * @param testCase
+    * @param list
+    * @return
+    */
+    boolean saveByPrincipalTestCase(TestCase testCase, List<Relation> list);
+
+    /**
+    * saveByPrincipalTestPlan
+    * @param testPlan
+    * @param list
+    * @return
+    */
+    boolean saveByPrincipalTestPlan(TestPlan testPlan, List<Relation> list);
+
+    /**
+    * saveByPrincipalWorkItem
+    * @param workItem
+    * @param list
+    * @return
+    */
+    boolean saveByPrincipalWorkItem(WorkItem workItem, List<Relation> list);
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<Relation> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -180,432 +844,7 @@ public interface RelationService extends IService<Relation> {
         }
         return rt;
     }
-
-    /**
-     * del_relation
-     * 
-     * @param dto
-     * @return
-     */
-    default Relation delRelation(Relation dto) {
-        return dto;
-    }
-
-    /**
-     * program_test_case
-     * 
-     * @param dto
-     * @return
-     */
-    default Relation programTestCase(Relation dto) {
-        return dto;
-    }
-
-    /**
-     * run_del_relation_bug
-     * 
-     * @param dto
-     * @return
-     */
-    default Relation runDelRelationBug(Relation dto) {
-        return dto;
-    }
-
-    /**
-     * test_case_del_relation_bug
-     * 
-     * @param dto
-     * @return
-     */
-    default Relation testCaseDelRelationBug(Relation dto) {
-        return dto;
-    }
-
-    /**
-     * work_item_del_relation_case
-     * 
-     * @param dto
-     * @return
-     */
-    default Relation workItemDelRelationCase(Relation dto) {
-        return dto;
-    }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<Relation> searchDefault(RelationSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<Relation> listDefault(RelationSearchContext context);
-
-    /**
-     * searchall
-     * 
-     * @param context
-     * @return
-     */
-    Page<Relation> searchAll(RelationSearchContext context);
-    /**
-     * listall
-     * 
-     * @param context
-     * @return
-     */
-    List<Relation> listAll(RelationSearchContext context);
-
-    /**
-     * searchexists_run_relation_bug
-     * 
-     * @param context
-     * @return
-     */
-    Page<Relation> searchExistsRunRelationBug(RelationSearchContext context);
-    /**
-     * listexists_run_relation_bug
-     * 
-     * @param context
-     * @return
-     */
-    List<Relation> listExistsRunRelationBug(RelationSearchContext context);
-
-    /**
-     * searchidea_re_customer
-     * 
-     * @param context
-     * @return
-     */
-    Page<Relation> searchIdeaReCustomer(RelationSearchContext context);
-    /**
-     * listidea_re_customer
-     * 
-     * @param context
-     * @return
-     */
-    List<Relation> listIdeaReCustomer(RelationSearchContext context);
-
-    /**
-     * searchidea_re_idea
-     * 
-     * @param context
-     * @return
-     */
-    Page<Relation> searchIdeaReIdea(RelationSearchContext context);
-    /**
-     * listidea_re_idea
-     * 
-     * @param context
-     * @return
-     */
-    List<Relation> listIdeaReIdea(RelationSearchContext context);
-
-    /**
-     * searchidea_re_test_case
-     * 
-     * @param context
-     * @return
-     */
-    Page<Relation> searchIdeaReTestCase(RelationSearchContext context);
-    /**
-     * listidea_re_test_case
-     * 
-     * @param context
-     * @return
-     */
-    List<Relation> listIdeaReTestCase(RelationSearchContext context);
-
-    /**
-     * searchidea_re_ticket
-     * 
-     * @param context
-     * @return
-     */
-    Page<Relation> searchIdeaReTicket(RelationSearchContext context);
-    /**
-     * listidea_re_ticket
-     * 
-     * @param context
-     * @return
-     */
-    List<Relation> listIdeaReTicket(RelationSearchContext context);
-
-    /**
-     * searchidea_re_work_item
-     * 
-     * @param context
-     * @return
-     */
-    Page<Relation> searchIdeaReWorkItem(RelationSearchContext context);
-    /**
-     * listidea_re_work_item
-     * 
-     * @param context
-     * @return
-     */
-    List<Relation> listIdeaReWorkItem(RelationSearchContext context);
-
-    /**
-     * searchidea_version_relation
-     * 主实体版本创建时，查询关联principal_type为需求的数据存入version_data
-     * @param context
-     * @return
-     */
-    Page<Relation> searchIdeaVersionRelation(RelationSearchContext context);
-    /**
-     * listidea_version_relation
-     * 主实体版本创建时，查询关联principal_type为需求的数据存入version_data
-     * @param context
-     * @return
-     */
-    List<Relation> listIdeaVersionRelation(RelationSearchContext context);
-
-    /**
-     * searchreview_re_test_case
-     * 
-     * @param context
-     * @return
-     */
-    Page<Relation> searchReviewReTestCase(RelationSearchContext context);
-    /**
-     * listreview_re_test_case
-     * 
-     * @param context
-     * @return
-     */
-    List<Relation> listReviewReTestCase(RelationSearchContext context);
-
-    /**
-     * searchrun_re_bug
-     * 
-     * @param context
-     * @return
-     */
-    Page<Relation> searchRunReBug(RelationSearchContext context);
-    /**
-     * listrun_re_bug
-     * 
-     * @param context
-     * @return
-     */
-    List<Relation> listRunReBug(RelationSearchContext context);
-
-    /**
-     * searchrun_re_idea
-     * 
-     * @param context
-     * @return
-     */
-    Page<Relation> searchRunReIdea(RelationSearchContext context);
-    /**
-     * listrun_re_idea
-     * 
-     * @param context
-     * @return
-     */
-    List<Relation> listRunReIdea(RelationSearchContext context);
-
-    /**
-     * searchrun_re_work_item
-     * 
-     * @param context
-     * @return
-     */
-    Page<Relation> searchRunReWorkItem(RelationSearchContext context);
-    /**
-     * listrun_re_work_item
-     * 
-     * @param context
-     * @return
-     */
-    List<Relation> listRunReWorkItem(RelationSearchContext context);
-
-    /**
-     * searchtest_case_re_bug
-     * 仅关联缺陷类型工作项
-     * @param context
-     * @return
-     */
-    Page<Relation> searchTestCaseReBug(RelationSearchContext context);
-    /**
-     * listtest_case_re_bug
-     * 仅关联缺陷类型工作项
-     * @param context
-     * @return
-     */
-    List<Relation> listTestCaseReBug(RelationSearchContext context);
-
-    /**
-     * searchtest_case_re_idea
-     * 
-     * @param context
-     * @return
-     */
-    Page<Relation> searchTestCaseReIdea(RelationSearchContext context);
-    /**
-     * listtest_case_re_idea
-     * 
-     * @param context
-     * @return
-     */
-    List<Relation> listTestCaseReIdea(RelationSearchContext context);
-
-    /**
-     * searchtest_case_re_work_item
-     * 排除了缺陷类型的工作项
-     * @param context
-     * @return
-     */
-    Page<Relation> searchTestCaseReWorkItem(RelationSearchContext context);
-    /**
-     * listtest_case_re_work_item
-     * 排除了缺陷类型的工作项
-     * @param context
-     * @return
-     */
-    List<Relation> listTestCaseReWorkItem(RelationSearchContext context);
-
-    /**
-     * searchtest_case_version_relation
-     * 主实体版本创建时，查询关联principal_type为用例的数据存入version_data
-     * @param context
-     * @return
-     */
-    Page<Relation> searchTestCaseVersionRelation(RelationSearchContext context);
-    /**
-     * listtest_case_version_relation
-     * 主实体版本创建时，查询关联principal_type为用例的数据存入version_data
-     * @param context
-     * @return
-     */
-    List<Relation> listTestCaseVersionRelation(RelationSearchContext context);
-
-    /**
-     * searchticket_re_idea
-     * 
-     * @param context
-     * @return
-     */
-    Page<Relation> searchTicketReIdea(RelationSearchContext context);
-    /**
-     * listticket_re_idea
-     * 
-     * @param context
-     * @return
-     */
-    List<Relation> listTicketReIdea(RelationSearchContext context);
-
-    /**
-     * searchticket_re_self
-     * 
-     * @param context
-     * @return
-     */
-    Page<Relation> searchTicketReSelf(RelationSearchContext context);
-    /**
-     * listticket_re_self
-     * 
-     * @param context
-     * @return
-     */
-    List<Relation> listTicketReSelf(RelationSearchContext context);
-
-    /**
-     * searchticket_re_work_item
-     * 
-     * @param context
-     * @return
-     */
-    Page<Relation> searchTicketReWorkItem(RelationSearchContext context);
-    /**
-     * listticket_re_work_item
-     * 
-     * @param context
-     * @return
-     */
-    List<Relation> listTicketReWorkItem(RelationSearchContext context);
-
-    /**
-     * searchwork_item_relation_idea
-     * 
-     * @param context
-     * @return
-     */
-    Page<Relation> searchWorkItemRelationIdea(RelationSearchContext context);
-    /**
-     * listwork_item_relation_idea
-     * 
-     * @param context
-     * @return
-     */
-    List<Relation> listWorkItemRelationIdea(RelationSearchContext context);
-
-    /**
-     * searchwork_item_relation_self
-     * 
-     * @param context
-     * @return
-     */
-    Page<Relation> searchWorkItemRelationSelf(RelationSearchContext context);
-    /**
-     * listwork_item_relation_self
-     * 
-     * @param context
-     * @return
-     */
-    List<Relation> listWorkItemRelationSelf(RelationSearchContext context);
-
-    /**
-     * searchwork_item_relation_test_case
-     * 
-     * @param context
-     * @return
-     */
-    Page<Relation> searchWorkItemRelationTestCase(RelationSearchContext context);
-    /**
-     * listwork_item_relation_test_case
-     * 
-     * @param context
-     * @return
-     */
-    List<Relation> listWorkItemRelationTestCase(RelationSearchContext context);
-
-    /**
-     * searchwork_item_relation_ticket
-     * 
-     * @param context
-     * @return
-     */
-    Page<Relation> searchWorkItemRelationTicket(RelationSearchContext context);
-    /**
-     * listwork_item_relation_ticket
-     * 
-     * @param context
-     * @return
-     */
-    List<Relation> listWorkItemRelationTicket(RelationSearchContext context);
-
-    /**
-     * searchwork_item_version_relation
-     * 主实体版本创建时，查询关联principal_type为工作项的数据存入version_data
-     * @param context
-     * @return
-     */
-    Page<Relation> searchWorkItemVersionRelation(RelationSearchContext context);
-    /**
-     * listwork_item_version_relation
-     * 主实体版本创建时，查询关联principal_type为工作项的数据存入version_data
-     * @param context
-     * @return
-     */
-    List<Relation> listWorkItemVersionRelation(RelationSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -613,6 +852,7 @@ public interface RelationService extends IService<Relation> {
     default Relation getEntity() {
         return new Relation();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -620,215 +860,13 @@ public interface RelationService extends IService<Relation> {
     default RelationSearchContext getSearchContext() {
         return new RelationSearchContext();
     }
+
+
     /**
-     * selectRelByPrincipalId
-     * @param principalIds
-     * @return
-     */
-    List<Relation> findByPrincipalId(List<String> principalIds);
-    default List<Relation> findByPrincipalId(String principalId) {
-        return findByPrincipalId(Arrays.asList(principalId));
-    }
-    /**
-     * removeRelByPrincipalId
-     * @param principalId
-     * @return
-     */
-    boolean removeByPrincipalId(String principalId);
-    /**
-     * resetRelByPrincipalId
-     * @param principalId
-     * @return
-     */
-    boolean resetByPrincipalId(String principalId);
-    /**
-     * saveRelByPrincipalId
-     * @param principalId
-     * @param list
-     * @return
-     */
-    default boolean saveByPrincipalId(String principalId,List<Relation> list) {
-        return getSelf().saveByPrincipalBaseline(new Baseline().setId(principalId),list);
-    }
-    /**
-    * saveRelByPrincipalBaseline
-    * @param baseline
-    * @param list
+    * 自定义SQL
+    * @param sql  update table  set name ='test' where id =#{et.param}
+    * @param param 参数列表  param.put("param","1");
     * @return
     */
-    boolean saveByPrincipalBaseline(Baseline baseline,List<Relation> list);
-
-    /**
-    * saveRelByPrincipalIdea
-    * @param idea
-    * @param list
-    * @return
-    */
-    boolean saveByPrincipalIdea(Idea idea,List<Relation> list);
-
-    /**
-    * saveRelByPrincipalReview
-    * @param review
-    * @param list
-    * @return
-    */
-    boolean saveByPrincipalReview(Review review,List<Relation> list);
-
-    /**
-     * selectRelById
-     * @param ids
-     * @return
-     */
-    List<Relation> findById(List<String> ids);
-    default List<Relation> findById(String id) {
-        return findById(Arrays.asList(id));
-    }
-    /**
-     * removeRelById
-     * @param id
-     * @return
-     */
-    boolean removeById(String id);
-    /**
-     * resetRelById
-     * @param id
-     * @return
-     */
-    boolean resetById(String id);
-    /**
-     * saveRelById
-     * @param id
-     * @param list
-     * @return
-     */
-    default boolean saveById(String id,List<Relation> list) {
-        return getSelf().saveByReviewContentExtend(new ReviewContentExtend().setId(id),list);
-    }
-    /**
-    * saveRelByReviewContentExtend
-    * @param reviewContentExtend
-    * @param list
-    * @return
-    */
-    boolean saveByReviewContentExtend(ReviewContentExtend reviewContentExtend,List<Relation> list);
-
-    /**
-     * selectRelByTargetId
-     * @param targetIds
-     * @return
-     */
-    List<Relation> findByTargetId(List<String> targetIds);
-    default List<Relation> findByTargetId(String targetId) {
-        return findByTargetId(Arrays.asList(targetId));
-    }
-    /**
-     * removeRelByTargetId
-     * @param targetId
-     * @return
-     */
-    boolean removeByTargetId(String targetId);
-    /**
-     * resetRelByTargetId
-     * @param targetId
-     * @return
-     */
-    boolean resetByTargetId(String targetId);
-    /**
-     * saveRelByTargetId
-     * @param targetId
-     * @param list
-     * @return
-     */
-    default boolean saveByTargetId(String targetId,List<Relation> list) {
-        return getSelf().saveByTargetCustomer(new Customer().setId(targetId),list);
-    }
-    /**
-    * saveRelByTargetCustomer
-    * @param customer
-    * @param list
-    * @return
-    */
-    boolean saveByTargetCustomer(Customer customer,List<Relation> list);
-
-    /**
-    * saveRelByTargetIdea
-    * @param idea
-    * @param list
-    * @return
-    */
-    boolean saveByTargetIdea(Idea idea,List<Relation> list);
-
-    /**
-    * saveRelByTargetProductPlanCategory
-    * @param productPlan
-    * @param list
-    * @return
-    */
-    boolean saveByTargetProductPlanCategory(ProductPlan productPlan,List<Relation> list);
-
-    /**
-    * saveRelByTargetTestCase
-    * @param testCase
-    * @param list
-    * @return
-    */
-    boolean saveByTargetTestCase(TestCase testCase,List<Relation> list);
-
-    /**
-    * saveRelByTargetTicket
-    * @param ticket
-    * @param list
-    * @return
-    */
-    boolean saveByTargetTicket(Ticket ticket,List<Relation> list);
-
-    /**
-    * saveRelByTargetWorkItem
-    * @param workItem
-    * @param list
-    * @return
-    */
-    boolean saveByTargetWorkItem(WorkItem workItem,List<Relation> list);
-
-    /**
-    * saveRelByPrincipalTestCase
-    * @param testCase
-    * @param list
-    * @return
-    */
-    boolean saveByPrincipalTestCase(TestCase testCase,List<Relation> list);
-
-    /**
-    * saveRelByPrincipalTestPlan
-    * @param testPlan
-    * @param list
-    * @return
-    */
-    boolean saveByPrincipalTestPlan(TestPlan testPlan,List<Relation> list);
-
-    /**
-    * saveRelByPrincipalWorkItem
-    * @param workItem
-    * @param list
-    * @return
-    */
-    boolean saveByPrincipalWorkItem(WorkItem workItem,List<Relation> list);
-
-
-    /**
-     * 自定义查询SQL
-     * @param sql  select * from table where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
-    List<JSONObject> select(String sql, Map<String,Object> param);
-
-    /**
-     * 自定义SQL
-     * @param sql  update table  set name ='test' where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
     boolean execute(String sql, Map<String,Object> param);
-
 }

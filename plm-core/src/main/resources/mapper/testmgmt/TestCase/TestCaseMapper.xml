@@ -18,10 +18,10 @@
 		<result property="reviewResultState" column="review_result_state" />
 		<result property="remainingWorkload" column="remaining_workload" />
 		<result property="actualWorkload" column="actual_workload" />
-		<result property="createTime" column="create_time" />
 		<result property="createMan" column="create_man" />
-		<result property="updateTime" column="update_time" />
+		<result property="createTime" column="create_time" />
 		<result property="updateMan" column="update_man" />
+		<result property="updateTime" column="update_time" />
 		<result property="testLibraryId" column="test_library_id" />
 		<result property="suiteId" column="suite_id" />
 		<result property="suiteName" column="suite_name" />

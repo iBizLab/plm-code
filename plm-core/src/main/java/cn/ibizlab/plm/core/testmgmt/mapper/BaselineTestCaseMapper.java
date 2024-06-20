@@ -43,6 +43,25 @@ public interface BaselineTestCaseMapper extends BaseMapper<BaselineTestCase> {
     List<BaselineTestCase> listDefault(@Param("ctx") BaselineTestCaseSearchContext context, @Param("ew") Wrapper<BaselineTestCase> wrapper);
 
     /**
+     * 数据集合baseline_relation_version分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<BaselineTestCase> searchBaselineRelationVersion(IPage<BaselineTestCase> page, @Param("ctx") BaselineTestCaseSearchContext context, @Param("ew") Wrapper<BaselineTestCase> wrapper);
+    
+    /**
+     * 数据集合baseline_relation_version查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<BaselineTestCase> listBaselineRelationVersion(@Param("ctx") BaselineTestCaseSearchContext context, @Param("ew") Wrapper<BaselineTestCase> wrapper);
+
+    /**
      * 数据集合fill_version_data分页查询
      * 
      * @param page
@@ -60,6 +79,22 @@ public interface BaselineTestCaseMapper extends BaseMapper<BaselineTestCase> {
      * @return
      */
     List<BaselineTestCase> listFillVersionData(@Param("ctx") BaselineTestCaseSearchContext context, @Param("ew") Wrapper<BaselineTestCase> wrapper);
+
+    /**
+    * 根据principalId查询
+    *
+    * @param principalIds
+    * @return
+    */
+    List<BaselineTestCase> findByPrincipalId(@Param("principalIds") List<String> principalIds);
+
+    /**
+    * 根据targetVersionId查询
+    *
+    * @param targetVersionIds
+    * @return
+    */
+    List<BaselineTestCase> findByTargetVersionId(@Param("targetVersionIds") List<String> targetVersionIds);
 
     /**
      * 主键查询
@@ -125,21 +160,4 @@ public interface BaselineTestCaseMapper extends BaseMapper<BaselineTestCase> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据principalId查询
-     *
-     * @param principalIds
-     * @return
-     */
-    List<BaselineTestCase> findByPrincipalId(@Param("principalIds") List<String> principalIds);
-
-    /**
-     * 根据targetVersionId查询
-     *
-     * @param targetVersionIds
-     * @return
-     */
-    List<BaselineTestCase> findByTargetVersionId(@Param("targetVersionIds") List<String> targetVersionIds);
-
 }

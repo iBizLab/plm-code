@@ -51,31 +51,39 @@ public class ReviewFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_state_eq")
     @JSONField(name = "n_state_eq")
-    @ApiModelProperty(value = "评审状态EQ", position = 80)
+    @ApiModelProperty(value = "评审状态EQ", position = 90)
 	private String stateEQ;
-
-    /**
-     * 名称LIKE
-     */
-    @JsonProperty("n_name_like")
-    @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 170)
-	private String nameLIKE;
 
     /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 180)
+    @ApiModelProperty(value = "标识EQ", position = 190)
 	private String idEQ;
+
+    /**
+     * 名称LIKE
+     */
+    @JsonProperty("n_name_like")
+    @JSONField(name = "n_name_like")
+    @ApiModelProperty(value = "名称LIKE", position = 200)
+	private String nameLIKE;
+
+    /**
+     * 建立人EQ
+     */
+    @JsonProperty("n_create_man_eq")
+    @JSONField(name = "n_create_man_eq")
+    @ApiModelProperty(value = "建立人EQ", position = 210)
+	private String createManEQ;
 
     /**
      * 测试库标识EQ
      */
     @JsonProperty("n_library_id_eq")
     @JSONField(name = "n_library_id_eq")
-    @ApiModelProperty(value = "测试库标识EQ", position = 200)
+    @ApiModelProperty(value = "测试库标识EQ", position = 250)
 	private String libraryIdEQ;
 
     /**
@@ -83,7 +91,7 @@ public class ReviewFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_library_name_eq")
     @JSONField(name = "n_library_name_eq")
-    @ApiModelProperty(value = "测试库名称EQ", position = 210)
+    @ApiModelProperty(value = "测试库名称EQ", position = 260)
 	private String libraryNameEQ;
 
     /**
@@ -91,8 +99,16 @@ public class ReviewFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_library_name_like")
     @JSONField(name = "n_library_name_like")
-    @ApiModelProperty(value = "测试库名称LIKE", position = 211)
+    @ApiModelProperty(value = "测试库名称LIKE", position = 261)
 	private String libraryNameLIKE;
+
+    /**
+     * 流程准则标识EQ
+     */
+    @JsonProperty("n_guideline_id_eq")
+    @JSONField(name = "n_guideline_id_eq")
+    @ApiModelProperty(value = "流程准则标识EQ", position = 270)
+	private String guidelineIdEQ;
 
 
 }

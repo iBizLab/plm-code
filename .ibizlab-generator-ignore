@@ -3,7 +3,6 @@
 **/node_modules/**
 **/target/**
 **@macro/**
-**/BootApplication.java
 **/application.yml
 **/SysDepartmentServiceImpl.java
 **/MybatisConfiguration.java
@@ -18,12 +17,6 @@ Dockerfile-serviceapi
 **/permission/**
 **/msgtempl/**
 **/logic/**
-**/SearchComment.java
-**/SearchAttachment.java
-**/SystemExtensionNotifySettingFeignClient.java
+
 **/AppSyncJob
 **/AuditAspect
-**/ReviewContent.java
-**/ReviewDTO.java
-**/Review.java
-**/ReviewContentExtendMapper.xml

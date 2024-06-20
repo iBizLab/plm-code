@@ -515,16 +515,16 @@ export default {
             id: 'description',
           },
           {
-            appDEFieldId: 'create_man',
-            frontCodeListId: 'plmweb.sysoperator',
-            dataType: 25,
-            id: 'create_man',
-          },
-          {
             appDEFieldId: 'register_date',
             dataType: 5,
             format: 'YYYY-MM-DD',
             id: 'register_date',
+          },
+          {
+            appDEFieldId: 'create_man',
+            frontCodeListId: 'plmweb.sysoperator',
+            dataType: 25,
+            id: 'create_man',
           },
           {
             appDEFieldId: 'id',

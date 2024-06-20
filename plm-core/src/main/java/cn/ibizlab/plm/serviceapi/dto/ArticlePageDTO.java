@@ -93,11 +93,19 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
     private Integer isLeaf;
 
     /**
+     * 类别路径
+     */
+    @JsonProperty("categories")
+    @JSONField(name = "categories")
+    @ApiModelProperty(value = "类别路径", position = 7)
+    private String categories;
+
+    /**
      * 空间编号
      */
     @JsonProperty("space_identifier")
     @JSONField(name = "space_identifier")
-    @ApiModelProperty(value = "空间编号", position = 7)
+    @ApiModelProperty(value = "空间编号", position = 8)
     private String spaceIdentifier;
 
     /**
@@ -105,7 +113,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("attachments")
     @JSONField(name = "attachments")
-    @ApiModelProperty(value = "附件", position = 8)
+    @ApiModelProperty(value = "附件", position = 9)
     private List<AttachmentDTO> attachments;
 
     /**
@@ -113,7 +121,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("is_archived")
     @JSONField(name = "is_archived")
-    @ApiModelProperty(value = "是否已归档", position = 9)
+    @ApiModelProperty(value = "是否已归档", position = 10)
     private Integer isArchived;
 
     /**
@@ -121,7 +129,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("is_deleted")
     @JSONField(name = "is_deleted")
-    @ApiModelProperty(value = "是否已删除", position = 10)
+    @ApiModelProperty(value = "是否已删除", position = 11)
     private Integer isDeleted;
 
     /**
@@ -129,7 +137,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("attentions")
     @JSONField(name = "attentions")
-    @ApiModelProperty(value = "关注", position = 11)
+    @ApiModelProperty(value = "关注", position = 12)
     private List<AttentionDTO> attentions;
 
     /**
@@ -137,7 +145,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("cur_version_id")
     @JSONField(name = "cur_version_id")
-    @ApiModelProperty(value = "当前版本标识", position = 12)
+    @ApiModelProperty(value = "当前版本标识", position = 13)
     private String curVersionId;
 
     /**
@@ -145,7 +153,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("cur_version_name")
     @JSONField(name = "cur_version_name")
-    @ApiModelProperty(value = "当前版本名称", position = 13)
+    @ApiModelProperty(value = "当前版本名称", position = 14)
     private String curVersionName;
 
     /**
@@ -154,7 +162,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
     @JsonProperty("publish_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "publish_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "发布时间", position = 14)
+    @ApiModelProperty(value = "发布时间", position = 15)
     private Date publishTime;
 
     /**
@@ -162,7 +170,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("is_published")
     @JSONField(name = "is_published")
-    @ApiModelProperty(value = "是否发布", position = 15)
+    @ApiModelProperty(value = "是否发布", position = 16)
     private Integer isPublished;
 
     /**
@@ -170,7 +178,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("publish_man")
     @JSONField(name = "publish_man")
-    @ApiModelProperty(value = "发布人", position = 16)
+    @ApiModelProperty(value = "发布人", position = 17)
     private String publishMan;
 
     /**
@@ -178,7 +186,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("publish_content")
     @JSONField(name = "publish_content")
-    @ApiModelProperty(value = "发布正文", position = 17)
+    @ApiModelProperty(value = "发布正文", position = 18)
     private String publishContent;
 
     /**
@@ -186,7 +194,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("show_identifier")
     @JSONField(name = "show_identifier")
-    @ApiModelProperty(value = "编号", position = 18)
+    @ApiModelProperty(value = "编号", position = 19)
     private String showIdentifier;
 
     /**
@@ -194,7 +202,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("publish_name")
     @JSONField(name = "publish_name")
-    @ApiModelProperty(value = "发布主题", position = 19)
+    @ApiModelProperty(value = "发布主题", position = 20)
     private String publishName;
 
     /**
@@ -202,15 +210,39 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("published")
     @JSONField(name = "published")
-    @ApiModelProperty(value = "发布状态", position = 20)
+    @ApiModelProperty(value = "发布状态", position = 21)
     private Integer published;
+
+    /**
+     * 是否锁定
+     */
+    @JsonProperty("is_lock")
+    @JSONField(name = "is_lock")
+    @ApiModelProperty(value = "是否锁定", position = 22)
+    private Integer isLock;
+
+    /**
+     * 选择版本标识
+     */
+    @JsonProperty("choose_version_id")
+    @JSONField(name = "choose_version_id")
+    @ApiModelProperty(value = "选择版本标识", position = 23)
+    private String chooseVersionId;
+
+    /**
+     * 选择版本名称
+     */
+    @JsonProperty("choose_version_name")
+    @JSONField(name = "choose_version_name")
+    @ApiModelProperty(value = "选择版本名称", position = 24)
+    private String chooseVersionName;
 
     /**
      * 建立人
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 21)
+    @ApiModelProperty(value = "建立人", position = 25)
     private String createMan;
 
     /**
@@ -219,7 +251,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 22)
+    @ApiModelProperty(value = "建立时间", position = 26)
     private Date createTime;
 
     /**
@@ -227,7 +259,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 23)
+    @ApiModelProperty(value = "标识", position = 27)
     private String id;
 
     /**
@@ -235,7 +267,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "主题", position = 24)
+    @ApiModelProperty(value = "主题", position = 28)
     private String name;
 
     /**
@@ -243,7 +275,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("parent_id")
     @JSONField(name = "parent_id")
-    @ApiModelProperty(value = "父页面标识", position = 25)
+    @ApiModelProperty(value = "父页面标识", position = 29)
     private String parentId;
 
     /**
@@ -251,7 +283,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("space_id")
     @JSONField(name = "space_id")
-    @ApiModelProperty(value = "空间标识", position = 26)
+    @ApiModelProperty(value = "空间标识", position = 30)
     private String spaceId;
 
     /**
@@ -259,7 +291,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("space_name")
     @JSONField(name = "space_name")
-    @ApiModelProperty(value = "空间名称", position = 27)
+    @ApiModelProperty(value = "空间名称", position = 31)
     private String spaceName;
 
     /**
@@ -267,7 +299,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 28)
+    @ApiModelProperty(value = "更新人", position = 32)
     private String updateMan;
 
     /**
@@ -276,7 +308,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 29)
+    @ApiModelProperty(value = "更新时间", position = 33)
     private Date updateTime;
 
 
@@ -448,6 +480,33 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
     public ArticlePageDTO setPublished(Integer published) {
         this.published = published;
         this.modify("published", published);
+        return this;
+    }
+
+    /**
+     * 设置 [是否锁定]
+     */
+    public ArticlePageDTO setIsLock(Integer isLock) {
+        this.isLock = isLock;
+        this.modify("is_lock", isLock);
+        return this;
+    }
+
+    /**
+     * 设置 [选择版本标识]
+     */
+    public ArticlePageDTO setChooseVersionId(String chooseVersionId) {
+        this.chooseVersionId = chooseVersionId;
+        this.modify("choose_version_id", chooseVersionId);
+        return this;
+    }
+
+    /**
+     * 设置 [选择版本名称]
+     */
+    public ArticlePageDTO setChooseVersionName(String chooseVersionName) {
+        this.chooseVersionName = chooseVersionName;
+        this.modify("choose_version_name", chooseVersionName);
         return this;
     }
 

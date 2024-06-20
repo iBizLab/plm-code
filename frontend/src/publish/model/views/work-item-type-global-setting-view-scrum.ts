@@ -1167,6 +1167,11 @@ export default {
           dataType: 25,
           id: 'srfmajortext',
         },
+        {
+          appDEFieldId: 'project_id',
+          dataType: 25,
+          id: 'project_id',
+        },
       ],
       pagingSize: 1000,
       showHeader: true,

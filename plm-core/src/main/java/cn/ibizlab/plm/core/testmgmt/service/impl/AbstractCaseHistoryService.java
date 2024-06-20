@@ -41,33 +41,6 @@ public abstract class AbstractCaseHistoryService extends ServiceImpl<CaseHistory
 
     protected int batchSize = 500;
 
-    public CaseHistory get(CaseHistory et) {
-        CaseHistory rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.CASE_HISTORY.toString(),et.getId());
-        rt.copyTo(et,true);
-        return et;
-    }
-
-    public List<CaseHistory> getByEntities(List<CaseHistory> entities) {
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public void fillParentData(CaseHistory et) {
-        if(Entities.TEST_CASE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
-            et.setCaseId((String)et.getContextParentKey());
-        }
-    }
-
-    public CaseHistory getDraft(CaseHistory et) {
-        fillParentData(et);
-        return et;
-    }
-
-    public Integer checkKey(CaseHistory et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<CaseHistory>lambdaQuery().eq(CaseHistory::getId, et.getId()))>0)?1:0;
-    }
-
     @Override
     @Transactional
     public boolean create(CaseHistory et) {
@@ -77,14 +50,14 @@ public abstract class AbstractCaseHistoryService extends ServiceImpl<CaseHistory
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<CaseHistory> list) {
+    public boolean create(List<CaseHistory> list) {
         list.forEach(this::fillParentData);
         this.saveBatch(list, batchSize);
         return true;
     }
-
+	
     @Transactional
     public boolean update(CaseHistory et) {
         UpdateWrapper<CaseHistory> qw = et.getUpdateWrapper(true);
@@ -96,11 +69,44 @@ public abstract class AbstractCaseHistoryService extends ServiceImpl<CaseHistory
     }
 
     @Transactional
-    public boolean updateBatch(List<CaseHistory> list) {
+    public boolean update(List<CaseHistory> list) {
         updateBatchById(list, batchSize);
         return true;
     }
+	
+   @Transactional
+    public boolean remove(CaseHistory et) {
+        if(!remove(Wrappers.<CaseHistory>lambdaQuery().eq(CaseHistory::getId, et.getId())))
+            return false;
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<CaseHistory> entities) {
+        this.baseMapper.deleteEntities(entities);
+        return true;
+    }		
+    public CaseHistory get(CaseHistory et) {
+        CaseHistory rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.CASE_HISTORY.toString(),et.getId());
+        rt.copyTo(et,true);
+        return et;
+    }	
+
+    public List<CaseHistory> get(List<CaseHistory> entities) {
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public CaseHistory getDraft(CaseHistory et) {
+        fillParentData(et);
+        return et;
+    }
+	
+    public Integer checkKey(CaseHistory et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<CaseHistory>lambdaQuery().eq(CaseHistory::getId, et.getId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(CaseHistory et) {
@@ -111,10 +117,10 @@ public abstract class AbstractCaseHistoryService extends ServiceImpl<CaseHistory
     }
 
     @Transactional
-    public boolean saveBatch(List<CaseHistory> list) {
+    public boolean save(List<CaseHistory> list) {
         if(ObjectUtils.isEmpty(list))
             return true;
-        Map<String,CaseHistory> before = getByEntities(list).stream().collect(Collectors.toMap(CaseHistory::getId,e->e));
+        Map<String,CaseHistory> before = get(list).stream().collect(Collectors.toMap(CaseHistory::getId,e->e));
         List<CaseHistory> create = new ArrayList<>();
         List<CaseHistory> update = new ArrayList<>();
         list.forEach(sub->{
@@ -125,52 +131,40 @@ public abstract class AbstractCaseHistoryService extends ServiceImpl<CaseHistory
         });
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
         else
             return true;
     }
-
-    @Transactional
-    public boolean remove(CaseHistory et) {
-        if(!remove(Wrappers.<CaseHistory>lambdaQuery().eq(CaseHistory::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<CaseHistory> entities) {
-        this.baseMapper.deleteEntities(entities);
-        return true;
-    }
-
-    public Page<CaseHistory> searchDefault(CaseHistorySearchContext context) {
+	
+   public Page<CaseHistory> fetchDefault(CaseHistorySearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<CaseHistory> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<CaseHistory> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<CaseHistory> listDefault(CaseHistorySearchContext context) {
+   public List<CaseHistory> listDefault(CaseHistorySearchContext context) {
         List<CaseHistory> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
-    }
-
-    public List<CaseHistory> findByCaseId(List<String> caseIds) {
+   }
+	
+	public List<CaseHistory> findByCaseId(List<String> caseIds){
         List<CaseHistory> list = baseMapper.findByCaseId(caseIds);
-        return list;
-    }
-    public boolean removeByCaseId(String caseId) {
+        return list;	
+	}
+
+	public boolean removeByCaseId(String caseId){
         return this.remove(Wrappers.<CaseHistory>lambdaQuery().eq(CaseHistory::getCaseId,caseId));
-    }
+	}
 
-    public boolean resetByCaseId(String caseId) {
-        return this.update(Wrappers.<CaseHistory>lambdaUpdate().eq(CaseHistory::getCaseId,caseId));
-    }
-
-    public boolean saveByTestCase(TestCase testCase,List<CaseHistory> list) {
+	public boolean resetByCaseId(String caseId){
+		return this.update(Wrappers.<CaseHistory>lambdaUpdate().eq(CaseHistory::getCaseId,caseId));
+	}
+	public boolean saveByTestCase(TestCase testCase, List<CaseHistory> list){
         if(list==null)
             return true;
         Map<String,CaseHistory> before = findByCaseId(testCase.getId()).stream().collect(Collectors.toMap(CaseHistory::getId,e->e));
+
         List<CaseHistory> update = new ArrayList<>();
         List<CaseHistory> create = new ArrayList<>();
 
@@ -186,18 +180,21 @@ public abstract class AbstractCaseHistoryService extends ServiceImpl<CaseHistory
         }
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
             return false;
         else
             return true;
+			
+	}
+
+    public void fillParentData(CaseHistory et) {
+        if(Entities.TEST_CASE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setCaseId((String)et.getContextParentKey());
+        }
     }
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -217,8 +214,8 @@ public abstract class AbstractCaseHistoryService extends ServiceImpl<CaseHistory
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return CaseHistoryMapper.class;
     }
@@ -227,4 +224,5 @@ public abstract class AbstractCaseHistoryService extends ServiceImpl<CaseHistory
     protected Class currentModelClass() {
         return CaseHistory.class;
     }
+
 }

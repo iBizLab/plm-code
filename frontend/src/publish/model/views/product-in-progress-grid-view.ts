@@ -42,12 +42,14 @@ export default {
       logicType: 'APPUILOGIC',
       builtinAppUILogic: {
         openDataAppView: {
-          refAppViewId: 'plmweb.product_main_view',
+          openMode: 'POPUPMODAL',
+          refAppViewId: 'plmweb.product_show_edit_view',
         },
         editMode: true,
         appUILogicRefViews: [
           {
-            refAppViewId: 'plmweb.product_main_view',
+            openMode: 'POPUPMODAL',
+            refAppViewId: 'plmweb.product_show_edit_view',
           },
         ],
         builtinLogic: true,
@@ -61,8 +63,9 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '产品主视图',
-      refAppViewId: 'plmweb.product_main_view',
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '产品信息展示视图',
+      refAppViewId: 'plmweb.product_show_edit_view',
       name: 'EDITDATA',
       id: 'editdata',
     },
@@ -150,6 +153,20 @@ export default {
                 afterItemType: 'NONE',
                 beforeItemType: 'NONE',
                 detailType: 'DEUIACTION',
+                uiactionId: 'change_admin_role@product',
+                tooltip: '设置管理员',
+                showIcon: true,
+                sysImage: {
+                  cssClass: 'fa fa-sun-o',
+                  glyph: 'xf185@FontAwesome',
+                },
+                id: 'u7a9d124',
+              },
+              {
+                actionLevel: 100,
+                afterItemType: 'NONE',
+                beforeItemType: 'NONE',
+                detailType: 'DEUIACTION',
                 uiactionId: 'in_progress_into_archived@product',
                 tooltip: '归档',
                 showIcon: true,
@@ -185,7 +202,7 @@ export default {
           codeName: 'uagridcolumn1',
           columnType: 'UAGRIDCOLUMN',
           noPrivDisplayMode: 1,
-          width: 100,
+          width: 150,
           widthUnit: 'PX',
           id: 'uagridcolumn1',
         },

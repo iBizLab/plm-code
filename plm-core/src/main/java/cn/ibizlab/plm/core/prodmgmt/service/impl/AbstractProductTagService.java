@@ -41,17 +41,164 @@ public abstract class AbstractProductTagService extends ServiceImpl<ProductTagMa
 
     protected int batchSize = 500;
 
+    @Override
+    @Transactional
+    public boolean create(ProductTag et) {
+        fillParentData(et);
+        if(this.baseMapper.insert(et) < 1)
+            return false;
+        get(et);
+        return true;
+    }
+	
+    @Transactional
+    public boolean create(List<ProductTag> list) {
+        list.forEach(this::fillParentData);
+        this.saveBatch(list, batchSize);
+        return true;
+    }
+	
+    @Transactional
+    public boolean update(ProductTag et) {
+        UpdateWrapper<ProductTag> qw = et.getUpdateWrapper(true);
+        qw.eq("id", et.getId());
+        if(!update(et, qw))
+            return false;
+        get(et);
+        return true;
+    }
+
+    @Transactional
+    public boolean update(List<ProductTag> list) {
+        updateBatchById(list, batchSize);
+        return true;
+    }
+	
+   @Transactional
+    public boolean remove(ProductTag et) {
+        if(!remove(Wrappers.<ProductTag>lambdaQuery().eq(ProductTag::getId, et.getId())))
+            return false;
+        return true;
+    }
+
+    @Transactional
+    public boolean remove(List<ProductTag> entities) {
+        this.baseMapper.deleteEntities(entities);
+        return true;
+    }		
     public ProductTag get(ProductTag et) {
         ProductTag rt = this.baseMapper.selectEntity(et);
         if(rt == null)
             throw new NotFoundException("数据不存在",Entities.PRODUCT_TAG.toString(),et.getId());
         rt.copyTo(et,true);
         return et;
+    }	
+
+    public List<ProductTag> get(List<ProductTag> entities) {
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public ProductTag getDraft(ProductTag et) {
+        fillParentData(et);
+        return et;
+    }
+	
+    public Integer checkKey(ProductTag et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ProductTag>lambdaQuery().eq(ProductTag::getId, et.getId()))>0)?1:0;
+    }
+	
+    @Override
+    @Transactional
+    public boolean save(ProductTag et) {
+        if(checkKey(et) > 0)
+            return getSelf().update(et);
+        else
+            return getSelf().create(et);
     }
 
-    public List<ProductTag> getByEntities(List<ProductTag> entities) {
-        return this.baseMapper.selectEntities(entities);
+    @Transactional
+    public boolean save(List<ProductTag> list) {
+        if(ObjectUtils.isEmpty(list))
+            return true;
+        Map<String,ProductTag> before = get(list).stream().collect(Collectors.toMap(ProductTag::getId,e->e));
+        List<ProductTag> create = new ArrayList<>();
+        List<ProductTag> update = new ArrayList<>();
+        list.forEach(sub->{
+            if(!ObjectUtils.isEmpty(sub.getId()) && before.containsKey(sub.getId()))
+                update.add(sub);
+            else
+                create.add(sub);
+        });
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else
+            return true;
     }
+	
+   public Page<ProductTag> fetchDefault(ProductTagSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ProductTag> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
+        List<ProductTag> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<ProductTag> listDefault(ProductTagSearchContext context) {
+        List<ProductTag> list = baseMapper.listDefault(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<ProductTag> fetchCurProductTag(ProductTagSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ProductTag> pages=baseMapper.searchCurProductTag(context.getPages(),context,context.getSelectCond());
+        List<ProductTag> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<ProductTag> listCurProductTag(ProductTagSearchContext context) {
+        List<ProductTag> list = baseMapper.listCurProductTag(context,context.getSelectCond());
+        return list;
+   }
+	
+	public List<ProductTag> findByProductId(List<String> productIds){
+        List<ProductTag> list = baseMapper.findByProductId(productIds);
+        return list;	
+	}
+
+	public boolean removeByProductId(String productId){
+        return this.remove(Wrappers.<ProductTag>lambdaQuery().eq(ProductTag::getProductId,productId));
+	}
+
+	public boolean resetByProductId(String productId){
+		return this.update(Wrappers.<ProductTag>lambdaUpdate().eq(ProductTag::getProductId,productId));
+	}
+	public boolean saveByProduct(Product product, List<ProductTag> list){
+        if(list==null)
+            return true;
+        Map<String,ProductTag> before = findByProductId(product.getId()).stream().collect(Collectors.toMap(ProductTag::getId,e->e));
+
+        List<ProductTag> update = new ArrayList<>();
+        List<ProductTag> create = new ArrayList<>();
+
+        for(ProductTag sub:list) {
+            sub.setProductId(product.getId());
+            sub.setProduct(product);
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
 
     public void fillParentData(ProductTag et) {
         if(Entities.PRODUCT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
@@ -68,145 +215,6 @@ public abstract class AbstractProductTagService extends ServiceImpl<ProductTagMa
         }
     }
 
-    public ProductTag getDraft(ProductTag et) {
-        fillParentData(et);
-        return et;
-    }
-
-    public Integer checkKey(ProductTag et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ProductTag>lambdaQuery().eq(ProductTag::getId, et.getId()))>0)?1:0;
-    }
-
-    @Override
-    @Transactional
-    public boolean create(ProductTag et) {
-        fillParentData(et);
-        if(this.baseMapper.insert(et) < 1)
-            return false;
-        get(et);
-        return true;
-    }
-
-    @Transactional
-    public boolean createBatch(List<ProductTag> list) {
-        list.forEach(this::fillParentData);
-        this.saveBatch(list, batchSize);
-        return true;
-    }
-
-    @Transactional
-    public boolean update(ProductTag et) {
-        UpdateWrapper<ProductTag> qw = et.getUpdateWrapper(true);
-        qw.eq("id", et.getId());
-        if(!update(et, qw))
-            return false;
-        get(et);
-        return true;
-    }
-
-    @Transactional
-    public boolean updateBatch(List<ProductTag> list) {
-        updateBatchById(list, batchSize);
-        return true;
-    }
-
-    @Override
-    @Transactional
-    public boolean save(ProductTag et) {
-        if(checkKey(et) > 0)
-            return getSelf().update(et);
-        else
-            return getSelf().create(et);
-    }
-
-    @Transactional
-    public boolean saveBatch(List<ProductTag> list) {
-        if(ObjectUtils.isEmpty(list))
-            return true;
-        Map<String,ProductTag> before = getByEntities(list).stream().collect(Collectors.toMap(ProductTag::getId,e->e));
-        List<ProductTag> create = new ArrayList<>();
-        List<ProductTag> update = new ArrayList<>();
-        list.forEach(sub->{
-            if(!ObjectUtils.isEmpty(sub.getId()) && before.containsKey(sub.getId()))
-                update.add(sub);
-            else
-                create.add(sub);
-        });
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else
-            return true;
-    }
-
-    @Transactional
-    public boolean remove(ProductTag et) {
-        if(!remove(Wrappers.<ProductTag>lambdaQuery().eq(ProductTag::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<ProductTag> entities) {
-        this.baseMapper.deleteEntities(entities);
-        return true;
-    }
-
-    public Page<ProductTag> searchDefault(ProductTagSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ProductTag> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
-        List<ProductTag> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<ProductTag> listDefault(ProductTagSearchContext context) {
-        List<ProductTag> list = baseMapper.listDefault(context,context.getSelectCond());
-        return list;
-    }
-
-    public List<ProductTag> findByProductId(List<String> productIds) {
-        List<ProductTag> list = baseMapper.findByProductId(productIds);
-        return list;
-    }
-    public boolean removeByProductId(String productId) {
-        return this.remove(Wrappers.<ProductTag>lambdaQuery().eq(ProductTag::getProductId,productId));
-    }
-
-    public boolean resetByProductId(String productId) {
-        return this.update(Wrappers.<ProductTag>lambdaUpdate().eq(ProductTag::getProductId,productId));
-    }
-
-    public boolean saveByProduct(Product product,List<ProductTag> list) {
-        if(list==null)
-            return true;
-        Map<String,ProductTag> before = findByProductId(product.getId()).stream().collect(Collectors.toMap(ProductTag::getId,e->e));
-        List<ProductTag> update = new ArrayList<>();
-        List<ProductTag> create = new ArrayList<>();
-
-        for(ProductTag sub:list) {
-            sub.setProductId(product.getId());
-            sub.setProduct(product);
-            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
-                before.remove(sub.getId());
-                update.add(sub);
-            }
-            else
-                create.add(sub);
-        }
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
-            return false;
-        else
-            return true;
-    }
-
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -226,8 +234,8 @@ public abstract class AbstractProductTagService extends ServiceImpl<ProductTagMa
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return ProductTagMapper.class;
     }
@@ -236,4 +244,5 @@ public abstract class AbstractProductTagService extends ServiceImpl<ProductTagMa
     protected Class currentModelClass() {
         return ProductTag.class;
     }
+
 }

@@ -35,6 +35,8 @@ import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
 import cn.ibizlab.plm.core.projmgmt.service.WorkItemService;
 import cn.ibizlab.plm.core.prodmgmt.domain.BaselineIdea;
 import cn.ibizlab.plm.core.prodmgmt.service.BaselineIdeaService;
+import cn.ibizlab.plm.core.wiki.domain.BaselinePage;
+import cn.ibizlab.plm.core.wiki.service.BaselinePageService;
 import cn.ibizlab.plm.core.testmgmt.domain.BaselineTestCase;
 import cn.ibizlab.plm.core.testmgmt.service.BaselineTestCaseService;
 import cn.ibizlab.plm.core.projmgmt.domain.BaselineWorkItem;
@@ -72,6 +74,10 @@ public abstract class AbstractVersionService extends ServiceImpl<VersionMapper,V
 
     @Autowired
     @Lazy
+    protected BaselinePageService baselinePageService;
+
+    @Autowired
+    @Lazy
     protected BaselineTestCaseService baselineTestCaseService;
 
     @Autowired
@@ -84,17 +90,252 @@ public abstract class AbstractVersionService extends ServiceImpl<VersionMapper,V
 
     protected int batchSize = 500;
 
+    @Override
+    @Transactional
+    public boolean create(Version et) {
+        fillParentData(et);
+        if(this.baseMapper.insert(et) < 1)
+            return false;
+        get(et);
+        return true;
+    }
+	
+    @Transactional
+    public boolean create(List<Version> list) {
+        list.forEach(this::fillParentData);
+        this.saveBatch(list, batchSize);
+        return true;
+    }
+	
+    @Transactional
+    public boolean update(Version et) {
+        UpdateWrapper<Version> qw = et.getUpdateWrapper(true);
+        qw.eq("id", et.getId());
+        if(!update(et, qw))
+            return false;
+        get(et);
+        return true;
+    }
+
+    @Transactional
+    public boolean update(List<Version> list) {
+        updateBatchById(list, batchSize);
+        return true;
+    }
+	
+   @Transactional
+    public boolean remove(Version et) {
+        if(!remove(Wrappers.<Version>lambdaQuery().eq(Version::getId, et.getId())))
+            return false;
+        return true;
+    }
+
+    @Transactional
+    public boolean remove(List<Version> entities) {
+        this.baseMapper.deleteEntities(entities);
+        return true;
+    }		
     public Version get(Version et) {
         Version rt = this.baseMapper.selectEntity(et);
         if(rt == null)
             throw new NotFoundException("数据不存在",Entities.VERSION.toString(),et.getId());
         rt.copyTo(et,true);
         return et;
+    }	
+
+    public List<Version> get(List<Version> entities) {
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public Version getDraft(Version et) {
+        fillParentData(et);
+        return et;
+    }
+	
+    public Integer checkKey(Version et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Version>lambdaQuery().eq(Version::getId, et.getId()))>0)?1:0;
+    }
+	
+    @Override
+    @Transactional
+    public boolean save(Version et) {
+        if(checkKey(et) > 0)
+            return getSelf().update(et);
+        else
+            return getSelf().create(et);
     }
 
-    public List<Version> getByEntities(List<Version> entities) {
-        return this.baseMapper.selectEntities(entities);
+    @Transactional
+    public boolean save(List<Version> list) {
+        if(ObjectUtils.isEmpty(list))
+            return true;
+        Map<String,Version> before = get(list).stream().collect(Collectors.toMap(Version::getId,e->e));
+        List<Version> create = new ArrayList<>();
+        List<Version> update = new ArrayList<>();
+        list.forEach(sub->{
+            if(!ObjectUtils.isEmpty(sub.getId()) && before.containsKey(sub.getId()))
+                update.add(sub);
+            else
+                create.add(sub);
+        });
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else
+            return true;
     }
+	
+   public Page<Version> fetchDefault(VersionSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("CREATE_TIME,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Version> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
+        List<Version> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Version> listDefault(VersionSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("CREATE_TIME,DESC");
+        List<Version> list = baseMapper.listDefault(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Version> fetchOwner(VersionSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Version> pages=baseMapper.searchOwner(context.getPages(),context,context.getSelectCond());
+        List<Version> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Version> listOwner(VersionSearchContext context) {
+        List<Version> list = baseMapper.listOwner(context,context.getSelectCond());
+        return list;
+   }
+	
+	public List<Version> findByOwnerId(List<String> ownerIds){
+        List<Version> list = baseMapper.findByOwnerId(ownerIds);
+        return list;	
+	}
+
+	public boolean removeByOwnerId(String ownerId){
+        return this.remove(Wrappers.<Version>lambdaQuery().eq(Version::getOwnerId,ownerId));
+	}
+
+	public boolean resetByOwnerId(String ownerId){
+		return this.update(Wrappers.<Version>lambdaUpdate().eq(Version::getOwnerId,ownerId));
+	}
+	public boolean saveByIdea(Idea idea, List<Version> list){
+        if(list==null)
+            return true;
+        Map<String,Version> before = findByOwnerId(idea.getId()).stream().collect(Collectors.toMap(Version::getId,e->e));
+
+        List<Version> update = new ArrayList<>();
+        List<Version> create = new ArrayList<>();
+
+        for(Version sub:list) {
+            sub.setOwnerId(idea.getId());
+            sub.setIdea(idea);
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
+	public boolean saveByPage(ArticlePage articlePage, List<Version> list){
+        if(list==null)
+            return true;
+        Map<String,Version> before = findByOwnerId(articlePage.getId()).stream().collect(Collectors.toMap(Version::getId,e->e));
+
+        List<Version> update = new ArrayList<>();
+        List<Version> create = new ArrayList<>();
+
+        for(Version sub:list) {
+            sub.setOwnerId(articlePage.getId());
+            sub.setPage(articlePage);
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
+	public boolean saveByTestCase(TestCase testCase, List<Version> list){
+        if(list==null)
+            return true;
+        Map<String,Version> before = findByOwnerId(testCase.getId()).stream().collect(Collectors.toMap(Version::getId,e->e));
+
+        List<Version> update = new ArrayList<>();
+        List<Version> create = new ArrayList<>();
+
+        for(Version sub:list) {
+            sub.setOwnerId(testCase.getId());
+            sub.setTestCase(testCase);
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
+	public boolean saveByWorkItem(WorkItem workItem, List<Version> list){
+        if(list==null)
+            return true;
+        Map<String,Version> before = findByOwnerId(workItem.getId()).stream().collect(Collectors.toMap(Version::getId,e->e));
+
+        List<Version> update = new ArrayList<>();
+        List<Version> create = new ArrayList<>();
+
+        for(Version sub:list) {
+            sub.setOwnerId(workItem.getId());
+            sub.setWorkItem(workItem);
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
 
     public void fillParentData(Version et) {
         if(Entities.IDEA.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
@@ -111,237 +352,6 @@ public abstract class AbstractVersionService extends ServiceImpl<VersionMapper,V
         }
     }
 
-    public Version getDraft(Version et) {
-        fillParentData(et);
-        return et;
-    }
-
-    public Integer checkKey(Version et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Version>lambdaQuery().eq(Version::getId, et.getId()))>0)?1:0;
-    }
-
-    @Override
-    @Transactional
-    public boolean create(Version et) {
-        fillParentData(et);
-        if(this.baseMapper.insert(et) < 1)
-            return false;
-        get(et);
-        return true;
-    }
-
-    @Transactional
-    public boolean createBatch(List<Version> list) {
-        list.forEach(this::fillParentData);
-        this.saveBatch(list, batchSize);
-        return true;
-    }
-
-    @Transactional
-    public boolean update(Version et) {
-        UpdateWrapper<Version> qw = et.getUpdateWrapper(true);
-        qw.eq("id", et.getId());
-        if(!update(et, qw))
-            return false;
-        get(et);
-        return true;
-    }
-
-    @Transactional
-    public boolean updateBatch(List<Version> list) {
-        updateBatchById(list, batchSize);
-        return true;
-    }
-
-    @Override
-    @Transactional
-    public boolean save(Version et) {
-        if(checkKey(et) > 0)
-            return getSelf().update(et);
-        else
-            return getSelf().create(et);
-    }
-
-    @Transactional
-    public boolean saveBatch(List<Version> list) {
-        if(ObjectUtils.isEmpty(list))
-            return true;
-        Map<String,Version> before = getByEntities(list).stream().collect(Collectors.toMap(Version::getId,e->e));
-        List<Version> create = new ArrayList<>();
-        List<Version> update = new ArrayList<>();
-        list.forEach(sub->{
-            if(!ObjectUtils.isEmpty(sub.getId()) && before.containsKey(sub.getId()))
-                update.add(sub);
-            else
-                create.add(sub);
-        });
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else
-            return true;
-    }
-
-    @Transactional
-    public boolean remove(Version et) {
-        if(!remove(Wrappers.<Version>lambdaQuery().eq(Version::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<Version> entities) {
-        this.baseMapper.deleteEntities(entities);
-        return true;
-    }
-
-    public Page<Version> searchDefault(VersionSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Version> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
-        List<Version> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<Version> listDefault(VersionSearchContext context) {
-        List<Version> list = baseMapper.listDefault(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<Version> searchOwner(VersionSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Version> pages=baseMapper.searchOwner(context.getPages(),context,context.getSelectCond());
-        List<Version> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<Version> listOwner(VersionSearchContext context) {
-        List<Version> list = baseMapper.listOwner(context,context.getSelectCond());
-        return list;
-    }
-
-    public List<Version> findByOwnerId(List<String> ownerIds) {
-        List<Version> list = baseMapper.findByOwnerId(ownerIds);
-        return list;
-    }
-    public boolean removeByOwnerId(String ownerId) {
-        return this.remove(Wrappers.<Version>lambdaQuery().eq(Version::getOwnerId,ownerId));
-    }
-
-    public boolean resetByOwnerId(String ownerId) {
-        return this.update(Wrappers.<Version>lambdaUpdate().eq(Version::getOwnerId,ownerId));
-    }
-
-    public boolean saveByIdea(Idea idea,List<Version> list) {
-        if(list==null)
-            return true;
-        Map<String,Version> before = findByOwnerId(idea.getId()).stream().collect(Collectors.toMap(Version::getId,e->e));
-        List<Version> update = new ArrayList<>();
-        List<Version> create = new ArrayList<>();
-
-        for(Version sub:list) {
-            sub.setOwnerId(idea.getId());
-            sub.setIdea(idea);
-            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
-                before.remove(sub.getId());
-                update.add(sub);
-            }
-            else
-                create.add(sub);
-        }
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
-            return false;
-        else
-            return true;
-    }
-
-    public boolean saveByPage(ArticlePage articlePage,List<Version> list) {
-        if(list==null)
-            return true;
-        Map<String,Version> before = findByOwnerId(articlePage.getId()).stream().collect(Collectors.toMap(Version::getId,e->e));
-        List<Version> update = new ArrayList<>();
-        List<Version> create = new ArrayList<>();
-
-        for(Version sub:list) {
-            sub.setOwnerId(articlePage.getId());
-            sub.setPage(articlePage);
-            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
-                before.remove(sub.getId());
-                update.add(sub);
-            }
-            else
-                create.add(sub);
-        }
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
-            return false;
-        else
-            return true;
-    }
-
-    public boolean saveByTestCase(TestCase testCase,List<Version> list) {
-        if(list==null)
-            return true;
-        Map<String,Version> before = findByOwnerId(testCase.getId()).stream().collect(Collectors.toMap(Version::getId,e->e));
-        List<Version> update = new ArrayList<>();
-        List<Version> create = new ArrayList<>();
-
-        for(Version sub:list) {
-            sub.setOwnerId(testCase.getId());
-            sub.setTestCase(testCase);
-            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
-                before.remove(sub.getId());
-                update.add(sub);
-            }
-            else
-                create.add(sub);
-        }
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
-            return false;
-        else
-            return true;
-    }
-
-    public boolean saveByWorkItem(WorkItem workItem,List<Version> list) {
-        if(list==null)
-            return true;
-        Map<String,Version> before = findByOwnerId(workItem.getId()).stream().collect(Collectors.toMap(Version::getId,e->e));
-        List<Version> update = new ArrayList<>();
-        List<Version> create = new ArrayList<>();
-
-        for(Version sub:list) {
-            sub.setOwnerId(workItem.getId());
-            sub.setWorkItem(workItem);
-            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
-                before.remove(sub.getId());
-                update.add(sub);
-            }
-            else
-                create.add(sub);
-        }
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
-            return false;
-        else
-            return true;
-    }
-
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -361,8 +371,8 @@ public abstract class AbstractVersionService extends ServiceImpl<VersionMapper,V
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return VersionMapper.class;
     }
@@ -371,4 +381,5 @@ public abstract class AbstractVersionService extends ServiceImpl<VersionMapper,V
     protected Class currentModelClass() {
         return Version.class;
     }
+
 }

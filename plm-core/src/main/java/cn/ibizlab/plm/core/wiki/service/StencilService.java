@@ -32,89 +32,32 @@ public interface StencilService extends IService<Stencil> {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    Stencil get(Stencil et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default Stencil get(String key) {
-        return getSelf().get(new Stencil().setId(key));
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<Stencil> getByIds(Collection<String> ids) {
-        List<Stencil> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Stencil().setId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<Stencil> getByEntities(List<Stencil> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    Stencil getDraft(Stencil et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(Stencil et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(Stencil et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<Stencil> list);
+    boolean create(List<Stencil> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(Stencil et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<Stencil> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    @Override
-    boolean save(Stencil et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<Stencil> list);
+    boolean update(List<Stencil> list);
 
     /**
      * 主键删除
@@ -124,14 +67,7 @@ public interface StencilService extends IService<Stencil> {
     default boolean remove(String key) {
         return getSelf().remove(new Stencil().setId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -141,13 +77,13 @@ public interface StencilService extends IService<Stencil> {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<Stencil> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Stencil().setId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new Stencil().setId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -155,7 +91,200 @@ public interface StencilService extends IService<Stencil> {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<Stencil> entities);
+    boolean remove(List<Stencil> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default Stencil get(String key) {
+        return getSelf().get(new Stencil().setId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    Stencil get(Stencil et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<Stencil> get(Collection<String> keys) {
+        List<Stencil> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new Stencil().setId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<Stencil> get(List<Stencil> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    Stencil getDraft(Stencil et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(Stencil et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(Stencil et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<Stencil> list);
+
+    /**
+    * newDraftFormStencil
+    * 
+    * @param et
+    * @return
+    */
+    default Stencil newDraftFormStencil(Stencil et) {
+        return et;
+    }
+
+    /**
+    * nothing
+    * 
+    * @param et
+    * @return
+    */
+    default Stencil nothing(Stencil et) {
+        return et;
+    }
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<Stencil> fetchDefault(StencilSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<Stencil> listDefault(StencilSearchContext context);
+
+    /**
+    * fetchNoSpaceStencil
+    * 
+    * @param context
+    * @return
+    */
+    Page<Stencil> fetchNoSpaceStencil(StencilSearchContext context);
+
+    /**
+    * listNoSpaceStencil
+    * 
+    * @param context
+    * @return
+    */
+    List<Stencil> listNoSpaceStencil(StencilSearchContext context);
+
+    /**
+    * fetchReader
+    * 
+    * @param context
+    * @return
+    */
+    Page<Stencil> fetchReader(StencilSearchContext context);
+
+    /**
+    * listReader
+    * 
+    * @param context
+    * @return
+    */
+    List<Stencil> listReader(StencilSearchContext context);
+
+    /**
+    * fetchSpaceStencil
+    * 
+    * @param context
+    * @return
+    */
+    Page<Stencil> fetchSpaceStencil(StencilSearchContext context);
+
+    /**
+    * listSpaceStencil
+    * 
+    * @param context
+    * @return
+    */
+    List<Stencil> listSpaceStencil(StencilSearchContext context);
+
+    /**
+    * findBySpaceId
+    * @param spaceIds
+    * @return
+    */
+    List<Stencil> findBySpaceId(List<String> spaceIds);
+    default List<Stencil> findBySpaceId(String spaceId){
+        return findBySpaceId(Arrays.asList(spaceId));
+    }
+
+    /**
+    * removeBySpaceId
+    * @param spaceId
+    * @return
+    */
+    boolean removeBySpaceId(String spaceId);
+
+    /**
+    * resetBySpaceId
+    * @param spaceId
+    * @return
+    */
+    boolean resetBySpaceId(String spaceId);
+
+    /**
+    * saveBySpaceId
+    * @param spaceId
+    * @param list
+    * @return
+    */
+    default boolean saveBySpaceId(String spaceId, List<Stencil> list){
+        return getSelf().saveBySpace(new Space().setId(spaceId),list);
+    }
+
+    /**
+    * saveBySpace
+    * @param space
+    * @param list
+    * @return
+    */
+    boolean saveBySpace(Space space, List<Stencil> list);
+
+    default List<Attachment> getAttachments(Stencil et) {
+        return new ArrayList<>();
+    }
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<Stencil> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -172,87 +301,7 @@ public interface StencilService extends IService<Stencil> {
         }
         return rt;
     }
-
-    /**
-     * new_draft_form_stencil
-     * 
-     * @param dto
-     * @return
-     */
-    default Stencil newDraftFormStencil(Stencil dto) {
-        return dto;
-    }
-
-    /**
-     * nothing
-     * 
-     * @param dto
-     * @return
-     */
-    default Stencil nothing(Stencil dto) {
-        return dto;
-    }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<Stencil> searchDefault(StencilSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<Stencil> listDefault(StencilSearchContext context);
-
-    /**
-     * searchno_space_stencil
-     * 
-     * @param context
-     * @return
-     */
-    Page<Stencil> searchNoSpaceStencil(StencilSearchContext context);
-    /**
-     * listno_space_stencil
-     * 
-     * @param context
-     * @return
-     */
-    List<Stencil> listNoSpaceStencil(StencilSearchContext context);
-
-    /**
-     * searchreader
-     * 
-     * @param context
-     * @return
-     */
-    Page<Stencil> searchReader(StencilSearchContext context);
-    /**
-     * listreader
-     * 
-     * @param context
-     * @return
-     */
-    List<Stencil> listReader(StencilSearchContext context);
-
-    /**
-     * searchspace_stencil
-     * 
-     * @param context
-     * @return
-     */
-    Page<Stencil> searchSpaceStencil(StencilSearchContext context);
-    /**
-     * listspace_stencil
-     * 
-     * @param context
-     * @return
-     */
-    List<Stencil> listSpaceStencil(StencilSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -260,6 +309,7 @@ public interface StencilService extends IService<Stencil> {
     default Stencil getEntity() {
         return new Stencil();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -267,63 +317,13 @@ public interface StencilService extends IService<Stencil> {
     default StencilSearchContext getSearchContext() {
         return new StencilSearchContext();
     }
+
+
     /**
-     * selectRelBySpaceId
-     * @param spaceIds
-     * @return
-     */
-    List<Stencil> findBySpaceId(List<String> spaceIds);
-    default List<Stencil> findBySpaceId(String spaceId) {
-        return findBySpaceId(Arrays.asList(spaceId));
-    }
-    /**
-     * removeRelBySpaceId
-     * @param spaceId
-     * @return
-     */
-    boolean removeBySpaceId(String spaceId);
-    /**
-     * resetRelBySpaceId
-     * @param spaceId
-     * @return
-     */
-    boolean resetBySpaceId(String spaceId);
-    /**
-     * saveRelBySpaceId
-     * @param spaceId
-     * @param list
-     * @return
-     */
-    default boolean saveBySpaceId(String spaceId,List<Stencil> list) {
-        return getSelf().saveBySpace(new Space().setId(spaceId),list);
-    }
-    /**
-    * saveRelBySpace
-    * @param space
-    * @param list
+    * 自定义SQL
+    * @param sql  update table  set name ='test' where id =#{et.param}
+    * @param param 参数列表  param.put("param","1");
     * @return
     */
-    boolean saveBySpace(Space space,List<Stencil> list);
-
-    default List<Attachment> getAttachments(Stencil et) {
-        return new ArrayList<>();
-    }
-
-
-    /**
-     * 自定义查询SQL
-     * @param sql  select * from table where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
-    List<JSONObject> select(String sql, Map<String,Object> param);
-
-    /**
-     * 自定义SQL
-     * @param sql  update table  set name ='test' where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
     boolean execute(String sql, Map<String,Object> param);
-
 }

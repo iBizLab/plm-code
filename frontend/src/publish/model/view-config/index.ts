@@ -4,28 +4,33 @@ import baseline_library_grid_view from './baseline-library-grid-view';
 import customer_all_grid_view from './customer-all-grid-view';
 import board_pick_up_grid_view from './board-pick-up-grid-view';
 import space_config_tree_exp_view from './space-config-tree-exp-view';
+import review_content_under_review_grid_view from './review-content-under-review-grid-view';
 import recent_tree_exp_view from './recent-tree-exp-view';
 import sprint_main_view from './sprint-main-view';
-import customer_idea_re_customer_grid_view from './customer-idea-re-customer-grid-view';
+import waterfall_back_log_app_data_upload_view from './waterfall-back-log-app-data-upload-view';
 import user_choose_mpick_up_view from './user-choose-mpick-up-view';
 import article_page_recycle_grid_view from './article-page-recycle-grid-view';
 import sprint_pick_up_around_view from './sprint-pick-up-around-view';
 import portfolio_in_progress_grid_view from './portfolio-in-progress-grid-view';
 import portfolio_project_create_wizard_view from './portfolio-project-create-wizard-view';
 import work_item_bug_state_statement from './work-item-bug-state-statement';
+import insight_view_edit_view from './insight-view-edit-view';
 import test_plan_report_survey_custom_view from './test-plan-report-survey-custom-view';
 import project_move_choose_pick_up_view from './project-move-choose-pick-up-view';
 import ticket_type_editor_view from './ticket-type-editor-view';
 import board_pick_up_view from './board-pick-up-view';
+import review_wizard_create_wizard_view from './review-wizard-create-wizard-view';
 import test_plan_project_tree_exp_view from './test-plan-project-tree-exp-view';
 import project_advanced_setting_edit_view from './project-advanced-setting-edit-view';
 import release_quick_create_view from './release-quick-create-view';
 import baseline_work_item_comparison_grid_view from './baseline-work-item-comparison-grid-view';
 import test_case_assessment_result_report_view from './test-case-assessment-result-report-view';
+import baseline_test_case_relation_version_list_view from './baseline-test-case-relation-version-list-view';
 import test_case_copy_test_case_option_view from './test-case-copy-test-case-option-view';
 import baseline_idea_edit_view from './baseline-idea-edit-view';
 import test_case_test_plan_re_test_case_prickup_view from './test-case-test-plan-re-test-case-prickup-view';
 import member_grid_view from './member-grid-view';
+import discuss_topic_show_edit_view from './discuss-topic-show-edit-view';
 import project_move_choose_pick_up_grid_view from './project-move-choose-pick-up-grid-view';
 import workload_management_project_grid_view from './workload-management-project-grid-view';
 import ticket_archived_grid_view from './ticket-archived-grid-view';
@@ -38,13 +43,14 @@ import project_scrum_index_view from './project-scrum-index-view';
 import portfolio_project_show_view from './portfolio-project-show-view';
 import work_item_plan_work_item_mpick_up_grid_view from './work-item-plan-work-item-mpick-up-grid-view';
 import test_case_degree_importance_report_view from './test-case-degree-importance-report-view';
-import work_item_all_waterfall_grid_view from './work-item-all-waterfall-grid-view';
-import notify_setting_config_view_test from './notify-setting-config-view-test';
+import notify_setting_config_view from './notify-setting-config-view';
 import work_item_test_follow_edit_view from './work-item-test-follow-edit-view';
+import review_wf_dyna_edit_view from './review-wf-dyna-edit-view';
 import ticket_progress_grid_view from './ticket-progress-grid-view';
-import work_item_re_self_grid_view from './work-item-re-self-grid-view';
+import relation_work_item_re_ticket_list_view from './relation-work-item-re-ticket-list-view';
 import article_page_statistical_grid_view from './article-page-statistical-grid-view';
 import relation_ticket_re_work_item_grid_view from './relation-ticket-re-work-item-grid-view';
+import discuss_post_recent_grid_view from './discuss-post-recent-grid-view';
 import run_redirect_view from './run-redirect-view';
 import test_plan_tree_exp_view from './test-plan-tree-exp-view';
 import workload_calendar_test_case_grid_view from './workload-calendar-test-case-grid-view';
@@ -58,6 +64,7 @@ import product_archived_grid_view from './product-archived-grid-view';
 import test_plan_quick_create_view from './test-plan-quick-create-view';
 import project_quick_create_view from './project-quick-create-view';
 import space_category_tree_exp_view from './space-category-tree-exp-view';
+import insight_view_redirect_view from './insight-view-redirect-view';
 import relation_idea_re_test_case_grid_view from './relation-idea-re-test-case-grid-view';
 import version_idea_grid_view from './version-idea-grid-view';
 import test_case_set_state_option_view from './test-case-set-state-option-view';
@@ -69,8 +76,11 @@ import test_case_nosuite_test_case_grid_view from './test-case-nosuite-test-case
 import insight_scrum_grid_view from './insight-scrum-grid-view';
 import product_index_view from './product-index-view';
 import work_item_scrum_bug_state_report_view from './work-item-scrum-bug-state-report-view';
+import discuss_topic_create_wizard_view from './discuss-topic-create-wizard-view';
 import library_config_tree_exp_view from './library-config-tree-exp-view';
+import discuss_post_my_attention_grid_view from './discuss-post-my-attention-grid-view';
 import work_item_quick_create_bug_view from './work-item-quick-create-bug-view';
+import relation_test_case_re_bug_list_view from './relation-test-case-re-bug-list-view';
 import ticket_test_all_grid_view from './ticket-test-all-grid-view';
 import workload_tab_exp_view from './workload-tab-exp-view';
 import work_item_scrum_temp_speed_report_view from './work-item-scrum-temp-speed-report-view';
@@ -80,6 +90,7 @@ import work_item_state_grid_view from './work-item-state-grid-view';
 import project_show_edit_view from './project-show-edit-view';
 import space_product_re_tree_exp_view from './space-product-re-tree-exp-view';
 import release_all_grid_view from './release-all-grid-view';
+import guideline_config_option_view from './guideline-config-option-view';
 import relation_idea_re_customer_grid_view from './relation-idea-re-customer-grid-view';
 import work_tree_grid_ex_view from './work-tree-grid-ex-view';
 import ticket_type_config_tab_exp_view from './ticket-type-config-tab-exp-view';
@@ -89,29 +100,40 @@ import project_member_edit_view from './project-member-edit-view';
 import customer_pick_up_grid_view from './customer-pick-up-grid-view';
 import project_over_view from './project-over-view';
 import workload_calendar_work_item_grid_view from './workload-calendar-work-item-grid-view';
+import insight_member_redirect_view from './insight-member-redirect-view';
 import library_member_redirect_view from './library-member-redirect-view';
-import project_group_grid_view from './project-group-grid-view';
+import project_org_grid_view from './project-org-grid-view';
+import review_all_grid_view from './review-all-grid-view';
 import portfolio_project_index_view from './portfolio-project-index-view';
 import test_case_case_type_report_view from './test-case-case-type-report-view';
 import workload_management_tab_search_view from './workload-management-tab-search-view';
+import baseline_library_categories_pick_up_tree_view from './baseline-library-categories-pick-up-tree-view';
 import workload_product_grid_view from './workload-product-grid-view';
 import workload_management_library_grid_view from './workload-management-library-grid-view';
 import work_item_edit_view from './work-item-edit-view';
 import space_pick_up_tree_view from './space-pick-up-tree-view';
 import flow_tree_exp_view from './flow-tree-exp-view';
 import baseline_test_case_relation_grid_view from './baseline-test-case-relation-grid-view';
+import relation_idea_re_ticket_list_view from './relation-idea-re-ticket-list-view';
 import article_page_draft_show_edit_view from './article-page-draft-show-edit-view';
 import space_deleted_grid_view from './space-deleted-grid-view';
+import discuss_topic_in_progress_grid_view from './discuss-topic-in-progress-grid-view';
+import insight_view_tree_exp_view from './insight-view-tree-exp-view';
 import work_item_kanban_bug_daily_tide_report_view from './work-item-kanban-bug-daily-tide-report-view';
 import work_item_type_edit_view from './work-item-type-edit-view';
+import discuss_topic_tree_exp_view from './discuss-topic-tree-exp-view';
 import project_member_role_edit_view from './project-member-role-edit-view';
 import deliverable_edit_view from './deliverable-edit-view';
 import test_suite_tree_exp_view from './test-suite-tree-exp-view';
 import test_case_activities_status_report_view from './test-case-activities-status-report-view';
 import run_results_report_view from './run-results-report-view';
+import discuss_topic_index_view from './discuss-topic-index-view';
+import sys_todo_redirect_view from './sys-todo-redirect-view';
 import product_ticket_type_quick_create_view from './product-ticket-type-quick-create-view';
+import baseline_product_categories_pick_up_tree_view from './baseline-product-categories-pick-up-tree-view';
 import work_item_change_parent_pick_up_view from './work-item-change-parent-pick-up-view';
 import ticket_set_tags_option_view from './ticket-set-tags-option-view';
+import discuss_topic_is_archived_grid_view from './discuss-topic-is-archived-grid-view';
 import ticket_advanced_search_grid_view from './ticket-advanced-search-grid-view';
 import user_pick_up_view from './user-pick-up-view';
 import test_case_set_level_option_view from './test-case-set-level-option-view';
@@ -126,16 +148,21 @@ import customer_quick_create_view from './customer-quick-create-view';
 import baseline_project_update_view from './baseline-project-update-view';
 import customer_pick_up_tree_view from './customer-pick-up-tree-view';
 import product_edit_view from './product-edit-view';
+import insight_view_team_grid_view from './insight-view-team-grid-view';
+import release_release_pick_up_tree_view from './release-release-pick-up-tree-view';
 import workload_update_view from './workload-update-view';
 import workload_type_setup_grid_view from './workload-type-setup-grid-view';
 import baseline_library_create_view from './baseline-library-create-view';
 import work_item_scrum_defect_property_report_view from './work-item-scrum-defect-property-report-view';
 import product_details_setting_view from './product-details-setting-view';
+import discuss_topic_config_tree_exp_view from './discuss-topic-config-tree-exp-view';
+import discuss_member_edit_view from './discuss-member-edit-view';
 import article_page_model_show_view from './article-page-model-show-view';
 import test_case_main_view from './test-case-main-view';
 import recent_his_tab_exp_view from './recent-his-tab-exp-view';
-import test_case_work_item_re_case_grid_view from './test-case-work-item-re-case-grid-view';
+import addon_setting_view from './addon-setting-view';
 import baseline_library_main_view from './baseline-library-main-view';
+import insight_report_report_tree_exp_view from './insight-report-report-tree-exp-view';
 import ticket_my_attention_grid_view from './ticket-my-attention-grid-view';
 import library_pick_up_grid_view from './library-pick-up-grid-view';
 import workload_project_grid_view from './workload-project-grid-view';
@@ -145,16 +172,23 @@ import run_daily_tendencies_report_view from './run-daily-tendencies-report-view
 import test_case_my_test_case_grid_view from './test-case-my-test-case-grid-view';
 import work_item_state_quick_create_view from './work-item-state-quick-create-view';
 import project_scrum_flow_setting_tab_view from './project-scrum-flow-setting-tab-view';
+import insight_member_assigned_grid_view from './insight-member-assigned-grid-view';
 import work_item_pick_up_grid_view from './work-item-pick-up-grid-view';
 import work_item_dyna_main_view from './work-item-dyna-main-view';
 import test_suite_pick_up_view from './test-suite-pick-up-view';
 import project_scrum_main_view from './project-scrum-main-view';
+import discuss_post_redirect_view from './discuss-post-redirect-view';
+import relation_work_item_re_self_list_view from './relation-work-item-re-self-list-view';
+import discuss_post_recycle_bin_grid_view from './discuss-post-recycle-bin-grid-view';
 import flow_tab_exp_view from './flow-tab-exp-view';
 import idea_pick_up_tree_view from './idea-pick-up-tree-view';
 import work_item_backlog_age_report_report_view from './work-item-backlog-age-report-report-view';
 import project_member_config_grid_view from './project-member-config-grid-view';
+import insight_view_config_tree_exp_view from './insight-view-config-tree-exp-view';
 import version_edit_view from './version-edit-view';
+import discuss_post_main_view from './discuss-post-main-view';
 import idea_edit_view from './idea-edit-view';
+import review_content_wf_grid_view from './review-content-wf-grid-view';
 import workload_management_work_type_grid_view from './workload-management-work-type-grid-view';
 import parameter_grid_view from './parameter-grid-view';
 import space_product_re_space_choose_option_view from './space-product-re-space-choose-option-view';
@@ -163,19 +197,20 @@ import template_flow_data_view from './template-flow-data-view';
 import run_all_grid_view from './run-all-grid-view';
 import ticket_app_data_upload_view from './ticket-app-data-upload-view';
 import library_in_progress_grid_view from './library-in-progress-grid-view';
-import board_confirm_remove_view from './board-confirm-remove-view';
+import waterfall_bug_app_data_upload_view from './waterfall-bug-app-data-upload-view';
 import library_config_tab_exp_view from './library-config-tab-exp-view';
 import work_item_requirement_tree_grid_view from './work-item-requirement-tree-grid-view';
 import space_create_wizard_view from './space-create-wizard-view';
 import baseline_idea_relation_grid_view from './baseline-idea-relation-grid-view';
 import library_all_grid_view from './library-all-grid-view';
+import baseline_project_categories_pick_up_tree_view from './baseline-project-categories-pick-up-tree-view';
 import dictionary_data_global_grid_view from './dictionary-data-global-grid-view';
 import idea_change_state_view from './idea-change-state-view';
 import test_suite_pick_up_grid_view from './test-suite-pick-up-grid-view';
 import dictionary_data_ticket_confirm_remove_view from './dictionary-data-ticket-confirm-remove-view';
 import work_item_my_assignee_gird_view from './work-item-my-assignee-gird-view';
 import work_item_scrum_defect_total_trend_report_view from './work-item-scrum-defect-total-trend-report-view';
-import space_group_grid_view from './space-group-grid-view';
+import space_org_grid_view from './space-org-grid-view';
 import space_member_assigned_grid_view from './space-member-assigned-grid-view';
 import portfolio_member_redirect_view from './portfolio-member-redirect-view';
 import relation_test_case_re_idea_grid_view from './relation-test-case-re-idea-grid-view';
@@ -183,22 +218,27 @@ import release_pick_up_around_grid_view from './release-pick-up-around-grid-view
 import project_waterfall_index_view from './project-waterfall-index-view';
 import version_work_item_grid_view from './version-work-item-grid-view';
 import insight_kanban_tree_exp_view from './insight-kanban-tree-exp-view';
+import product_tag_product_tag_confirm_remove_view from './product-tag-product-tag-confirm-remove-view';
 import work_item_baseline_mpick_up_view from './work-item-baseline-mpick-up-view';
 import user_grid_view from './user-grid-view';
 import test_case_recycle_grid_view from './test-case-recycle-grid-view';
-import product_show_eidt_view from './product-show-eidt-view';
-import space_oneself_grid_view from './space-oneself-grid-view';
+import product_show_edit_view from './product-show-edit-view';
+import space_person_grid_view from './space-person-grid-view';
 import product_tag_edit_option_view from './product-tag-edit-option-view';
 import work_item_kanban_view from './work-item-kanban-view';
 import work_item_waterfall_story_grid_view from './work-item-waterfall-story-grid-view';
 import customer_pick_up_view from './customer-pick-up-view';
 import baseline_work_item_edit_view from './baseline-work-item-edit-view';
+import discuss_post_edit_view from './discuss-post-edit-view';
+import workspace_quick_create_view from './workspace-quick-create-view';
 import work_item_child_grid_view from './work-item-child-grid-view';
 import product_plan_quick_create_view from './product-plan-quick-create-view';
 import insight_edit_view from './insight-edit-view';
+import relation_idea_re_work_item_list_view from './relation-idea-re-work-item-list-view';
 import sprint_confirm_finish_view from './sprint-confirm-finish-view';
 import run_daily_test_report_view from './run-daily-test-report-view';
 import work_item_scrum_bug_grid_view from './work-item-scrum-bug-grid-view';
+import insight_view_all_grid_view from './insight-view-all-grid-view';
 import library_deleted_grid_view from './library-deleted-grid-view';
 import release_pick_up_grid_view from './release-pick-up-grid-view';
 import portfolio_member_project_bind_member_grid_view from './portfolio-member-project-bind-member-grid-view';
@@ -209,6 +249,7 @@ import test_case_app_data_upload_view from './test-case-app-data-upload-view';
 import relation_idea_re_ticket_grid_view from './relation-idea-re-ticket-grid-view';
 import workload_run_list_view from './workload-run-list-view';
 import workload_log_grid_view from './workload-log-grid-view';
+import addon_resource_member_setting_view from './addon-resource-member-setting-view';
 import test_case_baseline_mpick_up_view from './test-case-baseline-mpick-up-view';
 import dictionary_data_state_edit_view from './dictionary-data-state-edit-view';
 import work_item_type_global_create_view from './work-item-type-global-create-view';
@@ -216,25 +257,32 @@ import workload_day_type_link_management_grid_view from './workload-day-type-lin
 import product_advanced_setting_edit_view from './product-advanced-setting-edit-view';
 import recent_recent_project_grid_view from './recent-recent-project-grid-view';
 import product_plan_all_grid_view from './product-plan-all-grid-view';
-import product_plan_pick_up_tree_view from './product-plan-pick-up-tree-view';
+import product_plan_categories_pick_up_tree_view from './product-plan-categories-pick-up-tree-view';
 import psde_field_quick_create_view from './psde-field-quick-create-view';
 import search_hub_tab_search_view from './search-hub-tab-search-view';
 import test_plan_report_dashboard_view from './test-plan-report-dashboard-view';
 import run_priority_distributions_report_view from './run-priority-distributions-report-view';
 import article_page_log_list_view from './article-page-log-list-view';
+import guideline_all_grid_view from './guideline-all-grid-view';
 import workload_log_management_view from './workload-log-management-view';
 import search_comment_advanced_search_grid_view from './search-comment-advanced-search-grid-view';
 import portfolio_grid_view from './portfolio-grid-view';
 import baseline_idea_comparison_grid_view from './baseline-idea-comparison-grid-view';
 import test_plan_in_progress_grid_view from './test-plan-in-progress-grid-view';
+import login_log_over_view from './login-log-over-view';
+import insight_view_person_grid_view from './insight-view-person-grid-view';
 import ticket_test_main_view from './ticket-test-main-view';
 import idea_recycle_grid_view from './idea-recycle-grid-view';
 import work_item_project_resource_assignment_view from './work-item-project-resource-assignment-view';
 import library_show_edit_view from './library-show-edit-view';
 import idea_my_assign_grid_view from './idea-my-assign-grid-view';
 import project_baseinfo_over_view from './project-baseinfo-over-view';
+import review_content_result_option_view from './review-content-result-option-view';
+import discuss_post_my_create_grid_view from './discuss-post-my-create-grid-view';
 import member_edit_view from './member-edit-view';
-import library_group_grid_view from './library-group-grid-view';
+import library_org_grid_view from './library-org-grid-view';
+import review_stage_list_view from './review-stage-list-view';
+import baseline_idea_relation_version_list_view from './baseline-idea-relation-version-list-view';
 import space_edit_view from './space-edit-view';
 import relation_work_item_re_idea_grid_view from './relation-work-item-re-idea-grid-view';
 import idea_my_created_grid_view from './idea-my-created-grid-view';
@@ -243,6 +291,7 @@ import test_plan_my_assignee_grid_view from './test-plan-my-assignee-grid-view';
 import workload_day_type_link_grid_view from './workload-day-type-link-grid-view';
 import space_grid_view from './space-grid-view';
 import dictionary_data_edit_view from './dictionary-data-edit-view';
+import discuss_member_config_grid_view from './discuss-member-config-grid-view';
 import test_case_quick_create_view from './test-case-quick-create-view';
 import work_item_index_my_created_grid_view from './work-item-index-my-created-grid-view';
 import test_case_my_attention_grid_view from './test-case-my-attention-grid-view';
@@ -252,13 +301,18 @@ import work_item_kanban_backlog_daily_trend_report_view from './work-item-kanban
 import project_deleted_grid_view from './project-deleted-grid-view';
 import run_setting_actual_executor_view from './run-setting-actual-executor-view';
 import work_item_scrum_backlog_state_report_view from './work-item-scrum-backlog-state-report-view';
+import idea_show_edit_view from './idea-show-edit-view';
 import test_case_case_move_plan_option_view from './test-case-case-move-plan-option-view';
 import work_item_kanban_user_stat_report_view from './work-item-kanban-user-stat-report-view';
 import test_case_only_attchment_view from './test-case-only-attchment-view';
+import discuss_topic_group_grid_view from './discuss-topic-group-grid-view';
 import product_ticket_type_edit_view from './product-ticket-type-edit-view';
+import review_todo_all_grid_view from './review-todo-all-grid-view';
+import insight_view_create_wizard_view from './insight-view-create-wizard-view';
 import work_item_kanban_defect_age_report_view from './work-item-kanban-defect-age-report-view';
 import project_archived_grid_view from './project-archived-grid-view';
 import workload_calendar_test_case_management_grid_view from './workload-calendar-test-case-management-grid-view';
+import discuss_reply_latest_grid_view from './discuss-reply-latest-grid-view';
 import product_base_information_edit_view from './product-base-information-edit-view';
 import idea_my_attention_grid_view from './idea-my-attention-grid-view';
 import run_attachment_grid_view from './run-attachment-grid-view';
@@ -269,12 +323,13 @@ import portfolio_deleted_grid_view from './portfolio-deleted-grid-view';
 import scrum_bug_app_data_upload_view from './scrum-bug-app-data-upload-view';
 import user_pick_up_grid_view from './user-pick-up-grid-view';
 import workload_library_gird_view from './workload-library-gird-view';
-import ticket_work_item_re_ticket_grid_view from './ticket-work-item-re-ticket-grid-view';
 import product_main_view from './product-main-view';
 import portfolio_member_project_member_grid_view from './portfolio-member-project-member-grid-view';
 import work_edit_view from './work-edit-view';
+import relation_work_item_re_idea_list_view from './relation-work-item-re-idea-list-view';
 import test_case_mpick_up_view from './test-case-mpick-up-view';
-import portfolio_redirect_view from './portfolio-redirect-view';
+import review_pick_up_tree_view from './review-pick-up-tree-view';
+import review_edit_view from './review-edit-view';
 import test_case_move_case_option_view from './test-case-move-case-option-view';
 import work_item_state_update_view from './work-item-state-update-view';
 import group_update_view from './group-update-view';
@@ -300,10 +355,11 @@ import test_case_all_grid_view from './test-case-all-grid-view';
 import test_plan_update_option_view from './test-plan-update-option-view';
 import relation_run_re_idea_grid_view from './relation-run-re-idea-grid-view';
 import psdelogicglobal_flow_grid_view from './psdelogicglobal-flow-grid-view';
-import product_group_grid_view from './product-group-grid-view';
+import product_org_grid_view from './product-org-grid-view';
 import work_item_all_scrum_grid_view from './work-item-all-scrum-grid-view';
 import work_item_plan_work_item_mpick_up_view from './work-item-plan-work-item-mpick-up-view';
 import work_item_scrum_defect_age_report_view from './work-item-scrum-defect-age-report-view';
+import discuss_reply_my_grid_view from './discuss-reply-my-grid-view';
 import library_base_info_edit_view from './library-base-info-edit-view';
 import ticket_config_tab_exp_view from './ticket-config-tab-exp-view';
 import dictionary_data_idea_confirm_remove_view from './dictionary-data-idea-confirm-remove-view';
@@ -313,6 +369,7 @@ import space_category_grid_view from './space-category-grid-view';
 import category_pick_up_grid_view from './category-pick-up-grid-view';
 import article_page_advanced_search_grid_view from './article-page-advanced-search-grid-view';
 import test_case_not_add_pick_up_grid_view from './test-case-not-add-pick-up-grid-view';
+import guideline_edit_view from './guideline-edit-view';
 import product_team_grid_view from './product-team-grid-view';
 import idea_baseline_mpick_up_grid_view from './idea-baseline-mpick-up-grid-view';
 import baseline_product_update_view from './baseline-product-update-view';
@@ -344,7 +401,10 @@ import psdelogicflow_main_view from './psdelogicflow-main-view';
 import ticket_my_created_grid_view from './ticket-my-created-grid-view';
 import user_quick_cfg_view from './user-quick-cfg-view';
 import work_item_my_attention_grid_view from './work-item-my-attention-grid-view';
+import discuss_topic_tab_exp_view from './discuss-topic-tab-exp-view';
+import discuss_member_role_edit_view from './discuss-member-role-edit-view';
 import test_case_my_craeted_grid_view from './test-case-my-craeted-grid-view';
+import work_item_waterfall_tree_grid_view from './work-item-waterfall-tree-grid-view';
 import customer_tree_exp_view from './customer-tree-exp-view';
 import sprint_pick_up_grid_view from './sprint-pick-up-grid-view';
 import baseline_product_grid_view from './baseline-product-grid-view';
@@ -355,15 +415,19 @@ import recent_recent_page_grid_view from './recent-recent-page-grid-view';
 import work_item_change_time_view from './work-item-change-time-view';
 import work_item_backlog_daily_trend_report_view from './work-item-backlog-daily-trend-report-view';
 import project_tree_exp_view from './project-tree-exp-view';
+import test_plan_categories_pick_up_tree_view from './test-plan-categories-pick-up-tree-view';
 import project_tag_redirect_view from './project-tag-redirect-view';
 import idea_version_comparison_view from './idea-version-comparison-view';
 import article_page_re_show_view from './article-page-re-show-view';
+import review_content_edit_view from './review-content-edit-view';
 import user_redirect_view from './user-redirect-view';
 import version_test_case_grid_view from './version-test-case-grid-view';
 import product_pick_up_grid_view from './product-pick-up-grid-view';
 import workload_work_type_grid_view from './workload-work-type-grid-view';
 import psdelogicflow_panel_view from './psdelogicflow-panel-view';
 import work_item_type_global_grid_view from './work-item-type-global-grid-view';
+import discuss_topic_all_grid_view from './discuss-topic-all-grid-view';
+import discuss_topic_setting_view from './discuss-topic-setting-view';
 import article_page_my_favorite_page_grid_view from './article-page-my-favorite-page-grid-view';
 import work_item_kanban_backlog_property_report_view from './work-item-kanban-backlog-property-report-view';
 import product_tag_new_option_view from './product-tag-new-option-view';
@@ -372,12 +436,15 @@ import ticket_type_confirm_remove_view from './ticket-type-confirm-remove-view';
 import article_page_test_edit_view from './article-page-test-edit-view';
 import release_tree_exp_view from './release-tree-exp-view';
 import baseline_project_tree_exp_view from './baseline-project-tree-exp-view';
+import guideline_library_all_grid_view from './guideline-library-all-grid-view';
 import library_redirect_view from './library-redirect-view';
 import test_plan_pick_up_view from './test-plan-pick-up-view';
 import user_setting_view from './user-setting-view';
 import baseline_test_case_edit_view from './baseline-test-case-edit-view';
 import baseline_project_grid_view from './baseline-project-grid-view';
+import insight_report_redirect_view from './insight-report-redirect-view';
 import insight_kanban_grid_view from './insight-kanban-grid-view';
+import discuss_post_tree_exp_view from './discuss-post-tree-exp-view';
 import space_tree_exp_view from './space-tree-exp-view';
 import run_main_view from './run-main-view';
 import baseline_product_tree_exp_view from './baseline-product-tree-exp-view';
@@ -397,6 +464,7 @@ import relation_idea_re_idea_grid_view from './relation-idea-re-idea-grid-view';
 import test_case_person_distributions_report_view from './test-case-person-distributions-report-view';
 import insight_redirect_view from './insight-redirect-view';
 import login_log_active_members from './login-log-active-members';
+import discuss_post_all_grid_view from './discuss-post-all-grid-view';
 import activity_history_list_view from './activity-history-list-view';
 import ticket_my_assignee_grid_view from './ticket-my-assignee-grid-view';
 import work_item_re_self_mpick_up_grid_view from './work-item-re-self-mpick-up-grid-view';
@@ -409,24 +477,30 @@ import portfolio_member_role_edit_view from './portfolio-member-role-edit-view';
 import portfolio_project_set_tab_exp_view from './portfolio-project-set-tab-exp-view';
 import space_tab_exp_view from './space-tab-exp-view';
 import project_all_grid_view from './project-all-grid-view';
+import addon_resource_capacity_setting_view from './addon-resource-capacity-setting-view';
 import workload_type_confirm_remove_view from './workload-type-confirm-remove-view';
 import workspace_tab_exp_view from './workspace-tab-exp-view';
 import workload_type_quick_create_view from './workload-type-quick-create-view';
+import discuss_topic_management_tab_exp_view from './discuss-topic-management-tab-exp-view';
 import ticket_edit_view from './ticket-edit-view';
 import idea_un_scheduled_pickup_grid_view from './idea-un-scheduled-pickup-grid-view';
 import baseline_library_tree_exp_view from './baseline-library-tree-exp-view';
 import library_create_wizard_view from './library-create-wizard-view';
+import discuss_topic_archived_grid_view from './discuss-topic-archived-grid-view';
 import baseline_project_create_view from './baseline-project-create-view';
 import portfolio_pick_up_grid_view from './portfolio-pick-up-grid-view';
 import work_item_change_state_view from './work-item-change-state-view';
 import relation_test_case_re_work_item_grid_view from './relation-test-case-re-work-item-grid-view';
 import dictionary_data_ticket_state_grid_view from './dictionary-data-ticket-state-grid-view';
+import relation_work_item_re_test_case_list_view from './relation-work-item-re-test-case-list-view';
 import work_item_main_view from './work-item-main-view';
+import management_setting_view from './management-setting-view';
+import discuss_topic_pickup_grid_view from './discuss-topic-pickup-grid-view';
 import product_member_edit_view from './product-member-edit-view';
 import work_item_type_setting_view_scrum from './work-item-type-setting-view-scrum';
 import sprint_update_view from './sprint-update-view';
+import discuss_reply_list_view from './discuss-reply-list-view';
 import test_plan_all_grid_view from './test-plan-all-grid-view';
-import management_config_tab_exp_view from './management-config-tab-exp-view';
 import work_item_copy_view from './work-item-copy-view';
 import work_item_version_comparison_view from './work-item-version-comparison-view';
 import stencil_space_all_grid_view from './stencil-space-all-grid-view';
@@ -436,6 +510,7 @@ import work_item_milestone_grid_view from './work-item-milestone-grid-view';
 import customer_app_data_upload_view from './customer-app-data-upload-view';
 import project_redirect_view from './project-redirect-view';
 import product_deleted_grid_view from './product-deleted-grid-view';
+import review_main_view from './review-main-view';
 import ticket_quick_create_view from './ticket-quick-create-view';
 import work_item_scrum_property_distribution_report_view from './work-item-scrum-property-distribution-report-view';
 import run_members_distribution_report_view from './run-members-distribution-report-view';
@@ -447,8 +522,10 @@ import idea_all_grid_view from './idea-all-grid-view';
 import work_item_test_plan_bug_grid_view from './work-item-test-plan-bug-grid-view';
 import product_grid_view from './product-grid-view';
 import psdelogiclogicdesign from './psdelogiclogicdesign';
+import discuss_topic_org_grid_view from './discuss-topic-org-grid-view';
 import test_plan_my_part_grid_view from './test-plan-my-part-grid-view';
 import user_account_view from './user-account-view';
+import sprint_catrgories_pick_up_tree_view from './sprint-catrgories-pick-up-tree-view';
 import ticket_my_assign_grid_view from './ticket-my-assign-grid-view';
 import project_grid_view from './project-grid-view';
 import article_page_tree_exp_view from './article-page-tree-exp-view';
@@ -465,10 +542,10 @@ import workload_type_pick_up_tap_exp_view from './workload-type-pick-up-tap-exp-
 import test_plan_pick_up_grid_view from './test-plan-pick-up-grid-view';
 import relation_ticket_re_idea_grid_view from './relation-ticket-re-idea-grid-view';
 import project_setting_view from './project-setting-view';
-import work_item_all_kanban_grid_view from './work-item-all-kanban-grid-view';
 import version_edit_version_view from './version-edit-version-view';
 import category_pick_up_view from './category-pick-up-view';
 import product_member_assigned_grid_view from './product-member-assigned-grid-view';
+import article_page_help_tree_exp_view from './article-page-help-tree-exp-view';
 import sprint_all_grid_view from './sprint-all-grid-view';
 import app_index_view from './app-index-view';
 import test_plan_report_custom_view from './test-plan-report-custom-view';
@@ -476,8 +553,11 @@ import work_item_kanban_defect_property_report_view from './work-item-kanban-def
 import library_member_edit_view from './library-member-edit-view';
 import management_tab_exp_view from './management-tab-exp-view';
 import idea_baseline_mpick_up_view from './idea-baseline-mpick-up-view';
+import relation_idea_re_customer_list_view from './relation-idea-re-customer-list-view';
+import baseline_work_item_realtion_version_list_view from './baseline-work-item-realtion-version-list-view';
 import release_pick_up_view from './release-pick-up-view';
 import section_pick_up_view from './section-pick-up-view';
+import user_user_pick_up_tree_view from './user-user-pick-up-tree-view';
 import portfolio_mpick_up_view from './portfolio-mpick-up-view';
 import product_member_redirect_view from './product-member-redirect-view';
 import product_config_tree_exp_view from './product-config-tree-exp-view';
@@ -488,16 +568,23 @@ import customer_main_view from './customer-main-view';
 import kan_ban_work_item_app_data_upload_view from './kan-ban-work-item-app-data-upload-view';
 import ticket_tree_exp_view from './ticket-tree-exp-view';
 import relation_work_item_re_self_grid_view from './relation-work-item-re-self-grid-view';
+import review_tree_exp_view from './review-tree-exp-view';
 import insight_library_grid_view from './insight-library-grid-view';
 import work_item_baseline_mpick_up_grid_view from './work-item-baseline-mpick-up-grid-view';
 import idea_others_re_mpick_up_grid_view from './idea-others-re-mpick-up-grid-view';
+import discuss_post_my_reply_grid_view from './discuss-post-my-reply-grid-view';
 import version_quick_create_view from './version-quick-create-view';
+import relation_test_case_re_work_item_list_view from './relation-test-case-re-work-item-list-view';
+import test_case_pick_up_tree_view from './test-case-pick-up-tree-view';
 import ticket_customer_re_ticket_grid_view from './ticket-customer-re-ticket-grid-view';
+import insight_view_org_grid_view from './insight-view-org-grid-view';
 import recent_my_assignee_item_tap_exp_view from './recent-my-assignee-item-tap-exp-view';
 import portfolio_project_edit_view from './portfolio-project-edit-view';
 import psdelogictemplate_info_view from './psdelogictemplate-info-view';
+import relation_idea_re_test_case_list_view from './relation-idea-re-test-case-list-view';
 import space_member_role_edit_view from './space-member-role-edit-view';
 import sprint_pick_up_view from './sprint-pick-up-view';
+import discuss_member_bind_grid_view from './discuss-member-bind-grid-view';
 import section_pick_up_grid_view from './section-pick-up-grid-view';
 import ticket_redirect_view from './ticket-redirect-view';
 import attention_tab_exp_view from './attention-tab-exp-view';
@@ -507,28 +594,36 @@ import library_setting_view from './library-setting-view';
 import library_advanced_setting_edit_view from './library-advanced-setting-edit-view';
 import workload_edit_view from './workload-edit-view';
 import library_grid_view from './library-grid-view';
-import work_item_tree_grid_view from './work-item-tree-grid-view';
+import work_item_srcum_tree_grid_view from './work-item-srcum-tree-grid-view';
+import insight_report_all_report_grid_view from './insight-report-all-report-grid-view';
 import workload_tab_search_view from './workload-tab-search-view';
 import project_pick_up_grid_view from './project-pick-up-grid-view';
+import discuss_topic_pickup_view from './discuss-topic-pickup-view';
 import test_case_re_run_main_view from './test-case-re-run-main-view';
+import addon_setting_grid_view from './addon-setting-grid-view';
 import activity_test_all_list_view from './activity-test-all-list-view';
 import portfolio_project_grid_view from './portfolio-project-grid-view';
 import project_member_redirect_view from './project-member-redirect-view';
 import release_update_view from './release-update-view';
 import idea_app_data_upload_view from './idea-app-data-upload-view';
 import project_management_tab_exp_view from './project-management-tab-exp-view';
+import relation_test_case_re_idea_list_view from './relation-test-case-re-idea-list-view';
 import work_item_type_global_setting_view_scrum from './work-item-type-global-setting-view-scrum';
+import insight_report_edit_view from './insight-report-edit-view';
+import discuss_topic_is_deleted_grid_view from './discuss-topic-is-deleted-grid-view';
 import dictionary_data_grid_view from './dictionary-data-grid-view';
+import project_tag_project_tag_confirm_remove_view from './project-tag-project-tag-confirm-remove-view';
 import work_item_change_assignee_view from './work-item-change-assignee-view';
 import user_info_custom_view from './user-info-custom-view';
+import discuss_post_quick_create_view from './discuss-post-quick-create-view';
 import project_team_grid_view from './project-team-grid-view';
 import group_tree_exp_view from './group-tree-exp-view';
 import workload_calendar_idea_management_grid_view from './workload-calendar-idea-management-grid-view';
 import ticket_main_view from './ticket-main-view';
+import insight_view_index_view2 from './insight-view-index-view-2';
 import test_case_set_maintenance_option_view from './test-case-set-maintenance-option-view';
 import work_item_all_story_scrum_grid_view from './work-item-all-story-scrum-grid-view';
 import test_plan_main_view from './test-plan-main-view';
-import idea_work_item_re_idea_grid_view from './idea-work-item-re-idea-grid-view';
 import article_page_edit_view from './article-page-edit-view';
 import workload_calendar_idea_grid_view from './workload-calendar-idea-grid-view';
 import product_in_progress_grid_view from './product-in-progress-grid-view';
@@ -538,19 +633,25 @@ import test_case_template_new_edit_view from './test-case-template-new-edit-view
 import sprint_pick_up_around_grid_view from './sprint-pick-up-around-grid-view';
 import user_choose_pick_up_grid_view from './user-choose-pick-up-grid-view';
 import work_redirect_view from './work-redirect-view';
+import insight_member_edit_view from './insight-member-edit-view';
 import work_item_under_work_grid_view from './work-item-under-work-grid-view';
 import workload_type_pick_up_grid_view from './workload-type-pick-up-grid-view';
 import work_item_type_global_edit_view from './work-item-type-global-edit-view';
 import project_in_progress_grid_view from './project-in-progress-grid-view';
 import project_mpick_up_view from './project-mpick-up-view';
+import relation_idea_re_self_list_view from './relation-idea-re-self-list-view';
 import idea_plan_count_grid_view from './idea-plan-count-grid-view';
 import space_all_grid_view from './space-all-grid-view';
 import stencil_edit_view from './stencil-edit-view';
+import scrum_work_item_app_data_upload_view from './scrum-work-item-app-data-upload-view';
 import library_member_assigned_grid_view from './library-member-assigned-grid-view';
+import review_content_redirect_view from './review-content-redirect-view';
 import product_plan_tree_exp_view from './product-plan-tree-exp-view';
+import discuss_topic_base_information_edit_view from './discuss-topic-base-information-edit-view';
 import workload_management_view from './workload-management-view';
 import relation_edit_view from './relation-edit-view';
 import work_item_calendar_view from './work-item-calendar-view';
+import discuss_topic_advanced_setting_edit_view from './discuss-topic-advanced-setting-edit-view';
 import relation_work_item_re_ticket_grid_view from './relation-work-item-re-ticket-grid-view';
 import deliverable_target_grid_view from './deliverable-target-grid-view';
 import product_member_role_edit_view from './product-member-role-edit-view';
@@ -560,22 +661,28 @@ import psdelogiclogicdesign_readonly from './psdelogiclogicdesign-readonly';
 import work_item_change_parent_pick_up_grid_view from './work-item-change-parent-pick-up-grid-view';
 import work_item_index_my_assignee_gird_view from './work-item-index-my-assignee-gird-view';
 import psde_field_quick_cfg_view from './psde-field-quick-cfg-view';
-import space_advanced_setting_view from './space-advanced-setting-view';
+import space_advanced_setting_edit_view from './space-advanced-setting-edit-view';
 import product_setting_view from './product-setting-view';
+import discuss_topic_edit_view from './discuss-topic-edit-view';
 import stencil_all_grid_view from './stencil-all-grid-view';
 import product_management_tab_exp_view from './product-management-tab-exp-view';
 import work_item_advanced_search_grid_view from './work-item-advanced-search-grid-view';
 import comment_list_view from './comment-list-view';
 import test_suite_quick_create_view from './test-suite-quick-create-view';
+import discuss_member_redirect_view from './discuss-member-redirect-view';
 import test_case_baseline_mpick_up_grid_view from './test-case-baseline-mpick-up-grid-view';
 import ticket_submit_grid_view from './ticket-submit-grid-view';
 import work_item_sprint_grid_view from './work-item-sprint-grid-view';
 import work_item_scrum_backlog_flow_report_view from './work-item-scrum-backlog-flow-report-view';
 import user_info_view from './user-info-view';
+import article_page_help_view from './article-page-help-view';
 import relation_ticket_re_self_grid_view from './relation-ticket-re-self-grid-view';
 import customer_add_category_option_view from './customer-add-category-option-view';
 import relation_run_re_bug_grid_view from './relation-run-re-bug-grid-view';
+import sys_todo_edit_view from './sys-todo-edit-view';
 import recent_custom_dashboard_view from './recent-custom-dashboard-view';
+import review_stage_edit_view from './review-stage-edit-view';
+import sys_todo_all_grid_view from './sys-todo-all-grid-view';
 import product_plan_edit_option_view from './product-plan-edit-option-view';
 import baseline_project_main_view from './baseline-project-main-view';
 import work_item_recycle_bin_grid_view from './work-item-recycle-bin-grid-view';
@@ -583,6 +690,7 @@ import portfolio_member_edit_view from './portfolio-member-edit-view';
 import deliverable_project_grid_view from './deliverable-project-grid-view';
 import library_pick_up_view from './library-pick-up-view';
 import recent_my_created_tab_exp_view from './recent-my-created-tab-exp-view';
+import work_item_kanban_tree_grid_view from './work-item-kanban-tree-grid-view';
 import ticket_type_quick_create_view from './ticket-type-quick-create-view';
 import article_page_updated_logs from './article-page-updated-logs';
 import deliverable_target_edit_view from './deliverable-target-edit-view';
@@ -621,6 +729,10 @@ export async function initViewConfig(): Promise<void> {
     space_config_tree_exp_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.review_content_under_review_grid_view',
+    review_content_under_review_grid_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.recent_tree_exp_view',
     recent_tree_exp_view as IViewConfig,
   );
@@ -629,8 +741,8 @@ export async function initViewConfig(): Promise<void> {
     sprint_main_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
-    'plmweb.customer_idea_re_customer_grid_view',
-    customer_idea_re_customer_grid_view as IViewConfig,
+    'plmweb.waterfall_back_log_app_data_upload_view',
+    waterfall_back_log_app_data_upload_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.user_choose_mpick_up_view',
@@ -657,6 +769,10 @@ export async function initViewConfig(): Promise<void> {
     work_item_bug_state_statement as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.insight_view_edit_view',
+    insight_view_edit_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.test_plan_report_survey_custom_view',
     test_plan_report_survey_custom_view as IViewConfig,
   );
@@ -671,6 +787,10 @@ export async function initViewConfig(): Promise<void> {
   ibiz.hub.config.view.set(
     'plmweb.board_pick_up_view',
     board_pick_up_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.review_wizard_create_wizard_view',
+    review_wizard_create_wizard_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.test_plan_project_tree_exp_view',
@@ -693,6 +813,10 @@ export async function initViewConfig(): Promise<void> {
     test_case_assessment_result_report_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.baseline_test_case_relation_version_list_view',
+    baseline_test_case_relation_version_list_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.test_case_copy_test_case_option_view',
     test_case_copy_test_case_option_view as IViewConfig,
   );
@@ -707,6 +831,10 @@ export async function initViewConfig(): Promise<void> {
   ibiz.hub.config.view.set(
     'plmweb.member_grid_view',
     member_grid_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.discuss_topic_show_edit_view',
+    discuss_topic_show_edit_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.project_move_choose_pick_up_grid_view',
@@ -757,24 +885,24 @@ export async function initViewConfig(): Promise<void> {
     test_case_degree_importance_report_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
-    'plmweb.work_item_all_waterfall_grid_view',
-    work_item_all_waterfall_grid_view as IViewConfig,
-  );
-  ibiz.hub.config.view.set(
-    'plmweb.notify_setting_config_view_test',
-    notify_setting_config_view_test as IViewConfig,
+    'plmweb.notify_setting_config_view',
+    notify_setting_config_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.work_item_test_follow_edit_view',
     work_item_test_follow_edit_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.review_wf_dyna_edit_view',
+    review_wf_dyna_edit_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.ticket_progress_grid_view',
     ticket_progress_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
-    'plmweb.work_item_re_self_grid_view',
-    work_item_re_self_grid_view as IViewConfig,
+    'plmweb.relation_work_item_re_ticket_list_view',
+    relation_work_item_re_ticket_list_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.article_page_statistical_grid_view',
@@ -783,6 +911,10 @@ export async function initViewConfig(): Promise<void> {
   ibiz.hub.config.view.set(
     'plmweb.relation_ticket_re_work_item_grid_view',
     relation_ticket_re_work_item_grid_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.discuss_post_recent_grid_view',
+    discuss_post_recent_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.run_redirect_view',
@@ -837,6 +969,10 @@ export async function initViewConfig(): Promise<void> {
     space_category_tree_exp_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.insight_view_redirect_view',
+    insight_view_redirect_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.relation_idea_re_test_case_grid_view',
     relation_idea_re_test_case_grid_view as IViewConfig,
   );
@@ -881,12 +1017,24 @@ export async function initViewConfig(): Promise<void> {
     work_item_scrum_bug_state_report_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.discuss_topic_create_wizard_view',
+    discuss_topic_create_wizard_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.library_config_tree_exp_view',
     library_config_tree_exp_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.discuss_post_my_attention_grid_view',
+    discuss_post_my_attention_grid_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.work_item_quick_create_bug_view',
     work_item_quick_create_bug_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.relation_test_case_re_bug_list_view',
+    relation_test_case_re_bug_list_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.ticket_test_all_grid_view',
@@ -925,6 +1073,10 @@ export async function initViewConfig(): Promise<void> {
     release_all_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.guideline_config_option_view',
+    guideline_config_option_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.relation_idea_re_customer_grid_view',
     relation_idea_re_customer_grid_view as IViewConfig,
   );
@@ -961,12 +1113,20 @@ export async function initViewConfig(): Promise<void> {
     workload_calendar_work_item_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.insight_member_redirect_view',
+    insight_member_redirect_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.library_member_redirect_view',
     library_member_redirect_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
-    'plmweb.project_group_grid_view',
-    project_group_grid_view as IViewConfig,
+    'plmweb.project_org_grid_view',
+    project_org_grid_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.review_all_grid_view',
+    review_all_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.portfolio_project_index_view',
@@ -979,6 +1139,10 @@ export async function initViewConfig(): Promise<void> {
   ibiz.hub.config.view.set(
     'plmweb.workload_management_tab_search_view',
     workload_management_tab_search_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.baseline_library_categories_pick_up_tree_view',
+    baseline_library_categories_pick_up_tree_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.workload_product_grid_view',
@@ -1005,6 +1169,10 @@ export async function initViewConfig(): Promise<void> {
     baseline_test_case_relation_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.relation_idea_re_ticket_list_view',
+    relation_idea_re_ticket_list_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.article_page_draft_show_edit_view',
     article_page_draft_show_edit_view as IViewConfig,
   );
@@ -1013,12 +1181,24 @@ export async function initViewConfig(): Promise<void> {
     space_deleted_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.discuss_topic_in_progress_grid_view',
+    discuss_topic_in_progress_grid_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.insight_view_tree_exp_view',
+    insight_view_tree_exp_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.work_item_kanban_bug_daily_tide_report_view',
     work_item_kanban_bug_daily_tide_report_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.work_item_type_edit_view',
     work_item_type_edit_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.discuss_topic_tree_exp_view',
+    discuss_topic_tree_exp_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.project_member_role_edit_view',
@@ -1041,8 +1221,20 @@ export async function initViewConfig(): Promise<void> {
     run_results_report_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.discuss_topic_index_view',
+    discuss_topic_index_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.sys_todo_redirect_view',
+    sys_todo_redirect_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.product_ticket_type_quick_create_view',
     product_ticket_type_quick_create_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.baseline_product_categories_pick_up_tree_view',
+    baseline_product_categories_pick_up_tree_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.work_item_change_parent_pick_up_view',
@@ -1051,6 +1243,10 @@ export async function initViewConfig(): Promise<void> {
   ibiz.hub.config.view.set(
     'plmweb.ticket_set_tags_option_view',
     ticket_set_tags_option_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.discuss_topic_is_archived_grid_view',
+    discuss_topic_is_archived_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.ticket_advanced_search_grid_view',
@@ -1109,6 +1305,14 @@ export async function initViewConfig(): Promise<void> {
     product_edit_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.insight_view_team_grid_view',
+    insight_view_team_grid_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.release_release_pick_up_tree_view',
+    release_release_pick_up_tree_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.workload_update_view',
     workload_update_view as IViewConfig,
   );
@@ -1129,6 +1333,14 @@ export async function initViewConfig(): Promise<void> {
     product_details_setting_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.discuss_topic_config_tree_exp_view',
+    discuss_topic_config_tree_exp_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.discuss_member_edit_view',
+    discuss_member_edit_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.article_page_model_show_view',
     article_page_model_show_view as IViewConfig,
   );
@@ -1141,12 +1353,16 @@ export async function initViewConfig(): Promise<void> {
     recent_his_tab_exp_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
-    'plmweb.test_case_work_item_re_case_grid_view',
-    test_case_work_item_re_case_grid_view as IViewConfig,
+    'plmweb.addon_setting_view',
+    addon_setting_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.baseline_library_main_view',
     baseline_library_main_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.insight_report_report_tree_exp_view',
+    insight_report_report_tree_exp_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.ticket_my_attention_grid_view',
@@ -1185,6 +1401,10 @@ export async function initViewConfig(): Promise<void> {
     project_scrum_flow_setting_tab_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.insight_member_assigned_grid_view',
+    insight_member_assigned_grid_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.work_item_pick_up_grid_view',
     work_item_pick_up_grid_view as IViewConfig,
   );
@@ -1199,6 +1419,18 @@ export async function initViewConfig(): Promise<void> {
   ibiz.hub.config.view.set(
     'plmweb.project_scrum_main_view',
     project_scrum_main_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.discuss_post_redirect_view',
+    discuss_post_redirect_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.relation_work_item_re_self_list_view',
+    relation_work_item_re_self_list_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.discuss_post_recycle_bin_grid_view',
+    discuss_post_recycle_bin_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.flow_tab_exp_view',
@@ -1217,12 +1449,24 @@ export async function initViewConfig(): Promise<void> {
     project_member_config_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.insight_view_config_tree_exp_view',
+    insight_view_config_tree_exp_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.version_edit_view',
     version_edit_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.discuss_post_main_view',
+    discuss_post_main_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.idea_edit_view',
     idea_edit_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.review_content_wf_grid_view',
+    review_content_wf_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.workload_management_work_type_grid_view',
@@ -1257,8 +1501,8 @@ export async function initViewConfig(): Promise<void> {
     library_in_progress_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
-    'plmweb.board_confirm_remove_view',
-    board_confirm_remove_view as IViewConfig,
+    'plmweb.waterfall_bug_app_data_upload_view',
+    waterfall_bug_app_data_upload_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.library_config_tab_exp_view',
@@ -1279,6 +1523,10 @@ export async function initViewConfig(): Promise<void> {
   ibiz.hub.config.view.set(
     'plmweb.library_all_grid_view',
     library_all_grid_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.baseline_project_categories_pick_up_tree_view',
+    baseline_project_categories_pick_up_tree_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.dictionary_data_global_grid_view',
@@ -1305,8 +1553,8 @@ export async function initViewConfig(): Promise<void> {
     work_item_scrum_defect_total_trend_report_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
-    'plmweb.space_group_grid_view',
-    space_group_grid_view as IViewConfig,
+    'plmweb.space_org_grid_view',
+    space_org_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.space_member_assigned_grid_view',
@@ -1337,6 +1585,10 @@ export async function initViewConfig(): Promise<void> {
     insight_kanban_tree_exp_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.product_tag_product_tag_confirm_remove_view',
+    product_tag_product_tag_confirm_remove_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.work_item_baseline_mpick_up_view',
     work_item_baseline_mpick_up_view as IViewConfig,
   );
@@ -1349,12 +1601,12 @@ export async function initViewConfig(): Promise<void> {
     test_case_recycle_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
-    'plmweb.product_show_eidt_view',
-    product_show_eidt_view as IViewConfig,
+    'plmweb.product_show_edit_view',
+    product_show_edit_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
-    'plmweb.space_oneself_grid_view',
-    space_oneself_grid_view as IViewConfig,
+    'plmweb.space_person_grid_view',
+    space_person_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.product_tag_edit_option_view',
@@ -1377,6 +1629,14 @@ export async function initViewConfig(): Promise<void> {
     baseline_work_item_edit_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.discuss_post_edit_view',
+    discuss_post_edit_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.workspace_quick_create_view',
+    workspace_quick_create_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.work_item_child_grid_view',
     work_item_child_grid_view as IViewConfig,
   );
@@ -1389,6 +1649,10 @@ export async function initViewConfig(): Promise<void> {
     insight_edit_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.relation_idea_re_work_item_list_view',
+    relation_idea_re_work_item_list_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.sprint_confirm_finish_view',
     sprint_confirm_finish_view as IViewConfig,
   );
@@ -1399,6 +1663,10 @@ export async function initViewConfig(): Promise<void> {
   ibiz.hub.config.view.set(
     'plmweb.work_item_scrum_bug_grid_view',
     work_item_scrum_bug_grid_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.insight_view_all_grid_view',
+    insight_view_all_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.library_deleted_grid_view',
@@ -1441,6 +1709,10 @@ export async function initViewConfig(): Promise<void> {
     workload_log_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.addon_resource_member_setting_view',
+    addon_resource_member_setting_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.test_case_baseline_mpick_up_view',
     test_case_baseline_mpick_up_view as IViewConfig,
   );
@@ -1469,8 +1741,8 @@ export async function initViewConfig(): Promise<void> {
     product_plan_all_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
-    'plmweb.product_plan_pick_up_tree_view',
-    product_plan_pick_up_tree_view as IViewConfig,
+    'plmweb.product_plan_categories_pick_up_tree_view',
+    product_plan_categories_pick_up_tree_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.psde_field_quick_create_view',
@@ -1493,6 +1765,10 @@ export async function initViewConfig(): Promise<void> {
     article_page_log_list_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.guideline_all_grid_view',
+    guideline_all_grid_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.workload_log_management_view',
     workload_log_management_view as IViewConfig,
   );
@@ -1511,6 +1787,14 @@ export async function initViewConfig(): Promise<void> {
   ibiz.hub.config.view.set(
     'plmweb.test_plan_in_progress_grid_view',
     test_plan_in_progress_grid_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.login_log_over_view',
+    login_log_over_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.insight_view_person_grid_view',
+    insight_view_person_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.ticket_test_main_view',
@@ -1537,12 +1821,28 @@ export async function initViewConfig(): Promise<void> {
     project_baseinfo_over_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.review_content_result_option_view',
+    review_content_result_option_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.discuss_post_my_create_grid_view',
+    discuss_post_my_create_grid_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.member_edit_view',
     member_edit_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
-    'plmweb.library_group_grid_view',
-    library_group_grid_view as IViewConfig,
+    'plmweb.library_org_grid_view',
+    library_org_grid_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.review_stage_list_view',
+    review_stage_list_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.baseline_idea_relation_version_list_view',
+    baseline_idea_relation_version_list_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.space_edit_view',
@@ -1575,6 +1875,10 @@ export async function initViewConfig(): Promise<void> {
   ibiz.hub.config.view.set(
     'plmweb.dictionary_data_edit_view',
     dictionary_data_edit_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.discuss_member_config_grid_view',
+    discuss_member_config_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.test_case_quick_create_view',
@@ -1613,6 +1917,10 @@ export async function initViewConfig(): Promise<void> {
     work_item_scrum_backlog_state_report_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.idea_show_edit_view',
+    idea_show_edit_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.test_case_case_move_plan_option_view',
     test_case_case_move_plan_option_view as IViewConfig,
   );
@@ -1625,8 +1933,20 @@ export async function initViewConfig(): Promise<void> {
     test_case_only_attchment_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.discuss_topic_group_grid_view',
+    discuss_topic_group_grid_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.product_ticket_type_edit_view',
     product_ticket_type_edit_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.review_todo_all_grid_view',
+    review_todo_all_grid_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.insight_view_create_wizard_view',
+    insight_view_create_wizard_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.work_item_kanban_defect_age_report_view',
@@ -1639,6 +1959,10 @@ export async function initViewConfig(): Promise<void> {
   ibiz.hub.config.view.set(
     'plmweb.workload_calendar_test_case_management_grid_view',
     workload_calendar_test_case_management_grid_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.discuss_reply_latest_grid_view',
+    discuss_reply_latest_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.product_base_information_edit_view',
@@ -1681,10 +2005,6 @@ export async function initViewConfig(): Promise<void> {
     workload_library_gird_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
-    'plmweb.ticket_work_item_re_ticket_grid_view',
-    ticket_work_item_re_ticket_grid_view as IViewConfig,
-  );
-  ibiz.hub.config.view.set(
     'plmweb.product_main_view',
     product_main_view as IViewConfig,
   );
@@ -1697,12 +2017,20 @@ export async function initViewConfig(): Promise<void> {
     work_edit_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.relation_work_item_re_idea_list_view',
+    relation_work_item_re_idea_list_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.test_case_mpick_up_view',
     test_case_mpick_up_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
-    'plmweb.portfolio_redirect_view',
-    portfolio_redirect_view as IViewConfig,
+    'plmweb.review_pick_up_tree_view',
+    review_pick_up_tree_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.review_edit_view',
+    review_edit_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.test_case_move_case_option_view',
@@ -1805,8 +2133,8 @@ export async function initViewConfig(): Promise<void> {
     psdelogicglobal_flow_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
-    'plmweb.product_group_grid_view',
-    product_group_grid_view as IViewConfig,
+    'plmweb.product_org_grid_view',
+    product_org_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.work_item_all_scrum_grid_view',
@@ -1819,6 +2147,10 @@ export async function initViewConfig(): Promise<void> {
   ibiz.hub.config.view.set(
     'plmweb.work_item_scrum_defect_age_report_view',
     work_item_scrum_defect_age_report_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.discuss_reply_my_grid_view',
+    discuss_reply_my_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.library_base_info_edit_view',
@@ -1855,6 +2187,10 @@ export async function initViewConfig(): Promise<void> {
   ibiz.hub.config.view.set(
     'plmweb.test_case_not_add_pick_up_grid_view',
     test_case_not_add_pick_up_grid_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.guideline_edit_view',
+    guideline_edit_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.product_team_grid_view',
@@ -1981,8 +2317,20 @@ export async function initViewConfig(): Promise<void> {
     work_item_my_attention_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.discuss_topic_tab_exp_view',
+    discuss_topic_tab_exp_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.discuss_member_role_edit_view',
+    discuss_member_role_edit_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.test_case_my_craeted_grid_view',
     test_case_my_craeted_grid_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.work_item_waterfall_tree_grid_view',
+    work_item_waterfall_tree_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.customer_tree_exp_view',
@@ -2025,6 +2373,10 @@ export async function initViewConfig(): Promise<void> {
     project_tree_exp_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.test_plan_categories_pick_up_tree_view',
+    test_plan_categories_pick_up_tree_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.project_tag_redirect_view',
     project_tag_redirect_view as IViewConfig,
   );
@@ -2035,6 +2387,10 @@ export async function initViewConfig(): Promise<void> {
   ibiz.hub.config.view.set(
     'plmweb.article_page_re_show_view',
     article_page_re_show_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.review_content_edit_view',
+    review_content_edit_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.user_redirect_view',
@@ -2059,6 +2415,14 @@ export async function initViewConfig(): Promise<void> {
   ibiz.hub.config.view.set(
     'plmweb.work_item_type_global_grid_view',
     work_item_type_global_grid_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.discuss_topic_all_grid_view',
+    discuss_topic_all_grid_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.discuss_topic_setting_view',
+    discuss_topic_setting_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.article_page_my_favorite_page_grid_view',
@@ -2093,6 +2457,10 @@ export async function initViewConfig(): Promise<void> {
     baseline_project_tree_exp_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.guideline_library_all_grid_view',
+    guideline_library_all_grid_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.library_redirect_view',
     library_redirect_view as IViewConfig,
   );
@@ -2113,8 +2481,16 @@ export async function initViewConfig(): Promise<void> {
     baseline_project_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.insight_report_redirect_view',
+    insight_report_redirect_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.insight_kanban_grid_view',
     insight_kanban_grid_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.discuss_post_tree_exp_view',
+    discuss_post_tree_exp_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.space_tree_exp_view',
@@ -2193,6 +2569,10 @@ export async function initViewConfig(): Promise<void> {
     login_log_active_members as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.discuss_post_all_grid_view',
+    discuss_post_all_grid_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.activity_history_list_view',
     activity_history_list_view as IViewConfig,
   );
@@ -2241,6 +2621,10 @@ export async function initViewConfig(): Promise<void> {
     project_all_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.addon_resource_capacity_setting_view',
+    addon_resource_capacity_setting_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.workload_type_confirm_remove_view',
     workload_type_confirm_remove_view as IViewConfig,
   );
@@ -2251,6 +2635,10 @@ export async function initViewConfig(): Promise<void> {
   ibiz.hub.config.view.set(
     'plmweb.workload_type_quick_create_view',
     workload_type_quick_create_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.discuss_topic_management_tab_exp_view',
+    discuss_topic_management_tab_exp_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.ticket_edit_view',
@@ -2267,6 +2655,10 @@ export async function initViewConfig(): Promise<void> {
   ibiz.hub.config.view.set(
     'plmweb.library_create_wizard_view',
     library_create_wizard_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.discuss_topic_archived_grid_view',
+    discuss_topic_archived_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.baseline_project_create_view',
@@ -2289,8 +2681,20 @@ export async function initViewConfig(): Promise<void> {
     dictionary_data_ticket_state_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.relation_work_item_re_test_case_list_view',
+    relation_work_item_re_test_case_list_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.work_item_main_view',
     work_item_main_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.management_setting_view',
+    management_setting_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.discuss_topic_pickup_grid_view',
+    discuss_topic_pickup_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.product_member_edit_view',
@@ -2305,12 +2709,12 @@ export async function initViewConfig(): Promise<void> {
     sprint_update_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
-    'plmweb.test_plan_all_grid_view',
-    test_plan_all_grid_view as IViewConfig,
+    'plmweb.discuss_reply_list_view',
+    discuss_reply_list_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
-    'plmweb.management_config_tab_exp_view',
-    management_config_tab_exp_view as IViewConfig,
+    'plmweb.test_plan_all_grid_view',
+    test_plan_all_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.work_item_copy_view',
@@ -2347,6 +2751,10 @@ export async function initViewConfig(): Promise<void> {
   ibiz.hub.config.view.set(
     'plmweb.product_deleted_grid_view',
     product_deleted_grid_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.review_main_view',
+    review_main_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.ticket_quick_create_view',
@@ -2393,12 +2801,20 @@ export async function initViewConfig(): Promise<void> {
     psdelogiclogicdesign as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.discuss_topic_org_grid_view',
+    discuss_topic_org_grid_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.test_plan_my_part_grid_view',
     test_plan_my_part_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.user_account_view',
     user_account_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.sprint_catrgories_pick_up_tree_view',
+    sprint_catrgories_pick_up_tree_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.ticket_my_assign_grid_view',
@@ -2465,10 +2881,6 @@ export async function initViewConfig(): Promise<void> {
     project_setting_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
-    'plmweb.work_item_all_kanban_grid_view',
-    work_item_all_kanban_grid_view as IViewConfig,
-  );
-  ibiz.hub.config.view.set(
     'plmweb.version_edit_version_view',
     version_edit_version_view as IViewConfig,
   );
@@ -2479,6 +2891,10 @@ export async function initViewConfig(): Promise<void> {
   ibiz.hub.config.view.set(
     'plmweb.product_member_assigned_grid_view',
     product_member_assigned_grid_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.article_page_help_tree_exp_view',
+    article_page_help_tree_exp_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.sprint_all_grid_view',
@@ -2509,12 +2925,24 @@ export async function initViewConfig(): Promise<void> {
     idea_baseline_mpick_up_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.relation_idea_re_customer_list_view',
+    relation_idea_re_customer_list_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.baseline_work_item_realtion_version_list_view',
+    baseline_work_item_realtion_version_list_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.release_pick_up_view',
     release_pick_up_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.section_pick_up_view',
     section_pick_up_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.user_user_pick_up_tree_view',
+    user_user_pick_up_tree_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.portfolio_mpick_up_view',
@@ -2557,6 +2985,10 @@ export async function initViewConfig(): Promise<void> {
     relation_work_item_re_self_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.review_tree_exp_view',
+    review_tree_exp_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.insight_library_grid_view',
     insight_library_grid_view as IViewConfig,
   );
@@ -2569,12 +3001,28 @@ export async function initViewConfig(): Promise<void> {
     idea_others_re_mpick_up_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.discuss_post_my_reply_grid_view',
+    discuss_post_my_reply_grid_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.version_quick_create_view',
     version_quick_create_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.relation_test_case_re_work_item_list_view',
+    relation_test_case_re_work_item_list_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.test_case_pick_up_tree_view',
+    test_case_pick_up_tree_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.ticket_customer_re_ticket_grid_view',
     ticket_customer_re_ticket_grid_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.insight_view_org_grid_view',
+    insight_view_org_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.recent_my_assignee_item_tap_exp_view',
@@ -2589,12 +3037,20 @@ export async function initViewConfig(): Promise<void> {
     psdelogictemplate_info_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.relation_idea_re_test_case_list_view',
+    relation_idea_re_test_case_list_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.space_member_role_edit_view',
     space_member_role_edit_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.sprint_pick_up_view',
     sprint_pick_up_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.discuss_member_bind_grid_view',
+    discuss_member_bind_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.section_pick_up_grid_view',
@@ -2633,8 +3089,12 @@ export async function initViewConfig(): Promise<void> {
     library_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
-    'plmweb.work_item_tree_grid_view',
-    work_item_tree_grid_view as IViewConfig,
+    'plmweb.work_item_srcum_tree_grid_view',
+    work_item_srcum_tree_grid_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.insight_report_all_report_grid_view',
+    insight_report_all_report_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.workload_tab_search_view',
@@ -2645,8 +3105,16 @@ export async function initViewConfig(): Promise<void> {
     project_pick_up_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.discuss_topic_pickup_view',
+    discuss_topic_pickup_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.test_case_re_run_main_view',
     test_case_re_run_main_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.addon_setting_grid_view',
+    addon_setting_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.activity_test_all_list_view',
@@ -2673,12 +3141,28 @@ export async function initViewConfig(): Promise<void> {
     project_management_tab_exp_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.relation_test_case_re_idea_list_view',
+    relation_test_case_re_idea_list_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.work_item_type_global_setting_view_scrum',
     work_item_type_global_setting_view_scrum as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.insight_report_edit_view',
+    insight_report_edit_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.discuss_topic_is_deleted_grid_view',
+    discuss_topic_is_deleted_grid_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.dictionary_data_grid_view',
     dictionary_data_grid_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.project_tag_project_tag_confirm_remove_view',
+    project_tag_project_tag_confirm_remove_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.work_item_change_assignee_view',
@@ -2687,6 +3171,10 @@ export async function initViewConfig(): Promise<void> {
   ibiz.hub.config.view.set(
     'plmweb.user_info_custom_view',
     user_info_custom_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.discuss_post_quick_create_view',
+    discuss_post_quick_create_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.project_team_grid_view',
@@ -2705,6 +3193,10 @@ export async function initViewConfig(): Promise<void> {
     ticket_main_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.insight_view_index_view2',
+    insight_view_index_view2 as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.test_case_set_maintenance_option_view',
     test_case_set_maintenance_option_view as IViewConfig,
   );
@@ -2715,10 +3207,6 @@ export async function initViewConfig(): Promise<void> {
   ibiz.hub.config.view.set(
     'plmweb.test_plan_main_view',
     test_plan_main_view as IViewConfig,
-  );
-  ibiz.hub.config.view.set(
-    'plmweb.idea_work_item_re_idea_grid_view',
-    idea_work_item_re_idea_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.article_page_edit_view',
@@ -2757,6 +3245,10 @@ export async function initViewConfig(): Promise<void> {
     work_redirect_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.insight_member_edit_view',
+    insight_member_edit_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.work_item_under_work_grid_view',
     work_item_under_work_grid_view as IViewConfig,
   );
@@ -2777,6 +3269,10 @@ export async function initViewConfig(): Promise<void> {
     project_mpick_up_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.relation_idea_re_self_list_view',
+    relation_idea_re_self_list_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.idea_plan_count_grid_view',
     idea_plan_count_grid_view as IViewConfig,
   );
@@ -2789,12 +3285,24 @@ export async function initViewConfig(): Promise<void> {
     stencil_edit_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.scrum_work_item_app_data_upload_view',
+    scrum_work_item_app_data_upload_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.library_member_assigned_grid_view',
     library_member_assigned_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.review_content_redirect_view',
+    review_content_redirect_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.product_plan_tree_exp_view',
     product_plan_tree_exp_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.discuss_topic_base_information_edit_view',
+    discuss_topic_base_information_edit_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.workload_management_view',
@@ -2807,6 +3315,10 @@ export async function initViewConfig(): Promise<void> {
   ibiz.hub.config.view.set(
     'plmweb.work_item_calendar_view',
     work_item_calendar_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.discuss_topic_advanced_setting_edit_view',
+    discuss_topic_advanced_setting_edit_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.relation_work_item_re_ticket_grid_view',
@@ -2845,12 +3357,16 @@ export async function initViewConfig(): Promise<void> {
     psde_field_quick_cfg_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
-    'plmweb.space_advanced_setting_view',
-    space_advanced_setting_view as IViewConfig,
+    'plmweb.space_advanced_setting_edit_view',
+    space_advanced_setting_edit_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.product_setting_view',
     product_setting_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.discuss_topic_edit_view',
+    discuss_topic_edit_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.stencil_all_grid_view',
@@ -2873,6 +3389,10 @@ export async function initViewConfig(): Promise<void> {
     test_suite_quick_create_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.discuss_member_redirect_view',
+    discuss_member_redirect_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.test_case_baseline_mpick_up_grid_view',
     test_case_baseline_mpick_up_grid_view as IViewConfig,
   );
@@ -2893,6 +3413,10 @@ export async function initViewConfig(): Promise<void> {
     user_info_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.article_page_help_view',
+    article_page_help_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.relation_ticket_re_self_grid_view',
     relation_ticket_re_self_grid_view as IViewConfig,
   );
@@ -2905,8 +3429,20 @@ export async function initViewConfig(): Promise<void> {
     relation_run_re_bug_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
+    'plmweb.sys_todo_edit_view',
+    sys_todo_edit_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
     'plmweb.recent_custom_dashboard_view',
     recent_custom_dashboard_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.review_stage_edit_view',
+    review_stage_edit_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.sys_todo_all_grid_view',
+    sys_todo_all_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.product_plan_edit_option_view',
@@ -2935,6 +3471,10 @@ export async function initViewConfig(): Promise<void> {
   ibiz.hub.config.view.set(
     'plmweb.recent_my_created_tab_exp_view',
     recent_my_created_tab_exp_view as IViewConfig,
+  );
+  ibiz.hub.config.view.set(
+    'plmweb.work_item_kanban_tree_grid_view',
+    work_item_kanban_tree_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.ticket_type_quick_create_view',

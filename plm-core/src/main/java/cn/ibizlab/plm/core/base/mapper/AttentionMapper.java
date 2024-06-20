@@ -100,6 +100,14 @@ public interface AttentionMapper extends BaseMapper<Attention> {
     List<Attention> listNotify(@Param("ctx") AttentionSearchContext context, @Param("ew") Wrapper<Attention> wrapper);
 
     /**
+    * 根据ownerId查询
+    *
+    * @param ownerIds
+    * @return
+    */
+    List<Attention> findByOwnerId(@Param("ownerIds") List<String> ownerIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -208,13 +216,4 @@ public interface AttentionMapper extends BaseMapper<Attention> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据ownerId查询
-     *
-     * @param ownerIds
-     * @return
-     */
-    List<Attention> findByOwnerId(@Param("ownerIds") List<String> ownerIds);
-
 }

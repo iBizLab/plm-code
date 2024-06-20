@@ -31,11 +31,27 @@ import io.swagger.annotations.ApiModelProperty;
 public class PSDENotifyFilterDTO extends FilterBase implements Serializable {
 
     /**
+     * 实体通知标识EQ
+     */
+    @JsonProperty("n_psdenotifyid_eq")
+    @JSONField(name = "n_psdenotifyid_eq")
+    @ApiModelProperty(value = "实体通知标识EQ", position = 0)
+	private String psdeNotifyIdEQ;
+
+    /**
+     * 实体通知名称LIKE
+     */
+    @JsonProperty("n_psdenotifyname_like")
+    @JSONField(name = "n_psdenotifyname_like")
+    @ApiModelProperty(value = "实体通知名称LIKE", position = 10)
+	private String psdeNotifyNameLIKE;
+
+    /**
      * 附加任务模式EQ
      */
     @JsonProperty("n_taskmode_eq")
     @JSONField(name = "n_taskmode_eq")
-    @ApiModelProperty(value = "附加任务模式EQ", position = 90)
+    @ApiModelProperty(value = "附加任务模式EQ", position = 110)
 	private Integer taskModeEQ;
 
     /**
@@ -43,24 +59,8 @@ public class PSDENotifyFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_psdeid_eq")
     @JSONField(name = "n_psdeid_eq")
-    @ApiModelProperty(value = "实体EQ", position = 120)
+    @ApiModelProperty(value = "实体EQ", position = 140)
 	private String psdeidEQ;
-
-    /**
-     * 实体通知名称LIKE
-     */
-    @JsonProperty("n_psdenotifyname_like")
-    @JSONField(name = "n_psdenotifyname_like")
-    @ApiModelProperty(value = "实体通知名称LIKE", position = 270)
-	private String psdeNotifyNameLIKE;
-
-    /**
-     * 实体通知标识EQ
-     */
-    @JsonProperty("n_psdenotifyid_eq")
-    @JSONField(name = "n_psdenotifyid_eq")
-    @ApiModelProperty(value = "实体通知标识EQ", position = 280)
-	private String psdeNotifyIdEQ;
 
     /**
      * 通知子类EQ

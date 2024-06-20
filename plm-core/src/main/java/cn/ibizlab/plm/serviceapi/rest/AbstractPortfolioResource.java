@@ -204,6 +204,45 @@ public abstract class AbstractPortfolioResource {
     }
 
     /**
+    * portfolio_index_addon_counter 文件夹
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<PortfolioDTO>
+    */
+    @ApiOperation(value = "portfolio_index_addon_counter", tags = {"文件夹" },  notes = "Portfolio-portfolio_index_addon_counter ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Portfolio-portfolio_index_addon_counter-all') or hasPermission(this.portfolioDtoMapping.toDomain(#dto),'ibizplm-Portfolio-portfolio_index_addon_counter')")
+    @PostMapping("portfolios/{id}/portfolio_index_addon_counter")
+    public ResponseEntity<ResponseWrapper<PortfolioDTO>> portfolioIndexAddonCounterById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<PortfolioDTO> dto) {
+        ResponseWrapper<PortfolioDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(portfolioIndexAddonCounterById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(portfolioIndexAddonCounterById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * portfolio_index_addon_counter 文件夹
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<PortfolioDTO>
+    */   
+    public PortfolioDTO portfolioIndexAddonCounterById
+            (String id, PortfolioDTO dto) {
+        Portfolio domain = portfolioDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Portfolio rt = portfolioService.portfolioIndexAddonCounter(domain);
+        return portfolioDtoMapping.toDto(rt);
+    }
+
+    /**
     * recover_project_set 文件夹
     * 
     *
@@ -272,6 +311,40 @@ public abstract class AbstractPortfolioResource {
             (PortfolioDTO dto) {
         Portfolio domain = portfolioDtoMapping.toDomain(dto);
         Portfolio rt = portfolioService.removeFromProjectSet(domain);
+        return portfolioDtoMapping.toDto(rt);
+    }
+
+    /**
+    * resource_setting 文件夹
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<PortfolioDTO>
+    */
+    @ApiOperation(value = "resource_setting", tags = {"文件夹" },  notes = "Portfolio-resource_setting ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Portfolio-resource_setting-all') or hasPermission(this.portfolioDtoMapping.toDomain(#dto),'ibizplm-Portfolio-resource_setting')")
+    @PostMapping("portfolios/resource_setting")
+    public ResponseEntity<ResponseWrapper<PortfolioDTO>> resourceSetting
+            (@Validated @RequestBody RequestWrapper<PortfolioDTO> dto) {
+        ResponseWrapper<PortfolioDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(resourceSetting(item)));
+        else
+            rt.set(resourceSetting(dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * resource_setting 文件夹
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<PortfolioDTO>
+    */   
+    public PortfolioDTO resourceSetting
+            (PortfolioDTO dto) {
+        Portfolio domain = portfolioDtoMapping.toDomain(dto);
+        Portfolio rt = portfolioService.resourceSetting(domain);
         return portfolioDtoMapping.toDto(rt);
     }
 
@@ -427,7 +500,7 @@ public abstract class AbstractPortfolioResource {
     public ResponseEntity<List<PortfolioDTO>> fetchAdmin
             (@Validated @RequestBody PortfolioFilterDTO dto) {
         PortfolioSearchContext context = portfolioFilterDtoMapping.toDomain(dto);
-        Page<Portfolio> domains = portfolioService.searchAdmin(context) ;
+        Page<Portfolio> domains = portfolioService.fetchAdmin(context) ;
         List<PortfolioDTO> list = portfolioDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -449,7 +522,7 @@ public abstract class AbstractPortfolioResource {
     public ResponseEntity<List<PortfolioDTO>> fetchChooseProjectPortfolio
             (@Validated @RequestBody PortfolioFilterDTO dto) {
         PortfolioSearchContext context = portfolioFilterDtoMapping.toDomain(dto);
-        Page<Portfolio> domains = portfolioService.searchChooseProjectPortfolio(context) ;
+        Page<Portfolio> domains = portfolioService.fetchChooseProjectPortfolio(context) ;
         List<PortfolioDTO> list = portfolioDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -471,7 +544,7 @@ public abstract class AbstractPortfolioResource {
     public ResponseEntity<List<PortfolioDTO>> fetchDefault
             (@Validated @RequestBody PortfolioFilterDTO dto) {
         PortfolioSearchContext context = portfolioFilterDtoMapping.toDomain(dto);
-        Page<Portfolio> domains = portfolioService.searchDefault(context) ;
+        Page<Portfolio> domains = portfolioService.fetchDefault(context) ;
         List<PortfolioDTO> list = portfolioDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -493,7 +566,7 @@ public abstract class AbstractPortfolioResource {
     public ResponseEntity<List<PortfolioDTO>> fetchFavorite
             (@Validated @RequestBody PortfolioFilterDTO dto) {
         PortfolioSearchContext context = portfolioFilterDtoMapping.toDomain(dto);
-        Page<Portfolio> domains = portfolioService.searchFavorite(context) ;
+        Page<Portfolio> domains = portfolioService.fetchFavorite(context) ;
         List<PortfolioDTO> list = portfolioDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -515,7 +588,7 @@ public abstract class AbstractPortfolioResource {
     public ResponseEntity<List<PortfolioDTO>> fetchProjectSetDeleted
             (@Validated @RequestBody PortfolioFilterDTO dto) {
         PortfolioSearchContext context = portfolioFilterDtoMapping.toDomain(dto);
-        Page<Portfolio> domains = portfolioService.searchProjectSetDeleted(context) ;
+        Page<Portfolio> domains = portfolioService.fetchProjectSetDeleted(context) ;
         List<PortfolioDTO> list = portfolioDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -537,7 +610,7 @@ public abstract class AbstractPortfolioResource {
     public ResponseEntity<List<PortfolioDTO>> fetchProjectSetGoing
             (@Validated @RequestBody PortfolioFilterDTO dto) {
         PortfolioSearchContext context = portfolioFilterDtoMapping.toDomain(dto);
-        Page<Portfolio> domains = portfolioService.searchProjectSetGoing(context) ;
+        Page<Portfolio> domains = portfolioService.fetchProjectSetGoing(context) ;
         List<PortfolioDTO> list = portfolioDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -559,7 +632,7 @@ public abstract class AbstractPortfolioResource {
     public ResponseEntity<List<PortfolioDTO>> fetchReader
             (@Validated @RequestBody PortfolioFilterDTO dto) {
         PortfolioSearchContext context = portfolioFilterDtoMapping.toDomain(dto);
-        Page<Portfolio> domains = portfolioService.searchReader(context) ;
+        Page<Portfolio> domains = portfolioService.fetchReader(context) ;
         List<PortfolioDTO> list = portfolioDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -581,7 +654,7 @@ public abstract class AbstractPortfolioResource {
     public ResponseEntity<List<PortfolioDTO>> fetchUser
             (@Validated @RequestBody PortfolioFilterDTO dto) {
         PortfolioSearchContext context = portfolioFilterDtoMapping.toDomain(dto);
-        Page<Portfolio> domains = portfolioService.searchUser(context) ;
+        Page<Portfolio> domains = portfolioService.fetchUser(context) ;
         List<PortfolioDTO> list = portfolioDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -603,7 +676,7 @@ public abstract class AbstractPortfolioResource {
     public ResponseEntity<List<PortfolioDTO>> fetchWorkProjectPortfolio
             (@Validated @RequestBody PortfolioFilterDTO dto) {
         PortfolioSearchContext context = portfolioFilterDtoMapping.toDomain(dto);
-        Page<Portfolio> domains = portfolioService.searchWorkProjectPortfolio(context) ;
+        Page<Portfolio> domains = portfolioService.fetchWorkProjectPortfolio(context) ;
         List<PortfolioDTO> list = portfolioDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -622,7 +695,7 @@ public abstract class AbstractPortfolioResource {
     @ApiOperation(value = "批量新建文件夹", tags = {"文件夹" },  notes = "批量新建文件夹")
 	@PostMapping("portfolios/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<PortfolioDTO> dtos) {
-        portfolioService.createBatch(portfolioDtoMapping.toDomain(dtos));
+        portfolioService.create(portfolioDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -635,7 +708,7 @@ public abstract class AbstractPortfolioResource {
     @ApiOperation(value = "批量删除文件夹", tags = {"文件夹" },  notes = "批量删除文件夹")
 	@DeleteMapping("portfolios/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        portfolioService.removeBatch(ids);
+        portfolioService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -648,7 +721,7 @@ public abstract class AbstractPortfolioResource {
     @ApiOperation(value = "批量更新文件夹", tags = {"文件夹" },  notes = "批量更新文件夹")
 	@PutMapping("portfolios/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<PortfolioDTO> dtos) {
-        portfolioService.updateBatch(portfolioDtoMapping.toDomain(dtos));
+        portfolioService.update(portfolioDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -661,7 +734,7 @@ public abstract class AbstractPortfolioResource {
     @ApiOperation(value = "批量保存文件夹", tags = {"文件夹" },  notes = "批量保存文件夹")
 	@PostMapping("portfolios/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<PortfolioDTO> dtos) {
-        portfolioService.saveBatch(portfolioDtoMapping.toDomain(dtos));
+        portfolioService.save(portfolioDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

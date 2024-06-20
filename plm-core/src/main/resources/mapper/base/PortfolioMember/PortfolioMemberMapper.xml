@@ -9,10 +9,10 @@
 		<result property="roleId" column="role_id" />
 		<result property="portfolioName" column="portfolio_name" />
 		<result property="portfolioIdentifier" column="portfolio_identifier" />
-		<result property="updateTime" column="update_time" />
-		<result property="createTime" column="create_time" />
 		<result property="createMan" column="create_man" />
+		<result property="createTime" column="create_time" />
 		<result property="updateMan" column="update_man" />
+		<result property="updateTime" column="update_time" />
 		<result property="portfolioId" column="portfolio_id" />
         <association property="portfolio" javaType="cn.ibizlab.plm.core.base.domain.Portfolio" column="portfolio_id" select="cn.ibizlab.plm.core.base.mapper.PortfolioMapper.selectById" fetchType="lazy"></association>
     </resultMap>

@@ -62,6 +62,25 @@ public interface ArticlePageMapper extends BaseMapper<ArticlePage> {
     List<ArticlePage> listAdvancedSearch(@Param("ctx") ArticlePageSearchContext context, @Param("ew") Wrapper<ArticlePage> wrapper);
 
     /**
+     * 数据集合baseline_choose_page分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<ArticlePage> searchBaselineChoosePage(IPage<ArticlePage> page, @Param("ctx") ArticlePageSearchContext context, @Param("ew") Wrapper<ArticlePage> wrapper);
+    
+    /**
+     * 数据集合baseline_choose_page查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<ArticlePage> listBaselineChoosePage(@Param("ctx") ArticlePageSearchContext context, @Param("ew") Wrapper<ArticlePage> wrapper);
+
+    /**
      * 数据集合draft_page分页查询
      * 
      * @param page
@@ -195,6 +214,22 @@ public interface ArticlePageMapper extends BaseMapper<ArticlePage> {
     List<ArticlePage> listOnlyPage(@Param("ctx") ArticlePageSearchContext context, @Param("ew") Wrapper<ArticlePage> wrapper);
 
     /**
+    * 根据parentId查询
+    *
+    * @param parentIds
+    * @return
+    */
+    List<ArticlePage> findByParentId(@Param("parentIds") List<String> parentIds);
+
+    /**
+    * 根据spaceId查询
+    *
+    * @param spaceIds
+    * @return
+    */
+    List<ArticlePage> findBySpaceId(@Param("spaceIds") List<String> spaceIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -303,21 +338,4 @@ public interface ArticlePageMapper extends BaseMapper<ArticlePage> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据parentId查询
-     *
-     * @param parentIds
-     * @return
-     */
-    List<ArticlePage> findByParentId(@Param("parentIds") List<String> parentIds);
-
-    /**
-     * 根据spaceId查询
-     *
-     * @param spaceIds
-     * @return
-     */
-    List<ArticlePage> findBySpaceId(@Param("spaceIds") List<String> spaceIds);
-
 }

@@ -48,33 +48,6 @@ public abstract class AbstractWorkItemStateService extends ServiceImpl<WorkItemS
 
     protected int batchSize = 500;
 
-    public WorkItemState get(WorkItemState et) {
-        WorkItemState rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.WORK_ITEM_STATE.toString(),et.getId());
-        rt.copyTo(et,true);
-        return et;
-    }
-
-    public List<WorkItemState> getByEntities(List<WorkItemState> entities) {
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public void fillParentData(WorkItemState et) {
-        if(Entities.WORK_ITEM_TYPE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
-            et.setWorkItemTypeId((String)et.getContextParentKey());
-        }
-    }
-
-    public WorkItemState getDraft(WorkItemState et) {
-        fillParentData(et);
-        return et;
-    }
-
-    public Integer checkKey(WorkItemState et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<WorkItemState>lambdaQuery().eq(WorkItemState::getId, et.getId()))>0)?1:0;
-    }
-
     @Override
     @Transactional
     public boolean create(WorkItemState et) {
@@ -84,14 +57,14 @@ public abstract class AbstractWorkItemStateService extends ServiceImpl<WorkItemS
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<WorkItemState> list) {
+    public boolean create(List<WorkItemState> list) {
         list.forEach(this::fillParentData);
         this.saveBatch(list, batchSize);
         return true;
     }
-
+	
     @Transactional
     public boolean update(WorkItemState et) {
         UpdateWrapper<WorkItemState> qw = et.getUpdateWrapper(true);
@@ -103,11 +76,44 @@ public abstract class AbstractWorkItemStateService extends ServiceImpl<WorkItemS
     }
 
     @Transactional
-    public boolean updateBatch(List<WorkItemState> list) {
+    public boolean update(List<WorkItemState> list) {
         updateBatchById(list, batchSize);
         return true;
     }
+	
+   @Transactional
+    public boolean remove(WorkItemState et) {
+        if(!remove(Wrappers.<WorkItemState>lambdaQuery().eq(WorkItemState::getId, et.getId())))
+            return false;
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<WorkItemState> entities) {
+        this.baseMapper.deleteEntities(entities);
+        return true;
+    }		
+    public WorkItemState get(WorkItemState et) {
+        WorkItemState rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.WORK_ITEM_STATE.toString(),et.getId());
+        rt.copyTo(et,true);
+        return et;
+    }	
+
+    public List<WorkItemState> get(List<WorkItemState> entities) {
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public WorkItemState getDraft(WorkItemState et) {
+        fillParentData(et);
+        return et;
+    }
+	
+    public Integer checkKey(WorkItemState et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<WorkItemState>lambdaQuery().eq(WorkItemState::getId, et.getId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(WorkItemState et) {
@@ -118,10 +124,10 @@ public abstract class AbstractWorkItemStateService extends ServiceImpl<WorkItemS
     }
 
     @Transactional
-    public boolean saveBatch(List<WorkItemState> list) {
+    public boolean save(List<WorkItemState> list) {
         if(ObjectUtils.isEmpty(list))
             return true;
-        Map<String,WorkItemState> before = getByEntities(list).stream().collect(Collectors.toMap(WorkItemState::getId,e->e));
+        Map<String,WorkItemState> before = get(list).stream().collect(Collectors.toMap(WorkItemState::getId,e->e));
         List<WorkItemState> create = new ArrayList<>();
         List<WorkItemState> update = new ArrayList<>();
         list.forEach(sub->{
@@ -132,52 +138,40 @@ public abstract class AbstractWorkItemStateService extends ServiceImpl<WorkItemS
         });
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
         else
             return true;
     }
-
-    @Transactional
-    public boolean remove(WorkItemState et) {
-        if(!remove(Wrappers.<WorkItemState>lambdaQuery().eq(WorkItemState::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<WorkItemState> entities) {
-        this.baseMapper.deleteEntities(entities);
-        return true;
-    }
-
-    public Page<WorkItemState> searchDefault(WorkItemStateSearchContext context) {
+	
+   public Page<WorkItemState> fetchDefault(WorkItemStateSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItemState> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<WorkItemState> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<WorkItemState> listDefault(WorkItemStateSearchContext context) {
+   public List<WorkItemState> listDefault(WorkItemStateSearchContext context) {
         List<WorkItemState> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
-    }
-
-    public List<WorkItemState> findByWorkItemTypeId(List<String> workItemTypeIds) {
+   }
+	
+	public List<WorkItemState> findByWorkItemTypeId(List<String> workItemTypeIds){
         List<WorkItemState> list = baseMapper.findByWorkItemTypeId(workItemTypeIds);
-        return list;
-    }
-    public boolean removeByWorkItemTypeId(String workItemTypeId) {
+        return list;	
+	}
+
+	public boolean removeByWorkItemTypeId(String workItemTypeId){
         return this.remove(Wrappers.<WorkItemState>lambdaQuery().eq(WorkItemState::getWorkItemTypeId,workItemTypeId));
-    }
+	}
 
-    public boolean resetByWorkItemTypeId(String workItemTypeId) {
-        return this.update(Wrappers.<WorkItemState>lambdaUpdate().eq(WorkItemState::getWorkItemTypeId,workItemTypeId));
-    }
-
-    public boolean saveByWorkItemType(WorkItemType workItemType,List<WorkItemState> list) {
+	public boolean resetByWorkItemTypeId(String workItemTypeId){
+		return this.update(Wrappers.<WorkItemState>lambdaUpdate().eq(WorkItemState::getWorkItemTypeId,workItemTypeId));
+	}
+	public boolean saveByWorkItemType(WorkItemType workItemType, List<WorkItemState> list){
         if(list==null)
             return true;
         Map<String,WorkItemState> before = findByWorkItemTypeId(workItemType.getId()).stream().collect(Collectors.toMap(WorkItemState::getId,e->e));
+
         List<WorkItemState> update = new ArrayList<>();
         List<WorkItemState> create = new ArrayList<>();
 
@@ -193,18 +187,21 @@ public abstract class AbstractWorkItemStateService extends ServiceImpl<WorkItemS
         }
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
             return false;
         else
             return true;
+			
+	}
+
+    public void fillParentData(WorkItemState et) {
+        if(Entities.WORK_ITEM_TYPE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setWorkItemTypeId((String)et.getContextParentKey());
+        }
     }
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -224,8 +221,8 @@ public abstract class AbstractWorkItemStateService extends ServiceImpl<WorkItemS
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return WorkItemStateMapper.class;
     }
@@ -234,4 +231,5 @@ public abstract class AbstractWorkItemStateService extends ServiceImpl<WorkItemS
     protected Class currentModelClass() {
         return WorkItemState.class;
     }
+
 }

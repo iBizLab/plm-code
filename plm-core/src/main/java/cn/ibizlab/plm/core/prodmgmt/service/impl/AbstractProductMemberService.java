@@ -42,50 +42,6 @@ public abstract class AbstractProductMemberService extends ServiceImpl<ProductMe
 
     protected int batchSize = 500;
 
-    public ProductMember get(ProductMember et) {
-        ProductMember rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.PRODUCT_MEMBER.toString(),et.getId());
-        rt.copyTo(et,true);
-        return et;
-    }
-
-    public List<ProductMember> getByEntities(List<ProductMember> entities) {
-        entities.forEach(et->{
-            if(ObjectUtils.isEmpty(et.getId()))
-                et.setId((String)et.getDefaultKey(true));
-            });
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public void fillParentData(ProductMember et) {
-        if(Entities.PRODUCT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
-            et.setProductId((String)et.getContextParentKey());
-            Product product = et.getProduct();
-            if(product == null) {
-                product = productService.getById(et.getProductId());
-                et.setProduct(product);
-            }
-            if(!ObjectUtils.isEmpty(product)) {
-                et.setProductName(product.getName());
-                et.setProductIdentifier(product.getIdentifier());
-                et.setProductId(product.getId());
-            }
-        }
-    }
-
-    public ProductMember getDraft(ProductMember et) {
-        fillParentData(et);
-        return et;
-    }
-
-    public Integer checkKey(ProductMember et) {
-        fillParentData(et);
-        if(ObjectUtils.isEmpty(et.getId()))
-            et.setId((String)et.getDefaultKey(true));
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ProductMember>lambdaQuery().eq(ProductMember::getId, et.getId()))>0)?1:0;
-    }
-
     @Override
     @Transactional
     public boolean create(ProductMember et) {
@@ -97,9 +53,9 @@ public abstract class AbstractProductMemberService extends ServiceImpl<ProductMe
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<ProductMember> list) {
+    public boolean create(List<ProductMember> list) {
         list.forEach(this::fillParentData);
         list.forEach(et->{
             if(ObjectUtils.isEmpty(et.getId()))
@@ -108,7 +64,7 @@ public abstract class AbstractProductMemberService extends ServiceImpl<ProductMe
         this.saveBatch(list, batchSize);
         return true;
     }
-
+	
     @Transactional
     public boolean update(ProductMember et) {
         fillParentData(et);
@@ -121,12 +77,52 @@ public abstract class AbstractProductMemberService extends ServiceImpl<ProductMe
     }
 
     @Transactional
-    public boolean updateBatch(List<ProductMember> list) {
+    public boolean update(List<ProductMember> list) {
         list.forEach(this::fillParentData);
         updateBatchById(list, batchSize);
         return true;
     }
+	
+   @Transactional
+    public boolean remove(ProductMember et) {
+        if(!remove(Wrappers.<ProductMember>lambdaQuery().eq(ProductMember::getId, et.getId())))
+            return false;
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<ProductMember> entities) {
+        this.baseMapper.deleteEntities(entities);
+        return true;
+    }		
+    public ProductMember get(ProductMember et) {
+        ProductMember rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.PRODUCT_MEMBER.toString(),et.getId());
+        rt.copyTo(et,true);
+        return et;
+    }	
+
+    public List<ProductMember> get(List<ProductMember> entities) {
+        entities.forEach(et->{
+            if(ObjectUtils.isEmpty(et.getId()))
+                et.setId((String)et.getDefaultKey(true));
+            });
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public ProductMember getDraft(ProductMember et) {
+        fillParentData(et);
+        return et;
+    }
+	
+    public Integer checkKey(ProductMember et) {
+        fillParentData(et);
+        if(ObjectUtils.isEmpty(et.getId()))
+            et.setId((String)et.getDefaultKey(true));
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ProductMember>lambdaQuery().eq(ProductMember::getId, et.getId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(ProductMember et) {
@@ -137,10 +133,10 @@ public abstract class AbstractProductMemberService extends ServiceImpl<ProductMe
     }
 
     @Transactional
-    public boolean saveBatch(List<ProductMember> list) {
+    public boolean save(List<ProductMember> list) {
         if(ObjectUtils.isEmpty(list))
             return true;
-        Map<String,ProductMember> before = getByEntities(list).stream().collect(Collectors.toMap(ProductMember::getId,e->e));
+        Map<String,ProductMember> before = get(list).stream().collect(Collectors.toMap(ProductMember::getId,e->e));
         List<ProductMember> create = new ArrayList<>();
         List<ProductMember> update = new ArrayList<>();
         list.forEach(sub->{
@@ -155,67 +151,51 @@ public abstract class AbstractProductMemberService extends ServiceImpl<ProductMe
         });
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
         else
             return true;
     }
-
-    @Transactional
-    public boolean remove(ProductMember et) {
-        if(!remove(Wrappers.<ProductMember>lambdaQuery().eq(ProductMember::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<ProductMember> entities) {
-        this.baseMapper.deleteEntities(entities);
-        return true;
-    }
-
-    public Page<ProductMember> searchDefault(ProductMemberSearchContext context) {
+	
+   public Page<ProductMember> fetchDefault(ProductMemberSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<ProductMember> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<ProductMember> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<ProductMember> listDefault(ProductMemberSearchContext context) {
+   public List<ProductMember> listDefault(ProductMemberSearchContext context) {
         List<ProductMember> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<ProductMember> searchCurProduct(ProductMemberSearchContext context) {
+   }
+	
+   public Page<ProductMember> fetchCurProduct(ProductMemberSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<ProductMember> pages=baseMapper.searchCurProduct(context.getPages(),context,context.getSelectCond());
         List<ProductMember> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<ProductMember> listCurProduct(ProductMemberSearchContext context) {
+   public List<ProductMember> listCurProduct(ProductMemberSearchContext context) {
         List<ProductMember> list = baseMapper.listCurProduct(context,context.getSelectCond());
         return list;
-    }
-
-    public List<ProductMember> findByProductId(List<String> productIds) {
+   }
+	
+	public List<ProductMember> findByProductId(List<String> productIds){
         List<ProductMember> list = baseMapper.findByProductId(productIds);
-        return list;
-    }
-    public List<ProductMember> findByUserId(List<String> userIds) {
-        List<ProductMember> list = baseMapper.findByUserId(userIds);
-        return list;
-    }
-    public boolean removeByProductId(String productId) {
+        return list;	
+	}
+
+	public boolean removeByProductId(String productId){
         return this.remove(Wrappers.<ProductMember>lambdaQuery().eq(ProductMember::getProductId,productId));
-    }
+	}
 
-    public boolean resetByProductId(String productId) {
-        return this.update(Wrappers.<ProductMember>lambdaUpdate().eq(ProductMember::getProductId,productId));
-    }
-
-    public boolean saveByProduct(Product product,List<ProductMember> list) {
+	public boolean resetByProductId(String productId){
+		return this.update(Wrappers.<ProductMember>lambdaUpdate().eq(ProductMember::getProductId,productId));
+	}
+	public boolean saveByProduct(Product product, List<ProductMember> list){
         if(list==null)
             return true;
         Map<String,ProductMember> before = findByProductId(product.getId()).stream().collect(Collectors.toMap(ProductMember::getId,e->e));
+
         List<ProductMember> update = new ArrayList<>();
         List<ProductMember> create = new ArrayList<>();
 
@@ -235,26 +215,31 @@ public abstract class AbstractProductMemberService extends ServiceImpl<ProductMe
         }
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
             return false;
         else
             return true;
-    }
+			
+	}
+	public List<ProductMember> findByUserId(List<String> userIds){
+        List<ProductMember> list = baseMapper.findByUserId(userIds);
+        return list;	
+	}
 
-    public boolean removeByUserId(String userId) {
+	public boolean removeByUserId(String userId){
         return this.remove(Wrappers.<ProductMember>lambdaQuery().eq(ProductMember::getUserId,userId));
-    }
+	}
 
-    public boolean resetByUserId(String userId) {
-        return this.update(Wrappers.<ProductMember>lambdaUpdate().eq(ProductMember::getUserId,userId));
-    }
-
-    public boolean saveByUser(User user,List<ProductMember> list) {
+	public boolean resetByUserId(String userId){
+		return this.update(Wrappers.<ProductMember>lambdaUpdate().eq(ProductMember::getUserId,userId));
+	}
+	public boolean saveByUser(User user, List<ProductMember> list){
         if(list==null)
             return true;
         Map<String,ProductMember> before = findByUserId(user.getId()).stream().collect(Collectors.toMap(ProductMember::getId,e->e));
+
         List<ProductMember> update = new ArrayList<>();
         List<ProductMember> create = new ArrayList<>();
 
@@ -274,18 +259,31 @@ public abstract class AbstractProductMemberService extends ServiceImpl<ProductMe
         }
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
             return false;
         else
             return true;
+			
+	}
+
+    public void fillParentData(ProductMember et) {
+        if(Entities.PRODUCT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setProductId((String)et.getContextParentKey());
+            Product product = et.getProduct();
+            if(product == null) {
+                product = productService.getById(et.getProductId());
+                et.setProduct(product);
+            }
+            if(!ObjectUtils.isEmpty(product)) {
+                et.setProductName(product.getName());
+                et.setProductIdentifier(product.getIdentifier());
+                et.setProductId(product.getId());
+            }
+        }
     }
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -305,8 +303,8 @@ public abstract class AbstractProductMemberService extends ServiceImpl<ProductMe
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return ProductMemberMapper.class;
     }
@@ -315,4 +313,5 @@ public abstract class AbstractProductMemberService extends ServiceImpl<ProductMe
     protected Class currentModelClass() {
         return ProductMember.class;
     }
+
 }

@@ -79,20 +79,20 @@ public class BaselineIdeaFilterDTO extends FilterBase implements Serializable {
 	private String planAtGranularityEQ;
 
     /**
-     * 名称LIKE
-     */
-    @JsonProperty("n_name_like")
-    @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 290)
-	private String nameLIKE;
-
-    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
     @ApiModelProperty(value = "标识EQ", position = 300)
 	private String idEQ;
+
+    /**
+     * 名称LIKE
+     */
+    @JsonProperty("n_name_like")
+    @JSONField(name = "n_name_like")
+    @ApiModelProperty(value = "名称LIKE", position = 310)
+	private String nameLIKE;
 
 
 }

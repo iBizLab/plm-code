@@ -57,42 +57,6 @@ public abstract class AbstractBaselineTestCaseService extends ServiceImpl<Baseli
 
     protected int batchSize = 500;
 
-    public BaselineTestCase get(BaselineTestCase et) {
-        BaselineTestCase rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.BASELINE_TEST_CASE.toString(),et.getId());
-        rt.copyTo(et,true);
-        return et;
-    }
-
-    public List<BaselineTestCase> getByEntities(List<BaselineTestCase> entities) {
-        entities.forEach(et->{
-            if(ObjectUtils.isEmpty(et.getId()))
-                et.setId((String)et.getDefaultKey(true));
-            });
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public void fillParentData(BaselineTestCase et) {
-        if(Entities.BASELINE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
-            et.setPrincipalId((String)et.getContextParentKey());
-        }
-        if(Entities.VERSION.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
-            et.setTargetVersionId((String)et.getContextParentKey());
-        }
-    }
-
-    public BaselineTestCase getDraft(BaselineTestCase et) {
-        fillParentData(et);
-        return et;
-    }
-
-    public Integer checkKey(BaselineTestCase et) {
-        if(ObjectUtils.isEmpty(et.getId()))
-            et.setId((String)et.getDefaultKey(true));
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<BaselineTestCase>lambdaQuery().eq(BaselineTestCase::getId, et.getId()))>0)?1:0;
-    }
-
     @Override
     @Transactional
     public boolean create(BaselineTestCase et) {
@@ -101,17 +65,17 @@ public abstract class AbstractBaselineTestCaseService extends ServiceImpl<Baseli
             et.setId((String)et.getDefaultKey(true));
         if(ObjectUtils.isEmpty(et.getId()))
             et.setId((String)et.getDefaultKey(true));
-        relationService.create(baselineTestCaseInheritMapping.toRelation(et));
+            relationService.create(baselineTestCaseInheritMapping.toRelation(et));
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<BaselineTestCase> list) {
+    public boolean create(List<BaselineTestCase> list) {
         list.forEach(et->getSelf().create(et));
         return true;
     }
-
+	
     @Transactional
     public boolean update(BaselineTestCase et) {
         relationService.update(baselineTestCaseInheritMapping.toRelation(et));
@@ -120,11 +84,51 @@ public abstract class AbstractBaselineTestCaseService extends ServiceImpl<Baseli
     }
 
     @Transactional
-    public boolean updateBatch(List<BaselineTestCase> list) {
+    public boolean update(List<BaselineTestCase> list) {
         list.forEach(et->getSelf().update(et));
         return true;
     }
+	
+   @Transactional
+    public boolean remove(BaselineTestCase et) {
+        relationService.remove(baselineTestCaseInheritMapping.toRelation(et));
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<BaselineTestCase> entities) {
+       for (BaselineTestCase et : entities)
+            if(!getSelf().remove(et))
+                return false;
+       return true;
+    }		
+    public BaselineTestCase get(BaselineTestCase et) {
+        BaselineTestCase rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.BASELINE_TEST_CASE.toString(),et.getId());
+        rt.copyTo(et,true);
+        return et;
+    }	
+
+    public List<BaselineTestCase> get(List<BaselineTestCase> entities) {
+        entities.forEach(et->{
+            if(ObjectUtils.isEmpty(et.getId()))
+                et.setId((String)et.getDefaultKey(true));
+            });
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public BaselineTestCase getDraft(BaselineTestCase et) {
+        fillParentData(et);
+        return et;
+    }
+	
+    public Integer checkKey(BaselineTestCase et) {
+        if(ObjectUtils.isEmpty(et.getId()))
+            et.setId((String)et.getDefaultKey(true));
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<BaselineTestCase>lambdaQuery().eq(BaselineTestCase::getId, et.getId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(BaselineTestCase et) {
@@ -135,66 +139,61 @@ public abstract class AbstractBaselineTestCaseService extends ServiceImpl<Baseli
     }
 
     @Transactional
-    public boolean saveBatch(List<BaselineTestCase> list) {
+    public boolean save(List<BaselineTestCase> list) {
         list.forEach(et->getSelf().save(et));
         return true;
     }
-
-    @Transactional
-    public boolean remove(BaselineTestCase et) {
-        relationService.remove(baselineTestCaseInheritMapping.toRelation(et));
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<BaselineTestCase> entities) {
-        for (BaselineTestCase et : entities)
-            if(!getSelf().remove(et))
-                return false;
-        return true;
-    }
-
-    public Page<BaselineTestCase> searchDefault(BaselineTestCaseSearchContext context) {
+	
+   public Page<BaselineTestCase> fetchDefault(BaselineTestCaseSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<BaselineTestCase> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<BaselineTestCase> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
+   }
 
-    public List<BaselineTestCase> listDefault(BaselineTestCaseSearchContext context) {
+   public List<BaselineTestCase> listDefault(BaselineTestCaseSearchContext context) {
         List<BaselineTestCase> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
-    }
+   }
+	
+   public Page<BaselineTestCase> fetchBaselineRelationVersion(BaselineTestCaseSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("CREATE_TIME,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<BaselineTestCase> pages=baseMapper.searchBaselineRelationVersion(context.getPages(),context,context.getSelectCond());
+        List<BaselineTestCase> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+   }
 
-    public Page<BaselineTestCase> searchFillVersionData(BaselineTestCaseSearchContext context) {
+   public List<BaselineTestCase> listBaselineRelationVersion(BaselineTestCaseSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("CREATE_TIME,DESC");
+        List<BaselineTestCase> list = baseMapper.listBaselineRelationVersion(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<BaselineTestCase> fetchFillVersionData(BaselineTestCaseSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<BaselineTestCase> pages=baseMapper.searchFillVersionData(context.getPages(),context,context.getSelectCond());
         List<BaselineTestCase> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
+   }
 
-    public List<BaselineTestCase> listFillVersionData(BaselineTestCaseSearchContext context) {
+   public List<BaselineTestCase> listFillVersionData(BaselineTestCaseSearchContext context) {
         List<BaselineTestCase> list = baseMapper.listFillVersionData(context,context.getSelectCond());
         return list;
-    }
-
-    public List<BaselineTestCase> findByPrincipalId(List<String> principalIds) {
+   }
+	
+	public List<BaselineTestCase> findByPrincipalId(List<String> principalIds){
         List<BaselineTestCase> list = baseMapper.findByPrincipalId(principalIds);
-        return list;
-    }
+        return list;	
+	}
 
-    public List<BaselineTestCase> findByTargetVersionId(List<String> targetVersionIds) {
-        List<BaselineTestCase> list = baseMapper.findByTargetVersionId(targetVersionIds);
-        return list;
-    }
-
-    public boolean removeByPrincipalId(String principalId) {
+	public boolean removeByPrincipalId(String principalId){
         return this.remove(Wrappers.<BaselineTestCase>lambdaQuery().eq(BaselineTestCase::getPrincipalId,principalId));
-    }
+	}
 
-    public boolean resetByPrincipalId(String principalId) {
-        return this.update(Wrappers.<BaselineTestCase>lambdaUpdate().eq(BaselineTestCase::getPrincipalId,principalId));
-    }
-
-    public boolean saveByBaselinePrincipalTestCase(Baseline baseline,List<BaselineTestCase> list) {
+	public boolean resetByPrincipalId(String principalId){
+		return this.update(Wrappers.<BaselineTestCase>lambdaUpdate().eq(BaselineTestCase::getPrincipalId,principalId));
+	}
+	public boolean saveByBaselinePrincipalTestCase(Baseline baseline, List<BaselineTestCase> list){
         if(list==null)
             return true;
         Map<String,BaselineTestCase> before = findByPrincipalId(baseline.getId()).stream().collect(Collectors.toMap(BaselineTestCase::getId,e->e));
@@ -217,23 +216,27 @@ public abstract class AbstractBaselineTestCaseService extends ServiceImpl<Baseli
         }
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
             return false;
         else
             return true;
-    }
+			
+	}
+	public List<BaselineTestCase> findByTargetVersionId(List<String> targetVersionIds){
+        List<BaselineTestCase> list = baseMapper.findByTargetVersionId(targetVersionIds);
+        return list;	
+	}
 
-    public boolean removeByTargetVersionId(String targetVersionId) {
+	public boolean removeByTargetVersionId(String targetVersionId){
         return this.remove(Wrappers.<BaselineTestCase>lambdaQuery().eq(BaselineTestCase::getTargetVersionId,targetVersionId));
-    }
+	}
 
-    public boolean resetByTargetVersionId(String targetVersionId) {
-        return this.update(Wrappers.<BaselineTestCase>lambdaUpdate().eq(BaselineTestCase::getTargetVersionId,targetVersionId));
-    }
-
-    public boolean saveByTargetVersion(Version version,List<BaselineTestCase> list) {
+	public boolean resetByTargetVersionId(String targetVersionId){
+		return this.update(Wrappers.<BaselineTestCase>lambdaUpdate().eq(BaselineTestCase::getTargetVersionId,targetVersionId));
+	}
+	public boolean saveByTargetVersion(Version version, List<BaselineTestCase> list){
         if(list==null)
             return true;
         Map<String,BaselineTestCase> before = findByTargetVersionId(version.getId()).stream().collect(Collectors.toMap(BaselineTestCase::getId,e->e));
@@ -256,18 +259,24 @@ public abstract class AbstractBaselineTestCaseService extends ServiceImpl<Baseli
         }
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
             return false;
         else
             return true;
+			
+	}
+
+    public void fillParentData(BaselineTestCase et) {
+        if(Entities.BASELINE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setPrincipalId((String)et.getContextParentKey());
+        }
+        if(Entities.VERSION.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setTargetVersionId((String)et.getContextParentKey());
+        }
     }
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -287,8 +296,8 @@ public abstract class AbstractBaselineTestCaseService extends ServiceImpl<Baseli
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return BaselineTestCaseMapper.class;
     }

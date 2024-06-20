@@ -63,7 +63,7 @@ public abstract class AbstractSearchAttachmentResource {
     public ResponseEntity<List<SearchAttachmentDTO>> fetchDefault
             (@Validated @RequestBody SearchAttachmentFilterDTO dto) {
         SearchAttachmentSearchContext context = searchAttachmentFilterDtoMapping.toDomain(dto);
-        Page<SearchAttachment> domains = searchAttachmentService.searchDefault(context) ;
+        Page<SearchAttachment> domains = searchAttachmentService.fetchDefault(context) ;
         List<SearchAttachmentDTO> list = searchAttachmentDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -85,7 +85,7 @@ public abstract class AbstractSearchAttachmentResource {
     public ResponseEntity<List<SearchAttachmentDTO>> fetchRelation
             (@Validated @RequestBody SearchAttachmentFilterDTO dto) {
         SearchAttachmentSearchContext context = searchAttachmentFilterDtoMapping.toDomain(dto);
-        Page<SearchAttachment> domains = searchAttachmentService.searchRelation(context) ;
+        Page<SearchAttachment> domains = searchAttachmentService.fetchRelation(context) ;
         List<SearchAttachmentDTO> list = searchAttachmentDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

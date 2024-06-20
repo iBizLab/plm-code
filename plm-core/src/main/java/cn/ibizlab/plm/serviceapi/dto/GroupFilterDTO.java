@@ -31,20 +31,20 @@ import io.swagger.annotations.ApiModelProperty;
 public class GroupFilterDTO extends FilterBase implements Serializable {
 
     /**
+     * 标识EQ
+     */
+    @JsonProperty("n_id_eq")
+    @JSONField(name = "n_id_eq")
+    @ApiModelProperty(value = "标识EQ", position = 30)
+	private String idEQ;
+
+    /**
      * 团队名称LIKE
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
     @ApiModelProperty(value = "团队名称LIKE", position = 40)
 	private String nameLIKE;
-
-    /**
-     * 标识EQ
-     */
-    @JsonProperty("n_id_eq")
-    @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 50)
-	private String idEQ;
 
     /**
      * 分组标识EQ

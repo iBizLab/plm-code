@@ -306,11 +306,8 @@ export default {
             clconvertMode: 'NONE',
             dataItemName: 'assignee_name',
             excelCaption: '负责人',
-            linkAppViewId: 'plmweb.user_redirect_view',
-            linkValueItem: 'ASSIGNEE_ID',
             appDEFieldId: 'assignee_name',
             valueType: 'SIMPLE',
-            enableLinkView: true,
             aggMode: 'NONE',
             align: 'LEFT',
             caption: '负责人',
@@ -331,6 +328,12 @@ export default {
             id: 'assignee_name',
           },
           {
+            appDEFieldId: 'assignee_id',
+            valueType: 'SIMPLE',
+            dataType: 25,
+            id: 'assignee_id',
+          },
+          {
             appDEFieldId: 'id',
             valueType: 'SIMPLE',
             dataType: 25,
@@ -347,12 +350,6 @@ export default {
             valueType: 'SIMPLE',
             dataType: 25,
             id: 'state',
-          },
-          {
-            appDEFieldId: 'assignee_id',
-            valueType: 'SIMPLE',
-            dataType: 25,
-            id: 'assignee_id',
           },
           {
             appDEFieldId: 'project_id',

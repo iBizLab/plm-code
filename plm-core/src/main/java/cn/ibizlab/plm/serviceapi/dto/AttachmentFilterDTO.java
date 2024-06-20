@@ -39,20 +39,28 @@ public class AttachmentFilterDTO extends FilterBase implements Serializable {
 	private String ownerIdEQ;
 
     /**
-     * 建立人EQ
-     */
-    @JsonProperty("n_create_man_eq")
-    @JSONField(name = "n_create_man_eq")
-    @ApiModelProperty(value = "建立人EQ", position = 80)
-	private String createManEQ;
-
-    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 90)
+    @ApiModelProperty(value = "标识EQ", position = 80)
 	private String idEQ;
+
+    /**
+     * 名称LIKE
+     */
+    @JsonProperty("n_name_like")
+    @JSONField(name = "n_name_like")
+    @ApiModelProperty(value = "名称LIKE", position = 90)
+	private String nameLIKE;
+
+    /**
+     * 建立人EQ
+     */
+    @JsonProperty("n_create_man_eq")
+    @JSONField(name = "n_create_man_eq")
+    @ApiModelProperty(value = "建立人EQ", position = 100)
+	private String createManEQ;
 
     /**
      * 建立时间EQ
@@ -60,7 +68,7 @@ public class AttachmentFilterDTO extends FilterBase implements Serializable {
     @JsonProperty("n_create_time_eq")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "n_create_time_eq" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间EQ", position = 100)
+    @ApiModelProperty(value = "建立时间EQ", position = 110)
 	private Date createTimeEQ;
 
     /**
@@ -69,7 +77,7 @@ public class AttachmentFilterDTO extends FilterBase implements Serializable {
     @JsonProperty("n_create_time_gtandeq")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "n_create_time_gtandeq" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间GTANDEQ", position = 101)
+    @ApiModelProperty(value = "建立时间GTANDEQ", position = 111)
 	private Date createTimeGTANDEQ;
 
     /**
@@ -78,16 +86,8 @@ public class AttachmentFilterDTO extends FilterBase implements Serializable {
     @JsonProperty("n_create_time_ltandeq")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "n_create_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间LTANDEQ", position = 102)
+    @ApiModelProperty(value = "建立时间LTANDEQ", position = 112)
 	private Date createTimeLTANDEQ;
-
-    /**
-     * 名称LIKE
-     */
-    @JsonProperty("n_name_like")
-    @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 110)
-	private String nameLIKE;
 
 
 }

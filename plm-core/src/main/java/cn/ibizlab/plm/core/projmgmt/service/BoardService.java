@@ -34,89 +34,32 @@ public interface BoardService extends IService<Board> {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    Board get(Board et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default Board get(String key) {
-        return getSelf().get(new Board().setId(key));
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<Board> getByIds(Collection<String> ids) {
-        List<Board> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Board().setId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<Board> getByEntities(List<Board> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    Board getDraft(Board et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(Board et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(Board et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<Board> list);
+    boolean create(List<Board> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(Board et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<Board> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    @Override
-    boolean save(Board et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<Board> list);
+    boolean update(List<Board> list);
 
     /**
      * 主键删除
@@ -126,14 +69,7 @@ public interface BoardService extends IService<Board> {
     default boolean remove(String key) {
         return getSelf().remove(new Board().setId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -143,13 +79,13 @@ public interface BoardService extends IService<Board> {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<Board> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Board().setId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new Board().setId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -157,7 +93,180 @@ public interface BoardService extends IService<Board> {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<Board> entities);
+    boolean remove(List<Board> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default Board get(String key) {
+        return getSelf().get(new Board().setId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    Board get(Board et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<Board> get(Collection<String> keys) {
+        List<Board> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new Board().setId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<Board> get(List<Board> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    Board getDraft(Board et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(Board et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(Board et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<Board> list);
+
+    /**
+    * checkBoardIsDeleted
+    * 
+    * @param et
+    * @return
+    */
+    default Board checkBoardIsDeleted(Board et) {
+        return et;
+    }
+
+    /**
+    * nothing
+    * 
+    * @param et
+    * @return
+    */
+    default Board nothing(Board et) {
+        return et;
+    }
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<Board> fetchDefault(BoardSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<Board> listDefault(BoardSearchContext context);
+
+    /**
+    * fetchCurBoardUpload
+    * 
+    * @param context
+    * @return
+    */
+    Page<Board> fetchCurBoardUpload(BoardSearchContext context);
+
+    /**
+    * listCurBoardUpload
+    * 
+    * @param context
+    * @return
+    */
+    List<Board> listCurBoardUpload(BoardSearchContext context);
+
+    /**
+    * fetchCurProjectBoard
+    * 
+    * @param context
+    * @return
+    */
+    Page<Board> fetchCurProjectBoard(BoardSearchContext context);
+
+    /**
+    * listCurProjectBoard
+    * 
+    * @param context
+    * @return
+    */
+    List<Board> listCurProjectBoard(BoardSearchContext context);
+
+    /**
+    * findByProjectId
+    * @param projectIds
+    * @return
+    */
+    List<Board> findByProjectId(List<String> projectIds);
+    default List<Board> findByProjectId(String projectId){
+        return findByProjectId(Arrays.asList(projectId));
+    }
+
+    /**
+    * removeByProjectId
+    * @param projectId
+    * @return
+    */
+    boolean removeByProjectId(String projectId);
+
+    /**
+    * resetByProjectId
+    * @param projectId
+    * @return
+    */
+    boolean resetByProjectId(String projectId);
+
+    /**
+    * saveByProjectId
+    * @param projectId
+    * @param list
+    * @return
+    */
+    default boolean saveByProjectId(String projectId, List<Board> list){
+        return getSelf().saveByProject(new Project().setId(projectId),list);
+    }
+
+    /**
+    * saveByProject
+    * @param project
+    * @param list
+    * @return
+    */
+    boolean saveByProject(Project project, List<Board> list);
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<Board> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -174,37 +283,7 @@ public interface BoardService extends IService<Board> {
         }
         return rt;
     }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<Board> searchDefault(BoardSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<Board> listDefault(BoardSearchContext context);
-
-    /**
-     * searchcur_project_board
-     * 
-     * @param context
-     * @return
-     */
-    Page<Board> searchCurProjectBoard(BoardSearchContext context);
-    /**
-     * listcur_project_board
-     * 
-     * @param context
-     * @return
-     */
-    List<Board> listCurProjectBoard(BoardSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -212,6 +291,7 @@ public interface BoardService extends IService<Board> {
     default Board getEntity() {
         return new Board();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -219,59 +299,13 @@ public interface BoardService extends IService<Board> {
     default BoardSearchContext getSearchContext() {
         return new BoardSearchContext();
     }
+
+
     /**
-     * selectRelByProjectId
-     * @param projectIds
-     * @return
-     */
-    List<Board> findByProjectId(List<String> projectIds);
-    default List<Board> findByProjectId(String projectId) {
-        return findByProjectId(Arrays.asList(projectId));
-    }
-    /**
-     * removeRelByProjectId
-     * @param projectId
-     * @return
-     */
-    boolean removeByProjectId(String projectId);
-    /**
-     * resetRelByProjectId
-     * @param projectId
-     * @return
-     */
-    boolean resetByProjectId(String projectId);
-    /**
-     * saveRelByProjectId
-     * @param projectId
-     * @param list
-     * @return
-     */
-    default boolean saveByProjectId(String projectId,List<Board> list) {
-        return getSelf().saveByProject(new Project().setId(projectId),list);
-    }
-    /**
-    * saveRelByProject
-    * @param project
-    * @param list
+    * 自定义SQL
+    * @param sql  update table  set name ='test' where id =#{et.param}
+    * @param param 参数列表  param.put("param","1");
     * @return
     */
-    boolean saveByProject(Project project,List<Board> list);
-
-
-    /**
-     * 自定义查询SQL
-     * @param sql  select * from table where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
-    List<JSONObject> select(String sql, Map<String,Object> param);
-
-    /**
-     * 自定义SQL
-     * @param sql  update table  set name ='test' where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
     boolean execute(String sql, Map<String,Object> param);
-
 }

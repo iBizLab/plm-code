@@ -328,25 +328,6 @@ public interface WorkItemMapper extends BaseMapper<WorkItem> {
     List<WorkItem> listDeleted(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
 
     /**
-     * 数据集合idea_relation_work_item分页查询
-     * 
-     * @param page
-     * @param context
-     * @param wrapper
-     * @return
-     */
-    Page<WorkItem> searchIdeaRelationWorkItem(IPage<WorkItem> page, @Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
-    
-    /**
-     * 数据集合idea_relation_work_item查询
-     * 
-     * @param context
-     * @param wrapper
-     * @return
-     */
-    List<WorkItem> listIdeaRelationWorkItem(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
-
-    /**
      * 数据集合kanban_user_stat分页查询
      * 
      * @param page
@@ -632,6 +613,44 @@ public interface WorkItemMapper extends BaseMapper<WorkItem> {
     List<WorkItem> listOverviewChart(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
 
     /**
+     * 数据集合plan_snapshot分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<WorkItem> searchPlanSnapshot(IPage<WorkItem> page, @Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+    
+    /**
+     * 数据集合plan_snapshot查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<WorkItem> listPlanSnapshot(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+
+    /**
+     * 数据集合project_resource分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<WorkItem> searchProjectResource(IPage<WorkItem> page, @Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+    
+    /**
+     * 数据集合project_resource查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<WorkItem> listProjectResource(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+
+    /**
      * 数据集合property_distribution分页查询
      * 
      * @param page
@@ -649,6 +668,25 @@ public interface WorkItemMapper extends BaseMapper<WorkItem> {
      * @return
      */
     List<Map> listPropertyDistribution(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+
+    /**
+     * 数据集合reader分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<WorkItem> searchReader(IPage<WorkItem> page, @Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+    
+    /**
+     * 数据集合reader查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<WorkItem> listReader(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
 
     /**
      * 数据集合recent_work_item分页查询
@@ -746,80 +784,23 @@ public interface WorkItemMapper extends BaseMapper<WorkItem> {
     List<WorkItem> listRequirementTree(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
 
     /**
-     * 数据集合resource_assignment分页查询
+     * 数据集合resource分页查询
      * 
      * @param page
      * @param context
      * @param wrapper
      * @return
      */
-    Page<WorkItem> searchResourceAssignment(IPage<WorkItem> page, @Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+    Page<WorkItem> searchResource(IPage<WorkItem> page, @Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
     
     /**
-     * 数据集合resource_assignment查询
+     * 数据集合resource查询
      * 
      * @param context
      * @param wrapper
      * @return
      */
-    List<WorkItem> listResourceAssignment(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
-
-    /**
-     * 数据集合run_relation_work_item分页查询
-     * 
-     * @param page
-     * @param context
-     * @param wrapper
-     * @return
-     */
-    Page<WorkItem> searchRunRelationWorkItem(IPage<WorkItem> page, @Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
-    
-    /**
-     * 数据集合run_relation_work_item查询
-     * 
-     * @param context
-     * @param wrapper
-     * @return
-     */
-    List<WorkItem> listRunRelationWorkItem(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
-
-    /**
-     * 数据集合test_case_relation_bug分页查询
-     * 
-     * @param page
-     * @param context
-     * @param wrapper
-     * @return
-     */
-    Page<WorkItem> searchTestCaseRelationBug(IPage<WorkItem> page, @Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
-    
-    /**
-     * 数据集合test_case_relation_bug查询
-     * 
-     * @param context
-     * @param wrapper
-     * @return
-     */
-    List<WorkItem> listTestCaseRelationBug(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
-
-    /**
-     * 数据集合test_case_relation_work_item分页查询
-     * 
-     * @param page
-     * @param context
-     * @param wrapper
-     * @return
-     */
-    Page<WorkItem> searchTestCaseRelationWorkItem(IPage<WorkItem> page, @Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
-    
-    /**
-     * 数据集合test_case_relation_work_item查询
-     * 
-     * @param context
-     * @param wrapper
-     * @return
-     */
-    List<WorkItem> listTestCaseRelationWorkItem(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+    List<WorkItem> listResource(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
 
     /**
      * 数据集合test_plan_relation_bug分页查询
@@ -841,25 +822,6 @@ public interface WorkItemMapper extends BaseMapper<WorkItem> {
     List<WorkItem> listTestPlanRelationBug(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
 
     /**
-     * 数据集合ticket_relation_work_item分页查询
-     * 
-     * @param page
-     * @param context
-     * @param wrapper
-     * @return
-     */
-    Page<WorkItem> searchTicketRelationWorkItem(IPage<WorkItem> page, @Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
-    
-    /**
-     * 数据集合ticket_relation_work_item查询
-     * 
-     * @param context
-     * @param wrapper
-     * @return
-     */
-    List<WorkItem> listTicketRelationWorkItem(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
-
-    /**
      * 数据集合top分页查询
      * 
      * @param page
@@ -879,23 +841,23 @@ public interface WorkItemMapper extends BaseMapper<WorkItem> {
     List<WorkItem> listTop(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
 
     /**
-     * 数据集合tree_tile_grid_query分页查询
+     * 数据集合tree分页查询
      * 
      * @param page
      * @param context
      * @param wrapper
      * @return
      */
-    Page<WorkItem> searchTreeTileGridQuery(IPage<WorkItem> page, @Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+    Page<WorkItem> searchTree(IPage<WorkItem> page, @Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
     
     /**
-     * 数据集合tree_tile_grid_query查询
+     * 数据集合tree查询
      * 
      * @param context
      * @param wrapper
      * @return
      */
-    List<WorkItem> listTreeTileGridQuery(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+    List<WorkItem> listTree(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
 
     /**
      * 数据集合under_work分页查询
@@ -917,23 +879,119 @@ public interface WorkItemMapper extends BaseMapper<WorkItem> {
     List<WorkItem> listUnderWork(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
 
     /**
-     * 数据集合work_item_relation_work_item分页查询
+     * 数据集合under_work_resource分页查询
      * 
      * @param page
      * @param context
      * @param wrapper
      * @return
      */
-    Page<WorkItem> searchWorkItemRelationWorkItem(IPage<WorkItem> page, @Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+    Page<WorkItem> searchUnderWorkResource(IPage<WorkItem> page, @Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
     
     /**
-     * 数据集合work_item_relation_work_item查询
+     * 数据集合under_work_resource查询
      * 
      * @param context
      * @param wrapper
      * @return
      */
-    List<WorkItem> listWorkItemRelationWorkItem(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+    List<WorkItem> listUnderWorkResource(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+
+    /**
+    * 根据boardId查询
+    *
+    * @param boardIds
+    * @return
+    */
+    List<WorkItem> findByBoardId(@Param("boardIds") List<String> boardIds);
+
+    /**
+    * 根据entryId查询
+    *
+    * @param entryIds
+    * @return
+    */
+    List<WorkItem> findByEntryId(@Param("entryIds") List<String> entryIds);
+
+    /**
+    * 根据projectId查询
+    *
+    * @param projectIds
+    * @return
+    */
+    List<WorkItem> findByProjectId(@Param("projectIds") List<String> projectIds);
+
+    /**
+    * 根据releaseId查询
+    *
+    * @param releaseIds
+    * @return
+    */
+    List<WorkItem> findByReleaseId(@Param("releaseIds") List<String> releaseIds);
+
+    /**
+    * 根据sprintId查询
+    *
+    * @param sprintIds
+    * @return
+    */
+    List<WorkItem> findBySprintId(@Param("sprintIds") List<String> sprintIds);
+
+    /**
+    * 根据swimlaneId查询
+    *
+    * @param swimlaneIds
+    * @return
+    */
+    List<WorkItem> findBySwimlaneId(@Param("swimlaneIds") List<String> swimlaneIds);
+
+    /**
+    * 根据assigneeId查询
+    *
+    * @param assigneeIds
+    * @return
+    */
+    List<WorkItem> findByAssigneeId(@Param("assigneeIds") List<String> assigneeIds);
+
+    /**
+    * 根据pid查询
+    *
+    * @param pids
+    * @return
+    */
+    List<WorkItem> findByPid(@Param("pids") List<String> pids);
+
+    /**
+    * 根据state查询
+    *
+    * @param states
+    * @return
+    */
+    List<WorkItem> findByState(@Param("states") List<String> states);
+
+    /**
+    * 根据topId查询
+    *
+    * @param topIds
+    * @return
+    */
+    List<WorkItem> findByTopId(@Param("topIds") List<String> topIds);
+
+    /**
+    * 根据workItemTypeId查询
+    *
+    * @param workItemTypeIds
+    * @return
+    */
+    List<WorkItem> findByWorkItemTypeId(@Param("workItemTypeIds") List<String> workItemTypeIds);
+
+    /**
+    * 根据id查询
+    *
+    * @param ids
+    * @return
+    */
+    List<WorkItem> findById(@Param("ids") List<String> ids);
 
     /**
      * 主键查询
@@ -1044,93 +1102,4 @@ public interface WorkItemMapper extends BaseMapper<WorkItem> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据boardId查询
-     *
-     * @param boardIds
-     * @return
-     */
-    List<WorkItem> findByBoardId(@Param("boardIds") List<String> boardIds);
-
-    /**
-     * 根据entryId查询
-     *
-     * @param entryIds
-     * @return
-     */
-    List<WorkItem> findByEntryId(@Param("entryIds") List<String> entryIds);
-
-    /**
-     * 根据projectId查询
-     *
-     * @param projectIds
-     * @return
-     */
-    List<WorkItem> findByProjectId(@Param("projectIds") List<String> projectIds);
-
-    /**
-     * 根据releaseId查询
-     *
-     * @param releaseIds
-     * @return
-     */
-    List<WorkItem> findByReleaseId(@Param("releaseIds") List<String> releaseIds);
-
-    /**
-     * 根据sprintId查询
-     *
-     * @param sprintIds
-     * @return
-     */
-    List<WorkItem> findBySprintId(@Param("sprintIds") List<String> sprintIds);
-
-    /**
-     * 根据swimlaneId查询
-     *
-     * @param swimlaneIds
-     * @return
-     */
-    List<WorkItem> findBySwimlaneId(@Param("swimlaneIds") List<String> swimlaneIds);
-
-    /**
-     * 根据assigneeId查询
-     *
-     * @param assigneeIds
-     * @return
-     */
-    List<WorkItem> findByAssigneeId(@Param("assigneeIds") List<String> assigneeIds);
-
-    /**
-     * 根据pid查询
-     *
-     * @param pids
-     * @return
-     */
-    List<WorkItem> findByPid(@Param("pids") List<String> pids);
-
-    /**
-     * 根据state查询
-     *
-     * @param states
-     * @return
-     */
-    List<WorkItem> findByState(@Param("states") List<String> states);
-
-    /**
-     * 根据topId查询
-     *
-     * @param topIds
-     * @return
-     */
-    List<WorkItem> findByTopId(@Param("topIds") List<String> topIds);
-
-    /**
-     * 根据workItemTypeId查询
-     *
-     * @param workItemTypeIds
-     * @return
-     */
-    List<WorkItem> findByWorkItemTypeId(@Param("workItemTypeIds") List<String> workItemTypeIds);
-
 }

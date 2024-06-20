@@ -18,7 +18,7 @@ import cn.ibizlab.plm.core.ebsx.filter.SysDepartmentSearchContext;
  *
  * @author generator
  */
-public interface SysDepartmentService {
+public interface SysDepartmentService{
 
     /**
      * 获取当前Service
@@ -30,91 +30,32 @@ public interface SysDepartmentService {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    SysDepartment get(SysDepartment et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default SysDepartment get(String key) {
-        return getById(key);
-    }
-    default SysDepartment getById(String key) {
-        return null;
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<SysDepartment> getByIds(Collection<String> ids) {
-        List<SysDepartment> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new SysDepartment().setDeptId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<SysDepartment> getByEntities(List<SysDepartment> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    SysDepartment getDraft(SysDepartment et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(SysDepartment et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(SysDepartment et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<SysDepartment> list);
+    boolean create(List<SysDepartment> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(SysDepartment et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<SysDepartment> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    boolean save(SysDepartment et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<SysDepartment> list);
+    boolean update(List<SysDepartment> list);
 
     /**
      * 主键删除
@@ -124,14 +65,7 @@ public interface SysDepartmentService {
     default boolean remove(String key) {
         return getSelf().remove(new SysDepartment().setDeptId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -141,13 +75,13 @@ public interface SysDepartmentService {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<SysDepartment> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new SysDepartment().setDeptId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new SysDepartment().setDeptId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -155,7 +89,86 @@ public interface SysDepartmentService {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<SysDepartment> entities);
+    boolean remove(List<SysDepartment> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default SysDepartment get(String key) {
+        return getSelf().get(new SysDepartment().setDeptId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    SysDepartment get(SysDepartment et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<SysDepartment> get(Collection<String> keys) {
+        List<SysDepartment> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new SysDepartment().setDeptId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<SysDepartment> get(List<SysDepartment> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    SysDepartment getDraft(SysDepartment et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(SysDepartment et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(SysDepartment et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<SysDepartment> list);
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<SysDepartment> fetchDefault(SysDepartmentSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<SysDepartment> listDefault(SysDepartmentSearchContext context);
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<SysDepartment> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -172,22 +185,7 @@ public interface SysDepartmentService {
         }
         return rt;
     }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<SysDepartment> searchDefault(SysDepartmentSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<SysDepartment> listDefault(SysDepartmentSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -195,6 +193,7 @@ public interface SysDepartmentService {
     default SysDepartment getEntity() {
         return new SysDepartment();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -202,4 +201,5 @@ public interface SysDepartmentService {
     default SysDepartmentSearchContext getSearchContext() {
         return new SysDepartmentSearchContext();
     }
+
 }

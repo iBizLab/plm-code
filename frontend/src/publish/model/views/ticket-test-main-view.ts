@@ -160,6 +160,37 @@ export default {
         actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
+            rawItem: {
+              rawItemParams: [
+                {
+                  key: 'POSITION',
+                  value: 'TOP',
+                },
+              ],
+              predefinedType: 'VIEWMSG_POS',
+              id: 'viewmsg_pos',
+            },
+            caption: '视图消息占位',
+            itemStyle: 'DEFAULT',
+            itemType: 'RAWITEM',
+            controlLogics: [
+              {
+                itemName: 'VIEWMSG_POS',
+                logicTag: 'layoutpanel',
+                logicType: 'SCRIPT',
+                scriptCode: '!!view.common_list_isshow',
+                triggerType: 'ITEMVISIBLE',
+                id: 'logic2',
+              },
+            ],
+            layoutPos: {
+              shrink: 1,
+              layout: 'FLEX',
+            },
+            showCaption: true,
+            id: 'viewmsg_pos',
+          },
+          {
             caption: '表单',
             itemStyle: 'DEFAULT',
             itemType: 'CTRLPOS',
@@ -191,6 +222,10 @@ export default {
                                 panelItems: [
                                   {
                                     editor: {
+                                      appDEACModeId: 'aichat',
+                                      appDEDataSetId: 'fetch_default',
+                                      appDataEntityId: 'plmweb.ticket',
+                                      enableAC: true,
                                       editorParams: {
                                         USERINSCRIPT:
                                           'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
@@ -200,6 +235,7 @@ export default {
                                           '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype"}',
                                         QUOTEPARAMS:
                                           '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                        AC: 'TRUE',
                                         QUOTEINSCRIPT:
                                           'value.replaceAll(/\\#\\{\\"id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\",\\"identifier\\":\\"(.+?)\\",\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })}).replaceAll(/\\#\\{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })})',
                                         USERSCRIPT:
@@ -423,6 +459,10 @@ export default {
                                 panelItems: [
                                   {
                                     editor: {
+                                      appDEACModeId: 'aichat',
+                                      appDEDataSetId: 'fetch_default',
+                                      appDataEntityId: 'plmweb.ticket',
+                                      enableAC: true,
                                       editorParams: {
                                         DEFAULTCOLLAPSE: 'true',
                                         USERINSCRIPT:
@@ -433,6 +473,7 @@ export default {
                                           '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype"}',
                                         QUOTEPARAMS:
                                           '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                        AC: 'TRUE',
                                         QUOTEINSCRIPT:
                                           'value.replaceAll(/\\#\\{\\"id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\",\\"identifier\\":\\"(.+?)\\",\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })}).replaceAll(/\\#\\{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })})',
                                         USERSCRIPT:
@@ -685,10 +726,9 @@ export default {
                       columnCount: 24,
                       layout: 'TABLE_24COL',
                     },
+                    dataName: 'srfactiveviewdata',
                     dataRegionType: 'SINGLEDATA',
-                    dataSourceType: 'DEACTION',
-                    appDEMethodId: 'get_attention',
-                    appDataEntityId: 'plmweb.ticket',
+                    dataSourceType: 'VIEWSESSIONPARAM',
                     caption: '单项数据容器',
                     itemStyle: 'DEFAULT',
                     itemType: 'CONTAINER',
@@ -725,16 +765,6 @@ export default {
             caption: '栅格容器',
             itemStyle: 'DEFAULT',
             itemType: 'CONTAINER',
-            controlLogics: [
-              {
-                itemName: 'CONTAINER_VIEW_BOTTOM',
-                logicTag: 'layoutpanel',
-                logicType: 'SCRIPT',
-                scriptCode: 'context.srfreadonly != true',
-                triggerType: 'ITEMVISIBLE',
-                id: 'logic_hiden',
-              },
-            ],
             layoutPos: {
               grow: 0,
               shrink: 0,
@@ -801,7 +831,7 @@ export default {
         eventNames: 'onCreated',
         logicTrigger: 'VIEWEVENT',
         logicType: 'APPDEUILOGIC',
-        appDEUILogicId: 'test_get_only_read',
+        appDEUILogicId: 'ticket_readonly_recognize',
         appDataEntityId: 'plmweb.ticket',
         builtinLogic: true,
         name: 'TEST_LOGIC',
@@ -916,6 +946,10 @@ export default {
             id: 'items2',
           },
           {
+            itemType: 'SEPERATOR',
+            id: 'seperator2',
+          },
+          {
             actionLevel: 100,
             detoolbarItems: [
               {
@@ -1010,6 +1044,22 @@ export default {
             showIcon: true,
             id: 'items1',
           },
+          {
+            actionLevel: 100,
+            noPrivDisplayMode: 2,
+            uiactionId: 'shortcut',
+            uiactionTarget: 'NONE',
+            valid: true,
+            caption: '最小化',
+            itemType: 'DEUIACTION',
+            sysImage: {
+              rawContent:
+                '<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1715745278517" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1538" width="16" height="16" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M912.9 380.2L643.5 110.9c-12.1-12.1-29.6-15.8-45.6-9.8s-26.6 20.5-27.6 37.6l-4.9 83.7-299.1 199.4-112.6-5.4c-17.8-0.7-34 9.2-41.3 25.5s-3.7 35 8.9 47.7L314.7 683 102.5 895.2c-7.2 7.2-7.2 18.8 0 26 3.6 3.6 8.3 5.4 13 5.4s9.4-1.8 13-5.4L340.7 709l193.4 193.4c8.3 8.3 19.1 12.6 30.2 12.6 5.9 0 11.8-1.2 17.4-3.7 16.3-7.2 26.3-23.4 25.5-41.3l-5.4-112.6 199.5-299.2 83.7-4.9c17.1-1 31.5-11.6 37.6-27.6s2.4-33.4-9.7-45.5z m-24.6 32.5c-0.5 1.4-1.9 3.7-5.4 3.9l-85.2 5-135.3-135.3c-7.2-7.2-18.8-7.2-26 0s-7.2 18.8 0 26l130.9 130.9-187.5 281.2-223.7-223.7c-7.2-7.2-18.8-7.2-26 0s-7.2 18.8 0 26l225.1 225.1c2.8 2.8 6.3 4.5 9.9 5.1l5.5 114.9c0.2 3.5-1.9 5.1-3.6 5.9-1.7 0.8-4.4 1.2-6.8-1.3L147.3 463.6c-2.5-2.5-2-5.1-1.3-6.8 0.8-1.7 2.5-4 5.9-3.6l118.6 5.6c3.9 0.2 7.8-0.9 11.1-3.1l311.9-207.9c4.8-3.2 7.8-8.5 8.2-14.2l5.5-92.8c0.2-3.5 2.6-4.8 3.9-5.4 1.4-0.5 4.1-1 6.5 1.4l269.3 269.3c2.4 2.5 1.9 5.2 1.4 6.6z" fill="#2D3742" p-id="1539"></path></svg>',
+            },
+            tooltip: '最小化',
+            showIcon: true,
+            id: 'deuiaction8',
+          },
         ],
         toolbarStyle: 'USER',
         xdataControlName: 'form',
@@ -1098,136 +1148,6 @@ export default {
                       layout: 'TABLE_24COL',
                     },
                     id: 'title',
-                  },
-                  {
-                    layout: {
-                      align: 'flex-start',
-                      dir: 'row',
-                      layout: 'FLEX',
-                      valign: 'center',
-                    },
-                    deformDetails: [
-                      {
-                        rawItem: {
-                          sysImage: {
-                            cssClass: 'fa fa-warning',
-                            glyph: 'xf071@FontAwesome',
-                          },
-                          contentType: 'IMAGE',
-                          id: 'rawitem1',
-                        },
-                        codeName: 'rawitem1',
-                        detailStyle: 'DEFAULT',
-                        detailType: 'RAWITEM',
-                        layoutPos: {
-                          shrink: 1,
-                          layout: 'FLEX',
-                        },
-                        sysImage: {
-                          cssClass: 'fa fa-warning',
-                          glyph: 'xf071@FontAwesome',
-                        },
-                        showCaption: true,
-                        id: 'rawitem1',
-                      },
-                      {
-                        dataType: 25,
-                        enableCond: 3,
-                        ignoreInput: 3,
-                        labelPos: 'NONE',
-                        noPrivDisplayMode: 1,
-                        appDEFieldId: 'update_man',
-                        editor: {
-                          halign: 'LEFT',
-                          valign: 'MIDDLE',
-                          wrapMode: 'NOWRAP',
-                          appCodeListId: 'plmweb.sysoperator',
-                          editorType: 'SPAN',
-                          valueType: 'SIMPLE',
-                          editable: true,
-                          id: 'formitem',
-                        },
-                        allowEmpty: true,
-                        convertToCodeItemText: true,
-                        capLanguageRes: {
-                          lanResTag: 'DEF.LNAME.UPDATE_MAN',
-                        },
-                        caption: '更新人',
-                        codeName: 'formitem',
-                        detailStyle: 'DEFAULT',
-                        detailType: 'FORMITEM',
-                        layoutPos: {
-                          shrink: 1,
-                          layout: 'FLEX',
-                        },
-                        id: 'formitem',
-                      },
-                      {
-                        rawItem: {
-                          content: '<p>于{{data.update_time}}归档了工单</p>',
-                          contentType: 'HTML',
-                          templateMode: true,
-                          id: 'rawitem2',
-                        },
-                        codeName: 'rawitem2',
-                        detailStyle: 'DEFAULT',
-                        detailType: 'RAWITEM',
-                        layoutPos: {
-                          shrink: 1,
-                          layout: 'FLEX',
-                        },
-                        showCaption: true,
-                        id: 'rawitem2',
-                      },
-                      {
-                        actionType: 'UIACTION',
-                        uiactionId: 'toolbar_activate@ticket',
-                        tooltip: '激活',
-                        uiactionTarget: 'MULTIKEY',
-                        caption: '激活',
-                        codeName: 'button1',
-                        detailStyle: 'DEFAULT',
-                        detailType: 'BUTTON',
-                        layoutPos: {
-                          shrink: 1,
-                          layout: 'FLEX',
-                        },
-                        sysCss: {
-                          cssName: 'activate_button',
-                        },
-                        sysImage: {
-                          cssClass: 'key',
-                        },
-                        showCaption: true,
-                        id: 'button1',
-                      },
-                    ],
-                    codeName: 'archiv_info',
-                    detailStyle: 'DEFAULT',
-                    detailType: 'GROUPPANEL',
-                    defdgroupLogics: [
-                      {
-                        logicCat: 'PANELVISIBLE',
-                        relatedDetailNames: ['is_archived'],
-                        groupOP: 'AND',
-                        defdlogics: [
-                          {
-                            condOP: 'EQ',
-                            defdname: 'is_archived',
-                            value: '1',
-                            logicType: 'SINGLE',
-                          },
-                        ],
-                        logicType: 'GROUP',
-                        id: '表单成员[archiv_info][面板显示]逻辑',
-                      },
-                    ],
-                    layoutPos: {
-                      colLG: 24,
-                      colMD: 24,
-                      layout: 'TABLE_24COL',
-                    },
-                    id: 'archiv_info',
                   },
                   {
                     dataType: 25,
@@ -1472,12 +1392,12 @@ export default {
                                     QUOTESCRIPT:
                                       '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","icon":"${data.icon}"}`',
                                     USERURL:
-                                      "`${context.library ? `libraries/${context.library}/library_members/fetchdefault` : context.product ? `products/${context.product}/product_members/fetchdefault` : context.project ? `projects/${context.project}/project_members/fetchdefault` : ''}`",
+                                      "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                     USERFIELDMAP:
                                       '{"id":"user_id","name":"name"}',
                                     INSERTKEYS:
                                       '[{"index":66,"keys":["marker"]},{"index":5,"keys":["paintformat"]}]',
-                                    QUOTEURL: '`recents/fetchrecent_access`',
+                                    QUOTEURL: '`recents/fetch_recent_access`',
                                   },
                                   editorStyle: 'COLLAPSE',
                                   editorType: 'HTMLEDITOR',
@@ -2903,11 +2823,11 @@ export default {
       },
       {
         eventNames: 'onBlur',
-        itemName: 'FIELD_TEXTBOX',
+        itemName: 'CLIENT_FIELD_TEXTBOX',
         logicTag: 'layoutpanel',
-        logicType: 'APPDEUILOGIC',
-        appDEUILogicId: 'comment_icon_hidden',
-        appDataEntityId: 'plmweb.comment',
+        logicType: 'SCRIPT',
+        scriptCode:
+          'const value = data[0];\r\nif (value && !value.client_field_textbox) {\r\n   view.layoutPanel.panelItems.client_panel_container.state.visible = false;\r\n}',
         triggerType: 'CTRLEVENT',
         name: 'onBlur',
         id: 'onblur',

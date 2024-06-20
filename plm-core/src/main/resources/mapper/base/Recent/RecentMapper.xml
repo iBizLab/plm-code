@@ -13,10 +13,10 @@
 		<result property="recentParent" column="recent_parent" />
 		<result property="showIdentifier" column="show_identifier" />
 		<result property="recentParentIdentifier" column="recent_parent_identifier" />
-		<result property="updateTime" column="update_time" />
+		<result property="createMan" column="create_man" />
 		<result property="createTime" column="create_time" />
 		<result property="updateMan" column="update_man" />
-		<result property="createMan" column="create_man" />
+		<result property="updateTime" column="update_time" />
         <association property="dercustomRecentWorkItem" javaType="cn.ibizlab.plm.core.projmgmt.domain.WorkItem" column="owner_id" select="cn.ibizlab.plm.core.projmgmt.mapper.WorkItemMapper.selectById" fetchType="lazy"></association>
     </resultMap>
 

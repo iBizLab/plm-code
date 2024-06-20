@@ -18,6 +18,10 @@ import java.io.Serializable;
 import lombok.*;
 import lombok.experimental.Accessors;
 import io.swagger.annotations.*;
+import cn.ibizlab.plm.core.base.domain.Member;
+import cn.ibizlab.plm.core.projmgmt.domain.Project;
+import cn.ibizlab.plm.core.testmgmt.domain.TestPlan;
+import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
 
 /**
  * 通用规则实体类[CommonFlow]
@@ -32,63 +36,71 @@ import io.swagger.annotations.*;
 @ApiModel(value = "COMMON_FLOW", description = "通用规则")
 public class CommonFlow extends EntityBase implements Serializable
 {
-
-    /**
-     * 更新时间
-     */
-    @DEField(name = "update_time" , preType = DEPredefinedFieldType.UPDATEDATE)
-    @JsonProperty("update_time")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "update_time", notes = "更新时间")
-    private Date updateTime;
-
     /**
      * 标识
      */
     @Id
     @DEField(name = "id" , isKeyField = true)
-    @JsonProperty("id")
     @JSONField(name = "id")
+    @JsonProperty("id")
     @ApiModelProperty(value = "id", notes = "标识")
     private String id;
-
-    /**
-     * 建立时间
-     */
-    @DEField(name = "create_time" , preType = DEPredefinedFieldType.CREATEDATE)
-    @JsonProperty("create_time")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "create_time", notes = "建立时间")
-    private Date createTime;
-
-    /**
-     * 建立人
-     */
-    @DEField(name = "create_man" , preType = DEPredefinedFieldType.CREATEMAN , dict = "SysOperator")
-    @JsonProperty("create_man")
-    @JSONField(name = "create_man")
-    @ApiModelProperty(value = "create_man", notes = "建立人")
-    private String createMan;
-
-    /**
-     * 更新人
-     */
-    @DEField(name = "update_man" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
-    @JsonProperty("update_man")
-    @JSONField(name = "update_man")
-    @ApiModelProperty(value = "update_man", notes = "更新人")
-    private String updateMan;
 
     /**
      * 名称
      */
     @DEField(name = "name")
-    @JsonProperty("name")
     @JSONField(name = "name")
+    @JsonProperty("name")
     @ApiModelProperty(value = "name", notes = "名称")
     private String name;
+
+    /**
+     * 建立人
+     */
+    @DEField(name = "create_man" , preType = DEPredefinedFieldType.CREATEMAN , dict = "SysOperator")
+    @JSONField(name = "create_man")
+    @JsonProperty("create_man")
+    @ApiModelProperty(value = "create_man", notes = "建立人")
+    private String createMan;
+
+    /**
+     * 建立时间
+     */
+    @DEField(name = "create_time" , preType = DEPredefinedFieldType.CREATEDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("create_time")
+    @ApiModelProperty(value = "create_time", notes = "建立时间")
+    private Date createTime;
+
+    /**
+     * 更新人
+     */
+    @DEField(name = "update_man" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
+    @JSONField(name = "update_man")
+    @JsonProperty("update_man")
+    @ApiModelProperty(value = "update_man", notes = "更新人")
+    private String updateMan;
+
+    /**
+     * 更新时间
+     */
+    @DEField(name = "update_time" , preType = DEPredefinedFieldType.UPDATEDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("update_time")
+    @ApiModelProperty(value = "update_time", notes = "更新时间")
+    private Date updateTime;
+
+    /**
+    * 设置 [名称]
+    */
+    public CommonFlow setName(String name) {
+        this.name = name;
+        this.modify("name", name);
+        return this;
+    }
 
 
     /**

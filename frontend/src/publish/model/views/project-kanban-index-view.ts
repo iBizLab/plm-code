@@ -105,7 +105,7 @@ export default {
                       enablePickupView: true,
                       singleSelect: true,
                       appDEACModeId: 'default2',
-                      appDEDataSetId: 'fetch_normal',
+                      appDEDataSetId: 'fetch_main',
                       appDataEntityId: 'plmweb.project',
                       enableAC: true,
                       forceSelection: true,
@@ -375,7 +375,7 @@ export default {
             dedrbarGroupId: 'usrdrgroup1225017192',
             caption: '规划',
             appViewId: 'plmweb.work_item_gantt_view',
-            id: 'guihua',
+            id: 'plan',
           },
           {
             dedrbarGroupId: 'usrdrgroup1225117806',
@@ -394,8 +394,8 @@ export default {
           {
             dedrbarGroupId: 'usrdrgroup1225359915',
             caption: '工作项',
-            appViewId: 'plmweb.work_item_all_kanban_grid_view',
-            id: 'workitem_kanban',
+            appViewId: 'plmweb.work_item_kanban_tree_grid_view',
+            id: 'work_item',
           },
           {
             dedrbarGroupId: 'usrdrgroup1225047544',
@@ -413,7 +413,7 @@ export default {
             dedrbarGroupId: 'usrdrgroup1225632271',
             caption: '测试',
             appViewId: 'plmweb.test_plan_project_tree_exp_view',
-            id: 'test',
+            id: 'test_plan',
           },
           {
             dedrbarGroupId: 'usrdrgroup1225293659',
@@ -460,7 +460,7 @@ export default {
                 id: 'principal_id',
               },
             ],
-            id: 'viewpage',
+            id: 'space',
           },
           {
             dedrbarGroupId: 'usrdrgroup1225815912',

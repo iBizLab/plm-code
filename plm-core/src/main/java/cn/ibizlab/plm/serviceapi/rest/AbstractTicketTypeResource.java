@@ -254,7 +254,7 @@ public abstract class AbstractTicketTypeResource {
     public ResponseEntity<List<TicketTypeDTO>> fetchDefault
             (@Validated @RequestBody TicketTypeFilterDTO dto) {
         TicketTypeSearchContext context = ticketTypeFilterDtoMapping.toDomain(dto);
-        Page<TicketType> domains = ticketTypeService.searchDefault(context) ;
+        Page<TicketType> domains = ticketTypeService.fetchDefault(context) ;
         List<TicketTypeDTO> list = ticketTypeDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -276,7 +276,7 @@ public abstract class AbstractTicketTypeResource {
     public ResponseEntity<List<TicketTypeDTO>> fetchNotExistsTicketType
             (@Validated @RequestBody TicketTypeFilterDTO dto) {
         TicketTypeSearchContext context = ticketTypeFilterDtoMapping.toDomain(dto);
-        Page<TicketType> domains = ticketTypeService.searchNotExistsTicketType(context) ;
+        Page<TicketType> domains = ticketTypeService.fetchNotExistsTicketType(context) ;
         List<TicketTypeDTO> list = ticketTypeDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -295,7 +295,7 @@ public abstract class AbstractTicketTypeResource {
     @ApiOperation(value = "批量新建工单类型", tags = {"工单类型" },  notes = "批量新建工单类型")
 	@PostMapping("ticket_types/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<TicketTypeDTO> dtos) {
-        ticketTypeService.createBatch(ticketTypeDtoMapping.toDomain(dtos));
+        ticketTypeService.create(ticketTypeDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -308,7 +308,7 @@ public abstract class AbstractTicketTypeResource {
     @ApiOperation(value = "批量删除工单类型", tags = {"工单类型" },  notes = "批量删除工单类型")
 	@DeleteMapping("ticket_types/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        ticketTypeService.removeBatch(ids);
+        ticketTypeService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -321,7 +321,7 @@ public abstract class AbstractTicketTypeResource {
     @ApiOperation(value = "批量更新工单类型", tags = {"工单类型" },  notes = "批量更新工单类型")
 	@PutMapping("ticket_types/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<TicketTypeDTO> dtos) {
-        ticketTypeService.updateBatch(ticketTypeDtoMapping.toDomain(dtos));
+        ticketTypeService.update(ticketTypeDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -334,7 +334,7 @@ public abstract class AbstractTicketTypeResource {
     @ApiOperation(value = "批量保存工单类型", tags = {"工单类型" },  notes = "批量保存工单类型")
 	@PostMapping("ticket_types/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<TicketTypeDTO> dtos) {
-        ticketTypeService.saveBatch(ticketTypeDtoMapping.toDomain(dtos));
+        ticketTypeService.save(ticketTypeDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

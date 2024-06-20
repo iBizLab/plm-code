@@ -62,6 +62,30 @@ public interface MemberMapper extends BaseMapper<Member> {
     List<Member> listUserGroupAdmin(@Param("ctx") MemberSearchContext context, @Param("ew") Wrapper<Member> wrapper);
 
     /**
+    * 根据userId查询
+    *
+    * @param userIds
+    * @return
+    */
+    List<Member> findByUserId(@Param("userIds") List<String> userIds);
+
+    /**
+    * 根据id查询
+    *
+    * @param ids
+    * @return
+    */
+    List<Member> findById(@Param("ids") List<String> ids);
+
+    /**
+    * 根据ownerId查询
+    *
+    * @param ownerIds
+    * @return
+    */
+    List<Member> findByOwnerId(@Param("ownerIds") List<String> ownerIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -170,21 +194,4 @@ public interface MemberMapper extends BaseMapper<Member> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据userId查询
-     *
-     * @param userIds
-     * @return
-     */
-    List<Member> findByUserId(@Param("userIds") List<String> userIds);
-
-    /**
-     * 根据ownerId查询
-     *
-     * @param ownerIds
-     * @return
-     */
-    List<Member> findByOwnerId(@Param("ownerIds") List<String> ownerIds);
-
 }

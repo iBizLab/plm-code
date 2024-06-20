@@ -186,7 +186,7 @@ export default {
           caption: '高级设置',
           dataAccessAction: 'UPDATE',
           enableMode: 'DEOPPRIV',
-          appViewId: 'plmweb.space_advanced_setting_view',
+          appViewId: 'plmweb.space_advanced_setting_edit_view',
           id: 'adv',
         },
       ],

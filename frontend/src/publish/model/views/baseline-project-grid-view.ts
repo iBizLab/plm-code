@@ -47,11 +47,27 @@ export default {
       logicType: 'APPUILOGIC',
       builtinAppUILogic: {
         openDataAppView: {
+          navigateContexts: [
+            {
+              key: 'BASELINE_STATUS',
+              value: 'status',
+              name: 'BASELINE_STATUS',
+              id: 'baseline_status',
+            },
+          ],
           refAppViewId: 'plmweb.baseline_project_main_view',
         },
         editMode: true,
         appUILogicRefViews: [
           {
+            navigateContexts: [
+              {
+                key: 'BASELINE_STATUS',
+                value: 'status',
+                name: 'BASELINE_STATUS',
+                id: 'baseline_status',
+              },
+            ],
             refAppViewId: 'plmweb.baseline_project_main_view',
           },
         ],
@@ -66,6 +82,14 @@ export default {
   ],
   appViewRefs: [
     {
+      navigateContexts: [
+        {
+          key: 'BASELINE_STATUS',
+          value: 'status',
+          name: 'BASELINE_STATUS',
+          id: 'baseline_status',
+        },
+      ],
       realTitle: '项目基线分页导航视图',
       refAppViewId: 'plmweb.baseline_project_main_view',
       name: 'EDITDATA',
@@ -85,7 +109,7 @@ export default {
         {
           actionLevel: 100,
           noPrivDisplayMode: 2,
-          uiactionId: 'new',
+          uiactionId: 'new_subdata',
           valid: true,
           capLanguageRes: {
             lanResTag: 'TBB.TEXT.*.NEW',
@@ -215,12 +239,12 @@ export default {
           id: 'status',
         },
         {
-          clconvertMode: 'NONE',
+          clconvertMode: 'FRONT',
           dataItemName: 'categories',
           excelCaption: '类别',
+          appCodeListId: 'plmweb.prodmgmt__category',
           appDEFieldId: 'categories',
           valueType: 'SIMPLE',
-          enableRowEdit: true,
           aggMode: 'NONE',
           align: 'LEFT',
           caption: '类别',
@@ -337,31 +361,6 @@ export default {
       ],
       degridEditItems: [
         {
-          caption: '类别',
-          codeName: 'categories',
-          enableCond: 3,
-          appDEFieldId: 'categories',
-          editor: {
-            enablePickupView: true,
-            appDEACModeId: 'default',
-            appDEDataSetId: 'fetch_default',
-            appDataEntityId: 'plmweb.category',
-            forceSelection: true,
-            showTrigger: true,
-            editorParams: {
-              readonly: 'true',
-              PICKUPVIEW: 'TRUE',
-            },
-            editorType: 'ADDRESSPICKUP',
-            valueType: 'SIMPLE',
-            editable: true,
-            readOnly: true,
-            id: 'categories',
-          },
-          allowEmpty: true,
-          id: 'categories',
-        },
-        {
           caption: '标识',
           codeName: 'srfkey',
           enableCond: 3,
@@ -396,6 +395,17 @@ export default {
       controlType: 'GRID',
       logicName: '主表格',
       appDataEntityId: 'plmweb.baseline',
+      controlLogics: [
+        {
+          eventNames: 'onLoadSuccess',
+          logicTag: 'grid',
+          logicType: 'APPDEUILOGIC',
+          appDEUILogicId: 'calc_column_action_state',
+          appDataEntityId: 'plmweb.baseline',
+          triggerType: 'CTRLEVENT',
+          id: 'logic',
+        },
+      ],
       controlParam: {
         id: 'grid',
       },

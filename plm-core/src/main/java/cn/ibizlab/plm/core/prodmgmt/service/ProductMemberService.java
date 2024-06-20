@@ -32,89 +32,32 @@ public interface ProductMemberService extends IService<ProductMember> {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    ProductMember get(ProductMember et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default ProductMember get(String key) {
-        return getSelf().get(new ProductMember().setId(key));
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<ProductMember> getByIds(Collection<String> ids) {
-        List<ProductMember> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new ProductMember().setId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<ProductMember> getByEntities(List<ProductMember> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    ProductMember getDraft(ProductMember et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(ProductMember et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(ProductMember et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<ProductMember> list);
+    boolean create(List<ProductMember> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(ProductMember et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<ProductMember> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    @Override
-    boolean save(ProductMember et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<ProductMember> list);
+    boolean update(List<ProductMember> list);
 
     /**
      * 主键删除
@@ -124,14 +67,7 @@ public interface ProductMemberService extends IService<ProductMember> {
     default boolean remove(String key) {
         return getSelf().remove(new ProductMember().setId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -141,13 +77,13 @@ public interface ProductMemberService extends IService<ProductMember> {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<ProductMember> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new ProductMember().setId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new ProductMember().setId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -155,7 +91,216 @@ public interface ProductMemberService extends IService<ProductMember> {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<ProductMember> entities);
+    boolean remove(List<ProductMember> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default ProductMember get(String key) {
+        return getSelf().get(new ProductMember().setId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    ProductMember get(ProductMember et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<ProductMember> get(Collection<String> keys) {
+        List<ProductMember> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new ProductMember().setId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<ProductMember> get(List<ProductMember> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    ProductMember getDraft(ProductMember et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(ProductMember et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(ProductMember et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<ProductMember> list);
+
+    /**
+    * changeRole
+    * 
+    * @param et
+    * @return
+    */
+    default ProductMember changeRole(ProductMember et) {
+        return et;
+    }
+
+    /**
+    * createProductMember
+    * 
+    * @param et
+    * @return
+    */
+    default ProductMember createProductMember(ProductMember et) {
+        return et;
+    }
+
+    /**
+    * nothing
+    * 
+    * @param et
+    * @return
+    */
+    default ProductMember nothing(ProductMember et) {
+        return et;
+    }
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<ProductMember> fetchDefault(ProductMemberSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<ProductMember> listDefault(ProductMemberSearchContext context);
+
+    /**
+    * fetchCurProduct
+    * 
+    * @param context
+    * @return
+    */
+    Page<ProductMember> fetchCurProduct(ProductMemberSearchContext context);
+
+    /**
+    * listCurProduct
+    * 
+    * @param context
+    * @return
+    */
+    List<ProductMember> listCurProduct(ProductMemberSearchContext context);
+
+    /**
+    * findByProductId
+    * @param productIds
+    * @return
+    */
+    List<ProductMember> findByProductId(List<String> productIds);
+    default List<ProductMember> findByProductId(String productId){
+        return findByProductId(Arrays.asList(productId));
+    }
+
+    /**
+    * removeByProductId
+    * @param productId
+    * @return
+    */
+    boolean removeByProductId(String productId);
+
+    /**
+    * resetByProductId
+    * @param productId
+    * @return
+    */
+    boolean resetByProductId(String productId);
+
+    /**
+    * saveByProductId
+    * @param productId
+    * @param list
+    * @return
+    */
+    default boolean saveByProductId(String productId, List<ProductMember> list){
+        return getSelf().saveByProduct(new Product().setId(productId),list);
+    }
+
+    /**
+    * saveByProduct
+    * @param product
+    * @param list
+    * @return
+    */
+    boolean saveByProduct(Product product, List<ProductMember> list);
+
+    /**
+    * findByUserId
+    * @param userIds
+    * @return
+    */
+    List<ProductMember> findByUserId(List<String> userIds);
+    default List<ProductMember> findByUserId(String userId){
+        return findByUserId(Arrays.asList(userId));
+    }
+
+    /**
+    * removeByUserId
+    * @param userId
+    * @return
+    */
+    boolean removeByUserId(String userId);
+
+    /**
+    * resetByUserId
+    * @param userId
+    * @return
+    */
+    boolean resetByUserId(String userId);
+
+    /**
+    * saveByUserId
+    * @param userId
+    * @param list
+    * @return
+    */
+    default boolean saveByUserId(String userId, List<ProductMember> list){
+        return getSelf().saveByUser(new User().setId(userId),list);
+    }
+
+    /**
+    * saveByUser
+    * @param user
+    * @param list
+    * @return
+    */
+    boolean saveByUser(User user, List<ProductMember> list);
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<ProductMember> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -172,67 +317,7 @@ public interface ProductMemberService extends IService<ProductMember> {
         }
         return rt;
     }
-
-    /**
-     * change_role
-     * 
-     * @param dto
-     * @return
-     */
-    default ProductMember changeRole(ProductMember dto) {
-        return dto;
-    }
-
-    /**
-     * create_product_member
-     * 
-     * @param dto
-     * @return
-     */
-    default ProductMember createProductMember(ProductMember dto) {
-        return dto;
-    }
-
-    /**
-     * nothing
-     * 
-     * @param dto
-     * @return
-     */
-    default ProductMember nothing(ProductMember dto) {
-        return dto;
-    }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<ProductMember> searchDefault(ProductMemberSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<ProductMember> listDefault(ProductMemberSearchContext context);
-
-    /**
-     * searchcur_product
-     * 
-     * @param context
-     * @return
-     */
-    Page<ProductMember> searchCurProduct(ProductMemberSearchContext context);
-    /**
-     * listcur_product
-     * 
-     * @param context
-     * @return
-     */
-    List<ProductMember> listCurProduct(ProductMemberSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -240,6 +325,7 @@ public interface ProductMemberService extends IService<ProductMember> {
     default ProductMember getEntity() {
         return new ProductMember();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -247,97 +333,13 @@ public interface ProductMemberService extends IService<ProductMember> {
     default ProductMemberSearchContext getSearchContext() {
         return new ProductMemberSearchContext();
     }
+
+
     /**
-     * selectRelByProductId
-     * @param productIds
-     * @return
-     */
-    List<ProductMember> findByProductId(List<String> productIds);
-    default List<ProductMember> findByProductId(String productId) {
-        return findByProductId(Arrays.asList(productId));
-    }
-    /**
-     * removeRelByProductId
-     * @param productId
-     * @return
-     */
-    boolean removeByProductId(String productId);
-    /**
-     * resetRelByProductId
-     * @param productId
-     * @return
-     */
-    boolean resetByProductId(String productId);
-    /**
-     * saveRelByProductId
-     * @param productId
-     * @param list
-     * @return
-     */
-    default boolean saveByProductId(String productId,List<ProductMember> list) {
-        return getSelf().saveByProduct(new Product().setId(productId),list);
-    }
-    /**
-    * saveRelByProduct
-    * @param product
-    * @param list
+    * 自定义SQL
+    * @param sql  update table  set name ='test' where id =#{et.param}
+    * @param param 参数列表  param.put("param","1");
     * @return
     */
-    boolean saveByProduct(Product product,List<ProductMember> list);
-
-    /**
-     * selectRelByUserId
-     * @param userIds
-     * @return
-     */
-    List<ProductMember> findByUserId(List<String> userIds);
-    default List<ProductMember> findByUserId(String userId) {
-        return findByUserId(Arrays.asList(userId));
-    }
-    /**
-     * removeRelByUserId
-     * @param userId
-     * @return
-     */
-    boolean removeByUserId(String userId);
-    /**
-     * resetRelByUserId
-     * @param userId
-     * @return
-     */
-    boolean resetByUserId(String userId);
-    /**
-     * saveRelByUserId
-     * @param userId
-     * @param list
-     * @return
-     */
-    default boolean saveByUserId(String userId,List<ProductMember> list) {
-        return getSelf().saveByUser(new User().setId(userId),list);
-    }
-    /**
-    * saveRelByUser
-    * @param user
-    * @param list
-    * @return
-    */
-    boolean saveByUser(User user,List<ProductMember> list);
-
-
-    /**
-     * 自定义查询SQL
-     * @param sql  select * from table where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
-    List<JSONObject> select(String sql, Map<String,Object> param);
-
-    /**
-     * 自定义SQL
-     * @param sql  update table  set name ='test' where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
     boolean execute(String sql, Map<String,Object> param);
-
 }

@@ -23,6 +23,12 @@ export default {
       value: 'TestMgmt.run.save_run_history.AFTER',
       id: 'testmgmt_run_save_run_history_after',
     },
+    {
+      codeName: 'base_member_create_after',
+      text: '创建团队成员',
+      value: 'Base.member.create:AFTER',
+      id: 'base_member_create_after',
+    },
   ],
   enableCache: true,
   name: '可供选择的触发器',

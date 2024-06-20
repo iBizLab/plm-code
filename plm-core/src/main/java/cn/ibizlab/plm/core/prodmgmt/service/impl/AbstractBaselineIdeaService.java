@@ -58,42 +58,6 @@ public abstract class AbstractBaselineIdeaService extends ServiceImpl<BaselineId
 
     protected int batchSize = 500;
 
-    public BaselineIdea get(BaselineIdea et) {
-        BaselineIdea rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.BASELINE_IDEA.toString(),et.getId());
-        rt.copyTo(et,true);
-        return et;
-    }
-
-    public List<BaselineIdea> getByEntities(List<BaselineIdea> entities) {
-        entities.forEach(et->{
-            if(ObjectUtils.isEmpty(et.getId()))
-                et.setId((String)et.getDefaultKey(true));
-            });
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public void fillParentData(BaselineIdea et) {
-        if(Entities.BASELINE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
-            et.setPrincipalId((String)et.getContextParentKey());
-        }
-        if(Entities.VERSION.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
-            et.setTargetVersionId((String)et.getContextParentKey());
-        }
-    }
-
-    public BaselineIdea getDraft(BaselineIdea et) {
-        fillParentData(et);
-        return et;
-    }
-
-    public Integer checkKey(BaselineIdea et) {
-        if(ObjectUtils.isEmpty(et.getId()))
-            et.setId((String)et.getDefaultKey(true));
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<BaselineIdea>lambdaQuery().eq(BaselineIdea::getId, et.getId()))>0)?1:0;
-    }
-
     @Override
     @Transactional
     public boolean create(BaselineIdea et) {
@@ -102,17 +66,17 @@ public abstract class AbstractBaselineIdeaService extends ServiceImpl<BaselineId
             et.setId((String)et.getDefaultKey(true));
         if(ObjectUtils.isEmpty(et.getId()))
             et.setId((String)et.getDefaultKey(true));
-        relationService.create(baselineIdeaInheritMapping.toRelation(et));
+            relationService.create(baselineIdeaInheritMapping.toRelation(et));
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<BaselineIdea> list) {
+    public boolean create(List<BaselineIdea> list) {
         list.forEach(et->getSelf().create(et));
         return true;
     }
-
+	
     @Transactional
     public boolean update(BaselineIdea et) {
         relationService.update(baselineIdeaInheritMapping.toRelation(et));
@@ -121,11 +85,51 @@ public abstract class AbstractBaselineIdeaService extends ServiceImpl<BaselineId
     }
 
     @Transactional
-    public boolean updateBatch(List<BaselineIdea> list) {
+    public boolean update(List<BaselineIdea> list) {
         list.forEach(et->getSelf().update(et));
         return true;
     }
+	
+   @Transactional
+    public boolean remove(BaselineIdea et) {
+        relationService.remove(baselineIdeaInheritMapping.toRelation(et));
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<BaselineIdea> entities) {
+       for (BaselineIdea et : entities)
+            if(!getSelf().remove(et))
+                return false;
+       return true;
+    }		
+    public BaselineIdea get(BaselineIdea et) {
+        BaselineIdea rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.BASELINE_IDEA.toString(),et.getId());
+        rt.copyTo(et,true);
+        return et;
+    }	
+
+    public List<BaselineIdea> get(List<BaselineIdea> entities) {
+        entities.forEach(et->{
+            if(ObjectUtils.isEmpty(et.getId()))
+                et.setId((String)et.getDefaultKey(true));
+            });
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public BaselineIdea getDraft(BaselineIdea et) {
+        fillParentData(et);
+        return et;
+    }
+	
+    public Integer checkKey(BaselineIdea et) {
+        if(ObjectUtils.isEmpty(et.getId()))
+            et.setId((String)et.getDefaultKey(true));
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<BaselineIdea>lambdaQuery().eq(BaselineIdea::getId, et.getId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(BaselineIdea et) {
@@ -136,66 +140,61 @@ public abstract class AbstractBaselineIdeaService extends ServiceImpl<BaselineId
     }
 
     @Transactional
-    public boolean saveBatch(List<BaselineIdea> list) {
+    public boolean save(List<BaselineIdea> list) {
         list.forEach(et->getSelf().save(et));
         return true;
     }
-
-    @Transactional
-    public boolean remove(BaselineIdea et) {
-        relationService.remove(baselineIdeaInheritMapping.toRelation(et));
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<BaselineIdea> entities) {
-        for (BaselineIdea et : entities)
-            if(!getSelf().remove(et))
-                return false;
-        return true;
-    }
-
-    public Page<BaselineIdea> searchDefault(BaselineIdeaSearchContext context) {
+	
+   public Page<BaselineIdea> fetchDefault(BaselineIdeaSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<BaselineIdea> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<BaselineIdea> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
+   }
 
-    public List<BaselineIdea> listDefault(BaselineIdeaSearchContext context) {
+   public List<BaselineIdea> listDefault(BaselineIdeaSearchContext context) {
         List<BaselineIdea> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
-    }
+   }
+	
+   public Page<BaselineIdea> fetchBaselineRelationVersion(BaselineIdeaSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("CREATE_TIME,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<BaselineIdea> pages=baseMapper.searchBaselineRelationVersion(context.getPages(),context,context.getSelectCond());
+        List<BaselineIdea> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+   }
 
-    public Page<BaselineIdea> searchFillVersionData(BaselineIdeaSearchContext context) {
+   public List<BaselineIdea> listBaselineRelationVersion(BaselineIdeaSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("CREATE_TIME,DESC");
+        List<BaselineIdea> list = baseMapper.listBaselineRelationVersion(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<BaselineIdea> fetchFillVersionData(BaselineIdeaSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<BaselineIdea> pages=baseMapper.searchFillVersionData(context.getPages(),context,context.getSelectCond());
         List<BaselineIdea> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
+   }
 
-    public List<BaselineIdea> listFillVersionData(BaselineIdeaSearchContext context) {
+   public List<BaselineIdea> listFillVersionData(BaselineIdeaSearchContext context) {
         List<BaselineIdea> list = baseMapper.listFillVersionData(context,context.getSelectCond());
         return list;
-    }
-
-    public List<BaselineIdea> findByPrincipalId(List<String> principalIds) {
+   }
+	
+	public List<BaselineIdea> findByPrincipalId(List<String> principalIds){
         List<BaselineIdea> list = baseMapper.findByPrincipalId(principalIds);
-        return list;
-    }
+        return list;	
+	}
 
-    public List<BaselineIdea> findByTargetVersionId(List<String> targetVersionIds) {
-        List<BaselineIdea> list = baseMapper.findByTargetVersionId(targetVersionIds);
-        return list;
-    }
-
-    public boolean removeByPrincipalId(String principalId) {
+	public boolean removeByPrincipalId(String principalId){
         return this.remove(Wrappers.<BaselineIdea>lambdaQuery().eq(BaselineIdea::getPrincipalId,principalId));
-    }
+	}
 
-    public boolean resetByPrincipalId(String principalId) {
-        return this.update(Wrappers.<BaselineIdea>lambdaUpdate().eq(BaselineIdea::getPrincipalId,principalId));
-    }
-
-    public boolean saveByBaselinePrincipalIdea(Baseline baseline,List<BaselineIdea> list) {
+	public boolean resetByPrincipalId(String principalId){
+		return this.update(Wrappers.<BaselineIdea>lambdaUpdate().eq(BaselineIdea::getPrincipalId,principalId));
+	}
+	public boolean saveByBaselinePrincipalIdea(Baseline baseline, List<BaselineIdea> list){
         if(list==null)
             return true;
         Map<String,BaselineIdea> before = findByPrincipalId(baseline.getId()).stream().collect(Collectors.toMap(BaselineIdea::getId,e->e));
@@ -218,23 +217,27 @@ public abstract class AbstractBaselineIdeaService extends ServiceImpl<BaselineId
         }
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
             return false;
         else
             return true;
-    }
+			
+	}
+	public List<BaselineIdea> findByTargetVersionId(List<String> targetVersionIds){
+        List<BaselineIdea> list = baseMapper.findByTargetVersionId(targetVersionIds);
+        return list;	
+	}
 
-    public boolean removeByTargetVersionId(String targetVersionId) {
+	public boolean removeByTargetVersionId(String targetVersionId){
         return this.remove(Wrappers.<BaselineIdea>lambdaQuery().eq(BaselineIdea::getTargetVersionId,targetVersionId));
-    }
+	}
 
-    public boolean resetByTargetVersionId(String targetVersionId) {
-        return this.update(Wrappers.<BaselineIdea>lambdaUpdate().eq(BaselineIdea::getTargetVersionId,targetVersionId));
-    }
-
-    public boolean saveByTargetVersion(Version version,List<BaselineIdea> list) {
+	public boolean resetByTargetVersionId(String targetVersionId){
+		return this.update(Wrappers.<BaselineIdea>lambdaUpdate().eq(BaselineIdea::getTargetVersionId,targetVersionId));
+	}
+	public boolean saveByTargetVersion(Version version, List<BaselineIdea> list){
         if(list==null)
             return true;
         Map<String,BaselineIdea> before = findByTargetVersionId(version.getId()).stream().collect(Collectors.toMap(BaselineIdea::getId,e->e));
@@ -257,18 +260,24 @@ public abstract class AbstractBaselineIdeaService extends ServiceImpl<BaselineId
         }
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
             return false;
         else
             return true;
+			
+	}
+
+    public void fillParentData(BaselineIdea et) {
+        if(Entities.BASELINE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setPrincipalId((String)et.getContextParentKey());
+        }
+        if(Entities.VERSION.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setTargetVersionId((String)et.getContextParentKey());
+        }
     }
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -288,8 +297,8 @@ public abstract class AbstractBaselineIdeaService extends ServiceImpl<BaselineId
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return BaselineIdeaMapper.class;
     }

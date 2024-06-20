@@ -264,6 +264,50 @@ public abstract class AbstractCategoryResource {
     }
 
     /**
+    * 查询fetch_check_name 类别
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<CategoryDTO>>
+    */
+    @ApiOperation(value = "查询fetch_check_name", tags = {"类别" },  notes = "Category-fetch_check_name ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Category-fetch_check_name-all') or hasPermission(#dto,'ibizplm-Category-fetch_check_name')")
+    @PostMapping("categories/fetch_check_name")
+    public ResponseEntity<List<CategoryDTO>> fetchCheckName
+            (@Validated @RequestBody CategoryFilterDTO dto) {
+        CategorySearchContext context = categoryFilterDtoMapping.toDomain(dto);
+        Page<Category> domains = categoryService.fetchCheckName(context) ;
+        List<CategoryDTO> list = categoryDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_common_categories 类别
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<CategoryDTO>>
+    */
+    @ApiOperation(value = "查询fetch_common_categories", tags = {"类别" },  notes = "Category-fetch_common_categories ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Category-fetch_common_categories-all') or hasPermission(#dto,'ibizplm-Category-fetch_common_categories')")
+    @PostMapping("categories/fetch_common_categories")
+    public ResponseEntity<List<CategoryDTO>> fetchCommonCategories
+            (@Validated @RequestBody CategoryFilterDTO dto) {
+        CategorySearchContext context = categoryFilterDtoMapping.toDomain(dto);
+        Page<Category> domains = categoryService.fetchCommonCategories(context) ;
+        List<CategoryDTO> list = categoryDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
     * 查询fetch_default 类别
     * 
     *
@@ -276,7 +320,7 @@ public abstract class AbstractCategoryResource {
     public ResponseEntity<List<CategoryDTO>> fetchDefault
             (@Validated @RequestBody CategoryFilterDTO dto) {
         CategorySearchContext context = categoryFilterDtoMapping.toDomain(dto);
-        Page<Category> domains = categoryService.searchDefault(context) ;
+        Page<Category> domains = categoryService.fetchDefault(context) ;
         List<CategoryDTO> list = categoryDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -298,7 +342,7 @@ public abstract class AbstractCategoryResource {
     public ResponseEntity<List<CategoryDTO>> fetchNoSection
             (@Validated @RequestBody CategoryFilterDTO dto) {
         CategorySearchContext context = categoryFilterDtoMapping.toDomain(dto);
-        Page<Category> domains = categoryService.searchNoSection(context) ;
+        Page<Category> domains = categoryService.fetchNoSection(context) ;
         List<CategoryDTO> list = categoryDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -320,7 +364,7 @@ public abstract class AbstractCategoryResource {
     public ResponseEntity<List<CategoryDTO>> fetchProductIdeaCategory
             (@Validated @RequestBody CategoryFilterDTO dto) {
         CategorySearchContext context = categoryFilterDtoMapping.toDomain(dto);
-        Page<Category> domains = categoryService.searchProductIdeaCategory(context) ;
+        Page<Category> domains = categoryService.fetchProductIdeaCategory(context) ;
         List<CategoryDTO> list = categoryDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -342,7 +386,7 @@ public abstract class AbstractCategoryResource {
     public ResponseEntity<List<CategoryDTO>> fetchProductPlan
             (@Validated @RequestBody CategoryFilterDTO dto) {
         CategorySearchContext context = categoryFilterDtoMapping.toDomain(dto);
-        Page<Category> domains = categoryService.searchProductPlan(context) ;
+        Page<Category> domains = categoryService.fetchProductPlan(context) ;
         List<CategoryDTO> list = categoryDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -363,7 +407,7 @@ public abstract class AbstractCategoryResource {
     public ResponseEntity<List<CategoryDTO>> fetchSpaceCategory
             (@Validated @RequestBody CategoryFilterDTO dto) {
         CategorySearchContext context = categoryFilterDtoMapping.toDomain(dto);
-        Page<Category> domains = categoryService.searchSpaceCategory(context) ;
+        Page<Category> domains = categoryService.fetchSpaceCategory(context) ;
         List<CategoryDTO> list = categoryDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -384,7 +428,7 @@ public abstract class AbstractCategoryResource {
     public ResponseEntity<List<CategoryDTO>> fetchSpaceCategoryTop
             (@Validated @RequestBody CategoryFilterDTO dto) {
         CategorySearchContext context = categoryFilterDtoMapping.toDomain(dto);
-        Page<Category> domains = categoryService.searchSpaceCategoryTop(context) ;
+        Page<Category> domains = categoryService.fetchSpaceCategoryTop(context) ;
         List<CategoryDTO> list = categoryDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -403,7 +447,7 @@ public abstract class AbstractCategoryResource {
     @ApiOperation(value = "批量新建类别", tags = {"类别" },  notes = "批量新建类别")
 	@PostMapping("categories/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<CategoryDTO> dtos) {
-        categoryService.createBatch(categoryDtoMapping.toDomain(dtos));
+        categoryService.create(categoryDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -416,7 +460,7 @@ public abstract class AbstractCategoryResource {
     @ApiOperation(value = "批量删除类别", tags = {"类别" },  notes = "批量删除类别")
 	@DeleteMapping("categories/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        categoryService.removeBatch(ids);
+        categoryService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -429,7 +473,7 @@ public abstract class AbstractCategoryResource {
     @ApiOperation(value = "批量更新类别", tags = {"类别" },  notes = "批量更新类别")
 	@PutMapping("categories/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<CategoryDTO> dtos) {
-        categoryService.updateBatch(categoryDtoMapping.toDomain(dtos));
+        categoryService.update(categoryDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -442,7 +486,7 @@ public abstract class AbstractCategoryResource {
     @ApiOperation(value = "批量保存类别", tags = {"类别" },  notes = "批量保存类别")
 	@PostMapping("categories/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<CategoryDTO> dtos) {
-        categoryService.saveBatch(categoryDtoMapping.toDomain(dtos));
+        categoryService.save(categoryDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

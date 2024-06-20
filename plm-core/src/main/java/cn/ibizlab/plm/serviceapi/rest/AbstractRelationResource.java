@@ -428,7 +428,7 @@ public abstract class AbstractRelationResource {
     public ResponseEntity<List<RelationDTO>> fetchAll
             (@Validated @RequestBody RelationFilterDTO dto) {
         RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
-        Page<Relation> domains = relationService.searchAll(context) ;
+        Page<Relation> domains = relationService.fetchAll(context) ;
         List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -450,7 +450,7 @@ public abstract class AbstractRelationResource {
     public ResponseEntity<List<RelationDTO>> fetchDefault
             (@Validated @RequestBody RelationFilterDTO dto) {
         RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
-        Page<Relation> domains = relationService.searchDefault(context) ;
+        Page<Relation> domains = relationService.fetchDefault(context) ;
         List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -472,7 +472,7 @@ public abstract class AbstractRelationResource {
     public ResponseEntity<List<RelationDTO>> fetchExistsRunRelationBug
             (@Validated @RequestBody RelationFilterDTO dto) {
         RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
-        Page<Relation> domains = relationService.searchExistsRunRelationBug(context) ;
+        Page<Relation> domains = relationService.fetchExistsRunRelationBug(context) ;
         List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -494,7 +494,7 @@ public abstract class AbstractRelationResource {
     public ResponseEntity<List<RelationDTO>> fetchIdeaReCustomer
             (@Validated @RequestBody RelationFilterDTO dto) {
         RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
-        Page<Relation> domains = relationService.searchIdeaReCustomer(context) ;
+        Page<Relation> domains = relationService.fetchIdeaReCustomer(context) ;
         List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -516,7 +516,7 @@ public abstract class AbstractRelationResource {
     public ResponseEntity<List<RelationDTO>> fetchIdeaReIdea
             (@Validated @RequestBody RelationFilterDTO dto) {
         RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
-        Page<Relation> domains = relationService.searchIdeaReIdea(context) ;
+        Page<Relation> domains = relationService.fetchIdeaReIdea(context) ;
         List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -538,7 +538,7 @@ public abstract class AbstractRelationResource {
     public ResponseEntity<List<RelationDTO>> fetchIdeaReTestCase
             (@Validated @RequestBody RelationFilterDTO dto) {
         RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
-        Page<Relation> domains = relationService.searchIdeaReTestCase(context) ;
+        Page<Relation> domains = relationService.fetchIdeaReTestCase(context) ;
         List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -560,7 +560,7 @@ public abstract class AbstractRelationResource {
     public ResponseEntity<List<RelationDTO>> fetchIdeaReTicket
             (@Validated @RequestBody RelationFilterDTO dto) {
         RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
-        Page<Relation> domains = relationService.searchIdeaReTicket(context) ;
+        Page<Relation> domains = relationService.fetchIdeaReTicket(context) ;
         List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -582,7 +582,7 @@ public abstract class AbstractRelationResource {
     public ResponseEntity<List<RelationDTO>> fetchIdeaReWorkItem
             (@Validated @RequestBody RelationFilterDTO dto) {
         RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
-        Page<Relation> domains = relationService.searchIdeaReWorkItem(context) ;
+        Page<Relation> domains = relationService.fetchIdeaReWorkItem(context) ;
         List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -604,7 +604,7 @@ public abstract class AbstractRelationResource {
     public ResponseEntity<List<RelationDTO>> fetchIdeaVersionRelation
             (@Validated @RequestBody RelationFilterDTO dto) {
         RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
-        Page<Relation> domains = relationService.searchIdeaVersionRelation(context) ;
+        Page<Relation> domains = relationService.fetchIdeaVersionRelation(context) ;
         List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -626,7 +626,7 @@ public abstract class AbstractRelationResource {
     public ResponseEntity<List<RelationDTO>> fetchReviewReTestCase
             (@Validated @RequestBody RelationFilterDTO dto) {
         RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
-        Page<Relation> domains = relationService.searchReviewReTestCase(context) ;
+        Page<Relation> domains = relationService.fetchReviewReTestCase(context) ;
         List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -648,7 +648,7 @@ public abstract class AbstractRelationResource {
     public ResponseEntity<List<RelationDTO>> fetchRunReBug
             (@Validated @RequestBody RelationFilterDTO dto) {
         RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
-        Page<Relation> domains = relationService.searchRunReBug(context) ;
+        Page<Relation> domains = relationService.fetchRunReBug(context) ;
         List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -670,7 +670,7 @@ public abstract class AbstractRelationResource {
     public ResponseEntity<List<RelationDTO>> fetchRunReIdea
             (@Validated @RequestBody RelationFilterDTO dto) {
         RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
-        Page<Relation> domains = relationService.searchRunReIdea(context) ;
+        Page<Relation> domains = relationService.fetchRunReIdea(context) ;
         List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -692,7 +692,7 @@ public abstract class AbstractRelationResource {
     public ResponseEntity<List<RelationDTO>> fetchRunReWorkItem
             (@Validated @RequestBody RelationFilterDTO dto) {
         RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
-        Page<Relation> domains = relationService.searchRunReWorkItem(context) ;
+        Page<Relation> domains = relationService.fetchRunReWorkItem(context) ;
         List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -714,7 +714,7 @@ public abstract class AbstractRelationResource {
     public ResponseEntity<List<RelationDTO>> fetchTestCaseReBug
             (@Validated @RequestBody RelationFilterDTO dto) {
         RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
-        Page<Relation> domains = relationService.searchTestCaseReBug(context) ;
+        Page<Relation> domains = relationService.fetchTestCaseReBug(context) ;
         List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -735,7 +735,7 @@ public abstract class AbstractRelationResource {
     public ResponseEntity<List<RelationDTO>> fetchTestCaseReIdea
             (@Validated @RequestBody RelationFilterDTO dto) {
         RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
-        Page<Relation> domains = relationService.searchTestCaseReIdea(context) ;
+        Page<Relation> domains = relationService.fetchTestCaseReIdea(context) ;
         List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -757,7 +757,7 @@ public abstract class AbstractRelationResource {
     public ResponseEntity<List<RelationDTO>> fetchTestCaseReWorkItem
             (@Validated @RequestBody RelationFilterDTO dto) {
         RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
-        Page<Relation> domains = relationService.searchTestCaseReWorkItem(context) ;
+        Page<Relation> domains = relationService.fetchTestCaseReWorkItem(context) ;
         List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -779,7 +779,7 @@ public abstract class AbstractRelationResource {
     public ResponseEntity<List<RelationDTO>> fetchTestCaseVersionRelation
             (@Validated @RequestBody RelationFilterDTO dto) {
         RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
-        Page<Relation> domains = relationService.searchTestCaseVersionRelation(context) ;
+        Page<Relation> domains = relationService.fetchTestCaseVersionRelation(context) ;
         List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -801,7 +801,7 @@ public abstract class AbstractRelationResource {
     public ResponseEntity<List<RelationDTO>> fetchTicketReIdea
             (@Validated @RequestBody RelationFilterDTO dto) {
         RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
-        Page<Relation> domains = relationService.searchTicketReIdea(context) ;
+        Page<Relation> domains = relationService.fetchTicketReIdea(context) ;
         List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -823,7 +823,7 @@ public abstract class AbstractRelationResource {
     public ResponseEntity<List<RelationDTO>> fetchTicketReSelf
             (@Validated @RequestBody RelationFilterDTO dto) {
         RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
-        Page<Relation> domains = relationService.searchTicketReSelf(context) ;
+        Page<Relation> domains = relationService.fetchTicketReSelf(context) ;
         List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -845,7 +845,7 @@ public abstract class AbstractRelationResource {
     public ResponseEntity<List<RelationDTO>> fetchTicketReWorkItem
             (@Validated @RequestBody RelationFilterDTO dto) {
         RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
-        Page<Relation> domains = relationService.searchTicketReWorkItem(context) ;
+        Page<Relation> domains = relationService.fetchTicketReWorkItem(context) ;
         List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -866,7 +866,7 @@ public abstract class AbstractRelationResource {
     public ResponseEntity<List<RelationDTO>> fetchWorkItemRelationIdea
             (@Validated @RequestBody RelationFilterDTO dto) {
         RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
-        Page<Relation> domains = relationService.searchWorkItemRelationIdea(context) ;
+        Page<Relation> domains = relationService.fetchWorkItemRelationIdea(context) ;
         List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -887,7 +887,7 @@ public abstract class AbstractRelationResource {
     public ResponseEntity<List<RelationDTO>> fetchWorkItemRelationSelf
             (@Validated @RequestBody RelationFilterDTO dto) {
         RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
-        Page<Relation> domains = relationService.searchWorkItemRelationSelf(context) ;
+        Page<Relation> domains = relationService.fetchWorkItemRelationSelf(context) ;
         List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -908,7 +908,7 @@ public abstract class AbstractRelationResource {
     public ResponseEntity<List<RelationDTO>> fetchWorkItemRelationTestCase
             (@Validated @RequestBody RelationFilterDTO dto) {
         RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
-        Page<Relation> domains = relationService.searchWorkItemRelationTestCase(context) ;
+        Page<Relation> domains = relationService.fetchWorkItemRelationTestCase(context) ;
         List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -929,7 +929,7 @@ public abstract class AbstractRelationResource {
     public ResponseEntity<List<RelationDTO>> fetchWorkItemRelationTicket
             (@Validated @RequestBody RelationFilterDTO dto) {
         RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
-        Page<Relation> domains = relationService.searchWorkItemRelationTicket(context) ;
+        Page<Relation> domains = relationService.fetchWorkItemRelationTicket(context) ;
         List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -951,7 +951,7 @@ public abstract class AbstractRelationResource {
     public ResponseEntity<List<RelationDTO>> fetchWorkItemVersionRelation
             (@Validated @RequestBody RelationFilterDTO dto) {
         RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
-        Page<Relation> domains = relationService.searchWorkItemVersionRelation(context) ;
+        Page<Relation> domains = relationService.fetchWorkItemVersionRelation(context) ;
         List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -970,7 +970,7 @@ public abstract class AbstractRelationResource {
     @ApiOperation(value = "批量新建关联", tags = {"关联" },  notes = "批量新建关联")
 	@PostMapping("relations/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<RelationDTO> dtos) {
-        relationService.createBatch(relationDtoMapping.toDomain(dtos));
+        relationService.create(relationDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -983,7 +983,7 @@ public abstract class AbstractRelationResource {
     @ApiOperation(value = "批量删除关联", tags = {"关联" },  notes = "批量删除关联")
 	@DeleteMapping("relations/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        relationService.removeBatch(ids);
+        relationService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -996,7 +996,7 @@ public abstract class AbstractRelationResource {
     @ApiOperation(value = "批量更新关联", tags = {"关联" },  notes = "批量更新关联")
 	@PutMapping("relations/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<RelationDTO> dtos) {
-        relationService.updateBatch(relationDtoMapping.toDomain(dtos));
+        relationService.update(relationDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -1009,7 +1009,7 @@ public abstract class AbstractRelationResource {
     @ApiOperation(value = "批量保存关联", tags = {"关联" },  notes = "批量保存关联")
 	@PostMapping("relations/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<RelationDTO> dtos) {
-        relationService.saveBatch(relationDtoMapping.toDomain(dtos));
+        relationService.save(relationDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

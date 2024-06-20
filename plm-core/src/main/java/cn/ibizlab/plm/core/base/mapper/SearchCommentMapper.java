@@ -62,6 +62,14 @@ public interface SearchCommentMapper extends BaseMapper<SearchComment> {
     List<SearchComment> listRelation(@Param("ctx") SearchCommentSearchContext context, @Param("ew") Wrapper<SearchComment> wrapper);
 
     /**
+    * 根据principalId查询
+    *
+    * @param principalIds
+    * @return
+    */
+    List<SearchComment> findByPrincipalId(@Param("principalIds") List<String> principalIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -170,13 +178,4 @@ public interface SearchCommentMapper extends BaseMapper<SearchComment> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据principalId查询
-     *
-     * @param principalIds
-     * @return
-     */
-    List<SearchComment> findByPrincipalId(@Param("principalIds") List<String> principalIds);
-
 }

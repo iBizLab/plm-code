@@ -43,6 +43,14 @@ public interface ChannelMapper extends BaseMapper<Channel> {
     List<Channel> listDefault(@Param("ctx") ChannelSearchContext context, @Param("ew") Wrapper<Channel> wrapper);
 
     /**
+    * 根据productId查询
+    *
+    * @param productIds
+    * @return
+    */
+    List<Channel> findByProductId(@Param("productIds") List<String> productIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -151,13 +159,4 @@ public interface ChannelMapper extends BaseMapper<Channel> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据productId查询
-     *
-     * @param productIds
-     * @return
-     */
-    List<Channel> findByProductId(@Param("productIds") List<String> productIds);
-
 }

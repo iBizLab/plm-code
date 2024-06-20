@@ -277,7 +277,7 @@ public abstract class AbstractActivityResource {
     public ResponseEntity<List<ActivityDTO>> fetchAll
             (@Validated @RequestBody ActivityFilterDTO dto) {
         ActivitySearchContext context = activityFilterDtoMapping.toDomain(dto);
-        Page<Activity> domains = activityService.searchAll(context) ;
+        Page<Activity> domains = activityService.fetchAll(context) ;
         List<ActivityDTO> list = activityDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -299,7 +299,7 @@ public abstract class AbstractActivityResource {
     public ResponseEntity<List<ActivityDTO>> fetchDefault
             (@Validated @RequestBody ActivityFilterDTO dto) {
         ActivitySearchContext context = activityFilterDtoMapping.toDomain(dto);
-        Page<Activity> domains = activityService.searchDefault(context) ;
+        Page<Activity> domains = activityService.fetchDefault(context) ;
         List<ActivityDTO> list = activityDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -318,7 +318,7 @@ public abstract class AbstractActivityResource {
     @ApiOperation(value = "批量新建活动", tags = {"活动" },  notes = "批量新建活动")
 	@PostMapping("activities/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<ActivityDTO> dtos) {
-        activityService.createBatch(activityDtoMapping.toDomain(dtos));
+        activityService.create(activityDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -331,7 +331,7 @@ public abstract class AbstractActivityResource {
     @ApiOperation(value = "批量删除活动", tags = {"活动" },  notes = "批量删除活动")
 	@DeleteMapping("activities/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        activityService.removeBatch(ids);
+        activityService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -344,7 +344,7 @@ public abstract class AbstractActivityResource {
     @ApiOperation(value = "批量更新活动", tags = {"活动" },  notes = "批量更新活动")
 	@PutMapping("activities/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<ActivityDTO> dtos) {
-        activityService.updateBatch(activityDtoMapping.toDomain(dtos));
+        activityService.update(activityDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -357,7 +357,7 @@ public abstract class AbstractActivityResource {
     @ApiOperation(value = "批量保存活动", tags = {"活动" },  notes = "批量保存活动")
 	@PostMapping("activities/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<ActivityDTO> dtos) {
-        activityService.saveBatch(activityDtoMapping.toDomain(dtos));
+        activityService.save(activityDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

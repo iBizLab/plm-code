@@ -104,18 +104,6 @@ export default {
           id: 'calc_parent_work_item_type',
         },
         {
-          codeName: 'set_default_entry',
-          appDEMethodId: 'set_default_entry',
-          defiupdateDetails: [
-            {
-              id: 'entry_id',
-            },
-          ],
-          showBusyIndicator: true,
-          name: '选择看板后填充默认看板栏',
-          id: 'set_default_entry',
-        },
-        {
           codeName: 'set_type_bug',
           appDEMethodId: 'set_type_bug',
           defiupdateDetails: [
@@ -129,6 +117,18 @@ export default {
           showBusyIndicator: true,
           name: '设置缺陷类型',
           id: 'set_type_bug',
+        },
+        {
+          codeName: 'set_default_entry',
+          appDEMethodId: 'set_default_entry',
+          defiupdateDetails: [
+            {
+              id: 'entry_id',
+            },
+          ],
+          showBusyIndicator: true,
+          name: '选择看板后填充默认看板栏',
+          id: 'set_default_entry',
         },
       ],
       deformItemVRs: [
@@ -341,11 +341,11 @@ export default {
                               QUOTESCRIPT:
                                 '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","icon":"${data.icon}"}`',
                               USERURL:
-                                "`${context.library ? `libraries/${context.library}/library_members/fetchdefault` : context.product ? `products/${context.product}/product_members/fetchdefault` : context.project ? `projects/${context.project}/project_members/fetchdefault` : ''}`",
+                                "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                               USERFIELDMAP: '{"id":"user_id","name":"name"}',
                               INSERTKEYS:
                                 '[{"index":66,"keys":["marker"]},{"index":5,"keys":["paintformat"]}]',
-                              QUOTEURL: '`recents/fetchrecent_access`',
+                              QUOTEURL: '`recents/fetch_recent_access`',
                             },
                             editorStyle: 'COLLAPSE',
                             editorType: 'HTMLEDITOR',

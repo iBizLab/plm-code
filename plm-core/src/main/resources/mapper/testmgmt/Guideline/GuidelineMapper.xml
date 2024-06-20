@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper	namespace="cn.ibizlab.plm.core.testmgmt.mapper.GuidelineMapper">
+
+        <!--通过mybatis将查询结果注入到entity中,通过配置autoMapping="true"由mybatis自动处理映射关系 -->
+    <resultMap id="GuidelineResultMap" type="cn.ibizlab.plm.core.testmgmt.domain.Guideline" autoMapping="true">
+		<id property="id" column="id" /><!--主键字段映射-->
+		<result property="scopeId" column="scope_id" />
+		<result property="objectType" column="object_type" />
+		<result property="subjectType" column="subject_type" />
+		<result property="reviewStage" column="review_stage" jdbcType="VARCHAR" typeHandler="cn.ibizlab.plm.core.testmgmt.domain.handlers.ReviewStageTypeHandler" />
+		<result property="reviewRule" column="review_rule" jdbcType="VARCHAR" typeHandler="cn.ibizlab.plm.core.testmgmt.domain.handlers.ReviewRuleTypeHandler" />
+		<result property="reviewActionRule" column="review_action_rule" jdbcType="VARCHAR" typeHandler="cn.ibizlab.plm.core.testmgmt.domain.handlers.ReviewActionRuleTypeHandler" />
+		<result property="isEnabled" column="is_enabled" />
+		<result property="createMan" column="create_man" />
+		<result property="createTime" column="create_time" />
+		<result property="updateMan" column="update_man" />
+		<result property="updateTime" column="update_time" />
+        <association property="library" javaType="cn.ibizlab.plm.core.testmgmt.domain.Library" column="scope_id" select="cn.ibizlab.plm.core.testmgmt.mapper.LibraryMapper.selectById" fetchType="lazy"></association>
+    </resultMap>
+
+    <select id="selectById"  resultMap="GuidelineResultMap">
+        <include refid="view" /> 
+         where 
+         t1.id=#{ id }
+    </select>
+
+    <select id="selectEntity" parameterType="cn.ibizlab.plm.core.testmgmt.domain.Guideline" resultMap="GuidelineResultMap">
+        <include refid="view" /> 
+         where 
+         (t1.id = #{ id })
+    </select>
+
+    <select id="selectEntities" parameterType="java.util.List" resultMap="GuidelineResultMap">
+        <include refid="view" /> 
+         where 
+         (t1.id)
+         in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.id }) </foreach>)
+    </select>
+
+    <delete id="deleteEntities" parameterType="java.util.List">
+    delete from GUIDELINE
+    where (id)
+         in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.id }) </foreach>)
+    </delete>
+
+    <sql id="default" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_ENABLED`, t1.`NAME`, t1.`OBJECT_TYPE`, t1.`REVIEW_ACTION_RULE`, t1.`REVIEW_RULE`, t1.`REVIEW_STAGE`, t1.`SCOPE_ID`, t1.`SUBJECT_TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `GUIDELINE` t1   ]]>  
+    </sql>
+
+    <sql id="view" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_ENABLED`, t1.`NAME`, t1.`OBJECT_TYPE`, t1.`REVIEW_ACTION_RULE`, t1.`REVIEW_RULE`, t1.`REVIEW_STAGE`, t1.`SCOPE_ID`, t1.`SUBJECT_TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `GUIDELINE` t1   ]]>  
+    </sql>
+
+    <sql id="base" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_ENABLED`, t1.`NAME`, t1.`OBJECT_TYPE`, t1.`REVIEW_ACTION_RULE`, t1.`REVIEW_RULE`, t1.`REVIEW_STAGE`, t1.`SCOPE_ID`, t1.`SUBJECT_TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `GUIDELINE` t1   ]]>  where  <![CDATA[ ( t1.`SCOPE_ID` IS NULL ) ]]> 
+    </sql>
+
+    <sql id="normal" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_ENABLED`, t1.`NAME`, t1.`OBJECT_TYPE`, t1.`SCOPE_ID`, t1.`SUBJECT_TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `GUIDELINE` t1   ]]>  where  <![CDATA[ ( t1.`IS_ENABLED` = 1 ) ]]> 
+    </sql>
+
+    <sql id="underLibrary" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_ENABLED`, t1.`NAME`, t1.`OBJECT_TYPE`, t1.`REVIEW_ACTION_RULE`, t1.`REVIEW_RULE`, t1.`REVIEW_STAGE`, t1.`SCOPE_ID`, t1.`SUBJECT_TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `GUIDELINE` t1   ]]>  where  <![CDATA[ ( t1.`SCOPE_ID` = #{ctx.webcontext.library} ) ]]> 
+    </sql>
+
+    <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.GuidelineSearchContext"  resultMap="GuidelineResultMap">
+        select t1.* 
+        from (
+            <include refid="default"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listDefault"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.GuidelineSearchContext"  resultMap="GuidelineResultMap">
+        select t1.*
+        from (
+            <include refid="default"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchBase"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.GuidelineSearchContext"  resultMap="GuidelineResultMap">
+        select t1.* 
+        from (
+            <include refid="base"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listBase"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.GuidelineSearchContext"  resultMap="GuidelineResultMap">
+        select t1.*
+        from (
+            <include refid="base"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchNormal"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.GuidelineSearchContext"  resultMap="GuidelineResultMap">
+        select t1.* 
+        from (
+            <include refid="normal"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listNormal"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.GuidelineSearchContext"  resultMap="GuidelineResultMap">
+        select t1.*
+        from (
+            <include refid="normal"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchUnderLibrary"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.GuidelineSearchContext"  resultMap="GuidelineResultMap">
+        select t1.* 
+        from (
+            <include refid="underLibrary"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listUnderLibrary"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.GuidelineSearchContext"  resultMap="GuidelineResultMap">
+        select t1.*
+        from (
+            <include refid="underLibrary"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="findByScopeId" resultMap="GuidelineResultMap">
+        select t1.* from (
+            <include refid="default"/>
+        ) t1
+        where scope_id in <foreach item="id" index="index" collection="scopeIds" open="(" separator="," close=")">#{id}</foreach> 
+    </select>
+
+
+</mapper>

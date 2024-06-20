@@ -6,10 +6,10 @@
     <resultMap id="DictionaryDataResultMap" type="cn.ibizlab.plm.core.base.domain.DictionaryData" autoMapping="true">
 		<id property="id" column="id" /><!--主键字段映射-->
 		<result property="isSystem" column="is_system" />
+		<result property="createMan" column="create_man" />
+		<result property="createTime" column="create_time" />
 		<result property="updateMan" column="update_man" />
 		<result property="updateTime" column="update_time" />
-		<result property="createTime" column="create_time" />
-		<result property="createMan" column="create_man" />
     </resultMap>
 
     <select id="selectById"  resultMap="DictionaryDataResultMap">

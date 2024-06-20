@@ -238,7 +238,7 @@ public abstract class AbstractDeliverableResource {
     public ResponseEntity<List<DeliverableDTO>> fetchDefault
             (@Validated @RequestBody DeliverableFilterDTO dto) {
         DeliverableSearchContext context = deliverableFilterDtoMapping.toDomain(dto);
-        Page<Deliverable> domains = deliverableService.searchDefault(context) ;
+        Page<Deliverable> domains = deliverableService.fetchDefault(context) ;
         List<DeliverableDTO> list = deliverableDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -259,7 +259,7 @@ public abstract class AbstractDeliverableResource {
     public ResponseEntity<List<DeliverableDTO>> fetchProjectDeliverable
             (@Validated @RequestBody DeliverableFilterDTO dto) {
         DeliverableSearchContext context = deliverableFilterDtoMapping.toDomain(dto);
-        Page<Deliverable> domains = deliverableService.searchProjectDeliverable(context) ;
+        Page<Deliverable> domains = deliverableService.fetchProjectDeliverable(context) ;
         List<DeliverableDTO> list = deliverableDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -278,7 +278,7 @@ public abstract class AbstractDeliverableResource {
     @ApiOperation(value = "批量新建交付物", tags = {"交付物" },  notes = "批量新建交付物")
 	@PostMapping("deliverables/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<DeliverableDTO> dtos) {
-        deliverableService.createBatch(deliverableDtoMapping.toDomain(dtos));
+        deliverableService.create(deliverableDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -291,7 +291,7 @@ public abstract class AbstractDeliverableResource {
     @ApiOperation(value = "批量删除交付物", tags = {"交付物" },  notes = "批量删除交付物")
 	@DeleteMapping("deliverables/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        deliverableService.removeBatch(ids);
+        deliverableService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -304,7 +304,7 @@ public abstract class AbstractDeliverableResource {
     @ApiOperation(value = "批量更新交付物", tags = {"交付物" },  notes = "批量更新交付物")
 	@PutMapping("deliverables/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<DeliverableDTO> dtos) {
-        deliverableService.updateBatch(deliverableDtoMapping.toDomain(dtos));
+        deliverableService.update(deliverableDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -317,7 +317,7 @@ public abstract class AbstractDeliverableResource {
     @ApiOperation(value = "批量保存交付物", tags = {"交付物" },  notes = "批量保存交付物")
 	@PostMapping("deliverables/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<DeliverableDTO> dtos) {
-        deliverableService.saveBatch(deliverableDtoMapping.toDomain(dtos));
+        deliverableService.save(deliverableDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

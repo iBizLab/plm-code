@@ -100,6 +100,25 @@ public interface SpaceMapper extends BaseMapper<Space> {
     List<Space> listCategorySpace(@Param("ctx") SpaceSearchContext context, @Param("ew") Wrapper<Space> wrapper);
 
     /**
+     * 数据集合current分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Space> searchCurrent(IPage<Space> page, @Param("ctx") SpaceSearchContext context, @Param("ew") Wrapper<Space> wrapper);
+    
+    /**
+     * 数据集合current查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Space> listCurrent(@Param("ctx") SpaceSearchContext context, @Param("ew") Wrapper<Space> wrapper);
+
+    /**
      * 数据集合deleted分页查询
      * 
      * @param page
@@ -136,6 +155,25 @@ public interface SpaceMapper extends BaseMapper<Space> {
      * @return
      */
     List<Space> listFavorite(@Param("ctx") SpaceSearchContext context, @Param("ew") Wrapper<Space> wrapper);
+
+    /**
+     * 数据集合main分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Space> searchMain(IPage<Space> page, @Param("ctx") SpaceSearchContext context, @Param("ew") Wrapper<Space> wrapper);
+    
+    /**
+     * 数据集合main查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Space> listMain(@Param("ctx") SpaceSearchContext context, @Param("ew") Wrapper<Space> wrapper);
 
     /**
      * 数据集合no_category_space分页查询
@@ -214,6 +252,25 @@ public interface SpaceMapper extends BaseMapper<Space> {
     List<Space> listOtherReSpace(@Param("ctx") SpaceSearchContext context, @Param("ew") Wrapper<Space> wrapper);
 
     /**
+     * 数据集合quick_user分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Space> searchQuickUser(IPage<Space> page, @Param("ctx") SpaceSearchContext context, @Param("ew") Wrapper<Space> wrapper);
+    
+    /**
+     * 数据集合quick_user查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Space> listQuickUser(@Param("ctx") SpaceSearchContext context, @Param("ew") Wrapper<Space> wrapper);
+
+    /**
      * 数据集合reader分页查询
      * 
      * @param page
@@ -250,6 +307,14 @@ public interface SpaceMapper extends BaseMapper<Space> {
      * @return
      */
     List<Space> listUser(@Param("ctx") SpaceSearchContext context, @Param("ew") Wrapper<Space> wrapper);
+
+    /**
+    * 根据categoryId查询
+    *
+    * @param categoryIds
+    * @return
+    */
+    List<Space> findByCategoryId(@Param("categoryIds") List<String> categoryIds);
 
     /**
      * 主键查询
@@ -360,13 +425,4 @@ public interface SpaceMapper extends BaseMapper<Space> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据categoryId查询
-     *
-     * @param categoryIds
-     * @return
-     */
-    List<Space> findByCategoryId(@Param("categoryIds") List<String> categoryIds);
-
 }

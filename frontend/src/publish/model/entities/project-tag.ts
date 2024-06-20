@@ -26,15 +26,15 @@ export default {
   ],
   appDEFields: [
     {
-      codeName: 'create_man',
+      codeName: 'id',
       lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.CREATE_MAN',
+        lanResTag: 'DEF.LNAME.ID',
       },
-      logicName: '建立人',
+      logicName: '标识',
       stdDataType: 25,
       stringLength: 100,
-      name: 'CREATE_MAN',
-      id: 'create_man',
+      name: 'ID',
+      id: 'id',
     },
     {
       codeName: 'name',
@@ -49,6 +49,17 @@ export default {
       id: 'name',
     },
     {
+      codeName: 'create_man',
+      lnlanguageRes: {
+        lanResTag: 'DEF.LNAME.CREATE_MAN',
+      },
+      logicName: '建立人',
+      stdDataType: 25,
+      stringLength: 100,
+      name: 'CREATE_MAN',
+      id: 'create_man',
+    },
+    {
       codeName: 'create_time',
       lnlanguageRes: {
         lanResTag: 'DEF.LNAME.CREATE_TIME',
@@ -60,15 +71,15 @@ export default {
       id: 'create_time',
     },
     {
-      codeName: 'id',
+      codeName: 'update_man',
       lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.ID',
+        lanResTag: 'DEF.LNAME.UPDATE_MAN',
       },
-      logicName: '标识',
+      logicName: '更新人',
       stdDataType: 25,
       stringLength: 100,
-      name: 'ID',
-      id: 'id',
+      name: 'UPDATE_MAN',
+      id: 'update_man',
     },
     {
       codeName: 'update_time',
@@ -80,17 +91,6 @@ export default {
       valueFormat: 'YYYY-MM-DD HH:mm:ss',
       name: 'UPDATE_TIME',
       id: 'update_time',
-    },
-    {
-      codeName: 'update_man',
-      lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.UPDATE_MAN',
-      },
-      logicName: '更新人',
-      stdDataType: 25,
-      stringLength: 100,
-      name: 'UPDATE_MAN',
-      id: 'update_man',
     },
   ],
   appDELogics: [
@@ -270,6 +270,27 @@ export default {
       id: 'create',
     },
     {
+      codeName: 'delete_tag',
+      methodType: 'DEACTION',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'project_tag_dto',
+        type: 'DTO',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        type: 'VOID',
+        id: '返回对象',
+      },
+      requestMethod: 'POST',
+      requestParamType: 'ENTITY',
+      requestPath: '/delete_tag',
+      needResourceKey: true,
+      actionMode: 'CUSTOM',
+      actionType: 'REMOTE',
+      dataSetType: 'REMOTE',
+      id: 'delete_tag',
+    },
+    {
       codeName: 'get',
       methodType: 'DEACTION',
       appDEMethodInput: {
@@ -293,6 +314,29 @@ export default {
       dataSetType: 'REMOTE',
       name: 'Get',
       id: 'get',
+    },
+    {
+      codeName: 'get_con_project_tag',
+      methodType: 'DEACTION',
+      appDEMethodInput: {
+        keyAppDEFieldId: 'id',
+        type: 'KEYFIELD',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'project_tag_dto',
+        type: 'DTO',
+        id: '返回对象',
+      },
+      requestField: 'ID',
+      requestMethod: 'GET',
+      requestParamType: 'FIELD',
+      requestPath: '/get_con_project_tag',
+      needResourceKey: true,
+      actionMode: 'READ',
+      actionType: 'REMOTE',
+      dataSetType: 'REMOTE',
+      id: 'get_con_project_tag',
     },
     {
       codeName: 'get_draft',
@@ -504,10 +548,17 @@ export default {
       actionTarget: 'SINGLEKEY',
       caption: '删除标签',
       codeName: 'delete_tag',
-      confirmMsg: '确认删除该标签？',
+      frontAppViewId: 'plmweb.project_tag_project_tag_confirm_remove_view',
       frontProcessType: 'WIZARD',
       fullCodeName: 'project_tag_delete_tag',
-      appDEMethodId: 'remove',
+      appDEMethodId: 'delete_tag',
+      navigateParams: [
+        {
+          key: 'name',
+          value: 'name',
+          id: 'name',
+        },
+      ],
       refreshMode: 1,
       successMsg: '删除成功',
       timeout: 60000,

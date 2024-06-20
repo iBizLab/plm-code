@@ -62,8 +62,29 @@
         
     </select>
 
+    <select id="searchDistinctUserid"  parameterType="cn.ibizlab.plm.core.ebsx.filter.AuthLogAdminSearchContext"  resultType="java.util.HashMap">
+        select count(distinct USERID) as active_members,USERID as userid 
+        from (
+            <include refid="default"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+         group by 
+    </select>
+
+
+    <select id="listDistinctUserid"  parameterType="cn.ibizlab.plm.core.ebsx.filter.AuthLogAdminSearchContext"  resultType="java.util.HashMap">
+        select count(distinct USERID) as active_members,USERID as userid
+        from (
+            <include refid="default"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+         group by 
+    </select>
+
     <select id="searchGroupByData"  parameterType="cn.ibizlab.plm.core.ebsx.filter.AuthLogAdminSearchContext"  resultType="java.util.HashMap">
-        select DATE(AUTHTIME) as authtime_group,count(1) as count 
+        select count(distinct USERID) as active_members,DATE(AUTHTIME) as authtime,USERID as userid 
         from (
             <include refid="default"/>
         ) t1 
@@ -74,7 +95,7 @@
 
 
     <select id="listGroupByData"  parameterType="cn.ibizlab.plm.core.ebsx.filter.AuthLogAdminSearchContext"  resultType="java.util.HashMap">
-        select DATE(AUTHTIME) as authtime_group,count(1) as count
+        select count(distinct USERID) as active_members,DATE(AUTHTIME) as authtime,USERID as userid
         from (
             <include refid="default"/>
         ) t1

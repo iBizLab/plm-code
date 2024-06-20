@@ -33,89 +33,32 @@ public interface ProjectMemberService extends IService<ProjectMember> {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    ProjectMember get(ProjectMember et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default ProjectMember get(String key) {
-        return getSelf().get(new ProjectMember().setId(key));
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<ProjectMember> getByIds(Collection<String> ids) {
-        List<ProjectMember> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new ProjectMember().setId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<ProjectMember> getByEntities(List<ProjectMember> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    ProjectMember getDraft(ProjectMember et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(ProjectMember et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(ProjectMember et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<ProjectMember> list);
+    boolean create(List<ProjectMember> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(ProjectMember et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<ProjectMember> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    @Override
-    boolean save(ProjectMember et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<ProjectMember> list);
+    boolean update(List<ProjectMember> list);
 
     /**
      * 主键删除
@@ -125,14 +68,7 @@ public interface ProjectMemberService extends IService<ProjectMember> {
     default boolean remove(String key) {
         return getSelf().remove(new ProjectMember().setId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -142,13 +78,13 @@ public interface ProjectMemberService extends IService<ProjectMember> {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<ProjectMember> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new ProjectMember().setId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new ProjectMember().setId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -156,7 +92,216 @@ public interface ProjectMemberService extends IService<ProjectMember> {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<ProjectMember> entities);
+    boolean remove(List<ProjectMember> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default ProjectMember get(String key) {
+        return getSelf().get(new ProjectMember().setId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    ProjectMember get(ProjectMember et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<ProjectMember> get(Collection<String> keys) {
+        List<ProjectMember> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new ProjectMember().setId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<ProjectMember> get(List<ProjectMember> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    ProjectMember getDraft(ProjectMember et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(ProjectMember et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(ProjectMember et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<ProjectMember> list);
+
+    /**
+    * changeRole
+    * 
+    * @param et
+    * @return
+    */
+    default ProjectMember changeRole(ProjectMember et) {
+        return et;
+    }
+
+    /**
+    * createProjectMember
+    * 
+    * @param et
+    * @return
+    */
+    default ProjectMember createProjectMember(ProjectMember et) {
+        return et;
+    }
+
+    /**
+    * nothing
+    * 
+    * @param et
+    * @return
+    */
+    default ProjectMember nothing(ProjectMember et) {
+        return et;
+    }
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<ProjectMember> fetchDefault(ProjectMemberSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<ProjectMember> listDefault(ProjectMemberSearchContext context);
+
+    /**
+    * fetchCurProject
+    * 
+    * @param context
+    * @return
+    */
+    Page<ProjectMember> fetchCurProject(ProjectMemberSearchContext context);
+
+    /**
+    * listCurProject
+    * 
+    * @param context
+    * @return
+    */
+    List<ProjectMember> listCurProject(ProjectMemberSearchContext context);
+
+    /**
+    * findByProjectId
+    * @param projectIds
+    * @return
+    */
+    List<ProjectMember> findByProjectId(List<String> projectIds);
+    default List<ProjectMember> findByProjectId(String projectId){
+        return findByProjectId(Arrays.asList(projectId));
+    }
+
+    /**
+    * removeByProjectId
+    * @param projectId
+    * @return
+    */
+    boolean removeByProjectId(String projectId);
+
+    /**
+    * resetByProjectId
+    * @param projectId
+    * @return
+    */
+    boolean resetByProjectId(String projectId);
+
+    /**
+    * saveByProjectId
+    * @param projectId
+    * @param list
+    * @return
+    */
+    default boolean saveByProjectId(String projectId, List<ProjectMember> list){
+        return getSelf().saveByProject(new Project().setId(projectId),list);
+    }
+
+    /**
+    * saveByProject
+    * @param project
+    * @param list
+    * @return
+    */
+    boolean saveByProject(Project project, List<ProjectMember> list);
+
+    /**
+    * findByUserId
+    * @param userIds
+    * @return
+    */
+    List<ProjectMember> findByUserId(List<String> userIds);
+    default List<ProjectMember> findByUserId(String userId){
+        return findByUserId(Arrays.asList(userId));
+    }
+
+    /**
+    * removeByUserId
+    * @param userId
+    * @return
+    */
+    boolean removeByUserId(String userId);
+
+    /**
+    * resetByUserId
+    * @param userId
+    * @return
+    */
+    boolean resetByUserId(String userId);
+
+    /**
+    * saveByUserId
+    * @param userId
+    * @param list
+    * @return
+    */
+    default boolean saveByUserId(String userId, List<ProjectMember> list){
+        return getSelf().saveByUser(new User().setId(userId),list);
+    }
+
+    /**
+    * saveByUser
+    * @param user
+    * @param list
+    * @return
+    */
+    boolean saveByUser(User user, List<ProjectMember> list);
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<ProjectMember> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -173,67 +318,7 @@ public interface ProjectMemberService extends IService<ProjectMember> {
         }
         return rt;
     }
-
-    /**
-     * change_role
-     * 
-     * @param dto
-     * @return
-     */
-    default ProjectMember changeRole(ProjectMember dto) {
-        return dto;
-    }
-
-    /**
-     * create_project_member
-     * 
-     * @param dto
-     * @return
-     */
-    default ProjectMember createProjectMember(ProjectMember dto) {
-        return dto;
-    }
-
-    /**
-     * nothing
-     * 
-     * @param dto
-     * @return
-     */
-    default ProjectMember nothing(ProjectMember dto) {
-        return dto;
-    }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<ProjectMember> searchDefault(ProjectMemberSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<ProjectMember> listDefault(ProjectMemberSearchContext context);
-
-    /**
-     * searchcur_project
-     * 
-     * @param context
-     * @return
-     */
-    Page<ProjectMember> searchCurProject(ProjectMemberSearchContext context);
-    /**
-     * listcur_project
-     * 
-     * @param context
-     * @return
-     */
-    List<ProjectMember> listCurProject(ProjectMemberSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -241,6 +326,7 @@ public interface ProjectMemberService extends IService<ProjectMember> {
     default ProjectMember getEntity() {
         return new ProjectMember();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -248,97 +334,13 @@ public interface ProjectMemberService extends IService<ProjectMember> {
     default ProjectMemberSearchContext getSearchContext() {
         return new ProjectMemberSearchContext();
     }
+
+
     /**
-     * selectRelByProjectId
-     * @param projectIds
-     * @return
-     */
-    List<ProjectMember> findByProjectId(List<String> projectIds);
-    default List<ProjectMember> findByProjectId(String projectId) {
-        return findByProjectId(Arrays.asList(projectId));
-    }
-    /**
-     * removeRelByProjectId
-     * @param projectId
-     * @return
-     */
-    boolean removeByProjectId(String projectId);
-    /**
-     * resetRelByProjectId
-     * @param projectId
-     * @return
-     */
-    boolean resetByProjectId(String projectId);
-    /**
-     * saveRelByProjectId
-     * @param projectId
-     * @param list
-     * @return
-     */
-    default boolean saveByProjectId(String projectId,List<ProjectMember> list) {
-        return getSelf().saveByProject(new Project().setId(projectId),list);
-    }
-    /**
-    * saveRelByProject
-    * @param project
-    * @param list
+    * 自定义SQL
+    * @param sql  update table  set name ='test' where id =#{et.param}
+    * @param param 参数列表  param.put("param","1");
     * @return
     */
-    boolean saveByProject(Project project,List<ProjectMember> list);
-
-    /**
-     * selectRelByUserId
-     * @param userIds
-     * @return
-     */
-    List<ProjectMember> findByUserId(List<String> userIds);
-    default List<ProjectMember> findByUserId(String userId) {
-        return findByUserId(Arrays.asList(userId));
-    }
-    /**
-     * removeRelByUserId
-     * @param userId
-     * @return
-     */
-    boolean removeByUserId(String userId);
-    /**
-     * resetRelByUserId
-     * @param userId
-     * @return
-     */
-    boolean resetByUserId(String userId);
-    /**
-     * saveRelByUserId
-     * @param userId
-     * @param list
-     * @return
-     */
-    default boolean saveByUserId(String userId,List<ProjectMember> list) {
-        return getSelf().saveByUser(new User().setId(userId),list);
-    }
-    /**
-    * saveRelByUser
-    * @param user
-    * @param list
-    * @return
-    */
-    boolean saveByUser(User user,List<ProjectMember> list);
-
-
-    /**
-     * 自定义查询SQL
-     * @param sql  select * from table where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
-    List<JSONObject> select(String sql, Map<String,Object> param);
-
-    /**
-     * 自定义SQL
-     * @param sql  update table  set name ='test' where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
     boolean execute(String sql, Map<String,Object> param);
-
 }

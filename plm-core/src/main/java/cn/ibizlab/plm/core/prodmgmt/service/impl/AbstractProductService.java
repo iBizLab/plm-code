@@ -30,6 +30,8 @@ import cn.ibizlab.plm.core.prodmgmt.domain.Customer;
 import cn.ibizlab.plm.core.prodmgmt.service.CustomerService;
 import cn.ibizlab.plm.core.prodmgmt.domain.Idea;
 import cn.ibizlab.plm.core.prodmgmt.service.IdeaService;
+import cn.ibizlab.plm.core.prodmgmt.domain.IdeaTemplate;
+import cn.ibizlab.plm.core.prodmgmt.service.IdeaTemplateService;
 import cn.ibizlab.plm.core.prodmgmt.domain.ProductPlan;
 import cn.ibizlab.plm.core.prodmgmt.service.ProductPlanService;
 import cn.ibizlab.plm.core.prodmgmt.domain.ProductMember;
@@ -40,6 +42,8 @@ import cn.ibizlab.plm.core.prodmgmt.domain.ProductTicketType;
 import cn.ibizlab.plm.core.prodmgmt.service.ProductTicketTypeService;
 import cn.ibizlab.plm.core.prodmgmt.domain.Ticket;
 import cn.ibizlab.plm.core.prodmgmt.service.TicketService;
+import cn.ibizlab.plm.core.base.domain.Addon;
+import cn.ibizlab.plm.core.base.service.AddonService;
 import cn.ibizlab.plm.core.base.domain.Baseline;
 import cn.ibizlab.plm.core.base.service.BaselineService;
 import cn.ibizlab.plm.core.base.domain.Favorite;
@@ -69,6 +73,10 @@ public abstract class AbstractProductService extends ServiceImpl<ProductMapper,P
 
     @Autowired
     @Lazy
+    protected IdeaTemplateService ideaTemplateService;
+
+    @Autowired
+    @Lazy
     protected ProductPlanService productPlanService;
 
     @Autowired
@@ -89,6 +97,10 @@ public abstract class AbstractProductService extends ServiceImpl<ProductMapper,P
 
     @Autowired
     @Lazy
+    protected AddonService addonService;
+
+    @Autowired
+    @Lazy
     protected BaselineService baselineService;
 
     @Autowired
@@ -105,28 +117,6 @@ public abstract class AbstractProductService extends ServiceImpl<ProductMapper,P
 
     protected int batchSize = 500;
 
-    public Product get(Product et) {
-        Product rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.PRODUCT.toString(),et.getId());
-        rt.copyTo(et,true);
-        //设置 [产品成员]
-        getMembers(et);
-        return et;
-    }
-
-    public List<Product> getByEntities(List<Product> entities) {
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public Product getDraft(Product et) {
-        return et;
-    }
-
-    public Integer checkKey(Product et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Product>lambdaQuery().eq(Product::getId, et.getId()))>0)?1:0;
-    }
-
     @Override
     @Transactional
     public boolean create(Product et) {
@@ -136,13 +126,13 @@ public abstract class AbstractProductService extends ServiceImpl<ProductMapper,P
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<Product> list) {
+    public boolean create(List<Product> list) {
         list.forEach(et->getSelf().create(et));
         return true;
     }
-
+	
     @Transactional
     public boolean update(Product et) {
         UpdateWrapper<Product> qw = et.getUpdateWrapper(true);
@@ -155,11 +145,47 @@ public abstract class AbstractProductService extends ServiceImpl<ProductMapper,P
     }
 
     @Transactional
-    public boolean updateBatch(List<Product> list) {
+    public boolean update(List<Product> list) {
         list.forEach(et->getSelf().update(et));
         return true;
     }
+	
+   @Transactional
+    public boolean remove(Product et) {
+        if(!remove(Wrappers.<Product>lambdaQuery().eq(Product::getId, et.getId())))
+            return false;
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<Product> entities) {
+        for (Product et : entities)
+            if(!getSelf().remove(et))
+                return false;
+        return true;
+    }		
+    public Product get(Product et) {
+        Product rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.PRODUCT.toString(),et.getId());
+        rt.copyTo(et,true);
+        //设置 [产品成员]
+        getMembers(et);
+        return et;
+    }	
+
+    public List<Product> get(List<Product> entities) {
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public Product getDraft(Product et) {
+        return et;
+    }
+	
+    public Integer checkKey(Product et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Product>lambdaQuery().eq(Product::getId, et.getId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(Product et) {
@@ -170,10 +196,10 @@ public abstract class AbstractProductService extends ServiceImpl<ProductMapper,P
     }
 
     @Transactional
-    public boolean saveBatch(List<Product> list) {
+    public boolean save(List<Product> list) {
         if(ObjectUtils.isEmpty(list))
             return true;
-        Map<String,Product> before = getByEntities(list).stream().collect(Collectors.toMap(Product::getId,e->e));
+        Map<String,Product> before = get(list).stream().collect(Collectors.toMap(Product::getId,e->e));
         List<Product> create = new ArrayList<>();
         List<Product> update = new ArrayList<>();
         list.forEach(sub->{
@@ -184,130 +210,134 @@ public abstract class AbstractProductService extends ServiceImpl<ProductMapper,P
         });
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
         else
             return true;
     }
-
-    @Transactional
-    public boolean remove(Product et) {
-        if(!remove(Wrappers.<Product>lambdaQuery().eq(Product::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<Product> entities) {
-        for (Product et : entities)
-            if(!getSelf().remove(et))
-                return false;
-        return true;
-    }
-
-    public Page<Product> searchDefault(ProductSearchContext context) {
+	
+   public Page<Product> fetchDefault(ProductSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Product> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<Product> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Product> listDefault(ProductSearchContext context) {
+   public List<Product> listDefault(ProductSearchContext context) {
         List<Product> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Product> searchAdmin(ProductSearchContext context) {
+   }
+	
+   public Page<Product> fetchAdmin(ProductSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Product> pages=baseMapper.searchAdmin(context.getPages(),context,context.getSelectCond());
         List<Product> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Product> listAdmin(ProductSearchContext context) {
+   public List<Product> listAdmin(ProductSearchContext context) {
         List<Product> list = baseMapper.listAdmin(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Product> searchArchived(ProductSearchContext context) {
+   }
+	
+   public Page<Product> fetchArchived(ProductSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Product> pages=baseMapper.searchArchived(context.getPages(),context,context.getSelectCond());
         List<Product> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Product> listArchived(ProductSearchContext context) {
+   public List<Product> listArchived(ProductSearchContext context) {
         List<Product> list = baseMapper.listArchived(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Product> searchDeleted(ProductSearchContext context) {
+   }
+	
+   public Page<Product> fetchDeleted(ProductSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Product> pages=baseMapper.searchDeleted(context.getPages(),context,context.getSelectCond());
         List<Product> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Product> listDeleted(ProductSearchContext context) {
+   public List<Product> listDeleted(ProductSearchContext context) {
         List<Product> list = baseMapper.listDeleted(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Product> searchFavorite(ProductSearchContext context) {
+   }
+	
+   public Page<Product> fetchFavorite(ProductSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Product> pages=baseMapper.searchFavorite(context.getPages(),context,context.getSelectCond());
         List<Product> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Product> listFavorite(ProductSearchContext context) {
+   public List<Product> listFavorite(ProductSearchContext context) {
         List<Product> list = baseMapper.listFavorite(context,context.getSelectCond());
         return list;
+   }
+	
+   public Page<Product> fetchMain(ProductSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Product> pages=baseMapper.searchMain(context.getPages(),context,context.getSelectCond());
+        List<Product> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public Page<Product> searchNormal(ProductSearchContext context) {
+   public List<Product> listMain(ProductSearchContext context) {
+        List<Product> list = baseMapper.listMain(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Product> fetchNormal(ProductSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("NAME,DESC");
+            context.setSort("UPDATE_TIME,DESC");
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Product> pages=baseMapper.searchNormal(context.getPages(),context,context.getSelectCond());
         List<Product> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Product> listNormal(ProductSearchContext context) {
+   public List<Product> listNormal(ProductSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
-            context.setSort("NAME,DESC");
+            context.setSort("UPDATE_TIME,DESC");
         List<Product> list = baseMapper.listNormal(context,context.getSelectCond());
         return list;
+   }
+	
+   public Page<Product> fetchQuickUser(ProductSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Product> pages=baseMapper.searchQuickUser(context.getPages(),context,context.getSelectCond());
+        List<Product> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public Page<Product> searchReader(ProductSearchContext context) {
+   public List<Product> listQuickUser(ProductSearchContext context) {
+        List<Product> list = baseMapper.listQuickUser(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Product> fetchReader(ProductSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Product> pages=baseMapper.searchReader(context.getPages(),context,context.getSelectCond());
         List<Product> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Product> listReader(ProductSearchContext context) {
+   public List<Product> listReader(ProductSearchContext context) {
         List<Product> list = baseMapper.listReader(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Product> searchUser(ProductSearchContext context) {
+   }
+	
+   public Page<Product> fetchUser(ProductSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Product> pages=baseMapper.searchUser(context.getPages(),context,context.getSelectCond());
         List<Product> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Product> listUser(ProductSearchContext context) {
+   public List<Product> listUser(ProductSearchContext context) {
         List<Product> list = baseMapper.listUser(context,context.getSelectCond());
         return list;
-    }
-
-    @Override
+   }
+	
+	@Override
     public List<ProductMember> getMembers(Product et) {
         List<ProductMember> list = productMemberService.findByProductId(et.getId());
         et.setMembers(list);
         return list;
     }
+	
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -327,8 +357,8 @@ public abstract class AbstractProductService extends ServiceImpl<ProductMapper,P
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return ProductMapper.class;
     }
@@ -337,4 +367,5 @@ public abstract class AbstractProductService extends ServiceImpl<ProductMapper,P
     protected Class currentModelClass() {
         return Product.class;
     }
+
 }

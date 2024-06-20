@@ -42,12 +42,14 @@ export default {
       logicType: 'APPUILOGIC',
       builtinAppUILogic: {
         openDataAppView: {
-          refAppViewId: 'plmweb.project_redirect_view',
+          openMode: 'POPUPMODAL',
+          refAppViewId: 'plmweb.project_show_edit_view',
         },
         editMode: true,
         appUILogicRefViews: [
           {
-            refAppViewId: 'plmweb.project_redirect_view',
+            openMode: 'POPUPMODAL',
+            refAppViewId: 'plmweb.project_show_edit_view',
           },
         ],
         builtinLogic: true,
@@ -61,16 +63,17 @@ export default {
   ],
   appViewRefs: [
     {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '展示项目信息编辑视图',
+      refAppViewId: 'plmweb.project_show_edit_view',
+      name: 'EDITDATA',
+      id: 'editdata',
+    },
+    {
       realTitle: '项目编辑视图',
       refAppViewId: 'plmweb.project_edit_view',
       name: 'NEWDATA',
       id: 'newdata',
-    },
-    {
-      realTitle: '项目数据重定向视图',
-      refAppViewId: 'plmweb.project_redirect_view',
-      name: 'EDITDATA',
-      id: 'editdata',
     },
   ],
   controls: [

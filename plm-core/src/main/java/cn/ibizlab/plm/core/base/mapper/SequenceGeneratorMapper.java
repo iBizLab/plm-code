@@ -151,5 +151,4 @@ public interface SequenceGeneratorMapper extends BaseMapper<SequenceGenerator> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
 }

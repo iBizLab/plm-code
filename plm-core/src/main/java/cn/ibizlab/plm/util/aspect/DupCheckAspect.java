@@ -43,7 +43,34 @@ public class DupCheckAspect {
      */
     @AfterReturning(value = "execution(* cn.ibizlab.plm.core.*.service.ArticlePageService.create*(..))||execution(* cn.ibizlab.plm.core.*.service.ArticlePageService.update*(..))")
     public void checkArticlePage(JoinPoint point) {
-        check(point, "searchDefault");
+        check(point, "fetchDefault");
+    }
+    /**
+     * 实体[Baseline]
+     *
+     * @param point
+     */
+    @AfterReturning(value = "execution(* cn.ibizlab.plm.core.*.service.BaselineService.create*(..))||execution(* cn.ibizlab.plm.core.*.service.BaselineService.update*(..))")
+    public void checkBaseline(JoinPoint point) {
+        check(point, "fetchDefault");
+    }
+    /**
+     * 实体[DictionaryData]
+     *
+     * @param point
+     */
+    @AfterReturning(value = "execution(* cn.ibizlab.plm.core.*.service.DictionaryDataService.create*(..))||execution(* cn.ibizlab.plm.core.*.service.DictionaryDataService.update*(..))")
+    public void checkDictionaryData(JoinPoint point) {
+        check(point, "fetchDefault");
+    }
+    /**
+     * 实体[DiscussTopic]
+     *
+     * @param point
+     */
+    @AfterReturning(value = "execution(* cn.ibizlab.plm.core.*.service.DiscussTopicService.create*(..))||execution(* cn.ibizlab.plm.core.*.service.DiscussTopicService.update*(..))")
+    public void checkDiscussTopic(JoinPoint point) {
+        check(point, "fetchDefault");
     }
     /**
      * 实体[Idea]
@@ -52,7 +79,16 @@ public class DupCheckAspect {
      */
     @AfterReturning(value = "execution(* cn.ibizlab.plm.core.*.service.IdeaService.create*(..))||execution(* cn.ibizlab.plm.core.*.service.IdeaService.update*(..))")
     public void checkIdea(JoinPoint point) {
-        check(point, "searchDefault");
+        check(point, "fetchDefault");
+    }
+    /**
+     * 实体[InsightView]
+     *
+     * @param point
+     */
+    @AfterReturning(value = "execution(* cn.ibizlab.plm.core.*.service.InsightViewService.create*(..))||execution(* cn.ibizlab.plm.core.*.service.InsightViewService.update*(..))")
+    public void checkInsightView(JoinPoint point) {
+        check(point, "fetchDefault");
     }
     /**
      * 实体[Library]
@@ -61,7 +97,7 @@ public class DupCheckAspect {
      */
     @AfterReturning(value = "execution(* cn.ibizlab.plm.core.*.service.LibraryService.create*(..))||execution(* cn.ibizlab.plm.core.*.service.LibraryService.update*(..))")
     public void checkLibrary(JoinPoint point) {
-        check(point, "searchDefault");
+        check(point, "fetchDefault");
     }
     /**
      * 实体[Portfolio]
@@ -70,7 +106,7 @@ public class DupCheckAspect {
      */
     @AfterReturning(value = "execution(* cn.ibizlab.plm.core.*.service.PortfolioService.create*(..))||execution(* cn.ibizlab.plm.core.*.service.PortfolioService.update*(..))")
     public void checkPortfolio(JoinPoint point) {
-        check(point, "searchDefault");
+        check(point, "fetchDefault");
     }
     /**
      * 实体[Product]
@@ -79,7 +115,16 @@ public class DupCheckAspect {
      */
     @AfterReturning(value = "execution(* cn.ibizlab.plm.core.*.service.ProductService.create*(..))||execution(* cn.ibizlab.plm.core.*.service.ProductService.update*(..))")
     public void checkProduct(JoinPoint point) {
-        check(point, "searchDefault");
+        check(point, "fetchDefault");
+    }
+    /**
+     * 实体[ProductTag]
+     *
+     * @param point
+     */
+    @AfterReturning(value = "execution(* cn.ibizlab.plm.core.*.service.ProductTagService.create*(..))||execution(* cn.ibizlab.plm.core.*.service.ProductTagService.update*(..))")
+    public void checkProductTag(JoinPoint point) {
+        check(point, "fetchDefault");
     }
     /**
      * 实体[Project]
@@ -88,7 +133,16 @@ public class DupCheckAspect {
      */
     @AfterReturning(value = "execution(* cn.ibizlab.plm.core.*.service.ProjectService.create*(..))||execution(* cn.ibizlab.plm.core.*.service.ProjectService.update*(..))")
     public void checkProject(JoinPoint point) {
-        check(point, "searchDefault");
+        check(point, "fetchDefault");
+    }
+    /**
+     * 实体[ProjectTag]
+     *
+     * @param point
+     */
+    @AfterReturning(value = "execution(* cn.ibizlab.plm.core.*.service.ProjectTagService.create*(..))||execution(* cn.ibizlab.plm.core.*.service.ProjectTagService.update*(..))")
+    public void checkProjectTag(JoinPoint point) {
+        check(point, "fetchDefault");
     }
     /**
      * 实体[Review]
@@ -97,7 +151,16 @@ public class DupCheckAspect {
      */
     @AfterReturning(value = "execution(* cn.ibizlab.plm.core.*.service.ReviewService.create*(..))||execution(* cn.ibizlab.plm.core.*.service.ReviewService.update*(..))")
     public void checkReview(JoinPoint point) {
-        check(point, "searchDefault");
+        check(point, "fetchDefault");
+    }
+    /**
+     * 实体[ReviewWizard]
+     *
+     * @param point
+     */
+    @AfterReturning(value = "execution(* cn.ibizlab.plm.core.*.service.ReviewWizardService.create*(..))||execution(* cn.ibizlab.plm.core.*.service.ReviewWizardService.update*(..))")
+    public void checkReviewWizard(JoinPoint point) {
+        check(point, "fetchDefault");
     }
     /**
      * 实体[Space]
@@ -106,7 +169,7 @@ public class DupCheckAspect {
      */
     @AfterReturning(value = "execution(* cn.ibizlab.plm.core.*.service.SpaceService.create*(..))||execution(* cn.ibizlab.plm.core.*.service.SpaceService.update*(..))")
     public void checkSpace(JoinPoint point) {
-        check(point, "searchDefault");
+        check(point, "fetchDefault");
     }
     /**
      * 实体[TestCase]
@@ -115,7 +178,7 @@ public class DupCheckAspect {
      */
     @AfterReturning(value = "execution(* cn.ibizlab.plm.core.*.service.TestCaseService.create*(..))||execution(* cn.ibizlab.plm.core.*.service.TestCaseService.update*(..))")
     public void checkTestCase(JoinPoint point) {
-        check(point, "searchDefault");
+        check(point, "fetchDefault");
     }
     /**
      * 实体[Ticket]
@@ -124,7 +187,16 @@ public class DupCheckAspect {
      */
     @AfterReturning(value = "execution(* cn.ibizlab.plm.core.*.service.TicketService.create*(..))||execution(* cn.ibizlab.plm.core.*.service.TicketService.update*(..))")
     public void checkTicket(JoinPoint point) {
-        check(point, "searchDefault");
+        check(point, "fetchDefault");
+    }
+    /**
+     * 实体[TicketType]
+     *
+     * @param point
+     */
+    @AfterReturning(value = "execution(* cn.ibizlab.plm.core.*.service.TicketTypeService.create*(..))||execution(* cn.ibizlab.plm.core.*.service.TicketTypeService.update*(..))")
+    public void checkTicketType(JoinPoint point) {
+        check(point, "fetchDefault");
     }
     /**
      * 实体[WorkItem]
@@ -133,7 +205,34 @@ public class DupCheckAspect {
      */
     @AfterReturning(value = "execution(* cn.ibizlab.plm.core.*.service.WorkItemService.create*(..))||execution(* cn.ibizlab.plm.core.*.service.WorkItemService.update*(..))")
     public void checkWorkItem(JoinPoint point) {
-        check(point, "searchDefault");
+        check(point, "fetchDefault");
+    }
+    /**
+     * 实体[WorkItemState]
+     *
+     * @param point
+     */
+    @AfterReturning(value = "execution(* cn.ibizlab.plm.core.*.service.WorkItemStateService.create*(..))||execution(* cn.ibizlab.plm.core.*.service.WorkItemStateService.update*(..))")
+    public void checkWorkItemState(JoinPoint point) {
+        check(point, "fetchDefault");
+    }
+    /**
+     * 实体[WorkItemType]
+     *
+     * @param point
+     */
+    @AfterReturning(value = "execution(* cn.ibizlab.plm.core.*.service.WorkItemTypeService.create*(..))||execution(* cn.ibizlab.plm.core.*.service.WorkItemTypeService.update*(..))")
+    public void checkWorkItemType(JoinPoint point) {
+        check(point, "fetchDefault");
+    }
+    /**
+     * 实体[WorkloadType]
+     *
+     * @param point
+     */
+    @AfterReturning(value = "execution(* cn.ibizlab.plm.core.*.service.WorkloadTypeService.create*(..))||execution(* cn.ibizlab.plm.core.*.service.WorkloadTypeService.update*(..))")
+    public void checkWorkloadType(JoinPoint point) {
+        check(point, "fetchDefault");
     }
 
 

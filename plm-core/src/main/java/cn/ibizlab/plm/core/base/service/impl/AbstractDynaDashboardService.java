@@ -35,26 +35,6 @@ public abstract class AbstractDynaDashboardService extends ServiceImpl<DynaDashb
 
     protected int batchSize = 500;
 
-    public DynaDashboard get(DynaDashboard et) {
-        DynaDashboard rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.DYNA_DASHBOARD.toString(),et.getDynaDashboardId());
-        rt.copyTo(et,true);
-        return et;
-    }
-
-    public List<DynaDashboard> getByEntities(List<DynaDashboard> entities) {
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public DynaDashboard getDraft(DynaDashboard et) {
-        return et;
-    }
-
-    public Integer checkKey(DynaDashboard et) {
-        return (!ObjectUtils.isEmpty(et.getDynaDashboardId()) && this.count(Wrappers.<DynaDashboard>lambdaQuery().eq(DynaDashboard::getDynaDashboardId, et.getDynaDashboardId()))>0)?1:0;
-    }
-
     @Override
     @Transactional
     public boolean create(DynaDashboard et) {
@@ -63,13 +43,13 @@ public abstract class AbstractDynaDashboardService extends ServiceImpl<DynaDashb
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<DynaDashboard> list) {
+    public boolean create(List<DynaDashboard> list) {
         this.saveBatch(list, batchSize);
         return true;
     }
-
+	
     @Transactional
     public boolean update(DynaDashboard et) {
         UpdateWrapper<DynaDashboard> qw = et.getUpdateWrapper(true);
@@ -81,11 +61,43 @@ public abstract class AbstractDynaDashboardService extends ServiceImpl<DynaDashb
     }
 
     @Transactional
-    public boolean updateBatch(List<DynaDashboard> list) {
+    public boolean update(List<DynaDashboard> list) {
         updateBatchById(list, batchSize);
         return true;
     }
+	
+   @Transactional
+    public boolean remove(DynaDashboard et) {
+        if(!remove(Wrappers.<DynaDashboard>lambdaQuery().eq(DynaDashboard::getDynaDashboardId, et.getDynaDashboardId())))
+            return false;
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<DynaDashboard> entities) {
+        this.baseMapper.deleteEntities(entities);
+        return true;
+    }		
+    public DynaDashboard get(DynaDashboard et) {
+        DynaDashboard rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.DYNA_DASHBOARD.toString(),et.getDynaDashboardId());
+        rt.copyTo(et,true);
+        return et;
+    }	
+
+    public List<DynaDashboard> get(List<DynaDashboard> entities) {
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public DynaDashboard getDraft(DynaDashboard et) {
+        return et;
+    }
+	
+    public Integer checkKey(DynaDashboard et) {
+        return (!ObjectUtils.isEmpty(et.getDynaDashboardId()) && this.count(Wrappers.<DynaDashboard>lambdaQuery().eq(DynaDashboard::getDynaDashboardId, et.getDynaDashboardId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(DynaDashboard et) {
@@ -96,10 +108,10 @@ public abstract class AbstractDynaDashboardService extends ServiceImpl<DynaDashb
     }
 
     @Transactional
-    public boolean saveBatch(List<DynaDashboard> list) {
+    public boolean save(List<DynaDashboard> list) {
         if(ObjectUtils.isEmpty(list))
             return true;
-        Map<String,DynaDashboard> before = getByEntities(list).stream().collect(Collectors.toMap(DynaDashboard::getDynaDashboardId,e->e));
+        Map<String,DynaDashboard> before = get(list).stream().collect(Collectors.toMap(DynaDashboard::getDynaDashboardId,e->e));
         List<DynaDashboard> create = new ArrayList<>();
         List<DynaDashboard> update = new ArrayList<>();
         list.forEach(sub->{
@@ -110,40 +122,24 @@ public abstract class AbstractDynaDashboardService extends ServiceImpl<DynaDashb
         });
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
         else
             return true;
     }
-
-    @Transactional
-    public boolean remove(DynaDashboard et) {
-        if(!remove(Wrappers.<DynaDashboard>lambdaQuery().eq(DynaDashboard::getDynaDashboardId, et.getDynaDashboardId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<DynaDashboard> entities) {
-        this.baseMapper.deleteEntities(entities);
-        return true;
-    }
-
-    public Page<DynaDashboard> searchDefault(DynaDashboardSearchContext context) {
+	
+   public Page<DynaDashboard> fetchDefault(DynaDashboardSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<DynaDashboard> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<DynaDashboard> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<DynaDashboard> listDefault(DynaDashboardSearchContext context) {
+   public List<DynaDashboard> listDefault(DynaDashboardSearchContext context) {
         List<DynaDashboard> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
-    }
+   }
+	
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -163,8 +159,8 @@ public abstract class AbstractDynaDashboardService extends ServiceImpl<DynaDashb
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return DynaDashboardMapper.class;
     }
@@ -173,4 +169,5 @@ public abstract class AbstractDynaDashboardService extends ServiceImpl<DynaDashb
     protected Class currentModelClass() {
         return DynaDashboard.class;
     }
+
 }

@@ -1,0 +1,22 @@
+ibiz:
+  runtime:
+    config:
+      enableBootServiceHub: false
+
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr: nacos.ibizcloud.cn:30048
+        group: ibiz_config_group
+        refreshEnabled: true
+        file-extension: yaml
+        extension-configs:
+          - data-id: deploysystem-ibizplm
+            group: ibiz_config_group
+            refresh: true
+          - data-id: servicehub-ibizplm-dev
+            group: ibiz_config_group
+            refresh: true
+
+

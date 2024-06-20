@@ -61,11 +61,19 @@ public class RunDTO extends DTOBase implements Serializable {
     private String state;
 
     /**
+     * 父对象版本标识
+     */
+    @JsonProperty("parent_version_id")
+    @JSONField(name = "parent_version_id")
+    @ApiModelProperty(value = "父对象版本标识", position = 3)
+    private String parentVersionId;
+
+    /**
      * 重要程度
      */
     @JsonProperty("level")
     @JSONField(name = "level")
-    @ApiModelProperty(value = "重要程度", position = 3)
+    @ApiModelProperty(value = "重要程度", position = 4)
     private String level;
 
     /**
@@ -73,7 +81,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("type")
     @JSONField(name = "type")
-    @ApiModelProperty(value = "用例类型", position = 4)
+    @ApiModelProperty(value = "用例类型", position = 5)
     private String type;
 
     /**
@@ -82,7 +90,7 @@ public class RunDTO extends DTOBase implements Serializable {
     @JsonProperty("executed_at")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "executed_at" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "执行时间", position = 5)
+    @ApiModelProperty(value = "执行时间", position = 6)
     private Date executedAt;
 
     /**
@@ -90,7 +98,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("status")
     @JSONField(name = "status")
-    @ApiModelProperty(value = "执行结果", position = 6)
+    @ApiModelProperty(value = "执行结果", position = 7)
     private String status;
 
     /**
@@ -98,7 +106,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("remark")
     @JSONField(name = "remark")
-    @ApiModelProperty(value = "备注", position = 7)
+    @ApiModelProperty(value = "备注", position = 8)
     private String remark;
 
     /**
@@ -106,7 +114,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("steps")
     @JSONField(name = "steps")
-    @ApiModelProperty(value = "步骤", position = 8)
+    @ApiModelProperty(value = "步骤", position = 9)
     private List<StepDTO> steps;
 
     /**
@@ -114,7 +122,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("plan_name")
     @JSONField(name = "plan_name")
-    @ApiModelProperty(value = "测试计划", position = 9)
+    @ApiModelProperty(value = "测试计划", position = 10)
     private String planName;
 
     /**
@@ -122,15 +130,23 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("test_type")
     @JSONField(name = "test_type")
-    @ApiModelProperty(value = "测试类型", position = 10)
+    @ApiModelProperty(value = "测试类型", position = 11)
     private String testType;
+
+    /**
+     * 当前版本标识
+     */
+    @JsonProperty("cur_version_id")
+    @JSONField(name = "cur_version_id")
+    @ApiModelProperty(value = "当前版本标识", position = 12)
+    private String curVersionId;
 
     /**
      * 维护人
      */
     @JsonProperty("maintenance_name")
     @JSONField(name = "maintenance_name")
-    @ApiModelProperty(value = "维护人", position = 11)
+    @ApiModelProperty(value = "维护人", position = 13)
     private String maintenanceName;
 
     /**
@@ -138,7 +154,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("executor_id")
     @JSONField(name = "executor_id")
-    @ApiModelProperty(value = "执行人标识", position = 12)
+    @ApiModelProperty(value = "执行人标识", position = 14)
     private String executorId;
 
     /**
@@ -146,7 +162,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("executor_name")
     @JSONField(name = "executor_name")
-    @ApiModelProperty(value = "执行人", position = 13)
+    @ApiModelProperty(value = "执行人", position = 15)
     private String executorName;
 
     /**
@@ -154,7 +170,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("suite_id")
     @JSONField(name = "suite_id")
-    @ApiModelProperty(value = "用例模块标识", position = 14)
+    @ApiModelProperty(value = "用例模块标识", position = 16)
     private String suiteId;
 
     /**
@@ -162,7 +178,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("suite_name")
     @JSONField(name = "suite_name")
-    @ApiModelProperty(value = "所属模块", position = 15)
+    @ApiModelProperty(value = "所属模块", position = 17)
     private String suiteName;
 
     /**
@@ -170,7 +186,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("precondition")
     @JSONField(name = "precondition")
-    @ApiModelProperty(value = "前置条件", position = 16)
+    @ApiModelProperty(value = "前置条件", position = 18)
     private String precondition;
 
     /**
@@ -178,7 +194,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("suites")
     @JSONField(name = "suites")
-    @ApiModelProperty(value = "模块路径", position = 17)
+    @ApiModelProperty(value = "模块路径", position = 19)
     private String suites;
 
     /**
@@ -186,7 +202,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("library_name")
     @JSONField(name = "library_name")
-    @ApiModelProperty(value = "所属测试库", position = 18)
+    @ApiModelProperty(value = "所属测试库", position = 20)
     private String libraryName;
 
     /**
@@ -194,7 +210,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("library_id")
     @JSONField(name = "library_id")
-    @ApiModelProperty(value = "测试库标识", position = 19)
+    @ApiModelProperty(value = "测试库标识", position = 21)
     private String libraryId;
 
     /**
@@ -202,7 +218,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("attentions")
     @JSONField(name = "attentions")
-    @ApiModelProperty(value = "关注", position = 20)
+    @ApiModelProperty(value = "关注", position = 22)
     private List<AttentionDTO> attentions;
 
     /**
@@ -210,7 +226,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("estimated_workload")
     @JSONField(name = "estimated_workload")
-    @ApiModelProperty(value = "预估工时", position = 21)
+    @ApiModelProperty(value = "预估工时", position = 23)
     private BigDecimal estimatedWorkload;
 
     /**
@@ -218,7 +234,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("workload_schedule")
     @JSONField(name = "workload_schedule")
-    @ApiModelProperty(value = "工时进度", position = 22)
+    @ApiModelProperty(value = "工时进度", position = 24)
     private BigDecimal workloadSchedule;
 
     /**
@@ -226,7 +242,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("remaining_workload")
     @JSONField(name = "remaining_workload")
-    @ApiModelProperty(value = "剩余工时", position = 23)
+    @ApiModelProperty(value = "剩余工时", position = 25)
     private BigDecimal remainingWorkload;
 
     /**
@@ -234,7 +250,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("actual_workload")
     @JSONField(name = "actual_workload")
-    @ApiModelProperty(value = "实际工时", position = 24)
+    @ApiModelProperty(value = "实际工时", position = 26)
     private BigDecimal actualWorkload;
 
     /**
@@ -242,7 +258,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("run_attachment")
     @JSONField(name = "run_attachment")
-    @ApiModelProperty(value = "结果附件", position = 25)
+    @ApiModelProperty(value = "结果附件", position = 27)
     private List<RunAttachmentDTO> runAttachment;
 
     /**
@@ -250,7 +266,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("attentions_imp")
     @JSONField(name = "attentions_imp")
-    @ApiModelProperty(value = "关注人", position = 26)
+    @ApiModelProperty(value = "关注人", position = 28)
     private String attentionsImp;
 
     /**
@@ -258,7 +274,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("case_id")
     @JSONField(name = "case_id")
-    @ApiModelProperty(value = "测试用例标识", position = 27)
+    @ApiModelProperty(value = "测试用例标识", position = 29)
     private String caseId;
 
     /**
@@ -266,7 +282,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("case_name")
     @JSONField(name = "case_name")
-    @ApiModelProperty(value = "名称", position = 28)
+    @ApiModelProperty(value = "名称", position = 30)
     private String caseName;
 
     /**
@@ -274,7 +290,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 29)
+    @ApiModelProperty(value = "建立人", position = 31)
     private String createMan;
 
     /**
@@ -283,7 +299,7 @@ public class RunDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 30)
+    @ApiModelProperty(value = "建立时间", position = 32)
     private Date createTime;
 
     /**
@@ -291,7 +307,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 31)
+    @ApiModelProperty(value = "标识", position = 33)
     private String id;
 
     /**
@@ -299,7 +315,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 32)
+    @ApiModelProperty(value = "名称", position = 34)
     private String name;
 
     /**
@@ -307,7 +323,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("plan_id")
     @JSONField(name = "plan_id")
-    @ApiModelProperty(value = "测试计划标识", position = 33)
+    @ApiModelProperty(value = "测试计划标识", position = 35)
     private String planId;
 
     /**
@@ -315,7 +331,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 34)
+    @ApiModelProperty(value = "更新人", position = 36)
     private String updateMan;
 
     /**
@@ -324,16 +340,8 @@ public class RunDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 35)
+    @ApiModelProperty(value = "更新时间", position = 37)
     private Date updateTime;
-
-    /**
-     * 执行结果
-     */
-    @JsonProperty("run_histories")
-    @JSONField(name = "run_histories")
-    @ApiModelProperty(value = "执行结果", position = 36)
-    private List<RunHistoryDTO> runHistories;
 
 
     /**
@@ -612,15 +620,6 @@ public class RunDTO extends DTOBase implements Serializable {
     public RunDTO setPlanId(String planId) {
         this.planId = planId;
         this.modify("plan_id", planId);
-        return this;
-    }
-
-    /**
-     * 设置 [执行结果]
-     */
-    public RunDTO setRunHistories(List<RunHistoryDTO> runHistories) {
-        this.runHistories = runHistories;
-        this.modify("run_histories", runHistories);
         return this;
     }
 

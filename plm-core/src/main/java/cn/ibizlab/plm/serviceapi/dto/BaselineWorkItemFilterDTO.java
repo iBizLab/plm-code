@@ -75,7 +75,7 @@ public class BaselineWorkItemFilterDTO extends FilterBase implements Serializabl
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 380)
+    @ApiModelProperty(value = "标识EQ", position = 400)
 	private String idEQ;
 
 

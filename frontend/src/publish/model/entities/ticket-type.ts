@@ -41,15 +41,15 @@ export default {
       id: 'is_system',
     },
     {
-      codeName: 'create_man',
+      codeName: 'id',
       lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.CREATE_MAN',
+        lanResTag: 'DEF.LNAME.ID',
       },
-      logicName: '建立人',
+      logicName: '标识',
       stdDataType: 25,
       stringLength: 100,
-      name: 'CREATE_MAN',
-      id: 'create_man',
+      name: 'ID',
+      id: 'id',
     },
     {
       codeName: 'name',
@@ -64,15 +64,15 @@ export default {
       id: 'name',
     },
     {
-      codeName: 'update_man',
+      codeName: 'create_man',
       lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.UPDATE_MAN',
+        lanResTag: 'DEF.LNAME.CREATE_MAN',
       },
-      logicName: '更新人',
+      logicName: '建立人',
       stdDataType: 25,
       stringLength: 100,
-      name: 'UPDATE_MAN',
-      id: 'update_man',
+      name: 'CREATE_MAN',
+      id: 'create_man',
     },
     {
       codeName: 'create_time',
@@ -86,15 +86,15 @@ export default {
       id: 'create_time',
     },
     {
-      codeName: 'id',
+      codeName: 'update_man',
       lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.ID',
+        lanResTag: 'DEF.LNAME.UPDATE_MAN',
       },
-      logicName: '标识',
+      logicName: '更新人',
       stdDataType: 25,
       stringLength: 100,
-      name: 'ID',
-      id: 'id',
+      name: 'UPDATE_MAN',
+      id: 'update_man',
     },
     {
       codeName: 'update_time',

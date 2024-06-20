@@ -594,7 +594,7 @@ public abstract class AbstractSpaceMemberResource {
     public ResponseEntity<List<SpaceMemberDTO>> fetchCurSpace
             (@Validated @RequestBody SpaceMemberFilterDTO dto) {
         SpaceMemberSearchContext context = spaceMemberFilterDtoMapping.toDomain(dto);
-        Page<SpaceMember> domains = spaceMemberService.searchCurSpace(context) ;
+        Page<SpaceMember> domains = spaceMemberService.fetchCurSpace(context) ;
         List<SpaceMemberDTO> list = spaceMemberDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -616,7 +616,7 @@ public abstract class AbstractSpaceMemberResource {
     public ResponseEntity<List<SpaceMemberDTO>> fetchDefault
             (@Validated @RequestBody SpaceMemberFilterDTO dto) {
         SpaceMemberSearchContext context = spaceMemberFilterDtoMapping.toDomain(dto);
-        Page<SpaceMember> domains = spaceMemberService.searchDefault(context) ;
+        Page<SpaceMember> domains = spaceMemberService.fetchDefault(context) ;
         List<SpaceMemberDTO> list = spaceMemberDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -710,7 +710,7 @@ public abstract class AbstractSpaceMemberResource {
             (@PathVariable("spaceId") String spaceId, @Validated @RequestBody SpaceMemberFilterDTO dto) {
         dto.setSpaceIdEQ(spaceId);
         SpaceMemberSearchContext context = spaceMemberFilterDtoMapping.toDomain(dto);
-        Page<SpaceMember> domains = spaceMemberService.searchCurSpace(context) ;
+        Page<SpaceMember> domains = spaceMemberService.fetchCurSpace(context) ;
         List<SpaceMemberDTO> list = spaceMemberDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -734,7 +734,7 @@ public abstract class AbstractSpaceMemberResource {
             (@PathVariable("spaceId") String spaceId, @Validated @RequestBody SpaceMemberFilterDTO dto) {
         dto.setSpaceIdEQ(spaceId);
         SpaceMemberSearchContext context = spaceMemberFilterDtoMapping.toDomain(dto);
-        Page<SpaceMember> domains = spaceMemberService.searchDefault(context) ;
+        Page<SpaceMember> domains = spaceMemberService.fetchDefault(context) ;
         List<SpaceMemberDTO> list = spaceMemberDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -828,7 +828,7 @@ public abstract class AbstractSpaceMemberResource {
             (@PathVariable("userId") String userId, @Validated @RequestBody SpaceMemberFilterDTO dto) {
         dto.setUserIdEQ(userId);
         SpaceMemberSearchContext context = spaceMemberFilterDtoMapping.toDomain(dto);
-        Page<SpaceMember> domains = spaceMemberService.searchCurSpace(context) ;
+        Page<SpaceMember> domains = spaceMemberService.fetchCurSpace(context) ;
         List<SpaceMemberDTO> list = spaceMemberDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -852,7 +852,7 @@ public abstract class AbstractSpaceMemberResource {
             (@PathVariable("userId") String userId, @Validated @RequestBody SpaceMemberFilterDTO dto) {
         dto.setUserIdEQ(userId);
         SpaceMemberSearchContext context = spaceMemberFilterDtoMapping.toDomain(dto);
-        Page<SpaceMember> domains = spaceMemberService.searchDefault(context) ;
+        Page<SpaceMember> domains = spaceMemberService.fetchDefault(context) ;
         List<SpaceMemberDTO> list = spaceMemberDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -871,7 +871,7 @@ public abstract class AbstractSpaceMemberResource {
     @ApiOperation(value = "批量新建空间成员", tags = {"空间成员" },  notes = "批量新建空间成员")
 	@PostMapping("space_members/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<SpaceMemberDTO> dtos) {
-        spaceMemberService.createBatch(spaceMemberDtoMapping.toDomain(dtos));
+        spaceMemberService.create(spaceMemberDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -884,7 +884,7 @@ public abstract class AbstractSpaceMemberResource {
     @ApiOperation(value = "批量删除空间成员", tags = {"空间成员" },  notes = "批量删除空间成员")
 	@DeleteMapping("space_members/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        spaceMemberService.removeBatch(ids);
+        spaceMemberService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -897,7 +897,7 @@ public abstract class AbstractSpaceMemberResource {
     @ApiOperation(value = "批量更新空间成员", tags = {"空间成员" },  notes = "批量更新空间成员")
 	@PutMapping("space_members/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<SpaceMemberDTO> dtos) {
-        spaceMemberService.updateBatch(spaceMemberDtoMapping.toDomain(dtos));
+        spaceMemberService.update(spaceMemberDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -910,7 +910,7 @@ public abstract class AbstractSpaceMemberResource {
     @ApiOperation(value = "批量保存空间成员", tags = {"空间成员" },  notes = "批量保存空间成员")
 	@PostMapping("space_members/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<SpaceMemberDTO> dtos) {
-        spaceMemberService.saveBatch(spaceMemberDtoMapping.toDomain(dtos));
+        spaceMemberService.save(spaceMemberDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

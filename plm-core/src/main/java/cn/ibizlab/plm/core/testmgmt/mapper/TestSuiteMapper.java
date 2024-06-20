@@ -43,6 +43,25 @@ public interface TestSuiteMapper extends BaseMapper<TestSuite> {
     List<TestSuite> listDefault(@Param("ctx") TestSuiteSearchContext context, @Param("ew") Wrapper<TestSuite> wrapper);
 
     /**
+     * 数据集合cur_test_suite分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<TestSuite> searchCurTestSuite(IPage<TestSuite> page, @Param("ctx") TestSuiteSearchContext context, @Param("ew") Wrapper<TestSuite> wrapper);
+    
+    /**
+     * 数据集合cur_test_suite查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<TestSuite> listCurTestSuite(@Param("ctx") TestSuiteSearchContext context, @Param("ew") Wrapper<TestSuite> wrapper);
+
+    /**
      * 数据集合no_parent分页查询
      * 
      * @param page
@@ -98,6 +117,22 @@ public interface TestSuiteMapper extends BaseMapper<TestSuite> {
      * @return
      */
     List<TestSuite> listRoot(@Param("ctx") TestSuiteSearchContext context, @Param("ew") Wrapper<TestSuite> wrapper);
+
+    /**
+    * 根据libraryId查询
+    *
+    * @param libraryIds
+    * @return
+    */
+    List<TestSuite> findByLibraryId(@Param("libraryIds") List<String> libraryIds);
+
+    /**
+    * 根据pid查询
+    *
+    * @param pids
+    * @return
+    */
+    List<TestSuite> findByPid(@Param("pids") List<String> pids);
 
     /**
      * 主键查询
@@ -208,21 +243,4 @@ public interface TestSuiteMapper extends BaseMapper<TestSuite> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据libraryId查询
-     *
-     * @param libraryIds
-     * @return
-     */
-    List<TestSuite> findByLibraryId(@Param("libraryIds") List<String> libraryIds);
-
-    /**
-     * 根据pid查询
-     *
-     * @param pids
-     * @return
-     */
-    List<TestSuite> findByPid(@Param("pids") List<String> pids);
-
 }

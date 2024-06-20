@@ -11,10 +11,10 @@
 		<result property="assigneeId" column="assignee_id" />
 		<result property="projectType" column="project_type" />
 		<result property="libraryIdentifier" column="library_identifier" />
+		<result property="createMan" column="create_man" />
+		<result property="createTime" column="create_time" />
 		<result property="updateMan" column="update_man" />
 		<result property="updateTime" column="update_time" />
-		<result property="createTime" column="create_time" />
-		<result property="createMan" column="create_man" />
 		<result property="libraryId" column="library_id" />
 		<result property="projectId" column="project_id" />
 		<result property="sprintId" column="sprint_id" />
@@ -237,28 +237,35 @@
         select t1.* from (
             <include refid="default"/>
         ) t1
-        where library_id in <foreach item="id" index="index" collection="libraryIds" open="(" separator="," close=")">#{id}</foreach> 
+        where library_id in <foreach item="id" index="index" collection="libraryIds" open="(" separator="," close=")">#{id}</foreach>  order by UPDATE_TIME DESC
     </select>
 
     <select id="findByProjectId" resultMap="TestPlanResultMap">
         select t1.* from (
             <include refid="default"/>
         ) t1
-        where project_id in <foreach item="id" index="index" collection="projectIds" open="(" separator="," close=")">#{id}</foreach> 
+        where project_id in <foreach item="id" index="index" collection="projectIds" open="(" separator="," close=")">#{id}</foreach>  order by UPDATE_TIME DESC
     </select>
 
     <select id="findByReleaseId" resultMap="TestPlanResultMap">
         select t1.* from (
             <include refid="default"/>
         ) t1
-        where release_id in <foreach item="id" index="index" collection="releaseIds" open="(" separator="," close=")">#{id}</foreach> 
+        where release_id in <foreach item="id" index="index" collection="releaseIds" open="(" separator="," close=")">#{id}</foreach>  order by UPDATE_TIME DESC
     </select>
 
     <select id="findBySprintId" resultMap="TestPlanResultMap">
         select t1.* from (
             <include refid="default"/>
         ) t1
-        where sprint_id in <foreach item="id" index="index" collection="sprintIds" open="(" separator="," close=")">#{id}</foreach> 
+        where sprint_id in <foreach item="id" index="index" collection="sprintIds" open="(" separator="," close=")">#{id}</foreach>  order by UPDATE_TIME DESC
+    </select>
+
+    <select id="findById" resultMap="TestPlanResultMap">
+        select t1.* from (
+            <include refid="default"/>
+        ) t1
+        where id in <foreach item="id" index="index" collection="ids" open="(" separator="," close=")">#{id}</foreach>  order by UPDATE_TIME DESC
     </select>
 
 

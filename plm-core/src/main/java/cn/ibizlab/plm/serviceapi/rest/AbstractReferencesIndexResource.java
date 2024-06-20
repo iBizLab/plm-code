@@ -236,7 +236,7 @@ public abstract class AbstractReferencesIndexResource {
     public ResponseEntity<List<ReferencesIndexDTO>> fetchDefault
             (@Validated @RequestBody ReferencesIndexFilterDTO dto) {
         ReferencesIndexSearchContext context = referencesIndexFilterDtoMapping.toDomain(dto);
-        Page<ReferencesIndex> domains = referencesIndexService.searchDefault(context) ;
+        Page<ReferencesIndex> domains = referencesIndexService.fetchDefault(context) ;
         List<ReferencesIndexDTO> list = referencesIndexDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -255,7 +255,7 @@ public abstract class AbstractReferencesIndexResource {
     @ApiOperation(value = "批量新建引用索引", tags = {"引用索引" },  notes = "批量新建引用索引")
 	@PostMapping("references_indices/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<ReferencesIndexDTO> dtos) {
-        referencesIndexService.createBatch(referencesIndexDtoMapping.toDomain(dtos));
+        referencesIndexService.create(referencesIndexDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -268,7 +268,7 @@ public abstract class AbstractReferencesIndexResource {
     @ApiOperation(value = "批量删除引用索引", tags = {"引用索引" },  notes = "批量删除引用索引")
 	@DeleteMapping("references_indices/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        referencesIndexService.removeBatch(ids);
+        referencesIndexService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -281,7 +281,7 @@ public abstract class AbstractReferencesIndexResource {
     @ApiOperation(value = "批量更新引用索引", tags = {"引用索引" },  notes = "批量更新引用索引")
 	@PutMapping("references_indices/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<ReferencesIndexDTO> dtos) {
-        referencesIndexService.updateBatch(referencesIndexDtoMapping.toDomain(dtos));
+        referencesIndexService.update(referencesIndexDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -294,7 +294,7 @@ public abstract class AbstractReferencesIndexResource {
     @ApiOperation(value = "批量保存引用索引", tags = {"引用索引" },  notes = "批量保存引用索引")
 	@PostMapping("references_indices/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<ReferencesIndexDTO> dtos) {
-        referencesIndexService.saveBatch(referencesIndexDtoMapping.toDomain(dtos));
+        referencesIndexService.save(referencesIndexDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

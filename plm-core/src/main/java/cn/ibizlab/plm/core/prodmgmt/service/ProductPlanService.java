@@ -32,89 +32,32 @@ public interface ProductPlanService extends IService<ProductPlan> {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    ProductPlan get(ProductPlan et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default ProductPlan get(String key) {
-        return getSelf().get(new ProductPlan().setId(key));
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<ProductPlan> getByIds(Collection<String> ids) {
-        List<ProductPlan> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new ProductPlan().setId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<ProductPlan> getByEntities(List<ProductPlan> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    ProductPlan getDraft(ProductPlan et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(ProductPlan et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(ProductPlan et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<ProductPlan> list);
+    boolean create(List<ProductPlan> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(ProductPlan et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<ProductPlan> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    @Override
-    boolean save(ProductPlan et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<ProductPlan> list);
+    boolean update(List<ProductPlan> list);
 
     /**
      * 主键删除
@@ -124,14 +67,7 @@ public interface ProductPlanService extends IService<ProductPlan> {
     default boolean remove(String key) {
         return getSelf().remove(new ProductPlan().setId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -141,13 +77,13 @@ public interface ProductPlanService extends IService<ProductPlan> {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<ProductPlan> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new ProductPlan().setId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new ProductPlan().setId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -155,7 +91,174 @@ public interface ProductPlanService extends IService<ProductPlan> {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<ProductPlan> entities);
+    boolean remove(List<ProductPlan> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default ProductPlan get(String key) {
+        return getSelf().get(new ProductPlan().setId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    ProductPlan get(ProductPlan et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<ProductPlan> get(Collection<String> keys) {
+        List<ProductPlan> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new ProductPlan().setId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<ProductPlan> get(List<ProductPlan> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    ProductPlan getDraft(ProductPlan et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(ProductPlan et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(ProductPlan et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<ProductPlan> list);
+
+    /**
+    * delete
+    * 
+    * @param et
+    * @return
+    */
+    default ProductPlan delete(ProductPlan et) {
+        return et;
+    }
+
+    /**
+    * deleteCategories
+    * 
+    * @param et
+    * @return
+    */
+    default ProductPlan deleteCategories(ProductPlan et) {
+        return et;
+    }
+
+    /**
+    * productPlanRelationIdea
+    * 
+    * @param et
+    * @return
+    */
+    default ProductPlan productPlanRelationIdea(ProductPlan et) {
+        return et;
+    }
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<ProductPlan> fetchDefault(ProductPlanSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<ProductPlan> listDefault(ProductPlanSearchContext context);
+
+    /**
+    * fetchNormal
+    * 
+    * @param context
+    * @return
+    */
+    Page<ProductPlan> fetchNormal(ProductPlanSearchContext context);
+
+    /**
+    * listNormal
+    * 
+    * @param context
+    * @return
+    */
+    List<ProductPlan> listNormal(ProductPlanSearchContext context);
+
+    /**
+    * findByProductId
+    * @param productIds
+    * @return
+    */
+    List<ProductPlan> findByProductId(List<String> productIds);
+    default List<ProductPlan> findByProductId(String productId){
+        return findByProductId(Arrays.asList(productId));
+    }
+
+    /**
+    * removeByProductId
+    * @param productId
+    * @return
+    */
+    boolean removeByProductId(String productId);
+
+    /**
+    * resetByProductId
+    * @param productId
+    * @return
+    */
+    boolean resetByProductId(String productId);
+
+    /**
+    * saveByProductId
+    * @param productId
+    * @param list
+    * @return
+    */
+    default boolean saveByProductId(String productId, List<ProductPlan> list){
+        return getSelf().saveByProduct(new Product().setId(productId),list);
+    }
+
+    /**
+    * saveByProduct
+    * @param product
+    * @param list
+    * @return
+    */
+    boolean saveByProduct(Product product, List<ProductPlan> list);
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<ProductPlan> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -172,67 +275,7 @@ public interface ProductPlanService extends IService<ProductPlan> {
         }
         return rt;
     }
-
-    /**
-     * delete
-     * 
-     * @param dto
-     * @return
-     */
-    default ProductPlan delete(ProductPlan dto) {
-        return dto;
-    }
-
-    /**
-     * delete_categories
-     * 
-     * @param dto
-     * @return
-     */
-    default ProductPlan deleteCategories(ProductPlan dto) {
-        return dto;
-    }
-
-    /**
-     * product_plan_relation_idea
-     * 
-     * @param dto
-     * @return
-     */
-    default ProductPlan productPlanRelationIdea(ProductPlan dto) {
-        return dto;
-    }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<ProductPlan> searchDefault(ProductPlanSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<ProductPlan> listDefault(ProductPlanSearchContext context);
-
-    /**
-     * searchnormal
-     * 
-     * @param context
-     * @return
-     */
-    Page<ProductPlan> searchNormal(ProductPlanSearchContext context);
-    /**
-     * listnormal
-     * 
-     * @param context
-     * @return
-     */
-    List<ProductPlan> listNormal(ProductPlanSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -240,6 +283,7 @@ public interface ProductPlanService extends IService<ProductPlan> {
     default ProductPlan getEntity() {
         return new ProductPlan();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -247,59 +291,13 @@ public interface ProductPlanService extends IService<ProductPlan> {
     default ProductPlanSearchContext getSearchContext() {
         return new ProductPlanSearchContext();
     }
+
+
     /**
-     * selectRelByProductId
-     * @param productIds
-     * @return
-     */
-    List<ProductPlan> findByProductId(List<String> productIds);
-    default List<ProductPlan> findByProductId(String productId) {
-        return findByProductId(Arrays.asList(productId));
-    }
-    /**
-     * removeRelByProductId
-     * @param productId
-     * @return
-     */
-    boolean removeByProductId(String productId);
-    /**
-     * resetRelByProductId
-     * @param productId
-     * @return
-     */
-    boolean resetByProductId(String productId);
-    /**
-     * saveRelByProductId
-     * @param productId
-     * @param list
-     * @return
-     */
-    default boolean saveByProductId(String productId,List<ProductPlan> list) {
-        return getSelf().saveByProduct(new Product().setId(productId),list);
-    }
-    /**
-    * saveRelByProduct
-    * @param product
-    * @param list
+    * 自定义SQL
+    * @param sql  update table  set name ='test' where id =#{et.param}
+    * @param param 参数列表  param.put("param","1");
     * @return
     */
-    boolean saveByProduct(Product product,List<ProductPlan> list);
-
-
-    /**
-     * 自定义查询SQL
-     * @param sql  select * from table where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
-    List<JSONObject> select(String sql, Map<String,Object> param);
-
-    /**
-     * 自定义SQL
-     * @param sql  update table  set name ='test' where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
     boolean execute(String sql, Map<String,Object> param);
-
 }

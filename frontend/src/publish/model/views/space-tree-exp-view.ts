@@ -91,7 +91,7 @@ export default {
           realTitleLanguageRes: {
             lanResTag: 'PAGE.TITLE.SPACE.GRID_VIEW_ORG',
           },
-          refAppViewId: 'plmweb.space_group_grid_view',
+          refAppViewId: 'plmweb.space_org_grid_view',
           name: 'EXPITEM:node_4',
           id: 'expitem:node_4',
         },
@@ -109,7 +109,7 @@ export default {
           realTitleLanguageRes: {
             lanResTag: 'PAGE.TITLE.SPACE.GRID_VIEW_ONESELF',
           },
-          refAppViewId: 'plmweb.space_oneself_grid_view',
+          refAppViewId: 'plmweb.space_person_grid_view',
           name: 'EXPITEM:node_6',
           id: 'expitem:node_6',
         },
@@ -142,7 +142,7 @@ export default {
               parentDER1N: {
                 masterRS: 48,
                 pickupDEFName: 'PID',
-                removeActionType: 1,
+                removeActionType: 2,
                 recursiveRS: true,
                 codeName: 'category',
                 dertype: 'DER1N',
@@ -172,7 +172,7 @@ export default {
               parentDER1N: {
                 masterRS: 48,
                 pickupDEFName: 'PID',
-                removeActionType: 1,
+                removeActionType: 2,
                 recursiveRS: true,
                 codeName: 'category',
                 dertype: 'DER1N',
@@ -479,7 +479,7 @@ export default {
             },
             {
               text: '组织空间',
-              navAppViewId: 'plmweb.space_group_grid_view',
+              navAppViewId: 'plmweb.space_org_grid_view',
               nodeType: 'node_4',
               navigateContexts: [
                 {
@@ -521,7 +521,7 @@ export default {
             },
             {
               text: '个人空间',
-              navAppViewId: 'plmweb.space_oneself_grid_view',
+              navAppViewId: 'plmweb.space_person_grid_view',
               nodeType: 'node_6',
               navigateContexts: [
                 {
@@ -611,6 +611,34 @@ export default {
                 {
                   actionLevel: 200,
                   noPrivDisplayMode: 2,
+                  uiactionId: 'open_space_setting@space',
+                  uiactionTarget: 'NONE',
+                  valid: true,
+                  caption: '空间配置',
+                  itemType: 'DEUIACTION',
+                  tooltip: '空间配置',
+                  showCaption: true,
+                  showIcon: true,
+                  id: 'deuiaction1',
+                },
+              ],
+              codeName: 'tree_exp_view_node2_cm',
+              controlType: 'CONTEXTMENU',
+              logicName: '空间配置树节点菜单',
+              appDataEntityId: 'plmweb.space',
+              controlParam: {
+                id: 'node_2_cm',
+              },
+              modelId: 'e333e8ea09cf1253bbd904d3299d5651',
+              modelType: 'PSDETOOLBAR',
+              name: 'node_2_cm',
+              id: 'tree_exp_view_node2_cm',
+            },
+            {
+              detoolbarItems: [
+                {
+                  actionLevel: 200,
+                  noPrivDisplayMode: 2,
                   uiactionId: 'open_space_index@space',
                   uiactionTarget: 'SINGLEKEY',
                   valid: true,
@@ -649,34 +677,6 @@ export default {
               modelType: 'PSDETOOLBAR',
               name: 'node_11_cm',
               id: 'tree_exp_view_node11_cm',
-            },
-            {
-              detoolbarItems: [
-                {
-                  actionLevel: 200,
-                  noPrivDisplayMode: 2,
-                  uiactionId: 'open_space_setting@space',
-                  uiactionTarget: 'NONE',
-                  valid: true,
-                  caption: '空间配置',
-                  itemType: 'DEUIACTION',
-                  tooltip: '空间配置',
-                  showCaption: true,
-                  showIcon: true,
-                  id: 'deuiaction1',
-                },
-              ],
-              codeName: 'tree_exp_view_node2_cm',
-              controlType: 'CONTEXTMENU',
-              logicName: '空间配置树节点菜单',
-              appDataEntityId: 'plmweb.space',
-              controlParam: {
-                id: 'node_2_cm',
-              },
-              modelId: 'e333e8ea09cf1253bbd904d3299d5651',
-              modelType: 'PSDETOOLBAR',
-              name: 'node_2_cm',
-              id: 'tree_exp_view_node2_cm',
             },
           ],
           codeName: 'tree_exp_view_tree_view',

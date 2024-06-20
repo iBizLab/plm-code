@@ -82,15 +82,15 @@ export default {
       id: 'name',
     },
     {
-      codeName: 'update_time',
+      codeName: 'create_man',
       lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.UPDATE_TIME',
+        lanResTag: 'DEF.LNAME.CREATE_MAN',
       },
-      logicName: '更新时间',
-      stdDataType: 5,
-      valueFormat: 'YYYY-MM-DD HH:mm:ss',
-      name: 'UPDATE_TIME',
-      id: 'update_time',
+      logicName: '建立人',
+      stdDataType: 25,
+      stringLength: 100,
+      name: 'CREATE_MAN',
+      id: 'create_man',
     },
     {
       codeName: 'create_time',
@@ -104,17 +104,6 @@ export default {
       id: 'create_time',
     },
     {
-      codeName: 'create_man',
-      lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.CREATE_MAN',
-      },
-      logicName: '建立人',
-      stdDataType: 25,
-      stringLength: 100,
-      name: 'CREATE_MAN',
-      id: 'create_man',
-    },
-    {
       codeName: 'update_man',
       lnlanguageRes: {
         lanResTag: 'DEF.LNAME.UPDATE_MAN',
@@ -124,6 +113,17 @@ export default {
       stringLength: 100,
       name: 'UPDATE_MAN',
       id: 'update_man',
+    },
+    {
+      codeName: 'update_time',
+      lnlanguageRes: {
+        lanResTag: 'DEF.LNAME.UPDATE_TIME',
+      },
+      logicName: '更新时间',
+      stdDataType: 5,
+      valueFormat: 'YYYY-MM-DD HH:mm:ss',
+      name: 'UPDATE_TIME',
+      id: 'update_time',
     },
     {
       codeName: 'portfolio_id',

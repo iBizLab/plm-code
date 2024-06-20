@@ -14,10 +14,10 @@
 		<result property="decimalValue" column="decimal_value" />
 		<result property="intValue" column="int_value" />
 		<result property="bigintValue" column="bigint_value" />
-		<result property="updateMan" column="update_man" />
-		<result property="updateTime" column="update_time" />
 		<result property="createMan" column="create_man" />
 		<result property="createTime" column="create_time" />
+		<result property="updateMan" column="update_man" />
+		<result property="updateTime" column="update_time" />
     </resultMap>
 
     <select id="selectById"  resultMap="ExtendStorageResultMap">

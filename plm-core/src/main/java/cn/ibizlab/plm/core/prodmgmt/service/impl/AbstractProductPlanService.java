@@ -47,33 +47,6 @@ public abstract class AbstractProductPlanService extends ServiceImpl<ProductPlan
 
     protected int batchSize = 500;
 
-    public ProductPlan get(ProductPlan et) {
-        ProductPlan rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.PRODUCT_PLAN.toString(),et.getId());
-        rt.copyTo(et,true);
-        return et;
-    }
-
-    public List<ProductPlan> getByEntities(List<ProductPlan> entities) {
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public void fillParentData(ProductPlan et) {
-        if(Entities.PRODUCT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
-            et.setProductId((String)et.getContextParentKey());
-        }
-    }
-
-    public ProductPlan getDraft(ProductPlan et) {
-        fillParentData(et);
-        return et;
-    }
-
-    public Integer checkKey(ProductPlan et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ProductPlan>lambdaQuery().eq(ProductPlan::getId, et.getId()))>0)?1:0;
-    }
-
     @Override
     @Transactional
     public boolean create(ProductPlan et) {
@@ -83,14 +56,14 @@ public abstract class AbstractProductPlanService extends ServiceImpl<ProductPlan
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<ProductPlan> list) {
+    public boolean create(List<ProductPlan> list) {
         list.forEach(this::fillParentData);
         this.saveBatch(list, batchSize);
         return true;
     }
-
+	
     @Transactional
     public boolean update(ProductPlan et) {
         UpdateWrapper<ProductPlan> qw = et.getUpdateWrapper(true);
@@ -102,11 +75,44 @@ public abstract class AbstractProductPlanService extends ServiceImpl<ProductPlan
     }
 
     @Transactional
-    public boolean updateBatch(List<ProductPlan> list) {
+    public boolean update(List<ProductPlan> list) {
         updateBatchById(list, batchSize);
         return true;
     }
+	
+   @Transactional
+    public boolean remove(ProductPlan et) {
+        if(!remove(Wrappers.<ProductPlan>lambdaQuery().eq(ProductPlan::getId, et.getId())))
+            return false;
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<ProductPlan> entities) {
+        this.baseMapper.deleteEntities(entities);
+        return true;
+    }		
+    public ProductPlan get(ProductPlan et) {
+        ProductPlan rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.PRODUCT_PLAN.toString(),et.getId());
+        rt.copyTo(et,true);
+        return et;
+    }	
+
+    public List<ProductPlan> get(List<ProductPlan> entities) {
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public ProductPlan getDraft(ProductPlan et) {
+        fillParentData(et);
+        return et;
+    }
+	
+    public Integer checkKey(ProductPlan et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ProductPlan>lambdaQuery().eq(ProductPlan::getId, et.getId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(ProductPlan et) {
@@ -117,10 +123,10 @@ public abstract class AbstractProductPlanService extends ServiceImpl<ProductPlan
     }
 
     @Transactional
-    public boolean saveBatch(List<ProductPlan> list) {
+    public boolean save(List<ProductPlan> list) {
         if(ObjectUtils.isEmpty(list))
             return true;
-        Map<String,ProductPlan> before = getByEntities(list).stream().collect(Collectors.toMap(ProductPlan::getId,e->e));
+        Map<String,ProductPlan> before = get(list).stream().collect(Collectors.toMap(ProductPlan::getId,e->e));
         List<ProductPlan> create = new ArrayList<>();
         List<ProductPlan> update = new ArrayList<>();
         list.forEach(sub->{
@@ -131,63 +137,55 @@ public abstract class AbstractProductPlanService extends ServiceImpl<ProductPlan
         });
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
         else
             return true;
     }
-
-    @Transactional
-    public boolean remove(ProductPlan et) {
-        if(!remove(Wrappers.<ProductPlan>lambdaQuery().eq(ProductPlan::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<ProductPlan> entities) {
-        this.baseMapper.deleteEntities(entities);
-        return true;
-    }
-
-    public Page<ProductPlan> searchDefault(ProductPlanSearchContext context) {
+	
+   public Page<ProductPlan> fetchDefault(ProductPlanSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<ProductPlan> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<ProductPlan> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<ProductPlan> listDefault(ProductPlanSearchContext context) {
+   public List<ProductPlan> listDefault(ProductPlanSearchContext context) {
         List<ProductPlan> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<ProductPlan> searchNormal(ProductPlanSearchContext context) {
+   }
+	
+   public Page<ProductPlan> fetchNormal(ProductPlanSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("UPDATE_TIME,DESC");
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<ProductPlan> pages=baseMapper.searchNormal(context.getPages(),context,context.getSelectCond());
         List<ProductPlan> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<ProductPlan> listNormal(ProductPlanSearchContext context) {
+   public List<ProductPlan> listNormal(ProductPlanSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("UPDATE_TIME,DESC");
         List<ProductPlan> list = baseMapper.listNormal(context,context.getSelectCond());
         return list;
-    }
-
-    public List<ProductPlan> findByProductId(List<String> productIds) {
+   }
+	
+	public List<ProductPlan> findByProductId(List<String> productIds){
         List<ProductPlan> list = baseMapper.findByProductId(productIds);
-        return list;
-    }
-    public boolean removeByProductId(String productId) {
+        return list;	
+	}
+
+	public boolean removeByProductId(String productId){
         return this.remove(Wrappers.<ProductPlan>lambdaQuery().eq(ProductPlan::getProductId,productId));
-    }
+	}
 
-    public boolean resetByProductId(String productId) {
-        return this.update(Wrappers.<ProductPlan>lambdaUpdate().eq(ProductPlan::getProductId,productId));
-    }
-
-    public boolean saveByProduct(Product product,List<ProductPlan> list) {
+	public boolean resetByProductId(String productId){
+		return this.update(Wrappers.<ProductPlan>lambdaUpdate().eq(ProductPlan::getProductId,productId));
+	}
+	public boolean saveByProduct(Product product, List<ProductPlan> list){
         if(list==null)
             return true;
         Map<String,ProductPlan> before = findByProductId(product.getId()).stream().collect(Collectors.toMap(ProductPlan::getId,e->e));
+
         List<ProductPlan> update = new ArrayList<>();
         List<ProductPlan> create = new ArrayList<>();
 
@@ -203,18 +201,21 @@ public abstract class AbstractProductPlanService extends ServiceImpl<ProductPlan
         }
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
             return false;
         else
             return true;
+			
+	}
+
+    public void fillParentData(ProductPlan et) {
+        if(Entities.PRODUCT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setProductId((String)et.getContextParentKey());
+        }
     }
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -234,8 +235,8 @@ public abstract class AbstractProductPlanService extends ServiceImpl<ProductPlan
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return ProductPlanMapper.class;
     }
@@ -244,4 +245,5 @@ public abstract class AbstractProductPlanService extends ServiceImpl<ProductPlan
     protected Class currentModelClass() {
         return ProductPlan.class;
     }
+
 }

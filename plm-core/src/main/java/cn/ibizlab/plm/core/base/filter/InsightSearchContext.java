@@ -38,11 +38,11 @@ import cn.ibizlab.plm.core.base.domain.Insight;
 public class InsightSearchContext extends QueryWrapperContext<Insight> {
 
     /**
-     * 报表类型EQ
+     * 图表类型EQ
      */
     @JsonProperty("n_type_eq")
     @JSONField(name = "n_type_eq")
-    @ApiModelProperty("报表类型EQ")
+    @ApiModelProperty("图表类型EQ")
     private String typeEQ;
 
     /**

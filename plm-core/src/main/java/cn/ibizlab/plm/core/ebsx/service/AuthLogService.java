@@ -17,7 +17,7 @@ import cn.ibizlab.plm.core.ebsx.filter.AuthLogSearchContext;
  *
  * @author generator
  */
-public interface AuthLogService {
+public interface AuthLogService{
 
     /**
      * 获取当前Service
@@ -29,91 +29,32 @@ public interface AuthLogService {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    AuthLog get(AuthLog et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default AuthLog get(String key) {
-        return getById(key);
-    }
-    default AuthLog getById(String key) {
-        return null;
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<AuthLog> getByIds(Collection<String> ids) {
-        List<AuthLog> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new AuthLog().setLogId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<AuthLog> getByEntities(List<AuthLog> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    AuthLog getDraft(AuthLog et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(AuthLog et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(AuthLog et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<AuthLog> list);
+    boolean create(List<AuthLog> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(AuthLog et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<AuthLog> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    boolean save(AuthLog et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<AuthLog> list);
+    boolean update(List<AuthLog> list);
 
     /**
      * 主键删除
@@ -123,14 +64,7 @@ public interface AuthLogService {
     default boolean remove(String key) {
         return getSelf().remove(new AuthLog().setLogId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -140,13 +74,13 @@ public interface AuthLogService {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<AuthLog> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new AuthLog().setLogId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new AuthLog().setLogId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -154,7 +88,86 @@ public interface AuthLogService {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<AuthLog> entities);
+    boolean remove(List<AuthLog> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default AuthLog get(String key) {
+        return getSelf().get(new AuthLog().setLogId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    AuthLog get(AuthLog et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<AuthLog> get(Collection<String> keys) {
+        List<AuthLog> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new AuthLog().setLogId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<AuthLog> get(List<AuthLog> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    AuthLog getDraft(AuthLog et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(AuthLog et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(AuthLog et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<AuthLog> list);
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<AuthLog> fetchDefault(AuthLogSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<AuthLog> listDefault(AuthLogSearchContext context);
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<AuthLog> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -171,22 +184,7 @@ public interface AuthLogService {
         }
         return rt;
     }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<AuthLog> searchDefault(AuthLogSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<AuthLog> listDefault(AuthLogSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -194,6 +192,7 @@ public interface AuthLogService {
     default AuthLog getEntity() {
         return new AuthLog();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -201,4 +200,5 @@ public interface AuthLogService {
     default AuthLogSearchContext getSearchContext() {
         return new AuthLogSearchContext();
     }
+
 }

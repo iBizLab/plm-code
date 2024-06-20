@@ -13,9 +13,10 @@
 		<result property="parentVersionId" column="parent_version_id" />
 		<result property="targetVersionId" column="target_version_id" />
 		<result property="curVersionId" column="cur_version_id" />
+		<result property="relationType" column="relation_type" />
+		<result property="createMan" column="create_man" />
 		<result property="createTime" column="create_time" />
 		<result property="updateMan" column="update_man" />
-		<result property="createMan" column="create_man" />
 		<result property="updateTime" column="update_time" />
         <association property="principalBaseline" javaType="cn.ibizlab.plm.core.base.domain.Baseline" column="principal_id" select="cn.ibizlab.plm.core.base.mapper.BaselineMapper.selectById" fetchType="lazy"></association>
         <association property="principalIdea" javaType="cn.ibizlab.plm.core.prodmgmt.domain.Idea" column="principal_id" select="cn.ibizlab.plm.core.prodmgmt.mapper.IdeaMapper.selectById" fetchType="lazy"></association>
@@ -23,6 +24,7 @@
         <association property="reviewContentExtend" javaType="cn.ibizlab.plm.core.testmgmt.domain.ReviewContentExtend" column="id" select="cn.ibizlab.plm.core.testmgmt.mapper.ReviewContentExtendMapper.selectById" fetchType="lazy"></association>
         <association property="targetCustomer" javaType="cn.ibizlab.plm.core.prodmgmt.domain.Customer" column="target_id" select="cn.ibizlab.plm.core.prodmgmt.mapper.CustomerMapper.selectById" fetchType="lazy"></association>
         <association property="targetIdea" javaType="cn.ibizlab.plm.core.prodmgmt.domain.Idea" column="target_id" select="cn.ibizlab.plm.core.prodmgmt.mapper.IdeaMapper.selectById" fetchType="lazy"></association>
+        <association property="targetPage" javaType="cn.ibizlab.plm.core.wiki.domain.ArticlePage" column="target_id" select="cn.ibizlab.plm.core.wiki.mapper.ArticlePageMapper.selectById" fetchType="lazy"></association>
         <association property="targetProductPlanCategory" javaType="cn.ibizlab.plm.core.prodmgmt.domain.ProductPlan" column="target_id" select="cn.ibizlab.plm.core.prodmgmt.mapper.ProductPlanMapper.selectById" fetchType="lazy"></association>
         <association property="targetTestCase" javaType="cn.ibizlab.plm.core.testmgmt.domain.TestCase" column="target_id" select="cn.ibizlab.plm.core.testmgmt.mapper.TestCaseMapper.selectById" fetchType="lazy"></association>
         <association property="targetTicket" javaType="cn.ibizlab.plm.core.prodmgmt.domain.Ticket" column="target_id" select="cn.ibizlab.plm.core.prodmgmt.mapper.TicketMapper.selectById" fetchType="lazy"></association>
@@ -58,111 +60,111 @@
     </delete>
 
     <sql id="default" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1   ]]>  
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`RELATION_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1   ]]>  
     </sql>
 
     <sql id="view" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1   ]]>  
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`RELATION_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1   ]]>  
     </sql>
 
     <sql id="all" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1   ]]>  
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`RELATION_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1   ]]>  
     </sql>
 
     <sql id="baselineRelationWorkItem" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1   ]]>  where  <![CDATA[ ( t1.`PRINCIPAL_ID` = #{ctx.webcontext.baseline}  AND  t1.`PRINCIPAL_TYPE` = 'baseline'  AND  t1.`TARGET_TYPE` = 'work_item' ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`RELATION_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1   ]]>  where  <![CDATA[ ( t1.`PRINCIPAL_ID` = #{ctx.webcontext.baseline}  AND  t1.`PRINCIPAL_TYPE` = 'baseline'  AND  t1.`TARGET_TYPE` = 'work_item' ) ]]> 
     </sql>
 
     <sql id="existsRunRelationBug" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1   ]]>  where  <![CDATA[ ( t1.`TARGET_TYPE` = 'work_item'  AND  t1.`PRINCIPAL_TYPE` = 'run'  AND  t1.`TARGET_ID` = #{ctx.datacontext.target_id}  AND  exists(select 1 from run t2 where t1.principal_id = t2.id and t2.case_id = #{ctx.datacontext.principal_id}) ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`RELATION_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1   ]]>  where  <![CDATA[ ( t1.`TARGET_TYPE` = 'work_item'  AND  t1.`PRINCIPAL_TYPE` = 'run'  AND  t1.`TARGET_ID` = #{ctx.datacontext.target_id}  AND  exists(select 1 from run t2 where t1.principal_id = t2.id and t2.case_id = #{ctx.datacontext.principal_id}) ) ]]> 
     </sql>
 
     <sql id="ideaReCustomer" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `CUSTOMER` t11 ON t1.`TARGET_ID` = t11.`ID`    ]]>  where  <![CDATA[ ( t1.`PRINCIPAL_TYPE` = 'idea'  AND  t1.`TARGET_TYPE` = 'customer'  AND  t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id} ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`RELATION_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `CUSTOMER` t11 ON t1.`TARGET_ID` = t11.`ID`    ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_TYPE` = 'idea'  AND  t1.`TARGET_TYPE` = 'customer'  AND  t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id} ) ]]> 
     </sql>
 
     <sql id="ideaReIdea" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `IDEA` t11 ON t1.`TARGET_ID` = t11.`ID`    ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id}  AND  t1.`PRINCIPAL_TYPE` = 'idea'  AND  t1.`TARGET_TYPE` = 'idea' ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`RELATION_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `IDEA` t11 ON t1.`TARGET_ID` = t11.`ID`    ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id}  AND  t1.`PRINCIPAL_TYPE` = 'idea'  AND  t1.`TARGET_TYPE` = 'idea' ) ]]> 
     </sql>
 
     <sql id="ideaReTestCase" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `TEST_CASE` t11 ON t1.`TARGET_ID` = t11.`ID`    ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id}  AND  t1.`PRINCIPAL_TYPE` = 'idea'  AND  t1.`TARGET_TYPE` = 'test_case' ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`RELATION_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `TEST_CASE` t11 ON t1.`TARGET_ID` = t11.`ID`    ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id}  AND  t1.`PRINCIPAL_TYPE` = 'idea'  AND  t1.`TARGET_TYPE` = 'test_case' ) ]]> 
     </sql>
 
     <sql id="ideaReTicket" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `TICKET` t11 ON t1.`TARGET_ID` = t11.`ID`    ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id}  AND  t1.`PRINCIPAL_TYPE` = 'idea'  AND  t1.`TARGET_TYPE` = 'ticket' ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`RELATION_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `TICKET` t11 ON t1.`TARGET_ID` = t11.`ID`    ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id}  AND  t1.`PRINCIPAL_TYPE` = 'idea'  AND  t1.`TARGET_TYPE` = 'ticket' ) ]]> 
     </sql>
 
     <sql id="ideaReWorkItem" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `WORK_ITEM` t11 ON t1.`TARGET_ID` = t11.`ID`    ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id}  AND  t1.`PRINCIPAL_TYPE` = 'idea'  AND  t1.`TARGET_TYPE` = 'work_item' ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`RELATION_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `WORK_ITEM` t11 ON t1.`TARGET_ID` = t11.`ID`    ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id}  AND  t1.`PRINCIPAL_TYPE` = 'idea'  AND  t1.`TARGET_TYPE` = 'work_item' ) ]]> 
     </sql>
 
     <sql id="ideaVersionRelation" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1   ]]>  where  <![CDATA[ ( t1.`PRINCIPAL_TYPE` = 'idea'  AND  ( t1.`TARGET_TYPE` = 'customer'  OR  t1.`TARGET_TYPE` = 'idea'  OR  t1.`TARGET_TYPE` = 'ticket'  OR  t1.`TARGET_TYPE` = 'work_item'  OR  t1.`TARGET_TYPE` = 'test_case' ) ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`RELATION_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1   ]]>  where  <![CDATA[ ( t1.`PRINCIPAL_TYPE` = 'idea'  AND  ( t1.`TARGET_TYPE` = 'customer'  OR  t1.`TARGET_TYPE` = 'idea'  OR  t1.`TARGET_TYPE` = 'ticket'  OR  t1.`TARGET_TYPE` = 'work_item'  OR  t1.`TARGET_TYPE` = 'test_case' ) ) ]]> 
     </sql>
 
     <sql id="reviewReTestCase" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1   ]]>  where  <![CDATA[ ( t1.`PRINCIPAL_TYPE` = 'test_case'  AND  t1.`TARGET_TYPE` = 'idea'  AND  t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id}  AND  EXISTS (         SELECT 1         FROM `test_case` t2         WHERE t1.`TARGET_ID` = t2.`ID`         AND t2.`is_deleted` = 0     ) ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`RELATION_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1   ]]>  where  <![CDATA[ ( t1.`PRINCIPAL_TYPE` = 'test_case'  AND  t1.`TARGET_TYPE` = 'idea'  AND  t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id}  AND  EXISTS (         SELECT 1         FROM `test_case` t2         WHERE t1.`TARGET_ID` = t2.`ID`         AND t2.`is_deleted` = 0     ) ) ]]> 
     </sql>
 
     <sql id="runReBug" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `WORK_ITEM` t11 ON t1.`TARGET_ID` = t11.`ID`   LEFT JOIN `WORK_ITEM_TYPE` t21 ON t11.`WORK_ITEM_TYPE_ID` = t21.`ID`   ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0  AND  t21.`GROUP` = 'bug' ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_TYPE` = 'run'  AND  t1.`TARGET_TYPE` = 'work_item'  AND  t1.`PRINCIPAL_ID` = #{ctx.webcontext.run} ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`RELATION_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `WORK_ITEM` t11 ON t1.`TARGET_ID` = t11.`ID`   LEFT JOIN `WORK_ITEM_TYPE` t21 ON t11.`WORK_ITEM_TYPE_ID` = t21.`ID`   ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0  AND  t21.`GROUP` = 'bug' ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_TYPE` = 'run'  AND  t1.`TARGET_TYPE` = 'work_item'  AND  t1.`PRINCIPAL_ID` = #{ctx.webcontext.run} ) ]]> 
     </sql>
 
     <sql id="runReIdea" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `IDEA` t11 ON t1.`TARGET_ID` = t11.`ID`    ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_TYPE` = 'test_case'  AND  t1.`TARGET_TYPE` = 'idea'  AND  t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id} ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`RELATION_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `IDEA` t11 ON t1.`TARGET_ID` = t11.`ID`    ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_TYPE` = 'test_case'  AND  t1.`TARGET_TYPE` = 'idea'  AND  t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id} ) ]]> 
     </sql>
 
     <sql id="runReWorkItem" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `WORK_ITEM` t11 ON t1.`TARGET_ID` = t11.`ID`   LEFT JOIN `WORK_ITEM_TYPE` t21 ON t11.`WORK_ITEM_TYPE_ID` = t21.`ID`   ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0  AND  t21.`GROUP` <> 'bug' ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_TYPE` = 'test_case'  AND  t1.`TARGET_TYPE` = 'work_item'  AND  t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id} ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`RELATION_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `WORK_ITEM` t11 ON t1.`TARGET_ID` = t11.`ID`   LEFT JOIN `WORK_ITEM_TYPE` t21 ON t11.`WORK_ITEM_TYPE_ID` = t21.`ID`   ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0  AND  t21.`GROUP` <> 'bug' ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_TYPE` = 'test_case'  AND  t1.`TARGET_TYPE` = 'work_item'  AND  t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id} ) ]]> 
     </sql>
 
     <sql id="testCaseReBug" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `WORK_ITEM` t11 ON t1.`TARGET_ID` = t11.`ID`   LEFT JOIN `WORK_ITEM_TYPE` t21 ON t11.`WORK_ITEM_TYPE_ID` = t21.`ID`   ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0  AND  t21.`GROUP` = 'bug' ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_TYPE` = 'test_case'  AND  t1.`TARGET_TYPE` = 'work_item'  AND  t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id} ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`RELATION_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `WORK_ITEM` t11 ON t1.`TARGET_ID` = t11.`ID`   LEFT JOIN `WORK_ITEM_TYPE` t21 ON t11.`WORK_ITEM_TYPE_ID` = t21.`ID`   ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0  AND  t21.`GROUP` = 'bug' ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_TYPE` = 'test_case'  AND  t1.`TARGET_TYPE` = 'work_item'  AND  t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id} ) ]]> 
     </sql>
 
     <sql id="testCaseReIdea" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `IDEA` t11 ON t1.`TARGET_ID` = t11.`ID`    ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_TYPE` = 'test_case'  AND  t1.`TARGET_TYPE` = 'idea'  AND  t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id} ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`RELATION_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `IDEA` t11 ON t1.`TARGET_ID` = t11.`ID`    ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_TYPE` = 'test_case'  AND  t1.`TARGET_TYPE` = 'idea'  AND  t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id} ) ]]> 
     </sql>
 
     <sql id="testCaseReWorkItem" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `WORK_ITEM` t11 ON t1.`TARGET_ID` = t11.`ID`   LEFT JOIN `WORK_ITEM_TYPE` t21 ON t11.`WORK_ITEM_TYPE_ID` = t21.`ID`   ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0  AND  t21.`GROUP` <> 'bug' ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_TYPE` = 'test_case'  AND  t1.`TARGET_TYPE` = 'work_item'  AND  t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id} ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`RELATION_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `WORK_ITEM` t11 ON t1.`TARGET_ID` = t11.`ID`   LEFT JOIN `WORK_ITEM_TYPE` t21 ON t11.`WORK_ITEM_TYPE_ID` = t21.`ID`   ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0  AND  t21.`GROUP` <> 'bug' ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_TYPE` = 'test_case'  AND  t1.`TARGET_TYPE` = 'work_item'  AND  t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id} ) ]]> 
     </sql>
 
     <sql id="testCaseVersionRelation" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1   ]]>  where  <![CDATA[ ( t1.`PRINCIPAL_TYPE` = 'test_case'  AND  ( t1.`TARGET_TYPE` = 'work_item'  OR  t1.`TARGET_TYPE` = 'idea' ) ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`RELATION_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1   ]]>  where  <![CDATA[ ( t1.`PRINCIPAL_TYPE` = 'test_case'  AND  ( t1.`TARGET_TYPE` = 'work_item'  OR  t1.`TARGET_TYPE` = 'idea' ) ) ]]> 
     </sql>
 
     <sql id="ticketReIdea" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `IDEA` t11 ON t1.`TARGET_ID` = t11.`ID`    ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id}  AND  t1.`PRINCIPAL_TYPE` = 'ticket'  AND  t1.`TARGET_TYPE` = 'idea' ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`RELATION_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `IDEA` t11 ON t1.`TARGET_ID` = t11.`ID`    ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id}  AND  t1.`PRINCIPAL_TYPE` = 'ticket'  AND  t1.`TARGET_TYPE` = 'idea' ) ]]> 
     </sql>
 
     <sql id="ticketReSelf" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `TICKET` t11 ON t1.`TARGET_ID` = t11.`ID`    ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id}  AND  t1.`TARGET_TYPE` = 'ticket'  AND  t1.`PRINCIPAL_TYPE` = 'ticket' ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`RELATION_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `TICKET` t11 ON t1.`TARGET_ID` = t11.`ID`    ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id}  AND  t1.`TARGET_TYPE` = 'ticket'  AND  t1.`PRINCIPAL_TYPE` = 'ticket' ) ]]> 
     </sql>
 
     <sql id="ticketReWorkItem" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `WORK_ITEM` t11 ON t1.`TARGET_ID` = t11.`ID`    ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id}  AND  t1.`TARGET_TYPE` = 'work_item'  AND  t1.`PRINCIPAL_TYPE` = 'ticket' ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`RELATION_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `WORK_ITEM` t11 ON t1.`TARGET_ID` = t11.`ID`    ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id}  AND  t1.`TARGET_TYPE` = 'work_item'  AND  t1.`PRINCIPAL_TYPE` = 'ticket' ) ]]> 
     </sql>
 
     <sql id="workItemRelationIdea" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `IDEA` t11 ON t1.`TARGET_ID` = t11.`ID`    ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id}  AND  t1.`PRINCIPAL_TYPE` = 'work_item'  AND  t1.`TARGET_TYPE` = 'idea' ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`RELATION_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `IDEA` t11 ON t1.`TARGET_ID` = t11.`ID`    ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id}  AND  t1.`PRINCIPAL_TYPE` = 'work_item'  AND  t1.`TARGET_TYPE` = 'idea' ) ]]> 
     </sql>
 
     <sql id="workItemRelationSelf" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `WORK_ITEM` t11 ON t1.`TARGET_ID` = t11.`ID`    ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id}  AND  t1.`PRINCIPAL_TYPE` = 'work_item'  AND  t1.`TARGET_TYPE` = 'work_item' ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`RELATION_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `WORK_ITEM` t11 ON t1.`TARGET_ID` = t11.`ID`    ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id}  AND  t1.`PRINCIPAL_TYPE` = 'work_item'  AND  t1.`TARGET_TYPE` = 'work_item' ) ]]> 
     </sql>
 
     <sql id="workItemRelationTestCase" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `TEST_CASE` t11 ON t1.`TARGET_ID` = t11.`ID`    ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_TYPE` = 'work_item'  AND  t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id}  AND  t1.`TARGET_TYPE` = 'test_case' ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`RELATION_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `TEST_CASE` t11 ON t1.`TARGET_ID` = t11.`ID`    ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_TYPE` = 'work_item'  AND  t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id}  AND  t1.`TARGET_TYPE` = 'test_case' ) ]]> 
     </sql>
 
     <sql id="workItemRelationTicket" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `TICKET` t11 ON t1.`TARGET_ID` = t11.`ID`    ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id}  AND  t1.`PRINCIPAL_TYPE` = 'work_item'  AND  t1.`TARGET_TYPE` = 'ticket' ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`RELATION_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `TICKET` t11 ON t1.`TARGET_ID` = t11.`ID`    ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id}  AND  t1.`PRINCIPAL_TYPE` = 'work_item'  AND  t1.`TARGET_TYPE` = 'ticket' ) ]]> 
     </sql>
 
     <sql id="workItemVersionRelation" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1   ]]>  where  <![CDATA[ ( t1.`PRINCIPAL_TYPE` = 'work_item'  AND  ( t1.`TARGET_TYPE` = 'run'  OR  t1.`TARGET_TYPE` = 'idea'  OR  t1.`TARGET_TYPE` = 'ticket'  OR  t1.`TARGET_TYPE` = 'test_case'  OR  t1.`TARGET_TYPE` = 'work_item' ) ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`RELATION_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1   ]]>  where  <![CDATA[ ( t1.`PRINCIPAL_TYPE` = 'work_item'  AND  ( t1.`TARGET_TYPE` = 'run'  OR  t1.`TARGET_TYPE` = 'idea'  OR  t1.`TARGET_TYPE` = 'ticket'  OR  t1.`TARGET_TYPE` = 'test_case'  OR  t1.`TARGET_TYPE` = 'work_item' ) ) ]]> 
     </sql>
 
     <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.base.filter.RelationSearchContext"  resultMap="RelationResultMap">
@@ -716,6 +718,13 @@
             <include refid="default"/>
         ) t1
         where id in <foreach item="id" index="index" collection="ids" open="(" separator="," close=")">#{id}</foreach> 
+    </select>
+
+    <select id="findByTargetId" resultMap="RelationResultMap">
+        select t1.* from (
+            <include refid="default"/>
+        ) t1
+        where target_id in <foreach item="id" index="index" collection="targetIds" open="(" separator="," close=")">#{id}</foreach> 
     </select>
 
     <select id="findByTargetId" resultMap="RelationResultMap">

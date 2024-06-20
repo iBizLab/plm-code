@@ -21,12 +21,15 @@ import io.swagger.annotations.*;
 import cn.ibizlab.plm.core.base.domain.Department;
 import cn.ibizlab.plm.core.base.domain.Job;
 import cn.ibizlab.plm.core.prodmgmt.domain.Customer;
+import cn.ibizlab.plm.core.team.domain.DiscussMember;
 import cn.ibizlab.plm.core.prodmgmt.domain.Idea;
+import cn.ibizlab.plm.core.insight.domain.InsightMember;
 import cn.ibizlab.plm.core.testmgmt.domain.LibraryMember;
 import cn.ibizlab.plm.core.base.domain.Member;
 import cn.ibizlab.plm.core.base.domain.PortfolioMember;
 import cn.ibizlab.plm.core.prodmgmt.domain.ProductMember;
 import cn.ibizlab.plm.core.projmgmt.domain.ProjectMember;
+import cn.ibizlab.plm.core.base.domain.ResourceMember;
 import cn.ibizlab.plm.core.wiki.domain.SpaceMember;
 import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
 import cn.ibizlab.plm.core.prodmgmt.domain.Ticket;
@@ -45,13 +48,12 @@ import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
 @ApiModel(value = "USER", description = "企业用户")
 public class User extends EntityBase implements Serializable
 {
-
     /**
      * 姓名
      */
     @DEField(name = "display_name")
-    @JsonProperty("display_name")
     @JSONField(name = "display_name")
+    @JsonProperty("display_name")
     @ApiModelProperty(value = "display_name", notes = "姓名")
     private String displayName;
 
@@ -59,8 +61,8 @@ public class User extends EntityBase implements Serializable
      * 邮箱
      */
     @DEField(name = "email")
-    @JsonProperty("email")
     @JSONField(name = "email")
+    @JsonProperty("email")
     @ApiModelProperty(value = "email", notes = "邮箱")
     private String email;
 
@@ -68,8 +70,8 @@ public class User extends EntityBase implements Serializable
      * 手机号
      */
     @DEField(name = "mobile")
-    @JsonProperty("mobile")
     @JSONField(name = "mobile")
+    @JsonProperty("mobile")
     @ApiModelProperty(value = "mobile", notes = "手机号")
     private String mobile;
 
@@ -77,8 +79,8 @@ public class User extends EntityBase implements Serializable
      * 密码
      */
     @DEField(name = "password")
-    @JsonProperty("password")
     @JSONField(name = "password")
+    @JsonProperty("password")
     @ApiModelProperty(value = "password", notes = "密码")
     private String password;
 
@@ -86,8 +88,8 @@ public class User extends EntityBase implements Serializable
      * 工号
      */
     @DEField(name = "employee_number")
-    @JsonProperty("employee_number")
     @JSONField(name = "employee_number")
+    @JsonProperty("employee_number")
     @ApiModelProperty(value = "employee_number", notes = "工号")
     private String employeeNumber;
 
@@ -95,8 +97,8 @@ public class User extends EntityBase implements Serializable
      * 头像
      */
     @DEField(name = "avatar")
-    @JsonProperty("avatar")
     @JSONField(name = "avatar")
+    @JsonProperty("avatar")
     @ApiModelProperty(value = "avatar", notes = "头像")
     private String avatar;
 
@@ -104,18 +106,27 @@ public class User extends EntityBase implements Serializable
      * 状态
      */
     @DEField(name = "status")
-    @JsonProperty("status")
     @JSONField(name = "status")
+    @JsonProperty("status")
     @ApiModelProperty(value = "status", notes = "状态")
     private String status;
+
+    /**
+     * 统计
+     */
+    @DEField(name = "report_flag" , dict = "user_report_flag")
+    @JSONField(name = "report_flag")
+    @JsonProperty("report_flag")
+    @ApiModelProperty(value = "report_flag", notes = "统计")
+    private Integer reportFlag;
 
     /**
      * 标识
      */
     @Id
     @DEField(name = "id" , isKeyField = true)
-    @JsonProperty("id")
     @JSONField(name = "id")
+    @JsonProperty("id")
     @ApiModelProperty(value = "id", notes = "标识")
     private String id;
 
@@ -123,8 +134,8 @@ public class User extends EntityBase implements Serializable
      * 登录名
      */
     @DEField(name = "name")
-    @JsonProperty("name")
     @JSONField(name = "name")
+    @JsonProperty("name")
     @ApiModelProperty(value = "name", notes = "登录名")
     private String name;
 
@@ -132,46 +143,46 @@ public class User extends EntityBase implements Serializable
      * 建立人
      */
     @DEField(name = "create_man" , preType = DEPredefinedFieldType.CREATEMAN , dict = "SysOperator")
-    @JsonProperty("create_man")
     @JSONField(name = "create_man")
+    @JsonProperty("create_man")
     @ApiModelProperty(value = "create_man", notes = "建立人")
     private String createMan;
-
-    /**
-     * 更新时间
-     */
-    @DEField(name = "update_time" , preType = DEPredefinedFieldType.UPDATEDATE)
-    @JsonProperty("update_time")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "update_time", notes = "更新时间")
-    private Date updateTime;
-
-    /**
-     * 更新人
-     */
-    @DEField(name = "update_man" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
-    @JsonProperty("update_man")
-    @JSONField(name = "update_man")
-    @ApiModelProperty(value = "update_man", notes = "更新人")
-    private String updateMan;
 
     /**
      * 建立时间
      */
     @DEField(name = "create_time" , preType = DEPredefinedFieldType.CREATEDATE)
-    @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("create_time")
     @ApiModelProperty(value = "create_time", notes = "建立时间")
     private Date createTime;
+
+    /**
+     * 更新人
+     */
+    @DEField(name = "update_man" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
+    @JSONField(name = "update_man")
+    @JsonProperty("update_man")
+    @ApiModelProperty(value = "update_man", notes = "更新人")
+    private String updateMan;
+
+    /**
+     * 更新时间
+     */
+    @DEField(name = "update_time" , preType = DEPredefinedFieldType.UPDATEDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("update_time")
+    @ApiModelProperty(value = "update_time", notes = "更新时间")
+    private Date updateTime;
 
     /**
      * 部门标识
      */
     @DEField(name = "department_id")
-    @JsonProperty("department_id")
     @JSONField(name = "department_id")
+    @JsonProperty("department_id")
     @ApiModelProperty(value = "department_id", notes = "部门标识")
     private String departmentId;
 
@@ -179,8 +190,8 @@ public class User extends EntityBase implements Serializable
      * 岗位标识
      */
     @DEField(name = "job_id")
-    @JsonProperty("job_id")
     @JSONField(name = "job_id")
+    @JsonProperty("job_id")
     @ApiModelProperty(value = "job_id", notes = "岗位标识")
     private String jobId;
 
@@ -188,8 +199,8 @@ public class User extends EntityBase implements Serializable
      * 职位名称
      */
     @DEField(name = "job_name")
-    @JsonProperty("job_name")
     @JSONField(name = "job_name")
+    @JsonProperty("job_name")
     @ApiModelProperty(value = "job_name", notes = "职位名称")
     private String jobName;
 
@@ -197,26 +208,145 @@ public class User extends EntityBase implements Serializable
      * 部门名称
      */
     @DEField(name = "department_name")
-    @JsonProperty("department_name")
     @JSONField(name = "department_name")
+    @JsonProperty("department_name")
     @ApiModelProperty(value = "department_name", notes = "部门名称")
     private String departmentName;
 
     /**
-     * 部门
+     * 用户-部门
      */
-    @JSONField(name = "department")
-    @JsonProperty("department")
+    @DEField()
+    @JsonIgnore
+    @JSONField(serialize = false)
     @ApiModelProperty(value = "department", notes = "用户-部门")
     private Department department;
 
     /**
-     * 岗位
+     * 用户-岗位
      */
-    @JSONField(name = "job")
-    @JsonProperty("job")
+    @DEField()
+    @JsonIgnore
+    @JSONField(serialize = false)
     @ApiModelProperty(value = "job", notes = "用户-岗位")
     private Job job;
+
+    /**
+    * 设置 [姓名]
+    */
+    public User setDisplayName(String displayName) {
+        this.displayName = displayName;
+        this.modify("display_name", displayName);
+        return this;
+    }
+
+    /**
+    * 设置 [邮箱]
+    */
+    public User setEmail(String email) {
+        this.email = email;
+        this.modify("email", email);
+        return this;
+    }
+
+    /**
+    * 设置 [手机号]
+    */
+    public User setMobile(String mobile) {
+        this.mobile = mobile;
+        this.modify("mobile", mobile);
+        return this;
+    }
+
+    /**
+    * 设置 [密码]
+    */
+    public User setPassword(String password) {
+        this.password = password;
+        this.modify("password", password);
+        return this;
+    }
+
+    /**
+    * 设置 [工号]
+    */
+    public User setEmployeeNumber(String employeeNumber) {
+        this.employeeNumber = employeeNumber;
+        this.modify("employee_number", employeeNumber);
+        return this;
+    }
+
+    /**
+    * 设置 [头像]
+    */
+    public User setAvatar(String avatar) {
+        this.avatar = avatar;
+        this.modify("avatar", avatar);
+        return this;
+    }
+
+    /**
+    * 设置 [状态]
+    */
+    public User setStatus(String status) {
+        this.status = status;
+        this.modify("status", status);
+        return this;
+    }
+
+    /**
+    * 设置 [统计]
+    */
+    public User setReportFlag(Integer reportFlag) {
+        this.reportFlag = reportFlag;
+        this.modify("report_flag", reportFlag);
+        return this;
+    }
+
+    /**
+    * 设置 [登录名]
+    */
+    public User setName(String name) {
+        this.name = name;
+        this.modify("name", name);
+        return this;
+    }
+
+    /**
+    * 设置 [部门标识]
+    */
+    public User setDepartmentId(String departmentId) {
+        this.departmentId = departmentId;
+        this.modify("department_id", departmentId);
+        return this;
+    }
+
+    /**
+    * 设置 [岗位标识]
+    */
+    public User setJobId(String jobId) {
+        this.jobId = jobId;
+        this.modify("job_id", jobId);
+        return this;
+    }
+
+    /**
+    * 设置 [职位名称]
+    */
+    public User setJobName(String jobName) {
+        this.jobName = jobName;
+        this.modify("job_name", jobName);
+        return this;
+    }
+
+    /**
+    * 设置 [部门名称]
+    */
+    public User setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
+        this.modify("department_name", departmentName);
+        return this;
+    }
 
 
     /**

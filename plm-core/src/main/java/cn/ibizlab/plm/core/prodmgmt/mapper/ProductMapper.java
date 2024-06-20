@@ -119,6 +119,25 @@ public interface ProductMapper extends BaseMapper<Product> {
     List<Product> listFavorite(@Param("ctx") ProductSearchContext context, @Param("ew") Wrapper<Product> wrapper);
 
     /**
+     * 数据集合main分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Product> searchMain(IPage<Product> page, @Param("ctx") ProductSearchContext context, @Param("ew") Wrapper<Product> wrapper);
+    
+    /**
+     * 数据集合main查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Product> listMain(@Param("ctx") ProductSearchContext context, @Param("ew") Wrapper<Product> wrapper);
+
+    /**
      * 数据集合normal分页查询
      * 
      * @param page
@@ -136,6 +155,25 @@ public interface ProductMapper extends BaseMapper<Product> {
      * @return
      */
     List<Product> listNormal(@Param("ctx") ProductSearchContext context, @Param("ew") Wrapper<Product> wrapper);
+
+    /**
+     * 数据集合quick_user分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Product> searchQuickUser(IPage<Product> page, @Param("ctx") ProductSearchContext context, @Param("ew") Wrapper<Product> wrapper);
+    
+    /**
+     * 数据集合quick_user查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Product> listQuickUser(@Param("ctx") ProductSearchContext context, @Param("ew") Wrapper<Product> wrapper);
 
     /**
      * 数据集合reader分页查询
@@ -284,5 +322,4 @@ public interface ProductMapper extends BaseMapper<Product> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
 }

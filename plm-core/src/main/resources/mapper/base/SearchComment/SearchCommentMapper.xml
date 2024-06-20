@@ -9,10 +9,10 @@
 		<result property="principalName" column="principal_name" />
 		<result property="principalType" column="principal_type" />
 		<result property="ownerType" column="owner_type" />
+		<result property="createMan" column="create_man" />
+		<result property="createTime" column="create_time" />
 		<result property="updateMan" column="update_man" />
 		<result property="updateTime" column="update_time" />
-		<result property="createTime" column="create_time" />
-		<result property="createMan" column="create_man" />
         <association property="derCustomer" javaType="cn.ibizlab.plm.core.prodmgmt.domain.Customer" column="principal_id" select="cn.ibizlab.plm.core.prodmgmt.mapper.CustomerMapper.selectById" fetchType="lazy"></association>
         <association property="derIdea" javaType="cn.ibizlab.plm.core.prodmgmt.domain.Idea" column="principal_id" select="cn.ibizlab.plm.core.prodmgmt.mapper.IdeaMapper.selectById" fetchType="lazy"></association>
         <association property="derPage" javaType="cn.ibizlab.plm.core.wiki.domain.ArticlePage" column="principal_id" select="cn.ibizlab.plm.core.wiki.mapper.ArticlePageMapper.selectById" fetchType="lazy"></association>

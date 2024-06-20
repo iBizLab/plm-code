@@ -50,7 +50,7 @@ export default {
       sysCss: {
         cssName: 'grey-span',
       },
-      text: '废弃',
+      text: '已撤回',
       textCls: 'grey-span',
       value: '50',
       id: 'item_50',

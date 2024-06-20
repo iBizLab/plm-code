@@ -51,7 +51,7 @@ public class PortfolioFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 110)
+    @ApiModelProperty(value = "标识EQ", position = 100)
 	private String idEQ;
 
     /**
@@ -59,7 +59,7 @@ public class PortfolioFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "项目集名称LIKE", position = 120)
+    @ApiModelProperty(value = "项目集名称LIKE", position = 110)
 	private String nameLIKE;
 
 

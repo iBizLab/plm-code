@@ -26,34 +26,12 @@ export default {
   ],
   appDEFields: [
     {
-      codeName: 'UpdateDate',
-      lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.UPDATEDATE',
-      },
-      logicName: '更新时间',
-      stdDataType: 5,
-      valueFormat: 'YYYY-MM-DD HH:mm:ss',
-      name: 'UPDATEDATE',
-      id: 'updatedate',
-    },
-    {
       codeName: 'PSDEFieldId',
       logicName: '实体属性标识',
       stdDataType: 25,
       stringLength: 100,
       name: 'PSDEFIELDID',
       id: 'psdefieldid',
-    },
-    {
-      codeName: 'UpdateMan',
-      lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.UPDATEMAN',
-      },
-      logicName: '更新人',
-      stdDataType: 25,
-      stringLength: 60,
-      name: 'UPDATEMAN',
-      id: 'updateman',
     },
     {
       codeName: 'PSDEFieldName',
@@ -63,6 +41,17 @@ export default {
       enableQuickSearch: true,
       name: 'PSDEFIELDNAME',
       id: 'psdefieldname',
+    },
+    {
+      codeName: 'CreateMan',
+      lnlanguageRes: {
+        lanResTag: 'DEF.LNAME.CREATEMAN',
+      },
+      logicName: '建立人',
+      stdDataType: 25,
+      stringLength: 60,
+      name: 'CREATEMAN',
+      id: 'createman',
     },
     {
       codeName: 'CreateDate',
@@ -76,15 +65,26 @@ export default {
       id: 'createdate',
     },
     {
-      codeName: 'CreateMan',
+      codeName: 'UpdateMan',
       lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.CREATEMAN',
+        lanResTag: 'DEF.LNAME.UPDATEMAN',
       },
-      logicName: '建立人',
+      logicName: '更新人',
       stdDataType: 25,
       stringLength: 60,
-      name: 'CREATEMAN',
-      id: 'createman',
+      name: 'UPDATEMAN',
+      id: 'updateman',
+    },
+    {
+      codeName: 'UpdateDate',
+      lnlanguageRes: {
+        lanResTag: 'DEF.LNAME.UPDATEDATE',
+      },
+      logicName: '更新时间',
+      stdDataType: 5,
+      valueFormat: 'YYYY-MM-DD HH:mm:ss',
+      name: 'UPDATEDATE',
+      id: 'updatedate',
     },
     {
       codeName: 'PSDataTypeId',

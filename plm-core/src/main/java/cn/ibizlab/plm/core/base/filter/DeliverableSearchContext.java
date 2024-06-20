@@ -61,14 +61,6 @@ public class DeliverableSearchContext extends QueryWrapperContext<Deliverable> {
     @ApiModelProperty("名称LIKE")
     private String nameLIKE;
 
-    /**
-     * 名称EQ
-     */
-    @JsonProperty("n_name_eq")
-    @JSONField(name = "n_name_eq")
-    @ApiModelProperty("名称EQ")
-    private String nameEQ;
-
     @Override
     public void setContextParentKey(Serializable contextParentKey) {
         super.setContextParentKey(contextParentKey);

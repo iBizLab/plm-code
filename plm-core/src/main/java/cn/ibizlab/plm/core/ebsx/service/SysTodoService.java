@@ -17,7 +17,7 @@ import cn.ibizlab.plm.core.ebsx.filter.SysTodoSearchContext;
  *
  * @author generator
  */
-public interface SysTodoService {
+public interface SysTodoService{
 
     /**
      * 获取当前Service
@@ -29,91 +29,32 @@ public interface SysTodoService {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    SysTodo get(SysTodo et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default SysTodo get(String key) {
-        return getById(key);
-    }
-    default SysTodo getById(String key) {
-        return null;
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<SysTodo> getByIds(Collection<String> ids) {
-        List<SysTodo> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new SysTodo().setTodoId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<SysTodo> getByEntities(List<SysTodo> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    SysTodo getDraft(SysTodo et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(SysTodo et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(SysTodo et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<SysTodo> list);
+    boolean create(List<SysTodo> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(SysTodo et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<SysTodo> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    boolean save(SysTodo et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<SysTodo> list);
+    boolean update(List<SysTodo> list);
 
     /**
      * 主键删除
@@ -123,14 +64,7 @@ public interface SysTodoService {
     default boolean remove(String key) {
         return getSelf().remove(new SysTodo().setTodoId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -140,13 +74,13 @@ public interface SysTodoService {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<SysTodo> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new SysTodo().setTodoId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new SysTodo().setTodoId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -154,7 +88,122 @@ public interface SysTodoService {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<SysTodo> entities);
+    boolean remove(List<SysTodo> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default SysTodo get(String key) {
+        return getSelf().get(new SysTodo().setTodoId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    SysTodo get(SysTodo et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<SysTodo> get(Collection<String> keys) {
+        List<SysTodo> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new SysTodo().setTodoId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<SysTodo> get(List<SysTodo> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    SysTodo getDraft(SysTodo et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(SysTodo et);
+
+    /**
+    * getLinkUrl
+    * 
+    * @param key
+    * @return
+    */
+    default SysTodo getLinkUrl(String key) {
+        return getSelf().getLinkUrl(new SysTodo().setTodoId(key));
+    }
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(SysTodo et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<SysTodo> list);
+
+    /**
+    * fetchCurUser
+    * 
+    * @param context
+    * @return
+    */
+    Page<SysTodo> fetchCurUser(SysTodoSearchContext context);
+
+    /**
+    * listCurUser
+    * 
+    * @param context
+    * @return
+    */
+    List<SysTodo> listCurUser(SysTodoSearchContext context);
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<SysTodo> fetchDefault(SysTodoSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<SysTodo> listDefault(SysTodoSearchContext context);
+
+    /**
+    * getLinkUrl
+    * 
+    * @param et
+    * @return
+    */
+    default SysTodo getLinkUrl(SysTodo et) {
+        return et;
+    }
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<SysTodo> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -171,47 +220,7 @@ public interface SysTodoService {
         }
         return rt;
     }
-
-    /**
-     * GetLinkUrl
-     * 
-     * @param key
-     * @return
-     */
-    default SysTodo getLinkUrl(String key) {
-        return null;
-    }
-
-    /**
-     * searchCurUser
-     * 
-     * @param context
-     * @return
-     */
-    Page<SysTodo> searchCurUser(SysTodoSearchContext context);
-    /**
-     * listCurUser
-     * 
-     * @param context
-     * @return
-     */
-    List<SysTodo> listCurUser(SysTodoSearchContext context);
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<SysTodo> searchDefault(SysTodoSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<SysTodo> listDefault(SysTodoSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -219,6 +228,7 @@ public interface SysTodoService {
     default SysTodo getEntity() {
         return new SysTodo();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -226,4 +236,5 @@ public interface SysTodoService {
     default SysTodoSearchContext getSearchContext() {
         return new SysTodoSearchContext();
     }
+
 }

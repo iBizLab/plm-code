@@ -34,89 +34,32 @@ public interface TestCaseTemplateService extends IService<TestCaseTemplate> {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    TestCaseTemplate get(TestCaseTemplate et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default TestCaseTemplate get(String key) {
-        return getSelf().get(new TestCaseTemplate().setId(key));
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<TestCaseTemplate> getByIds(Collection<String> ids) {
-        List<TestCaseTemplate> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new TestCaseTemplate().setId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<TestCaseTemplate> getByEntities(List<TestCaseTemplate> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    TestCaseTemplate getDraft(TestCaseTemplate et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(TestCaseTemplate et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(TestCaseTemplate et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<TestCaseTemplate> list);
+    boolean create(List<TestCaseTemplate> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(TestCaseTemplate et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<TestCaseTemplate> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    @Override
-    boolean save(TestCaseTemplate et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<TestCaseTemplate> list);
+    boolean update(List<TestCaseTemplate> list);
 
     /**
      * 主键删除
@@ -126,14 +69,7 @@ public interface TestCaseTemplateService extends IService<TestCaseTemplate> {
     default boolean remove(String key) {
         return getSelf().remove(new TestCaseTemplate().setId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -143,13 +79,13 @@ public interface TestCaseTemplateService extends IService<TestCaseTemplate> {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<TestCaseTemplate> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new TestCaseTemplate().setId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new TestCaseTemplate().setId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -157,7 +93,180 @@ public interface TestCaseTemplateService extends IService<TestCaseTemplate> {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<TestCaseTemplate> entities);
+    boolean remove(List<TestCaseTemplate> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default TestCaseTemplate get(String key) {
+        return getSelf().get(new TestCaseTemplate().setId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    TestCaseTemplate get(TestCaseTemplate et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<TestCaseTemplate> get(Collection<String> keys) {
+        List<TestCaseTemplate> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new TestCaseTemplate().setId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<TestCaseTemplate> get(List<TestCaseTemplate> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    TestCaseTemplate getDraft(TestCaseTemplate et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(TestCaseTemplate et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(TestCaseTemplate et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<TestCaseTemplate> list);
+
+    /**
+    * nothing
+    * 
+    * @param et
+    * @return
+    */
+    default TestCaseTemplate nothing(TestCaseTemplate et) {
+        return et;
+    }
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<TestCaseTemplate> fetchDefault(TestCaseTemplateSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<TestCaseTemplate> listDefault(TestCaseTemplateSearchContext context);
+
+    /**
+    * findByTestLibraryId
+    * @param testLibraryIds
+    * @return
+    */
+    List<TestCaseTemplate> findByTestLibraryId(List<String> testLibraryIds);
+    default List<TestCaseTemplate> findByTestLibraryId(String testLibraryId){
+        return findByTestLibraryId(Arrays.asList(testLibraryId));
+    }
+
+    /**
+    * removeByTestLibraryId
+    * @param testLibraryId
+    * @return
+    */
+    boolean removeByTestLibraryId(String testLibraryId);
+
+    /**
+    * resetByTestLibraryId
+    * @param testLibraryId
+    * @return
+    */
+    boolean resetByTestLibraryId(String testLibraryId);
+
+    /**
+    * saveByTestLibraryId
+    * @param testLibraryId
+    * @param list
+    * @return
+    */
+    default boolean saveByTestLibraryId(String testLibraryId, List<TestCaseTemplate> list){
+        return getSelf().saveByLibrary(new Library().setId(testLibraryId),list);
+    }
+
+    /**
+    * saveByLibrary
+    * @param library
+    * @param list
+    * @return
+    */
+    boolean saveByLibrary(Library library, List<TestCaseTemplate> list);
+
+    /**
+    * findBySuiteId
+    * @param suiteIds
+    * @return
+    */
+    List<TestCaseTemplate> findBySuiteId(List<String> suiteIds);
+    default List<TestCaseTemplate> findBySuiteId(String suiteId){
+        return findBySuiteId(Arrays.asList(suiteId));
+    }
+
+    /**
+    * removeBySuiteId
+    * @param suiteId
+    * @return
+    */
+    boolean removeBySuiteId(String suiteId);
+
+    /**
+    * resetBySuiteId
+    * @param suiteId
+    * @return
+    */
+    boolean resetBySuiteId(String suiteId);
+
+    /**
+    * saveBySuiteId
+    * @param suiteId
+    * @param list
+    * @return
+    */
+    default boolean saveBySuiteId(String suiteId, List<TestCaseTemplate> list){
+        return getSelf().saveByTestSuite(new TestSuite().setId(suiteId),list);
+    }
+
+    /**
+    * saveByTestSuite
+    * @param testSuite
+    * @param list
+    * @return
+    */
+    boolean saveByTestSuite(TestSuite testSuite, List<TestCaseTemplate> list);
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<TestCaseTemplate> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -174,32 +283,7 @@ public interface TestCaseTemplateService extends IService<TestCaseTemplate> {
         }
         return rt;
     }
-
-    /**
-     * nothing
-     * 
-     * @param dto
-     * @return
-     */
-    default TestCaseTemplate nothing(TestCaseTemplate dto) {
-        return dto;
-    }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<TestCaseTemplate> searchDefault(TestCaseTemplateSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<TestCaseTemplate> listDefault(TestCaseTemplateSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -207,6 +291,7 @@ public interface TestCaseTemplateService extends IService<TestCaseTemplate> {
     default TestCaseTemplate getEntity() {
         return new TestCaseTemplate();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -214,97 +299,13 @@ public interface TestCaseTemplateService extends IService<TestCaseTemplate> {
     default TestCaseTemplateSearchContext getSearchContext() {
         return new TestCaseTemplateSearchContext();
     }
+
+
     /**
-     * selectRelByTestLibraryId
-     * @param testLibraryIds
-     * @return
-     */
-    List<TestCaseTemplate> findByTestLibraryId(List<String> testLibraryIds);
-    default List<TestCaseTemplate> findByTestLibraryId(String testLibraryId) {
-        return findByTestLibraryId(Arrays.asList(testLibraryId));
-    }
-    /**
-     * removeRelByTestLibraryId
-     * @param testLibraryId
-     * @return
-     */
-    boolean removeByTestLibraryId(String testLibraryId);
-    /**
-     * resetRelByTestLibraryId
-     * @param testLibraryId
-     * @return
-     */
-    boolean resetByTestLibraryId(String testLibraryId);
-    /**
-     * saveRelByTestLibraryId
-     * @param testLibraryId
-     * @param list
-     * @return
-     */
-    default boolean saveByTestLibraryId(String testLibraryId,List<TestCaseTemplate> list) {
-        return getSelf().saveByLibrary(new Library().setId(testLibraryId),list);
-    }
-    /**
-    * saveRelByLibrary
-    * @param library
-    * @param list
+    * 自定义SQL
+    * @param sql  update table  set name ='test' where id =#{et.param}
+    * @param param 参数列表  param.put("param","1");
     * @return
     */
-    boolean saveByLibrary(Library library,List<TestCaseTemplate> list);
-
-    /**
-     * selectRelBySuiteId
-     * @param suiteIds
-     * @return
-     */
-    List<TestCaseTemplate> findBySuiteId(List<String> suiteIds);
-    default List<TestCaseTemplate> findBySuiteId(String suiteId) {
-        return findBySuiteId(Arrays.asList(suiteId));
-    }
-    /**
-     * removeRelBySuiteId
-     * @param suiteId
-     * @return
-     */
-    boolean removeBySuiteId(String suiteId);
-    /**
-     * resetRelBySuiteId
-     * @param suiteId
-     * @return
-     */
-    boolean resetBySuiteId(String suiteId);
-    /**
-     * saveRelBySuiteId
-     * @param suiteId
-     * @param list
-     * @return
-     */
-    default boolean saveBySuiteId(String suiteId,List<TestCaseTemplate> list) {
-        return getSelf().saveByTestSuite(new TestSuite().setId(suiteId),list);
-    }
-    /**
-    * saveRelByTestSuite
-    * @param testSuite
-    * @param list
-    * @return
-    */
-    boolean saveByTestSuite(TestSuite testSuite,List<TestCaseTemplate> list);
-
-
-    /**
-     * 自定义查询SQL
-     * @param sql  select * from table where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
-    List<JSONObject> select(String sql, Map<String,Object> param);
-
-    /**
-     * 自定义SQL
-     * @param sql  update table  set name ='test' where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
     boolean execute(String sql, Map<String,Object> param);
-
 }

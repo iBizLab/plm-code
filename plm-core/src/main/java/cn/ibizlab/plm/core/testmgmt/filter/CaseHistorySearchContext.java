@@ -38,20 +38,20 @@ import cn.ibizlab.plm.core.testmgmt.domain.CaseHistory;
 public class CaseHistorySearchContext extends QueryWrapperContext<CaseHistory> {
 
     /**
-     * 名称LIKE
-     */
-    @JsonProperty("n_name_like")
-    @JSONField(name = "n_name_like")
-    @ApiModelProperty("名称LIKE")
-    private String nameLIKE;
-
-    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
     @ApiModelProperty("标识EQ")
     private String idEQ;
+
+    /**
+     * 名称LIKE
+     */
+    @JsonProperty("n_name_like")
+    @JSONField(name = "n_name_like")
+    @ApiModelProperty("名称LIKE")
+    private String nameLIKE;
 
     /**
      * 测试用例标识EQ

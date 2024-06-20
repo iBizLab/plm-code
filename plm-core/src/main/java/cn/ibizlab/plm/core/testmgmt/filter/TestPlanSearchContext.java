@@ -78,12 +78,36 @@ public class TestPlanSearchContext extends QueryWrapperContext<TestPlan> {
     private String assigneeIdEQ;
 
     /**
-     * 计划名称LIKE
+     * 负责人标识IN
      */
-    @JsonProperty("n_name_like")
-    @JSONField(name = "n_name_like")
-    @ApiModelProperty("计划名称LIKE")
-    private String nameLIKE;
+    @JsonProperty("n_assignee_id_in")
+    @JSONField(name = "n_assignee_id_in")
+    @ApiModelProperty("负责人标识IN")
+    private String assigneeIdIN;
+
+    /**
+     * 负责人标识ISNOTNULL
+     */
+    @JsonProperty("n_assignee_id_isnotnull")
+    @JSONField(name = "n_assignee_id_isnotnull")
+    @ApiModelProperty("负责人标识ISNOTNULL")
+    private String assigneeIdISNOTNULL;
+
+    /**
+     * 负责人标识ISNULL
+     */
+    @JsonProperty("n_assignee_id_isnull")
+    @JSONField(name = "n_assignee_id_isnull")
+    @ApiModelProperty("负责人标识ISNULL")
+    private String assigneeIdISNULL;
+
+    /**
+     * 负责人标识NOTIN
+     */
+    @JsonProperty("n_assignee_id_notin")
+    @JSONField(name = "n_assignee_id_notin")
+    @ApiModelProperty("负责人标识NOTIN")
+    private String assigneeIdNOTIN;
 
     /**
      * 标识EQ
@@ -94,12 +118,52 @@ public class TestPlanSearchContext extends QueryWrapperContext<TestPlan> {
     private String idEQ;
 
     /**
+     * 计划名称LIKE
+     */
+    @JsonProperty("n_name_like")
+    @JSONField(name = "n_name_like")
+    @ApiModelProperty("计划名称LIKE")
+    private String nameLIKE;
+
+    /**
      * 建立人EQ
      */
     @JsonProperty("n_create_man_eq")
     @JSONField(name = "n_create_man_eq")
     @ApiModelProperty("建立人EQ")
     private String createManEQ;
+
+    /**
+     * 建立人IN
+     */
+    @JsonProperty("n_create_man_in")
+    @JSONField(name = "n_create_man_in")
+    @ApiModelProperty("建立人IN")
+    private String createManIN;
+
+    /**
+     * 建立人ISNOTNULL
+     */
+    @JsonProperty("n_create_man_isnotnull")
+    @JSONField(name = "n_create_man_isnotnull")
+    @ApiModelProperty("建立人ISNOTNULL")
+    private String createManISNOTNULL;
+
+    /**
+     * 建立人ISNULL
+     */
+    @JsonProperty("n_create_man_isnull")
+    @JSONField(name = "n_create_man_isnull")
+    @ApiModelProperty("建立人ISNULL")
+    private String createManISNULL;
+
+    /**
+     * 建立人NOTIN
+     */
+    @JsonProperty("n_create_man_notin")
+    @JSONField(name = "n_create_man_notin")
+    @ApiModelProperty("建立人NOTIN")
+    private String createManNOTIN;
 
     /**
      * 测试库标识EQ
@@ -208,6 +272,8 @@ public class TestPlanSearchContext extends QueryWrapperContext<TestPlan> {
             this.getFilter().eq("release_id",contextParentKey);
         if(Entities.SPRINT.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("sprint_id",contextParentKey);
+        if(Entities.COMMON_FLOW.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("id",contextParentKey);
     }
 
     @Override

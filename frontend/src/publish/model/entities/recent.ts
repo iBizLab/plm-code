@@ -1767,6 +1767,17 @@ export default {
       id: 'recent_parent_identifier',
     },
     {
+      codeName: 'id',
+      lnlanguageRes: {
+        lanResTag: 'DEF.LNAME.ID',
+      },
+      logicName: '标识',
+      stdDataType: 25,
+      stringLength: 100,
+      name: 'ID',
+      id: 'id',
+    },
+    {
       codeName: 'name',
       lnlanguageRes: {
         lanResTag: 'DEF.LNAME.NAME',
@@ -1779,15 +1790,15 @@ export default {
       id: 'name',
     },
     {
-      codeName: 'update_time',
+      codeName: 'create_man',
       lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.UPDATE_TIME',
+        lanResTag: 'DEF.LNAME.CREATE_MAN',
       },
-      logicName: '更新时间',
-      stdDataType: 5,
-      valueFormat: 'YYYY-MM-DD HH:mm:ss',
-      name: 'UPDATE_TIME',
-      id: 'update_time',
+      logicName: '建立人',
+      stdDataType: 25,
+      stringLength: 100,
+      name: 'CREATE_MAN',
+      id: 'create_man',
     },
     {
       codeName: 'create_time',
@@ -1801,17 +1812,6 @@ export default {
       id: 'create_time',
     },
     {
-      codeName: 'id',
-      lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.ID',
-      },
-      logicName: '标识',
-      stdDataType: 25,
-      stringLength: 100,
-      name: 'ID',
-      id: 'id',
-    },
-    {
       codeName: 'update_man',
       lnlanguageRes: {
         lanResTag: 'DEF.LNAME.UPDATE_MAN',
@@ -1823,15 +1823,15 @@ export default {
       id: 'update_man',
     },
     {
-      codeName: 'create_man',
+      codeName: 'update_time',
       lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.CREATE_MAN',
+        lanResTag: 'DEF.LNAME.UPDATE_TIME',
       },
-      logicName: '建立人',
-      stdDataType: 25,
-      stringLength: 100,
-      name: 'CREATE_MAN',
-      id: 'create_man',
+      logicName: '更新时间',
+      stdDataType: 5,
+      valueFormat: 'YYYY-MM-DD HH:mm:ss',
+      name: 'UPDATE_TIME',
+      id: 'update_time',
     },
   ],
   appDEMethodDTOs: [
@@ -4348,10 +4348,9 @@ export default {
   ],
   appPortletCats: [
     {
-      codeName: 'Ungroup',
-      ungroup: true,
-      name: '（未分类）',
-      id: 'ungroup',
+      codeName: 'index_dashboard',
+      name: '首页仪表盘',
+      id: 'index_dashboard',
     },
   ],
   deopprivs: [

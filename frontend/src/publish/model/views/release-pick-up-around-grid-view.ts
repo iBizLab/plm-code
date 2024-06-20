@@ -20,6 +20,13 @@ export default {
       id: 'engine',
     },
   ],
+  appViewNavParams: [
+    {
+      key: 'work_item',
+      value: 'work_item',
+      id: 'work_item',
+    },
+  ],
   controls: [
     {
       aggMode: 'NONE',
@@ -101,7 +108,7 @@ export default {
       enableCustomized: true,
       enablePagingBar: true,
       fetchControlAction: {
-        appDEMethodId: 'fetch_default',
+        appDEMethodId: 'fetch_not_finish',
         appDataEntityId: 'plmweb.release',
         id: 'fetch',
       },

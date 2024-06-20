@@ -124,6 +124,14 @@ public class AuthLogAdminDTO extends DTOBase implements Serializable {
     @ApiModelProperty(value = "认证结果", position = 10)
     private String authCode;
 
+    /**
+     * 活跃成员数
+     */
+    @JsonProperty("active_members")
+    @JSONField(name = "active_members")
+    @ApiModelProperty(value = "活跃成员数", position = 11)
+    private String activeMembers;
+
 
     /**
      * 设置 [用户全局标识]
@@ -203,6 +211,15 @@ public class AuthLogAdminDTO extends DTOBase implements Serializable {
     public AuthLogAdminDTO setAuthCode(String authCode) {
         this.authCode = authCode;
         this.modify("authcode", authCode);
+        return this;
+    }
+
+    /**
+     * 设置 [活跃成员数]
+     */
+    public AuthLogAdminDTO setActiveMembers(String activeMembers) {
+        this.activeMembers = activeMembers;
+        this.modify("active_members", activeMembers);
         return this;
     }
 

@@ -39,11 +39,11 @@ import cn.ibizlab.plm.core.projmgmt.domain.Release;
 public class ReleaseSearchContext extends QueryWrapperContext<Release> {
 
     /**
-     * 状态EQ
+     * 阶段EQ
      */
     @JsonProperty("n_status_eq")
     @JSONField(name = "n_status_eq")
-    @ApiModelProperty("状态EQ")
+    @ApiModelProperty("阶段EQ")
     private String statusEQ;
 
     /**
@@ -55,20 +55,20 @@ public class ReleaseSearchContext extends QueryWrapperContext<Release> {
     private String categoriesLIKE;
 
     /**
-     * 名称LIKE
-     */
-    @JsonProperty("n_name_like")
-    @JSONField(name = "n_name_like")
-    @ApiModelProperty("名称LIKE")
-    private String nameLIKE;
-
-    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
     @ApiModelProperty("标识EQ")
     private String idEQ;
+
+    /**
+     * 名称LIKE
+     */
+    @JsonProperty("n_name_like")
+    @JSONField(name = "n_name_like")
+    @ApiModelProperty("名称LIKE")
+    private String nameLIKE;
 
     /**
      * 项目标识EQ

@@ -22,19 +22,6 @@ export default {
         panelItems: [
           {
             actionGroupExtractMode: 'ITEM',
-            panelItems: [
-              {
-                caption: '表单',
-                itemStyle: 'DEFAULT',
-                itemType: 'CTRLPOS',
-                layoutPos: {
-                  shrink: 1,
-                  layout: 'FLEX',
-                },
-                showCaption: true,
-                id: 'form',
-              },
-            ],
             layout: {
               layout: 'FLEX',
             },
@@ -108,8 +95,8 @@ export default {
                     editor: {
                       enablePickupView: true,
                       singleSelect: true,
-                      appDEACModeId: 'default2',
-                      appDEDataSetId: 'fetch_normal',
+                      appDEACModeId: 'default',
+                      appDEDataSetId: 'fetch_main',
                       appDataEntityId: 'plmweb.library',
                       enableAC: true,
                       forceSelection: true,
@@ -307,6 +294,17 @@ export default {
         },
         id: 'view_content',
       },
+      {
+        caption: '表单',
+        itemStyle: 'DEFAULT',
+        itemType: 'CTRLPOS',
+        layoutPos: {
+          shrink: 1,
+          layout: 'FLEX',
+        },
+        showCaption: true,
+        id: 'form',
+      },
     ],
     layoutPanel: true,
     controls: [
@@ -326,6 +324,11 @@ export default {
             caption: '基线',
             name: '基线',
             id: 'usrdrgroup0424036679',
+          },
+          {
+            caption: '评审',
+            name: '评审',
+            id: 'usrdrgroup0416402881',
           },
           {
             caption: '报表',
@@ -356,6 +359,12 @@ export default {
             caption: '基线',
             appViewId: 'plmweb.baseline_library_tree_exp_view',
             id: 'baseline',
+          },
+          {
+            dedrbarGroupId: 'usrdrgroup0416402881',
+            caption: '评审',
+            appViewId: 'plmweb.review_tree_exp_view',
+            id: 'review',
           },
           {
             dedrbarGroupId: 'usrdrgroup0322162391',

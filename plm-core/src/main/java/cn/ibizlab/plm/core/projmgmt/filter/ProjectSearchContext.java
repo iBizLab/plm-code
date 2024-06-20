@@ -126,6 +126,13 @@ public class ProjectSearchContext extends QueryWrapperContext<Project> {
     private String nameLIKE;
 
     @Override
+    public void setContextParentKey(Serializable contextParentKey) {
+        super.setContextParentKey(contextParentKey);
+        if(Entities.COMMON_FLOW.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("id",contextParentKey);
+    }
+
+    @Override
     public void setQuery(String query) {
         this.query=query;
         if(!ObjectUtils.isEmpty(query))

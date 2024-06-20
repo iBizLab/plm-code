@@ -62,6 +62,14 @@ public class BaselineSearchContext extends QueryWrapperContext<Baseline> {
     private String ownerTypeEQ;
 
     /**
+     * 基线类型EQ
+     */
+    @JsonProperty("n_type_eq")
+    @JSONField(name = "n_type_eq")
+    @ApiModelProperty("基线类型EQ")
+    private String typeEQ;
+
+    /**
      * 类别LIKE
      */
     @JsonProperty("n_categories_like")
@@ -93,6 +101,8 @@ public class BaselineSearchContext extends QueryWrapperContext<Baseline> {
         if(Entities.PRODUCT.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("owner_id",contextParentKey);
         if(Entities.PROJECT.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("owner_id",contextParentKey);
+        if(Entities.SPACE.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("owner_id",contextParentKey);
     }
 

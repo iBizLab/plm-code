@@ -18,6 +18,7 @@ import cn.ibizlab.plm.core.wiki.domain.ArticlePage;
 import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
 import cn.ibizlab.plm.core.prodmgmt.domain.BaselineIdea;
+import cn.ibizlab.plm.core.wiki.domain.BaselinePage;
 import cn.ibizlab.plm.core.testmgmt.domain.BaselineTestCase;
 import cn.ibizlab.plm.core.projmgmt.domain.BaselineWorkItem;
 import cn.ibizlab.plm.core.testmgmt.domain.ReviewContent;
@@ -39,89 +40,32 @@ public interface VersionService extends IService<Version> {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    Version get(Version et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default Version get(String key) {
-        return getSelf().get(new Version().setId(key));
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<Version> getByIds(Collection<String> ids) {
-        List<Version> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Version().setId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<Version> getByEntities(List<Version> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    Version getDraft(Version et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(Version et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(Version et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<Version> list);
+    boolean create(List<Version> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(Version et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<Version> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    @Override
-    boolean save(Version et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<Version> list);
+    boolean update(List<Version> list);
 
     /**
      * 主键删除
@@ -131,14 +75,7 @@ public interface VersionService extends IService<Version> {
     default boolean remove(String key) {
         return getSelf().remove(new Version().setId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -148,13 +85,13 @@ public interface VersionService extends IService<Version> {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<Version> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Version().setId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new Version().setId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -162,7 +99,198 @@ public interface VersionService extends IService<Version> {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<Version> entities);
+    boolean remove(List<Version> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default Version get(String key) {
+        return getSelf().get(new Version().setId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    Version get(Version et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<Version> get(Collection<String> keys) {
+        List<Version> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new Version().setId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<Version> get(List<Version> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    Version getDraft(Version et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(Version et);
+
+    /**
+    * commit
+    * 
+    * @param et
+    * @return
+    */
+    default Version commit(Version et) {
+        return et;
+    }
+
+    /**
+    * restore
+    * 
+    * @param et
+    * @return
+    */
+    default Version restore(Version et) {
+        return et;
+    }
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(Version et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<Version> list);
+
+    /**
+    * fixCommit
+    * 
+    * @param et
+    * @return
+    */
+    default Version fixCommit(Version et) {
+        return et;
+    }
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<Version> fetchDefault(VersionSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<Version> listDefault(VersionSearchContext context);
+
+    /**
+    * fetchOwner
+    * 
+    * @param context
+    * @return
+    */
+    Page<Version> fetchOwner(VersionSearchContext context);
+
+    /**
+    * listOwner
+    * 
+    * @param context
+    * @return
+    */
+    List<Version> listOwner(VersionSearchContext context);
+
+    /**
+    * findByOwnerId
+    * @param ownerIds
+    * @return
+    */
+    List<Version> findByOwnerId(List<String> ownerIds);
+    default List<Version> findByOwnerId(String ownerId){
+        return findByOwnerId(Arrays.asList(ownerId));
+    }
+
+    /**
+    * removeByOwnerId
+    * @param ownerId
+    * @return
+    */
+    boolean removeByOwnerId(String ownerId);
+
+    /**
+    * resetByOwnerId
+    * @param ownerId
+    * @return
+    */
+    boolean resetByOwnerId(String ownerId);
+
+    /**
+    * saveByOwnerId
+    * @param ownerId
+    * @param list
+    * @return
+    */
+    default boolean saveByOwnerId(String ownerId, List<Version> list){
+        return getSelf().saveByIdea(new Idea().setId(ownerId),list);
+    }
+
+    /**
+    * saveByIdea
+    * @param idea
+    * @param list
+    * @return
+    */
+    boolean saveByIdea(Idea idea, List<Version> list);
+
+    /**
+    * saveByPage
+    * @param articlePage
+    * @param list
+    * @return
+    */
+    boolean saveByPage(ArticlePage articlePage, List<Version> list);
+
+    /**
+    * saveByTestCase
+    * @param testCase
+    * @param list
+    * @return
+    */
+    boolean saveByTestCase(TestCase testCase, List<Version> list);
+
+    /**
+    * saveByWorkItem
+    * @param workItem
+    * @param list
+    * @return
+    */
+    boolean saveByWorkItem(WorkItem workItem, List<Version> list);
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<Version> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -179,67 +307,7 @@ public interface VersionService extends IService<Version> {
         }
         return rt;
     }
-
-    /**
-     * Commit
-     * 
-     * @param dto
-     * @return
-     */
-    default Version commit(Version dto) {
-        return dto;
-    }
-
-    /**
-     * Restore
-     * 
-     * @param dto
-     * @return
-     */
-    default Version restore(Version dto) {
-        return dto;
-    }
-
-    /**
-     * fix_commit
-     * 
-     * @param dto
-     * @return
-     */
-    default Version fixCommit(Version dto) {
-        return dto;
-    }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<Version> searchDefault(VersionSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<Version> listDefault(VersionSearchContext context);
-
-    /**
-     * searchowner
-     * 
-     * @param context
-     * @return
-     */
-    Page<Version> searchOwner(VersionSearchContext context);
-    /**
-     * listowner
-     * 
-     * @param context
-     * @return
-     */
-    List<Version> listOwner(VersionSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -247,6 +315,7 @@ public interface VersionService extends IService<Version> {
     default Version getEntity() {
         return new Version();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -254,83 +323,13 @@ public interface VersionService extends IService<Version> {
     default VersionSearchContext getSearchContext() {
         return new VersionSearchContext();
     }
+
+
     /**
-     * selectRelByOwnerId
-     * @param ownerIds
-     * @return
-     */
-    List<Version> findByOwnerId(List<String> ownerIds);
-    default List<Version> findByOwnerId(String ownerId) {
-        return findByOwnerId(Arrays.asList(ownerId));
-    }
-    /**
-     * removeRelByOwnerId
-     * @param ownerId
-     * @return
-     */
-    boolean removeByOwnerId(String ownerId);
-    /**
-     * resetRelByOwnerId
-     * @param ownerId
-     * @return
-     */
-    boolean resetByOwnerId(String ownerId);
-    /**
-     * saveRelByOwnerId
-     * @param ownerId
-     * @param list
-     * @return
-     */
-    default boolean saveByOwnerId(String ownerId,List<Version> list) {
-        return getSelf().saveByIdea(new Idea().setId(ownerId),list);
-    }
-    /**
-    * saveRelByIdea
-    * @param idea
-    * @param list
+    * 自定义SQL
+    * @param sql  update table  set name ='test' where id =#{et.param}
+    * @param param 参数列表  param.put("param","1");
     * @return
     */
-    boolean saveByIdea(Idea idea,List<Version> list);
-
-    /**
-    * saveRelByPage
-    * @param articlePage
-    * @param list
-    * @return
-    */
-    boolean saveByPage(ArticlePage articlePage,List<Version> list);
-
-    /**
-    * saveRelByTestCase
-    * @param testCase
-    * @param list
-    * @return
-    */
-    boolean saveByTestCase(TestCase testCase,List<Version> list);
-
-    /**
-    * saveRelByWorkItem
-    * @param workItem
-    * @param list
-    * @return
-    */
-    boolean saveByWorkItem(WorkItem workItem,List<Version> list);
-
-
-    /**
-     * 自定义查询SQL
-     * @param sql  select * from table where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
-    List<JSONObject> select(String sql, Map<String,Object> param);
-
-    /**
-     * 自定义SQL
-     * @param sql  update table  set name ='test' where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
     boolean execute(String sql, Map<String,Object> param);
-
 }

@@ -39,20 +39,20 @@ import cn.ibizlab.plm.core.base.domain.Group;
 public class GroupSearchContext extends QueryWrapperContext<Group> {
 
     /**
-     * 团队名称LIKE
-     */
-    @JsonProperty("n_name_like")
-    @JSONField(name = "n_name_like")
-    @ApiModelProperty("团队名称LIKE")
-    private String nameLIKE;
-
-    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
     @ApiModelProperty("标识EQ")
     private String idEQ;
+
+    /**
+     * 团队名称LIKE
+     */
+    @JsonProperty("n_name_like")
+    @JSONField(name = "n_name_like")
+    @ApiModelProperty("团队名称LIKE")
+    private String nameLIKE;
 
     /**
      * 分组标识EQ

@@ -53,17 +53,6 @@ export default {
       id: 'id',
     },
     {
-      codeName: 'update_time',
-      lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.UPDATE_TIME',
-      },
-      logicName: '更新时间',
-      stdDataType: 5,
-      valueFormat: 'YYYY-MM-DD HH:mm:ss',
-      name: 'UPDATE_TIME',
-      id: 'update_time',
-    },
-    {
       codeName: 'name',
       lnlanguageRes: {
         lanResTag: 'DEF.LNAME.NAME',
@@ -107,6 +96,17 @@ export default {
       stringLength: 100,
       name: 'UPDATE_MAN',
       id: 'update_man',
+    },
+    {
+      codeName: 'update_time',
+      lnlanguageRes: {
+        lanResTag: 'DEF.LNAME.UPDATE_TIME',
+      },
+      logicName: '更新时间',
+      stdDataType: 5,
+      valueFormat: 'YYYY-MM-DD HH:mm:ss',
+      name: 'UPDATE_TIME',
+      id: 'update_time',
     },
     {
       codeName: 'system_tag',
@@ -601,8 +601,10 @@ export default {
       codeName: 'config',
       dialogResult: 'OK',
       frontAppViewId: 'plmweb.notify_setting_config_view',
-      frontProcessType: 'TOP',
+      frontProcessType: 'OTHER',
       fullCodeName: 'notify_setting_config',
+      scriptCode:
+        'window.location.hash=`/-/index/-/user_setting_view/srfnav=notice/notify_setting_config_view/-`',
       timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'config',

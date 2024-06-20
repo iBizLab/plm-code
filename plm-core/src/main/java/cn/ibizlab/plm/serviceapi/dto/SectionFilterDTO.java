@@ -67,7 +67,7 @@ public class SectionFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 90)
+    @ApiModelProperty(value = "名称LIKE", position = 60)
 	private String nameLIKE;
 
 

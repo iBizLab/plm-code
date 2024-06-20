@@ -7,14 +7,13 @@
 		<id property="id" column="id" /><!--主键字段映射-->
 		<result property="startAt" column="start_at" />
 		<result property="endAt" column="end_at" />
-		<result property="categoriesName" column="categories_name" />
 		<result property="isDeleted" column="is_deleted" />
 		<result property="assigneeName" column="assignee_name" />
 		<result property="assigneeId" column="assignee_id" />
+		<result property="createMan" column="create_man" />
+		<result property="createTime" column="create_time" />
 		<result property="updateMan" column="update_man" />
 		<result property="updateTime" column="update_time" />
-		<result property="createTime" column="create_time" />
-		<result property="createMan" column="create_man" />
 		<result property="productId" column="product_id" />
         <association property="product" javaType="cn.ibizlab.plm.core.prodmgmt.domain.Product" column="product_id" select="cn.ibizlab.plm.core.prodmgmt.mapper.ProductMapper.selectById" fetchType="lazy"></association>
     </resultMap>
@@ -45,23 +44,23 @@
     </delete>
 
     <sql id="default" databaseId="mysql">
-         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, t1.`CATEGORIES_NAME`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`END_AT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, t1.`PRODUCT_ID`, t1.`START_AT`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PRODUCT_PLAN` t1   ]]>  
+         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`END_AT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, t1.`PRODUCT_ID`, t1.`START_AT`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PRODUCT_PLAN` t1   ]]>  
     </sql>
 
     <sql id="view" databaseId="mysql">
-         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, t1.`CATEGORIES_NAME`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`END_AT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, t1.`PRODUCT_ID`, t1.`START_AT`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PRODUCT_PLAN` t1   ]]>  
+         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`END_AT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, t1.`PRODUCT_ID`, t1.`START_AT`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PRODUCT_PLAN` t1   ]]>  
     </sql>
 
     <sql id="categoryPlan" databaseId="mysql">
-         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, t1.`CATEGORIES_NAME`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`END_AT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, t1.`PRODUCT_ID`, t1.`START_AT`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PRODUCT_PLAN` t1   ]]>  where  <![CDATA[ ( t1.`CATEGORIES` LIKE CONCAT('%',#{ctx.webcontext.category_id},'%')  AND  t1.`IS_DELETED` = 0 ) ]]> 
+         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`END_AT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, t1.`PRODUCT_ID`, t1.`START_AT`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PRODUCT_PLAN` t1   ]]>  where  <![CDATA[ ( t1.`CATEGORIES` LIKE CONCAT('%',#{ctx.webcontext.category_id},'%')  AND  t1.`IS_DELETED` = 0 ) ]]> 
     </sql>
 
     <sql id="normal" databaseId="mysql">
-         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, t1.`CATEGORIES_NAME`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`END_AT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, t1.`PRODUCT_ID`, t1.`START_AT`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PRODUCT_PLAN` t1   ]]>  where  <![CDATA[ ( t1.`IS_DELETED` = 0  AND  t1.`PRODUCT_ID` = #{ctx.webcontext.product} ) ]]> 
+         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`END_AT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, t1.`PRODUCT_ID`, t1.`START_AT`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PRODUCT_PLAN` t1   ]]>  where  <![CDATA[ ( t1.`IS_DELETED` = 0  AND  t1.`PRODUCT_ID` = #{ctx.webcontext.product} ) ]]> 
     </sql>
 
     <sql id="thisPlan" databaseId="mysql">
-         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, t1.`CATEGORIES_NAME`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`END_AT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, t1.`PRODUCT_ID`, t1.`START_AT`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PRODUCT_PLAN` t1   ]]>  where  <![CDATA[ ( t1.`ID` = #{ctx.webcontext.product_plan}  AND  t1.`IS_DELETED` = 0 ) ]]> 
+         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`END_AT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, t1.`PRODUCT_ID`, t1.`START_AT`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PRODUCT_PLAN` t1   ]]>  where  <![CDATA[ ( t1.`ID` = #{ctx.webcontext.product_plan}  AND  t1.`IS_DELETED` = 0 ) ]]> 
     </sql>
 
     <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.prodmgmt.filter.ProductPlanSearchContext"  resultMap="ProductPlanResultMap">

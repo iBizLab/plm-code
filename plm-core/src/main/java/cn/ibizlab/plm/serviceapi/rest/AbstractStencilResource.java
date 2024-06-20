@@ -426,7 +426,7 @@ public abstract class AbstractStencilResource {
     public ResponseEntity<List<StencilDTO>> fetchDefault
             (@Validated @RequestBody StencilFilterDTO dto) {
         StencilSearchContext context = stencilFilterDtoMapping.toDomain(dto);
-        Page<Stencil> domains = stencilService.searchDefault(context) ;
+        Page<Stencil> domains = stencilService.fetchDefault(context) ;
         List<StencilDTO> list = stencilDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -447,7 +447,7 @@ public abstract class AbstractStencilResource {
     public ResponseEntity<List<StencilDTO>> fetchNoSpaceStencil
             (@Validated @RequestBody StencilFilterDTO dto) {
         StencilSearchContext context = stencilFilterDtoMapping.toDomain(dto);
-        Page<Stencil> domains = stencilService.searchNoSpaceStencil(context) ;
+        Page<Stencil> domains = stencilService.fetchNoSpaceStencil(context) ;
         List<StencilDTO> list = stencilDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -469,7 +469,7 @@ public abstract class AbstractStencilResource {
     public ResponseEntity<List<StencilDTO>> fetchReader
             (@Validated @RequestBody StencilFilterDTO dto) {
         StencilSearchContext context = stencilFilterDtoMapping.toDomain(dto);
-        Page<Stencil> domains = stencilService.searchReader(context) ;
+        Page<Stencil> domains = stencilService.fetchReader(context) ;
         List<StencilDTO> list = stencilDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -490,7 +490,7 @@ public abstract class AbstractStencilResource {
     public ResponseEntity<List<StencilDTO>> fetchSpaceStencil
             (@Validated @RequestBody StencilFilterDTO dto) {
         StencilSearchContext context = stencilFilterDtoMapping.toDomain(dto);
-        Page<Stencil> domains = stencilService.searchSpaceStencil(context) ;
+        Page<Stencil> domains = stencilService.fetchSpaceStencil(context) ;
         List<StencilDTO> list = stencilDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -584,7 +584,7 @@ public abstract class AbstractStencilResource {
             (@PathVariable("spaceId") String spaceId, @Validated @RequestBody StencilFilterDTO dto) {
         dto.setSpaceIdEQ(spaceId);
         StencilSearchContext context = stencilFilterDtoMapping.toDomain(dto);
-        Page<Stencil> domains = stencilService.searchDefault(context) ;
+        Page<Stencil> domains = stencilService.fetchDefault(context) ;
         List<StencilDTO> list = stencilDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -607,7 +607,7 @@ public abstract class AbstractStencilResource {
             (@PathVariable("spaceId") String spaceId, @Validated @RequestBody StencilFilterDTO dto) {
         dto.setSpaceIdEQ(spaceId);
         StencilSearchContext context = stencilFilterDtoMapping.toDomain(dto);
-        Page<Stencil> domains = stencilService.searchNoSpaceStencil(context) ;
+        Page<Stencil> domains = stencilService.fetchNoSpaceStencil(context) ;
         List<StencilDTO> list = stencilDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -631,7 +631,7 @@ public abstract class AbstractStencilResource {
             (@PathVariable("spaceId") String spaceId, @Validated @RequestBody StencilFilterDTO dto) {
         dto.setSpaceIdEQ(spaceId);
         StencilSearchContext context = stencilFilterDtoMapping.toDomain(dto);
-        Page<Stencil> domains = stencilService.searchReader(context) ;
+        Page<Stencil> domains = stencilService.fetchReader(context) ;
         List<StencilDTO> list = stencilDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -654,7 +654,7 @@ public abstract class AbstractStencilResource {
             (@PathVariable("spaceId") String spaceId, @Validated @RequestBody StencilFilterDTO dto) {
         dto.setSpaceIdEQ(spaceId);
         StencilSearchContext context = stencilFilterDtoMapping.toDomain(dto);
-        Page<Stencil> domains = stencilService.searchSpaceStencil(context) ;
+        Page<Stencil> domains = stencilService.fetchSpaceStencil(context) ;
         List<StencilDTO> list = stencilDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -673,7 +673,7 @@ public abstract class AbstractStencilResource {
     @ApiOperation(value = "批量新建页面模板", tags = {"页面模板" },  notes = "批量新建页面模板")
 	@PostMapping("stencils/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<StencilDTO> dtos) {
-        stencilService.createBatch(stencilDtoMapping.toDomain(dtos));
+        stencilService.create(stencilDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -686,7 +686,7 @@ public abstract class AbstractStencilResource {
     @ApiOperation(value = "批量删除页面模板", tags = {"页面模板" },  notes = "批量删除页面模板")
 	@DeleteMapping("stencils/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        stencilService.removeBatch(ids);
+        stencilService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -699,7 +699,7 @@ public abstract class AbstractStencilResource {
     @ApiOperation(value = "批量更新页面模板", tags = {"页面模板" },  notes = "批量更新页面模板")
 	@PutMapping("stencils/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<StencilDTO> dtos) {
-        stencilService.updateBatch(stencilDtoMapping.toDomain(dtos));
+        stencilService.update(stencilDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -712,7 +712,7 @@ public abstract class AbstractStencilResource {
     @ApiOperation(value = "批量保存页面模板", tags = {"页面模板" },  notes = "批量保存页面模板")
 	@PostMapping("stencils/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<StencilDTO> dtos) {
-        stencilService.saveBatch(stencilDtoMapping.toDomain(dtos));
+        stencilService.save(stencilDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

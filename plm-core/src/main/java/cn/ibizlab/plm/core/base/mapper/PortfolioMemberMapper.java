@@ -62,6 +62,22 @@ public interface PortfolioMemberMapper extends BaseMapper<PortfolioMember> {
     List<PortfolioMember> listCurProjectSet(@Param("ctx") PortfolioMemberSearchContext context, @Param("ew") Wrapper<PortfolioMember> wrapper);
 
     /**
+    * 根据portfolioId查询
+    *
+    * @param portfolioIds
+    * @return
+    */
+    List<PortfolioMember> findByPortfolioId(@Param("portfolioIds") List<String> portfolioIds);
+
+    /**
+    * 根据userId查询
+    *
+    * @param userIds
+    * @return
+    */
+    List<PortfolioMember> findByUserId(@Param("userIds") List<String> userIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -170,21 +186,4 @@ public interface PortfolioMemberMapper extends BaseMapper<PortfolioMember> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据portfolioId查询
-     *
-     * @param portfolioIds
-     * @return
-     */
-    List<PortfolioMember> findByPortfolioId(@Param("portfolioIds") List<String> portfolioIds);
-
-    /**
-     * 根据userId查询
-     *
-     * @param userIds
-     * @return
-     */
-    List<PortfolioMember> findByUserId(@Param("userIds") List<String> userIds);
-
 }

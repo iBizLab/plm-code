@@ -53,36 +53,6 @@ public abstract class AbstractEntryService extends ServiceImpl<EntryMapper,Entry
 
     protected int batchSize = 500;
 
-    public Entry get(Entry et) {
-        Entry rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.ENTRY.toString(),et.getId());
-        rt.copyTo(et,true);
-        return et;
-    }
-
-    public List<Entry> getByEntities(List<Entry> entities) {
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public void fillParentData(Entry et) {
-        if(Entities.BOARD.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
-            et.setBoardId((String)et.getContextParentKey());
-        }
-        if(Entities.PROJECT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
-            et.setProjectId((String)et.getContextParentKey());
-        }
-    }
-
-    public Entry getDraft(Entry et) {
-        fillParentData(et);
-        return et;
-    }
-
-    public Integer checkKey(Entry et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Entry>lambdaQuery().eq(Entry::getId, et.getId()))>0)?1:0;
-    }
-
     @Override
     @Transactional
     public boolean create(Entry et) {
@@ -92,14 +62,14 @@ public abstract class AbstractEntryService extends ServiceImpl<EntryMapper,Entry
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<Entry> list) {
+    public boolean create(List<Entry> list) {
         list.forEach(this::fillParentData);
         this.saveBatch(list, batchSize);
         return true;
     }
-
+	
     @Transactional
     public boolean update(Entry et) {
         UpdateWrapper<Entry> qw = et.getUpdateWrapper(true);
@@ -111,11 +81,48 @@ public abstract class AbstractEntryService extends ServiceImpl<EntryMapper,Entry
     }
 
     @Transactional
-    public boolean updateBatch(List<Entry> list) {
+    public boolean update(List<Entry> list) {
         updateBatchById(list, batchSize);
         return true;
     }
+	
+   @Transactional
+    public boolean remove(Entry et) {
+        String key = et.getId();
+        workItemService.resetByEntryId(key);
+        if(!remove(Wrappers.<Entry>lambdaQuery().eq(Entry::getId, et.getId())))
+            return false;
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<Entry> entities) {
+        for (Entry et : entities)
+            if(!getSelf().remove(et))
+                return false;
+        return true;
+    }		
+    public Entry get(Entry et) {
+        Entry rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.ENTRY.toString(),et.getId());
+        rt.copyTo(et,true);
+        return et;
+    }	
+
+    public List<Entry> get(List<Entry> entities) {
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public Entry getDraft(Entry et) {
+        fillParentData(et);
+        return et;
+    }
+	
+    public Integer checkKey(Entry et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Entry>lambdaQuery().eq(Entry::getId, et.getId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(Entry et) {
@@ -126,10 +133,10 @@ public abstract class AbstractEntryService extends ServiceImpl<EntryMapper,Entry
     }
 
     @Transactional
-    public boolean saveBatch(List<Entry> list) {
+    public boolean save(List<Entry> list) {
         if(ObjectUtils.isEmpty(list))
             return true;
-        Map<String,Entry> before = getByEntities(list).stream().collect(Collectors.toMap(Entry::getId,e->e));
+        Map<String,Entry> before = get(list).stream().collect(Collectors.toMap(Entry::getId,e->e));
         List<Entry> create = new ArrayList<>();
         List<Entry> update = new ArrayList<>();
         list.forEach(sub->{
@@ -140,30 +147,13 @@ public abstract class AbstractEntryService extends ServiceImpl<EntryMapper,Entry
         });
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
         else
             return true;
     }
-
-    @Transactional
-    public boolean remove(Entry et) {
-        String key = et.getId();
-        workItemService.resetByEntryId(key);
-        if(!remove(Wrappers.<Entry>lambdaQuery().eq(Entry::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<Entry> entities) {
-        for (Entry et : entities)
-            if(!getSelf().remove(et))
-                return false;
-        return true;
-    }
-
-    public Page<Entry> searchDefault(EntrySearchContext context) {
+	
+   public Page<Entry> fetchDefault(EntrySearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("SHOWORDER,ASC");
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Entry> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
@@ -171,37 +161,34 @@ public abstract class AbstractEntryService extends ServiceImpl<EntryMapper,Entry
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Entry> listDefault(EntrySearchContext context) {
+   public List<Entry> listDefault(EntrySearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("SHOWORDER,ASC");
         List<Entry> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
-    }
-
-    public List<Entry> findByBoardId(List<String> boardIds) {
+   }
+	
+	public List<Entry> findByBoardId(List<String> boardIds){
         List<Entry> list = baseMapper.findByBoardId(boardIds);
-        return list;
-    }
-    public List<Entry> findByProjectId(List<String> projectIds) {
-        List<Entry> list = baseMapper.findByProjectId(projectIds);
-        return list;
-    }
-    public boolean removeByBoardId(String boardId) {
+        return list;	
+	}
+
+	public boolean removeByBoardId(String boardId){
         List<String> ids = baseMapper.findByBoardId(Arrays.asList(boardId)).stream().map(e->e.getId()).collect(Collectors.toList());
         if(!ObjectUtils.isEmpty(ids))
-            return this.removeBatch(ids);
+            return this.remove(ids);
         else
             return true;
-    }
+	}
 
-    public boolean resetByBoardId(String boardId) {
-        return this.update(Wrappers.<Entry>lambdaUpdate().eq(Entry::getBoardId,boardId));
-    }
-
-    public boolean saveByBoard(Board board,List<Entry> list) {
+	public boolean resetByBoardId(String boardId){
+		return this.update(Wrappers.<Entry>lambdaUpdate().eq(Entry::getBoardId,boardId));
+	}
+	public boolean saveByBoard(Board board, List<Entry> list){
         if(list==null)
             return true;
         Map<String,Entry> before = findByBoardId(board.getId()).stream().collect(Collectors.toMap(Entry::getId,e->e));
+
         List<Entry> update = new ArrayList<>();
         List<Entry> create = new ArrayList<>();
 
@@ -217,30 +204,35 @@ public abstract class AbstractEntryService extends ServiceImpl<EntryMapper,Entry
         }
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
             return false;
         else
             return true;
-    }
+			
+	}
+	public List<Entry> findByProjectId(List<String> projectIds){
+        List<Entry> list = baseMapper.findByProjectId(projectIds);
+        return list;	
+	}
 
-    public boolean removeByProjectId(String projectId) {
+	public boolean removeByProjectId(String projectId){
         List<String> ids = baseMapper.findByProjectId(Arrays.asList(projectId)).stream().map(e->e.getId()).collect(Collectors.toList());
         if(!ObjectUtils.isEmpty(ids))
-            return this.removeBatch(ids);
+            return this.remove(ids);
         else
             return true;
-    }
+	}
 
-    public boolean resetByProjectId(String projectId) {
-        return this.update(Wrappers.<Entry>lambdaUpdate().eq(Entry::getProjectId,projectId));
-    }
-
-    public boolean saveByProject(Project project,List<Entry> list) {
+	public boolean resetByProjectId(String projectId){
+		return this.update(Wrappers.<Entry>lambdaUpdate().eq(Entry::getProjectId,projectId));
+	}
+	public boolean saveByProject(Project project, List<Entry> list){
         if(list==null)
             return true;
         Map<String,Entry> before = findByProjectId(project.getId()).stream().collect(Collectors.toMap(Entry::getId,e->e));
+
         List<Entry> update = new ArrayList<>();
         List<Entry> create = new ArrayList<>();
 
@@ -256,18 +248,24 @@ public abstract class AbstractEntryService extends ServiceImpl<EntryMapper,Entry
         }
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
             return false;
         else
             return true;
+			
+	}
+
+    public void fillParentData(Entry et) {
+        if(Entities.BOARD.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setBoardId((String)et.getContextParentKey());
+        }
+        if(Entities.PROJECT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setProjectId((String)et.getContextParentKey());
+        }
     }
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -287,8 +285,8 @@ public abstract class AbstractEntryService extends ServiceImpl<EntryMapper,Entry
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return EntryMapper.class;
     }
@@ -297,4 +295,5 @@ public abstract class AbstractEntryService extends ServiceImpl<EntryMapper,Entry
     protected Class currentModelClass() {
         return Entry.class;
     }
+
 }

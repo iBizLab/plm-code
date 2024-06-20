@@ -94,11 +94,19 @@ public class SprintDTO extends DTOBase implements Serializable {
     private String categories;
 
     /**
+     * 类别
+     */
+    @JsonProperty("categories_name")
+    @JSONField(name = "categories_name")
+    @ApiModelProperty(value = "类别", position = 7)
+    private String categoriesName;
+
+    /**
      * 负责人
      */
     @JsonProperty("assignee_name")
     @JSONField(name = "assignee_name")
-    @ApiModelProperty(value = "负责人", position = 7)
+    @ApiModelProperty(value = "负责人", position = 8)
     private String assigneeName;
 
     /**
@@ -106,7 +114,7 @@ public class SprintDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("assignee_id")
     @JSONField(name = "assignee_id")
-    @ApiModelProperty(value = "负责人标识", position = 8)
+    @ApiModelProperty(value = "负责人标识", position = 9)
     private String assigneeId;
 
     /**
@@ -114,7 +122,7 @@ public class SprintDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 9)
+    @ApiModelProperty(value = "建立人", position = 10)
     private String createMan;
 
     /**
@@ -123,7 +131,7 @@ public class SprintDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 10)
+    @ApiModelProperty(value = "建立时间", position = 11)
     private Date createTime;
 
     /**
@@ -131,7 +139,7 @@ public class SprintDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 11)
+    @ApiModelProperty(value = "标识", position = 12)
     private String id;
 
     /**
@@ -139,7 +147,7 @@ public class SprintDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 12)
+    @ApiModelProperty(value = "名称", position = 13)
     private String name;
 
     /**
@@ -147,7 +155,7 @@ public class SprintDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("pid")
     @JSONField(name = "pid")
-    @ApiModelProperty(value = "父标识", position = 13)
+    @ApiModelProperty(value = "父标识", position = 14)
     private String pid;
 
     /**
@@ -155,7 +163,7 @@ public class SprintDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("project_id")
     @JSONField(name = "project_id")
-    @ApiModelProperty(value = "产品标识", position = 14)
+    @ApiModelProperty(value = "产品标识", position = 15)
     private String projectId;
 
     /**
@@ -163,7 +171,7 @@ public class SprintDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 15)
+    @ApiModelProperty(value = "更新人", position = 16)
     private String updateMan;
 
     /**
@@ -172,7 +180,7 @@ public class SprintDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 16)
+    @ApiModelProperty(value = "更新时间", position = 17)
     private Date updateTime;
 
 
@@ -236,6 +244,15 @@ public class SprintDTO extends DTOBase implements Serializable {
     public SprintDTO setCategories(String categories) {
         this.categories = categories;
         this.modify("categories", categories);
+        return this;
+    }
+
+    /**
+     * 设置 [类别]
+     */
+    public SprintDTO setCategoriesName(String categoriesName) {
+        this.categoriesName = categoriesName;
+        this.modify("categories_name", categoriesName);
         return this;
     }
 

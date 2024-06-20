@@ -89,7 +89,7 @@ export default {
           actionLevel: 100,
           buttonStyle: 'STYLE3',
           noPrivDisplayMode: 2,
-          uiactionId: 'new',
+          uiactionId: 'new_subdata',
           valid: true,
           capLanguageRes: {
             lanResTag: 'TBB.TEXT.*.NEW',
@@ -699,6 +699,16 @@ export default {
               valid: true,
               caption: '分配负责人',
               itemType: 'DEUIACTION',
+              controlLogics: [
+                {
+                  itemName: 'deuiaction1',
+                  logicTag: 'grid_batchtoolbar',
+                  logicType: 'SCRIPT',
+                  scriptCode: 'context.srfreadonly != true',
+                  triggerType: 'ITEMENABLE',
+                  id: 'deuiaction1',
+                },
+              ],
               sysImage: {
                 cssClass: 'fa fa-user-plus',
                 glyph: 'xf234@FontAwesome',
@@ -716,6 +726,16 @@ export default {
               valid: true,
               caption: '设置标签',
               itemType: 'DEUIACTION',
+              controlLogics: [
+                {
+                  itemName: 'deuiaction2',
+                  logicTag: 'grid_batchtoolbar',
+                  logicType: 'SCRIPT',
+                  scriptCode: 'context.srfreadonly != true',
+                  triggerType: 'ITEMENABLE',
+                  id: 'deuiaction2',
+                },
+              ],
               sysImage: {
                 cssClass: 'fa fa-tags',
                 glyph: 'xf02c@FontAwesome',
@@ -802,6 +822,16 @@ export default {
               valid: true,
               caption: '更多',
               itemType: 'ITEMS',
+              controlLogics: [
+                {
+                  itemName: 'items1',
+                  logicTag: 'grid_batchtoolbar',
+                  logicType: 'SCRIPT',
+                  scriptCode: 'context.srfreadonly != true',
+                  triggerType: 'ITEMENABLE',
+                  id: 'items1',
+                },
+              ],
               sysImage: {
                 cssClass: 'fa fa-list-ul',
                 glyph: 'xf0ca@FontAwesome',

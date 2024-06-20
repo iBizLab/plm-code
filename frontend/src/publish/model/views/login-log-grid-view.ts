@@ -69,8 +69,8 @@ export default {
         lanResTag: 'PAGE.TITLE.LOGIN_LOG.EDITVIEW',
       },
       refAppViewId: 'plmweb.login_log_edit_view',
-      name: 'EDITDATA',
-      id: 'editdata',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
     {
       realTitle: '登陆日志编辑视图',
@@ -78,8 +78,8 @@ export default {
         lanResTag: 'PAGE.TITLE.LOGIN_LOG.EDITVIEW',
       },
       refAppViewId: 'plmweb.login_log_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
   ],
   controls: [

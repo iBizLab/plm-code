@@ -43,6 +43,60 @@ public interface ReviewMapper extends BaseMapper<Review> {
     List<Review> listDefault(@Param("ctx") ReviewSearchContext context, @Param("ew") Wrapper<Review> wrapper);
 
     /**
+     * 数据集合my_attention分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Review> searchMyAttention(IPage<Review> page, @Param("ctx") ReviewSearchContext context, @Param("ew") Wrapper<Review> wrapper);
+    
+    /**
+     * 数据集合my_attention查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Review> listMyAttention(@Param("ctx") ReviewSearchContext context, @Param("ew") Wrapper<Review> wrapper);
+
+    /**
+     * 数据集合my_reviewed分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Review> searchMyReviewed(IPage<Review> page, @Param("ctx") ReviewSearchContext context, @Param("ew") Wrapper<Review> wrapper);
+    
+    /**
+     * 数据集合my_reviewed查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Review> listMyReviewed(@Param("ctx") ReviewSearchContext context, @Param("ew") Wrapper<Review> wrapper);
+
+    /**
+    * 根据guidelineId查询
+    *
+    * @param guidelineIds
+    * @return
+    */
+    List<Review> findByGuidelineId(@Param("guidelineIds") List<String> guidelineIds);
+
+    /**
+    * 根据libraryId查询
+    *
+    * @param libraryIds
+    * @return
+    */
+    List<Review> findByLibraryId(@Param("libraryIds") List<String> libraryIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -151,13 +205,4 @@ public interface ReviewMapper extends BaseMapper<Review> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据libraryId查询
-     *
-     * @param libraryIds
-     * @return
-     */
-    List<Review> findByLibraryId(@Param("libraryIds") List<String> libraryIds);
-
 }

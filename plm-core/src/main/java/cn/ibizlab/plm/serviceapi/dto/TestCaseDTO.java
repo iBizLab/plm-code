@@ -275,7 +275,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
     @JsonProperty("latest_executed")
     @JSONField(name = "latest_executed")
     @ApiModelProperty(value = "最新执行结果", position = 29)
-    private List<RunDTO> latestExecuted;
+    private List<Map> latestExecuted;
 
     /**
      * 实际工时
@@ -286,11 +286,19 @@ public class TestCaseDTO extends DTOBase implements Serializable {
     private BigDecimal actualWorkload;
 
     /**
+     * 步骤
+     */
+    @JsonProperty("steps_imp")
+    @JSONField(name = "steps_imp")
+    @ApiModelProperty(value = "步骤", position = 31)
+    private String stepsImp;
+
+    /**
      * 当前版本名称
      */
     @JsonProperty("cur_version_name")
     @JSONField(name = "cur_version_name")
-    @ApiModelProperty(value = "当前版本名称", position = 31)
+    @ApiModelProperty(value = "当前版本名称", position = 32)
     private String curVersionName;
 
     /**
@@ -298,7 +306,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("choose_version_id")
     @JSONField(name = "choose_version_id")
-    @ApiModelProperty(value = "选择版本标识", position = 32)
+    @ApiModelProperty(value = "选择版本标识", position = 33)
     private String chooseVersionId;
 
     /**
@@ -306,7 +314,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("choose_version_name")
     @JSONField(name = "choose_version_name")
-    @ApiModelProperty(value = "选择版本名称", position = 33)
+    @ApiModelProperty(value = "选择版本名称", position = 34)
     private String chooseVersionName;
 
     /**
@@ -314,7 +322,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("attentions_imp")
     @JSONField(name = "attentions_imp")
-    @ApiModelProperty(value = "关注人", position = 34)
+    @ApiModelProperty(value = "关注人", position = 35)
     private String attentionsImp;
 
     /**
@@ -322,7 +330,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 35)
+    @ApiModelProperty(value = "建立人", position = 36)
     private String createMan;
 
     /**
@@ -331,7 +339,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 36)
+    @ApiModelProperty(value = "建立时间", position = 37)
     private Date createTime;
 
     /**
@@ -339,7 +347,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 37)
+    @ApiModelProperty(value = "标识", position = 38)
     private String id;
 
     /**
@@ -347,7 +355,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 38)
+    @ApiModelProperty(value = "名称", position = 39)
     private String name;
 
     /**
@@ -355,7 +363,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("suite_id")
     @JSONField(name = "suite_id")
-    @ApiModelProperty(value = "用例模块标识", position = 39)
+    @ApiModelProperty(value = "用例模块标识", position = 40)
     private String suiteId;
 
     /**
@@ -363,7 +371,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("suite_name")
     @JSONField(name = "suite_name")
-    @ApiModelProperty(value = "所属模块", position = 40)
+    @ApiModelProperty(value = "所属模块", position = 41)
     private String suiteName;
 
     /**
@@ -371,7 +379,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("test_library_id")
     @JSONField(name = "test_library_id")
-    @ApiModelProperty(value = "测试库", position = 41)
+    @ApiModelProperty(value = "测试库", position = 42)
     private String testLibraryId;
 
     /**
@@ -379,7 +387,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("test_library_name")
     @JSONField(name = "test_library_name")
-    @ApiModelProperty(value = "所属测试库", position = 42)
+    @ApiModelProperty(value = "所属测试库", position = 43)
     private String testLibraryName;
 
     /**
@@ -387,7 +395,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 43)
+    @ApiModelProperty(value = "更新人", position = 44)
     private String updateMan;
 
     /**
@@ -396,7 +404,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 44)
+    @ApiModelProperty(value = "更新时间", position = 45)
     private Date updateTime;
 
 
@@ -655,7 +663,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
     /**
      * 设置 [最新执行结果]
      */
-    public TestCaseDTO setLatestExecuted(List<RunDTO> latestExecuted) {
+    public TestCaseDTO setLatestExecuted(List<Map> latestExecuted) {
         this.latestExecuted = latestExecuted;
         this.modify("latest_executed", latestExecuted);
         return this;
@@ -667,6 +675,15 @@ public class TestCaseDTO extends DTOBase implements Serializable {
     public TestCaseDTO setActualWorkload(BigDecimal actualWorkload) {
         this.actualWorkload = actualWorkload;
         this.modify("actual_workload", actualWorkload);
+        return this;
+    }
+
+    /**
+     * 设置 [步骤]
+     */
+    public TestCaseDTO setStepsImp(String stepsImp) {
+        this.stepsImp = stepsImp;
+        this.modify("steps_imp", stepsImp);
         return this;
     }
 

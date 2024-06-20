@@ -38,91 +38,91 @@ public class Channel extends EntityMP implements Serializable
 {
 
     /**
-     * 建立人
-     */
-    @TableField(value = "create_man" , fill = FieldFill.INSERT)
-    @DEField(name = "create_man" , preType = DEPredefinedFieldType.CREATEMAN , dict = "SysOperator")
-    @JsonProperty("create_man")
-    @JSONField(name = "create_man")
-    @ApiModelProperty(value = "create_man", notes = "建立人")
-    private String createMan;
-
-    /**
-     * 更新时间
-     */
-    @TableField(value = "update_time")
-    @DEField(name = "update_time" , preType = DEPredefinedFieldType.UPDATEDATE)
-    @JsonProperty("update_time")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "update_time", notes = "更新时间")
-    private Date updateTime;
-
-    /**
-     * 更新人
-     */
-    @TableField(value = "update_man")
-    @DEField(name = "update_man" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
-    @JsonProperty("update_man")
-    @JSONField(name = "update_man")
-    @ApiModelProperty(value = "update_man", notes = "更新人")
-    private String updateMan;
-
-    /**
-     * 建立时间
-     */
-    @TableField(value = "create_time" , fill = FieldFill.INSERT)
-    @DEField(name = "create_time" , preType = DEPredefinedFieldType.CREATEDATE)
-    @JsonProperty("create_time")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "create_time", notes = "建立时间")
-    private Date createTime;
-
-    /**
-     * 标识
-     */
+    * 标识
+    */
     @Id
     @TableId(value = "id" , type = IdType.ASSIGN_UUID)
     @DEField(name = "id" , isKeyField = true)
-    @JsonProperty("id")
     @JSONField(name = "id")
+    @JsonProperty("id")
     @ApiModelProperty(value = "id", notes = "标识")
     private String id;
 
     /**
-     * 名称
-     */
+    * 名称
+    */
     @TableField(value = "name")
     @DEField(name = "name")
-    @JsonProperty("name")
     @JSONField(name = "name")
+    @JsonProperty("name")
     @ApiModelProperty(value = "name", notes = "名称")
     private String name;
 
     /**
-     * 产品标识
-     */
+    * 建立人
+    */
+    @TableField(value = "create_man" , fill = FieldFill.INSERT)
+    @DEField(name = "create_man" , preType = DEPredefinedFieldType.CREATEMAN , dict = "SysOperator")
+    @JSONField(name = "create_man")
+    @JsonProperty("create_man")
+    @ApiModelProperty(value = "create_man", notes = "建立人")
+    private String createMan;
+
+    /**
+    * 建立时间
+    */
+    @TableField(value = "create_time" , fill = FieldFill.INSERT)
+    @DEField(name = "create_time" , preType = DEPredefinedFieldType.CREATEDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("create_time")
+    @ApiModelProperty(value = "create_time", notes = "建立时间")
+    private Date createTime;
+
+    /**
+    * 更新人
+    */
+    @TableField(value = "update_man")
+    @DEField(name = "update_man" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
+    @JSONField(name = "update_man")
+    @JsonProperty("update_man")
+    @ApiModelProperty(value = "update_man", notes = "更新人")
+    private String updateMan;
+
+    /**
+    * 更新时间
+    */
+    @TableField(value = "update_time")
+    @DEField(name = "update_time" , preType = DEPredefinedFieldType.UPDATEDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("update_time")
+    @ApiModelProperty(value = "update_time", notes = "更新时间")
+    private Date updateTime;
+
+    /**
+    * 产品标识
+    */
     @TableField(value = "product_id")
     @DEField(name = "product_id")
-    @JsonProperty("product_id")
     @JSONField(name = "product_id")
+    @JsonProperty("product_id")
     @ApiModelProperty(value = "product_id", notes = "产品标识")
     private String productId;
 
     /**
-     * 产品
-     */
+    * 产品-工单渠道
+    */
+    @Transient
+    @TableField(exist = false)
     @JsonIgnore
     @JSONField(serialize = false)
-    @TableField(exist = false)
-    @Transient
     @ApiModelProperty(value = "product", notes = "产品-工单渠道")
     private Product product;
 
     /**
-     * 设置 [名称]
-     */
+    * 设置 [名称]
+    */
     public Channel setName(String name) {
         this.name = name;
         this.modify("name", name);
@@ -130,13 +130,14 @@ public class Channel extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [产品标识]
-     */
+    * 设置 [产品标识]
+    */
     public Channel setProductId(String productId) {
         this.productId = productId;
         this.modify("product_id", productId);
         return this;
     }
+
 
     /**
      * 复制当前对象数据到目标对象(粘贴重置)

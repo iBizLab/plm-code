@@ -26,15 +26,15 @@ export default {
   ],
   appDEFields: [
     {
-      codeName: 'create_time',
+      codeName: 'id',
       lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.CREATE_TIME',
+        lanResTag: 'DEF.LNAME.ID',
       },
-      logicName: '建立时间',
-      stdDataType: 5,
-      valueFormat: 'YYYY-MM-DD HH:mm:ss',
-      name: 'CREATE_TIME',
-      id: 'create_time',
+      logicName: '标识',
+      stdDataType: 25,
+      stringLength: 100,
+      name: 'ID',
+      id: 'id',
     },
     {
       codeName: 'name',
@@ -60,6 +60,17 @@ export default {
       id: 'create_man',
     },
     {
+      codeName: 'create_time',
+      lnlanguageRes: {
+        lanResTag: 'DEF.LNAME.CREATE_TIME',
+      },
+      logicName: '建立时间',
+      stdDataType: 5,
+      valueFormat: 'YYYY-MM-DD HH:mm:ss',
+      name: 'CREATE_TIME',
+      id: 'create_time',
+    },
+    {
       codeName: 'update_man',
       lnlanguageRes: {
         lanResTag: 'DEF.LNAME.UPDATE_MAN',
@@ -69,17 +80,6 @@ export default {
       stringLength: 100,
       name: 'UPDATE_MAN',
       id: 'update_man',
-    },
-    {
-      codeName: 'id',
-      lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.ID',
-      },
-      logicName: '标识',
-      stdDataType: 25,
-      stringLength: 100,
-      name: 'ID',
-      id: 'id',
     },
     {
       codeName: 'update_time',

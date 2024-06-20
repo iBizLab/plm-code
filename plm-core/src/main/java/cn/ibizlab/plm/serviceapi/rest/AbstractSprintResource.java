@@ -599,6 +599,22 @@ public abstract class AbstractSprintResource {
     }
 
     /**
+    * overview_num 迭代
+    * 
+    *
+    * @param id id
+    * @return ResponseEntity<SprintDTO>
+    */
+    @ApiOperation(value = "overview_num", tags = {"迭代" },  notes = "Sprint-overview_num ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Sprint-overview_num-all') or hasPermission(this.sprintService.get(#id),'ibizplm-Sprint-overview_num')")
+    @GetMapping("sprints/{id}/overview_num")
+    public ResponseEntity<SprintDTO> overviewNumById
+            (@PathVariable("id") String id) {
+        Sprint rt = sprintService.overviewNum(id);
+        return ResponseEntity.status(HttpStatus.OK).body(sprintDtoMapping.toDto(rt));
+    }
+
+    /**
     * 查询fetch_choose_move 迭代
     * 确认迭代完成时，选择移动至其他迭代
     *
@@ -611,7 +627,29 @@ public abstract class AbstractSprintResource {
     public ResponseEntity<List<SprintDTO>> fetchChooseMove
             (@Validated @RequestBody SprintFilterDTO dto) {
         SprintSearchContext context = sprintFilterDtoMapping.toDomain(dto);
-        Page<Sprint> domains = sprintService.searchChooseMove(context) ;
+        Page<Sprint> domains = sprintService.fetchChooseMove(context) ;
+        List<SprintDTO> list = sprintDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_cur_sprint_not_finish 迭代
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<SprintDTO>>
+    */
+    @ApiOperation(value = "查询fetch_cur_sprint_not_finish", tags = {"迭代" },  notes = "Sprint-fetch_cur_sprint_not_finish ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Sprint-fetch_cur_sprint_not_finish-all') or hasPermission(#dto,'ibizplm-Sprint-fetch_cur_sprint_not_finish')")
+    @PostMapping("sprints/fetch_cur_sprint_not_finish")
+    public ResponseEntity<List<SprintDTO>> fetchCurSprintNotFinish
+            (@Validated @RequestBody SprintFilterDTO dto) {
+        SprintSearchContext context = sprintFilterDtoMapping.toDomain(dto);
+        Page<Sprint> domains = sprintService.fetchCurSprintNotFinish(context) ;
         List<SprintDTO> list = sprintDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -633,7 +671,7 @@ public abstract class AbstractSprintResource {
     public ResponseEntity<List<SprintDTO>> fetchDefault
             (@Validated @RequestBody SprintFilterDTO dto) {
         SprintSearchContext context = sprintFilterDtoMapping.toDomain(dto);
-        Page<Sprint> domains = sprintService.searchDefault(context) ;
+        Page<Sprint> domains = sprintService.fetchDefault(context) ;
         List<SprintDTO> list = sprintDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -655,7 +693,7 @@ public abstract class AbstractSprintResource {
     public ResponseEntity<List<SprintDTO>> fetchNotFinish
             (@Validated @RequestBody SprintFilterDTO dto) {
         SprintSearchContext context = sprintFilterDtoMapping.toDomain(dto);
-        Page<Sprint> domains = sprintService.searchNotFinish(context) ;
+        Page<Sprint> domains = sprintService.fetchNotFinish(context) ;
         List<SprintDTO> list = sprintDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -752,6 +790,23 @@ public abstract class AbstractSprintResource {
     }
 
     /**
+    * overview_num 迭代
+    * 
+    *
+    * @param projectId projectId
+    * @param id id
+    * @return ResponseEntity<SprintDTO>
+    */
+    @ApiOperation(value = "overview_num", tags = {"迭代" },  notes = "Sprint-overview_num ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Sprint-overview_num-all') or hasPermission('project',#projectId,this.sprintService.get(#id),'ibizplm-Sprint-overview_num')")
+    @GetMapping("projects/{projectId}/sprints/{id}/overview_num")
+    public ResponseEntity<SprintDTO> overviewNumByProjectIdAndId
+            (@PathVariable("projectId") String projectId, @PathVariable("id") String id) {
+        Sprint rt = sprintService.overviewNum(id);
+        return ResponseEntity.status(HttpStatus.OK).body(sprintDtoMapping.toDto(rt));
+    }
+
+    /**
     * 查询fetch_choose_move 迭代
     * 确认迭代完成时，选择移动至其他迭代
     *
@@ -766,7 +821,31 @@ public abstract class AbstractSprintResource {
             (@PathVariable("projectId") String projectId, @Validated @RequestBody SprintFilterDTO dto) {
         dto.setProjectIdEQ(projectId);
         SprintSearchContext context = sprintFilterDtoMapping.toDomain(dto);
-        Page<Sprint> domains = sprintService.searchChooseMove(context) ;
+        Page<Sprint> domains = sprintService.fetchChooseMove(context) ;
+        List<SprintDTO> list = sprintDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_cur_sprint_not_finish 迭代
+    * 
+    *
+    * @param projectId projectId
+    * @param dto dto
+    * @return ResponseEntity<List<SprintDTO>>
+    */
+    @ApiOperation(value = "查询fetch_cur_sprint_not_finish", tags = {"迭代" },  notes = "Sprint-fetch_cur_sprint_not_finish ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Sprint-fetch_cur_sprint_not_finish-all') or hasPermission('project',#projectId,#dto,'ibizplm-Sprint-fetch_cur_sprint_not_finish')")
+    @PostMapping("projects/{projectId}/sprints/fetch_cur_sprint_not_finish")
+    public ResponseEntity<List<SprintDTO>> fetchCurSprintNotFinishByProjectId
+            (@PathVariable("projectId") String projectId, @Validated @RequestBody SprintFilterDTO dto) {
+        dto.setProjectIdEQ(projectId);
+        SprintSearchContext context = sprintFilterDtoMapping.toDomain(dto);
+        Page<Sprint> domains = sprintService.fetchCurSprintNotFinish(context) ;
         List<SprintDTO> list = sprintDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -790,7 +869,7 @@ public abstract class AbstractSprintResource {
             (@PathVariable("projectId") String projectId, @Validated @RequestBody SprintFilterDTO dto) {
         dto.setProjectIdEQ(projectId);
         SprintSearchContext context = sprintFilterDtoMapping.toDomain(dto);
-        Page<Sprint> domains = sprintService.searchDefault(context) ;
+        Page<Sprint> domains = sprintService.fetchDefault(context) ;
         List<SprintDTO> list = sprintDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -814,7 +893,7 @@ public abstract class AbstractSprintResource {
             (@PathVariable("projectId") String projectId, @Validated @RequestBody SprintFilterDTO dto) {
         dto.setProjectIdEQ(projectId);
         SprintSearchContext context = sprintFilterDtoMapping.toDomain(dto);
-        Page<Sprint> domains = sprintService.searchNotFinish(context) ;
+        Page<Sprint> domains = sprintService.fetchNotFinish(context) ;
         List<SprintDTO> list = sprintDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -833,7 +912,7 @@ public abstract class AbstractSprintResource {
     @ApiOperation(value = "批量新建迭代", tags = {"迭代" },  notes = "批量新建迭代")
 	@PostMapping("sprints/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<SprintDTO> dtos) {
-        sprintService.createBatch(sprintDtoMapping.toDomain(dtos));
+        sprintService.create(sprintDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -846,7 +925,7 @@ public abstract class AbstractSprintResource {
     @ApiOperation(value = "批量删除迭代", tags = {"迭代" },  notes = "批量删除迭代")
 	@DeleteMapping("sprints/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        sprintService.removeBatch(ids);
+        sprintService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -859,7 +938,7 @@ public abstract class AbstractSprintResource {
     @ApiOperation(value = "批量更新迭代", tags = {"迭代" },  notes = "批量更新迭代")
 	@PutMapping("sprints/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<SprintDTO> dtos) {
-        sprintService.updateBatch(sprintDtoMapping.toDomain(dtos));
+        sprintService.update(sprintDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -872,7 +951,7 @@ public abstract class AbstractSprintResource {
     @ApiOperation(value = "批量保存迭代", tags = {"迭代" },  notes = "批量保存迭代")
 	@PostMapping("sprints/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<SprintDTO> dtos) {
-        sprintService.saveBatch(sprintDtoMapping.toDomain(dtos));
+        sprintService.save(sprintDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

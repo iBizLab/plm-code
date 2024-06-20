@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper	namespace="cn.ibizlab.plm.core.team.mapper.DiscussPostMapper">
+
+        <!--通过mybatis将查询结果注入到entity中,通过配置autoMapping="true"由mybatis自动处理映射关系 -->
+    <resultMap id="DiscussPostResultMap" type="cn.ibizlab.plm.core.team.domain.DiscussPost" autoMapping="true">
+		<id property="id" column="id" /><!--主键字段映射-->
+		<result property="isDeleted" column="is_deleted" />
+		<result property="createMan" column="create_man" />
+		<result property="createTime" column="create_time" />
+		<result property="updateMan" column="update_man" />
+		<result property="updateTime" column="update_time" />
+		<result property="topicId" column="topic_id" />
+		<result property="topicName" column="topic_name" />
+        <association property="discussTopic" javaType="cn.ibizlab.plm.core.team.domain.DiscussTopic" column="topic_id" select="cn.ibizlab.plm.core.team.mapper.DiscussTopicMapper.selectById" fetchType="lazy"></association>
+    </resultMap>
+
+    <select id="selectById"  resultMap="DiscussPostResultMap">
+        <include refid="view" /> 
+         where 
+         t1.id=#{ id }
+    </select>
+
+    <select id="selectEntity" parameterType="cn.ibizlab.plm.core.team.domain.DiscussPost" resultMap="DiscussPostResultMap">
+        <include refid="view" /> 
+         where 
+         (t1.id = #{ id })
+    </select>
+
+    <select id="selectEntities" parameterType="java.util.List" resultMap="DiscussPostResultMap">
+        <include refid="view" /> 
+         where 
+         (t1.id)
+         in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.id }) </foreach>)
+    </select>
+
+    <delete id="deleteEntities" parameterType="java.util.List">
+    delete from DISCUSS_POST
+    where (id)
+         in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.id }) </foreach>)
+    </delete>
+
+    <sql id="default" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`HEAT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, t1.`STATUS`, t1.`TOPIC_ID`, t11.`NAME` AS `TOPIC_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `DISCUSS_POST` t1  LEFT JOIN `DISCUSS_TOPIC` t11 ON t1.`TOPIC_ID` = t11.`ID`   ]]>  
+    </sql>
+
+    <sql id="view" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CONTENT`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`HEAT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, t1.`STATUS`, t1.`TOPIC_ID`, t11.`NAME` AS `TOPIC_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `DISCUSS_POST` t1  LEFT JOIN `DISCUSS_TOPIC` t11 ON t1.`TOPIC_ID` = t11.`ID`   ]]>  
+    </sql>
+
+    <sql id="deleted" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`HEAT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, t1.`STATUS`, t1.`TOPIC_ID`, t11.`NAME` AS `TOPIC_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `DISCUSS_POST` t1  LEFT JOIN `DISCUSS_TOPIC` t11 ON t1.`TOPIC_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`IS_DELETED` = 1 ) ]]> 
+    </sql>
+
+    <sql id="myAttention" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`HEAT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, t1.`STATUS`, t1.`TOPIC_ID`, t11.`NAME` AS `TOPIC_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `DISCUSS_POST` t1  LEFT JOIN `DISCUSS_TOPIC` t11 ON t1.`TOPIC_ID` = t11.`ID`   ]]>  where  <![CDATA[ EXISTS(SELECT * FROM `ATTENTION` t21   WHERE   t1.`ID` = t21.`OWNER_ID`  AND  t21.`OWNER_TYPE` = 'DISCUSS_POST'  AND  t21.`OWNER_SUBTYPE` = 'DISCUSS_POST'  AND  ( t21.`USER_ID` = #{ctx.sessioncontext.srfpersonid}  AND  t21.`TYPE` IN ('20','30','40') ) ) ]]> 
+    </sql>
+
+    <sql id="myCreate" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`HEAT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, t1.`STATUS`, t1.`TOPIC_ID`, t11.`NAME` AS `TOPIC_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `DISCUSS_POST` t1  LEFT JOIN `DISCUSS_TOPIC` t11 ON t1.`TOPIC_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`CREATE_MAN` = #{ctx.sessioncontext.srfpersonid} ) ]]> 
+    </sql>
+
+    <sql id="myReply" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`HEAT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, t1.`STATUS`, t1.`TOPIC_ID`, t11.`NAME` AS `TOPIC_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `DISCUSS_POST` t1  LEFT JOIN `DISCUSS_TOPIC` t11 ON t1.`TOPIC_ID` = t11.`ID`   ]]>  where  <![CDATA[ EXISTS(SELECT * FROM `DISCUSS_REPLY` t21   WHERE   t1.`ID` = t21.`POST_ID`  AND  ( t21.`CREATE_MAN` = #{ctx.sessioncontext.srfpersonid} ) ) ]]> 
+    </sql>
+
+    <sql id="normal" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`HEAT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, t1.`STATUS`, t1.`TOPIC_ID`, t11.`NAME` AS `TOPIC_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `DISCUSS_POST` t1  LEFT JOIN `DISCUSS_TOPIC` t11 ON t1.`TOPIC_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`IS_DELETED` = 0 ) ]]> 
+    </sql>
+
+    <sql id="public" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`HEAT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, t1.`STATUS`, t1.`TOPIC_ID`, t11.`NAME` AS `TOPIC_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `DISCUSS_POST` t1  LEFT JOIN `DISCUSS_TOPIC` t11 ON t1.`TOPIC_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t11.`VISIBILITY` = 'public' ) ]]> and  <![CDATA[ ( t1.`IS_DELETED` = 0 ) ]]> 
+    </sql>
+
+    <sql id="reader" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`HEAT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, t1.`STATUS`, t1.`TOPIC_ID`, t11.`NAME` AS `TOPIC_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `DISCUSS_POST` t1  LEFT JOIN `DISCUSS_TOPIC` t11 ON t1.`TOPIC_ID` = t11.`ID`   ]]>  where  <![CDATA[ EXISTS(SELECT * FROM `MEMBER` t21   WHERE   t11.`ID` = t21.`OWNER_ID`  AND  ( t21.`USER_ID` = #{ctx.sessioncontext.srfpersonid}  AND  t21.`OWNER_TYPE` = 'DISCUSS' ) ) ]]> and  <![CDATA[ ( t1.`IS_DELETED` = 0 ) ]]> 
+    </sql>
+
+    <sql id="recent" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`HEAT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, t1.`STATUS`, t1.`TOPIC_ID`, t11.`NAME` AS `TOPIC_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `DISCUSS_POST` t1  LEFT JOIN `DISCUSS_TOPIC` t11 ON t1.`TOPIC_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( DATEDIFF(sysdate(),t1.`CREATE_TIME`) <= 30  AND  exists(select 1 from `member` t2 where t1.topic_id = t2.owner_id and t2.user_id = #{ctx.sessioncontext.srfpersonid}) ) ]]> 
+    </sql>
+
+    <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.team.filter.DiscussPostSearchContext"  resultMap="DiscussPostResultMap">
+        select t1.* 
+        from (
+            <include refid="default"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listDefault"  parameterType="cn.ibizlab.plm.core.team.filter.DiscussPostSearchContext"  resultMap="DiscussPostResultMap">
+        select t1.*
+        from (
+            <include refid="default"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchDeleted"  parameterType="cn.ibizlab.plm.core.team.filter.DiscussPostSearchContext"  resultMap="DiscussPostResultMap">
+        select t1.* 
+        from (
+            <include refid="deleted"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listDeleted"  parameterType="cn.ibizlab.plm.core.team.filter.DiscussPostSearchContext"  resultMap="DiscussPostResultMap">
+        select t1.*
+        from (
+            <include refid="deleted"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchMyAttention"  parameterType="cn.ibizlab.plm.core.team.filter.DiscussPostSearchContext"  resultMap="DiscussPostResultMap">
+        select t1.* 
+        from (
+            <include refid="myAttention"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listMyAttention"  parameterType="cn.ibizlab.plm.core.team.filter.DiscussPostSearchContext"  resultMap="DiscussPostResultMap">
+        select t1.*
+        from (
+            <include refid="myAttention"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchMyCreate"  parameterType="cn.ibizlab.plm.core.team.filter.DiscussPostSearchContext"  resultMap="DiscussPostResultMap">
+        select t1.* 
+        from (
+            <include refid="myCreate"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listMyCreate"  parameterType="cn.ibizlab.plm.core.team.filter.DiscussPostSearchContext"  resultMap="DiscussPostResultMap">
+        select t1.*
+        from (
+            <include refid="myCreate"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchMyReply"  parameterType="cn.ibizlab.plm.core.team.filter.DiscussPostSearchContext"  resultMap="DiscussPostResultMap">
+        select t1.* 
+        from (
+            <include refid="myReply"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listMyReply"  parameterType="cn.ibizlab.plm.core.team.filter.DiscussPostSearchContext"  resultMap="DiscussPostResultMap">
+        select t1.*
+        from (
+            <include refid="myReply"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchNormal"  parameterType="cn.ibizlab.plm.core.team.filter.DiscussPostSearchContext"  resultMap="DiscussPostResultMap">
+        select t1.* 
+        from (
+            <include refid="normal"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listNormal"  parameterType="cn.ibizlab.plm.core.team.filter.DiscussPostSearchContext"  resultMap="DiscussPostResultMap">
+        select t1.*
+        from (
+            <include refid="normal"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchReader"  parameterType="cn.ibizlab.plm.core.team.filter.DiscussPostSearchContext"  resultMap="DiscussPostResultMap">
+        select t1.* 
+        from (
+            <include refid="reader"/>
+                 union all 
+            <include refid="public"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listReader"  parameterType="cn.ibizlab.plm.core.team.filter.DiscussPostSearchContext"  resultMap="DiscussPostResultMap">
+        select t1.*
+        from (
+            <include refid="reader"/>
+                 union all
+            <include refid="public"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchRecent"  parameterType="cn.ibizlab.plm.core.team.filter.DiscussPostSearchContext"  resultMap="DiscussPostResultMap">
+        select t1.* 
+        from (
+            <include refid="recent"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listRecent"  parameterType="cn.ibizlab.plm.core.team.filter.DiscussPostSearchContext"  resultMap="DiscussPostResultMap">
+        select t1.*
+        from (
+            <include refid="recent"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="findByTopicId" resultMap="DiscussPostResultMap">
+        select t1.* from (
+            <include refid="default"/>
+        ) t1
+        where topic_id in <foreach item="id" index="index" collection="topicIds" open="(" separator="," close=")">#{id}</foreach> 
+    </select>
+
+
+</mapper>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper	namespace="cn.ibizlab.plm.core.base.mapper.AddonResourceMapper">
+
+        <!--通过mybatis将查询结果注入到entity中,通过配置autoMapping="true"由mybatis自动处理映射关系 -->
+    <resultMap id="AddonResourceResultMap" type="cn.ibizlab.plm.core.base.domain.AddonResource" autoMapping="true">
+		<id property="id" column="id" /><!--主键字段映射-->
+		<result property="addonType" column="addon_type" />
+		<result property="ownerType" column="owner_type" />
+		<result property="ownerId" column="owner_id" />
+		<result property="settingModel" column="setting_model" />
+		<result property="isEnabled" column="is_enabled" />
+        <result property="members" column="members" jdbcType="VARCHAR" typeHandler="cn.ibizlab.plm.core.base.domain.handlers.ResourceMemberTypeHandler" />
+		<result property="createMan" column="create_man" />
+		<result property="createTime" column="create_time" />
+		<result property="updateMan" column="update_man" />
+		<result property="updateTime" column="update_time" />
+        <association property="project" javaType="cn.ibizlab.plm.core.projmgmt.domain.Project" column="owner_id" select="cn.ibizlab.plm.core.projmgmt.mapper.ProjectMapper.selectById" fetchType="lazy"></association>
+    </resultMap>
+
+    <select id="selectById"  resultMap="AddonResourceResultMap">
+        <include refid="view" /> 
+         where 
+         t1.id=#{ id }
+    </select>
+
+    <select id="selectEntity" parameterType="cn.ibizlab.plm.core.base.domain.AddonResource" resultMap="AddonResourceResultMap">
+        <include refid="view" /> 
+         where 
+         (t1.id = #{ id })
+    </select>
+
+    <select id="selectEntities" parameterType="java.util.List" resultMap="AddonResourceResultMap">
+        <include refid="view" /> 
+         where 
+         (t1.id)
+         in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.id }) </foreach>)
+    </select>
+
+    <delete id="deleteEntities" parameterType="java.util.List">
+    delete from ADDON
+    where (id)
+         in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.id }) </foreach>)
+    </delete>
+
+    <sql id="default" databaseId="mysql">
+         <![CDATA[ SELECT t1.`ADDON_TYPE`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IS_ENABLED`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_TYPE`, t1.`SETTING_MODEL`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `ADDON` t1   ]]>  
+    </sql>
+
+    <sql id="view" databaseId="mysql">
+         <![CDATA[ SELECT t1.`ADDON_TYPE`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IS_ENABLED`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_TYPE`, t1.`SETTING_MODEL`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `ADDON` t1   ]]>  
+    </sql>
+
+    <sql id="all" databaseId="mysql">
+         <![CDATA[ SELECT t1.`ADDON_TYPE`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IS_ENABLED`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `ADDON` t1   ]]>  where  <![CDATA[ ( t1.`OWNER_TYPE` = 'all'  AND  t1.`ADDON_TYPE` = 'resource' ) ]]> 
+    </sql>
+
+    <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.base.filter.AddonResourceSearchContext"  resultMap="AddonResourceResultMap">
+        select t1.* 
+        from (
+            <include refid="default"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listDefault"  parameterType="cn.ibizlab.plm.core.base.filter.AddonResourceSearchContext"  resultMap="AddonResourceResultMap">
+        select t1.*
+        from (
+            <include refid="default"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchAll"  parameterType="cn.ibizlab.plm.core.base.filter.AddonResourceSearchContext"  resultMap="AddonResourceResultMap">
+        select t1.* 
+        from (
+            <include refid="all"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listAll"  parameterType="cn.ibizlab.plm.core.base.filter.AddonResourceSearchContext"  resultMap="AddonResourceResultMap">
+        select t1.*
+        from (
+            <include refid="all"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="findByOwnerId" resultMap="AddonResourceResultMap">
+        select t1.* from (
+            <include refid="default"/>
+        ) t1
+        where owner_id in <foreach item="id" index="index" collection="ownerIds" open="(" separator="," close=")">#{id}</foreach> 
+    </select>
+
+
+</mapper>

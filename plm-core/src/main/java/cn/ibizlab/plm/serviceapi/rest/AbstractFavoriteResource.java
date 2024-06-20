@@ -238,7 +238,7 @@ public abstract class AbstractFavoriteResource {
     public ResponseEntity<List<FavoriteDTO>> fetchDefault
             (@Validated @RequestBody FavoriteFilterDTO dto) {
         FavoriteSearchContext context = favoriteFilterDtoMapping.toDomain(dto);
-        Page<Favorite> domains = favoriteService.searchDefault(context) ;
+        Page<Favorite> domains = favoriteService.fetchDefault(context) ;
         List<FavoriteDTO> list = favoriteDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -257,7 +257,7 @@ public abstract class AbstractFavoriteResource {
     @ApiOperation(value = "批量新建收藏", tags = {"收藏" },  notes = "批量新建收藏")
 	@PostMapping("favorites/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<FavoriteDTO> dtos) {
-        favoriteService.createBatch(favoriteDtoMapping.toDomain(dtos));
+        favoriteService.create(favoriteDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -270,7 +270,7 @@ public abstract class AbstractFavoriteResource {
     @ApiOperation(value = "批量删除收藏", tags = {"收藏" },  notes = "批量删除收藏")
 	@DeleteMapping("favorites/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        favoriteService.removeBatch(ids);
+        favoriteService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -283,7 +283,7 @@ public abstract class AbstractFavoriteResource {
     @ApiOperation(value = "批量更新收藏", tags = {"收藏" },  notes = "批量更新收藏")
 	@PutMapping("favorites/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<FavoriteDTO> dtos) {
-        favoriteService.updateBatch(favoriteDtoMapping.toDomain(dtos));
+        favoriteService.update(favoriteDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -296,7 +296,7 @@ public abstract class AbstractFavoriteResource {
     @ApiOperation(value = "批量保存收藏", tags = {"收藏" },  notes = "批量保存收藏")
 	@PostMapping("favorites/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<FavoriteDTO> dtos) {
-        favoriteService.saveBatch(favoriteDtoMapping.toDomain(dtos));
+        favoriteService.save(favoriteDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

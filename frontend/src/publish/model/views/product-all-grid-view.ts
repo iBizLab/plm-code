@@ -76,17 +76,17 @@ export default {
       id: 'opendata',
     },
     {
-      realTitle: '产品',
-      refAppViewId: 'plmweb.product_index_view',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
-    {
       realOpenMode: 'POPUPMODAL',
       realTitle: '新建产品',
       refAppViewId: 'plmweb.product_create_wizard_view',
       name: 'NEWDATA',
       id: 'newdata',
+    },
+    {
+      realTitle: '产品',
+      refAppViewId: 'plmweb.product_index_view',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
   ],
   controls: [
@@ -128,8 +128,6 @@ export default {
       columnEnableFilter: 2,
       columnEnableLink: 2,
       groupMode: 'NONE',
-      minorSortDir: 'DESC',
-      minorSortAppDEFieldId: 'update_time',
       degridColumns: [
         {
           clconvertMode: 'NONE',
@@ -375,7 +373,7 @@ export default {
       enablePagingBar: true,
       singleSelect: true,
       fetchControlAction: {
-        appDEMethodId: 'fetch_normal',
+        appDEMethodId: 'fetch_main',
         appDataEntityId: 'plmweb.product',
         id: 'fetch',
       },

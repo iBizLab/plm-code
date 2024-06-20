@@ -31,89 +31,32 @@ public interface ProductTagService extends IService<ProductTag> {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    ProductTag get(ProductTag et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default ProductTag get(String key) {
-        return getSelf().get(new ProductTag().setId(key));
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<ProductTag> getByIds(Collection<String> ids) {
-        List<ProductTag> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new ProductTag().setId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<ProductTag> getByEntities(List<ProductTag> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    ProductTag getDraft(ProductTag et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(ProductTag et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(ProductTag et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<ProductTag> list);
+    boolean create(List<ProductTag> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(ProductTag et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<ProductTag> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    @Override
-    boolean save(ProductTag et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<ProductTag> list);
+    boolean update(List<ProductTag> list);
 
     /**
      * 主键删除
@@ -123,14 +66,7 @@ public interface ProductTagService extends IService<ProductTag> {
     default boolean remove(String key) {
         return getSelf().remove(new ProductTag().setId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -140,13 +76,13 @@ public interface ProductTagService extends IService<ProductTag> {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<ProductTag> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new ProductTag().setId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new ProductTag().setId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -154,7 +90,184 @@ public interface ProductTagService extends IService<ProductTag> {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<ProductTag> entities);
+    boolean remove(List<ProductTag> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default ProductTag get(String key) {
+        return getSelf().get(new ProductTag().setId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    ProductTag get(ProductTag et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<ProductTag> get(Collection<String> keys) {
+        List<ProductTag> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new ProductTag().setId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<ProductTag> get(List<ProductTag> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    ProductTag getDraft(ProductTag et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(ProductTag et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(ProductTag et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<ProductTag> list);
+
+    /**
+    * deleteTag
+    * 
+    * @param et
+    * @return
+    */
+    default ProductTag deleteTag(ProductTag et) {
+        return et;
+    }
+
+    /**
+    * getConProductTag
+    * 
+    * @param key
+    * @return
+    */
+    default ProductTag getConProductTag(String key) {
+        return getSelf().getConProductTag(new ProductTag().setId(key));
+    }
+
+    /**
+    * nothing
+    * 
+    * @param et
+    * @return
+    */
+    default ProductTag nothing(ProductTag et) {
+        return et;
+    }
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<ProductTag> fetchDefault(ProductTagSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<ProductTag> listDefault(ProductTagSearchContext context);
+
+    /**
+    * fetchCurProductTag
+    * 
+    * @param context
+    * @return
+    */
+    Page<ProductTag> fetchCurProductTag(ProductTagSearchContext context);
+
+    /**
+    * listCurProductTag
+    * 
+    * @param context
+    * @return
+    */
+    List<ProductTag> listCurProductTag(ProductTagSearchContext context);
+
+    /**
+    * findByProductId
+    * @param productIds
+    * @return
+    */
+    List<ProductTag> findByProductId(List<String> productIds);
+    default List<ProductTag> findByProductId(String productId){
+        return findByProductId(Arrays.asList(productId));
+    }
+
+    /**
+    * removeByProductId
+    * @param productId
+    * @return
+    */
+    boolean removeByProductId(String productId);
+
+    /**
+    * resetByProductId
+    * @param productId
+    * @return
+    */
+    boolean resetByProductId(String productId);
+
+    /**
+    * saveByProductId
+    * @param productId
+    * @param list
+    * @return
+    */
+    default boolean saveByProductId(String productId, List<ProductTag> list){
+        return getSelf().saveByProduct(new Product().setId(productId),list);
+    }
+
+    /**
+    * saveByProduct
+    * @param product
+    * @param list
+    * @return
+    */
+    boolean saveByProduct(Product product, List<ProductTag> list);
+
+    /**
+    * getConProductTag
+    * 
+    * @param et
+    * @return
+    */
+    default ProductTag getConProductTag(ProductTag et) {
+        return et;
+    }
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<ProductTag> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -171,22 +284,7 @@ public interface ProductTagService extends IService<ProductTag> {
         }
         return rt;
     }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<ProductTag> searchDefault(ProductTagSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<ProductTag> listDefault(ProductTagSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -194,6 +292,7 @@ public interface ProductTagService extends IService<ProductTag> {
     default ProductTag getEntity() {
         return new ProductTag();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -201,59 +300,13 @@ public interface ProductTagService extends IService<ProductTag> {
     default ProductTagSearchContext getSearchContext() {
         return new ProductTagSearchContext();
     }
+
+
     /**
-     * selectRelByProductId
-     * @param productIds
-     * @return
-     */
-    List<ProductTag> findByProductId(List<String> productIds);
-    default List<ProductTag> findByProductId(String productId) {
-        return findByProductId(Arrays.asList(productId));
-    }
-    /**
-     * removeRelByProductId
-     * @param productId
-     * @return
-     */
-    boolean removeByProductId(String productId);
-    /**
-     * resetRelByProductId
-     * @param productId
-     * @return
-     */
-    boolean resetByProductId(String productId);
-    /**
-     * saveRelByProductId
-     * @param productId
-     * @param list
-     * @return
-     */
-    default boolean saveByProductId(String productId,List<ProductTag> list) {
-        return getSelf().saveByProduct(new Product().setId(productId),list);
-    }
-    /**
-    * saveRelByProduct
-    * @param product
-    * @param list
+    * 自定义SQL
+    * @param sql  update table  set name ='test' where id =#{et.param}
+    * @param param 参数列表  param.put("param","1");
     * @return
     */
-    boolean saveByProduct(Product product,List<ProductTag> list);
-
-
-    /**
-     * 自定义查询SQL
-     * @param sql  select * from table where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
-    List<JSONObject> select(String sql, Map<String,Object> param);
-
-    /**
-     * 自定义SQL
-     * @param sql  update table  set name ='test' where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
     boolean execute(String sql, Map<String,Object> param);
-
 }

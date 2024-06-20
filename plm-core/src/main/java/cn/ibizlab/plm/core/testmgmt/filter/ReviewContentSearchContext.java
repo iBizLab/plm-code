@@ -71,6 +71,8 @@ public class ReviewContentSearchContext extends QueryWrapperContext<ReviewConten
         super.setContextParentKey(contextParentKey);
         if(Entities.REVIEW.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("principal_id",contextParentKey);
+        if(Entities.REVIEW_WIZARD.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("principal_id",contextParentKey);
         if(Entities.VERSION.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("target_version_id",contextParentKey);
         if(Entities.TEST_CASE.equals(this.getContextParentEntity())&&contextParentKey!=null)

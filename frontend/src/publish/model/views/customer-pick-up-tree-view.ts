@@ -62,7 +62,7 @@ export default {
             parentDER1N: {
               masterRS: 32,
               pickupDEFName: 'SECTION_ID',
-              removeActionType: 1,
+              removeActionType: 2,
               codeName: 'section',
               dertype: 'DER1N',
               logicName: '分组-类别',
@@ -124,6 +124,7 @@ export default {
           },
           {
             idAppDEFieldId: 'id',
+            leafFlagAppDEFieldId: 'is_leaf',
             appDEDataSetId: 'fetch_default',
             textAppDEFieldId: 'name',
             nodeType: 'node_2',
@@ -138,6 +139,7 @@ export default {
           },
           {
             idAppDEFieldId: 'id',
+            leafFlagAppDEFieldId: 'is_leaf',
             appDEDataSetId: 'fetch_no_section',
             textAppDEFieldId: 'name',
             nodeType: 'node_3',

@@ -107,7 +107,7 @@ export default {
           realTitleLanguageRes: {
             lanResTag: 'PAGE.TITLE.PROJECT.GRID_VIEW_ORG',
           },
-          refAppViewId: 'plmweb.project_group_grid_view',
+          refAppViewId: 'plmweb.project_org_grid_view',
           name: 'EXPITEM:org',
           id: 'expitem:org',
         },
@@ -427,7 +427,7 @@ export default {
             },
             {
               text: '组织项目',
-              navAppViewId: 'plmweb.project_group_grid_view',
+              navAppViewId: 'plmweb.project_org_grid_view',
               nodeType: 'org',
               navigateContexts: [
                 {

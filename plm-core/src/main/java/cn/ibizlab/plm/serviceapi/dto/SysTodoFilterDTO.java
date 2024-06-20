@@ -31,20 +31,20 @@ import io.swagger.annotations.ApiModelProperty;
 public class SysTodoFilterDTO extends FilterBase implements Serializable {
 
     /**
-     * 标题LIKE
-     */
-    @JsonProperty("n_title_like")
-    @JSONField(name = "n_title_like")
-    @ApiModelProperty(value = "标题LIKE", position = 40)
-	private String titleLIKE;
-
-    /**
      * 待办标识EQ
      */
     @JsonProperty("n_todoid_eq")
     @JSONField(name = "n_todoid_eq")
-    @ApiModelProperty(value = "待办标识EQ", position = 60)
+    @ApiModelProperty(value = "待办标识EQ", position = 10)
 	private String todoIdEQ;
+
+    /**
+     * 标题LIKE
+     */
+    @JsonProperty("n_title_like")
+    @JSONField(name = "n_title_like")
+    @ApiModelProperty(value = "标题LIKE", position = 20)
+	private String titleLIKE;
 
     /**
      * 待办地址类型EQ

@@ -35,89 +35,32 @@ public interface ReleaseService extends IService<Release> {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    Release get(Release et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default Release get(String key) {
-        return getSelf().get(new Release().setId(key));
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<Release> getByIds(Collection<String> ids) {
-        List<Release> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Release().setId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<Release> getByEntities(List<Release> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    Release getDraft(Release et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(Release et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(Release et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<Release> list);
+    boolean create(List<Release> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(Release et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<Release> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    @Override
-    boolean save(Release et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<Release> list);
+    boolean update(List<Release> list);
 
     /**
      * 主键删除
@@ -127,14 +70,7 @@ public interface ReleaseService extends IService<Release> {
     default boolean remove(String key) {
         return getSelf().remove(new Release().setId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -144,13 +80,13 @@ public interface ReleaseService extends IService<Release> {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<Release> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Release().setId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new Release().setId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -158,7 +94,164 @@ public interface ReleaseService extends IService<Release> {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<Release> entities);
+    boolean remove(List<Release> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default Release get(String key) {
+        return getSelf().get(new Release().setId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    Release get(Release et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<Release> get(Collection<String> keys) {
+        List<Release> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new Release().setId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<Release> get(List<Release> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    Release getDraft(Release et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(Release et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(Release et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<Release> list);
+
+    /**
+    * deleteCategories
+    * 
+    * @param et
+    * @return
+    */
+    default Release deleteCategories(Release et) {
+        return et;
+    }
+
+    /**
+    * planWorkItem
+    * 
+    * @param et
+    * @return
+    */
+    default Release planWorkItem(Release et) {
+        return et;
+    }
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<Release> fetchDefault(ReleaseSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<Release> listDefault(ReleaseSearchContext context);
+
+    /**
+    * fetchNotFinish
+    * 
+    * @param context
+    * @return
+    */
+    Page<Release> fetchNotFinish(ReleaseSearchContext context);
+
+    /**
+    * listNotFinish
+    * 
+    * @param context
+    * @return
+    */
+    List<Release> listNotFinish(ReleaseSearchContext context);
+
+    /**
+    * findByProjectId
+    * @param projectIds
+    * @return
+    */
+    List<Release> findByProjectId(List<String> projectIds);
+    default List<Release> findByProjectId(String projectId){
+        return findByProjectId(Arrays.asList(projectId));
+    }
+
+    /**
+    * removeByProjectId
+    * @param projectId
+    * @return
+    */
+    boolean removeByProjectId(String projectId);
+
+    /**
+    * resetByProjectId
+    * @param projectId
+    * @return
+    */
+    boolean resetByProjectId(String projectId);
+
+    /**
+    * saveByProjectId
+    * @param projectId
+    * @param list
+    * @return
+    */
+    default boolean saveByProjectId(String projectId, List<Release> list){
+        return getSelf().saveByProject(new Project().setId(projectId),list);
+    }
+
+    /**
+    * saveByProject
+    * @param project
+    * @param list
+    * @return
+    */
+    boolean saveByProject(Project project, List<Release> list);
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<Release> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -175,42 +268,7 @@ public interface ReleaseService extends IService<Release> {
         }
         return rt;
     }
-
-    /**
-     * delete_categories
-     * 
-     * @param dto
-     * @return
-     */
-    default Release deleteCategories(Release dto) {
-        return dto;
-    }
-
-    /**
-     * plan_work_item
-     * 
-     * @param dto
-     * @return
-     */
-    default Release planWorkItem(Release dto) {
-        return dto;
-    }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<Release> searchDefault(ReleaseSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<Release> listDefault(ReleaseSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -218,6 +276,7 @@ public interface ReleaseService extends IService<Release> {
     default Release getEntity() {
         return new Release();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -225,59 +284,13 @@ public interface ReleaseService extends IService<Release> {
     default ReleaseSearchContext getSearchContext() {
         return new ReleaseSearchContext();
     }
+
+
     /**
-     * selectRelByProjectId
-     * @param projectIds
-     * @return
-     */
-    List<Release> findByProjectId(List<String> projectIds);
-    default List<Release> findByProjectId(String projectId) {
-        return findByProjectId(Arrays.asList(projectId));
-    }
-    /**
-     * removeRelByProjectId
-     * @param projectId
-     * @return
-     */
-    boolean removeByProjectId(String projectId);
-    /**
-     * resetRelByProjectId
-     * @param projectId
-     * @return
-     */
-    boolean resetByProjectId(String projectId);
-    /**
-     * saveRelByProjectId
-     * @param projectId
-     * @param list
-     * @return
-     */
-    default boolean saveByProjectId(String projectId,List<Release> list) {
-        return getSelf().saveByProject(new Project().setId(projectId),list);
-    }
-    /**
-    * saveRelByProject
-    * @param project
-    * @param list
+    * 自定义SQL
+    * @param sql  update table  set name ='test' where id =#{et.param}
+    * @param param 参数列表  param.put("param","1");
     * @return
     */
-    boolean saveByProject(Project project,List<Release> list);
-
-
-    /**
-     * 自定义查询SQL
-     * @param sql  select * from table where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
-    List<JSONObject> select(String sql, Map<String,Object> param);
-
-    /**
-     * 自定义SQL
-     * @param sql  update table  set name ='test' where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
     boolean execute(String sql, Map<String,Object> param);
-
 }

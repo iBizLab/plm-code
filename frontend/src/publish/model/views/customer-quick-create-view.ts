@@ -176,6 +176,19 @@ export default {
                     editorType: 'PICKEREX_DROPDOWNVIEW',
                     editorItems: [
                       {
+                        navigateParams: [
+                          {
+                            key: 'n_owner_subtype_eq',
+                            value: 'customer',
+                            rawValue: true,
+                            id: 'n_owner_subtype_eq',
+                          },
+                          {
+                            key: 'n_owner_id_eq',
+                            value: 'product',
+                            id: 'n_owner_id_eq',
+                          },
+                        ],
                         id: 'categorys',
                       },
                     ],
@@ -197,8 +210,6 @@ export default {
                   id: 'categories_name',
                 },
                 {
-                  createDV: 'category',
-                  createDVT: 'APPDATA',
                   dataType: 25,
                   enableCond: 3,
                   labelPos: 'TOP',
@@ -206,9 +217,26 @@ export default {
                   noPrivDisplayMode: 1,
                   appDEFieldId: 'categories',
                   editor: {
+                    editorParams: {
+                      'SRFNAVPARAM.n_owner_subtype_eq': 'customer',
+                      'SRFNAVPARAM.n_owner_id_eq': '%product%',
+                    },
                     editorType: 'HIDDEN',
                     valueType: 'SIMPLE',
                     editable: true,
+                    navigateParams: [
+                      {
+                        key: 'n_owner_subtype_eq',
+                        value: 'customer',
+                        rawValue: true,
+                        id: 'n_owner_subtype_eq',
+                      },
+                      {
+                        key: 'n_owner_id_eq',
+                        value: 'product',
+                        id: 'n_owner_id_eq',
+                      },
+                    ],
                     id: 'categorys',
                   },
                   allowEmpty: true,
@@ -254,11 +282,11 @@ export default {
                       QUOTESCRIPT:
                         '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","icon":"${data.icon}"}`',
                       USERURL:
-                        "`${context.library ? `libraries/${context.library}/library_members/fetchdefault` : context.product ? `products/${context.product}/product_members/fetchdefault` : context.project ? `projects/${context.project}/project_members/fetchdefault` : ''}`",
+                        "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                       USERFIELDMAP: '{"id":"user_id","name":"name"}',
                       INSERTKEYS:
                         '[{"index":66,"keys":["marker"]},{"index":5,"keys":["paintformat"]}]',
-                      QUOTEURL: '`recents/fetchrecent_access`',
+                      QUOTEURL: '`recents/fetch_recent_access`',
                     },
                     editorStyle: 'COLLAPSE',
                     editorType: 'HTMLEDITOR',

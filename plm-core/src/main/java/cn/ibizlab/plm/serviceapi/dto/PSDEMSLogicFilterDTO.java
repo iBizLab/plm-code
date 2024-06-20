@@ -31,20 +31,20 @@ import io.swagger.annotations.ApiModelProperty;
 public class PSDEMSLogicFilterDTO extends FilterBase implements Serializable {
 
     /**
-     * 实体处理逻辑名称LIKE
-     */
-    @JsonProperty("n_psdelogicname_like")
-    @JSONField(name = "n_psdelogicname_like")
-    @ApiModelProperty(value = "实体处理逻辑名称LIKE", position = 50)
-	private String psdeLogicNameLIKE;
-
-    /**
      * 实体处理逻辑标识EQ
      */
     @JsonProperty("n_psdelogicid_eq")
     @JSONField(name = "n_psdelogicid_eq")
-    @ApiModelProperty(value = "实体处理逻辑标识EQ", position = 60)
+    @ApiModelProperty(value = "实体处理逻辑标识EQ", position = 10)
 	private String psdeLogicIdEQ;
+
+    /**
+     * 实体处理逻辑名称LIKE
+     */
+    @JsonProperty("n_psdelogicname_like")
+    @JSONField(name = "n_psdelogicname_like")
+    @ApiModelProperty(value = "实体处理逻辑名称LIKE", position = 20)
+	private String psdeLogicNameLIKE;
 
     /**
      * 实体EQ

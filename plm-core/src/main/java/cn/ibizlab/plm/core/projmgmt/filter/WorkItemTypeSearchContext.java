@@ -63,6 +63,14 @@ public class WorkItemTypeSearchContext extends QueryWrapperContext<WorkItemType>
     private String codeIN;
 
     /**
+     * 标识LIKE
+     */
+    @JsonProperty("n_id_like")
+    @JSONField(name = "n_id_like")
+    @ApiModelProperty("标识LIKE")
+    private String idLIKE;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
@@ -77,6 +85,21 @@ public class WorkItemTypeSearchContext extends QueryWrapperContext<WorkItemType>
     @JSONField(name = "n_name_like")
     @ApiModelProperty("名称LIKE")
     private String nameLIKE;
+
+    /**
+     * 项目标识EQ
+     */
+    @JsonProperty("n_project_id_eq")
+    @JSONField(name = "n_project_id_eq")
+    @ApiModelProperty("项目标识EQ")
+    private String projectIdEQ;
+
+    @Override
+    public void setContextParentKey(Serializable contextParentKey) {
+        super.setContextParentKey(contextParentKey);
+        if(Entities.PROJECT.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("project_id",contextParentKey);
+    }
 
     @Override
     public void setQuery(String query) {

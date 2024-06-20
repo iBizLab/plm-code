@@ -47,20 +47,20 @@ public class ExtendLogFilterDTO extends FilterBase implements Serializable {
 	private String ownerSubtypeEQ;
 
     /**
-     * 名称LIKE
-     */
-    @JsonProperty("n_name_like")
-    @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 100)
-	private String nameLIKE;
-
-    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 130)
+    @ApiModelProperty(value = "标识EQ", position = 100)
 	private String idEQ;
+
+    /**
+     * 名称LIKE
+     */
+    @JsonProperty("n_name_like")
+    @JSONField(name = "n_name_like")
+    @ApiModelProperty(value = "名称LIKE", position = 110)
+	private String nameLIKE;
 
 
 }

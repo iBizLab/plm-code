@@ -239,44 +239,6 @@ public abstract class AbstractTestCaseResource {
     }
 
     /**
-    * del_relation 用例
-    * 
-    *
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<TestCaseDTO>
-    */
-    @ApiOperation(value = "del_relation", tags = {"用例" },  notes = "TestCase-del_relation ")
-    @PostMapping("test_cases/{id}/del_relation")
-    public ResponseEntity<ResponseWrapper<TestCaseDTO>> delRelationById
-            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
-        ResponseWrapper<TestCaseDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(delRelationById(ids[i], dto.getList().get(i))));
-        }
-        else
-            rt.set(delRelationById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
-    }
-
-    /**
-    * del_relation 用例
-    * 
-    *
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<TestCaseDTO>
-    */   
-    public TestCaseDTO delRelationById
-            (String id, TestCaseDTO dto) {
-        TestCase domain = testCaseDtoMapping.toDomain(dto);
-        domain.setId(id);
-        TestCase rt = testCaseService.delRelation(domain);
-        return testCaseDtoMapping.toDto(rt);
-    }
-
-    /**
     * delete 用例
     * 
     *
@@ -312,45 +274,6 @@ public abstract class AbstractTestCaseResource {
         TestCase domain = testCaseDtoMapping.toDomain(dto);
         domain.setId(id);
         TestCase rt = testCaseService.delete(domain);
-        return testCaseDtoMapping.toDto(rt);
-    }
-
-    /**
-    * fill_library_member 用例
-    * 
-    *
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<TestCaseDTO>
-    */
-    @ApiOperation(value = "fill_library_member", tags = {"用例" },  notes = "TestCase-fill_library_member ")
-    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fill_library_member-all') or hasPermission(this.testCaseDtoMapping.toDomain(#dto),'ibizplm-TestCase-fill_library_member')")
-    @PostMapping("test_cases/{id}/fill_library_member")
-    public ResponseEntity<ResponseWrapper<TestCaseDTO>> fillLibraryMemberById
-            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
-        ResponseWrapper<TestCaseDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(fillLibraryMemberById(ids[i], dto.getList().get(i))));
-        }
-        else
-            rt.set(fillLibraryMemberById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
-    }
-
-    /**
-    * fill_library_member 用例
-    * 
-    *
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<TestCaseDTO>
-    */   
-    public TestCaseDTO fillLibraryMemberById
-            (String id, TestCaseDTO dto) {
-        TestCase domain = testCaseDtoMapping.toDomain(dto);
-        domain.setId(id);
-        TestCase rt = testCaseService.fillLibraryMember(domain);
         return testCaseDtoMapping.toDto(rt);
     }
 
@@ -893,46 +816,6 @@ public abstract class AbstractTestCaseResource {
     }
 
     /**
-    * del_relation 用例
-    * 
-    *
-    * @param testLibraryId testLibraryId
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<TestCaseDTO>
-    */
-    @ApiOperation(value = "del_relation", tags = {"用例" },  notes = "TestCase-del_relation ")
-    @PostMapping("libraries/{testLibraryId}/test_cases/{id}/del_relation")
-    public ResponseEntity<ResponseWrapper<TestCaseDTO>> delRelationByTestLibraryIdAndId
-            (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
-        ResponseWrapper<TestCaseDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(delRelationByTestLibraryIdAndId(testLibraryId, ids[i], dto.getList().get(i))));
-        }
-        else
-            rt.set(delRelationByTestLibraryIdAndId(testLibraryId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
-    }
-
-    /**
-    * del_relation 用例
-    * 
-    *
-    * @param testLibraryId testLibraryId
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<TestCaseDTO>
-    */   
-    public TestCaseDTO delRelationByTestLibraryIdAndId
-            (String testLibraryId, String id, TestCaseDTO dto) {
-        TestCase domain = testCaseDtoMapping.toDomain(dto);
-        domain.setId(id);
-        TestCase rt = testCaseService.delRelation(domain);
-        return testCaseDtoMapping.toDto(rt);
-    }
-
-    /**
     * delete 用例
     * 
     *
@@ -970,47 +853,6 @@ public abstract class AbstractTestCaseResource {
         TestCase domain = testCaseDtoMapping.toDomain(dto);
         domain.setId(id);
         TestCase rt = testCaseService.delete(domain);
-        return testCaseDtoMapping.toDto(rt);
-    }
-
-    /**
-    * fill_library_member 用例
-    * 
-    *
-    * @param testLibraryId testLibraryId
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<TestCaseDTO>
-    */
-    @ApiOperation(value = "fill_library_member", tags = {"用例" },  notes = "TestCase-fill_library_member ")
-    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fill_library_member-all') or hasPermission('library',#testLibraryId,this.testCaseDtoMapping.toDomain(#dto),'ibizplm-TestCase-fill_library_member')")
-    @PostMapping("libraries/{testLibraryId}/test_cases/{id}/fill_library_member")
-    public ResponseEntity<ResponseWrapper<TestCaseDTO>> fillLibraryMemberByTestLibraryIdAndId
-            (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
-        ResponseWrapper<TestCaseDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(fillLibraryMemberByTestLibraryIdAndId(testLibraryId, ids[i], dto.getList().get(i))));
-        }
-        else
-            rt.set(fillLibraryMemberByTestLibraryIdAndId(testLibraryId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
-    }
-
-    /**
-    * fill_library_member 用例
-    * 
-    *
-    * @param testLibraryId testLibraryId
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<TestCaseDTO>
-    */   
-    public TestCaseDTO fillLibraryMemberByTestLibraryIdAndId
-            (String testLibraryId, String id, TestCaseDTO dto) {
-        TestCase domain = testCaseDtoMapping.toDomain(dto);
-        domain.setId(id);
-        TestCase rt = testCaseService.fillLibraryMember(domain);
         return testCaseDtoMapping.toDto(rt);
     }
 
@@ -1424,6 +1266,38 @@ public abstract class AbstractTestCaseResource {
     }
 
     /**
+    * get_attention 用例
+    * 
+    *
+    * @param id id
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "get_attention", tags = {"用例" },  notes = "TestCase-get_attention ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-get_attention-all') or hasPermission(this.testCaseService.get(#id),'ibizplm-TestCase-get_attention')")
+    @GetMapping("test_cases/{id}/get_attention")
+    public ResponseEntity<TestCaseDTO> getAttentionById
+            (@PathVariable("id") String id) {
+        TestCase rt = testCaseService.getAttention(id);
+        return ResponseEntity.status(HttpStatus.OK).body(testCaseDtoMapping.toDto(rt));
+    }
+
+    /**
+    * get_baseline_name 用例
+    * 
+    *
+    * @param id id
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "get_baseline_name", tags = {"用例" },  notes = "TestCase-get_baseline_name ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-get_baseline_name-all') or hasPermission(this.testCaseService.get(#id),'ibizplm-TestCase-get_baseline_name')")
+    @GetMapping("test_cases/{id}/get_baseline_name")
+    public ResponseEntity<TestCaseDTO> getBaselineNameById
+            (@PathVariable("id") String id) {
+        TestCase rt = testCaseService.getBaselineName(id);
+        return ResponseEntity.status(HttpStatus.OK).body(testCaseDtoMapping.toDto(rt));
+    }
+
+    /**
     * 草稿GetDraft 用例
     * 
     *
@@ -1467,7 +1341,7 @@ public abstract class AbstractTestCaseResource {
     public ResponseEntity<List<TestCaseDTO>> fetchAdvancedSearch
             (@Validated @RequestBody TestCaseFilterDTO dto) {
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchAdvancedSearch(context) ;
+        Page<TestCase> domains = testCaseService.fetchAdvancedSearch(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1489,7 +1363,7 @@ public abstract class AbstractTestCaseResource {
     public ResponseEntity<List<TestCaseDTO>> fetchAssessmentResult
             (@Validated @RequestBody TestCaseFilterDTO dto) {
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchAssessmentResult(context) ;
+        Page<TestCase> domains = testCaseService.fetchAssessmentResult(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1511,7 +1385,7 @@ public abstract class AbstractTestCaseResource {
     public ResponseEntity<List<TestCaseDTO>> fetchBaselineChooseCase
             (@Validated @RequestBody TestCaseFilterDTO dto) {
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchBaselineChooseCase(context) ;
+        Page<TestCase> domains = testCaseService.fetchBaselineChooseCase(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1533,7 +1407,7 @@ public abstract class AbstractTestCaseResource {
     public ResponseEntity<List<TestCaseDTO>> fetchCasePerson
             (@Validated @RequestBody TestCaseFilterDTO dto) {
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchCasePerson(context) ;
+        Page<TestCase> domains = testCaseService.fetchCasePerson(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1555,7 +1429,7 @@ public abstract class AbstractTestCaseResource {
     public ResponseEntity<List<TestCaseDTO>> fetchCaseType
             (@Validated @RequestBody TestCaseFilterDTO dto) {
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchCaseType(context) ;
+        Page<TestCase> domains = testCaseService.fetchCaseType(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1577,7 +1451,7 @@ public abstract class AbstractTestCaseResource {
     public ResponseEntity<List<TestCaseMaintenanceDTO>> fetchCommentNotifyMaintenance
             (@Validated @RequestBody TestCaseFilterDTO dto) {
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchCommentNotifyMaintenance(context) ;
+        Page<TestCase> domains = testCaseService.fetchCommentNotifyMaintenance(context) ;
         List<TestCaseMaintenanceDTO> list = testCaseMaintenanceDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1599,7 +1473,7 @@ public abstract class AbstractTestCaseResource {
     public ResponseEntity<List<TestCaseDTO>> fetchDailyTendencies
             (@Validated @RequestBody TestCaseFilterDTO dto) {
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchDailyTendencies(context) ;
+        Page<TestCase> domains = testCaseService.fetchDailyTendencies(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1621,7 +1495,7 @@ public abstract class AbstractTestCaseResource {
     public ResponseEntity<List<TestCaseDTO>> fetchDefault
             (@Validated @RequestBody TestCaseFilterDTO dto) {
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchDefault(context) ;
+        Page<TestCase> domains = testCaseService.fetchDefault(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1643,7 +1517,7 @@ public abstract class AbstractTestCaseResource {
     public ResponseEntity<List<TestCaseDTO>> fetchDegreeImportance
             (@Validated @RequestBody TestCaseFilterDTO dto) {
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchDegreeImportance(context) ;
+        Page<TestCase> domains = testCaseService.fetchDegreeImportance(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1665,7 +1539,7 @@ public abstract class AbstractTestCaseResource {
     public ResponseEntity<List<TestCaseDTO>> fetchDeleted
             (@Validated @RequestBody TestCaseFilterDTO dto) {
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchDeleted(context) ;
+        Page<TestCase> domains = testCaseService.fetchDeleted(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1687,7 +1561,7 @@ public abstract class AbstractTestCaseResource {
     public ResponseEntity<List<TestCaseDTO>> fetchEverydayTest
             (@Validated @RequestBody TestCaseFilterDTO dto) {
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchEverydayTest(context) ;
+        Page<TestCase> domains = testCaseService.fetchEverydayTest(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1708,7 +1582,7 @@ public abstract class AbstractTestCaseResource {
     public ResponseEntity<List<TestCaseDTO>> fetchIdeaRelationTestCase
             (@Validated @RequestBody TestCaseFilterDTO dto) {
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchIdeaRelationTestCase(context) ;
+        Page<TestCase> domains = testCaseService.fetchIdeaRelationTestCase(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1730,7 +1604,7 @@ public abstract class AbstractTestCaseResource {
     public ResponseEntity<List<TestCaseDTO>> fetchImplementationResults
             (@Validated @RequestBody TestCaseFilterDTO dto) {
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchImplementationResults(context) ;
+        Page<TestCase> domains = testCaseService.fetchImplementationResults(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1751,7 +1625,7 @@ public abstract class AbstractTestCaseResource {
     public ResponseEntity<List<TestCaseDTO>> fetchMyAssign
             (@Validated @RequestBody TestCaseFilterDTO dto) {
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchMyAssign(context) ;
+        Page<TestCase> domains = testCaseService.fetchMyAssign(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1773,7 +1647,7 @@ public abstract class AbstractTestCaseResource {
     public ResponseEntity<List<TestCaseDTO>> fetchMyAssigneeCountTestCase
             (@Validated @RequestBody TestCaseFilterDTO dto) {
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchMyAssigneeCountTestCase(context) ;
+        Page<TestCase> domains = testCaseService.fetchMyAssigneeCountTestCase(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1794,7 +1668,7 @@ public abstract class AbstractTestCaseResource {
     public ResponseEntity<List<TestCaseDTO>> fetchMyAttention
             (@Validated @RequestBody TestCaseFilterDTO dto) {
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchMyAttention(context) ;
+        Page<TestCase> domains = testCaseService.fetchMyAttention(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1815,7 +1689,7 @@ public abstract class AbstractTestCaseResource {
     public ResponseEntity<List<TestCaseDTO>> fetchMyCreated
             (@Validated @RequestBody TestCaseFilterDTO dto) {
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchMyCreated(context) ;
+        Page<TestCase> domains = testCaseService.fetchMyCreated(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1837,7 +1711,7 @@ public abstract class AbstractTestCaseResource {
     public ResponseEntity<List<TestCaseDTO>> fetchNormal
             (@Validated @RequestBody TestCaseFilterDTO dto) {
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchNormal(context) ;
+        Page<TestCase> domains = testCaseService.fetchNormal(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1859,7 +1733,7 @@ public abstract class AbstractTestCaseResource {
     public ResponseEntity<List<TestCaseDTO>> fetchNosuiteTestCase
             (@Validated @RequestBody TestCaseFilterDTO dto) {
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchNosuiteTestCase(context) ;
+        Page<TestCase> domains = testCaseService.fetchNosuiteTestCase(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1881,7 +1755,7 @@ public abstract class AbstractTestCaseResource {
     public ResponseEntity<List<TestCaseDTO>> fetchNotAddCase
             (@Validated @RequestBody TestCaseFilterDTO dto) {
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchNotAddCase(context) ;
+        Page<TestCase> domains = testCaseService.fetchNotAddCase(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1903,7 +1777,7 @@ public abstract class AbstractTestCaseResource {
     public ResponseEntity<List<TestCaseDTO>> fetchNotExsistsRelation
             (@Validated @RequestBody TestCaseFilterDTO dto) {
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchNotExsistsRelation(context) ;
+        Page<TestCase> domains = testCaseService.fetchNotExsistsRelation(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1925,7 +1799,7 @@ public abstract class AbstractTestCaseResource {
     public ResponseEntity<List<TestCaseDTO>> fetchNotifyAssignee
             (@Validated @RequestBody TestCaseFilterDTO dto) {
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchNotifyAssignee(context) ;
+        Page<TestCase> domains = testCaseService.fetchNotifyAssignee(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1947,7 +1821,7 @@ public abstract class AbstractTestCaseResource {
     public ResponseEntity<List<TestCaseDTO>> fetchPersonDistributions
             (@Validated @RequestBody TestCaseFilterDTO dto) {
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchPersonDistributions(context) ;
+        Page<TestCase> domains = testCaseService.fetchPersonDistributions(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1969,7 +1843,7 @@ public abstract class AbstractTestCaseResource {
     public ResponseEntity<List<TestCaseDTO>> fetchPriorityDistributions
             (@Validated @RequestBody TestCaseFilterDTO dto) {
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchPriorityDistributions(context) ;
+        Page<TestCase> domains = testCaseService.fetchPriorityDistributions(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1990,7 +1864,7 @@ public abstract class AbstractTestCaseResource {
     public ResponseEntity<List<TestCaseDTO>> fetchRecentTestCase
             (@Validated @RequestBody TestCaseFilterDTO dto) {
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchRecentTestCase(context) ;
+        Page<TestCase> domains = testCaseService.fetchRecentTestCase(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2011,7 +1885,7 @@ public abstract class AbstractTestCaseResource {
     public ResponseEntity<List<TestCaseDTO>> fetchSuitesTestCase
             (@Validated @RequestBody TestCaseFilterDTO dto) {
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchSuitesTestCase(context) ;
+        Page<TestCase> domains = testCaseService.fetchSuitesTestCase(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2032,7 +1906,7 @@ public abstract class AbstractTestCaseResource {
     public ResponseEntity<List<TestCaseDTO>> fetchWorkItemRelationTestCase
             (@Validated @RequestBody TestCaseFilterDTO dto) {
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchWorkItemRelationTestCase(context) ;
+        Page<TestCase> domains = testCaseService.fetchWorkItemRelationTestCase(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2094,6 +1968,40 @@ public abstract class AbstractTestCaseResource {
     }
 
     /**
+    * get_attention 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param id id
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "get_attention", tags = {"用例" },  notes = "TestCase-get_attention ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-get_attention-all') or hasPermission('library',#testLibraryId,this.testCaseService.get(#id),'ibizplm-TestCase-get_attention')")
+    @GetMapping("libraries/{testLibraryId}/test_cases/{id}/get_attention")
+    public ResponseEntity<TestCaseDTO> getAttentionByTestLibraryIdAndId
+            (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("id") String id) {
+        TestCase rt = testCaseService.getAttention(id);
+        return ResponseEntity.status(HttpStatus.OK).body(testCaseDtoMapping.toDto(rt));
+    }
+
+    /**
+    * get_baseline_name 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param id id
+    * @return ResponseEntity<TestCaseDTO>
+    */
+    @ApiOperation(value = "get_baseline_name", tags = {"用例" },  notes = "TestCase-get_baseline_name ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-get_baseline_name-all') or hasPermission('library',#testLibraryId,this.testCaseService.get(#id),'ibizplm-TestCase-get_baseline_name')")
+    @GetMapping("libraries/{testLibraryId}/test_cases/{id}/get_baseline_name")
+    public ResponseEntity<TestCaseDTO> getBaselineNameByTestLibraryIdAndId
+            (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("id") String id) {
+        TestCase rt = testCaseService.getBaselineName(id);
+        return ResponseEntity.status(HttpStatus.OK).body(testCaseDtoMapping.toDto(rt));
+    }
+
+    /**
     * 草稿GetDraft 用例
     * 
     *
@@ -2142,7 +2050,7 @@ public abstract class AbstractTestCaseResource {
             (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
         dto.setTestLibraryIdEQ(testLibraryId);
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchAdvancedSearch(context) ;
+        Page<TestCase> domains = testCaseService.fetchAdvancedSearch(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2166,7 +2074,7 @@ public abstract class AbstractTestCaseResource {
             (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
         dto.setTestLibraryIdEQ(testLibraryId);
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchAssessmentResult(context) ;
+        Page<TestCase> domains = testCaseService.fetchAssessmentResult(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2190,7 +2098,7 @@ public abstract class AbstractTestCaseResource {
             (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
         dto.setTestLibraryIdEQ(testLibraryId);
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchBaselineChooseCase(context) ;
+        Page<TestCase> domains = testCaseService.fetchBaselineChooseCase(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2214,7 +2122,7 @@ public abstract class AbstractTestCaseResource {
             (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
         dto.setTestLibraryIdEQ(testLibraryId);
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchCasePerson(context) ;
+        Page<TestCase> domains = testCaseService.fetchCasePerson(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2238,7 +2146,7 @@ public abstract class AbstractTestCaseResource {
             (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
         dto.setTestLibraryIdEQ(testLibraryId);
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchCaseType(context) ;
+        Page<TestCase> domains = testCaseService.fetchCaseType(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2262,7 +2170,7 @@ public abstract class AbstractTestCaseResource {
             (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
         dto.setTestLibraryIdEQ(testLibraryId);
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchCommentNotifyMaintenance(context) ;
+        Page<TestCase> domains = testCaseService.fetchCommentNotifyMaintenance(context) ;
         List<TestCaseMaintenanceDTO> list = testCaseMaintenanceDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2286,7 +2194,7 @@ public abstract class AbstractTestCaseResource {
             (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
         dto.setTestLibraryIdEQ(testLibraryId);
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchDailyTendencies(context) ;
+        Page<TestCase> domains = testCaseService.fetchDailyTendencies(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2310,7 +2218,7 @@ public abstract class AbstractTestCaseResource {
             (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
         dto.setTestLibraryIdEQ(testLibraryId);
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchDefault(context) ;
+        Page<TestCase> domains = testCaseService.fetchDefault(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2334,7 +2242,7 @@ public abstract class AbstractTestCaseResource {
             (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
         dto.setTestLibraryIdEQ(testLibraryId);
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchDegreeImportance(context) ;
+        Page<TestCase> domains = testCaseService.fetchDegreeImportance(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2358,7 +2266,7 @@ public abstract class AbstractTestCaseResource {
             (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
         dto.setTestLibraryIdEQ(testLibraryId);
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchDeleted(context) ;
+        Page<TestCase> domains = testCaseService.fetchDeleted(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2382,7 +2290,7 @@ public abstract class AbstractTestCaseResource {
             (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
         dto.setTestLibraryIdEQ(testLibraryId);
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchEverydayTest(context) ;
+        Page<TestCase> domains = testCaseService.fetchEverydayTest(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2405,7 +2313,7 @@ public abstract class AbstractTestCaseResource {
             (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
         dto.setTestLibraryIdEQ(testLibraryId);
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchIdeaRelationTestCase(context) ;
+        Page<TestCase> domains = testCaseService.fetchIdeaRelationTestCase(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2429,7 +2337,7 @@ public abstract class AbstractTestCaseResource {
             (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
         dto.setTestLibraryIdEQ(testLibraryId);
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchImplementationResults(context) ;
+        Page<TestCase> domains = testCaseService.fetchImplementationResults(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2452,7 +2360,7 @@ public abstract class AbstractTestCaseResource {
             (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
         dto.setTestLibraryIdEQ(testLibraryId);
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchMyAssign(context) ;
+        Page<TestCase> domains = testCaseService.fetchMyAssign(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2476,7 +2384,7 @@ public abstract class AbstractTestCaseResource {
             (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
         dto.setTestLibraryIdEQ(testLibraryId);
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchMyAssigneeCountTestCase(context) ;
+        Page<TestCase> domains = testCaseService.fetchMyAssigneeCountTestCase(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2499,7 +2407,7 @@ public abstract class AbstractTestCaseResource {
             (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
         dto.setTestLibraryIdEQ(testLibraryId);
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchMyAttention(context) ;
+        Page<TestCase> domains = testCaseService.fetchMyAttention(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2522,7 +2430,7 @@ public abstract class AbstractTestCaseResource {
             (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
         dto.setTestLibraryIdEQ(testLibraryId);
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchMyCreated(context) ;
+        Page<TestCase> domains = testCaseService.fetchMyCreated(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2546,7 +2454,7 @@ public abstract class AbstractTestCaseResource {
             (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
         dto.setTestLibraryIdEQ(testLibraryId);
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchNormal(context) ;
+        Page<TestCase> domains = testCaseService.fetchNormal(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2570,7 +2478,7 @@ public abstract class AbstractTestCaseResource {
             (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
         dto.setTestLibraryIdEQ(testLibraryId);
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchNosuiteTestCase(context) ;
+        Page<TestCase> domains = testCaseService.fetchNosuiteTestCase(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2594,7 +2502,7 @@ public abstract class AbstractTestCaseResource {
             (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
         dto.setTestLibraryIdEQ(testLibraryId);
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchNotAddCase(context) ;
+        Page<TestCase> domains = testCaseService.fetchNotAddCase(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2618,7 +2526,7 @@ public abstract class AbstractTestCaseResource {
             (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
         dto.setTestLibraryIdEQ(testLibraryId);
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchNotExsistsRelation(context) ;
+        Page<TestCase> domains = testCaseService.fetchNotExsistsRelation(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2642,7 +2550,7 @@ public abstract class AbstractTestCaseResource {
             (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
         dto.setTestLibraryIdEQ(testLibraryId);
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchNotifyAssignee(context) ;
+        Page<TestCase> domains = testCaseService.fetchNotifyAssignee(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2666,7 +2574,7 @@ public abstract class AbstractTestCaseResource {
             (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
         dto.setTestLibraryIdEQ(testLibraryId);
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchPersonDistributions(context) ;
+        Page<TestCase> domains = testCaseService.fetchPersonDistributions(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2690,7 +2598,7 @@ public abstract class AbstractTestCaseResource {
             (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
         dto.setTestLibraryIdEQ(testLibraryId);
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchPriorityDistributions(context) ;
+        Page<TestCase> domains = testCaseService.fetchPriorityDistributions(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2713,7 +2621,7 @@ public abstract class AbstractTestCaseResource {
             (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
         dto.setTestLibraryIdEQ(testLibraryId);
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchRecentTestCase(context) ;
+        Page<TestCase> domains = testCaseService.fetchRecentTestCase(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2736,7 +2644,7 @@ public abstract class AbstractTestCaseResource {
             (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
         dto.setTestLibraryIdEQ(testLibraryId);
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchSuitesTestCase(context) ;
+        Page<TestCase> domains = testCaseService.fetchSuitesTestCase(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2759,7 +2667,7 @@ public abstract class AbstractTestCaseResource {
             (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
         dto.setTestLibraryIdEQ(testLibraryId);
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
-        Page<TestCase> domains = testCaseService.searchWorkItemRelationTestCase(context) ;
+        Page<TestCase> domains = testCaseService.fetchWorkItemRelationTestCase(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2778,7 +2686,7 @@ public abstract class AbstractTestCaseResource {
     @ApiOperation(value = "批量新建用例", tags = {"用例" },  notes = "批量新建用例")
 	@PostMapping("test_cases/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<TestCaseDTO> dtos) {
-        testCaseService.createBatch(testCaseDtoMapping.toDomain(dtos));
+        testCaseService.create(testCaseDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -2791,7 +2699,7 @@ public abstract class AbstractTestCaseResource {
     @ApiOperation(value = "批量删除用例", tags = {"用例" },  notes = "批量删除用例")
 	@DeleteMapping("test_cases/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        testCaseService.removeBatch(ids);
+        testCaseService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -2804,7 +2712,7 @@ public abstract class AbstractTestCaseResource {
     @ApiOperation(value = "批量更新用例", tags = {"用例" },  notes = "批量更新用例")
 	@PutMapping("test_cases/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<TestCaseDTO> dtos) {
-        testCaseService.updateBatch(testCaseDtoMapping.toDomain(dtos));
+        testCaseService.update(testCaseDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -2817,7 +2725,7 @@ public abstract class AbstractTestCaseResource {
     @ApiOperation(value = "批量保存用例", tags = {"用例" },  notes = "批量保存用例")
 	@PostMapping("test_cases/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<TestCaseDTO> dtos) {
-        testCaseService.saveBatch(testCaseDtoMapping.toDomain(dtos));
+        testCaseService.save(testCaseDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

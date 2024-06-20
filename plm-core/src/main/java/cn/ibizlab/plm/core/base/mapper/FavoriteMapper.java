@@ -43,6 +43,14 @@ public interface FavoriteMapper extends BaseMapper<Favorite> {
     List<Favorite> listDefault(@Param("ctx") FavoriteSearchContext context, @Param("ew") Wrapper<Favorite> wrapper);
 
     /**
+    * 根据ownerId查询
+    *
+    * @param ownerIds
+    * @return
+    */
+    List<Favorite> findByOwnerId(@Param("ownerIds") List<String> ownerIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -151,13 +159,4 @@ public interface FavoriteMapper extends BaseMapper<Favorite> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据ownerId查询
-     *
-     * @param ownerIds
-     * @return
-     */
-    List<Favorite> findByOwnerId(@Param("ownerIds") List<String> ownerIds);
-
 }

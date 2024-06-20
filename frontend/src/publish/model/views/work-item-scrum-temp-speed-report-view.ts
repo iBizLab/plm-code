@@ -465,7 +465,7 @@ export default {
         },
         dechartSerieses: [
           {
-            caption: '完成用户故事数',
+            caption: '完成工作项数',
             catalogField: 'filter_type',
             catalogCodeListId: 'plmweb.projmgmt__cur_sprint',
             echartsType: 'bar',
@@ -487,7 +487,7 @@ export default {
             id: 'bar_1',
           },
           {
-            caption: '计划用户故事数',
+            caption: '计划工作项数',
             catalogField: 'filter_type',
             catalogCodeListId: 'plmweb.projmgmt__cur_sprint',
             echartsType: 'bar',
@@ -611,8 +611,10 @@ export default {
         modelId: '624f9097ee6caadee5c0efd69b6d516b',
         modelType: 'PSDECHART',
         userParam: {
+          'EC.dataZoom':
+            '[{"type":"slider","xAxisIndex":0,"start":0,"end":20}]',
           'EC.gridHeaders':
-            '[{"id":"filter_type","name":"迭代"},{"id":"count","name":"计划故事点"},{"id":"count2","name":"完成故事点"}]',
+            '[{"id":"filter_type","name":"迭代"},{"id":"count","name":"计划工作项"},{"id":"count2","name":"完成工作项"}]',
           'EC.color':
             '["#5470c6","#91cc75","#fac858","#ee6666","#73c0de","#3ba272","#fc8452","#9a60b4","#ea7ccc","#5470c6","#91cc75"]',
         },

@@ -42,12 +42,14 @@ export default {
       logicType: 'APPUILOGIC',
       builtinAppUILogic: {
         openDataAppView: {
-          refAppViewId: 'plmweb.project_redirect_view',
+          openMode: 'POPUPMODAL',
+          refAppViewId: 'plmweb.project_show_edit_view',
         },
         editMode: true,
         appUILogicRefViews: [
           {
-            refAppViewId: 'plmweb.project_redirect_view',
+            openMode: 'POPUPMODAL',
+            refAppViewId: 'plmweb.project_show_edit_view',
           },
         ],
         builtinLogic: true,
@@ -67,8 +69,9 @@ export default {
       id: 'newdata',
     },
     {
-      realTitle: '项目数据重定向视图',
-      refAppViewId: 'plmweb.project_redirect_view',
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '展示项目信息编辑视图',
+      refAppViewId: 'plmweb.project_show_edit_view',
       name: 'EDITDATA',
       id: 'editdata',
     },
@@ -150,6 +153,20 @@ export default {
                 afterItemType: 'NONE',
                 beforeItemType: 'NONE',
                 detailType: 'DEUIACTION',
+                uiactionId: 'change_admin_role@project',
+                tooltip: '设置管理员',
+                showIcon: true,
+                sysImage: {
+                  cssClass: 'fa fa-sun-o',
+                  glyph: 'xf185@FontAwesome',
+                },
+                id: 'ud083c86',
+              },
+              {
+                actionLevel: 100,
+                afterItemType: 'NONE',
+                beforeItemType: 'NONE',
+                detailType: 'DEUIACTION',
                 uiactionId: 'archive@project',
                 tooltip: '归档',
                 showIcon: true,
@@ -185,7 +202,7 @@ export default {
           codeName: 'uagridcolumn1',
           columnType: 'UAGRIDCOLUMN',
           noPrivDisplayMode: 1,
-          width: 100,
+          width: 150,
           widthUnit: 'PX',
           id: 'uagridcolumn1',
         },

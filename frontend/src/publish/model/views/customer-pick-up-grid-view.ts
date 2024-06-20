@@ -487,6 +487,16 @@ export default {
               valid: true,
               caption: '设置类别',
               itemType: 'DEUIACTION',
+              controlLogics: [
+                {
+                  itemName: 'deuiaction1',
+                  logicTag: 'grid_batchtoolbar',
+                  logicType: 'SCRIPT',
+                  scriptCode: 'context.srfreadonly != true',
+                  triggerType: 'ITEMENABLE',
+                  id: 'deuiaction1',
+                },
+              ],
               sysImage: {
                 cssClass: 'fa fa-edit',
                 glyph: 'xf044@FontAwesome',

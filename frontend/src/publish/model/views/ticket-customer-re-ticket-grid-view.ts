@@ -351,7 +351,7 @@ export default {
         eventNames: 'onLoadSuccess',
         logicTrigger: 'VIEWEVENT',
         logicType: 'APPDEUILOGIC',
-        appDEUILogicId: 'get_idea_total',
+        appDEUILogicId: 'get_grid_total',
         appDataEntityId: 'plmweb.idea',
         builtinLogic: true,
         id: 'onloadsuccess',

@@ -63,20 +63,28 @@ public class RelationFilterDTO extends FilterBase implements Serializable {
 	private String targetIdEQ;
 
     /**
-     * 名称LIKE
+     * 目标对象版本标识EQ
      */
-    @JsonProperty("n_name_like")
-    @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 200)
-	private String nameLIKE;
+    @JsonProperty("n_target_version_id_eq")
+    @JSONField(name = "n_target_version_id_eq")
+    @ApiModelProperty(value = "目标对象版本标识EQ", position = 60)
+	private String targetVersionIdEQ;
 
     /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 220)
+    @ApiModelProperty(value = "标识EQ", position = 200)
 	private String idEQ;
+
+    /**
+     * 名称LIKE
+     */
+    @JsonProperty("n_name_like")
+    @JSONField(name = "n_name_like")
+    @ApiModelProperty(value = "名称LIKE", position = 210)
+	private String nameLIKE;
 
 
 }

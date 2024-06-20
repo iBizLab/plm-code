@@ -177,6 +177,28 @@ export default {
       id: 'name',
     },
     {
+      codeName: 'create_man',
+      lnlanguageRes: {
+        lanResTag: 'DEF.LNAME.CREATE_MAN',
+      },
+      logicName: '建立人',
+      stdDataType: 25,
+      stringLength: 100,
+      name: 'CREATE_MAN',
+      id: 'create_man',
+    },
+    {
+      codeName: 'create_time',
+      lnlanguageRes: {
+        lanResTag: 'DEF.LNAME.CREATE_TIME',
+      },
+      logicName: '建立时间',
+      stdDataType: 5,
+      valueFormat: 'YYYY-MM-DD HH:mm:ss',
+      name: 'CREATE_TIME',
+      id: 'create_time',
+    },
+    {
       codeName: 'update_man',
       lnlanguageRes: {
         lanResTag: 'DEF.LNAME.UPDATE_MAN',
@@ -197,28 +219,6 @@ export default {
       valueFormat: 'YYYY-MM-DD HH:mm:ss',
       name: 'UPDATE_TIME',
       id: 'update_time',
-    },
-    {
-      codeName: 'create_time',
-      lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.CREATE_TIME',
-      },
-      logicName: '建立时间',
-      stdDataType: 5,
-      valueFormat: 'YYYY-MM-DD HH:mm:ss',
-      name: 'CREATE_TIME',
-      id: 'create_time',
-    },
-    {
-      codeName: 'create_man',
-      lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.CREATE_MAN',
-      },
-      logicName: '建立人',
-      stdDataType: 25,
-      stringLength: 100,
-      name: 'CREATE_MAN',
-      id: 'create_man',
     },
   ],
   appDEMethodDTOs: [

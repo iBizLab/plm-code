@@ -33,6 +33,10 @@
 
 
 
+
+
+
+
         <!--输出实体[ACTIVITY]数据结构 -->
         <changeSet author="root" id="tab-activity-0-1">
                 <createTable tableName="ACTIVITY">
@@ -45,9 +49,9 @@
                         </column>
                         <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
-                        </column>
                         <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="AUDITINFO" remarks="" type="CLOB">
                         </column>
@@ -67,8 +71,73 @@
         </changeSet>
 
 
+        <!--输出实体[ADDON]数据结构 -->
+        <changeSet author="root" id="tab-addon-678-2">
+                <createTable tableName="ADDON">
+                        <column name="ADDON_TYPE" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="OWNER_TYPE" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="OWNER_SUBTYPE" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="OWNER_ID" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="SETTING_MODEL" remarks="" type="CLOB">
+                        </column>
+                        <column name="IS_ENABLED" remarks="" type="INT">
+                        </column>
+                        <column name="DESCRIPTION" remarks="" type="VARCHAR(2000)">
+                        </column>
+                        <column name="ORDER_VALUE" remarks="" type="INT">
+                        </column>
+                        <column name="ID" remarks="" type="VARCHAR(100)">
+                                <constraints primaryKey="true" primaryKeyName="PK_ADDON_ID"/>
+                        </column>
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
+                        </column>
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                </createTable>
+        </changeSet>
+
+
+        <!--输出实体[ADDON_RESOURCE]数据结构 -->
+
+
+        <!--输出实体[ADDON_ROLE_MEMBER]数据结构 -->
+        <changeSet author="root" id="tab-addon_role_member-159-4">
+                <createTable tableName="ADDON_ROLE_MEMBER">
+                        <column name="TYPE" remarks="" type="INT">
+                        </column>
+                        <column name="USER_OBJ_ID" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="ID" remarks="" type="VARCHAR(100)">
+                                <constraints primaryKey="true" primaryKeyName="PK_ADDON_ROLE_MEMBER_ID"/>
+                        </column>
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
+                        </column>
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="ADDON_ID" remarks="" type="VARCHAR(100)">
+                        </column>
+                </createTable>
+        </changeSet>
+
+
         <!--输出实体[PAGE]数据结构 -->
-        <changeSet author="root" id="tab-page-1997-2">
+        <changeSet author="root" id="tab-page-3481-5">
                 <createTable tableName="PAGE">
                         <column name="IDENTIFIER" remarks="" type="VARCHAR(100)">
                         </column>
@@ -81,6 +150,8 @@
                         <column name="TYPE" remarks="" type="VARCHAR(60)">
                         </column>
                         <column name="IS_LEAF" remarks="" type="INT">
+                        </column>
+                        <column name="CATEGORIES" remarks="" type="VARCHAR(2000)">
                         </column>
                         <column name="IS_ARCHIVED" remarks="" type="INT">
                         </column>
@@ -102,18 +173,20 @@
                         </column>
                         <column name="PUBLISHED" remarks="" type="INT">
                         </column>
+                        <column name="IS_LOCK" remarks="" type="INT">
+                        </column>
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_PAGE_ID"/>
-                        </column>
-                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
-                        </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
-                        </column>
-                        <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
                         <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="SPACE_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -124,7 +197,7 @@
 
 
         <!--输出实体[ATTACHMENT]数据结构 -->
-        <changeSet author="root" id="tab-attachment-145-3">
+        <changeSet author="root" id="tab-attachment-161-6">
                 <createTable tableName="ATTACHMENT">
                         <column name="OWNER_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -138,14 +211,14 @@
                         </column>
                         <column name="TITLE" remarks="" type="VARCHAR(100)">
                         </column>
-                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
-                        </column>
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_ATTACHMENT_ID"/>
                         </column>
-                        <column name="CREATE_TIME" remarks="" type="DATETIME">
-                        </column>
                         <column name="NAME" remarks="" type="VARCHAR(200)">
+                        </column>
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
@@ -156,7 +229,7 @@
 
 
         <!--输出实体[ATTENTION]数据结构 -->
-        <changeSet author="root" id="tab-attention-32-4">
+        <changeSet author="root" id="tab-attention-46-7">
                 <createTable tableName="ATTENTION">
                         <column name="OWNER_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -186,14 +259,14 @@
 
 
         <!--输出实体[AUTH_LOG_ADMIN]数据结构 -->
-        <changeSet author="root" id="tab-auth_log_admin-171-5">
+        <changeSet author="root" id="tab-auth_log_admin-177-8">
                 <createTable tableName="IBZAUTHLOG">
                         <column name="LOGID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_AUTH_LOG_ADMIN_LOGID"/>
                         </column>
-                        <column name="USERID" remarks="" type="VARCHAR(100)">
-                        </column>
                         <column name="USERNAME" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="USERID" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="PERSONNAME" remarks="" type="VARCHAR(100)">
                         </column>
@@ -216,7 +289,7 @@
 
 
         <!--输出实体[BASELINE]数据结构 -->
-        <changeSet author="root" id="tab-baseline-622-6">
+        <changeSet author="root" id="tab-baseline-1736-9">
                 <createTable tableName="BASELINE">
                         <column name="DESCRIPTION" remarks="" type="VARCHAR(2000)">
                         </column>
@@ -228,6 +301,8 @@
                         </column>
                         <column name="OWNER_SUBTYPE" remarks="" type="VARCHAR(100)">
                         </column>
+                        <column name="TYPE" remarks="" type="VARCHAR(60)">
+                        </column>
                         <column name="CATEGORIES" remarks="" type="VARCHAR(2000)">
                         </column>
                         <column name="ASSIGNEE_NAME" remarks="" type="VARCHAR(100)">
@@ -237,13 +312,13 @@
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_BASELINE_ID"/>
                         </column>
-                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
-                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
-                        <column name="NAME" remarks="" type="VARCHAR(200)">
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
@@ -257,19 +332,21 @@
 
 
 
+
+
         <!--输出实体[BOARD]数据结构 -->
-        <changeSet author="root" id="tab-board-341-7">
+        <changeSet author="root" id="tab-board-514-10">
                 <createTable tableName="BOARD">
-                        <column name="NAME" remarks="" type="VARCHAR(200)">
-                        </column>
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_BOARD_ID"/>
+                        </column>
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
+                        </column>
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
-                        </column>
-                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
@@ -280,20 +357,20 @@
 
 
         <!--输出实体[CASE_HISTORY]数据结构 -->
-        <changeSet author="root" id="tab-case_history-1-8">
+        <changeSet author="root" id="tab-case_history-1-11">
                 <createTable tableName="CASE_HISTORY">
-                        <column name="NAME" remarks="" type="VARCHAR(200)">
-                        </column>
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_CASE_HISTORY_ID"/>
+                        </column>
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
                         <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
-                        </column>
                         <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="CASE_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -302,7 +379,7 @@
 
 
         <!--输出实体[CATEGORY]数据结构 -->
-        <changeSet author="root" id="tab-category-54-9">
+        <changeSet author="root" id="tab-category-314-12">
                 <createTable tableName="CATEGORY">
                         <column name="OWNER_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -314,11 +391,9 @@
                         </column>
                         <column name="IS_LEAF" remarks="" type="INT">
                         </column>
+                        <column name="IS_LEAF2" remarks="" type="INT">
+                        </column>
                         <column name="CATEGORIES" remarks="" type="VARCHAR(2000)">
-                        </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
-                        </column>
-                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_CATEGORY_ID"/>
@@ -329,6 +404,10 @@
                         </column>
                         <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
+                        </column>
                         <column name="SECTION_ID" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="PID" remarks="" type="VARCHAR(100)">
@@ -338,20 +417,20 @@
 
 
         <!--输出实体[CHANNEL]数据结构 -->
-        <changeSet author="root" id="tab-channel-1-10">
+        <changeSet author="root" id="tab-channel-1-13">
                 <createTable tableName="CHANNEL">
-                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
-                        </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
-                        </column>
-                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
-                        </column>
-                        <column name="CREATE_TIME" remarks="" type="DATETIME">
-                        </column>
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_CHANNEL_ID"/>
                         </column>
                         <column name="NAME" remarks="" type="VARCHAR(200)">
+                        </column>
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="PRODUCT_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -360,7 +439,7 @@
 
 
         <!--输出实体[COMMENT]数据结构 -->
-        <changeSet author="root" id="tab-comment-358-11">
+        <changeSet author="root" id="tab-comment-478-14">
                 <createTable tableName="COMMENT">
                         <column name="PRINCIPAL_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -381,9 +460,9 @@
                         </column>
                         <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
-                        </column>
                         <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="PID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -394,7 +473,7 @@
 
 
         <!--输出实体[CUSTOMER]数据结构 -->
-        <changeSet author="root" id="tab-customer-308-12">
+        <changeSet author="root" id="tab-customer-593-15">
                 <createTable tableName="CUSTOMER">
                         <column name="SCALE" remarks="" type="INT">
                         </column>
@@ -412,8 +491,6 @@
                         </column>
                         <column name="CATEGORIES" remarks="" type="VARCHAR(2000)">
                         </column>
-                        <column name="CATEGORIES_NAME" remarks="" type="VARCHAR(2000)">
-                        </column>
                         <column name="ASSIGNEE_NAME" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="ASSIGNEE_ID" remarks="" type="VARCHAR(100)">
@@ -421,15 +498,15 @@
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_CUSTOMER_ID"/>
                         </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
-                        </column>
                         <column name="NAME" remarks="" type="VARCHAR(500)">
                         </column>
-                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
-                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="PRODUCT_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -445,7 +522,7 @@
 
 
         <!--输出实体[DICTIONARY]数据结构 -->
-        <changeSet author="root" id="tab-dictionary-689-14">
+        <changeSet author="root" id="tab-dictionary-751-17">
                 <createTable tableName="DICTIONARY">
                         <column name="TYPE" remarks="" type="VARCHAR(60)">
                         </column>
@@ -459,31 +536,192 @@
                         </column>
                         <column name="CATALOG" remarks="" type="VARCHAR(60)">
                         </column>
-                        <column name="NAME" remarks="" type="VARCHAR(200)">
-                        </column>
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_DICTIONARY_ID"/>
+                        </column>
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
+                        </column>
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
-                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                </createTable>
+        </changeSet>
+
+
+        <!--输出实体[DISCUSS_MEMBER]数据结构 -->
+        <changeSet author="root" id="tab-discuss_member-385-18">
+                <createTable tableName="MEMBER">
+                        <column name="OWNER_ID" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="OWNER_TYPE" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="OWNER_SUBTYPE" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="ROLE_ID" remarks="" type="VARCHAR(60)">
+                        </column>
+                        <column name="ID" remarks="" type="VARCHAR(100)">
+                                <constraints primaryKey="true" primaryKeyName="PK_DISCUSS_MEMBER_ID"/>
+                        </column>
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
                         <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="USER_ID" remarks="" type="VARCHAR(100)">
+                        </column>
+                </createTable>
+        </changeSet>
+
+
+        <!--输出实体[DISCUSS_POST]数据结构 -->
+        <changeSet author="root" id="tab-discuss_post-1234-19">
+                <createTable tableName="DISCUSS_POST">
+                        <column name="IS_DELETED" remarks="" type="INT">
+                        </column>
+                        <column name="STATUS" remarks="" type="VARCHAR(60)">
+                        </column>
+                        <column name="HEAT" remarks="" type="INT">
+                        </column>
+                        <column name="CONTENT" remarks="" type="CLOB">
+                        </column>
+                        <column name="ID" remarks="" type="VARCHAR(100)">
+                                <constraints primaryKey="true" primaryKeyName="PK_DISCUSS_POST_ID"/>
+                        </column>
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
+                        </column>
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="TOPIC_ID" remarks="" type="VARCHAR(100)">
+                        </column>
+                </createTable>
+        </changeSet>
+
+
+        <!--输出实体[DISCUSS_REPLY]数据结构 -->
+        <changeSet author="root" id="tab-discuss_reply-683-20">
+                <createTable tableName="DISCUSS_REPLY">
+                        <column name="CONTENT" remarks="" type="CLOB">
+                        </column>
+                        <column name="ID" remarks="" type="VARCHAR(100)">
+                                <constraints primaryKey="true" primaryKeyName="PK_DISCUSS_REPLY_ID"/>
+                        </column>
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
+                        </column>
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="POST_ID" remarks="" type="VARCHAR(100)">
+                        </column>
+                </createTable>
+        </changeSet>
+
+
+        <!--输出实体[DISCUSS_TOPIC]数据结构 -->
+        <changeSet author="root" id="tab-discuss_topic-1513-21">
+                <createTable tableName="DISCUSS_TOPIC">
+                        <column name="IDENTIFIER" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="VISIBILITY" remarks="" type="VARCHAR(60)">
+                        </column>
+                        <column name="IS_ARCHIVED" remarks="" type="INT">
+                        </column>
+                        <column name="IS_DELETED" remarks="" type="INT">
+                        </column>
+                        <column name="DESCRIPTION" remarks="" type="VARCHAR(2000)">
+                        </column>
+                        <column name="SCOPE_TYPE" remarks="" type="VARCHAR(60)">
+                        </column>
+                        <column name="SCOPE_ID" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="ID" remarks="" type="VARCHAR(100)">
+                                <constraints primaryKey="true" primaryKeyName="PK_DISCUSS_TOPIC_ID"/>
+                        </column>
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
+                        </column>
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                </createTable>
+        </changeSet>
+
+
+        <!--输出实体[DYNA_APPMENU]数据结构 -->
+        <changeSet author="root" id="tab-dyna_appmenu-125-22">
+                <createTable tableName="DYNA_APPMENU">
+                        <column name="TYPE" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="OWNER_TYPE" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="OWNER_ID" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="ID" remarks="" type="VARCHAR(100)">
+                                <constraints primaryKey="true" primaryKeyName="PK_DYNA_APPMENU_ID"/>
+                        </column>
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
+                        </column>
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="USERID" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="MODELID" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="MODEL" remarks="" type="CLOB">
+                        </column>
+                        <column name="APPID" remarks="" type="VARCHAR(100)">
                         </column>
                 </createTable>
         </changeSet>
 
 
         <!--输出实体[DYNADASHBOARD]数据结构 -->
-        <changeSet author="root" id="tab-dynadashboard-36-15">
+        <changeSet author="root" id="tab-dynadashboard-44-23">
                 <createTable tableName="DYNADASHBOARD">
                         <column name="TYPE" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="OWNER_TYPE" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="OWNER_ID" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="DYNADASHBOARDID" remarks="" type="VARCHAR(100)">
+                                <constraints primaryKey="true" primaryKeyName="PK_DYNADASHBOARD_DYNADASHBOARD"/>
+                        </column>
+                        <column name="DYNADASHBOARDNAME" remarks="" type="VARCHAR(200)">
+                        </column>
+                        <column name="CREATEMAN" remarks="" type="VARCHAR(60)">
+                        </column>
+                        <column name="CREATEDATE" remarks="" type="DATETIME">
                         </column>
                         <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
@@ -497,15 +735,6 @@
                         </column>
                         <column name="MODEL" remarks="" type="CLOB">
                         </column>
-                        <column name="DYNADASHBOARDID" remarks="" type="VARCHAR(100)">
-                                <constraints primaryKey="true" primaryKeyName="PK_DYNADASHBOARD_DYNADASHBOARD"/>
-                        </column>
-                        <column name="CREATEMAN" remarks="" type="VARCHAR(60)">
-                        </column>
-                        <column name="DYNADASHBOARDNAME" remarks="" type="VARCHAR(200)">
-                        </column>
-                        <column name="CREATEDATE" remarks="" type="DATETIME">
-                        </column>
                 </createTable>
         </changeSet>
 
@@ -513,7 +742,7 @@
 
 
         <!--输出实体[ENTRY]数据结构 -->
-        <changeSet author="root" id="tab-entry-105-16">
+        <changeSet author="root" id="tab-entry-109-24">
                 <createTable tableName="ENTRY">
                         <column name="SHOWORDER" remarks="" type="INT">
                         </column>
@@ -521,16 +750,16 @@
                         </column>
                         <column name="IS_SPLIT" remarks="" type="INT">
                         </column>
-                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
-                        </column>
-                        <column name="CREATE_TIME" remarks="" type="DATETIME">
-                        </column>
-                        <column name="NAME" remarks="" type="VARCHAR(200)">
-                        </column>
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_ENTRY_ID"/>
                         </column>
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
+                        </column>
                         <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
@@ -543,7 +772,7 @@
 
 
         <!--输出实体[EXTEND_LOG]数据结构 -->
-        <changeSet author="root" id="tab-extend_log-9-17">
+        <changeSet author="root" id="tab-extend_log-9-25">
                 <createTable tableName="EXTEND_LOG">
                         <column name="OWNER_ID" remarks="" type="VARCHAR(200)">
                         </column>
@@ -565,25 +794,25 @@
                         </column>
                         <column name="STATE" remarks="" type="VARCHAR(100)">
                         </column>
-                        <column name="NAME" remarks="" type="VARCHAR(200)">
-                        </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
-                        </column>
-                        <column name="CREATE_TIME" remarks="" type="DATETIME">
-                        </column>
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_EXTEND_LOG_ID"/>
                         </column>
-                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
                         <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                 </createTable>
         </changeSet>
 
 
         <!--输出实体[EXTEND_STORAGE]数据结构 -->
-        <changeSet author="root" id="tab-extend_storage-1-18">
+        <changeSet author="root" id="tab-extend_storage-37-26">
                 <createTable tableName="EXTEND_STORAGE">
                         <column name="OWNER_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -608,20 +837,20 @@
                         </column>
                         <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
-                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
-                        </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
-                        </column>
                         <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                 </createTable>
         </changeSet>
 
 
         <!--输出实体[FAVORITE]数据结构 -->
-        <changeSet author="root" id="tab-favorite-17-19">
+        <changeSet author="root" id="tab-favorite-21-27">
                 <createTable tableName="FAVORITE">
                         <column name="OWNER_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -647,7 +876,7 @@
 
 
         <!--输出实体[GROUP]数据结构 -->
-        <changeSet author="root" id="tab-group-347-20">
+        <changeSet author="root" id="tab-group-369-28">
                 <createTable tableName="USER_GROUP">
                         <column name="SEQUENCE" remarks="" type="DECIMAL(10)">
                         </column>
@@ -655,18 +884,18 @@
                         </column>
                         <column name="AVATAR" remarks="" type="VARCHAR(500)">
                         </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
+                        <column name="ID" remarks="" type="VARCHAR(100)">
+                                <constraints primaryKey="true" primaryKeyName="PK_GROUP_ID"/>
                         </column>
                         <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
-                        <column name="ID" remarks="" type="VARCHAR(100)">
-                                <constraints primaryKey="true" primaryKeyName="PK_GROUP_ID"/>
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
-                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="SECTION_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -674,8 +903,42 @@
         </changeSet>
 
 
+        <!--输出实体[GUIDELINE]数据结构 -->
+        <changeSet author="root" id="tab-guideline-632-29">
+                <createTable tableName="GUIDELINE">
+                        <column name="SCOPE_ID" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="OBJECT_TYPE" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="SUBJECT_TYPE" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="REVIEW_STAGE" remarks="" type="CLOB">
+                        </column>
+                        <column name="REVIEW_RULE" remarks="" type="CLOB">
+                        </column>
+                        <column name="REVIEW_ACTION_RULE" remarks="" type="CLOB">
+                        </column>
+                        <column name="IS_ENABLED" remarks="" type="INT">
+                        </column>
+                        <column name="ID" remarks="" type="VARCHAR(100)">
+                                <constraints primaryKey="true" primaryKeyName="PK_GUIDELINE_ID"/>
+                        </column>
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
+                        </column>
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                </createTable>
+        </changeSet>
+
+
         <!--输出实体[IDEA]数据结构 -->
-        <changeSet author="root" id="tab-idea-1688-21">
+        <changeSet author="root" id="tab-idea-2537-30">
                 <createTable tableName="IDEA">
                         <column name="IDENTIFIER" remarks="" type="VARCHAR(100)">
                         </column>
@@ -730,13 +993,41 @@
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_IDEA_ID"/>
                         </column>
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
                         <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
+                        </column>
+                        <column name="PRODUCT_ID" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CATEGORY_ID" remarks="" type="VARCHAR(100)">
+                        </column>
+                </createTable>
+        </changeSet>
+
+
+        <!--输出实体[IDEA_TEMPLATE]数据结构 -->
+        <changeSet author="root" id="tab-idea_template-365-31">
+                <createTable tableName="IDEA_TEMPLATE">
+                        <column name="TITLE" remarks="" type="VARCHAR(500)">
+                        </column>
+                        <column name="DESCRIPTION" remarks="" type="CLOB">
+                        </column>
+                        <column name="ID" remarks="" type="VARCHAR(100)">
+                                <constraints primaryKey="true" primaryKeyName="PK_IDEA_TEMPLATE_ID"/>
+                        </column>
                         <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
                         <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
@@ -749,7 +1040,7 @@
 
 
         <!--输出实体[INSIGHT]数据结构 -->
-        <changeSet author="root" id="tab-insight-132-22">
+        <changeSet author="root" id="tab-insight-208-32">
                 <createTable tableName="INSIGHT">
                         <column name="TYPE" remarks="" type="VARCHAR(60)">
                         </column>
@@ -761,18 +1052,85 @@
                         </column>
                         <column name="VIEW_URL" remarks="" type="CLOB">
                         </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
-                        </column>
-                        <column name="CREATE_TIME" remarks="" type="DATETIME">
-                        </column>
-                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
-                        </column>
-                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
-                        </column>
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_INSIGHT_ID"/>
                         </column>
                         <column name="NAME" remarks="" type="VARCHAR(200)">
+                        </column>
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                </createTable>
+        </changeSet>
+
+
+        <!--输出实体[INSIGHT_MEMBER]数据结构 -->
+
+
+        <!--输出实体[INSIGHT_REPORT]数据结构 -->
+        <changeSet author="root" id="tab-insight_report-469-34">
+                <createTable tableName="INSIGHT_REPORT">
+                        <column name="DESC" remarks="" type="CLOB">
+                        </column>
+                        <column name="CHART_TYPE" remarks="" type="VARCHAR(60)">
+                        </column>
+                        <column name="GROUP" remarks="" type="VARCHAR(60)">
+                        </column>
+                        <column name="CATEGORIES" remarks="" type="VARCHAR(2000)">
+                        </column>
+                        <column name="ID" remarks="" type="VARCHAR(100)">
+                                <constraints primaryKey="true" primaryKeyName="PK_INSIGHT_REPORT_ID"/>
+                        </column>
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
+                        </column>
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="VIEW_ID" remarks="" type="VARCHAR(100)">
+                        </column>
+                </createTable>
+        </changeSet>
+
+
+        <!--输出实体[INSIGHT_VIEW]数据结构 -->
+        <changeSet author="root" id="tab-insight_view-791-35">
+                <createTable tableName="INSIGHT_VIEW">
+                        <column name="IDENTIFIER" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="VISIBILITY" remarks="" type="VARCHAR(60)">
+                        </column>
+                        <column name="DESCRIPTION" remarks="" type="VARCHAR(2000)">
+                        </column>
+                        <column name="IS_ARCHIVED" remarks="" type="INT">
+                        </column>
+                        <column name="IS_DELETED" remarks="" type="INT">
+                        </column>
+                        <column name="SCOPE_TYPE" remarks="" type="VARCHAR(60)">
+                        </column>
+                        <column name="SCOPE_ID" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="ID" remarks="" type="VARCHAR(100)">
+                                <constraints primaryKey="true" primaryKeyName="PK_INSIGHT_VIEW_ID"/>
+                        </column>
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
+                        </column>
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                 </createTable>
         </changeSet>
@@ -780,8 +1138,30 @@
 
 
 
+        <!--输出实体[KEY_RESULT]数据结构 -->
+        <changeSet author="root" id="tab-key_result-108-36">
+                <createTable tableName="KEY_RESULT">
+                        <column name="ID" remarks="" type="VARCHAR(100)">
+                                <constraints primaryKey="true" primaryKeyName="PK_KEY_RESULT_ID"/>
+                        </column>
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
+                        </column>
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="OBJECTIVE_ID" remarks="" type="VARCHAR(100)">
+                        </column>
+                </createTable>
+        </changeSet>
+
+
         <!--输出实体[LIBRARY]数据结构 -->
-        <changeSet author="root" id="tab-library-463-23">
+        <changeSet author="root" id="tab-library-1433-37">
                 <createTable tableName="LIBRARY">
                         <column name="IDENTIFIER" remarks="" type="VARCHAR(100)">
                         </column>
@@ -804,20 +1184,20 @@
                         </column>
                         <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
-                        </column>
                         <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
+                        </column>
                 </createTable>
         </changeSet>
 
 
         <!--输出实体[LIBRARY_MEMBER]数据结构 -->
-        <changeSet author="root" id="tab-library_member-101-24">
+        <changeSet author="root" id="tab-library_member-118-38">
                 <createTable tableName="LIBRARY_MEMBER">
                         <column name="USER_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -847,61 +1227,76 @@
 
 
         <!--输出实体[MEMBER]数据结构 -->
-        <changeSet author="root" id="tab-member-224-25">
-                <createTable tableName="MEMBER">
-                        <column name="OWNER_ID" remarks="" type="VARCHAR(100)">
+
+
+
+
+
+
+        <!--输出实体[OBJECTIVE]数据结构 -->
+        <changeSet author="root" id="tab-objective-122-40">
+                <createTable tableName="OBJECTIVE">
+                        <column name="ID" remarks="" type="VARCHAR(100)">
+                                <constraints primaryKey="true" primaryKeyName="PK_OBJECTIVE_ID"/>
                         </column>
-                        <column name="OWNER_TYPE" remarks="" type="VARCHAR(100)">
-                        </column>
-                        <column name="USER_ID" remarks="" type="VARCHAR(100)">
-                        </column>
-                        <column name="OWNER_SUBTYPE" remarks="" type="VARCHAR(100)">
-                        </column>
-                        <column name="ROLE_ID" remarks="" type="VARCHAR(60)">
-                        </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
                         <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
-                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
-                        </column>
                         <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
-                        <column name="ID" remarks="" type="VARCHAR(100)">
-                                <constraints primaryKey="true" primaryKeyName="PK_MEMBER_ID"/>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
-                        <column name="NAME" remarks="" type="VARCHAR(200)">
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="PERIOD_ID" remarks="" type="VARCHAR(100)">
                         </column>
                 </createTable>
         </changeSet>
 
 
-
-
-
-
         <!--输出实体[PARAMETER]数据结构 -->
-        <changeSet author="root" id="tab-parameter-85-26">
+        <changeSet author="root" id="tab-parameter-85-41">
                 <createTable tableName="PARAMETER">
-                        <column name="NAME" remarks="" type="VARCHAR(200)">
-                        </column>
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_PARAMETER_ID"/>
                         </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
-                        </column>
-                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
                         <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                </createTable>
+        </changeSet>
+
+
+        <!--输出实体[PERIOD]数据结构 -->
+        <changeSet author="root" id="tab-period-93-42">
+                <createTable tableName="PERIOD">
+                        <column name="ID" remarks="" type="VARCHAR(100)">
+                                <constraints primaryKey="true" primaryKeyName="PK_PERIOD_ID"/>
+                        </column>
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
+                        </column>
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                 </createTable>
         </changeSet>
 
 
         <!--输出实体[PORTFOLIO]数据结构 -->
-        <changeSet author="root" id="tab-portfolio-202-27">
+        <changeSet author="root" id="tab-portfolio-384-43">
                 <createTable tableName="PORTFOLIO">
                         <column name="STATE" remarks="" type="VARCHAR(60)">
                         </column>
@@ -919,12 +1314,12 @@
                         </column>
                         <column name="ASSIGNEE_ID" remarks="" type="VARCHAR(100)">
                         </column>
-                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
-                        </column>
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_PORTFOLIO_ID"/>
                         </column>
                         <column name="NAME" remarks="" type="VARCHAR(200)">
+                        </column>
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
@@ -937,7 +1332,7 @@
 
 
         <!--输出实体[PORTFOLIO_MEMBER]数据结构 -->
-        <changeSet author="root" id="tab-portfolio_member-43-28">
+        <changeSet author="root" id="tab-portfolio_member-45-44">
                 <createTable tableName="PORTFOLIO_MEMBER">
                         <column name="USER_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -948,13 +1343,13 @@
                         </column>
                         <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
-                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
-                        </column>
                         <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="PORTFOLIO_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -963,7 +1358,7 @@
 
 
         <!--输出实体[PRODUCT]数据结构 -->
-        <changeSet author="root" id="tab-product-629-29">
+        <changeSet author="root" id="tab-product-1893-45">
                 <createTable tableName="PRODUCT">
                         <column name="IDENTIFIER" remarks="" type="VARCHAR(100)">
                         </column>
@@ -981,25 +1376,25 @@
                         </column>
                         <column name="SCOPE_ID" remarks="" type="VARCHAR(100)">
                         </column>
-                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        <column name="ID" remarks="" type="VARCHAR(100)">
+                                <constraints primaryKey="true" primaryKeyName="PK_PRODUCT_ID"/>
                         </column>
                         <column name="NAME" remarks="" type="VARCHAR(200)">
+                        </column>
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="UPDATE_TIME" remarks="" type="DATETIME">
-                        </column>
-                        <column name="ID" remarks="" type="VARCHAR(100)">
-                                <constraints primaryKey="true" primaryKeyName="PK_PRODUCT_ID"/>
-                        </column>
-                        <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
                 </createTable>
         </changeSet>
 
 
         <!--输出实体[PRODUCT_MEMBER]数据结构 -->
-        <changeSet author="root" id="tab-product_member-127-30">
+        <changeSet author="root" id="tab-product_member-135-46">
                 <createTable tableName="PRODUCT_MEMBER">
                         <column name="USER_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1010,13 +1405,13 @@
                         </column>
                         <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
-                        </column>
                         <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
-                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="PRODUCT_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1025,7 +1420,7 @@
 
 
         <!--输出实体[PRODUCT_PLAN]数据结构 -->
-        <changeSet author="root" id="tab-product_plan-124-31">
+        <changeSet author="root" id="tab-product_plan-425-47">
                 <createTable tableName="PRODUCT_PLAN">
                         <column name="TYPE" remarks="" type="VARCHAR(1000)">
                         </column>
@@ -1035,26 +1430,24 @@
                         </column>
                         <column name="CATEGORIES" remarks="" type="VARCHAR(2000)">
                         </column>
-                        <column name="CATEGORIES_NAME" remarks="" type="VARCHAR(2000)">
-                        </column>
                         <column name="IS_DELETED" remarks="" type="INT">
                         </column>
                         <column name="ASSIGNEE_NAME" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="ASSIGNEE_ID" remarks="" type="VARCHAR(100)">
                         </column>
-                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
-                        </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
-                        </column>
-                        <column name="NAME" remarks="" type="VARCHAR(200)">
-                        </column>
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_PRODUCT_PLAN_ID"/>
                         </column>
-                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
                         <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="PRODUCT_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1063,16 +1456,16 @@
 
 
         <!--输出实体[PRODUCT_TAG]数据结构 -->
-        <changeSet author="root" id="tab-product_tag-18-32">
+        <changeSet author="root" id="tab-product_tag-127-48">
                 <createTable tableName="PRODUCT_TAG">
-                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
-                        </column>
-                        <column name="CREATE_TIME" remarks="" type="DATETIME">
-                        </column>
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_PRODUCT_TAG_ID"/>
                         </column>
                         <column name="NAME" remarks="" type="VARCHAR(200)">
+                        </column>
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1085,20 +1478,20 @@
 
 
         <!--输出实体[PRODUCT_TICKET_TYPE]数据结构 -->
-        <changeSet author="root" id="tab-product_ticket_type-291-33">
+        <changeSet author="root" id="tab-product_ticket_type-299-49">
                 <createTable tableName="PRODUCT_TICKET_TYPE">
-                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
-                        </column>
-                        <column name="NAME" remarks="" type="VARCHAR(200)">
-                        </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
-                        </column>
-                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        <column name="ID" remarks="" type="VARCHAR(100)">
+                                <constraints primaryKey="true" primaryKeyName="PK_PRODUCT_TICKET_TYPE_ID"/>
                         </column>
                         <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
-                        <column name="ID" remarks="" type="VARCHAR(100)">
-                                <constraints primaryKey="true" primaryKeyName="PK_PRODUCT_TICKET_TYPE_ID"/>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
                         <column name="TICKET_TYPE_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1109,20 +1502,20 @@
 
 
         <!--输出实体[PROGRESS]数据结构 -->
-        <changeSet author="root" id="tab-progress-1-34">
+        <changeSet author="root" id="tab-progress-1-50">
                 <createTable tableName="PROGRESS">
-                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
-                        </column>
-                        <column name="NAME" remarks="" type="VARCHAR(200)">
-                        </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
-                        </column>
-                        <column name="CREATE_TIME" remarks="" type="DATETIME">
-                        </column>
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_PROGRESS_ID"/>
                         </column>
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
+                        </column>
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
                         <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="PROJECT_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1131,7 +1524,7 @@
 
 
         <!--输出实体[PROJECT]数据结构 -->
-        <changeSet author="root" id="tab-project-904-35">
+        <changeSet author="root" id="tab-project-1709-51">
                 <createTable tableName="PROJECT">
                         <column name="VISIBILITY" remarks="" type="VARCHAR(60)">
                         </column>
@@ -1168,20 +1561,20 @@
                         </column>
                         <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
-                        <column name="CREATE_TIME" remarks="" type="DATETIME">
-                        </column>
                         <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                 </createTable>
         </changeSet>
 
 
         <!--输出实体[PROJECT_MEMBER]数据结构 -->
-        <changeSet author="root" id="tab-project_member-146-36">
+        <changeSet author="root" id="tab-project_member-160-52">
                 <createTable tableName="PROJECT_MEMBER">
                         <column name="USER_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1194,15 +1587,15 @@
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_PROJECT_MEMBER_ID"/>
                         </column>
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
+                        </column>
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
                         <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="UPDATE_TIME" remarks="" type="DATETIME">
-                        </column>
-                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
-                        </column>
-                        <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
                         <column name="PROJECT_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1211,27 +1604,27 @@
 
 
         <!--输出实体[PROJECT_TAG]数据结构 -->
-        <changeSet author="root" id="tab-project_tag-43-37">
+        <changeSet author="root" id="tab-project_tag-130-53">
                 <createTable tableName="PROJECT_TAG">
-                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
-                        </column>
-                        <column name="NAME" remarks="" type="VARCHAR(200)">
-                        </column>
-                        <column name="CREATE_TIME" remarks="" type="DATETIME">
-                        </column>
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_PROJECT_TAG_ID"/>
                         </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
+                        </column>
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                 </createTable>
         </changeSet>
 
 
         <!--输出实体[RECENT]数据结构 -->
-        <changeSet author="root" id="tab-recent-96-38">
+        <changeSet author="root" id="tab-recent-118-54">
                 <createTable tableName="RECENT">
                         <column name="IDENTIFIER" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1251,18 +1644,18 @@
                         </column>
                         <column name="RECENT_PARENT_IDENTIFIER" remarks="" type="VARCHAR(100)">
                         </column>
-                        <column name="NAME" remarks="" type="VARCHAR(500)">
-                        </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
-                        </column>
-                        <column name="CREATE_TIME" remarks="" type="DATETIME">
-                        </column>
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_RECENT_ID"/>
                         </column>
-                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        <column name="NAME" remarks="" type="VARCHAR(500)">
                         </column>
                         <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                 </createTable>
         </changeSet>
@@ -1271,7 +1664,7 @@
 
 
         <!--输出实体[RELATION]数据结构 -->
-        <changeSet author="root" id="tab-relation-2544-39">
+        <changeSet author="root" id="tab-relation-2874-55">
                 <createTable tableName="RELATION">
                         <column name="PRINCIPAL_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1289,16 +1682,18 @@
                         </column>
                         <column name="CUR_VERSION_ID" remarks="" type="VARCHAR(100)">
                         </column>
-                        <column name="CREATE_TIME" remarks="" type="DATETIME">
-                        </column>
-                        <column name="NAME" remarks="" type="VARCHAR(200)">
-                        </column>
-                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        <column name="RELATION_TYPE" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_RELATION_ID"/>
                         </column>
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
+                        </column>
                         <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
@@ -1307,7 +1702,7 @@
 
 
         <!--输出实体[RELEASE]数据结构 -->
-        <changeSet author="root" id="tab-release-207-40">
+        <changeSet author="root" id="tab-release-363-56">
                 <createTable tableName="PROJECT_RELEASE">
                         <column name="START_AT" remarks="" type="DATETIME">
                         </column>
@@ -1325,16 +1720,16 @@
                         </column>
                         <column name="ASSIGNEE_ID" remarks="" type="VARCHAR(100)">
                         </column>
-                        <column name="NAME" remarks="" type="VARCHAR(200)">
-                        </column>
-                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
-                        </column>
-                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
-                        </column>
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_RELEASE_ID"/>
                         </column>
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
+                        </column>
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
                         <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
@@ -1344,8 +1739,10 @@
         </changeSet>
 
 
+
+
         <!--输出实体[REVIEW]数据结构 -->
-        <changeSet author="root" id="tab-review-1059-41">
+        <changeSet author="root" id="tab-review-2214-57">
                 <createTable tableName="REVIEW">
                         <column name="IDENTIFIER" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1365,20 +1762,28 @@
                         </column>
                         <column name="SUBMITTER_NAME" remarks="" type="VARCHAR(100)">
                         </column>
-                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        <column name="RULE" remarks="" type="CLOB">
                         </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
+                        <column name="STAGE" remarks="" type="CLOB">
                         </column>
-                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
-                        </column>
-                        <column name="NAME" remarks="" type="VARCHAR(200)">
+                        <column name="ACTION_RULE" remarks="" type="CLOB">
                         </column>
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_REVIEW_ID"/>
                         </column>
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
+                        </column>
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
                         <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
+                        </column>
                         <column name="LIBRARY_ID" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="GUIDELINE_ID" remarks="" type="VARCHAR(100)">
                         </column>
                 </createTable>
         </changeSet>
@@ -1386,32 +1791,36 @@
 
 
 
+
+
         <!--输出实体[REVIEW_CONTENT_EXTEND]数据结构 -->
-        <changeSet author="root" id="tab-review_content_extend-241-42">
+        <changeSet author="root" id="tab-review_content_extend-297-58">
                 <createTable tableName="REVIEW_CONTENT_EXTEND">
                         <column name="CHANGE_TYPE" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="CHANGE_VERSION" remarks="" type="CLOB">
                         </column>
-                        <column name="NAME" remarks="" type="VARCHAR(200)">
+                        <column name="FINAL_STAGE_RESULTS" remarks="" type="VARCHAR(60)">
                         </column>
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_REVIEW_CONTENT_EXTEND_ID"/>
                         </column>
-                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
                         <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
-                        </column>
                         <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                 </createTable>
         </changeSet>
 
 
         <!--输出实体[REVIEW_RESULT]数据结构 -->
-        <changeSet author="root" id="tab-review_result-120-43">
+        <changeSet author="root" id="tab-review_result-491-59">
                 <createTable tableName="REVIEW_RESULT">
                         <column name="RESULT_STATE" remarks="" type="INT">
                         </column>
@@ -1419,18 +1828,20 @@
                         </column>
                         <column name="STAGE_ID" remarks="" type="VARCHAR(100)">
                         </column>
-                        <column name="NAME" remarks="" type="VARCHAR(200)">
+                        <column name="SEQUENCES" remarks="" type="INT">
                         </column>
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_REVIEW_RESULT_ID"/>
                         </column>
-                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
                         <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="CONTENT_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1440,9 +1851,18 @@
 
 
 
+
+
+        <!--输出实体[REVIEW_WIZARD]数据结构 -->
+
+
+
+
         <!--输出实体[RUN]数据结构 -->
-        <changeSet author="root" id="tab-run-1558-44">
+        <changeSet author="root" id="tab-run-1912-61">
                 <createTable tableName="RUN">
+                        <column name="PARENT_VERSION_ID" remarks="" type="VARCHAR(100)">
+                        </column>
                         <column name="EXECUTED_AT" remarks="" type="DATETIME">
                         </column>
                         <column name="STATUS" remarks="" type="VARCHAR(60)">
@@ -1451,11 +1871,11 @@
                         </column>
                         <column name="STEPS" remarks="" type="CLOB">
                         </column>
+                        <column name="CUR_VERSION_ID" remarks="" type="VARCHAR(100)">
+                        </column>
                         <column name="EXECUTOR_ID" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="EXECUTOR_NAME" remarks="" type="VARCHAR(100)">
-                        </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_RUN_ID"/>
@@ -1465,6 +1885,8 @@
                         <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
@@ -1480,7 +1902,7 @@
 
 
         <!--输出实体[RUN_HISTORY]数据结构 -->
-        <changeSet author="root" id="tab-run_history-7-46">
+        <changeSet author="root" id="tab-run_history-9-63">
                 <createTable tableName="RUN_HISTORY">
                         <column name="REMARK" remarks="" type="VARCHAR(2000)">
                         </column>
@@ -1497,11 +1919,11 @@
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_RUN_HISTORY_ID"/>
                         </column>
-                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
                         <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
-                        <column name="NAME" remarks="" type="VARCHAR(200)">
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1522,7 +1944,7 @@
 
 
         <!--输出实体[SECTION]数据结构 -->
-        <changeSet author="root" id="tab-section-47-49">
+        <changeSet author="root" id="tab-section-91-66">
                 <createTable tableName="SECTION">
                         <column name="OWNER_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1537,46 +1959,46 @@
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_SECTION_ID"/>
                         </column>
-                        <column name="CREATE_TIME" remarks="" type="DATETIME">
-                        </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
-                        </column>
-                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
-                        </column>
                         <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
                         <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                 </createTable>
         </changeSet>
 
 
         <!--输出实体[SEQUENCE_GENERATOR]数据结构 -->
-        <changeSet author="root" id="tab-sequence_generator-7-50">
+        <changeSet author="root" id="tab-sequence_generator-7-67">
                 <createTable tableName="SEQUENCE_GENERATOR">
                         <column name="GROUP_TAG" remarks="" type="VARCHAR(200)">
                         </column>
                         <column name="CURRENT_VALUE" remarks="" type="BIGINT">
                         </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
-                        </column>
-                        <column name="CREATE_TIME" remarks="" type="DATETIME">
-                        </column>
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_SEQUENCE_GENERATOR_ID"/>
-                        </column>
-                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
                         <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                 </createTable>
         </changeSet>
 
 
         <!--输出实体[SPACE]数据结构 -->
-        <changeSet author="root" id="tab-space-546-51">
+        <changeSet author="root" id="tab-space-968-68">
                 <createTable tableName="SPACE">
                         <column name="IDENTIFIER" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1592,18 +2014,18 @@
                         </column>
                         <column name="SCOPE_ID" remarks="" type="VARCHAR(100)">
                         </column>
-                        <column name="NAME" remarks="" type="VARCHAR(200)">
-                        </column>
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_SPACE_ID"/>
+                        </column>
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
+                        </column>
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="UPDATE_TIME" remarks="" type="DATETIME">
-                        </column>
-                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="CATEGORY_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1612,7 +2034,7 @@
 
 
         <!--输出实体[SPACE_MEMBER]数据结构 -->
-        <changeSet author="root" id="tab-space_member-97-52">
+        <changeSet author="root" id="tab-space_member-99-69">
                 <createTable tableName="SPACE_MEMBER">
                         <column name="USER_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1623,13 +2045,13 @@
                         </column>
                         <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
-                        </column>
-                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
-                        </column>
                         <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="SPACE_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1638,7 +2060,7 @@
 
 
         <!--输出实体[SPRINT]数据结构 -->
-        <changeSet author="root" id="tab-sprint-316-53">
+        <changeSet author="root" id="tab-sprint-599-70">
                 <createTable tableName="SPRINT">
                         <column name="START_AT" remarks="" type="DATETIME">
                         </column>
@@ -1659,13 +2081,13 @@
                         </column>
                         <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
-                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
-                        </column>
                         <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
-                        </column>
                         <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="PROJECT_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1676,20 +2098,20 @@
 
 
         <!--输出实体[STAGE]数据结构 -->
-        <changeSet author="root" id="tab-stage-12-54">
+        <changeSet author="root" id="tab-stage-12-71">
                 <createTable tableName="STAGE">
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
-                        </column>
-                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
-                        </column>
-                        <column name="NAME" remarks="" type="VARCHAR(200)">
-                        </column>
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_STAGE_ID"/>
+                        </column>
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
                         <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="RELEASE_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1698,7 +2120,7 @@
 
 
         <!--输出实体[STENCIL]数据结构 -->
-        <changeSet author="root" id="tab-stencil-571-55">
+        <changeSet author="root" id="tab-stencil-575-72">
                 <createTable tableName="STENCIL">
                         <column name="FORMAT_TYPE" remarks="" type="VARCHAR(60)">
                         </column>
@@ -1706,12 +2128,12 @@
                         </column>
                         <column name="IS_GLOBAL" remarks="" type="INT">
                         </column>
-                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        <column name="ID" remarks="" type="VARCHAR(100)">
+                                <constraints primaryKey="true" primaryKeyName="PK_STENCIL_ID"/>
                         </column>
                         <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
-                        <column name="ID" remarks="" type="VARCHAR(100)">
-                                <constraints primaryKey="true" primaryKeyName="PK_STENCIL_ID"/>
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
@@ -1728,20 +2150,20 @@
 
 
         <!--输出实体[SWIMLANE]数据结构 -->
-        <changeSet author="root" id="tab-swimlane-57-56">
+        <changeSet author="root" id="tab-swimlane-59-73">
                 <createTable tableName="SWIMLANE">
-                        <column name="CREATE_TIME" remarks="" type="DATETIME">
-                        </column>
-                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
-                        </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
-                        </column>
-                        <column name="NAME" remarks="" type="VARCHAR(200)">
-                        </column>
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_SWIMLANE_ID"/>
                         </column>
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
+                        </column>
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
                         <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="BOARD_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1762,7 +2184,7 @@
 
 
         <!--输出实体[TEST_CASE]数据结构 -->
-        <changeSet author="root" id="tab-test_case-1786-57">
+        <changeSet author="root" id="tab-test_case-2757-74">
                 <createTable tableName="TEST_CASE">
                         <column name="IDENTIFIER" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1803,15 +2225,15 @@
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_TEST_CASE_ID"/>
                         </column>
-                        <column name="CREATE_TIME" remarks="" type="DATETIME">
-                        </column>
                         <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
-                        <column name="NAME" remarks="" type="VARCHAR(200)">
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
-                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
                         <column name="TEST_LIBRARY_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1822,7 +2244,7 @@
 
 
         <!--输出实体[TEST_CASE_TEMPLATE]数据结构 -->
-        <changeSet author="root" id="tab-test_case_template-675-58">
+        <changeSet author="root" id="tab-test_case_template-697-75">
                 <createTable tableName="TEST_CASE_TEMPLATE">
                         <column name="TITLE" remarks="" type="VARCHAR(500)">
                         </column>
@@ -1855,13 +2277,13 @@
                         </column>
                         <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
-                        </column>
                         <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
-                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="TEST_LIBRARY_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1872,7 +2294,7 @@
 
 
         <!--输出实体[TEST_PLAN]数据结构 -->
-        <changeSet author="root" id="tab-test_plan-364-59">
+        <changeSet author="root" id="tab-test_plan-622-76">
                 <createTable tableName="TEST_PLAN">
                         <column name="STATUS" remarks="" type="VARCHAR(60)">
                         </column>
@@ -1890,18 +2312,18 @@
                         </column>
                         <column name="ASSIGNEE_ID" remarks="" type="VARCHAR(100)">
                         </column>
-                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
-                        </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
-                        </column>
-                        <column name="NAME" remarks="" type="VARCHAR(200)">
-                        </column>
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_TEST_PLAN_ID"/>
                         </column>
-                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
                         <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="LIBRARY_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1916,7 +2338,7 @@
 
 
         <!--输出实体[TEST_SUITE]数据结构 -->
-        <changeSet author="root" id="tab-test_suite-55-60">
+        <changeSet author="root" id="tab-test_suite-91-77">
                 <createTable tableName="TEST_SUITE">
                         <column name="SEQUENCE" remarks="" type="DECIMAL(10)">
                         </column>
@@ -1927,15 +2349,15 @@
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_TEST_SUITE_ID"/>
                         </column>
-                        <column name="CREATE_TIME" remarks="" type="DATETIME">
-                        </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
-                        </column>
-                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
-                        </column>
                         <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
                         <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="LIBRARY_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1946,7 +2368,7 @@
 
 
         <!--输出实体[TICKET]数据结构 -->
-        <changeSet author="root" id="tab-ticket-1271-61">
+        <changeSet author="root" id="tab-ticket-1795-78">
                 <createTable tableName="TICKET">
                         <column name="IDENTIFIER" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1982,16 +2404,16 @@
                         </column>
                         <column name="SUBMITTER_NAME" remarks="" type="VARCHAR(100)">
                         </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
+                        <column name="ID" remarks="" type="VARCHAR(100)">
+                                <constraints primaryKey="true" primaryKeyName="PK_TICKET_ID"/>
                         </column>
                         <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
-                        <column name="ID" remarks="" type="VARCHAR(100)">
-                                <constraints primaryKey="true" primaryKeyName="PK_TICKET_ID"/>
-                        </column>
                         <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
@@ -2004,22 +2426,22 @@
 
 
         <!--输出实体[TICKET_TYPE]数据结构 -->
-        <changeSet author="root" id="tab-ticket_type-400-62">
+        <changeSet author="root" id="tab-ticket_type-426-79">
                 <createTable tableName="TICKET_TYPE">
                         <column name="DESCRIPTION" remarks="" type="VARCHAR(2000)">
                         </column>
                         <column name="IS_SYSTEM" remarks="" type="INT">
                         </column>
-                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        <column name="ID" remarks="" type="VARCHAR(100)">
+                                <constraints primaryKey="true" primaryKeyName="PK_TICKET_TYPE_ID"/>
                         </column>
                         <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
-                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
-                        <column name="ID" remarks="" type="VARCHAR(100)">
-                                <constraints primaryKey="true" primaryKeyName="PK_TICKET_TYPE_ID"/>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
@@ -2028,7 +2450,7 @@
 
 
         <!--输出实体[TRANSITION_HISTORY]数据结构 -->
-        <changeSet author="root" id="tab-transition_history-1-63">
+        <changeSet author="root" id="tab-transition_history-1-80">
                 <createTable tableName="TRANSITION_HISTORY">
                         <column name="OWNER_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -2040,18 +2462,42 @@
                         </column>
                         <column name="TO_STATE" remarks="" type="VARCHAR(100)">
                         </column>
-                        <column name="NAME" remarks="" type="VARCHAR(200)">
-                        </column>
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_TRANSITION_HISTORY_ID"/>
                         </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
-                        </column>
-                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
                         <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                </createTable>
+        </changeSet>
+
+
+        <!--输出实体[UPDATE_RECORD]数据结构 -->
+        <changeSet author="root" id="tab-update_record-109-81">
+                <createTable tableName="UPDATE_RECORD">
+                        <column name="ID" remarks="" type="VARCHAR(100)">
+                                <constraints primaryKey="true" primaryKeyName="PK_UPDATE_RECORD_ID"/>
+                        </column>
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
+                        </column>
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="KEY_RESULT_ID" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="OBJECTIVE_ID" remarks="" type="VARCHAR(100)">
                         </column>
                 </createTable>
         </changeSet>
@@ -2060,7 +2506,7 @@
 
 
         <!--输出实体[VERSION]数据结构 -->
-        <changeSet author="root" id="tab-version-839-64">
+        <changeSet author="root" id="tab-version-883-82">
                 <createTable tableName="VERSION">
                         <column name="DESCRIPTION" remarks="" type="VARCHAR(2000)">
                         </column>
@@ -2076,25 +2522,25 @@
                         </column>
                         <column name="MANUAL" remarks="" type="INT">
                         </column>
+                        <column name="ID" remarks="" type="VARCHAR(100)">
+                                <constraints primaryKey="true" primaryKeyName="PK_VERSION_ID"/>
+                        </column>
                         <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
                         <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
-                        <column name="ID" remarks="" type="VARCHAR(100)">
-                                <constraints primaryKey="true" primaryKeyName="PK_VERSION_ID"/>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="UPDATE_TIME" remarks="" type="DATETIME">
-                        </column>
-                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                 </createTable>
         </changeSet>
 
 
         <!--输出实体[VERSION_DATA]数据结构 -->
-        <changeSet author="root" id="tab-version_data-200-65">
+        <changeSet author="root" id="tab-version_data-200-83">
                 <createTable tableName="VERSION_DATA">
                         <column name="DESCRIPTION" remarks="" type="VARCHAR(2000)">
                         </column>
@@ -2112,25 +2558,25 @@
                         </column>
                         <column name="FILTER" remarks="" type="VARCHAR(100)">
                         </column>
-                        <column name="NAME" remarks="" type="VARCHAR(200)">
-                        </column>
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_VERSION_DATA_ID"/>
                         </column>
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
+                        </column>
                         <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
-                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                 </createTable>
         </changeSet>
 
 
         <!--输出实体[WORK]数据结构 -->
-        <changeSet author="root" id="tab-work-11-66">
+        <changeSet author="root" id="tab-work-11-84">
                 <createTable tableName="WORK">
                         <column name="PRINCIPAL_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -2138,18 +2584,18 @@
                         </column>
                         <column name="PRINCIPAL_TYPE" remarks="" type="VARCHAR(100)">
                         </column>
-                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
-                        </column>
-                        <column name="NAME" remarks="" type="VARCHAR(200)">
-                        </column>
-                        <column name="CREATE_TIME" remarks="" type="DATETIME">
-                        </column>
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_WORK_ID"/>
                         </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
+                        </column>
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="PORTFOLIO_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -2158,7 +2604,7 @@
 
 
         <!--输出实体[WORK_ITEM]数据结构 -->
-        <changeSet author="root" id="tab-work_item-7974-67">
+        <changeSet author="root" id="tab-work_item-11272-85">
                 <createTable tableName="WORK_ITEM">
                         <column name="IDENTIFIER" remarks="" type="VARCHAR(100)">
                         </column>
@@ -2212,14 +2658,14 @@
                         </column>
                         <column name="ACTUAL_WORKLOAD" remarks="" type="DECIMAL(10, 1)">
                         </column>
-                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
-                        </column>
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_WORK_ITEM_ID"/>
                         </column>
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
                         <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
-                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
@@ -2246,7 +2692,7 @@
 
 
         <!--输出实体[WORK_ITEM_STATE]数据结构 -->
-        <changeSet author="root" id="tab-work_item_state-169-68">
+        <changeSet author="root" id="tab-work_item_state-195-86">
                 <createTable tableName="WORK_ITEM_STATE">
                         <column name="SEQUENCE" remarks="" type="DECIMAL(10)">
                         </column>
@@ -2259,13 +2705,13 @@
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_WORK_ITEM_STATE_ID"/>
                         </column>
-                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
-                        </column>
                         <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
-                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
@@ -2276,7 +2722,7 @@
 
 
         <!--输出实体[WORK_ITEM_TYPE]数据结构 -->
-        <changeSet author="root" id="tab-work_item_type-370-69">
+        <changeSet author="root" id="tab-work_item_type-482-87">
                 <createTable tableName="WORK_ITEM_TYPE">
                         <column name="SEQUENCE" remarks="" type="DECIMAL(10)">
                         </column>
@@ -2290,7 +2736,7 @@
                         </column>
                         <column name="ICON" remarks="" type="CLOB">
                         </column>
-                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        <column name="SUB_TYPE" remarks="" type="VARCHAR(200)">
                         </column>
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_WORK_ITEM_TYPE_ID"/>
@@ -2301,14 +2747,22 @@
                         </column>
                         <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
                         <column name="UPDATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="PROJECT_ID" remarks="" type="VARCHAR(100)">
                         </column>
                 </createTable>
         </changeSet>
 
 
+
+
+
+
         <!--输出实体[WORKLOAD]数据结构 -->
-        <changeSet author="root" id="tab-workload-1741-70">
+        <changeSet author="root" id="tab-workload-1865-88">
                 <createTable tableName="WORKLOAD">
                         <column name="IDENTIFIER" remarks="" type="VARCHAR(100)">
                         </column>
@@ -2335,13 +2789,13 @@
                         </column>
                         <column name="NAME" remarks="" type="VARCHAR(500)">
                         </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
-                        </column>
                         <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="TYPE_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -2350,22 +2804,22 @@
 
 
         <!--输出实体[WORKLOAD_TYPE]数据结构 -->
-        <changeSet author="root" id="tab-workload_type-138-71">
+        <changeSet author="root" id="tab-workload_type-144-89">
                 <createTable tableName="WORKLOAD_TYPE">
                         <column name="SEQUENCE" remarks="" type="DECIMAL(10)">
                         </column>
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_WORKLOAD_TYPE_ID"/>
                         </column>
-                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
                         </column>
                         <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
                         </column>
-                        <column name="NAME" remarks="" type="VARCHAR(200)">
-                        </column>
-                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
                         </column>
                         <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
                         </column>
                 </createTable>
         </changeSet>
@@ -2373,11 +2827,17 @@
 
 
         <!--输出实体[ACTIVITY]外键关系 -->
+        <!--输出实体[ADDON]外键关系 -->
+        <!--输出实体[ADDON_RESOURCE]外键关系 -->
+        <!--输出实体[ADDON_ROLE_MEMBER]外键关系 -->
+        <changeSet author="root" id="fk-addon_role_member-159-90">
+                <addForeignKeyConstraint baseColumnNames="ADDON_ID" baseTableName="ADDON_ROLE_MEMBER" constraintName="FK_ADDON_ROLE_MEMBER_ADDON_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="ADDON" validate="true"/>
+        </changeSet>
         <!--输出实体[PAGE]外键关系 -->
-        <changeSet author="root" id="fk-page-1997-72">
+        <changeSet author="root" id="fk-page-3481-91">
                 <addForeignKeyConstraint baseColumnNames="PARENT_ID" baseTableName="PAGE" constraintName="FK_PAGE_PARENT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PAGE" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-page-1997-73">
+        <changeSet author="root" id="fk-page-3481-92">
                 <addForeignKeyConstraint baseColumnNames="SPACE_ID" baseTableName="PAGE" constraintName="FK_PAGE_SPACE_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="SPACE" validate="true"/>
         </changeSet>
         <!--输出实体[ATTACHMENT]外键关系 -->
@@ -2385,124 +2845,174 @@
         <!--输出实体[AUTH_LOG_ADMIN]外键关系 -->
         <!--输出实体[BASELINE]外键关系 -->
         <!--输出实体[BOARD]外键关系 -->
-        <changeSet author="root" id="fk-board-341-74">
+        <changeSet author="root" id="fk-board-514-93">
                 <addForeignKeyConstraint baseColumnNames="PROJECT_ID" baseTableName="BOARD" constraintName="FK_BOARD_PROJECT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PROJECT" validate="true"/>
         </changeSet>
         <!--输出实体[CASE_HISTORY]外键关系 -->
-        <changeSet author="root" id="fk-case_history-1-75">
+        <changeSet author="root" id="fk-case_history-1-94">
                 <addForeignKeyConstraint baseColumnNames="CASE_ID" baseTableName="CASE_HISTORY" constraintName="FK_CASE_HISTORY_CASE_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="TEST_CASE" validate="true"/>
         </changeSet>
         <!--输出实体[CATEGORY]外键关系 -->
-        <changeSet author="root" id="fk-category-54-76">
+        <changeSet author="root" id="fk-category-314-95">
                 <addForeignKeyConstraint baseColumnNames="PID" baseTableName="CATEGORY" constraintName="FK_CATEGORY_PID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="CATEGORY" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-category-54-77">
+        <changeSet author="root" id="fk-category-314-96">
                 <addForeignKeyConstraint baseColumnNames="SECTION_ID" baseTableName="CATEGORY" constraintName="FK_CATEGORY_SECTION_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="SECTION" validate="true"/>
         </changeSet>
         <!--输出实体[CHANNEL]外键关系 -->
-        <changeSet author="root" id="fk-channel-1-78">
+        <changeSet author="root" id="fk-channel-1-97">
                 <addForeignKeyConstraint baseColumnNames="PRODUCT_ID" baseTableName="CHANNEL" constraintName="FK_CHANNEL_PRODUCT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PRODUCT" validate="true"/>
         </changeSet>
         <!--输出实体[COMMENT]外键关系 -->
-        <changeSet author="root" id="fk-comment-358-79">
+        <changeSet author="root" id="fk-comment-478-98">
                 <addForeignKeyConstraint baseColumnNames="PID" baseTableName="COMMENT" constraintName="FK_COMMENT_PID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="COMMENT" validate="true"/>
         </changeSet>
         <!--输出实体[CUSTOMER]外键关系 -->
-        <changeSet author="root" id="fk-customer-308-80">
+        <changeSet author="root" id="fk-customer-593-99">
                 <addForeignKeyConstraint baseColumnNames="PRODUCT_ID" baseTableName="CUSTOMER" constraintName="FK_CUSTOMER_PRODUCT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PRODUCT" validate="true"/>
         </changeSet>
         <!--输出实体[DELIVERABLE]外键关系 -->
         <!--输出实体[DICTIONARY]外键关系 -->
+        <!--输出实体[DISCUSS_MEMBER]外键关系 -->
+        <changeSet author="root" id="fk-discuss_member-385-100">
+                <addForeignKeyConstraint baseColumnNames="OWNER_ID" baseTableName="MEMBER" constraintName="FK_DISCUSS_MEMBER_OWNER_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="DISCUSS_TOPIC" validate="true"/>
+        </changeSet>
+        <!--输出实体[DISCUSS_POST]外键关系 -->
+        <changeSet author="root" id="fk-discuss_post-1234-102">
+                <addForeignKeyConstraint baseColumnNames="TOPIC_ID" baseTableName="DISCUSS_POST" constraintName="FK_DISCUSS_POST_TOPIC_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="DISCUSS_TOPIC" validate="true"/>
+        </changeSet>
+        <!--输出实体[DISCUSS_REPLY]外键关系 -->
+        <changeSet author="root" id="fk-discuss_reply-683-103">
+                <addForeignKeyConstraint baseColumnNames="POST_ID" baseTableName="DISCUSS_REPLY" constraintName="FK_DISCUSS_REPLY_POST_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="DISCUSS_POST" validate="true"/>
+        </changeSet>
+        <!--输出实体[DISCUSS_TOPIC]外键关系 -->
+        <!--输出实体[DYNA_APPMENU]外键关系 -->
         <!--输出实体[DYNADASHBOARD]外键关系 -->
         <!--输出实体[ENTRY]外键关系 -->
-        <changeSet author="root" id="fk-entry-105-81">
+        <changeSet author="root" id="fk-entry-109-104">
                 <addForeignKeyConstraint baseColumnNames="BOARD_ID" baseTableName="ENTRY" constraintName="FK_ENTRY_BOARD_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="BOARD" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-entry-105-82">
+        <changeSet author="root" id="fk-entry-109-105">
                 <addForeignKeyConstraint baseColumnNames="PROJECT_ID" baseTableName="ENTRY" constraintName="FK_ENTRY_PROJECT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PROJECT" validate="true"/>
         </changeSet>
         <!--输出实体[EXTEND_LOG]外键关系 -->
         <!--输出实体[EXTEND_STORAGE]外键关系 -->
         <!--输出实体[FAVORITE]外键关系 -->
         <!--输出实体[GROUP]外键关系 -->
-        <changeSet author="root" id="fk-group-347-83">
+        <changeSet author="root" id="fk-group-369-106">
                 <addForeignKeyConstraint baseColumnNames="SECTION_ID" baseTableName="USER_GROUP" constraintName="FK_GROUP_SECTION_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="SECTION" validate="true"/>
         </changeSet>
+        <!--输出实体[GUIDELINE]外键关系 -->
         <!--输出实体[IDEA]外键关系 -->
-        <changeSet author="root" id="fk-idea-1688-84">
+        <changeSet author="root" id="fk-idea-2537-107">
                 <addForeignKeyConstraint baseColumnNames="CATEGORY_ID" baseTableName="IDEA" constraintName="FK_IDEA_CATEGORY_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="CATEGORY" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-idea-1688-85">
+        <changeSet author="root" id="fk-idea-2537-108">
                 <addForeignKeyConstraint baseColumnNames="PRODUCT_ID" baseTableName="IDEA" constraintName="FK_IDEA_PRODUCT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PRODUCT" validate="true"/>
         </changeSet>
+        <!--输出实体[IDEA_TEMPLATE]外键关系 -->
+        <changeSet author="root" id="fk-idea_template-365-110">
+                <addForeignKeyConstraint baseColumnNames="CATEGORY_ID" baseTableName="IDEA_TEMPLATE" constraintName="FK_IDEA_TEMPLATE_CATEGORY_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="CATEGORY" validate="true"/>
+        </changeSet>
+        <changeSet author="root" id="fk-idea_template-365-111">
+                <addForeignKeyConstraint baseColumnNames="PRODUCT_ID" baseTableName="IDEA_TEMPLATE" constraintName="FK_IDEA_TEMPLATE_PRODUCT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PRODUCT" validate="true"/>
+        </changeSet>
         <!--输出实体[INSIGHT]外键关系 -->
+        <!--输出实体[INSIGHT_MEMBER]外键关系 -->
+        <changeSet author="root" id="fk-insight_member-193-112">
+                <addForeignKeyConstraint baseColumnNames="OWNER_ID" baseTableName="MEMBER" constraintName="FK_INSIGHT_MEMBER_OWNER_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="INSIGHT_VIEW" validate="true"/>
+        </changeSet>
+        <!--输出实体[INSIGHT_REPORT]外键关系 -->
+        <changeSet author="root" id="fk-insight_report-469-114">
+                <addForeignKeyConstraint baseColumnNames="VIEW_ID" baseTableName="INSIGHT_REPORT" constraintName="FK_INSIGHT_REPORT_VIEW_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="INSIGHT_VIEW" validate="true"/>
+        </changeSet>
+        <!--输出实体[INSIGHT_VIEW]外键关系 -->
+        <!--输出实体[KEY_RESULT]外键关系 -->
+        <changeSet author="root" id="fk-key_result-108-115">
+                <addForeignKeyConstraint baseColumnNames="OBJECTIVE_ID" baseTableName="KEY_RESULT" constraintName="FK_KEY_RESULT_OBJECTIVE_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="OBJECTIVE" validate="true"/>
+        </changeSet>
         <!--输出实体[LIBRARY]外键关系 -->
         <!--输出实体[LIBRARY_MEMBER]外键关系 -->
-        <changeSet author="root" id="fk-library_member-101-87">
+        <changeSet author="root" id="fk-library_member-118-116">
                 <addForeignKeyConstraint baseColumnNames="LIBRARY_ID" baseTableName="LIBRARY_MEMBER" constraintName="FK_LIBRARY_MEMBER_LIBRARY_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="LIBRARY" validate="true"/>
         </changeSet>
         <!--输出实体[MEMBER]外键关系 -->
+        <!--输出实体[OBJECTIVE]外键关系 -->
+        <changeSet author="root" id="fk-objective-122-119">
+                <addForeignKeyConstraint baseColumnNames="PERIOD_ID" baseTableName="OBJECTIVE" constraintName="FK_OBJECTIVE_PERIOD_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PERIOD" validate="true"/>
+        </changeSet>
         <!--输出实体[PARAMETER]外键关系 -->
+        <!--输出实体[PERIOD]外键关系 -->
         <!--输出实体[PORTFOLIO]外键关系 -->
         <!--输出实体[PORTFOLIO_MEMBER]外键关系 -->
-        <changeSet author="root" id="fk-portfolio_member-43-90">
+        <changeSet author="root" id="fk-portfolio_member-45-120">
                 <addForeignKeyConstraint baseColumnNames="PORTFOLIO_ID" baseTableName="PORTFOLIO_MEMBER" constraintName="FK_PORTFOLIO_MEMBER_PORTFOLIO_" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PORTFOLIO" validate="true"/>
         </changeSet>
         <!--输出实体[PRODUCT]外键关系 -->
         <!--输出实体[PRODUCT_MEMBER]外键关系 -->
-        <changeSet author="root" id="fk-product_member-127-92">
+        <changeSet author="root" id="fk-product_member-135-122">
                 <addForeignKeyConstraint baseColumnNames="PRODUCT_ID" baseTableName="PRODUCT_MEMBER" constraintName="FK_PRODUCT_MEMBER_PRODUCT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PRODUCT" validate="true"/>
         </changeSet>
         <!--输出实体[PRODUCT_PLAN]外键关系 -->
-        <changeSet author="root" id="fk-product_plan-124-94">
+        <changeSet author="root" id="fk-product_plan-425-124">
                 <addForeignKeyConstraint baseColumnNames="PRODUCT_ID" baseTableName="PRODUCT_PLAN" constraintName="FK_PRODUCT_PLAN_PRODUCT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PRODUCT" validate="true"/>
         </changeSet>
         <!--输出实体[PRODUCT_TAG]外键关系 -->
-        <changeSet author="root" id="fk-product_tag-18-95">
+        <changeSet author="root" id="fk-product_tag-127-125">
                 <addForeignKeyConstraint baseColumnNames="PRODUCT_ID" baseTableName="PRODUCT_TAG" constraintName="FK_PRODUCT_TAG_PRODUCT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PRODUCT" validate="true"/>
         </changeSet>
         <!--输出实体[PRODUCT_TICKET_TYPE]外键关系 -->
-        <changeSet author="root" id="fk-product_ticket_type-291-96">
+        <changeSet author="root" id="fk-product_ticket_type-299-126">
                 <addForeignKeyConstraint baseColumnNames="PRODUCT_ID" baseTableName="PRODUCT_TICKET_TYPE" constraintName="FK_PRODUCT_TICKET_TYPE_PRODUCT" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PRODUCT" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-product_ticket_type-291-97">
+        <changeSet author="root" id="fk-product_ticket_type-299-127">
                 <addForeignKeyConstraint baseColumnNames="TICKET_TYPE_ID" baseTableName="PRODUCT_TICKET_TYPE" constraintName="FK_PRODUCT_TICKET_TYPE_TICKET_" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="TICKET_TYPE" validate="true"/>
         </changeSet>
         <!--输出实体[PROGRESS]外键关系 -->
-        <changeSet author="root" id="fk-progress-1-98">
+        <changeSet author="root" id="fk-progress-1-128">
                 <addForeignKeyConstraint baseColumnNames="PROJECT_ID" baseTableName="PROGRESS" constraintName="FK_PROGRESS_PROJECT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PROJECT" validate="true"/>
         </changeSet>
         <!--输出实体[PROJECT]外键关系 -->
         <!--输出实体[PROJECT_MEMBER]外键关系 -->
-        <changeSet author="root" id="fk-project_member-146-99">
+        <changeSet author="root" id="fk-project_member-160-129">
                 <addForeignKeyConstraint baseColumnNames="PROJECT_ID" baseTableName="PROJECT_MEMBER" constraintName="FK_PROJECT_MEMBER_PROJECT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PROJECT" validate="true"/>
         </changeSet>
         <!--输出实体[PROJECT_TAG]外键关系 -->
         <!--输出实体[RECENT]外键关系 -->
         <!--输出实体[RELATION]外键关系 -->
         <!--输出实体[RELEASE]外键关系 -->
-        <changeSet author="root" id="fk-release-207-101">
+        <changeSet author="root" id="fk-release-363-131">
                 <addForeignKeyConstraint baseColumnNames="PROJECT_ID" baseTableName="PROJECT_RELEASE" constraintName="FK_RELEASE_PROJECT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PROJECT" validate="true"/>
         </changeSet>
         <!--输出实体[REVIEW]外键关系 -->
-        <changeSet author="root" id="fk-review-1059-102">
+        <changeSet author="root" id="fk-review-2214-132">
+                <addForeignKeyConstraint baseColumnNames="GUIDELINE_ID" baseTableName="REVIEW" constraintName="FK_REVIEW_GUIDELINE_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="GUIDELINE" validate="true"/>
+        </changeSet>
+        <changeSet author="root" id="fk-review-2214-133">
                 <addForeignKeyConstraint baseColumnNames="LIBRARY_ID" baseTableName="REVIEW" constraintName="FK_REVIEW_LIBRARY_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="LIBRARY" validate="true"/>
         </changeSet>
         <!--输出实体[REVIEW_CONTENT_EXTEND]外键关系 -->
         <!--输出实体[REVIEW_RESULT]外键关系 -->
-        <changeSet author="root" id="fk-review_result-120-103">
+        <changeSet author="root" id="fk-review_result-491-134">
                 <addForeignKeyConstraint baseColumnNames="CONTENT_ID" baseTableName="REVIEW_RESULT" constraintName="FK_REVIEW_RESULT_CONTENT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="REVIEW_CONTENT_EXTEND" validate="true"/>
         </changeSet>
+        <!--输出实体[REVIEW_WIZARD]外键关系 -->
+        <changeSet author="root" id="fk-review_wizard-542-135">
+                <addForeignKeyConstraint baseColumnNames="GUIDELINE_ID" baseTableName="REVIEW" constraintName="FK_REVIEW_WIZARD_GUIDELINE_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="GUIDELINE" validate="true"/>
+        </changeSet>
+        <changeSet author="root" id="fk-review_wizard-542-136">
+                <addForeignKeyConstraint baseColumnNames="LIBRARY_ID" baseTableName="REVIEW" constraintName="FK_REVIEW_WIZARD_LIBRARY_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="LIBRARY" validate="true"/>
+        </changeSet>
         <!--输出实体[RUN]外键关系 -->
-        <changeSet author="root" id="fk-run-1558-104">
+        <changeSet author="root" id="fk-run-1912-137">
                 <addForeignKeyConstraint baseColumnNames="CASE_ID" baseTableName="RUN" constraintName="FK_RUN_CASE_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="TEST_CASE" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-run-1558-105">
+        <changeSet author="root" id="fk-run-1912-138">
                 <addForeignKeyConstraint baseColumnNames="PLAN_ID" baseTableName="RUN" constraintName="FK_RUN_PLAN_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="TEST_PLAN" validate="true"/>
         </changeSet>
         <!--输出实体[RUN_ATTACHMENT]外键关系 -->
         <!--输出实体[RUN_HISTORY]外键关系 -->
-        <changeSet author="root" id="fk-run_history-7-106">
+        <changeSet author="root" id="fk-run_history-9-139">
                 <addForeignKeyConstraint baseColumnNames="RUN_ID" baseTableName="RUN_HISTORY" constraintName="FK_RUN_HISTORY_RUN_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="RUN" validate="true"/>
         </changeSet>
         <!--输出实体[SEARCH_ATTACHMENT]外键关系 -->
@@ -2510,122 +3020,132 @@
         <!--输出实体[SECTION]外键关系 -->
         <!--输出实体[SEQUENCE_GENERATOR]外键关系 -->
         <!--输出实体[SPACE]外键关系 -->
-        <changeSet author="root" id="fk-space-546-107">
+        <changeSet author="root" id="fk-space-968-140">
                 <addForeignKeyConstraint baseColumnNames="CATEGORY_ID" baseTableName="SPACE" constraintName="FK_SPACE_CATEGORY_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="CATEGORY" validate="true"/>
         </changeSet>
         <!--输出实体[SPACE_MEMBER]外键关系 -->
-        <changeSet author="root" id="fk-space_member-97-108">
+        <changeSet author="root" id="fk-space_member-99-141">
                 <addForeignKeyConstraint baseColumnNames="SPACE_ID" baseTableName="SPACE_MEMBER" constraintName="FK_SPACE_MEMBER_SPACE_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="SPACE" validate="true"/>
         </changeSet>
         <!--输出实体[SPRINT]外键关系 -->
-        <changeSet author="root" id="fk-sprint-316-110">
+        <changeSet author="root" id="fk-sprint-599-143">
                 <addForeignKeyConstraint baseColumnNames="PROJECT_ID" baseTableName="SPRINT" constraintName="FK_SPRINT_PROJECT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PROJECT" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-sprint-316-111">
+        <changeSet author="root" id="fk-sprint-599-144">
                 <addForeignKeyConstraint baseColumnNames="PID" baseTableName="SPRINT" constraintName="FK_SPRINT_PID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="SPRINT" validate="true"/>
         </changeSet>
         <!--输出实体[STAGE]外键关系 -->
-        <changeSet author="root" id="fk-stage-12-112">
+        <changeSet author="root" id="fk-stage-12-145">
                 <addForeignKeyConstraint baseColumnNames="RELEASE_ID" baseTableName="STAGE" constraintName="FK_STAGE_RELEASE_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PROJECT_RELEASE" validate="true"/>
         </changeSet>
         <!--输出实体[STENCIL]外键关系 -->
-        <changeSet author="root" id="fk-stencil-571-113">
+        <changeSet author="root" id="fk-stencil-575-146">
                 <addForeignKeyConstraint baseColumnNames="SPACE_ID" baseTableName="STENCIL" constraintName="FK_STENCIL_SPACE_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="SPACE" validate="true"/>
         </changeSet>
         <!--输出实体[SWIMLANE]外键关系 -->
-        <changeSet author="root" id="fk-swimlane-57-114">
+        <changeSet author="root" id="fk-swimlane-59-147">
                 <addForeignKeyConstraint baseColumnNames="BOARD_ID" baseTableName="SWIMLANE" constraintName="FK_SWIMLANE_BOARD_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="BOARD" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-swimlane-57-115">
+        <changeSet author="root" id="fk-swimlane-59-148">
                 <addForeignKeyConstraint baseColumnNames="PROJECT_ID" baseTableName="SWIMLANE" constraintName="FK_SWIMLANE_PROJECT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PROJECT" validate="true"/>
         </changeSet>
         <!--输出实体[TEST_CASE]外键关系 -->
-        <changeSet author="root" id="fk-test_case-1786-116">
+        <changeSet author="root" id="fk-test_case-2757-149">
                 <addForeignKeyConstraint baseColumnNames="TEST_LIBRARY_ID" baseTableName="TEST_CASE" constraintName="FK_TEST_CASE_TEST_LIBRARY_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="LIBRARY" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-test_case-1786-117">
+        <changeSet author="root" id="fk-test_case-2757-150">
                 <addForeignKeyConstraint baseColumnNames="SUITE_ID" baseTableName="TEST_CASE" constraintName="FK_TEST_CASE_SUITE_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="TEST_SUITE" validate="true"/>
         </changeSet>
         <!--输出实体[TEST_CASE_TEMPLATE]外键关系 -->
-        <changeSet author="root" id="fk-test_case_template-675-118">
+        <changeSet author="root" id="fk-test_case_template-697-151">
                 <addForeignKeyConstraint baseColumnNames="TEST_LIBRARY_ID" baseTableName="TEST_CASE_TEMPLATE" constraintName="FK_TEST_CASE_TEMPLATE_TEST_LIB" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="LIBRARY" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-test_case_template-675-119">
+        <changeSet author="root" id="fk-test_case_template-697-152">
                 <addForeignKeyConstraint baseColumnNames="SUITE_ID" baseTableName="TEST_CASE_TEMPLATE" constraintName="FK_TEST_CASE_TEMPLATE_SUITE_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="TEST_SUITE" validate="true"/>
         </changeSet>
         <!--输出实体[TEST_PLAN]外键关系 -->
-        <changeSet author="root" id="fk-test_plan-364-120">
+        <changeSet author="root" id="fk-test_plan-622-153">
                 <addForeignKeyConstraint baseColumnNames="LIBRARY_ID" baseTableName="TEST_PLAN" constraintName="FK_TEST_PLAN_LIBRARY_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="LIBRARY" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-test_plan-364-121">
+        <changeSet author="root" id="fk-test_plan-622-154">
                 <addForeignKeyConstraint baseColumnNames="PROJECT_ID" baseTableName="TEST_PLAN" constraintName="FK_TEST_PLAN_PROJECT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PROJECT" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-test_plan-364-122">
+        <changeSet author="root" id="fk-test_plan-622-155">
                 <addForeignKeyConstraint baseColumnNames="RELEASE_ID" baseTableName="TEST_PLAN" constraintName="FK_TEST_PLAN_RELEASE_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PROJECT_RELEASE" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-test_plan-364-123">
+        <changeSet author="root" id="fk-test_plan-622-156">
                 <addForeignKeyConstraint baseColumnNames="SPRINT_ID" baseTableName="TEST_PLAN" constraintName="FK_TEST_PLAN_SPRINT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="SPRINT" validate="true"/>
         </changeSet>
         <!--输出实体[TEST_SUITE]外键关系 -->
-        <changeSet author="root" id="fk-test_suite-55-124">
+        <changeSet author="root" id="fk-test_suite-91-157">
                 <addForeignKeyConstraint baseColumnNames="LIBRARY_ID" baseTableName="TEST_SUITE" constraintName="FK_TEST_SUITE_LIBRARY_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="LIBRARY" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-test_suite-55-125">
+        <changeSet author="root" id="fk-test_suite-91-158">
                 <addForeignKeyConstraint baseColumnNames="PID" baseTableName="TEST_SUITE" constraintName="FK_TEST_SUITE_PID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="TEST_SUITE" validate="true"/>
         </changeSet>
         <!--输出实体[TICKET]外键关系 -->
-        <changeSet author="root" id="fk-ticket-1271-126">
+        <changeSet author="root" id="fk-ticket-1795-159">
                 <addForeignKeyConstraint baseColumnNames="CUSTOMER_ID" baseTableName="TICKET" constraintName="FK_TICKET_CUSTOMER_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="CUSTOMER" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-ticket-1271-127">
+        <changeSet author="root" id="fk-ticket-1795-160">
                 <addForeignKeyConstraint baseColumnNames="PRODUCT_ID" baseTableName="TICKET" constraintName="FK_TICKET_PRODUCT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PRODUCT" validate="true"/>
         </changeSet>
         <!--输出实体[TICKET_TYPE]外键关系 -->
         <!--输出实体[TRANSITION_HISTORY]外键关系 -->
+        <!--输出实体[UPDATE_RECORD]外键关系 -->
+        <changeSet author="root" id="fk-update_record-109-161">
+                <addForeignKeyConstraint baseColumnNames="KEY_RESULT_ID" baseTableName="UPDATE_RECORD" constraintName="FK_UPDATE_RECORD_KEY_RESULT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="KEY_RESULT" validate="true"/>
+        </changeSet>
+        <changeSet author="root" id="fk-update_record-109-162">
+                <addForeignKeyConstraint baseColumnNames="OBJECTIVE_ID" baseTableName="UPDATE_RECORD" constraintName="FK_UPDATE_RECORD_OBJECTIVE_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="OBJECTIVE" validate="true"/>
+        </changeSet>
         <!--输出实体[VERSION]外键关系 -->
         <!--输出实体[VERSION_DATA]外键关系 -->
         <!--输出实体[WORK]外键关系 -->
-        <changeSet author="root" id="fk-work-11-128">
+        <changeSet author="root" id="fk-work-11-163">
                 <addForeignKeyConstraint baseColumnNames="PORTFOLIO_ID" baseTableName="WORK" constraintName="FK_WORK_PORTFOLIO_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PORTFOLIO" validate="true"/>
         </changeSet>
         <!--输出实体[WORK_ITEM]外键关系 -->
-        <changeSet author="root" id="fk-work_item-7974-129">
+        <changeSet author="root" id="fk-work_item-11272-164">
                 <addForeignKeyConstraint baseColumnNames="BOARD_ID" baseTableName="WORK_ITEM" constraintName="FK_WORK_ITEM_BOARD_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="BOARD" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-work_item-7974-130">
+        <changeSet author="root" id="fk-work_item-11272-165">
                 <addForeignKeyConstraint baseColumnNames="ENTRY_ID" baseTableName="WORK_ITEM" constraintName="FK_WORK_ITEM_ENTRY_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="ENTRY" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-work_item-7974-131">
+        <changeSet author="root" id="fk-work_item-11272-166">
                 <addForeignKeyConstraint baseColumnNames="PROJECT_ID" baseTableName="WORK_ITEM" constraintName="FK_WORK_ITEM_PROJECT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PROJECT" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-work_item-7974-132">
+        <changeSet author="root" id="fk-work_item-11272-167">
                 <addForeignKeyConstraint baseColumnNames="RELEASE_ID" baseTableName="WORK_ITEM" constraintName="FK_WORK_ITEM_RELEASE_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PROJECT_RELEASE" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-work_item-7974-133">
+        <changeSet author="root" id="fk-work_item-11272-168">
                 <addForeignKeyConstraint baseColumnNames="SPRINT_ID" baseTableName="WORK_ITEM" constraintName="FK_WORK_ITEM_SPRINT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="SPRINT" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-work_item-7974-134">
+        <changeSet author="root" id="fk-work_item-11272-169">
                 <addForeignKeyConstraint baseColumnNames="SWIMLANE_ID" baseTableName="WORK_ITEM" constraintName="FK_WORK_ITEM_SWIMLANE_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="SWIMLANE" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-work_item-7974-136">
+        <changeSet author="root" id="fk-work_item-11272-171">
                 <addForeignKeyConstraint baseColumnNames="PID" baseTableName="WORK_ITEM" constraintName="FK_WORK_ITEM_PID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="WORK_ITEM" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-work_item-7974-137">
+        <changeSet author="root" id="fk-work_item-11272-172">
                 <addForeignKeyConstraint baseColumnNames="STATE" baseTableName="WORK_ITEM" constraintName="FK_WORK_ITEM_STATE" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="WORK_ITEM_STATE" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-work_item-7974-138">
+        <changeSet author="root" id="fk-work_item-11272-173">
                 <addForeignKeyConstraint baseColumnNames="TOP_ID" baseTableName="WORK_ITEM" constraintName="FK_WORK_ITEM_TOP_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="WORK_ITEM" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-work_item-7974-139">
+        <changeSet author="root" id="fk-work_item-11272-174">
                 <addForeignKeyConstraint baseColumnNames="WORK_ITEM_TYPE_ID" baseTableName="WORK_ITEM" constraintName="FK_WORK_ITEM_WORK_ITEM_TYPE_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="WORK_ITEM_TYPE" validate="true"/>
         </changeSet>
         <!--输出实体[WORK_ITEM_STATE]外键关系 -->
-        <changeSet author="root" id="fk-work_item_state-169-140">
+        <changeSet author="root" id="fk-work_item_state-195-175">
                 <addForeignKeyConstraint baseColumnNames="WORK_ITEM_TYPE_ID" baseTableName="WORK_ITEM_STATE" constraintName="FK_WORK_ITEM_STATE_WORK_ITEM_T" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="WORK_ITEM_TYPE" validate="true"/>
         </changeSet>
         <!--输出实体[WORK_ITEM_TYPE]外键关系 -->
+        <changeSet author="root" id="fk-work_item_type-482-176">
+                <addForeignKeyConstraint baseColumnNames="PROJECT_ID" baseTableName="WORK_ITEM_TYPE" constraintName="FK_WORK_ITEM_TYPE_PROJECT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PROJECT" validate="true"/>
+        </changeSet>
         <!--输出实体[WORKLOAD]外键关系 -->
-        <changeSet author="root" id="fk-workload-1741-141">
+        <changeSet author="root" id="fk-workload-1865-177">
                 <addForeignKeyConstraint baseColumnNames="TYPE_ID" baseTableName="WORKLOAD" constraintName="FK_WORKLOAD_TYPE_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="WORKLOAD_TYPE" validate="true"/>
         </changeSet>
         <!--输出实体[WORKLOAD_TYPE]外键关系 -->

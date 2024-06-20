@@ -476,7 +476,7 @@ export default {
                 beforeItemType: 'NONE',
                 caption: '移入发布',
                 detailType: 'DEUIACTION',
-                uiactionId: 'shift_in_version@work_item',
+                uiactionId: 'shift_in_release@work_item',
                 showCaption: true,
                 showIcon: true,
                 sysImage: {
@@ -1075,7 +1075,7 @@ export default {
             {
               actionLevel: 100,
               noPrivDisplayMode: 2,
-              uiactionId: 'shift_in_version@work_item',
+              uiactionId: 'shift_in_release@work_item',
               uiactionTarget: 'MULTIKEY',
               valid: true,
               caption: '移入发布',

@@ -9,8 +9,8 @@
 		<result property="ownerType" column="owner_type" />
 		<result property="createMan" column="create_man" />
 		<result property="createTime" column="create_time" />
-		<result property="updateTime" column="update_time" />
 		<result property="updateMan" column="update_man" />
+		<result property="updateTime" column="update_time" />
         <association property="idea" javaType="cn.ibizlab.plm.core.prodmgmt.domain.Idea" column="owner_id" select="cn.ibizlab.plm.core.prodmgmt.mapper.IdeaMapper.selectById" fetchType="lazy"></association>
         <association property="page" javaType="cn.ibizlab.plm.core.wiki.domain.ArticlePage" column="owner_id" select="cn.ibizlab.plm.core.wiki.mapper.ArticlePageMapper.selectById" fetchType="lazy"></association>
         <association property="testCase" javaType="cn.ibizlab.plm.core.testmgmt.domain.TestCase" column="owner_id" select="cn.ibizlab.plm.core.testmgmt.mapper.TestCaseMapper.selectById" fetchType="lazy"></association>
@@ -100,28 +100,28 @@
         select t1.* from (
             <include refid="default"/>
         ) t1
-        where owner_id in <foreach item="id" index="index" collection="ownerIds" open="(" separator="," close=")">#{id}</foreach> 
+        where owner_id in <foreach item="id" index="index" collection="ownerIds" open="(" separator="," close=")">#{id}</foreach>  order by CREATE_TIME DESC
     </select>
 
     <select id="findByOwnerId" resultMap="VersionResultMap">
         select t1.* from (
             <include refid="default"/>
         ) t1
-        where owner_id in <foreach item="id" index="index" collection="ownerIds" open="(" separator="," close=")">#{id}</foreach> 
+        where owner_id in <foreach item="id" index="index" collection="ownerIds" open="(" separator="," close=")">#{id}</foreach>  order by CREATE_TIME DESC
     </select>
 
     <select id="findByOwnerId" resultMap="VersionResultMap">
         select t1.* from (
             <include refid="default"/>
         ) t1
-        where owner_id in <foreach item="id" index="index" collection="ownerIds" open="(" separator="," close=")">#{id}</foreach> 
+        where owner_id in <foreach item="id" index="index" collection="ownerIds" open="(" separator="," close=")">#{id}</foreach>  order by CREATE_TIME DESC
     </select>
 
     <select id="findByOwnerId" resultMap="VersionResultMap">
         select t1.* from (
             <include refid="default"/>
         ) t1
-        where owner_id in <foreach item="id" index="index" collection="ownerIds" open="(" separator="," close=")">#{id}</foreach> 
+        where owner_id in <foreach item="id" index="index" collection="ownerIds" open="(" separator="," close=")">#{id}</foreach>  order by CREATE_TIME DESC
     </select>
 
 

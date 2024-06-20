@@ -84,6 +84,17 @@ export default {
       id: 'manual',
     },
     {
+      codeName: 'id',
+      lnlanguageRes: {
+        lanResTag: 'DEF.LNAME.ID',
+      },
+      logicName: '标识',
+      stdDataType: 25,
+      stringLength: 100,
+      name: 'ID',
+      id: 'id',
+    },
+    {
       codeName: 'name',
       lnlanguageRes: {
         lanResTag: 'DEF.LNAME.NAME',
@@ -118,15 +129,15 @@ export default {
       id: 'create_time',
     },
     {
-      codeName: 'id',
+      codeName: 'update_man',
       lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.ID',
+        lanResTag: 'DEF.LNAME.UPDATE_MAN',
       },
-      logicName: '标识',
+      logicName: '更新人',
       stdDataType: 25,
       stringLength: 100,
-      name: 'ID',
-      id: 'id',
+      name: 'UPDATE_MAN',
+      id: 'update_man',
     },
     {
       codeName: 'update_time',
@@ -138,17 +149,6 @@ export default {
       valueFormat: 'YYYY-MM-DD HH:mm:ss',
       name: 'UPDATE_TIME',
       id: 'update_time',
-    },
-    {
-      codeName: 'update_man',
-      lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.UPDATE_MAN',
-      },
-      logicName: '更新人',
-      stdDataType: 25,
-      stringLength: 100,
-      name: 'UPDATE_MAN',
-      id: 'update_man',
     },
   ],
   appDEMethodDTOs: [
@@ -762,9 +762,11 @@ export default {
       actionTarget: 'SINGLEKEY',
       caption: '编辑版本',
       codeName: 'edit_version',
+      dataAccessAction: 'SUBDATA',
       frontAppViewId: 'plmweb.version_edit_version_view',
       frontProcessType: 'WIZARD',
       fullCodeName: 'version_edit_version',
+      deopprivId: 'subdata',
       sysImage: {
         cssClass: 'fa fa-edit',
         glyph: 'xf044@FontAwesome',
@@ -776,7 +778,7 @@ export default {
       uiactionType: 'DEUIACTION',
       reloadData: true,
       showBusyIndicator: true,
-      noPrivDisplayMode: 2,
+      noPrivDisplayMode: 1,
       appDataEntityId: 'plmweb.version',
       name: '编辑版本',
       id: 'edit_version@version',
@@ -821,8 +823,10 @@ export default {
       actionTarget: 'SINGLEDATA',
       caption: '恢复版本',
       codeName: 'restore',
+      dataAccessAction: 'SUBDATA',
       fullCodeName: 'version_restore',
       appDEMethodId: 'restore',
+      deopprivId: 'subdata',
       sysImage: {
         cssClass: 'fa fa-refresh',
         glyph: 'xf021@FontAwesome',
@@ -836,7 +840,7 @@ export default {
       enableConfirm: true,
       reloadData: true,
       showBusyIndicator: true,
-      noPrivDisplayMode: 2,
+      noPrivDisplayMode: 1,
       appDEUILogicId: 'version_change_after_refresh',
       appDataEntityId: 'plmweb.version',
       name: '恢复版本',

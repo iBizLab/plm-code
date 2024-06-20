@@ -151,5 +151,4 @@ public interface WorkloadTypeMapper extends BaseMapper<WorkloadType> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
 }

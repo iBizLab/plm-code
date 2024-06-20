@@ -75,7 +75,7 @@ public class CategoryFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_section_id_eq")
     @JSONField(name = "n_section_id_eq")
-    @ApiModelProperty(value = "分组标识EQ", position = 120)
+    @ApiModelProperty(value = "分组标识EQ", position = 140)
 	private String sectionIdEQ;
 
     /**
@@ -83,7 +83,7 @@ public class CategoryFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_section_name_eq")
     @JSONField(name = "n_section_name_eq")
-    @ApiModelProperty(value = "名称EQ", position = 130)
+    @ApiModelProperty(value = "名称EQ", position = 150)
 	private String sectionNameEQ;
 
     /**
@@ -91,7 +91,7 @@ public class CategoryFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_section_name_like")
     @JSONField(name = "n_section_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 131)
+    @ApiModelProperty(value = "名称LIKE", position = 151)
 	private String sectionNameLIKE;
 
     /**
@@ -99,7 +99,7 @@ public class CategoryFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_pid_eq")
     @JSONField(name = "n_pid_eq")
-    @ApiModelProperty(value = "父标识EQ", position = 140)
+    @ApiModelProperty(value = "父标识EQ", position = 160)
 	private String pidEQ;
 
     /**
@@ -107,7 +107,7 @@ public class CategoryFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_pid_isnotnull")
     @JSONField(name = "n_pid_isnotnull")
-    @ApiModelProperty(value = "父标识ISNOTNULL", position = 141)
+    @ApiModelProperty(value = "父标识ISNOTNULL", position = 161)
 	private String pidISNOTNULL;
 
     /**
@@ -115,7 +115,7 @@ public class CategoryFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_pid_isnull")
     @JSONField(name = "n_pid_isnull")
-    @ApiModelProperty(value = "父标识ISNULL", position = 142)
+    @ApiModelProperty(value = "父标识ISNULL", position = 162)
 	private String pidISNULL;
 
 

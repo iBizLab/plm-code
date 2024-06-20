@@ -19,6 +19,7 @@ import cn.ibizlab.plm.core.base.domain.Attention;
 import cn.ibizlab.plm.core.base.domain.Attachment;
 import cn.ibizlab.plm.core.base.domain.SearchAttachment;
 import cn.ibizlab.plm.core.base.domain.SearchComment;
+import cn.ibizlab.plm.core.base.domain.Relation;
 import cn.ibizlab.plm.core.base.domain.Version;
 
 /**
@@ -38,89 +39,32 @@ public interface ArticlePageService extends IService<ArticlePage> {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    ArticlePage get(ArticlePage et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default ArticlePage get(String key) {
-        return getSelf().get(new ArticlePage().setId(key));
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<ArticlePage> getByIds(Collection<String> ids) {
-        List<ArticlePage> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new ArticlePage().setId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<ArticlePage> getByEntities(List<ArticlePage> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    ArticlePage getDraft(ArticlePage et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(ArticlePage et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(ArticlePage et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<ArticlePage> list);
+    boolean create(List<ArticlePage> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(ArticlePage et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<ArticlePage> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    @Override
-    boolean save(ArticlePage et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<ArticlePage> list);
+    boolean update(List<ArticlePage> list);
 
     /**
      * 主键删除
@@ -130,14 +74,7 @@ public interface ArticlePageService extends IService<ArticlePage> {
     default boolean remove(String key) {
         return getSelf().remove(new ArticlePage().setId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -147,13 +84,13 @@ public interface ArticlePageService extends IService<ArticlePage> {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<ArticlePage> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new ArticlePage().setId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new ArticlePage().setId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -161,7 +98,482 @@ public interface ArticlePageService extends IService<ArticlePage> {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<ArticlePage> entities);
+    boolean remove(List<ArticlePage> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default ArticlePage get(String key) {
+        return getSelf().get(new ArticlePage().setId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    ArticlePage get(ArticlePage et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<ArticlePage> get(Collection<String> keys) {
+        List<ArticlePage> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new ArticlePage().setId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<ArticlePage> get(List<ArticlePage> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    ArticlePage getDraft(ArticlePage et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(ArticlePage et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(ArticlePage et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<ArticlePage> list);
+
+    /**
+    * commitVersion
+    * 
+    * @param et
+    * @return
+    */
+    default ArticlePage commitVersion(ArticlePage et) {
+        return et;
+    }
+
+    /**
+    * copyPage
+    * 
+    * @param et
+    * @return
+    */
+    default ArticlePage copyPage(ArticlePage et) {
+        return et;
+    }
+
+    /**
+    * delete
+    * 
+    * @param et
+    * @return
+    */
+    default ArticlePage delete(ArticlePage et) {
+        return et;
+    }
+
+    /**
+    * favorite
+    * 
+    * @param et
+    * @return
+    */
+    default ArticlePage favorite(ArticlePage et) {
+        return et;
+    }
+
+    /**
+    * getDraftPages
+    * 
+    * @param et
+    * @return
+    */
+    default ArticlePage getDraftPages(ArticlePage et) {
+        return et;
+    }
+
+    /**
+    * lockPage
+    * 
+    * @param et
+    * @return
+    */
+    default ArticlePage lockPage(ArticlePage et) {
+        return et;
+    }
+
+    /**
+    * movePage
+    * 
+    * @param et
+    * @return
+    */
+    default ArticlePage movePage(ArticlePage et) {
+        return et;
+    }
+
+    /**
+    * newDraftFormStencil
+    * 
+    * @param et
+    * @return
+    */
+    default ArticlePage newDraftFormStencil(ArticlePage et) {
+        return et;
+    }
+
+    /**
+    * nothing
+    * 
+    * @param et
+    * @return
+    */
+    default ArticlePage nothing(ArticlePage et) {
+        return et;
+    }
+
+    /**
+    * publishPage
+    * 
+    * @param et
+    * @return
+    */
+    default ArticlePage publishPage(ArticlePage et) {
+        return et;
+    }
+
+    /**
+    * publishPageTest
+    * 
+    * @param et
+    * @return
+    */
+    default ArticlePage publishPageTest(ArticlePage et) {
+        return et;
+    }
+
+    /**
+    * recover
+    * 
+    * @param et
+    * @return
+    */
+    default ArticlePage recover(ArticlePage et) {
+        return et;
+    }
+
+    /**
+    * recoverVersion
+    * 
+    * @param et
+    * @return
+    */
+    default ArticlePage recoverVersion(ArticlePage et) {
+        return et;
+    }
+
+    /**
+    * saveToStencil
+    * 
+    * @param et
+    * @return
+    */
+    default ArticlePage saveToStencil(ArticlePage et) {
+        return et;
+    }
+
+    /**
+    * unFavorite
+    * 
+    * @param et
+    * @return
+    */
+    default ArticlePage unFavorite(ArticlePage et) {
+        return et;
+    }
+
+    /**
+    * unlockPage
+    * 
+    * @param et
+    * @return
+    */
+    default ArticlePage unlockPage(ArticlePage et) {
+        return et;
+    }
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<ArticlePage> fetchDefault(ArticlePageSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<ArticlePage> listDefault(ArticlePageSearchContext context);
+
+    /**
+    * fetchAdvancedSearch
+    * 
+    * @param context
+    * @return
+    */
+    Page<ArticlePage> fetchAdvancedSearch(ArticlePageSearchContext context);
+
+    /**
+    * listAdvancedSearch
+    * 
+    * @param context
+    * @return
+    */
+    List<ArticlePage> listAdvancedSearch(ArticlePageSearchContext context);
+
+    /**
+    * fetchBaselineChoosePage
+    * 
+    * @param context
+    * @return
+    */
+    Page<ArticlePage> fetchBaselineChoosePage(ArticlePageSearchContext context);
+
+    /**
+    * listBaselineChoosePage
+    * 
+    * @param context
+    * @return
+    */
+    List<ArticlePage> listBaselineChoosePage(ArticlePageSearchContext context);
+
+    /**
+    * fetchDraftPage
+    * 
+    * @param context
+    * @return
+    */
+    Page<ArticlePage> fetchDraftPage(ArticlePageSearchContext context);
+
+    /**
+    * listDraftPage
+    * 
+    * @param context
+    * @return
+    */
+    List<ArticlePage> listDraftPage(ArticlePageSearchContext context);
+
+    /**
+    * fetchHomePage
+    * 
+    * @param context
+    * @return
+    */
+    Page<ArticlePage> fetchHomePage(ArticlePageSearchContext context);
+
+    /**
+    * listHomePage
+    * 
+    * @param context
+    * @return
+    */
+    List<ArticlePage> listHomePage(ArticlePageSearchContext context);
+
+    /**
+    * fetchIsDeleted
+    * 
+    * @param context
+    * @return
+    */
+    Page<ArticlePage> fetchIsDeleted(ArticlePageSearchContext context);
+
+    /**
+    * listIsDeleted
+    * 
+    * @param context
+    * @return
+    */
+    List<ArticlePage> listIsDeleted(ArticlePageSearchContext context);
+
+    /**
+    * fetchMyFavoritePage
+    * 
+    * @param context
+    * @return
+    */
+    Page<ArticlePage> fetchMyFavoritePage(ArticlePageSearchContext context);
+
+    /**
+    * listMyFavoritePage
+    * 
+    * @param context
+    * @return
+    */
+    List<ArticlePage> listMyFavoritePage(ArticlePageSearchContext context);
+
+    /**
+    * fetchNoParentPage
+    * 
+    * @param context
+    * @return
+    */
+    Page<ArticlePage> fetchNoParentPage(ArticlePageSearchContext context);
+
+    /**
+    * listNoParentPage
+    * 
+    * @param context
+    * @return
+    */
+    List<ArticlePage> listNoParentPage(ArticlePageSearchContext context);
+
+    /**
+    * fetchNormal
+    * 
+    * @param context
+    * @return
+    */
+    Page<ArticlePage> fetchNormal(ArticlePageSearchContext context);
+
+    /**
+    * listNormal
+    * 
+    * @param context
+    * @return
+    */
+    List<ArticlePage> listNormal(ArticlePageSearchContext context);
+
+    /**
+    * fetchOnlyPage
+    * 
+    * @param context
+    * @return
+    */
+    Page<ArticlePage> fetchOnlyPage(ArticlePageSearchContext context);
+
+    /**
+    * listOnlyPage
+    * 
+    * @param context
+    * @return
+    */
+    List<ArticlePage> listOnlyPage(ArticlePageSearchContext context);
+
+    /**
+    * findByParentId
+    * @param parentIds
+    * @return
+    */
+    List<ArticlePage> findByParentId(List<String> parentIds);
+    default List<ArticlePage> findByParentId(String parentId){
+        return findByParentId(Arrays.asList(parentId));
+    }
+
+    /**
+    * removeByParentId
+    * @param parentId
+    * @return
+    */
+    boolean removeByParentId(String parentId);
+
+    /**
+    * resetByParentId
+    * @param parentId
+    * @return
+    */
+    boolean resetByParentId(String parentId);
+
+    /**
+    * saveByParentId
+    * @param parentId
+    * @param list
+    * @return
+    */
+    default boolean saveByParentId(String parentId, List<ArticlePage> list){
+        return getSelf().saveByPage(new ArticlePage().setId(parentId),list);
+    }
+
+    /**
+    * saveByPage
+    * @param articlePage
+    * @param list
+    * @return
+    */
+    boolean saveByPage(ArticlePage articlePage, List<ArticlePage> list);
+
+    /**
+    * findBySpaceId
+    * @param spaceIds
+    * @return
+    */
+    List<ArticlePage> findBySpaceId(List<String> spaceIds);
+    default List<ArticlePage> findBySpaceId(String spaceId){
+        return findBySpaceId(Arrays.asList(spaceId));
+    }
+
+    /**
+    * removeBySpaceId
+    * @param spaceId
+    * @return
+    */
+    boolean removeBySpaceId(String spaceId);
+
+    /**
+    * resetBySpaceId
+    * @param spaceId
+    * @return
+    */
+    boolean resetBySpaceId(String spaceId);
+
+    /**
+    * saveBySpaceId
+    * @param spaceId
+    * @param list
+    * @return
+    */
+    default boolean saveBySpaceId(String spaceId, List<ArticlePage> list){
+        return getSelf().saveBySpace(new Space().setId(spaceId),list);
+    }
+
+    /**
+    * saveBySpace
+    * @param space
+    * @param list
+    * @return
+    */
+    boolean saveBySpace(Space space, List<ArticlePage> list);
+
+    default List<Attention> getAttentions(ArticlePage et) {
+        return new ArrayList<>();
+    }
+
+    default List<Attachment> getAttachments(ArticlePage et) {
+        return new ArrayList<>();
+    }
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<ArticlePage> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -178,262 +590,7 @@ public interface ArticlePageService extends IService<ArticlePage> {
         }
         return rt;
     }
-
-    /**
-     * commit_version
-     * 
-     * @param dto
-     * @return
-     */
-    default ArticlePage commitVersion(ArticlePage dto) {
-        return dto;
-    }
-
-    /**
-     * delete
-     * 
-     * @param dto
-     * @return
-     */
-    default ArticlePage delete(ArticlePage dto) {
-        return dto;
-    }
-
-    /**
-     * favorite
-     * 
-     * @param dto
-     * @return
-     */
-    default ArticlePage favorite(ArticlePage dto) {
-        return dto;
-    }
-
-    /**
-     * get_draft_pages
-     * 
-     * @param dto
-     * @return
-     */
-    default ArticlePage getDraftPages(ArticlePage dto) {
-        return dto;
-    }
-
-    /**
-     * new_draft_form_stencil
-     * 
-     * @param dto
-     * @return
-     */
-    default ArticlePage newDraftFormStencil(ArticlePage dto) {
-        return dto;
-    }
-
-    /**
-     * nothing
-     * 
-     * @param dto
-     * @return
-     */
-    default ArticlePage nothing(ArticlePage dto) {
-        return dto;
-    }
-
-    /**
-     * publish_page
-     * 
-     * @param dto
-     * @return
-     */
-    default ArticlePage publishPage(ArticlePage dto) {
-        return dto;
-    }
-
-    /**
-     * publish_page_test
-     * 
-     * @param dto
-     * @return
-     */
-    default ArticlePage publishPageTest(ArticlePage dto) {
-        return dto;
-    }
-
-    /**
-     * recover
-     * 
-     * @param dto
-     * @return
-     */
-    default ArticlePage recover(ArticlePage dto) {
-        return dto;
-    }
-
-    /**
-     * recover_version
-     * 
-     * @param dto
-     * @return
-     */
-    default ArticlePage recoverVersion(ArticlePage dto) {
-        return dto;
-    }
-
-    /**
-     * save_to_stencil
-     * 
-     * @param dto
-     * @return
-     */
-    default ArticlePage saveToStencil(ArticlePage dto) {
-        return dto;
-    }
-
-    /**
-     * un_favorite
-     * 
-     * @param dto
-     * @return
-     */
-    default ArticlePage unFavorite(ArticlePage dto) {
-        return dto;
-    }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<ArticlePage> searchDefault(ArticlePageSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<ArticlePage> listDefault(ArticlePageSearchContext context);
-
-    /**
-     * searchadvanced_search
-     * 
-     * @param context
-     * @return
-     */
-    Page<ArticlePage> searchAdvancedSearch(ArticlePageSearchContext context);
-    /**
-     * listadvanced_search
-     * 
-     * @param context
-     * @return
-     */
-    List<ArticlePage> listAdvancedSearch(ArticlePageSearchContext context);
-
-    /**
-     * searchdraft_page
-     * 
-     * @param context
-     * @return
-     */
-    Page<ArticlePage> searchDraftPage(ArticlePageSearchContext context);
-    /**
-     * listdraft_page
-     * 
-     * @param context
-     * @return
-     */
-    List<ArticlePage> listDraftPage(ArticlePageSearchContext context);
-
-    /**
-     * searchhome_page
-     * 
-     * @param context
-     * @return
-     */
-    Page<ArticlePage> searchHomePage(ArticlePageSearchContext context);
-    /**
-     * listhome_page
-     * 
-     * @param context
-     * @return
-     */
-    List<ArticlePage> listHomePage(ArticlePageSearchContext context);
-
-    /**
-     * searchis_deleted
-     * 
-     * @param context
-     * @return
-     */
-    Page<ArticlePage> searchIsDeleted(ArticlePageSearchContext context);
-    /**
-     * listis_deleted
-     * 
-     * @param context
-     * @return
-     */
-    List<ArticlePage> listIsDeleted(ArticlePageSearchContext context);
-
-    /**
-     * searchmy_favorite_page
-     * 
-     * @param context
-     * @return
-     */
-    Page<ArticlePage> searchMyFavoritePage(ArticlePageSearchContext context);
-    /**
-     * listmy_favorite_page
-     * 
-     * @param context
-     * @return
-     */
-    List<ArticlePage> listMyFavoritePage(ArticlePageSearchContext context);
-
-    /**
-     * searchno_parent_page
-     * 
-     * @param context
-     * @return
-     */
-    Page<ArticlePage> searchNoParentPage(ArticlePageSearchContext context);
-    /**
-     * listno_parent_page
-     * 
-     * @param context
-     * @return
-     */
-    List<ArticlePage> listNoParentPage(ArticlePageSearchContext context);
-
-    /**
-     * searchnormal
-     * 
-     * @param context
-     * @return
-     */
-    Page<ArticlePage> searchNormal(ArticlePageSearchContext context);
-    /**
-     * listnormal
-     * 
-     * @param context
-     * @return
-     */
-    List<ArticlePage> listNormal(ArticlePageSearchContext context);
-
-    /**
-     * searchonly_page
-     * 只查询页面。不包含分组及草稿
-     * @param context
-     * @return
-     */
-    Page<ArticlePage> searchOnlyPage(ArticlePageSearchContext context);
-    /**
-     * listonly_page
-     * 只查询页面。不包含分组及草稿
-     * @param context
-     * @return
-     */
-    List<ArticlePage> listOnlyPage(ArticlePageSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -441,6 +598,7 @@ public interface ArticlePageService extends IService<ArticlePage> {
     default ArticlePage getEntity() {
         return new ArticlePage();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -448,105 +606,13 @@ public interface ArticlePageService extends IService<ArticlePage> {
     default ArticlePageSearchContext getSearchContext() {
         return new ArticlePageSearchContext();
     }
+
+
     /**
-     * selectRelByParentId
-     * @param parentIds
-     * @return
-     */
-    List<ArticlePage> findByParentId(List<String> parentIds);
-    default List<ArticlePage> findByParentId(String parentId) {
-        return findByParentId(Arrays.asList(parentId));
-    }
-    /**
-     * removeRelByParentId
-     * @param parentId
-     * @return
-     */
-    boolean removeByParentId(String parentId);
-    /**
-     * resetRelByParentId
-     * @param parentId
-     * @return
-     */
-    boolean resetByParentId(String parentId);
-    /**
-     * saveRelByParentId
-     * @param parentId
-     * @param list
-     * @return
-     */
-    default boolean saveByParentId(String parentId,List<ArticlePage> list) {
-        return getSelf().saveByPage(new ArticlePage().setId(parentId),list);
-    }
-    /**
-    * saveRelByPage
-    * @param articlePage
-    * @param list
+    * 自定义SQL
+    * @param sql  update table  set name ='test' where id =#{et.param}
+    * @param param 参数列表  param.put("param","1");
     * @return
     */
-    boolean saveByPage(ArticlePage articlePage,List<ArticlePage> list);
-
-    /**
-     * selectRelBySpaceId
-     * @param spaceIds
-     * @return
-     */
-    List<ArticlePage> findBySpaceId(List<String> spaceIds);
-    default List<ArticlePage> findBySpaceId(String spaceId) {
-        return findBySpaceId(Arrays.asList(spaceId));
-    }
-    /**
-     * removeRelBySpaceId
-     * @param spaceId
-     * @return
-     */
-    boolean removeBySpaceId(String spaceId);
-    /**
-     * resetRelBySpaceId
-     * @param spaceId
-     * @return
-     */
-    boolean resetBySpaceId(String spaceId);
-    /**
-     * saveRelBySpaceId
-     * @param spaceId
-     * @param list
-     * @return
-     */
-    default boolean saveBySpaceId(String spaceId,List<ArticlePage> list) {
-        return getSelf().saveBySpace(new Space().setId(spaceId),list);
-    }
-    /**
-    * saveRelBySpace
-    * @param space
-    * @param list
-    * @return
-    */
-    boolean saveBySpace(Space space,List<ArticlePage> list);
-
-    default List<Attention> getAttentions(ArticlePage et) {
-        return new ArrayList<>();
-    }
-
-    default List<Attachment> getAttachments(ArticlePage et) {
-        return new ArrayList<>();
-    }
-
-
-    /**
-     * 自定义查询SQL
-     * @param sql  select * from table where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
-    List<JSONObject> select(String sql, Map<String,Object> param);
-
-    /**
-     * 自定义SQL
-     * @param sql  update table  set name ='test' where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
     boolean execute(String sql, Map<String,Object> param);
-
 }

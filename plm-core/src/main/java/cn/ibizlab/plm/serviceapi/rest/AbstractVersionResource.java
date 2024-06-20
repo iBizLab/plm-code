@@ -345,7 +345,7 @@ public abstract class AbstractVersionResource {
     public ResponseEntity<List<VersionDTO>> fetchDefault
             (@Validated @RequestBody VersionFilterDTO dto) {
         VersionSearchContext context = versionFilterDtoMapping.toDomain(dto);
-        Page<Version> domains = versionService.searchDefault(context) ;
+        Page<Version> domains = versionService.fetchDefault(context) ;
         List<VersionDTO> list = versionDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -367,7 +367,7 @@ public abstract class AbstractVersionResource {
     public ResponseEntity<List<VersionDTO>> fetchOwner
             (@Validated @RequestBody VersionFilterDTO dto) {
         VersionSearchContext context = versionFilterDtoMapping.toDomain(dto);
-        Page<Version> domains = versionService.searchOwner(context) ;
+        Page<Version> domains = versionService.fetchOwner(context) ;
         List<VersionDTO> list = versionDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -386,7 +386,7 @@ public abstract class AbstractVersionResource {
     @ApiOperation(value = "批量新建版本", tags = {"版本" },  notes = "批量新建版本")
 	@PostMapping("versions/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<VersionDTO> dtos) {
-        versionService.createBatch(versionDtoMapping.toDomain(dtos));
+        versionService.create(versionDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -399,7 +399,7 @@ public abstract class AbstractVersionResource {
     @ApiOperation(value = "批量删除版本", tags = {"版本" },  notes = "批量删除版本")
 	@DeleteMapping("versions/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        versionService.removeBatch(ids);
+        versionService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -412,7 +412,7 @@ public abstract class AbstractVersionResource {
     @ApiOperation(value = "批量更新版本", tags = {"版本" },  notes = "批量更新版本")
 	@PutMapping("versions/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<VersionDTO> dtos) {
-        versionService.updateBatch(versionDtoMapping.toDomain(dtos));
+        versionService.update(versionDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -425,7 +425,7 @@ public abstract class AbstractVersionResource {
     @ApiOperation(value = "批量保存版本", tags = {"版本" },  notes = "批量保存版本")
 	@PostMapping("versions/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<VersionDTO> dtos) {
-        versionService.saveBatch(versionDtoMapping.toDomain(dtos));
+        versionService.save(versionDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

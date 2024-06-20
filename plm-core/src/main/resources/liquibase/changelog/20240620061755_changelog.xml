@@ -1,0 +1,462 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.6.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <changeSet author="mac (generated)" id="1718864295941-1">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <tableExists tableName="ADDON" />
+            </not>
+        </preConditions>
+        <createTable tableName="ADDON">
+            <column name="ADDON_TYPE" type="VARCHAR(100)"/>
+            <column name="OWNER_TYPE" type="VARCHAR(100)"/>
+            <column name="OWNER_SUBTYPE" type="VARCHAR(100)"/>
+            <column name="OWNER_ID" type="VARCHAR(100)"/>
+            <column name="SETTING_MODEL" type="CLOB"/>
+            <column name="IS_ENABLED" type="INT"/>
+            <column name="DESCRIPTION" type="VARCHAR(2000)"/>
+            <column name="ORDER_VALUE" type="INT"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ADDON_ID"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="TIMESTAMP"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1718864295941-2">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <tableExists tableName="ADDON_ROLE_MEMBER" />
+            </not>
+        </preConditions>
+        <createTable tableName="ADDON_ROLE_MEMBER">
+            <column name="TYPE" type="INT"/>
+            <column name="USER_OBJ_ID" type="VARCHAR(100)"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ADDON_ROLE_MEMBER_ID"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="TIMESTAMP"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="TIMESTAMP"/>
+            <column name="ADDON_ID" type="VARCHAR(100)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1718864295941-3">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <tableExists tableName="DISCUSS_POST" />
+            </not>
+        </preConditions>
+        <createTable tableName="DISCUSS_POST">
+            <column name="IS_DELETED" type="INT"/>
+            <column name="STATUS" type="VARCHAR(60)"/>
+            <column name="HEAT" type="INT"/>
+            <column name="CONTENT" type="CLOB"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_DISCUSS_POST_ID"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="TIMESTAMP"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="TIMESTAMP"/>
+            <column name="TOPIC_ID" type="VARCHAR(100)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1718864295941-4">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <tableExists tableName="DISCUSS_REPLY" />
+            </not>
+        </preConditions>
+        <createTable tableName="DISCUSS_REPLY">
+            <column name="CONTENT" type="CLOB"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_DISCUSS_REPLY_ID"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="TIMESTAMP"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="TIMESTAMP"/>
+            <column name="POST_ID" type="VARCHAR(100)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1718864295941-5">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <tableExists tableName="DISCUSS_TOPIC" />
+            </not>
+        </preConditions>
+        <createTable tableName="DISCUSS_TOPIC">
+            <column name="IDENTIFIER" type="VARCHAR(100)"/>
+            <column name="VISIBILITY" type="VARCHAR(60)"/>
+            <column name="IS_ARCHIVED" type="INT"/>
+            <column name="IS_DELETED" type="INT"/>
+            <column name="DESCRIPTION" type="VARCHAR(2000)"/>
+            <column name="SCOPE_TYPE" type="VARCHAR(60)"/>
+            <column name="SCOPE_ID" type="VARCHAR(100)"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_DISCUSS_TOPIC_ID"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="TIMESTAMP"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1718864295941-6">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <tableExists tableName="DYNA_APPMENU" />
+            </not>
+        </preConditions>
+        <createTable tableName="DYNA_APPMENU">
+            <column name="TYPE" type="VARCHAR(100)"/>
+            <column name="OWNER_TYPE" type="VARCHAR(100)"/>
+            <column name="OWNER_ID" type="VARCHAR(100)"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_DYNA_APPMENU_ID"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="TIMESTAMP"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="TIMESTAMP"/>
+            <column name="USERID" type="VARCHAR(100)"/>
+            <column name="MODELID" type="VARCHAR(100)"/>
+            <column name="MODEL" type="CLOB"/>
+            <column name="APPID" type="VARCHAR(100)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1718864295941-7">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <tableExists tableName="GUIDELINE" />
+            </not>
+        </preConditions>
+        <createTable tableName="GUIDELINE">
+            <column name="SCOPE_ID" type="VARCHAR(100)"/>
+            <column name="OBJECT_TYPE" type="VARCHAR(100)"/>
+            <column name="SUBJECT_TYPE" type="VARCHAR(100)"/>
+            <column name="REVIEW_STAGE" type="CLOB"/>
+            <column name="REVIEW_RULE" type="CLOB"/>
+            <column name="REVIEW_ACTION_RULE" type="CLOB"/>
+            <column name="IS_ENABLED" type="INT"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_GUIDELINE_ID"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="TIMESTAMP"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1718864295941-9">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <tableExists tableName="IDEA_TEMPLATE" />
+            </not>
+        </preConditions>
+        <createTable tableName="IDEA_TEMPLATE">
+            <column name="TITLE" type="VARCHAR(500)"/>
+            <column name="DESCRIPTION" type="CLOB"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_IDEA_TEMPLATE_ID"/>
+            </column>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="TIMESTAMP"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="TIMESTAMP"/>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="PRODUCT_ID" type="VARCHAR(100)"/>
+            <column name="CATEGORY_ID" type="VARCHAR(100)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1718864295941-10">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <tableExists tableName="INSIGHT_REPORT" />
+            </not>
+        </preConditions>
+        <createTable tableName="INSIGHT_REPORT">
+            <column name="DESC" type="CLOB"/>
+            <column name="CHART_TYPE" type="VARCHAR(60)"/>
+            <column name="GROUP" type="VARCHAR(60)"/>
+            <column name="CATEGORIES" type="VARCHAR(2000)"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_INSIGHT_REPORT_ID"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="TIMESTAMP"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="TIMESTAMP"/>
+            <column name="VIEW_ID" type="VARCHAR(100)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1718864295941-11">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <tableExists tableName="INSIGHT_VIEW" />
+            </not>
+        </preConditions>
+        <createTable tableName="INSIGHT_VIEW">
+            <column name="IDENTIFIER" type="VARCHAR(100)"/>
+            <column name="VISIBILITY" type="VARCHAR(60)"/>
+            <column name="DESCRIPTION" type="VARCHAR(2000)"/>
+            <column name="IS_ARCHIVED" type="INT"/>
+            <column name="IS_DELETED" type="INT"/>
+            <column name="SCOPE_TYPE" type="VARCHAR(60)"/>
+            <column name="SCOPE_ID" type="VARCHAR(100)"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_INSIGHT_VIEW_ID"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="TIMESTAMP"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1718864295941-12">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <tableExists tableName="KEY_RESULT" />
+            </not>
+        </preConditions>
+        <createTable tableName="KEY_RESULT">
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_KEY_RESULT_ID"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="TIMESTAMP"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="TIMESTAMP"/>
+            <column name="OBJECTIVE_ID" type="VARCHAR(100)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1718864295941-13">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <tableExists tableName="OBJECTIVE" />
+            </not>
+        </preConditions>
+        <createTable tableName="OBJECTIVE">
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_OBJECTIVE_ID"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="TIMESTAMP"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="TIMESTAMP"/>
+            <column name="PERIOD_ID" type="VARCHAR(100)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1718864295941-14">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <tableExists tableName="PERIOD" />
+            </not>
+        </preConditions>
+        <createTable tableName="PERIOD">
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_PERIOD_ID"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="TIMESTAMP"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1718864295941-15">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <tableExists tableName="UPDATE_RECORD" />
+            </not>
+        </preConditions>
+        <createTable tableName="UPDATE_RECORD">
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_UPDATE_RECORD_ID"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="TIMESTAMP"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="TIMESTAMP"/>
+            <column name="KEY_RESULT_ID" type="VARCHAR(100)"/>
+            <column name="OBJECTIVE_ID" type="VARCHAR(100)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1718864295941-16">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="RUN" columnName="PARENT_VERSION_ID" />
+            </not>
+        </preConditions>
+        <addColumn tableName="RUN">
+            <column name="PARENT_VERSION_ID" type="VARCHAR(100 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1718864295941-17">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="REVIEW_CONTENT_EXTEND" columnName="FINAL_STAGE_RESULTS" />
+            </not>
+        </preConditions>
+        <addColumn tableName="REVIEW_CONTENT_EXTEND">
+            <column name="FINAL_STAGE_RESULTS" type="VARCHAR(60 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1718864295941-18">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="REVIEW_RESULT" columnName="SEQUENCES" />
+            </not>
+        </preConditions>
+        <addColumn tableName="REVIEW_RESULT">
+            <column name="SEQUENCES" type="INTEGER"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1718864295941-19">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="RUN" columnName="CUR_VERSION_ID" />
+            </not>
+        </preConditions>
+        <addColumn tableName="RUN">
+            <column name="CUR_VERSION_ID" type="VARCHAR(100 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1718864295941-20">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="CATEGORY" columnName="IS_LEAF2" />
+            </not>
+        </preConditions>
+        <addColumn tableName="CATEGORY">
+            <column name="IS_LEAF2" type="INTEGER"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1718864295941-21">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="BASELINE" columnName="TYPE" />
+            </not>
+        </preConditions>
+        <addColumn tableName="BASELINE">
+            <column name="TYPE" type="VARCHAR(60 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1718864295941-22">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="PAGE" columnName="CATEGORIES" />
+            </not>
+        </preConditions>
+        <addColumn tableName="PAGE">
+            <column name="CATEGORIES" type="VARCHAR(2000 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1718864295941-23">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="WORK_ITEM_TYPE" columnName="SUB_TYPE" />
+            </not>
+        </preConditions>
+        <addColumn tableName="WORK_ITEM_TYPE">
+            <column name="SUB_TYPE" type="VARCHAR(200 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1718864295941-24">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="RELATION" columnName="RELATION_TYPE" />
+            </not>
+        </preConditions>
+        <addColumn tableName="RELATION">
+            <column name="RELATION_TYPE" type="VARCHAR(100 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1718864295941-25">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="REVIEW" columnName="RULE" />
+            </not>
+        </preConditions>
+        <addColumn tableName="REVIEW">
+            <column name="RULE" type="CLOB(2147483647)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1718864295941-26">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="REVIEW" columnName="STAGE" />
+            </not>
+        </preConditions>
+        <addColumn tableName="REVIEW">
+            <column name="STAGE" type="CLOB(2147483647)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1718864295941-27">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="REVIEW" columnName="ACTION_RULE" />
+            </not>
+        </preConditions>
+        <addColumn tableName="REVIEW">
+            <column name="ACTION_RULE" type="CLOB(2147483647)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1718864295941-28">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="WORK_ITEM_TYPE" columnName="PROJECT_ID" />
+            </not>
+        </preConditions>
+        <addColumn tableName="WORK_ITEM_TYPE">
+            <column name="PROJECT_ID" type="VARCHAR(100 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1718864295941-29">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="PAGE" columnName="IS_LOCK" />
+            </not>
+        </preConditions>
+        <addColumn tableName="PAGE">
+            <column name="IS_LOCK" type="INTEGER"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1718864295941-30">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="REVIEW" columnName="GUIDELINE_ID" />
+            </not>
+        </preConditions>
+        <addColumn tableName="REVIEW">
+            <column name="GUIDELINE_ID" type="VARCHAR(100 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1718864295941-31">
+        <preConditions onFail="MARK_RAN"  >
+            <columnExists tableName="CUSTOMER" columnName="CATEGORIES_NAME" />
+        </preConditions>
+        <dropColumn columnName="CATEGORIES_NAME" tableName="CUSTOMER"/>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1718864295941-32">
+        <preConditions onFail="MARK_RAN"  >
+            <columnExists tableName="PRODUCT_PLAN" columnName="CATEGORIES_NAME" />
+        </preConditions>
+        <dropColumn columnName="CATEGORIES_NAME" tableName="PRODUCT_PLAN"/>
+    </changeSet>
+</databaseChangeLog>

@@ -43,6 +43,25 @@ public interface BaselineWorkItemMapper extends BaseMapper<BaselineWorkItem> {
     List<BaselineWorkItem> listDefault(@Param("ctx") BaselineWorkItemSearchContext context, @Param("ew") Wrapper<BaselineWorkItem> wrapper);
 
     /**
+     * 数据集合baseline_relation_version分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<BaselineWorkItem> searchBaselineRelationVersion(IPage<BaselineWorkItem> page, @Param("ctx") BaselineWorkItemSearchContext context, @Param("ew") Wrapper<BaselineWorkItem> wrapper);
+    
+    /**
+     * 数据集合baseline_relation_version查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<BaselineWorkItem> listBaselineRelationVersion(@Param("ctx") BaselineWorkItemSearchContext context, @Param("ew") Wrapper<BaselineWorkItem> wrapper);
+
+    /**
      * 数据集合fill_version_data分页查询
      * 
      * @param page
@@ -60,6 +79,22 @@ public interface BaselineWorkItemMapper extends BaseMapper<BaselineWorkItem> {
      * @return
      */
     List<BaselineWorkItem> listFillVersionData(@Param("ctx") BaselineWorkItemSearchContext context, @Param("ew") Wrapper<BaselineWorkItem> wrapper);
+
+    /**
+    * 根据principalId查询
+    *
+    * @param principalIds
+    * @return
+    */
+    List<BaselineWorkItem> findByPrincipalId(@Param("principalIds") List<String> principalIds);
+
+    /**
+    * 根据targetVersionId查询
+    *
+    * @param targetVersionIds
+    * @return
+    */
+    List<BaselineWorkItem> findByTargetVersionId(@Param("targetVersionIds") List<String> targetVersionIds);
 
     /**
      * 主键查询
@@ -125,21 +160,4 @@ public interface BaselineWorkItemMapper extends BaseMapper<BaselineWorkItem> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据principalId查询
-     *
-     * @param principalIds
-     * @return
-     */
-    List<BaselineWorkItem> findByPrincipalId(@Param("principalIds") List<String> principalIds);
-
-    /**
-     * 根据targetVersionId查询
-     *
-     * @param targetVersionIds
-     * @return
-     */
-    List<BaselineWorkItem> findByTargetVersionId(@Param("targetVersionIds") List<String> targetVersionIds);
-
 }

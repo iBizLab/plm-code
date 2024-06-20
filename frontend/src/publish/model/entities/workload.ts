@@ -162,17 +162,6 @@ export default {
       id: 'name',
     },
     {
-      codeName: 'update_time',
-      lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.UPDATE_TIME',
-      },
-      logicName: '更新时间',
-      stdDataType: 5,
-      valueFormat: 'YYYY-MM-DD HH:mm:ss',
-      name: 'UPDATE_TIME',
-      id: 'update_time',
-    },
-    {
       codeName: 'create_man',
       lnlanguageRes: {
         lanResTag: 'DEF.LNAME.CREATE_MAN',
@@ -204,6 +193,17 @@ export default {
       stringLength: 100,
       name: 'UPDATE_MAN',
       id: 'update_man',
+    },
+    {
+      codeName: 'update_time',
+      lnlanguageRes: {
+        lanResTag: 'DEF.LNAME.UPDATE_TIME',
+      },
+      logicName: '更新时间',
+      stdDataType: 5,
+      valueFormat: 'YYYY-MM-DD HH:mm:ss',
+      name: 'UPDATE_TIME',
+      id: 'update_time',
     },
     {
       codeName: 'type_id',
@@ -461,6 +461,16 @@ export default {
           type: 'SIMPLE',
           allowEmpty: true,
           id: 'n_create_man_eq',
+        },
+        {
+          codeName: 'n_create_man_in',
+          logicName: '建立人',
+          appDEFieldId: 'create_man',
+          sourceType: 'DEFSEARCHMODE',
+          stdDataType: 25,
+          type: 'SIMPLES',
+          allowEmpty: true,
+          id: 'n_create_man_in',
         },
         {
           codeName: 'n_id_eq',
@@ -2392,24 +2402,6 @@ export default {
           id: 'preparejsparam2',
         },
         {
-          invokeCtrlId: 'form',
-          invokeMethod: 'load',
-          invokeParamId: 'default',
-          codeName: 'VIEWCTRLINVOKE1',
-          leftPos: 160,
-          logicNodeType: 'VIEWCTRLINVOKE',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'debugparam1',
-              srcDEUILogicNodeId: 'viewctrlinvoke1',
-              id: '连接名称',
-            },
-          ],
-          topPos: 630,
-          name: '表单刷新',
-          id: 'viewctrlinvoke1',
-        },
-        {
           code: 'uiLogic.parentview.ctx.controllersMap.get("form").details.grouppanel8.state.visible=true;\r\nuiLogic.parentview.ctx.controllersMap.get("form").details.grouppanel9.state.visible=false;\r\n',
           codeName: 'RAWJSCODE1',
           leftPos: 160,
@@ -2426,13 +2418,15 @@ export default {
           id: 'rawjscode1',
         },
         {
-          codeName: 'DEBUGPARAM1',
-          dstDEUILogicParamId: 'parentview',
+          invokeCtrlId: 'form',
+          invokeMethod: 'load',
+          invokeParamId: 'default',
+          codeName: 'VIEWCTRLINVOKE1',
           leftPos: 160,
-          logicNodeType: 'DEBUGPARAM',
-          topPos: 722,
-          name: '调试逻辑参数',
-          id: 'debugparam1',
+          logicNodeType: 'VIEWCTRLINVOKE',
+          topPos: 630,
+          name: '表单刷新',
+          id: 'viewctrlinvoke1',
         },
         {
           codeName: 'PREPAREJSPARAM1',
@@ -2463,6 +2457,12 @@ export default {
       ],
       deuilogicParams: [
         {
+          codeName: 'view',
+          activeViewParam: true,
+          name: '当前视图对象',
+          id: 'view',
+        },
+        {
           codeName: 'form',
           ctrlParam: true,
           name: '表单',
@@ -2480,12 +2480,6 @@ export default {
           entityParam: true,
           name: '传入变量',
           id: 'default',
-        },
-        {
-          codeName: 'view',
-          activeViewParam: true,
-          name: '当前视图对象',
-          id: 'view',
         },
       ],
       startDEUILogicNodeId: 'begin',
@@ -3017,8 +3011,24 @@ export default {
           deuilogicLinks: [
             {
               dstDEUILogicNodeId: 'rawjscode1',
+              deuilogicLinkGroupCond: {
+                groupOP: 'AND',
+                deuilogicLinkConds: [
+                  {
+                    condOP: 'GT',
+                    dstFieldName: 'duration',
+                    dstLogicParamId: 'default',
+                    paramValue: '0',
+                    value: '0',
+                    logicType: 'SINGLE',
+                    name: 'Default[duration] 大于(>) 0',
+                    id: 'default[duration] 大于(>) 0',
+                  },
+                ],
+                logicType: 'GROUP',
+              },
               srcDEUILogicNodeId: 'begin',
-              id: '连接名称',
+              id: '总时长大于0',
             },
           ],
           topPos: 200,
@@ -3031,9 +3041,9 @@ export default {
           dstAppDataEntityId: 'plmweb.workload',
           codeName: 'DEUIACTION1',
           dstDEUILogicParamId: 'default',
-          leftPos: 171,
+          leftPos: 170,
           logicNodeType: 'DEUIACTION',
-          topPos: 433,
+          topPos: 553,
           name: '打开成员工时记录列表视图',
           id: 'deuiaction1',
         },
@@ -3049,7 +3059,7 @@ export default {
               id: '连接名称',
             },
           ],
-          topPos: 337,
+          topPos: 437,
           name: '获取搜索表单的日期范围条件',
           id: 'rawjscode1',
         },

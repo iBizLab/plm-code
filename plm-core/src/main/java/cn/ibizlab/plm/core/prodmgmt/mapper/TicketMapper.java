@@ -404,6 +404,30 @@ public interface TicketMapper extends BaseMapper<Ticket> {
     List<Ticket> listWorkItemRelationTicket(@Param("ctx") TicketSearchContext context, @Param("ew") Wrapper<Ticket> wrapper);
 
     /**
+    * 根据customerId查询
+    *
+    * @param customerIds
+    * @return
+    */
+    List<Ticket> findByCustomerId(@Param("customerIds") List<String> customerIds);
+
+    /**
+    * 根据productId查询
+    *
+    * @param productIds
+    * @return
+    */
+    List<Ticket> findByProductId(@Param("productIds") List<String> productIds);
+
+    /**
+    * 根据assigneeId查询
+    *
+    * @param assigneeIds
+    * @return
+    */
+    List<Ticket> findByAssigneeId(@Param("assigneeIds") List<String> assigneeIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -512,29 +536,4 @@ public interface TicketMapper extends BaseMapper<Ticket> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据customerId查询
-     *
-     * @param customerIds
-     * @return
-     */
-    List<Ticket> findByCustomerId(@Param("customerIds") List<String> customerIds);
-
-    /**
-     * 根据productId查询
-     *
-     * @param productIds
-     * @return
-     */
-    List<Ticket> findByProductId(@Param("productIds") List<String> productIds);
-
-    /**
-     * 根据assigneeId查询
-     *
-     * @param assigneeIds
-     * @return
-     */
-    List<Ticket> findByAssigneeId(@Param("assigneeIds") List<String> assigneeIds);
-
 }

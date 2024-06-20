@@ -43,6 +43,33 @@ public interface ReleaseMapper extends BaseMapper<Release> {
     List<Release> listDefault(@Param("ctx") ReleaseSearchContext context, @Param("ew") Wrapper<Release> wrapper);
 
     /**
+     * 数据集合not_finish分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Release> searchNotFinish(IPage<Release> page, @Param("ctx") ReleaseSearchContext context, @Param("ew") Wrapper<Release> wrapper);
+    
+    /**
+     * 数据集合not_finish查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Release> listNotFinish(@Param("ctx") ReleaseSearchContext context, @Param("ew") Wrapper<Release> wrapper);
+
+    /**
+    * 根据projectId查询
+    *
+    * @param projectIds
+    * @return
+    */
+    List<Release> findByProjectId(@Param("projectIds") List<String> projectIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -151,13 +178,4 @@ public interface ReleaseMapper extends BaseMapper<Release> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据projectId查询
-     *
-     * @param projectIds
-     * @return
-     */
-    List<Release> findByProjectId(@Param("projectIds") List<String> projectIds);
-
 }

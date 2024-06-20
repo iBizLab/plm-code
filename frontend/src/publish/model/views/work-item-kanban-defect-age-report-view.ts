@@ -351,6 +351,11 @@ export default {
                     name: 'date_range_disabledDate',
                     id: 'date_range_disableddate',
                   },
+                  {
+                    attrName: 'clearable',
+                    attrValue: 'false',
+                    id: 'clearable1',
+                  },
                 ],
                 layoutPos: {
                   colMD: 24,
@@ -416,6 +421,7 @@ export default {
                 id: 'n_severity_eq',
               },
               {
+                createDV: '1,0',
                 dataType: 9,
                 enableCond: 3,
                 labelPos: 'TOP',
@@ -424,24 +430,32 @@ export default {
                 appDEFieldId: 'is_archived',
                 editor: {
                   singleSelect: true,
-                  appCodeListId: 'plmweb.yesno',
+                  appCodeListId: 'plmweb.base__contains_archive',
                   editorType: 'DROPDOWNLIST_100',
-                  valueType: 'SIMPLE',
+                  valueType: 'SIMPLES',
                   editable: true,
-                  id: 'n_is_archived_eq',
+                  id: 'n_is_archived_in',
                 },
+                updateDV: '1,0',
                 allowEmpty: true,
                 needCodeListConfig: true,
-                caption: '是否归档',
-                codeName: 'n_is_archived_eq',
+                caption: '是否包含归档',
+                codeName: 'n_is_archived_in',
                 detailStyle: 'DEFAULT',
                 detailType: 'FORMITEM',
+                controlAttributes: [
+                  {
+                    attrName: 'clearable',
+                    attrValue: 'false',
+                    id: 'n_is_archived_in',
+                  },
+                ],
                 layoutPos: {
                   colMD: 24,
                   layout: 'TABLE_24COL',
                 },
                 showCaption: true,
-                id: 'n_is_archived_eq',
+                id: 'n_is_archived_in',
               },
               {
                 dataType: 5,

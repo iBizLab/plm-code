@@ -365,44 +365,6 @@ public abstract class AbstractTicketResource {
     }
 
     /**
-    * del_relation 工单
-    * 
-    *
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<TicketDTO>
-    */
-    @ApiOperation(value = "del_relation", tags = {"工单" },  notes = "Ticket-del_relation ")
-    @PostMapping("tickets/{id}/del_relation")
-    public ResponseEntity<ResponseWrapper<TicketDTO>> delRelationById
-            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
-        ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(delRelationById(ids[i], dto.getList().get(i))));
-        }
-        else
-            rt.set(delRelationById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
-    }
-
-    /**
-    * del_relation 工单
-    * 
-    *
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<TicketDTO>
-    */   
-    public TicketDTO delRelationById
-            (String id, TicketDTO dto) {
-        Ticket domain = ticketDtoMapping.toDomain(dto);
-        domain.setId(id);
-        Ticket rt = ticketService.delRelation(domain);
-        return ticketDtoMapping.toDto(rt);
-    }
-
-    /**
     * delete 工单
     * 
     *
@@ -438,45 +400,6 @@ public abstract class AbstractTicketResource {
         Ticket domain = ticketDtoMapping.toDomain(dto);
         domain.setId(id);
         Ticket rt = ticketService.delete(domain);
-        return ticketDtoMapping.toDto(rt);
-    }
-
-    /**
-    * fill_product_member 工单
-    * 
-    *
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<TicketDTO>
-    */
-    @ApiOperation(value = "fill_product_member", tags = {"工单" },  notes = "Ticket-fill_product_member ")
-    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fill_product_member-all') or hasPermission(this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-fill_product_member')")
-    @PostMapping("tickets/{id}/fill_product_member")
-    public ResponseEntity<ResponseWrapper<TicketDTO>> fillProductMemberById
-            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
-        ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(fillProductMemberById(ids[i], dto.getList().get(i))));
-        }
-        else
-            rt.set(fillProductMemberById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
-    }
-
-    /**
-    * fill_product_member 工单
-    * 
-    *
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<TicketDTO>
-    */   
-    public TicketDTO fillProductMemberById
-            (String id, TicketDTO dto) {
-        Ticket domain = ticketDtoMapping.toDomain(dto);
-        domain.setId(id);
-        Ticket rt = ticketService.fillProductMember(domain);
         return ticketDtoMapping.toDto(rt);
     }
 
@@ -628,6 +551,45 @@ public abstract class AbstractTicketResource {
         Ticket domain = ticketDtoMapping.toDomain(dto);
         ticketService.save(domain);
         Ticket rt = domain;
+        return ticketDtoMapping.toDto(rt);
+    }
+
+    /**
+    * ticket_readonly_recognize 工单
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TicketDTO>
+    */
+    @ApiOperation(value = "ticket_readonly_recognize", tags = {"工单" },  notes = "Ticket-ticket_readonly_recognize ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-ticket_readonly_recognize-all') or hasPermission(this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-ticket_readonly_recognize')")
+    @PostMapping("tickets/{id}/ticket_readonly_recognize")
+    public ResponseEntity<ResponseWrapper<TicketDTO>> ticketReadonlyRecognizeById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
+        ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(ticketReadonlyRecognizeById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(ticketReadonlyRecognizeById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * ticket_readonly_recognize 工单
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TicketDTO>
+    */   
+    public TicketDTO ticketReadonlyRecognizeById
+            (String id, TicketDTO dto) {
+        Ticket domain = ticketDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Ticket rt = ticketService.ticketReadonlyRecognize(domain);
         return ticketDtoMapping.toDto(rt);
     }
 
@@ -956,46 +918,6 @@ public abstract class AbstractTicketResource {
     }
 
     /**
-    * del_relation 工单
-    * 
-    *
-    * @param productId productId
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<TicketDTO>
-    */
-    @ApiOperation(value = "del_relation", tags = {"工单" },  notes = "Ticket-del_relation ")
-    @PostMapping("products/{productId}/tickets/{id}/del_relation")
-    public ResponseEntity<ResponseWrapper<TicketDTO>> delRelationByProductIdAndId
-            (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
-        ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(delRelationByProductIdAndId(productId, ids[i], dto.getList().get(i))));
-        }
-        else
-            rt.set(delRelationByProductIdAndId(productId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
-    }
-
-    /**
-    * del_relation 工单
-    * 
-    *
-    * @param productId productId
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<TicketDTO>
-    */   
-    public TicketDTO delRelationByProductIdAndId
-            (String productId, String id, TicketDTO dto) {
-        Ticket domain = ticketDtoMapping.toDomain(dto);
-        domain.setId(id);
-        Ticket rt = ticketService.delRelation(domain);
-        return ticketDtoMapping.toDto(rt);
-    }
-
-    /**
     * delete 工单
     * 
     *
@@ -1033,47 +955,6 @@ public abstract class AbstractTicketResource {
         Ticket domain = ticketDtoMapping.toDomain(dto);
         domain.setId(id);
         Ticket rt = ticketService.delete(domain);
-        return ticketDtoMapping.toDto(rt);
-    }
-
-    /**
-    * fill_product_member 工单
-    * 
-    *
-    * @param productId productId
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<TicketDTO>
-    */
-    @ApiOperation(value = "fill_product_member", tags = {"工单" },  notes = "Ticket-fill_product_member ")
-    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fill_product_member-all') or hasPermission('product',#productId,this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-fill_product_member')")
-    @PostMapping("products/{productId}/tickets/{id}/fill_product_member")
-    public ResponseEntity<ResponseWrapper<TicketDTO>> fillProductMemberByProductIdAndId
-            (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
-        ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(fillProductMemberByProductIdAndId(productId, ids[i], dto.getList().get(i))));
-        }
-        else
-            rt.set(fillProductMemberByProductIdAndId(productId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
-    }
-
-    /**
-    * fill_product_member 工单
-    * 
-    *
-    * @param productId productId
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<TicketDTO>
-    */   
-    public TicketDTO fillProductMemberByProductIdAndId
-            (String productId, String id, TicketDTO dto) {
-        Ticket domain = ticketDtoMapping.toDomain(dto);
-        domain.setId(id);
-        Ticket rt = ticketService.fillProductMember(domain);
         return ticketDtoMapping.toDto(rt);
     }
 
@@ -1237,6 +1118,47 @@ public abstract class AbstractTicketResource {
         return ticketDtoMapping.toDto(rt);
     }
 
+    /**
+    * ticket_readonly_recognize 工单
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TicketDTO>
+    */
+    @ApiOperation(value = "ticket_readonly_recognize", tags = {"工单" },  notes = "Ticket-ticket_readonly_recognize ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-ticket_readonly_recognize-all') or hasPermission('product',#productId,this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-ticket_readonly_recognize')")
+    @PostMapping("products/{productId}/tickets/{id}/ticket_readonly_recognize")
+    public ResponseEntity<ResponseWrapper<TicketDTO>> ticketReadonlyRecognizeByProductIdAndId
+            (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
+        ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(ticketReadonlyRecognizeByProductIdAndId(productId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(ticketReadonlyRecognizeByProductIdAndId(productId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * ticket_readonly_recognize 工单
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TicketDTO>
+    */   
+    public TicketDTO ticketReadonlyRecognizeByProductIdAndId
+            (String productId, String id, TicketDTO dto) {
+        Ticket domain = ticketDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Ticket rt = ticketService.ticketReadonlyRecognize(domain);
+        return ticketDtoMapping.toDto(rt);
+    }
+
 
     /**
     * 获取Get 工单
@@ -1346,7 +1268,7 @@ public abstract class AbstractTicketResource {
     public ResponseEntity<List<TicketAdvancedSearchDTO>> fetchAdvancedSearch
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchAdvancedSearch(context) ;
+        Page<Ticket> domains = ticketService.fetchAdvancedSearch(context) ;
         List<TicketAdvancedSearchDTO> list = ticketAdvancedSearchDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1368,7 +1290,7 @@ public abstract class AbstractTicketResource {
     public ResponseEntity<List<TicketDTO>> fetchArchived
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchArchived(context) ;
+        Page<Ticket> domains = ticketService.fetchArchived(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1390,7 +1312,7 @@ public abstract class AbstractTicketResource {
     public ResponseEntity<List<TicketAssigneeDTO>> fetchCommentNotifyAssignee
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchCommentNotifyAssignee(context) ;
+        Page<Ticket> domains = ticketService.fetchCommentNotifyAssignee(context) ;
         List<TicketAssigneeDTO> list = ticketAssigneeDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1412,7 +1334,7 @@ public abstract class AbstractTicketResource {
     public ResponseEntity<List<TicketDTO>> fetchCommon
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchCommon(context) ;
+        Page<Ticket> domains = ticketService.fetchCommon(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1433,7 +1355,7 @@ public abstract class AbstractTicketResource {
     public ResponseEntity<List<TicketDTO>> fetchCustomerNotreTicket
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchCustomerNotreTicket(context) ;
+        Page<Ticket> domains = ticketService.fetchCustomerNotreTicket(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1455,7 +1377,7 @@ public abstract class AbstractTicketResource {
     public ResponseEntity<List<TicketDTO>> fetchCustomerRelationTicket
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchCustomerRelationTicket(context) ;
+        Page<Ticket> domains = ticketService.fetchCustomerRelationTicket(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1477,7 +1399,7 @@ public abstract class AbstractTicketResource {
     public ResponseEntity<List<TicketDTO>> fetchDefault
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchDefault(context) ;
+        Page<Ticket> domains = ticketService.fetchDefault(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1499,7 +1421,7 @@ public abstract class AbstractTicketResource {
     public ResponseEntity<List<TicketDTO>> fetchDeleted
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchDeleted(context) ;
+        Page<Ticket> domains = ticketService.fetchDeleted(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1520,7 +1442,7 @@ public abstract class AbstractTicketResource {
     public ResponseEntity<List<TicketDTO>> fetchIdeaRelationTicket
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchIdeaRelationTicket(context) ;
+        Page<Ticket> domains = ticketService.fetchIdeaRelationTicket(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1541,7 +1463,7 @@ public abstract class AbstractTicketResource {
     public ResponseEntity<List<TicketDTO>> fetchMyAssign
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchMyAssign(context) ;
+        Page<Ticket> domains = ticketService.fetchMyAssign(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1563,7 +1485,7 @@ public abstract class AbstractTicketResource {
     public ResponseEntity<List<TicketDTO>> fetchMyAssigneeCount
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchMyAssigneeCount(context) ;
+        Page<Ticket> domains = ticketService.fetchMyAssigneeCount(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1584,7 +1506,7 @@ public abstract class AbstractTicketResource {
     public ResponseEntity<List<TicketDTO>> fetchMyAttention
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchMyAttention(context) ;
+        Page<Ticket> domains = ticketService.fetchMyAttention(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1605,7 +1527,7 @@ public abstract class AbstractTicketResource {
     public ResponseEntity<List<TicketDTO>> fetchMyCreated
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchMyCreated(context) ;
+        Page<Ticket> domains = ticketService.fetchMyCreated(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1627,7 +1549,7 @@ public abstract class AbstractTicketResource {
     public ResponseEntity<List<TicketDTO>> fetchNormal
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchNormal(context) ;
+        Page<Ticket> domains = ticketService.fetchNormal(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1649,7 +1571,7 @@ public abstract class AbstractTicketResource {
     public ResponseEntity<List<TicketDTO>> fetchNotExsistsRelation
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchNotExsistsRelation(context) ;
+        Page<Ticket> domains = ticketService.fetchNotExsistsRelation(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1671,7 +1593,7 @@ public abstract class AbstractTicketResource {
     public ResponseEntity<List<TicketAssigneeDTO>> fetchNotifyAssignee
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchNotifyAssignee(context) ;
+        Page<Ticket> domains = ticketService.fetchNotifyAssignee(context) ;
         List<TicketAssigneeDTO> list = ticketAssigneeDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1692,7 +1614,7 @@ public abstract class AbstractTicketResource {
     public ResponseEntity<List<TicketDTO>> fetchRecentTicket
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchRecentTicket(context) ;
+        Page<Ticket> domains = ticketService.fetchRecentTicket(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1714,7 +1636,7 @@ public abstract class AbstractTicketResource {
     public ResponseEntity<List<TicketDTO>> fetchTicketReProductTag
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchTicketReProductTag(context) ;
+        Page<Ticket> domains = ticketService.fetchTicketReProductTag(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1735,7 +1657,7 @@ public abstract class AbstractTicketResource {
     public ResponseEntity<List<TicketDTO>> fetchTicketRelationTicket
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchTicketRelationTicket(context) ;
+        Page<Ticket> domains = ticketService.fetchTicketRelationTicket(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1756,7 +1678,7 @@ public abstract class AbstractTicketResource {
     public ResponseEntity<List<TicketDTO>> fetchWorkItemRelationTicket
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchWorkItemRelationTicket(context) ;
+        Page<Ticket> domains = ticketService.fetchWorkItemRelationTicket(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1883,7 +1805,7 @@ public abstract class AbstractTicketResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchAdvancedSearch(context) ;
+        Page<Ticket> domains = ticketService.fetchAdvancedSearch(context) ;
         List<TicketAdvancedSearchDTO> list = ticketAdvancedSearchDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1907,7 +1829,7 @@ public abstract class AbstractTicketResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchArchived(context) ;
+        Page<Ticket> domains = ticketService.fetchArchived(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1931,7 +1853,7 @@ public abstract class AbstractTicketResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchCommentNotifyAssignee(context) ;
+        Page<Ticket> domains = ticketService.fetchCommentNotifyAssignee(context) ;
         List<TicketAssigneeDTO> list = ticketAssigneeDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1955,7 +1877,7 @@ public abstract class AbstractTicketResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchCommon(context) ;
+        Page<Ticket> domains = ticketService.fetchCommon(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1978,7 +1900,7 @@ public abstract class AbstractTicketResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchCustomerNotreTicket(context) ;
+        Page<Ticket> domains = ticketService.fetchCustomerNotreTicket(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2002,7 +1924,7 @@ public abstract class AbstractTicketResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchCustomerRelationTicket(context) ;
+        Page<Ticket> domains = ticketService.fetchCustomerRelationTicket(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2026,7 +1948,7 @@ public abstract class AbstractTicketResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchDefault(context) ;
+        Page<Ticket> domains = ticketService.fetchDefault(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2050,7 +1972,7 @@ public abstract class AbstractTicketResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchDeleted(context) ;
+        Page<Ticket> domains = ticketService.fetchDeleted(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2073,7 +1995,7 @@ public abstract class AbstractTicketResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchIdeaRelationTicket(context) ;
+        Page<Ticket> domains = ticketService.fetchIdeaRelationTicket(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2096,7 +2018,7 @@ public abstract class AbstractTicketResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchMyAssign(context) ;
+        Page<Ticket> domains = ticketService.fetchMyAssign(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2120,7 +2042,7 @@ public abstract class AbstractTicketResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchMyAssigneeCount(context) ;
+        Page<Ticket> domains = ticketService.fetchMyAssigneeCount(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2143,7 +2065,7 @@ public abstract class AbstractTicketResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchMyAttention(context) ;
+        Page<Ticket> domains = ticketService.fetchMyAttention(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2166,7 +2088,7 @@ public abstract class AbstractTicketResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchMyCreated(context) ;
+        Page<Ticket> domains = ticketService.fetchMyCreated(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2190,7 +2112,7 @@ public abstract class AbstractTicketResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchNormal(context) ;
+        Page<Ticket> domains = ticketService.fetchNormal(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2214,7 +2136,7 @@ public abstract class AbstractTicketResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchNotExsistsRelation(context) ;
+        Page<Ticket> domains = ticketService.fetchNotExsistsRelation(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2238,7 +2160,7 @@ public abstract class AbstractTicketResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchNotifyAssignee(context) ;
+        Page<Ticket> domains = ticketService.fetchNotifyAssignee(context) ;
         List<TicketAssigneeDTO> list = ticketAssigneeDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2261,7 +2183,7 @@ public abstract class AbstractTicketResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchRecentTicket(context) ;
+        Page<Ticket> domains = ticketService.fetchRecentTicket(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2285,7 +2207,7 @@ public abstract class AbstractTicketResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchTicketReProductTag(context) ;
+        Page<Ticket> domains = ticketService.fetchTicketReProductTag(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2308,7 +2230,7 @@ public abstract class AbstractTicketResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchTicketRelationTicket(context) ;
+        Page<Ticket> domains = ticketService.fetchTicketRelationTicket(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2331,7 +2253,7 @@ public abstract class AbstractTicketResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.searchWorkItemRelationTicket(context) ;
+        Page<Ticket> domains = ticketService.fetchWorkItemRelationTicket(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2350,7 +2272,7 @@ public abstract class AbstractTicketResource {
     @ApiOperation(value = "批量新建工单", tags = {"工单" },  notes = "批量新建工单")
 	@PostMapping("tickets/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<TicketDTO> dtos) {
-        ticketService.createBatch(ticketDtoMapping.toDomain(dtos));
+        ticketService.create(ticketDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -2363,7 +2285,7 @@ public abstract class AbstractTicketResource {
     @ApiOperation(value = "批量删除工单", tags = {"工单" },  notes = "批量删除工单")
 	@DeleteMapping("tickets/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        ticketService.removeBatch(ids);
+        ticketService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -2376,7 +2298,7 @@ public abstract class AbstractTicketResource {
     @ApiOperation(value = "批量更新工单", tags = {"工单" },  notes = "批量更新工单")
 	@PutMapping("tickets/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<TicketDTO> dtos) {
-        ticketService.updateBatch(ticketDtoMapping.toDomain(dtos));
+        ticketService.update(ticketDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -2389,7 +2311,7 @@ public abstract class AbstractTicketResource {
     @ApiOperation(value = "批量保存工单", tags = {"工单" },  notes = "批量保存工单")
 	@PostMapping("tickets/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<TicketDTO> dtos) {
-        ticketService.saveBatch(ticketDtoMapping.toDomain(dtos));
+        ticketService.save(ticketDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

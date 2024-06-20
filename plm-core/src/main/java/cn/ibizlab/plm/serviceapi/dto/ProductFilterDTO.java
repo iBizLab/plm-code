@@ -71,19 +71,11 @@ public class ProductFilterDTO extends FilterBase implements Serializable {
 	private String scopeTypeEQ;
 
     /**
-     * 产品名称LIKE
-     */
-    @JsonProperty("n_name_like")
-    @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "产品名称LIKE", position = 110)
-	private String nameLIKE;
-
-    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 140)
+    @ApiModelProperty(value = "标识EQ", position = 100)
 	private String idEQ;
 
     /**
@@ -91,8 +83,16 @@ public class ProductFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_noteq")
     @JSONField(name = "n_id_noteq")
-    @ApiModelProperty(value = "标识NOTEQ", position = 141)
+    @ApiModelProperty(value = "标识NOTEQ", position = 101)
 	private String idNOTEQ;
+
+    /**
+     * 产品名称LIKE
+     */
+    @JsonProperty("n_name_like")
+    @JSONField(name = "n_name_like")
+    @ApiModelProperty(value = "产品名称LIKE", position = 110)
+	private String nameLIKE;
 
 
 }

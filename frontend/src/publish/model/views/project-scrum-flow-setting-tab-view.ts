@@ -52,6 +52,31 @@ export default {
           ],
           id: 'field',
         },
+        {
+          caption: '组件设置',
+          appViewId: 'plmweb.addon_setting_grid_view',
+          navigateParams: [
+            {
+              key: 'n_owner_subtype_eq',
+              value: 'scrum',
+              rawValue: true,
+              id: 'n_owner_subtype_eq',
+            },
+            {
+              key: 'n_owner_type_eq',
+              value: 'project',
+              rawValue: true,
+              id: 'n_owner_type_eq',
+            },
+            {
+              key: 'n_owner_id_isnull',
+              value: '1',
+              rawValue: true,
+              id: 'n_owner_id_isnull',
+            },
+          ],
+          id: 'addon_setting',
+        },
       ],
       editItemCaption: '项目',
       uniqueTag: 'project_scrum_flow_setting_tab_view__tabexppanel',

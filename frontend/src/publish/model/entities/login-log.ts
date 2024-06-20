@@ -172,15 +172,15 @@ export default {
       id: 'create_man',
     },
     {
-      codeName: 'update_time',
+      codeName: 'create_time',
       lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.UPDATE_TIME',
+        lanResTag: 'DEF.LNAME.CREATE_TIME',
       },
-      logicName: '更新时间',
+      logicName: '建立时间',
       stdDataType: 5,
       valueFormat: 'YYYY-MM-DD HH:mm:ss',
-      name: 'UPDATE_TIME',
-      id: 'update_time',
+      name: 'CREATE_TIME',
+      id: 'create_time',
     },
     {
       codeName: 'update_man',
@@ -194,15 +194,15 @@ export default {
       id: 'update_man',
     },
     {
-      codeName: 'create_time',
+      codeName: 'update_time',
       lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.CREATE_TIME',
+        lanResTag: 'DEF.LNAME.UPDATE_TIME',
       },
-      logicName: '建立时间',
+      logicName: '更新时间',
       stdDataType: 5,
       valueFormat: 'YYYY-MM-DD HH:mm:ss',
-      name: 'CREATE_TIME',
-      id: 'create_time',
+      name: 'UPDATE_TIME',
+      id: 'update_time',
     },
   ],
   appDEMethodDTOs: [
@@ -666,6 +666,28 @@ export default {
       id: 'update',
     },
     {
+      codeName: 'fetch_calc_chart_datas',
+      methodType: 'FETCH',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'login_log_filter_dto',
+        type: 'DTO',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'login_log_dto',
+        type: 'PAGE',
+        id: '返回对象',
+      },
+      requestMethod: 'POST',
+      requestParamType: 'ENTITY',
+      requestPath: '/fetch_calc_chart_datas',
+      actionType: 'REMOTE',
+      dataSetName: 'CALC_CHART_DATAS',
+      dataSetTag: 'calc_chart_datas',
+      dataSetType: 'REMOTE',
+      id: 'fetch_calc_chart_datas',
+    },
+    {
       codeName: 'fetch_cur_user',
       methodType: 'FETCH',
       appDEMethodInput: {
@@ -708,6 +730,28 @@ export default {
       dataSetTag: 'Default',
       dataSetType: 'REMOTE',
       id: 'fetch_default',
+    },
+    {
+      codeName: 'fetch_distinct_userid',
+      methodType: 'FETCH',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'login_log_filter_dto',
+        type: 'DTO',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'login_log_dto',
+        type: 'PAGE',
+        id: '返回对象',
+      },
+      requestMethod: 'POST',
+      requestParamType: 'ENTITY',
+      requestPath: '/fetch_distinct_userid',
+      actionType: 'REMOTE',
+      dataSetName: 'DISTINCT_USERID',
+      dataSetTag: 'distinct_userid',
+      dataSetType: 'REMOTE',
+      id: 'fetch_distinct_userid',
     },
     {
       codeName: 'fetch_echarts_datas',
@@ -818,30 +862,6 @@ export default {
           id: 'begin',
         },
         {
-          codeName: 'END1',
-          leftPos: 320,
-          logicNodeType: 'END',
-          topPos: 673,
-          name: '结束',
-          id: 'end1',
-        },
-        {
-          code: 'let nums = uiLogic.view.layoutPanel.panelItems;\r\nif (uiLogic && uiLogic.datas.lastday_active_count) {\r\n    //昨日活跃人数\r\n    nums.lastday_active_count.data.lastday_active_count = uiLogic.datas.lastday_active_count;\r\n}\r\nif (uiLogic && uiLogic.datas.active_count) {\r\n    //活跃总人数\r\n    nums.active_count.data.active_count = uiLogic.datas.active_count;\r\n}\r\nif (uiLogic && uiLogic.datas.active_rate) {\r\n    //昨日活跃率\r\n    nums.active_rate.data.active_rate = uiLogic.datas.active_rate;\r\n}\r\n\r\n      \r\n    \r\n',
-          codeName: 'RAWJSCODE1',
-          leftPos: 280,
-          logicNodeType: 'RAWJSCODE',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'end1',
-              srcDEUILogicNodeId: 'rawjscode1',
-              id: '连接名称',
-            },
-          ],
-          topPos: 528,
-          name: '注入脚本代码',
-          id: 'rawjscode1',
-        },
-        {
           dstAppDEActionId: 'active_member',
           dstAppDataEntityId: 'plmweb.login_log',
           retDEUILogicParamId: 'datas',
@@ -859,19 +879,43 @@ export default {
           name: '实体行为',
           id: 'deaction1',
         },
+        {
+          codeName: 'END1',
+          leftPos: 320,
+          logicNodeType: 'END',
+          topPos: 673,
+          name: '结束',
+          id: 'end1',
+        },
+        {
+          code: 'let nums = uiLogic.view.layoutPanel.panelItems;\r\nif (uiLogic && uiLogic.datas.lastday_active_count) {\r\n    //昨日活跃人数\r\n    nums.lastday_active_count.data.lastday_active_count = uiLogic.datas.lastday_active_count;\r\n}\r\nif (uiLogic && uiLogic.datas.lastday_active_rate) {\r\n    //昨日活跃率\r\n    nums.lastday_active_rate.data.lastday_active_rate = uiLogic.datas.lastday_active_rate;\r\n}\r\nif (uiLogic && uiLogic.datas.sevenday_active_count) {\r\n    //近七日活跃人数\r\n    nums.sevenday_active_count.data.sevenday_active_count = Math.floor(uiLogic.datas.sevenday_active_count);\r\n}\r\nif (uiLogic && uiLogic.datas.sevenday_active_rate) {\r\n    //近七日活跃率\r\n    nums.sevenday_active_rate.data.sevenday_active_rate = uiLogic.datas.sevenday_active_rate;\r\n}\r\n\r\n\r\n      \r\n    \r\n',
+          codeName: 'RAWJSCODE1',
+          leftPos: 280,
+          logicNodeType: 'RAWJSCODE',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'end1',
+              srcDEUILogicNodeId: 'rawjscode1',
+              id: '连接名称',
+            },
+          ],
+          topPos: 538,
+          name: '注入脚本代码',
+          id: 'rawjscode1',
+        },
       ],
       deuilogicParams: [
-        {
-          codeName: 'view',
-          activeViewParam: true,
-          id: 'view',
-        },
         {
           codeName: 'Default',
           default: true,
           entityParam: true,
           name: '传入变量',
           id: 'default',
+        },
+        {
+          codeName: 'view',
+          activeViewParam: true,
+          id: 'view',
         },
         {
           codeName: 'datas',
@@ -883,6 +927,14 @@ export default {
       startDEUILogicNodeId: 'begin',
       name: '计算活跃成员数据信息',
       id: 'calc_active_member_info',
+    },
+  ],
+  appPortletCats: [
+    {
+      codeName: 'Ungroup',
+      ungroup: true,
+      name: '（未分类）',
+      id: 'ungroup',
     },
   ],
   deopprivs: [

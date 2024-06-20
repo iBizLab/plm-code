@@ -12,14 +12,17 @@
 		<result property="pcreateMan" column="pcreate_man" />
 		<result property="createMan" column="create_man" />
 		<result property="createTime" column="create_time" />
-		<result property="updateTime" column="update_time" />
 		<result property="updateMan" column="update_man" />
+		<result property="updateTime" column="update_time" />
 		<result property="pid" column="pid" />
         <association property="comment" javaType="cn.ibizlab.plm.core.base.domain.Comment" column="pid" select="cn.ibizlab.plm.core.base.mapper.CommentMapper.selectById" fetchType="lazy"></association>
         <association property="page" javaType="cn.ibizlab.plm.core.wiki.domain.ArticlePage" column="principal_id" select="cn.ibizlab.plm.core.wiki.mapper.ArticlePageMapper.selectById" fetchType="lazy"></association>
         <association property="run" javaType="cn.ibizlab.plm.core.testmgmt.domain.Run" column="principal_id" select="cn.ibizlab.plm.core.testmgmt.mapper.RunMapper.selectById" fetchType="lazy"></association>
         <association property="customer" javaType="cn.ibizlab.plm.core.prodmgmt.domain.Customer" column="principal_id" select="cn.ibizlab.plm.core.prodmgmt.mapper.CustomerMapper.selectById" fetchType="lazy"></association>
+        <association property="discussPost" javaType="cn.ibizlab.plm.core.team.domain.DiscussPost" column="principal_id" select="cn.ibizlab.plm.core.team.mapper.DiscussPostMapper.selectById" fetchType="lazy"></association>
+        <association property="discussReply" javaType="cn.ibizlab.plm.core.team.domain.DiscussReply" column="principal_id" select="cn.ibizlab.plm.core.team.mapper.DiscussReplyMapper.selectById" fetchType="lazy"></association>
         <association property="idea" javaType="cn.ibizlab.plm.core.prodmgmt.domain.Idea" column="principal_id" select="cn.ibizlab.plm.core.prodmgmt.mapper.IdeaMapper.selectById" fetchType="lazy"></association>
+        <association property="review" javaType="cn.ibizlab.plm.core.testmgmt.domain.Review" column="principal_id" select="cn.ibizlab.plm.core.testmgmt.mapper.ReviewMapper.selectById" fetchType="lazy"></association>
         <association property="testCase" javaType="cn.ibizlab.plm.core.testmgmt.domain.TestCase" column="principal_id" select="cn.ibizlab.plm.core.testmgmt.mapper.TestCaseMapper.selectById" fetchType="lazy"></association>
         <association property="ticket" javaType="cn.ibizlab.plm.core.prodmgmt.domain.Ticket" column="principal_id" select="cn.ibizlab.plm.core.prodmgmt.mapper.TicketMapper.selectById" fetchType="lazy"></association>
         <association property="workItem" javaType="cn.ibizlab.plm.core.projmgmt.domain.WorkItem" column="principal_id" select="cn.ibizlab.plm.core.projmgmt.mapper.WorkItemMapper.selectById" fetchType="lazy"></association>
@@ -83,56 +86,77 @@
         select t1.* from (
             <include refid="default"/>
         ) t1
-        where pid in <foreach item="id" index="index" collection="pids" open="(" separator="," close=")">#{id}</foreach> 
+        where pid in <foreach item="id" index="index" collection="pids" open="(" separator="," close=")">#{id}</foreach>  order by CREATE_TIME ASC
     </select>
 
     <select id="findByPrincipalId" resultMap="CommentResultMap">
         select t1.* from (
             <include refid="default"/>
         ) t1
-        where principal_id in <foreach item="id" index="index" collection="principalIds" open="(" separator="," close=")">#{id}</foreach> 
+        where principal_id in <foreach item="id" index="index" collection="principalIds" open="(" separator="," close=")">#{id}</foreach>  order by CREATE_TIME ASC
     </select>
 
     <select id="findByPrincipalId" resultMap="CommentResultMap">
         select t1.* from (
             <include refid="default"/>
         ) t1
-        where principal_id in <foreach item="id" index="index" collection="principalIds" open="(" separator="," close=")">#{id}</foreach> 
+        where principal_id in <foreach item="id" index="index" collection="principalIds" open="(" separator="," close=")">#{id}</foreach>  order by CREATE_TIME ASC
     </select>
 
     <select id="findByPrincipalId" resultMap="CommentResultMap">
         select t1.* from (
             <include refid="default"/>
         ) t1
-        where principal_id in <foreach item="id" index="index" collection="principalIds" open="(" separator="," close=")">#{id}</foreach> 
+        where principal_id in <foreach item="id" index="index" collection="principalIds" open="(" separator="," close=")">#{id}</foreach>  order by CREATE_TIME ASC
     </select>
 
     <select id="findByPrincipalId" resultMap="CommentResultMap">
         select t1.* from (
             <include refid="default"/>
         ) t1
-        where principal_id in <foreach item="id" index="index" collection="principalIds" open="(" separator="," close=")">#{id}</foreach> 
+        where principal_id in <foreach item="id" index="index" collection="principalIds" open="(" separator="," close=")">#{id}</foreach>  order by CREATE_TIME ASC
     </select>
 
     <select id="findByPrincipalId" resultMap="CommentResultMap">
         select t1.* from (
             <include refid="default"/>
         ) t1
-        where principal_id in <foreach item="id" index="index" collection="principalIds" open="(" separator="," close=")">#{id}</foreach> 
+        where principal_id in <foreach item="id" index="index" collection="principalIds" open="(" separator="," close=")">#{id}</foreach>  order by CREATE_TIME ASC
     </select>
 
     <select id="findByPrincipalId" resultMap="CommentResultMap">
         select t1.* from (
             <include refid="default"/>
         ) t1
-        where principal_id in <foreach item="id" index="index" collection="principalIds" open="(" separator="," close=")">#{id}</foreach> 
+        where principal_id in <foreach item="id" index="index" collection="principalIds" open="(" separator="," close=")">#{id}</foreach>  order by CREATE_TIME ASC
     </select>
 
     <select id="findByPrincipalId" resultMap="CommentResultMap">
         select t1.* from (
             <include refid="default"/>
         ) t1
-        where principal_id in <foreach item="id" index="index" collection="principalIds" open="(" separator="," close=")">#{id}</foreach> 
+        where principal_id in <foreach item="id" index="index" collection="principalIds" open="(" separator="," close=")">#{id}</foreach>  order by CREATE_TIME ASC
+    </select>
+
+    <select id="findByPrincipalId" resultMap="CommentResultMap">
+        select t1.* from (
+            <include refid="default"/>
+        ) t1
+        where principal_id in <foreach item="id" index="index" collection="principalIds" open="(" separator="," close=")">#{id}</foreach>  order by CREATE_TIME ASC
+    </select>
+
+    <select id="findByPrincipalId" resultMap="CommentResultMap">
+        select t1.* from (
+            <include refid="default"/>
+        ) t1
+        where principal_id in <foreach item="id" index="index" collection="principalIds" open="(" separator="," close=")">#{id}</foreach>  order by CREATE_TIME ASC
+    </select>
+
+    <select id="findByPrincipalId" resultMap="CommentResultMap">
+        select t1.* from (
+            <include refid="default"/>
+        ) t1
+        where principal_id in <foreach item="id" index="index" collection="principalIds" open="(" separator="," close=")">#{id}</foreach>  order by CREATE_TIME ASC
     </select>
 
 

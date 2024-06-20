@@ -49,6 +49,134 @@ export default {
         appDataEntityId: 'plmweb.product_plan',
         id: 'update',
       },
+      deformItemVRs: [
+        {
+          checkMode: 1,
+          defvalueRule: {
+            codeName: 'START_AT',
+            groupCond: {
+              condOp: 'AND',
+              conds: [
+                {
+                  condOp: 'OR',
+                  conds: [
+                    {
+                      condOp: 'ISNULL',
+                      defname: 'START_AT',
+                      condType: 'SIMPLE',
+                      name: '[常规条件] 值为空(Nil)',
+                      id: '[常规条件] 值为空(nil)',
+                    },
+                    {
+                      condOp: 'OR',
+                      conds: [
+                        {
+                          condOp: 'ISNULL',
+                          defname: 'END_AT',
+                          condType: 'SIMPLE',
+                          name: '[常规条件] 值为空(Nil)',
+                          id: '[常规条件] 值为空(nil)',
+                        },
+                        {
+                          condOp: 'LTANDEQ',
+                          paramType: 'ENTITYFIELD',
+                          paramValue: 'END_AT',
+                          defname: 'START_AT',
+                          condType: 'SIMPLE',
+                          ruleInfo: '开始时间必须小于等于发布时间',
+                          name: '[常规条件] 小于等于(<=) 数据对象属性 (END_AT)',
+                          id: '[常规条件] 小于等于(<=) 数据对象属性 (end_at)',
+                        },
+                      ],
+                      condType: 'GROUP',
+                      ruleInfo: '开始时间必须小于等于发布时间',
+                      name: '[条件组]OR',
+                      id: '[条件组]or',
+                    },
+                  ],
+                  condType: 'GROUP',
+                  ruleInfo: '开始时间必须小于等于发布时间',
+                  name: '[条件组]OR',
+                  id: '[条件组]or',
+                },
+              ],
+              condType: 'GROUP',
+              ruleInfo: '开始时间必须小于等于发布时间',
+              id: '默认组',
+            },
+            ruleInfo: '开始时间必须小于等于发布时间',
+            checkDefault: true,
+            name: '开始时间',
+            id: 'start_at',
+          },
+          deformItemName: 'start_at',
+          valueRuleType: 'DEFVALUERULE',
+          id: '表单项值规则',
+        },
+        {
+          checkMode: 1,
+          defvalueRule: {
+            codeName: 'END_AT',
+            groupCond: {
+              condOp: 'AND',
+              conds: [
+                {
+                  condOp: 'OR',
+                  conds: [
+                    {
+                      condOp: 'ISNULL',
+                      defname: 'END_AT',
+                      condType: 'SIMPLE',
+                      name: '[常规条件] 值为空(Nil)',
+                      id: '[常规条件] 值为空(nil)',
+                    },
+                    {
+                      condOp: 'OR',
+                      conds: [
+                        {
+                          condOp: 'GTANDEQ',
+                          paramType: 'ENTITYFIELD',
+                          paramValue: 'START_AT',
+                          defname: 'END_AT',
+                          condType: 'SIMPLE',
+                          ruleInfo: '发布时间必须大于等于开始时间',
+                          name: '[常规条件] 大于等于(>=) 数据对象属性 (START_AT)',
+                          id: '[常规条件] 大于等于(>=) 数据对象属性 (start_at)',
+                        },
+                        {
+                          condOp: 'ISNULL',
+                          defname: 'START_AT',
+                          condType: 'SIMPLE',
+                          name: '[常规条件] 值为空(Nil)',
+                          id: '[常规条件] 值为空(nil)',
+                        },
+                      ],
+                      condType: 'GROUP',
+                      ruleInfo: '发布时间必须大于等于开始时间',
+                      name: '[条件组]OR',
+                      id: '[条件组]or',
+                    },
+                  ],
+                  condType: 'GROUP',
+                  ruleInfo: '发布时间必须大于等于开始时间',
+                  name: '[条件组]OR',
+                  id: '[条件组]or',
+                },
+              ],
+              condType: 'GROUP',
+              ruleInfo: '发布时间必须大于等于开始时间',
+              id: '默认组',
+            },
+            ruleInfo: '发布时间必须大于等于开始时间',
+            checkDefault: true,
+            name: '结束时间',
+            id: 'end_at',
+          },
+          deformItemName: 'end_at',
+          valueRuleType: 'DEFVALUERULE',
+          id: '表单项值规则',
+        },
+      ],
       deformPages: [
         {
           layout: {
@@ -102,7 +230,8 @@ export default {
                     dropDownView: true,
                     enablePickupView: true,
                     singleSelect: true,
-                    pickupAppViewId: 'plmweb.product_plan_pick_up_tree_view',
+                    pickupAppViewId:
+                      'plmweb.product_plan_categories_pick_up_tree_view',
                     handlerType: 'PickupText',
                     forceSelection: true,
                     showTrigger: true,
@@ -139,6 +268,7 @@ export default {
                         id: 'categories',
                       },
                     ],
+                    placeHolder: '请选择类别',
                     valueType: 'SIMPLE',
                     editable: true,
                     id: 'categories_name',
@@ -165,11 +295,12 @@ export default {
                   appDEFieldId: 'categories',
                   editor: {
                     editorParams: {
-                      'srfnavparam.n_owner_subtype_eq': 'product_plan',
-                      'srfnavparam.n_owner_id_eq': '%product%',
-                      'srfnavparam.n_owner_type_eq': 'product',
+                      'SRFNAVPARAM.n_owner_subtype_eq': 'product_plan',
+                      'SRFNAVPARAM.n_owner_id_eq': '%product%',
+                      'SRFNAVPARAM.n_owner_type_eq': 'product',
                     },
                     editorType: 'HIDDEN',
+                    placeHolder: '选择类别',
                     valueType: 'SIMPLE',
                     editable: true,
                     navigateParams: [
@@ -232,6 +363,15 @@ export default {
                   codeName: 'start_at',
                   detailStyle: 'DEFAULT',
                   detailType: 'FORMITEM',
+                  controlAttributes: [
+                    {
+                      attrName: 'disabledDate',
+                      attrValue:
+                        '(time) => {\r\n    if (!data.end_at) {\r\n        return false;\r\n    }\r\n    const end_at = new Date(data.end_at);\r\n    // 比对天\r\n    time.setHours(0, 0, 0, 0);\r\n    end_at.setHours(0, 0, 0, 0);\r\n    return time.getTime() > end_at.getTime();\r\n}',
+                      name: 'start_at_disabledDate',
+                      id: 'start_at_disableddate',
+                    },
+                  ],
                   layoutPos: {
                     colLG: 12,
                     colMD: 12,
@@ -265,6 +405,15 @@ export default {
                   codeName: 'end_at',
                   detailStyle: 'DEFAULT',
                   detailType: 'FORMITEM',
+                  controlAttributes: [
+                    {
+                      attrName: 'disabledDate',
+                      attrValue:
+                        '(time) => {\r\n    if (!data.start_at) {\r\n        return false;\r\n    }\r\n    const start_at = new Date(data.start_at);\r\n    // 比对天\r\n    start_at.setHours(0, 0, 0, 0);\r\n    time.setHours(0, 0, 0, 0);\r\n    return time.getTime() < start_at.getTime();\r\n}',
+                      name: 'end_at_disabledDate',
+                      id: 'end_at_disableddate',
+                    },
+                  ],
                   layoutPos: {
                     colLG: 12,
                     colMD: 12,

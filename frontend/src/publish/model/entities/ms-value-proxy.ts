@@ -50,17 +50,6 @@ export default {
       id: 'msvalueproxyid',
     },
     {
-      codeName: 'UpdateMan',
-      lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.UPDATEMAN',
-      },
-      logicName: '更新人',
-      stdDataType: 25,
-      stringLength: 60,
-      name: 'UPDATEMAN',
-      id: 'updateman',
-    },
-    {
       codeName: 'MSValueProxyName',
       logicName: '主状态值代理名称',
       stdDataType: 25,
@@ -68,17 +57,6 @@ export default {
       enableQuickSearch: true,
       name: 'MSVALUEPROXYNAME',
       id: 'msvalueproxyname',
-    },
-    {
-      codeName: 'UpdateDate',
-      lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.UPDATEDATE',
-      },
-      logicName: '更新时间',
-      stdDataType: 5,
-      valueFormat: 'YYYY-MM-DD HH:mm:ss',
-      name: 'UPDATEDATE',
-      id: 'updatedate',
     },
     {
       codeName: 'CreateMan',
@@ -101,6 +79,28 @@ export default {
       valueFormat: 'YYYY-MM-DD HH:mm:ss',
       name: 'CREATEDATE',
       id: 'createdate',
+    },
+    {
+      codeName: 'UpdateMan',
+      lnlanguageRes: {
+        lanResTag: 'DEF.LNAME.UPDATEMAN',
+      },
+      logicName: '更新人',
+      stdDataType: 25,
+      stringLength: 60,
+      name: 'UPDATEMAN',
+      id: 'updateman',
+    },
+    {
+      codeName: 'UpdateDate',
+      lnlanguageRes: {
+        lanResTag: 'DEF.LNAME.UPDATEDATE',
+      },
+      logicName: '更新时间',
+      stdDataType: 5,
+      valueFormat: 'YYYY-MM-DD HH:mm:ss',
+      name: 'UPDATEDATE',
+      id: 'updatedate',
     },
   ],
   appDEMethodDTOs: [

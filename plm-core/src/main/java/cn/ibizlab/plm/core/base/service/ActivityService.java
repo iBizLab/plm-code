@@ -30,89 +30,32 @@ public interface ActivityService extends IService<Activity> {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    Activity get(Activity et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default Activity get(String key) {
-        return getSelf().get(new Activity().setId(key));
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<Activity> getByIds(Collection<String> ids) {
-        List<Activity> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Activity().setId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<Activity> getByEntities(List<Activity> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    Activity getDraft(Activity et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(Activity et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(Activity et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<Activity> list);
+    boolean create(List<Activity> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(Activity et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<Activity> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    @Override
-    boolean save(Activity et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<Activity> list);
+    boolean update(List<Activity> list);
 
     /**
      * 主键删除
@@ -122,14 +65,7 @@ public interface ActivityService extends IService<Activity> {
     default boolean remove(String key) {
         return getSelf().remove(new Activity().setId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -139,13 +75,13 @@ public interface ActivityService extends IService<Activity> {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<Activity> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Activity().setId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new Activity().setId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -153,7 +89,112 @@ public interface ActivityService extends IService<Activity> {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<Activity> entities);
+    boolean remove(List<Activity> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default Activity get(String key) {
+        return getSelf().get(new Activity().setId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    Activity get(Activity et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<Activity> get(Collection<String> keys) {
+        List<Activity> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new Activity().setId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<Activity> get(List<Activity> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    Activity getDraft(Activity et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(Activity et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(Activity et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<Activity> list);
+
+    /**
+    * getActivityObjDetail
+    * 
+    * @param et
+    * @return
+    */
+    default Activity getActivityObjDetail(Activity et) {
+        return et;
+    }
+
+    /**
+    * fetchAll
+    * 
+    * @param context
+    * @return
+    */
+    Page<Activity> fetchAll(ActivitySearchContext context);
+
+    /**
+    * listAll
+    * 
+    * @param context
+    * @return
+    */
+    List<Activity> listAll(ActivitySearchContext context);
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<Activity> fetchDefault(ActivitySearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<Activity> listDefault(ActivitySearchContext context);
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<Activity> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -170,47 +211,7 @@ public interface ActivityService extends IService<Activity> {
         }
         return rt;
     }
-
-    /**
-     * get_activity_obj_detail
-     * 
-     * @param dto
-     * @return
-     */
-    default Activity getActivityObjDetail(Activity dto) {
-        return dto;
-    }
-
-    /**
-     * searchALL
-     * 
-     * @param context
-     * @return
-     */
-    Page<Activity> searchAll(ActivitySearchContext context);
-    /**
-     * listALL
-     * 
-     * @param context
-     * @return
-     */
-    List<Activity> listAll(ActivitySearchContext context);
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<Activity> searchDefault(ActivitySearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<Activity> listDefault(ActivitySearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -218,6 +219,7 @@ public interface ActivityService extends IService<Activity> {
     default Activity getEntity() {
         return new Activity();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -226,20 +228,12 @@ public interface ActivityService extends IService<Activity> {
         return new ActivitySearchContext();
     }
 
-    /**
-     * 自定义查询SQL
-     * @param sql  select * from table where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
-    List<JSONObject> select(String sql, Map<String,Object> param);
 
     /**
-     * 自定义SQL
-     * @param sql  update table  set name ='test' where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
+    * 自定义SQL
+    * @param sql  update table  set name ='test' where id =#{et.param}
+    * @param param 参数列表  param.put("param","1");
+    * @return
+    */
     boolean execute(String sql, Map<String,Object> param);
-
 }

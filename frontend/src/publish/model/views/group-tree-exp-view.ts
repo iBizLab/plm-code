@@ -108,6 +108,7 @@ export default {
               parentAppDEFieldId: 'section_id',
               parentDER1N: {
                 pickupDEFName: 'SECTION_ID',
+                removeActionType: 2,
                 codeName: 'section',
                 dertype: 'DER1N',
                 logicName: '分组',

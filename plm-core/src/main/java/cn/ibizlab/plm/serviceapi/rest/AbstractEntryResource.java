@@ -601,7 +601,7 @@ public abstract class AbstractEntryResource {
     public ResponseEntity<List<EntryDTO>> fetchDefault
             (@Validated @RequestBody EntryFilterDTO dto) {
         EntrySearchContext context = entryFilterDtoMapping.toDomain(dto);
-        Page<Entry> domains = entryService.searchDefault(context) ;
+        Page<Entry> domains = entryService.fetchDefault(context) ;
         List<EntryDTO> list = entryDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -695,7 +695,7 @@ public abstract class AbstractEntryResource {
             (@PathVariable("boardId") String boardId, @Validated @RequestBody EntryFilterDTO dto) {
         dto.setBoardIdEQ(boardId);
         EntrySearchContext context = entryFilterDtoMapping.toDomain(dto);
-        Page<Entry> domains = entryService.searchDefault(context) ;
+        Page<Entry> domains = entryService.fetchDefault(context) ;
         List<EntryDTO> list = entryDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -794,7 +794,7 @@ public abstract class AbstractEntryResource {
             (@PathVariable("projectId") String projectId, @PathVariable("boardId") String boardId, @Validated @RequestBody EntryFilterDTO dto) {
         dto.setBoardIdEQ(boardId);
         EntrySearchContext context = entryFilterDtoMapping.toDomain(dto);
-        Page<Entry> domains = entryService.searchDefault(context) ;
+        Page<Entry> domains = entryService.fetchDefault(context) ;
         List<EntryDTO> list = entryDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -888,7 +888,7 @@ public abstract class AbstractEntryResource {
             (@PathVariable("projectId") String projectId, @Validated @RequestBody EntryFilterDTO dto) {
         dto.setProjectIdEQ(projectId);
         EntrySearchContext context = entryFilterDtoMapping.toDomain(dto);
-        Page<Entry> domains = entryService.searchDefault(context) ;
+        Page<Entry> domains = entryService.fetchDefault(context) ;
         List<EntryDTO> list = entryDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -907,7 +907,7 @@ public abstract class AbstractEntryResource {
     @ApiOperation(value = "批量新建看板栏", tags = {"看板栏" },  notes = "批量新建看板栏")
 	@PostMapping("entries/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<EntryDTO> dtos) {
-        entryService.createBatch(entryDtoMapping.toDomain(dtos));
+        entryService.create(entryDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -920,7 +920,7 @@ public abstract class AbstractEntryResource {
     @ApiOperation(value = "批量删除看板栏", tags = {"看板栏" },  notes = "批量删除看板栏")
 	@DeleteMapping("entries/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        entryService.removeBatch(ids);
+        entryService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -933,7 +933,7 @@ public abstract class AbstractEntryResource {
     @ApiOperation(value = "批量更新看板栏", tags = {"看板栏" },  notes = "批量更新看板栏")
 	@PutMapping("entries/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<EntryDTO> dtos) {
-        entryService.updateBatch(entryDtoMapping.toDomain(dtos));
+        entryService.update(entryDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -946,7 +946,7 @@ public abstract class AbstractEntryResource {
     @ApiOperation(value = "批量保存看板栏", tags = {"看板栏" },  notes = "批量保存看板栏")
 	@PostMapping("entries/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<EntryDTO> dtos) {
-        entryService.saveBatch(entryDtoMapping.toDomain(dtos));
+        entryService.save(entryDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

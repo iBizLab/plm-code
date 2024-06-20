@@ -47,42 +47,6 @@ public abstract class AbstractWorkService extends ServiceImpl<WorkMapper,Work> i
 
     protected int batchSize = 500;
 
-    public Work get(Work et) {
-        Work rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.WORK.toString(),et.getId());
-        rt.copyTo(et,true);
-        return et;
-    }
-
-    public List<Work> getByEntities(List<Work> entities) {
-        entities.forEach(et->{
-            if(ObjectUtils.isEmpty(et.getId()))
-                et.setId((String)et.getDefaultKey(true));
-            });
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public void fillParentData(Work et) {
-        if(Entities.PORTFOLIO.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
-            et.setPortfolioId((String)et.getContextParentKey());
-        }
-        if(Entities.PROJECT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
-            et.setPilotId((String)et.getContextParentKey());
-        }
-    }
-
-    public Work getDraft(Work et) {
-        fillParentData(et);
-        return et;
-    }
-
-    public Integer checkKey(Work et) {
-        if(ObjectUtils.isEmpty(et.getId()))
-            et.setId((String)et.getDefaultKey(true));
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Work>lambdaQuery().eq(Work::getId, et.getId()))>0)?1:0;
-    }
-
     @Override
     @Transactional
     public boolean create(Work et) {
@@ -94,9 +58,9 @@ public abstract class AbstractWorkService extends ServiceImpl<WorkMapper,Work> i
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<Work> list) {
+    public boolean create(List<Work> list) {
         list.forEach(this::fillParentData);
         list.forEach(et->{
             if(ObjectUtils.isEmpty(et.getId()))
@@ -105,7 +69,7 @@ public abstract class AbstractWorkService extends ServiceImpl<WorkMapper,Work> i
         this.saveBatch(list, batchSize);
         return true;
     }
-
+	
     @Transactional
     public boolean update(Work et) {
         UpdateWrapper<Work> qw = et.getUpdateWrapper(true);
@@ -117,11 +81,50 @@ public abstract class AbstractWorkService extends ServiceImpl<WorkMapper,Work> i
     }
 
     @Transactional
-    public boolean updateBatch(List<Work> list) {
+    public boolean update(List<Work> list) {
         updateBatchById(list, batchSize);
         return true;
     }
+	
+   @Transactional
+    public boolean remove(Work et) {
+        if(!remove(Wrappers.<Work>lambdaQuery().eq(Work::getId, et.getId())))
+            return false;
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<Work> entities) {
+        this.baseMapper.deleteEntities(entities);
+        return true;
+    }		
+    public Work get(Work et) {
+        Work rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.WORK.toString(),et.getId());
+        rt.copyTo(et,true);
+        return et;
+    }	
+
+    public List<Work> get(List<Work> entities) {
+        entities.forEach(et->{
+            if(ObjectUtils.isEmpty(et.getId()))
+                et.setId((String)et.getDefaultKey(true));
+            });
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public Work getDraft(Work et) {
+        fillParentData(et);
+        return et;
+    }
+	
+    public Integer checkKey(Work et) {
+        if(ObjectUtils.isEmpty(et.getId()))
+            et.setId((String)et.getDefaultKey(true));
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Work>lambdaQuery().eq(Work::getId, et.getId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(Work et) {
@@ -132,10 +135,10 @@ public abstract class AbstractWorkService extends ServiceImpl<WorkMapper,Work> i
     }
 
     @Transactional
-    public boolean saveBatch(List<Work> list) {
+    public boolean save(List<Work> list) {
         if(ObjectUtils.isEmpty(list))
             return true;
-        Map<String,Work> before = getByEntities(list).stream().collect(Collectors.toMap(Work::getId,e->e));
+        Map<String,Work> before = get(list).stream().collect(Collectors.toMap(Work::getId,e->e));
         List<Work> create = new ArrayList<>();
         List<Work> update = new ArrayList<>();
         list.forEach(sub->{
@@ -150,67 +153,51 @@ public abstract class AbstractWorkService extends ServiceImpl<WorkMapper,Work> i
         });
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
         else
             return true;
     }
-
-    @Transactional
-    public boolean remove(Work et) {
-        if(!remove(Wrappers.<Work>lambdaQuery().eq(Work::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<Work> entities) {
-        this.baseMapper.deleteEntities(entities);
-        return true;
-    }
-
-    public Page<Work> searchDefault(WorkSearchContext context) {
+	
+   public Page<Work> fetchDefault(WorkSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Work> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<Work> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Work> listDefault(WorkSearchContext context) {
+   public List<Work> listDefault(WorkSearchContext context) {
         List<Work> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Work> searchItemSetOwner(WorkSearchContext context) {
+   }
+	
+   public Page<Work> fetchItemSetOwner(WorkSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Work> pages=baseMapper.searchItemSetOwner(context.getPages(),context,context.getSelectCond());
         List<Work> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Work> listItemSetOwner(WorkSearchContext context) {
+   public List<Work> listItemSetOwner(WorkSearchContext context) {
         List<Work> list = baseMapper.listItemSetOwner(context,context.getSelectCond());
         return list;
-    }
-
-    public List<Work> findByPortfolioId(List<String> portfolioIds) {
+   }
+	
+	public List<Work> findByPortfolioId(List<String> portfolioIds){
         List<Work> list = baseMapper.findByPortfolioId(portfolioIds);
-        return list;
-    }
-    public List<Work> findByPilotId(List<String> pilotIds) {
-        List<Work> list = baseMapper.findByPilotId(pilotIds);
-        return list;
-    }
-    public boolean removeByPortfolioId(String portfolioId) {
+        return list;	
+	}
+
+	public boolean removeByPortfolioId(String portfolioId){
         return this.remove(Wrappers.<Work>lambdaQuery().eq(Work::getPortfolioId,portfolioId));
-    }
+	}
 
-    public boolean resetByPortfolioId(String portfolioId) {
-        return this.update(Wrappers.<Work>lambdaUpdate().eq(Work::getPortfolioId,portfolioId));
-    }
-
-    public boolean saveByPortfolio(Portfolio portfolio,List<Work> list) {
+	public boolean resetByPortfolioId(String portfolioId){
+		return this.update(Wrappers.<Work>lambdaUpdate().eq(Work::getPortfolioId,portfolioId));
+	}
+	public boolean saveByPortfolio(Portfolio portfolio, List<Work> list){
         if(list==null)
             return true;
         Map<String,Work> before = findByPortfolioId(portfolio.getId()).stream().collect(Collectors.toMap(Work::getId,e->e));
+
         List<Work> update = new ArrayList<>();
         List<Work> create = new ArrayList<>();
 
@@ -230,26 +217,31 @@ public abstract class AbstractWorkService extends ServiceImpl<WorkMapper,Work> i
         }
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
             return false;
         else
             return true;
-    }
+			
+	}
+	public List<Work> findByPilotId(List<String> pilotIds){
+        List<Work> list = baseMapper.findByPilotId(pilotIds);
+        return list;	
+	}
 
-    public boolean removeByPilotId(String pilotId) {
+	public boolean removeByPilotId(String pilotId){
         return this.remove(Wrappers.<Work>lambdaQuery().eq(Work::getPilotId,pilotId));
-    }
+	}
 
-    public boolean resetByPilotId(String pilotId) {
-        return this.update(Wrappers.<Work>lambdaUpdate().eq(Work::getPilotId,pilotId));
-    }
-
-    public boolean saveByProject(Project project,List<Work> list) {
+	public boolean resetByPilotId(String pilotId){
+		return this.update(Wrappers.<Work>lambdaUpdate().eq(Work::getPilotId,pilotId));
+	}
+	public boolean saveByProject(Project project, List<Work> list){
         if(list==null)
             return true;
         Map<String,Work> before = findByPilotId(project.getId()).stream().collect(Collectors.toMap(Work::getId,e->e));
+
         List<Work> update = new ArrayList<>();
         List<Work> create = new ArrayList<>();
 
@@ -269,18 +261,24 @@ public abstract class AbstractWorkService extends ServiceImpl<WorkMapper,Work> i
         }
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
             return false;
         else
             return true;
+			
+	}
+
+    public void fillParentData(Work et) {
+        if(Entities.PORTFOLIO.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setPortfolioId((String)et.getContextParentKey());
+        }
+        if(Entities.PROJECT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setPilotId((String)et.getContextParentKey());
+        }
     }
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -300,8 +298,8 @@ public abstract class AbstractWorkService extends ServiceImpl<WorkMapper,Work> i
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return WorkMapper.class;
     }
@@ -310,4 +308,5 @@ public abstract class AbstractWorkService extends ServiceImpl<WorkMapper,Work> i
     protected Class currentModelClass() {
         return Work.class;
     }
+
 }

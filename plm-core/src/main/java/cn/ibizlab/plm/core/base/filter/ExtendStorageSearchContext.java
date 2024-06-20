@@ -55,6 +55,88 @@ public class ExtendStorageSearchContext extends QueryWrapperContext<ExtendStorag
     private String ownerTypeEQ;
 
     /**
+     * 文本值EQ
+     */
+    @JsonProperty("n_string_value_eq")
+    @JSONField(name = "n_string_value_eq")
+    @ApiModelProperty("文本值EQ")
+    private String stringValueEQ;
+
+    /**
+     * 文本值ISNULL
+     */
+    @JsonProperty("n_string_value_isnull")
+    @JSONField(name = "n_string_value_isnull")
+    @ApiModelProperty("文本值ISNULL")
+    private String stringValueISNULL;
+
+    /**
+     * 文本值LIKE
+     */
+    @JsonProperty("n_string_value_like")
+    @JSONField(name = "n_string_value_like")
+    @ApiModelProperty("文本值LIKE")
+    private String stringValueLIKE;
+
+    /**
+     * 长文本值ISNULL
+     */
+    @JsonProperty("n_longstring_value_isnull")
+    @JSONField(name = "n_longstring_value_isnull")
+    @ApiModelProperty("长文本值ISNULL")
+    private String longstringValueISNULL;
+
+    /**
+     * 长文本值LIKE
+     */
+    @JsonProperty("n_longstring_value_like")
+    @JSONField(name = "n_longstring_value_like")
+    @ApiModelProperty("长文本值LIKE")
+    private String longstringValueLIKE;
+
+    /**
+     * 浮点值EQ
+     */
+    @JsonProperty("n_double_value_eq")
+    @JSONField(name = "n_double_value_eq")
+    @ApiModelProperty("浮点值EQ")
+    private BigDecimal doubleValueEQ;
+
+    /**
+     * 时间值EQ
+     */
+    @JsonProperty("n_datetime_value_eq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_datetime_value_eq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("时间值EQ")
+    private Date datetimeValueEQ;
+
+    /**
+     * 数值值EQ
+     */
+    @JsonProperty("n_decimal_value_eq")
+    @JSONField(name = "n_decimal_value_eq")
+    @ApiModelProperty("数值值EQ")
+    private BigDecimal decimalValueEQ;
+
+    /**
+     * 整形值EQ
+     */
+    @JsonProperty("n_int_value_eq")
+    @JSONField(name = "n_int_value_eq")
+    @ApiModelProperty("整形值EQ")
+    private Integer intValueEQ;
+
+    /**
+     * 大整形值EQ
+     */
+    @JsonProperty("n_bigint_value_eq")
+    @JSONField(name = "n_bigint_value_eq")
+    @JsonSerialize(using = ToStringSerializer.class)            
+    @ApiModelProperty("大整形值EQ")
+    private Long bigintValueEQ;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")

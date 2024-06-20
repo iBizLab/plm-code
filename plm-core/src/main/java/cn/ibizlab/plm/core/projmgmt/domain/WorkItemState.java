@@ -40,131 +40,131 @@ public class WorkItemState extends EntityMP implements Serializable
 {
 
     /**
-     * 序号
-     */
+    * 序号
+    */
     @TableField(value = "sequence")
     @DEField(name = "sequence")
-    @JsonProperty("sequence")
     @JSONField(name = "sequence")
+    @JsonProperty("sequence")
     @ApiModelProperty(value = "sequence", notes = "序号")
     private BigDecimal sequence;
 
     /**
-     * 颜色
-     */
+    * 颜色
+    */
     @TableField(value = "color")
     @DEField(name = "color")
-    @JsonProperty("color")
     @JSONField(name = "color")
+    @JsonProperty("color")
     @ApiModelProperty(value = "color", notes = "颜色")
     private String color;
 
     /**
-     * 样式表
-     */
+    * 样式表
+    */
     @TableField(value = "style")
     @DEField(name = "style")
-    @JsonProperty("style")
     @JSONField(name = "style")
+    @JsonProperty("style")
     @ApiModelProperty(value = "style", notes = "样式表")
     private String style;
 
     /**
-     * 状态类型
-     */
+    * 状态类型
+    */
     @TableField(value = "type")
     @DEField(name = "type" , dict = "state_type")
-    @JsonProperty("type")
     @JSONField(name = "type")
+    @JsonProperty("type")
     @ApiModelProperty(value = "type", notes = "状态类型")
     private String type;
 
     /**
-     * 标识
-     */
+    * 标识
+    */
     @Id
     @TableId(value = "id" , type = IdType.ASSIGN_UUID)
     @DEField(name = "id" , isKeyField = true)
-    @JsonProperty("id")
     @JSONField(name = "id")
+    @JsonProperty("id")
     @ApiModelProperty(value = "id", notes = "标识")
     private String id;
 
     /**
-     * 建立人
-     */
-    @TableField(value = "create_man" , fill = FieldFill.INSERT)
-    @DEField(name = "create_man" , preType = DEPredefinedFieldType.CREATEMAN , dict = "SysOperator")
-    @JsonProperty("create_man")
-    @JSONField(name = "create_man")
-    @ApiModelProperty(value = "create_man", notes = "建立人")
-    private String createMan;
-
-    /**
-     * 名称
-     */
+    * 名称
+    */
     @TableField(value = "name")
-    @DEField(name = "name")
-    @JsonProperty("name")
+    @DEField(name = "name" , dupCheck = DupCheck.ALL)
     @JSONField(name = "name")
+    @JsonProperty("name")
     @ApiModelProperty(value = "name", notes = "名称")
     private String name;
 
     /**
-     * 更新人
-     */
-    @TableField(value = "update_man")
-    @DEField(name = "update_man" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
-    @JsonProperty("update_man")
-    @JSONField(name = "update_man")
-    @ApiModelProperty(value = "update_man", notes = "更新人")
-    private String updateMan;
+    * 建立人
+    */
+    @TableField(value = "create_man" , fill = FieldFill.INSERT)
+    @DEField(name = "create_man" , preType = DEPredefinedFieldType.CREATEMAN , dict = "SysOperator")
+    @JSONField(name = "create_man")
+    @JsonProperty("create_man")
+    @ApiModelProperty(value = "create_man", notes = "建立人")
+    private String createMan;
 
     /**
-     * 建立时间
-     */
+    * 建立时间
+    */
     @TableField(value = "create_time" , fill = FieldFill.INSERT)
     @DEField(name = "create_time" , preType = DEPredefinedFieldType.CREATEDATE)
-    @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("create_time")
     @ApiModelProperty(value = "create_time", notes = "建立时间")
     private Date createTime;
 
     /**
-     * 更新时间
-     */
+    * 更新人
+    */
+    @TableField(value = "update_man")
+    @DEField(name = "update_man" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
+    @JSONField(name = "update_man")
+    @JsonProperty("update_man")
+    @ApiModelProperty(value = "update_man", notes = "更新人")
+    private String updateMan;
+
+    /**
+    * 更新时间
+    */
     @TableField(value = "update_time")
     @DEField(name = "update_time" , preType = DEPredefinedFieldType.UPDATEDATE)
-    @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("update_time")
     @ApiModelProperty(value = "update_time", notes = "更新时间")
     private Date updateTime;
 
     /**
-     * 工作项类型标识
-     */
+    * 工作项类型标识
+    */
     @TableField(value = "work_item_type_id")
     @DEField(name = "work_item_type_id")
-    @JsonProperty("work_item_type_id")
     @JSONField(name = "work_item_type_id")
+    @JsonProperty("work_item_type_id")
     @ApiModelProperty(value = "work_item_type_id", notes = "工作项类型标识")
     private String workItemTypeId;
 
     /**
-     * 工作项类型
-     */
+    * 工作项类型-状态
+    */
+    @Transient
+    @TableField(exist = false)
     @JsonIgnore
     @JSONField(serialize = false)
-    @TableField(exist = false)
-    @Transient
     @ApiModelProperty(value = "work_item_type", notes = "工作项类型-状态")
     private WorkItemType workItemType;
 
     /**
-     * 设置 [序号]
-     */
+    * 设置 [序号]
+    */
     public WorkItemState setSequence(BigDecimal sequence) {
         this.sequence = sequence;
         this.modify("sequence", sequence);
@@ -172,8 +172,8 @@ public class WorkItemState extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [颜色]
-     */
+    * 设置 [颜色]
+    */
     public WorkItemState setColor(String color) {
         this.color = color;
         this.modify("color", color);
@@ -181,8 +181,8 @@ public class WorkItemState extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [样式表]
-     */
+    * 设置 [样式表]
+    */
     public WorkItemState setStyle(String style) {
         this.style = style;
         this.modify("style", style);
@@ -190,8 +190,8 @@ public class WorkItemState extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [状态类型]
-     */
+    * 设置 [状态类型]
+    */
     public WorkItemState setType(String type) {
         this.type = type;
         this.modify("type", type);
@@ -199,8 +199,8 @@ public class WorkItemState extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [名称]
-     */
+    * 设置 [名称]
+    */
     public WorkItemState setName(String name) {
         this.name = name;
         this.modify("name", name);
@@ -208,13 +208,14 @@ public class WorkItemState extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [工作项类型标识]
-     */
+    * 设置 [工作项类型标识]
+    */
     public WorkItemState setWorkItemTypeId(String workItemTypeId) {
         this.workItemTypeId = workItemTypeId;
         this.modify("work_item_type_id", workItemTypeId);
         return this;
     }
+
 
     /**
      * 复制当前对象数据到目标对象(粘贴重置)

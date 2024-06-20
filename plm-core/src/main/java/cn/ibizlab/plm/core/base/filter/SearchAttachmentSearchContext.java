@@ -54,20 +54,20 @@ public class SearchAttachmentSearchContext extends QueryWrapperContext<SearchAtt
     private String idEQ;
 
     /**
-     * 建立人EQ
-     */
-    @JsonProperty("n_create_man_eq")
-    @JSONField(name = "n_create_man_eq")
-    @ApiModelProperty("建立人EQ")
-    private String createManEQ;
-
-    /**
      * 名称LIKE
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
     @ApiModelProperty("名称LIKE")
     private String nameLIKE;
+
+    /**
+     * 建立人EQ
+     */
+    @JsonProperty("n_create_man_eq")
+    @JSONField(name = "n_create_man_eq")
+    @ApiModelProperty("建立人EQ")
+    private String createManEQ;
 
     /**
      * 建立时间GTANDEQ

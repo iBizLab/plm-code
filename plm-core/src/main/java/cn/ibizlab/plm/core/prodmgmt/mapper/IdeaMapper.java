@@ -157,25 +157,6 @@ public interface IdeaMapper extends BaseMapper<Idea> {
     List<Idea> listDeleted(@Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
 
     /**
-     * 数据集合idea_relation_idea分页查询
-     * 
-     * @param page
-     * @param context
-     * @param wrapper
-     * @return
-     */
-    Page<Idea> searchIdeaRelationIdea(IPage<Idea> page, @Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
-    
-    /**
-     * 数据集合idea_relation_idea查询
-     * 
-     * @param context
-     * @param wrapper
-     * @return
-     */
-    List<Idea> listIdeaRelationIdea(@Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
-
-    /**
      * 数据集合my_assign分页查询
      * 
      * @param page
@@ -347,61 +328,28 @@ public interface IdeaMapper extends BaseMapper<Idea> {
     List<Idea> listRecentIdea(@Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
 
     /**
-     * 数据集合test_case_relation分页查询
-     * 
-     * @param page
-     * @param context
-     * @param wrapper
-     * @return
-     */
-    Page<Idea> searchTestCaseRelation(IPage<Idea> page, @Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
-    
-    /**
-     * 数据集合test_case_relation查询
-     * 
-     * @param context
-     * @param wrapper
-     * @return
-     */
-    List<Idea> listTestCaseRelation(@Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
+    * 根据categoryId查询
+    *
+    * @param categoryIds
+    * @return
+    */
+    List<Idea> findByCategoryId(@Param("categoryIds") List<String> categoryIds);
 
     /**
-     * 数据集合ticket_relation_idea分页查询
-     * 
-     * @param page
-     * @param context
-     * @param wrapper
-     * @return
-     */
-    Page<Idea> searchTicketRelationIdea(IPage<Idea> page, @Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
-    
-    /**
-     * 数据集合ticket_relation_idea查询
-     * 
-     * @param context
-     * @param wrapper
-     * @return
-     */
-    List<Idea> listTicketRelationIdea(@Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
+    * 根据productId查询
+    *
+    * @param productIds
+    * @return
+    */
+    List<Idea> findByProductId(@Param("productIds") List<String> productIds);
 
     /**
-     * 数据集合work_item_relation_idea分页查询
-     * 
-     * @param page
-     * @param context
-     * @param wrapper
-     * @return
-     */
-    Page<Idea> searchWorkItemRelationIdea(IPage<Idea> page, @Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
-    
-    /**
-     * 数据集合work_item_relation_idea查询
-     * 
-     * @param context
-     * @param wrapper
-     * @return
-     */
-    List<Idea> listWorkItemRelationIdea(@Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
+    * 根据assigneeId查询
+    *
+    * @param assigneeIds
+    * @return
+    */
+    List<Idea> findByAssigneeId(@Param("assigneeIds") List<String> assigneeIds);
 
     /**
      * 主键查询
@@ -512,29 +460,4 @@ public interface IdeaMapper extends BaseMapper<Idea> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据categoryId查询
-     *
-     * @param categoryIds
-     * @return
-     */
-    List<Idea> findByCategoryId(@Param("categoryIds") List<String> categoryIds);
-
-    /**
-     * 根据productId查询
-     *
-     * @param productIds
-     * @return
-     */
-    List<Idea> findByProductId(@Param("productIds") List<String> productIds);
-
-    /**
-     * 根据assigneeId查询
-     *
-     * @param assigneeIds
-     * @return
-     */
-    List<Idea> findByAssigneeId(@Param("assigneeIds") List<String> assigneeIds);
-
 }

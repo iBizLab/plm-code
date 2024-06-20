@@ -31,20 +31,20 @@ import io.swagger.annotations.ApiModelProperty;
 public class PSDENotifyTargetFilterDTO extends FilterBase implements Serializable {
 
     /**
-     * 实体通知目标名称LIKE
-     */
-    @JsonProperty("n_psdenotifytargetname_like")
-    @JSONField(name = "n_psdenotifytargetname_like")
-    @ApiModelProperty(value = "实体通知目标名称LIKE", position = 40)
-	private String psdeNotifyTargetNameLIKE;
-
-    /**
      * 实体通知目标标识EQ
      */
     @JsonProperty("n_psdenotifytargetid_eq")
     @JSONField(name = "n_psdenotifytargetid_eq")
-    @ApiModelProperty(value = "实体通知目标标识EQ", position = 50)
+    @ApiModelProperty(value = "实体通知目标标识EQ", position = 0)
 	private String psdeNotifyTargetIdEQ;
+
+    /**
+     * 实体通知目标名称LIKE
+     */
+    @JsonProperty("n_psdenotifytargetname_like")
+    @JSONField(name = "n_psdenotifytargetname_like")
+    @ApiModelProperty(value = "实体通知目标名称LIKE", position = 10)
+	private String psdeNotifyTargetNameLIKE;
 
     /**
      * 目标类型EQ

@@ -238,7 +238,7 @@ public abstract class AbstractWorkItemStateResource {
     public ResponseEntity<List<WorkItemStateDTO>> fetchDefault
             (@Validated @RequestBody WorkItemStateFilterDTO dto) {
         WorkItemStateSearchContext context = workItemStateFilterDtoMapping.toDomain(dto);
-        Page<WorkItemState> domains = workItemStateService.searchDefault(context) ;
+        Page<WorkItemState> domains = workItemStateService.fetchDefault(context) ;
         List<WorkItemStateDTO> list = workItemStateDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -257,7 +257,7 @@ public abstract class AbstractWorkItemStateResource {
     @ApiOperation(value = "批量新建工作项状态", tags = {"工作项状态" },  notes = "批量新建工作项状态")
 	@PostMapping("work_item_states/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<WorkItemStateDTO> dtos) {
-        workItemStateService.createBatch(workItemStateDtoMapping.toDomain(dtos));
+        workItemStateService.create(workItemStateDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -270,7 +270,7 @@ public abstract class AbstractWorkItemStateResource {
     @ApiOperation(value = "批量删除工作项状态", tags = {"工作项状态" },  notes = "批量删除工作项状态")
 	@DeleteMapping("work_item_states/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        workItemStateService.removeBatch(ids);
+        workItemStateService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -283,7 +283,7 @@ public abstract class AbstractWorkItemStateResource {
     @ApiOperation(value = "批量更新工作项状态", tags = {"工作项状态" },  notes = "批量更新工作项状态")
 	@PutMapping("work_item_states/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<WorkItemStateDTO> dtos) {
-        workItemStateService.updateBatch(workItemStateDtoMapping.toDomain(dtos));
+        workItemStateService.update(workItemStateDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -296,7 +296,7 @@ public abstract class AbstractWorkItemStateResource {
     @ApiOperation(value = "批量保存工作项状态", tags = {"工作项状态" },  notes = "批量保存工作项状态")
 	@PostMapping("work_item_states/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<WorkItemStateDTO> dtos) {
-        workItemStateService.saveBatch(workItemStateDtoMapping.toDomain(dtos));
+        workItemStateService.save(workItemStateDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

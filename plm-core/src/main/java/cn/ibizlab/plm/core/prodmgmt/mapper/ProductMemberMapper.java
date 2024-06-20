@@ -62,6 +62,22 @@ public interface ProductMemberMapper extends BaseMapper<ProductMember> {
     List<ProductMember> listCurProduct(@Param("ctx") ProductMemberSearchContext context, @Param("ew") Wrapper<ProductMember> wrapper);
 
     /**
+    * 根据productId查询
+    *
+    * @param productIds
+    * @return
+    */
+    List<ProductMember> findByProductId(@Param("productIds") List<String> productIds);
+
+    /**
+    * 根据userId查询
+    *
+    * @param userIds
+    * @return
+    */
+    List<ProductMember> findByUserId(@Param("userIds") List<String> userIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -170,21 +186,4 @@ public interface ProductMemberMapper extends BaseMapper<ProductMember> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据productId查询
-     *
-     * @param productIds
-     * @return
-     */
-    List<ProductMember> findByProductId(@Param("productIds") List<String> productIds);
-
-    /**
-     * 根据userId查询
-     *
-     * @param userIds
-     * @return
-     */
-    List<ProductMember> findByUserId(@Param("userIds") List<String> userIds);
-
 }

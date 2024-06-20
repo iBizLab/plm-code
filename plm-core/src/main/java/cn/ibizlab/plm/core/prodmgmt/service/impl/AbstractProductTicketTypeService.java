@@ -47,52 +47,6 @@ public abstract class AbstractProductTicketTypeService extends ServiceImpl<Produ
 
     protected int batchSize = 500;
 
-    public ProductTicketType get(ProductTicketType et) {
-        ProductTicketType rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.PRODUCT_TICKET_TYPE.toString(),et.getId());
-        rt.copyTo(et,true);
-        return et;
-    }
-
-    public List<ProductTicketType> getByEntities(List<ProductTicketType> entities) {
-        entities.forEach(et->{
-            if(ObjectUtils.isEmpty(et.getId()))
-                et.setId((String)et.getDefaultKey(true));
-            });
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public void fillParentData(ProductTicketType et) {
-        if(Entities.PRODUCT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
-            et.setProductId((String)et.getContextParentKey());
-        }
-        if(Entities.TICKET_TYPE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
-            et.setTicketTypeId((String)et.getContextParentKey());
-            TicketType ticketType = et.getTicketType();
-            if(ticketType == null) {
-                ticketType = ticketTypeService.getById(et.getTicketTypeId());
-                et.setTicketType(ticketType);
-            }
-            if(!ObjectUtils.isEmpty(ticketType)) {
-                et.setDescription(ticketType.getDescription());
-                et.setTicketTypeId(ticketType.getId());
-                et.setTicketTypeName(ticketType.getName());
-            }
-        }
-    }
-
-    public ProductTicketType getDraft(ProductTicketType et) {
-        fillParentData(et);
-        return et;
-    }
-
-    public Integer checkKey(ProductTicketType et) {
-        if(ObjectUtils.isEmpty(et.getId()))
-            et.setId((String)et.getDefaultKey(true));
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ProductTicketType>lambdaQuery().eq(ProductTicketType::getId, et.getId()))>0)?1:0;
-    }
-
     @Override
     @Transactional
     public boolean create(ProductTicketType et) {
@@ -104,9 +58,9 @@ public abstract class AbstractProductTicketTypeService extends ServiceImpl<Produ
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<ProductTicketType> list) {
+    public boolean create(List<ProductTicketType> list) {
         list.forEach(this::fillParentData);
         list.forEach(et->{
             if(ObjectUtils.isEmpty(et.getId()))
@@ -115,7 +69,7 @@ public abstract class AbstractProductTicketTypeService extends ServiceImpl<Produ
         this.saveBatch(list, batchSize);
         return true;
     }
-
+	
     @Transactional
     public boolean update(ProductTicketType et) {
         UpdateWrapper<ProductTicketType> qw = et.getUpdateWrapper(true);
@@ -127,11 +81,50 @@ public abstract class AbstractProductTicketTypeService extends ServiceImpl<Produ
     }
 
     @Transactional
-    public boolean updateBatch(List<ProductTicketType> list) {
+    public boolean update(List<ProductTicketType> list) {
         updateBatchById(list, batchSize);
         return true;
     }
+	
+   @Transactional
+    public boolean remove(ProductTicketType et) {
+        if(!remove(Wrappers.<ProductTicketType>lambdaQuery().eq(ProductTicketType::getId, et.getId())))
+            return false;
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<ProductTicketType> entities) {
+        this.baseMapper.deleteEntities(entities);
+        return true;
+    }		
+    public ProductTicketType get(ProductTicketType et) {
+        ProductTicketType rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.PRODUCT_TICKET_TYPE.toString(),et.getId());
+        rt.copyTo(et,true);
+        return et;
+    }	
+
+    public List<ProductTicketType> get(List<ProductTicketType> entities) {
+        entities.forEach(et->{
+            if(ObjectUtils.isEmpty(et.getId()))
+                et.setId((String)et.getDefaultKey(true));
+            });
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public ProductTicketType getDraft(ProductTicketType et) {
+        fillParentData(et);
+        return et;
+    }
+	
+    public Integer checkKey(ProductTicketType et) {
+        if(ObjectUtils.isEmpty(et.getId()))
+            et.setId((String)et.getDefaultKey(true));
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ProductTicketType>lambdaQuery().eq(ProductTicketType::getId, et.getId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(ProductTicketType et) {
@@ -142,10 +135,10 @@ public abstract class AbstractProductTicketTypeService extends ServiceImpl<Produ
     }
 
     @Transactional
-    public boolean saveBatch(List<ProductTicketType> list) {
+    public boolean save(List<ProductTicketType> list) {
         if(ObjectUtils.isEmpty(list))
             return true;
-        Map<String,ProductTicketType> before = getByEntities(list).stream().collect(Collectors.toMap(ProductTicketType::getId,e->e));
+        Map<String,ProductTicketType> before = get(list).stream().collect(Collectors.toMap(ProductTicketType::getId,e->e));
         List<ProductTicketType> create = new ArrayList<>();
         List<ProductTicketType> update = new ArrayList<>();
         list.forEach(sub->{
@@ -160,56 +153,40 @@ public abstract class AbstractProductTicketTypeService extends ServiceImpl<Produ
         });
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
         else
             return true;
     }
-
-    @Transactional
-    public boolean remove(ProductTicketType et) {
-        if(!remove(Wrappers.<ProductTicketType>lambdaQuery().eq(ProductTicketType::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<ProductTicketType> entities) {
-        this.baseMapper.deleteEntities(entities);
-        return true;
-    }
-
-    public Page<ProductTicketType> searchDefault(ProductTicketTypeSearchContext context) {
+	
+   public Page<ProductTicketType> fetchDefault(ProductTicketTypeSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<ProductTicketType> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<ProductTicketType> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<ProductTicketType> listDefault(ProductTicketTypeSearchContext context) {
+   public List<ProductTicketType> listDefault(ProductTicketTypeSearchContext context) {
         List<ProductTicketType> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
-    }
-
-    public List<ProductTicketType> findByProductId(List<String> productIds) {
+   }
+	
+	public List<ProductTicketType> findByProductId(List<String> productIds){
         List<ProductTicketType> list = baseMapper.findByProductId(productIds);
-        return list;
-    }
-    public List<ProductTicketType> findByTicketTypeId(List<String> ticketTypeIds) {
-        List<ProductTicketType> list = baseMapper.findByTicketTypeId(ticketTypeIds);
-        return list;
-    }
-    public boolean removeByProductId(String productId) {
+        return list;	
+	}
+
+	public boolean removeByProductId(String productId){
         return this.remove(Wrappers.<ProductTicketType>lambdaQuery().eq(ProductTicketType::getProductId,productId));
-    }
+	}
 
-    public boolean resetByProductId(String productId) {
-        return this.update(Wrappers.<ProductTicketType>lambdaUpdate().eq(ProductTicketType::getProductId,productId));
-    }
-
-    public boolean saveByProduct(Product product,List<ProductTicketType> list) {
+	public boolean resetByProductId(String productId){
+		return this.update(Wrappers.<ProductTicketType>lambdaUpdate().eq(ProductTicketType::getProductId,productId));
+	}
+	public boolean saveByProduct(Product product, List<ProductTicketType> list){
         if(list==null)
             return true;
         Map<String,ProductTicketType> before = findByProductId(product.getId()).stream().collect(Collectors.toMap(ProductTicketType::getId,e->e));
+
         List<ProductTicketType> update = new ArrayList<>();
         List<ProductTicketType> create = new ArrayList<>();
 
@@ -229,26 +206,31 @@ public abstract class AbstractProductTicketTypeService extends ServiceImpl<Produ
         }
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
             return false;
         else
             return true;
-    }
+			
+	}
+	public List<ProductTicketType> findByTicketTypeId(List<String> ticketTypeIds){
+        List<ProductTicketType> list = baseMapper.findByTicketTypeId(ticketTypeIds);
+        return list;	
+	}
 
-    public boolean removeByTicketTypeId(String ticketTypeId) {
+	public boolean removeByTicketTypeId(String ticketTypeId){
         return this.remove(Wrappers.<ProductTicketType>lambdaQuery().eq(ProductTicketType::getTicketTypeId,ticketTypeId));
-    }
+	}
 
-    public boolean resetByTicketTypeId(String ticketTypeId) {
-        return this.update(Wrappers.<ProductTicketType>lambdaUpdate().eq(ProductTicketType::getTicketTypeId,ticketTypeId));
-    }
-
-    public boolean saveByTicketType(TicketType ticketType,List<ProductTicketType> list) {
+	public boolean resetByTicketTypeId(String ticketTypeId){
+		return this.update(Wrappers.<ProductTicketType>lambdaUpdate().eq(ProductTicketType::getTicketTypeId,ticketTypeId));
+	}
+	public boolean saveByTicketType(TicketType ticketType, List<ProductTicketType> list){
         if(list==null)
             return true;
         Map<String,ProductTicketType> before = findByTicketTypeId(ticketType.getId()).stream().collect(Collectors.toMap(ProductTicketType::getId,e->e));
+
         List<ProductTicketType> update = new ArrayList<>();
         List<ProductTicketType> create = new ArrayList<>();
 
@@ -268,18 +250,34 @@ public abstract class AbstractProductTicketTypeService extends ServiceImpl<Produ
         }
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
             return false;
         else
             return true;
+			
+	}
+
+    public void fillParentData(ProductTicketType et) {
+        if(Entities.PRODUCT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setProductId((String)et.getContextParentKey());
+        }
+        if(Entities.TICKET_TYPE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setTicketTypeId((String)et.getContextParentKey());
+            TicketType ticketType = et.getTicketType();
+            if(ticketType == null) {
+                ticketType = ticketTypeService.getById(et.getTicketTypeId());
+                et.setTicketType(ticketType);
+            }
+            if(!ObjectUtils.isEmpty(ticketType)) {
+                et.setDescription(ticketType.getDescription());
+                et.setTicketTypeName(ticketType.getName());
+                et.setTicketTypeId(ticketType.getId());
+            }
+        }
     }
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -299,8 +297,8 @@ public abstract class AbstractProductTicketTypeService extends ServiceImpl<Produ
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return ProductTicketTypeMapper.class;
     }
@@ -309,4 +307,5 @@ public abstract class AbstractProductTicketTypeService extends ServiceImpl<Produ
     protected Class currentModelClass() {
         return ProductTicketType.class;
     }
+
 }

@@ -47,28 +47,6 @@ public abstract class AbstractReviewContentExtendService extends ServiceImpl<Rev
 
     protected int batchSize = 500;
 
-    public ReviewContentExtend get(ReviewContentExtend et) {
-        ReviewContentExtend rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.REVIEW_CONTENT_EXTEND.toString(),et.getId());
-        rt.copyTo(et,true);
-        //设置 [评审结果]
-        getStageResults(et);
-        return et;
-    }
-
-    public List<ReviewContentExtend> getByEntities(List<ReviewContentExtend> entities) {
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public ReviewContentExtend getDraft(ReviewContentExtend et) {
-        return et;
-    }
-
-    public Integer checkKey(ReviewContentExtend et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ReviewContentExtend>lambdaQuery().eq(ReviewContentExtend::getId, et.getId()))>0)?1:0;
-    }
-
     @Override
     @Transactional
     public boolean create(ReviewContentExtend et) {
@@ -78,13 +56,13 @@ public abstract class AbstractReviewContentExtendService extends ServiceImpl<Rev
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<ReviewContentExtend> list) {
+    public boolean create(List<ReviewContentExtend> list) {
         this.saveBatch(list, batchSize);
         return true;
     }
-
+	
     @Transactional
     public boolean update(ReviewContentExtend et) {
         UpdateWrapper<ReviewContentExtend> qw = et.getUpdateWrapper(true);
@@ -97,11 +75,49 @@ public abstract class AbstractReviewContentExtendService extends ServiceImpl<Rev
     }
 
     @Transactional
-    public boolean updateBatch(List<ReviewContentExtend> list) {
+    public boolean update(List<ReviewContentExtend> list) {
         updateBatchById(list, batchSize);
         return true;
     }
+	
+   @Transactional
+    public boolean remove(ReviewContentExtend et) {
+        String key = et.getId();
+        reviewResultService.removeByContentId(key);
+        if(!remove(Wrappers.<ReviewContentExtend>lambdaQuery().eq(ReviewContentExtend::getId, et.getId())))
+            return false;
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<ReviewContentExtend> entities) {
+        for (ReviewContentExtend et : entities)
+            if(!getSelf().remove(et))
+                return false;
+        return true;
+    }		
+    public ReviewContentExtend get(ReviewContentExtend et) {
+        ReviewContentExtend rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.REVIEW_CONTENT_EXTEND.toString(),et.getId());
+        rt.copyTo(et,true);
+        //设置 [评审结果]
+        getStageResults(et);
+        return et;
+    }	
+
+    public List<ReviewContentExtend> get(List<ReviewContentExtend> entities) {
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public ReviewContentExtend getDraft(ReviewContentExtend et) {
+        return et;
+    }
+	
+    public Integer checkKey(ReviewContentExtend et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ReviewContentExtend>lambdaQuery().eq(ReviewContentExtend::getId, et.getId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(ReviewContentExtend et) {
@@ -112,10 +128,10 @@ public abstract class AbstractReviewContentExtendService extends ServiceImpl<Rev
     }
 
     @Transactional
-    public boolean saveBatch(List<ReviewContentExtend> list) {
+    public boolean save(List<ReviewContentExtend> list) {
         if(ObjectUtils.isEmpty(list))
             return true;
-        Map<String,ReviewContentExtend> before = getByEntities(list).stream().collect(Collectors.toMap(ReviewContentExtend::getId,e->e));
+        Map<String,ReviewContentExtend> before = get(list).stream().collect(Collectors.toMap(ReviewContentExtend::getId,e->e));
         List<ReviewContentExtend> create = new ArrayList<>();
         List<ReviewContentExtend> update = new ArrayList<>();
         list.forEach(sub->{
@@ -126,47 +142,31 @@ public abstract class AbstractReviewContentExtendService extends ServiceImpl<Rev
         });
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
         else
             return true;
     }
-
-    @Transactional
-    public boolean remove(ReviewContentExtend et) {
-        if(!remove(Wrappers.<ReviewContentExtend>lambdaQuery().eq(ReviewContentExtend::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<ReviewContentExtend> entities) {
-        this.baseMapper.deleteEntities(entities);
-        return true;
-    }
-
-    public Page<ReviewContentExtend> searchDefault(ReviewContentExtendSearchContext context) {
+	
+   public Page<ReviewContentExtend> fetchDefault(ReviewContentExtendSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<ReviewContentExtend> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<ReviewContentExtend> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<ReviewContentExtend> listDefault(ReviewContentExtendSearchContext context) {
+   public List<ReviewContentExtend> listDefault(ReviewContentExtendSearchContext context) {
         List<ReviewContentExtend> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
-    }
-
-    @Override
+   }
+	
+	@Override
     public List<ReviewResult> getStageResults(ReviewContentExtend et) {
         List<ReviewResult> list = reviewResultService.findByContentId(et.getId());
         et.setStageResults(list);
         return list;
     }
+	
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -186,8 +186,8 @@ public abstract class AbstractReviewContentExtendService extends ServiceImpl<Rev
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return ReviewContentExtendMapper.class;
     }
@@ -196,4 +196,5 @@ public abstract class AbstractReviewContentExtendService extends ServiceImpl<Rev
     protected Class currentModelClass() {
         return ReviewContentExtend.class;
     }
+
 }

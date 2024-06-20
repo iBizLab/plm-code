@@ -131,6 +131,83 @@ public abstract class AbstractBaselineResource {
     }
 
     /**
+    * delete_categories 基线
+    * 
+    *
+    * @param ownerId ownerId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<BaselineDTO>
+    */
+    @ApiOperation(value = "delete_categories", tags = {"基线" },  notes = "Baseline-delete_categories ")
+    @PostMapping("libraries/{ownerId}/baselines/{id}/delete_categories")
+    public ResponseEntity<ResponseWrapper<BaselineDTO>> deleteCategoriesByOwnerIdAndId
+            (@PathVariable("ownerId") String ownerId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<BaselineDTO> dto) {
+        ResponseWrapper<BaselineDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(deleteCategoriesByOwnerIdAndId(ownerId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(deleteCategoriesByOwnerIdAndId(ownerId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * delete_categories 基线
+    * 
+    *
+    * @param ownerId ownerId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<BaselineDTO>
+    */   
+    public BaselineDTO deleteCategoriesByOwnerIdAndId
+            (String ownerId, String id, BaselineDTO dto) {
+        Baseline domain = baselineDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Baseline rt = baselineService.deleteCategories(domain);
+        return baselineDtoMapping.toDto(rt);
+    }
+
+    /**
+    * plan_snapshot 基线
+    * 
+    *
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return ResponseEntity<BaselineDTO>
+    */
+    @ApiOperation(value = "plan_snapshot", tags = {"基线" },  notes = "Baseline-plan_snapshot ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Baseline-plan_snapshot-all') or hasPermission('library',#ownerId,this.baselineDtoMapping.toDomain(#dto),'ibizplm-Baseline-plan_snapshot')")
+    @PostMapping("libraries/{ownerId}/baselines/plan_snapshot")
+    public ResponseEntity<ResponseWrapper<BaselineDTO>> planSnapshotByOwnerId
+            (@PathVariable("ownerId") String ownerId, @Validated @RequestBody RequestWrapper<BaselineDTO> dto) {
+        ResponseWrapper<BaselineDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(planSnapshotByOwnerId(ownerId, item)));
+        else
+            rt.set(planSnapshotByOwnerId(ownerId, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * plan_snapshot 基线
+    * 
+    *
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return ResponseEntity<BaselineDTO>
+    */   
+    public BaselineDTO planSnapshotByOwnerId
+            (String ownerId, BaselineDTO dto) {
+        Baseline domain = baselineDtoMapping.toDomain(dto);
+        domain.setOwnerId(ownerId);
+        Baseline rt = baselineService.planSnapshot(domain);
+        return baselineDtoMapping.toDto(rt);
+    }
+
+    /**
     * 保存Save 基线
     * 
     *
@@ -291,6 +368,47 @@ public abstract class AbstractBaselineResource {
         return baselineDtoMapping.toDto(rt);
     }
 
+    /**
+    * set_complete_space 基线
+    * 
+    *
+    * @param ownerId ownerId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<BaselineDTO>
+    */
+    @ApiOperation(value = "set_complete_space", tags = {"基线" },  notes = "Baseline-set_complete_space ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Baseline-set_complete_space-all') or hasPermission('library',#ownerId,this.baselineDtoMapping.toDomain(#dto),'ibizplm-Baseline-set_complete_space')")
+    @PostMapping("libraries/{ownerId}/baselines/{id}/set_complete_space")
+    public ResponseEntity<ResponseWrapper<BaselineDTO>> setCompleteSpaceByOwnerIdAndId
+            (@PathVariable("ownerId") String ownerId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<BaselineDTO> dto) {
+        ResponseWrapper<BaselineDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(setCompleteSpaceByOwnerIdAndId(ownerId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(setCompleteSpaceByOwnerIdAndId(ownerId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * set_complete_space 基线
+    * 
+    *
+    * @param ownerId ownerId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<BaselineDTO>
+    */   
+    public BaselineDTO setCompleteSpaceByOwnerIdAndId
+            (String ownerId, String id, BaselineDTO dto) {
+        Baseline domain = baselineDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Baseline rt = baselineService.setCompleteSpace(domain);
+        return baselineDtoMapping.toDto(rt);
+    }
+
 
     /**
     * 获取Get 基线
@@ -363,6 +481,30 @@ public abstract class AbstractBaselineResource {
     }
 
     /**
+    * 查询fetch_baseline 基线
+    * 
+    *
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return ResponseEntity<List<BaselineDTO>>
+    */
+    @ApiOperation(value = "查询fetch_baseline", tags = {"基线" },  notes = "Baseline-fetch_baseline ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Baseline-fetch_baseline-all') or hasPermission('library',#ownerId,#dto,'ibizplm-Baseline-fetch_baseline')")
+    @PostMapping("libraries/{ownerId}/baselines/fetch_baseline")
+    public ResponseEntity<List<BaselineDTO>> fetchBaselineByOwnerId
+            (@PathVariable("ownerId") String ownerId, @Validated @RequestBody BaselineFilterDTO dto) {
+        dto.setOwnerIdEQ(ownerId);
+        BaselineSearchContext context = baselineFilterDtoMapping.toDomain(dto);
+        Page<Baseline> domains = baselineService.fetchBaseline(context) ;
+        List<BaselineDTO> list = baselineDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
     * 查询fetch_default 基线
     * 
     *
@@ -376,7 +518,31 @@ public abstract class AbstractBaselineResource {
             (@PathVariable("ownerId") String ownerId, @Validated @RequestBody BaselineFilterDTO dto) {
         dto.setOwnerIdEQ(ownerId);
         BaselineSearchContext context = baselineFilterDtoMapping.toDomain(dto);
-        Page<Baseline> domains = baselineService.searchDefault(context) ;
+        Page<Baseline> domains = baselineService.fetchDefault(context) ;
+        List<BaselineDTO> list = baselineDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_snapshot 基线
+    * 
+    *
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return ResponseEntity<List<BaselineDTO>>
+    */
+    @ApiOperation(value = "查询fetch_snapshot", tags = {"基线" },  notes = "Baseline-fetch_snapshot ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Baseline-fetch_snapshot-all') or hasPermission('library',#ownerId,#dto,'ibizplm-Baseline-fetch_snapshot')")
+    @PostMapping("libraries/{ownerId}/baselines/fetch_snapshot")
+    public ResponseEntity<List<BaselineDTO>> fetchSnapshotByOwnerId
+            (@PathVariable("ownerId") String ownerId, @Validated @RequestBody BaselineFilterDTO dto) {
+        dto.setOwnerIdEQ(ownerId);
+        BaselineSearchContext context = baselineFilterDtoMapping.toDomain(dto);
+        Page<Baseline> domains = baselineService.fetchSnapshot(context) ;
         List<BaselineDTO> list = baselineDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

@@ -126,6 +126,44 @@ public abstract class AbstractTestPlanResource {
     }
 
     /**
+    * delete_categories 测试计划
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestPlanDTO>
+    */
+    @ApiOperation(value = "delete_categories", tags = {"测试计划" },  notes = "TestPlan-delete_categories ")
+    @PostMapping("test_plans/{id}/delete_categories")
+    public ResponseEntity<ResponseWrapper<TestPlanDTO>> deleteCategoriesById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestPlanDTO> dto) {
+        ResponseWrapper<TestPlanDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(deleteCategoriesById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(deleteCategoriesById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * delete_categories 测试计划
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestPlanDTO>
+    */   
+    public TestPlanDTO deleteCategoriesById
+            (String id, TestPlanDTO dto) {
+        TestPlan domain = testPlanDtoMapping.toDomain(dto);
+        domain.setId(id);
+        TestPlan rt = testPlanService.deleteCategories(domain);
+        return testPlanDtoMapping.toDto(rt);
+    }
+
+    /**
     * end_test_plan 测试计划
     * 
     *
@@ -316,6 +354,46 @@ public abstract class AbstractTestPlanResource {
         domain.setId(id);
         testPlanService.update(domain);
         TestPlan rt = domain;
+        return testPlanDtoMapping.toDto(rt);
+    }
+
+    /**
+    * delete_categories 测试计划
+    * 
+    *
+    * @param libraryId libraryId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestPlanDTO>
+    */
+    @ApiOperation(value = "delete_categories", tags = {"测试计划" },  notes = "TestPlan-delete_categories ")
+    @PostMapping("libraries/{libraryId}/test_plans/{id}/delete_categories")
+    public ResponseEntity<ResponseWrapper<TestPlanDTO>> deleteCategoriesByLibraryIdAndId
+            (@PathVariable("libraryId") String libraryId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestPlanDTO> dto) {
+        ResponseWrapper<TestPlanDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(deleteCategoriesByLibraryIdAndId(libraryId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(deleteCategoriesByLibraryIdAndId(libraryId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * delete_categories 测试计划
+    * 
+    *
+    * @param libraryId libraryId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestPlanDTO>
+    */   
+    public TestPlanDTO deleteCategoriesByLibraryIdAndId
+            (String libraryId, String id, TestPlanDTO dto) {
+        TestPlan domain = testPlanDtoMapping.toDomain(dto);
+        domain.setId(id);
+        TestPlan rt = testPlanService.deleteCategories(domain);
         return testPlanDtoMapping.toDto(rt);
     }
 
@@ -531,7 +609,7 @@ public abstract class AbstractTestPlanResource {
     public ResponseEntity<List<TestPlanDTO>> fetchDefault
             (@Validated @RequestBody TestPlanFilterDTO dto) {
         TestPlanSearchContext context = testPlanFilterDtoMapping.toDomain(dto);
-        Page<TestPlan> domains = testPlanService.searchDefault(context) ;
+        Page<TestPlan> domains = testPlanService.fetchDefault(context) ;
         List<TestPlanDTO> list = testPlanDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -552,7 +630,7 @@ public abstract class AbstractTestPlanResource {
     public ResponseEntity<List<TestPlanDTO>> fetchMyAssignee
             (@Validated @RequestBody TestPlanFilterDTO dto) {
         TestPlanSearchContext context = testPlanFilterDtoMapping.toDomain(dto);
-        Page<TestPlan> domains = testPlanService.searchMyAssignee(context) ;
+        Page<TestPlan> domains = testPlanService.fetchMyAssignee(context) ;
         List<TestPlanDTO> list = testPlanDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -573,7 +651,7 @@ public abstract class AbstractTestPlanResource {
     public ResponseEntity<List<TestPlanDTO>> fetchMyInProgress
             (@Validated @RequestBody TestPlanFilterDTO dto) {
         TestPlanSearchContext context = testPlanFilterDtoMapping.toDomain(dto);
-        Page<TestPlan> domains = testPlanService.searchMyInProgress(context) ;
+        Page<TestPlan> domains = testPlanService.fetchMyInProgress(context) ;
         List<TestPlanDTO> list = testPlanDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -594,7 +672,7 @@ public abstract class AbstractTestPlanResource {
     public ResponseEntity<List<TestPlanDTO>> fetchMyParticipate
             (@Validated @RequestBody TestPlanFilterDTO dto) {
         TestPlanSearchContext context = testPlanFilterDtoMapping.toDomain(dto);
-        Page<TestPlan> domains = testPlanService.searchMyParticipate(context) ;
+        Page<TestPlan> domains = testPlanService.fetchMyParticipate(context) ;
         List<TestPlanDTO> list = testPlanDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -616,7 +694,7 @@ public abstract class AbstractTestPlanResource {
     public ResponseEntity<List<TestPlanDTO>> fetchPendingAndInProgress
             (@Validated @RequestBody TestPlanFilterDTO dto) {
         TestPlanSearchContext context = testPlanFilterDtoMapping.toDomain(dto);
-        Page<TestPlan> domains = testPlanService.searchPendingAndInProgress(context) ;
+        Page<TestPlan> domains = testPlanService.fetchPendingAndInProgress(context) ;
         List<TestPlanDTO> list = testPlanDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -638,7 +716,7 @@ public abstract class AbstractTestPlanResource {
     public ResponseEntity<List<TestPlanDTO>> fetchQueryNoShiftIn
             (@Validated @RequestBody TestPlanFilterDTO dto) {
         TestPlanSearchContext context = testPlanFilterDtoMapping.toDomain(dto);
-        Page<TestPlan> domains = testPlanService.searchQueryNoShiftIn(context) ;
+        Page<TestPlan> domains = testPlanService.fetchQueryNoShiftIn(context) ;
         List<TestPlanDTO> list = testPlanDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -660,7 +738,7 @@ public abstract class AbstractTestPlanResource {
     public ResponseEntity<List<TestPlanDTO>> fetchUnJoinPlan
             (@Validated @RequestBody TestPlanFilterDTO dto) {
         TestPlanSearchContext context = testPlanFilterDtoMapping.toDomain(dto);
-        Page<TestPlan> domains = testPlanService.searchUnJoinPlan(context) ;
+        Page<TestPlan> domains = testPlanService.fetchUnJoinPlan(context) ;
         List<TestPlanDTO> list = testPlanDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -769,7 +847,7 @@ public abstract class AbstractTestPlanResource {
             (@PathVariable("libraryId") String libraryId, @Validated @RequestBody TestPlanFilterDTO dto) {
         dto.setLibraryIdEQ(libraryId);
         TestPlanSearchContext context = testPlanFilterDtoMapping.toDomain(dto);
-        Page<TestPlan> domains = testPlanService.searchDefault(context) ;
+        Page<TestPlan> domains = testPlanService.fetchDefault(context) ;
         List<TestPlanDTO> list = testPlanDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -792,7 +870,7 @@ public abstract class AbstractTestPlanResource {
             (@PathVariable("libraryId") String libraryId, @Validated @RequestBody TestPlanFilterDTO dto) {
         dto.setLibraryIdEQ(libraryId);
         TestPlanSearchContext context = testPlanFilterDtoMapping.toDomain(dto);
-        Page<TestPlan> domains = testPlanService.searchMyAssignee(context) ;
+        Page<TestPlan> domains = testPlanService.fetchMyAssignee(context) ;
         List<TestPlanDTO> list = testPlanDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -815,7 +893,7 @@ public abstract class AbstractTestPlanResource {
             (@PathVariable("libraryId") String libraryId, @Validated @RequestBody TestPlanFilterDTO dto) {
         dto.setLibraryIdEQ(libraryId);
         TestPlanSearchContext context = testPlanFilterDtoMapping.toDomain(dto);
-        Page<TestPlan> domains = testPlanService.searchMyInProgress(context) ;
+        Page<TestPlan> domains = testPlanService.fetchMyInProgress(context) ;
         List<TestPlanDTO> list = testPlanDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -838,7 +916,7 @@ public abstract class AbstractTestPlanResource {
             (@PathVariable("libraryId") String libraryId, @Validated @RequestBody TestPlanFilterDTO dto) {
         dto.setLibraryIdEQ(libraryId);
         TestPlanSearchContext context = testPlanFilterDtoMapping.toDomain(dto);
-        Page<TestPlan> domains = testPlanService.searchMyParticipate(context) ;
+        Page<TestPlan> domains = testPlanService.fetchMyParticipate(context) ;
         List<TestPlanDTO> list = testPlanDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -862,7 +940,7 @@ public abstract class AbstractTestPlanResource {
             (@PathVariable("libraryId") String libraryId, @Validated @RequestBody TestPlanFilterDTO dto) {
         dto.setLibraryIdEQ(libraryId);
         TestPlanSearchContext context = testPlanFilterDtoMapping.toDomain(dto);
-        Page<TestPlan> domains = testPlanService.searchPendingAndInProgress(context) ;
+        Page<TestPlan> domains = testPlanService.fetchPendingAndInProgress(context) ;
         List<TestPlanDTO> list = testPlanDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -886,7 +964,7 @@ public abstract class AbstractTestPlanResource {
             (@PathVariable("libraryId") String libraryId, @Validated @RequestBody TestPlanFilterDTO dto) {
         dto.setLibraryIdEQ(libraryId);
         TestPlanSearchContext context = testPlanFilterDtoMapping.toDomain(dto);
-        Page<TestPlan> domains = testPlanService.searchQueryNoShiftIn(context) ;
+        Page<TestPlan> domains = testPlanService.fetchQueryNoShiftIn(context) ;
         List<TestPlanDTO> list = testPlanDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -910,7 +988,7 @@ public abstract class AbstractTestPlanResource {
             (@PathVariable("libraryId") String libraryId, @Validated @RequestBody TestPlanFilterDTO dto) {
         dto.setLibraryIdEQ(libraryId);
         TestPlanSearchContext context = testPlanFilterDtoMapping.toDomain(dto);
-        Page<TestPlan> domains = testPlanService.searchUnJoinPlan(context) ;
+        Page<TestPlan> domains = testPlanService.fetchUnJoinPlan(context) ;
         List<TestPlanDTO> list = testPlanDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -929,7 +1007,7 @@ public abstract class AbstractTestPlanResource {
     @ApiOperation(value = "批量新建测试计划", tags = {"测试计划" },  notes = "批量新建测试计划")
 	@PostMapping("test_plans/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<TestPlanDTO> dtos) {
-        testPlanService.createBatch(testPlanDtoMapping.toDomain(dtos));
+        testPlanService.create(testPlanDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -942,7 +1020,7 @@ public abstract class AbstractTestPlanResource {
     @ApiOperation(value = "批量删除测试计划", tags = {"测试计划" },  notes = "批量删除测试计划")
 	@DeleteMapping("test_plans/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        testPlanService.removeBatch(ids);
+        testPlanService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -955,7 +1033,7 @@ public abstract class AbstractTestPlanResource {
     @ApiOperation(value = "批量更新测试计划", tags = {"测试计划" },  notes = "批量更新测试计划")
 	@PutMapping("test_plans/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<TestPlanDTO> dtos) {
-        testPlanService.updateBatch(testPlanDtoMapping.toDomain(dtos));
+        testPlanService.update(testPlanDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -968,7 +1046,7 @@ public abstract class AbstractTestPlanResource {
     @ApiOperation(value = "批量保存测试计划", tags = {"测试计划" },  notes = "批量保存测试计划")
 	@PostMapping("test_plans/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<TestPlanDTO> dtos) {
-        testPlanService.saveBatch(testPlanDtoMapping.toDomain(dtos));
+        testPlanService.save(testPlanDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

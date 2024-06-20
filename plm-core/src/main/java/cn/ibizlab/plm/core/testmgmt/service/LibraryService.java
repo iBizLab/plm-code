@@ -14,11 +14,14 @@ import cn.ibizlab.plm.core.testmgmt.domain.Library;
 import cn.ibizlab.plm.core.testmgmt.filter.LibrarySearchContext;
 import cn.ibizlab.plm.core.testmgmt.domain.LibraryMember;
 import cn.ibizlab.plm.core.testmgmt.domain.Review;
+import cn.ibizlab.plm.core.testmgmt.domain.ReviewWizard;
 import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
 import cn.ibizlab.plm.core.testmgmt.domain.TestCaseTemplate;
 import cn.ibizlab.plm.core.testmgmt.domain.TestPlan;
 import cn.ibizlab.plm.core.testmgmt.domain.TestSuite;
+import cn.ibizlab.plm.core.base.domain.Addon;
 import cn.ibizlab.plm.core.base.domain.Baseline;
+import cn.ibizlab.plm.core.testmgmt.domain.Guideline;
 import cn.ibizlab.plm.core.base.domain.ReferencesIndex;
 
 /**
@@ -38,89 +41,72 @@ public interface LibraryService extends IService<Library> {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    Library get(Library et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default Library get(String key) {
-        return getSelf().get(new Library().setId(key));
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<Library> getByIds(Collection<String> ids) {
-        List<Library> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Library().setId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<Library> getByEntities(List<Library> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    Library getDraft(Library et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(Library et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(Library et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<Library> list);
+    boolean create(List<Library> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * createTemp
+    * 
+    * @param et
+    * @return
+    */
+    default Library createTemp(Library et) {
+        return et;
+    }
+
+    /**
+    * createTempMajor
+    * 
+    * @param et
+    * @return
+    */
+    default Library createTempMajor(Library et) {
+        return et;
+    }
+
+    /**
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(Library et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<Library> list);
+    boolean update(List<Library> list);
 
     /**
-     * 保存
-     * @param et
-     * @return
-     */
-    @Override
-    boolean save(Library et);
+    * updateTemp
+    * 
+    * @param et
+    * @return
+    */
+    default Library updateTemp(Library et) {
+        return et;
+    }
+
     /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<Library> list);
+    * updateTempMajor
+    * 
+    * @param et
+    * @return
+    */
+    default Library updateTempMajor(Library et) {
+        return et;
+    }
 
     /**
      * 主键删除
@@ -130,14 +116,7 @@ public interface LibraryService extends IService<Library> {
     default boolean remove(String key) {
         return getSelf().remove(new Library().setId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -147,13 +126,13 @@ public interface LibraryService extends IService<Library> {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<Library> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Library().setId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new Library().setId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -161,7 +140,410 @@ public interface LibraryService extends IService<Library> {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<Library> entities);
+    boolean remove(List<Library> entities);
+
+    /**
+    * removeTemp
+    * 
+    * @param keys
+    * @return
+    */
+    default List<String> removeTemp(List<String> keys) {
+        return keys;
+    }
+
+    /**
+    * removeTempMajor
+    * 
+    * @param keys
+    * @return
+    */
+    default List<String> removeTempMajor(List<String> keys) {
+        return keys;
+    }
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default Library get(String key) {
+        return getSelf().get(new Library().setId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    Library get(Library et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<Library> get(Collection<String> keys) {
+        List<Library> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new Library().setId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<Library> get(List<Library> entities);
+
+    /**
+    * getTemp
+    * 
+    * @param key
+    * @return
+    */
+    default Library getTemp(String key) {
+        return null;
+    }
+
+    /**
+    * getTempMajor
+    * 
+    * @param key
+    * @return
+    */
+    default Library getTempMajor(String key) {
+        return null;
+    }
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    Library getDraft(Library et);
+
+    /**
+    * getDraftTemp
+    * 
+    * @param et
+    * @return
+    */
+    default Library getDraftTemp(Library et) {
+        return et;
+    }
+
+    /**
+    * getDraftTempMajor
+    * 
+    * @param et
+    * @return
+    */
+    default Library getDraftTempMajor(Library et) {
+        return et;
+    }
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(Library et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(Library et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<Library> list);
+
+    /**
+    * activate
+    * 
+    * @param et
+    * @return
+    */
+    default Library activate(Library et) {
+        return et;
+    }
+
+    /**
+    * archive
+    * 
+    * @param et
+    * @return
+    */
+    default Library archive(Library et) {
+        return et;
+    }
+
+    /**
+    * changeAdminRole
+    * 
+    * @param et
+    * @return
+    */
+    default Library changeAdminRole(Library et) {
+        return et;
+    }
+
+    /**
+    * delete
+    * 
+    * @param et
+    * @return
+    */
+    default Library delete(Library et) {
+        return et;
+    }
+
+    /**
+    * favorite
+    * 
+    * @param et
+    * @return
+    */
+    default Library favorite(Library et) {
+        return et;
+    }
+
+    /**
+    * libraryIndexAddonCounter
+    * 
+    * @param et
+    * @return
+    */
+    default Library libraryIndexAddonCounter(Library et) {
+        return et;
+    }
+
+    /**
+    * moveLibrary
+    * 
+    * @param et
+    * @return
+    */
+    default Library moveLibrary(Library et) {
+        return et;
+    }
+
+    /**
+    * nothing
+    * 
+    * @param et
+    * @return
+    */
+    default Library nothing(Library et) {
+        return et;
+    }
+
+    /**
+    * recover
+    * 
+    * @param et
+    * @return
+    */
+    default Library recover(Library et) {
+        return et;
+    }
+
+    /**
+    * unFavorite
+    * 
+    * @param et
+    * @return
+    */
+    default Library unFavorite(Library et) {
+        return et;
+    }
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<Library> fetchDefault(LibrarySearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<Library> listDefault(LibrarySearchContext context);
+
+    /**
+    * fetchAdmin
+    * 
+    * @param context
+    * @return
+    */
+    Page<Library> fetchAdmin(LibrarySearchContext context);
+
+    /**
+    * listAdmin
+    * 
+    * @param context
+    * @return
+    */
+    List<Library> listAdmin(LibrarySearchContext context);
+
+    /**
+    * fetchArchived
+    * 
+    * @param context
+    * @return
+    */
+    Page<Library> fetchArchived(LibrarySearchContext context);
+
+    /**
+    * listArchived
+    * 
+    * @param context
+    * @return
+    */
+    List<Library> listArchived(LibrarySearchContext context);
+
+    /**
+    * fetchDeleted
+    * 
+    * @param context
+    * @return
+    */
+    Page<Library> fetchDeleted(LibrarySearchContext context);
+
+    /**
+    * listDeleted
+    * 
+    * @param context
+    * @return
+    */
+    List<Library> listDeleted(LibrarySearchContext context);
+
+    /**
+    * fetchFavorite
+    * 
+    * @param context
+    * @return
+    */
+    Page<Library> fetchFavorite(LibrarySearchContext context);
+
+    /**
+    * listFavorite
+    * 
+    * @param context
+    * @return
+    */
+    List<Library> listFavorite(LibrarySearchContext context);
+
+    /**
+    * fetchMain
+    * 
+    * @param context
+    * @return
+    */
+    Page<Library> fetchMain(LibrarySearchContext context);
+
+    /**
+    * listMain
+    * 
+    * @param context
+    * @return
+    */
+    List<Library> listMain(LibrarySearchContext context);
+
+    /**
+    * fetchNormal
+    * 
+    * @param context
+    * @return
+    */
+    Page<Library> fetchNormal(LibrarySearchContext context);
+
+    /**
+    * listNormal
+    * 
+    * @param context
+    * @return
+    */
+    List<Library> listNormal(LibrarySearchContext context);
+
+    /**
+    * fetchProjectRelationLibrary
+    * 
+    * @param context
+    * @return
+    */
+    Page<Library> fetchProjectRelationLibrary(LibrarySearchContext context);
+
+    /**
+    * listProjectRelationLibrary
+    * 
+    * @param context
+    * @return
+    */
+    List<Library> listProjectRelationLibrary(LibrarySearchContext context);
+
+    /**
+    * fetchQuickUser
+    * 
+    * @param context
+    * @return
+    */
+    Page<Library> fetchQuickUser(LibrarySearchContext context);
+
+    /**
+    * listQuickUser
+    * 
+    * @param context
+    * @return
+    */
+    List<Library> listQuickUser(LibrarySearchContext context);
+
+    /**
+    * fetchReader
+    * 
+    * @param context
+    * @return
+    */
+    Page<Library> fetchReader(LibrarySearchContext context);
+
+    /**
+    * listReader
+    * 
+    * @param context
+    * @return
+    */
+    List<Library> listReader(LibrarySearchContext context);
+
+    /**
+    * fetchUser
+    * 
+    * @param context
+    * @return
+    */
+    Page<Library> fetchUser(LibrarySearchContext context);
+
+    /**
+    * listUser
+    * 
+    * @param context
+    * @return
+    */
+    List<Library> listUser(LibrarySearchContext context);
+
+    default List<LibraryMember> getMembers(Library et) {
+        return new ArrayList<>();
+    }
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<Library> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -178,302 +560,7 @@ public interface LibraryService extends IService<Library> {
         }
         return rt;
     }
-
-    /**
-     * CreateTemp
-     * 
-     * @param dto
-     * @return
-     */
-    default Library createTemp(Library dto) {
-        return dto;
-    }
-
-    /**
-     * CreateTempMajor
-     * 
-     * @param dto
-     * @return
-     */
-    default Library createTempMajor(Library dto) {
-        return dto;
-    }
-
-    /**
-     * UpdateTemp
-     * 
-     * @param dto
-     * @return
-     */
-    default Library updateTemp(Library dto) {
-        return dto;
-    }
-
-    /**
-     * UpdateTempMajor
-     * 
-     * @param dto
-     * @return
-     */
-    default Library updateTempMajor(Library dto) {
-        return dto;
-    }
-
-    /**
-     * RemoveTemp
-     * 
-     * @param keys
-     * @return
-     */
-    default List<String> removeTemp(List<String> keys) {
-        return keys;
-    }
-
-    /**
-     * RemoveTempMajor
-     * 
-     * @param keys
-     * @return
-     */
-    default List<String> removeTempMajor(List<String> keys) {
-        return keys;
-    }
-
-    /**
-     * GetTemp
-     * 
-     * @param key
-     * @return
-     */
-    default Library getTemp(String key) {
-        return null;
-    }
-
-    /**
-     * GetTempMajor
-     * 
-     * @param key
-     * @return
-     */
-    default Library getTempMajor(String key) {
-        return null;
-    }
-
-    /**
-     * GetDraftTemp
-     * 
-     * @param dto
-     * @return
-     */
-    default Library getDraftTemp(Library dto) {
-        return dto;
-    }
-
-    /**
-     * GetDraftTempMajor
-     * 
-     * @param dto
-     * @return
-     */
-    default Library getDraftTempMajor(Library dto) {
-        return dto;
-    }
-
-    /**
-     * activate
-     * 
-     * @param dto
-     * @return
-     */
-    default Library activate(Library dto) {
-        return dto;
-    }
-
-    /**
-     * archive
-     * 
-     * @param dto
-     * @return
-     */
-    default Library archive(Library dto) {
-        return dto;
-    }
-
-    /**
-     * delete
-     * 
-     * @param dto
-     * @return
-     */
-    default Library delete(Library dto) {
-        return dto;
-    }
-
-    /**
-     * favorite
-     * 
-     * @param dto
-     * @return
-     */
-    default Library favorite(Library dto) {
-        return dto;
-    }
-
-    /**
-     * recover
-     * 
-     * @param dto
-     * @return
-     */
-    default Library recover(Library dto) {
-        return dto;
-    }
-
-    /**
-     * un_favorite
-     * 
-     * @param dto
-     * @return
-     */
-    default Library unFavorite(Library dto) {
-        return dto;
-    }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<Library> searchDefault(LibrarySearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<Library> listDefault(LibrarySearchContext context);
-
-    /**
-     * searchadmin
-     * 
-     * @param context
-     * @return
-     */
-    Page<Library> searchAdmin(LibrarySearchContext context);
-    /**
-     * listadmin
-     * 
-     * @param context
-     * @return
-     */
-    List<Library> listAdmin(LibrarySearchContext context);
-
-    /**
-     * searcharchived
-     * 
-     * @param context
-     * @return
-     */
-    Page<Library> searchArchived(LibrarySearchContext context);
-    /**
-     * listarchived
-     * 
-     * @param context
-     * @return
-     */
-    List<Library> listArchived(LibrarySearchContext context);
-
-    /**
-     * searchdeleted
-     * 
-     * @param context
-     * @return
-     */
-    Page<Library> searchDeleted(LibrarySearchContext context);
-    /**
-     * listdeleted
-     * 
-     * @param context
-     * @return
-     */
-    List<Library> listDeleted(LibrarySearchContext context);
-
-    /**
-     * searchfavorite
-     * 
-     * @param context
-     * @return
-     */
-    Page<Library> searchFavorite(LibrarySearchContext context);
-    /**
-     * listfavorite
-     * 
-     * @param context
-     * @return
-     */
-    List<Library> listFavorite(LibrarySearchContext context);
-
-    /**
-     * searchnormal
-     * 
-     * @param context
-     * @return
-     */
-    Page<Library> searchNormal(LibrarySearchContext context);
-    /**
-     * listnormal
-     * 
-     * @param context
-     * @return
-     */
-    List<Library> listNormal(LibrarySearchContext context);
-
-    /**
-     * searchproject_relation_library
-     * 通过测试计划中进行关联项目展示测试库
-     * @param context
-     * @return
-     */
-    Page<Library> searchProjectRelationLibrary(LibrarySearchContext context);
-    /**
-     * listproject_relation_library
-     * 通过测试计划中进行关联项目展示测试库
-     * @param context
-     * @return
-     */
-    List<Library> listProjectRelationLibrary(LibrarySearchContext context);
-
-    /**
-     * searchreader
-     * 
-     * @param context
-     * @return
-     */
-    Page<Library> searchReader(LibrarySearchContext context);
-    /**
-     * listreader
-     * 
-     * @param context
-     * @return
-     */
-    List<Library> listReader(LibrarySearchContext context);
-
-    /**
-     * searchuser
-     * 
-     * @param context
-     * @return
-     */
-    Page<Library> searchUser(LibrarySearchContext context);
-    /**
-     * listuser
-     * 
-     * @param context
-     * @return
-     */
-    List<Library> listUser(LibrarySearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -481,6 +568,7 @@ public interface LibraryService extends IService<Library> {
     default Library getEntity() {
         return new Library();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -488,25 +576,13 @@ public interface LibraryService extends IService<Library> {
     default LibrarySearchContext getSearchContext() {
         return new LibrarySearchContext();
     }
-    default List<LibraryMember> getMembers(Library et) {
-        return new ArrayList<>();
-    }
 
 
     /**
-     * 自定义查询SQL
-     * @param sql  select * from table where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
-    List<JSONObject> select(String sql, Map<String,Object> param);
-
-    /**
-     * 自定义SQL
-     * @param sql  update table  set name ='test' where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
+    * 自定义SQL
+    * @param sql  update table  set name ='test' where id =#{et.param}
+    * @param param 参数列表  param.put("param","1");
+    * @return
+    */
     boolean execute(String sql, Map<String,Object> param);
-
 }

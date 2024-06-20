@@ -38,163 +38,163 @@ public class ExtendStorage extends EntityMP implements Serializable
 {
 
     /**
-     * 所属数据标识
-     */
+    * 所属数据标识
+    */
     @TableField(value = "owner_id")
     @DEField(name = "owner_id" , preType = DEPredefinedFieldType.PARENTID)
-    @JsonProperty("owner_id")
     @JSONField(name = "owner_id")
+    @JsonProperty("owner_id")
     @ApiModelProperty(value = "owner_id", notes = "所属数据标识")
     private String ownerId;
 
     /**
-     * 所属数据对象
-     */
+    * 所属数据对象
+    */
     @TableField(value = "owner_type")
     @DEField(name = "owner_type" , preType = DEPredefinedFieldType.PARENTTYPE)
-    @JsonProperty("owner_type")
     @JSONField(name = "owner_type")
+    @JsonProperty("owner_type")
     @ApiModelProperty(value = "owner_type", notes = "所属数据对象")
     private String ownerType;
 
     /**
-     * 文本值
-     */
+    * 文本值
+    */
     @TableField(value = "string_value")
     @DEField(name = "string_value")
-    @JsonProperty("string_value")
     @JSONField(name = "string_value")
+    @JsonProperty("string_value")
     @ApiModelProperty(value = "string_value", notes = "文本值")
     private String stringValue;
 
     /**
-     * 长文本值
-     */
+    * 长文本值
+    */
     @TableField(value = "longstring_value")
     @DEField(name = "longstring_value")
-    @JsonProperty("longstring_value")
     @JSONField(name = "longstring_value")
+    @JsonProperty("longstring_value")
     @ApiModelProperty(value = "longstring_value", notes = "长文本值")
     private String longstringValue;
 
     /**
-     * 浮点值
-     */
+    * 浮点值
+    */
     @TableField(value = "double_value")
     @DEField(name = "double_value")
-    @JsonProperty("double_value")
     @JSONField(name = "double_value")
+    @JsonProperty("double_value")
     @ApiModelProperty(value = "double_value", notes = "浮点值")
     private BigDecimal doubleValue;
 
     /**
-     * 时间值
-     */
+    * 时间值
+    */
     @TableField(value = "datetime_value")
     @DEField(name = "datetime_value")
-    @JsonProperty("datetime_value")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "datetime_value" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("datetime_value")
     @ApiModelProperty(value = "datetime_value", notes = "时间值")
     private Date datetimeValue;
 
     /**
-     * 数值值
-     */
+    * 数值值
+    */
     @TableField(value = "decimal_value")
     @DEField(name = "decimal_value")
-    @JsonProperty("decimal_value")
     @JSONField(name = "decimal_value")
+    @JsonProperty("decimal_value")
     @ApiModelProperty(value = "decimal_value", notes = "数值值")
     private BigDecimal decimalValue;
 
     /**
-     * 整形值
-     */
+    * 整形值
+    */
     @TableField(value = "int_value")
     @DEField(name = "int_value")
-    @JsonProperty("int_value")
     @JSONField(name = "int_value")
+    @JsonProperty("int_value")
     @ApiModelProperty(value = "int_value", notes = "整形值")
     private Integer intValue;
 
     /**
-     * 大整形值
-     */
+    * 大整形值
+    */
     @TableField(value = "bigint_value")
     @DEField(name = "bigint_value")
-    @JsonProperty("bigint_value")
     @JSONField(name = "bigint_value")
+    @JsonProperty("bigint_value")
     @JsonSerialize(using = ToStringSerializer.class)
     @ApiModelProperty(value = "bigint_value", notes = "大整形值")
     private Long bigintValue;
 
     /**
-     * 标识
-     */
+    * 标识
+    */
     @Id
     @TableId(value = "id" , type = IdType.ASSIGN_UUID)
     @DEField(name = "id" , isKeyField = true)
-    @JsonProperty("id")
     @JSONField(name = "id")
+    @JsonProperty("id")
     @ApiModelProperty(value = "id", notes = "标识")
     private String id;
 
     /**
-     * 名称
-     */
+    * 名称
+    */
     @TableField(value = "name")
     @DEField(name = "name")
-    @JsonProperty("name")
     @JSONField(name = "name")
+    @JsonProperty("name")
     @ApiModelProperty(value = "name", notes = "名称")
     private String name;
 
     /**
-     * 更新人
-     */
-    @TableField(value = "update_man")
-    @DEField(name = "update_man" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
-    @JsonProperty("update_man")
-    @JSONField(name = "update_man")
-    @ApiModelProperty(value = "update_man", notes = "更新人")
-    private String updateMan;
-
-    /**
-     * 更新时间
-     */
-    @TableField(value = "update_time")
-    @DEField(name = "update_time" , preType = DEPredefinedFieldType.UPDATEDATE)
-    @JsonProperty("update_time")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "update_time", notes = "更新时间")
-    private Date updateTime;
-
-    /**
-     * 建立人
-     */
+    * 建立人
+    */
     @TableField(value = "create_man" , fill = FieldFill.INSERT)
     @DEField(name = "create_man" , preType = DEPredefinedFieldType.CREATEMAN , dict = "SysOperator")
-    @JsonProperty("create_man")
     @JSONField(name = "create_man")
+    @JsonProperty("create_man")
     @ApiModelProperty(value = "create_man", notes = "建立人")
     private String createMan;
 
     /**
-     * 建立时间
-     */
+    * 建立时间
+    */
     @TableField(value = "create_time" , fill = FieldFill.INSERT)
     @DEField(name = "create_time" , preType = DEPredefinedFieldType.CREATEDATE)
-    @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("create_time")
     @ApiModelProperty(value = "create_time", notes = "建立时间")
     private Date createTime;
 
     /**
-     * 设置 [文本值]
-     */
+    * 更新人
+    */
+    @TableField(value = "update_man")
+    @DEField(name = "update_man" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
+    @JSONField(name = "update_man")
+    @JsonProperty("update_man")
+    @ApiModelProperty(value = "update_man", notes = "更新人")
+    private String updateMan;
+
+    /**
+    * 更新时间
+    */
+    @TableField(value = "update_time")
+    @DEField(name = "update_time" , preType = DEPredefinedFieldType.UPDATEDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("update_time")
+    @ApiModelProperty(value = "update_time", notes = "更新时间")
+    private Date updateTime;
+
+    /**
+    * 设置 [文本值]
+    */
     public ExtendStorage setStringValue(String stringValue) {
         this.stringValue = stringValue;
         this.modify("string_value", stringValue);
@@ -202,8 +202,8 @@ public class ExtendStorage extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [长文本值]
-     */
+    * 设置 [长文本值]
+    */
     public ExtendStorage setLongstringValue(String longstringValue) {
         this.longstringValue = longstringValue;
         this.modify("longstring_value", longstringValue);
@@ -211,8 +211,8 @@ public class ExtendStorage extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [浮点值]
-     */
+    * 设置 [浮点值]
+    */
     public ExtendStorage setDoubleValue(BigDecimal doubleValue) {
         this.doubleValue = doubleValue;
         this.modify("double_value", doubleValue);
@@ -220,8 +220,8 @@ public class ExtendStorage extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [时间值]
-     */
+    * 设置 [时间值]
+    */
     public ExtendStorage setDatetimeValue(Date datetimeValue) {
         this.datetimeValue = datetimeValue;
         this.modify("datetime_value", datetimeValue);
@@ -229,8 +229,8 @@ public class ExtendStorage extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [数值值]
-     */
+    * 设置 [数值值]
+    */
     public ExtendStorage setDecimalValue(BigDecimal decimalValue) {
         this.decimalValue = decimalValue;
         this.modify("decimal_value", decimalValue);
@@ -238,8 +238,8 @@ public class ExtendStorage extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [整形值]
-     */
+    * 设置 [整形值]
+    */
     public ExtendStorage setIntValue(Integer intValue) {
         this.intValue = intValue;
         this.modify("int_value", intValue);
@@ -247,8 +247,8 @@ public class ExtendStorage extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [大整形值]
-     */
+    * 设置 [大整形值]
+    */
     public ExtendStorage setBigintValue(Long bigintValue) {
         this.bigintValue = bigintValue;
         this.modify("bigint_value", bigintValue);
@@ -256,8 +256,8 @@ public class ExtendStorage extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [名称]
-     */
+    * 设置 [名称]
+    */
     public ExtendStorage setName(String name) {
         this.name = name;
         this.modify("name", name);
@@ -272,9 +272,10 @@ public class ExtendStorage extends EntityMP implements Serializable
         //Assert.notNull(getName(),"未设置名称");
         String key = String.format("%s||%s||%s"
             ,getOwnerType(),getOwnerId(),getName());
-        key = DigestUtils.md5DigestAsHex(key.getBytes());    
+        key = DigestUtils.md5DigestAsHex(key.getBytes());
         return key;
     }
+
 
     /**
      * 复制当前对象数据到目标对象(粘贴重置)

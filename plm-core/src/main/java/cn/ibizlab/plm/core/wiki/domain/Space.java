@@ -24,7 +24,8 @@ import cn.ibizlab.plm.core.base.domain.Category;
 import cn.ibizlab.plm.core.wiki.domain.ArticlePage;
 import cn.ibizlab.plm.core.wiki.domain.SpaceMember;
 import cn.ibizlab.plm.core.wiki.domain.Stencil;
-import cn.ibizlab.plm.core.wiki.domain.SpaceMember;
+import cn.ibizlab.plm.core.base.domain.Addon;
+import cn.ibizlab.plm.core.base.domain.Baseline;
 
 /**
  * 空间实体类[Space]
@@ -42,201 +43,202 @@ public class Space extends EntityMP implements Serializable
 {
 
     /**
-     * 空间标识
-     */
+    * 空间标识
+    */
     @TableField(value = "identifier")
     @DEField(name = "identifier" , dupCheck = DupCheck.ALL)
-    @JsonProperty("identifier")
     @JSONField(name = "identifier")
+    @JsonProperty("identifier")
     @ApiModelProperty(value = "identifier", notes = "空间标识")
     private String identifier;
 
     /**
-     * 可见范围
-     */
+    * 可见范围
+    */
     @TableField(value = "visibility")
     @DEField(name = "visibility" , dict = "visibility")
-    @JsonProperty("visibility")
     @JSONField(name = "visibility")
+    @JsonProperty("visibility")
     @ApiModelProperty(value = "visibility", notes = "可见范围")
     private String visibility;
 
     /**
-     * 描述
-     */
+    * 描述
+    */
     @TableField(value = "description")
     @DEField(name = "description")
-    @JsonProperty("description")
     @JSONField(name = "description")
+    @JsonProperty("description")
     @ApiModelProperty(value = "description", notes = "描述")
     private String description;
 
     /**
-     * 是否已归档
-     */
+    * 是否已归档
+    */
     @TableField(value = "is_archived")
     @DEField(name = "is_archived" , defaultValue = "0" , dict = "YesNo")
-    @JsonProperty("is_archived")
     @JSONField(name = "is_archived")
+    @JsonProperty("is_archived")
     @ApiModelProperty(value = "is_archived", notes = "是否已归档")
     private Integer isArchived;
 
     /**
-     * 是否已删除
-     */
+    * 是否已删除
+    */
     @TableField(value = "is_deleted")
     @DEField(name = "is_deleted" , defaultValue = "0" , dict = "YesNo")
-    @JsonProperty("is_deleted")
     @JSONField(name = "is_deleted")
+    @JsonProperty("is_deleted")
     @ApiModelProperty(value = "is_deleted", notes = "是否已删除")
     private Integer isDeleted;
 
     /**
-     * 是否星标
-     */
+    * 是否星标
+    */
     @TableField(value = "is_favorite" , exist = false)
     @DEField(name = "is_favorite" , dict = "YesNo")
-    @JsonProperty("is_favorite")
     @JSONField(name = "is_favorite")
+    @JsonProperty("is_favorite")
     @ApiModelProperty(value = "is_favorite", notes = "是否星标")
     private String isFavorite;
 
     /**
-     * 分类路径
-     */
+    * 分类路径
+    */
     @TableField(value = "categories" , exist = false)
     @DEField(name = "categories")
-    @JsonProperty("categories")
     @JSONField(name = "categories")
+    @JsonProperty("categories")
     @ApiModelProperty(value = "categories", notes = "分类路径")
     private String categories;
 
     /**
-     * 所属
-     */
+    * 所属
+    */
     @TableField(value = "scope_type")
-    @DEField(name = "scope_type" , dict = "space_scope_type")
-    @JsonProperty("scope_type")
+    @DEField(name = "scope_type" , dict = "user_scope_type")
     @JSONField(name = "scope_type")
+    @JsonProperty("scope_type")
     @ApiModelProperty(value = "scope_type", notes = "所属")
     private String scopeType;
 
     /**
-     * 所属对象
-     */
+    * 所属对象
+    */
     @TableField(value = "scope_id")
     @DEField(name = "scope_id")
-    @JsonProperty("scope_id")
     @JSONField(name = "scope_id")
+    @JsonProperty("scope_id")
     @ApiModelProperty(value = "scope_id", notes = "所属对象")
     private String scopeId;
 
     /**
-     * 成员
-     */
+    * 成员
+    */
+    @Transient
     @TableField(exist = false)
     @DEField(name = "members")
-    @JsonProperty("members")
     @JSONField(name = "members")
+    @JsonProperty("members")
     @ApiModelProperty(value = "members", notes = "成员")
     private List<SpaceMember> members;
 
     /**
-     * 空间名称
-     */
-    @TableField(value = "name")
-    @DEField(name = "name")
-    @JsonProperty("name")
-    @JSONField(name = "name")
-    @ApiModelProperty(value = "name", notes = "空间名称")
-    private String name;
-
-    /**
-     * 标识
-     */
+    * 标识
+    */
     @Id
     @TableId(value = "id" , type = IdType.ASSIGN_UUID)
     @DEField(name = "id" , isKeyField = true)
-    @JsonProperty("id")
     @JSONField(name = "id")
+    @JsonProperty("id")
     @ApiModelProperty(value = "id", notes = "标识")
     private String id;
 
     /**
-     * 建立时间
-     */
-    @TableField(value = "create_time" , fill = FieldFill.INSERT)
-    @DEField(name = "create_time" , preType = DEPredefinedFieldType.CREATEDATE)
-    @JsonProperty("create_time")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "create_time", notes = "建立时间")
-    private Date createTime;
+    * 空间名称
+    */
+    @TableField(value = "name")
+    @DEField(name = "name")
+    @JSONField(name = "name")
+    @JsonProperty("name")
+    @ApiModelProperty(value = "name", notes = "空间名称")
+    private String name;
 
     /**
-     * 更新人
-     */
-    @TableField(value = "update_man")
-    @DEField(name = "update_man" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
-    @JsonProperty("update_man")
-    @JSONField(name = "update_man")
-    @ApiModelProperty(value = "update_man", notes = "更新人")
-    private String updateMan;
-
-    /**
-     * 更新时间
-     */
-    @TableField(value = "update_time")
-    @DEField(name = "update_time" , preType = DEPredefinedFieldType.UPDATEDATE)
-    @JsonProperty("update_time")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "update_time", notes = "更新时间")
-    private Date updateTime;
-
-    /**
-     * 建立人
-     */
+    * 建立人
+    */
     @TableField(value = "create_man" , fill = FieldFill.INSERT)
     @DEField(name = "create_man" , preType = DEPredefinedFieldType.CREATEMAN , dict = "SysOperator")
-    @JsonProperty("create_man")
     @JSONField(name = "create_man")
+    @JsonProperty("create_man")
     @ApiModelProperty(value = "create_man", notes = "建立人")
     private String createMan;
 
     /**
-     * 分类
-     */
+    * 建立时间
+    */
+    @TableField(value = "create_time" , fill = FieldFill.INSERT)
+    @DEField(name = "create_time" , preType = DEPredefinedFieldType.CREATEDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("create_time")
+    @ApiModelProperty(value = "create_time", notes = "建立时间")
+    private Date createTime;
+
+    /**
+    * 更新人
+    */
+    @TableField(value = "update_man")
+    @DEField(name = "update_man" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
+    @JSONField(name = "update_man")
+    @JsonProperty("update_man")
+    @ApiModelProperty(value = "update_man", notes = "更新人")
+    private String updateMan;
+
+    /**
+    * 更新时间
+    */
+    @TableField(value = "update_time")
+    @DEField(name = "update_time" , preType = DEPredefinedFieldType.UPDATEDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("update_time")
+    @ApiModelProperty(value = "update_time", notes = "更新时间")
+    private Date updateTime;
+
+    /**
+    * 分类
+    */
     @TableField(value = "category_id")
     @DEField(name = "category_id")
-    @JsonProperty("category_id")
     @JSONField(name = "category_id")
+    @JsonProperty("category_id")
     @ApiModelProperty(value = "category_id", notes = "分类")
     private String categoryId;
 
     /**
-     * 分类
-     */
+    * 分类
+    */
     @TableField(value = "category_name" , exist = false)
     @DEField(name = "category_name")
-    @JsonProperty("category_name")
     @JSONField(name = "category_name")
+    @JsonProperty("category_name")
     @ApiModelProperty(value = "category_name", notes = "分类")
     private String categoryName;
 
     /**
-     * 类别
-     */
+    * 分类
+    */
+    @Transient
+    @TableField(exist = false)
     @JsonIgnore
     @JSONField(serialize = false)
-    @TableField(exist = false)
-    @Transient
     @ApiModelProperty(value = "category", notes = "分类")
     private Category category;
 
     /**
-     * 设置 [空间标识]
-     */
+    * 设置 [空间标识]
+    */
     public Space setIdentifier(String identifier) {
         this.identifier = identifier;
         this.modify("identifier", identifier);
@@ -244,8 +246,8 @@ public class Space extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [可见范围]
-     */
+    * 设置 [可见范围]
+    */
     public Space setVisibility(String visibility) {
         this.visibility = visibility;
         this.modify("visibility", visibility);
@@ -253,8 +255,8 @@ public class Space extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [描述]
-     */
+    * 设置 [描述]
+    */
     public Space setDescription(String description) {
         this.description = description;
         this.modify("description", description);
@@ -262,8 +264,8 @@ public class Space extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [是否已归档]
-     */
+    * 设置 [是否已归档]
+    */
     public Space setIsArchived(Integer isArchived) {
         this.isArchived = isArchived;
         this.modify("is_archived", isArchived);
@@ -271,8 +273,8 @@ public class Space extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [是否已删除]
-     */
+    * 设置 [是否已删除]
+    */
     public Space setIsDeleted(Integer isDeleted) {
         this.isDeleted = isDeleted;
         this.modify("is_deleted", isDeleted);
@@ -280,8 +282,8 @@ public class Space extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [是否星标]
-     */
+    * 设置 [是否星标]
+    */
     public Space setIsFavorite(String isFavorite) {
         this.isFavorite = isFavorite;
         this.modify("is_favorite", isFavorite);
@@ -289,8 +291,8 @@ public class Space extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [分类路径]
-     */
+    * 设置 [分类路径]
+    */
     public Space setCategories(String categories) {
         this.categories = categories;
         this.modify("categories", categories);
@@ -298,8 +300,8 @@ public class Space extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [所属]
-     */
+    * 设置 [所属]
+    */
     public Space setScopeType(String scopeType) {
         this.scopeType = scopeType;
         this.modify("scope_type", scopeType);
@@ -307,8 +309,8 @@ public class Space extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [所属对象]
-     */
+    * 设置 [所属对象]
+    */
     public Space setScopeId(String scopeId) {
         this.scopeId = scopeId;
         this.modify("scope_id", scopeId);
@@ -316,8 +318,8 @@ public class Space extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [成员]
-     */
+    * 设置 [成员]
+    */
     public Space setMembers(List<SpaceMember> members) {
         this.members = members;
         this.modify("members", members);
@@ -325,8 +327,8 @@ public class Space extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [空间名称]
-     */
+    * 设置 [空间名称]
+    */
     public Space setName(String name) {
         this.name = name;
         this.modify("name", name);
@@ -334,8 +336,8 @@ public class Space extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [分类]
-     */
+    * 设置 [分类]
+    */
     public Space setCategoryId(String categoryId) {
         this.categoryId = categoryId;
         this.modify("category_id", categoryId);
@@ -343,13 +345,14 @@ public class Space extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [分类]
-     */
+    * 设置 [分类]
+    */
     public Space setCategoryName(String categoryName) {
         this.categoryName = categoryName;
         this.modify("category_name", categoryName);
         return this;
     }
+
 
     /**
      * 复制当前对象数据到目标对象(粘贴重置)

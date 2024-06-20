@@ -43,6 +43,14 @@ public interface StageMapper extends BaseMapper<Stage> {
     List<Stage> listDefault(@Param("ctx") StageSearchContext context, @Param("ew") Wrapper<Stage> wrapper);
 
     /**
+    * 根据releaseId查询
+    *
+    * @param releaseIds
+    * @return
+    */
+    List<Stage> findByReleaseId(@Param("releaseIds") List<String> releaseIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -151,13 +159,4 @@ public interface StageMapper extends BaseMapper<Stage> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据releaseId查询
-     *
-     * @param releaseIds
-     * @return
-     */
-    List<Stage> findByReleaseId(@Param("releaseIds") List<String> releaseIds);
-
 }

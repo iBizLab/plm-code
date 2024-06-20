@@ -11,10 +11,10 @@
 		<result property="targetId" column="target_id" />
 		<result property="targetVersionId" column="target_version_id" />
 		<result property="curVersionId" column="cur_version_id" />
-		<result property="updateTime" column="update_time" />
-		<result property="updateMan" column="update_man" />
 		<result property="createMan" column="create_man" />
 		<result property="createTime" column="create_time" />
+		<result property="updateMan" column="update_man" />
+		<result property="updateTime" column="update_time" />
         <association property="baselinePrincipalIdea" javaType="cn.ibizlab.plm.core.base.domain.Baseline" column="principal_id" select="cn.ibizlab.plm.core.base.mapper.BaselineMapper.selectById" fetchType="lazy"></association>
         <association property="targetVersion" javaType="cn.ibizlab.plm.core.base.domain.Version" column="target_version_id" select="cn.ibizlab.plm.core.base.mapper.VersionMapper.selectById" fetchType="lazy"></association>
     </resultMap>
@@ -47,6 +47,10 @@
          <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1   ]]>  
     </sql>
 
+    <sql id="baselineRelationVersion" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1   ]]>  where  <![CDATA[ ( t1.`TARGET_ID` = #{ctx.webcontext.idea}  AND  t1.`TARGET_TYPE` = 'idea'  AND  t1.`PRINCIPAL_TYPE` = 'baseline' ) ]]> 
+    </sql>
+
     <sql id="fillVersionData" databaseId="mysql">
          <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1   ]]>  where  <![CDATA[ ( t1.`PRINCIPAL_TYPE` = 'baseline'  AND  t1.`TARGET_TYPE` = 'idea'  AND  t1.`PRINCIPAL_ID` = #{ctx.webcontext.baseline} ) ]]> 
     </sql>
@@ -66,6 +70,27 @@
         select t1.*
         from (
             <include refid="default"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchBaselineRelationVersion"  parameterType="cn.ibizlab.plm.core.prodmgmt.filter.BaselineIdeaSearchContext"  resultMap="BaselineIdeaResultMap">
+        select t1.* 
+        from (
+            <include refid="baselineRelationVersion"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listBaselineRelationVersion"  parameterType="cn.ibizlab.plm.core.prodmgmt.filter.BaselineIdeaSearchContext"  resultMap="BaselineIdeaResultMap">
+        select t1.*
+        from (
+            <include refid="baselineRelationVersion"/>
         ) t1
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>

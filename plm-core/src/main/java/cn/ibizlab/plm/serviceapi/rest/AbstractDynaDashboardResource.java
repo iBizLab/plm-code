@@ -238,7 +238,7 @@ public abstract class AbstractDynaDashboardResource {
     public ResponseEntity<List<DynaDashboardDTO>> fetchDefault
             (@Validated @RequestBody DynaDashboardFilterDTO dto) {
         DynaDashboardSearchContext context = dynaDashboardFilterDtoMapping.toDomain(dto);
-        Page<DynaDashboard> domains = dynaDashboardService.searchDefault(context) ;
+        Page<DynaDashboard> domains = dynaDashboardService.fetchDefault(context) ;
         List<DynaDashboardDTO> list = dynaDashboardDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -257,7 +257,7 @@ public abstract class AbstractDynaDashboardResource {
     @ApiOperation(value = "批量新建动态数据看板", tags = {"动态数据看板" },  notes = "批量新建动态数据看板")
 	@PostMapping("dyna_dashboards/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<DynaDashboardDTO> dtos) {
-        dynaDashboardService.createBatch(dynaDashboardDtoMapping.toDomain(dtos));
+        dynaDashboardService.create(dynaDashboardDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -270,7 +270,7 @@ public abstract class AbstractDynaDashboardResource {
     @ApiOperation(value = "批量删除动态数据看板", tags = {"动态数据看板" },  notes = "批量删除动态数据看板")
 	@DeleteMapping("dyna_dashboards/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        dynaDashboardService.removeBatch(ids);
+        dynaDashboardService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -283,7 +283,7 @@ public abstract class AbstractDynaDashboardResource {
     @ApiOperation(value = "批量更新动态数据看板", tags = {"动态数据看板" },  notes = "批量更新动态数据看板")
 	@PutMapping("dyna_dashboards/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<DynaDashboardDTO> dtos) {
-        dynaDashboardService.updateBatch(dynaDashboardDtoMapping.toDomain(dtos));
+        dynaDashboardService.update(dynaDashboardDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -296,7 +296,7 @@ public abstract class AbstractDynaDashboardResource {
     @ApiOperation(value = "批量保存动态数据看板", tags = {"动态数据看板" },  notes = "批量保存动态数据看板")
 	@PostMapping("dyna_dashboards/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<DynaDashboardDTO> dtos) {
-        dynaDashboardService.saveBatch(dynaDashboardDtoMapping.toDomain(dtos));
+        dynaDashboardService.save(dynaDashboardDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

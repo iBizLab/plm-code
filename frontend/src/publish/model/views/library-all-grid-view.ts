@@ -73,17 +73,17 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '测试库',
-      refAppViewId: 'plmweb.library_index_view',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
-    {
       realOpenMode: 'POPUPMODAL',
       realTitle: '新建测试库',
       refAppViewId: 'plmweb.library_create_wizard_view',
       name: 'NEWDATA',
       id: 'newdata',
+    },
+    {
+      realTitle: '测试库',
+      refAppViewId: 'plmweb.library_index_view',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
   ],
   controls: [
@@ -125,8 +125,6 @@ export default {
       columnEnableFilter: 2,
       columnEnableLink: 2,
       groupMode: 'NONE',
-      minorSortDir: 'DESC',
-      minorSortAppDEFieldId: 'update_time',
       degridColumns: [
         {
           clconvertMode: 'NONE',
@@ -382,7 +380,7 @@ export default {
       enablePagingBar: true,
       singleSelect: true,
       fetchControlAction: {
-        appDEMethodId: 'fetch_normal',
+        appDEMethodId: 'fetch_main',
         appDataEntityId: 'plmweb.library',
         id: 'fetch',
       },

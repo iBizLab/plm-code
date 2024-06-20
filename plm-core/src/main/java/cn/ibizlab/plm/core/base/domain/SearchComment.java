@@ -27,13 +27,6 @@ import cn.ibizlab.plm.core.testmgmt.domain.Run;
 import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
 import cn.ibizlab.plm.core.prodmgmt.domain.Ticket;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
-import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
-import cn.ibizlab.plm.core.prodmgmt.domain.Idea;
-import cn.ibizlab.plm.core.prodmgmt.domain.Ticket;
-import cn.ibizlab.plm.core.prodmgmt.domain.Customer;
-import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
-import cn.ibizlab.plm.core.testmgmt.domain.Run;
-import cn.ibizlab.plm.core.wiki.domain.ArticlePage;
 
 /**
  * 评论搜索实体类[SearchComment]
@@ -51,301 +44,308 @@ public class SearchComment extends EntityMP implements Serializable
 {
 
     /**
-     * 评论主体标识
-     */
+    * 评论主体标识
+    */
     @TableField(value = "principal_id")
     @DEField(name = "principal_id" , preType = DEPredefinedFieldType.PARENTID)
-    @JsonProperty("principal_id")
     @JSONField(name = "principal_id")
+    @JsonProperty("principal_id")
     @ApiModelProperty(value = "principal_id", notes = "评论主体标识")
     private String principalId;
 
     /**
-     * 评论主体名称
-     */
+    * 评论主体名称
+    */
     @TableField(value = "principal_name")
     @DEField(name = "principal_name" , preType = DEPredefinedFieldType.PARENTNAME)
-    @JsonProperty("principal_name")
     @JSONField(name = "principal_name")
+    @JsonProperty("principal_name")
     @ApiModelProperty(value = "principal_name", notes = "评论主体名称")
     private String principalName;
 
     /**
-     * 评论主体类型
-     */
+    * 评论主体类型
+    */
     @TableField(value = "principal_type")
     @DEField(name = "principal_type" , preType = DEPredefinedFieldType.PARENTSUBTYPE , dict = "principal_type")
-    @JsonProperty("principal_type")
     @JSONField(name = "principal_type")
+    @JsonProperty("principal_type")
     @ApiModelProperty(value = "principal_type", notes = "评论主体类型")
     private String principalType;
 
     /**
-     * 所属数据对象
-     */
+    * 所属数据对象
+    */
     @TableField(value = "owner_type")
     @DEField(name = "owner_type" , preType = DEPredefinedFieldType.PARENTTYPE)
-    @JsonProperty("owner_type")
     @JSONField(name = "owner_type")
+    @JsonProperty("owner_type")
     @ApiModelProperty(value = "owner_type", notes = "所属数据对象")
     private String ownerType;
 
     /**
-     * 内容
-     */
+    * 内容
+    */
     @TableField(value = "content")
     @DEField(name = "content")
-    @JsonProperty("content")
     @JSONField(name = "content")
+    @JsonProperty("content")
     @ApiModelProperty(value = "content", notes = "内容")
     private String content;
 
     /**
-     * 评论主体标题
-     */
+    * 评论主体标题
+    */
     @TableField(value = "principal_title" , exist = false)
     @DEField(name = "principal_title")
-    @JsonProperty("principal_title")
     @JSONField(name = "principal_title")
+    @JsonProperty("principal_title")
     @ApiModelProperty(value = "principal_title", notes = "评论主体标题")
     private String principalTitle;
 
     /**
-     * 评论主体编号
-     */
+    * 评论主体编号
+    */
     @TableField(value = "principal_identifier" , exist = false)
     @DEField(name = "principal_identifier")
-    @JsonProperty("principal_identifier")
     @JSONField(name = "principal_identifier")
+    @JsonProperty("principal_identifier")
     @ApiModelProperty(value = "principal_identifier", notes = "评论主体编号")
     private String principalIdentifier;
 
     /**
-     * 评论主体父标识
-     */
+    * 评论主体父标识
+    */
     @TableField(value = "principal_parent_id" , exist = false)
     @DEField(name = "principal_parent_id")
-    @JsonProperty("principal_parent_id")
     @JSONField(name = "principal_parent_id")
+    @JsonProperty("principal_parent_id")
     @ApiModelProperty(value = "principal_parent_id", notes = "评论主体父标识")
     private String principalParentId;
 
     /**
-     * 评论主体父名称
-     */
+    * 评论主体父名称
+    */
     @TableField(value = "principal_parent_name" , exist = false)
     @DEField(name = "principal_parent_name")
-    @JsonProperty("principal_parent_name")
     @JSONField(name = "principal_parent_name")
+    @JsonProperty("principal_parent_name")
     @ApiModelProperty(value = "principal_parent_name", notes = "评论主体父名称")
     private String principalParentName;
 
     /**
-     * 工作项
-     */
+    * 工作项
+    */
+    @Transient
     @TableField(exist = false)
     @DEField(name = "work_item")
-    @JsonProperty("work_item")
     @JSONField(name = "work_item")
+    @JsonProperty("work_item")
     @ApiModelProperty(value = "work_item", notes = "工作项")
     private WorkItem workItem;
 
     /**
-     * 产品需求
-     */
+    * 产品需求
+    */
+    @Transient
     @TableField(exist = false)
     @DEField(name = "idea")
-    @JsonProperty("idea")
     @JSONField(name = "idea")
+    @JsonProperty("idea")
     @ApiModelProperty(value = "idea", notes = "产品需求")
     private Idea idea;
 
     /**
-     * 工单
-     */
+    * 工单
+    */
+    @Transient
     @TableField(exist = false)
     @DEField(name = "ticket")
-    @JsonProperty("ticket")
     @JSONField(name = "ticket")
+    @JsonProperty("ticket")
     @ApiModelProperty(value = "ticket", notes = "工单")
     private Ticket ticket;
 
     /**
-     * 客户
-     */
+    * 客户
+    */
+    @Transient
     @TableField(exist = false)
     @DEField(name = "customer")
-    @JsonProperty("customer")
     @JSONField(name = "customer")
+    @JsonProperty("customer")
     @ApiModelProperty(value = "customer", notes = "客户")
     private Customer customer;
 
     /**
-     * 测试用例
-     */
+    * 测试用例
+    */
+    @Transient
     @TableField(exist = false)
     @DEField(name = "test_case")
-    @JsonProperty("test_case")
     @JSONField(name = "test_case")
+    @JsonProperty("test_case")
     @ApiModelProperty(value = "test_case", notes = "测试用例")
     private TestCase testCase;
 
     /**
-     * 执行用例
-     */
+    * 执行用例
+    */
+    @Transient
     @TableField(exist = false)
     @DEField(name = "run")
-    @JsonProperty("run")
     @JSONField(name = "run")
+    @JsonProperty("run")
     @ApiModelProperty(value = "run", notes = "执行用例")
     private Run run;
 
     /**
-     * 页面
-     */
+    * 页面
+    */
+    @Transient
     @TableField(exist = false)
     @DEField(name = "page")
-    @JsonProperty("page")
     @JSONField(name = "page")
+    @JsonProperty("page")
     @ApiModelProperty(value = "page", notes = "页面")
     private ArticlePage page;
 
     /**
-     * 标识
-     */
+    * 标识
+    */
     @Id
     @TableId(value = "id" , type = IdType.ASSIGN_UUID)
     @DEField(name = "id" , isKeyField = true)
-    @JsonProperty("id")
     @JSONField(name = "id")
+    @JsonProperty("id")
     @ApiModelProperty(value = "id", notes = "标识")
     private String id;
 
     /**
-     * 名称
-     */
+    * 名称
+    */
     @TableField(value = "name")
     @DEField(name = "name")
-    @JsonProperty("name")
     @JSONField(name = "name")
+    @JsonProperty("name")
     @ApiModelProperty(value = "name", notes = "名称")
     private String name;
 
     /**
-     * 更新人
-     */
-    @TableField(value = "update_man")
-    @DEField(name = "update_man" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
-    @JsonProperty("update_man")
-    @JSONField(name = "update_man")
-    @ApiModelProperty(value = "update_man", notes = "更新人")
-    private String updateMan;
-
-    /**
-     * 更新时间
-     */
-    @TableField(value = "update_time")
-    @DEField(name = "update_time" , preType = DEPredefinedFieldType.UPDATEDATE)
-    @JsonProperty("update_time")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "update_time", notes = "更新时间")
-    private Date updateTime;
-
-    /**
-     * 建立时间
-     */
-    @TableField(value = "create_time" , fill = FieldFill.INSERT)
-    @DEField(name = "create_time" , preType = DEPredefinedFieldType.CREATEDATE)
-    @JsonProperty("create_time")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "create_time", notes = "建立时间")
-    private Date createTime;
-
-    /**
-     * 建立人
-     */
+    * 建立人
+    */
     @TableField(value = "create_man" , fill = FieldFill.INSERT)
     @DEField(name = "create_man" , preType = DEPredefinedFieldType.CREATEMAN , dict = "SysOperator")
-    @JsonProperty("create_man")
     @JSONField(name = "create_man")
+    @JsonProperty("create_man")
     @ApiModelProperty(value = "create_man", notes = "建立人")
     private String createMan;
 
     /**
-     * 客户
-     */
+    * 建立时间
+    */
+    @TableField(value = "create_time" , fill = FieldFill.INSERT)
+    @DEField(name = "create_time" , preType = DEPredefinedFieldType.CREATEDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("create_time")
+    @ApiModelProperty(value = "create_time", notes = "建立时间")
+    private Date createTime;
+
+    /**
+    * 更新人
+    */
+    @TableField(value = "update_man")
+    @DEField(name = "update_man" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
+    @JSONField(name = "update_man")
+    @JsonProperty("update_man")
+    @ApiModelProperty(value = "update_man", notes = "更新人")
+    private String updateMan;
+
+    /**
+    * 更新时间
+    */
+    @TableField(value = "update_time")
+    @DEField(name = "update_time" , preType = DEPredefinedFieldType.UPDATEDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("update_time")
+    @ApiModelProperty(value = "update_time", notes = "更新时间")
+    private Date updateTime;
+
+    /**
+    * 名称
+    */
+    @Transient
+    @TableField(exist = false)
     @JsonIgnore
     @JSONField(serialize = false)
-    @TableField(exist = false)
-    @Transient
     @ApiModelProperty(value = "der_customer", notes = "名称")
     private Customer derCustomer;
 
     /**
-     * 需求
-     */
+    * 产品需求-评论
+    */
+    @Transient
+    @TableField(exist = false)
     @JsonIgnore
     @JSONField(serialize = false)
-    @TableField(exist = false)
-    @Transient
     @ApiModelProperty(value = "der_idea", notes = "产品需求-评论")
     private Idea derIdea;
 
     /**
-     * 页面
-     */
+    * 名称
+    */
+    @Transient
+    @TableField(exist = false)
     @JsonIgnore
     @JSONField(serialize = false)
-    @TableField(exist = false)
-    @Transient
     @ApiModelProperty(value = "der_page", notes = "名称")
     private ArticlePage derPage;
 
     /**
-     * 执行用例
-     */
+    * 名称
+    */
+    @Transient
+    @TableField(exist = false)
     @JsonIgnore
     @JSONField(serialize = false)
-    @TableField(exist = false)
-    @Transient
     @ApiModelProperty(value = "der_run", notes = "名称")
     private Run derRun;
 
     /**
-     * 用例
-     */
+    * 名称
+    */
+    @Transient
+    @TableField(exist = false)
     @JsonIgnore
     @JSONField(serialize = false)
-    @TableField(exist = false)
-    @Transient
     @ApiModelProperty(value = "der_test_case", notes = "名称")
     private TestCase derTestCase;
 
     /**
-     * 工单
-     */
+    * 工单-评论
+    */
+    @Transient
+    @TableField(exist = false)
     @JsonIgnore
     @JSONField(serialize = false)
-    @TableField(exist = false)
-    @Transient
     @ApiModelProperty(value = "der_ticket", notes = "工单-评论")
     private Ticket derTicket;
 
     /**
-     * 工作项
-     */
+    * 工作项-评论
+    */
+    @Transient
+    @TableField(exist = false)
     @JsonIgnore
     @JSONField(serialize = false)
-    @TableField(exist = false)
-    @Transient
     @ApiModelProperty(value = "der_work_item", notes = "工作项-评论")
     private WorkItem derWorkItem;
 
     /**
-     * 设置 [内容]
-     */
+    * 设置 [内容]
+    */
     public SearchComment setContent(String content) {
         this.content = content;
         this.modify("content", content);
@@ -353,8 +353,8 @@ public class SearchComment extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [评论主体标题]
-     */
+    * 设置 [评论主体标题]
+    */
     public SearchComment setPrincipalTitle(String principalTitle) {
         this.principalTitle = principalTitle;
         this.modify("principal_title", principalTitle);
@@ -362,8 +362,8 @@ public class SearchComment extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [评论主体编号]
-     */
+    * 设置 [评论主体编号]
+    */
     public SearchComment setPrincipalIdentifier(String principalIdentifier) {
         this.principalIdentifier = principalIdentifier;
         this.modify("principal_identifier", principalIdentifier);
@@ -371,8 +371,8 @@ public class SearchComment extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [评论主体父标识]
-     */
+    * 设置 [评论主体父标识]
+    */
     public SearchComment setPrincipalParentId(String principalParentId) {
         this.principalParentId = principalParentId;
         this.modify("principal_parent_id", principalParentId);
@@ -380,8 +380,8 @@ public class SearchComment extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [评论主体父名称]
-     */
+    * 设置 [评论主体父名称]
+    */
     public SearchComment setPrincipalParentName(String principalParentName) {
         this.principalParentName = principalParentName;
         this.modify("principal_parent_name", principalParentName);
@@ -389,8 +389,8 @@ public class SearchComment extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [工作项]
-     */
+    * 设置 [工作项]
+    */
     public SearchComment setWorkItem(WorkItem workItem) {
         this.workItem = workItem;
         this.modify("work_item", workItem);
@@ -398,8 +398,8 @@ public class SearchComment extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [产品需求]
-     */
+    * 设置 [产品需求]
+    */
     public SearchComment setIdea(Idea idea) {
         this.idea = idea;
         this.modify("idea", idea);
@@ -407,8 +407,8 @@ public class SearchComment extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [工单]
-     */
+    * 设置 [工单]
+    */
     public SearchComment setTicket(Ticket ticket) {
         this.ticket = ticket;
         this.modify("ticket", ticket);
@@ -416,8 +416,8 @@ public class SearchComment extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [客户]
-     */
+    * 设置 [客户]
+    */
     public SearchComment setCustomer(Customer customer) {
         this.customer = customer;
         this.modify("customer", customer);
@@ -425,8 +425,8 @@ public class SearchComment extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [测试用例]
-     */
+    * 设置 [测试用例]
+    */
     public SearchComment setTestCase(TestCase testCase) {
         this.testCase = testCase;
         this.modify("test_case", testCase);
@@ -434,8 +434,8 @@ public class SearchComment extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [执行用例]
-     */
+    * 设置 [执行用例]
+    */
     public SearchComment setRun(Run run) {
         this.run = run;
         this.modify("run", run);
@@ -443,8 +443,8 @@ public class SearchComment extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [页面]
-     */
+    * 设置 [页面]
+    */
     public SearchComment setPage(ArticlePage page) {
         this.page = page;
         this.modify("page", page);
@@ -452,13 +452,14 @@ public class SearchComment extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [名称]
-     */
+    * 设置 [名称]
+    */
     public SearchComment setName(String name) {
         this.name = name;
         this.modify("name", name);
         return this;
     }
+
 
     /**
      * 复制当前对象数据到目标对象(粘贴重置)

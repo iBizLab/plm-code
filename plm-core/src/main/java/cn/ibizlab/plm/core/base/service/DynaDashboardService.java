@@ -30,89 +30,32 @@ public interface DynaDashboardService extends IService<DynaDashboard> {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    DynaDashboard get(DynaDashboard et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default DynaDashboard get(String key) {
-        return getSelf().get(new DynaDashboard().setDynaDashboardId(key));
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<DynaDashboard> getByIds(Collection<String> ids) {
-        List<DynaDashboard> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new DynaDashboard().setDynaDashboardId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<DynaDashboard> getByEntities(List<DynaDashboard> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    DynaDashboard getDraft(DynaDashboard et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(DynaDashboard et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(DynaDashboard et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<DynaDashboard> list);
+    boolean create(List<DynaDashboard> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(DynaDashboard et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<DynaDashboard> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    @Override
-    boolean save(DynaDashboard et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<DynaDashboard> list);
+    boolean update(List<DynaDashboard> list);
 
     /**
      * 主键删除
@@ -122,14 +65,7 @@ public interface DynaDashboardService extends IService<DynaDashboard> {
     default boolean remove(String key) {
         return getSelf().remove(new DynaDashboard().setDynaDashboardId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -139,13 +75,13 @@ public interface DynaDashboardService extends IService<DynaDashboard> {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<DynaDashboard> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new DynaDashboard().setDynaDashboardId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new DynaDashboard().setDynaDashboardId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -153,7 +89,86 @@ public interface DynaDashboardService extends IService<DynaDashboard> {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<DynaDashboard> entities);
+    boolean remove(List<DynaDashboard> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default DynaDashboard get(String key) {
+        return getSelf().get(new DynaDashboard().setDynaDashboardId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    DynaDashboard get(DynaDashboard et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<DynaDashboard> get(Collection<String> keys) {
+        List<DynaDashboard> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new DynaDashboard().setDynaDashboardId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<DynaDashboard> get(List<DynaDashboard> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    DynaDashboard getDraft(DynaDashboard et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(DynaDashboard et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(DynaDashboard et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<DynaDashboard> list);
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<DynaDashboard> fetchDefault(DynaDashboardSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<DynaDashboard> listDefault(DynaDashboardSearchContext context);
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<DynaDashboard> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -170,22 +185,7 @@ public interface DynaDashboardService extends IService<DynaDashboard> {
         }
         return rt;
     }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<DynaDashboard> searchDefault(DynaDashboardSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<DynaDashboard> listDefault(DynaDashboardSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -193,6 +193,7 @@ public interface DynaDashboardService extends IService<DynaDashboard> {
     default DynaDashboard getEntity() {
         return new DynaDashboard();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -201,20 +202,12 @@ public interface DynaDashboardService extends IService<DynaDashboard> {
         return new DynaDashboardSearchContext();
     }
 
-    /**
-     * 自定义查询SQL
-     * @param sql  select * from table where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
-    List<JSONObject> select(String sql, Map<String,Object> param);
 
     /**
-     * 自定义SQL
-     * @param sql  update table  set name ='test' where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
+    * 自定义SQL
+    * @param sql  update table  set name ='test' where id =#{et.param}
+    * @param param 参数列表  param.put("param","1");
+    * @return
+    */
     boolean execute(String sql, Map<String,Object> param);
-
 }

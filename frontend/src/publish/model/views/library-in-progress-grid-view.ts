@@ -45,12 +45,14 @@ export default {
       logicType: 'APPUILOGIC',
       builtinAppUILogic: {
         openDataAppView: {
-          refAppViewId: 'plmweb.library_redirect_view',
+          openMode: 'POPUPMODAL',
+          refAppViewId: 'plmweb.library_show_edit_view',
         },
         editMode: true,
         appUILogicRefViews: [
           {
-            refAppViewId: 'plmweb.library_redirect_view',
+            openMode: 'POPUPMODAL',
+            refAppViewId: 'plmweb.library_show_edit_view',
           },
         ],
         builtinLogic: true,
@@ -70,11 +72,9 @@ export default {
       id: 'newdata',
     },
     {
-      realTitle: '测试库数据重定向视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.LIBRARY.REDIRECTVIEW',
-      },
-      refAppViewId: 'plmweb.library_redirect_view',
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '测试库展示信息视图',
+      refAppViewId: 'plmweb.library_show_edit_view',
       name: 'EDITDATA',
       id: 'editdata',
     },
@@ -156,6 +156,20 @@ export default {
                 afterItemType: 'NONE',
                 beforeItemType: 'NONE',
                 detailType: 'DEUIACTION',
+                uiactionId: 'change_admin_role@library',
+                tooltip: '设置管理员',
+                showIcon: true,
+                sysImage: {
+                  cssClass: 'fa fa-sun-o',
+                  glyph: 'xf185@FontAwesome',
+                },
+                id: 'uccf2f29',
+              },
+              {
+                actionLevel: 100,
+                afterItemType: 'NONE',
+                beforeItemType: 'NONE',
+                detailType: 'DEUIACTION',
                 uiactionId: 'archive@library',
                 showIcon: true,
                 sysImage: {
@@ -189,7 +203,7 @@ export default {
           codeName: 'uagridcolumn1',
           columnType: 'UAGRIDCOLUMN',
           noPrivDisplayMode: 1,
-          width: 100,
+          width: 150,
           widthUnit: 'PX',
           id: 'uagridcolumn1',
         },

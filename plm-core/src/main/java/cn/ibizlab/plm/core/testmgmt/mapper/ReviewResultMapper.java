@@ -43,6 +43,14 @@ public interface ReviewResultMapper extends BaseMapper<ReviewResult> {
     List<ReviewResult> listDefault(@Param("ctx") ReviewResultSearchContext context, @Param("ew") Wrapper<ReviewResult> wrapper);
 
     /**
+    * 根据contentId查询
+    *
+    * @param contentIds
+    * @return
+    */
+    List<ReviewResult> findByContentId(@Param("contentIds") List<String> contentIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -151,13 +159,4 @@ public interface ReviewResultMapper extends BaseMapper<ReviewResult> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据contentId查询
-     *
-     * @param contentIds
-     * @return
-     */
-    List<ReviewResult> findByContentId(@Param("contentIds") List<String> contentIds);
-
 }

@@ -33,6 +33,23 @@ export default {
       id: 'dynamodelflag',
     },
     {
+      codeName: 'PSDELogicId',
+      logicName: '实体处理逻辑标识',
+      stdDataType: 25,
+      stringLength: 100,
+      name: 'PSDELOGICID',
+      id: 'psdelogicid',
+    },
+    {
+      codeName: 'PSDELogicName',
+      logicName: '实体处理逻辑名称',
+      stdDataType: 25,
+      stringLength: 200,
+      enableQuickSearch: true,
+      name: 'PSDELOGICNAME',
+      id: 'psdelogicname',
+    },
+    {
       codeName: 'CreateMan',
       lnlanguageRes: {
         lanResTag: 'DEF.LNAME.CREATEMAN',
@@ -42,17 +59,6 @@ export default {
       stringLength: 60,
       name: 'CREATEMAN',
       id: 'createman',
-    },
-    {
-      codeName: 'UpdateMan',
-      lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.UPDATEMAN',
-      },
-      logicName: '更新人',
-      stdDataType: 25,
-      stringLength: 60,
-      name: 'UPDATEMAN',
-      id: 'updateman',
     },
     {
       codeName: 'CreateDate',
@@ -66,6 +72,17 @@ export default {
       id: 'createdate',
     },
     {
+      codeName: 'UpdateMan',
+      lnlanguageRes: {
+        lanResTag: 'DEF.LNAME.UPDATEMAN',
+      },
+      logicName: '更新人',
+      stdDataType: 25,
+      stringLength: 60,
+      name: 'UPDATEMAN',
+      id: 'updateman',
+    },
+    {
       codeName: 'UpdateDate',
       lnlanguageRes: {
         lanResTag: 'DEF.LNAME.UPDATEDATE',
@@ -75,23 +92,6 @@ export default {
       valueFormat: 'YYYY-MM-DD HH:mm:ss',
       name: 'UPDATEDATE',
       id: 'updatedate',
-    },
-    {
-      codeName: 'PSDELogicName',
-      logicName: '实体处理逻辑名称',
-      stdDataType: 25,
-      stringLength: 200,
-      enableQuickSearch: true,
-      name: 'PSDELOGICNAME',
-      id: 'psdelogicname',
-    },
-    {
-      codeName: 'PSDELogicId',
-      logicName: '实体处理逻辑标识',
-      stdDataType: 25,
-      stringLength: 100,
-      name: 'PSDELOGICID',
-      id: 'psdelogicid',
     },
     {
       codeName: 'PSDEId',

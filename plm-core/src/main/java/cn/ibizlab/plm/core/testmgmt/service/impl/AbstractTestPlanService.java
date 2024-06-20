@@ -32,6 +32,7 @@ import cn.ibizlab.plm.core.projmgmt.domain.Release;
 import cn.ibizlab.plm.core.projmgmt.service.ReleaseService;
 import cn.ibizlab.plm.core.projmgmt.domain.Sprint;
 import cn.ibizlab.plm.core.projmgmt.service.SprintService;
+import cn.ibizlab.plm.core.base.domain.CommonFlow;
 import cn.ibizlab.plm.core.testmgmt.domain.Run;
 import cn.ibizlab.plm.core.testmgmt.service.RunService;
 import cn.ibizlab.plm.core.base.domain.Relation;
@@ -71,6 +72,53 @@ public abstract class AbstractTestPlanService extends ServiceImpl<TestPlanMapper
 
     protected int batchSize = 500;
 
+    @Override
+    @Transactional
+    public boolean create(TestPlan et) {
+        fillParentData(et);
+        if(this.baseMapper.insert(et) < 1)
+            return false;
+        relationService.saveByPrincipalTestPlan(et,et.getWorkItemRelations());
+        get(et);
+        return true;
+    }
+	
+    @Transactional
+    public boolean create(List<TestPlan> list) {
+        list.forEach(this::fillParentData);
+        this.saveBatch(list, batchSize);
+        return true;
+    }
+	
+    @Transactional
+    public boolean update(TestPlan et) {
+        UpdateWrapper<TestPlan> qw = et.getUpdateWrapper(true);
+        qw.eq("id", et.getId());
+        if(!update(et, qw))
+            return false;
+        relationService.saveByPrincipalTestPlan(et,et.getWorkItemRelations());
+        get(et);
+        return true;
+    }
+
+    @Transactional
+    public boolean update(List<TestPlan> list) {
+        updateBatchById(list, batchSize);
+        return true;
+    }
+	
+   @Transactional
+    public boolean remove(TestPlan et) {
+        if(!remove(Wrappers.<TestPlan>lambdaQuery().eq(TestPlan::getId, et.getId())))
+            return false;
+        return true;
+    }
+
+    @Transactional
+    public boolean remove(List<TestPlan> entities) {
+        this.baseMapper.deleteEntities(entities);
+        return true;
+    }		
     public TestPlan get(TestPlan et) {
         TestPlan rt = this.baseMapper.selectEntity(et);
         if(rt == null)
@@ -79,11 +127,354 @@ public abstract class AbstractTestPlanService extends ServiceImpl<TestPlanMapper
         //设置 [关联]
         getWorkItemRelations(et);
         return et;
+    }	
+
+    public List<TestPlan> get(List<TestPlan> entities) {
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public TestPlan getDraft(TestPlan et) {
+        fillParentData(et);
+        return et;
+    }
+	
+    public Integer checkKey(TestPlan et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<TestPlan>lambdaQuery().eq(TestPlan::getId, et.getId()))>0)?1:0;
+    }
+	
+    @Override
+    @Transactional
+    public boolean save(TestPlan et) {
+        if(checkKey(et) > 0)
+            return getSelf().update(et);
+        else
+            return getSelf().create(et);
     }
 
-    public List<TestPlan> getByEntities(List<TestPlan> entities) {
-        return this.baseMapper.selectEntities(entities);
+    @Transactional
+    public boolean save(List<TestPlan> list) {
+        if(ObjectUtils.isEmpty(list))
+            return true;
+        Map<String,TestPlan> before = get(list).stream().collect(Collectors.toMap(TestPlan::getId,e->e));
+        List<TestPlan> create = new ArrayList<>();
+        List<TestPlan> update = new ArrayList<>();
+        list.forEach(sub->{
+            if(!ObjectUtils.isEmpty(sub.getId()) && before.containsKey(sub.getId()))
+                update.add(sub);
+            else
+                create.add(sub);
+        });
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else
+            return true;
     }
+	
+   public Page<TestPlan> fetchDefault(TestPlanSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("UPDATE_TIME,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestPlan> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
+        List<TestPlan> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<TestPlan> listDefault(TestPlanSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("UPDATE_TIME,DESC");
+        List<TestPlan> list = baseMapper.listDefault(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<TestPlan> fetchMyAssignee(TestPlanSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestPlan> pages=baseMapper.searchMyAssignee(context.getPages(),context,context.getSelectCond());
+        List<TestPlan> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<TestPlan> listMyAssignee(TestPlanSearchContext context) {
+        List<TestPlan> list = baseMapper.listMyAssignee(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<TestPlan> fetchMyInProgress(TestPlanSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestPlan> pages=baseMapper.searchMyInProgress(context.getPages(),context,context.getSelectCond());
+        List<TestPlan> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<TestPlan> listMyInProgress(TestPlanSearchContext context) {
+        List<TestPlan> list = baseMapper.listMyInProgress(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<TestPlan> fetchMyParticipate(TestPlanSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestPlan> pages=baseMapper.searchMyParticipate(context.getPages(),context,context.getSelectCond());
+        List<TestPlan> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<TestPlan> listMyParticipate(TestPlanSearchContext context) {
+        List<TestPlan> list = baseMapper.listMyParticipate(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<TestPlan> fetchPendingAndInProgress(TestPlanSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestPlan> pages=baseMapper.searchPendingAndInProgress(context.getPages(),context,context.getSelectCond());
+        List<TestPlan> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<TestPlan> listPendingAndInProgress(TestPlanSearchContext context) {
+        List<TestPlan> list = baseMapper.listPendingAndInProgress(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<TestPlan> fetchQueryNoShiftIn(TestPlanSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestPlan> pages=baseMapper.searchQueryNoShiftIn(context.getPages(),context,context.getSelectCond());
+        List<TestPlan> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<TestPlan> listQueryNoShiftIn(TestPlanSearchContext context) {
+        List<TestPlan> list = baseMapper.listQueryNoShiftIn(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<TestPlan> fetchUnJoinPlan(TestPlanSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestPlan> pages=baseMapper.searchUnJoinPlan(context.getPages(),context,context.getSelectCond());
+        List<TestPlan> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<TestPlan> listUnJoinPlan(TestPlanSearchContext context) {
+        List<TestPlan> list = baseMapper.listUnJoinPlan(context,context.getSelectCond());
+        return list;
+   }
+	
+	public List<TestPlan> findByLibraryId(List<String> libraryIds){
+        List<TestPlan> list = baseMapper.findByLibraryId(libraryIds);
+        if(!ObjectUtils.isEmpty(list))
+            relationService.findByPrincipalId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getPrincipalId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setWorkItemRelations(sub.getValue())));
+        return list;	
+	}
+
+	public boolean removeByLibraryId(String libraryId){
+        return this.remove(Wrappers.<TestPlan>lambdaQuery().eq(TestPlan::getLibraryId,libraryId));
+	}
+
+	public boolean resetByLibraryId(String libraryId){
+		return this.update(Wrappers.<TestPlan>lambdaUpdate().eq(TestPlan::getLibraryId,libraryId));
+	}
+	public boolean saveByLibrary(Library library, List<TestPlan> list){
+        if(list==null)
+            return true;
+        Map<String,TestPlan> before = findByLibraryId(library.getId()).stream().collect(Collectors.toMap(TestPlan::getId,e->e));
+
+        List<TestPlan> update = new ArrayList<>();
+        List<TestPlan> create = new ArrayList<>();
+
+        for(TestPlan sub:list) {
+            sub.setLibraryId(library.getId());
+            sub.setLibrary(library);
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
+	public List<TestPlan> findByProjectId(List<String> projectIds){
+        List<TestPlan> list = baseMapper.findByProjectId(projectIds);
+        if(!ObjectUtils.isEmpty(list))
+            relationService.findByPrincipalId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getPrincipalId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setWorkItemRelations(sub.getValue())));
+        return list;	
+	}
+
+	public boolean removeByProjectId(String projectId){
+        return this.remove(Wrappers.<TestPlan>lambdaQuery().eq(TestPlan::getProjectId,projectId));
+	}
+
+	public boolean resetByProjectId(String projectId){
+		return this.update(Wrappers.<TestPlan>lambdaUpdate().eq(TestPlan::getProjectId,projectId));
+	}
+	public boolean saveByProject(Project project, List<TestPlan> list){
+        if(list==null)
+            return true;
+        Map<String,TestPlan> before = findByProjectId(project.getId()).stream().collect(Collectors.toMap(TestPlan::getId,e->e));
+
+        List<TestPlan> update = new ArrayList<>();
+        List<TestPlan> create = new ArrayList<>();
+
+        for(TestPlan sub:list) {
+            sub.setProjectId(project.getId());
+            sub.setProject(project);
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
+	public List<TestPlan> findByReleaseId(List<String> releaseIds){
+        List<TestPlan> list = baseMapper.findByReleaseId(releaseIds);
+        if(!ObjectUtils.isEmpty(list))
+            relationService.findByPrincipalId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getPrincipalId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setWorkItemRelations(sub.getValue())));
+        return list;	
+	}
+
+	public boolean removeByReleaseId(String releaseId){
+        return this.remove(Wrappers.<TestPlan>lambdaQuery().eq(TestPlan::getReleaseId,releaseId));
+	}
+
+	public boolean resetByReleaseId(String releaseId){
+		return this.update(Wrappers.<TestPlan>lambdaUpdate().eq(TestPlan::getReleaseId,releaseId));
+	}
+	public boolean saveByRelease(Release release, List<TestPlan> list){
+        if(list==null)
+            return true;
+        Map<String,TestPlan> before = findByReleaseId(release.getId()).stream().collect(Collectors.toMap(TestPlan::getId,e->e));
+
+        List<TestPlan> update = new ArrayList<>();
+        List<TestPlan> create = new ArrayList<>();
+
+        for(TestPlan sub:list) {
+            sub.setReleaseId(release.getId());
+            sub.setRelease(release);
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
+	public List<TestPlan> findBySprintId(List<String> sprintIds){
+        List<TestPlan> list = baseMapper.findBySprintId(sprintIds);
+        if(!ObjectUtils.isEmpty(list))
+            relationService.findByPrincipalId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getPrincipalId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setWorkItemRelations(sub.getValue())));
+        return list;	
+	}
+
+	public boolean removeBySprintId(String sprintId){
+        return this.remove(Wrappers.<TestPlan>lambdaQuery().eq(TestPlan::getSprintId,sprintId));
+	}
+
+	public boolean resetBySprintId(String sprintId){
+		return this.update(Wrappers.<TestPlan>lambdaUpdate().eq(TestPlan::getSprintId,sprintId));
+	}
+	public boolean saveBySprint(Sprint sprint, List<TestPlan> list){
+        if(list==null)
+            return true;
+        Map<String,TestPlan> before = findBySprintId(sprint.getId()).stream().collect(Collectors.toMap(TestPlan::getId,e->e));
+
+        List<TestPlan> update = new ArrayList<>();
+        List<TestPlan> create = new ArrayList<>();
+
+        for(TestPlan sub:list) {
+            sub.setSprintId(sprint.getId());
+            sub.setSprint(sprint);
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
+	public List<TestPlan> findById(List<String> ids){
+        List<TestPlan> list = baseMapper.findById(ids);
+        if(!ObjectUtils.isEmpty(list))
+            relationService.findByPrincipalId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getPrincipalId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setWorkItemRelations(sub.getValue())));
+        return list;	
+	}
+
+	public boolean removeById(String id){
+        return this.remove(Wrappers.<TestPlan>lambdaQuery().eq(TestPlan::getId,id));
+	}
+
+	public boolean resetById(String id){
+		return this.update(Wrappers.<TestPlan>lambdaUpdate().eq(TestPlan::getId,id));
+	}
+	public boolean saveByTestPlan(CommonFlow commonFlow, List<TestPlan> list){
+        if(list==null)
+            return true;
+        Map<String,TestPlan> before = findById(commonFlow.getId()).stream().collect(Collectors.toMap(TestPlan::getId,e->e));
+
+        List<TestPlan> update = new ArrayList<>();
+        List<TestPlan> create = new ArrayList<>();
+
+        for(TestPlan sub:list) {
+            sub.setId(commonFlow.getId());
+            sub.setTestPlan(commonFlow);
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
+	@Override
+    public List<Relation> getWorkItemRelations(TestPlan et) {
+        List<Relation> list = relationService.findByPrincipalId(et.getId());
+        et.setWorkItemRelations(list);
+        return list;
+    }
+	
 
     public void fillParentData(TestPlan et) {
         if(Entities.LIBRARY.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
@@ -138,349 +529,6 @@ public abstract class AbstractTestPlanService extends ServiceImpl<TestPlanMapper
         }
     }
 
-    public TestPlan getDraft(TestPlan et) {
-        fillParentData(et);
-        return et;
-    }
-
-    public Integer checkKey(TestPlan et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<TestPlan>lambdaQuery().eq(TestPlan::getId, et.getId()))>0)?1:0;
-    }
-
-    @Override
-    @Transactional
-    public boolean create(TestPlan et) {
-        fillParentData(et);
-        if(this.baseMapper.insert(et) < 1)
-            return false;
-        relationService.saveByPrincipalTestPlan(et,et.getWorkItemRelations());
-        get(et);
-        return true;
-    }
-
-    @Transactional
-    public boolean createBatch(List<TestPlan> list) {
-        list.forEach(this::fillParentData);
-        this.saveBatch(list, batchSize);
-        return true;
-    }
-
-    @Transactional
-    public boolean update(TestPlan et) {
-        UpdateWrapper<TestPlan> qw = et.getUpdateWrapper(true);
-        qw.eq("id", et.getId());
-        if(!update(et, qw))
-            return false;
-        relationService.saveByPrincipalTestPlan(et,et.getWorkItemRelations());
-        get(et);
-        return true;
-    }
-
-    @Transactional
-    public boolean updateBatch(List<TestPlan> list) {
-        updateBatchById(list, batchSize);
-        return true;
-    }
-
-    @Override
-    @Transactional
-    public boolean save(TestPlan et) {
-        if(checkKey(et) > 0)
-            return getSelf().update(et);
-        else
-            return getSelf().create(et);
-    }
-
-    @Transactional
-    public boolean saveBatch(List<TestPlan> list) {
-        if(ObjectUtils.isEmpty(list))
-            return true;
-        Map<String,TestPlan> before = getByEntities(list).stream().collect(Collectors.toMap(TestPlan::getId,e->e));
-        List<TestPlan> create = new ArrayList<>();
-        List<TestPlan> update = new ArrayList<>();
-        list.forEach(sub->{
-            if(!ObjectUtils.isEmpty(sub.getId()) && before.containsKey(sub.getId()))
-                update.add(sub);
-            else
-                create.add(sub);
-        });
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else
-            return true;
-    }
-
-    @Transactional
-    public boolean remove(TestPlan et) {
-        if(!remove(Wrappers.<TestPlan>lambdaQuery().eq(TestPlan::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<TestPlan> entities) {
-        this.baseMapper.deleteEntities(entities);
-        return true;
-    }
-
-    public Page<TestPlan> searchDefault(TestPlanSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestPlan> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
-        List<TestPlan> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<TestPlan> listDefault(TestPlanSearchContext context) {
-        List<TestPlan> list = baseMapper.listDefault(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<TestPlan> searchMyAssignee(TestPlanSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestPlan> pages=baseMapper.searchMyAssignee(context.getPages(),context,context.getSelectCond());
-        List<TestPlan> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<TestPlan> listMyAssignee(TestPlanSearchContext context) {
-        List<TestPlan> list = baseMapper.listMyAssignee(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<TestPlan> searchMyInProgress(TestPlanSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestPlan> pages=baseMapper.searchMyInProgress(context.getPages(),context,context.getSelectCond());
-        List<TestPlan> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<TestPlan> listMyInProgress(TestPlanSearchContext context) {
-        List<TestPlan> list = baseMapper.listMyInProgress(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<TestPlan> searchMyParticipate(TestPlanSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestPlan> pages=baseMapper.searchMyParticipate(context.getPages(),context,context.getSelectCond());
-        List<TestPlan> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<TestPlan> listMyParticipate(TestPlanSearchContext context) {
-        List<TestPlan> list = baseMapper.listMyParticipate(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<TestPlan> searchPendingAndInProgress(TestPlanSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestPlan> pages=baseMapper.searchPendingAndInProgress(context.getPages(),context,context.getSelectCond());
-        List<TestPlan> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<TestPlan> listPendingAndInProgress(TestPlanSearchContext context) {
-        List<TestPlan> list = baseMapper.listPendingAndInProgress(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<TestPlan> searchQueryNoShiftIn(TestPlanSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestPlan> pages=baseMapper.searchQueryNoShiftIn(context.getPages(),context,context.getSelectCond());
-        List<TestPlan> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<TestPlan> listQueryNoShiftIn(TestPlanSearchContext context) {
-        List<TestPlan> list = baseMapper.listQueryNoShiftIn(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<TestPlan> searchUnJoinPlan(TestPlanSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestPlan> pages=baseMapper.searchUnJoinPlan(context.getPages(),context,context.getSelectCond());
-        List<TestPlan> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<TestPlan> listUnJoinPlan(TestPlanSearchContext context) {
-        List<TestPlan> list = baseMapper.listUnJoinPlan(context,context.getSelectCond());
-        return list;
-    }
-
-    public List<TestPlan> findByLibraryId(List<String> libraryIds) {
-        List<TestPlan> list = baseMapper.findByLibraryId(libraryIds);
-        if(!ObjectUtils.isEmpty(list))
-            relationService.findByPrincipalId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getPrincipalId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setWorkItemRelations(sub.getValue())));
-        return list;
-    }
-    public List<TestPlan> findByProjectId(List<String> projectIds) {
-        List<TestPlan> list = baseMapper.findByProjectId(projectIds);
-        if(!ObjectUtils.isEmpty(list))
-            relationService.findByPrincipalId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getPrincipalId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setWorkItemRelations(sub.getValue())));
-        return list;
-    }
-    public List<TestPlan> findByReleaseId(List<String> releaseIds) {
-        List<TestPlan> list = baseMapper.findByReleaseId(releaseIds);
-        if(!ObjectUtils.isEmpty(list))
-            relationService.findByPrincipalId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getPrincipalId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setWorkItemRelations(sub.getValue())));
-        return list;
-    }
-    public List<TestPlan> findBySprintId(List<String> sprintIds) {
-        List<TestPlan> list = baseMapper.findBySprintId(sprintIds);
-        if(!ObjectUtils.isEmpty(list))
-            relationService.findByPrincipalId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
-                .stream().collect(Collectors.groupingBy(e->e.getPrincipalId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setWorkItemRelations(sub.getValue())));
-        return list;
-    }
-    public boolean removeByLibraryId(String libraryId) {
-        return this.remove(Wrappers.<TestPlan>lambdaQuery().eq(TestPlan::getLibraryId,libraryId));
-    }
-
-    public boolean resetByLibraryId(String libraryId) {
-        return this.update(Wrappers.<TestPlan>lambdaUpdate().eq(TestPlan::getLibraryId,libraryId));
-    }
-
-    public boolean saveByLibrary(Library library,List<TestPlan> list) {
-        if(list==null)
-            return true;
-        Map<String,TestPlan> before = findByLibraryId(library.getId()).stream().collect(Collectors.toMap(TestPlan::getId,e->e));
-        List<TestPlan> update = new ArrayList<>();
-        List<TestPlan> create = new ArrayList<>();
-
-        for(TestPlan sub:list) {
-            sub.setLibraryId(library.getId());
-            sub.setLibrary(library);
-            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
-                before.remove(sub.getId());
-                update.add(sub);
-            }
-            else
-                create.add(sub);
-        }
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
-            return false;
-        else
-            return true;
-    }
-
-    public boolean removeByProjectId(String projectId) {
-        return this.remove(Wrappers.<TestPlan>lambdaQuery().eq(TestPlan::getProjectId,projectId));
-    }
-
-    public boolean resetByProjectId(String projectId) {
-        return this.update(Wrappers.<TestPlan>lambdaUpdate().eq(TestPlan::getProjectId,projectId));
-    }
-
-    public boolean saveByProject(Project project,List<TestPlan> list) {
-        if(list==null)
-            return true;
-        Map<String,TestPlan> before = findByProjectId(project.getId()).stream().collect(Collectors.toMap(TestPlan::getId,e->e));
-        List<TestPlan> update = new ArrayList<>();
-        List<TestPlan> create = new ArrayList<>();
-
-        for(TestPlan sub:list) {
-            sub.setProjectId(project.getId());
-            sub.setProject(project);
-            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
-                before.remove(sub.getId());
-                update.add(sub);
-            }
-            else
-                create.add(sub);
-        }
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
-            return false;
-        else
-            return true;
-    }
-
-    public boolean removeByReleaseId(String releaseId) {
-        return this.remove(Wrappers.<TestPlan>lambdaQuery().eq(TestPlan::getReleaseId,releaseId));
-    }
-
-    public boolean resetByReleaseId(String releaseId) {
-        return this.update(Wrappers.<TestPlan>lambdaUpdate().eq(TestPlan::getReleaseId,releaseId));
-    }
-
-    public boolean saveByRelease(Release release,List<TestPlan> list) {
-        if(list==null)
-            return true;
-        Map<String,TestPlan> before = findByReleaseId(release.getId()).stream().collect(Collectors.toMap(TestPlan::getId,e->e));
-        List<TestPlan> update = new ArrayList<>();
-        List<TestPlan> create = new ArrayList<>();
-
-        for(TestPlan sub:list) {
-            sub.setReleaseId(release.getId());
-            sub.setRelease(release);
-            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
-                before.remove(sub.getId());
-                update.add(sub);
-            }
-            else
-                create.add(sub);
-        }
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
-            return false;
-        else
-            return true;
-    }
-
-    public boolean removeBySprintId(String sprintId) {
-        return this.remove(Wrappers.<TestPlan>lambdaQuery().eq(TestPlan::getSprintId,sprintId));
-    }
-
-    public boolean resetBySprintId(String sprintId) {
-        return this.update(Wrappers.<TestPlan>lambdaUpdate().eq(TestPlan::getSprintId,sprintId));
-    }
-
-    public boolean saveBySprint(Sprint sprint,List<TestPlan> list) {
-        if(list==null)
-            return true;
-        Map<String,TestPlan> before = findBySprintId(sprint.getId()).stream().collect(Collectors.toMap(TestPlan::getId,e->e));
-        List<TestPlan> update = new ArrayList<>();
-        List<TestPlan> create = new ArrayList<>();
-
-        for(TestPlan sub:list) {
-            sub.setSprintId(sprint.getId());
-            sub.setSprint(sprint);
-            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
-                before.remove(sub.getId());
-                update.add(sub);
-            }
-            else
-                create.add(sub);
-        }
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
-            return false;
-        else
-            return true;
-    }
-
-    @Override
-    public List<Relation> getWorkItemRelations(TestPlan et) {
-        List<Relation> list = relationService.findByPrincipalId(et.getId());
-        et.setWorkItemRelations(list);
-        return list;
-    }
-
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -500,8 +548,8 @@ public abstract class AbstractTestPlanService extends ServiceImpl<TestPlanMapper
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return TestPlanMapper.class;
     }
@@ -510,4 +558,5 @@ public abstract class AbstractTestPlanService extends ServiceImpl<TestPlanMapper
     protected Class currentModelClass() {
         return TestPlan.class;
     }
+
 }

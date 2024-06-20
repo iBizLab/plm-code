@@ -86,11 +86,19 @@ public class ReviewDTO extends DTOBase implements Serializable {
     private String categories;
 
     /**
+     * 类别
+     */
+    @JsonProperty("categories_name")
+    @JSONField(name = "categories_name")
+    @ApiModelProperty(value = "类别", position = 6)
+    private String categoriesName;
+
+    /**
      * 测试库标识
      */
     @JsonProperty("library_identifier")
     @JSONField(name = "library_identifier")
-    @ApiModelProperty(value = "测试库标识", position = 6)
+    @ApiModelProperty(value = "测试库标识", position = 7)
     private String libraryIdentifier;
 
     /**
@@ -98,7 +106,7 @@ public class ReviewDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("attentions")
     @JSONField(name = "attentions")
-    @ApiModelProperty(value = "关注", position = 7)
+    @ApiModelProperty(value = "关注", position = 8)
     private List<AttentionDTO> attentions;
 
     /**
@@ -106,7 +114,7 @@ public class ReviewDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("state")
     @JSONField(name = "state")
-    @ApiModelProperty(value = "评审状态", position = 8)
+    @ApiModelProperty(value = "评审状态", position = 9)
     private String state;
 
     /**
@@ -114,7 +122,7 @@ public class ReviewDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("attachments")
     @JSONField(name = "attachments")
-    @ApiModelProperty(value = "附件", position = 9)
+    @ApiModelProperty(value = "附件", position = 10)
     private List<AttachmentDTO> attachments;
 
     /**
@@ -122,15 +130,15 @@ public class ReviewDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("contents")
     @JSONField(name = "contents")
-    @ApiModelProperty(value = "评审内容", position = 10)
-    private List<ReviewContentDTO> contents;
+    @ApiModelProperty(value = "评审内容", position = 11)
+    private List<Map> contents;
 
     /**
      * 提交人标识
      */
     @JsonProperty("submitter_id")
     @JSONField(name = "submitter_id")
-    @ApiModelProperty(value = "提交人标识", position = 11)
+    @ApiModelProperty(value = "提交人标识", position = 12)
     private String submitterId;
 
     /**
@@ -138,23 +146,55 @@ public class ReviewDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("submitter_name")
     @JSONField(name = "submitter_name")
-    @ApiModelProperty(value = "提交人", position = 12)
+    @ApiModelProperty(value = "提交人", position = 13)
     private String submitterName;
+
+    /**
+     * 规则
+     */
+    @JsonProperty("rule")
+    @JSONField(name = "rule")
+    @ApiModelProperty(value = "规则", position = 14)
+    private List<ReviewRuleDTO> rule;
+
+    /**
+     * 阶段
+     */
+    @JsonProperty("stage")
+    @JSONField(name = "stage")
+    @ApiModelProperty(value = "阶段", position = 15)
+    private List<ReviewStageDTO> stage;
+
+    /**
+     * 后置动作
+     */
+    @JsonProperty("action_rule")
+    @JSONField(name = "action_rule")
+    @ApiModelProperty(value = "后置动作", position = 16)
+    private List<ReviewActionRuleDTO> actionRule;
 
     /**
      * 编号
      */
     @JsonProperty("show_identifier")
     @JSONField(name = "show_identifier")
-    @ApiModelProperty(value = "编号", position = 13)
+    @ApiModelProperty(value = "编号", position = 17)
     private String showIdentifier;
+
+    /**
+     * 关注人
+     */
+    @JsonProperty("attentions_imp")
+    @JSONField(name = "attentions_imp")
+    @ApiModelProperty(value = "关注人", position = 18)
+    private String attentionsImp;
 
     /**
      * 建立人
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 14)
+    @ApiModelProperty(value = "建立人", position = 19)
     private String createMan;
 
     /**
@@ -163,15 +203,23 @@ public class ReviewDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 15)
+    @ApiModelProperty(value = "建立时间", position = 20)
     private Date createTime;
+
+    /**
+     * 流程准则标识
+     */
+    @JsonProperty("guideline_id")
+    @JSONField(name = "guideline_id")
+    @ApiModelProperty(value = "流程准则标识", position = 21)
+    private String guidelineId;
 
     /**
      * 标识
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 16)
+    @ApiModelProperty(value = "标识", position = 22)
     private String id;
 
     /**
@@ -179,7 +227,7 @@ public class ReviewDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("library_id")
     @JSONField(name = "library_id")
-    @ApiModelProperty(value = "测试库标识", position = 17)
+    @ApiModelProperty(value = "测试库标识", position = 23)
     private String libraryId;
 
     /**
@@ -187,7 +235,7 @@ public class ReviewDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("library_name")
     @JSONField(name = "library_name")
-    @ApiModelProperty(value = "测试库名称", position = 18)
+    @ApiModelProperty(value = "测试库名称", position = 24)
     private String libraryName;
 
     /**
@@ -195,7 +243,7 @@ public class ReviewDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 19)
+    @ApiModelProperty(value = "名称", position = 25)
     private String name;
 
     /**
@@ -203,7 +251,7 @@ public class ReviewDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 20)
+    @ApiModelProperty(value = "更新人", position = 26)
     private String updateMan;
 
     /**
@@ -212,7 +260,7 @@ public class ReviewDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 21)
+    @ApiModelProperty(value = "更新时间", position = 27)
     private Date updateTime;
 
 
@@ -271,6 +319,15 @@ public class ReviewDTO extends DTOBase implements Serializable {
     }
 
     /**
+     * 设置 [类别]
+     */
+    public ReviewDTO setCategoriesName(String categoriesName) {
+        this.categoriesName = categoriesName;
+        this.modify("categories_name", categoriesName);
+        return this;
+    }
+
+    /**
      * 设置 [测试库标识]
      */
     public ReviewDTO setLibraryIdentifier(String libraryIdentifier) {
@@ -309,7 +366,7 @@ public class ReviewDTO extends DTOBase implements Serializable {
     /**
      * 设置 [评审内容]
      */
-    public ReviewDTO setContents(List<ReviewContentDTO> contents) {
+    public ReviewDTO setContents(List<Map> contents) {
         this.contents = contents;
         this.modify("contents", contents);
         return this;
@@ -334,11 +391,56 @@ public class ReviewDTO extends DTOBase implements Serializable {
     }
 
     /**
+     * 设置 [规则]
+     */
+    public ReviewDTO setRule(List<ReviewRuleDTO> rule) {
+        this.rule = rule;
+        this.modify("rule", rule);
+        return this;
+    }
+
+    /**
+     * 设置 [阶段]
+     */
+    public ReviewDTO setStage(List<ReviewStageDTO> stage) {
+        this.stage = stage;
+        this.modify("stage", stage);
+        return this;
+    }
+
+    /**
+     * 设置 [后置动作]
+     */
+    public ReviewDTO setActionRule(List<ReviewActionRuleDTO> actionRule) {
+        this.actionRule = actionRule;
+        this.modify("action_rule", actionRule);
+        return this;
+    }
+
+    /**
      * 设置 [编号]
      */
     public ReviewDTO setShowIdentifier(String showIdentifier) {
         this.showIdentifier = showIdentifier;
         this.modify("show_identifier", showIdentifier);
+        return this;
+    }
+
+    /**
+     * 设置 [关注人]
+     */
+    public ReviewDTO setAttentionsImp(String attentionsImp) {
+        this.attentionsImp = attentionsImp;
+        this.modify("attentions_imp", attentionsImp);
+        return this;
+    }
+
+    /**
+     * 设置 [流程准则标识]
+     */
+    public ReviewDTO setGuidelineId(String guidelineId) {
+        this.guidelineId = guidelineId;
+        this.modify("guideline_id", guidelineId);
         return this;
     }
 

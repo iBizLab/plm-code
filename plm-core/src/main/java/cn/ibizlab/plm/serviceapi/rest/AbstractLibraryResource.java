@@ -204,6 +204,44 @@ public abstract class AbstractLibraryResource {
     }
 
     /**
+    * change_admin_role 测试库
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<LibraryDTO>
+    */
+    @ApiOperation(value = "change_admin_role", tags = {"测试库" },  notes = "Library-change_admin_role ")
+    @PostMapping("libraries/{id}/change_admin_role")
+    public ResponseEntity<ResponseWrapper<LibraryDTO>> changeAdminRoleById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<LibraryDTO> dto) {
+        ResponseWrapper<LibraryDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(changeAdminRoleById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(changeAdminRoleById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * change_admin_role 测试库
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<LibraryDTO>
+    */   
+    public LibraryDTO changeAdminRoleById
+            (String id, LibraryDTO dto) {
+        Library domain = libraryDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Library rt = libraryService.changeAdminRole(domain);
+        return libraryDtoMapping.toDto(rt);
+    }
+
+    /**
     * delete 测试库
     * 
     *
@@ -278,6 +316,84 @@ public abstract class AbstractLibraryResource {
         Library domain = libraryDtoMapping.toDomain(dto);
         domain.setId(id);
         Library rt = libraryService.favorite(domain);
+        return libraryDtoMapping.toDto(rt);
+    }
+
+    /**
+    * library_index_addon_counter 测试库
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<LibraryDTO>
+    */
+    @ApiOperation(value = "library_index_addon_counter", tags = {"测试库" },  notes = "Library-library_index_addon_counter ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Library-library_index_addon_counter-all') or hasPermission(this.libraryDtoMapping.toDomain(#dto),'ibizplm-Library-library_index_addon_counter')")
+    @PostMapping("libraries/{id}/library_index_addon_counter")
+    public ResponseEntity<ResponseWrapper<LibraryDTO>> libraryIndexAddonCounterById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<LibraryDTO> dto) {
+        ResponseWrapper<LibraryDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(libraryIndexAddonCounterById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(libraryIndexAddonCounterById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * library_index_addon_counter 测试库
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<LibraryDTO>
+    */   
+    public LibraryDTO libraryIndexAddonCounterById
+            (String id, LibraryDTO dto) {
+        Library domain = libraryDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Library rt = libraryService.libraryIndexAddonCounter(domain);
+        return libraryDtoMapping.toDto(rt);
+    }
+
+    /**
+    * move_library 测试库
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<LibraryDTO>
+    */
+    @ApiOperation(value = "move_library", tags = {"测试库" },  notes = "Library-move_library ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Library-move_library-all') or hasPermission(this.libraryDtoMapping.toDomain(#dto),'ibizplm-Library-move_library')")
+    @PutMapping("libraries/{id}/move_library")
+    public ResponseEntity<ResponseWrapper<LibraryDTO>> moveLibraryById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<LibraryDTO> dto) {
+        ResponseWrapper<LibraryDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(moveLibraryById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(moveLibraryById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * move_library 测试库
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<LibraryDTO>
+    */   
+    public LibraryDTO moveLibraryById
+            (String id, LibraryDTO dto) {
+        Library domain = libraryDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Library rt = libraryService.moveLibrary(domain);
         return libraryDtoMapping.toDto(rt);
     }
 
@@ -472,7 +588,7 @@ public abstract class AbstractLibraryResource {
     public ResponseEntity<List<LibraryDTO>> fetchAdmin
             (@Validated @RequestBody LibraryFilterDTO dto) {
         LibrarySearchContext context = libraryFilterDtoMapping.toDomain(dto);
-        Page<Library> domains = libraryService.searchAdmin(context) ;
+        Page<Library> domains = libraryService.fetchAdmin(context) ;
         List<LibraryDTO> list = libraryDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -494,7 +610,7 @@ public abstract class AbstractLibraryResource {
     public ResponseEntity<List<LibraryDTO>> fetchArchived
             (@Validated @RequestBody LibraryFilterDTO dto) {
         LibrarySearchContext context = libraryFilterDtoMapping.toDomain(dto);
-        Page<Library> domains = libraryService.searchArchived(context) ;
+        Page<Library> domains = libraryService.fetchArchived(context) ;
         List<LibraryDTO> list = libraryDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -516,7 +632,7 @@ public abstract class AbstractLibraryResource {
     public ResponseEntity<List<LibraryDTO>> fetchDefault
             (@Validated @RequestBody LibraryFilterDTO dto) {
         LibrarySearchContext context = libraryFilterDtoMapping.toDomain(dto);
-        Page<Library> domains = libraryService.searchDefault(context) ;
+        Page<Library> domains = libraryService.fetchDefault(context) ;
         List<LibraryDTO> list = libraryDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -538,7 +654,7 @@ public abstract class AbstractLibraryResource {
     public ResponseEntity<List<LibraryDTO>> fetchDeleted
             (@Validated @RequestBody LibraryFilterDTO dto) {
         LibrarySearchContext context = libraryFilterDtoMapping.toDomain(dto);
-        Page<Library> domains = libraryService.searchDeleted(context) ;
+        Page<Library> domains = libraryService.fetchDeleted(context) ;
         List<LibraryDTO> list = libraryDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -560,7 +676,29 @@ public abstract class AbstractLibraryResource {
     public ResponseEntity<List<LibraryDTO>> fetchFavorite
             (@Validated @RequestBody LibraryFilterDTO dto) {
         LibrarySearchContext context = libraryFilterDtoMapping.toDomain(dto);
-        Page<Library> domains = libraryService.searchFavorite(context) ;
+        Page<Library> domains = libraryService.fetchFavorite(context) ;
+        List<LibraryDTO> list = libraryDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_main 测试库
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<LibraryDTO>>
+    */
+    @ApiOperation(value = "查询fetch_main", tags = {"测试库" },  notes = "Library-fetch_main ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Library-fetch_main-all') or hasPermission(#dto,'ibizplm-Library-fetch_main')")
+    @PostMapping("libraries/fetch_main")
+    public ResponseEntity<List<LibraryDTO>> fetchMain
+            (@Validated @RequestBody LibraryFilterDTO dto) {
+        LibrarySearchContext context = libraryFilterDtoMapping.toDomain(dto);
+        Page<Library> domains = libraryService.fetchMain(context) ;
         List<LibraryDTO> list = libraryDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -582,7 +720,7 @@ public abstract class AbstractLibraryResource {
     public ResponseEntity<List<LibraryDTO>> fetchNormal
             (@Validated @RequestBody LibraryFilterDTO dto) {
         LibrarySearchContext context = libraryFilterDtoMapping.toDomain(dto);
-        Page<Library> domains = libraryService.searchNormal(context) ;
+        Page<Library> domains = libraryService.fetchNormal(context) ;
         List<LibraryDTO> list = libraryDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -603,7 +741,29 @@ public abstract class AbstractLibraryResource {
     public ResponseEntity<List<LibraryDTO>> fetchProjectRelationLibrary
             (@Validated @RequestBody LibraryFilterDTO dto) {
         LibrarySearchContext context = libraryFilterDtoMapping.toDomain(dto);
-        Page<Library> domains = libraryService.searchProjectRelationLibrary(context) ;
+        Page<Library> domains = libraryService.fetchProjectRelationLibrary(context) ;
+        List<LibraryDTO> list = libraryDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_quick_user 测试库
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<LibraryDTO>>
+    */
+    @ApiOperation(value = "查询fetch_quick_user", tags = {"测试库" },  notes = "Library-fetch_quick_user ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Library-fetch_quick_user-all') or hasPermission(#dto,'ibizplm-Library-fetch_quick_user')")
+    @PostMapping("libraries/fetch_quick_user")
+    public ResponseEntity<List<LibraryDTO>> fetchQuickUser
+            (@Validated @RequestBody LibraryFilterDTO dto) {
+        LibrarySearchContext context = libraryFilterDtoMapping.toDomain(dto);
+        Page<Library> domains = libraryService.fetchQuickUser(context) ;
         List<LibraryDTO> list = libraryDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -625,7 +785,7 @@ public abstract class AbstractLibraryResource {
     public ResponseEntity<List<LibraryDTO>> fetchReader
             (@Validated @RequestBody LibraryFilterDTO dto) {
         LibrarySearchContext context = libraryFilterDtoMapping.toDomain(dto);
-        Page<Library> domains = libraryService.searchReader(context) ;
+        Page<Library> domains = libraryService.fetchReader(context) ;
         List<LibraryDTO> list = libraryDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -647,7 +807,7 @@ public abstract class AbstractLibraryResource {
     public ResponseEntity<List<LibraryDTO>> fetchUser
             (@Validated @RequestBody LibraryFilterDTO dto) {
         LibrarySearchContext context = libraryFilterDtoMapping.toDomain(dto);
-        Page<Library> domains = libraryService.searchUser(context) ;
+        Page<Library> domains = libraryService.fetchUser(context) ;
         List<LibraryDTO> list = libraryDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -666,7 +826,7 @@ public abstract class AbstractLibraryResource {
     @ApiOperation(value = "批量新建测试库", tags = {"测试库" },  notes = "批量新建测试库")
 	@PostMapping("libraries/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<LibraryDTO> dtos) {
-        libraryService.createBatch(libraryDtoMapping.toDomain(dtos));
+        libraryService.create(libraryDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -679,7 +839,7 @@ public abstract class AbstractLibraryResource {
     @ApiOperation(value = "批量删除测试库", tags = {"测试库" },  notes = "批量删除测试库")
 	@DeleteMapping("libraries/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        libraryService.removeBatch(ids);
+        libraryService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -692,7 +852,7 @@ public abstract class AbstractLibraryResource {
     @ApiOperation(value = "批量更新测试库", tags = {"测试库" },  notes = "批量更新测试库")
 	@PutMapping("libraries/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<LibraryDTO> dtos) {
-        libraryService.updateBatch(libraryDtoMapping.toDomain(dtos));
+        libraryService.update(libraryDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -705,7 +865,7 @@ public abstract class AbstractLibraryResource {
     @ApiOperation(value = "批量保存测试库", tags = {"测试库" },  notes = "批量保存测试库")
 	@PostMapping("libraries/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<LibraryDTO> dtos) {
-        libraryService.saveBatch(libraryDtoMapping.toDomain(dtos));
+        libraryService.save(libraryDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

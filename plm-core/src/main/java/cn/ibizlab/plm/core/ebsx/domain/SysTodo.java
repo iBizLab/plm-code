@@ -37,26 +37,92 @@ public class SysTodo extends EntityClient implements Serializable
      * 业务单号
      */
     @DEField(name = "num")
-    @JsonProperty("num")
     @JSONField(name = "num")
+    @JsonProperty("num")
     @ApiModelProperty(value = "num", notes = "业务单号")
     private String num;
+
+    /**
+     * 待办标识
+     */
+    @Id
+    @DEField(name = "todoid" , isKeyField = true)
+    @JSONField(name = "todoid")
+    @JsonProperty("todoid")
+    @ApiModelProperty(value = "todoid", notes = "待办标识")
+    private String todoId;
+
+    /**
+     * 标题
+     */
+    @DEField(name = "title")
+    @JSONField(name = "title")
+    @JsonProperty("title")
+    @ApiModelProperty(value = "title", notes = "标题")
+    private String title;
 
     /**
      * 创建人
      */
     @DEField(name = "createman" , preType = DEPredefinedFieldType.CREATEMAN , dict = "SysOperator")
-    @JsonProperty("createman")
     @JSONField(name = "createman")
+    @JsonProperty("createman")
     @ApiModelProperty(value = "createman", notes = "创建人")
     private String createMan;
+
+    /**
+     * 上一环节处理人
+     */
+    @DEField(name = "createmanname" , preType = DEPredefinedFieldType.CREATEMANNAME)
+    @JSONField(name = "createmanname")
+    @JsonProperty("createmanname")
+    @ApiModelProperty(value = "createmanname", notes = "上一环节处理人")
+    private String createManName;
+
+    /**
+     * 创建时间
+     */
+    @DEField(name = "createdate" , preType = DEPredefinedFieldType.CREATEDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "createdate" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("createdate")
+    @ApiModelProperty(value = "createdate", notes = "创建时间")
+    private Date createDate;
+
+    /**
+     * 更新人
+     */
+    @DEField(name = "updateman" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
+    @JSONField(name = "updateman")
+    @JsonProperty("updateman")
+    @ApiModelProperty(value = "updateman", notes = "更新人")
+    private String updateMan;
+
+    /**
+     * 更新人
+     */
+    @DEField(name = "updatemanname" , preType = DEPredefinedFieldType.UPDATEMANNAME)
+    @JSONField(name = "updatemanname")
+    @JsonProperty("updatemanname")
+    @ApiModelProperty(value = "updatemanname", notes = "更新人")
+    private String updateManName;
+
+    /**
+     * 更新时间
+     */
+    @DEField(name = "updatedate" , preType = DEPredefinedFieldType.UPDATEDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "updatedate" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("updatedate")
+    @ApiModelProperty(value = "updatedate", notes = "更新时间")
+    private Date updateDate;
 
     /**
      * 参数04
      */
     @DEField(name = "param04")
-    @JsonProperty("param04")
     @JSONField(name = "param04")
+    @JsonProperty("param04")
     @ApiModelProperty(value = "param04", notes = "参数04")
     private String param04;
 
@@ -64,65 +130,36 @@ public class SysTodo extends EntityClient implements Serializable
      * 长文本参数01
      */
     @DEField(name = "clobparam01")
-    @JsonProperty("clobparam01")
     @JSONField(name = "clobparam01")
+    @JsonProperty("clobparam01")
     @ApiModelProperty(value = "clobparam01", notes = "长文本参数01")
     private String clobParam01;
-
-    /**
-     * 标题
-     */
-    @DEField(name = "title")
-    @JsonProperty("title")
-    @JSONField(name = "title")
-    @ApiModelProperty(value = "title", notes = "标题")
-    private String title;
 
     /**
      * 业务对象
      */
     @DEField(name = "biztype")
-    @JsonProperty("biztype")
     @JSONField(name = "biztype")
+    @JsonProperty("biztype")
     @ApiModelProperty(value = "biztype", notes = "业务对象")
     private String bizType;
-
-    /**
-     * 待办标识
-     */
-    @Id
-    @DEField(name = "todoid" , isKeyField = true)
-    @JsonProperty("todoid")
-    @JSONField(name = "todoid")
-    @ApiModelProperty(value = "todoid", notes = "待办标识")
-    private String todoId;
 
     /**
      * 处理时间
      */
     @DEField(name = "processdate")
-    @JsonProperty("processdate")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "processdate" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("processdate")
     @ApiModelProperty(value = "processdate", notes = "处理时间")
     private Date processDate;
-
-    /**
-     * 更新时间
-     */
-    @DEField(name = "updatedate" , preType = DEPredefinedFieldType.UPDATEDATE)
-    @JsonProperty("updatedate")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "updatedate" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "updatedate", notes = "更新时间")
-    private Date updateDate;
 
     /**
      * 参数07
      */
     @DEField(name = "param07")
-    @JsonProperty("param07")
     @JSONField(name = "param07")
+    @JsonProperty("param07")
     @ApiModelProperty(value = "param07", notes = "参数07")
     private String param07;
 
@@ -130,8 +167,8 @@ public class SysTodo extends EntityClient implements Serializable
      * 参数09
      */
     @DEField(name = "param09")
-    @JsonProperty("param09")
     @JSONField(name = "param09")
+    @JsonProperty("param09")
     @ApiModelProperty(value = "param09", notes = "参数09")
     private String param09;
 
@@ -139,8 +176,8 @@ public class SysTodo extends EntityClient implements Serializable
      * 租户系统标识
      */
     @DEField(name = "dcsystemid")
-    @JsonProperty("dcsystemid")
     @JSONField(name = "dcsystemid")
+    @JsonProperty("dcsystemid")
     @ApiModelProperty(value = "dcsystemid", notes = "租户系统标识")
     private String dcSystemId;
 
@@ -148,8 +185,8 @@ public class SysTodo extends EntityClient implements Serializable
      * 参数08
      */
     @DEField(name = "param08")
-    @JsonProperty("param08")
     @JSONField(name = "param08")
+    @JsonProperty("param08")
     @ApiModelProperty(value = "param08", notes = "参数08")
     private String param08;
 
@@ -157,8 +194,8 @@ public class SysTodo extends EntityClient implements Serializable
      * 业务数据标识
      */
     @DEField(name = "bizkey")
-    @JsonProperty("bizkey")
     @JSONField(name = "bizkey")
+    @JsonProperty("bizkey")
     @ApiModelProperty(value = "bizkey", notes = "业务数据标识")
     private String bizKey;
 
@@ -166,45 +203,26 @@ public class SysTodo extends EntityClient implements Serializable
      * 租户系统名称
      */
     @DEField(name = "dcsystemname")
-    @JsonProperty("dcsystemname")
     @JSONField(name = "dcsystemname")
+    @JsonProperty("dcsystemname")
     @ApiModelProperty(value = "dcsystemname", notes = "租户系统名称")
     private String dcSystemName;
-
-    /**
-     * 更新人
-     */
-    @DEField(name = "updateman" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
-    @JsonProperty("updateman")
-    @JSONField(name = "updateman")
-    @ApiModelProperty(value = "updateman", notes = "更新人")
-    private String updateMan;
 
     /**
      * 参数06
      */
     @DEField(name = "param06")
-    @JsonProperty("param06")
     @JSONField(name = "param06")
+    @JsonProperty("param06")
     @ApiModelProperty(value = "param06", notes = "参数06")
     private String param06;
-
-    /**
-     * 创建时间
-     */
-    @DEField(name = "createdate" , preType = DEPredefinedFieldType.CREATEDATE)
-    @JsonProperty("createdate")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "createdate" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "createdate", notes = "创建时间")
-    private Date createDate;
 
     /**
      * 长文本参数02
      */
     @DEField(name = "clobparam02")
-    @JsonProperty("clobparam02")
     @JSONField(name = "clobparam02")
+    @JsonProperty("clobparam02")
     @ApiModelProperty(value = "clobparam02", notes = "长文本参数02")
     private String clobParam02;
 
@@ -212,8 +230,8 @@ public class SysTodo extends EntityClient implements Serializable
      * 参数02
      */
     @DEField(name = "param02")
-    @JsonProperty("param02")
     @JSONField(name = "param02")
+    @JsonProperty("param02")
     @ApiModelProperty(value = "param02", notes = "参数02")
     private String param02;
 
@@ -221,9 +239,9 @@ public class SysTodo extends EntityClient implements Serializable
      * 过期时间
      */
     @DEField(name = "duedate")
-    @JsonProperty("duedate")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "duedate" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("duedate")
     @ApiModelProperty(value = "duedate", notes = "过期时间")
     private Date dueDate;
 
@@ -231,8 +249,8 @@ public class SysTodo extends EntityClient implements Serializable
      * 连接地址
      */
     @DEField(name = "linkurl")
-    @JsonProperty("linkurl")
     @JSONField(name = "linkurl")
+    @JsonProperty("linkurl")
     @ApiModelProperty(value = "linkurl", notes = "连接地址")
     private String linkUrl;
 
@@ -240,8 +258,8 @@ public class SysTodo extends EntityClient implements Serializable
      * 待办子类
      */
     @DEField(name = "todosubtype")
-    @JsonProperty("todosubtype")
     @JSONField(name = "todosubtype")
+    @JsonProperty("todosubtype")
     @ApiModelProperty(value = "todosubtype", notes = "待办子类")
     private String todoSubType;
 
@@ -249,8 +267,8 @@ public class SysTodo extends EntityClient implements Serializable
      * 参数01
      */
     @DEField(name = "param01")
-    @JsonProperty("param01")
     @JSONField(name = "param01")
+    @JsonProperty("param01")
     @ApiModelProperty(value = "param01", notes = "参数01")
     private String param01;
 
@@ -258,26 +276,17 @@ public class SysTodo extends EntityClient implements Serializable
      * 待办用户标识
      */
     @DEField(name = "userid")
-    @JsonProperty("userid")
     @JSONField(name = "userid")
+    @JsonProperty("userid")
     @ApiModelProperty(value = "userid", notes = "待办用户标识")
     private String userId;
-
-    /**
-     * 上一环节处理人
-     */
-    @DEField(name = "createmanname" , preType = DEPredefinedFieldType.CREATEMANNAME)
-    @JsonProperty("createmanname")
-    @JSONField(name = "createmanname")
-    @ApiModelProperty(value = "createmanname", notes = "上一环节处理人")
-    private String createManName;
 
     /**
      * 参数05
      */
     @DEField(name = "param05")
-    @JsonProperty("param05")
     @JSONField(name = "param05")
+    @JsonProperty("param05")
     @ApiModelProperty(value = "param05", notes = "参数05")
     private String param05;
 
@@ -285,8 +294,8 @@ public class SysTodo extends EntityClient implements Serializable
      * 组织机构标识
      */
     @DEField(name = "orgid" , preType = DEPredefinedFieldType.ORGID)
-    @JsonProperty("orgid")
     @JSONField(name = "orgid")
+    @JsonProperty("orgid")
     @ApiModelProperty(value = "orgid", notes = "组织机构标识")
     private String orgId;
 
@@ -294,26 +303,17 @@ public class SysTodo extends EntityClient implements Serializable
      * 待办类型
      */
     @DEField(name = "todotype")
-    @JsonProperty("todotype")
     @JSONField(name = "todotype")
+    @JsonProperty("todotype")
     @ApiModelProperty(value = "todotype", notes = "待办类型")
     private String todoType;
-
-    /**
-     * 更新人
-     */
-    @DEField(name = "updatemanname" , preType = DEPredefinedFieldType.UPDATEMANNAME)
-    @JsonProperty("updatemanname")
-    @JSONField(name = "updatemanname")
-    @ApiModelProperty(value = "updatemanname", notes = "更新人")
-    private String updateManName;
 
     /**
      * 内容
      */
     @DEField(name = "content")
-    @JsonProperty("content")
     @JSONField(name = "content")
+    @JsonProperty("content")
     @ApiModelProperty(value = "content", notes = "内容")
     private String content;
 
@@ -321,8 +321,8 @@ public class SysTodo extends EntityClient implements Serializable
      * 参数03
      */
     @DEField(name = "param03")
-    @JsonProperty("param03")
     @JSONField(name = "param03")
+    @JsonProperty("param03")
     @ApiModelProperty(value = "param03", notes = "参数03")
     private String param03;
 
@@ -330,8 +330,8 @@ public class SysTodo extends EntityClient implements Serializable
      * 待办地址类型
      */
     @DEField(name = "todourltype")
-    @JsonProperty("todourltype")
     @JSONField(name = "todourltype")
+    @JsonProperty("todourltype")
     @ApiModelProperty(value = "todourltype", notes = "待办地址类型")
     private String todoUrlType;
 
@@ -339,8 +339,8 @@ public class SysTodo extends EntityClient implements Serializable
      * 待办状态
      */
     @DEField(name = "todostate" , dict = "CodeListTodoState")
-    @JsonProperty("todostate")
     @JSONField(name = "todostate")
+    @JsonProperty("todostate")
     @ApiModelProperty(value = "todostate", notes = "待办状态")
     private String todoState;
 
@@ -348,14 +348,14 @@ public class SysTodo extends EntityClient implements Serializable
      * 是否已读
      */
     @DEField(name = "isread" , dict = "YesNo")
-    @JsonProperty("isread")
     @JSONField(name = "isread")
+    @JsonProperty("isread")
     @ApiModelProperty(value = "isread", notes = "是否已读")
     private Integer isRead;
 
     /**
-     * 设置 [业务单号]
-     */
+    * 设置 [业务单号]
+    */
     public SysTodo setNum(String num) {
         this.num = num;
         this.modify("num", num);
@@ -363,26 +363,8 @@ public class SysTodo extends EntityClient implements Serializable
     }
 
     /**
-     * 设置 [参数04]
-     */
-    public SysTodo setParam04(String param04) {
-        this.param04 = param04;
-        this.modify("param04", param04);
-        return this;
-    }
-
-    /**
-     * 设置 [长文本参数01]
-     */
-    public SysTodo setClobParam01(String clobParam01) {
-        this.clobParam01 = clobParam01;
-        this.modify("clobparam01", clobParam01);
-        return this;
-    }
-
-    /**
-     * 设置 [标题]
-     */
+    * 设置 [标题]
+    */
     public SysTodo setTitle(String title) {
         this.title = title;
         this.modify("title", title);
@@ -390,8 +372,26 @@ public class SysTodo extends EntityClient implements Serializable
     }
 
     /**
-     * 设置 [业务对象]
-     */
+    * 设置 [参数04]
+    */
+    public SysTodo setParam04(String param04) {
+        this.param04 = param04;
+        this.modify("param04", param04);
+        return this;
+    }
+
+    /**
+    * 设置 [长文本参数01]
+    */
+    public SysTodo setClobParam01(String clobParam01) {
+        this.clobParam01 = clobParam01;
+        this.modify("clobparam01", clobParam01);
+        return this;
+    }
+
+    /**
+    * 设置 [业务对象]
+    */
     public SysTodo setBizType(String bizType) {
         this.bizType = bizType;
         this.modify("biztype", bizType);
@@ -399,8 +399,8 @@ public class SysTodo extends EntityClient implements Serializable
     }
 
     /**
-     * 设置 [处理时间]
-     */
+    * 设置 [处理时间]
+    */
     public SysTodo setProcessDate(Date processDate) {
         this.processDate = processDate;
         this.modify("processdate", processDate);
@@ -408,8 +408,8 @@ public class SysTodo extends EntityClient implements Serializable
     }
 
     /**
-     * 设置 [参数07]
-     */
+    * 设置 [参数07]
+    */
     public SysTodo setParam07(String param07) {
         this.param07 = param07;
         this.modify("param07", param07);
@@ -417,8 +417,8 @@ public class SysTodo extends EntityClient implements Serializable
     }
 
     /**
-     * 设置 [参数09]
-     */
+    * 设置 [参数09]
+    */
     public SysTodo setParam09(String param09) {
         this.param09 = param09;
         this.modify("param09", param09);
@@ -426,8 +426,8 @@ public class SysTodo extends EntityClient implements Serializable
     }
 
     /**
-     * 设置 [租户系统标识]
-     */
+    * 设置 [租户系统标识]
+    */
     public SysTodo setDcSystemId(String dcSystemId) {
         this.dcSystemId = dcSystemId;
         this.modify("dcsystemid", dcSystemId);
@@ -435,8 +435,8 @@ public class SysTodo extends EntityClient implements Serializable
     }
 
     /**
-     * 设置 [参数08]
-     */
+    * 设置 [参数08]
+    */
     public SysTodo setParam08(String param08) {
         this.param08 = param08;
         this.modify("param08", param08);
@@ -444,8 +444,8 @@ public class SysTodo extends EntityClient implements Serializable
     }
 
     /**
-     * 设置 [业务数据标识]
-     */
+    * 设置 [业务数据标识]
+    */
     public SysTodo setBizKey(String bizKey) {
         this.bizKey = bizKey;
         this.modify("bizkey", bizKey);
@@ -453,8 +453,8 @@ public class SysTodo extends EntityClient implements Serializable
     }
 
     /**
-     * 设置 [租户系统名称]
-     */
+    * 设置 [租户系统名称]
+    */
     public SysTodo setDcSystemName(String dcSystemName) {
         this.dcSystemName = dcSystemName;
         this.modify("dcsystemname", dcSystemName);
@@ -462,8 +462,8 @@ public class SysTodo extends EntityClient implements Serializable
     }
 
     /**
-     * 设置 [参数06]
-     */
+    * 设置 [参数06]
+    */
     public SysTodo setParam06(String param06) {
         this.param06 = param06;
         this.modify("param06", param06);
@@ -471,8 +471,8 @@ public class SysTodo extends EntityClient implements Serializable
     }
 
     /**
-     * 设置 [长文本参数02]
-     */
+    * 设置 [长文本参数02]
+    */
     public SysTodo setClobParam02(String clobParam02) {
         this.clobParam02 = clobParam02;
         this.modify("clobparam02", clobParam02);
@@ -480,8 +480,8 @@ public class SysTodo extends EntityClient implements Serializable
     }
 
     /**
-     * 设置 [参数02]
-     */
+    * 设置 [参数02]
+    */
     public SysTodo setParam02(String param02) {
         this.param02 = param02;
         this.modify("param02", param02);
@@ -489,8 +489,8 @@ public class SysTodo extends EntityClient implements Serializable
     }
 
     /**
-     * 设置 [过期时间]
-     */
+    * 设置 [过期时间]
+    */
     public SysTodo setDueDate(Date dueDate) {
         this.dueDate = dueDate;
         this.modify("duedate", dueDate);
@@ -498,8 +498,8 @@ public class SysTodo extends EntityClient implements Serializable
     }
 
     /**
-     * 设置 [连接地址]
-     */
+    * 设置 [连接地址]
+    */
     public SysTodo setLinkUrl(String linkUrl) {
         this.linkUrl = linkUrl;
         this.modify("linkurl", linkUrl);
@@ -507,8 +507,8 @@ public class SysTodo extends EntityClient implements Serializable
     }
 
     /**
-     * 设置 [待办子类]
-     */
+    * 设置 [待办子类]
+    */
     public SysTodo setTodoSubType(String todoSubType) {
         this.todoSubType = todoSubType;
         this.modify("todosubtype", todoSubType);
@@ -516,8 +516,8 @@ public class SysTodo extends EntityClient implements Serializable
     }
 
     /**
-     * 设置 [参数01]
-     */
+    * 设置 [参数01]
+    */
     public SysTodo setParam01(String param01) {
         this.param01 = param01;
         this.modify("param01", param01);
@@ -525,8 +525,8 @@ public class SysTodo extends EntityClient implements Serializable
     }
 
     /**
-     * 设置 [待办用户标识]
-     */
+    * 设置 [待办用户标识]
+    */
     public SysTodo setUserId(String userId) {
         this.userId = userId;
         this.modify("userid", userId);
@@ -534,8 +534,8 @@ public class SysTodo extends EntityClient implements Serializable
     }
 
     /**
-     * 设置 [参数05]
-     */
+    * 设置 [参数05]
+    */
     public SysTodo setParam05(String param05) {
         this.param05 = param05;
         this.modify("param05", param05);
@@ -543,8 +543,8 @@ public class SysTodo extends EntityClient implements Serializable
     }
 
     /**
-     * 设置 [待办类型]
-     */
+    * 设置 [待办类型]
+    */
     public SysTodo setTodoType(String todoType) {
         this.todoType = todoType;
         this.modify("todotype", todoType);
@@ -552,8 +552,8 @@ public class SysTodo extends EntityClient implements Serializable
     }
 
     /**
-     * 设置 [内容]
-     */
+    * 设置 [内容]
+    */
     public SysTodo setContent(String content) {
         this.content = content;
         this.modify("content", content);
@@ -561,8 +561,8 @@ public class SysTodo extends EntityClient implements Serializable
     }
 
     /**
-     * 设置 [参数03]
-     */
+    * 设置 [参数03]
+    */
     public SysTodo setParam03(String param03) {
         this.param03 = param03;
         this.modify("param03", param03);
@@ -570,8 +570,8 @@ public class SysTodo extends EntityClient implements Serializable
     }
 
     /**
-     * 设置 [待办地址类型]
-     */
+    * 设置 [待办地址类型]
+    */
     public SysTodo setTodoUrlType(String todoUrlType) {
         this.todoUrlType = todoUrlType;
         this.modify("todourltype", todoUrlType);
@@ -579,8 +579,8 @@ public class SysTodo extends EntityClient implements Serializable
     }
 
     /**
-     * 设置 [待办状态]
-     */
+    * 设置 [待办状态]
+    */
     public SysTodo setTodoState(String todoState) {
         this.todoState = todoState;
         this.modify("todostate", todoState);
@@ -588,14 +588,15 @@ public class SysTodo extends EntityClient implements Serializable
     }
 
     /**
-     * 设置 [是否已读]
-     */
+    * 设置 [是否已读]
+    */
     public SysTodo setIsRead(Integer isRead) {
         this.isRead = isRead;
         this.modify("isread", isRead);
         return this;
     }
 
+	
     /**
      * 复制当前对象数据到目标对象(粘贴重置)
      * @param targetEntity 目标数据对象

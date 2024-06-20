@@ -33,22 +33,6 @@ public abstract class AbstractSysDepartmentService implements SysDepartmentServi
 
     protected int batchSize = 500;
 
-    public SysDepartment get(SysDepartment et) {
-        return sysDepartmentFeignClient.getById(et.getId());
-    }
-
-    public List<SysDepartment> getByEntities(List<SysDepartment> entities) {
-        return null;
-    }
-
-    public SysDepartment getDraft(SysDepartment et) {
-        return sysDepartmentFeignClient.getDraft(et);
-    }
-
-    public Integer checkKey(SysDepartment et) {
-        return sysDepartmentFeignClient.checkKey(et);
-    }
-
     @Override
     @Transactional
     public boolean create(SysDepartment et) {
@@ -56,11 +40,12 @@ public abstract class AbstractSysDepartmentService implements SysDepartmentServi
         rt.copyTo(et,true);
         return true;
     }
+	
     @Transactional
-    public boolean createBatch(List<SysDepartment> list) {
+    public boolean create(List<SysDepartment> list) {
         return sysDepartmentFeignClient.createBatch(list);
     }
-
+	
     @Transactional
     public boolean update(SysDepartment et) {
         SysDepartment rt = sysDepartmentFeignClient.updateById(et.getId(), et);
@@ -69,38 +54,57 @@ public abstract class AbstractSysDepartmentService implements SysDepartmentServi
     }
 
     @Transactional
-    public boolean updateBatch(List<SysDepartment> list) {
+    public boolean update(List<SysDepartment> list) {
         return sysDepartmentFeignClient.updateBatch(list);
     }
-
-    @Transactional
-    public boolean save(SysDepartment et) {
-        SysDepartment rt =  sysDepartmentFeignClient.save(et);
-        rt.copyTo(et,true);
-        return true;
-    }
-
-    @Transactional
-    public boolean saveBatch(List<SysDepartment> list) {
-        return sysDepartmentFeignClient.saveBatch(list);
-    }
-
-    @Transactional
+	
+   @Transactional
     public boolean remove(SysDepartment et) {
         return sysDepartmentFeignClient.removeById(et.getId());
     }
 
     @Transactional
-    public boolean removeByEntities(List<SysDepartment> entities) {
-        return sysDepartmentFeignClient.removeBatch(entities.stream().map(e->e.getId()).collect(Collectors.toList()));
+    public boolean remove(List<SysDepartment> entities) {
+       return sysDepartmentFeignClient.removeBatch(entities.stream().map(e->e.getId()).collect(Collectors.toList()));
+    }		
+
+    public SysDepartment get(SysDepartment et) {
+        return sysDepartmentFeignClient.getById(et.getId());
+    }	
+
+    public List<SysDepartment> get(List<SysDepartment> entities) {
+        return null;
+    }	
+	
+    public SysDepartment getDraft(SysDepartment et) {
+        return sysDepartmentFeignClient.getDraft(et);
+    }
+	
+    public Integer checkKey(SysDepartment et) {
+         return sysDepartmentFeignClient.checkKey(et);
+    }
+	
+    @Override
+    @Transactional
+    public boolean save(SysDepartment et) {
+       SysDepartment rt =  sysDepartmentFeignClient.save(et);
+        rt.copyTo(et,true);
+        return true;
     }
 
-    public Page<SysDepartment> searchDefault(SysDepartmentSearchContext context) {
+    @Transactional
+    public boolean save(List<SysDepartment> list) {
+        return sysDepartmentFeignClient.saveBatch(list);
+    }
+	
+     public Page<SysDepartment> fetchDefault(SysDepartmentSearchContext context) {
         return sysDepartmentFeignClient.fetchDefault(context);
     }
+	
     public List<SysDepartment> listDefault(SysDepartmentSearchContext context) {
         context.setSize(Short.MAX_VALUE);
-        return searchDefault(context).getContent();
+        return fetchDefault(context).getContent();
     }
+	
 
 }

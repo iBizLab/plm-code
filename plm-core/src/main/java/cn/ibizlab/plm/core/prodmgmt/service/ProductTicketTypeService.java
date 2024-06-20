@@ -32,89 +32,32 @@ public interface ProductTicketTypeService extends IService<ProductTicketType> {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    ProductTicketType get(ProductTicketType et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default ProductTicketType get(String key) {
-        return getSelf().get(new ProductTicketType().setId(key));
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<ProductTicketType> getByIds(Collection<String> ids) {
-        List<ProductTicketType> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new ProductTicketType().setId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<ProductTicketType> getByEntities(List<ProductTicketType> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    ProductTicketType getDraft(ProductTicketType et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(ProductTicketType et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(ProductTicketType et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<ProductTicketType> list);
+    boolean create(List<ProductTicketType> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(ProductTicketType et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<ProductTicketType> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    @Override
-    boolean save(ProductTicketType et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<ProductTicketType> list);
+    boolean update(List<ProductTicketType> list);
 
     /**
      * 主键删除
@@ -124,14 +67,7 @@ public interface ProductTicketTypeService extends IService<ProductTicketType> {
     default boolean remove(String key) {
         return getSelf().remove(new ProductTicketType().setId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -141,13 +77,13 @@ public interface ProductTicketTypeService extends IService<ProductTicketType> {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<ProductTicketType> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new ProductTicketType().setId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new ProductTicketType().setId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -155,7 +91,170 @@ public interface ProductTicketTypeService extends IService<ProductTicketType> {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<ProductTicketType> entities);
+    boolean remove(List<ProductTicketType> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default ProductTicketType get(String key) {
+        return getSelf().get(new ProductTicketType().setId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    ProductTicketType get(ProductTicketType et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<ProductTicketType> get(Collection<String> keys) {
+        List<ProductTicketType> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new ProductTicketType().setId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<ProductTicketType> get(List<ProductTicketType> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    ProductTicketType getDraft(ProductTicketType et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(ProductTicketType et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(ProductTicketType et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<ProductTicketType> list);
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<ProductTicketType> fetchDefault(ProductTicketTypeSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<ProductTicketType> listDefault(ProductTicketTypeSearchContext context);
+
+    /**
+    * findByProductId
+    * @param productIds
+    * @return
+    */
+    List<ProductTicketType> findByProductId(List<String> productIds);
+    default List<ProductTicketType> findByProductId(String productId){
+        return findByProductId(Arrays.asList(productId));
+    }
+
+    /**
+    * removeByProductId
+    * @param productId
+    * @return
+    */
+    boolean removeByProductId(String productId);
+
+    /**
+    * resetByProductId
+    * @param productId
+    * @return
+    */
+    boolean resetByProductId(String productId);
+
+    /**
+    * saveByProductId
+    * @param productId
+    * @param list
+    * @return
+    */
+    default boolean saveByProductId(String productId, List<ProductTicketType> list){
+        return getSelf().saveByProduct(new Product().setId(productId),list);
+    }
+
+    /**
+    * saveByProduct
+    * @param product
+    * @param list
+    * @return
+    */
+    boolean saveByProduct(Product product, List<ProductTicketType> list);
+
+    /**
+    * findByTicketTypeId
+    * @param ticketTypeIds
+    * @return
+    */
+    List<ProductTicketType> findByTicketTypeId(List<String> ticketTypeIds);
+    default List<ProductTicketType> findByTicketTypeId(String ticketTypeId){
+        return findByTicketTypeId(Arrays.asList(ticketTypeId));
+    }
+
+    /**
+    * removeByTicketTypeId
+    * @param ticketTypeId
+    * @return
+    */
+    boolean removeByTicketTypeId(String ticketTypeId);
+
+    /**
+    * resetByTicketTypeId
+    * @param ticketTypeId
+    * @return
+    */
+    boolean resetByTicketTypeId(String ticketTypeId);
+
+    /**
+    * saveByTicketTypeId
+    * @param ticketTypeId
+    * @param list
+    * @return
+    */
+    default boolean saveByTicketTypeId(String ticketTypeId, List<ProductTicketType> list){
+        return getSelf().saveByTicketType(new TicketType().setId(ticketTypeId),list);
+    }
+
+    /**
+    * saveByTicketType
+    * @param ticketType
+    * @param list
+    * @return
+    */
+    boolean saveByTicketType(TicketType ticketType, List<ProductTicketType> list);
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<ProductTicketType> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -172,22 +271,7 @@ public interface ProductTicketTypeService extends IService<ProductTicketType> {
         }
         return rt;
     }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<ProductTicketType> searchDefault(ProductTicketTypeSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<ProductTicketType> listDefault(ProductTicketTypeSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -195,6 +279,7 @@ public interface ProductTicketTypeService extends IService<ProductTicketType> {
     default ProductTicketType getEntity() {
         return new ProductTicketType();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -202,97 +287,13 @@ public interface ProductTicketTypeService extends IService<ProductTicketType> {
     default ProductTicketTypeSearchContext getSearchContext() {
         return new ProductTicketTypeSearchContext();
     }
+
+
     /**
-     * selectRelByProductId
-     * @param productIds
-     * @return
-     */
-    List<ProductTicketType> findByProductId(List<String> productIds);
-    default List<ProductTicketType> findByProductId(String productId) {
-        return findByProductId(Arrays.asList(productId));
-    }
-    /**
-     * removeRelByProductId
-     * @param productId
-     * @return
-     */
-    boolean removeByProductId(String productId);
-    /**
-     * resetRelByProductId
-     * @param productId
-     * @return
-     */
-    boolean resetByProductId(String productId);
-    /**
-     * saveRelByProductId
-     * @param productId
-     * @param list
-     * @return
-     */
-    default boolean saveByProductId(String productId,List<ProductTicketType> list) {
-        return getSelf().saveByProduct(new Product().setId(productId),list);
-    }
-    /**
-    * saveRelByProduct
-    * @param product
-    * @param list
+    * 自定义SQL
+    * @param sql  update table  set name ='test' where id =#{et.param}
+    * @param param 参数列表  param.put("param","1");
     * @return
     */
-    boolean saveByProduct(Product product,List<ProductTicketType> list);
-
-    /**
-     * selectRelByTicketTypeId
-     * @param ticketTypeIds
-     * @return
-     */
-    List<ProductTicketType> findByTicketTypeId(List<String> ticketTypeIds);
-    default List<ProductTicketType> findByTicketTypeId(String ticketTypeId) {
-        return findByTicketTypeId(Arrays.asList(ticketTypeId));
-    }
-    /**
-     * removeRelByTicketTypeId
-     * @param ticketTypeId
-     * @return
-     */
-    boolean removeByTicketTypeId(String ticketTypeId);
-    /**
-     * resetRelByTicketTypeId
-     * @param ticketTypeId
-     * @return
-     */
-    boolean resetByTicketTypeId(String ticketTypeId);
-    /**
-     * saveRelByTicketTypeId
-     * @param ticketTypeId
-     * @param list
-     * @return
-     */
-    default boolean saveByTicketTypeId(String ticketTypeId,List<ProductTicketType> list) {
-        return getSelf().saveByTicketType(new TicketType().setId(ticketTypeId),list);
-    }
-    /**
-    * saveRelByTicketType
-    * @param ticketType
-    * @param list
-    * @return
-    */
-    boolean saveByTicketType(TicketType ticketType,List<ProductTicketType> list);
-
-
-    /**
-     * 自定义查询SQL
-     * @param sql  select * from table where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
-    List<JSONObject> select(String sql, Map<String,Object> param);
-
-    /**
-     * 自定义SQL
-     * @param sql  update table  set name ='test' where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
     boolean execute(String sql, Map<String,Object> param);
-
 }

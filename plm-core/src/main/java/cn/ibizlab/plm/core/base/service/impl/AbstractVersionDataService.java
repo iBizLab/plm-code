@@ -35,26 +35,6 @@ public abstract class AbstractVersionDataService extends ServiceImpl<VersionData
 
     protected int batchSize = 500;
 
-    public VersionData get(VersionData et) {
-        VersionData rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.VERSION_DATA.toString(),et.getId());
-        rt.copyTo(et,true);
-        return et;
-    }
-
-    public List<VersionData> getByEntities(List<VersionData> entities) {
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public VersionData getDraft(VersionData et) {
-        return et;
-    }
-
-    public Integer checkKey(VersionData et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<VersionData>lambdaQuery().eq(VersionData::getId, et.getId()))>0)?1:0;
-    }
-
     @Override
     @Transactional
     public boolean create(VersionData et) {
@@ -63,13 +43,13 @@ public abstract class AbstractVersionDataService extends ServiceImpl<VersionData
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<VersionData> list) {
+    public boolean create(List<VersionData> list) {
         this.saveBatch(list, batchSize);
         return true;
     }
-
+	
     @Transactional
     public boolean update(VersionData et) {
         UpdateWrapper<VersionData> qw = et.getUpdateWrapper(true);
@@ -81,11 +61,43 @@ public abstract class AbstractVersionDataService extends ServiceImpl<VersionData
     }
 
     @Transactional
-    public boolean updateBatch(List<VersionData> list) {
+    public boolean update(List<VersionData> list) {
         updateBatchById(list, batchSize);
         return true;
     }
+	
+   @Transactional
+    public boolean remove(VersionData et) {
+        if(!remove(Wrappers.<VersionData>lambdaQuery().eq(VersionData::getId, et.getId())))
+            return false;
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<VersionData> entities) {
+        this.baseMapper.deleteEntities(entities);
+        return true;
+    }		
+    public VersionData get(VersionData et) {
+        VersionData rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.VERSION_DATA.toString(),et.getId());
+        rt.copyTo(et,true);
+        return et;
+    }	
+
+    public List<VersionData> get(List<VersionData> entities) {
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public VersionData getDraft(VersionData et) {
+        return et;
+    }
+	
+    public Integer checkKey(VersionData et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<VersionData>lambdaQuery().eq(VersionData::getId, et.getId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(VersionData et) {
@@ -96,10 +108,10 @@ public abstract class AbstractVersionDataService extends ServiceImpl<VersionData
     }
 
     @Transactional
-    public boolean saveBatch(List<VersionData> list) {
+    public boolean save(List<VersionData> list) {
         if(ObjectUtils.isEmpty(list))
             return true;
-        Map<String,VersionData> before = getByEntities(list).stream().collect(Collectors.toMap(VersionData::getId,e->e));
+        Map<String,VersionData> before = get(list).stream().collect(Collectors.toMap(VersionData::getId,e->e));
         List<VersionData> create = new ArrayList<>();
         List<VersionData> update = new ArrayList<>();
         list.forEach(sub->{
@@ -110,40 +122,24 @@ public abstract class AbstractVersionDataService extends ServiceImpl<VersionData
         });
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
         else
             return true;
     }
-
-    @Transactional
-    public boolean remove(VersionData et) {
-        if(!remove(Wrappers.<VersionData>lambdaQuery().eq(VersionData::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<VersionData> entities) {
-        this.baseMapper.deleteEntities(entities);
-        return true;
-    }
-
-    public Page<VersionData> searchDefault(VersionDataSearchContext context) {
+	
+   public Page<VersionData> fetchDefault(VersionDataSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<VersionData> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<VersionData> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<VersionData> listDefault(VersionDataSearchContext context) {
+   public List<VersionData> listDefault(VersionDataSearchContext context) {
         List<VersionData> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
-    }
+   }
+	
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -163,8 +159,8 @@ public abstract class AbstractVersionDataService extends ServiceImpl<VersionData
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return VersionDataMapper.class;
     }
@@ -173,4 +169,5 @@ public abstract class AbstractVersionDataService extends ServiceImpl<VersionData
     protected Class currentModelClass() {
         return VersionData.class;
     }
+
 }

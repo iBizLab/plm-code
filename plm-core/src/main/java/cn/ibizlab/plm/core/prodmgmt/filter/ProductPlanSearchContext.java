@@ -46,20 +46,20 @@ public class ProductPlanSearchContext extends QueryWrapperContext<ProductPlan> {
     private String categoriesLIKE;
 
     /**
-     * 计划名称LIKE
-     */
-    @JsonProperty("n_name_like")
-    @JSONField(name = "n_name_like")
-    @ApiModelProperty("计划名称LIKE")
-    private String nameLIKE;
-
-    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
     @ApiModelProperty("标识EQ")
     private String idEQ;
+
+    /**
+     * 计划名称LIKE
+     */
+    @JsonProperty("n_name_like")
+    @JSONField(name = "n_name_like")
+    @ApiModelProperty("计划名称LIKE")
+    private String nameLIKE;
 
     /**
      * 产品标识EQ

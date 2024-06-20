@@ -351,6 +351,21 @@ export default {
       controlParam: {
         id: 'form',
       },
+      ctrlMsg: {
+        codeName: 'UsrCtrlMsg0228593610',
+        ctrlMsgItems: [
+          {
+            name: 'CREATESUCCESS_HIDDEN',
+            id: 'createsuccess_hidden',
+          },
+          {
+            name: 'UPDATESUCCESS_HIDDEN',
+            id: 'updatesuccess_hidden',
+          },
+        ],
+        name: '编辑表单自定义消息(隐藏)',
+        id: 'usrctrlmsg0228593610',
+      },
       modelId: 'c08074e3c23bb5fa2d86ce5dc48e0c53',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',

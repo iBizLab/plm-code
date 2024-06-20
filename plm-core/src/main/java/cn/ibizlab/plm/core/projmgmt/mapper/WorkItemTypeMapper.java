@@ -43,6 +43,25 @@ public interface WorkItemTypeMapper extends BaseMapper<WorkItemType> {
     List<WorkItemType> listDefault(@Param("ctx") WorkItemTypeSearchContext context, @Param("ew") Wrapper<WorkItemType> wrapper);
 
     /**
+     * 数据集合cur_project_type分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<WorkItemType> searchCurProjectType(IPage<WorkItemType> page, @Param("ctx") WorkItemTypeSearchContext context, @Param("ew") Wrapper<WorkItemType> wrapper);
+    
+    /**
+     * 数据集合cur_project_type查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<WorkItemType> listCurProjectType(@Param("ctx") WorkItemTypeSearchContext context, @Param("ew") Wrapper<WorkItemType> wrapper);
+
+    /**
      * 数据集合project_work_item_type分页查询
      * 
      * @param page
@@ -79,6 +98,14 @@ public interface WorkItemTypeMapper extends BaseMapper<WorkItemType> {
      * @return
      */
     List<WorkItemType> listProjectWorkItemTypeNotBug(@Param("ctx") WorkItemTypeSearchContext context, @Param("ew") Wrapper<WorkItemType> wrapper);
+
+    /**
+    * 根据projectId查询
+    *
+    * @param projectIds
+    * @return
+    */
+    List<WorkItemType> findByProjectId(@Param("projectIds") List<String> projectIds);
 
     /**
      * 主键查询
@@ -189,5 +216,4 @@ public interface WorkItemTypeMapper extends BaseMapper<WorkItemType> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
 }

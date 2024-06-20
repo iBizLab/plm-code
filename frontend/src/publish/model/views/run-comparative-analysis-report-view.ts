@@ -376,7 +376,7 @@ export default {
                   singleSelect: true,
                   appCodeListId: 'plmweb.testmgmt__cur_library_member',
                   editorType: 'DROPDOWNLIST',
-                  placeHolder: '选择维护人',
+                  placeHolder: '选择执行人',
                   valueType: 'SIMPLE',
                   editable: true,
                   id: 'n_executor_id_eq',

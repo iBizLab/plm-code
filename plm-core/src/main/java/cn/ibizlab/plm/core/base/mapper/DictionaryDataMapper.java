@@ -208,5 +208,4 @@ public interface DictionaryDataMapper extends BaseMapper<DictionaryData> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
 }

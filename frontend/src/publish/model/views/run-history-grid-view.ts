@@ -8,17 +8,9 @@ export default {
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RUN',
   },
-  caption: '执行历史',
+  caption: '执行用例',
   codeName: 'run_history_grid_view',
   appDataEntityId: 'plmweb.run',
-  appViewNavParams: [
-    {
-      rawValue: true,
-      key: 'n_status_isnotnull',
-      value: '1',
-      id: 'n_status_isnotnull',
-    },
-  ],
   viewLayoutPanel: {
     viewProxyMode: true,
     layoutMode: 'FLEX',
@@ -32,36 +24,6 @@ export default {
           {
             actionGroupExtractMode: 'ITEM',
             panelItems: [
-              {
-                actionGroupExtractMode: 'ITEM',
-                panelItems: [
-                  {
-                    caption: '页面标题',
-                    itemStyle: 'DEFAULT',
-                    itemType: 'CTRLPOS',
-                    layoutPos: {
-                      shrink: 1,
-                      layout: 'FLEX',
-                    },
-                    showCaption: true,
-                    id: 'captionbar',
-                  },
-                ],
-                layout: {
-                  align: 'center',
-                  layout: 'FLEX',
-                },
-                dataRegionType: 'INHERIT',
-                caption: '容器',
-                itemStyle: 'DEFAULT',
-                itemType: 'CONTAINER',
-                layoutPos: {
-                  shrink: 1,
-                  heightMode: 'FULL',
-                  layout: 'FLEX',
-                },
-                id: 'view_captionbar',
-              },
               {
                 actionGroupExtractMode: 'ITEM',
                 panelItems: [
@@ -148,19 +110,6 @@ export default {
             panelItems: [
               {
                 actionGroupExtractMode: 'ITEM',
-                panelItems: [
-                  {
-                    caption: '工具栏',
-                    itemStyle: 'DEFAULT',
-                    itemType: 'CTRLPOS',
-                    layoutPos: {
-                      shrink: 1,
-                      layout: 'FLEX',
-                    },
-                    showCaption: true,
-                    id: 'toolbar',
-                  },
-                ],
                 layout: {
                   align: 'center',
                   layout: 'FLEX',
@@ -255,16 +204,6 @@ export default {
         logicTrigger: 'VIEWEVENT',
         logicType: 'SCRIPT',
         scriptCode:
-          '// 初始化默认隐藏表格\r\nview.layoutPanel.panelItems.grid.state.keepAlive = true;\r\nview.layoutPanel.panelItems.grid.state.visible = false;',
-        builtinLogic: true,
-        name: 'LOGIC',
-        id: 'logic',
-      },
-      {
-        eventNames: 'onMounted',
-        logicTrigger: 'VIEWEVENT',
-        logicType: 'SCRIPT',
-        scriptCode:
           "view.layoutPanel.panelItems.choose_data.state.visible = view.context.srfshowchoose || false;\n\n// 初始化默认隐藏表格\nview.layoutPanel.panelItems.grid.state.keepAlive = true;\nview.layoutPanel.panelItems.grid.state.visible = false;\nconst form = view.getController('form');\nif (form) {\n    form.evt.on('onFormDetailEvent', event =>{\n        const panelItems = view.layoutPanel.panelItems;\n        if (!panelItems.comment) {\n            return;\n        }\n        if (event.formDetailName === 'tabpage1') {\n            panelItems.comment.state.visible = true;\n        } else {\n            panelItems.comment.state.visible = false;\n        }\n    });\n}\n\n// 初始化隐藏发送和清空按钮\nview.layoutPanel.panelItems.button_calluilogic1.state.visible = false\nview.layoutPanel.panelItems.button_calluilogic.state.visible = false",
         builtinLogic: true,
         id: 'viewmounted',
@@ -273,7 +212,7 @@ export default {
         eventNames: 'onLoadSuccess',
         logicTrigger: 'VIEWEVENT',
         logicType: 'APPDEUILOGIC',
-        appDEUILogicId: 'get_idea_total',
+        appDEUILogicId: 'get_grid_total',
         appDataEntityId: 'plmweb.idea',
         builtinLogic: true,
         id: 'onloadsuccess',
@@ -378,26 +317,10 @@ export default {
     ],
     controls: [
       {
-        xdataControlName: 'grid',
-        codeName: 'history_grid_view_toolbar',
-        controlType: 'TOOLBAR',
-        logicName: '工具栏模板（只有一个实体界面行为组）',
-        appDataEntityId: 'plmweb.run',
-        controlParam: {
-          id: 'toolbar',
-        },
-        modelId: '97b647cbe00cc608f9a368e2d0874c1e',
-        modelType: 'PSDETOOLBAR',
-        name: 'toolbar',
-        id: 'history_grid_view_toolbar',
-      },
-      {
         aggMode: 'NONE',
         columnEnableFilter: 2,
         columnEnableLink: 2,
         groupMode: 'NONE',
-        minorSortDir: 'DESC',
-        minorSortAppDEFieldId: 'executed_at',
         degridColumns: [
           {
             clconvertMode: 'NONE',
@@ -547,7 +470,7 @@ export default {
         sortMode: 'REMOTE',
         singleSelect: true,
         fetchControlAction: {
-          appDEMethodId: 'fetch_default',
+          appDEMethodId: 'fetch_plan_run_history',
           appDataEntityId: 'plmweb.run',
           id: 'fetch',
         },
@@ -583,7 +506,7 @@ export default {
         capLanguageRes: {
           lanResTag: 'DE.LNAME.RUN',
         },
-        caption: '执行历史',
+        caption: '执行用例',
         codeName: 'history_grid_view_captionbar',
         controlType: 'CAPTIONBAR',
         appDataEntityId: 'plmweb.run',
@@ -606,7 +529,7 @@ export default {
   viewStyle: 'DEFAULT',
   viewType: 'DEGRIDVIEW',
   enableDP: true,
-  showCaptionBar: false,
+  showCaptionBar: true,
   modelId: '823c20406cd1fe1aa9a276dc93f34c74',
   modelType: 'PSAPPDEVIEW',
   name: 'runhistory_grid_view',

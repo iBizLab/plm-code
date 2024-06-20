@@ -41,33 +41,6 @@ public abstract class AbstractRunAttachmentService extends ServiceImpl<RunAttach
 
     protected int batchSize = 500;
 
-    public RunAttachment get(RunAttachment et) {
-        RunAttachment rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.RUN_ATTACHMENT.toString(),et.getId());
-        rt.copyTo(et,true);
-        return et;
-    }
-
-    public List<RunAttachment> getByEntities(List<RunAttachment> entities) {
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public void fillParentData(RunAttachment et) {
-        if(Entities.RUN.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
-            et.setOwnerId((String)et.getContextParentKey());
-        }
-    }
-
-    public RunAttachment getDraft(RunAttachment et) {
-        fillParentData(et);
-        return et;
-    }
-
-    public Integer checkKey(RunAttachment et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<RunAttachment>lambdaQuery().eq(RunAttachment::getId, et.getId()))>0)?1:0;
-    }
-
     @Override
     @Transactional
     public boolean create(RunAttachment et) {
@@ -77,14 +50,14 @@ public abstract class AbstractRunAttachmentService extends ServiceImpl<RunAttach
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<RunAttachment> list) {
+    public boolean create(List<RunAttachment> list) {
         list.forEach(this::fillParentData);
         this.saveBatch(list, batchSize);
         return true;
     }
-
+	
     @Transactional
     public boolean update(RunAttachment et) {
         UpdateWrapper<RunAttachment> qw = et.getUpdateWrapper(true);
@@ -96,11 +69,44 @@ public abstract class AbstractRunAttachmentService extends ServiceImpl<RunAttach
     }
 
     @Transactional
-    public boolean updateBatch(List<RunAttachment> list) {
+    public boolean update(List<RunAttachment> list) {
         updateBatchById(list, batchSize);
         return true;
     }
+	
+   @Transactional
+    public boolean remove(RunAttachment et) {
+        if(!remove(Wrappers.<RunAttachment>lambdaQuery().eq(RunAttachment::getId, et.getId())))
+            return false;
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<RunAttachment> entities) {
+        this.baseMapper.deleteEntities(entities);
+        return true;
+    }		
+    public RunAttachment get(RunAttachment et) {
+        RunAttachment rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.RUN_ATTACHMENT.toString(),et.getId());
+        rt.copyTo(et,true);
+        return et;
+    }	
+
+    public List<RunAttachment> get(List<RunAttachment> entities) {
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public RunAttachment getDraft(RunAttachment et) {
+        fillParentData(et);
+        return et;
+    }
+	
+    public Integer checkKey(RunAttachment et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<RunAttachment>lambdaQuery().eq(RunAttachment::getId, et.getId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(RunAttachment et) {
@@ -111,10 +117,10 @@ public abstract class AbstractRunAttachmentService extends ServiceImpl<RunAttach
     }
 
     @Transactional
-    public boolean saveBatch(List<RunAttachment> list) {
+    public boolean save(List<RunAttachment> list) {
         if(ObjectUtils.isEmpty(list))
             return true;
-        Map<String,RunAttachment> before = getByEntities(list).stream().collect(Collectors.toMap(RunAttachment::getId,e->e));
+        Map<String,RunAttachment> before = get(list).stream().collect(Collectors.toMap(RunAttachment::getId,e->e));
         List<RunAttachment> create = new ArrayList<>();
         List<RunAttachment> update = new ArrayList<>();
         list.forEach(sub->{
@@ -125,52 +131,45 @@ public abstract class AbstractRunAttachmentService extends ServiceImpl<RunAttach
         });
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
         else
             return true;
     }
-
-    @Transactional
-    public boolean remove(RunAttachment et) {
-        if(!remove(Wrappers.<RunAttachment>lambdaQuery().eq(RunAttachment::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<RunAttachment> entities) {
-        this.baseMapper.deleteEntities(entities);
-        return true;
-    }
-
-    public Page<RunAttachment> searchDefault(RunAttachmentSearchContext context) {
+	
+   public Page<RunAttachment> fetchDefault(RunAttachmentSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<RunAttachment> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<RunAttachment> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<RunAttachment> listDefault(RunAttachmentSearchContext context) {
+   public List<RunAttachment> listDefault(RunAttachmentSearchContext context) {
         List<RunAttachment> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
-    }
-
-    public List<RunAttachment> findByOwnerId(List<String> ownerIds) {
+   }
+	
+	public List<RunAttachment> findByOwnerId(List<String> ownerIds){
         List<RunAttachment> list = baseMapper.findByOwnerId(ownerIds);
-        return list;
-    }
-    public boolean removeByOwnerId(String ownerId) {
+        return list;	
+	}
+
+	public boolean removeByOwnerId(String ownerId){
         return this.remove(Wrappers.<RunAttachment>lambdaQuery().eq(RunAttachment::getOwnerId,ownerId));
-    }
+	}
 
-    public boolean resetByOwnerId(String ownerId) {
-        return this.update(Wrappers.<RunAttachment>lambdaUpdate().eq(RunAttachment::getOwnerId,ownerId));
-    }
-
-    public boolean saveByRunAttachment(Run run,List<RunAttachment> list) {
+	public boolean resetByOwnerId(String ownerId){
+		return this.update(Wrappers.<RunAttachment>lambdaUpdate().eq(RunAttachment::getOwnerId,ownerId));
+	}
+	public boolean saveByRunAttachment(Run run, List<RunAttachment> list){
         if(list==null)
             return true;
-        Map<String,RunAttachment> before = findByOwnerId(run.getId()).stream().collect(Collectors.toMap(RunAttachment::getId,e->e));
+        Map<String,RunAttachment> before = this.baseMapper.selectList(Wrappers.<RunAttachment>lambdaQuery()
+                        .eq(RunAttachment::getOwnerId, run.getId())
+                        .eq(RunAttachment::getOwnerType,"RUN")
+                        .eq(RunAttachment::getOwnerSubtype,"RUN"))
+                        .stream()
+                        .collect(Collectors.toMap(RunAttachment::getId,e->e));
+
         List<RunAttachment> update = new ArrayList<>();
         List<RunAttachment> create = new ArrayList<>();
 
@@ -186,18 +185,21 @@ public abstract class AbstractRunAttachmentService extends ServiceImpl<RunAttach
         }
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
             return false;
         else
             return true;
+			
+	}
+
+    public void fillParentData(RunAttachment et) {
+        if(Entities.RUN.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setOwnerId((String)et.getContextParentKey());
+        }
     }
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -217,8 +219,8 @@ public abstract class AbstractRunAttachmentService extends ServiceImpl<RunAttach
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return RunAttachmentMapper.class;
     }
@@ -227,4 +229,5 @@ public abstract class AbstractRunAttachmentService extends ServiceImpl<RunAttach
     protected Class currentModelClass() {
         return RunAttachment.class;
     }
+
 }

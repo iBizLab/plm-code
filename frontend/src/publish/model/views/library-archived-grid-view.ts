@@ -45,12 +45,14 @@ export default {
       logicType: 'APPUILOGIC',
       builtinAppUILogic: {
         openDataAppView: {
-          refAppViewId: 'plmweb.library_redirect_view',
+          openMode: 'POPUPMODAL',
+          refAppViewId: 'plmweb.library_show_edit_view',
         },
         editMode: true,
         appUILogicRefViews: [
           {
-            refAppViewId: 'plmweb.library_redirect_view',
+            openMode: 'POPUPMODAL',
+            refAppViewId: 'plmweb.library_show_edit_view',
           },
         ],
         builtinLogic: true,
@@ -64,19 +66,17 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '测试库数据重定向视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.LIBRARY.REDIRECTVIEW',
-      },
-      refAppViewId: 'plmweb.library_redirect_view',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
-    {
       realTitle: '测试库',
       refAppViewId: 'plmweb.library_index_view',
       name: 'NEWDATA',
       id: 'newdata',
+    },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '测试库展示信息视图',
+      refAppViewId: 'plmweb.library_show_edit_view',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
   ],
   controls: [

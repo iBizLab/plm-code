@@ -33,22 +33,6 @@ public abstract class AbstractSysPersonService implements SysPersonService {
 
     protected int batchSize = 500;
 
-    public SysPerson get(SysPerson et) {
-        return sysPersonFeignClient.getById(et.getId());
-    }
-
-    public List<SysPerson> getByEntities(List<SysPerson> entities) {
-        return null;
-    }
-
-    public SysPerson getDraft(SysPerson et) {
-        return sysPersonFeignClient.getDraft(et);
-    }
-
-    public Integer checkKey(SysPerson et) {
-        return sysPersonFeignClient.checkKey(et);
-    }
-
     @Override
     @Transactional
     public boolean create(SysPerson et) {
@@ -56,11 +40,12 @@ public abstract class AbstractSysPersonService implements SysPersonService {
         rt.copyTo(et,true);
         return true;
     }
+	
     @Transactional
-    public boolean createBatch(List<SysPerson> list) {
+    public boolean create(List<SysPerson> list) {
         return sysPersonFeignClient.createBatch(list);
     }
-
+	
     @Transactional
     public boolean update(SysPerson et) {
         SysPerson rt = sysPersonFeignClient.updateById(et.getId(), et);
@@ -69,45 +54,66 @@ public abstract class AbstractSysPersonService implements SysPersonService {
     }
 
     @Transactional
-    public boolean updateBatch(List<SysPerson> list) {
+    public boolean update(List<SysPerson> list) {
         return sysPersonFeignClient.updateBatch(list);
     }
-
-    @Transactional
-    public boolean save(SysPerson et) {
-        SysPerson rt =  sysPersonFeignClient.save(et);
-        rt.copyTo(et,true);
-        return true;
-    }
-
-    @Transactional
-    public boolean saveBatch(List<SysPerson> list) {
-        return sysPersonFeignClient.saveBatch(list);
-    }
-
-    @Transactional
+	
+   @Transactional
     public boolean remove(SysPerson et) {
         return sysPersonFeignClient.removeById(et.getId());
     }
 
     @Transactional
-    public boolean removeByEntities(List<SysPerson> entities) {
-        return sysPersonFeignClient.removeBatch(entities.stream().map(e->e.getId()).collect(Collectors.toList()));
+    public boolean remove(List<SysPerson> entities) {
+       return sysPersonFeignClient.removeBatch(entities.stream().map(e->e.getId()).collect(Collectors.toList()));
+    }		
+
+    public SysPerson get(SysPerson et) {
+        return sysPersonFeignClient.getById(et.getId());
+    }	
+
+    public List<SysPerson> get(List<SysPerson> entities) {
+        return null;
+    }	
+	
+    public SysPerson getDraft(SysPerson et) {
+        return sysPersonFeignClient.getDraft(et);
+    }
+	
+    public Integer checkKey(SysPerson et) {
+         return sysPersonFeignClient.checkKey(et);
+    }
+	
+    @Override
+    @Transactional
+    public boolean save(SysPerson et) {
+       SysPerson rt =  sysPersonFeignClient.save(et);
+        rt.copyTo(et,true);
+        return true;
     }
 
-    public Page<SysPerson> searchDefault(SysPersonSearchContext context) {
+    @Transactional
+    public boolean save(List<SysPerson> list) {
+        return sysPersonFeignClient.saveBatch(list);
+    }
+	
+     public Page<SysPerson> fetchDefault(SysPersonSearchContext context) {
         return sysPersonFeignClient.fetchDefault(context);
     }
+	
     public List<SysPerson> listDefault(SysPersonSearchContext context) {
         context.setSize(Short.MAX_VALUE);
-        return searchDefault(context).getContent();
+        return fetchDefault(context).getContent();
     }
-    public Page<SysPerson> searchUser(SysPersonSearchContext context) {
+	
+     public Page<SysPerson> fetchUser(SysPersonSearchContext context) {
         return sysPersonFeignClient.fetchUser(context);
     }
+	
     public List<SysPerson> listUser(SysPersonSearchContext context) {
         context.setSize(Short.MAX_VALUE);
-        return searchUser(context).getContent();
+        return fetchUser(context).getContent();
     }
+	
 
 }

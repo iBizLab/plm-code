@@ -31,89 +31,32 @@ public interface TicketTypeService extends IService<TicketType> {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    TicketType get(TicketType et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default TicketType get(String key) {
-        return getSelf().get(new TicketType().setId(key));
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<TicketType> getByIds(Collection<String> ids) {
-        List<TicketType> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new TicketType().setId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<TicketType> getByEntities(List<TicketType> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    TicketType getDraft(TicketType et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(TicketType et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(TicketType et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<TicketType> list);
+    boolean create(List<TicketType> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(TicketType et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<TicketType> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    @Override
-    boolean save(TicketType et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<TicketType> list);
+    boolean update(List<TicketType> list);
 
     /**
      * 主键删除
@@ -123,14 +66,7 @@ public interface TicketTypeService extends IService<TicketType> {
     default boolean remove(String key) {
         return getSelf().remove(new TicketType().setId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -140,13 +76,13 @@ public interface TicketTypeService extends IService<TicketType> {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<TicketType> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new TicketType().setId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new TicketType().setId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -154,7 +90,132 @@ public interface TicketTypeService extends IService<TicketType> {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<TicketType> entities);
+    boolean remove(List<TicketType> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default TicketType get(String key) {
+        return getSelf().get(new TicketType().setId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    TicketType get(TicketType et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<TicketType> get(Collection<String> keys) {
+        List<TicketType> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new TicketType().setId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<TicketType> get(List<TicketType> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    TicketType getDraft(TicketType et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(TicketType et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(TicketType et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<TicketType> list);
+
+    /**
+    * getConTicket
+    * 
+    * @param key
+    * @return
+    */
+    default TicketType getConTicket(String key) {
+        return getSelf().getConTicket(new TicketType().setId(key));
+    }
+
+    /**
+    * nothing
+    * 
+    * @param et
+    * @return
+    */
+    default TicketType nothing(TicketType et) {
+        return et;
+    }
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<TicketType> fetchDefault(TicketTypeSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<TicketType> listDefault(TicketTypeSearchContext context);
+
+    /**
+    * fetchNotExistsTicketType
+    * 
+    * @param context
+    * @return
+    */
+    Page<TicketType> fetchNotExistsTicketType(TicketTypeSearchContext context);
+
+    /**
+    * listNotExistsTicketType
+    * 
+    * @param context
+    * @return
+    */
+    List<TicketType> listNotExistsTicketType(TicketTypeSearchContext context);
+
+    /**
+    * getConTicket
+    * 
+    * @param et
+    * @return
+    */
+    default TicketType getConTicket(TicketType et) {
+        return et;
+    }
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<TicketType> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -171,67 +232,7 @@ public interface TicketTypeService extends IService<TicketType> {
         }
         return rt;
     }
-
-    /**
-     * get_con_ticket
-     * 
-     * @param key
-     * @return
-     */
-    default TicketType getConTicket(String key) {
-        return getSelf().getConTicket(new TicketType().setId(key));
-    }
-
-    /**
-     * nothing
-     * 
-     * @param dto
-     * @return
-     */
-    default TicketType nothing(TicketType dto) {
-        return dto;
-    }
-
-    /**
-     * get_con_ticket
-     * 
-     * @param et
-     * @return
-     */
-    default TicketType getConTicket(TicketType et) {
-        return et;
-    }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<TicketType> searchDefault(TicketTypeSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<TicketType> listDefault(TicketTypeSearchContext context);
-
-    /**
-     * searchnot_exists_ticket_type
-     * 
-     * @param context
-     * @return
-     */
-    Page<TicketType> searchNotExistsTicketType(TicketTypeSearchContext context);
-    /**
-     * listnot_exists_ticket_type
-     * 
-     * @param context
-     * @return
-     */
-    List<TicketType> listNotExistsTicketType(TicketTypeSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -239,6 +240,7 @@ public interface TicketTypeService extends IService<TicketType> {
     default TicketType getEntity() {
         return new TicketType();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -247,20 +249,12 @@ public interface TicketTypeService extends IService<TicketType> {
         return new TicketTypeSearchContext();
     }
 
-    /**
-     * 自定义查询SQL
-     * @param sql  select * from table where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
-    List<JSONObject> select(String sql, Map<String,Object> param);
 
     /**
-     * 自定义SQL
-     * @param sql  update table  set name ='test' where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
+    * 自定义SQL
+    * @param sql  update table  set name ='test' where id =#{et.param}
+    * @param param 参数列表  param.put("param","1");
+    * @return
+    */
     boolean execute(String sql, Map<String,Object> param);
-
 }

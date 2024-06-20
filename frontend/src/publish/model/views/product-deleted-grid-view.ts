@@ -42,12 +42,14 @@ export default {
       logicType: 'APPUILOGIC',
       builtinAppUILogic: {
         openDataAppView: {
-          refAppViewId: 'plmweb.product_main_view',
+          openMode: 'POPUPMODAL',
+          refAppViewId: 'plmweb.product_show_edit_view',
         },
         editMode: true,
         appUILogicRefViews: [
           {
-            refAppViewId: 'plmweb.product_main_view',
+            openMode: 'POPUPMODAL',
+            refAppViewId: 'plmweb.product_show_edit_view',
           },
         ],
         builtinLogic: true,
@@ -61,8 +63,9 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '产品主视图',
-      refAppViewId: 'plmweb.product_main_view',
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '产品信息展示视图',
+      refAppViewId: 'plmweb.product_show_edit_view',
       name: 'EDITDATA',
       id: 'editdata',
     },

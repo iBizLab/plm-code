@@ -352,6 +352,11 @@ export default {
                       "[\r\n    {\r\n    text: '最近7天',\r\n    value: () => {\r\n        const end_at = new Date();\r\n        const start_at = new Date();\r\n        start_at.setDate(end_at.getDate() - 6);\r\n        return [start_at, end_at];\r\n    },\r\n    },\r\n    {\r\n    text: '最近30天',\r\n    value: () => {\r\n        const end_at = new Date();\r\n        const start_at = new Date();\r\n        start_at.setDate(end_at.getDate() - 29);\r\n        return [start_at, end_at];\r\n    },\r\n    },\r\n    {\r\n    text: '本周',\r\n    value: () => {\r\n        const end_at = new Date();\r\n        const currentDay = end_at.getDay();\r\n        const start_at = new Date(end_at);\r\n\r\n        // 计算本周的开始日期 (周一)\r\n        start_at.setDate(\r\n        end_at.getDate() - currentDay + (currentDay === 0 ? -6 : 1),\r\n        );\r\n        return [start_at, end_at];\r\n    },\r\n    },\r\n    {\r\n    text: '本月',\r\n    value: () => {\r\n        const end_at = new Date();\r\n        const start_at = new Date(end_at);\r\n\r\n        // 将日期设置为本月第一天\r\n        start_at.setDate(1);\r\n        return [start_at, end_at];\r\n    },\r\n    },\r\n]",
                     id: 'date_range_shortcuts',
                   },
+                  {
+                    attrName: 'clearable',
+                    attrValue: 'false',
+                    id: 'clearable1',
+                  },
                 ],
                 layoutPos: {
                   colMD: 24,
@@ -399,6 +404,23 @@ export default {
                 codeName: 'n_sprint_name_eq',
                 detailStyle: 'DEFAULT',
                 detailType: 'FORMITEM',
+                defdgroupLogics: [
+                  {
+                    logicCat: 'PANELVISIBLE',
+                    relatedDetailNames: ['project_type'],
+                    groupOP: 'AND',
+                    defdlogics: [
+                      {
+                        condOP: 'EQ',
+                        defdname: 'project_type',
+                        value: 'scrum',
+                        logicType: 'SINGLE',
+                      },
+                    ],
+                    logicType: 'GROUP',
+                    id: '表单成员[n_sprint_name_eq][面板显示]逻辑',
+                  },
+                ],
                 layoutPos: {
                   colMD: 24,
                   layout: 'TABLE_24COL',
@@ -442,6 +464,7 @@ export default {
                 editor: {
                   appCodeListId: 'plmweb.projmgmt__work_item_priority',
                   editorType: 'MDROPDOWNLIST',
+                  placeHolder: '选择优先级',
                   valueType: 'SIMPLE',
                   editable: true,
                   id: 'n_priority_eq',
@@ -469,6 +492,7 @@ export default {
                 editor: {
                   appCodeListId: 'plmweb.projmgmt__severity',
                   editorType: 'MDROPDOWNLIST',
+                  placeHolder: '选择严重程度',
                   valueType: 'SIMPLE',
                   editable: true,
                   id: 'n_severity_eq',
@@ -539,6 +563,35 @@ export default {
                 },
                 showCaption: true,
                 id: 'n_create_time_ltandeq',
+              },
+              {
+                createDV: 'project_type',
+                createDVT: 'APPDATA',
+                dataType: 25,
+                enableCond: 3,
+                labelPos: 'LEFT',
+                labelWidth: 130,
+                noPrivDisplayMode: 1,
+                editor: {
+                  editorType: 'HIDDEN',
+                  valueType: 'SIMPLE',
+                  editable: true,
+                  id: 'project_type',
+                },
+                updateDV: 'project_type',
+                updateDVT: 'APPDATA',
+                allowEmpty: true,
+                hidden: true,
+                caption: '表单项',
+                codeName: 'project_type',
+                detailStyle: 'DEFAULT',
+                detailType: 'FORMITEM',
+                layoutPos: {
+                  colMD: 24,
+                  layout: 'TABLE_24COL',
+                },
+                showCaption: true,
+                id: 'project_type',
               },
             ],
             caption: '常规条件',

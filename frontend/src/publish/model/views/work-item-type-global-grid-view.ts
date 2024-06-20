@@ -276,6 +276,12 @@ export default {
           id: 'srfdataaccaction',
         },
         {
+          appDEFieldId: 'project_id',
+          valueType: 'SIMPLE',
+          dataType: 25,
+          id: 'project_id',
+        },
+        {
           appDEFieldId: 'name',
           valueType: 'SIMPLE',
           dataType: 25,

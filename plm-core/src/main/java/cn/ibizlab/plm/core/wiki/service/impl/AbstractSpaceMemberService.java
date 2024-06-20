@@ -42,50 +42,6 @@ public abstract class AbstractSpaceMemberService extends ServiceImpl<SpaceMember
 
     protected int batchSize = 500;
 
-    public SpaceMember get(SpaceMember et) {
-        SpaceMember rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.SPACE_MEMBER.toString(),et.getId());
-        rt.copyTo(et,true);
-        return et;
-    }
-
-    public List<SpaceMember> getByEntities(List<SpaceMember> entities) {
-        entities.forEach(et->{
-            if(ObjectUtils.isEmpty(et.getId()))
-                et.setId((String)et.getDefaultKey(true));
-            });
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public void fillParentData(SpaceMember et) {
-        if(Entities.SPACE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
-            et.setSpaceId((String)et.getContextParentKey());
-            Space space = et.getSpace();
-            if(space == null) {
-                space = spaceService.getById(et.getSpaceId());
-                et.setSpace(space);
-            }
-            if(!ObjectUtils.isEmpty(space)) {
-                et.setSpaceIdentifier(space.getIdentifier());
-                et.setSpaceId(space.getId());
-                et.setSpaceName(space.getName());
-            }
-        }
-    }
-
-    public SpaceMember getDraft(SpaceMember et) {
-        fillParentData(et);
-        return et;
-    }
-
-    public Integer checkKey(SpaceMember et) {
-        fillParentData(et);
-        if(ObjectUtils.isEmpty(et.getId()))
-            et.setId((String)et.getDefaultKey(true));
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<SpaceMember>lambdaQuery().eq(SpaceMember::getId, et.getId()))>0)?1:0;
-    }
-
     @Override
     @Transactional
     public boolean create(SpaceMember et) {
@@ -97,9 +53,9 @@ public abstract class AbstractSpaceMemberService extends ServiceImpl<SpaceMember
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<SpaceMember> list) {
+    public boolean create(List<SpaceMember> list) {
         list.forEach(this::fillParentData);
         list.forEach(et->{
             if(ObjectUtils.isEmpty(et.getId()))
@@ -108,7 +64,7 @@ public abstract class AbstractSpaceMemberService extends ServiceImpl<SpaceMember
         this.saveBatch(list, batchSize);
         return true;
     }
-
+	
     @Transactional
     public boolean update(SpaceMember et) {
         fillParentData(et);
@@ -121,12 +77,52 @@ public abstract class AbstractSpaceMemberService extends ServiceImpl<SpaceMember
     }
 
     @Transactional
-    public boolean updateBatch(List<SpaceMember> list) {
+    public boolean update(List<SpaceMember> list) {
         list.forEach(this::fillParentData);
         updateBatchById(list, batchSize);
         return true;
     }
+	
+   @Transactional
+    public boolean remove(SpaceMember et) {
+        if(!remove(Wrappers.<SpaceMember>lambdaQuery().eq(SpaceMember::getId, et.getId())))
+            return false;
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<SpaceMember> entities) {
+        this.baseMapper.deleteEntities(entities);
+        return true;
+    }		
+    public SpaceMember get(SpaceMember et) {
+        SpaceMember rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.SPACE_MEMBER.toString(),et.getId());
+        rt.copyTo(et,true);
+        return et;
+    }	
+
+    public List<SpaceMember> get(List<SpaceMember> entities) {
+        entities.forEach(et->{
+            if(ObjectUtils.isEmpty(et.getId()))
+                et.setId((String)et.getDefaultKey(true));
+            });
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public SpaceMember getDraft(SpaceMember et) {
+        fillParentData(et);
+        return et;
+    }
+	
+    public Integer checkKey(SpaceMember et) {
+        fillParentData(et);
+        if(ObjectUtils.isEmpty(et.getId()))
+            et.setId((String)et.getDefaultKey(true));
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<SpaceMember>lambdaQuery().eq(SpaceMember::getId, et.getId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(SpaceMember et) {
@@ -137,10 +133,10 @@ public abstract class AbstractSpaceMemberService extends ServiceImpl<SpaceMember
     }
 
     @Transactional
-    public boolean saveBatch(List<SpaceMember> list) {
+    public boolean save(List<SpaceMember> list) {
         if(ObjectUtils.isEmpty(list))
             return true;
-        Map<String,SpaceMember> before = getByEntities(list).stream().collect(Collectors.toMap(SpaceMember::getId,e->e));
+        Map<String,SpaceMember> before = get(list).stream().collect(Collectors.toMap(SpaceMember::getId,e->e));
         List<SpaceMember> create = new ArrayList<>();
         List<SpaceMember> update = new ArrayList<>();
         list.forEach(sub->{
@@ -155,67 +151,51 @@ public abstract class AbstractSpaceMemberService extends ServiceImpl<SpaceMember
         });
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
         else
             return true;
     }
-
-    @Transactional
-    public boolean remove(SpaceMember et) {
-        if(!remove(Wrappers.<SpaceMember>lambdaQuery().eq(SpaceMember::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<SpaceMember> entities) {
-        this.baseMapper.deleteEntities(entities);
-        return true;
-    }
-
-    public Page<SpaceMember> searchDefault(SpaceMemberSearchContext context) {
+	
+   public Page<SpaceMember> fetchDefault(SpaceMemberSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<SpaceMember> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<SpaceMember> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<SpaceMember> listDefault(SpaceMemberSearchContext context) {
+   public List<SpaceMember> listDefault(SpaceMemberSearchContext context) {
         List<SpaceMember> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<SpaceMember> searchCurSpace(SpaceMemberSearchContext context) {
+   }
+	
+   public Page<SpaceMember> fetchCurSpace(SpaceMemberSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<SpaceMember> pages=baseMapper.searchCurSpace(context.getPages(),context,context.getSelectCond());
         List<SpaceMember> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<SpaceMember> listCurSpace(SpaceMemberSearchContext context) {
+   public List<SpaceMember> listCurSpace(SpaceMemberSearchContext context) {
         List<SpaceMember> list = baseMapper.listCurSpace(context,context.getSelectCond());
         return list;
-    }
-
-    public List<SpaceMember> findBySpaceId(List<String> spaceIds) {
+   }
+	
+	public List<SpaceMember> findBySpaceId(List<String> spaceIds){
         List<SpaceMember> list = baseMapper.findBySpaceId(spaceIds);
-        return list;
-    }
-    public List<SpaceMember> findByUserId(List<String> userIds) {
-        List<SpaceMember> list = baseMapper.findByUserId(userIds);
-        return list;
-    }
-    public boolean removeBySpaceId(String spaceId) {
+        return list;	
+	}
+
+	public boolean removeBySpaceId(String spaceId){
         return this.remove(Wrappers.<SpaceMember>lambdaQuery().eq(SpaceMember::getSpaceId,spaceId));
-    }
+	}
 
-    public boolean resetBySpaceId(String spaceId) {
-        return this.update(Wrappers.<SpaceMember>lambdaUpdate().eq(SpaceMember::getSpaceId,spaceId));
-    }
-
-    public boolean saveBySpace(Space space,List<SpaceMember> list) {
+	public boolean resetBySpaceId(String spaceId){
+		return this.update(Wrappers.<SpaceMember>lambdaUpdate().eq(SpaceMember::getSpaceId,spaceId));
+	}
+	public boolean saveBySpace(Space space, List<SpaceMember> list){
         if(list==null)
             return true;
         Map<String,SpaceMember> before = findBySpaceId(space.getId()).stream().collect(Collectors.toMap(SpaceMember::getId,e->e));
+
         List<SpaceMember> update = new ArrayList<>();
         List<SpaceMember> create = new ArrayList<>();
 
@@ -235,26 +215,31 @@ public abstract class AbstractSpaceMemberService extends ServiceImpl<SpaceMember
         }
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
             return false;
         else
             return true;
-    }
+			
+	}
+	public List<SpaceMember> findByUserId(List<String> userIds){
+        List<SpaceMember> list = baseMapper.findByUserId(userIds);
+        return list;	
+	}
 
-    public boolean removeByUserId(String userId) {
+	public boolean removeByUserId(String userId){
         return this.remove(Wrappers.<SpaceMember>lambdaQuery().eq(SpaceMember::getUserId,userId));
-    }
+	}
 
-    public boolean resetByUserId(String userId) {
-        return this.update(Wrappers.<SpaceMember>lambdaUpdate().eq(SpaceMember::getUserId,userId));
-    }
-
-    public boolean saveByUser(User user,List<SpaceMember> list) {
+	public boolean resetByUserId(String userId){
+		return this.update(Wrappers.<SpaceMember>lambdaUpdate().eq(SpaceMember::getUserId,userId));
+	}
+	public boolean saveByUser(User user, List<SpaceMember> list){
         if(list==null)
             return true;
         Map<String,SpaceMember> before = findByUserId(user.getId()).stream().collect(Collectors.toMap(SpaceMember::getId,e->e));
+
         List<SpaceMember> update = new ArrayList<>();
         List<SpaceMember> create = new ArrayList<>();
 
@@ -274,18 +259,31 @@ public abstract class AbstractSpaceMemberService extends ServiceImpl<SpaceMember
         }
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
             return false;
         else
             return true;
+			
+	}
+
+    public void fillParentData(SpaceMember et) {
+        if(Entities.SPACE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setSpaceId((String)et.getContextParentKey());
+            Space space = et.getSpace();
+            if(space == null) {
+                space = spaceService.getById(et.getSpaceId());
+                et.setSpace(space);
+            }
+            if(!ObjectUtils.isEmpty(space)) {
+                et.setSpaceIdentifier(space.getIdentifier());
+                et.setSpaceId(space.getId());
+                et.setSpaceName(space.getName());
+            }
+        }
     }
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -305,8 +303,8 @@ public abstract class AbstractSpaceMemberService extends ServiceImpl<SpaceMember
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return SpaceMemberMapper.class;
     }
@@ -315,4 +313,5 @@ public abstract class AbstractSpaceMemberService extends ServiceImpl<SpaceMember
     protected Class currentModelClass() {
         return SpaceMember.class;
     }
+
 }

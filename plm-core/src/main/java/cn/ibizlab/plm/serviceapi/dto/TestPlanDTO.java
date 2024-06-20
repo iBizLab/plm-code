@@ -86,11 +86,19 @@ public class TestPlanDTO extends DTOBase implements Serializable {
     private String categories;
 
     /**
+     * 类别
+     */
+    @JsonProperty("categories_name")
+    @JSONField(name = "categories_name")
+    @ApiModelProperty(value = "类别", position = 6)
+    private String categoriesName;
+
+    /**
      * 关联缺陷
      */
     @JsonProperty("work_item_relations")
     @JSONField(name = "work_item_relations")
-    @ApiModelProperty(value = "关联缺陷", position = 6)
+    @ApiModelProperty(value = "关联缺陷", position = 7)
     private List<RelationDTO> workItemRelations;
 
     /**
@@ -98,7 +106,7 @@ public class TestPlanDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("assignee_name")
     @JSONField(name = "assignee_name")
-    @ApiModelProperty(value = "负责人", position = 7)
+    @ApiModelProperty(value = "负责人", position = 8)
     private String assigneeName;
 
     /**
@@ -106,7 +114,7 @@ public class TestPlanDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("assignee_id")
     @JSONField(name = "assignee_id")
-    @ApiModelProperty(value = "负责人标识", position = 8)
+    @ApiModelProperty(value = "负责人标识", position = 9)
     private String assigneeId;
 
     /**
@@ -114,7 +122,7 @@ public class TestPlanDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("project_type")
     @JSONField(name = "project_type")
-    @ApiModelProperty(value = "项目类型", position = 9)
+    @ApiModelProperty(value = "项目类型", position = 10)
     private String projectType;
 
     /**
@@ -122,7 +130,7 @@ public class TestPlanDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("library_identifier")
     @JSONField(name = "library_identifier")
-    @ApiModelProperty(value = "测试库名称", position = 10)
+    @ApiModelProperty(value = "测试库名称", position = 11)
     private String libraryIdentifier;
 
     /**
@@ -130,7 +138,7 @@ public class TestPlanDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 11)
+    @ApiModelProperty(value = "建立人", position = 12)
     private String createMan;
 
     /**
@@ -139,7 +147,7 @@ public class TestPlanDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 12)
+    @ApiModelProperty(value = "建立时间", position = 13)
     private Date createTime;
 
     /**
@@ -147,7 +155,7 @@ public class TestPlanDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 13)
+    @ApiModelProperty(value = "标识", position = 14)
     private String id;
 
     /**
@@ -155,7 +163,7 @@ public class TestPlanDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("library_id")
     @JSONField(name = "library_id")
-    @ApiModelProperty(value = "测试库标识", position = 14)
+    @ApiModelProperty(value = "测试库标识", position = 15)
     private String libraryId;
 
     /**
@@ -163,7 +171,7 @@ public class TestPlanDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("library_name")
     @JSONField(name = "library_name")
-    @ApiModelProperty(value = "所属测试库", position = 15)
+    @ApiModelProperty(value = "所属测试库", position = 16)
     private String libraryName;
 
     /**
@@ -171,7 +179,7 @@ public class TestPlanDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "计划名称", position = 16)
+    @ApiModelProperty(value = "计划名称", position = 17)
     private String name;
 
     /**
@@ -179,7 +187,7 @@ public class TestPlanDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("project_id")
     @JSONField(name = "project_id")
-    @ApiModelProperty(value = "关联项目", position = 17)
+    @ApiModelProperty(value = "关联项目", position = 18)
     private String projectId;
 
     /**
@@ -187,7 +195,7 @@ public class TestPlanDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("project_name")
     @JSONField(name = "project_name")
-    @ApiModelProperty(value = "关联项目", position = 18)
+    @ApiModelProperty(value = "关联项目", position = 19)
     private String projectName;
 
     /**
@@ -195,7 +203,7 @@ public class TestPlanDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("release_id")
     @JSONField(name = "release_id")
-    @ApiModelProperty(value = "项目发布标识", position = 19)
+    @ApiModelProperty(value = "项目发布标识", position = 20)
     private String releaseId;
 
     /**
@@ -203,7 +211,7 @@ public class TestPlanDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("release_name")
     @JSONField(name = "release_name")
-    @ApiModelProperty(value = "名称", position = 20)
+    @ApiModelProperty(value = "名称", position = 21)
     private String releaseName;
 
     /**
@@ -211,7 +219,7 @@ public class TestPlanDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("sprint_id")
     @JSONField(name = "sprint_id")
-    @ApiModelProperty(value = "关联迭代", position = 21)
+    @ApiModelProperty(value = "关联迭代", position = 22)
     private String sprintId;
 
     /**
@@ -219,7 +227,7 @@ public class TestPlanDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("sprint_name")
     @JSONField(name = "sprint_name")
-    @ApiModelProperty(value = "关联迭代", position = 22)
+    @ApiModelProperty(value = "关联迭代", position = 23)
     private String sprintName;
 
     /**
@@ -227,7 +235,7 @@ public class TestPlanDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 23)
+    @ApiModelProperty(value = "更新人", position = 24)
     private String updateMan;
 
     /**
@@ -236,7 +244,7 @@ public class TestPlanDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 24)
+    @ApiModelProperty(value = "更新时间", position = 25)
     private Date updateTime;
 
 
@@ -291,6 +299,15 @@ public class TestPlanDTO extends DTOBase implements Serializable {
     public TestPlanDTO setCategories(String categories) {
         this.categories = categories;
         this.modify("categories", categories);
+        return this;
+    }
+
+    /**
+     * 设置 [类别]
+     */
+    public TestPlanDTO setCategoriesName(String categoriesName) {
+        this.categoriesName = categoriesName;
+        this.modify("categories_name", categoriesName);
         return this;
     }
 

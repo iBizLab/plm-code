@@ -90,13 +90,23 @@ export default {
         {
           actionLevel: 100,
           noPrivDisplayMode: 2,
-          uiactionId: 'new',
+          uiactionId: 'new_subdata',
           valid: true,
           capLanguageRes: {
             lanResTag: 'TBB.TEXT.*.NEW',
           },
           caption: '新建用例',
           itemType: 'DEUIACTION',
+          controlLogics: [
+            {
+              itemName: 'deuiaction1',
+              logicTag: 'toolbar',
+              logicType: 'SCRIPT',
+              scriptCode: 'context.srfreadonly != true',
+              triggerType: 'ITEMVISIBLE',
+              id: 'deuiaction1',
+            },
+          ],
           sysImage: {
             cssClass: 'fa fa-plus',
             glyph: 'xf067@FontAwesome',
@@ -111,6 +121,16 @@ export default {
         },
         {
           itemType: 'SEPERATOR',
+          controlLogics: [
+            {
+              itemName: 'seperator1',
+              logicTag: 'toolbar',
+              logicType: 'SCRIPT',
+              scriptCode: 'context.srfreadonly != true',
+              triggerType: 'ITEMVISIBLE',
+              id: 'seperator1',
+            },
+          ],
           id: 'seperator1',
         },
         {
@@ -159,6 +179,16 @@ export default {
           ],
           valid: true,
           itemType: 'ITEMS',
+          controlLogics: [
+            {
+              itemName: 'items1',
+              logicTag: 'toolbar',
+              logicType: 'SCRIPT',
+              scriptCode: 'context.srfreadonly != true',
+              triggerType: 'ITEMVISIBLE',
+              id: 'items1',
+            },
+          ],
           sysImage: {
             cssClass: 'fa fa-list-ul',
             glyph: 'xf0ca@FontAwesome',

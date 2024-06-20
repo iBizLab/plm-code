@@ -78,14 +78,6 @@ public class ProductSearchContext extends QueryWrapperContext<Product> {
     private String scopeTypeEQ;
 
     /**
-     * 产品名称LIKE
-     */
-    @JsonProperty("n_name_like")
-    @JSONField(name = "n_name_like")
-    @ApiModelProperty("产品名称LIKE")
-    private String nameLIKE;
-
-    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
@@ -100,6 +92,14 @@ public class ProductSearchContext extends QueryWrapperContext<Product> {
     @JSONField(name = "n_id_noteq")
     @ApiModelProperty("标识NOTEQ")
     private String idNOTEQ;
+
+    /**
+     * 产品名称LIKE
+     */
+    @JsonProperty("n_name_like")
+    @JSONField(name = "n_name_like")
+    @ApiModelProperty("产品名称LIKE")
+    private String nameLIKE;
 
     @Override
     public void setQuery(String query) {

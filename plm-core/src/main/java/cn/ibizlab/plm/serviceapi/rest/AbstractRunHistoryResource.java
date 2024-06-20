@@ -888,7 +888,7 @@ public abstract class AbstractRunHistoryResource {
     public ResponseEntity<List<RunHistoryDTO>> fetchDefault
             (@Validated @RequestBody RunHistoryFilterDTO dto) {
         RunHistorySearchContext context = runHistoryFilterDtoMapping.toDomain(dto);
-        Page<RunHistory> domains = runHistoryService.searchDefault(context) ;
+        Page<RunHistory> domains = runHistoryService.fetchDefault(context) ;
         List<RunHistoryDTO> list = runHistoryDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -910,7 +910,7 @@ public abstract class AbstractRunHistoryResource {
     public ResponseEntity<List<RunHistoryDTO>> fetchThis
             (@Validated @RequestBody RunHistoryFilterDTO dto) {
         RunHistorySearchContext context = runHistoryFilterDtoMapping.toDomain(dto);
-        Page<RunHistory> domains = runHistoryService.searchThis(context) ;
+        Page<RunHistory> domains = runHistoryService.fetchThis(context) ;
         List<RunHistoryDTO> list = runHistoryDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1024,7 +1024,7 @@ public abstract class AbstractRunHistoryResource {
             (@PathVariable("runId") String runId, @Validated @RequestBody RunHistoryFilterDTO dto) {
         dto.setRunIdEQ(runId);
         RunHistorySearchContext context = runHistoryFilterDtoMapping.toDomain(dto);
-        Page<RunHistory> domains = runHistoryService.searchDefault(context) ;
+        Page<RunHistory> domains = runHistoryService.fetchDefault(context) ;
         List<RunHistoryDTO> list = runHistoryDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1048,7 +1048,7 @@ public abstract class AbstractRunHistoryResource {
             (@PathVariable("runId") String runId, @Validated @RequestBody RunHistoryFilterDTO dto) {
         dto.setRunIdEQ(runId);
         RunHistorySearchContext context = runHistoryFilterDtoMapping.toDomain(dto);
-        Page<RunHistory> domains = runHistoryService.searchThis(context) ;
+        Page<RunHistory> domains = runHistoryService.fetchThis(context) ;
         List<RunHistoryDTO> list = runHistoryDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1168,7 +1168,7 @@ public abstract class AbstractRunHistoryResource {
             (@PathVariable("caseId") String caseId, @PathVariable("runId") String runId, @Validated @RequestBody RunHistoryFilterDTO dto) {
         dto.setRunIdEQ(runId);
         RunHistorySearchContext context = runHistoryFilterDtoMapping.toDomain(dto);
-        Page<RunHistory> domains = runHistoryService.searchDefault(context) ;
+        Page<RunHistory> domains = runHistoryService.fetchDefault(context) ;
         List<RunHistoryDTO> list = runHistoryDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1193,7 +1193,7 @@ public abstract class AbstractRunHistoryResource {
             (@PathVariable("caseId") String caseId, @PathVariable("runId") String runId, @Validated @RequestBody RunHistoryFilterDTO dto) {
         dto.setRunIdEQ(runId);
         RunHistorySearchContext context = runHistoryFilterDtoMapping.toDomain(dto);
-        Page<RunHistory> domains = runHistoryService.searchThis(context) ;
+        Page<RunHistory> domains = runHistoryService.fetchThis(context) ;
         List<RunHistoryDTO> list = runHistoryDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1319,7 +1319,7 @@ public abstract class AbstractRunHistoryResource {
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @PathVariable("runId") String runId, @Validated @RequestBody RunHistoryFilterDTO dto) {
         dto.setRunIdEQ(runId);
         RunHistorySearchContext context = runHistoryFilterDtoMapping.toDomain(dto);
-        Page<RunHistory> domains = runHistoryService.searchDefault(context) ;
+        Page<RunHistory> domains = runHistoryService.fetchDefault(context) ;
         List<RunHistoryDTO> list = runHistoryDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1345,7 +1345,7 @@ public abstract class AbstractRunHistoryResource {
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @PathVariable("runId") String runId, @Validated @RequestBody RunHistoryFilterDTO dto) {
         dto.setRunIdEQ(runId);
         RunHistorySearchContext context = runHistoryFilterDtoMapping.toDomain(dto);
-        Page<RunHistory> domains = runHistoryService.searchThis(context) ;
+        Page<RunHistory> domains = runHistoryService.fetchThis(context) ;
         List<RunHistoryDTO> list = runHistoryDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1465,7 +1465,7 @@ public abstract class AbstractRunHistoryResource {
             (@PathVariable("planId") String planId, @PathVariable("runId") String runId, @Validated @RequestBody RunHistoryFilterDTO dto) {
         dto.setRunIdEQ(runId);
         RunHistorySearchContext context = runHistoryFilterDtoMapping.toDomain(dto);
-        Page<RunHistory> domains = runHistoryService.searchDefault(context) ;
+        Page<RunHistory> domains = runHistoryService.fetchDefault(context) ;
         List<RunHistoryDTO> list = runHistoryDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1490,7 +1490,7 @@ public abstract class AbstractRunHistoryResource {
             (@PathVariable("planId") String planId, @PathVariable("runId") String runId, @Validated @RequestBody RunHistoryFilterDTO dto) {
         dto.setRunIdEQ(runId);
         RunHistorySearchContext context = runHistoryFilterDtoMapping.toDomain(dto);
-        Page<RunHistory> domains = runHistoryService.searchThis(context) ;
+        Page<RunHistory> domains = runHistoryService.fetchThis(context) ;
         List<RunHistoryDTO> list = runHistoryDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1616,7 +1616,7 @@ public abstract class AbstractRunHistoryResource {
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @PathVariable("runId") String runId, @Validated @RequestBody RunHistoryFilterDTO dto) {
         dto.setRunIdEQ(runId);
         RunHistorySearchContext context = runHistoryFilterDtoMapping.toDomain(dto);
-        Page<RunHistory> domains = runHistoryService.searchDefault(context) ;
+        Page<RunHistory> domains = runHistoryService.fetchDefault(context) ;
         List<RunHistoryDTO> list = runHistoryDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1642,7 +1642,7 @@ public abstract class AbstractRunHistoryResource {
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @PathVariable("runId") String runId, @Validated @RequestBody RunHistoryFilterDTO dto) {
         dto.setRunIdEQ(runId);
         RunHistorySearchContext context = runHistoryFilterDtoMapping.toDomain(dto);
-        Page<RunHistory> domains = runHistoryService.searchThis(context) ;
+        Page<RunHistory> domains = runHistoryService.fetchThis(context) ;
         List<RunHistoryDTO> list = runHistoryDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1661,7 +1661,7 @@ public abstract class AbstractRunHistoryResource {
     @ApiOperation(value = "批量新建执行结果", tags = {"执行结果" },  notes = "批量新建执行结果")
 	@PostMapping("run_histories/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<RunHistoryDTO> dtos) {
-        runHistoryService.createBatch(runHistoryDtoMapping.toDomain(dtos));
+        runHistoryService.create(runHistoryDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -1674,7 +1674,7 @@ public abstract class AbstractRunHistoryResource {
     @ApiOperation(value = "批量删除执行结果", tags = {"执行结果" },  notes = "批量删除执行结果")
 	@DeleteMapping("run_histories/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        runHistoryService.removeBatch(ids);
+        runHistoryService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -1687,7 +1687,7 @@ public abstract class AbstractRunHistoryResource {
     @ApiOperation(value = "批量更新执行结果", tags = {"执行结果" },  notes = "批量更新执行结果")
 	@PutMapping("run_histories/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<RunHistoryDTO> dtos) {
-        runHistoryService.updateBatch(runHistoryDtoMapping.toDomain(dtos));
+        runHistoryService.update(runHistoryDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -1700,7 +1700,7 @@ public abstract class AbstractRunHistoryResource {
     @ApiOperation(value = "批量保存执行结果", tags = {"执行结果" },  notes = "批量保存执行结果")
 	@PostMapping("run_histories/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<RunHistoryDTO> dtos) {
-        runHistoryService.saveBatch(runHistoryDtoMapping.toDomain(dtos));
+        runHistoryService.save(runHistoryDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

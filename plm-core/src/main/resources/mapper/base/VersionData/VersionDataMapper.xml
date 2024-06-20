@@ -11,9 +11,9 @@
 		<result property="ownerType" column="owner_type" />
 		<result property="parentVersionId" column="parent_version_id" />
 		<result property="createMan" column="create_man" />
-		<result property="updateTime" column="update_time" />
-		<result property="updateMan" column="update_man" />
 		<result property="createTime" column="create_time" />
+		<result property="updateMan" column="update_man" />
+		<result property="updateTime" column="update_time" />
     </resultMap>
 
     <select id="selectById"  resultMap="VersionDataResultMap">

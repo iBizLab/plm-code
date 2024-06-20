@@ -238,7 +238,7 @@ public abstract class AbstractTransitionHistoryResource {
     public ResponseEntity<List<TransitionHistoryDTO>> fetchDefault
             (@Validated @RequestBody TransitionHistoryFilterDTO dto) {
         TransitionHistorySearchContext context = transitionHistoryFilterDtoMapping.toDomain(dto);
-        Page<TransitionHistory> domains = transitionHistoryService.searchDefault(context) ;
+        Page<TransitionHistory> domains = transitionHistoryService.fetchDefault(context) ;
         List<TransitionHistoryDTO> list = transitionHistoryDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -257,7 +257,7 @@ public abstract class AbstractTransitionHistoryResource {
     @ApiOperation(value = "批量新建流转记录", tags = {"流转记录" },  notes = "批量新建流转记录")
 	@PostMapping("transition_histories/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<TransitionHistoryDTO> dtos) {
-        transitionHistoryService.createBatch(transitionHistoryDtoMapping.toDomain(dtos));
+        transitionHistoryService.create(transitionHistoryDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -270,7 +270,7 @@ public abstract class AbstractTransitionHistoryResource {
     @ApiOperation(value = "批量删除流转记录", tags = {"流转记录" },  notes = "批量删除流转记录")
 	@DeleteMapping("transition_histories/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        transitionHistoryService.removeBatch(ids);
+        transitionHistoryService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -283,7 +283,7 @@ public abstract class AbstractTransitionHistoryResource {
     @ApiOperation(value = "批量更新流转记录", tags = {"流转记录" },  notes = "批量更新流转记录")
 	@PutMapping("transition_histories/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<TransitionHistoryDTO> dtos) {
-        transitionHistoryService.updateBatch(transitionHistoryDtoMapping.toDomain(dtos));
+        transitionHistoryService.update(transitionHistoryDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -296,7 +296,7 @@ public abstract class AbstractTransitionHistoryResource {
     @ApiOperation(value = "批量保存流转记录", tags = {"流转记录" },  notes = "批量保存流转记录")
 	@PostMapping("transition_histories/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<TransitionHistoryDTO> dtos) {
-        transitionHistoryService.saveBatch(transitionHistoryDtoMapping.toDomain(dtos));
+        transitionHistoryService.save(transitionHistoryDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

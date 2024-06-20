@@ -43,6 +43,25 @@ public interface BoardMapper extends BaseMapper<Board> {
     List<Board> listDefault(@Param("ctx") BoardSearchContext context, @Param("ew") Wrapper<Board> wrapper);
 
     /**
+     * 数据集合cur_board_upload分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Board> searchCurBoardUpload(IPage<Board> page, @Param("ctx") BoardSearchContext context, @Param("ew") Wrapper<Board> wrapper);
+    
+    /**
+     * 数据集合cur_board_upload查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Board> listCurBoardUpload(@Param("ctx") BoardSearchContext context, @Param("ew") Wrapper<Board> wrapper);
+
+    /**
      * 数据集合cur_project_board分页查询
      * 
      * @param page
@@ -60,6 +79,14 @@ public interface BoardMapper extends BaseMapper<Board> {
      * @return
      */
     List<Board> listCurProjectBoard(@Param("ctx") BoardSearchContext context, @Param("ew") Wrapper<Board> wrapper);
+
+    /**
+    * 根据projectId查询
+    *
+    * @param projectIds
+    * @return
+    */
+    List<Board> findByProjectId(@Param("projectIds") List<String> projectIds);
 
     /**
      * 主键查询
@@ -170,13 +197,4 @@ public interface BoardMapper extends BaseMapper<Board> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据projectId查询
-     *
-     * @param projectIds
-     * @return
-     */
-    List<Board> findByProjectId(@Param("projectIds") List<String> projectIds);
-
 }

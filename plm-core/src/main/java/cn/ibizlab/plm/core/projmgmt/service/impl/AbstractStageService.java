@@ -41,33 +41,6 @@ public abstract class AbstractStageService extends ServiceImpl<StageMapper,Stage
 
     protected int batchSize = 500;
 
-    public Stage get(Stage et) {
-        Stage rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.STAGE.toString(),et.getId());
-        rt.copyTo(et,true);
-        return et;
-    }
-
-    public List<Stage> getByEntities(List<Stage> entities) {
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public void fillParentData(Stage et) {
-        if(Entities.RELEASE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
-            et.setReleaseId((String)et.getContextParentKey());
-        }
-    }
-
-    public Stage getDraft(Stage et) {
-        fillParentData(et);
-        return et;
-    }
-
-    public Integer checkKey(Stage et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Stage>lambdaQuery().eq(Stage::getId, et.getId()))>0)?1:0;
-    }
-
     @Override
     @Transactional
     public boolean create(Stage et) {
@@ -77,14 +50,14 @@ public abstract class AbstractStageService extends ServiceImpl<StageMapper,Stage
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<Stage> list) {
+    public boolean create(List<Stage> list) {
         list.forEach(this::fillParentData);
         this.saveBatch(list, batchSize);
         return true;
     }
-
+	
     @Transactional
     public boolean update(Stage et) {
         UpdateWrapper<Stage> qw = et.getUpdateWrapper(true);
@@ -96,11 +69,44 @@ public abstract class AbstractStageService extends ServiceImpl<StageMapper,Stage
     }
 
     @Transactional
-    public boolean updateBatch(List<Stage> list) {
+    public boolean update(List<Stage> list) {
         updateBatchById(list, batchSize);
         return true;
     }
+	
+   @Transactional
+    public boolean remove(Stage et) {
+        if(!remove(Wrappers.<Stage>lambdaQuery().eq(Stage::getId, et.getId())))
+            return false;
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<Stage> entities) {
+        this.baseMapper.deleteEntities(entities);
+        return true;
+    }		
+    public Stage get(Stage et) {
+        Stage rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.STAGE.toString(),et.getId());
+        rt.copyTo(et,true);
+        return et;
+    }	
+
+    public List<Stage> get(List<Stage> entities) {
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public Stage getDraft(Stage et) {
+        fillParentData(et);
+        return et;
+    }
+	
+    public Integer checkKey(Stage et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Stage>lambdaQuery().eq(Stage::getId, et.getId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(Stage et) {
@@ -111,10 +117,10 @@ public abstract class AbstractStageService extends ServiceImpl<StageMapper,Stage
     }
 
     @Transactional
-    public boolean saveBatch(List<Stage> list) {
+    public boolean save(List<Stage> list) {
         if(ObjectUtils.isEmpty(list))
             return true;
-        Map<String,Stage> before = getByEntities(list).stream().collect(Collectors.toMap(Stage::getId,e->e));
+        Map<String,Stage> before = get(list).stream().collect(Collectors.toMap(Stage::getId,e->e));
         List<Stage> create = new ArrayList<>();
         List<Stage> update = new ArrayList<>();
         list.forEach(sub->{
@@ -125,52 +131,40 @@ public abstract class AbstractStageService extends ServiceImpl<StageMapper,Stage
         });
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
         else
             return true;
     }
-
-    @Transactional
-    public boolean remove(Stage et) {
-        if(!remove(Wrappers.<Stage>lambdaQuery().eq(Stage::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<Stage> entities) {
-        this.baseMapper.deleteEntities(entities);
-        return true;
-    }
-
-    public Page<Stage> searchDefault(StageSearchContext context) {
+	
+   public Page<Stage> fetchDefault(StageSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Stage> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<Stage> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Stage> listDefault(StageSearchContext context) {
+   public List<Stage> listDefault(StageSearchContext context) {
         List<Stage> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
-    }
-
-    public List<Stage> findByReleaseId(List<String> releaseIds) {
+   }
+	
+	public List<Stage> findByReleaseId(List<String> releaseIds){
         List<Stage> list = baseMapper.findByReleaseId(releaseIds);
-        return list;
-    }
-    public boolean removeByReleaseId(String releaseId) {
+        return list;	
+	}
+
+	public boolean removeByReleaseId(String releaseId){
         return this.remove(Wrappers.<Stage>lambdaQuery().eq(Stage::getReleaseId,releaseId));
-    }
+	}
 
-    public boolean resetByReleaseId(String releaseId) {
-        return this.update(Wrappers.<Stage>lambdaUpdate().eq(Stage::getReleaseId,releaseId));
-    }
-
-    public boolean saveByRelease(Release release,List<Stage> list) {
+	public boolean resetByReleaseId(String releaseId){
+		return this.update(Wrappers.<Stage>lambdaUpdate().eq(Stage::getReleaseId,releaseId));
+	}
+	public boolean saveByRelease(Release release, List<Stage> list){
         if(list==null)
             return true;
         Map<String,Stage> before = findByReleaseId(release.getId()).stream().collect(Collectors.toMap(Stage::getId,e->e));
+
         List<Stage> update = new ArrayList<>();
         List<Stage> create = new ArrayList<>();
 
@@ -186,18 +180,21 @@ public abstract class AbstractStageService extends ServiceImpl<StageMapper,Stage
         }
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
             return false;
         else
             return true;
+			
+	}
+
+    public void fillParentData(Stage et) {
+        if(Entities.RELEASE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setReleaseId((String)et.getContextParentKey());
+        }
     }
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -217,8 +214,8 @@ public abstract class AbstractStageService extends ServiceImpl<StageMapper,Stage
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return StageMapper.class;
     }
@@ -227,4 +224,5 @@ public abstract class AbstractStageService extends ServiceImpl<StageMapper,Stage
     protected Class currentModelClass() {
         return Stage.class;
     }
+
 }

@@ -34,13 +34,12 @@ import cn.ibizlab.plm.core.projmgmt.domain.ProjectMember;
 @ApiModel(value = "DAY_CAPACITY", description = "日容量")
 public class DayCapacity extends EntityBase implements Serializable
 {
-
     /**
      * 预估工时
      */
     @DEField(name = "estimated_workload")
-    @JsonProperty("estimated_workload")
     @JSONField(name = "estimated_workload")
+    @JsonProperty("estimated_workload")
     @ApiModelProperty(value = "estimated_workload", notes = "预估工时")
     private BigDecimal estimatedWorkload;
 
@@ -48,8 +47,8 @@ public class DayCapacity extends EntityBase implements Serializable
      * 剩余工时
      */
     @DEField(name = "remaining_workload")
-    @JsonProperty("remaining_workload")
     @JSONField(name = "remaining_workload")
+    @JsonProperty("remaining_workload")
     @ApiModelProperty(value = "remaining_workload", notes = "剩余工时")
     private BigDecimal remainingWorkload;
 
@@ -57,8 +56,8 @@ public class DayCapacity extends EntityBase implements Serializable
      * 故事点
      */
     @DEField(name = "story_points")
-    @JsonProperty("story_points")
     @JSONField(name = "story_points")
+    @JsonProperty("story_points")
     @ApiModelProperty(value = "story_points", notes = "故事点")
     private BigDecimal storyPoints;
 
@@ -66,37 +65,83 @@ public class DayCapacity extends EntityBase implements Serializable
      * 工作项数量
      */
     @DEField(name = "work_item_count")
-    @JsonProperty("work_item_count")
     @JSONField(name = "work_item_count")
+    @JsonProperty("work_item_count")
     @ApiModelProperty(value = "work_item_count", notes = "工作项数量")
     private BigDecimal workItemCount;
-
-    /**
-     * 名称
-     */
-    @DEField(name = "name")
-    @JsonProperty("name")
-    @JSONField(name = "name")
-    @ApiModelProperty(value = "name", notes = "名称")
-    private String name;
 
     /**
      * 标识
      */
     @Id
     @DEField(name = "id" , isKeyField = true)
-    @JsonProperty("id")
     @JSONField(name = "id")
+    @JsonProperty("id")
     @ApiModelProperty(value = "id", notes = "标识")
     private String id;
 
     /**
-     * 项目成员
+     * 名称
      */
-    @JSONField(name = "project")
-    @JsonProperty("project")
+    @DEField(name = "name")
+    @JSONField(name = "name")
+    @JsonProperty("name")
+    @ApiModelProperty(value = "name", notes = "名称")
+    private String name;
+
+    /**
+     * 名称
+     */
+    @DEField()
+    @JsonIgnore
+    @JSONField(serialize = false)
     @ApiModelProperty(value = "project", notes = "名称")
     private ProjectMember project;
+
+    /**
+    * 设置 [预估工时]
+    */
+    public DayCapacity setEstimatedWorkload(BigDecimal estimatedWorkload) {
+        this.estimatedWorkload = estimatedWorkload;
+        this.modify("estimated_workload", estimatedWorkload);
+        return this;
+    }
+
+    /**
+    * 设置 [剩余工时]
+    */
+    public DayCapacity setRemainingWorkload(BigDecimal remainingWorkload) {
+        this.remainingWorkload = remainingWorkload;
+        this.modify("remaining_workload", remainingWorkload);
+        return this;
+    }
+
+    /**
+    * 设置 [故事点]
+    */
+    public DayCapacity setStoryPoints(BigDecimal storyPoints) {
+        this.storyPoints = storyPoints;
+        this.modify("story_points", storyPoints);
+        return this;
+    }
+
+    /**
+    * 设置 [工作项数量]
+    */
+    public DayCapacity setWorkItemCount(BigDecimal workItemCount) {
+        this.workItemCount = workItemCount;
+        this.modify("work_item_count", workItemCount);
+        return this;
+    }
+
+    /**
+    * 设置 [名称]
+    */
+    public DayCapacity setName(String name) {
+        this.name = name;
+        this.modify("name", name);
+        return this;
+    }
 
 
     /**

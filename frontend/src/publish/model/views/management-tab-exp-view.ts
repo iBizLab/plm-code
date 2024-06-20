@@ -22,8 +22,13 @@ export default {
     {
       dedrtabPages: [
         {
+          caption: '概览',
+          appViewId: 'plmweb.login_log_over_view',
+          id: 'overview',
+        },
+        {
           caption: '配置中心',
-          appViewId: 'plmweb.management_config_tab_exp_view',
+          appViewId: 'plmweb.management_setting_view',
           id: 'config',
         },
         {
@@ -41,11 +46,13 @@ export default {
       autoLoad: true,
       showBusyIndicator: true,
       codeName: 'tab_exp_view_dr',
+      controlStyle: 'ROUTE_DRTAB',
       controlType: 'DRTAB',
       appDataEntityId: 'plmweb.management',
       controlParam: {
         id: 'tabexppanel',
       },
+      sysPFPluginId: 'route_drtab',
       modelId: '3D4AE63E-1263-4FDC-8143-D72724AE85EF',
       modelType: 'PSDEDRTAB',
       name: 'tabexppanel',

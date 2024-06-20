@@ -62,6 +62,22 @@ public interface SpaceMemberMapper extends BaseMapper<SpaceMember> {
     List<SpaceMember> listCurSpace(@Param("ctx") SpaceMemberSearchContext context, @Param("ew") Wrapper<SpaceMember> wrapper);
 
     /**
+    * 根据spaceId查询
+    *
+    * @param spaceIds
+    * @return
+    */
+    List<SpaceMember> findBySpaceId(@Param("spaceIds") List<String> spaceIds);
+
+    /**
+    * 根据userId查询
+    *
+    * @param userIds
+    * @return
+    */
+    List<SpaceMember> findByUserId(@Param("userIds") List<String> userIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -170,21 +186,4 @@ public interface SpaceMemberMapper extends BaseMapper<SpaceMember> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据spaceId查询
-     *
-     * @param spaceIds
-     * @return
-     */
-    List<SpaceMember> findBySpaceId(@Param("spaceIds") List<String> spaceIds);
-
-    /**
-     * 根据userId查询
-     *
-     * @param userIds
-     * @return
-     */
-    List<SpaceMember> findByUserId(@Param("userIds") List<String> userIds);
-
 }

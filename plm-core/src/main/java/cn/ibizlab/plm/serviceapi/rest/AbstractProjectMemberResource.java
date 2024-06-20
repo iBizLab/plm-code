@@ -594,7 +594,7 @@ public abstract class AbstractProjectMemberResource {
     public ResponseEntity<List<ProjectMemberDTO>> fetchCurProject
             (@Validated @RequestBody ProjectMemberFilterDTO dto) {
         ProjectMemberSearchContext context = projectMemberFilterDtoMapping.toDomain(dto);
-        Page<ProjectMember> domains = projectMemberService.searchCurProject(context) ;
+        Page<ProjectMember> domains = projectMemberService.fetchCurProject(context) ;
         List<ProjectMemberDTO> list = projectMemberDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -616,7 +616,7 @@ public abstract class AbstractProjectMemberResource {
     public ResponseEntity<List<ProjectMemberDTO>> fetchDefault
             (@Validated @RequestBody ProjectMemberFilterDTO dto) {
         ProjectMemberSearchContext context = projectMemberFilterDtoMapping.toDomain(dto);
-        Page<ProjectMember> domains = projectMemberService.searchDefault(context) ;
+        Page<ProjectMember> domains = projectMemberService.fetchDefault(context) ;
         List<ProjectMemberDTO> list = projectMemberDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -710,7 +710,7 @@ public abstract class AbstractProjectMemberResource {
             (@PathVariable("projectId") String projectId, @Validated @RequestBody ProjectMemberFilterDTO dto) {
         dto.setProjectIdEQ(projectId);
         ProjectMemberSearchContext context = projectMemberFilterDtoMapping.toDomain(dto);
-        Page<ProjectMember> domains = projectMemberService.searchCurProject(context) ;
+        Page<ProjectMember> domains = projectMemberService.fetchCurProject(context) ;
         List<ProjectMemberDTO> list = projectMemberDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -734,7 +734,7 @@ public abstract class AbstractProjectMemberResource {
             (@PathVariable("projectId") String projectId, @Validated @RequestBody ProjectMemberFilterDTO dto) {
         dto.setProjectIdEQ(projectId);
         ProjectMemberSearchContext context = projectMemberFilterDtoMapping.toDomain(dto);
-        Page<ProjectMember> domains = projectMemberService.searchDefault(context) ;
+        Page<ProjectMember> domains = projectMemberService.fetchDefault(context) ;
         List<ProjectMemberDTO> list = projectMemberDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -828,7 +828,7 @@ public abstract class AbstractProjectMemberResource {
             (@PathVariable("userId") String userId, @Validated @RequestBody ProjectMemberFilterDTO dto) {
         dto.setUserIdEQ(userId);
         ProjectMemberSearchContext context = projectMemberFilterDtoMapping.toDomain(dto);
-        Page<ProjectMember> domains = projectMemberService.searchCurProject(context) ;
+        Page<ProjectMember> domains = projectMemberService.fetchCurProject(context) ;
         List<ProjectMemberDTO> list = projectMemberDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -852,7 +852,7 @@ public abstract class AbstractProjectMemberResource {
             (@PathVariable("userId") String userId, @Validated @RequestBody ProjectMemberFilterDTO dto) {
         dto.setUserIdEQ(userId);
         ProjectMemberSearchContext context = projectMemberFilterDtoMapping.toDomain(dto);
-        Page<ProjectMember> domains = projectMemberService.searchDefault(context) ;
+        Page<ProjectMember> domains = projectMemberService.fetchDefault(context) ;
         List<ProjectMemberDTO> list = projectMemberDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -871,7 +871,7 @@ public abstract class AbstractProjectMemberResource {
     @ApiOperation(value = "批量新建项目成员", tags = {"项目成员" },  notes = "批量新建项目成员")
 	@PostMapping("project_members/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<ProjectMemberDTO> dtos) {
-        projectMemberService.createBatch(projectMemberDtoMapping.toDomain(dtos));
+        projectMemberService.create(projectMemberDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -884,7 +884,7 @@ public abstract class AbstractProjectMemberResource {
     @ApiOperation(value = "批量删除项目成员", tags = {"项目成员" },  notes = "批量删除项目成员")
 	@DeleteMapping("project_members/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        projectMemberService.removeBatch(ids);
+        projectMemberService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -897,7 +897,7 @@ public abstract class AbstractProjectMemberResource {
     @ApiOperation(value = "批量更新项目成员", tags = {"项目成员" },  notes = "批量更新项目成员")
 	@PutMapping("project_members/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<ProjectMemberDTO> dtos) {
-        projectMemberService.updateBatch(projectMemberDtoMapping.toDomain(dtos));
+        projectMemberService.update(projectMemberDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -910,7 +910,7 @@ public abstract class AbstractProjectMemberResource {
     @ApiOperation(value = "批量保存项目成员", tags = {"项目成员" },  notes = "批量保存项目成员")
 	@PostMapping("project_members/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<ProjectMemberDTO> dtos) {
-        projectMemberService.saveBatch(projectMemberDtoMapping.toDomain(dtos));
+        projectMemberService.save(projectMemberDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

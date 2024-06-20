@@ -46,20 +46,20 @@ public class ReviewResultSearchContext extends QueryWrapperContext<ReviewResult>
     private Integer resultStateEQ;
 
     /**
-     * 名称LIKE
-     */
-    @JsonProperty("n_name_like")
-    @JSONField(name = "n_name_like")
-    @ApiModelProperty("名称LIKE")
-    private String nameLIKE;
-
-    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
     @ApiModelProperty("标识EQ")
     private String idEQ;
+
+    /**
+     * 名称LIKE
+     */
+    @JsonProperty("n_name_like")
+    @JSONField(name = "n_name_like")
+    @ApiModelProperty("名称LIKE")
+    private String nameLIKE;
 
     /**
      * 评审内容标识EQ
@@ -73,6 +73,8 @@ public class ReviewResultSearchContext extends QueryWrapperContext<ReviewResult>
     public void setContextParentKey(Serializable contextParentKey) {
         super.setContextParentKey(contextParentKey);
         if(Entities.REVIEW_CONTENT_EXTEND.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("content_id",contextParentKey);
+        if(Entities.REVIEW_CONTENT.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("content_id",contextParentKey);
     }
 

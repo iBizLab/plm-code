@@ -21,7 +21,9 @@ import io.swagger.annotations.*;
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import cn.ibizlab.plm.core.base.domain.User;
+import cn.ibizlab.plm.core.base.domain.CommonFlow;
 import cn.ibizlab.plm.core.base.domain.Group;
+import cn.ibizlab.plm.core.projmgmt.domain.Project;
 
 /**
  * 成员实体类[Member]
@@ -39,141 +41,201 @@ public class Member extends EntityMP implements Serializable
 {
 
     /**
-     * 所属数据标识
-     */
+    * 所属数据标识
+    */
     @TableField(value = "owner_id")
     @DEField(name = "owner_id" , preType = DEPredefinedFieldType.PARENTID)
-    @JsonProperty("owner_id")
     @JSONField(name = "owner_id")
+    @JsonProperty("owner_id")
     @ApiModelProperty(value = "owner_id", notes = "所属数据标识")
     private String ownerId;
 
     /**
-     * 所属数据对象
-     */
+    * 所属数据对象
+    */
     @TableField(value = "owner_type")
     @DEField(name = "owner_type" , preType = DEPredefinedFieldType.PARENTTYPE)
-    @JsonProperty("owner_type")
     @JSONField(name = "owner_type")
+    @JsonProperty("owner_type")
     @ApiModelProperty(value = "owner_type", notes = "所属数据对象")
     private String ownerType;
 
     /**
-     * 登录名
-     */
+    * 登录名
+    */
     @TableField(value = "user_id")
     @DEField(name = "user_id")
-    @JsonProperty("user_id")
     @JSONField(name = "user_id")
+    @JsonProperty("user_id")
     @ApiModelProperty(value = "user_id", notes = "登录名")
     private String userId;
 
     /**
-     * 所属对象子类型
-     */
+    * 所属对象子类型
+    */
     @TableField(value = "owner_subtype")
     @DEField(name = "owner_subtype" , preType = DEPredefinedFieldType.PARENTSUBTYPE)
-    @JsonProperty("owner_subtype")
     @JSONField(name = "owner_subtype")
+    @JsonProperty("owner_subtype")
     @ApiModelProperty(value = "owner_subtype", notes = "所属对象子类型")
     private String ownerSubtype;
 
     /**
-     * 角色
-     */
+    * 角色
+    */
     @TableField(value = "role_id")
     @DEField(name = "role_id" , defaultValue = "user" , dict = "user_group_role_type")
-    @JsonProperty("role_id")
     @JSONField(name = "role_id")
+    @JsonProperty("role_id")
     @ApiModelProperty(value = "role_id", notes = "角色")
     private String roleId;
 
     /**
-     * 更新时间
-     */
-    @TableField(value = "update_time")
-    @DEField(name = "update_time" , preType = DEPredefinedFieldType.UPDATEDATE)
-    @JsonProperty("update_time")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "update_time", notes = "更新时间")
-    private Date updateTime;
+    * 部门
+    */
+    @TableField(value = "department_name" , exist = false)
+    @DEField(name = "department_name")
+    @JSONField(name = "department_name")
+    @JsonProperty("department_name")
+    @ApiModelProperty(value = "department_name", notes = "部门")
+    private String departmentName;
 
     /**
-     * 建立人
-     */
-    @TableField(value = "create_man" , fill = FieldFill.INSERT)
-    @DEField(name = "create_man" , preType = DEPredefinedFieldType.CREATEMAN , dict = "SysOperator")
-    @JsonProperty("create_man")
-    @JSONField(name = "create_man")
-    @ApiModelProperty(value = "create_man", notes = "建立人")
-    private String createMan;
+    * 工号
+    */
+    @TableField(value = "employee_number" , exist = false)
+    @DEField(name = "employee_number")
+    @JSONField(name = "employee_number")
+    @JsonProperty("employee_number")
+    @ApiModelProperty(value = "employee_number", notes = "工号")
+    private String employeeNumber;
 
     /**
-     * 更新人
-     */
-    @TableField(value = "update_man")
-    @DEField(name = "update_man" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
-    @JsonProperty("update_man")
-    @JSONField(name = "update_man")
-    @ApiModelProperty(value = "update_man", notes = "更新人")
-    private String updateMan;
+    * 职位
+    */
+    @TableField(value = "job_name" , exist = false)
+    @DEField(name = "job_name")
+    @JSONField(name = "job_name")
+    @JsonProperty("job_name")
+    @ApiModelProperty(value = "job_name", notes = "职位")
+    private String jobName;
 
     /**
-     * 建立时间
-     */
-    @TableField(value = "create_time" , fill = FieldFill.INSERT)
-    @DEField(name = "create_time" , preType = DEPredefinedFieldType.CREATEDATE)
-    @JsonProperty("create_time")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "create_time", notes = "建立时间")
-    private Date createTime;
+    * 统计标识
+    */
+    @TableField(value = "report_flag" , exist = false)
+    @DEField(name = "report_flag" , dict = "user_report_flag")
+    @JSONField(name = "report_flag")
+    @JsonProperty("report_flag")
+    @ApiModelProperty(value = "report_flag", notes = "统计标识")
+    private Integer reportFlag;
 
     /**
-     * 标识
-     */
+    * 标识
+    */
     @Id
     @TableId(value = "id" , type = IdType.ASSIGN_UUID)
     @DEField(name = "id" , isKeyField = true)
-    @JsonProperty("id")
     @JSONField(name = "id")
+    @JsonProperty("id")
     @ApiModelProperty(value = "id", notes = "标识")
     private String id;
 
     /**
-     * 名称
-     */
+    * 名称
+    */
     @TableField(value = "name")
     @DEField(name = "name")
-    @JsonProperty("name")
     @JSONField(name = "name")
+    @JsonProperty("name")
     @ApiModelProperty(value = "name", notes = "名称")
     private String name;
 
     /**
-     * 企业用户
-     */
+    * 建立人
+    */
+    @TableField(value = "create_man" , fill = FieldFill.INSERT)
+    @DEField(name = "create_man" , preType = DEPredefinedFieldType.CREATEMAN , dict = "SysOperator")
+    @JSONField(name = "create_man")
+    @JsonProperty("create_man")
+    @ApiModelProperty(value = "create_man", notes = "建立人")
+    private String createMan;
+
+    /**
+    * 建立时间
+    */
+    @TableField(value = "create_time" , fill = FieldFill.INSERT)
+    @DEField(name = "create_time" , preType = DEPredefinedFieldType.CREATEDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("create_time")
+    @ApiModelProperty(value = "create_time", notes = "建立时间")
+    private Date createTime;
+
+    /**
+    * 更新人
+    */
+    @TableField(value = "update_man")
+    @DEField(name = "update_man" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
+    @JSONField(name = "update_man")
+    @JsonProperty("update_man")
+    @ApiModelProperty(value = "update_man", notes = "更新人")
+    private String updateMan;
+
+    /**
+    * 更新时间
+    */
+    @TableField(value = "update_time")
+    @DEField(name = "update_time" , preType = DEPredefinedFieldType.UPDATEDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("update_time")
+    @ApiModelProperty(value = "update_time", notes = "更新时间")
+    private Date updateTime;
+
+    /**
+    * 用户
+    */
+    @Transient
+    @TableField(exist = false)
     @JsonIgnore
     @JSONField(serialize = false)
-    @TableField(exist = false)
-    @Transient
     @ApiModelProperty(value = "user", notes = "用户")
     private User user;
 
     /**
-     * 团队
-     */
+    * DERCUSTOM_MEMBER_COMMON_FLOW
+    */
+    @Transient
+    @TableField(exist = false)
     @JsonIgnore
     @JSONField(serialize = false)
-    @TableField(exist = false)
-    @Transient
-    @ApiModelProperty(value = "group", notes = "团队-成员")
-    private Group group;
+    @ApiModelProperty(value = "member_common_flow", notes = "DERCUSTOM_MEMBER_COMMON_FLOW")
+    private CommonFlow memberCommonFlow;
 
     /**
-     * 设置 [登录名]
-     */
+    * 团队-成员
+    */
+    @Transient
+    @TableField(exist = false)
+    @JsonIgnore
+    @JSONField(serialize = false)
+    @ApiModelProperty(value = "member_group", notes = "团队-成员")
+    private Group memberGroup;
+
+    /**
+    * 名称
+    */
+    @Transient
+    @TableField(exist = false)
+    @JsonIgnore
+    @JSONField(serialize = false)
+    @ApiModelProperty(value = "project_resource", notes = "名称")
+    private Project projectResource;
+
+    /**
+    * 设置 [登录名]
+    */
     public Member setUserId(String userId) {
         this.userId = userId;
         this.modify("user_id", userId);
@@ -181,8 +243,8 @@ public class Member extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [角色]
-     */
+    * 设置 [角色]
+    */
     public Member setRoleId(String roleId) {
         this.roleId = roleId;
         this.modify("role_id", roleId);
@@ -190,8 +252,44 @@ public class Member extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [名称]
-     */
+    * 设置 [部门]
+    */
+    public Member setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
+        this.modify("department_name", departmentName);
+        return this;
+    }
+
+    /**
+    * 设置 [工号]
+    */
+    public Member setEmployeeNumber(String employeeNumber) {
+        this.employeeNumber = employeeNumber;
+        this.modify("employee_number", employeeNumber);
+        return this;
+    }
+
+    /**
+    * 设置 [职位]
+    */
+    public Member setJobName(String jobName) {
+        this.jobName = jobName;
+        this.modify("job_name", jobName);
+        return this;
+    }
+
+    /**
+    * 设置 [统计标识]
+    */
+    public Member setReportFlag(Integer reportFlag) {
+        this.reportFlag = reportFlag;
+        this.modify("report_flag", reportFlag);
+        return this;
+    }
+
+    /**
+    * 设置 [名称]
+    */
     public Member setName(String name) {
         this.name = name;
         this.modify("name", name);
@@ -206,9 +304,10 @@ public class Member extends EntityMP implements Serializable
         //Assert.notNull(getOwnerType(),"未设置所属数据对象");
         String key = String.format("%s||%s||%s"
             ,getOwnerId(),getUserId(),getOwnerType());
-        key = DigestUtils.md5DigestAsHex(key.getBytes());    
+        key = DigestUtils.md5DigestAsHex(key.getBytes());
         return key;
     }
+
 
     /**
      * 复制当前对象数据到目标对象(粘贴重置)

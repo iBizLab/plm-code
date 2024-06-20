@@ -143,6 +143,30 @@ public class TestCaseSearchContext extends QueryWrapperContext<TestCase> {
     private String maintenanceIdEQ;
 
     /**
+     * 维护人IN
+     */
+    @JsonProperty("n_maintenance_id_in")
+    @JSONField(name = "n_maintenance_id_in")
+    @ApiModelProperty("维护人IN")
+    private String maintenanceIdIN;
+
+    /**
+     * 维护人NOTEQ
+     */
+    @JsonProperty("n_maintenance_id_noteq")
+    @JSONField(name = "n_maintenance_id_noteq")
+    @ApiModelProperty("维护人NOTEQ")
+    private String maintenanceIdNOTEQ;
+
+    /**
+     * 维护人NOTIN
+     */
+    @JsonProperty("n_maintenance_id_notin")
+    @JSONField(name = "n_maintenance_id_notin")
+    @ApiModelProperty("维护人NOTIN")
+    private String maintenanceIdNOTIN;
+
+    /**
      * 维护人EQ
      */
     @JsonProperty("n_maintenance_name_eq")
@@ -223,6 +247,14 @@ public class TestCaseSearchContext extends QueryWrapperContext<TestCase> {
     private String idEQ;
 
     /**
+     * 建立人EQ
+     */
+    @JsonProperty("n_create_man_eq")
+    @JSONField(name = "n_create_man_eq")
+    @ApiModelProperty("建立人EQ")
+    private String createManEQ;
+
+    /**
      * 建立时间EQ
      */
     @JsonProperty("n_create_time_eq")
@@ -248,14 +280,6 @@ public class TestCaseSearchContext extends QueryWrapperContext<TestCase> {
     @JSONField(name = "n_create_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
     @ApiModelProperty("建立时间LTANDEQ")
     private Date createTimeLTANDEQ;
-
-    /**
-     * 建立人EQ
-     */
-    @JsonProperty("n_create_man_eq")
-    @JSONField(name = "n_create_man_eq")
-    @ApiModelProperty("建立人EQ")
-    private String createManEQ;
 
     /**
      * 名称LIKE

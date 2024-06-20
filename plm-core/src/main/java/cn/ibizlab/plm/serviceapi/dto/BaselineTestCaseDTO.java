@@ -220,11 +220,19 @@ public class BaselineTestCaseDTO extends DTOBase implements Serializable {
     private String testLibraryName;
 
     /**
+     * 基线
+     */
+    @JsonProperty("baseline")
+    @JSONField(name = "baseline")
+    @ApiModelProperty(value = "基线", position = 23)
+    private BaselineDTO baseline;
+
+    /**
      * 是否已删除
      */
     @JsonProperty("is_deleted")
     @JSONField(name = "is_deleted")
-    @ApiModelProperty(value = "是否已删除", position = 23)
+    @ApiModelProperty(value = "是否已删除", position = 24)
     private String isDeleted;
 
     /**
@@ -232,7 +240,7 @@ public class BaselineTestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("is_archived")
     @JSONField(name = "is_archived")
-    @ApiModelProperty(value = "是否已归档", position = 24)
+    @ApiModelProperty(value = "是否已归档", position = 25)
     private String isArchived;
 
     /**
@@ -240,7 +248,7 @@ public class BaselineTestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 25)
+    @ApiModelProperty(value = "建立人", position = 26)
     private String createMan;
 
     /**
@@ -249,7 +257,7 @@ public class BaselineTestCaseDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 26)
+    @ApiModelProperty(value = "建立时间", position = 27)
     private Date createTime;
 
     /**
@@ -257,7 +265,7 @@ public class BaselineTestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 27)
+    @ApiModelProperty(value = "标识", position = 28)
     private String id;
 
     /**
@@ -265,7 +273,7 @@ public class BaselineTestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 28)
+    @ApiModelProperty(value = "名称", position = 29)
     private String name;
 
     /**
@@ -273,7 +281,7 @@ public class BaselineTestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 29)
+    @ApiModelProperty(value = "更新人", position = 30)
     private String updateMan;
 
     /**
@@ -282,7 +290,7 @@ public class BaselineTestCaseDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 30)
+    @ApiModelProperty(value = "更新时间", position = 31)
     private Date updateTime;
 
 
@@ -481,6 +489,15 @@ public class BaselineTestCaseDTO extends DTOBase implements Serializable {
     public BaselineTestCaseDTO setTestLibraryName(String testLibraryName) {
         this.testLibraryName = testLibraryName;
         this.modify("test_library_name", testLibraryName);
+        return this;
+    }
+
+    /**
+     * 设置 [基线]
+     */
+    public BaselineTestCaseDTO setBaseline(BaselineDTO baseline) {
+        this.baseline = baseline;
+        this.modify("baseline", baseline);
         return this;
     }
 

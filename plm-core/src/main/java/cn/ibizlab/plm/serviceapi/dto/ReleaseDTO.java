@@ -71,11 +71,11 @@ public class ReleaseDTO extends DTOBase implements Serializable {
     private BigDecimal progress;
 
     /**
-     * 状态
+     * 阶段
      */
     @JsonProperty("status")
     @JSONField(name = "status")
-    @ApiModelProperty(value = "状态", position = 4)
+    @ApiModelProperty(value = "阶段", position = 4)
     private String status;
 
     /**
@@ -87,11 +87,19 @@ public class ReleaseDTO extends DTOBase implements Serializable {
     private String categories;
 
     /**
+     * 类别
+     */
+    @JsonProperty("categories_name")
+    @JSONField(name = "categories_name")
+    @ApiModelProperty(value = "类别", position = 6)
+    private String categoriesName;
+
+    /**
      * 负责人
      */
     @JsonProperty("assignee_name")
     @JSONField(name = "assignee_name")
-    @ApiModelProperty(value = "负责人", position = 6)
+    @ApiModelProperty(value = "负责人", position = 7)
     private String assigneeName;
 
     /**
@@ -99,7 +107,7 @@ public class ReleaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("assignee_id")
     @JSONField(name = "assignee_id")
-    @ApiModelProperty(value = "负责人标识", position = 7)
+    @ApiModelProperty(value = "负责人标识", position = 8)
     private String assigneeId;
 
     /**
@@ -107,7 +115,7 @@ public class ReleaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 8)
+    @ApiModelProperty(value = "建立人", position = 9)
     private String createMan;
 
     /**
@@ -116,7 +124,7 @@ public class ReleaseDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 9)
+    @ApiModelProperty(value = "建立时间", position = 10)
     private Date createTime;
 
     /**
@@ -124,7 +132,7 @@ public class ReleaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 10)
+    @ApiModelProperty(value = "标识", position = 11)
     private String id;
 
     /**
@@ -132,7 +140,7 @@ public class ReleaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 11)
+    @ApiModelProperty(value = "名称", position = 12)
     private String name;
 
     /**
@@ -140,7 +148,7 @@ public class ReleaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("project_id")
     @JSONField(name = "project_id")
-    @ApiModelProperty(value = "项目标识", position = 12)
+    @ApiModelProperty(value = "项目标识", position = 13)
     private String projectId;
 
     /**
@@ -148,7 +156,7 @@ public class ReleaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("project_name")
     @JSONField(name = "project_name")
-    @ApiModelProperty(value = "项目名称", position = 13)
+    @ApiModelProperty(value = "项目名称", position = 14)
     private String projectName;
 
     /**
@@ -156,7 +164,7 @@ public class ReleaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 14)
+    @ApiModelProperty(value = "更新人", position = 15)
     private String updateMan;
 
     /**
@@ -165,7 +173,7 @@ public class ReleaseDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 15)
+    @ApiModelProperty(value = "更新时间", position = 16)
     private Date updateTime;
 
 
@@ -206,7 +214,7 @@ public class ReleaseDTO extends DTOBase implements Serializable {
     }
 
     /**
-     * 设置 [状态]
+     * 设置 [阶段]
      */
     public ReleaseDTO setStatus(String status) {
         this.status = status;
@@ -220,6 +228,15 @@ public class ReleaseDTO extends DTOBase implements Serializable {
     public ReleaseDTO setCategories(String categories) {
         this.categories = categories;
         this.modify("categories", categories);
+        return this;
+    }
+
+    /**
+     * 设置 [类别]
+     */
+    public ReleaseDTO setCategoriesName(String categoriesName) {
+        this.categoriesName = categoriesName;
+        this.modify("categories_name", categoriesName);
         return this;
     }
 

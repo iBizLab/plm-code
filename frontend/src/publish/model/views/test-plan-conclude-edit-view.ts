@@ -62,10 +62,12 @@ export default {
             {
               dataType: 21,
               enableCond: 3,
+              itemHeight: 1,
               labelPos: 'NONE',
               noPrivDisplayMode: 1,
               appDEFieldId: 'summary',
               editor: {
+                editorHeight: 1,
                 editorParams: {
                   USERINSCRIPT:
                     'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
@@ -83,11 +85,11 @@ export default {
                   QUOTESCRIPT:
                     '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","icon":"${data.icon}"}`',
                   USERURL:
-                    "`${context.library ? `libraries/${context.library}/library_members/fetchdefault` : context.product ? `products/${context.product}/product_members/fetchdefault` : context.project ? `projects/${context.project}/project_members/fetchdefault` : ''}`",
+                    "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                   USERFIELDMAP: '{"id":"user_id","name":"name"}',
                   INSERTKEYS:
                     '[{"index":66,"keys":["marker"]},{"index":5,"keys":["paintformat"]}]',
-                  QUOTEURL: '`recents/fetchrecent_access`',
+                  QUOTEURL: '`recents/fetch_recent_access`',
                 },
                 editorStyle: 'COLLAPSE',
                 editorType: 'HTMLEDITOR',

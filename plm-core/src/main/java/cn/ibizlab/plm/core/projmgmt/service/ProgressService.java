@@ -31,89 +31,32 @@ public interface ProgressService extends IService<Progress> {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    Progress get(Progress et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default Progress get(String key) {
-        return getSelf().get(new Progress().setId(key));
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<Progress> getByIds(Collection<String> ids) {
-        List<Progress> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Progress().setId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<Progress> getByEntities(List<Progress> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    Progress getDraft(Progress et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(Progress et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(Progress et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<Progress> list);
+    boolean create(List<Progress> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(Progress et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<Progress> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    @Override
-    boolean save(Progress et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<Progress> list);
+    boolean update(List<Progress> list);
 
     /**
      * 主键删除
@@ -123,14 +66,7 @@ public interface ProgressService extends IService<Progress> {
     default boolean remove(String key) {
         return getSelf().remove(new Progress().setId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -140,13 +76,13 @@ public interface ProgressService extends IService<Progress> {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<Progress> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Progress().setId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new Progress().setId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -154,7 +90,128 @@ public interface ProgressService extends IService<Progress> {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<Progress> entities);
+    boolean remove(List<Progress> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default Progress get(String key) {
+        return getSelf().get(new Progress().setId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    Progress get(Progress et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<Progress> get(Collection<String> keys) {
+        List<Progress> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new Progress().setId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<Progress> get(List<Progress> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    Progress getDraft(Progress et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(Progress et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(Progress et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<Progress> list);
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<Progress> fetchDefault(ProgressSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<Progress> listDefault(ProgressSearchContext context);
+
+    /**
+    * findByProjectId
+    * @param projectIds
+    * @return
+    */
+    List<Progress> findByProjectId(List<String> projectIds);
+    default List<Progress> findByProjectId(String projectId){
+        return findByProjectId(Arrays.asList(projectId));
+    }
+
+    /**
+    * removeByProjectId
+    * @param projectId
+    * @return
+    */
+    boolean removeByProjectId(String projectId);
+
+    /**
+    * resetByProjectId
+    * @param projectId
+    * @return
+    */
+    boolean resetByProjectId(String projectId);
+
+    /**
+    * saveByProjectId
+    * @param projectId
+    * @param list
+    * @return
+    */
+    default boolean saveByProjectId(String projectId, List<Progress> list){
+        return getSelf().saveByProject(new Project().setId(projectId),list);
+    }
+
+    /**
+    * saveByProject
+    * @param project
+    * @param list
+    * @return
+    */
+    boolean saveByProject(Project project, List<Progress> list);
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<Progress> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -171,22 +228,7 @@ public interface ProgressService extends IService<Progress> {
         }
         return rt;
     }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<Progress> searchDefault(ProgressSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<Progress> listDefault(ProgressSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -194,6 +236,7 @@ public interface ProgressService extends IService<Progress> {
     default Progress getEntity() {
         return new Progress();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -201,59 +244,13 @@ public interface ProgressService extends IService<Progress> {
     default ProgressSearchContext getSearchContext() {
         return new ProgressSearchContext();
     }
+
+
     /**
-     * selectRelByProjectId
-     * @param projectIds
-     * @return
-     */
-    List<Progress> findByProjectId(List<String> projectIds);
-    default List<Progress> findByProjectId(String projectId) {
-        return findByProjectId(Arrays.asList(projectId));
-    }
-    /**
-     * removeRelByProjectId
-     * @param projectId
-     * @return
-     */
-    boolean removeByProjectId(String projectId);
-    /**
-     * resetRelByProjectId
-     * @param projectId
-     * @return
-     */
-    boolean resetByProjectId(String projectId);
-    /**
-     * saveRelByProjectId
-     * @param projectId
-     * @param list
-     * @return
-     */
-    default boolean saveByProjectId(String projectId,List<Progress> list) {
-        return getSelf().saveByProject(new Project().setId(projectId),list);
-    }
-    /**
-    * saveRelByProject
-    * @param project
-    * @param list
+    * 自定义SQL
+    * @param sql  update table  set name ='test' where id =#{et.param}
+    * @param param 参数列表  param.put("param","1");
     * @return
     */
-    boolean saveByProject(Project project,List<Progress> list);
-
-
-    /**
-     * 自定义查询SQL
-     * @param sql  select * from table where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
-    List<JSONObject> select(String sql, Map<String,Object> param);
-
-    /**
-     * 自定义SQL
-     * @param sql  update table  set name ='test' where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
     boolean execute(String sql, Map<String,Object> param);
-
 }

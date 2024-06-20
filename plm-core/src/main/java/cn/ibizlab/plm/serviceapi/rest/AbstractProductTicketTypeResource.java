@@ -357,7 +357,7 @@ public abstract class AbstractProductTicketTypeResource {
     public ResponseEntity<List<ProductTicketTypeDTO>> fetchDefault
             (@Validated @RequestBody ProductTicketTypeFilterDTO dto) {
         ProductTicketTypeSearchContext context = productTicketTypeFilterDtoMapping.toDomain(dto);
-        Page<ProductTicketType> domains = productTicketTypeService.searchDefault(context) ;
+        Page<ProductTicketType> domains = productTicketTypeService.fetchDefault(context) ;
         List<ProductTicketTypeDTO> list = productTicketTypeDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -451,7 +451,7 @@ public abstract class AbstractProductTicketTypeResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody ProductTicketTypeFilterDTO dto) {
         dto.setProductIdEQ(productId);
         ProductTicketTypeSearchContext context = productTicketTypeFilterDtoMapping.toDomain(dto);
-        Page<ProductTicketType> domains = productTicketTypeService.searchDefault(context) ;
+        Page<ProductTicketType> domains = productTicketTypeService.fetchDefault(context) ;
         List<ProductTicketTypeDTO> list = productTicketTypeDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -470,7 +470,7 @@ public abstract class AbstractProductTicketTypeResource {
     @ApiOperation(value = "批量新建产品工单类型", tags = {"产品工单类型" },  notes = "批量新建产品工单类型")
 	@PostMapping("product_ticket_types/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<ProductTicketTypeDTO> dtos) {
-        productTicketTypeService.createBatch(productTicketTypeDtoMapping.toDomain(dtos));
+        productTicketTypeService.create(productTicketTypeDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -483,7 +483,7 @@ public abstract class AbstractProductTicketTypeResource {
     @ApiOperation(value = "批量删除产品工单类型", tags = {"产品工单类型" },  notes = "批量删除产品工单类型")
 	@DeleteMapping("product_ticket_types/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        productTicketTypeService.removeBatch(ids);
+        productTicketTypeService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -496,7 +496,7 @@ public abstract class AbstractProductTicketTypeResource {
     @ApiOperation(value = "批量更新产品工单类型", tags = {"产品工单类型" },  notes = "批量更新产品工单类型")
 	@PutMapping("product_ticket_types/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<ProductTicketTypeDTO> dtos) {
-        productTicketTypeService.updateBatch(productTicketTypeDtoMapping.toDomain(dtos));
+        productTicketTypeService.update(productTicketTypeDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -509,7 +509,7 @@ public abstract class AbstractProductTicketTypeResource {
     @ApiOperation(value = "批量保存产品工单类型", tags = {"产品工单类型" },  notes = "批量保存产品工单类型")
 	@PostMapping("product_ticket_types/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<ProductTicketTypeDTO> dtos) {
-        productTicketTypeService.saveBatch(productTicketTypeDtoMapping.toDomain(dtos));
+        productTicketTypeService.save(productTicketTypeDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

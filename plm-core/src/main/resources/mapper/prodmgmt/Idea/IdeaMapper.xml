@@ -27,10 +27,10 @@
 		<result property="estimatedWorkload" column="estimated_workload" />
 		<result property="remainingWorkload" column="remaining_workload" />
 		<result property="actualWorkload" column="actual_workload" />
-		<result property="createTime" column="create_time" />
-		<result property="updateTime" column="update_time" />
 		<result property="createMan" column="create_man" />
+		<result property="createTime" column="create_time" />
 		<result property="updateMan" column="update_man" />
+		<result property="updateTime" column="update_time" />
 		<result property="productId" column="product_id" />
 		<result property="productName" column="product_name" />
 		<result property="categoryId" column="category_id" />
@@ -96,10 +96,6 @@
          <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t21.`CATEGORIES`, t1.`CATEGORY_ID`, t21.`NAME` AS `CATEGORY_NAME`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`IDEA_FROM`, t1.`IDEA_TYPE`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, t1.`NAME`, t1.`PLAN_AT`, t1.`PLAN_AT_FROM`, t1.`PLAN_AT_GRANULARITY`, t1.`PLAN_AT_TO`, t1.`PRIORITY`, t1.`PRODUCT_ID`, t11.`IDENTIFIER` AS `PRODUCT_IDENTIFIER`, t11.`NAME` AS `PRODUCT_NAME`, t1.`PROGRESS`, t1.`REAL_AT`, t1.`REAL_AT_FROM`, t1.`REAL_AT_GRANULARITY`, t1.`REAL_AT_TO`, t21.`SECTION_ID`, t31.`NAME` AS `SECTION_NAME`, concat(t11.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`STATE`, t1.`SUITE`, t1.`TITLE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `IDEA` t1  LEFT JOIN `PRODUCT` t11 ON t1.`PRODUCT_ID` = t11.`ID`  LEFT JOIN `CATEGORY` t21 ON t1.`CATEGORY_ID` = t21.`ID`  LEFT JOIN `SECTION` t31 ON t21.`SECTION_ID` = t31.`ID`   ]]>  where  <![CDATA[ ( t1.`IS_DELETED` = 1 ) ]]> 
     </sql>
 
-    <sql id="ideaRelationIdea" databaseId="mysql">
-         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t21.`CATEGORIES`, t1.`CATEGORY_ID`, t21.`NAME` AS `CATEGORY_NAME`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`IDEA_FROM`, t1.`IDEA_TYPE`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, t1.`NAME`, t1.`PLAN_AT`, t1.`PLAN_AT_FROM`, t1.`PLAN_AT_GRANULARITY`, t1.`PLAN_AT_TO`, t1.`PRIORITY`, t1.`PRODUCT_ID`, t11.`IDENTIFIER` AS `PRODUCT_IDENTIFIER`, t11.`NAME` AS `PRODUCT_NAME`, t1.`PROGRESS`, t1.`REAL_AT`, t1.`REAL_AT_FROM`, t1.`REAL_AT_GRANULARITY`, t1.`REAL_AT_TO`, t21.`SECTION_ID`, t31.`NAME` AS `SECTION_NAME`, concat(t11.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`STATE`, t1.`SUITE`, t1.`TITLE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `IDEA` t1  LEFT JOIN `PRODUCT` t11 ON t1.`PRODUCT_ID` = t11.`ID`  LEFT JOIN `CATEGORY` t21 ON t1.`CATEGORY_ID` = t21.`ID`  LEFT JOIN `SECTION` t31 ON t21.`SECTION_ID` = t31.`ID`   ]]>  where  <![CDATA[ EXISTS(SELECT * FROM `RELATION` t41   WHERE   t1.`ID` = t41.`TARGET_ID`  AND  ( t41.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id}  AND  t41.`TARGET_TYPE` = 'idea'  AND  t41.`PRINCIPAL_TYPE` = 'idea' ) ) ]]> and  <![CDATA[ ( t1.`IS_DELETED` = 0 ) ]]> 
-    </sql>
-
     <sql id="myAssign" databaseId="mysql">
          <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t21.`CATEGORIES`, t1.`CATEGORY_ID`, t21.`NAME` AS `CATEGORY_NAME`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`IDEA_FROM`, t1.`IDEA_TYPE`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, t1.`NAME`, t1.`PLAN_AT`, t1.`PLAN_AT_FROM`, t1.`PLAN_AT_GRANULARITY`, t1.`PLAN_AT_TO`, t1.`PRIORITY`, t1.`PRODUCT_ID`, t11.`IDENTIFIER` AS `PRODUCT_IDENTIFIER`, t11.`NAME` AS `PRODUCT_NAME`, t1.`PROGRESS`, t1.`REAL_AT`, t1.`REAL_AT_FROM`, t1.`REAL_AT_GRANULARITY`, t1.`REAL_AT_TO`, t21.`SECTION_ID`, t31.`NAME` AS `SECTION_NAME`, concat(t11.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`STATE`, t1.`SUITE`, t1.`TITLE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `IDEA` t1  LEFT JOIN `PRODUCT` t11 ON t1.`PRODUCT_ID` = t11.`ID`  LEFT JOIN `CATEGORY` t21 ON t1.`CATEGORY_ID` = t21.`ID`  LEFT JOIN `SECTION` t31 ON t21.`SECTION_ID` = t31.`ID`   ]]>  where  <![CDATA[ ( t1.`IS_ARCHIVED` = 0  AND  ( t1.`ASSIGNEE_ID` = #{ctx.sessioncontext.srfpersonid}  OR  t1.`ASSIGNEE_NAME` = #{ctx.sessioncontext.srfpersonname} )  AND  t1.`IS_DELETED` = 0 ) ]]> 
     </sql>
@@ -130,18 +126,6 @@
 
     <sql id="recentIdea" databaseId="mysql">
          <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t21.`CATEGORIES`, t1.`CATEGORY_ID`, t21.`NAME` AS `CATEGORY_NAME`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`IDEA_FROM`, t1.`IDEA_TYPE`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, t1.`NAME`, t1.`PLAN_AT`, t1.`PLAN_AT_FROM`, t1.`PLAN_AT_GRANULARITY`, t1.`PLAN_AT_TO`, t1.`PRIORITY`, t1.`PRODUCT_ID`, t11.`IDENTIFIER` AS `PRODUCT_IDENTIFIER`, t11.`NAME` AS `PRODUCT_NAME`, t1.`PROGRESS`, t1.`REAL_AT`, t1.`REAL_AT_FROM`, t1.`REAL_AT_GRANULARITY`, t1.`REAL_AT_TO`, t21.`SECTION_ID`, t31.`NAME` AS `SECTION_NAME`, concat(t11.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`STATE`, t1.`SUITE`, t1.`TITLE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `IDEA` t1  LEFT JOIN `PRODUCT` t11 ON t1.`PRODUCT_ID` = t11.`ID`  LEFT JOIN `CATEGORY` t21 ON t1.`CATEGORY_ID` = t21.`ID`  LEFT JOIN `SECTION` t31 ON t21.`SECTION_ID` = t31.`ID`   ]]>  where  <![CDATA[ ( t1.`IS_ARCHIVED` = 0  AND  t1.`IS_DELETED` = 0  AND  exists(select 1 from recent t2 where t1.id=t2.owner_id and t2.create_man=#{ctx.sessioncontext.srfpersonid} )  AND  NOT EXISTS(SELECT 1 FROM `RELATION` t3 WHERE t1.`ID` = t3.`TARGET_ID` AND  t3.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id}   ) ) ]]> 
-    </sql>
-
-    <sql id="testCaseRelation" databaseId="mysql">
-         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t21.`CATEGORIES`, t1.`CATEGORY_ID`, t21.`NAME` AS `CATEGORY_NAME`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`IDEA_FROM`, t1.`IDEA_TYPE`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, t1.`NAME`, t1.`PLAN_AT`, t1.`PLAN_AT_FROM`, t1.`PLAN_AT_GRANULARITY`, t1.`PLAN_AT_TO`, t1.`PRIORITY`, t1.`PRODUCT_ID`, t11.`IDENTIFIER` AS `PRODUCT_IDENTIFIER`, t11.`NAME` AS `PRODUCT_NAME`, t1.`PROGRESS`, t1.`REAL_AT`, t1.`REAL_AT_FROM`, t1.`REAL_AT_GRANULARITY`, t1.`REAL_AT_TO`, t21.`SECTION_ID`, t31.`NAME` AS `SECTION_NAME`, concat(t11.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`STATE`, t1.`SUITE`, t1.`TITLE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `IDEA` t1  LEFT JOIN `PRODUCT` t11 ON t1.`PRODUCT_ID` = t11.`ID`  LEFT JOIN `CATEGORY` t21 ON t1.`CATEGORY_ID` = t21.`ID`  LEFT JOIN `SECTION` t31 ON t21.`SECTION_ID` = t31.`ID`   ]]>  where  <![CDATA[ EXISTS(SELECT * FROM `RELATION` t41   WHERE   t1.`ID` = t41.`TARGET_ID`  AND  ( t41.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id}  AND  t41.`TARGET_TYPE` = 'idea'  AND  t41.`PRINCIPAL_TYPE` = 'test_case' ) ) ]]> and  <![CDATA[ ( t1.`IS_DELETED` = 0 ) ]]> 
-    </sql>
-
-    <sql id="ticketRelationIdea" databaseId="mysql">
-         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t21.`CATEGORIES`, t1.`CATEGORY_ID`, t21.`NAME` AS `CATEGORY_NAME`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`IDEA_FROM`, t1.`IDEA_TYPE`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, t1.`NAME`, t1.`PLAN_AT`, t1.`PLAN_AT_FROM`, t1.`PLAN_AT_GRANULARITY`, t1.`PLAN_AT_TO`, t1.`PRIORITY`, t1.`PRODUCT_ID`, t11.`IDENTIFIER` AS `PRODUCT_IDENTIFIER`, t11.`NAME` AS `PRODUCT_NAME`, t1.`PROGRESS`, t1.`REAL_AT`, t1.`REAL_AT_FROM`, t1.`REAL_AT_GRANULARITY`, t1.`REAL_AT_TO`, t21.`SECTION_ID`, t31.`NAME` AS `SECTION_NAME`, concat(t11.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`STATE`, t1.`SUITE`, t1.`TITLE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `IDEA` t1  LEFT JOIN `PRODUCT` t11 ON t1.`PRODUCT_ID` = t11.`ID`  LEFT JOIN `CATEGORY` t21 ON t1.`CATEGORY_ID` = t21.`ID`  LEFT JOIN `SECTION` t31 ON t21.`SECTION_ID` = t31.`ID`   ]]>  where  <![CDATA[ EXISTS(SELECT * FROM `RELATION` t41   WHERE   t1.`ID` = t41.`TARGET_ID`  AND  ( t41.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id}  AND  t41.`TARGET_TYPE` = 'idea'  AND  t41.`PRINCIPAL_TYPE` = 'ticket' ) ) ]]> and  <![CDATA[ ( t1.`IS_DELETED` = 0 ) ]]> 
-    </sql>
-
-    <sql id="workItemRelationIdea" databaseId="mysql">
-         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t21.`CATEGORIES`, t1.`CATEGORY_ID`, t21.`NAME` AS `CATEGORY_NAME`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`IDEA_FROM`, t1.`IDEA_TYPE`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, t1.`NAME`, t1.`PLAN_AT`, t1.`PLAN_AT_FROM`, t1.`PLAN_AT_GRANULARITY`, t1.`PLAN_AT_TO`, t1.`PRIORITY`, t1.`PRODUCT_ID`, t11.`IDENTIFIER` AS `PRODUCT_IDENTIFIER`, t11.`NAME` AS `PRODUCT_NAME`, t1.`PROGRESS`, t1.`REAL_AT`, t1.`REAL_AT_FROM`, t1.`REAL_AT_GRANULARITY`, t1.`REAL_AT_TO`, t21.`SECTION_ID`, t31.`NAME` AS `SECTION_NAME`, concat(t11.`IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`STATE`, t1.`SUITE`, t1.`TITLE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `IDEA` t1  LEFT JOIN `PRODUCT` t11 ON t1.`PRODUCT_ID` = t11.`ID`  LEFT JOIN `CATEGORY` t21 ON t1.`CATEGORY_ID` = t21.`ID`  LEFT JOIN `SECTION` t31 ON t21.`SECTION_ID` = t31.`ID`   ]]>  where  <![CDATA[ EXISTS(SELECT * FROM `RELATION` t41   WHERE   t1.`ID` = t41.`TARGET_ID`  AND  ( t41.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id}  AND  t41.`TARGET_TYPE` = 'idea'  AND  t41.`PRINCIPAL_TYPE` = 'work_item' ) ) ]]> and  <![CDATA[ ( t1.`IS_DELETED` = 0 ) ]]> 
     </sql>
 
     <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.prodmgmt.filter.IdeaSearchContext"  resultMap="IdeaResultMap">
@@ -285,27 +269,6 @@
         select t1.*
         from (
             <include refid="deleted"/>
-        ) t1
-        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
-        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
-        
-    </select>
-
-    <select id="searchIdeaRelationIdea"  parameterType="cn.ibizlab.plm.core.prodmgmt.filter.IdeaSearchContext"  resultMap="IdeaResultMap">
-        select t1.* 
-        from (
-            <include refid="ideaRelationIdea"/>
-        ) t1 
-        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
-        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
-        
-    </select>
-
-
-    <select id="listIdeaRelationIdea"  parameterType="cn.ibizlab.plm.core.prodmgmt.filter.IdeaSearchContext"  resultMap="IdeaResultMap">
-        select t1.*
-        from (
-            <include refid="ideaRelationIdea"/>
         ) t1
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
@@ -501,88 +464,25 @@
         
     </select>
 
-    <select id="searchTestCaseRelation"  parameterType="cn.ibizlab.plm.core.prodmgmt.filter.IdeaSearchContext"  resultMap="IdeaResultMap">
-        select t1.* 
-        from (
-            <include refid="testCaseRelation"/>
-        ) t1 
-        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
-        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
-        
-    </select>
-
-
-    <select id="listTestCaseRelation"  parameterType="cn.ibizlab.plm.core.prodmgmt.filter.IdeaSearchContext"  resultMap="IdeaResultMap">
-        select t1.*
-        from (
-            <include refid="testCaseRelation"/>
-        ) t1
-        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
-        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
-        
-    </select>
-
-    <select id="searchTicketRelationIdea"  parameterType="cn.ibizlab.plm.core.prodmgmt.filter.IdeaSearchContext"  resultMap="IdeaResultMap">
-        select t1.* 
-        from (
-            <include refid="ticketRelationIdea"/>
-        ) t1 
-        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
-        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
-        
-    </select>
-
-
-    <select id="listTicketRelationIdea"  parameterType="cn.ibizlab.plm.core.prodmgmt.filter.IdeaSearchContext"  resultMap="IdeaResultMap">
-        select t1.*
-        from (
-            <include refid="ticketRelationIdea"/>
-        ) t1
-        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
-        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
-        
-    </select>
-
-    <select id="searchWorkItemRelationIdea"  parameterType="cn.ibizlab.plm.core.prodmgmt.filter.IdeaSearchContext"  resultMap="IdeaResultMap">
-        select t1.* 
-        from (
-            <include refid="workItemRelationIdea"/>
-        ) t1 
-        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
-        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
-        
-    </select>
-
-
-    <select id="listWorkItemRelationIdea"  parameterType="cn.ibizlab.plm.core.prodmgmt.filter.IdeaSearchContext"  resultMap="IdeaResultMap">
-        select t1.*
-        from (
-            <include refid="workItemRelationIdea"/>
-        ) t1
-        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
-        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
-        
-    </select>
-
     <select id="findByCategoryId" resultMap="IdeaResultMap">
         select t1.* from (
             <include refid="default"/>
         ) t1
-        where category_id in <foreach item="id" index="index" collection="categoryIds" open="(" separator="," close=")">#{id}</foreach> 
+        where category_id in <foreach item="id" index="index" collection="categoryIds" open="(" separator="," close=")">#{id}</foreach>  order by SHOW_IDENTIFIER DESC
     </select>
 
     <select id="findByProductId" resultMap="IdeaResultMap">
         select t1.* from (
             <include refid="default"/>
         ) t1
-        where product_id in <foreach item="id" index="index" collection="productIds" open="(" separator="," close=")">#{id}</foreach> 
+        where product_id in <foreach item="id" index="index" collection="productIds" open="(" separator="," close=")">#{id}</foreach>  order by SHOW_IDENTIFIER DESC
     </select>
 
     <select id="findByAssigneeId" resultMap="IdeaResultMap">
         select t1.* from (
             <include refid="default"/>
         ) t1
-        where assignee_id in <foreach item="id" index="index" collection="assigneeIds" open="(" separator="," close=")">#{id}</foreach> 
+        where assignee_id in <foreach item="id" index="index" collection="assigneeIds" open="(" separator="," close=")">#{id}</foreach>  order by SHOW_IDENTIFIER DESC
     </select>
 
 

@@ -17,6 +17,12 @@ export default {
       value: '2',
       id: 'item_2',
     },
+    {
+      codeName: 'item_3',
+      text: '规划快照',
+      value: '3',
+      id: 'item_3',
+    },
   ],
   enableCache: true,
   name: '基线状态',

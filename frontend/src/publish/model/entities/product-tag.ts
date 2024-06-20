@@ -26,28 +26,6 @@ export default {
   ],
   appDEFields: [
     {
-      codeName: 'create_man',
-      lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.CREATE_MAN',
-      },
-      logicName: '建立人',
-      stdDataType: 25,
-      stringLength: 100,
-      name: 'CREATE_MAN',
-      id: 'create_man',
-    },
-    {
-      codeName: 'create_time',
-      lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.CREATE_TIME',
-      },
-      logicName: '建立时间',
-      stdDataType: 5,
-      valueFormat: 'YYYY-MM-DD HH:mm:ss',
-      name: 'CREATE_TIME',
-      id: 'create_time',
-    },
-    {
       codeName: 'id',
       lnlanguageRes: {
         lanResTag: 'DEF.LNAME.ID',
@@ -69,6 +47,28 @@ export default {
       enableQuickSearch: true,
       name: 'NAME',
       id: 'name',
+    },
+    {
+      codeName: 'create_man',
+      lnlanguageRes: {
+        lanResTag: 'DEF.LNAME.CREATE_MAN',
+      },
+      logicName: '建立人',
+      stdDataType: 25,
+      stringLength: 100,
+      name: 'CREATE_MAN',
+      id: 'create_man',
+    },
+    {
+      codeName: 'create_time',
+      lnlanguageRes: {
+        lanResTag: 'DEF.LNAME.CREATE_TIME',
+      },
+      logicName: '建立时间',
+      stdDataType: 5,
+      valueFormat: 'YYYY-MM-DD HH:mm:ss',
+      name: 'CREATE_TIME',
+      id: 'create_time',
     },
     {
       codeName: 'update_man',
@@ -107,6 +107,39 @@ export default {
       stringLength: 200,
       name: 'PRODUCT_NAME',
       id: 'product_name',
+    },
+  ],
+  appDELogics: [
+    {
+      codeName: 'nothing',
+      defaultParamName: 'Default',
+      logicName: '无操作',
+      logicSubType: 'NONE',
+      delogicNodes: [
+        {
+          codeName: 'Begin',
+          leftPos: 200,
+          logicNodeType: 'BEGIN',
+          topPos: 200,
+          parallelOutput: true,
+          name: '开始',
+          id: 'begin',
+        },
+      ],
+      delogicParams: [
+        {
+          codeName: 'Default',
+          default: true,
+          entityParam: true,
+          paramAppDataEntityId: 'plmweb.product_tag',
+          name: '传入变量',
+          id: 'default',
+        },
+      ],
+      startDELogicNodeId: 'begin',
+      valid: true,
+      name: '无操作',
+      id: 'nothing',
     },
   ],
   appDEMethodDTOs: [
@@ -303,6 +336,27 @@ export default {
       id: 'create',
     },
     {
+      codeName: 'delete_tag',
+      methodType: 'DEACTION',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'product_tag_dto',
+        type: 'DTO',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        type: 'VOID',
+        id: '返回对象',
+      },
+      requestMethod: 'POST',
+      requestParamType: 'ENTITY',
+      requestPath: '/delete_tag',
+      needResourceKey: true,
+      actionMode: 'CUSTOM',
+      actionType: 'REMOTE',
+      dataSetType: 'REMOTE',
+      id: 'delete_tag',
+    },
+    {
       codeName: 'get',
       methodType: 'DEACTION',
       appDEMethodInput: {
@@ -328,6 +382,29 @@ export default {
       id: 'get',
     },
     {
+      codeName: 'get_con_product_tag',
+      methodType: 'DEACTION',
+      appDEMethodInput: {
+        keyAppDEFieldId: 'id',
+        type: 'KEYFIELD',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'product_tag_dto',
+        type: 'DTO',
+        id: '返回对象',
+      },
+      requestField: 'ID',
+      requestMethod: 'GET',
+      requestParamType: 'FIELD',
+      requestPath: '/get_con_product_tag',
+      needResourceKey: true,
+      actionMode: 'READ',
+      actionType: 'REMOTE',
+      dataSetType: 'REMOTE',
+      id: 'get_con_product_tag',
+    },
+    {
       codeName: 'get_draft',
       methodType: 'DEACTION',
       appDEMethodInput: {
@@ -349,6 +426,26 @@ export default {
       dataSetType: 'REMOTE',
       name: 'GetDraft',
       id: 'get_draft',
+    },
+    {
+      codeName: 'nothing',
+      methodType: 'DEACTION',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'product_tag_dto',
+        type: 'DTO',
+        name: 'NothingInput',
+        id: 'nothinginput',
+      },
+      appDEMethodReturn: {
+        type: 'VOID',
+        name: 'NothingResult',
+        id: 'nothingresult',
+      },
+      actionMode: 'CUSTOM',
+      actionType: 'DELOGIC',
+      appDELogicId: 'nothing',
+      dataSetType: 'REMOTE',
+      id: 'nothing',
     },
     {
       codeName: 'remove',
@@ -424,6 +521,39 @@ export default {
       dataSetType: 'REMOTE',
       name: 'Update',
       id: 'update',
+    },
+    {
+      codeName: 'fetch_cur_product_tag',
+      methodType: 'FETCH',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'product_tag_filter_dto',
+        type: 'DTO',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'product_tag_dto',
+        type: 'PAGE',
+        id: '返回对象',
+      },
+      requestMethod: 'POST',
+      requestParamType: 'ENTITY',
+      requestPath: '/fetch_cur_product_tag',
+      actionType: 'REMOTE',
+      addedqconditions: [
+        {
+          condOp: 'EQ',
+          condValue: 'product',
+          fieldName: 'PRODUCT_ID',
+          vartypeId: 'DATACONTEXT',
+          condType: 'SINGLE',
+          name: '(PRODUCT_ID) 等于(=) 数据上下文 product',
+          id: '(product_id) 等于(=) 数据上下文 product',
+        },
+      ],
+      dataSetName: 'cur_product_tag',
+      dataSetTag: 'cur_product_tag',
+      dataSetType: 'REMOTE',
+      id: 'fetch_cur_product_tag',
     },
     {
       codeName: 'fetch_default',
@@ -517,12 +647,19 @@ export default {
       actionTarget: 'SINGLEKEY',
       caption: '删除标签',
       codeName: 'delete_tag',
-      confirmMsg: '确认删除该标签？',
       dataAccessAction: 'DELETE',
+      frontAppViewId: 'plmweb.product_tag_product_tag_confirm_remove_view',
       frontProcessType: 'WIZARD',
       fullCodeName: 'product_tag_delete_tag',
-      appDEMethodId: 'remove',
+      appDEMethodId: 'delete_tag',
       deopprivId: 'delete',
+      navigateParams: [
+        {
+          key: 'name',
+          value: 'name',
+          id: 'name',
+        },
+      ],
       refreshMode: 1,
       successMsg: '删除成功',
       timeout: 60000,

@@ -126,6 +126,44 @@ public abstract class AbstractProjectTagResource {
     }
 
     /**
+    * delete_tag 项目标签
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProjectTagDTO>
+    */
+    @ApiOperation(value = "delete_tag", tags = {"项目标签" },  notes = "ProjectTag-delete_tag ")
+    @PostMapping("project_tags/{id}/delete_tag")
+    public ResponseEntity<ResponseWrapper<ProjectTagDTO>> deleteTagById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProjectTagDTO> dto) {
+        ResponseWrapper<ProjectTagDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(deleteTagById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(deleteTagById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * delete_tag 项目标签
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProjectTagDTO>
+    */   
+    public ProjectTagDTO deleteTagById
+            (String id, ProjectTagDTO dto) {
+        ProjectTag domain = projectTagDtoMapping.toDomain(dto);
+        domain.setId(id);
+        ProjectTag rt = projectTagService.deleteTag(domain);
+        return projectTagDtoMapping.toDto(rt);
+    }
+
+    /**
     * 保存Save 项目标签
     * 
     *
@@ -210,6 +248,22 @@ public abstract class AbstractProjectTagResource {
     }
 
     /**
+    * get_con_project_tag 项目标签
+    * 
+    *
+    * @param id id
+    * @return ResponseEntity<ProjectTagDTO>
+    */
+    @ApiOperation(value = "get_con_project_tag", tags = {"项目标签" },  notes = "ProjectTag-get_con_project_tag ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProjectTag-get_con_project_tag-all') or hasPermission(this.projectTagService.get(#id),'ibizplm-ProjectTag-get_con_project_tag')")
+    @GetMapping("project_tags/{id}/get_con_project_tag")
+    public ResponseEntity<ProjectTagDTO> getConProjectTagById
+            (@PathVariable("id") String id) {
+        ProjectTag rt = projectTagService.getConProjectTag(id);
+        return ResponseEntity.status(HttpStatus.OK).body(projectTagDtoMapping.toDto(rt));
+    }
+
+    /**
     * 草稿GetDraft 项目标签
     * 
     *
@@ -238,7 +292,7 @@ public abstract class AbstractProjectTagResource {
     public ResponseEntity<List<ProjectTagDTO>> fetchDefault
             (@Validated @RequestBody ProjectTagFilterDTO dto) {
         ProjectTagSearchContext context = projectTagFilterDtoMapping.toDomain(dto);
-        Page<ProjectTag> domains = projectTagService.searchDefault(context) ;
+        Page<ProjectTag> domains = projectTagService.fetchDefault(context) ;
         List<ProjectTagDTO> list = projectTagDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -257,7 +311,7 @@ public abstract class AbstractProjectTagResource {
     @ApiOperation(value = "批量新建项目标签", tags = {"项目标签" },  notes = "批量新建项目标签")
 	@PostMapping("project_tags/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<ProjectTagDTO> dtos) {
-        projectTagService.createBatch(projectTagDtoMapping.toDomain(dtos));
+        projectTagService.create(projectTagDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -270,7 +324,7 @@ public abstract class AbstractProjectTagResource {
     @ApiOperation(value = "批量删除项目标签", tags = {"项目标签" },  notes = "批量删除项目标签")
 	@DeleteMapping("project_tags/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        projectTagService.removeBatch(ids);
+        projectTagService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -283,7 +337,7 @@ public abstract class AbstractProjectTagResource {
     @ApiOperation(value = "批量更新项目标签", tags = {"项目标签" },  notes = "批量更新项目标签")
 	@PutMapping("project_tags/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<ProjectTagDTO> dtos) {
-        projectTagService.updateBatch(projectTagDtoMapping.toDomain(dtos));
+        projectTagService.update(projectTagDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -296,7 +350,7 @@ public abstract class AbstractProjectTagResource {
     @ApiOperation(value = "批量保存项目标签", tags = {"项目标签" },  notes = "批量保存项目标签")
 	@PostMapping("project_tags/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<ProjectTagDTO> dtos) {
-        projectTagService.saveBatch(projectTagDtoMapping.toDomain(dtos));
+        projectTagService.save(projectTagDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

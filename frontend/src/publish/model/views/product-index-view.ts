@@ -105,7 +105,7 @@ export default {
                       enablePickupView: true,
                       singleSelect: true,
                       appDEACModeId: 'default',
-                      appDEDataSetId: 'fetch_normal',
+                      appDEDataSetId: 'fetch_main',
                       appDataEntityId: 'plmweb.product',
                       enableAC: true,
                       forceSelection: true,
@@ -341,40 +341,71 @@ export default {
         ],
         showTitle: true,
         editItemCaption: '产品',
+        appCounterRefId: 'a0bae0287de963bd22cdc7c0b52d6895',
         dedrctrlItems: [
           {
             dedrbarGroupId: 'usrdrgroup1228809432',
             caption: '需求',
+            counterId: 'idea',
             appViewId: 'plmweb.idea_tree_exp_view',
             id: 'idea',
           },
           {
             dedrbarGroupId: 'usrdrgroup1228149482',
             caption: '排期',
+            counterId: 'review',
             appViewId: 'plmweb.product_plan_tree_exp_view',
             id: 'plan',
           },
           {
             dedrbarGroupId: 'usrdrgroup1228280909',
             caption: '工单',
+            counterId: 'ticket',
             appViewId: 'plmweb.ticket_all_grid_view',
+            navigateContexts: [
+              {
+                key: 'SRFREADONLY',
+                value: 'srfreadonly',
+                name: 'SRFREADONLY',
+                id: 'srfreadonly',
+              },
+            ],
             id: 'ticket',
           },
           {
             dedrbarGroupId: 'usrdrgroup1228275731',
             caption: '客户',
+            counterId: 'customer',
             appViewId: 'plmweb.customer_tree_exp_view',
+            navigateContexts: [
+              {
+                key: 'SRFREADONLY',
+                value: 'srfreadonly',
+                name: 'SRFREADONLY',
+                id: 'srfreadonly',
+              },
+            ],
             id: 'customer',
           },
           {
             dedrbarGroupId: 'usrdrgroup0423482168',
             caption: '基线',
+            counterId: 'baseline',
             appViewId: 'plmweb.baseline_product_tree_exp_view',
+            navigateContexts: [
+              {
+                key: 'SRFREADONLY',
+                value: 'srfreadonly',
+                name: 'SRFREADONLY',
+                id: 'srfreadonly',
+              },
+            ],
             id: 'baseline',
           },
           {
             dedrbarGroupId: 'usrdrgroup0229373827',
             caption: '页面',
+            counterId: 'space',
             appViewId: 'plmweb.space_product_re_tree_exp_view',
             navigateContexts: [
               {
@@ -383,6 +414,12 @@ export default {
                 rawValue: true,
                 name: 'PRINCIPAL_TYPE',
                 id: 'principal_type',
+              },
+              {
+                key: 'SRFREADONLY',
+                value: 'srfreadonly',
+                name: 'SRFREADONLY',
+                id: 'srfreadonly',
               },
               {
                 key: 'TARGET_TYPE',
@@ -417,6 +454,25 @@ export default {
         uniqueTag: 'product_index_view__drbar',
         autoLoad: true,
         showBusyIndicator: true,
+        appCounterRefs: [
+          {
+            appCounter: {
+              codeName: 'product_add_on_counters',
+              counterType: 'DEDR',
+              getAppDEActionId: 'product_index_addon_counter',
+              appDataEntityId: 'plmweb.product',
+              timer: 60000,
+              uniqueTag: 'product_add_on_counters',
+              name: '产品组件显示隐藏计数器',
+              id: 'plmweb.product_add_on_counters',
+            },
+            refMode: {
+              srfdeid: 'PRODUCT',
+            },
+            tag: 'a0bae0287de963bd22cdc7c0b52d6895',
+            id: 'a0bae0287de963bd22cdc7c0b52d6895',
+          },
+        ],
         codeName: 'index_view_dr',
         controlStyle: 'DRBAR_EX',
         controlType: 'DRBAR',
@@ -705,7 +761,7 @@ export default {
     ],
     codeName: 'de_custom_index_view_layout_product',
     controlType: 'VIEWLAYOUTPANEL',
-    logicName: '自定义实体首页视图布局面板（测试库）',
+    logicName: '自定义实体首页视图布局面板（产品）',
     appDataEntityId: 'plmweb.product',
     controlParam: {},
     modelId: '8b7287dd51152fc912397042d807eaf7',

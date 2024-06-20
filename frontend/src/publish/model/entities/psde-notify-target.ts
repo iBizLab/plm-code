@@ -26,26 +26,21 @@ export default {
   ],
   appDEFields: [
     {
-      codeName: 'update_time',
-      lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.UPDATE_TIME',
-      },
-      logicName: '更新时间',
-      stdDataType: 5,
-      valueFormat: 'YYYY-MM-DD HH:mm:ss',
-      name: 'UPDATE_TIME',
-      id: 'update_time',
+      codeName: 'PSDENotifyTargetId',
+      logicName: '实体通知目标标识',
+      stdDataType: 25,
+      stringLength: 100,
+      name: 'PSDENOTIFYTARGETID',
+      id: 'psdenotifytargetid',
     },
     {
-      codeName: 'create_time',
-      lnlanguageRes: {
-        lanResTag: 'DEF.LNAME.CREATE_TIME',
-      },
-      logicName: '建立时间',
-      stdDataType: 5,
-      valueFormat: 'YYYY-MM-DD HH:mm:ss',
-      name: 'CREATE_TIME',
-      id: 'create_time',
+      codeName: 'PSDENotifyTargetName',
+      logicName: '实体通知目标名称',
+      stdDataType: 25,
+      stringLength: 200,
+      enableQuickSearch: true,
+      name: 'PSDENOTIFYTARGETNAME',
+      id: 'psdenotifytargetname',
     },
     {
       codeName: 'create_man',
@@ -59,6 +54,17 @@ export default {
       id: 'create_man',
     },
     {
+      codeName: 'create_time',
+      lnlanguageRes: {
+        lanResTag: 'DEF.LNAME.CREATE_TIME',
+      },
+      logicName: '建立时间',
+      stdDataType: 5,
+      valueFormat: 'YYYY-MM-DD HH:mm:ss',
+      name: 'CREATE_TIME',
+      id: 'create_time',
+    },
+    {
       codeName: 'update_man',
       lnlanguageRes: {
         lanResTag: 'DEF.LNAME.UPDATE_MAN',
@@ -70,21 +76,15 @@ export default {
       id: 'update_man',
     },
     {
-      codeName: 'PSDENotifyTargetName',
-      logicName: '实体通知目标名称',
-      stdDataType: 25,
-      stringLength: 200,
-      enableQuickSearch: true,
-      name: 'PSDENOTIFYTARGETNAME',
-      id: 'psdenotifytargetname',
-    },
-    {
-      codeName: 'PSDENotifyTargetId',
-      logicName: '实体通知目标标识',
-      stdDataType: 25,
-      stringLength: 100,
-      name: 'PSDENOTIFYTARGETID',
-      id: 'psdenotifytargetid',
+      codeName: 'update_time',
+      lnlanguageRes: {
+        lanResTag: 'DEF.LNAME.UPDATE_TIME',
+      },
+      logicName: '更新时间',
+      stdDataType: 5,
+      valueFormat: 'YYYY-MM-DD HH:mm:ss',
+      name: 'UPDATE_TIME',
+      id: 'update_time',
     },
     {
       codeName: 'Data',

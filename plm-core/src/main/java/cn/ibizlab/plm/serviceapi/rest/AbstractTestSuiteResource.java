@@ -345,6 +345,28 @@ public abstract class AbstractTestSuiteResource {
     }
 
     /**
+    * 查询fetch_cur_test_suite 用例模块
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<TestSuiteDTO>>
+    */
+    @ApiOperation(value = "查询fetch_cur_test_suite", tags = {"用例模块" },  notes = "TestSuite-fetch_cur_test_suite ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestSuite-fetch_cur_test_suite-all') or hasPermission(#dto,'ibizplm-TestSuite-fetch_cur_test_suite')")
+    @PostMapping("test_suites/fetch_cur_test_suite")
+    public ResponseEntity<List<TestSuiteDTO>> fetchCurTestSuite
+            (@Validated @RequestBody TestSuiteFilterDTO dto) {
+        TestSuiteSearchContext context = testSuiteFilterDtoMapping.toDomain(dto);
+        Page<TestSuite> domains = testSuiteService.fetchCurTestSuite(context) ;
+        List<TestSuiteDTO> list = testSuiteDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
     * 查询fetch_default 用例模块
     * 
     *
@@ -357,7 +379,7 @@ public abstract class AbstractTestSuiteResource {
     public ResponseEntity<List<TestSuiteDTO>> fetchDefault
             (@Validated @RequestBody TestSuiteFilterDTO dto) {
         TestSuiteSearchContext context = testSuiteFilterDtoMapping.toDomain(dto);
-        Page<TestSuite> domains = testSuiteService.searchDefault(context) ;
+        Page<TestSuite> domains = testSuiteService.fetchDefault(context) ;
         List<TestSuiteDTO> list = testSuiteDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -379,7 +401,7 @@ public abstract class AbstractTestSuiteResource {
     public ResponseEntity<List<TestSuiteDTO>> fetchNoParent
             (@Validated @RequestBody TestSuiteFilterDTO dto) {
         TestSuiteSearchContext context = testSuiteFilterDtoMapping.toDomain(dto);
-        Page<TestSuite> domains = testSuiteService.searchNoParent(context) ;
+        Page<TestSuite> domains = testSuiteService.fetchNoParent(context) ;
         List<TestSuiteDTO> list = testSuiteDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -401,7 +423,7 @@ public abstract class AbstractTestSuiteResource {
     public ResponseEntity<List<TestSuiteDTO>> fetchNormal
             (@Validated @RequestBody TestSuiteFilterDTO dto) {
         TestSuiteSearchContext context = testSuiteFilterDtoMapping.toDomain(dto);
-        Page<TestSuite> domains = testSuiteService.searchNormal(context) ;
+        Page<TestSuite> domains = testSuiteService.fetchNormal(context) ;
         List<TestSuiteDTO> list = testSuiteDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -423,7 +445,7 @@ public abstract class AbstractTestSuiteResource {
     public ResponseEntity<List<TestSuiteDTO>> fetchRoot
             (@Validated @RequestBody TestSuiteFilterDTO dto) {
         TestSuiteSearchContext context = testSuiteFilterDtoMapping.toDomain(dto);
-        Page<TestSuite> domains = testSuiteService.searchRoot(context) ;
+        Page<TestSuite> domains = testSuiteService.fetchRoot(context) ;
         List<TestSuiteDTO> list = testSuiteDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -503,6 +525,30 @@ public abstract class AbstractTestSuiteResource {
     }
 
     /**
+    * 查询fetch_cur_test_suite 用例模块
+    * 
+    *
+    * @param libraryId libraryId
+    * @param dto dto
+    * @return ResponseEntity<List<TestSuiteDTO>>
+    */
+    @ApiOperation(value = "查询fetch_cur_test_suite", tags = {"用例模块" },  notes = "TestSuite-fetch_cur_test_suite ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestSuite-fetch_cur_test_suite-all') or hasPermission('library',#libraryId,#dto,'ibizplm-TestSuite-fetch_cur_test_suite')")
+    @PostMapping("libraries/{libraryId}/test_suites/fetch_cur_test_suite")
+    public ResponseEntity<List<TestSuiteDTO>> fetchCurTestSuiteByLibraryId
+            (@PathVariable("libraryId") String libraryId, @Validated @RequestBody TestSuiteFilterDTO dto) {
+        dto.setLibraryIdEQ(libraryId);
+        TestSuiteSearchContext context = testSuiteFilterDtoMapping.toDomain(dto);
+        Page<TestSuite> domains = testSuiteService.fetchCurTestSuite(context) ;
+        List<TestSuiteDTO> list = testSuiteDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
     * 查询fetch_default 用例模块
     * 
     *
@@ -517,7 +563,7 @@ public abstract class AbstractTestSuiteResource {
             (@PathVariable("libraryId") String libraryId, @Validated @RequestBody TestSuiteFilterDTO dto) {
         dto.setLibraryIdEQ(libraryId);
         TestSuiteSearchContext context = testSuiteFilterDtoMapping.toDomain(dto);
-        Page<TestSuite> domains = testSuiteService.searchDefault(context) ;
+        Page<TestSuite> domains = testSuiteService.fetchDefault(context) ;
         List<TestSuiteDTO> list = testSuiteDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -541,7 +587,7 @@ public abstract class AbstractTestSuiteResource {
             (@PathVariable("libraryId") String libraryId, @Validated @RequestBody TestSuiteFilterDTO dto) {
         dto.setLibraryIdEQ(libraryId);
         TestSuiteSearchContext context = testSuiteFilterDtoMapping.toDomain(dto);
-        Page<TestSuite> domains = testSuiteService.searchNoParent(context) ;
+        Page<TestSuite> domains = testSuiteService.fetchNoParent(context) ;
         List<TestSuiteDTO> list = testSuiteDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -565,7 +611,7 @@ public abstract class AbstractTestSuiteResource {
             (@PathVariable("libraryId") String libraryId, @Validated @RequestBody TestSuiteFilterDTO dto) {
         dto.setLibraryIdEQ(libraryId);
         TestSuiteSearchContext context = testSuiteFilterDtoMapping.toDomain(dto);
-        Page<TestSuite> domains = testSuiteService.searchNormal(context) ;
+        Page<TestSuite> domains = testSuiteService.fetchNormal(context) ;
         List<TestSuiteDTO> list = testSuiteDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -589,7 +635,7 @@ public abstract class AbstractTestSuiteResource {
             (@PathVariable("libraryId") String libraryId, @Validated @RequestBody TestSuiteFilterDTO dto) {
         dto.setLibraryIdEQ(libraryId);
         TestSuiteSearchContext context = testSuiteFilterDtoMapping.toDomain(dto);
-        Page<TestSuite> domains = testSuiteService.searchRoot(context) ;
+        Page<TestSuite> domains = testSuiteService.fetchRoot(context) ;
         List<TestSuiteDTO> list = testSuiteDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -608,7 +654,7 @@ public abstract class AbstractTestSuiteResource {
     @ApiOperation(value = "批量新建用例模块", tags = {"用例模块" },  notes = "批量新建用例模块")
 	@PostMapping("test_suites/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<TestSuiteDTO> dtos) {
-        testSuiteService.createBatch(testSuiteDtoMapping.toDomain(dtos));
+        testSuiteService.create(testSuiteDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -621,7 +667,7 @@ public abstract class AbstractTestSuiteResource {
     @ApiOperation(value = "批量删除用例模块", tags = {"用例模块" },  notes = "批量删除用例模块")
 	@DeleteMapping("test_suites/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        testSuiteService.removeBatch(ids);
+        testSuiteService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -634,7 +680,7 @@ public abstract class AbstractTestSuiteResource {
     @ApiOperation(value = "批量更新用例模块", tags = {"用例模块" },  notes = "批量更新用例模块")
 	@PutMapping("test_suites/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<TestSuiteDTO> dtos) {
-        testSuiteService.updateBatch(testSuiteDtoMapping.toDomain(dtos));
+        testSuiteService.update(testSuiteDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -647,7 +693,7 @@ public abstract class AbstractTestSuiteResource {
     @ApiOperation(value = "批量保存用例模块", tags = {"用例模块" },  notes = "批量保存用例模块")
 	@PostMapping("test_suites/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<TestSuiteDTO> dtos) {
-        testSuiteService.saveBatch(testSuiteDtoMapping.toDomain(dtos));
+        testSuiteService.save(testSuiteDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

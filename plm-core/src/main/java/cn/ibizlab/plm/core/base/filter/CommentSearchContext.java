@@ -123,7 +123,13 @@ public class CommentSearchContext extends QueryWrapperContext<Comment> {
             this.getFilter().eq("principal_id",contextParentKey);
         if(Entities.CUSTOMER.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("principal_id",contextParentKey);
+        if(Entities.DISCUSS_POST.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("principal_id",contextParentKey);
+        if(Entities.DISCUSS_REPLY.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("principal_id",contextParentKey);
         if(Entities.IDEA.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("principal_id",contextParentKey);
+        if(Entities.REVIEW.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("principal_id",contextParentKey);
         if(Entities.TEST_CASE.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("principal_id",contextParentKey);

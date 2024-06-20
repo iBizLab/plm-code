@@ -34,22 +34,6 @@ public abstract class AbstractSysEmployeeService implements SysEmployeeService {
 
     protected int batchSize = 500;
 
-    public SysEmployee get(SysEmployee et) {
-        return sysEmployeeFeignClient.getByUserId(et.getUserId());
-    }
-
-    public List<SysEmployee> getByEntities(List<SysEmployee> entities) {
-        return null;
-    }
-
-    public SysEmployee getDraft(SysEmployee et) {
-        return sysEmployeeFeignClient.getDraft(et);
-    }
-
-    public Integer checkKey(SysEmployee et) {
-        return sysEmployeeFeignClient.checkKey(et);
-    }
-
     @Override
     @Transactional
     public boolean create(SysEmployee et) {
@@ -57,11 +41,12 @@ public abstract class AbstractSysEmployeeService implements SysEmployeeService {
         rt.copyTo(et,true);
         return true;
     }
+	
     @Transactional
-    public boolean createBatch(List<SysEmployee> list) {
+    public boolean create(List<SysEmployee> list) {
         return sysEmployeeFeignClient.createBatch(list);
     }
-
+	
     @Transactional
     public boolean update(SysEmployee et) {
         SysEmployee rt = sysEmployeeFeignClient.updateByUserId(et.getUserId(), et);
@@ -70,45 +55,66 @@ public abstract class AbstractSysEmployeeService implements SysEmployeeService {
     }
 
     @Transactional
-    public boolean updateBatch(List<SysEmployee> list) {
+    public boolean update(List<SysEmployee> list) {
         return sysEmployeeFeignClient.updateBatch(list);
     }
-
-    @Transactional
-    public boolean save(SysEmployee et) {
-        SysEmployee rt =  sysEmployeeFeignClient.save(et);
-        rt.copyTo(et,true);
-        return true;
-    }
-
-    @Transactional
-    public boolean saveBatch(List<SysEmployee> list) {
-        return sysEmployeeFeignClient.saveBatch(list);
-    }
-
-    @Transactional
+	
+   @Transactional
     public boolean remove(SysEmployee et) {
         return sysEmployeeFeignClient.removeByUserId(et.getUserId());
     }
 
     @Transactional
-    public boolean removeByEntities(List<SysEmployee> entities) {
-        return sysEmployeeFeignClient.removeBatch(entities.stream().map(e->e.getUserId()).collect(Collectors.toList()));
+    public boolean remove(List<SysEmployee> entities) {
+       return sysEmployeeFeignClient.removeBatch(entities.stream().map(e->e.getUserId()).collect(Collectors.toList()));
+    }		
+
+    public SysEmployee get(SysEmployee et) {
+        return sysEmployeeFeignClient.getByUserId(et.getUserId());
+    }	
+
+    public List<SysEmployee> get(List<SysEmployee> entities) {
+        return null;
+    }	
+	
+    public SysEmployee getDraft(SysEmployee et) {
+        return sysEmployeeFeignClient.getDraft(et);
+    }
+	
+    public Integer checkKey(SysEmployee et) {
+         return sysEmployeeFeignClient.checkKey(et);
+    }
+	
+    @Override
+    @Transactional
+    public boolean save(SysEmployee et) {
+       SysEmployee rt =  sysEmployeeFeignClient.save(et);
+        rt.copyTo(et,true);
+        return true;
     }
 
-    public Page<SysEmployee> searchDefault(SysEmployeeSearchContext context) {
+    @Transactional
+    public boolean save(List<SysEmployee> list) {
+        return sysEmployeeFeignClient.saveBatch(list);
+    }
+	
+     public Page<SysEmployee> fetchDefault(SysEmployeeSearchContext context) {
         return sysEmployeeFeignClient.fetchDefault(context);
     }
+	
     public List<SysEmployee> listDefault(SysEmployeeSearchContext context) {
         context.setSize(Short.MAX_VALUE);
-        return searchDefault(context).getContent();
+        return fetchDefault(context).getContent();
     }
-    public Page<SysEmployee> searchUser(SysEmployeeSearchContext context) {
+	
+     public Page<SysEmployee> fetchUser(SysEmployeeSearchContext context) {
         return sysEmployeeFeignClient.fetchUser(context);
     }
+	
     public List<SysEmployee> listUser(SysEmployeeSearchContext context) {
         context.setSize(Short.MAX_VALUE);
-        return searchUser(context).getContent();
+        return fetchUser(context).getContent();
     }
+	
 
 }

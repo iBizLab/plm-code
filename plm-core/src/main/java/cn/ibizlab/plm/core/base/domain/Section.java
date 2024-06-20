@@ -40,121 +40,121 @@ public class Section extends EntityMP implements Serializable
 {
 
     /**
-     * 所属数据标识
-     */
+    * 所属数据标识
+    */
     @TableField(value = "owner_id")
     @DEField(name = "owner_id" , preType = DEPredefinedFieldType.PARENTID)
-    @JsonProperty("owner_id")
     @JSONField(name = "owner_id")
+    @JsonProperty("owner_id")
     @ApiModelProperty(value = "owner_id", notes = "所属数据标识")
     private String ownerId;
 
     /**
-     * 序号
-     */
+    * 序号
+    */
     @TableField(value = "sequence")
     @DEField(name = "sequence" , defaultValue = "1")
-    @JsonProperty("sequence")
     @JSONField(name = "sequence")
+    @JsonProperty("sequence")
     @ApiModelProperty(value = "sequence", notes = "序号")
     private BigDecimal sequence;
 
     /**
-     * 所属数据对象
-     */
+    * 所属数据对象
+    */
     @TableField(value = "owner_type")
     @DEField(name = "owner_type" , preType = DEPredefinedFieldType.PARENTTYPE)
-    @JsonProperty("owner_type")
     @JSONField(name = "owner_type")
+    @JsonProperty("owner_type")
     @ApiModelProperty(value = "owner_type", notes = "所属数据对象")
     private String ownerType;
 
     /**
-     * 所属对象子类型
-     */
+    * 所属对象子类型
+    */
     @TableField(value = "owner_subtype")
     @DEField(name = "owner_subtype" , preType = DEPredefinedFieldType.PARENTSUBTYPE)
-    @JsonProperty("owner_subtype")
     @JSONField(name = "owner_subtype")
+    @JsonProperty("owner_subtype")
     @ApiModelProperty(value = "owner_subtype", notes = "所属对象子类型")
     private String ownerSubtype;
 
     /**
-     * 是否叶子节点
-     */
+    * 是否叶子节点
+    */
     @TableField(value = "is_leaf")
     @DEField(name = "is_leaf" , defaultValue = "1" , dict = "YesNo")
-    @JsonProperty("is_leaf")
     @JSONField(name = "is_leaf")
+    @JsonProperty("is_leaf")
     @ApiModelProperty(value = "is_leaf", notes = "是否叶子节点")
     private Integer isLeaf;
 
     /**
-     * 标识
-     */
+    * 标识
+    */
     @Id
     @TableId(value = "id" , type = IdType.ASSIGN_UUID)
     @DEField(name = "id" , isKeyField = true)
-    @JsonProperty("id")
     @JSONField(name = "id")
+    @JsonProperty("id")
     @ApiModelProperty(value = "id", notes = "标识")
     private String id;
 
     /**
-     * 建立时间
-     */
-    @TableField(value = "create_time" , fill = FieldFill.INSERT)
-    @DEField(name = "create_time" , preType = DEPredefinedFieldType.CREATEDATE)
-    @JsonProperty("create_time")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "create_time", notes = "建立时间")
-    private Date createTime;
-
-    /**
-     * 更新时间
-     */
-    @TableField(value = "update_time")
-    @DEField(name = "update_time" , preType = DEPredefinedFieldType.UPDATEDATE)
-    @JsonProperty("update_time")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "update_time", notes = "更新时间")
-    private Date updateTime;
-
-    /**
-     * 更新人
-     */
-    @TableField(value = "update_man")
-    @DEField(name = "update_man" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
-    @JsonProperty("update_man")
-    @JSONField(name = "update_man")
-    @ApiModelProperty(value = "update_man", notes = "更新人")
-    private String updateMan;
-
-    /**
-     * 名称
-     */
+    * 名称
+    */
     @TableField(value = "name")
     @DEField(name = "name")
-    @JsonProperty("name")
     @JSONField(name = "name")
+    @JsonProperty("name")
     @ApiModelProperty(value = "name", notes = "名称")
     private String name;
 
     /**
-     * 建立人
-     */
+    * 建立人
+    */
     @TableField(value = "create_man" , fill = FieldFill.INSERT)
     @DEField(name = "create_man" , preType = DEPredefinedFieldType.CREATEMAN , dict = "SysOperator")
-    @JsonProperty("create_man")
     @JSONField(name = "create_man")
+    @JsonProperty("create_man")
     @ApiModelProperty(value = "create_man", notes = "建立人")
     private String createMan;
 
     /**
-     * 设置 [序号]
-     */
+    * 建立时间
+    */
+    @TableField(value = "create_time" , fill = FieldFill.INSERT)
+    @DEField(name = "create_time" , preType = DEPredefinedFieldType.CREATEDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("create_time")
+    @ApiModelProperty(value = "create_time", notes = "建立时间")
+    private Date createTime;
+
+    /**
+    * 更新人
+    */
+    @TableField(value = "update_man")
+    @DEField(name = "update_man" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
+    @JSONField(name = "update_man")
+    @JsonProperty("update_man")
+    @ApiModelProperty(value = "update_man", notes = "更新人")
+    private String updateMan;
+
+    /**
+    * 更新时间
+    */
+    @TableField(value = "update_time")
+    @DEField(name = "update_time" , preType = DEPredefinedFieldType.UPDATEDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("update_time")
+    @ApiModelProperty(value = "update_time", notes = "更新时间")
+    private Date updateTime;
+
+    /**
+    * 设置 [序号]
+    */
     public Section setSequence(BigDecimal sequence) {
         this.sequence = sequence;
         this.modify("sequence", sequence);
@@ -162,8 +162,8 @@ public class Section extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [是否叶子节点]
-     */
+    * 设置 [是否叶子节点]
+    */
     public Section setIsLeaf(Integer isLeaf) {
         this.isLeaf = isLeaf;
         this.modify("is_leaf", isLeaf);
@@ -171,13 +171,14 @@ public class Section extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [名称]
-     */
+    * 设置 [名称]
+    */
     public Section setName(String name) {
         this.name = name;
         this.modify("name", name);
         return this;
     }
+
 
     /**
      * 复制当前对象数据到目标对象(粘贴重置)

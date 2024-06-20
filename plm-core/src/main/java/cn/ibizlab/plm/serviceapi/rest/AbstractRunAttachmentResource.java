@@ -238,7 +238,7 @@ public abstract class AbstractRunAttachmentResource {
     public ResponseEntity<List<RunAttachmentDTO>> fetchDefault
             (@Validated @RequestBody RunAttachmentFilterDTO dto) {
         RunAttachmentSearchContext context = runAttachmentFilterDtoMapping.toDomain(dto);
-        Page<RunAttachment> domains = runAttachmentService.searchDefault(context) ;
+        Page<RunAttachment> domains = runAttachmentService.fetchDefault(context) ;
         List<RunAttachmentDTO> list = runAttachmentDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -257,7 +257,7 @@ public abstract class AbstractRunAttachmentResource {
     @ApiOperation(value = "批量新建执行用例结果附件", tags = {"执行用例结果附件" },  notes = "批量新建执行用例结果附件")
 	@PostMapping("run_attachments/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<RunAttachmentDTO> dtos) {
-        runAttachmentService.createBatch(runAttachmentDtoMapping.toDomain(dtos));
+        runAttachmentService.create(runAttachmentDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -270,7 +270,7 @@ public abstract class AbstractRunAttachmentResource {
     @ApiOperation(value = "批量删除执行用例结果附件", tags = {"执行用例结果附件" },  notes = "批量删除执行用例结果附件")
 	@DeleteMapping("run_attachments/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        runAttachmentService.removeBatch(ids);
+        runAttachmentService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -283,7 +283,7 @@ public abstract class AbstractRunAttachmentResource {
     @ApiOperation(value = "批量更新执行用例结果附件", tags = {"执行用例结果附件" },  notes = "批量更新执行用例结果附件")
 	@PutMapping("run_attachments/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<RunAttachmentDTO> dtos) {
-        runAttachmentService.updateBatch(runAttachmentDtoMapping.toDomain(dtos));
+        runAttachmentService.update(runAttachmentDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -296,7 +296,7 @@ public abstract class AbstractRunAttachmentResource {
     @ApiOperation(value = "批量保存执行用例结果附件", tags = {"执行用例结果附件" },  notes = "批量保存执行用例结果附件")
 	@PostMapping("run_attachments/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<RunAttachmentDTO> dtos) {
-        runAttachmentService.saveBatch(runAttachmentDtoMapping.toDomain(dtos));
+        runAttachmentService.save(runAttachmentDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

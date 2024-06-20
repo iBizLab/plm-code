@@ -62,6 +62,14 @@ public interface DeliverableMapper extends BaseMapper<Deliverable> {
     List<Deliverable> listProjectDeliverable(@Param("ctx") DeliverableSearchContext context, @Param("ew") Wrapper<Deliverable> wrapper);
 
     /**
+    * 根据ownerId查询
+    *
+    * @param ownerIds
+    * @return
+    */
+    List<Deliverable> findByOwnerId(@Param("ownerIds") List<String> ownerIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -170,13 +178,4 @@ public interface DeliverableMapper extends BaseMapper<Deliverable> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据ownerId查询
-     *
-     * @param ownerIds
-     * @return
-     */
-    List<Deliverable> findByOwnerId(@Param("ownerIds") List<String> ownerIds);
-
 }

@@ -7,10 +7,13 @@
 		<id property="id" column="id" /><!--主键字段映射-->
 		<result property="isSystem" column="is_system" />
 		<result property="projectType" column="project_type" />
-		<result property="updateMan" column="update_man" />
+		<result property="subType" column="sub_type" />
 		<result property="createMan" column="create_man" />
 		<result property="createTime" column="create_time" />
+		<result property="updateMan" column="update_man" />
 		<result property="updateTime" column="update_time" />
+		<result property="projectId" column="project_id" />
+        <association property="project" javaType="cn.ibizlab.plm.core.projmgmt.domain.Project" column="project_id" select="cn.ibizlab.plm.core.projmgmt.mapper.ProjectMapper.selectById" fetchType="lazy"></association>
     </resultMap>
 
     <select id="selectById"  resultMap="WorkItemTypeResultMap">
@@ -39,19 +42,23 @@
     </delete>
 
     <sql id="default" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CODE`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`GROUP`, t1.`ICON`, t1.`ID`, t1.`IS_SYSTEM`, t1.`NAME`, t1.`PROJECT_TYPE`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `WORK_ITEM_TYPE` t1   ]]>  
+         <![CDATA[ SELECT t1.`CODE`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`GROUP`, t1.`ICON`, t1.`ID`, t1.`IS_SYSTEM`, t1.`NAME`, t1.`PROJECT_ID`, t1.`PROJECT_TYPE`, t1.`SEQUENCE`, t1.`SUB_TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `WORK_ITEM_TYPE` t1   ]]>  
     </sql>
 
     <sql id="view" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CODE`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`GROUP`, t1.`ICON`, t1.`ID`, t1.`IS_SYSTEM`, t1.`NAME`, t1.`PROJECT_TYPE`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `WORK_ITEM_TYPE` t1   ]]>  
+         <![CDATA[ SELECT t1.`CODE`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`GROUP`, t1.`ICON`, t1.`ID`, t1.`IS_SYSTEM`, t1.`NAME`, t1.`PROJECT_ID`, t1.`PROJECT_TYPE`, t1.`SEQUENCE`, t1.`SUB_TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `WORK_ITEM_TYPE` t1   ]]>  
+    </sql>
+
+    <sql id="curProjectType" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CODE`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`GROUP`, t1.`ICON`, t1.`ID`, t1.`IS_SYSTEM`, t1.`NAME`, t1.`PROJECT_ID`, t1.`PROJECT_TYPE`, t1.`SEQUENCE`, t1.`SUB_TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `WORK_ITEM_TYPE` t1   ]]>  where  <![CDATA[ ( `PROJECT_TYPE` = (select type from project where id=#{ctx.datacontext.project}) ) ]]> 
     </sql>
 
     <sql id="projectWorkItemType" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CODE`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`GROUP`, t1.`ICON`, t1.`ID`, t1.`IS_SYSTEM`, t1.`NAME`, t1.`PROJECT_TYPE`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `WORK_ITEM_TYPE` t1   ]]>  where  <![CDATA[ ( `PROJECT_TYPE` = (select type from project where id=#{ctx.webcontext.project_id}) ) ]]> 
+         <![CDATA[ SELECT t1.`CODE`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`GROUP`, t1.`ICON`, t1.`ID`, t1.`IS_SYSTEM`, t1.`NAME`, t1.`PROJECT_ID`, t1.`PROJECT_TYPE`, t1.`SEQUENCE`, t1.`SUB_TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `WORK_ITEM_TYPE` t1   ]]>  where  <![CDATA[ ( `PROJECT_TYPE` = (select type from project where id=#{ctx.webcontext.project_id}) ) ]]> 
     </sql>
 
     <sql id="projectWorkItemTypeNotBug" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CODE`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`GROUP`, t1.`ICON`, t1.`ID`, t1.`IS_SYSTEM`, t1.`NAME`, t1.`PROJECT_TYPE`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `WORK_ITEM_TYPE` t1   ]]>  where  <![CDATA[ ( `PROJECT_TYPE` = (select type from project where id=#{ctx.webcontext.project_id}) and `group` <> 'bug' ) ]]> 
+         <![CDATA[ SELECT t1.`CODE`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`GROUP`, t1.`ICON`, t1.`ID`, t1.`IS_SYSTEM`, t1.`NAME`, t1.`PROJECT_ID`, t1.`PROJECT_TYPE`, t1.`SEQUENCE`, t1.`SUB_TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `WORK_ITEM_TYPE` t1   ]]>  where  <![CDATA[ ( `PROJECT_TYPE` = (select type from project where id=#{ctx.webcontext.project_id}) and `group` <> 'bug' ) ]]> 
     </sql>
 
     <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.WorkItemTypeSearchContext"  resultMap="WorkItemTypeResultMap">
@@ -69,6 +76,27 @@
         select t1.*
         from (
             <include refid="default"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchCurProjectType"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.WorkItemTypeSearchContext"  resultMap="WorkItemTypeResultMap">
+        select t1.* 
+        from (
+            <include refid="curProjectType"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listCurProjectType"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.WorkItemTypeSearchContext"  resultMap="WorkItemTypeResultMap">
+        select t1.*
+        from (
+            <include refid="curProjectType"/>
         ) t1
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
@@ -115,6 +143,13 @@
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
         
+    </select>
+
+    <select id="findByProjectId" resultMap="WorkItemTypeResultMap">
+        select t1.* from (
+            <include refid="default"/>
+        ) t1
+        where project_id in <foreach item="id" index="index" collection="projectIds" open="(" separator="," close=")">#{id}</foreach>  order by SEQUENCE ASC
     </select>
 
 

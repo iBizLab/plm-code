@@ -31,43 +31,19 @@ import io.swagger.annotations.ApiModelProperty;
 public class ProductTicketTypeFilterDTO extends FilterBase implements Serializable {
 
     /**
-     * 名称LIKE
-     */
-    @JsonProperty("n_name_like")
-    @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 20)
-	private String nameLIKE;
-
-    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 60)
+    @ApiModelProperty(value = "标识EQ", position = 10)
 	private String idEQ;
-
-    /**
-     * 工单类型标识EQ
-     */
-    @JsonProperty("n_ticket_type_id_eq")
-    @JSONField(name = "n_ticket_type_id_eq")
-    @ApiModelProperty(value = "工单类型标识EQ", position = 70)
-	private String ticketTypeIdEQ;
-
-    /**
-     * 产品标识EQ
-     */
-    @JsonProperty("n_product_id_eq")
-    @JSONField(name = "n_product_id_eq")
-    @ApiModelProperty(value = "产品标识EQ", position = 80)
-	private String productIdEQ;
 
     /**
      * 名称EQ
      */
     @JsonProperty("n_ticket_type_name_eq")
     @JSONField(name = "n_ticket_type_name_eq")
-    @ApiModelProperty(value = "名称EQ", position = 90)
+    @ApiModelProperty(value = "名称EQ", position = 20)
 	private String ticketTypeNameEQ;
 
     /**
@@ -75,8 +51,32 @@ public class ProductTicketTypeFilterDTO extends FilterBase implements Serializab
      */
     @JsonProperty("n_ticket_type_name_like")
     @JSONField(name = "n_ticket_type_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 91)
+    @ApiModelProperty(value = "名称LIKE", position = 21)
 	private String ticketTypeNameLIKE;
+
+    /**
+     * 名称LIKE
+     */
+    @JsonProperty("n_name_like")
+    @JSONField(name = "n_name_like")
+    @ApiModelProperty(value = "名称LIKE", position = 70)
+	private String nameLIKE;
+
+    /**
+     * 工单类型标识EQ
+     */
+    @JsonProperty("n_ticket_type_id_eq")
+    @JSONField(name = "n_ticket_type_id_eq")
+    @ApiModelProperty(value = "工单类型标识EQ", position = 80)
+	private String ticketTypeIdEQ;
+
+    /**
+     * 产品标识EQ
+     */
+    @JsonProperty("n_product_id_eq")
+    @JSONField(name = "n_product_id_eq")
+    @ApiModelProperty(value = "产品标识EQ", position = 90)
+	private String productIdEQ;
 
 
 }

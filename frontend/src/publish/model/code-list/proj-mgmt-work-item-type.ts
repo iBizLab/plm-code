@@ -2,6 +2,7 @@ export default {
   codeListTag: 'ProjMgmt__work_item_type',
   codeListType: 'DYNAMIC',
   codeName: 'ProjMgmt__work_item_type',
+  dataAppDEFieldId: 'sub_type',
   emptyText: '未定义',
   iconPathAppDEFieldId: 'icon',
   iconPathXAppDEFieldId: 'icon',

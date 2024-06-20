@@ -7,7 +7,7 @@ export default {
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PORTFOLIO',
   },
-  caption: '文件夹',
+  caption: '选择项目集',
   codeName: 'portfolio_mpick_up_view',
   appDataEntityId: 'plmweb.portfolio',
   appViewEngines: [
@@ -151,7 +151,7 @@ export default {
       capLanguageRes: {
         lanResTag: 'DE.LNAME.PORTFOLIO',
       },
-      caption: '文件夹',
+      caption: '选择项目集',
       codeName: 'mpick_up_view_captionbar',
       controlType: 'CAPTIONBAR',
       appDataEntityId: 'plmweb.portfolio',
@@ -178,9 +178,9 @@ export default {
   viewStyle: 'DEFAULT',
   viewType: 'DEMPICKUPVIEW',
   enableDP: true,
-  showCaptionBar: false,
+  showCaptionBar: true,
   modelId: 'c2f4b208dd819171bc41d2bacc432995',
   modelType: 'PSAPPDEVIEW',
-  name: 'portfolioMPickupView',
+  name: 'portfoliompick_up_view',
   id: 'plmweb.portfolio_mpick_up_view',
 };

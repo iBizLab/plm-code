@@ -204,6 +204,44 @@ public abstract class AbstractSpaceResource {
     }
 
     /**
+    * change_admin_role 空间
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<SpaceDTO>
+    */
+    @ApiOperation(value = "change_admin_role", tags = {"空间" },  notes = "Space-change_admin_role ")
+    @PostMapping("spaces/{id}/change_admin_role")
+    public ResponseEntity<ResponseWrapper<SpaceDTO>> changeAdminRoleById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<SpaceDTO> dto) {
+        ResponseWrapper<SpaceDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(changeAdminRoleById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(changeAdminRoleById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * change_admin_role 空间
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<SpaceDTO>
+    */   
+    public SpaceDTO changeAdminRoleById
+            (String id, SpaceDTO dto) {
+        Space domain = spaceDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Space rt = spaceService.changeAdminRole(domain);
+        return spaceDtoMapping.toDto(rt);
+    }
+
+    /**
     * del_relation 空间
     * 
     *
@@ -358,6 +396,45 @@ public abstract class AbstractSpaceResource {
     }
 
     /**
+    * move_space 空间
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<SpaceDTO>
+    */
+    @ApiOperation(value = "move_space", tags = {"空间" },  notes = "Space-move_space ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Space-move_space-all') or hasPermission(this.spaceDtoMapping.toDomain(#dto),'ibizplm-Space-move_space')")
+    @PostMapping("spaces/{id}/move_space")
+    public ResponseEntity<ResponseWrapper<SpaceDTO>> moveSpaceById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<SpaceDTO> dto) {
+        ResponseWrapper<SpaceDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(moveSpaceById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(moveSpaceById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * move_space 空间
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<SpaceDTO>
+    */   
+    public SpaceDTO moveSpaceById
+            (String id, SpaceDTO dto) {
+        Space domain = spaceDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Space rt = spaceService.moveSpace(domain);
+        return spaceDtoMapping.toDto(rt);
+    }
+
+    /**
     * other_re_space 空间
     * 
     *
@@ -467,6 +544,45 @@ public abstract class AbstractSpaceResource {
         Space domain = spaceDtoMapping.toDomain(dto);
         spaceService.save(domain);
         Space rt = domain;
+        return spaceDtoMapping.toDto(rt);
+    }
+
+    /**
+    * space_index_addon_counter 空间
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<SpaceDTO>
+    */
+    @ApiOperation(value = "space_index_addon_counter", tags = {"空间" },  notes = "Space-space_index_addon_counter ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Space-space_index_addon_counter-all') or hasPermission(this.spaceDtoMapping.toDomain(#dto),'ibizplm-Space-space_index_addon_counter')")
+    @PostMapping("spaces/{id}/space_index_addon_counter")
+    public ResponseEntity<ResponseWrapper<SpaceDTO>> spaceIndexAddonCounterById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<SpaceDTO> dto) {
+        ResponseWrapper<SpaceDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(spaceIndexAddonCounterById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(spaceIndexAddonCounterById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * space_index_addon_counter 空间
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<SpaceDTO>
+    */   
+    public SpaceDTO spaceIndexAddonCounterById
+            (String id, SpaceDTO dto) {
+        Space domain = spaceDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Space rt = spaceService.spaceIndexAddonCounter(domain);
         return spaceDtoMapping.toDto(rt);
     }
 
@@ -587,7 +703,7 @@ public abstract class AbstractSpaceResource {
     public ResponseEntity<List<SpaceDTO>> fetchAdmin
             (@Validated @RequestBody SpaceFilterDTO dto) {
         SpaceSearchContext context = spaceFilterDtoMapping.toDomain(dto);
-        Page<Space> domains = spaceService.searchAdmin(context) ;
+        Page<Space> domains = spaceService.fetchAdmin(context) ;
         List<SpaceDTO> list = spaceDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -608,7 +724,7 @@ public abstract class AbstractSpaceResource {
     public ResponseEntity<List<SpaceDTO>> fetchArchived
             (@Validated @RequestBody SpaceFilterDTO dto) {
         SpaceSearchContext context = spaceFilterDtoMapping.toDomain(dto);
-        Page<Space> domains = spaceService.searchArchived(context) ;
+        Page<Space> domains = spaceService.fetchArchived(context) ;
         List<SpaceDTO> list = spaceDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -630,7 +746,29 @@ public abstract class AbstractSpaceResource {
     public ResponseEntity<List<SpaceDTO>> fetchCategorySpace
             (@Validated @RequestBody SpaceFilterDTO dto) {
         SpaceSearchContext context = spaceFilterDtoMapping.toDomain(dto);
-        Page<Space> domains = spaceService.searchCategorySpace(context) ;
+        Page<Space> domains = spaceService.fetchCategorySpace(context) ;
+        List<SpaceDTO> list = spaceDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_current 空间
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<SpaceDTO>>
+    */
+    @ApiOperation(value = "查询fetch_current", tags = {"空间" },  notes = "Space-fetch_current ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Space-fetch_current-all') or hasPermission(#dto,'ibizplm-Space-fetch_current')")
+    @PostMapping("spaces/fetch_current")
+    public ResponseEntity<List<SpaceDTO>> fetchCurrent
+            (@Validated @RequestBody SpaceFilterDTO dto) {
+        SpaceSearchContext context = spaceFilterDtoMapping.toDomain(dto);
+        Page<Space> domains = spaceService.fetchCurrent(context) ;
         List<SpaceDTO> list = spaceDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -652,7 +790,7 @@ public abstract class AbstractSpaceResource {
     public ResponseEntity<List<SpaceDTO>> fetchDefault
             (@Validated @RequestBody SpaceFilterDTO dto) {
         SpaceSearchContext context = spaceFilterDtoMapping.toDomain(dto);
-        Page<Space> domains = spaceService.searchDefault(context) ;
+        Page<Space> domains = spaceService.fetchDefault(context) ;
         List<SpaceDTO> list = spaceDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -673,7 +811,7 @@ public abstract class AbstractSpaceResource {
     public ResponseEntity<List<SpaceDTO>> fetchDeleted
             (@Validated @RequestBody SpaceFilterDTO dto) {
         SpaceSearchContext context = spaceFilterDtoMapping.toDomain(dto);
-        Page<Space> domains = spaceService.searchDeleted(context) ;
+        Page<Space> domains = spaceService.fetchDeleted(context) ;
         List<SpaceDTO> list = spaceDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -695,7 +833,29 @@ public abstract class AbstractSpaceResource {
     public ResponseEntity<List<SpaceDTO>> fetchFavorite
             (@Validated @RequestBody SpaceFilterDTO dto) {
         SpaceSearchContext context = spaceFilterDtoMapping.toDomain(dto);
-        Page<Space> domains = spaceService.searchFavorite(context) ;
+        Page<Space> domains = spaceService.fetchFavorite(context) ;
+        List<SpaceDTO> list = spaceDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_main 空间
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<SpaceDTO>>
+    */
+    @ApiOperation(value = "查询fetch_main", tags = {"空间" },  notes = "Space-fetch_main ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Space-fetch_main-all') or hasPermission(#dto,'ibizplm-Space-fetch_main')")
+    @PostMapping("spaces/fetch_main")
+    public ResponseEntity<List<SpaceDTO>> fetchMain
+            (@Validated @RequestBody SpaceFilterDTO dto) {
+        SpaceSearchContext context = spaceFilterDtoMapping.toDomain(dto);
+        Page<Space> domains = spaceService.fetchMain(context) ;
         List<SpaceDTO> list = spaceDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -717,7 +877,7 @@ public abstract class AbstractSpaceResource {
     public ResponseEntity<List<SpaceDTO>> fetchNoCategorySpace
             (@Validated @RequestBody SpaceFilterDTO dto) {
         SpaceSearchContext context = spaceFilterDtoMapping.toDomain(dto);
-        Page<Space> domains = spaceService.searchNoCategorySpace(context) ;
+        Page<Space> domains = spaceService.fetchNoCategorySpace(context) ;
         List<SpaceDTO> list = spaceDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -734,11 +894,12 @@ public abstract class AbstractSpaceResource {
     * @return ResponseEntity<List<SpaceDTO>>
     */
     @ApiOperation(value = "查询fetch_no_re_space", tags = {"空间" },  notes = "Space-fetch_no_re_space ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Space-fetch_no_re_space-all') or hasPermission(#dto,'ibizplm-Space-fetch_no_re_space')")
     @PostMapping("spaces/fetch_no_re_space")
     public ResponseEntity<List<SpaceDTO>> fetchNoReSpace
             (@Validated @RequestBody SpaceFilterDTO dto) {
         SpaceSearchContext context = spaceFilterDtoMapping.toDomain(dto);
-        Page<Space> domains = spaceService.searchNoReSpace(context) ;
+        Page<Space> domains = spaceService.fetchNoReSpace(context) ;
         List<SpaceDTO> list = spaceDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -760,7 +921,7 @@ public abstract class AbstractSpaceResource {
     public ResponseEntity<List<SpaceDTO>> fetchNormal
             (@Validated @RequestBody SpaceFilterDTO dto) {
         SpaceSearchContext context = spaceFilterDtoMapping.toDomain(dto);
-        Page<Space> domains = spaceService.searchNormal(context) ;
+        Page<Space> domains = spaceService.fetchNormal(context) ;
         List<SpaceDTO> list = spaceDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -781,7 +942,29 @@ public abstract class AbstractSpaceResource {
     public ResponseEntity<List<SpaceDTO>> fetchOtherReSpace
             (@Validated @RequestBody SpaceFilterDTO dto) {
         SpaceSearchContext context = spaceFilterDtoMapping.toDomain(dto);
-        Page<Space> domains = spaceService.searchOtherReSpace(context) ;
+        Page<Space> domains = spaceService.fetchOtherReSpace(context) ;
+        List<SpaceDTO> list = spaceDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_quick_user 空间
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<SpaceDTO>>
+    */
+    @ApiOperation(value = "查询fetch_quick_user", tags = {"空间" },  notes = "Space-fetch_quick_user ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Space-fetch_quick_user-all') or hasPermission(#dto,'ibizplm-Space-fetch_quick_user')")
+    @PostMapping("spaces/fetch_quick_user")
+    public ResponseEntity<List<SpaceDTO>> fetchQuickUser
+            (@Validated @RequestBody SpaceFilterDTO dto) {
+        SpaceSearchContext context = spaceFilterDtoMapping.toDomain(dto);
+        Page<Space> domains = spaceService.fetchQuickUser(context) ;
         List<SpaceDTO> list = spaceDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -803,7 +986,7 @@ public abstract class AbstractSpaceResource {
     public ResponseEntity<List<SpaceDTO>> fetchReader
             (@Validated @RequestBody SpaceFilterDTO dto) {
         SpaceSearchContext context = spaceFilterDtoMapping.toDomain(dto);
-        Page<Space> domains = spaceService.searchReader(context) ;
+        Page<Space> domains = spaceService.fetchReader(context) ;
         List<SpaceDTO> list = spaceDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -825,7 +1008,7 @@ public abstract class AbstractSpaceResource {
     public ResponseEntity<List<SpaceDTO>> fetchUser
             (@Validated @RequestBody SpaceFilterDTO dto) {
         SpaceSearchContext context = spaceFilterDtoMapping.toDomain(dto);
-        Page<Space> domains = spaceService.searchUser(context) ;
+        Page<Space> domains = spaceService.fetchUser(context) ;
         List<SpaceDTO> list = spaceDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -844,7 +1027,7 @@ public abstract class AbstractSpaceResource {
     @ApiOperation(value = "批量新建空间", tags = {"空间" },  notes = "批量新建空间")
 	@PostMapping("spaces/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<SpaceDTO> dtos) {
-        spaceService.createBatch(spaceDtoMapping.toDomain(dtos));
+        spaceService.create(spaceDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -857,7 +1040,7 @@ public abstract class AbstractSpaceResource {
     @ApiOperation(value = "批量删除空间", tags = {"空间" },  notes = "批量删除空间")
 	@DeleteMapping("spaces/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        spaceService.removeBatch(ids);
+        spaceService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -870,7 +1053,7 @@ public abstract class AbstractSpaceResource {
     @ApiOperation(value = "批量更新空间", tags = {"空间" },  notes = "批量更新空间")
 	@PutMapping("spaces/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<SpaceDTO> dtos) {
-        spaceService.updateBatch(spaceDtoMapping.toDomain(dtos));
+        spaceService.update(spaceDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -883,7 +1066,7 @@ public abstract class AbstractSpaceResource {
     @ApiOperation(value = "批量保存空间", tags = {"空间" },  notes = "批量保存空间")
 	@PostMapping("spaces/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<SpaceDTO> dtos) {
-        spaceService.saveBatch(spaceDtoMapping.toDomain(dtos));
+        spaceService.save(spaceDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

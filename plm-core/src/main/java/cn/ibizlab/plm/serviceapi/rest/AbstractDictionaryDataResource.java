@@ -238,7 +238,7 @@ public abstract class AbstractDictionaryDataResource {
     public ResponseEntity<List<DictionaryDataDTO>> fetchDefault
             (@Validated @RequestBody DictionaryDataFilterDTO dto) {
         DictionaryDataSearchContext context = dictionaryDataFilterDtoMapping.toDomain(dto);
-        Page<DictionaryData> domains = dictionaryDataService.searchDefault(context) ;
+        Page<DictionaryData> domains = dictionaryDataService.fetchDefault(context) ;
         List<DictionaryDataDTO> list = dictionaryDataDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -260,7 +260,7 @@ public abstract class AbstractDictionaryDataResource {
     public ResponseEntity<List<DictionaryDataDTO>> fetchIdeaState
             (@Validated @RequestBody DictionaryDataFilterDTO dto) {
         DictionaryDataSearchContext context = dictionaryDataFilterDtoMapping.toDomain(dto);
-        Page<DictionaryData> domains = dictionaryDataService.searchIdeaState(context) ;
+        Page<DictionaryData> domains = dictionaryDataService.fetchIdeaState(context) ;
         List<DictionaryDataDTO> list = dictionaryDataDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -282,7 +282,7 @@ public abstract class AbstractDictionaryDataResource {
     public ResponseEntity<List<DictionaryDataDTO>> fetchReleaseStage
             (@Validated @RequestBody DictionaryDataFilterDTO dto) {
         DictionaryDataSearchContext context = dictionaryDataFilterDtoMapping.toDomain(dto);
-        Page<DictionaryData> domains = dictionaryDataService.searchReleaseStage(context) ;
+        Page<DictionaryData> domains = dictionaryDataService.fetchReleaseStage(context) ;
         List<DictionaryDataDTO> list = dictionaryDataDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -304,7 +304,7 @@ public abstract class AbstractDictionaryDataResource {
     public ResponseEntity<List<DictionaryDataDTO>> fetchTicketState
             (@Validated @RequestBody DictionaryDataFilterDTO dto) {
         DictionaryDataSearchContext context = dictionaryDataFilterDtoMapping.toDomain(dto);
-        Page<DictionaryData> domains = dictionaryDataService.searchTicketState(context) ;
+        Page<DictionaryData> domains = dictionaryDataService.fetchTicketState(context) ;
         List<DictionaryDataDTO> list = dictionaryDataDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -323,7 +323,7 @@ public abstract class AbstractDictionaryDataResource {
     @ApiOperation(value = "批量新建数据字典", tags = {"数据字典" },  notes = "批量新建数据字典")
 	@PostMapping("dictionary_data/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<DictionaryDataDTO> dtos) {
-        dictionaryDataService.createBatch(dictionaryDataDtoMapping.toDomain(dtos));
+        dictionaryDataService.create(dictionaryDataDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -336,7 +336,7 @@ public abstract class AbstractDictionaryDataResource {
     @ApiOperation(value = "批量删除数据字典", tags = {"数据字典" },  notes = "批量删除数据字典")
 	@DeleteMapping("dictionary_data/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        dictionaryDataService.removeBatch(ids);
+        dictionaryDataService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -349,7 +349,7 @@ public abstract class AbstractDictionaryDataResource {
     @ApiOperation(value = "批量更新数据字典", tags = {"数据字典" },  notes = "批量更新数据字典")
 	@PutMapping("dictionary_data/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<DictionaryDataDTO> dtos) {
-        dictionaryDataService.updateBatch(dictionaryDataDtoMapping.toDomain(dtos));
+        dictionaryDataService.update(dictionaryDataDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -362,7 +362,7 @@ public abstract class AbstractDictionaryDataResource {
     @ApiOperation(value = "批量保存数据字典", tags = {"数据字典" },  notes = "批量保存数据字典")
 	@PostMapping("dictionary_data/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<DictionaryDataDTO> dtos) {
-        dictionaryDataService.saveBatch(dictionaryDataDtoMapping.toDomain(dtos));
+        dictionaryDataService.save(dictionaryDataDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

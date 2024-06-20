@@ -43,6 +43,22 @@ public interface ProductTicketTypeMapper extends BaseMapper<ProductTicketType> {
     List<ProductTicketType> listDefault(@Param("ctx") ProductTicketTypeSearchContext context, @Param("ew") Wrapper<ProductTicketType> wrapper);
 
     /**
+    * 根据productId查询
+    *
+    * @param productIds
+    * @return
+    */
+    List<ProductTicketType> findByProductId(@Param("productIds") List<String> productIds);
+
+    /**
+    * 根据ticketTypeId查询
+    *
+    * @param ticketTypeIds
+    * @return
+    */
+    List<ProductTicketType> findByTicketTypeId(@Param("ticketTypeIds") List<String> ticketTypeIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -151,21 +167,4 @@ public interface ProductTicketTypeMapper extends BaseMapper<ProductTicketType> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据productId查询
-     *
-     * @param productIds
-     * @return
-     */
-    List<ProductTicketType> findByProductId(@Param("productIds") List<String> productIds);
-
-    /**
-     * 根据ticketTypeId查询
-     *
-     * @param ticketTypeIds
-     * @return
-     */
-    List<ProductTicketType> findByTicketTypeId(@Param("ticketTypeIds") List<String> ticketTypeIds);
-
 }

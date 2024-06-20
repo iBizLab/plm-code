@@ -1,0 +1,72 @@
+export default {
+  codeListTag: 'Insight__report_group',
+  codeListType: 'STATIC',
+  codeName: 'Insight__report_group',
+  emptyText: '未定义',
+  appDataEntityId: 'plmweb.insight_report',
+  codeItems: [
+    {
+      codeName: 'item_10',
+      text: '工作项',
+      value: '10',
+      id: 'item_10',
+    },
+    {
+      codeName: 'item_20',
+      text: '发布',
+      value: '20',
+      id: 'item_20',
+    },
+    {
+      codeName: 'item_30',
+      text: '迭代',
+      value: '30',
+      id: 'item_30',
+    },
+    {
+      codeName: 'item_40',
+      text: '项目',
+      value: '40',
+      id: 'item_40',
+    },
+    {
+      codeName: 'item_50',
+      text: '测试用例',
+      value: '50',
+      id: 'item_50',
+    },
+    {
+      codeName: 'item_60',
+      text: '执行用例',
+      value: '60',
+      id: 'item_60',
+    },
+    {
+      codeName: 'item_70',
+      text: '测试计划',
+      value: '70',
+      id: 'item_70',
+    },
+    {
+      codeName: 'item_80',
+      text: '工单',
+      value: '80',
+      id: 'item_80',
+    },
+    {
+      codeName: 'item_90',
+      text: '产品需求',
+      value: '90',
+      id: 'item_90',
+    },
+    {
+      codeName: 'item_100',
+      text: '工时',
+      value: '100',
+      id: 'item_100',
+    },
+  ],
+  enableCache: true,
+  name: '报表_数据集',
+  id: 'plmweb.insight__report_group',
+};

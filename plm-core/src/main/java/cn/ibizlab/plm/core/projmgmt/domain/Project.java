@@ -20,6 +20,7 @@ import lombok.experimental.Accessors;
 import io.swagger.annotations.*;
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
+import cn.ibizlab.plm.core.base.domain.CommonFlow;
 import cn.ibizlab.plm.core.projmgmt.domain.Board;
 import cn.ibizlab.plm.core.projmgmt.domain.Entry;
 import cn.ibizlab.plm.core.projmgmt.domain.Progress;
@@ -29,11 +30,14 @@ import cn.ibizlab.plm.core.projmgmt.domain.Sprint;
 import cn.ibizlab.plm.core.projmgmt.domain.Swimlane;
 import cn.ibizlab.plm.core.testmgmt.domain.TestPlan;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
+import cn.ibizlab.plm.core.projmgmt.domain.WorkItemType;
 import cn.ibizlab.plm.core.base.domain.Favorite;
+import cn.ibizlab.plm.core.base.domain.Addon;
+import cn.ibizlab.plm.core.base.domain.AddonResource;
 import cn.ibizlab.plm.core.base.domain.Baseline;
+import cn.ibizlab.plm.core.base.domain.Member;
 import cn.ibizlab.plm.core.base.domain.Work;
 import cn.ibizlab.plm.core.base.domain.ReferencesIndex;
-import cn.ibizlab.plm.core.projmgmt.domain.ProjectMember;
 
 /**
  * 项目实体类[Project]
@@ -51,243 +55,254 @@ public class Project extends EntityMP implements Serializable
 {
 
     /**
-     * 可见范围
-     */
+    * 可见范围
+    */
     @TableField(value = "visibility")
     @DEField(name = "visibility" , dict = "visibility")
-    @JsonProperty("visibility")
     @JSONField(name = "visibility")
+    @JsonProperty("visibility")
     @ApiModelProperty(value = "visibility", notes = "可见范围")
     private String visibility;
 
     /**
-     * 状态
-     */
+    * 状态
+    */
     @TableField(value = "state")
     @DEField(name = "state" , dict = "project_state")
-    @JsonProperty("state")
     @JSONField(name = "state")
+    @JsonProperty("state")
     @ApiModelProperty(value = "state", notes = "状态")
     private String state;
 
     /**
-     * 开始时间
-     */
+    * 开始时间
+    */
     @TableField(value = "start_at")
     @DEField(name = "start_at")
-    @JsonProperty("start_at")
     @JsonFormat(pattern = "yyyy-MM-dd", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "start_at" , format = "yyyy-MM-dd")
+    @JsonProperty("start_at")
     @ApiModelProperty(value = "start_at", notes = "开始时间")
     private Date startAt;
 
     /**
-     * 结束时间
-     */
+    * 结束时间
+    */
     @TableField(value = "end_at")
     @DEField(name = "end_at")
-    @JsonProperty("end_at")
     @JsonFormat(pattern = "yyyy-MM-dd", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "end_at" , format = "yyyy-MM-dd")
+    @JsonProperty("end_at")
     @ApiModelProperty(value = "end_at", notes = "结束时间")
     private Date endAt;
 
     /**
-     * 类型
-     */
+    * 类型
+    */
     @TableField(value = "type")
     @DEField(name = "type" , dict = "project_type")
-    @JsonProperty("type")
     @JSONField(name = "type")
+    @JsonProperty("type")
     @ApiModelProperty(value = "type", notes = "类型")
     private String type;
 
     /**
-     * 主题色
-     */
+    * 主题色
+    */
     @TableField(value = "color")
     @DEField(name = "color")
-    @JsonProperty("color")
     @JSONField(name = "color")
+    @JsonProperty("color")
     @ApiModelProperty(value = "color", notes = "主题色")
     private String color;
 
     /**
-     * 项目标识
-     */
+    * 项目标识
+    */
     @TableField(value = "identifier")
     @DEField(name = "identifier" , dupCheck = DupCheck.ALL)
-    @JsonProperty("identifier")
     @JSONField(name = "identifier")
+    @JsonProperty("identifier")
     @ApiModelProperty(value = "identifier", notes = "项目标识")
     private String identifier;
 
     /**
-     * 是否已归档
-     */
+    * 是否已归档
+    */
     @TableField(value = "is_archived")
     @DEField(name = "is_archived" , defaultValue = "0" , dict = "YesNo")
-    @JsonProperty("is_archived")
     @JSONField(name = "is_archived")
+    @JsonProperty("is_archived")
     @ApiModelProperty(value = "is_archived", notes = "是否已归档")
     private Integer isArchived;
 
     /**
-     * 描述
-     */
+    * 描述
+    */
     @TableField(value = "description")
     @DEField(name = "description")
-    @JsonProperty("description")
     @JSONField(name = "description")
+    @JsonProperty("description")
     @ApiModelProperty(value = "description", notes = "描述")
     private String description;
 
     /**
-     * 是否已删除
-     */
+    * 是否已删除
+    */
     @TableField(value = "is_deleted")
     @DEField(name = "is_deleted" , defaultValue = "0" , dict = "YesNo")
-    @JsonProperty("is_deleted")
     @JSONField(name = "is_deleted")
+    @JsonProperty("is_deleted")
     @ApiModelProperty(value = "is_deleted", notes = "是否已删除")
     private Integer isDeleted;
 
     /**
-     * 是否星标
-     */
+    * 是否星标
+    */
     @TableField(value = "is_favorite" , exist = false)
     @DEField(name = "is_favorite" , dict = "YesNo")
-    @JsonProperty("is_favorite")
     @JSONField(name = "is_favorite")
+    @JsonProperty("is_favorite")
     @ApiModelProperty(value = "is_favorite", notes = "是否星标")
     private String isFavorite;
 
     /**
-     * 所属
-     */
+    * 所属
+    */
     @TableField(value = "scope_type")
     @DEField(name = "scope_type" , dict = "scope_type")
-    @JsonProperty("scope_type")
     @JSONField(name = "scope_type")
+    @JsonProperty("scope_type")
     @ApiModelProperty(value = "scope_type", notes = "所属")
     private String scopeType;
 
     /**
-     * 所属对象
-     */
+    * 所属对象
+    */
     @TableField(value = "scope_id")
     @DEField(name = "scope_id")
-    @JsonProperty("scope_id")
     @JSONField(name = "scope_id")
+    @JsonProperty("scope_id")
     @ApiModelProperty(value = "scope_id", notes = "所属对象")
     private String scopeId;
 
     /**
-     * 是否本地配置
-     */
+    * 是否本地配置
+    */
     @TableField(value = "is_local_configure")
     @DEField(name = "is_local_configure" , dict = "YesNo")
-    @JsonProperty("is_local_configure")
     @JSONField(name = "is_local_configure")
+    @JsonProperty("is_local_configure")
     @ApiModelProperty(value = "is_local_configure", notes = "是否本地配置")
     private Integer isLocalConfigure;
 
     /**
-     * 成员
-     */
+    * 成员
+    */
+    @Transient
     @TableField(exist = false)
     @DEField(name = "members")
-    @JsonProperty("members")
     @JSONField(name = "members")
+    @JsonProperty("members")
     @ApiModelProperty(value = "members", notes = "成员")
     private List<ProjectMember> members;
 
     /**
-     * 负责人
-     */
+    * 负责人
+    */
     @TableField(value = "assignee_name")
     @DEField(name = "assignee_name")
-    @JsonProperty("assignee_name")
     @JSONField(name = "assignee_name")
+    @JsonProperty("assignee_name")
     @ApiModelProperty(value = "assignee_name", notes = "负责人")
     private String assigneeName;
 
     /**
-     * 负责人标识
-     */
+    * 负责人标识
+    */
     @TableField(value = "assignee_id")
     @DEField(name = "assignee_id")
-    @JsonProperty("assignee_id")
     @JSONField(name = "assignee_id")
+    @JsonProperty("assignee_id")
     @ApiModelProperty(value = "assignee_id", notes = "负责人标识")
     private String assigneeId;
 
     /**
-     * 标识
-     */
+    * 标识
+    */
     @Id
     @TableId(value = "id" , type = IdType.ASSIGN_UUID)
     @DEField(name = "id" , isKeyField = true)
-    @JsonProperty("id")
     @JSONField(name = "id")
+    @JsonProperty("id")
     @ApiModelProperty(value = "id", notes = "标识")
     private String id;
 
     /**
-     * 项目名称
-     */
+    * 项目名称
+    */
     @TableField(value = "name")
     @DEField(name = "name")
-    @JsonProperty("name")
     @JSONField(name = "name")
+    @JsonProperty("name")
     @ApiModelProperty(value = "name", notes = "项目名称")
     private String name;
 
     /**
-     * 建立时间
-     */
-    @TableField(value = "create_time" , fill = FieldFill.INSERT)
-    @DEField(name = "create_time" , preType = DEPredefinedFieldType.CREATEDATE)
-    @JsonProperty("create_time")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "create_time", notes = "建立时间")
-    private Date createTime;
-
-    /**
-     * 建立人
-     */
+    * 建立人
+    */
     @TableField(value = "create_man" , fill = FieldFill.INSERT)
     @DEField(name = "create_man" , preType = DEPredefinedFieldType.CREATEMAN , dict = "SysOperator")
-    @JsonProperty("create_man")
     @JSONField(name = "create_man")
+    @JsonProperty("create_man")
     @ApiModelProperty(value = "create_man", notes = "建立人")
     private String createMan;
 
     /**
-     * 更新时间
-     */
-    @TableField(value = "update_time")
-    @DEField(name = "update_time" , preType = DEPredefinedFieldType.UPDATEDATE)
-    @JsonProperty("update_time")
+    * 建立时间
+    */
+    @TableField(value = "create_time" , fill = FieldFill.INSERT)
+    @DEField(name = "create_time" , preType = DEPredefinedFieldType.CREATEDATE)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "update_time", notes = "更新时间")
-    private Date updateTime;
+    @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("create_time")
+    @ApiModelProperty(value = "create_time", notes = "建立时间")
+    private Date createTime;
 
     /**
-     * 更新人
-     */
+    * 更新人
+    */
     @TableField(value = "update_man")
     @DEField(name = "update_man" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
-    @JsonProperty("update_man")
     @JSONField(name = "update_man")
+    @JsonProperty("update_man")
     @ApiModelProperty(value = "update_man", notes = "更新人")
     private String updateMan;
 
     /**
-     * 设置 [可见范围]
-     */
+    * 更新时间
+    */
+    @TableField(value = "update_time")
+    @DEField(name = "update_time" , preType = DEPredefinedFieldType.UPDATEDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("update_time")
+    @ApiModelProperty(value = "update_time", notes = "更新时间")
+    private Date updateTime;
+
+    /**
+    * 通用自动规则
+    */
+    @Transient
+    @TableField(exist = false)
+    @JsonIgnore
+    @JSONField(serialize = false)
+    @ApiModelProperty(value = "project", notes = "通用自动规则")
+    private CommonFlow project;
+
+    /**
+    * 设置 [可见范围]
+    */
     public Project setVisibility(String visibility) {
         this.visibility = visibility;
         this.modify("visibility", visibility);
@@ -295,8 +310,8 @@ public class Project extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [状态]
-     */
+    * 设置 [状态]
+    */
     public Project setState(String state) {
         this.state = state;
         this.modify("state", state);
@@ -304,8 +319,8 @@ public class Project extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [开始时间]
-     */
+    * 设置 [开始时间]
+    */
     public Project setStartAt(Date startAt) {
         this.startAt = startAt;
         this.modify("start_at", startAt);
@@ -313,8 +328,8 @@ public class Project extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [结束时间]
-     */
+    * 设置 [结束时间]
+    */
     public Project setEndAt(Date endAt) {
         this.endAt = endAt;
         this.modify("end_at", endAt);
@@ -322,8 +337,8 @@ public class Project extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [类型]
-     */
+    * 设置 [类型]
+    */
     public Project setType(String type) {
         this.type = type;
         this.modify("type", type);
@@ -331,8 +346,8 @@ public class Project extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [主题色]
-     */
+    * 设置 [主题色]
+    */
     public Project setColor(String color) {
         this.color = color;
         this.modify("color", color);
@@ -340,8 +355,8 @@ public class Project extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [项目标识]
-     */
+    * 设置 [项目标识]
+    */
     public Project setIdentifier(String identifier) {
         this.identifier = identifier;
         this.modify("identifier", identifier);
@@ -349,8 +364,8 @@ public class Project extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [是否已归档]
-     */
+    * 设置 [是否已归档]
+    */
     public Project setIsArchived(Integer isArchived) {
         this.isArchived = isArchived;
         this.modify("is_archived", isArchived);
@@ -358,8 +373,8 @@ public class Project extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [描述]
-     */
+    * 设置 [描述]
+    */
     public Project setDescription(String description) {
         this.description = description;
         this.modify("description", description);
@@ -367,8 +382,8 @@ public class Project extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [是否已删除]
-     */
+    * 设置 [是否已删除]
+    */
     public Project setIsDeleted(Integer isDeleted) {
         this.isDeleted = isDeleted;
         this.modify("is_deleted", isDeleted);
@@ -376,8 +391,8 @@ public class Project extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [是否星标]
-     */
+    * 设置 [是否星标]
+    */
     public Project setIsFavorite(String isFavorite) {
         this.isFavorite = isFavorite;
         this.modify("is_favorite", isFavorite);
@@ -385,8 +400,8 @@ public class Project extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [所属]
-     */
+    * 设置 [所属]
+    */
     public Project setScopeType(String scopeType) {
         this.scopeType = scopeType;
         this.modify("scope_type", scopeType);
@@ -394,8 +409,8 @@ public class Project extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [所属对象]
-     */
+    * 设置 [所属对象]
+    */
     public Project setScopeId(String scopeId) {
         this.scopeId = scopeId;
         this.modify("scope_id", scopeId);
@@ -403,8 +418,8 @@ public class Project extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [是否本地配置]
-     */
+    * 设置 [是否本地配置]
+    */
     public Project setIsLocalConfigure(Integer isLocalConfigure) {
         this.isLocalConfigure = isLocalConfigure;
         this.modify("is_local_configure", isLocalConfigure);
@@ -412,8 +427,8 @@ public class Project extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [成员]
-     */
+    * 设置 [成员]
+    */
     public Project setMembers(List<ProjectMember> members) {
         this.members = members;
         this.modify("members", members);
@@ -421,8 +436,8 @@ public class Project extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [负责人]
-     */
+    * 设置 [负责人]
+    */
     public Project setAssigneeName(String assigneeName) {
         this.assigneeName = assigneeName;
         this.modify("assignee_name", assigneeName);
@@ -430,8 +445,8 @@ public class Project extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [负责人标识]
-     */
+    * 设置 [负责人标识]
+    */
     public Project setAssigneeId(String assigneeId) {
         this.assigneeId = assigneeId;
         this.modify("assignee_id", assigneeId);
@@ -439,13 +454,14 @@ public class Project extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [项目名称]
-     */
+    * 设置 [项目名称]
+    */
     public Project setName(String name) {
         this.name = name;
         this.modify("name", name);
         return this;
     }
+
 
     /**
      * 复制当前对象数据到目标对象(粘贴重置)

@@ -58,17 +58,250 @@ public abstract class AbstractTestSuiteService extends ServiceImpl<TestSuiteMapp
 
     protected int batchSize = 500;
 
+    @Override
+    @Transactional
+    public boolean create(TestSuite et) {
+        fillParentData(et);
+        if(this.baseMapper.insert(et) < 1)
+            return false;
+        get(et);
+        return true;
+    }
+	
+    @Transactional
+    public boolean create(List<TestSuite> list) {
+        list.forEach(this::fillParentData);
+        this.saveBatch(list, batchSize);
+        return true;
+    }
+	
+    @Transactional
+    public boolean update(TestSuite et) {
+        UpdateWrapper<TestSuite> qw = et.getUpdateWrapper(true);
+        qw.eq("id", et.getId());
+        if(!update(et, qw))
+            return false;
+        get(et);
+        return true;
+    }
+
+    @Transactional
+    public boolean update(List<TestSuite> list) {
+        updateBatchById(list, batchSize);
+        return true;
+    }
+	
+   @Transactional
+    public boolean remove(TestSuite et) {
+        String key = et.getId();
+        testCaseService.resetBySuiteId(key);
+        testSuiteService.removeByPid(key);
+        if(!remove(Wrappers.<TestSuite>lambdaQuery().eq(TestSuite::getId, et.getId())))
+            return false;
+        return true;
+    }
+
+    @Transactional
+    public boolean remove(List<TestSuite> entities) {
+        for (TestSuite et : entities)
+            if(!getSelf().remove(et))
+                return false;
+        return true;
+    }		
     public TestSuite get(TestSuite et) {
         TestSuite rt = this.baseMapper.selectEntity(et);
         if(rt == null)
             throw new NotFoundException("数据不存在",Entities.TEST_SUITE.toString(),et.getId());
         rt.copyTo(et,true);
         return et;
+    }	
+
+    public List<TestSuite> get(List<TestSuite> entities) {
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public TestSuite getDraft(TestSuite et) {
+        fillParentData(et);
+        return et;
+    }
+	
+    public Integer checkKey(TestSuite et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<TestSuite>lambdaQuery().eq(TestSuite::getId, et.getId()))>0)?1:0;
+    }
+	
+    @Override
+    @Transactional
+    public boolean save(TestSuite et) {
+        if(checkKey(et) > 0)
+            return getSelf().update(et);
+        else
+            return getSelf().create(et);
     }
 
-    public List<TestSuite> getByEntities(List<TestSuite> entities) {
-        return this.baseMapper.selectEntities(entities);
+    @Transactional
+    public boolean save(List<TestSuite> list) {
+        if(ObjectUtils.isEmpty(list))
+            return true;
+        Map<String,TestSuite> before = get(list).stream().collect(Collectors.toMap(TestSuite::getId,e->e));
+        List<TestSuite> create = new ArrayList<>();
+        List<TestSuite> update = new ArrayList<>();
+        list.forEach(sub->{
+            if(!ObjectUtils.isEmpty(sub.getId()) && before.containsKey(sub.getId()))
+                update.add(sub);
+            else
+                create.add(sub);
+        });
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else
+            return true;
     }
+	
+   public Page<TestSuite> fetchDefault(TestSuiteSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestSuite> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
+        List<TestSuite> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<TestSuite> listDefault(TestSuiteSearchContext context) {
+        List<TestSuite> list = baseMapper.listDefault(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<TestSuite> fetchCurTestSuite(TestSuiteSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestSuite> pages=baseMapper.searchCurTestSuite(context.getPages(),context,context.getSelectCond());
+        List<TestSuite> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<TestSuite> listCurTestSuite(TestSuiteSearchContext context) {
+        List<TestSuite> list = baseMapper.listCurTestSuite(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<TestSuite> fetchNoParent(TestSuiteSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestSuite> pages=baseMapper.searchNoParent(context.getPages(),context,context.getSelectCond());
+        List<TestSuite> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<TestSuite> listNoParent(TestSuiteSearchContext context) {
+        List<TestSuite> list = baseMapper.listNoParent(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<TestSuite> fetchNormal(TestSuiteSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestSuite> pages=baseMapper.searchNormal(context.getPages(),context,context.getSelectCond());
+        List<TestSuite> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<TestSuite> listNormal(TestSuiteSearchContext context) {
+        List<TestSuite> list = baseMapper.listNormal(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<TestSuite> fetchRoot(TestSuiteSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestSuite> pages=baseMapper.searchRoot(context.getPages(),context,context.getSelectCond());
+        List<TestSuite> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<TestSuite> listRoot(TestSuiteSearchContext context) {
+        List<TestSuite> list = baseMapper.listRoot(context,context.getSelectCond());
+        return list;
+   }
+	
+	public List<TestSuite> findByLibraryId(List<String> libraryIds){
+        List<TestSuite> list = baseMapper.findByLibraryId(libraryIds);
+        return list;	
+	}
+
+	public boolean removeByLibraryId(String libraryId){
+        List<String> ids = baseMapper.findByLibraryId(Arrays.asList(libraryId)).stream().map(e->e.getId()).collect(Collectors.toList());
+        if(!ObjectUtils.isEmpty(ids))
+            return this.remove(ids);
+        else
+            return true;
+	}
+
+	public boolean resetByLibraryId(String libraryId){
+		return this.update(Wrappers.<TestSuite>lambdaUpdate().eq(TestSuite::getLibraryId,libraryId));
+	}
+	public boolean saveByLibrary(Library library, List<TestSuite> list){
+        if(list==null)
+            return true;
+        Map<String,TestSuite> before = findByLibraryId(library.getId()).stream().collect(Collectors.toMap(TestSuite::getId,e->e));
+
+        List<TestSuite> update = new ArrayList<>();
+        List<TestSuite> create = new ArrayList<>();
+
+        for(TestSuite sub:list) {
+            sub.setLibraryId(library.getId());
+            sub.setLibrary(library);
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
+	public List<TestSuite> findByPid(List<String> pids){
+        List<TestSuite> list = baseMapper.findByPid(pids);
+        return list;	
+	}
+
+	public boolean removeByPid(String pid){
+        List<String> ids = baseMapper.findByPid(Arrays.asList(pid)).stream().map(e->e.getId()).collect(Collectors.toList());
+        if(!ObjectUtils.isEmpty(ids))
+            return this.remove(ids);
+        else
+            return true;
+	}
+
+	public boolean resetByPid(String pid){
+		return this.update(Wrappers.<TestSuite>lambdaUpdate().eq(TestSuite::getPid,pid));
+	}
+	public boolean saveByTestSuite(TestSuite testSuite, List<TestSuite> list){
+        if(list==null)
+            return true;
+        Map<String,TestSuite> before = findByPid(testSuite.getId()).stream().collect(Collectors.toMap(TestSuite::getId,e->e));
+
+        List<TestSuite> update = new ArrayList<>();
+        List<TestSuite> create = new ArrayList<>();
+
+        for(TestSuite sub:list) {
+            sub.setPid(testSuite.getId());
+            sub.setTestSuite(testSuite);
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
 
     public void fillParentData(TestSuite et) {
         if(Entities.LIBRARY.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
@@ -97,229 +330,6 @@ public abstract class AbstractTestSuiteService extends ServiceImpl<TestSuiteMapp
         }
     }
 
-    public TestSuite getDraft(TestSuite et) {
-        fillParentData(et);
-        return et;
-    }
-
-    public Integer checkKey(TestSuite et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<TestSuite>lambdaQuery().eq(TestSuite::getId, et.getId()))>0)?1:0;
-    }
-
-    @Override
-    @Transactional
-    public boolean create(TestSuite et) {
-        fillParentData(et);
-        if(this.baseMapper.insert(et) < 1)
-            return false;
-        get(et);
-        return true;
-    }
-
-    @Transactional
-    public boolean createBatch(List<TestSuite> list) {
-        list.forEach(this::fillParentData);
-        this.saveBatch(list, batchSize);
-        return true;
-    }
-
-    @Transactional
-    public boolean update(TestSuite et) {
-        UpdateWrapper<TestSuite> qw = et.getUpdateWrapper(true);
-        qw.eq("id", et.getId());
-        if(!update(et, qw))
-            return false;
-        get(et);
-        return true;
-    }
-
-    @Transactional
-    public boolean updateBatch(List<TestSuite> list) {
-        updateBatchById(list, batchSize);
-        return true;
-    }
-
-    @Override
-    @Transactional
-    public boolean save(TestSuite et) {
-        if(checkKey(et) > 0)
-            return getSelf().update(et);
-        else
-            return getSelf().create(et);
-    }
-
-    @Transactional
-    public boolean saveBatch(List<TestSuite> list) {
-        if(ObjectUtils.isEmpty(list))
-            return true;
-        Map<String,TestSuite> before = getByEntities(list).stream().collect(Collectors.toMap(TestSuite::getId,e->e));
-        List<TestSuite> create = new ArrayList<>();
-        List<TestSuite> update = new ArrayList<>();
-        list.forEach(sub->{
-            if(!ObjectUtils.isEmpty(sub.getId()) && before.containsKey(sub.getId()))
-                update.add(sub);
-            else
-                create.add(sub);
-        });
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else
-            return true;
-    }
-
-    @Transactional
-    public boolean remove(TestSuite et) {
-        String key = et.getId();
-        testCaseService.resetBySuiteId(key);
-        if(!remove(Wrappers.<TestSuite>lambdaQuery().eq(TestSuite::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<TestSuite> entities) {
-        for (TestSuite et : entities)
-            if(!getSelf().remove(et))
-                return false;
-        return true;
-    }
-
-    public Page<TestSuite> searchDefault(TestSuiteSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestSuite> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
-        List<TestSuite> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<TestSuite> listDefault(TestSuiteSearchContext context) {
-        List<TestSuite> list = baseMapper.listDefault(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<TestSuite> searchNoParent(TestSuiteSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestSuite> pages=baseMapper.searchNoParent(context.getPages(),context,context.getSelectCond());
-        List<TestSuite> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<TestSuite> listNoParent(TestSuiteSearchContext context) {
-        List<TestSuite> list = baseMapper.listNoParent(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<TestSuite> searchNormal(TestSuiteSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestSuite> pages=baseMapper.searchNormal(context.getPages(),context,context.getSelectCond());
-        List<TestSuite> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<TestSuite> listNormal(TestSuiteSearchContext context) {
-        List<TestSuite> list = baseMapper.listNormal(context,context.getSelectCond());
-        return list;
-    }
-
-    public Page<TestSuite> searchRoot(TestSuiteSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestSuite> pages=baseMapper.searchRoot(context.getPages(),context,context.getSelectCond());
-        List<TestSuite> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
-    }
-
-    public List<TestSuite> listRoot(TestSuiteSearchContext context) {
-        List<TestSuite> list = baseMapper.listRoot(context,context.getSelectCond());
-        return list;
-    }
-
-    public List<TestSuite> findByLibraryId(List<String> libraryIds) {
-        List<TestSuite> list = baseMapper.findByLibraryId(libraryIds);
-        return list;
-    }
-    public List<TestSuite> findByPid(List<String> pids) {
-        List<TestSuite> list = baseMapper.findByPid(pids);
-        return list;
-    }
-    public boolean removeByLibraryId(String libraryId) {
-        List<String> ids = baseMapper.findByLibraryId(Arrays.asList(libraryId)).stream().map(e->e.getId()).collect(Collectors.toList());
-        if(!ObjectUtils.isEmpty(ids))
-            return this.removeBatch(ids);
-        else
-            return true;
-    }
-
-    public boolean resetByLibraryId(String libraryId) {
-        return this.update(Wrappers.<TestSuite>lambdaUpdate().eq(TestSuite::getLibraryId,libraryId));
-    }
-
-    public boolean saveByLibrary(Library library,List<TestSuite> list) {
-        if(list==null)
-            return true;
-        Map<String,TestSuite> before = findByLibraryId(library.getId()).stream().collect(Collectors.toMap(TestSuite::getId,e->e));
-        List<TestSuite> update = new ArrayList<>();
-        List<TestSuite> create = new ArrayList<>();
-
-        for(TestSuite sub:list) {
-            sub.setLibraryId(library.getId());
-            sub.setLibrary(library);
-            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
-                before.remove(sub.getId());
-                update.add(sub);
-            }
-            else
-                create.add(sub);
-        }
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
-            return false;
-        else
-            return true;
-    }
-
-    public boolean removeByPid(String pid) {
-        List<String> ids = baseMapper.findByPid(Arrays.asList(pid)).stream().map(e->e.getId()).collect(Collectors.toList());
-        if(!ObjectUtils.isEmpty(ids))
-            return this.removeBatch(ids);
-        else
-            return true;
-    }
-
-    public boolean resetByPid(String pid) {
-        return this.update(Wrappers.<TestSuite>lambdaUpdate().eq(TestSuite::getPid,pid));
-    }
-
-    public boolean saveByTestSuite(TestSuite testSuite,List<TestSuite> list) {
-        if(list==null)
-            return true;
-        Map<String,TestSuite> before = findByPid(testSuite.getId()).stream().collect(Collectors.toMap(TestSuite::getId,e->e));
-        List<TestSuite> update = new ArrayList<>();
-        List<TestSuite> create = new ArrayList<>();
-
-        for(TestSuite sub:list) {
-            sub.setPid(testSuite.getId());
-            sub.setTestSuite(testSuite);
-            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
-                before.remove(sub.getId());
-                update.add(sub);
-            }
-            else
-                create.add(sub);
-        }
-        if(!update.isEmpty())
-            update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
-            return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
-            return false;
-        else
-            return true;
-    }
-
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -339,8 +349,8 @@ public abstract class AbstractTestSuiteService extends ServiceImpl<TestSuiteMapp
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return TestSuiteMapper.class;
     }
@@ -349,4 +359,5 @@ public abstract class AbstractTestSuiteService extends ServiceImpl<TestSuiteMapp
     protected Class currentModelClass() {
         return TestSuite.class;
     }
+
 }

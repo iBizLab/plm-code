@@ -32,89 +32,32 @@ public interface FavoriteService extends IService<Favorite> {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    Favorite get(Favorite et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default Favorite get(String key) {
-        return getSelf().get(new Favorite().setId(key));
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<Favorite> getByIds(Collection<String> ids) {
-        List<Favorite> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Favorite().setId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<Favorite> getByEntities(List<Favorite> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    Favorite getDraft(Favorite et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(Favorite et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(Favorite et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<Favorite> list);
+    boolean create(List<Favorite> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(Favorite et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<Favorite> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    @Override
-    boolean save(Favorite et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<Favorite> list);
+    boolean update(List<Favorite> list);
 
     /**
      * 主键删除
@@ -124,14 +67,7 @@ public interface FavoriteService extends IService<Favorite> {
     default boolean remove(String key) {
         return getSelf().remove(new Favorite().setId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -141,13 +77,13 @@ public interface FavoriteService extends IService<Favorite> {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<Favorite> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Favorite().setId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new Favorite().setId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -155,7 +91,136 @@ public interface FavoriteService extends IService<Favorite> {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<Favorite> entities);
+    boolean remove(List<Favorite> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default Favorite get(String key) {
+        return getSelf().get(new Favorite().setId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    Favorite get(Favorite et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<Favorite> get(Collection<String> keys) {
+        List<Favorite> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new Favorite().setId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<Favorite> get(List<Favorite> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    Favorite getDraft(Favorite et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(Favorite et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(Favorite et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<Favorite> list);
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<Favorite> fetchDefault(FavoriteSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<Favorite> listDefault(FavoriteSearchContext context);
+
+    /**
+    * findByOwnerId
+    * @param ownerIds
+    * @return
+    */
+    List<Favorite> findByOwnerId(List<String> ownerIds);
+    default List<Favorite> findByOwnerId(String ownerId){
+        return findByOwnerId(Arrays.asList(ownerId));
+    }
+
+    /**
+    * removeByOwnerId
+    * @param ownerId
+    * @return
+    */
+    boolean removeByOwnerId(String ownerId);
+
+    /**
+    * resetByOwnerId
+    * @param ownerId
+    * @return
+    */
+    boolean resetByOwnerId(String ownerId);
+
+    /**
+    * saveByOwnerId
+    * @param ownerId
+    * @param list
+    * @return
+    */
+    default boolean saveByOwnerId(String ownerId, List<Favorite> list){
+        return getSelf().saveByProject(new Project().setId(ownerId),list);
+    }
+
+    /**
+    * saveByProject
+    * @param project
+    * @param list
+    * @return
+    */
+    boolean saveByProject(Project project, List<Favorite> list);
+
+    /**
+    * saveByProduct
+    * @param product
+    * @param list
+    * @return
+    */
+    boolean saveByProduct(Product product, List<Favorite> list);
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<Favorite> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -172,22 +237,7 @@ public interface FavoriteService extends IService<Favorite> {
         }
         return rt;
     }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<Favorite> searchDefault(FavoriteSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<Favorite> listDefault(FavoriteSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -195,6 +245,7 @@ public interface FavoriteService extends IService<Favorite> {
     default Favorite getEntity() {
         return new Favorite();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -202,67 +253,13 @@ public interface FavoriteService extends IService<Favorite> {
     default FavoriteSearchContext getSearchContext() {
         return new FavoriteSearchContext();
     }
+
+
     /**
-     * selectRelByOwnerId
-     * @param ownerIds
-     * @return
-     */
-    List<Favorite> findByOwnerId(List<String> ownerIds);
-    default List<Favorite> findByOwnerId(String ownerId) {
-        return findByOwnerId(Arrays.asList(ownerId));
-    }
-    /**
-     * removeRelByOwnerId
-     * @param ownerId
-     * @return
-     */
-    boolean removeByOwnerId(String ownerId);
-    /**
-     * resetRelByOwnerId
-     * @param ownerId
-     * @return
-     */
-    boolean resetByOwnerId(String ownerId);
-    /**
-     * saveRelByOwnerId
-     * @param ownerId
-     * @param list
-     * @return
-     */
-    default boolean saveByOwnerId(String ownerId,List<Favorite> list) {
-        return getSelf().saveByProject(new Project().setId(ownerId),list);
-    }
-    /**
-    * saveRelByProject
-    * @param project
-    * @param list
+    * 自定义SQL
+    * @param sql  update table  set name ='test' where id =#{et.param}
+    * @param param 参数列表  param.put("param","1");
     * @return
     */
-    boolean saveByProject(Project project,List<Favorite> list);
-
-    /**
-    * saveRelByProduct
-    * @param product
-    * @param list
-    * @return
-    */
-    boolean saveByProduct(Product product,List<Favorite> list);
-
-
-    /**
-     * 自定义查询SQL
-     * @param sql  select * from table where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
-    List<JSONObject> select(String sql, Map<String,Object> param);
-
-    /**
-     * 自定义SQL
-     * @param sql  update table  set name ='test' where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
     boolean execute(String sql, Map<String,Object> param);
-
 }

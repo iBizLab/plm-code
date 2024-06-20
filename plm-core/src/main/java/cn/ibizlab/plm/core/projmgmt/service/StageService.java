@@ -31,89 +31,32 @@ public interface StageService extends IService<Stage> {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    Stage get(Stage et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default Stage get(String key) {
-        return getSelf().get(new Stage().setId(key));
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<Stage> getByIds(Collection<String> ids) {
-        List<Stage> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Stage().setId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<Stage> getByEntities(List<Stage> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    Stage getDraft(Stage et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(Stage et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(Stage et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<Stage> list);
+    boolean create(List<Stage> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(Stage et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<Stage> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    @Override
-    boolean save(Stage et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<Stage> list);
+    boolean update(List<Stage> list);
 
     /**
      * 主键删除
@@ -123,14 +66,7 @@ public interface StageService extends IService<Stage> {
     default boolean remove(String key) {
         return getSelf().remove(new Stage().setId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -140,13 +76,13 @@ public interface StageService extends IService<Stage> {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<Stage> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Stage().setId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new Stage().setId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -154,7 +90,128 @@ public interface StageService extends IService<Stage> {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<Stage> entities);
+    boolean remove(List<Stage> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default Stage get(String key) {
+        return getSelf().get(new Stage().setId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    Stage get(Stage et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<Stage> get(Collection<String> keys) {
+        List<Stage> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new Stage().setId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<Stage> get(List<Stage> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    Stage getDraft(Stage et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(Stage et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(Stage et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<Stage> list);
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<Stage> fetchDefault(StageSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<Stage> listDefault(StageSearchContext context);
+
+    /**
+    * findByReleaseId
+    * @param releaseIds
+    * @return
+    */
+    List<Stage> findByReleaseId(List<String> releaseIds);
+    default List<Stage> findByReleaseId(String releaseId){
+        return findByReleaseId(Arrays.asList(releaseId));
+    }
+
+    /**
+    * removeByReleaseId
+    * @param releaseId
+    * @return
+    */
+    boolean removeByReleaseId(String releaseId);
+
+    /**
+    * resetByReleaseId
+    * @param releaseId
+    * @return
+    */
+    boolean resetByReleaseId(String releaseId);
+
+    /**
+    * saveByReleaseId
+    * @param releaseId
+    * @param list
+    * @return
+    */
+    default boolean saveByReleaseId(String releaseId, List<Stage> list){
+        return getSelf().saveByRelease(new Release().setId(releaseId),list);
+    }
+
+    /**
+    * saveByRelease
+    * @param release
+    * @param list
+    * @return
+    */
+    boolean saveByRelease(Release release, List<Stage> list);
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<Stage> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -171,22 +228,7 @@ public interface StageService extends IService<Stage> {
         }
         return rt;
     }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<Stage> searchDefault(StageSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<Stage> listDefault(StageSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -194,6 +236,7 @@ public interface StageService extends IService<Stage> {
     default Stage getEntity() {
         return new Stage();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -201,59 +244,13 @@ public interface StageService extends IService<Stage> {
     default StageSearchContext getSearchContext() {
         return new StageSearchContext();
     }
+
+
     /**
-     * selectRelByReleaseId
-     * @param releaseIds
-     * @return
-     */
-    List<Stage> findByReleaseId(List<String> releaseIds);
-    default List<Stage> findByReleaseId(String releaseId) {
-        return findByReleaseId(Arrays.asList(releaseId));
-    }
-    /**
-     * removeRelByReleaseId
-     * @param releaseId
-     * @return
-     */
-    boolean removeByReleaseId(String releaseId);
-    /**
-     * resetRelByReleaseId
-     * @param releaseId
-     * @return
-     */
-    boolean resetByReleaseId(String releaseId);
-    /**
-     * saveRelByReleaseId
-     * @param releaseId
-     * @param list
-     * @return
-     */
-    default boolean saveByReleaseId(String releaseId,List<Stage> list) {
-        return getSelf().saveByRelease(new Release().setId(releaseId),list);
-    }
-    /**
-    * saveRelByRelease
-    * @param release
-    * @param list
+    * 自定义SQL
+    * @param sql  update table  set name ='test' where id =#{et.param}
+    * @param param 参数列表  param.put("param","1");
     * @return
     */
-    boolean saveByRelease(Release release,List<Stage> list);
-
-
-    /**
-     * 自定义查询SQL
-     * @param sql  select * from table where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
-    List<JSONObject> select(String sql, Map<String,Object> param);
-
-    /**
-     * 自定义SQL
-     * @param sql  update table  set name ='test' where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
     boolean execute(String sql, Map<String,Object> param);
-
 }

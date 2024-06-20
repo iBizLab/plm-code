@@ -226,6 +226,28 @@ public abstract class AbstractWorkItemTypeResource {
     }
 
     /**
+    * 查询fetch_cur_project_type 工作项类型
+    * 数据上下文过滤，非瀑布项目
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<WorkItemTypeDTO>>
+    */
+    @ApiOperation(value = "查询fetch_cur_project_type", tags = {"工作项类型" },  notes = "WorkItemType-fetch_cur_project_type 数据上下文过滤，非瀑布项目")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItemType-fetch_cur_project_type-all') or hasPermission(#dto,'ibizplm-WorkItemType-fetch_cur_project_type')")
+    @PostMapping("work_item_types/fetch_cur_project_type")
+    public ResponseEntity<List<WorkItemTypeDTO>> fetchCurProjectType
+            (@Validated @RequestBody WorkItemTypeFilterDTO dto) {
+        WorkItemTypeSearchContext context = workItemTypeFilterDtoMapping.toDomain(dto);
+        Page<WorkItemType> domains = workItemTypeService.fetchCurProjectType(context) ;
+        List<WorkItemTypeDTO> list = workItemTypeDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
     * 查询fetch_default 工作项类型
     * 
     *
@@ -238,7 +260,7 @@ public abstract class AbstractWorkItemTypeResource {
     public ResponseEntity<List<WorkItemTypeDTO>> fetchDefault
             (@Validated @RequestBody WorkItemTypeFilterDTO dto) {
         WorkItemTypeSearchContext context = workItemTypeFilterDtoMapping.toDomain(dto);
-        Page<WorkItemType> domains = workItemTypeService.searchDefault(context) ;
+        Page<WorkItemType> domains = workItemTypeService.fetchDefault(context) ;
         List<WorkItemTypeDTO> list = workItemTypeDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -260,7 +282,7 @@ public abstract class AbstractWorkItemTypeResource {
     public ResponseEntity<List<WorkItemTypeDTO>> fetchProjectWorkItemType
             (@Validated @RequestBody WorkItemTypeFilterDTO dto) {
         WorkItemTypeSearchContext context = workItemTypeFilterDtoMapping.toDomain(dto);
-        Page<WorkItemType> domains = workItemTypeService.searchProjectWorkItemType(context) ;
+        Page<WorkItemType> domains = workItemTypeService.fetchProjectWorkItemType(context) ;
         List<WorkItemTypeDTO> list = workItemTypeDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -281,7 +303,7 @@ public abstract class AbstractWorkItemTypeResource {
     public ResponseEntity<List<WorkItemTypeDTO>> fetchProjectWorkItemTypeNotBug
             (@Validated @RequestBody WorkItemTypeFilterDTO dto) {
         WorkItemTypeSearchContext context = workItemTypeFilterDtoMapping.toDomain(dto);
-        Page<WorkItemType> domains = workItemTypeService.searchProjectWorkItemTypeNotBug(context) ;
+        Page<WorkItemType> domains = workItemTypeService.fetchProjectWorkItemTypeNotBug(context) ;
         List<WorkItemTypeDTO> list = workItemTypeDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -300,7 +322,7 @@ public abstract class AbstractWorkItemTypeResource {
     @ApiOperation(value = "批量新建工作项类型", tags = {"工作项类型" },  notes = "批量新建工作项类型")
 	@PostMapping("work_item_types/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<WorkItemTypeDTO> dtos) {
-        workItemTypeService.createBatch(workItemTypeDtoMapping.toDomain(dtos));
+        workItemTypeService.create(workItemTypeDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -313,7 +335,7 @@ public abstract class AbstractWorkItemTypeResource {
     @ApiOperation(value = "批量删除工作项类型", tags = {"工作项类型" },  notes = "批量删除工作项类型")
 	@DeleteMapping("work_item_types/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        workItemTypeService.removeBatch(ids);
+        workItemTypeService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -326,7 +348,7 @@ public abstract class AbstractWorkItemTypeResource {
     @ApiOperation(value = "批量更新工作项类型", tags = {"工作项类型" },  notes = "批量更新工作项类型")
 	@PutMapping("work_item_types/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<WorkItemTypeDTO> dtos) {
-        workItemTypeService.updateBatch(workItemTypeDtoMapping.toDomain(dtos));
+        workItemTypeService.update(workItemTypeDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -339,7 +361,7 @@ public abstract class AbstractWorkItemTypeResource {
     @ApiOperation(value = "批量保存工作项类型", tags = {"工作项类型" },  notes = "批量保存工作项类型")
 	@PostMapping("work_item_types/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<WorkItemTypeDTO> dtos) {
-        workItemTypeService.saveBatch(workItemTypeDtoMapping.toDomain(dtos));
+        workItemTypeService.save(workItemTypeDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

@@ -62,6 +62,14 @@ public interface RunHistoryMapper extends BaseMapper<RunHistory> {
     List<RunHistory> listThis(@Param("ctx") RunHistorySearchContext context, @Param("ew") Wrapper<RunHistory> wrapper);
 
     /**
+    * 根据runId查询
+    *
+    * @param runIds
+    * @return
+    */
+    List<RunHistory> findByRunId(@Param("runIds") List<String> runIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -170,13 +178,4 @@ public interface RunHistoryMapper extends BaseMapper<RunHistory> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据runId查询
-     *
-     * @param runIds
-     * @return
-     */
-    List<RunHistory> findByRunId(@Param("runIds") List<String> runIds);
-
 }

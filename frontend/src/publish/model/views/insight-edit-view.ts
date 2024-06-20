@@ -151,7 +151,7 @@ export default {
                   },
                   allowEmpty: true,
                   needCodeListConfig: true,
-                  caption: '报表类型',
+                  caption: '图表类型',
                   codeName: 'type',
                   detailStyle: 'DEFAULT',
                   detailType: 'FORMITEM',

@@ -165,6 +165,45 @@ public abstract class AbstractArticlePageResource {
     }
 
     /**
+    * copy_page 页面
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ArticlePageDTO>
+    */
+    @ApiOperation(value = "copy_page", tags = {"页面" },  notes = "ArticlePage-copy_page ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-copy_page-all') or hasPermission(this.articlePageDtoMapping.toDomain(#dto),'ibizplm-ArticlePage-copy_page')")
+    @PostMapping("article_pages/{id}/copy_page")
+    public ResponseEntity<ResponseWrapper<ArticlePageDTO>> copyPageById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ArticlePageDTO> dto) {
+        ResponseWrapper<ArticlePageDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(copyPageById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(copyPageById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * copy_page 页面
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ArticlePageDTO>
+    */   
+    public ArticlePageDTO copyPageById
+            (String id, ArticlePageDTO dto) {
+        ArticlePage domain = articlePageDtoMapping.toDomain(dto);
+        domain.setId(id);
+        ArticlePage rt = articlePageService.copyPage(domain);
+        return articlePageDtoMapping.toDto(rt);
+    }
+
+    /**
     * delete 页面
     * 
     *
@@ -238,6 +277,84 @@ public abstract class AbstractArticlePageResource {
         ArticlePage domain = articlePageDtoMapping.toDomain(dto);
         domain.setId(id);
         ArticlePage rt = articlePageService.favorite(domain);
+        return articlePageDtoMapping.toDto(rt);
+    }
+
+    /**
+    * lock_page 页面
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ArticlePageDTO>
+    */
+    @ApiOperation(value = "lock_page", tags = {"页面" },  notes = "ArticlePage-lock_page ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-lock_page-all') or hasPermission(this.articlePageDtoMapping.toDomain(#dto),'ibizplm-ArticlePage-lock_page')")
+    @PostMapping("article_pages/{id}/lock_page")
+    public ResponseEntity<ResponseWrapper<ArticlePageDTO>> lockPageById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ArticlePageDTO> dto) {
+        ResponseWrapper<ArticlePageDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(lockPageById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(lockPageById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * lock_page 页面
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ArticlePageDTO>
+    */   
+    public ArticlePageDTO lockPageById
+            (String id, ArticlePageDTO dto) {
+        ArticlePage domain = articlePageDtoMapping.toDomain(dto);
+        domain.setId(id);
+        ArticlePage rt = articlePageService.lockPage(domain);
+        return articlePageDtoMapping.toDto(rt);
+    }
+
+    /**
+    * move_page 页面
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ArticlePageDTO>
+    */
+    @ApiOperation(value = "move_page", tags = {"页面" },  notes = "ArticlePage-move_page ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-move_page-all') or hasPermission(this.articlePageDtoMapping.toDomain(#dto),'ibizplm-ArticlePage-move_page')")
+    @PostMapping("article_pages/{id}/move_page")
+    public ResponseEntity<ResponseWrapper<ArticlePageDTO>> movePageById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ArticlePageDTO> dto) {
+        ResponseWrapper<ArticlePageDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(movePageById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(movePageById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * move_page 页面
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ArticlePageDTO>
+    */   
+    public ArticlePageDTO movePageById
+            (String id, ArticlePageDTO dto) {
+        ArticlePage domain = articlePageDtoMapping.toDomain(dto);
+        domain.setId(id);
+        ArticlePage rt = articlePageService.movePage(domain);
         return articlePageDtoMapping.toDto(rt);
     }
 
@@ -540,6 +657,45 @@ public abstract class AbstractArticlePageResource {
     }
 
     /**
+    * unlock_page 页面
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ArticlePageDTO>
+    */
+    @ApiOperation(value = "unlock_page", tags = {"页面" },  notes = "ArticlePage-unlock_page ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-unlock_page-all') or hasPermission(this.articlePageDtoMapping.toDomain(#dto),'ibizplm-ArticlePage-unlock_page')")
+    @PostMapping("article_pages/{id}/unlock_page")
+    public ResponseEntity<ResponseWrapper<ArticlePageDTO>> unlockPageById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ArticlePageDTO> dto) {
+        ResponseWrapper<ArticlePageDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(unlockPageById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(unlockPageById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * unlock_page 页面
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ArticlePageDTO>
+    */   
+    public ArticlePageDTO unlockPageById
+            (String id, ArticlePageDTO dto) {
+        ArticlePage domain = articlePageDtoMapping.toDomain(dto);
+        domain.setId(id);
+        ArticlePage rt = articlePageService.unlockPage(domain);
+        return articlePageDtoMapping.toDto(rt);
+    }
+
+    /**
     * 创建Create 页面
     * 
     *
@@ -662,6 +818,47 @@ public abstract class AbstractArticlePageResource {
     }
 
     /**
+    * copy_page 页面
+    * 
+    *
+    * @param spaceId spaceId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ArticlePageDTO>
+    */
+    @ApiOperation(value = "copy_page", tags = {"页面" },  notes = "ArticlePage-copy_page ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-copy_page-all') or hasPermission('space',#spaceId,this.articlePageDtoMapping.toDomain(#dto),'ibizplm-ArticlePage-copy_page')")
+    @PostMapping("spaces/{spaceId}/article_pages/{id}/copy_page")
+    public ResponseEntity<ResponseWrapper<ArticlePageDTO>> copyPageBySpaceIdAndId
+            (@PathVariable("spaceId") String spaceId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ArticlePageDTO> dto) {
+        ResponseWrapper<ArticlePageDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(copyPageBySpaceIdAndId(spaceId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(copyPageBySpaceIdAndId(spaceId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * copy_page 页面
+    * 
+    *
+    * @param spaceId spaceId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ArticlePageDTO>
+    */   
+    public ArticlePageDTO copyPageBySpaceIdAndId
+            (String spaceId, String id, ArticlePageDTO dto) {
+        ArticlePage domain = articlePageDtoMapping.toDomain(dto);
+        domain.setId(id);
+        ArticlePage rt = articlePageService.copyPage(domain);
+        return articlePageDtoMapping.toDto(rt);
+    }
+
+    /**
     * delete 页面
     * 
     *
@@ -739,6 +936,88 @@ public abstract class AbstractArticlePageResource {
         ArticlePage domain = articlePageDtoMapping.toDomain(dto);
         domain.setId(id);
         ArticlePage rt = articlePageService.favorite(domain);
+        return articlePageDtoMapping.toDto(rt);
+    }
+
+    /**
+    * lock_page 页面
+    * 
+    *
+    * @param spaceId spaceId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ArticlePageDTO>
+    */
+    @ApiOperation(value = "lock_page", tags = {"页面" },  notes = "ArticlePage-lock_page ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-lock_page-all') or hasPermission('space',#spaceId,this.articlePageDtoMapping.toDomain(#dto),'ibizplm-ArticlePage-lock_page')")
+    @PostMapping("spaces/{spaceId}/article_pages/{id}/lock_page")
+    public ResponseEntity<ResponseWrapper<ArticlePageDTO>> lockPageBySpaceIdAndId
+            (@PathVariable("spaceId") String spaceId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ArticlePageDTO> dto) {
+        ResponseWrapper<ArticlePageDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(lockPageBySpaceIdAndId(spaceId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(lockPageBySpaceIdAndId(spaceId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * lock_page 页面
+    * 
+    *
+    * @param spaceId spaceId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ArticlePageDTO>
+    */   
+    public ArticlePageDTO lockPageBySpaceIdAndId
+            (String spaceId, String id, ArticlePageDTO dto) {
+        ArticlePage domain = articlePageDtoMapping.toDomain(dto);
+        domain.setId(id);
+        ArticlePage rt = articlePageService.lockPage(domain);
+        return articlePageDtoMapping.toDto(rt);
+    }
+
+    /**
+    * move_page 页面
+    * 
+    *
+    * @param spaceId spaceId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ArticlePageDTO>
+    */
+    @ApiOperation(value = "move_page", tags = {"页面" },  notes = "ArticlePage-move_page ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-move_page-all') or hasPermission('space',#spaceId,this.articlePageDtoMapping.toDomain(#dto),'ibizplm-ArticlePage-move_page')")
+    @PostMapping("spaces/{spaceId}/article_pages/{id}/move_page")
+    public ResponseEntity<ResponseWrapper<ArticlePageDTO>> movePageBySpaceIdAndId
+            (@PathVariable("spaceId") String spaceId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ArticlePageDTO> dto) {
+        ResponseWrapper<ArticlePageDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(movePageBySpaceIdAndId(spaceId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(movePageBySpaceIdAndId(spaceId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * move_page 页面
+    * 
+    *
+    * @param spaceId spaceId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ArticlePageDTO>
+    */   
+    public ArticlePageDTO movePageBySpaceIdAndId
+            (String spaceId, String id, ArticlePageDTO dto) {
+        ArticlePage domain = articlePageDtoMapping.toDomain(dto);
+        domain.setId(id);
+        ArticlePage rt = articlePageService.movePage(domain);
         return articlePageDtoMapping.toDto(rt);
     }
 
@@ -1058,6 +1337,47 @@ public abstract class AbstractArticlePageResource {
         return articlePageDtoMapping.toDto(rt);
     }
 
+    /**
+    * unlock_page 页面
+    * 
+    *
+    * @param spaceId spaceId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ArticlePageDTO>
+    */
+    @ApiOperation(value = "unlock_page", tags = {"页面" },  notes = "ArticlePage-unlock_page ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-unlock_page-all') or hasPermission('space',#spaceId,this.articlePageDtoMapping.toDomain(#dto),'ibizplm-ArticlePage-unlock_page')")
+    @PostMapping("spaces/{spaceId}/article_pages/{id}/unlock_page")
+    public ResponseEntity<ResponseWrapper<ArticlePageDTO>> unlockPageBySpaceIdAndId
+            (@PathVariable("spaceId") String spaceId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ArticlePageDTO> dto) {
+        ResponseWrapper<ArticlePageDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(unlockPageBySpaceIdAndId(spaceId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(unlockPageBySpaceIdAndId(spaceId, id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * unlock_page 页面
+    * 
+    *
+    * @param spaceId spaceId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ArticlePageDTO>
+    */   
+    public ArticlePageDTO unlockPageBySpaceIdAndId
+            (String spaceId, String id, ArticlePageDTO dto) {
+        ArticlePage domain = articlePageDtoMapping.toDomain(dto);
+        domain.setId(id);
+        ArticlePage rt = articlePageService.unlockPage(domain);
+        return articlePageDtoMapping.toDto(rt);
+    }
+
 
     /**
     * 获取Get 页面
@@ -1151,7 +1471,29 @@ public abstract class AbstractArticlePageResource {
     public ResponseEntity<List<ArticlePageDTO>> fetchAdvancedSearch
             (@Validated @RequestBody ArticlePageFilterDTO dto) {
         ArticlePageSearchContext context = articlePageFilterDtoMapping.toDomain(dto);
-        Page<ArticlePage> domains = articlePageService.searchAdvancedSearch(context) ;
+        Page<ArticlePage> domains = articlePageService.fetchAdvancedSearch(context) ;
+        List<ArticlePageDTO> list = articlePageDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_baseline_choose_page 页面
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<ArticlePageDTO>>
+    */
+    @ApiOperation(value = "查询fetch_baseline_choose_page", tags = {"页面" },  notes = "ArticlePage-fetch_baseline_choose_page ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-fetch_baseline_choose_page-all') or hasPermission(#dto,'ibizplm-ArticlePage-fetch_baseline_choose_page')")
+    @PostMapping("article_pages/fetch_baseline_choose_page")
+    public ResponseEntity<List<ArticlePageDTO>> fetchBaselineChoosePage
+            (@Validated @RequestBody ArticlePageFilterDTO dto) {
+        ArticlePageSearchContext context = articlePageFilterDtoMapping.toDomain(dto);
+        Page<ArticlePage> domains = articlePageService.fetchBaselineChoosePage(context) ;
         List<ArticlePageDTO> list = articlePageDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1173,7 +1515,7 @@ public abstract class AbstractArticlePageResource {
     public ResponseEntity<List<ArticlePageDTO>> fetchDefault
             (@Validated @RequestBody ArticlePageFilterDTO dto) {
         ArticlePageSearchContext context = articlePageFilterDtoMapping.toDomain(dto);
-        Page<ArticlePage> domains = articlePageService.searchDefault(context) ;
+        Page<ArticlePage> domains = articlePageService.fetchDefault(context) ;
         List<ArticlePageDTO> list = articlePageDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1194,7 +1536,7 @@ public abstract class AbstractArticlePageResource {
     public ResponseEntity<List<ArticlePageDTO>> fetchDraftPage
             (@Validated @RequestBody ArticlePageFilterDTO dto) {
         ArticlePageSearchContext context = articlePageFilterDtoMapping.toDomain(dto);
-        Page<ArticlePage> domains = articlePageService.searchDraftPage(context) ;
+        Page<ArticlePage> domains = articlePageService.fetchDraftPage(context) ;
         List<ArticlePageDTO> list = articlePageDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1215,7 +1557,7 @@ public abstract class AbstractArticlePageResource {
     public ResponseEntity<List<ArticlePageDTO>> fetchHomePage
             (@Validated @RequestBody ArticlePageFilterDTO dto) {
         ArticlePageSearchContext context = articlePageFilterDtoMapping.toDomain(dto);
-        Page<ArticlePage> domains = articlePageService.searchHomePage(context) ;
+        Page<ArticlePage> domains = articlePageService.fetchHomePage(context) ;
         List<ArticlePageDTO> list = articlePageDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1236,7 +1578,7 @@ public abstract class AbstractArticlePageResource {
     public ResponseEntity<List<ArticlePageDTO>> fetchIsDeleted
             (@Validated @RequestBody ArticlePageFilterDTO dto) {
         ArticlePageSearchContext context = articlePageFilterDtoMapping.toDomain(dto);
-        Page<ArticlePage> domains = articlePageService.searchIsDeleted(context) ;
+        Page<ArticlePage> domains = articlePageService.fetchIsDeleted(context) ;
         List<ArticlePageDTO> list = articlePageDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1257,7 +1599,7 @@ public abstract class AbstractArticlePageResource {
     public ResponseEntity<List<ArticlePageDTO>> fetchMyFavoritePage
             (@Validated @RequestBody ArticlePageFilterDTO dto) {
         ArticlePageSearchContext context = articlePageFilterDtoMapping.toDomain(dto);
-        Page<ArticlePage> domains = articlePageService.searchMyFavoritePage(context) ;
+        Page<ArticlePage> domains = articlePageService.fetchMyFavoritePage(context) ;
         List<ArticlePageDTO> list = articlePageDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1278,7 +1620,7 @@ public abstract class AbstractArticlePageResource {
     public ResponseEntity<List<ArticlePageDTO>> fetchNoParentPage
             (@Validated @RequestBody ArticlePageFilterDTO dto) {
         ArticlePageSearchContext context = articlePageFilterDtoMapping.toDomain(dto);
-        Page<ArticlePage> domains = articlePageService.searchNoParentPage(context) ;
+        Page<ArticlePage> domains = articlePageService.fetchNoParentPage(context) ;
         List<ArticlePageDTO> list = articlePageDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1299,7 +1641,7 @@ public abstract class AbstractArticlePageResource {
     public ResponseEntity<List<ArticlePageDTO>> fetchNormal
             (@Validated @RequestBody ArticlePageFilterDTO dto) {
         ArticlePageSearchContext context = articlePageFilterDtoMapping.toDomain(dto);
-        Page<ArticlePage> domains = articlePageService.searchNormal(context) ;
+        Page<ArticlePage> domains = articlePageService.fetchNormal(context) ;
         List<ArticlePageDTO> list = articlePageDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1320,7 +1662,7 @@ public abstract class AbstractArticlePageResource {
     public ResponseEntity<List<ArticlePageDTO>> fetchOnlyPage
             (@Validated @RequestBody ArticlePageFilterDTO dto) {
         ArticlePageSearchContext context = articlePageFilterDtoMapping.toDomain(dto);
-        Page<ArticlePage> domains = articlePageService.searchOnlyPage(context) ;
+        Page<ArticlePage> domains = articlePageService.fetchOnlyPage(context) ;
         List<ArticlePageDTO> list = articlePageDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1431,7 +1773,31 @@ public abstract class AbstractArticlePageResource {
             (@PathVariable("spaceId") String spaceId, @Validated @RequestBody ArticlePageFilterDTO dto) {
         dto.setSpaceIdEQ(spaceId);
         ArticlePageSearchContext context = articlePageFilterDtoMapping.toDomain(dto);
-        Page<ArticlePage> domains = articlePageService.searchAdvancedSearch(context) ;
+        Page<ArticlePage> domains = articlePageService.fetchAdvancedSearch(context) ;
+        List<ArticlePageDTO> list = articlePageDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_baseline_choose_page 页面
+    * 
+    *
+    * @param spaceId spaceId
+    * @param dto dto
+    * @return ResponseEntity<List<ArticlePageDTO>>
+    */
+    @ApiOperation(value = "查询fetch_baseline_choose_page", tags = {"页面" },  notes = "ArticlePage-fetch_baseline_choose_page ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-fetch_baseline_choose_page-all') or hasPermission('space',#spaceId,#dto,'ibizplm-ArticlePage-fetch_baseline_choose_page')")
+    @PostMapping("spaces/{spaceId}/article_pages/fetch_baseline_choose_page")
+    public ResponseEntity<List<ArticlePageDTO>> fetchBaselineChoosePageBySpaceId
+            (@PathVariable("spaceId") String spaceId, @Validated @RequestBody ArticlePageFilterDTO dto) {
+        dto.setSpaceIdEQ(spaceId);
+        ArticlePageSearchContext context = articlePageFilterDtoMapping.toDomain(dto);
+        Page<ArticlePage> domains = articlePageService.fetchBaselineChoosePage(context) ;
         List<ArticlePageDTO> list = articlePageDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1455,7 +1821,7 @@ public abstract class AbstractArticlePageResource {
             (@PathVariable("spaceId") String spaceId, @Validated @RequestBody ArticlePageFilterDTO dto) {
         dto.setSpaceIdEQ(spaceId);
         ArticlePageSearchContext context = articlePageFilterDtoMapping.toDomain(dto);
-        Page<ArticlePage> domains = articlePageService.searchDefault(context) ;
+        Page<ArticlePage> domains = articlePageService.fetchDefault(context) ;
         List<ArticlePageDTO> list = articlePageDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1478,7 +1844,7 @@ public abstract class AbstractArticlePageResource {
             (@PathVariable("spaceId") String spaceId, @Validated @RequestBody ArticlePageFilterDTO dto) {
         dto.setSpaceIdEQ(spaceId);
         ArticlePageSearchContext context = articlePageFilterDtoMapping.toDomain(dto);
-        Page<ArticlePage> domains = articlePageService.searchDraftPage(context) ;
+        Page<ArticlePage> domains = articlePageService.fetchDraftPage(context) ;
         List<ArticlePageDTO> list = articlePageDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1501,7 +1867,7 @@ public abstract class AbstractArticlePageResource {
             (@PathVariable("spaceId") String spaceId, @Validated @RequestBody ArticlePageFilterDTO dto) {
         dto.setSpaceIdEQ(spaceId);
         ArticlePageSearchContext context = articlePageFilterDtoMapping.toDomain(dto);
-        Page<ArticlePage> domains = articlePageService.searchHomePage(context) ;
+        Page<ArticlePage> domains = articlePageService.fetchHomePage(context) ;
         List<ArticlePageDTO> list = articlePageDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1524,7 +1890,7 @@ public abstract class AbstractArticlePageResource {
             (@PathVariable("spaceId") String spaceId, @Validated @RequestBody ArticlePageFilterDTO dto) {
         dto.setSpaceIdEQ(spaceId);
         ArticlePageSearchContext context = articlePageFilterDtoMapping.toDomain(dto);
-        Page<ArticlePage> domains = articlePageService.searchIsDeleted(context) ;
+        Page<ArticlePage> domains = articlePageService.fetchIsDeleted(context) ;
         List<ArticlePageDTO> list = articlePageDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1547,7 +1913,7 @@ public abstract class AbstractArticlePageResource {
             (@PathVariable("spaceId") String spaceId, @Validated @RequestBody ArticlePageFilterDTO dto) {
         dto.setSpaceIdEQ(spaceId);
         ArticlePageSearchContext context = articlePageFilterDtoMapping.toDomain(dto);
-        Page<ArticlePage> domains = articlePageService.searchMyFavoritePage(context) ;
+        Page<ArticlePage> domains = articlePageService.fetchMyFavoritePage(context) ;
         List<ArticlePageDTO> list = articlePageDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1570,7 +1936,7 @@ public abstract class AbstractArticlePageResource {
             (@PathVariable("spaceId") String spaceId, @Validated @RequestBody ArticlePageFilterDTO dto) {
         dto.setSpaceIdEQ(spaceId);
         ArticlePageSearchContext context = articlePageFilterDtoMapping.toDomain(dto);
-        Page<ArticlePage> domains = articlePageService.searchNoParentPage(context) ;
+        Page<ArticlePage> domains = articlePageService.fetchNoParentPage(context) ;
         List<ArticlePageDTO> list = articlePageDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1593,7 +1959,7 @@ public abstract class AbstractArticlePageResource {
             (@PathVariable("spaceId") String spaceId, @Validated @RequestBody ArticlePageFilterDTO dto) {
         dto.setSpaceIdEQ(spaceId);
         ArticlePageSearchContext context = articlePageFilterDtoMapping.toDomain(dto);
-        Page<ArticlePage> domains = articlePageService.searchNormal(context) ;
+        Page<ArticlePage> domains = articlePageService.fetchNormal(context) ;
         List<ArticlePageDTO> list = articlePageDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1616,7 +1982,7 @@ public abstract class AbstractArticlePageResource {
             (@PathVariable("spaceId") String spaceId, @Validated @RequestBody ArticlePageFilterDTO dto) {
         dto.setSpaceIdEQ(spaceId);
         ArticlePageSearchContext context = articlePageFilterDtoMapping.toDomain(dto);
-        Page<ArticlePage> domains = articlePageService.searchOnlyPage(context) ;
+        Page<ArticlePage> domains = articlePageService.fetchOnlyPage(context) ;
         List<ArticlePageDTO> list = articlePageDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1635,7 +2001,7 @@ public abstract class AbstractArticlePageResource {
     @ApiOperation(value = "批量新建页面", tags = {"页面" },  notes = "批量新建页面")
 	@PostMapping("article_pages/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<ArticlePageDTO> dtos) {
-        articlePageService.createBatch(articlePageDtoMapping.toDomain(dtos));
+        articlePageService.create(articlePageDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -1648,7 +2014,7 @@ public abstract class AbstractArticlePageResource {
     @ApiOperation(value = "批量删除页面", tags = {"页面" },  notes = "批量删除页面")
 	@DeleteMapping("article_pages/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        articlePageService.removeBatch(ids);
+        articlePageService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -1661,7 +2027,7 @@ public abstract class AbstractArticlePageResource {
     @ApiOperation(value = "批量更新页面", tags = {"页面" },  notes = "批量更新页面")
 	@PutMapping("article_pages/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<ArticlePageDTO> dtos) {
-        articlePageService.updateBatch(articlePageDtoMapping.toDomain(dtos));
+        articlePageService.update(articlePageDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -1674,7 +2040,7 @@ public abstract class AbstractArticlePageResource {
     @ApiOperation(value = "批量保存页面", tags = {"页面" },  notes = "批量保存页面")
 	@PostMapping("article_pages/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<ArticlePageDTO> dtos) {
-        articlePageService.saveBatch(articlePageDtoMapping.toDomain(dtos));
+        articlePageService.save(articlePageDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

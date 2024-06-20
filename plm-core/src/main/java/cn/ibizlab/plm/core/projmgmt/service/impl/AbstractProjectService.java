@@ -24,6 +24,7 @@ import com.baomidou.mybatisplus.core.enums.SqlMethod;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import cn.ibizlab.plm.core.base.domain.CommonFlow;
 import cn.ibizlab.plm.core.projmgmt.domain.Board;
 import cn.ibizlab.plm.core.projmgmt.service.BoardService;
 import cn.ibizlab.plm.core.projmgmt.domain.Entry;
@@ -42,10 +43,18 @@ import cn.ibizlab.plm.core.testmgmt.domain.TestPlan;
 import cn.ibizlab.plm.core.testmgmt.service.TestPlanService;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
 import cn.ibizlab.plm.core.projmgmt.service.WorkItemService;
+import cn.ibizlab.plm.core.projmgmt.domain.WorkItemType;
+import cn.ibizlab.plm.core.projmgmt.service.WorkItemTypeService;
 import cn.ibizlab.plm.core.base.domain.Favorite;
 import cn.ibizlab.plm.core.base.service.FavoriteService;
+import cn.ibizlab.plm.core.base.domain.Addon;
+import cn.ibizlab.plm.core.base.service.AddonService;
+import cn.ibizlab.plm.core.base.domain.AddonResource;
+import cn.ibizlab.plm.core.base.service.AddonResourceService;
 import cn.ibizlab.plm.core.base.domain.Baseline;
 import cn.ibizlab.plm.core.base.service.BaselineService;
+import cn.ibizlab.plm.core.base.domain.Member;
+import cn.ibizlab.plm.core.base.service.MemberService;
 import cn.ibizlab.plm.core.base.domain.Work;
 import cn.ibizlab.plm.core.base.service.WorkService;
 import cn.ibizlab.plm.core.base.domain.ReferencesIndex;
@@ -97,11 +106,27 @@ public abstract class AbstractProjectService extends ServiceImpl<ProjectMapper,P
 
     @Autowired
     @Lazy
+    protected WorkItemTypeService workItemTypeService;
+
+    @Autowired
+    @Lazy
     protected FavoriteService favoriteService;
 
     @Autowired
     @Lazy
+    protected AddonService addonService;
+
+    @Autowired
+    @Lazy
+    protected AddonResourceService addonResourceService;
+
+    @Autowired
+    @Lazy
     protected BaselineService baselineService;
+
+    @Autowired
+    @Lazy
+    protected MemberService memberService;
 
     @Autowired
     @Lazy
@@ -117,44 +142,23 @@ public abstract class AbstractProjectService extends ServiceImpl<ProjectMapper,P
 
     protected int batchSize = 500;
 
-    public Project get(Project et) {
-        Project rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.PROJECT.toString(),et.getId());
-        rt.copyTo(et,true);
-        //设置 [项目成员]
-        getMembers(et);
-        return et;
-    }
-
-    public List<Project> getByEntities(List<Project> entities) {
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public Project getDraft(Project et) {
-        return et;
-    }
-
-    public Integer checkKey(Project et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Project>lambdaQuery().eq(Project::getId, et.getId()))>0)?1:0;
-    }
-
     @Override
     @Transactional
     public boolean create(Project et) {
+        fillParentData(et);
         if(this.baseMapper.insert(et) < 1)
             return false;
         projectMemberService.saveByProject(et,et.getMembers());
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<Project> list) {
+    public boolean create(List<Project> list) {
         list.forEach(et->getSelf().create(et));
         return true;
     }
-
+	
     @Transactional
     public boolean update(Project et) {
         UpdateWrapper<Project> qw = et.getUpdateWrapper(true);
@@ -167,11 +171,48 @@ public abstract class AbstractProjectService extends ServiceImpl<ProjectMapper,P
     }
 
     @Transactional
-    public boolean updateBatch(List<Project> list) {
+    public boolean update(List<Project> list) {
         list.forEach(et->getSelf().update(et));
         return true;
     }
+	
+   @Transactional
+    public boolean remove(Project et) {
+        if(!remove(Wrappers.<Project>lambdaQuery().eq(Project::getId, et.getId())))
+            return false;
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<Project> entities) {
+        for (Project et : entities)
+            if(!getSelf().remove(et))
+                return false;
+        return true;
+    }		
+    public Project get(Project et) {
+        Project rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.PROJECT.toString(),et.getId());
+        rt.copyTo(et,true);
+        //设置 [项目成员]
+        getMembers(et);
+        return et;
+    }	
+
+    public List<Project> get(List<Project> entities) {
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public Project getDraft(Project et) {
+        fillParentData(et);
+        return et;
+    }
+	
+    public Integer checkKey(Project et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Project>lambdaQuery().eq(Project::getId, et.getId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(Project et) {
@@ -182,10 +223,10 @@ public abstract class AbstractProjectService extends ServiceImpl<ProjectMapper,P
     }
 
     @Transactional
-    public boolean saveBatch(List<Project> list) {
+    public boolean save(List<Project> list) {
         if(ObjectUtils.isEmpty(list))
             return true;
-        Map<String,Project> before = getByEntities(list).stream().collect(Collectors.toMap(Project::getId,e->e));
+        Map<String,Project> before = get(list).stream().collect(Collectors.toMap(Project::getId,e->e));
         List<Project> create = new ArrayList<>();
         List<Project> update = new ArrayList<>();
         list.forEach(sub->{
@@ -196,105 +237,101 @@ public abstract class AbstractProjectService extends ServiceImpl<ProjectMapper,P
         });
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
         else
             return true;
     }
-
-    @Transactional
-    public boolean remove(Project et) {
-        if(!remove(Wrappers.<Project>lambdaQuery().eq(Project::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<Project> entities) {
-        for (Project et : entities)
-            if(!getSelf().remove(et))
-                return false;
-        return true;
-    }
-
-    public Page<Project> searchDefault(ProjectSearchContext context) {
+	
+   public Page<Project> fetchDefault(ProjectSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Project> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<Project> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Project> listDefault(ProjectSearchContext context) {
+   public List<Project> listDefault(ProjectSearchContext context) {
         List<Project> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Project> searchAdmin(ProjectSearchContext context) {
+   }
+	
+   public Page<Project> fetchAdmin(ProjectSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Project> pages=baseMapper.searchAdmin(context.getPages(),context,context.getSelectCond());
         List<Project> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Project> listAdmin(ProjectSearchContext context) {
+   public List<Project> listAdmin(ProjectSearchContext context) {
         List<Project> list = baseMapper.listAdmin(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Project> searchArchived(ProjectSearchContext context) {
+   }
+	
+   public Page<Project> fetchArchived(ProjectSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Project> pages=baseMapper.searchArchived(context.getPages(),context,context.getSelectCond());
         List<Project> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Project> listArchived(ProjectSearchContext context) {
+   public List<Project> listArchived(ProjectSearchContext context) {
         List<Project> list = baseMapper.listArchived(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Project> searchChooseProject(ProjectSearchContext context) {
+   }
+	
+   public Page<Project> fetchChooseProject(ProjectSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Project> pages=baseMapper.searchChooseProject(context.getPages(),context,context.getSelectCond());
         List<Project> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Project> listChooseProject(ProjectSearchContext context) {
+   public List<Project> listChooseProject(ProjectSearchContext context) {
         List<Project> list = baseMapper.listChooseProject(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Project> searchCurrent(ProjectSearchContext context) {
+   }
+	
+   public Page<Project> fetchCurrent(ProjectSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Project> pages=baseMapper.searchCurrent(context.getPages(),context,context.getSelectCond());
         List<Project> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Project> listCurrent(ProjectSearchContext context) {
+   public List<Project> listCurrent(ProjectSearchContext context) {
         List<Project> list = baseMapper.listCurrent(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Project> searchDeleted(ProjectSearchContext context) {
+   }
+	
+   public Page<Project> fetchDeleted(ProjectSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Project> pages=baseMapper.searchDeleted(context.getPages(),context,context.getSelectCond());
         List<Project> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Project> listDeleted(ProjectSearchContext context) {
+   public List<Project> listDeleted(ProjectSearchContext context) {
         List<Project> list = baseMapper.listDeleted(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Project> searchFavorite(ProjectSearchContext context) {
+   }
+	
+   public Page<Project> fetchFavorite(ProjectSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Project> pages=baseMapper.searchFavorite(context.getPages(),context,context.getSelectCond());
         List<Project> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Project> listFavorite(ProjectSearchContext context) {
+   public List<Project> listFavorite(ProjectSearchContext context) {
         List<Project> list = baseMapper.listFavorite(context,context.getSelectCond());
         return list;
+   }
+	
+   public Page<Project> fetchMain(ProjectSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Project> pages=baseMapper.searchMain(context.getPages(),context,context.getSelectCond());
+        List<Project> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public Page<Project> searchNormal(ProjectSearchContext context) {
+   public List<Project> listMain(ProjectSearchContext context) {
+        List<Project> list = baseMapper.listMain(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Project> fetchNormal(ProjectSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("NAME,DESC");
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Project> pages=baseMapper.searchNormal(context.getPages(),context,context.getSelectCond());
@@ -302,79 +339,137 @@ public abstract class AbstractProjectService extends ServiceImpl<ProjectMapper,P
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Project> listNormal(ProjectSearchContext context) {
+   public List<Project> listNormal(ProjectSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("NAME,DESC");
         List<Project> list = baseMapper.listNormal(context,context.getSelectCond());
         return list;
+   }
+	
+   public Page<Project> fetchQuickUser(ProjectSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Project> pages=baseMapper.searchQuickUser(context.getPages(),context,context.getSelectCond());
+        List<Project> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public Page<Project> searchReader(ProjectSearchContext context) {
+   public List<Project> listQuickUser(ProjectSearchContext context) {
+        List<Project> list = baseMapper.listQuickUser(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Project> fetchReader(ProjectSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Project> pages=baseMapper.searchReader(context.getPages(),context,context.getSelectCond());
         List<Project> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Project> listReader(ProjectSearchContext context) {
+   public List<Project> listReader(ProjectSearchContext context) {
         List<Project> list = baseMapper.listReader(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Project> searchSameType(ProjectSearchContext context) {
+   }
+	
+   public Page<Project> fetchSameType(ProjectSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Project> pages=baseMapper.searchSameType(context.getPages(),context,context.getSelectCond());
         List<Project> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Project> listSameType(ProjectSearchContext context) {
+   public List<Project> listSameType(ProjectSearchContext context) {
         List<Project> list = baseMapper.listSameType(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Project> searchUnderProjectPortfolio(ProjectSearchContext context) {
+   }
+	
+   public Page<Project> fetchUnderProjectPortfolio(ProjectSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Project> pages=baseMapper.searchUnderProjectPortfolio(context.getPages(),context,context.getSelectCond());
         List<Project> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Project> listUnderProjectPortfolio(ProjectSearchContext context) {
+   public List<Project> listUnderProjectPortfolio(ProjectSearchContext context) {
         List<Project> list = baseMapper.listUnderProjectPortfolio(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Project> searchUser(ProjectSearchContext context) {
+   }
+	
+   public Page<Project> fetchUser(ProjectSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Project> pages=baseMapper.searchUser(context.getPages(),context,context.getSelectCond());
         List<Project> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Project> listUser(ProjectSearchContext context) {
+   public List<Project> listUser(ProjectSearchContext context) {
         List<Project> list = baseMapper.listUser(context,context.getSelectCond());
         return list;
-    }
-
-    public Page<Project> searchWorkProject(ProjectSearchContext context) {
+   }
+	
+   public Page<Project> fetchWorkProject(ProjectSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Project> pages=baseMapper.searchWorkProject(context.getPages(),context,context.getSelectCond());
         List<Project> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Project> listWorkProject(ProjectSearchContext context) {
+   public List<Project> listWorkProject(ProjectSearchContext context) {
         List<Project> list = baseMapper.listWorkProject(context,context.getSelectCond());
         return list;
-    }
+   }
+	
+	public List<Project> findById(List<String> ids){
+        List<Project> list = baseMapper.findById(ids);
+        if(!ObjectUtils.isEmpty(list))
+            projectMemberService.findByProjectId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getProjectId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setMembers(sub.getValue())));
+        return list;	
+	}
 
-    @Override
+	public boolean removeById(String id){
+        List<String> ids = baseMapper.findById(Arrays.asList(id)).stream().map(e->e.getId()).collect(Collectors.toList());
+        if(!ObjectUtils.isEmpty(ids))
+            return this.remove(ids);
+        else
+            return true;
+	}
+
+	public boolean resetById(String id){
+		return this.update(Wrappers.<Project>lambdaUpdate().eq(Project::getId,id));
+	}
+	public boolean saveByProject(CommonFlow commonFlow, List<Project> list){
+        if(list==null)
+            return true;
+        Map<String,Project> before = findById(commonFlow.getId()).stream().collect(Collectors.toMap(Project::getId,e->e));
+
+        List<Project> update = new ArrayList<>();
+        List<Project> create = new ArrayList<>();
+
+        for(Project sub:list) {
+            sub.setId(commonFlow.getId());
+            sub.setProject(commonFlow);
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
+	@Override
     public List<ProjectMember> getMembers(Project et) {
         List<ProjectMember> list = projectMemberService.findByProjectId(et.getId());
         et.setMembers(list);
         return list;
     }
+	
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
+    public void fillParentData(Project et) {
     }
+
 
     @Override
     @Transactional
@@ -394,8 +489,8 @@ public abstract class AbstractProjectService extends ServiceImpl<ProjectMapper,P
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return ProjectMapper.class;
     }
@@ -404,4 +499,5 @@ public abstract class AbstractProjectService extends ServiceImpl<ProjectMapper,P
     protected Class currentModelClass() {
         return Project.class;
     }
+
 }

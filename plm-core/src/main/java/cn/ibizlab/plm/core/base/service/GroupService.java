@@ -33,89 +33,32 @@ public interface GroupService extends IService<Group> {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    Group get(Group et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default Group get(String key) {
-        return getSelf().get(new Group().setId(key));
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<Group> getByIds(Collection<String> ids) {
-        List<Group> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Group().setId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<Group> getByEntities(List<Group> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    Group getDraft(Group et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(Group et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(Group et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<Group> list);
+    boolean create(List<Group> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(Group et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<Group> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    @Override
-    boolean save(Group et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<Group> list);
+    boolean update(List<Group> list);
 
     /**
      * 主键删除
@@ -125,14 +68,7 @@ public interface GroupService extends IService<Group> {
     default boolean remove(String key) {
         return getSelf().remove(new Group().setId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -142,13 +78,13 @@ public interface GroupService extends IService<Group> {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<Group> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new Group().setId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new Group().setId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -156,7 +92,176 @@ public interface GroupService extends IService<Group> {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<Group> entities);
+    boolean remove(List<Group> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default Group get(String key) {
+        return getSelf().get(new Group().setId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    Group get(Group et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<Group> get(Collection<String> keys) {
+        List<Group> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new Group().setId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<Group> get(List<Group> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    Group getDraft(Group et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(Group et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(Group et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<Group> list);
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<Group> fetchDefault(GroupSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<Group> listDefault(GroupSearchContext context);
+
+    /**
+    * fetchNoSection
+    * 
+    * @param context
+    * @return
+    */
+    Page<Group> fetchNoSection(GroupSearchContext context);
+
+    /**
+    * listNoSection
+    * 
+    * @param context
+    * @return
+    */
+    List<Group> listNoSection(GroupSearchContext context);
+
+    /**
+    * fetchReader
+    * 
+    * @param context
+    * @return
+    */
+    Page<Group> fetchReader(GroupSearchContext context);
+
+    /**
+    * listReader
+    * 
+    * @param context
+    * @return
+    */
+    List<Group> listReader(GroupSearchContext context);
+
+    /**
+    * fetchUserGroupAdmin
+    * 
+    * @param context
+    * @return
+    */
+    Page<Group> fetchUserGroupAdmin(GroupSearchContext context);
+
+    /**
+    * listUserGroupAdmin
+    * 
+    * @param context
+    * @return
+    */
+    List<Group> listUserGroupAdmin(GroupSearchContext context);
+
+    /**
+    * findBySectionId
+    * @param sectionIds
+    * @return
+    */
+    List<Group> findBySectionId(List<String> sectionIds);
+    default List<Group> findBySectionId(String sectionId){
+        return findBySectionId(Arrays.asList(sectionId));
+    }
+
+    /**
+    * removeBySectionId
+    * @param sectionId
+    * @return
+    */
+    boolean removeBySectionId(String sectionId);
+
+    /**
+    * resetBySectionId
+    * @param sectionId
+    * @return
+    */
+    boolean resetBySectionId(String sectionId);
+
+    /**
+    * saveBySectionId
+    * @param sectionId
+    * @param list
+    * @return
+    */
+    default boolean saveBySectionId(String sectionId, List<Group> list){
+        return getSelf().saveBySection(new Section().setId(sectionId),list);
+    }
+
+    /**
+    * saveBySection
+    * @param section
+    * @param list
+    * @return
+    */
+    boolean saveBySection(Section section, List<Group> list);
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<Group> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -173,52 +278,7 @@ public interface GroupService extends IService<Group> {
         }
         return rt;
     }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<Group> searchDefault(GroupSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<Group> listDefault(GroupSearchContext context);
-
-    /**
-     * searchno_section
-     * 
-     * @param context
-     * @return
-     */
-    Page<Group> searchNoSection(GroupSearchContext context);
-    /**
-     * listno_section
-     * 
-     * @param context
-     * @return
-     */
-    List<Group> listNoSection(GroupSearchContext context);
-
-    /**
-     * searchuser_group_admin
-     * 
-     * @param context
-     * @return
-     */
-    Page<Group> searchUserGroupAdmin(GroupSearchContext context);
-    /**
-     * listuser_group_admin
-     * 
-     * @param context
-     * @return
-     */
-    List<Group> listUserGroupAdmin(GroupSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -226,6 +286,7 @@ public interface GroupService extends IService<Group> {
     default Group getEntity() {
         return new Group();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -233,59 +294,13 @@ public interface GroupService extends IService<Group> {
     default GroupSearchContext getSearchContext() {
         return new GroupSearchContext();
     }
+
+
     /**
-     * selectRelBySectionId
-     * @param sectionIds
-     * @return
-     */
-    List<Group> findBySectionId(List<String> sectionIds);
-    default List<Group> findBySectionId(String sectionId) {
-        return findBySectionId(Arrays.asList(sectionId));
-    }
-    /**
-     * removeRelBySectionId
-     * @param sectionId
-     * @return
-     */
-    boolean removeBySectionId(String sectionId);
-    /**
-     * resetRelBySectionId
-     * @param sectionId
-     * @return
-     */
-    boolean resetBySectionId(String sectionId);
-    /**
-     * saveRelBySectionId
-     * @param sectionId
-     * @param list
-     * @return
-     */
-    default boolean saveBySectionId(String sectionId,List<Group> list) {
-        return getSelf().saveBySection(new Section().setId(sectionId),list);
-    }
-    /**
-    * saveRelBySection
-    * @param section
-    * @param list
+    * 自定义SQL
+    * @param sql  update table  set name ='test' where id =#{et.param}
+    * @param param 参数列表  param.put("param","1");
     * @return
     */
-    boolean saveBySection(Section section,List<Group> list);
-
-
-    /**
-     * 自定义查询SQL
-     * @param sql  select * from table where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
-    List<JSONObject> select(String sql, Map<String,Object> param);
-
-    /**
-     * 自定义SQL
-     * @param sql  update table  set name ='test' where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
     boolean execute(String sql, Map<String,Object> param);
-
 }

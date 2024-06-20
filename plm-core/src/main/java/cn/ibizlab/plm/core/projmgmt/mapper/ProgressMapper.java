@@ -43,6 +43,14 @@ public interface ProgressMapper extends BaseMapper<Progress> {
     List<Progress> listDefault(@Param("ctx") ProgressSearchContext context, @Param("ew") Wrapper<Progress> wrapper);
 
     /**
+    * 根据projectId查询
+    *
+    * @param projectIds
+    * @return
+    */
+    List<Progress> findByProjectId(@Param("projectIds") List<String> projectIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -151,13 +159,4 @@ public interface ProgressMapper extends BaseMapper<Progress> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据projectId查询
-     *
-     * @param projectIds
-     * @return
-     */
-    List<Progress> findByProjectId(@Param("projectIds") List<String> projectIds);
-
 }

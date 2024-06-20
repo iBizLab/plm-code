@@ -75,7 +75,7 @@ export default {
         },
         {
           realTitle: '组织测试库',
-          refAppViewId: 'plmweb.library_group_grid_view',
+          refAppViewId: 'plmweb.library_org_grid_view',
           name: 'EXPITEM:node_2',
           id: 'expitem:node_2',
         },
@@ -305,7 +305,7 @@ export default {
             },
             {
               text: '组织测试库',
-              navAppViewId: 'plmweb.library_group_grid_view',
+              navAppViewId: 'plmweb.library_org_grid_view',
               nodeType: 'node_2',
               navigateContexts: [
                 {

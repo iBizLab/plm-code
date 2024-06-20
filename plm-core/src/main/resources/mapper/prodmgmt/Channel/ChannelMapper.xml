@@ -6,9 +6,9 @@
     <resultMap id="ChannelResultMap" type="cn.ibizlab.plm.core.prodmgmt.domain.Channel" autoMapping="true">
 		<id property="id" column="id" /><!--主键字段映射-->
 		<result property="createMan" column="create_man" />
-		<result property="updateTime" column="update_time" />
-		<result property="updateMan" column="update_man" />
 		<result property="createTime" column="create_time" />
+		<result property="updateMan" column="update_man" />
+		<result property="updateTime" column="update_time" />
 		<result property="productId" column="product_id" />
         <association property="product" javaType="cn.ibizlab.plm.core.prodmgmt.domain.Product" column="product_id" select="cn.ibizlab.plm.core.prodmgmt.mapper.ProductMapper.selectById" fetchType="lazy"></association>
     </resultMap>

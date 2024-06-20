@@ -208,6 +208,44 @@ public abstract class AbstractProjectResource {
     }
 
     /**
+    * change_admin_role 项目
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProjectDTO>
+    */
+    @ApiOperation(value = "change_admin_role", tags = {"项目" },  notes = "Project-change_admin_role ")
+    @PostMapping("projects/{id}/change_admin_role")
+    public ResponseEntity<ResponseWrapper<ProjectDTO>> changeAdminRoleById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProjectDTO> dto) {
+        ResponseWrapper<ProjectDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(changeAdminRoleById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(changeAdminRoleById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * change_admin_role 项目
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProjectDTO>
+    */   
+    public ProjectDTO changeAdminRoleById
+            (String id, ProjectDTO dto) {
+        Project domain = projectDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Project rt = projectService.changeAdminRole(domain);
+        return projectDtoMapping.toDto(rt);
+    }
+
+    /**
     * delete 项目
     * 
     *
@@ -286,6 +324,45 @@ public abstract class AbstractProjectResource {
     }
 
     /**
+    * kanban_index_addon_counter 项目
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProjectDTO>
+    */
+    @ApiOperation(value = "kanban_index_addon_counter", tags = {"项目" },  notes = "Project-kanban_index_addon_counter ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Project-kanban_index_addon_counter-all') or hasPermission(this.projectDtoMapping.toDomain(#dto),'ibizplm-Project-kanban_index_addon_counter')")
+    @PostMapping("projects/{id}/kanban_index_addon_counter")
+    public ResponseEntity<ResponseWrapper<ProjectDTO>> kanbanIndexAddonCounterById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProjectDTO> dto) {
+        ResponseWrapper<ProjectDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(kanbanIndexAddonCounterById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(kanbanIndexAddonCounterById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * kanban_index_addon_counter 项目
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProjectDTO>
+    */   
+    public ProjectDTO kanbanIndexAddonCounterById
+            (String id, ProjectDTO dto) {
+        Project domain = projectDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Project rt = projectService.kanbanIndexAddonCounter(domain);
+        return projectDtoMapping.toDto(rt);
+    }
+
+    /**
     * other_re_space 项目
     * 
     *
@@ -321,6 +398,45 @@ public abstract class AbstractProjectResource {
         Project domain = projectDtoMapping.toDomain(dto);
         domain.setId(id);
         Project rt = projectService.otherReSpace(domain);
+        return projectDtoMapping.toDto(rt);
+    }
+
+    /**
+    * project_move 项目
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProjectDTO>
+    */
+    @ApiOperation(value = "project_move", tags = {"项目" },  notes = "Project-project_move ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Project-project_move-all') or hasPermission(this.projectDtoMapping.toDomain(#dto),'ibizplm-Project-project_move')")
+    @PutMapping("projects/{id}/project_move")
+    public ResponseEntity<ResponseWrapper<ProjectDTO>> projectMoveById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProjectDTO> dto) {
+        ResponseWrapper<ProjectDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(projectMoveById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(projectMoveById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * project_move 项目
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProjectDTO>
+    */   
+    public ProjectDTO projectMoveById
+            (String id, ProjectDTO dto) {
+        Project domain = projectDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Project rt = projectService.projectMove(domain);
         return projectDtoMapping.toDto(rt);
     }
 
@@ -432,6 +548,45 @@ public abstract class AbstractProjectResource {
     }
 
     /**
+    * scrum_index_addon_counter 项目
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProjectDTO>
+    */
+    @ApiOperation(value = "scrum_index_addon_counter", tags = {"项目" },  notes = "Project-scrum_index_addon_counter ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Project-scrum_index_addon_counter-all') or hasPermission(this.projectDtoMapping.toDomain(#dto),'ibizplm-Project-scrum_index_addon_counter')")
+    @PostMapping("projects/{id}/scrum_index_addon_counter")
+    public ResponseEntity<ResponseWrapper<ProjectDTO>> scrumIndexAddonCounterById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProjectDTO> dto) {
+        ResponseWrapper<ProjectDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(scrumIndexAddonCounterById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(scrumIndexAddonCounterById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * scrum_index_addon_counter 项目
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProjectDTO>
+    */   
+    public ProjectDTO scrumIndexAddonCounterById
+            (String id, ProjectDTO dto) {
+        Project domain = projectDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Project rt = projectService.scrumIndexAddonCounter(domain);
+        return projectDtoMapping.toDto(rt);
+    }
+
+    /**
     * un_favorite 项目
     * 
     *
@@ -467,6 +622,45 @@ public abstract class AbstractProjectResource {
         Project domain = projectDtoMapping.toDomain(dto);
         domain.setId(id);
         Project rt = projectService.unFavorite(domain);
+        return projectDtoMapping.toDto(rt);
+    }
+
+    /**
+    * waterfall_index_addon_counter 项目
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProjectDTO>
+    */
+    @ApiOperation(value = "waterfall_index_addon_counter", tags = {"项目" },  notes = "Project-waterfall_index_addon_counter ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Project-waterfall_index_addon_counter-all') or hasPermission(this.projectDtoMapping.toDomain(#dto),'ibizplm-Project-waterfall_index_addon_counter')")
+    @PostMapping("projects/{id}/waterfall_index_addon_counter")
+    public ResponseEntity<ResponseWrapper<ProjectDTO>> waterfallIndexAddonCounterById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProjectDTO> dto) {
+        ResponseWrapper<ProjectDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(waterfallIndexAddonCounterById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(waterfallIndexAddonCounterById(id, dto.getDto()));
+        return ResponseEntity.status(HttpStatus.OK).body(rt);
+    }
+
+    /**
+    * waterfall_index_addon_counter 项目
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProjectDTO>
+    */   
+    public ProjectDTO waterfallIndexAddonCounterById
+            (String id, ProjectDTO dto) {
+        Project domain = projectDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Project rt = projectService.waterfallIndexAddonCounter(domain);
         return projectDtoMapping.toDto(rt);
     }
 
@@ -564,7 +758,7 @@ public abstract class AbstractProjectResource {
     public ResponseEntity<List<ProjectDTO>> fetchAdmin
             (@Validated @RequestBody ProjectFilterDTO dto) {
         ProjectSearchContext context = projectFilterDtoMapping.toDomain(dto);
-        Page<Project> domains = projectService.searchAdmin(context) ;
+        Page<Project> domains = projectService.fetchAdmin(context) ;
         List<ProjectDTO> list = projectDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -586,7 +780,7 @@ public abstract class AbstractProjectResource {
     public ResponseEntity<List<ProjectDTO>> fetchArchived
             (@Validated @RequestBody ProjectFilterDTO dto) {
         ProjectSearchContext context = projectFilterDtoMapping.toDomain(dto);
-        Page<Project> domains = projectService.searchArchived(context) ;
+        Page<Project> domains = projectService.fetchArchived(context) ;
         List<ProjectDTO> list = projectDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -608,7 +802,7 @@ public abstract class AbstractProjectResource {
     public ResponseEntity<List<ProjectDTO>> fetchChooseProject
             (@Validated @RequestBody ProjectFilterDTO dto) {
         ProjectSearchContext context = projectFilterDtoMapping.toDomain(dto);
-        Page<Project> domains = projectService.searchChooseProject(context) ;
+        Page<Project> domains = projectService.fetchChooseProject(context) ;
         List<ProjectDTO> list = projectDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -630,7 +824,7 @@ public abstract class AbstractProjectResource {
     public ResponseEntity<List<ProjectDTO>> fetchCurrent
             (@Validated @RequestBody ProjectFilterDTO dto) {
         ProjectSearchContext context = projectFilterDtoMapping.toDomain(dto);
-        Page<Project> domains = projectService.searchCurrent(context) ;
+        Page<Project> domains = projectService.fetchCurrent(context) ;
         List<ProjectDTO> list = projectDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -652,7 +846,7 @@ public abstract class AbstractProjectResource {
     public ResponseEntity<List<ProjectDTO>> fetchDefault
             (@Validated @RequestBody ProjectFilterDTO dto) {
         ProjectSearchContext context = projectFilterDtoMapping.toDomain(dto);
-        Page<Project> domains = projectService.searchDefault(context) ;
+        Page<Project> domains = projectService.fetchDefault(context) ;
         List<ProjectDTO> list = projectDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -674,7 +868,7 @@ public abstract class AbstractProjectResource {
     public ResponseEntity<List<ProjectDTO>> fetchDeleted
             (@Validated @RequestBody ProjectFilterDTO dto) {
         ProjectSearchContext context = projectFilterDtoMapping.toDomain(dto);
-        Page<Project> domains = projectService.searchDeleted(context) ;
+        Page<Project> domains = projectService.fetchDeleted(context) ;
         List<ProjectDTO> list = projectDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -696,7 +890,29 @@ public abstract class AbstractProjectResource {
     public ResponseEntity<List<ProjectDTO>> fetchFavorite
             (@Validated @RequestBody ProjectFilterDTO dto) {
         ProjectSearchContext context = projectFilterDtoMapping.toDomain(dto);
-        Page<Project> domains = projectService.searchFavorite(context) ;
+        Page<Project> domains = projectService.fetchFavorite(context) ;
+        List<ProjectDTO> list = projectDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_main 项目
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<ProjectDTO>>
+    */
+    @ApiOperation(value = "查询fetch_main", tags = {"项目" },  notes = "Project-fetch_main ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Project-fetch_main-all') or hasPermission(#dto,'ibizplm-Project-fetch_main')")
+    @PostMapping("projects/fetch_main")
+    public ResponseEntity<List<ProjectDTO>> fetchMain
+            (@Validated @RequestBody ProjectFilterDTO dto) {
+        ProjectSearchContext context = projectFilterDtoMapping.toDomain(dto);
+        Page<Project> domains = projectService.fetchMain(context) ;
         List<ProjectDTO> list = projectDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -718,7 +934,29 @@ public abstract class AbstractProjectResource {
     public ResponseEntity<List<ProjectDTO>> fetchNormal
             (@Validated @RequestBody ProjectFilterDTO dto) {
         ProjectSearchContext context = projectFilterDtoMapping.toDomain(dto);
-        Page<Project> domains = projectService.searchNormal(context) ;
+        Page<Project> domains = projectService.fetchNormal(context) ;
+        List<ProjectDTO> list = projectDtoMapping.toDto(domains.getContent());
+            return ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list);
+    }
+
+    /**
+    * 查询fetch_quick_user 项目
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<List<ProjectDTO>>
+    */
+    @ApiOperation(value = "查询fetch_quick_user", tags = {"项目" },  notes = "Project-fetch_quick_user ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Project-fetch_quick_user-all') or hasPermission(#dto,'ibizplm-Project-fetch_quick_user')")
+    @PostMapping("projects/fetch_quick_user")
+    public ResponseEntity<List<ProjectDTO>> fetchQuickUser
+            (@Validated @RequestBody ProjectFilterDTO dto) {
+        ProjectSearchContext context = projectFilterDtoMapping.toDomain(dto);
+        Page<Project> domains = projectService.fetchQuickUser(context) ;
         List<ProjectDTO> list = projectDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -740,7 +978,7 @@ public abstract class AbstractProjectResource {
     public ResponseEntity<List<ProjectDTO>> fetchReader
             (@Validated @RequestBody ProjectFilterDTO dto) {
         ProjectSearchContext context = projectFilterDtoMapping.toDomain(dto);
-        Page<Project> domains = projectService.searchReader(context) ;
+        Page<Project> domains = projectService.fetchReader(context) ;
         List<ProjectDTO> list = projectDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -762,7 +1000,7 @@ public abstract class AbstractProjectResource {
     public ResponseEntity<List<ProjectDTO>> fetchSameType
             (@Validated @RequestBody ProjectFilterDTO dto) {
         ProjectSearchContext context = projectFilterDtoMapping.toDomain(dto);
-        Page<Project> domains = projectService.searchSameType(context) ;
+        Page<Project> domains = projectService.fetchSameType(context) ;
         List<ProjectDTO> list = projectDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -784,7 +1022,7 @@ public abstract class AbstractProjectResource {
     public ResponseEntity<List<ProjectDTO>> fetchUnderProjectPortfolio
             (@Validated @RequestBody ProjectFilterDTO dto) {
         ProjectSearchContext context = projectFilterDtoMapping.toDomain(dto);
-        Page<Project> domains = projectService.searchUnderProjectPortfolio(context) ;
+        Page<Project> domains = projectService.fetchUnderProjectPortfolio(context) ;
         List<ProjectDTO> list = projectDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -806,7 +1044,7 @@ public abstract class AbstractProjectResource {
     public ResponseEntity<List<ProjectDTO>> fetchUser
             (@Validated @RequestBody ProjectFilterDTO dto) {
         ProjectSearchContext context = projectFilterDtoMapping.toDomain(dto);
-        Page<Project> domains = projectService.searchUser(context) ;
+        Page<Project> domains = projectService.fetchUser(context) ;
         List<ProjectDTO> list = projectDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -828,7 +1066,7 @@ public abstract class AbstractProjectResource {
     public ResponseEntity<List<ProjectDTO>> fetchWorkProject
             (@Validated @RequestBody ProjectFilterDTO dto) {
         ProjectSearchContext context = projectFilterDtoMapping.toDomain(dto);
-        Page<Project> domains = projectService.searchWorkProject(context) ;
+        Page<Project> domains = projectService.fetchWorkProject(context) ;
         List<ProjectDTO> list = projectDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -847,7 +1085,7 @@ public abstract class AbstractProjectResource {
     @ApiOperation(value = "批量新建项目", tags = {"项目" },  notes = "批量新建项目")
 	@PostMapping("projects/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<ProjectDTO> dtos) {
-        projectService.createBatch(projectDtoMapping.toDomain(dtos));
+        projectService.create(projectDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -860,7 +1098,7 @@ public abstract class AbstractProjectResource {
     @ApiOperation(value = "批量删除项目", tags = {"项目" },  notes = "批量删除项目")
 	@DeleteMapping("projects/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        projectService.removeBatch(ids);
+        projectService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -873,7 +1111,7 @@ public abstract class AbstractProjectResource {
     @ApiOperation(value = "批量更新项目", tags = {"项目" },  notes = "批量更新项目")
 	@PutMapping("projects/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<ProjectDTO> dtos) {
-        projectService.updateBatch(projectDtoMapping.toDomain(dtos));
+        projectService.update(projectDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -886,7 +1124,7 @@ public abstract class AbstractProjectResource {
     @ApiOperation(value = "批量保存项目", tags = {"项目" },  notes = "批量保存项目")
 	@PostMapping("projects/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<ProjectDTO> dtos) {
-        projectService.saveBatch(projectDtoMapping.toDomain(dtos));
+        projectService.save(projectDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

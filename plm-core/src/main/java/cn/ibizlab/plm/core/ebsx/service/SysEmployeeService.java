@@ -18,7 +18,7 @@ import cn.ibizlab.plm.core.ebsx.filter.SysEmployeeSearchContext;
  *
  * @author generator
  */
-public interface SysEmployeeService {
+public interface SysEmployeeService{
 
     /**
      * 获取当前Service
@@ -30,91 +30,32 @@ public interface SysEmployeeService {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    SysEmployee get(SysEmployee et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default SysEmployee get(String key) {
-        return getById(key);
-    }
-    default SysEmployee getById(String key) {
-        return null;
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<SysEmployee> getByIds(Collection<String> ids) {
-        List<SysEmployee> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new SysEmployee().setUserId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<SysEmployee> getByEntities(List<SysEmployee> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    SysEmployee getDraft(SysEmployee et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(SysEmployee et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(SysEmployee et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<SysEmployee> list);
+    boolean create(List<SysEmployee> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(SysEmployee et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<SysEmployee> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    boolean save(SysEmployee et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<SysEmployee> list);
+    boolean update(List<SysEmployee> list);
 
     /**
      * 主键删除
@@ -124,14 +65,7 @@ public interface SysEmployeeService {
     default boolean remove(String key) {
         return getSelf().remove(new SysEmployee().setUserId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -141,13 +75,13 @@ public interface SysEmployeeService {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<SysEmployee> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new SysEmployee().setUserId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new SysEmployee().setUserId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -155,7 +89,122 @@ public interface SysEmployeeService {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<SysEmployee> entities);
+    boolean remove(List<SysEmployee> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default SysEmployee get(String key) {
+        return getSelf().get(new SysEmployee().setUserId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    SysEmployee get(SysEmployee et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<SysEmployee> get(Collection<String> keys) {
+        List<SysEmployee> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new SysEmployee().setUserId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<SysEmployee> get(List<SysEmployee> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    SysEmployee getDraft(SysEmployee et);
+
+    /**
+    * changePwd
+    * 
+    * @param et
+    * @return
+    */
+    default SysEmployee changePwd(SysEmployee et) {
+        return et;
+    }
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(SysEmployee et);
+
+    /**
+    * initPwd
+    * 
+    * @param et
+    * @return
+    */
+    default SysEmployee initPwd(SysEmployee et) {
+        return et;
+    }
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(SysEmployee et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<SysEmployee> list);
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<SysEmployee> fetchDefault(SysEmployeeSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<SysEmployee> listDefault(SysEmployeeSearchContext context);
+
+    /**
+    * fetchUser
+    * 
+    * @param context
+    * @return
+    */
+    Page<SysEmployee> fetchUser(SysEmployeeSearchContext context);
+
+    /**
+    * listUser
+    * 
+    * @param context
+    * @return
+    */
+    List<SysEmployee> listUser(SysEmployeeSearchContext context);
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<SysEmployee> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -172,57 +221,7 @@ public interface SysEmployeeService {
         }
         return rt;
     }
-
-    /**
-     * ChangePwd
-     * 
-     * @param dto
-     * @return
-     */
-    default SysEmployee changePwd(SysEmployee dto) {
-        return dto;
-    }
-
-    /**
-     * InitPwd
-     * 
-     * @param dto
-     * @return
-     */
-    default SysEmployee initPwd(SysEmployee dto) {
-        return dto;
-    }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<SysEmployee> searchDefault(SysEmployeeSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<SysEmployee> listDefault(SysEmployeeSearchContext context);
-
-    /**
-     * searchuser
-     * 
-     * @param context
-     * @return
-     */
-    Page<SysEmployee> searchUser(SysEmployeeSearchContext context);
-    /**
-     * listuser
-     * 
-     * @param context
-     * @return
-     */
-    List<SysEmployee> listUser(SysEmployeeSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -230,6 +229,7 @@ public interface SysEmployeeService {
     default SysEmployee getEntity() {
         return new SysEmployee();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -237,4 +237,5 @@ public interface SysEmployeeService {
     default SysEmployeeSearchContext getSearchContext() {
         return new SysEmployeeSearchContext();
     }
+
 }

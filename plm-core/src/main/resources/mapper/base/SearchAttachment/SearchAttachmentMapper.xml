@@ -10,10 +10,10 @@
 		<result property="ownerSubtype" column="owner_subtype" />
 		<result property="fileId" column="file_id" />
 		<result property="parentVersionId" column="parent_version_id" />
-		<result property="updateTime" column="update_time" />
 		<result property="createMan" column="create_man" />
-		<result property="updateMan" column="update_man" />
 		<result property="createTime" column="create_time" />
+		<result property="updateMan" column="update_man" />
+		<result property="updateTime" column="update_time" />
         <association property="derCustomer" javaType="cn.ibizlab.plm.core.prodmgmt.domain.Customer" column="owner_id" select="cn.ibizlab.plm.core.prodmgmt.mapper.CustomerMapper.selectById" fetchType="lazy"></association>
         <association property="derIdea" javaType="cn.ibizlab.plm.core.prodmgmt.domain.Idea" column="owner_id" select="cn.ibizlab.plm.core.prodmgmt.mapper.IdeaMapper.selectById" fetchType="lazy"></association>
         <association property="derPage" javaType="cn.ibizlab.plm.core.wiki.domain.ArticlePage" column="owner_id" select="cn.ibizlab.plm.core.wiki.mapper.ArticlePageMapper.selectById" fetchType="lazy"></association>

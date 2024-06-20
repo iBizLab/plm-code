@@ -471,6 +471,16 @@ export default {
                     valid: true,
                     caption: '取消关联',
                     itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction1',
+                        logicTag: 'node_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: 'context.srfreadonly != true;',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction1',
+                      },
+                    ],
                     sysImage: {
                       cssClass: 'fa fa-chain-broken',
                       glyph: 'xf127@FontAwesome',
@@ -682,6 +692,16 @@ export default {
                   valid: true,
                   caption: '取消关联',
                   itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction1',
+                      logicTag: 'node_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: 'context.srfreadonly != true;',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction1',
+                    },
+                  ],
                   sysImage: {
                     cssClass: 'fa fa-chain-broken',
                     glyph: 'xf127@FontAwesome',
@@ -750,7 +770,7 @@ export default {
                   itemName: 'deuiaction1',
                   logicTag: 'treeexpbar_toolbar',
                   logicType: 'SCRIPT',
-                  scriptCode: '!context.project',
+                  scriptCode: '!context.project && !context.srfreadonly',
                   triggerType: 'ITEMVISIBLE',
                   id: 'project',
                 },
@@ -776,7 +796,7 @@ export default {
                   itemName: 'deuiaction3',
                   logicTag: 'treeexpbar_toolbar',
                   logicType: 'SCRIPT',
-                  scriptCode: '!context.product',
+                  scriptCode: '!context.product && !context.srfreadonly',
                   triggerType: 'ITEMVISIBLE',
                   id: 'product',
                 },
@@ -796,6 +816,16 @@ export default {
               valid: true,
               caption: '刷新',
               itemType: 'DEUIACTION',
+              controlLogics: [
+                {
+                  itemName: 'deuiaction2',
+                  logicTag: 'treeexpbar_toolbar',
+                  logicType: 'SCRIPT',
+                  scriptCode: '!context.srfreadonly',
+                  triggerType: 'ITEMVISIBLE',
+                  id: 'refresh',
+                },
+              ],
               sysImage: {
                 cssClass: 'fa fa-refresh',
                 glyph: 'xf021@FontAwesome',

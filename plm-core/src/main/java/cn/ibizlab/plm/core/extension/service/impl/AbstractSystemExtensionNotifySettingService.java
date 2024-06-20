@@ -33,22 +33,6 @@ public abstract class AbstractSystemExtensionNotifySettingService implements Sys
 
     protected int batchSize = 500;
 
-    public SystemExtensionNotifySetting get(SystemExtensionNotifySetting et) {
-        return systemExtensionNotifySettingFeignClient.getById(et.getId());
-    }
-
-    public List<SystemExtensionNotifySetting> getByEntities(List<SystemExtensionNotifySetting> entities) {
-        return null;
-    }
-
-    public SystemExtensionNotifySetting getDraft(SystemExtensionNotifySetting et) {
-        return systemExtensionNotifySettingFeignClient.getDraft(et);
-    }
-
-    public Integer checkKey(SystemExtensionNotifySetting et) {
-        return systemExtensionNotifySettingFeignClient.checkKey(et);
-    }
-
     @Override
     @Transactional
     public boolean create(SystemExtensionNotifySetting et) {
@@ -56,11 +40,12 @@ public abstract class AbstractSystemExtensionNotifySettingService implements Sys
         rt.copyTo(et,true);
         return true;
     }
+	
     @Transactional
-    public boolean createBatch(List<SystemExtensionNotifySetting> list) {
+    public boolean create(List<SystemExtensionNotifySetting> list) {
         return systemExtensionNotifySettingFeignClient.createBatch(list);
     }
-
+	
     @Transactional
     public boolean update(SystemExtensionNotifySetting et) {
         SystemExtensionNotifySetting rt = systemExtensionNotifySettingFeignClient.updateById(et.getId(), et);
@@ -69,45 +54,66 @@ public abstract class AbstractSystemExtensionNotifySettingService implements Sys
     }
 
     @Transactional
-    public boolean updateBatch(List<SystemExtensionNotifySetting> list) {
+    public boolean update(List<SystemExtensionNotifySetting> list) {
         return systemExtensionNotifySettingFeignClient.updateBatch(list);
     }
-
-    @Transactional
-    public boolean save(SystemExtensionNotifySetting et) {
-        SystemExtensionNotifySetting rt =  systemExtensionNotifySettingFeignClient.save(et);
-        rt.copyTo(et,true);
-        return true;
-    }
-
-    @Transactional
-    public boolean saveBatch(List<SystemExtensionNotifySetting> list) {
-        return systemExtensionNotifySettingFeignClient.saveBatch(list);
-    }
-
-    @Transactional
+	
+   @Transactional
     public boolean remove(SystemExtensionNotifySetting et) {
         return systemExtensionNotifySettingFeignClient.removeById(et.getId());
     }
 
     @Transactional
-    public boolean removeByEntities(List<SystemExtensionNotifySetting> entities) {
-        return systemExtensionNotifySettingFeignClient.removeBatch(entities.stream().map(e->e.getId()).collect(Collectors.toList()));
+    public boolean remove(List<SystemExtensionNotifySetting> entities) {
+       return systemExtensionNotifySettingFeignClient.removeBatch(entities.stream().map(e->e.getId()).collect(Collectors.toList()));
+    }		
+
+    public SystemExtensionNotifySetting get(SystemExtensionNotifySetting et) {
+        return systemExtensionNotifySettingFeignClient.getById(et.getId());
+    }	
+
+    public List<SystemExtensionNotifySetting> get(List<SystemExtensionNotifySetting> entities) {
+        return null;
+    }	
+	
+    public SystemExtensionNotifySetting getDraft(SystemExtensionNotifySetting et) {
+        return systemExtensionNotifySettingFeignClient.getDraft(et);
+    }
+	
+    public Integer checkKey(SystemExtensionNotifySetting et) {
+         return systemExtensionNotifySettingFeignClient.checkKey(et);
+    }
+	
+    @Override
+    @Transactional
+    public boolean save(SystemExtensionNotifySetting et) {
+       SystemExtensionNotifySetting rt =  systemExtensionNotifySettingFeignClient.save(et);
+        rt.copyTo(et,true);
+        return true;
     }
 
-    public Page<SystemExtensionNotifySetting> searchDefault(SystemExtensionNotifySettingSearchContext context) {
+    @Transactional
+    public boolean save(List<SystemExtensionNotifySetting> list) {
+        return systemExtensionNotifySettingFeignClient.saveBatch(list);
+    }
+	
+     public Page<SystemExtensionNotifySetting> fetchDefault(SystemExtensionNotifySettingSearchContext context) {
         return systemExtensionNotifySettingFeignClient.fetchDefault(context);
     }
+	
     public List<SystemExtensionNotifySetting> listDefault(SystemExtensionNotifySettingSearchContext context) {
         context.setSize(Short.MAX_VALUE);
-        return searchDefault(context).getContent();
+        return fetchDefault(context).getContent();
     }
-    public Page<SystemExtensionNotifySetting> searchView(SystemExtensionNotifySettingSearchContext context) {
+	
+     public Page<SystemExtensionNotifySetting> fetchView(SystemExtensionNotifySettingSearchContext context) {
         return systemExtensionNotifySettingFeignClient.fetchView(context);
     }
+	
     public List<SystemExtensionNotifySetting> listView(SystemExtensionNotifySettingSearchContext context) {
         context.setSize(Short.MAX_VALUE);
-        return searchView(context).getContent();
+        return fetchView(context).getContent();
     }
+	
 
 }

@@ -62,6 +62,14 @@ public interface ProductPlanMapper extends BaseMapper<ProductPlan> {
     List<ProductPlan> listNormal(@Param("ctx") ProductPlanSearchContext context, @Param("ew") Wrapper<ProductPlan> wrapper);
 
     /**
+    * 根据productId查询
+    *
+    * @param productIds
+    * @return
+    */
+    List<ProductPlan> findByProductId(@Param("productIds") List<String> productIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -170,13 +178,4 @@ public interface ProductPlanMapper extends BaseMapper<ProductPlan> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据productId查询
-     *
-     * @param productIds
-     * @return
-     */
-    List<ProductPlan> findByProductId(@Param("productIds") List<String> productIds);
-
 }

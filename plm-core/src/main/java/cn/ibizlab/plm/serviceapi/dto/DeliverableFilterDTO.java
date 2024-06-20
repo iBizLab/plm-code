@@ -43,7 +43,7 @@ public class DeliverableFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 90)
+    @ApiModelProperty(value = "标识EQ", position = 70)
 	private String idEQ;
 
     /**
@@ -51,16 +51,8 @@ public class DeliverableFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 100)
+    @ApiModelProperty(value = "名称LIKE", position = 120)
 	private String nameLIKE;
-
-    /**
-     * 名称EQ
-     */
-    @JsonProperty("n_name_eq")
-    @JSONField(name = "n_name_eq")
-    @ApiModelProperty(value = "名称EQ", position = 101)
-	private String nameEQ;
 
 
 }

@@ -32,89 +32,32 @@ public interface WorkloadTypeService extends IService<WorkloadType> {
     }
 
     /**
-     * 获取
-     * @param et
-     * @return
-     */
-    WorkloadType get(WorkloadType et);
-    /**
-     * 获取
-     * @param key
-     * @return
-     */
-    default WorkloadType get(String key) {
-        return getSelf().get(new WorkloadType().setId(key));
-    }
-    /**
-     * id集合获取
-     * @param ids
-     * @return
-     */
-    default List<WorkloadType> getByIds(Collection<String> ids) {
-        List<WorkloadType> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new WorkloadType().setId(key)));
-        return getSelf().getByEntities(entities);
-    }
-    /**
-     * 对象集合获取
-     * @param entities
-     * @return
-     */
-    List<WorkloadType> getByEntities(List<WorkloadType> entities);
-
-    /**
-     * 草稿
-     * @param et
-     * @return
-     */
-    WorkloadType getDraft(WorkloadType et);
-
-    /**
-     * checkKey
-     * @param et
-     * @return
-     */
-    Integer checkKey(WorkloadType et);
-
-    /**
-     * 创建
-     * @param et
-     * @return
-     */
+    * 创建
+    * @param et
+    * @return
+    */
     boolean create(WorkloadType et);
+
     /**
      * 批量创建
      * @param list
      * @return
      */
-    boolean createBatch(List<WorkloadType> list);
+    boolean create(List<WorkloadType> list);
 
     /**
-     * 更新
-     * @param et
-     * @return
-     */
+    * 更新
+    * @param et
+    * @return
+    */
     boolean update(WorkloadType et);
+
     /**
      * 批量更新
      * @param list
      * @return
      */
-    boolean updateBatch(List<WorkloadType> list);
-
-    /**
-     * 保存
-     * @param et
-     * @return
-     */
-    @Override
-    boolean save(WorkloadType et);
-    /**
-     * 批量保存
-     * @param list
-     * @return
-     */
-    boolean saveBatch(List<WorkloadType> list);
+    boolean update(List<WorkloadType> list);
 
     /**
      * 主键删除
@@ -124,14 +67,7 @@ public interface WorkloadTypeService extends IService<WorkloadType> {
     default boolean remove(String key) {
         return getSelf().remove(new WorkloadType().setId(key));
     }
-    /**
-     * 根据keys批量删除
-     * @param keys
-     * @return
-     */
-    default boolean remove(List<String> keys) {
-        return removeBatch(keys);
-    }
+
     /**
      * 根据对象删除
      * @param et
@@ -141,13 +77,13 @@ public interface WorkloadTypeService extends IService<WorkloadType> {
 
     /**
      * 批量删除
-     * @param ids
+     * @param keys
      * @return
      */
-    default boolean removeBatch(Collection<String> ids) {
+    default boolean remove(Collection<String> keys) {
         List<WorkloadType> entities =new ArrayList<>();
-        ids.forEach(key -> entities.add(new WorkloadType().setId(key)));
-        return getSelf().removeByEntities(entities);
+        keys.forEach(key -> entities.add(new WorkloadType().setId(key)));
+        return getSelf().remove(entities);
     }
 
     /**
@@ -155,7 +91,96 @@ public interface WorkloadTypeService extends IService<WorkloadType> {
      * @param entities
      * @return
      */
-    boolean removeByEntities(List<WorkloadType> entities);
+    boolean remove(List<WorkloadType> entities);
+
+    /**
+    * 获取
+    * @param key
+    * @return
+    */
+    default WorkloadType get(String key) {
+        return getSelf().get(new WorkloadType().setId(key));
+    }
+
+    /**
+     * 获取
+     * @param et
+     * @return
+     */
+    WorkloadType get(WorkloadType et);
+
+    /**
+     * id集合获取
+     * @param keys
+     * @return
+     */
+    default List<WorkloadType> get(Collection<String> keys) {
+        List<WorkloadType> entities =new ArrayList<>();
+        keys.forEach(key -> entities.add(new WorkloadType().setId(key)));
+        return getSelf().get(entities);
+    }
+
+    /**
+    * 对象集合获取
+    * @param entities
+    * @return
+    */
+    List<WorkloadType> get(List<WorkloadType> entities);
+
+    /**
+    * 草稿
+    * @param et
+    * @return
+    */
+    WorkloadType getDraft(WorkloadType et);
+
+    /**
+    * checkKey
+    * @param et
+    * @return
+    */
+    Integer checkKey(WorkloadType et);
+
+    /**
+    * 保存
+    * @param et
+    * @return
+    */
+    boolean save(WorkloadType et);
+
+	/**
+     * 批量保存
+     * @param list
+     * @return
+     */
+    boolean save(List<WorkloadType> list);
+
+    /**
+    * nothing
+    * 
+    * @param et
+    * @return
+    */
+    default WorkloadType nothing(WorkloadType et) {
+        return et;
+    }
+
+    /**
+    * fetchDefault
+    * 
+    * @param context
+    * @return
+    */
+    Page<WorkloadType> fetchDefault(WorkloadTypeSearchContext context);
+
+    /**
+    * listDefault
+    * 
+    * @param context
+    * @return
+    */
+    List<WorkloadType> listDefault(WorkloadTypeSearchContext context);
+
 
     default ImportResult importData(String config, Boolean ignoreError, List<WorkloadType> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());
@@ -172,32 +197,7 @@ public interface WorkloadTypeService extends IService<WorkloadType> {
         }
         return rt;
     }
-
-    /**
-     * nothing
-     * 
-     * @param dto
-     * @return
-     */
-    default WorkloadType nothing(WorkloadType dto) {
-        return dto;
-    }
-
-    /**
-     * searchDefault
-     * 
-     * @param context
-     * @return
-     */
-    Page<WorkloadType> searchDefault(WorkloadTypeSearchContext context);
-    /**
-     * listDefault
-     * 
-     * @param context
-     * @return
-     */
-    List<WorkloadType> listDefault(WorkloadTypeSearchContext context);
-
+	
     /**
      * 创建实体对象
      * @return
@@ -205,6 +205,7 @@ public interface WorkloadTypeService extends IService<WorkloadType> {
     default WorkloadType getEntity() {
         return new WorkloadType();
     }
+
     /**
      * 创建搜索对象
      * @return
@@ -213,20 +214,12 @@ public interface WorkloadTypeService extends IService<WorkloadType> {
         return new WorkloadTypeSearchContext();
     }
 
-    /**
-     * 自定义查询SQL
-     * @param sql  select * from table where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
-    List<JSONObject> select(String sql, Map<String,Object> param);
 
     /**
-     * 自定义SQL
-     * @param sql  update table  set name ='test' where id =#{et.param}
-     * @param param 参数列表  param.put("param","1");
-     * @return
-     */
+    * 自定义SQL
+    * @param sql  update table  set name ='test' where id =#{et.param}
+    * @param param 参数列表  param.put("param","1");
+    * @return
+    */
     boolean execute(String sql, Map<String,Object> param);
-
 }

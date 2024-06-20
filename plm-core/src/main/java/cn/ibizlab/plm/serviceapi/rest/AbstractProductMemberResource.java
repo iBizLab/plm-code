@@ -702,7 +702,7 @@ public abstract class AbstractProductMemberResource {
     public ResponseEntity<List<ProductMemberDTO>> fetchCurProduct
             (@Validated @RequestBody ProductMemberFilterDTO dto) {
         ProductMemberSearchContext context = productMemberFilterDtoMapping.toDomain(dto);
-        Page<ProductMember> domains = productMemberService.searchCurProduct(context) ;
+        Page<ProductMember> domains = productMemberService.fetchCurProduct(context) ;
         List<ProductMemberDTO> list = productMemberDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -724,7 +724,7 @@ public abstract class AbstractProductMemberResource {
     public ResponseEntity<List<ProductMemberDTO>> fetchDefault
             (@Validated @RequestBody ProductMemberFilterDTO dto) {
         ProductMemberSearchContext context = productMemberFilterDtoMapping.toDomain(dto);
-        Page<ProductMember> domains = productMemberService.searchDefault(context) ;
+        Page<ProductMember> domains = productMemberService.fetchDefault(context) ;
         List<ProductMemberDTO> list = productMemberDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -818,7 +818,7 @@ public abstract class AbstractProductMemberResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody ProductMemberFilterDTO dto) {
         dto.setProductIdEQ(productId);
         ProductMemberSearchContext context = productMemberFilterDtoMapping.toDomain(dto);
-        Page<ProductMember> domains = productMemberService.searchCurProduct(context) ;
+        Page<ProductMember> domains = productMemberService.fetchCurProduct(context) ;
         List<ProductMemberDTO> list = productMemberDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -842,7 +842,7 @@ public abstract class AbstractProductMemberResource {
             (@PathVariable("productId") String productId, @Validated @RequestBody ProductMemberFilterDTO dto) {
         dto.setProductIdEQ(productId);
         ProductMemberSearchContext context = productMemberFilterDtoMapping.toDomain(dto);
-        Page<ProductMember> domains = productMemberService.searchDefault(context) ;
+        Page<ProductMember> domains = productMemberService.fetchDefault(context) ;
         List<ProductMemberDTO> list = productMemberDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -936,7 +936,7 @@ public abstract class AbstractProductMemberResource {
             (@PathVariable("userId") String userId, @Validated @RequestBody ProductMemberFilterDTO dto) {
         dto.setUserIdEQ(userId);
         ProductMemberSearchContext context = productMemberFilterDtoMapping.toDomain(dto);
-        Page<ProductMember> domains = productMemberService.searchCurProduct(context) ;
+        Page<ProductMember> domains = productMemberService.fetchCurProduct(context) ;
         List<ProductMemberDTO> list = productMemberDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -960,7 +960,7 @@ public abstract class AbstractProductMemberResource {
             (@PathVariable("userId") String userId, @Validated @RequestBody ProductMemberFilterDTO dto) {
         dto.setUserIdEQ(userId);
         ProductMemberSearchContext context = productMemberFilterDtoMapping.toDomain(dto);
-        Page<ProductMember> domains = productMemberService.searchDefault(context) ;
+        Page<ProductMember> domains = productMemberService.fetchDefault(context) ;
         List<ProductMemberDTO> list = productMemberDtoMapping.toDto(domains.getContent());
             return ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -979,7 +979,7 @@ public abstract class AbstractProductMemberResource {
     @ApiOperation(value = "批量新建产品成员", tags = {"产品成员" },  notes = "批量新建产品成员")
 	@PostMapping("product_members/batch")
     public ResponseEntity<Boolean> createBatch(@RequestBody List<ProductMemberDTO> dtos) {
-        productMemberService.createBatch(productMemberDtoMapping.toDomain(dtos));
+        productMemberService.create(productMemberDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -992,7 +992,7 @@ public abstract class AbstractProductMemberResource {
     @ApiOperation(value = "批量删除产品成员", tags = {"产品成员" },  notes = "批量删除产品成员")
 	@DeleteMapping("product_members/batch")
     public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
-        productMemberService.removeBatch(ids);
+        productMemberService.remove(ids);
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -1005,7 +1005,7 @@ public abstract class AbstractProductMemberResource {
     @ApiOperation(value = "批量更新产品成员", tags = {"产品成员" },  notes = "批量更新产品成员")
 	@PutMapping("product_members/batch")
     public ResponseEntity<Boolean> updateBatch(@RequestBody List<ProductMemberDTO> dtos) {
-        productMemberService.updateBatch(productMemberDtoMapping.toDomain(dtos));
+        productMemberService.update(productMemberDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 
@@ -1018,7 +1018,7 @@ public abstract class AbstractProductMemberResource {
     @ApiOperation(value = "批量保存产品成员", tags = {"产品成员" },  notes = "批量保存产品成员")
 	@PostMapping("product_members/savebatch")
     public ResponseEntity<Boolean> saveBatch(@RequestBody List<ProductMemberDTO> dtos) {
-        productMemberService.saveBatch(productMemberDtoMapping.toDomain(dtos));
+        productMemberService.save(productMemberDtoMapping.toDomain(dtos));
         return  ResponseEntity.status(HttpStatus.OK).body(true);
     }
 

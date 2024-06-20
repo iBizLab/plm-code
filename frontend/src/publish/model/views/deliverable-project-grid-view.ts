@@ -64,15 +64,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '交付物数据重定向视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.DELIVERABLE.REDIRECTVIEW',
-      },
-      refAppViewId: 'plmweb.deliverable_redirect_view',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
-    {
       realTitle: '交付物编辑视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.DELIVERABLE.EDITVIEW',
@@ -80,6 +71,15 @@ export default {
       refAppViewId: 'plmweb.deliverable_edit_view',
       name: 'NEWDATA',
       id: 'newdata',
+    },
+    {
+      realTitle: '交付物数据重定向视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.DELIVERABLE.REDIRECTVIEW',
+      },
+      refAppViewId: 'plmweb.deliverable_redirect_view',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
   ],
   controls: [

@@ -46,20 +46,28 @@ public class AttachmentSearchContext extends QueryWrapperContext<Attachment> {
     private String ownerIdEQ;
 
     /**
-     * 建立人EQ
-     */
-    @JsonProperty("n_create_man_eq")
-    @JSONField(name = "n_create_man_eq")
-    @ApiModelProperty("建立人EQ")
-    private String createManEQ;
-
-    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
     @ApiModelProperty("标识EQ")
     private String idEQ;
+
+    /**
+     * 名称LIKE
+     */
+    @JsonProperty("n_name_like")
+    @JSONField(name = "n_name_like")
+    @ApiModelProperty("名称LIKE")
+    private String nameLIKE;
+
+    /**
+     * 建立人EQ
+     */
+    @JsonProperty("n_create_man_eq")
+    @JSONField(name = "n_create_man_eq")
+    @ApiModelProperty("建立人EQ")
+    private String createManEQ;
 
     /**
      * 建立时间EQ
@@ -88,18 +96,12 @@ public class AttachmentSearchContext extends QueryWrapperContext<Attachment> {
     @ApiModelProperty("建立时间LTANDEQ")
     private Date createTimeLTANDEQ;
 
-    /**
-     * 名称LIKE
-     */
-    @JsonProperty("n_name_like")
-    @JSONField(name = "n_name_like")
-    @ApiModelProperty("名称LIKE")
-    private String nameLIKE;
-
     @Override
     public void setContextParentKey(Serializable contextParentKey) {
         super.setContextParentKey(contextParentKey);
         if(Entities.STENCIL.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("owner_id",contextParentKey);
+        if(Entities.DISCUSS_POST.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("owner_id",contextParentKey);
         if(Entities.IDEA.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("owner_id",contextParentKey);

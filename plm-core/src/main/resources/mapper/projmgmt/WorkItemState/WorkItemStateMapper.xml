@@ -6,8 +6,8 @@
     <resultMap id="WorkItemStateResultMap" type="cn.ibizlab.plm.core.projmgmt.domain.WorkItemState" autoMapping="true">
 		<id property="id" column="id" /><!--主键字段映射-->
 		<result property="createMan" column="create_man" />
-		<result property="updateMan" column="update_man" />
 		<result property="createTime" column="create_time" />
+		<result property="updateMan" column="update_man" />
 		<result property="updateTime" column="update_time" />
 		<result property="workItemTypeId" column="work_item_type_id" />
         <association property="workItemType" javaType="cn.ibizlab.plm.core.projmgmt.domain.WorkItemType" column="work_item_type_id" select="cn.ibizlab.plm.core.projmgmt.mapper.WorkItemTypeMapper.selectById" fetchType="lazy"></association>

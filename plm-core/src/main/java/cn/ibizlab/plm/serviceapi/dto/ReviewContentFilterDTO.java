@@ -43,7 +43,7 @@ public class ReviewContentFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_target_id_eq")
     @JSONField(name = "n_target_id_eq")
-    @ApiModelProperty(value = "关联目标标识EQ", position = 70)
+    @ApiModelProperty(value = "关联目标标识EQ", position = 80)
 	private String targetIdEQ;
 
     /**
@@ -51,7 +51,7 @@ public class ReviewContentFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_target_version_id_eq")
     @JSONField(name = "n_target_version_id_eq")
-    @ApiModelProperty(value = "目标对象版本标识EQ", position = 80)
+    @ApiModelProperty(value = "目标对象版本标识EQ", position = 90)
 	private String targetVersionIdEQ;
 
     /**
@@ -59,7 +59,7 @@ public class ReviewContentFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 260)
+    @ApiModelProperty(value = "标识EQ", position = 200)
 	private String idEQ;
 
 

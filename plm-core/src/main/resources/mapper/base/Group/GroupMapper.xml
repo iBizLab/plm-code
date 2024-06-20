@@ -5,10 +5,10 @@
         <!--通过mybatis将查询结果注入到entity中,通过配置autoMapping="true"由mybatis自动处理映射关系 -->
     <resultMap id="GroupResultMap" type="cn.ibizlab.plm.core.base.domain.Group" autoMapping="true">
 		<id property="id" column="id" /><!--主键字段映射-->
-		<result property="updateTime" column="update_time" />
+		<result property="createMan" column="create_man" />
 		<result property="createTime" column="create_time" />
 		<result property="updateMan" column="update_man" />
-		<result property="createMan" column="create_man" />
+		<result property="updateTime" column="update_time" />
 		<result property="sectionId" column="section_id" />
 		<result property="sectionName" column="section_name" />
         <association property="section" javaType="cn.ibizlab.plm.core.base.domain.Section" column="section_id" select="cn.ibizlab.plm.core.base.mapper.SectionMapper.selectById" fetchType="lazy"></association>
@@ -91,6 +91,27 @@
         select t1.*
         from (
             <include refid="noSection"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchReader"  parameterType="cn.ibizlab.plm.core.base.filter.GroupSearchContext"  resultMap="GroupResultMap">
+        select t1.* 
+        from (
+            <include refid="default"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listReader"  parameterType="cn.ibizlab.plm.core.base.filter.GroupSearchContext"  resultMap="GroupResultMap">
+        select t1.*
+        from (
+            <include refid="default"/>
         ) t1
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>

@@ -62,6 +62,25 @@ public interface SectionMapper extends BaseMapper<Section> {
     List<Section> listThisProductSection(@Param("ctx") SectionSearchContext context, @Param("ew") Wrapper<Section> wrapper);
 
     /**
+     * 数据集合check_name分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Section> searchCheckName(IPage<Section> page, @Param("ctx") SectionSearchContext context, @Param("ew") Wrapper<Section> wrapper);
+    
+    /**
+     * 数据集合check_name查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Section> listCheckName(@Param("ctx") SectionSearchContext context, @Param("ew") Wrapper<Section> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -170,5 +189,4 @@ public interface SectionMapper extends BaseMapper<Section> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
 }

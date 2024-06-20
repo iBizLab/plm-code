@@ -38,36 +38,12 @@ import cn.ibizlab.plm.core.prodmgmt.domain.ProductTicketType;
 public class ProductTicketTypeSearchContext extends QueryWrapperContext<ProductTicketType> {
 
     /**
-     * 名称LIKE
-     */
-    @JsonProperty("n_name_like")
-    @JSONField(name = "n_name_like")
-    @ApiModelProperty("名称LIKE")
-    private String nameLIKE;
-
-    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
     @ApiModelProperty("标识EQ")
     private String idEQ;
-
-    /**
-     * 工单类型标识EQ
-     */
-    @JsonProperty("n_ticket_type_id_eq")
-    @JSONField(name = "n_ticket_type_id_eq")
-    @ApiModelProperty("工单类型标识EQ")
-    private String ticketTypeIdEQ;
-
-    /**
-     * 产品标识EQ
-     */
-    @JsonProperty("n_product_id_eq")
-    @JSONField(name = "n_product_id_eq")
-    @ApiModelProperty("产品标识EQ")
-    private String productIdEQ;
 
     /**
      * 名称EQ
@@ -84,6 +60,30 @@ public class ProductTicketTypeSearchContext extends QueryWrapperContext<ProductT
     @JSONField(name = "n_ticket_type_name_like")
     @ApiModelProperty("名称LIKE")
     private String ticketTypeNameLIKE;
+
+    /**
+     * 名称LIKE
+     */
+    @JsonProperty("n_name_like")
+    @JSONField(name = "n_name_like")
+    @ApiModelProperty("名称LIKE")
+    private String nameLIKE;
+
+    /**
+     * 工单类型标识EQ
+     */
+    @JsonProperty("n_ticket_type_id_eq")
+    @JSONField(name = "n_ticket_type_id_eq")
+    @ApiModelProperty("工单类型标识EQ")
+    private String ticketTypeIdEQ;
+
+    /**
+     * 产品标识EQ
+     */
+    @JsonProperty("n_product_id_eq")
+    @JSONField(name = "n_product_id_eq")
+    @ApiModelProperty("产品标识EQ")
+    private String productIdEQ;
 
     @Override
     public void setContextParentKey(Serializable contextParentKey) {

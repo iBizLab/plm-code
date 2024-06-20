@@ -150,6 +150,12 @@ export default {
                 panelItems: [
                   {
                     rawItem: {
+                      rawItemParams: [
+                        {
+                          key: 'EXPCACHE',
+                          value: 'NO_CACHE',
+                        },
+                      ],
                       predefinedType: 'NAV_POS',
                       id: 'nav_pos',
                     },

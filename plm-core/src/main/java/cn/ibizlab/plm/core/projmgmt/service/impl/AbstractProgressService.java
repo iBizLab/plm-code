@@ -41,33 +41,6 @@ public abstract class AbstractProgressService extends ServiceImpl<ProgressMapper
 
     protected int batchSize = 500;
 
-    public Progress get(Progress et) {
-        Progress rt = this.baseMapper.selectEntity(et);
-        if(rt == null)
-            throw new NotFoundException("数据不存在",Entities.PROGRESS.toString(),et.getId());
-        rt.copyTo(et,true);
-        return et;
-    }
-
-    public List<Progress> getByEntities(List<Progress> entities) {
-        return this.baseMapper.selectEntities(entities);
-    }
-
-    public void fillParentData(Progress et) {
-        if(Entities.PROJECT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
-            et.setProjectId((String)et.getContextParentKey());
-        }
-    }
-
-    public Progress getDraft(Progress et) {
-        fillParentData(et);
-        return et;
-    }
-
-    public Integer checkKey(Progress et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Progress>lambdaQuery().eq(Progress::getId, et.getId()))>0)?1:0;
-    }
-
     @Override
     @Transactional
     public boolean create(Progress et) {
@@ -77,14 +50,14 @@ public abstract class AbstractProgressService extends ServiceImpl<ProgressMapper
         get(et);
         return true;
     }
-
+	
     @Transactional
-    public boolean createBatch(List<Progress> list) {
+    public boolean create(List<Progress> list) {
         list.forEach(this::fillParentData);
         this.saveBatch(list, batchSize);
         return true;
     }
-
+	
     @Transactional
     public boolean update(Progress et) {
         UpdateWrapper<Progress> qw = et.getUpdateWrapper(true);
@@ -96,11 +69,44 @@ public abstract class AbstractProgressService extends ServiceImpl<ProgressMapper
     }
 
     @Transactional
-    public boolean updateBatch(List<Progress> list) {
+    public boolean update(List<Progress> list) {
         updateBatchById(list, batchSize);
         return true;
     }
+	
+   @Transactional
+    public boolean remove(Progress et) {
+        if(!remove(Wrappers.<Progress>lambdaQuery().eq(Progress::getId, et.getId())))
+            return false;
+        return true;
+    }
 
+    @Transactional
+    public boolean remove(List<Progress> entities) {
+        this.baseMapper.deleteEntities(entities);
+        return true;
+    }		
+    public Progress get(Progress et) {
+        Progress rt = this.baseMapper.selectEntity(et);
+        if(rt == null)
+            throw new NotFoundException("数据不存在",Entities.PROGRESS.toString(),et.getId());
+        rt.copyTo(et,true);
+        return et;
+    }	
+
+    public List<Progress> get(List<Progress> entities) {
+        return this.baseMapper.selectEntities(entities);
+    }	
+	
+    public Progress getDraft(Progress et) {
+        fillParentData(et);
+        return et;
+    }
+	
+    public Integer checkKey(Progress et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Progress>lambdaQuery().eq(Progress::getId, et.getId()))>0)?1:0;
+    }
+	
     @Override
     @Transactional
     public boolean save(Progress et) {
@@ -111,10 +117,10 @@ public abstract class AbstractProgressService extends ServiceImpl<ProgressMapper
     }
 
     @Transactional
-    public boolean saveBatch(List<Progress> list) {
+    public boolean save(List<Progress> list) {
         if(ObjectUtils.isEmpty(list))
             return true;
-        Map<String,Progress> before = getByEntities(list).stream().collect(Collectors.toMap(Progress::getId,e->e));
+        Map<String,Progress> before = get(list).stream().collect(Collectors.toMap(Progress::getId,e->e));
         List<Progress> create = new ArrayList<>();
         List<Progress> update = new ArrayList<>();
         list.forEach(sub->{
@@ -125,52 +131,40 @@ public abstract class AbstractProgressService extends ServiceImpl<ProgressMapper
         });
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
         else
             return true;
     }
-
-    @Transactional
-    public boolean remove(Progress et) {
-        if(!remove(Wrappers.<Progress>lambdaQuery().eq(Progress::getId, et.getId())))
-            return false;
-        return true;
-    }
-
-    @Transactional
-    public boolean removeByEntities(List<Progress> entities) {
-        this.baseMapper.deleteEntities(entities);
-        return true;
-    }
-
-    public Page<Progress> searchDefault(ProgressSearchContext context) {
+	
+   public Page<Progress> fetchDefault(ProgressSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Progress> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<Progress> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-    public List<Progress> listDefault(ProgressSearchContext context) {
+   public List<Progress> listDefault(ProgressSearchContext context) {
         List<Progress> list = baseMapper.listDefault(context,context.getSelectCond());
         return list;
-    }
-
-    public List<Progress> findByProjectId(List<String> projectIds) {
+   }
+	
+	public List<Progress> findByProjectId(List<String> projectIds){
         List<Progress> list = baseMapper.findByProjectId(projectIds);
-        return list;
-    }
-    public boolean removeByProjectId(String projectId) {
+        return list;	
+	}
+
+	public boolean removeByProjectId(String projectId){
         return this.remove(Wrappers.<Progress>lambdaQuery().eq(Progress::getProjectId,projectId));
-    }
+	}
 
-    public boolean resetByProjectId(String projectId) {
-        return this.update(Wrappers.<Progress>lambdaUpdate().eq(Progress::getProjectId,projectId));
-    }
-
-    public boolean saveByProject(Project project,List<Progress> list) {
+	public boolean resetByProjectId(String projectId){
+		return this.update(Wrappers.<Progress>lambdaUpdate().eq(Progress::getProjectId,projectId));
+	}
+	public boolean saveByProject(Project project, List<Progress> list){
         if(list==null)
             return true;
         Map<String,Progress> before = findByProjectId(project.getId()).stream().collect(Collectors.toMap(Progress::getId,e->e));
+
         List<Progress> update = new ArrayList<>();
         List<Progress> create = new ArrayList<>();
 
@@ -186,18 +180,21 @@ public abstract class AbstractProgressService extends ServiceImpl<ProgressMapper
         }
         if(!update.isEmpty())
             update.forEach(item->this.getSelf().update(item));
-        if(!create.isEmpty() && !getSelf().createBatch(create))
+        if(!create.isEmpty() && !getSelf().create(create))
             return false;
-        else if(!before.isEmpty() && !getSelf().removeBatch(before.keySet()))
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
             return false;
         else
             return true;
+			
+	}
+
+    public void fillParentData(Progress et) {
+        if(Entities.PROJECT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setProjectId((String)et.getContextParentKey());
+        }
     }
 
-    @Override
-    public List<JSONObject> select(String sql, Map param){
-        return this.baseMapper.selectBySQL(sql,param);
-    }
 
     @Override
     @Transactional
@@ -217,8 +214,8 @@ public abstract class AbstractProgressService extends ServiceImpl<ProgressMapper
         log.warn("暂未支持的SQL语法");
         return true;
     }
-
-    @Override
+	
+	@Override
     protected Class currentMapperClass() {
         return ProgressMapper.class;
     }
@@ -227,4 +224,5 @@ public abstract class AbstractProgressService extends ServiceImpl<ProgressMapper
     protected Class currentModelClass() {
         return Progress.class;
     }
+
 }

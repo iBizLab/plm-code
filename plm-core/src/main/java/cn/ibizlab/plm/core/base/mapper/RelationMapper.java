@@ -499,6 +499,30 @@ public interface RelationMapper extends BaseMapper<Relation> {
     List<Relation> listWorkItemVersionRelation(@Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
 
     /**
+    * 根据principalId查询
+    *
+    * @param principalIds
+    * @return
+    */
+    List<Relation> findByPrincipalId(@Param("principalIds") List<String> principalIds);
+
+    /**
+    * 根据id查询
+    *
+    * @param ids
+    * @return
+    */
+    List<Relation> findById(@Param("ids") List<String> ids);
+
+    /**
+    * 根据targetId查询
+    *
+    * @param targetIds
+    * @return
+    */
+    List<Relation> findByTargetId(@Param("targetIds") List<String> targetIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -607,29 +631,4 @@ public interface RelationMapper extends BaseMapper<Relation> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据principalId查询
-     *
-     * @param principalIds
-     * @return
-     */
-    List<Relation> findByPrincipalId(@Param("principalIds") List<String> principalIds);
-
-    /**
-     * 根据id查询
-     *
-     * @param ids
-     * @return
-     */
-    List<Relation> findById(@Param("ids") List<String> ids);
-
-    /**
-     * 根据targetId查询
-     *
-     * @param targetIds
-     * @return
-     */
-    List<Relation> findByTargetId(@Param("targetIds") List<String> targetIds);
-
 }

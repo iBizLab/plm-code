@@ -26,6 +26,7 @@ import cn.ibizlab.plm.core.wiki.domain.ArticlePage;
 import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
 import cn.ibizlab.plm.core.prodmgmt.domain.BaselineIdea;
+import cn.ibizlab.plm.core.wiki.domain.BaselinePage;
 import cn.ibizlab.plm.core.testmgmt.domain.BaselineTestCase;
 import cn.ibizlab.plm.core.projmgmt.domain.BaselineWorkItem;
 import cn.ibizlab.plm.core.testmgmt.domain.ReviewContent;
@@ -46,181 +47,181 @@ public class Version extends EntityMP implements Serializable
 {
 
     /**
-     * 描述
-     */
+    * 描述
+    */
     @TableField(value = "description")
     @DEField(name = "description")
-    @JsonProperty("description")
     @JSONField(name = "description")
+    @JsonProperty("description")
     @ApiModelProperty(value = "description", notes = "描述")
     private String description;
 
     /**
-     * 所属数据标识
-     */
+    * 所属数据标识
+    */
     @TableField(value = "owner_id")
     @DEField(name = "owner_id" , preType = DEPredefinedFieldType.PARENTID)
-    @JsonProperty("owner_id")
     @JSONField(name = "owner_id")
+    @JsonProperty("owner_id")
     @ApiModelProperty(value = "owner_id", notes = "所属数据标识")
     private String ownerId;
 
     /**
-     * 所属数据对象
-     */
+    * 所属数据对象
+    */
     @TableField(value = "owner_type")
     @DEField(name = "owner_type" , preType = DEPredefinedFieldType.PARENTTYPE)
-    @JsonProperty("owner_type")
     @JSONField(name = "owner_type")
+    @JsonProperty("owner_type")
     @ApiModelProperty(value = "owner_type", notes = "所属数据对象")
     private String ownerType;
 
     /**
-     * 版本
-     */
+    * 版本
+    */
     @TableField(value = "identifier")
     @DEField(name = "identifier")
-    @JsonProperty("identifier")
     @JSONField(name = "identifier")
+    @JsonProperty("identifier")
     @ApiModelProperty(value = "identifier", notes = "版本")
     private BigDecimal identifier;
 
     /**
-     * 数据
-     */
+    * 数据
+    */
     @TableField(value = "data")
     @DEField(name = "data")
-    @JsonProperty("data")
     @JSONField(name = "data")
+    @JsonProperty("data")
     @ApiModelProperty(value = "data", notes = "数据")
     private String data;
 
     /**
-     * 支持恢复
-     */
+    * 支持恢复
+    */
     @TableField(value = "restorable")
     @DEField(name = "restorable")
-    @JsonProperty("restorable")
     @JSONField(name = "restorable")
+    @JsonProperty("restorable")
     @ApiModelProperty(value = "restorable", notes = "支持恢复")
     private String restorable;
 
     /**
-     * 手动提交
-     */
+    * 手动提交
+    */
     @TableField(value = "manual")
     @DEField(name = "manual" , defaultValue = "0" , dict = "YesNo")
-    @JsonProperty("manual")
     @JSONField(name = "manual")
+    @JsonProperty("manual")
     @ApiModelProperty(value = "manual", notes = "手动提交")
     private Integer manual;
 
     /**
-     * 名称
-     */
-    @TableField(value = "name")
-    @DEField(name = "name")
-    @JsonProperty("name")
-    @JSONField(name = "name")
-    @ApiModelProperty(value = "name", notes = "名称")
-    private String name;
-
-    /**
-     * 建立人
-     */
-    @TableField(value = "create_man" , fill = FieldFill.INSERT)
-    @DEField(name = "create_man" , preType = DEPredefinedFieldType.CREATEMAN , dict = "SysOperator")
-    @JsonProperty("create_man")
-    @JSONField(name = "create_man")
-    @ApiModelProperty(value = "create_man", notes = "建立人")
-    private String createMan;
-
-    /**
-     * 建立时间
-     */
-    @TableField(value = "create_time" , fill = FieldFill.INSERT)
-    @DEField(name = "create_time" , preType = DEPredefinedFieldType.CREATEDATE)
-    @JsonProperty("create_time")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "create_time", notes = "建立时间")
-    private Date createTime;
-
-    /**
-     * 标识
-     */
+    * 标识
+    */
     @Id
     @TableId(value = "id" , type = IdType.ASSIGN_UUID)
     @DEField(name = "id" , isKeyField = true)
-    @JsonProperty("id")
     @JSONField(name = "id")
+    @JsonProperty("id")
     @ApiModelProperty(value = "id", notes = "标识")
     private String id;
 
     /**
-     * 更新时间
-     */
-    @TableField(value = "update_time")
-    @DEField(name = "update_time" , preType = DEPredefinedFieldType.UPDATEDATE)
-    @JsonProperty("update_time")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "update_time", notes = "更新时间")
-    private Date updateTime;
+    * 名称
+    */
+    @TableField(value = "name")
+    @DEField(name = "name")
+    @JSONField(name = "name")
+    @JsonProperty("name")
+    @ApiModelProperty(value = "name", notes = "名称")
+    private String name;
 
     /**
-     * 更新人
-     */
+    * 建立人
+    */
+    @TableField(value = "create_man" , fill = FieldFill.INSERT)
+    @DEField(name = "create_man" , preType = DEPredefinedFieldType.CREATEMAN , dict = "SysOperator")
+    @JSONField(name = "create_man")
+    @JsonProperty("create_man")
+    @ApiModelProperty(value = "create_man", notes = "建立人")
+    private String createMan;
+
+    /**
+    * 建立时间
+    */
+    @TableField(value = "create_time" , fill = FieldFill.INSERT)
+    @DEField(name = "create_time" , preType = DEPredefinedFieldType.CREATEDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("create_time")
+    @ApiModelProperty(value = "create_time", notes = "建立时间")
+    private Date createTime;
+
+    /**
+    * 更新人
+    */
     @TableField(value = "update_man")
     @DEField(name = "update_man" , preType = DEPredefinedFieldType.UPDATEMAN , dict = "SysOperator")
-    @JsonProperty("update_man")
     @JSONField(name = "update_man")
+    @JsonProperty("update_man")
     @ApiModelProperty(value = "update_man", notes = "更新人")
     private String updateMan;
 
     /**
-     * 需求
-     */
+    * 更新时间
+    */
+    @TableField(value = "update_time")
+    @DEField(name = "update_time" , preType = DEPredefinedFieldType.UPDATEDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("update_time")
+    @ApiModelProperty(value = "update_time", notes = "更新时间")
+    private Date updateTime;
+
+    /**
+    * 需求-版本
+    */
+    @Transient
+    @TableField(exist = false)
     @JsonIgnore
     @JSONField(serialize = false)
-    @TableField(exist = false)
-    @Transient
     @ApiModelProperty(value = "idea", notes = "需求-版本")
     private Idea idea;
 
     /**
-     * 页面
-     */
+    * 页面-版本
+    */
+    @Transient
+    @TableField(exist = false)
     @JsonIgnore
     @JSONField(serialize = false)
-    @TableField(exist = false)
-    @Transient
     @ApiModelProperty(value = "page", notes = "页面-版本")
     private ArticlePage page;
 
     /**
-     * 用例
-     */
+    * 测试用例-版本
+    */
+    @Transient
+    @TableField(exist = false)
     @JsonIgnore
     @JSONField(serialize = false)
-    @TableField(exist = false)
-    @Transient
     @ApiModelProperty(value = "test_case", notes = "测试用例-版本")
     private TestCase testCase;
 
     /**
-     * 工作项
-     */
+    * 工作项-版本
+    */
+    @Transient
+    @TableField(exist = false)
     @JsonIgnore
     @JSONField(serialize = false)
-    @TableField(exist = false)
-    @Transient
     @ApiModelProperty(value = "work_item", notes = "工作项-版本")
     private WorkItem workItem;
 
     /**
-     * 设置 [描述]
-     */
+    * 设置 [描述]
+    */
     public Version setDescription(String description) {
         this.description = description;
         this.modify("description", description);
@@ -228,8 +229,8 @@ public class Version extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [版本]
-     */
+    * 设置 [版本]
+    */
     public Version setIdentifier(BigDecimal identifier) {
         this.identifier = identifier;
         this.modify("identifier", identifier);
@@ -237,8 +238,8 @@ public class Version extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [数据]
-     */
+    * 设置 [数据]
+    */
     public Version setData(String data) {
         this.data = data;
         this.modify("data", data);
@@ -246,8 +247,8 @@ public class Version extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [支持恢复]
-     */
+    * 设置 [支持恢复]
+    */
     public Version setRestorable(String restorable) {
         this.restorable = restorable;
         this.modify("restorable", restorable);
@@ -255,8 +256,8 @@ public class Version extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [手动提交]
-     */
+    * 设置 [手动提交]
+    */
     public Version setManual(Integer manual) {
         this.manual = manual;
         this.modify("manual", manual);
@@ -264,13 +265,14 @@ public class Version extends EntityMP implements Serializable
     }
 
     /**
-     * 设置 [名称]
-     */
+    * 设置 [名称]
+    */
     public Version setName(String name) {
         this.name = name;
         this.modify("name", name);
         return this;
     }
+
 
     /**
      * 复制当前对象数据到目标对象(粘贴重置)

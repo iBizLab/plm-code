@@ -1,0 +1,107 @@
+export default {
+  openMode: 'POPOVER',
+  deviewCodeName: 'quick_create_view',
+  deviewId: '832DC9B6-3C3D-435C-8F55-E564944CA4C4',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.WORKSPACE',
+  },
+  caption: '快速建立',
+  codeName: 'workspace_quick_create_view',
+  height: 500,
+  appDataEntityId: 'plmweb.workspace',
+  appViewParams: [
+    {
+      key: 'MODALOPTION',
+      value: '{"placement":"right-start"}',
+      name: 'MODALOPTION',
+      id: 'modaloption',
+    },
+  ],
+  sysCss: {
+    cssName: 'user-info-view-content',
+  },
+  viewLayoutPanel: {
+    viewProxyMode: true,
+    layoutMode: 'FLEX',
+    layout: {
+      layout: 'FLEX',
+    },
+    rootPanelItems: [
+      {
+        actionGroupExtractMode: 'ITEM',
+        panelItems: [
+          {
+            actionType: 'UIACTION',
+            buttonStyle: 'DEFAULT',
+            buttonType: 'PANELBUTTON',
+            uiactionId: 'new_scrum_bug@work_item',
+            renderMode: 'LINK',
+            tooltip: '工作项',
+            uiactionTarget: 'NONE',
+            caption: '工作项',
+            itemStyle: 'DEFAULT',
+            itemType: 'BUTTON',
+            layoutPos: {
+              shrink: 1,
+              layout: 'FLEX',
+            },
+            sysImage: {
+              rawContent:
+                '<?xml version="1.0" encoding="UTF-8"?>\n<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\n    <title>工作项</title>\n    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">\n        <g id="产品生命周期管理系统" transform="translate(-836, -547)" fill-rule="nonzero">\n            <g id="工作项" transform="translate(836, 547)">\n                <rect id="矩形" fill="#000000" opacity="0" x="0" y="0" width="18" height="18"></rect>\n                <path d="M15.0222656,5.07304688 L11.2394531,1.29023438 C11.1339844,1.18476563 10.9916016,1.125 10.8421875,1.125 L3.375,1.125 C3.06386719,1.125 2.8125,1.37636719 2.8125,1.6875 L2.8125,16.3125 C2.8125,16.6236328 3.06386719,16.875 3.375,16.875 L14.625,16.875 C14.9361328,16.875 15.1875,16.6236328 15.1875,16.3125 L15.1875,5.47207031 C15.1875,5.32265625 15.1277344,5.17851563 15.0222656,5.07304688 Z M11.7046165,8.55 C11.851812,8.55 11.9440255,8.70762096 11.8500315,8.82244978 L9.01460931,12.2659698 C8.81360846,12.5113434 8.40347753,12.5113434 8.20259192,12.2661101 L6.52483049,10.2280526 C6.4309745,10.1133919 6.52318804,9.95577089 6.67038346,9.95577089 L7.30185051,9.95577089 C7.46181297,9.95577089 7.61269089,10.0238963 7.70848832,10.1399721 L8.6085,11.23425 L10.6663051,8.73445337 C10.7454613,8.63738596 10.8640657,8.57400495 10.9940314,8.55557426 L11.0731495,8.55 L11.7046165,8.55 Z M13.8902344,5.73046875 L10.5820312,5.73046875 L10.5820312,2.42226562 L13.8902344,5.73046875 Z M13.921875,15.609375 L4.078125,15.609375 L4.078125,2.390625 L9.38671875,2.390625 L9.38671875,6.1875 C9.38671875,6.5953125 9.7171875,6.92578125 10.125,6.92578125 L13.921875,6.92578125 L13.921875,15.609375 Z" id="形状" fill="#56AAFC"></path>\n            </g>\n        </g>\n    </g>\n</svg>',
+            },
+            showCaption: true,
+            id: 'button_link',
+          },
+        ],
+        layout: {
+          dir: 'column',
+          layout: 'FLEX',
+        },
+        dataRegionType: 'INHERIT',
+        itemStyle: 'DEFAULT',
+        itemType: 'CONTAINER',
+        layoutPos: {
+          shrink: 1,
+          halignSelf: 'LEFT',
+          layout: 'FLEX',
+        },
+        id: 'page_container',
+      },
+    ],
+    layoutPanel: true,
+    controls: [
+      {
+        capLanguageRes: {
+          lanResTag: 'DE.LNAME.WORKSPACE',
+        },
+        caption: '快速建立',
+        codeName: 'quick_create_view_captionbar',
+        controlType: 'CAPTIONBAR',
+        appDataEntityId: 'plmweb.workspace',
+        controlParam: {},
+        name: 'captionbar',
+        id: 'quick_create_view_captionbar',
+      },
+    ],
+    codeName: 'usr0521734294',
+    controlType: 'VIEWLAYOUTPANEL',
+    logicName: '快速建立布局面板',
+    appDataEntityId: 'plmweb.workspace',
+    controlParam: {},
+    modelId: 'CF65416D-C371-4A6E-9650-CE9A85C313A9',
+    modelType: 'PSSYSVIEWLAYOUTPANEL',
+    name: 'layoutpanel',
+    id: 'usr0521734294',
+  },
+  title: '快速建立',
+  viewStyle: 'DEFAULT',
+  viewType: 'DECUSTOMVIEW',
+  width: 200,
+  enableDP: true,
+  showCaptionBar: false,
+  modelId: '4cec0c88c38637dc35ae8c99571fc708',
+  modelType: 'PSAPPDEVIEW',
+  name: 'workspacequick_create_view',
+  id: 'plmweb.workspace_quick_create_view',
+};

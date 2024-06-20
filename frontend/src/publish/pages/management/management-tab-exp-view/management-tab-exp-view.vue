@@ -6,7 +6,7 @@
     :model-data="model"
   >
     <template #tabexppanel="slotProps">
-      <i-biz-dr-tab-control v-bind="slotProps" />
+      <i-biz-control-shell v-bind="slotProps" />
     </template>
   </i-biz-view>
 </template>

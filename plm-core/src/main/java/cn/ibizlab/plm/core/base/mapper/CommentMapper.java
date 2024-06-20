@@ -43,6 +43,22 @@ public interface CommentMapper extends BaseMapper<Comment> {
     List<Comment> listDefault(@Param("ctx") CommentSearchContext context, @Param("ew") Wrapper<Comment> wrapper);
 
     /**
+    * 根据pid查询
+    *
+    * @param pids
+    * @return
+    */
+    List<Comment> findByPid(@Param("pids") List<String> pids);
+
+    /**
+    * 根据principalId查询
+    *
+    * @param principalIds
+    * @return
+    */
+    List<Comment> findByPrincipalId(@Param("principalIds") List<String> principalIds);
+
+    /**
      * 主键查询
      *
      * @param 
@@ -151,21 +167,4 @@ public interface CommentMapper extends BaseMapper<Comment> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
-    /**
-     * 根据pid查询
-     *
-     * @param pids
-     * @return
-     */
-    List<Comment> findByPid(@Param("pids") List<String> pids);
-
-    /**
-     * 根据principalId查询
-     *
-     * @param principalIds
-     * @return
-     */
-    List<Comment> findByPrincipalId(@Param("principalIds") List<String> principalIds);
-
 }

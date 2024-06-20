@@ -119,6 +119,25 @@ public interface LibraryMapper extends BaseMapper<Library> {
     List<Library> listFavorite(@Param("ctx") LibrarySearchContext context, @Param("ew") Wrapper<Library> wrapper);
 
     /**
+     * 数据集合main分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Library> searchMain(IPage<Library> page, @Param("ctx") LibrarySearchContext context, @Param("ew") Wrapper<Library> wrapper);
+    
+    /**
+     * 数据集合main查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Library> listMain(@Param("ctx") LibrarySearchContext context, @Param("ew") Wrapper<Library> wrapper);
+
+    /**
      * 数据集合normal分页查询
      * 
      * @param page
@@ -155,6 +174,25 @@ public interface LibraryMapper extends BaseMapper<Library> {
      * @return
      */
     List<Library> listProjectRelationLibrary(@Param("ctx") LibrarySearchContext context, @Param("ew") Wrapper<Library> wrapper);
+
+    /**
+     * 数据集合quick_user分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Library> searchQuickUser(IPage<Library> page, @Param("ctx") LibrarySearchContext context, @Param("ew") Wrapper<Library> wrapper);
+    
+    /**
+     * 数据集合quick_user查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Library> listQuickUser(@Param("ctx") LibrarySearchContext context, @Param("ew") Wrapper<Library> wrapper);
 
     /**
      * 数据集合reader分页查询
@@ -303,5 +341,4 @@ public interface LibraryMapper extends BaseMapper<Library> {
      */
     @Delete("${sql}")
     boolean deleteBySQL(@Param("sql") String sql, @Param("et")Map<String,Object> param);
-
 }
