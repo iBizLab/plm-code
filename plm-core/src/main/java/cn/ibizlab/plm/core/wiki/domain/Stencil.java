@@ -71,7 +71,6 @@ public class Stencil extends EntityMP implements Serializable
     /**
     * 附件
     */
-    @Transient
     @TableField(exist = false)
     @DEField(name = "attachments")
     @JSONField(name = "attachments")

@@ -3,14 +3,14 @@ export default {
   codeListType: 'STATIC',
   codeName: 'TestMgmt__test_case_state',
   emptyText: '未定义',
-  appDataEntityId: 'plmweb.test_case',
+  appDataEntityId: 'plmweb.review',
   codeItems: [
     {
       codeName: 'item_10',
       sysCss: {
         cssName: 'blue-span',
       },
-      text: '待评审',
+      text: '待提交',
       textCls: 'blue-span',
       value: '10',
       id: 'item_10',
@@ -54,6 +54,16 @@ export default {
       textCls: 'grey-span',
       value: '50',
       id: 'item_50',
+    },
+    {
+      codeName: 'item_60',
+      sysCss: {
+        cssName: 'green-span',
+      },
+      text: '已完成',
+      textCls: 'green-span',
+      value: '60',
+      id: 'item_60',
     },
   ],
   enableCache: true,

@@ -68,6 +68,12 @@ export default {
           id: 'expitem:node_5',
         },
         {
+          realTitle: '组件设置',
+          refAppViewId: 'plmweb.addon_setting_grid_view',
+          name: 'EXPITEM:node_7',
+          id: 'expitem:node_7',
+        },
+        {
           realTitle: '空间分类树导航',
           refAppViewId: 'plmweb.space_category_tree_exp_view',
           name: 'EXPITEM:node_9',
@@ -214,9 +220,23 @@ export default {
             },
             {
               text: '空间配置',
+              navAppViewId: 'plmweb.addon_setting_grid_view',
               nodeType: 'node_7',
+              navigateParams: [
+                {
+                  key: 'n_owner_id_isnull',
+                  value: '1',
+                  rawValue: true,
+                  id: 'n_owner_id_isnull',
+                },
+                {
+                  key: 'n_owner_type_eq',
+                  value: 'space',
+                  rawValue: true,
+                  id: 'n_owner_type_eq',
+                },
+              ],
               treeNodeType: 'STATIC',
-              disableSelect: true,
               name: '空间配置',
               id: 'node_7',
             },

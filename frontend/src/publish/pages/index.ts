@@ -157,13 +157,6 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './test-plan/test-plan-project-tree-exp-view/test-plan-project-tree-exp-view.vue'
           ),
       );
-    case 'project_advanced_setting_edit_view':
-      return defineAsyncComponent(
-        () =>
-          import(
-            './project/project-advanced-setting-edit-view/project-advanced-setting-edit-view.vue'
-          ),
-      );
     case 'release_quick_create_view':
       return defineAsyncComponent(
         () =>
@@ -275,6 +268,13 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './work-item/work-item-redirect-view/work-item-redirect-view.vue'
           ),
       );
+    case 'test_plan_release_grid_view':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './test-plan/test-plan-release-grid-view/test-plan-release-grid-view.vue'
+          ),
+      );
     case 'project_scrum_index_view':
       return defineAsyncComponent(
         () =>
@@ -315,13 +315,6 @@ export async function getAppViewComponent(name: string): Promise<Component> {
         () =>
           import(
             './work-item/work-item-test-follow-edit-view/work-item-test-follow-edit-view.vue'
-          ),
-      );
-    case 'review_wf_dyna_edit_view':
-      return defineAsyncComponent(
-        () =>
-          import(
-            './review/review-wf-dyna-edit-view/review-wf-dyna-edit-view.vue'
           ),
       );
     case 'ticket_progress_grid_view':
@@ -423,6 +416,13 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './product/product-archived-grid-view/product-archived-grid-view.vue'
           ),
       );
+    case 'baseline_space_main_view':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './baseline/baseline-space-main-view/baseline-space-main-view.vue'
+          ),
+      );
     case 'test_plan_quick_create_view':
       return defineAsyncComponent(
         () =>
@@ -463,6 +463,13 @@ export async function getAppViewComponent(name: string): Promise<Component> {
         () =>
           import('./version/version-idea-grid-view/version-idea-grid-view.vue'),
       );
+    case 'article_page_baseline_mpick_up_grid_view':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './article-page/article-page-baseline-mpick-up-grid-view/article-page-baseline-mpick-up-grid-view.vue'
+          ),
+      );
     case 'test_case_set_state_option_view':
       return defineAsyncComponent(
         () =>
@@ -485,6 +492,13 @@ export async function getAppViewComponent(name: string): Promise<Component> {
     case 'ticket_all_grid_view':
       return defineAsyncComponent(
         () => import('./ticket/ticket-all-grid-view/ticket-all-grid-view.vue'),
+      );
+    case 'work_item_project_resource_gantt_view':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './work-item/work-item-project-resource-gantt-view/work-item-project-resource-gantt-view.vue'
+          ),
       );
     case 'project_tag_option_view':
       return defineAsyncComponent(
@@ -546,18 +560,18 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './work-item/work-item-quick-create-bug-view/work-item-quick-create-bug-view.vue'
           ),
       );
+    case 'baseline_space_update_view':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './baseline/baseline-space-update-view/baseline-space-update-view.vue'
+          ),
+      );
     case 'relation_test_case_re_bug_list_view':
       return defineAsyncComponent(
         () =>
           import(
             './relation/relation-test-case-re-bug-list-view/relation-test-case-re-bug-list-view.vue'
-          ),
-      );
-    case 'ticket_test_all_grid_view':
-      return defineAsyncComponent(
-        () =>
-          import(
-            './ticket/ticket-test-all-grid-view/ticket-test-all-grid-view.vue'
           ),
       );
     case 'workload_tab_exp_view':
@@ -591,6 +605,13 @@ export async function getAppViewComponent(name: string): Promise<Component> {
         () =>
           import(
             './work-item-state/work-item-state-grid-view/work-item-state-grid-view.vue'
+          ),
+      );
+    case 'baseline_redirect_view':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './baseline/baseline-redirect-view/baseline-redirect-view.vue'
           ),
       );
     case 'project_show_edit_view':
@@ -741,6 +762,13 @@ export async function getAppViewComponent(name: string): Promise<Component> {
       return defineAsyncComponent(
         () => import('./work-item/work-item-edit-view/work-item-edit-view.vue'),
       );
+    case 'article_page_with_version_view':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './article-page/article-page-with-version-view/article-page-with-version-view.vue'
+          ),
+      );
     case 'space_pick_up_tree_view':
       return defineAsyncComponent(
         () =>
@@ -775,6 +803,10 @@ export async function getAppViewComponent(name: string): Promise<Component> {
       return defineAsyncComponent(
         () =>
           import('./space/space-deleted-grid-view/space-deleted-grid-view.vue'),
+      );
+    case 'baseline_edit_view':
+      return defineAsyncComponent(
+        () => import('./baseline/baseline-edit-view/baseline-edit-view.vue'),
       );
     case 'discuss_topic_in_progress_grid_view':
       return defineAsyncComponent(
@@ -811,13 +843,6 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './discuss-topic/discuss-topic-tree-exp-view/discuss-topic-tree-exp-view.vue'
           ),
       );
-    case 'project_member_role_edit_view':
-      return defineAsyncComponent(
-        () =>
-          import(
-            './project-member/project-member-role-edit-view/project-member-role-edit-view.vue'
-          ),
-      );
     case 'deliverable_edit_view':
       return defineAsyncComponent(
         () =>
@@ -851,11 +876,11 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './discuss-topic/discuss-topic-index-view/discuss-topic-index-view.vue'
           ),
       );
-    case 'sys_todo_redirect_view':
+    case 'baseline_space_tree_exp_view':
       return defineAsyncComponent(
         () =>
           import(
-            './sys-todo/sys-todo-redirect-view/sys-todo-redirect-view.vue'
+            './baseline/baseline-space-tree-exp-view/baseline-space-tree-exp-view.vue'
           ),
       );
     case 'product_ticket_type_quick_create_view':
@@ -1051,17 +1076,6 @@ export async function getAppViewComponent(name: string): Promise<Component> {
       return defineAsyncComponent(
         () => import('./test-case/test-case-main-view/test-case-main-view.vue'),
       );
-    case 'recent_his_tab_exp_view':
-      return defineAsyncComponent(
-        () =>
-          import(
-            './recent/recent-his-tab-exp-view/recent-his-tab-exp-view.vue'
-          ),
-      );
-    case 'addon_setting_view':
-      return defineAsyncComponent(
-        () => import('./addon/addon-setting-view/addon-setting-view.vue'),
-      );
     case 'baseline_library_main_view':
       return defineAsyncComponent(
         () =>
@@ -1209,11 +1223,11 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './work-item/work-item-backlog-age-report-report-view/work-item-backlog-age-report-report-view.vue'
           ),
       );
-    case 'project_member_config_grid_view':
+    case 'addon_library_setting_grid_view':
       return defineAsyncComponent(
         () =>
           import(
-            './project-member/project-member-config-grid-view/project-member-config-grid-view.vue'
+            './addon/addon-library-setting-grid-view/addon-library-setting-grid-view.vue'
           ),
       );
     case 'insight_view_config_tree_exp_view':
@@ -1238,11 +1252,11 @@ export async function getAppViewComponent(name: string): Promise<Component> {
       return defineAsyncComponent(
         () => import('./idea/idea-edit-view/idea-edit-view.vue'),
       );
-    case 'review_content_wf_grid_view':
+    case 'review_content_grid_view_all':
       return defineAsyncComponent(
         () =>
           import(
-            './review-content/review-content-wf-grid-view/review-content-wf-grid-view.vue'
+            './review-content/review-content-grid-view-all/review-content-grid-view-all.vue'
           ),
       );
     case 'workload_management_work_type_grid_view':
@@ -1252,15 +1266,18 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './workload/workload-management-work-type-grid-view/workload-management-work-type-grid-view.vue'
           ),
       );
-    case 'parameter_grid_view':
-      return defineAsyncComponent(
-        () => import('./parameter/parameter-grid-view/parameter-grid-view.vue'),
-      );
-    case 'space_product_re_space_choose_option_view':
+    case 'work_item_project_set_resource_gantt_view':
       return defineAsyncComponent(
         () =>
           import(
-            './space/space-product-re-space-choose-option-view/space-product-re-space-choose-option-view.vue'
+            './work-item/work-item-project-set-resource-gantt-view/work-item-project-set-resource-gantt-view.vue'
+          ),
+      );
+    case 'space_choose_option_view':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './space/space-choose-option-view/space-choose-option-view.vue'
           ),
       );
     case 'test_case_template_all_grid_view':
@@ -1275,6 +1292,13 @@ export async function getAppViewComponent(name: string): Promise<Component> {
         () =>
           import(
             './psde-logic/template-flow-data-view/template-flow-data-view.vue'
+          ),
+      );
+    case 'article_page_pick_up_tree_view':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './article-page/article-page-pick-up-tree-view/article-page-pick-up-tree-view.vue'
           ),
       );
     case 'run_all_grid_view':
@@ -1638,11 +1662,11 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './workload/workload-log-grid-view/workload-log-grid-view.vue'
           ),
       );
-    case 'addon_resource_member_setting_view':
+    case 'addon_space_setting_grid_view':
       return defineAsyncComponent(
         () =>
           import(
-            './addon-resource/addon-resource-member-setting-view/addon-resource-member-setting-view.vue'
+            './addon/addon-space-setting-grid-view/addon-space-setting-grid-view.vue'
           ),
       );
     case 'test_case_baseline_mpick_up_view':
@@ -1729,13 +1753,6 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './run/run-priority-distributions-report-view/run-priority-distributions-report-view.vue'
           ),
       );
-    case 'article_page_log_list_view':
-      return defineAsyncComponent(
-        () =>
-          import(
-            './article-page/article-page-log-list-view/article-page-log-list-view.vue'
-          ),
-      );
     case 'guideline_all_grid_view':
       return defineAsyncComponent(
         () =>
@@ -1756,10 +1773,6 @@ export async function getAppViewComponent(name: string): Promise<Component> {
           import(
             './search-comment/search-comment-advanced-search-grid-view/search-comment-advanced-search-grid-view.vue'
           ),
-      );
-    case 'portfolio_grid_view':
-      return defineAsyncComponent(
-        () => import('./portfolio/portfolio-grid-view/portfolio-grid-view.vue'),
       );
     case 'baseline_idea_comparison_grid_view':
       return defineAsyncComponent(
@@ -1786,22 +1799,10 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './insight-view/insight-view-person-grid-view/insight-view-person-grid-view.vue'
           ),
       );
-    case 'ticket_test_main_view':
-      return defineAsyncComponent(
-        () =>
-          import('./ticket/ticket-test-main-view/ticket-test-main-view.vue'),
-      );
     case 'idea_recycle_grid_view':
       return defineAsyncComponent(
         () =>
           import('./idea/idea-recycle-grid-view/idea-recycle-grid-view.vue'),
-      );
-    case 'work_item_project_resource_assignment_view':
-      return defineAsyncComponent(
-        () =>
-          import(
-            './work-item/work-item-project-resource-assignment-view/work-item-project-resource-assignment-view.vue'
-          ),
       );
     case 'library_show_edit_view':
       return defineAsyncComponent(
@@ -1820,13 +1821,6 @@ export async function getAppViewComponent(name: string): Promise<Component> {
         () =>
           import(
             './project/project-baseinfo-over-view/project-baseinfo-over-view.vue'
-          ),
-      );
-    case 'review_content_result_option_view':
-      return defineAsyncComponent(
-        () =>
-          import(
-            './review-content/review-content-result-option-view/review-content-result-option-view.vue'
           ),
       );
     case 'discuss_post_my_create_grid_view':
@@ -1884,6 +1878,13 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './test-case/test-case-program-analyze-report-view/test-case-program-analyze-report-view.vue'
           ),
       );
+    case 'baseline_space_grid_view':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './baseline/baseline-space-grid-view/baseline-space-grid-view.vue'
+          ),
+      );
     case 'test_plan_my_assignee_grid_view':
       return defineAsyncComponent(
         () =>
@@ -1896,17 +1897,6 @@ export async function getAppViewComponent(name: string): Promise<Component> {
         () =>
           import(
             './workload/workload-day-type-link-grid-view/workload-day-type-link-grid-view.vue'
-          ),
-      );
-    case 'space_grid_view':
-      return defineAsyncComponent(
-        () => import('./space/space-grid-view/space-grid-view.vue'),
-      );
-    case 'dictionary_data_edit_view':
-      return defineAsyncComponent(
-        () =>
-          import(
-            './dictionary-data/dictionary-data-edit-view/dictionary-data-edit-view.vue'
           ),
       );
     case 'discuss_member_config_grid_view':
@@ -2016,13 +2006,6 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './product-ticket-type/product-ticket-type-edit-view/product-ticket-type-edit-view.vue'
           ),
       );
-    case 'review_todo_all_grid_view':
-      return defineAsyncComponent(
-        () =>
-          import(
-            './review/review-todo-all-grid-view/review-todo-all-grid-view.vue'
-          ),
-      );
     case 'insight_view_create_wizard_view':
       return defineAsyncComponent(
         () =>
@@ -2127,13 +2110,6 @@ export async function getAppViewComponent(name: string): Promise<Component> {
       return defineAsyncComponent(
         () => import('./product/product-main-view/product-main-view.vue'),
       );
-    case 'portfolio_member_project_member_grid_view':
-      return defineAsyncComponent(
-        () =>
-          import(
-            './portfolio-member/portfolio-member-project-member-grid-view/portfolio-member-project-member-grid-view.vue'
-          ),
-      );
     case 'work_edit_view':
       return defineAsyncComponent(
         () => import('./work/work-edit-view/work-edit-view.vue'),
@@ -2145,11 +2121,11 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './relation/relation-work-item-re-idea-list-view/relation-work-item-re-idea-list-view.vue'
           ),
       );
-    case 'test_case_mpick_up_view':
+    case 'sprint_base_info_custom_view':
       return defineAsyncComponent(
         () =>
           import(
-            './test-case/test-case-mpick-up-view/test-case-mpick-up-view.vue'
+            './sprint/sprint-base-info-custom-view/sprint-base-info-custom-view.vue'
           ),
       );
     case 'review_pick_up_tree_view':
@@ -2158,10 +2134,6 @@ export async function getAppViewComponent(name: string): Promise<Component> {
           import(
             './review/review-pick-up-tree-view/review-pick-up-tree-view.vue'
           ),
-      );
-    case 'review_edit_view':
-      return defineAsyncComponent(
-        () => import('./review/review-edit-view/review-edit-view.vue'),
       );
     case 'test_case_move_case_option_view':
       return defineAsyncComponent(
@@ -2277,9 +2249,12 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './workload/workload-redirect-view/workload-redirect-view.vue'
           ),
       );
-    case 'parameter_edit_view':
+    case 'review_baseline_grid_view':
       return defineAsyncComponent(
-        () => import('./parameter/parameter-edit-view/parameter-edit-view.vue'),
+        () =>
+          import(
+            './review/review-baseline-grid-view/review-baseline-grid-view.vue'
+          ),
       );
     case 'space_team_grid_view':
       return defineAsyncComponent(
@@ -2357,13 +2332,6 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './library/library-base-info-edit-view/library-base-info-edit-view.vue'
           ),
       );
-    case 'ticket_config_tab_exp_view':
-      return defineAsyncComponent(
-        () =>
-          import(
-            './ticket/ticket-config-tab-exp-view/ticket-config-tab-exp-view.vue'
-          ),
-      );
     case 'dictionary_data_idea_confirm_remove_view':
       return defineAsyncComponent(
         () =>
@@ -2395,6 +2363,13 @@ export async function getAppViewComponent(name: string): Promise<Component> {
         () =>
           import(
             './category/category-pick-up-grid-view/category-pick-up-grid-view.vue'
+          ),
+      );
+    case 'baseline_space_create_view':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './baseline/baseline-space-create-view/baseline-space-create-view.vue'
           ),
       );
     case 'article_page_advanced_search_grid_view':
@@ -2434,13 +2409,16 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './baseline/baseline-product-update-view/baseline-product-update-view.vue'
           ),
       );
-    case 'product_pick_up_view':
-      return defineAsyncComponent(
-        () => import('./product/product-pick-up-view/product-pick-up-view.vue'),
-      );
     case 'test_case_edit_view':
       return defineAsyncComponent(
         () => import('./test-case/test-case-edit-view/test-case-edit-view.vue'),
+      );
+    case 'test_case_mpick_up_view_review':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './test-case/test-case-mpick-up-view-review/test-case-mpick-up-view-review.vue'
+          ),
       );
     case 'product_create_wizard_view':
       return defineAsyncComponent(
@@ -2449,11 +2427,11 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './product/product-create-wizard-view/product-create-wizard-view.vue'
           ),
       );
-    case 'work_item_work_item_testdyna':
+    case 'addon_no_name_setting_grid_view':
       return defineAsyncComponent(
         () =>
           import(
-            './work-item/work-item-work-item-testdyna/work-item-work-item-testdyna.vue'
+            './addon/addon-no-name-setting-grid-view/addon-no-name-setting-grid-view.vue'
           ),
       );
     case 'library_member_role_edit_view':
@@ -2507,6 +2485,13 @@ export async function getAppViewComponent(name: string): Promise<Component> {
         () =>
           import(
             './work-item/work-item-quick-create-view/work-item-quick-create-view.vue'
+          ),
+      );
+    case 'addon_product_setting_grid_view':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './addon/addon-product-setting-grid-view/addon-product-setting-grid-view.vue'
           ),
       );
     case 'baseline_test_case_comparison_grid_view':
@@ -2643,6 +2628,13 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './work-item/work-item-waterfall-tree-grid-view/work-item-waterfall-tree-grid-view.vue'
           ),
       );
+    case 'test_plan_sprint_grid_view':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './test-plan/test-plan-sprint-grid-view/test-plan-sprint-grid-view.vue'
+          ),
+      );
     case 'customer_tree_exp_view':
       return defineAsyncComponent(
         () =>
@@ -2755,13 +2747,6 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './version/version-test-case-grid-view/version-test-case-grid-view.vue'
           ),
       );
-    case 'product_pick_up_grid_view':
-      return defineAsyncComponent(
-        () =>
-          import(
-            './product/product-pick-up-grid-view/product-pick-up-grid-view.vue'
-          ),
-      );
     case 'workload_work_type_grid_view':
       return defineAsyncComponent(
         () =>
@@ -2804,6 +2789,13 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './article-page/article-page-my-favorite-page-grid-view/article-page-my-favorite-page-grid-view.vue'
           ),
       );
+    case 'baseline_page_edit_view':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './baseline-page/baseline-page-edit-view/baseline-page-edit-view.vue'
+          ),
+      );
     case 'work_item_kanban_backlog_property_report_view':
       return defineAsyncComponent(
         () =>
@@ -2830,13 +2822,6 @@ export async function getAppViewComponent(name: string): Promise<Component> {
         () =>
           import(
             './ticket-type/ticket-type-confirm-remove-view/ticket-type-confirm-remove-view.vue'
-          ),
-      );
-    case 'article_page_test_edit_view':
-      return defineAsyncComponent(
-        () =>
-          import(
-            './article-page/article-page-test-edit-view/article-page-test-edit-view.vue'
           ),
       );
     case 'release_tree_exp_view':
@@ -2963,6 +2948,13 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './work-item/work-item-waterfall-bug-grid-view/work-item-waterfall-bug-grid-view.vue'
           ),
       );
+    case 'test_case_not_add_pick_up_grid_view_review':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './test-case/test-case-not-add-pick-up-grid-view-review/test-case-not-add-pick-up-grid-view-review.vue'
+          ),
+      );
     case 'idea_idea_re_plan_option_view':
       return defineAsyncComponent(
         () =>
@@ -3084,13 +3076,6 @@ export async function getAppViewComponent(name: string): Promise<Component> {
       return defineAsyncComponent(
         () => import('./comment/comment-edit-view/comment-edit-view.vue'),
       );
-    case 'portfolio_member_role_edit_view':
-      return defineAsyncComponent(
-        () =>
-          import(
-            './portfolio-member/portfolio-member-role-edit-view/portfolio-member-role-edit-view.vue'
-          ),
-      );
     case 'portfolio_project_set_tab_exp_view':
       return defineAsyncComponent(
         () =>
@@ -3106,13 +3091,6 @@ export async function getAppViewComponent(name: string): Promise<Component> {
       return defineAsyncComponent(
         () =>
           import('./project/project-all-grid-view/project-all-grid-view.vue'),
-      );
-    case 'addon_resource_capacity_setting_view':
-      return defineAsyncComponent(
-        () =>
-          import(
-            './addon-resource/addon-resource-capacity-setting-view/addon-resource-capacity-setting-view.vue'
-          ),
       );
     case 'workload_type_confirm_remove_view':
       return defineAsyncComponent(
@@ -3140,6 +3118,13 @@ export async function getAppViewComponent(name: string): Promise<Component> {
         () =>
           import(
             './discuss-topic/discuss-topic-management-tab-exp-view/discuss-topic-management-tab-exp-view.vue'
+          ),
+      );
+    case 'review_test_case_grid_view':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './review/review-test-case-grid-view/review-test-case-grid-view.vue'
           ),
       );
     case 'ticket_edit_view':
@@ -3181,6 +3166,13 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './baseline/baseline-project-create-view/baseline-project-create-view.vue'
           ),
       );
+    case 'baseline_snapshot_management_gird_view':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './baseline/baseline-snapshot-management-gird-view/baseline-snapshot-management-gird-view.vue'
+          ),
+      );
     case 'portfolio_pick_up_grid_view':
       return defineAsyncComponent(
         () =>
@@ -3200,6 +3192,13 @@ export async function getAppViewComponent(name: string): Promise<Component> {
         () =>
           import(
             './relation/relation-test-case-re-work-item-grid-view/relation-test-case-re-work-item-grid-view.vue'
+          ),
+      );
+    case 'review_my_reviewed_grid_view':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './review/review-my-reviewed-grid-view/review-my-reviewed-grid-view.vue'
           ),
       );
     case 'dictionary_data_ticket_state_grid_view':
@@ -3227,25 +3226,11 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './management/management-setting-view/management-setting-view.vue'
           ),
       );
-    case 'discuss_topic_pickup_grid_view':
-      return defineAsyncComponent(
-        () =>
-          import(
-            './discuss-topic/discuss-topic-pickup-grid-view/discuss-topic-pickup-grid-view.vue'
-          ),
-      );
     case 'product_member_edit_view':
       return defineAsyncComponent(
         () =>
           import(
             './product-member/product-member-edit-view/product-member-edit-view.vue'
-          ),
-      );
-    case 'work_item_type_setting_view_scrum':
-      return defineAsyncComponent(
-        () =>
-          import(
-            './work-item-type/work-item-type-setting-view-scrum/work-item-type-setting-view-scrum.vue'
           ),
       );
     case 'sprint_update_view':
@@ -3266,9 +3251,23 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './test-plan/test-plan-all-grid-view/test-plan-all-grid-view.vue'
           ),
       );
+    case 'article_page_copy_page_option_view':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './article-page/article-page-copy-page-option-view/article-page-copy-page-option-view.vue'
+          ),
+      );
     case 'work_item_copy_view':
       return defineAsyncComponent(
         () => import('./work-item/work-item-copy-view/work-item-copy-view.vue'),
+      );
+    case 'review_my_attention_grid_view':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './review/review-my-attention-grid-view/review-my-attention-grid-view.vue'
+          ),
       );
     case 'work_item_version_comparison_view':
       return defineAsyncComponent(
@@ -3289,6 +3288,13 @@ export async function getAppViewComponent(name: string): Promise<Component> {
         () =>
           import(
             './dictionary-data/dictionary-data-global-edit-view/dictionary-data-global-edit-view.vue'
+          ),
+      );
+    case 'article_page_move_page_option_view':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './article-page/article-page-move-page-option-view/article-page-move-page-option-view.vue'
           ),
       );
     case 'project_tag_edit_view':
@@ -3317,6 +3323,13 @@ export async function getAppViewComponent(name: string): Promise<Component> {
         () =>
           import('./project/project-redirect-view/project-redirect-view.vue'),
       );
+    case 'baseline_edit_snapshot_view':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './baseline/baseline-edit-snapshot-view/baseline-edit-snapshot-view.vue'
+          ),
+      );
     case 'product_deleted_grid_view':
       return defineAsyncComponent(
         () =>
@@ -3333,6 +3346,13 @@ export async function getAppViewComponent(name: string): Promise<Component> {
         () =>
           import(
             './ticket/ticket-quick-create-view/ticket-quick-create-view.vue'
+          ),
+      );
+    case 'baseline_space_categories_pick_up_tree_view':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './baseline/baseline-space-categories-pick-up-tree-view/baseline-space-categories-pick-up-tree-view.vue'
           ),
       );
     case 'work_item_scrum_property_distribution_report_view':
@@ -3374,6 +3394,13 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './project/project-kanban-index-view/project-kanban-index-view.vue'
           ),
       );
+    case 'test_case_mpick_up_view2_review':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './test-case/test-case-mpick-up-view-2-review/test-case-mpick-up-view-2-review.vue'
+          ),
+      );
     case 'idea_all_grid_view':
       return defineAsyncComponent(
         () => import('./idea/idea-all-grid-view/idea-all-grid-view.vue'),
@@ -3384,10 +3411,6 @@ export async function getAppViewComponent(name: string): Promise<Component> {
           import(
             './work-item/work-item-test-plan-bug-grid-view/work-item-test-plan-bug-grid-view.vue'
           ),
-      );
-    case 'product_grid_view':
-      return defineAsyncComponent(
-        () => import('./product/product-grid-view/product-grid-view.vue'),
       );
     case 'psdelogiclogicdesign':
       return defineAsyncComponent(
@@ -3408,6 +3431,13 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './test-plan/test-plan-my-part-grid-view/test-plan-my-part-grid-view.vue'
           ),
       );
+    case 'review_content_set_result_edit_view':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './review-content/review-content-set-result-edit-view/review-content-set-result-edit-view.vue'
+          ),
+      );
     case 'user_account_view':
       return defineAsyncComponent(
         () => import('./user/user-account-view/user-account-view.vue'),
@@ -3425,10 +3455,6 @@ export async function getAppViewComponent(name: string): Promise<Component> {
           import(
             './ticket/ticket-my-assign-grid-view/ticket-my-assign-grid-view.vue'
           ),
-      );
-    case 'project_grid_view':
-      return defineAsyncComponent(
-        () => import('./project/project-grid-view/project-grid-view.vue'),
       );
     case 'article_page_tree_exp_view':
       return defineAsyncComponent(
@@ -3470,13 +3496,6 @@ export async function getAppViewComponent(name: string): Promise<Component> {
         () =>
           import(
             './ticket/ticket-allocate-person-view/ticket-allocate-person-view.vue'
-          ),
-      );
-    case 'project_base_information_edit_view':
-      return defineAsyncComponent(
-        () =>
-          import(
-            './project/project-base-information-edit-view/project-base-information-edit-view.vue'
           ),
       );
     case 'library_member_config_grid_view':
@@ -3521,10 +3540,6 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './relation/relation-ticket-re-idea-grid-view/relation-ticket-re-idea-grid-view.vue'
           ),
       );
-    case 'project_setting_view':
-      return defineAsyncComponent(
-        () => import('./project/project-setting-view/project-setting-view.vue'),
-      );
     case 'version_edit_version_view':
       return defineAsyncComponent(
         () =>
@@ -3558,13 +3573,6 @@ export async function getAppViewComponent(name: string): Promise<Component> {
     case 'app_index_view':
       return defineAsyncComponent(
         () => import('./app-index-view/app-index-view.vue'),
-      );
-    case 'test_plan_report_custom_view':
-      return defineAsyncComponent(
-        () =>
-          import(
-            './test-plan/test-plan-report-custom-view/test-plan-report-custom-view.vue'
-          ),
       );
     case 'work_item_kanban_defect_property_report_view':
       return defineAsyncComponent(
@@ -3601,6 +3609,13 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './relation/relation-idea-re-customer-list-view/relation-idea-re-customer-list-view.vue'
           ),
       );
+    case 'review_my_created_grid_view':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './review/review-my-created-grid-view/review-my-created-grid-view.vue'
+          ),
+      );
     case 'baseline_work_item_realtion_version_list_view':
       return defineAsyncComponent(
         () =>
@@ -3615,13 +3630,6 @@ export async function getAppViewComponent(name: string): Promise<Component> {
     case 'section_pick_up_view':
       return defineAsyncComponent(
         () => import('./section/section-pick-up-view/section-pick-up-view.vue'),
-      );
-    case 'user_user_pick_up_tree_view':
-      return defineAsyncComponent(
-        () =>
-          import(
-            './user/user-user-pick-up-tree-view/user-user-pick-up-tree-view.vue'
-          ),
       );
     case 'portfolio_mpick_up_view':
       return defineAsyncComponent(
@@ -3705,6 +3713,13 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './work-item/work-item-baseline-mpick-up-grid-view/work-item-baseline-mpick-up-grid-view.vue'
           ),
       );
+    case 'addon_project_setting_grid_view':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './addon/addon-project-setting-grid-view/addon-project-setting-grid-view.vue'
+          ),
+      );
     case 'idea_others_re_mpick_up_grid_view':
       return defineAsyncComponent(
         () =>
@@ -3759,13 +3774,6 @@ export async function getAppViewComponent(name: string): Promise<Component> {
         () =>
           import(
             './recent/recent-my-assignee-item-tap-exp-view/recent-my-assignee-item-tap-exp-view.vue'
-          ),
-      );
-    case 'portfolio_project_edit_view':
-      return defineAsyncComponent(
-        () =>
-          import(
-            './portfolio/portfolio-project-edit-view/portfolio-project-edit-view.vue'
           ),
       );
     case 'psdelogictemplate_info_view':
@@ -3844,15 +3852,18 @@ export async function getAppViewComponent(name: string): Promise<Component> {
       return defineAsyncComponent(
         () => import('./workload/workload-edit-view/workload-edit-view.vue'),
       );
-    case 'library_grid_view':
-      return defineAsyncComponent(
-        () => import('./library/library-grid-view/library-grid-view.vue'),
-      );
     case 'work_item_srcum_tree_grid_view':
       return defineAsyncComponent(
         () =>
           import(
             './work-item/work-item-srcum-tree-grid-view/work-item-srcum-tree-grid-view.vue'
+          ),
+      );
+    case 'article_page_baseline_mpick_up_view':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './article-page/article-page-baseline-mpick-up-view/article-page-baseline-mpick-up-view.vue'
           ),
       );
     case 'insight_report_all_report_grid_view':
@@ -3876,13 +3887,6 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './project/project-pick-up-grid-view/project-pick-up-grid-view.vue'
           ),
       );
-    case 'discuss_topic_pickup_view':
-      return defineAsyncComponent(
-        () =>
-          import(
-            './discuss-topic/discuss-topic-pickup-view/discuss-topic-pickup-view.vue'
-          ),
-      );
     case 'test_case_re_run_main_view':
       return defineAsyncComponent(
         () =>
@@ -3895,25 +3899,11 @@ export async function getAppViewComponent(name: string): Promise<Component> {
         () =>
           import('./addon/addon-setting-grid-view/addon-setting-grid-view.vue'),
       );
-    case 'activity_test_all_list_view':
-      return defineAsyncComponent(
-        () =>
-          import(
-            './activity/activity-test-all-list-view/activity-test-all-list-view.vue'
-          ),
-      );
     case 'portfolio_project_grid_view':
       return defineAsyncComponent(
         () =>
           import(
             './portfolio/portfolio-project-grid-view/portfolio-project-grid-view.vue'
-          ),
-      );
-    case 'project_member_redirect_view':
-      return defineAsyncComponent(
-        () =>
-          import(
-            './project-member/project-member-redirect-view/project-member-redirect-view.vue'
           ),
       );
     case 'release_update_view':
@@ -3924,6 +3914,13 @@ export async function getAppViewComponent(name: string): Promise<Component> {
       return defineAsyncComponent(
         () =>
           import('./idea-app-data-upload-view/idea-app-data-upload-view.vue'),
+      );
+    case 'baseline_page_relation_grid_view':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './baseline-page/baseline-page-relation-grid-view/baseline-page-relation-grid-view.vue'
+          ),
       );
     case 'project_management_tab_exp_view':
       return defineAsyncComponent(
@@ -3946,6 +3943,13 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './work-item-type/work-item-type-global-setting-view-scrum/work-item-type-global-setting-view-scrum.vue'
           ),
       );
+    case 'baseline_create_plan_snapshot_view':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './baseline/baseline-create-plan-snapshot-view/baseline-create-plan-snapshot-view.vue'
+          ),
+      );
     case 'insight_report_edit_view':
       return defineAsyncComponent(
         () =>
@@ -3958,13 +3962,6 @@ export async function getAppViewComponent(name: string): Promise<Component> {
         () =>
           import(
             './discuss-topic/discuss-topic-is-deleted-grid-view/discuss-topic-is-deleted-grid-view.vue'
-          ),
-      );
-    case 'dictionary_data_grid_view':
-      return defineAsyncComponent(
-        () =>
-          import(
-            './dictionary-data/dictionary-data-grid-view/dictionary-data-grid-view.vue'
           ),
       );
     case 'project_tag_project_tag_confirm_remove_view':
@@ -4093,6 +4090,13 @@ export async function getAppViewComponent(name: string): Promise<Component> {
     case 'work_redirect_view':
       return defineAsyncComponent(
         () => import('./work/work-redirect-view/work-redirect-view.vue'),
+      );
+    case 'psde_logic_test_auto_rules_edit_view':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './psde-logic/psde-logic-test-auto-rules-edit-view/psde-logic-test-auto-rules-edit-view.vue'
+          ),
       );
     case 'insight_member_edit_view':
       return defineAsyncComponent(
@@ -4304,6 +4308,20 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './product/product-management-tab-exp-view/product-management-tab-exp-view.vue'
           ),
       );
+    case 'work_item_resource_gantt_view':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './work-item/work-item-resource-gantt-view/work-item-resource-gantt-view.vue'
+          ),
+      );
+    case 'test_plan_general_grid_view':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './test-plan/test-plan-general-grid-view/test-plan-general-grid-view.vue'
+          ),
+      );
     case 'work_item_advanced_search_grid_view':
       return defineAsyncComponent(
         () =>
@@ -4350,6 +4368,13 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './work-item/work-item-sprint-grid-view/work-item-sprint-grid-view.vue'
           ),
       );
+    case 'review_set_category_option_view':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './review/review-set-category-option-view/review-set-category-option-view.vue'
+          ),
+      );
     case 'work_item_scrum_backlog_flow_report_view':
       return defineAsyncComponent(
         () =>
@@ -4389,10 +4414,6 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './relation/relation-run-re-bug-grid-view/relation-run-re-bug-grid-view.vue'
           ),
       );
-    case 'sys_todo_edit_view':
-      return defineAsyncComponent(
-        () => import('./sys-todo/sys-todo-edit-view/sys-todo-edit-view.vue'),
-      );
     case 'recent_custom_dashboard_view':
       return defineAsyncComponent(
         () =>
@@ -4405,13 +4426,6 @@ export async function getAppViewComponent(name: string): Promise<Component> {
         () =>
           import(
             './review-stage/review-stage-edit-view/review-stage-edit-view.vue'
-          ),
-      );
-    case 'sys_todo_all_grid_view':
-      return defineAsyncComponent(
-        () =>
-          import(
-            './sys-todo/sys-todo-all-grid-view/sys-todo-all-grid-view.vue'
           ),
       );
     case 'product_plan_edit_option_view':
@@ -4428,18 +4442,18 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './baseline/baseline-project-main-view/baseline-project-main-view.vue'
           ),
       );
-    case 'work_item_recycle_bin_grid_view':
-      return defineAsyncComponent(
-        () =>
-          import(
-            './work-item/work-item-recycle-bin-grid-view/work-item-recycle-bin-grid-view.vue'
-          ),
-      );
     case 'portfolio_member_edit_view':
       return defineAsyncComponent(
         () =>
           import(
             './portfolio-member/portfolio-member-edit-view/portfolio-member-edit-view.vue'
+          ),
+      );
+    case 'baseline_page_comparison_grid_view':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './baseline-page/baseline-page-comparison-grid-view/baseline-page-comparison-grid-view.vue'
           ),
       );
     case 'deliverable_project_grid_view':
@@ -4499,13 +4513,6 @@ export async function getAppViewComponent(name: string): Promise<Component> {
       return defineAsyncComponent(
         () => import('./release/release-main-view/release-main-view.vue'),
       );
-    case 'portfolio_setting_view':
-      return defineAsyncComponent(
-        () =>
-          import(
-            './portfolio/portfolio-setting-view/portfolio-setting-view.vue'
-          ),
-      );
     case 'article_page_document_edit_view':
       return defineAsyncComponent(
         () =>
@@ -4516,6 +4523,13 @@ export async function getAppViewComponent(name: string): Promise<Component> {
     case 'idea_tree_exp_view':
       return defineAsyncComponent(
         () => import('./idea/idea-tree-exp-view/idea-tree-exp-view.vue'),
+      );
+    case 'addon_resource_all_capacity_view':
+      return defineAsyncComponent(
+        () =>
+          import(
+            './addon-resource/addon-resource-all-capacity-view/addon-resource-all-capacity-view.vue'
+          ),
       );
     case 'workload_day_link_management_grid_view':
       return defineAsyncComponent(
@@ -4536,13 +4550,6 @@ export async function getAppViewComponent(name: string): Promise<Component> {
         () =>
           import(
             './dictionary-data/dictionary-data-quick-create-view/dictionary-data-quick-create-view.vue'
-          ),
-      );
-    case 'portfolio_project_set_advanced_view':
-      return defineAsyncComponent(
-        () =>
-          import(
-            './portfolio/portfolio-project-set-advanced-view/portfolio-project-set-advanced-view.vue'
           ),
       );
     case 'product_all_grid_view':

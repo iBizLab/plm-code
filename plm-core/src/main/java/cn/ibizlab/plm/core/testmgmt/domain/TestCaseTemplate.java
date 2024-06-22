@@ -214,7 +214,6 @@ public class TestCaseTemplate extends EntityMP implements Serializable
     /**
     * 预估工时
     */
-    @Transient
     @TableField(exist = false)
     @DEField(name = "estimated_workload")
     @JSONField(name = "estimated_workload")
@@ -225,7 +224,6 @@ public class TestCaseTemplate extends EntityMP implements Serializable
     /**
     * 剩余工时
     */
-    @Transient
     @TableField(exist = false)
     @DEField(name = "remaining_workload")
     @JSONField(name = "remaining_workload")
@@ -236,7 +234,6 @@ public class TestCaseTemplate extends EntityMP implements Serializable
     /**
     * 实际工时
     */
-    @Transient
     @TableField(exist = false)
     @DEField(name = "actual_workload")
     @JSONField(name = "actual_workload")

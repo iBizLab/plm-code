@@ -114,6 +114,7 @@ export default {
               editor: {
                 maxLength: 200,
                 editorType: 'TEXTBOX',
+                placeHolder: '输入模版名称',
                 valueType: 'SIMPLE',
                 editable: true,
                 id: 'name',
@@ -177,7 +178,7 @@ export default {
                   editor: {
                     editorHeight: 600,
                     editorType: 'HTMLEDITOR',
-                    placeHolder: '请输入内容',
+                    placeHolder: '输入内容',
                     valueType: 'SIMPLE',
                     editable: true,
                     id: 'content',

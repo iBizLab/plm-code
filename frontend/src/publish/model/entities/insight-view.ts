@@ -1747,14 +1747,6 @@ export default {
           id: 'begin',
         },
         {
-          codeName: 'END1',
-          leftPos: 200,
-          logicNodeType: 'END',
-          topPos: 496,
-          name: '结束',
-          id: 'end1',
-        },
-        {
           code: "ibiz.mc.command.update.send({ srfdecodename: 'insight_view', srfkey: params.owner_id})",
           codeName: 'RAWJSCODE1',
           leftPos: 160,
@@ -1769,6 +1761,14 @@ export default {
           topPos: 350,
           name: '注入脚本代码',
           id: 'rawjscode1',
+        },
+        {
+          codeName: 'END1',
+          leftPos: 200,
+          logicNodeType: 'END',
+          topPos: 496,
+          name: '结束',
+          id: 'end1',
         },
       ],
       deuilogicParams: [

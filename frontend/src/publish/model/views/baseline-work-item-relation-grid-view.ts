@@ -129,6 +129,15 @@ export default {
   ],
   appViewRefs: [
     {
+      realTitle: '基线工作项编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.BASELINE_WORK_ITEM.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.baseline_work_item_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
+    },
+    {
       openMode: 'POPUPMODAL',
       navigateContexts: [
         {
@@ -163,15 +172,6 @@ export default {
       refAppViewId: 'plmweb.work_item_main_view',
       name: 'EDITDATA',
       id: 'editdata',
-    },
-    {
-      realTitle: '基线工作项编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.BASELINE_WORK_ITEM.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.baseline_work_item_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
     },
   ],
   controls: [
@@ -432,9 +432,9 @@ export default {
           id: 'srfkey',
         },
       ],
+      pagingMode: 1,
       pagingSize: 20,
       sortMode: 'REMOTE',
-      enableCustomized: true,
       enablePagingBar: true,
       noSort: true,
       fetchControlAction: {
@@ -454,7 +454,7 @@ export default {
           detoolbarItems: [
             {
               actionLevel: 100,
-              noPrivDisplayMode: 2,
+              noPrivDisplayMode: 1,
               uiactionId: 'shift_out_baseline@baseline_work_item',
               uiactionTarget: 'MULTIKEY',
               valid: true,
@@ -557,7 +557,7 @@ export default {
           controlLogics: [
             {
               itemName: 'deuiaction1',
-              logicTag: 'toolbar',
+              logicTag: 'tabtoolbar',
               logicType: 'SCRIPT',
               scriptCode: "context.baseline_status !== '2'",
               triggerType: 'ITEMVISIBLE',
@@ -575,17 +575,20 @@ export default {
         },
       ],
       xdataControlName: 'grid',
-      codeName: 'relation_grid_view_toolbar',
+      codeName: 'relation_grid_view_tabtoolbar',
       controlType: 'TOOLBAR',
       logicName: '规划工作项',
       appDataEntityId: 'plmweb.baseline_work_item',
       controlParam: {
-        id: 'toolbar',
+        ctrlParams: {
+          TELEPORTFLAG: 'true',
+        },
+        id: 'tabtoolbar',
       },
       modelId: '8A9D3774-8083-4AC7-B065-9AEEF6DDA671',
       modelType: 'PSDETOOLBAR',
-      name: 'toolbar',
-      id: 'relation_grid_view_toolbar',
+      name: 'tabtoolbar',
+      id: 'relation_grid_view_tabtoolbar',
     },
     {
       groupMode: 'SINGLE',
@@ -624,7 +627,7 @@ export default {
   viewStyle: 'DEFAULT',
   viewType: 'DEGRIDVIEW',
   enableDP: true,
-  showCaptionBar: true,
+  showCaptionBar: false,
   modelId: '85f3ac67efc1de7a0ef837c10df1814d',
   modelType: 'PSAPPDEVIEW',
   name: 'baseline_work_itemrelation_grid_view',

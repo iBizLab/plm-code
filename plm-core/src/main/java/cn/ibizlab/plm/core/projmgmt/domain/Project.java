@@ -199,7 +199,6 @@ public class Project extends EntityMP implements Serializable
     /**
     * 成员
     */
-    @Transient
     @TableField(exist = false)
     @DEField(name = "members")
     @JSONField(name = "members")

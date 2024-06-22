@@ -75,6 +75,7 @@ export default {
                   editor: {
                     maxLength: 500,
                     editorType: 'TEXTBOX',
+                    placeHolder: '输入客户名称',
                     valueType: 'SIMPLE',
                     editable: true,
                     id: 'name',
@@ -133,6 +134,7 @@ export default {
                   appDEFieldId: 'scale',
                   editor: {
                     editorType: 'TEXTBOX',
+                    placeHolder: '输入客户规模',
                     valueType: 'SIMPLE',
                     editable: true,
                     id: 'scale',
@@ -192,6 +194,7 @@ export default {
                         id: 'categorys',
                       },
                     ],
+                    placeHolder: '选择类别',
                     valueType: 'SIMPLE',
                     editable: true,
                     id: 'categories_name',
@@ -291,6 +294,7 @@ export default {
                     editorStyle: 'COLLAPSE',
                     editorType: 'HTMLEDITOR',
                     sysPFPluginId: 'comment',
+                    placeHolder: '输入客户介绍',
                     valueType: 'SIMPLE',
                     editable: true,
                     id: 'description',

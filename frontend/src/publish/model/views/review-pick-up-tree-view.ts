@@ -6,7 +6,6 @@ export default {
   loadDefault: true,
   deviewCodeName: 'pick_up_tree_view',
   deviewId: '5B8F4ED4-2F34-4E3A-AE81-A7BEAFD3126C',
-  appWFId: 'case_review_flow',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'PAGE.CAPTION.REVIEW.PICK_UP_TREE_VIEW',

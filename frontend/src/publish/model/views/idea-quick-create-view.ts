@@ -21,6 +21,14 @@ export default {
       id: 'engine',
     },
   ],
+  appViewNavContexts: [
+    {
+      key: 'PRODUCT',
+      value: 'product_id',
+      name: 'PRODUCT',
+      id: 'product',
+    },
+  ],
   controls: [
     {
       createControlAction: {
@@ -80,6 +88,7 @@ export default {
                       ISAUTO: 'true',
                     },
                     editorType: 'TEXTAREA',
+                    placeHolder: '输入标题',
                     valueType: 'SIMPLE',
                     editable: true,
                     id: 'title',
@@ -140,6 +149,7 @@ export default {
                         editorStyle: 'COLLAPSE',
                         editorType: 'HTMLEDITOR',
                         sysPFPluginId: 'comment',
+                        placeHolder: '输入描述',
                         valueType: 'SIMPLE',
                         editable: true,
                         id: 'description',
@@ -532,12 +542,10 @@ export default {
                   noPrivDisplayMode: 1,
                   appDEFieldId: 'product_name',
                   editor: {
-                    enablePickupView: true,
                     singleSelect: true,
-                    pickupAppViewId: 'plmweb.product_pick_up_view',
                     handlerType: 'PickupText',
                     appDEACModeId: 'default',
-                    appDEDataSetId: 'fetch_default',
+                    appDEDataSetId: 'fetch_quick',
                     appDataEntityId: 'plmweb.product',
                     enableAC: true,
                     forceSelection: true,
@@ -545,14 +553,16 @@ export default {
                     valueItemName: 'product_id',
                     editorParams: {
                       AC: 'TRUE',
-                      PICKUPVIEW: 'TRUE',
+                      TRIGGER: 'TRUE',
+                      PICKUPVIEW: 'FALSE',
                     },
-                    editorType: 'PICKER',
+                    editorType: 'PICKEREX_TRIGGER',
                     editorItems: [
                       {
                         id: 'product_id',
                       },
                     ],
+                    placeHolder: '选择所属产品',
                     valueType: 'SIMPLE',
                     editable: true,
                     id: 'product_name',
@@ -638,6 +648,7 @@ export default {
                     editorParams: {
                       trigger: 'true',
                       DROPDOWNVIEW: 'TRUE',
+                      'SRFNAVPARAM.product': '%product_id%',
                       AC: 'FALSE',
                       TRIGGER: 'TRUE',
                       PICKUPVIEW: 'TRUE',
@@ -648,8 +659,16 @@ export default {
                         id: 'category_id',
                       },
                     ],
+                    placeHolder: '选择所属模块',
                     valueType: 'SIMPLE',
                     editable: true,
+                    navigateParams: [
+                      {
+                        key: 'product',
+                        value: 'product_id',
+                        id: 'product',
+                      },
+                    ],
                     id: 'category_name',
                   },
                   resetItemNames: ['product_name'],
@@ -662,6 +681,22 @@ export default {
                   codeName: 'category_name',
                   detailStyle: 'DEFAULT',
                   detailType: 'FORMITEM',
+                  defdgroupLogics: [
+                    {
+                      logicCat: 'ITEMENABLE',
+                      relatedDetailNames: ['product_name'],
+                      groupOP: 'AND',
+                      defdlogics: [
+                        {
+                          condOP: 'ISNOTNULL',
+                          defdname: 'product_name',
+                          logicType: 'SINGLE',
+                        },
+                      ],
+                      logicType: 'GROUP',
+                      id: '表单成员[category_name][表单项启用]逻辑',
+                    },
+                  ],
                   layoutPos: {
                     colMD: 24,
                     layout: 'TABLE_24COL',
@@ -732,6 +767,7 @@ export default {
                       },
                     ],
                     sysPFPluginId: 'person_select',
+                    placeHolder: '选择负责人',
                     valueType: 'SIMPLE',
                     editable: true,
                     navigateContexts: [

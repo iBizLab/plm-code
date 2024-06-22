@@ -5,7 +5,7 @@ export default {
   codeName: 'ProdMgmt__category',
   emptyText: '未定义',
   orMode: 'STR',
-  appDEDataSetId: 'fetch_default',
+  appDEDataSetId: 'fetch_common_categories',
   appDataEntityId: 'plmweb.category',
   pvalueAppDEFieldId: 'pid',
   textAppDEFieldId: 'name',

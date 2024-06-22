@@ -350,6 +350,7 @@ export default {
           id: 'choose_version_id',
         },
       ],
+      pagingMode: 1,
       pagingSize: 20,
       sortMode: 'REMOTE',
       enablePagingBar: true,

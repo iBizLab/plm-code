@@ -284,7 +284,6 @@ export default {
           noPrivDisplayMode: 1,
           width: 180,
           widthUnit: 'PX',
-          enableSort: true,
           id: 'create_time',
         },
         {
@@ -414,10 +413,11 @@ export default {
           id: 'srfkey',
         },
       ],
+      pagingMode: 1,
       pagingSize: 20,
       sortMode: 'REMOTE',
-      enableCustomized: true,
       enablePagingBar: true,
+      noSort: true,
       fetchControlAction: {
         appDEMethodId: 'fetch_fill_version_data',
         appDataEntityId: 'plmweb.baseline_idea',
@@ -435,7 +435,7 @@ export default {
           detoolbarItems: [
             {
               actionLevel: 100,
-              noPrivDisplayMode: 2,
+              noPrivDisplayMode: 1,
               uiactionId: 'shift_out_baseline@baseline_idea',
               uiactionTarget: 'MULTIKEY',
               valid: true,
@@ -538,7 +538,7 @@ export default {
           controlLogics: [
             {
               itemName: 'deuiaction1',
-              logicTag: 'toolbar',
+              logicTag: 'tabtoolbar',
               logicType: 'SCRIPT',
               scriptCode: "context.baseline_status !== '2'",
               triggerType: 'ITEMVISIBLE',
@@ -556,17 +556,20 @@ export default {
         },
       ],
       xdataControlName: 'grid',
-      codeName: 'relation_grid_view_toolbar',
+      codeName: 'relation_grid_view_tabtoolbar',
       controlType: 'TOOLBAR',
       logicName: '规划需求',
       appDataEntityId: 'plmweb.baseline_idea',
       controlParam: {
-        id: 'toolbar',
+        ctrlParams: {
+          TELEPORTFLAG: 'true',
+        },
+        id: 'tabtoolbar',
       },
       modelId: '46765755-F789-4429-9F0F-8A3D7E421687',
       modelType: 'PSDETOOLBAR',
-      name: 'toolbar',
-      id: 'relation_grid_view_toolbar',
+      name: 'tabtoolbar',
+      id: 'relation_grid_view_tabtoolbar',
     },
     {
       groupMode: 'SINGLE',
@@ -605,7 +608,7 @@ export default {
   viewStyle: 'DEFAULT',
   viewType: 'DEGRIDVIEW',
   enableDP: true,
-  showCaptionBar: true,
+  showCaptionBar: false,
   modelId: '42502568507a11ac2ead47c1114fea83',
   modelType: 'PSAPPDEVIEW',
   name: 'baseline_idearelation_grid_view',

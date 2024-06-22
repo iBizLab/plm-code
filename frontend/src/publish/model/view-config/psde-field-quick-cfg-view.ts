@@ -1,10 +1,10 @@
 export default {
   id: 'plmweb.psde_field_quick_cfg_view',
   codeName: 'psde_field_quick_cfg_view',
-  openMode: 'DRAWER_RIGHT',
+  openMode: 'POPUPMODAL',
   viewType: 'DEEDITVIEW',
-  width: 0,
-  height: 0,
+  width: 800,
+  height: 300,
   appDataEntityId: 'plmweb.psdefield',
   redirectView: false,
   modalOption: {},

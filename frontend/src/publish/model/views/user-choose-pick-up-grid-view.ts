@@ -112,6 +112,7 @@ export default {
           id: 'srfkey',
         },
       ],
+      pagingMode: 1,
       pagingSize: 100,
       sortMode: 'REMOTE',
       enableCustomized: true,

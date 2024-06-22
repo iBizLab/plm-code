@@ -11,6 +11,15 @@ export default {
   caption: '工作项分布',
   codeName: 'work_item_kanban_work_item_report_view',
   appDataEntityId: 'plmweb.work_item',
+  appViewNavContexts: [
+    {
+      rawValue: true,
+      key: 'SRFREADONLY',
+      value: 'false',
+      name: 'SRFREADONLY',
+      id: 'srfreadonly',
+    },
+  ],
   viewLayoutPanel: {
     viewProxyMode: true,
     layoutMode: 'Flex',

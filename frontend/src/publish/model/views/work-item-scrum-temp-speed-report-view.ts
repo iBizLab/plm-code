@@ -12,6 +12,15 @@ export default {
   caption: '团队速度',
   codeName: 'work_item_scrum_temp_speed_report_view',
   appDataEntityId: 'plmweb.work_item',
+  appViewNavContexts: [
+    {
+      rawValue: true,
+      key: 'SRFREADONLY',
+      value: 'false',
+      name: 'SRFREADONLY',
+      id: 'srfreadonly',
+    },
+  ],
   viewLayoutPanel: {
     viewProxyMode: true,
     layoutMode: 'Flex',
@@ -319,6 +328,7 @@ export default {
                     PICKUPVIEW: 'FALSE',
                   },
                   editorType: 'PICKEREX_TRIGGER',
+                  placeHolder: '选择开始迭代',
                   valueType: 'SIMPLE',
                   editable: true,
                   id: 'star_sprint',
@@ -356,6 +366,7 @@ export default {
                     PICKUPVIEW: 'TRUE',
                   },
                   editorType: 'PICKER',
+                  placeHolder: '选择结束迭代',
                   valueType: 'SIMPLE',
                   editable: true,
                   id: 'end_sprint',

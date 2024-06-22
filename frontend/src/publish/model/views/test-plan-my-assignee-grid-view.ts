@@ -8,7 +8,7 @@ export default {
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TEST_PLAN',
   },
-  caption: '测试计划',
+  caption: '我负责的',
   codeName: 'test_plan_my_assignee_grid_view',
   appDataEntityId: 'plmweb.test_plan',
   appViewEngines: [
@@ -82,6 +82,13 @@ export default {
   ],
   appViewRefs: [
     {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '测试计划编辑视图',
+      refAppViewId: 'plmweb.test_plan_update_option_view',
+      name: 'NEWDATA',
+      id: 'newdata',
+    },
+    {
       navigateContexts: [
         {
           key: 'LIBRARY',
@@ -94,13 +101,6 @@ export default {
       refAppViewId: 'plmweb.library_index_view',
       name: 'EDITDATA',
       id: 'editdata',
-    },
-    {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '测试计划编辑视图',
-      refAppViewId: 'plmweb.test_plan_update_option_view',
-      name: 'NEWDATA',
-      id: 'newdata',
     },
   ],
   controls: [
@@ -276,6 +276,7 @@ export default {
           id: 'srfkey',
         },
       ],
+      pagingMode: 1,
       pagingSize: 20,
       sortMode: 'REMOTE',
       enableCustomized: true,
@@ -358,7 +359,7 @@ export default {
       capLanguageRes: {
         lanResTag: 'DE.LNAME.TEST_PLAN',
       },
-      caption: '测试计划',
+      caption: '我负责的',
       codeName: 'my_assignee_grid_view_captionbar',
       controlType: 'CAPTIONBAR',
       appDataEntityId: 'plmweb.test_plan',

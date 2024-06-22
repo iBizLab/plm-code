@@ -74,8 +74,8 @@ export default {
         lanResTag: 'PAGE.TITLE.IDEA.MAIN_VIEW',
       },
       refAppViewId: 'plmweb.idea_main_view',
-      name: 'EDITDATA',
-      id: 'editdata',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
     {
       realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
@@ -84,8 +84,8 @@ export default {
         lanResTag: 'PAGE.TITLE.IDEA.MAIN_VIEW',
       },
       refAppViewId: 'plmweb.idea_main_view',
-      name: 'NEWDATA',
-      id: 'newdata',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
   ],
   controls: [
@@ -103,7 +103,7 @@ export default {
           deuiactionGroup: {
             uiactionGroupDetails: [
               {
-                actionLevel: 100,
+                actionLevel: 200,
                 afterItemType: 'NONE',
                 beforeItemType: 'NONE',
                 caption: '恢复',
@@ -261,6 +261,7 @@ export default {
           id: 'srfkey',
         },
       ],
+      pagingMode: 1,
       pagingSize: 20,
       sortMode: 'REMOTE',
       enableCustomized: true,
@@ -282,7 +283,7 @@ export default {
         {
           detoolbarItems: [
             {
-              actionLevel: 100,
+              actionLevel: 200,
               noPrivDisplayMode: 2,
               uiactionId: 'recover@idea',
               uiactionTarget: 'MULTIKEY',
@@ -328,6 +329,23 @@ export default {
       groupMode: 'SINGLE',
       quickSearchMode: 1,
       enableQuickSearch: true,
+      codeName: 'query_searchbar',
+      controlType: 'SEARCHBAR',
+      logicName: '快速搜索栏',
+      appDataEntityId: 'plmweb.idea',
+      controlParam: {
+        ctrlParams: {
+          TELEPORTFLAG: 'true',
+        },
+        id: 'tabsearchbar',
+      },
+      modelId: '72280088-77A3-4235-88C1-6CF500D6D506',
+      modelType: 'PSSYSSEARCHBAR',
+      name: 'tabsearchbar',
+      id: 'plmweb.idea.query_searchbar',
+    },
+    {
+      groupMode: 'SINGLE',
       controlType: 'SEARCHBAR',
       appDataEntityId: 'plmweb.idea',
       controlParam: {
@@ -366,7 +384,7 @@ export default {
   viewStyle: 'DEFAULT',
   viewType: 'DEGRIDVIEW',
   enableDP: true,
-  showCaptionBar: true,
+  showCaptionBar: false,
   modelId: '588f10d5b6ecfaaddcd437e669453bfb',
   modelType: 'PSAPPDEVIEW',
   name: 'idearecycle_grid_view',

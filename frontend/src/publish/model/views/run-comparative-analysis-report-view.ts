@@ -10,6 +10,15 @@ export default {
   caption: '测试用例计划对比分析',
   codeName: 'run_comparative_analysis_report_view',
   appDataEntityId: 'plmweb.run',
+  appViewNavContexts: [
+    {
+      rawValue: true,
+      key: 'SRFREADONLY',
+      value: 'false',
+      name: 'SRFREADONLY',
+      id: 'srfreadonly',
+    },
+  ],
   appViewNavParams: [
     {
       key: 'n_test_library_id_eq',

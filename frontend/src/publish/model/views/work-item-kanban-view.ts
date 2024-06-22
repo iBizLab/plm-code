@@ -501,19 +501,8 @@ export default {
                 appDEFieldId: 'state',
                 editor: {
                   singleSelect: true,
-                  handlerType: 'PickupText',
-                  appDEACModeId: 'default',
-                  appDEDataSetId: 'fetch_default',
-                  appDataEntityId: 'plmweb.work_item_state',
-                  enableAC: true,
-                  forceSelection: true,
-                  showTrigger: true,
-                  editorParams: {
-                    AC: 'TRUE',
-                    TRIGGER: 'TRUE',
-                    PICKUPVIEW: 'FALSE',
-                  },
-                  editorType: 'PICKEREX_TRIGGER',
+                  appCodeListId: 'plmweb.projmgmt__work_item_state',
+                  editorType: 'DROPDOWNLIST',
                   placeHolder: '选择状态',
                   valueType: 'SIMPLE',
                   editable: true,
@@ -521,6 +510,7 @@ export default {
                 },
                 allowEmpty: true,
                 emptyCaption: true,
+                needCodeListConfig: true,
                 codeName: 'n_state_eq',
                 detailStyle: 'DEFAULT',
                 detailType: 'FORMITEM',
@@ -541,7 +531,7 @@ export default {
                   singleSelect: true,
                   handlerType: 'PickupText',
                   appDEACModeId: 'default',
-                  appDEDataSetId: 'fetch_normal',
+                  appDEDataSetId: 'fetch_main',
                   appDataEntityId: 'plmweb.project',
                   uiactionGroup: {
                     uiactionGroupDetails: [
@@ -819,6 +809,16 @@ export default {
                               caption: '快捷操作',
                               itemStyle: 'INFO',
                               itemType: 'BUTTON',
+                              controlLogics: [
+                                {
+                                  itemName: 'more_button',
+                                  logicTag: 'itemlayoutpanel',
+                                  logicType: 'SCRIPT',
+                                  scriptCode: 'context.srfreadonly != true',
+                                  triggerType: 'ITEMVISIBLE',
+                                  id: 'more_button',
+                                },
+                              ],
                               layoutPos: {
                                 shrink: 1,
                                 layout: 'FLEX',
@@ -1323,14 +1323,14 @@ export default {
         minorSortAppDEFieldId: 'entry_position',
         dedataViewDataItems: [
           {
-            appDEFieldId: 'identifier',
-            dataType: 25,
-            id: 'identifier',
-          },
-          {
             appDEFieldId: 'title',
             dataType: 25,
             id: 'title',
+          },
+          {
+            appDEFieldId: 'identifier',
+            dataType: 25,
+            id: 'identifier',
           },
           {
             appDEFieldId: 'id',
@@ -1620,15 +1620,6 @@ export default {
             id: 'operate',
           },
           {
-            caption: '编号',
-            dataItemName: 'identifier',
-            itemType: 'DATAITEM',
-            appDEFieldId: 'identifier',
-            enableSort: true,
-            name: 'IDENTIFIER',
-            id: 'identifier',
-          },
-          {
             caption: '标题',
             dataItemName: 'title',
             itemType: 'DATAITEM',
@@ -1636,6 +1627,15 @@ export default {
             enableSort: true,
             name: 'TITLE',
             id: 'title',
+          },
+          {
+            caption: '编号',
+            dataItemName: 'identifier',
+            itemType: 'DATAITEM',
+            appDEFieldId: 'identifier',
+            enableSort: true,
+            name: 'IDENTIFIER',
+            id: 'identifier',
           },
         ],
         pagingSize: 1000,

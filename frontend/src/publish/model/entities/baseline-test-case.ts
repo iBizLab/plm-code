@@ -1090,9 +1090,11 @@ export default {
       actionTarget: 'NONE',
       caption: '规划用例',
       codeName: 'baseline_plan_test_case',
+      dataAccessAction: 'UPDATE',
       frontAppViewId: 'plmweb.test_case_baseline_mpick_up_view',
       fullCodeName: 'baseline_test_case_baseline_plan_test_case',
       appDEMethodId: 'shift_in_baseline',
+      deopprivId: 'update',
       navigateParams: [
         {
           key: 'baseline_id',
@@ -1172,8 +1174,10 @@ export default {
       caption: '移出',
       codeName: 'shift_out_baseline',
       confirmMsg: '确认从此基线中移出？',
+      dataAccessAction: 'UPDATE',
       fullCodeName: 'baseline_test_case_shift_out_baseline',
       appDEMethodId: 'shift_out_baseline',
+      deopprivId: 'update',
       sysImage: {
         cssClass: 'fa fa-mail-reply',
         glyph: 'xf112@FontAwesome',
@@ -1187,7 +1191,7 @@ export default {
       enableConfirm: true,
       reloadData: true,
       showBusyIndicator: true,
-      noPrivDisplayMode: 2,
+      noPrivDisplayMode: 1,
       appDataEntityId: 'plmweb.baseline_test_case',
       name: '移出基线',
       id: 'shift_out_baseline@baseline_test_case',
@@ -1366,7 +1370,7 @@ export default {
   deapicodeName2: 'baseline_test_cases',
   deapitag: 'BASELINE_TEST_CASE',
   dataAccCtrlArch: 1,
-  dataAccCtrlMode: 1,
+  dataAccCtrlMode: 3,
   enableUIActions: 15,
   keyAppDEFieldId: 'id',
   lnlanguageRes: {
@@ -1374,6 +1378,17 @@ export default {
   },
   logicName: '基线用例',
   majorAppDEFieldId: 'name',
+  minorAppDERSs: [
+    {
+      actionRSMode: 1,
+      codeName: 'baseline_test_cases',
+      majorAppDataEntityId: 'plmweb.baseline',
+      parentAppDEFieldId: 'principal_id',
+      rsmode: 2,
+      name: 'DERCUSTOM_BASELINE_TEST_CASE_BASELINE',
+      id: 'baseline_test_cases',
+    },
+  ],
   quickSearchAppDEFieldIds: ['name'],
   sysAPITag: 'ServiceAPI',
   unionKeyValueAppDEFieldIds: ['principal_id', 'target_id'],
@@ -1383,5 +1398,7 @@ export default {
   name: 'BASELINE_TEST_CASE',
   id: 'plmweb.baseline_test_case',
   codeName2: 'baseline_test_cases',
-  requestPaths: [],
+  requestPaths: [
+    'baselines/${baseline}/baseline_test_cases/${baseline_test_case}',
+  ],
 };

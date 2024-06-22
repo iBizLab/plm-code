@@ -427,7 +427,7 @@ export default {
                         id: 'categories',
                       },
                     ],
-                    placeHolder: '请选择类别',
+                    placeHolder: '选择所属类别',
                     valueType: 'SIMPLE',
                     editable: true,
                     id: 'categories_name',

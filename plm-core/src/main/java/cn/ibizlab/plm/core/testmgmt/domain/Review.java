@@ -131,7 +131,6 @@ public class Review extends EntityMP implements Serializable
     /**
     * 关注
     */
-    @Transient
     @TableField(exist = false)
     @DEField(name = "attentions")
     @JSONField(name = "attentions")
@@ -152,7 +151,6 @@ public class Review extends EntityMP implements Serializable
     /**
     * 附件
     */
-    @Transient
     @TableField(exist = false)
     @DEField(name = "attachments")
     @JSONField(name = "attachments")

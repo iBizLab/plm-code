@@ -31,6 +31,7 @@ export default {
           id: 'item2',
         },
       ],
+      dataRelationTag: 'flow_main_view_DR',
       editItemCaption: '实体处理逻辑',
       uniqueTag: 'psdelogicflow_main_view__tabexppanel',
       hideEditItem: true,

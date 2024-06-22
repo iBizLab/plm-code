@@ -1,0 +1,18 @@
+export default {
+  cacheTimeout: 100,
+  codeListTag: 'ProdMgmt__idea_categories',
+  codeListType: 'DYNAMIC',
+  codeName: 'ProdMgmt__idea_categories',
+  emptyText: '未定义',
+  orMode: 'STR',
+  appDEDataSetId: 'fetch_common_categories',
+  appDataEntityId: 'plmweb.category',
+  pvalueAppDEFieldId: 'pid',
+  textAppDEFieldId: 'name',
+  textSeparator: '、',
+  valueAppDEFieldId: 'id',
+  valueSeparator: ';',
+  enableCache: true,
+  name: '需求类别',
+  id: 'plmweb.prodmgmt__idea_categories',
+};

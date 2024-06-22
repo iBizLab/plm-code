@@ -82,18 +82,18 @@ export default {
     {
       openMode: 'POPUPMODAL',
       realOpenMode: 'POPUPMODAL',
-      realTitle: '新建工作项状态',
-      refAppViewId: 'plmweb.work_item_state_quick_create_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
-      openMode: 'POPUPMODAL',
-      realOpenMode: 'POPUPMODAL',
       realTitle: '编辑工作项状态',
       refAppViewId: 'plmweb.work_item_state_update_view',
       name: 'OPENDATA',
       id: 'opendata',
+    },
+    {
+      openMode: 'POPUPMODAL',
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '新建工作项状态',
+      refAppViewId: 'plmweb.work_item_state_quick_create_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
     {
       openMode: 'POPUPMODAL',
@@ -105,75 +105,6 @@ export default {
     },
   ],
   controls: [
-    {
-      searchButtonStyle: 'DEFAULT',
-      deformPages: [
-        {
-          layout: {
-            columnCount: 24,
-            layout: 'TABLE_24COL',
-          },
-          deformDetails: [
-            {
-              dataType: 25,
-              enableCond: 3,
-              labelPos: 'LEFT',
-              labelWidth: 130,
-              noPrivDisplayMode: 1,
-              appDEFieldId: 'name',
-              editor: {
-                editorType: 'TEXTBOX',
-                valueType: 'SIMPLE',
-                editable: true,
-                id: 'n_name_like',
-              },
-              allowEmpty: true,
-              capLanguageRes: {
-                lanResTag: 'CONTROL.DEFSFITEM.WORK_ITEM_STATE.N_NAME_LIKE',
-              },
-              caption: '名称',
-              codeName: 'n_name_like',
-              detailStyle: 'DEFAULT',
-              detailType: 'FORMITEM',
-              layoutPos: {
-                colMD: 24,
-                layout: 'TABLE_24COL',
-              },
-              showCaption: true,
-              id: 'n_name_like',
-            },
-          ],
-          capLanguageRes: {
-            lanResTag:
-              'CONTROL.DEFORM.WORK_ITEM_STATE.DEFAULT.FORMPAGE.FORMPAGE1',
-          },
-          caption: '常规条件',
-          codeName: 'formpage1',
-          detailStyle: 'DEFAULT',
-          detailType: 'FORMPAGE',
-          id: 'formpage1',
-        },
-      ],
-      layout: {
-        columnCount: 24,
-        layout: 'TABLE_24COL',
-      },
-      tabHeaderPos: 'TOP',
-      noTabHeader: true,
-      autoLoad: true,
-      showBusyIndicator: true,
-      codeName: 'default',
-      controlType: 'SEARCHFORM',
-      logicName: '默认搜索表单',
-      appDataEntityId: 'plmweb.work_item_state',
-      controlParam: {
-        id: 'searchform',
-      },
-      modelId: '57b5a800a1d4a9d9be688770dc4b007d',
-      modelType: 'PSDEFORM_SEARCHFORM',
-      name: 'searchform',
-      id: 'plmweb.work_item_state.default',
-    },
     {
       aggMode: 'NONE',
       columnEnableFilter: 2,
@@ -380,6 +311,25 @@ export default {
       id: 'plmweb.work_item_state.main',
     },
     {
+      groupMode: 'SINGLE',
+      quickSearchMode: 1,
+      enableQuickSearch: true,
+      codeName: 'tabsearchbar',
+      controlType: 'SEARCHBAR',
+      logicName: '快速搜索栏',
+      appDataEntityId: 'plmweb.work_item_state',
+      controlParam: {
+        ctrlParams: {
+          TELEPORTFLAG: 'true',
+        },
+        id: 'tabsearchbar',
+      },
+      modelId: '9599D0EE-51C4-417E-8FA7-9DB4AE04E407',
+      modelType: 'PSSYSSEARCHBAR',
+      name: 'tabsearchbar',
+      id: 'plmweb.work_item_state.tabsearchbar',
+    },
+    {
       detoolbarItems: [
         {
           actionLevel: 100,
@@ -405,22 +355,23 @@ export default {
         },
       ],
       xdataControlName: 'grid',
-      codeName: 'grid_view_toolbar',
+      codeName: 'grid_view_tabtoolbar',
       controlType: 'TOOLBAR',
       logicName: '工作项状态_新建状态',
       appDataEntityId: 'plmweb.work_item_state',
       controlParam: {
-        id: 'toolbar',
+        ctrlParams: {
+          TELEPORTFLAG: 'true',
+        },
+        id: 'tabtoolbar',
       },
       modelId: 'c9e2f8a46280fa6f85c47372f6c382bd',
       modelType: 'PSDETOOLBAR',
-      name: 'toolbar',
-      id: 'grid_view_toolbar',
+      name: 'tabtoolbar',
+      id: 'grid_view_tabtoolbar',
     },
     {
       groupMode: 'SINGLE',
-      quickSearchMode: 1,
-      enableQuickSearch: true,
       controlType: 'SEARCHBAR',
       appDataEntityId: 'plmweb.work_item_state',
       controlParam: {
@@ -459,7 +410,7 @@ export default {
   viewStyle: 'DEFAULT',
   viewType: 'DEGRIDVIEW',
   enableDP: true,
-  showCaptionBar: true,
+  showCaptionBar: false,
   modelId: '1b43aca90574e278cc3708c0c4cfe08a',
   modelType: 'PSAPPDEVIEW',
   name: 'work_item_stateGridView',

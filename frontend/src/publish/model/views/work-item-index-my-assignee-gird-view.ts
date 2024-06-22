@@ -590,19 +590,8 @@ export default {
                 appDEFieldId: 'state',
                 editor: {
                   singleSelect: true,
-                  handlerType: 'PickupText',
-                  appDEACModeId: 'default',
-                  appDEDataSetId: 'fetch_default',
-                  appDataEntityId: 'plmweb.work_item_state',
-                  enableAC: true,
-                  forceSelection: true,
-                  showTrigger: true,
-                  editorParams: {
-                    AC: 'TRUE',
-                    TRIGGER: 'TRUE',
-                    PICKUPVIEW: 'FALSE',
-                  },
-                  editorType: 'PICKEREX_TRIGGER',
+                  appCodeListId: 'plmweb.projmgmt__work_item_state',
+                  editorType: 'DROPDOWNLIST',
                   placeHolder: '选择状态',
                   valueType: 'SIMPLE',
                   editable: true,
@@ -610,6 +599,7 @@ export default {
                 },
                 allowEmpty: true,
                 emptyCaption: true,
+                needCodeListConfig: true,
                 codeName: 'n_state_eq',
                 detailStyle: 'DEFAULT',
                 detailType: 'FORMITEM',
@@ -630,7 +620,7 @@ export default {
                   singleSelect: true,
                   handlerType: 'PickupText',
                   appDEACModeId: 'default',
-                  appDEDataSetId: 'fetch_normal',
+                  appDEDataSetId: 'fetch_main',
                   appDataEntityId: 'plmweb.project',
                   uiactionGroup: {
                     uiactionGroupDetails: [

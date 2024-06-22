@@ -270,7 +270,6 @@ public class Run extends EntityMP implements Serializable
     /**
     * 关注
     */
-    @Transient
     @TableField(exist = false)
     @DEField(name = "attentions")
     @JSONField(name = "attentions")
@@ -321,7 +320,6 @@ public class Run extends EntityMP implements Serializable
     /**
     * 结果附件
     */
-    @Transient
     @TableField(exist = false)
     @DEField(name = "run_attachment")
     @JSONField(name = "run_attachment")

@@ -478,7 +478,7 @@ export default {
     controlParam: {},
     id: 'layoutpanel',
   },
-  title: '基线关联测试用例版本列表视图',
+  title: '基线关联需求版本列表视图',
   viewStyle: 'DEFAULT',
   viewType: 'DELISTVIEW',
   enableDP: true,

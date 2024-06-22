@@ -396,6 +396,7 @@ export default {
             id: 'parent_id',
           },
         ],
+        pagingMode: 1,
         pagingSize: 20,
         appendDEItems: true,
         enablePagingBar: true,

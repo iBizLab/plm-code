@@ -11,6 +11,15 @@ export default {
   caption: '需求年龄报告',
   codeName: 'work_item_kanban_acklog_age_report_view',
   appDataEntityId: 'plmweb.work_item',
+  appViewNavContexts: [
+    {
+      rawValue: true,
+      key: 'SRFREADONLY',
+      value: 'false',
+      name: 'SRFREADONLY',
+      id: 'srfreadonly',
+    },
+  ],
   viewLayoutPanel: {
     viewProxyMode: true,
     layoutMode: 'Flex',

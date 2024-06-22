@@ -166,39 +166,39 @@ export default {
         id: 'view_header',
       },
       {
+        rawItem: {
+          rawItemParams: [
+            {
+              key: 'POSITION',
+              value: 'TOP',
+            },
+          ],
+          predefinedType: 'VIEWMSG_POS',
+          id: 'viewmsg_pos',
+        },
+        caption: '视图消息占位',
+        itemStyle: 'DEFAULT',
+        itemType: 'RAWITEM',
+        controlLogics: [
+          {
+            itemName: 'VIEWMSG_POS',
+            logicTag: 'layoutpanel',
+            logicType: 'SCRIPT',
+            scriptCode: '!!view.common_list_isshow',
+            triggerType: 'ITEMVISIBLE',
+            id: 'logic',
+          },
+        ],
+        layoutPos: {
+          shrink: 0,
+          layout: 'FLEX',
+        },
+        showCaption: true,
+        id: 'viewmsg_pos',
+      },
+      {
         actionGroupExtractMode: 'ITEM',
         panelItems: [
-          {
-            rawItem: {
-              rawItemParams: [
-                {
-                  key: 'POSITION',
-                  value: 'TOP',
-                },
-              ],
-              predefinedType: 'VIEWMSG_POS',
-              id: 'viewmsg_pos',
-            },
-            caption: '视图消息占位',
-            itemStyle: 'DEFAULT',
-            itemType: 'RAWITEM',
-            controlLogics: [
-              {
-                itemName: 'VIEWMSG_POS',
-                logicTag: 'layoutpanel',
-                logicType: 'SCRIPT',
-                scriptCode: '!!view.common_list_isshow',
-                triggerType: 'ITEMVISIBLE',
-                id: 'logic',
-              },
-            ],
-            layoutPos: {
-              shrink: 1,
-              layout: 'FLEX',
-            },
-            showCaption: true,
-            id: 'viewmsg_pos',
-          },
           {
             caption: '表单',
             itemStyle: 'DEFAULT',
@@ -228,10 +228,6 @@ export default {
                             panelItems: [
                               {
                                 editor: {
-                                  appDEACModeId: 'aichat',
-                                  appDEDataSetId: 'fetch_default',
-                                  appDataEntityId: 'plmweb.ticket',
-                                  enableAC: true,
                                   editorParams: {
                                     USERINSCRIPT:
                                       'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
@@ -241,7 +237,6 @@ export default {
                                       '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype"}',
                                     QUOTEPARAMS:
                                       '{"page":0,"size":20,"sort":"update_time,desc"}',
-                                    AC: 'TRUE',
                                     QUOTEINSCRIPT:
                                       'value.replaceAll(/\\#\\{\\"id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\",\\"identifier\\":\\"(.+?)\\",\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })}).replaceAll(/\\#\\{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })})',
                                     USERSCRIPT:

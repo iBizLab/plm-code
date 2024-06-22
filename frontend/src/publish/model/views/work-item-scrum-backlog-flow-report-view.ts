@@ -10,6 +10,15 @@ export default {
   caption: '需求累计流图',
   codeName: 'work_item_scrum_backlog_flow_report_view',
   appDataEntityId: 'plmweb.work_item',
+  appViewNavContexts: [
+    {
+      rawValue: true,
+      key: 'SRFREADONLY',
+      value: 'false',
+      name: 'SRFREADONLY',
+      id: 'srfreadonly',
+    },
+  ],
   viewLayoutPanel: {
     viewProxyMode: true,
     layoutMode: 'Flex',

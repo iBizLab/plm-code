@@ -122,7 +122,6 @@ public class Product extends EntityMP implements Serializable
     /**
     * 产品成员
     */
-    @Transient
     @TableField(exist = false)
     @DEField(name = "members")
     @JSONField(name = "members")

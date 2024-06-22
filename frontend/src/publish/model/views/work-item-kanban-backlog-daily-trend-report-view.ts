@@ -10,6 +10,15 @@ export default {
   caption: '需求每日趋势',
   codeName: 'work_item_kanban_backlog_daily_trend_report_view',
   appDataEntityId: 'plmweb.work_item',
+  appViewNavContexts: [
+    {
+      rawValue: true,
+      key: 'SRFREADONLY',
+      value: 'false',
+      name: 'SRFREADONLY',
+      id: 'srfreadonly',
+    },
+  ],
   viewLayoutPanel: {
     viewProxyMode: true,
     layoutMode: 'Flex',

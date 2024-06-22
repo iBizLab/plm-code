@@ -11,6 +11,15 @@ export default {
   caption: '成员负荷报告',
   codeName: 'work_item_kanban_user_stat_report_view',
   appDataEntityId: 'plmweb.work_item',
+  appViewNavContexts: [
+    {
+      rawValue: true,
+      key: 'SRFREADONLY',
+      value: 'false',
+      name: 'SRFREADONLY',
+      id: 'srfreadonly',
+    },
+  ],
   appViewNavParams: [
     {
       rawValue: true,

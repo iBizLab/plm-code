@@ -189,10 +189,6 @@ export default {
                             panelItems: [
                               {
                                 editor: {
-                                  appDEACModeId: 'aichat',
-                                  appDEDataSetId: 'fetch_default',
-                                  appDataEntityId: 'plmweb.ticket',
-                                  enableAC: true,
                                   editorParams: {
                                     USERINSCRIPT:
                                       'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
@@ -202,7 +198,6 @@ export default {
                                       '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype"}',
                                     QUOTEPARAMS:
                                       '{"page":0,"size":20,"sort":"update_time,desc"}',
-                                    AC: 'TRUE',
                                     QUOTEINSCRIPT:
                                       'value.replaceAll(/\\#\\{\\"id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\",\\"identifier\\":\\"(.+?)\\",\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })}).replaceAll(/\\#\\{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })})',
                                     USERSCRIPT:

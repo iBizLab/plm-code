@@ -213,8 +213,8 @@ export default {
                 tooltip: '编辑模板',
                 showIcon: true,
                 sysImage: {
-                  cssClass: 'fa fa-pencil',
-                  glyph: 'xf040@FontAwesome',
+                  cssClass: 'fa fa-edit',
+                  glyph: 'xf044@FontAwesome',
                 },
                 id: 'u7e70a79',
               },
@@ -316,6 +316,7 @@ export default {
           id: 'srfkey',
         },
       ],
+      pagingMode: 1,
       pagingSize: 20,
       sortMode: 'REMOTE',
       enableCustomized: true,

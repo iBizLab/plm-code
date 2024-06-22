@@ -94,6 +94,29 @@ export default {
           dataItemName: 'title',
           excelCaption: '测试用例',
           appDEFieldId: 'title',
+          deuiactionGroup: {
+            uiactionGroupDetails: [
+              {
+                actionLevel: 200,
+                afterItemType: 'NONE',
+                beforeItemType: 'NONE',
+                caption: '恢复',
+                detailType: 'DEUIACTION',
+                uiactionId: 'recover@test_case',
+                showCaption: true,
+                showIcon: true,
+                sysImage: {
+                  cssClass: 'fa fa-refresh',
+                  glyph: 'xf021@FontAwesome',
+                },
+                id: 'u0d44b5b',
+              },
+            ],
+            appDataEntityId: 'plmweb.test_case',
+            uniqueTag: 'test_case__Usr0529970036',
+            name: '回收站_恢复',
+            id: 'usr0529970036',
+          },
           valueType: 'SIMPLE',
           aggMode: 'NONE',
           align: 'LEFT',
@@ -222,6 +245,7 @@ export default {
           id: 'srfkey',
         },
       ],
+      pagingMode: 1,
       pagingSize: 20,
       sortMode: 'REMOTE',
       enableCustomized: true,
@@ -243,7 +267,7 @@ export default {
         {
           detoolbarItems: [
             {
-              actionLevel: 100,
+              actionLevel: 200,
               noPrivDisplayMode: 2,
               uiactionId: 'recover@test_case',
               uiactionTarget: 'MULTIKEY',

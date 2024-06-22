@@ -97,22 +97,6 @@ export default {
   ],
   appViewRefs: [
     {
-      openMode: 'INDEXVIEWTAB_POPUPMODAL',
-      navigateContexts: [
-        {
-          key: 'LIBRARY',
-          value: 'TEST_LIBRARY_ID',
-          name: 'LIBRARY',
-          id: 'library',
-        },
-      ],
-      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realTitle: '用例',
-      refAppViewId: 'plmweb.test_case_main_view',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
-    {
       navigateParams: [
         {
           key: 'library',
@@ -127,6 +111,22 @@ export default {
       refAppViewId: 'plmweb.test_case_edit_view',
       name: 'NEWDATA',
       id: 'newdata',
+    },
+    {
+      openMode: 'INDEXVIEWTAB_POPUPMODAL',
+      navigateContexts: [
+        {
+          key: 'LIBRARY',
+          value: 'TEST_LIBRARY_ID',
+          name: 'LIBRARY',
+          id: 'library',
+        },
+      ],
+      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realTitle: '用例',
+      refAppViewId: 'plmweb.test_case_main_view',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
   ],
   controls: [
@@ -287,6 +287,7 @@ export default {
           id: 'srfkey',
         },
       ],
+      pagingMode: 1,
       pagingSize: 20,
       sortMode: 'REMOTE',
       enablePagingBar: true,
@@ -415,7 +416,7 @@ export default {
                 singleSelect: true,
                 handlerType: 'PickupText',
                 appDEACModeId: 'default',
-                appDEDataSetId: 'fetch_normal',
+                appDEDataSetId: 'fetch_main',
                 appDataEntityId: 'plmweb.library',
                 enableAC: true,
                 forceSelection: true,

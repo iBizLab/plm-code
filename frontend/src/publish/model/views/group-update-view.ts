@@ -75,6 +75,7 @@ export default {
                   editor: {
                     maxLength: 200,
                     editorType: 'TEXTBOX',
+                    placeHolder: '输入团队名称',
                     valueType: 'SIMPLE',
                     editable: true,
                     id: 'name',
@@ -152,6 +153,7 @@ export default {
                         id: 'section_id',
                       },
                     ],
+                    placeHolder: '选择所属分组',
                     valueType: 'SIMPLE',
                     editable: true,
                     navigateParams: [
@@ -187,6 +189,7 @@ export default {
                     maxLength: 2000,
                     showMaxLength: true,
                     editorType: 'TEXTAREA',
+                    placeHolder: '输入描述',
                     valueType: 'SIMPLE',
                     editable: true,
                     id: 'description',

@@ -168,7 +168,6 @@ public class Customer extends EntityMP implements Serializable
     /**
     * 关注
     */
-    @Transient
     @TableField(exist = false)
     @DEField(name = "attentions")
     @JSONField(name = "attentions")

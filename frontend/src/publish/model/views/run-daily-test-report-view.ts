@@ -10,6 +10,15 @@ export default {
   caption: '每日测试次数统计',
   codeName: 'run_daily_test_report_view',
   appDataEntityId: 'plmweb.run',
+  appViewNavContexts: [
+    {
+      rawValue: true,
+      key: 'SRFREADONLY',
+      value: 'false',
+      name: 'SRFREADONLY',
+      id: 'srfreadonly',
+    },
+  ],
   appViewNavParams: [
     {
       key: 'n_test_library_id_eq',

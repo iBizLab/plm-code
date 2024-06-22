@@ -162,6 +162,37 @@ export default {
         id: 'view_header',
       },
       {
+        rawItem: {
+          rawItemParams: [
+            {
+              key: 'POSITION',
+              value: 'TOP',
+            },
+          ],
+          predefinedType: 'VIEWMSG_POS',
+          id: 'viewmsg_pos',
+        },
+        caption: '视图消息占位',
+        itemStyle: 'DEFAULT',
+        itemType: 'RAWITEM',
+        controlLogics: [
+          {
+            itemName: 'VIEWMSG_POS',
+            logicTag: 'layoutpanel',
+            logicType: 'SCRIPT',
+            scriptCode: '!!view.common_list_isshow',
+            triggerType: 'ITEMVISIBLE',
+            id: 'logic1',
+          },
+        ],
+        layoutPos: {
+          shrink: 0,
+          layout: 'FLEX',
+        },
+        showCaption: true,
+        id: 'viewmsg_pos',
+      },
+      {
         actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
@@ -226,177 +257,240 @@ export default {
                                 panelItems: [
                                   {
                                     editor: {
-                                      editorParams: {
-                                        USERINSCRIPT:
-                                          'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
-                                        QUOTECODELISTMAP:
-                                          '{"type":"plmweb.base__recent_visite"}',
-                                        QUOTEFIELDMAP:
-                                          '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype"}',
-                                        QUOTEPARAMS:
-                                          '{"page":0,"size":20,"sort":"update_time,desc"}',
-                                        QUOTEINSCRIPT:
-                                          'value.replaceAll(/\\#\\{\\"id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\",\\"identifier\\":\\"(.+?)\\",\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })}).replaceAll(/\\#\\{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })})',
-                                        USERSCRIPT:
-                                          '`@{"id":"${data.id}","name":"${data.name}"}`',
-                                        QUOTESCRIPT:
-                                          '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","icon":"${data.icon}"}`',
-                                        REPLYSCRIPT:
-                                          'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>").replace(/#{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>")',
-                                        USERFIELDMAP:
-                                          '{"id":"user_id","name":"name"}',
-                                        USERURL:
-                                          '`spaces/${context.space}/space_members/fetch_default`',
-                                        QUOTEURL:
-                                          '`recents/fetch_recent_access`',
-                                      },
-                                      editorStyle: 'COMMENT_WIKI',
-                                      editorType: 'HTMLEDITOR',
-                                      sysPFPluginId: 'comment',
-                                      predefinedType: 'FIELD_TEXT_DYNAMIC',
+                                      editorType: 'HIDDEN',
+                                      predefinedType: 'FIELD_TEXTBOX',
                                       valueType: 'SIMPLE',
                                       editable: true,
-                                      id: 'field_textbox',
+                                      id: 'srfreadonly',
                                     },
+                                    viewFieldName: 'srfreadonly',
                                     allowEmpty: true,
-                                    caption: '文本(动态)',
+                                    hidden: true,
+                                    caption: '文本框',
                                     itemStyle: 'DEFAULT',
                                     itemType: 'FIELD',
                                     layoutPos: {
-                                      grow: 10,
                                       shrink: 1,
                                       layout: 'FLEX',
                                     },
-                                    id: 'field_textbox',
+                                    id: 'srfreadonly',
                                   },
                                   {
-                                    actionType: 'UIACTION',
-                                    buttonStyle: 'INFO',
-                                    buttonType: 'PANELBUTTON',
-                                    uiactionId: 'clear_comment@comment',
-                                    renderMode: 'BUTTON',
-                                    tooltip: '取消',
-                                    uiactionTarget: 'NONE',
-                                    caption: '取消',
-                                    dynaClass:
-                                      "['ibiz-panel-button--comment__cancel']",
-                                    itemStyle: 'INFO',
-                                    itemType: 'BUTTON',
-                                    layoutPos: {
-                                      shrink: 0,
-                                      layout: 'FLEX',
-                                    },
-                                    panelItemGroupLogics: [
+                                    actionGroupExtractMode: 'ITEM',
+                                    panelItems: [
                                       {
-                                        logicCat: 'PANELVISIBLE',
-                                        relatedItemNames: ['field_textbox'],
-                                        groupOP: 'AND',
-                                        panelItemLogics: [
+                                        editor: {
+                                          editorParams: {
+                                            USERINSCRIPT:
+                                              'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                            QUOTECODELISTMAP:
+                                              '{"type":"plmweb.base__recent_visite"}',
+                                            QUOTEFIELDMAP:
+                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype"}',
+                                            QUOTEPARAMS:
+                                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                            QUOTEINSCRIPT:
+                                              'value.replaceAll(/\\#\\{\\"id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\",\\"identifier\\":\\"(.+?)\\",\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })}).replaceAll(/\\#\\{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })})',
+                                            USERSCRIPT:
+                                              '`@{"id":"${data.id}","name":"${data.name}"}`',
+                                            QUOTESCRIPT:
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","icon":"${data.icon}"}`',
+                                            REPLYSCRIPT:
+                                              'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>").replace(/#{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>")',
+                                            USERFIELDMAP:
+                                              '{"id":"user_id","name":"name"}',
+                                            USERURL:
+                                              '`spaces/${context.space}/space_members/fetch_default`',
+                                            QUOTEURL:
+                                              '`recents/fetch_recent_access`',
+                                          },
+                                          editorStyle: 'COMMENT_WIKI',
+                                          editorType: 'HTMLEDITOR',
+                                          sysPFPluginId: 'comment',
+                                          predefinedType: 'FIELD_TEXT_DYNAMIC',
+                                          valueType: 'SIMPLE',
+                                          editable: true,
+                                          id: 'field_textbox',
+                                        },
+                                        allowEmpty: true,
+                                        caption: '文本(动态)',
+                                        itemStyle: 'DEFAULT',
+                                        itemType: 'FIELD',
+                                        layoutPos: {
+                                          grow: 10,
+                                          shrink: 1,
+                                          layout: 'FLEX',
+                                        },
+                                        id: 'field_textbox',
+                                      },
+                                      {
+                                        actionType: 'UIACTION',
+                                        buttonStyle: 'INFO',
+                                        buttonType: 'PANELBUTTON',
+                                        uiactionId:
+                                          'clear_comment_wiki@comment',
+                                        renderMode: 'BUTTON',
+                                        tooltip: '取消',
+                                        uiactionTarget: 'NONE',
+                                        caption: '取消',
+                                        dynaClass:
+                                          "['ibiz-panel-button--comment__cancel']",
+                                        itemStyle: 'INFO',
+                                        itemType: 'BUTTON',
+                                        layoutPos: {
+                                          shrink: 0,
+                                          layout: 'FLEX',
+                                        },
+                                        panelItemGroupLogics: [
                                           {
-                                            condOp: 'ISNOTNULL',
-                                            dstModelField: 'FIELD_TEXTBOX',
-                                            logicType: 'SINGLE',
-                                            id: '逻辑项',
+                                            logicCat: 'PANELVISIBLE',
+                                            relatedItemNames: [
+                                              'field_textbox',
+                                              'srfreadonly',
+                                            ],
+                                            groupOP: 'AND',
+                                            panelItemLogics: [
+                                              {
+                                                condOp: 'ISNOTNULL',
+                                                dstModelField: 'FIELD_TEXTBOX',
+                                                logicType: 'SINGLE',
+                                                id: '逻辑项',
+                                              },
+                                              {
+                                                condOp: 'NOTEQ',
+                                                dstModelField: 'srfreadonly',
+                                                value: 'true',
+                                                logicType: 'SINGLE',
+                                                id: '逻辑项',
+                                              },
+                                            ],
+                                            logicType: 'GROUP',
+                                            id: '面板成员[comment_cancel][面板显示]逻辑',
                                           },
                                         ],
-                                        logicType: 'GROUP',
-                                        id: '面板成员[comment_cancel][面板显示]逻辑',
+                                        showCaption: true,
+                                        id: 'comment_cancel',
                                       },
-                                    ],
-                                    showCaption: true,
-                                    id: 'comment_cancel',
-                                  },
-                                  {
-                                    actionType: 'UIACTION',
-                                    buttonStyle: 'DEFAULT',
-                                    buttonType: 'PANELBUTTON',
-                                    uiactionId: 'send_comment_wiki@comment',
-                                    renderMode: 'BUTTON',
-                                    tooltip: '发送',
-                                    uiactionTarget: 'NONE',
-                                    caption: '发送',
-                                    dynaClass:
-                                      "['ibiz-panel-button--comment__send']",
-                                    itemStyle: 'DEFAULT',
-                                    itemType: 'BUTTON',
-                                    layoutPos: {
-                                      shrink: 0,
-                                      layout: 'FLEX',
-                                    },
-                                    panelItemGroupLogics: [
                                       {
-                                        logicCat: 'PANELVISIBLE',
-                                        relatedItemNames: ['field_textbox'],
-                                        groupOP: 'AND',
-                                        panelItemLogics: [
+                                        actionType: 'UIACTION',
+                                        buttonStyle: 'DEFAULT',
+                                        buttonType: 'PANELBUTTON',
+                                        uiactionId: 'send_comment_wiki@comment',
+                                        renderMode: 'BUTTON',
+                                        tooltip: '发送',
+                                        uiactionTarget: 'NONE',
+                                        caption: '发送',
+                                        dynaClass:
+                                          "['ibiz-panel-button--comment__send']",
+                                        itemStyle: 'DEFAULT',
+                                        itemType: 'BUTTON',
+                                        layoutPos: {
+                                          shrink: 0,
+                                          layout: 'FLEX',
+                                        },
+                                        panelItemGroupLogics: [
                                           {
-                                            condOp: 'ISNOTNULL',
-                                            dstModelField: 'FIELD_TEXTBOX',
-                                            logicType: 'SINGLE',
-                                            id: '逻辑项',
+                                            logicCat: 'PANELVISIBLE',
+                                            relatedItemNames: [
+                                              'field_textbox',
+                                              'srfreadonly',
+                                            ],
+                                            groupOP: 'AND',
+                                            panelItemLogics: [
+                                              {
+                                                condOp: 'ISNOTNULL',
+                                                dstModelField: 'FIELD_TEXTBOX',
+                                                logicType: 'SINGLE',
+                                                id: '逻辑项',
+                                              },
+                                              {
+                                                condOp: 'NOTEQ',
+                                                dstModelField: 'srfreadonly',
+                                                value: 'true',
+                                                logicType: 'SINGLE',
+                                                id: '逻辑项',
+                                              },
+                                            ],
+                                            logicType: 'GROUP',
+                                            id: '面板成员[comment_send][面板显示]逻辑',
                                           },
                                         ],
-                                        logicType: 'GROUP',
-                                        id: '面板成员[comment_send][面板显示]逻辑',
+                                        showCaption: true,
+                                        id: 'comment_send',
+                                      },
+                                      {
+                                        rawItem: {
+                                          sysImage: {
+                                            cssClass:
+                                              'fa fa-arrow-circle-o-right',
+                                            glyph: 'xf18e@FontAwesome',
+                                          },
+                                          contentType: 'IMAGE',
+                                          dynaClass:
+                                            "['ibiz-panel-button--comment__icon']",
+                                          sysCss: {
+                                            cssName: 'comment_icon',
+                                          },
+                                          predefinedType: 'STATIC_IMAGE',
+                                          rawItemHeight: 48,
+                                          id: 'comment_icon',
+                                        },
+                                        caption: '图片',
+                                        contentHeight: 48,
+                                        height: 48,
+                                        itemStyle: 'DEFAULT',
+                                        itemType: 'RAWITEM',
+                                        layoutPos: {
+                                          shrink: 0,
+                                          height: 48,
+                                          heightMode: 'PX',
+                                          layout: 'FLEX',
+                                        },
+                                        sysCss: {
+                                          cssName: 'comment_icon',
+                                        },
+                                        sysImage: {
+                                          cssClass:
+                                            'fa fa-arrow-circle-o-right',
+                                          glyph: 'xf18e@FontAwesome',
+                                        },
+                                        showCaption: true,
+                                        id: 'comment_icon',
                                       },
                                     ],
-                                    showCaption: true,
-                                    id: 'comment_send',
-                                  },
-                                  {
-                                    rawItem: {
-                                      sysImage: {
-                                        cssClass: 'fa fa-arrow-circle-o-right',
-                                        glyph: 'xf18e@FontAwesome',
-                                      },
-                                      contentType: 'IMAGE',
-                                      dynaClass:
-                                        "['ibiz-panel-button--comment__icon']",
-                                      sysCss: {
-                                        cssName: 'comment_icon',
-                                      },
-                                      predefinedType: 'STATIC_IMAGE',
-                                      rawItemHeight: 48,
-                                      id: 'comment_icon',
-                                    },
-                                    caption: '图片',
-                                    contentHeight: 48,
-                                    height: 48,
-                                    itemStyle: 'DEFAULT',
-                                    itemType: 'RAWITEM',
-                                    layoutPos: {
-                                      shrink: 0,
-                                      height: 48,
-                                      heightMode: 'PX',
+                                    layout: {
+                                      dir: 'row',
                                       layout: 'FLEX',
+                                      valign: 'flex-end',
                                     },
-                                    sysCss: {
-                                      cssName: 'comment_icon',
+                                    dataRegionType: 'INHERIT',
+                                    caption: '容器',
+                                    itemStyle: 'DEFAULT',
+                                    itemType: 'CONTAINER',
+                                    layoutPos: {
+                                      shrink: 1,
+                                      heightMode: 'FULL',
+                                      layout: 'FLEX',
+                                      widthMode: 'FULL',
                                     },
-                                    sysImage: {
-                                      cssClass: 'fa fa-arrow-circle-o-right',
-                                      glyph: 'xf18e@FontAwesome',
-                                    },
-                                    showCaption: true,
-                                    id: 'comment_icon',
+                                    id: 'container_comment',
                                   },
                                 ],
+                                predefinedType: 'CONTAINER_SINGLEDATA',
                                 layout: {
-                                  dir: 'row',
                                   layout: 'FLEX',
-                                  valign: 'flex-end',
                                 },
-                                dataRegionType: 'INHERIT',
-                                caption: '容器',
+                                dataName: 'context',
+                                dataRegionType: 'SINGLEDATA',
+                                dataSourceType: 'TOPVIEWSESSIONPARAM',
+                                caption: '单项数据容器',
                                 itemStyle: 'DEFAULT',
                                 itemType: 'CONTAINER',
                                 layoutPos: {
                                   shrink: 1,
-                                  heightMode: 'FULL',
                                   layout: 'FLEX',
-                                  widthMode: 'FULL',
                                 },
-                                id: 'container_comment',
+                                id: 'container_singledata',
                               },
                             ],
                             layout: {
@@ -423,10 +517,37 @@ export default {
                         caption: '引用布局面板',
                         itemStyle: 'DEFAULT',
                         itemType: 'CONTAINER',
+                        controlLogics: [
+                          {
+                            itemName: 'PANELPART',
+                            logicTag: 'layoutpanel',
+                            logicType: 'SCRIPT',
+                            scriptCode: 'context.srfreadonly !=true',
+                            triggerType: 'ITEMVISIBLE',
+                            id: 'panelpart_logic',
+                          },
+                        ],
                         layoutPos: {
                           shrink: 1,
                           layout: 'FLEX',
                         },
+                        panelItemGroupLogics: [
+                          {
+                            logicCat: 'PANELVISIBLE',
+                            relatedItemNames: ['attentions'],
+                            groupOP: 'AND',
+                            panelItemLogics: [
+                              {
+                                condOp: 'EQ',
+                                dstModelField: 'ATTENTIONS',
+                                logicType: 'SINGLE',
+                                id: '逻辑项',
+                              },
+                            ],
+                            logicType: 'GROUP',
+                            id: '面板成员[panelpart][面板显示]逻辑',
+                          },
+                        ],
                         showCaption: true,
                         id: 'panelpart',
                       },
@@ -582,7 +703,7 @@ export default {
         ],
         predefinedType: 'VIEWCONTENT',
         layout: {
-          dir: 'row',
+          dir: 'column',
           layout: 'FLEX',
         },
         dataRegionType: 'INHERIT',
@@ -658,7 +779,7 @@ export default {
                       align: 'flex-start',
                       dir: 'row',
                       layout: 'FLEX',
-                      valign: 'flex-end',
+                      valign: 'center',
                     },
                     deformDetails: [
                       {
@@ -690,6 +811,46 @@ export default {
                           cssName: 'wiki-page-title',
                         },
                         id: 'title',
+                      },
+                      {
+                        rawItem: {
+                          sysImage: {
+                            cssClass: 'fa fa-lock',
+                            glyph: 'xf023@FontAwesome',
+                          },
+                          contentType: 'IMAGE',
+                          id: 'rawitem3',
+                        },
+                        codeName: 'rawitem3',
+                        detailStyle: 'DEFAULT',
+                        detailType: 'RAWITEM',
+                        defdgroupLogics: [
+                          {
+                            logicCat: 'PANELVISIBLE',
+                            relatedDetailNames: ['is_lock'],
+                            groupOP: 'AND',
+                            defdlogics: [
+                              {
+                                condOP: 'EQ',
+                                defdname: 'is_lock',
+                                value: '1',
+                                logicType: 'SINGLE',
+                              },
+                            ],
+                            logicType: 'GROUP',
+                            id: '表单成员[rawitem3][面板显示]逻辑',
+                          },
+                        ],
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        sysImage: {
+                          cssClass: 'fa fa-lock',
+                          glyph: 'xf023@FontAwesome',
+                        },
+                        showCaption: true,
+                        id: 'rawitem3',
                       },
                     ],
                     codeName: 'grouppanel1',
@@ -746,6 +907,8 @@ export default {
                           editorParams: {
                             contenttype: 'HTML',
                             TITLE: 'name',
+                            PARSESCRIPT:
+                              'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>").replace(/#{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>")',
                           },
                           editorStyle: 'ANCHO_HTML',
                           editorType: 'RAW',
@@ -1361,6 +1524,32 @@ export default {
                 },
                 showCaption: true,
                 id: 'format_type',
+              },
+              {
+                dataType: 9,
+                enableCond: 3,
+                labelPos: 'LEFT',
+                labelWidth: 130,
+                noPrivDisplayMode: 1,
+                appDEFieldId: 'is_lock',
+                editor: {
+                  editorType: 'HIDDEN',
+                  valueType: 'SIMPLE',
+                  editable: true,
+                  id: 'is_lock',
+                },
+                allowEmpty: true,
+                hidden: true,
+                caption: '是否锁定',
+                codeName: 'is_lock',
+                detailStyle: 'DEFAULT',
+                detailType: 'FORMITEM',
+                layoutPos: {
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                showCaption: true,
+                id: 'is_lock',
               },
               {
                 dataType: 25,
@@ -1997,7 +2186,7 @@ export default {
         itemName: 'FIELD_TEXTBOX',
         logicTag: 'layoutpanel',
         logicType: 'APPDEUILOGIC',
-        appDEUILogicId: 'comment_icon_hidden',
+        appDEUILogicId: 'comment_icon_hidden_wiki',
         appDataEntityId: 'plmweb.comment',
         triggerType: 'CTRLEVENT',
         name: 'onBlur',
@@ -2008,7 +2197,7 @@ export default {
         itemName: 'FIELD_TEXTBOX',
         logicTag: 'layoutpanel',
         logicType: 'APPDEUILOGIC',
-        appDEUILogicId: 'comment_icon_show',
+        appDEUILogicId: 'comment_icon_show_wiki',
         appDataEntityId: 'plmweb.comment',
         triggerType: 'CTRLEVENT',
         name: 'onFocus',

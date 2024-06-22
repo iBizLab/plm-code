@@ -83,6 +83,15 @@ export default {
   ],
   appViewRefs: [
     {
+      realTitle: '工单编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.TICKET.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.ticket_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
+    },
+    {
       openMode: 'INDEXVIEWTAB_POPUPMODAL',
       navigateContexts: [
         {
@@ -97,15 +106,6 @@ export default {
       refAppViewId: 'plmweb.ticket_main_view',
       name: 'EDITDATA',
       id: 'editdata',
-    },
-    {
-      realTitle: '工单编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.TICKET.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.ticket_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
     },
   ],
   controls: [
@@ -271,6 +271,7 @@ export default {
           id: 'srfkey',
         },
       ],
+      pagingMode: 1,
       pagingSize: 20,
       sortMode: 'REMOTE',
       enablePagingBar: true,
@@ -399,7 +400,7 @@ export default {
                 singleSelect: true,
                 handlerType: 'PickupText',
                 appDEACModeId: 'default',
-                appDEDataSetId: 'fetch_normal',
+                appDEDataSetId: 'fetch_main',
                 appDataEntityId: 'plmweb.product',
                 enableAC: true,
                 forceSelection: true,

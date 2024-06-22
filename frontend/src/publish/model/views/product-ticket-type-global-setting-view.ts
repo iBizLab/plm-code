@@ -65,7 +65,7 @@ export default {
       id: 'opendata',
     },
   ],
-  appViewMsgGroupId: 'usrvmgroup0417664142',
+  appViewMsgGroupId: 'usrvmgroup0603705601',
   appViewNavParams: [
     {
       key: 'n_product_id_eq',
@@ -315,10 +315,9 @@ export default {
           id: 'srfkey',
         },
       ],
-      pagingSize: 20,
+      pagingSize: 100,
       sortMode: 'REMOTE',
       enableCustomized: true,
-      enablePagingBar: true,
       singleSelect: true,
       fetchControlAction: {
         appDEMethodId: 'fetch_default',

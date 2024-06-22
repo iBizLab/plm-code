@@ -7,7 +7,7 @@ export default {
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TEST_PLAN',
   },
-  caption: '测试计划',
+  caption: '进行中的',
   codeName: 'test_plan_in_progress_grid_view',
   appDataEntityId: 'plmweb.test_plan',
   appViewEngines: [
@@ -282,6 +282,7 @@ export default {
           id: 'srfkey',
         },
       ],
+      pagingMode: 1,
       pagingSize: 20,
       sortMode: 'REMOTE',
       enableCustomized: true,
@@ -364,7 +365,7 @@ export default {
       capLanguageRes: {
         lanResTag: 'DE.LNAME.TEST_PLAN',
       },
-      caption: '测试计划',
+      caption: '进行中的',
       codeName: 'in_progress_grid_view_captionbar',
       controlType: 'CAPTIONBAR',
       appDataEntityId: 'plmweb.test_plan',

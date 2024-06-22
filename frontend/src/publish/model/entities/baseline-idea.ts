@@ -1163,9 +1163,11 @@ export default {
       actionTarget: 'NONE',
       caption: '规划需求',
       codeName: 'baseline_plan_idea',
+      dataAccessAction: 'UPDATE',
       frontAppViewId: 'plmweb.idea_baseline_mpick_up_view',
       fullCodeName: 'baseline_idea_baseline_plan_idea',
       appDEMethodId: 'shift_in_baseline',
+      deopprivId: 'update',
       navigateParams: [
         {
           key: 'baseline_id',
@@ -1245,8 +1247,10 @@ export default {
       caption: '移出',
       codeName: 'shift_out_baseline',
       confirmMsg: '确认从此基线中移出？',
+      dataAccessAction: 'UPDATE',
       fullCodeName: 'baseline_idea_shift_out_baseline',
       appDEMethodId: 'shift_out_baseline',
+      deopprivId: 'update',
       sysImage: {
         cssClass: 'fa fa-mail-reply',
         glyph: 'xf112@FontAwesome',
@@ -1260,7 +1264,7 @@ export default {
       enableConfirm: true,
       reloadData: true,
       showBusyIndicator: true,
-      noPrivDisplayMode: 2,
+      noPrivDisplayMode: 1,
       appDataEntityId: 'plmweb.baseline_idea',
       name: '移出基线',
       id: 'shift_out_baseline@baseline_idea',
@@ -1457,7 +1461,7 @@ export default {
   deapicodeName2: 'baseline_ideas',
   deapitag: 'BASELINE_IDEA',
   dataAccCtrlArch: 1,
-  dataAccCtrlMode: 1,
+  dataAccCtrlMode: 3,
   enableUIActions: 15,
   keyAppDEFieldId: 'id',
   lnlanguageRes: {
@@ -1465,6 +1469,17 @@ export default {
   },
   logicName: '基线需求',
   majorAppDEFieldId: 'name',
+  minorAppDERSs: [
+    {
+      actionRSMode: 1,
+      codeName: 'baseline_ideas',
+      majorAppDataEntityId: 'plmweb.baseline',
+      parentAppDEFieldId: 'principal_id',
+      rsmode: 2,
+      name: 'DERCUSTOM_BASELINE_IDEA_BASELINE',
+      id: 'baseline_ideas',
+    },
+  ],
   quickSearchAppDEFieldIds: ['name'],
   sysAPITag: 'ServiceAPI',
   unionKeyValueAppDEFieldIds: ['principal_id', 'target_id'],
@@ -1474,5 +1489,5 @@ export default {
   name: 'BASELINE_IDEA',
   id: 'plmweb.baseline_idea',
   codeName2: 'baseline_ideas',
-  requestPaths: [],
+  requestPaths: ['baselines/${baseline}/baseline_ideas/${baseline_idea}'],
 };

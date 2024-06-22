@@ -27,6 +27,7 @@ export default {
           id: 'type_setup',
         },
       ],
+      dataRelationTag: 'pick_up_tap_exp_view_DR',
       editItemCapLanguageRes: {
         lanResTag: 'DE.LNAME.WORKLOAD_TYPE',
       },

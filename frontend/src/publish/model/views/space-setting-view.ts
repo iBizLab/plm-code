@@ -138,6 +138,7 @@ export default {
         },
       ],
       showTitle: true,
+      dataRelationTag: 'setting_view_dr',
       editItemCapLanguageRes: {
         lanResTag: 'DE.LNAME.SPACE',
       },
@@ -172,6 +173,27 @@ export default {
           enableMode: 'DEOPPRIV',
           appViewId: 'plmweb.article_page_statistical_grid_view',
           id: 'stats',
+        },
+        {
+          dedrbarGroupId: 'usrdrgroup0319215816',
+          caption: '空间组件',
+          dataAccessAction: 'UPDATE',
+          enableMode: 'DEOPPRIV',
+          appViewId: 'plmweb.addon_space_setting_grid_view',
+          navigateParams: [
+            {
+              key: 'n_owner_id_eq',
+              value: 'space',
+              id: 'n_owner_id_eq',
+            },
+            {
+              key: 'n_owner_type_eq',
+              value: 'space',
+              rawValue: true,
+              id: 'n_owner_type_eq',
+            },
+          ],
+          id: 'addon_setting',
         },
         {
           dedrbarGroupId: 'usrdrgroup0319525879',

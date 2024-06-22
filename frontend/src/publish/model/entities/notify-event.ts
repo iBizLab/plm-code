@@ -425,15 +425,6 @@ export default {
           id: 'begin',
         },
         {
-          code: "const list = uiLogic.setting_model_list;\r\nconst items = list.getAllData() || [];\r\nif (uiLogic.listservice) {\r\n    uiLogic.listservice.updateBatch(list.context, items).then((res) => {\r\n        if (res.data) {\r\n            list.setData(res.data);\r\n        }\r\n        list.evt.emit('onSaveSuccess', undefined);\r\n    })\r\n}",
-          codeName: 'RAWJSCODE1',
-          leftPos: 583,
-          logicNodeType: 'RAWJSCODE',
-          topPos: 208,
-          name: '更新列表数据',
-          id: 'rawjscode1',
-        },
-        {
           codeName: 'PREPAREJSPARAM1',
           leftPos: 368,
           logicNodeType: 'PREPAREJSPARAM',
@@ -458,14 +449,17 @@ export default {
           name: '准备列表服务',
           id: 'preparejsparam1',
         },
+        {
+          code: "const list = uiLogic.setting_model_list;\r\nconst items = list.getAllData() || [];\r\nif (uiLogic.listservice) {\r\n    uiLogic.listservice.updateBatch(list.context, items).then((res) => {\r\n        if (res.data) {\r\n            list.setData(res.data);\r\n        }\r\n        list.evt.emit('onSaveSuccess', undefined);\r\n    })\r\n}",
+          codeName: 'RAWJSCODE1',
+          leftPos: 583,
+          logicNodeType: 'RAWJSCODE',
+          topPos: 208,
+          name: '更新列表数据',
+          id: 'rawjscode1',
+        },
       ],
       deuilogicParams: [
-        {
-          codeName: 'listservice',
-          entityParam: true,
-          name: '列表服务',
-          id: 'listservice',
-        },
         {
           codeName: 'setting_model_list',
           ctrlParam: true,
@@ -478,6 +472,12 @@ export default {
           entityParam: true,
           name: '传入变量',
           id: 'default',
+        },
+        {
+          codeName: 'listservice',
+          entityParam: true,
+          name: '列表服务',
+          id: 'listservice',
         },
       ],
       startDEUILogicNodeId: 'begin',

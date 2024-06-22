@@ -353,11 +353,6 @@ export default {
           dataType: 25,
           id: 'srfmajortext',
         },
-        {
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'srfmstag',
-        },
       ],
       degridEditItems: [
         {
@@ -375,12 +370,13 @@ export default {
           id: 'srfkey',
         },
       ],
+      pagingMode: 1,
       pagingSize: 20,
       sortMode: 'REMOTE',
       enablePagingBar: true,
       singleSelect: true,
       fetchControlAction: {
-        appDEMethodId: 'fetch_default',
+        appDEMethodId: 'fetch_baseline',
         appDataEntityId: 'plmweb.baseline',
         id: 'fetch',
       },
@@ -390,6 +386,7 @@ export default {
         id: 'remove',
       },
       autoLoad: true,
+      enableItemPrivilege: true,
       showBusyIndicator: true,
       codeName: 'library_baseline_grid',
       controlType: 'GRID',

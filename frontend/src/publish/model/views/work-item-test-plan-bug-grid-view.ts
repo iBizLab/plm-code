@@ -835,6 +835,7 @@ export default {
           id: 'assignee_id',
         },
       ],
+      pagingMode: 1,
       pagingSize: 20,
       sortMode: 'REMOTE',
       enableCustomized: true,
@@ -863,6 +864,16 @@ export default {
               valid: true,
               caption: '移入迭代',
               itemType: 'DEUIACTION',
+              controlLogics: [
+                {
+                  itemName: 'deuiaction9',
+                  logicTag: 'grid_batchtoolbar',
+                  logicType: 'SCRIPT',
+                  scriptCode: 'context.srfreadonly != true',
+                  triggerType: 'ITEMENABLE',
+                  id: 'deuiaction9',
+                },
+              ],
               sysImage: {
                 cssClass: 'fa fa-send-o',
                 glyph: 'xf1d9@FontAwesome',
@@ -880,6 +891,16 @@ export default {
               valid: true,
               caption: '移入发布',
               itemType: 'DEUIACTION',
+              controlLogics: [
+                {
+                  itemName: 'deuiaction2',
+                  logicTag: 'grid_batchtoolbar',
+                  logicType: 'SCRIPT',
+                  scriptCode: 'context.srfreadonly != true',
+                  triggerType: 'ITEMENABLE',
+                  id: 'deuiaction2',
+                },
+              ],
               sysImage: {
                 cssClass: 'fa fa-send-o',
                 glyph: 'xf1d9@FontAwesome',
@@ -897,6 +918,16 @@ export default {
               valid: true,
               caption: '变更状态',
               itemType: 'DEUIACTION',
+              controlLogics: [
+                {
+                  itemName: 'deuiaction3',
+                  logicTag: 'grid_batchtoolbar',
+                  logicType: 'SCRIPT',
+                  scriptCode: 'context.srfreadonly != true',
+                  triggerType: 'ITEMENABLE',
+                  id: 'deuiaction3',
+                },
+              ],
               sysImage: {
                 cssClass: 'fa fa-stack-exchange',
                 glyph: 'xf18d@FontAwesome',
@@ -914,6 +945,16 @@ export default {
               valid: true,
               caption: '分配负责人',
               itemType: 'DEUIACTION',
+              controlLogics: [
+                {
+                  itemName: 'deuiaction4',
+                  logicTag: 'grid_batchtoolbar',
+                  logicType: 'SCRIPT',
+                  scriptCode: 'context.srfreadonly != true',
+                  triggerType: 'ITEMENABLE',
+                  id: 'deuiaction4',
+                },
+              ],
               sysImage: {
                 cssClass: 'fa fa-user-plus',
                 glyph: 'xf234@FontAwesome',
@@ -931,6 +972,16 @@ export default {
               valid: true,
               caption: '修改时间',
               itemType: 'DEUIACTION',
+              controlLogics: [
+                {
+                  itemName: 'deuiaction10',
+                  logicTag: 'grid_batchtoolbar',
+                  logicType: 'SCRIPT',
+                  scriptCode: 'context.srfreadonly != true',
+                  triggerType: 'ITEMENABLE',
+                  id: 'deuiaction10',
+                },
+              ],
               sysImage: {
                 cssClass: 'fa fa-calendar',
                 glyph: 'xf073@FontAwesome',
@@ -1017,6 +1068,16 @@ export default {
               valid: true,
               caption: '更多',
               itemType: 'ITEMS',
+              controlLogics: [
+                {
+                  itemName: 'items1',
+                  logicTag: 'grid_batchtoolbar',
+                  logicType: 'SCRIPT',
+                  scriptCode: 'context.srfreadonly != true',
+                  triggerType: 'ITEMENABLE',
+                  id: 'items1',
+                },
+              ],
               sysImage: {
                 cssClass: 'fa fa-list-ul',
                 glyph: 'xf0ca@FontAwesome',

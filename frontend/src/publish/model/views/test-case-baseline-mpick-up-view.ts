@@ -548,20 +548,13 @@ export default {
               {
                 text: '用例模块',
                 nodeType: 'node_1',
-                navigateParams: [
-                  {
-                    key: 'n_suite_id_isnotnull',
-                    value: '1',
-                    rawValue: true,
-                    id: 'n_suite_id_isnotnull',
-                  },
-                ],
                 sysImage: {
                   cssClass: 'fa fa-th',
                   glyph: 'xf00a@FontAwesome',
                 },
                 treeNodeType: 'STATIC',
                 hasDETreeNodeRSs: true,
+                disableSelect: true,
                 expanded: true,
                 name: '用例模块',
                 id: 'node_1',

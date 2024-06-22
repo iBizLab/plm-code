@@ -11,6 +11,13 @@ export default {
   caption: '全部迭代',
   codeName: 'sprint_all_grid_view',
   appDataEntityId: 'plmweb.sprint',
+  appViewNavParams: [
+    {
+      key: 'project',
+      value: 'project',
+      id: 'project',
+    },
+  ],
   viewLayoutPanel: {
     viewProxyMode: true,
     layoutMode: 'FLEX',
@@ -264,17 +271,17 @@ export default {
     ],
     appViewRefs: [
       {
+        realTitle: '迭代实体分页导航视图',
+        refAppViewId: 'plmweb.sprint_main_view',
+        name: 'EDITDATA',
+        id: 'editdata',
+      },
+      {
         realOpenMode: 'POPUPMODAL',
         realTitle: '迭代快速建立视图',
         refAppViewId: 'plmweb.sprint_quick_create_view',
         name: 'NEWDATA',
         id: 'newdata',
-      },
-      {
-        realTitle: '迭代实体分页导航视图',
-        refAppViewId: 'plmweb.sprint_main_view',
-        name: 'EDITDATA',
-        id: 'editdata',
       },
     ],
     controls: [
@@ -686,6 +693,7 @@ export default {
             id: 'assignee_id',
           },
         ],
+        pagingMode: 1,
         pagingSize: 20,
         sortMode: 'REMOTE',
         enableCustomized: true,

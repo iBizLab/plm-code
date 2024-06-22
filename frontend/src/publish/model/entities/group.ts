@@ -525,6 +525,28 @@ export default {
       id: 'fetch_no_section',
     },
     {
+      codeName: 'fetch_reader',
+      methodType: 'FETCH',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'group_filter_dto',
+        type: 'DTO',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'group_dto',
+        type: 'PAGE',
+        id: '返回对象',
+      },
+      requestMethod: 'POST',
+      requestParamType: 'ENTITY',
+      requestPath: '/fetch_reader',
+      actionType: 'REMOTE',
+      dataSetName: 'reader',
+      dataSetTag: 'reader',
+      dataSetType: 'REMOTE',
+      id: 'fetch_reader',
+    },
+    {
       codeName: 'fetch_user_group_admin',
       methodType: 'FETCH',
       appDEMethodInput: {

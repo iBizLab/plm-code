@@ -93,7 +93,6 @@ public class ReviewWizard extends EntityMP implements Serializable
     /**
     * 关注
     */
-    @Transient
     @TableField(exist = false)
     @DEField(name = "attentions")
     @JSONField(name = "attentions")
@@ -114,7 +113,6 @@ public class ReviewWizard extends EntityMP implements Serializable
     /**
     * 评审内容
     */
-    @Transient
     @TableField(exist = false)
     @DEField(name = "contents")
     @JSONField(name = "contents")

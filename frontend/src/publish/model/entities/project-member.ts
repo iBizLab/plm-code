@@ -664,6 +664,16 @@ export default {
           id: 'n_user_id_eq',
         },
         {
+          codeName: 'n_user_id_notin',
+          logicName: '登录名',
+          appDEFieldId: 'user_id',
+          sourceType: 'DEFSEARCHMODE',
+          stdDataType: 25,
+          type: 'SIMPLES',
+          allowEmpty: true,
+          id: 'n_user_id_notin',
+        },
+        {
           codeName: 'n_weekday_eq',
           logicName: '周工作日',
           appDEFieldId: 'weekday',

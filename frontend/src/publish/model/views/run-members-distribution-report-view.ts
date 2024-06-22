@@ -10,6 +10,15 @@ export default {
   caption: '执行用例成员分布',
   codeName: 'run_members_distribution_report_view',
   appDataEntityId: 'plmweb.run',
+  appViewNavContexts: [
+    {
+      rawValue: true,
+      key: 'SRFREADONLY',
+      value: 'false',
+      name: 'SRFREADONLY',
+      id: 'srfreadonly',
+    },
+  ],
   appViewNavParams: [
     {
       key: 'n_library_id_eq',

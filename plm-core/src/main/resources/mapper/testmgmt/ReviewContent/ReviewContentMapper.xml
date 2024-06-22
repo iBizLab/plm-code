@@ -6,14 +6,13 @@
     <resultMap id="ReviewContentResultMap" type="cn.ibizlab.plm.core.testmgmt.domain.ReviewContent" autoMapping="true">
 		<result property="changeType" column="change_type" />
 		<result property="principalId" column="principal_id" />
-		<result property="changeVersion" column="change_version" />
 		<result property="ownerType" column="owner_type" />
 		<result property="principalType" column="principal_type" />
 		<result property="targetType" column="target_type" />
-		<result property="finalStageResults" column="final_stage_results" />
 		<result property="targetId" column="target_id" />
 		<result property="targetVersionId" column="target_version_id" />
 		<result property="parentVersionId" column="parent_version_id" />
+		<result property="workItem" column="work_item" />
 		<result property="curVersionId" column="cur_version_id" />
 		<result property="targetIdentifier" column="target_identifier" />
 		<result property="targetTitle" column="target_title" />
@@ -21,12 +20,11 @@
 		<result property="targetAssignee" column="target_assignee" />
 		<result property="targetPriority" column="target_priority" />
 		<result property="targetParentId" column="target_parent_id" />
-		<result property="createMan" column="create_man" />
-		<result property="createTime" column="create_time" />
 		<result property="updateMan" column="update_man" />
+		<result property="createMan" column="create_man" />
 		<result property="updateTime" column="update_time" />
+		<result property="createTime" column="create_time" />
         <association property="review" javaType="cn.ibizlab.plm.core.testmgmt.domain.Review" column="principal_id" select="cn.ibizlab.plm.core.testmgmt.mapper.ReviewMapper.selectById" fetchType="lazy"></association>
-        <association property="reviewWizard" javaType="cn.ibizlab.plm.core.testmgmt.domain.ReviewWizard" column="principal_id" select="cn.ibizlab.plm.core.testmgmt.mapper.ReviewWizardMapper.selectById" fetchType="lazy"></association>
         <association property="targetVersion" javaType="cn.ibizlab.plm.core.base.domain.Version" column="target_version_id" select="cn.ibizlab.plm.core.base.mapper.VersionMapper.selectById" fetchType="lazy"></association>
         <association property="testCase" javaType="cn.ibizlab.plm.core.testmgmt.domain.TestCase" column="target_id" select="cn.ibizlab.plm.core.testmgmt.mapper.TestCaseMapper.selectById" fetchType="lazy"></association>
     </resultMap>
@@ -52,15 +50,15 @@
 
 
     <sql id="default" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CHANGE_TYPE`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t11.`CUR_VERSION_ID`, t1.`FINAL_STAGE_RESULTS`, t1.`ID`, t1.`NAME`, t11.`OWNER_TYPE`, t11.`PARENT_VERSION_ID`, t11.`PRINCIPAL_ID`, t11.`PRINCIPAL_TYPE`, t11.`TARGET_ID`, t11.`TARGET_TYPE`, t11.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `REVIEW_CONTENT_EXTEND` t1  LEFT JOIN `RELATION` t11 ON t1.`ID` = t11.`ID`   ]]>  
+         <![CDATA[ SELECT t1.`CHANGE_TYPE`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t11.`CUR_VERSION_ID`, t1.`FINAL_STAGE_RESULTS`, t1.`ID`, t1.`NAME`, t11.`OWNER_TYPE`, t11.`PARENT_VERSION_ID`, t11.`PRINCIPAL_ID`, t11.`PRINCIPAL_TYPE`, t11.`TARGET_ID`, t11.`TARGET_TYPE`, t11.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `REVIEW_CONTENT_EXTEND` t1  LEFT JOIN `RELATION` t11 ON t1.`ID` = t11.`ID`   ]]>
     </sql>
 
     <sql id="view" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CHANGE_TYPE`, t1.`CHANGE_VERSION`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t11.`CUR_VERSION_ID`, t1.`FINAL_STAGE_RESULTS`, t1.`ID`, t1.`NAME`, t11.`OWNER_TYPE`, t11.`PARENT_VERSION_ID`, t11.`PRINCIPAL_ID`, t11.`PRINCIPAL_TYPE`, t11.`TARGET_ID`, t11.`TARGET_TYPE`, t11.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `REVIEW_CONTENT_EXTEND` t1  LEFT JOIN `RELATION` t11 ON t1.`ID` = t11.`ID`   ]]>  
+         <![CDATA[ SELECT t1.`CHANGE_TYPE`, t1.`CHANGE_VERSION`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t11.`CUR_VERSION_ID`, t1.`FINAL_STAGE_RESULTS`, t1.`ID`, t1.`NAME`, t11.`OWNER_TYPE`, t11.`PARENT_VERSION_ID`, t11.`PRINCIPAL_ID`, t11.`PRINCIPAL_TYPE`, t11.`TARGET_ID`, t11.`TARGET_TYPE`, t11.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `REVIEW_CONTENT_EXTEND` t1  LEFT JOIN `RELATION` t11 ON t1.`ID` = t11.`ID`   ]]>
     </sql>
 
     <sql id="all" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CHANGE_TYPE`, t1.`CHANGE_VERSION`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t11.`CUR_VERSION_ID`, t1.`FINAL_STAGE_RESULTS`, t1.`ID`, t1.`NAME`, t11.`OWNER_TYPE`, t11.`PARENT_VERSION_ID`, t11.`PRINCIPAL_ID`, t11.`PRINCIPAL_TYPE`, t11.`TARGET_ID`, t11.`TARGET_TYPE`, t11.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `REVIEW_CONTENT_EXTEND` t1  LEFT JOIN `RELATION` t11 ON t1.`ID` = t11.`ID`   ]]>  
+         <![CDATA[ SELECT t1.`CHANGE_TYPE`, t1.`CHANGE_VERSION`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t11.`CUR_VERSION_ID`, t1.`FINAL_STAGE_RESULTS`, t1.`ID`, t1.`NAME`, t11.`OWNER_TYPE`, t11.`PARENT_VERSION_ID`, t11.`PRINCIPAL_ID`, t11.`PRINCIPAL_TYPE`, t11.`TARGET_ID`, t11.`TARGET_TYPE`, t11.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `REVIEW_CONTENT_EXTEND` t1  LEFT JOIN `RELATION` t11 ON t1.`ID` = t11.`ID`   ]]>
     </sql>
 
     <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.ReviewContentSearchContext"  resultMap="ReviewContentResultMap">
@@ -109,7 +107,7 @@
         select t1.* from (
             <include refid="default"/>
         ) t1
-        where principal_id in <foreach item="id" index="index" collection="principalIds" open="(" separator="," close=")">#{id}</foreach> 
+        where principal_id in <foreach item="id" index="index" collection="principalIds" open="(" separator="," close=")">#{id}</foreach>
     </select>
 
     <select id="findByPrincipalId" resultMap="ReviewContentResultMap">

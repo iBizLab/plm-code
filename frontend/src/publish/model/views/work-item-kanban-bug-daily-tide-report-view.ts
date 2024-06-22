@@ -20,6 +20,13 @@ export default {
       name: 'PROJECT_TYPE',
       id: 'project_type',
     },
+    {
+      rawValue: true,
+      key: 'SRFREADONLY',
+      value: 'false',
+      name: 'SRFREADONLY',
+      id: 'srfreadonly',
+    },
   ],
   viewLayoutPanel: {
     viewProxyMode: true,

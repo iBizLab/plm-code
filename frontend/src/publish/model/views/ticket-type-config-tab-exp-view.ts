@@ -11,78 +11,332 @@ export default {
   caption: '工单配置',
   codeName: 'ticket_type_config_tab_exp_view',
   appDataEntityId: 'plmweb.ticket_type',
-  appViewEngines: [
-    {
-      engineCat: 'VIEW',
-      engineType: 'TabExpView',
-      id: 'engine',
-    },
-  ],
-  controls: [
-    {
-      dedrtabPages: [
-        {
-          caption: '工单类型',
-          appViewId: 'plmweb.ticket_type_global_setting_view',
-          id: 'ticket_type',
-        },
-        {
-          caption: '状态管理',
-          appViewId: 'plmweb.dictionary_data_ticket_state_grid_view',
-          navigateContexts: [
-            {
-              key: 'CATALOG',
-              value: 'ticket_state',
-              rawValue: true,
-              name: 'CATALOG',
-              id: 'catalog',
-            },
-          ],
-          id: 'state_manage',
-        },
-      ],
-      editItemCapLanguageRes: {
-        lanResTag: 'DE.LNAME.TICKET_TYPE',
-      },
-      editItemCaption: '工单类型',
-      uniqueTag: 'ticket_type_config_tab_exp_view__tabexppanel',
-      hideEditItem: true,
-      autoLoad: true,
-      showBusyIndicator: true,
-      codeName: 'config_tab_exp_view_dr',
-      controlType: 'DRTAB',
-      appDataEntityId: 'plmweb.ticket_type',
-      controlParam: {
-        id: 'tabexppanel',
-      },
-      modelId: '60CC1E27-311A-4DB2-9636-F60A86B01394',
-      modelType: 'PSDEDRTAB',
-      name: 'tabexppanel',
-      id: 'config_tab_exp_view_dr',
-    },
-    {
-      capLanguageRes: {
-        lanResTag: 'DE.LNAME.TICKET_TYPE',
-      },
-      caption: '工单配置',
-      codeName: 'config_tab_exp_view_captionbar',
-      controlType: 'CAPTIONBAR',
-      appDataEntityId: 'plmweb.ticket_type',
-      controlParam: {},
-      name: 'captionbar',
-      id: 'config_tab_exp_view_captionbar',
-    },
-  ],
   viewLayoutPanel: {
-    layoutBodyOnly: true,
-    useDefaultLayout: true,
+    viewProxyMode: true,
+    layoutMode: 'FLEX',
+    layout: {
+      layout: 'FLEX',
+    },
+    rootPanelItems: [
+      {
+        actionGroupExtractMode: 'ITEM',
+        panelItems: [
+          {
+            actionGroupExtractMode: 'ITEM',
+            panelItems: [
+              {
+                caption: '标题栏',
+                itemStyle: 'DEFAULT',
+                itemType: 'CTRLPOS',
+                layoutPos: {
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                showCaption: true,
+                id: 'captionbar',
+              },
+            ],
+            layout: {
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            caption: '容器',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              shrink: 1,
+              layout: 'FLEX',
+            },
+            id: 'view_captionbar',
+          },
+          {
+            actionGroupExtractMode: 'ITEM',
+            panelItems: [
+              {
+                caption: '分页导航',
+                itemStyle: 'DEFAULT',
+                itemType: 'CTRLPOS',
+                layoutPos: {
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                showCaption: true,
+                id: 'tabexppanel',
+              },
+            ],
+            layout: {
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            caption: '容器',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              grow: 1,
+              shrink: 1,
+              layout: 'FLEX',
+            },
+            id: 'view_tabexppanel',
+          },
+          {
+            actionGroupExtractMode: 'ITEM',
+            panelItems: [
+              {
+                rawItem: {
+                  predefinedType: 'TELEPORT_PLACEHOLDER',
+                  id: 'tabsearchbar',
+                },
+                caption: '传送部件占位',
+                itemStyle: 'DEFAULT',
+                itemType: 'RAWITEM',
+                layoutPos: {
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                showCaption: true,
+                id: 'tabsearchbar',
+              },
+              {
+                rawItem: {
+                  predefinedType: 'TELEPORT_PLACEHOLDER',
+                  id: 'tabtoolbar',
+                },
+                caption: '传送部件占位',
+                itemStyle: 'DEFAULT',
+                itemType: 'RAWITEM',
+                layoutPos: {
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                showCaption: true,
+                id: 'tabtoolbar',
+              },
+            ],
+            layout: {
+              align: 'flex-start',
+              dir: 'row',
+              layout: 'FLEX',
+              valign: 'center',
+            },
+            dataRegionType: 'INHERIT',
+            caption: '容器',
+            cssStyle: 'margin-right：12px',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              shrink: 1,
+              layout: 'FLEX',
+            },
+            id: 'container2',
+          },
+        ],
+        predefinedType: 'VIEWHEADER',
+        layout: {
+          dir: 'row',
+          layout: 'FLEX',
+          valign: 'center',
+        },
+        dataRegionType: 'INHERIT',
+        caption: '容器',
+        itemStyle: 'DEFAULT',
+        itemType: 'CONTAINER',
+        layoutPos: {
+          shrink: 0,
+          layout: 'FLEX',
+        },
+        id: 'view_header',
+      },
+      {
+        actionGroupExtractMode: 'ITEM',
+        panelItems: [
+          {
+            actionGroupExtractMode: 'ITEM',
+            layout: {
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            caption: '容器',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              shrink: 0,
+              layout: 'FLEX',
+            },
+            id: 'view_tabexppanel_left',
+          },
+          {
+            actionGroupExtractMode: 'ITEM',
+            panelItems: [
+              {
+                actionGroupExtractMode: 'ITEM',
+                panelItems: [
+                  {
+                    rawItem: {
+                      predefinedType: 'NAV_POS',
+                      id: 'nav_pos',
+                    },
+                    caption: '导航区占位',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'RAWITEM',
+                    layoutPos: {
+                      grow: 1,
+                      shrink: 1,
+                      layout: 'FLEX',
+                    },
+                    showCaption: true,
+                    id: 'nav_pos',
+                  },
+                ],
+                predefinedType: 'VIEWCONTENT',
+                layout: {
+                  layout: 'FLEX',
+                },
+                dataRegionType: 'INHERIT',
+                caption: '容器',
+                itemStyle: 'DEFAULT',
+                itemType: 'CONTAINER',
+                layoutPos: {
+                  grow: 1,
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                id: 'view_content',
+              },
+              {
+                actionGroupExtractMode: 'ITEM',
+                layout: {
+                  layout: 'FLEX',
+                },
+                dataRegionType: 'INHERIT',
+                caption: '容器',
+                itemStyle: 'DEFAULT',
+                itemType: 'CONTAINER',
+                layoutPos: {
+                  shrink: 0,
+                  layout: 'FLEX',
+                },
+                id: 'view_tabexppanel_bottom',
+              },
+            ],
+            layout: {
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            caption: '容器',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              grow: 1,
+              shrink: 1,
+              layout: 'FLEX',
+            },
+            id: 'container1',
+          },
+          {
+            actionGroupExtractMode: 'ITEM',
+            layout: {
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            caption: '容器',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              shrink: 0,
+              layout: 'FLEX',
+            },
+            id: 'view_tabexppanel_right',
+          },
+        ],
+        layout: {
+          dir: 'row',
+          layout: 'FLEX',
+        },
+        dataRegionType: 'INHERIT',
+        caption: '容器',
+        itemStyle: 'DEFAULT',
+        itemType: 'CONTAINER',
+        layoutPos: {
+          grow: 1,
+          shrink: 1,
+          layout: 'FLEX',
+        },
+        id: 'container',
+      },
+    ],
     layoutPanel: true,
-    codeName: 'layoutpanel',
-    controlStyle: 'APPDETABEXPVIEW',
+    appViewEngines: [
+      {
+        engineCat: 'VIEW',
+        engineType: 'TabExpView',
+        id: 'engine',
+      },
+    ],
+    controls: [
+      {
+        dedrtabPages: [
+          {
+            caption: '工单类型',
+            appViewId: 'plmweb.ticket_type_global_setting_view',
+            id: 'ticket_type',
+          },
+          {
+            caption: '状态管理',
+            appViewId: 'plmweb.dictionary_data_ticket_state_grid_view',
+            navigateContexts: [
+              {
+                key: 'CATALOG',
+                value: 'ticket_state',
+                rawValue: true,
+                name: 'CATALOG',
+                id: 'catalog',
+              },
+            ],
+            id: 'state_manage',
+          },
+        ],
+        dataRelationTag: 'config_tab_exp_view_DR',
+        editItemCapLanguageRes: {
+          lanResTag: 'DE.LNAME.TICKET_TYPE',
+        },
+        editItemCaption: '工单类型',
+        uniqueTag: 'ticket_type_config_tab_exp_view__tabexppanel',
+        hideEditItem: true,
+        autoLoad: true,
+        showBusyIndicator: true,
+        codeName: 'config_tab_exp_view_dr',
+        controlType: 'DRTAB',
+        appDataEntityId: 'plmweb.ticket_type',
+        controlParam: {
+          id: 'tabexppanel',
+        },
+        modelId: '60CC1E27-311A-4DB2-9636-F60A86B01394',
+        modelType: 'PSDEDRTAB',
+        name: 'tabexppanel',
+        id: 'config_tab_exp_view_dr',
+      },
+      {
+        capLanguageRes: {
+          lanResTag: 'DE.LNAME.TICKET_TYPE',
+        },
+        caption: '工单配置',
+        codeName: 'config_tab_exp_view_captionbar',
+        controlType: 'CAPTIONBAR',
+        appDataEntityId: 'plmweb.ticket_type',
+        controlParam: {},
+        name: 'captionbar',
+        id: 'config_tab_exp_view_captionbar',
+      },
+    ],
+    codeName: 'usr0530978059',
     controlType: 'VIEWLAYOUTPANEL',
+    logicName: 'config_tab_exp_view分页导航视图布局面板',
     appDataEntityId: 'plmweb.ticket_type',
     controlParam: {},
-    id: 'layoutpanel',
+    modelId: 'EFA40042-D0F4-4F54-94C6-F2B75705E67E',
+    modelType: 'PSSYSVIEWLAYOUTPANEL',
+    name: 'layoutpanel',
+    id: 'usr0530978059',
   },
   title: '工单配置',
   viewStyle: 'DEFAULT',

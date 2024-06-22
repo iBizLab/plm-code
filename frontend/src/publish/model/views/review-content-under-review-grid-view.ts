@@ -1,5 +1,4 @@
 export default {
-  gridRowActiveMode: 1,
   enableRowEdit: true,
   xdataControlName: 'grid',
   loadDefault: true,
@@ -29,7 +28,7 @@ export default {
           {
             openMode: 'POPUPMODAL',
             refMode: 'TEST_CASE',
-            refAppViewId: 'plmweb.test_case_mpick_up_view',
+            refAppViewId: 'plmweb.test_case_mpick_up_view2_review',
           },
         ],
         newDataAppView: {
@@ -46,7 +45,7 @@ export default {
           {
             openMode: 'POPUPMODAL',
             refMode: 'TEST_CASE',
-            refAppViewId: 'plmweb.test_case_mpick_up_view',
+            refAppViewId: 'plmweb.test_case_mpick_up_view2_review',
           },
         ],
         builtinLogic: true,
@@ -90,6 +89,15 @@ export default {
   ],
   appViewRefs: [
     {
+      realTitle: '评审内容数据重定向视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.REVIEW_CONTENT.REDIRECTVIEW',
+      },
+      refAppViewId: 'plmweb.review_content_redirect_view',
+      name: 'EDITDATA',
+      id: 'editdata',
+    },
+    {
       openMode: 'POPUPMODAL',
       realOpenMode: 'POPUPMODAL',
       realTitle: '评审内容编辑视图',
@@ -101,25 +109,13 @@ export default {
       id: 'newdata',
     },
     {
-      realTitle: '评审内容数据重定向视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.REVIEW_CONTENT.REDIRECTVIEW',
-      },
-      refAppViewId: 'plmweb.review_content_redirect_view',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
-    {
       name: 'MPICKUPVIEW:REVIEW_WIZARD',
       id: 'mpickupview:review_wizard',
     },
     {
       realOpenMode: 'POPUPMODAL',
-      realTitle: '用例数据多项选择视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.TEST_CASE.MPICKUPVIEW',
-      },
-      refAppViewId: 'plmweb.test_case_mpick_up_view',
+      realTitle: '用例实体数据多项选择',
+      refAppViewId: 'plmweb.test_case_mpick_up_view2_review',
       name: 'MPICKUPVIEW:TEST_CASE',
       id: 'mpickupview:test_case',
     },
@@ -228,6 +224,7 @@ export default {
           dataItemName: 'change_version',
           excelCaption: '变更版本',
           appDEFieldId: 'change_version',
+          deuiactionId: 'saverow',
           valueType: 'OBJECTS',
           enableRowEdit: true,
           aggMode: 'NONE',
@@ -236,8 +233,12 @@ export default {
           codeName: 'change_version',
           columnType: 'DEFGRIDCOLUMN',
           noPrivDisplayMode: 1,
-          width: 120,
+          sysPFPluginId: 'column_change_version',
+          width: 184,
           widthUnit: 'PX',
+          userParam: {
+            'SRFNAVPARAM.n_owner_id_eq': '%owner_id%',
+          },
           id: 'change_version',
         },
       ],
@@ -277,6 +278,12 @@ export default {
           valueType: 'SIMPLE',
           dataType: 25,
           id: 'target_parent_id',
+        },
+        {
+          appDEFieldId: 'final_stage_results',
+          valueType: 'SIMPLE',
+          dataType: 25,
+          id: 'final_stage_results',
         },
         {
           appDEFieldId: 'id',
@@ -321,12 +328,28 @@ export default {
           enableCond: 3,
           appDEFieldId: 'change_version',
           editor: {
-            editorType: 'HIDDEN',
+            singleSelect: true,
+            handlerType: 'PickupText',
+            appDEACModeId: 'default',
+            appDEDataSetId: 'fetch_default',
+            appDataEntityId: 'plmweb.version',
+            enableAC: true,
+            forceSelection: true,
+            showTrigger: true,
+            editorParams: {
+              AC: 'TRUE',
+              TRIGGER: 'TRUE',
+              PICKUPVIEW: 'FALSE',
+            },
+            editorType: 'PICKEREX_TRIGGER',
             valueType: 'OBJECTS',
             editable: true,
             id: 'change_version',
           },
           allowEmpty: true,
+          userParam: {
+            'SRFNAVPARAM.n_owner_id_eq': '%owner_id%',
+          },
           id: 'change_version',
         },
         {
@@ -384,6 +407,7 @@ export default {
       showBusyIndicator: true,
       codeName: 'under_review_grid_view_grid',
       controlType: 'GRID',
+      height: 500,
       logicName: '评审内容实体表格视图_表格',
       appDataEntityId: 'plmweb.review_content',
       controlParam: {

@@ -3,7 +3,6 @@ export default {
   loadDefault: true,
   deviewCodeName: 'tree_exp_view',
   deviewId: 'ABE948C8-86A8-41E6-8A99-4359BA04A808',
-  appWFId: 'case_review_flow',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'PAGE.CAPTION.REVIEW.TREE_EXP_VIEW',
@@ -89,8 +88,16 @@ export default {
           id: 'expitem:node',
         },
         {
-          realTitle: '待办全部评审',
-          refAppViewId: 'plmweb.review_todo_all_grid_view',
+          parentDataJO: {
+            srfparentdename: 'LIBRARY',
+            srfparentmode: 'DER1N_REVIEW_LIBRARY_LIBRARY_ID',
+            srfparentdefname: 'LIBRARY_ID',
+          },
+          realTitle: '用例评审表格',
+          realTitleLanguageRes: {
+            lanResTag: 'PAGE.TITLE.REVIEW.ALL_GRID_VIEW',
+          },
+          refAppViewId: 'plmweb.review_test_case_grid_view',
           name: 'EXPITEM:node_1',
           id: 'expitem:node_1',
         },
@@ -104,10 +111,60 @@ export default {
           id: 'expitem:node_10',
         },
         {
-          realTitle: '全部待办数据',
-          refAppViewId: 'plmweb.sys_todo_all_grid_view',
+          parentDataJO: {
+            srfparentdename: 'LIBRARY',
+            srfparentmode: 'DER1N_REVIEW_LIBRARY_LIBRARY_ID',
+            srfparentdefname: 'LIBRARY_ID',
+          },
+          realTitle: '基线评审表格',
+          realTitleLanguageRes: {
+            lanResTag: 'PAGE.TITLE.REVIEW.ALL_GRID_VIEW',
+          },
+          refAppViewId: 'plmweb.review_baseline_grid_view',
           name: 'EXPITEM:node_2',
           id: 'expitem:node_2',
+        },
+        {
+          parentDataJO: {
+            srfparentdename: 'LIBRARY',
+            srfparentmode: 'DER1N_REVIEW_LIBRARY_LIBRARY_ID',
+            srfparentdefname: 'LIBRARY_ID',
+          },
+          realTitle: '我创建的评审表格',
+          realTitleLanguageRes: {
+            lanResTag: 'PAGE.TITLE.REVIEW.ALL_GRID_VIEW',
+          },
+          refAppViewId: 'plmweb.review_my_created_grid_view',
+          name: 'EXPITEM:node_3',
+          id: 'expitem:node_3',
+        },
+        {
+          parentDataJO: {
+            srfparentdename: 'LIBRARY',
+            srfparentmode: 'DER1N_REVIEW_LIBRARY_LIBRARY_ID',
+            srfparentdefname: 'LIBRARY_ID',
+          },
+          realTitle: '我评审的表格',
+          realTitleLanguageRes: {
+            lanResTag: 'PAGE.TITLE.REVIEW.ALL_GRID_VIEW',
+          },
+          refAppViewId: 'plmweb.review_my_reviewed_grid_view',
+          name: 'EXPITEM:node_4',
+          id: 'expitem:node_4',
+        },
+        {
+          parentDataJO: {
+            srfparentdename: 'LIBRARY',
+            srfparentmode: 'DER1N_REVIEW_LIBRARY_LIBRARY_ID',
+            srfparentdefname: 'LIBRARY_ID',
+          },
+          realTitle: '我关注的评审表格',
+          realTitleLanguageRes: {
+            lanResTag: 'PAGE.TITLE.REVIEW.ALL_GRID_VIEW',
+          },
+          refAppViewId: 'plmweb.review_my_attention_grid_view',
+          name: 'EXPITEM:node_5',
+          id: 'expitem:node_5',
         },
         {
           parentDataJO: {
@@ -248,8 +305,8 @@ export default {
               },
               nodeType: 'node',
               sysImage: {
-                cssClass: 'fa fa-th-large',
-                glyph: 'xf009@FontAwesome',
+                rawContent:
+                  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" class="design-iconfont" width="14" height="14">\n  <path d="M1,8.16 L7.28571429,8.16 L7.28571429,2 L1,2 L1,8.16 Z M2.14285714,3.12 L6.14285714,3.12 L6.14285714,7.04 L2.14285714,7.04 L2.14285714,3.12 Z M1,16 L7.28571429,16 L7.28571429,9.84 L1,9.84 L1,16 Z M2.14285714,10.96 L6.14285714,10.96 L6.14285714,14.88 L2.14285714,14.88 L2.14285714,10.96 Z M9.26514286,3.68 L16.4285714,3.68 C16.7441627,3.68 17,3.42927946 17,3.12 C17,2.81072054 16.7441627,2.56 16.4285714,2.56 L9.26514286,2.56 C8.94955157,2.56 8.69371429,2.81072054 8.69371429,3.12 C8.69371429,3.42927946 8.94955157,3.68 9.26514286,3.68 Z M16.4285714,10.4 L9.26514286,10.4 C8.94955157,10.4 8.69371429,10.6507205 8.69371429,10.96 C8.69371429,11.2692795 8.94955157,11.52 9.26514286,11.52 L16.4285714,11.52 C16.7441627,11.52 17,11.2692795 17,10.96 C17,10.6507205 16.7441627,10.4 16.4285714,10.4 Z M16.4285714,6.48 L9.26514286,6.48 C8.94955157,6.48 8.69371429,6.73072054 8.69371429,7.04 C8.69371429,7.34927946 8.94955157,7.6 9.26514286,7.6 L16.4285714,7.6 C16.7441627,7.6 17,7.34927946 17,7.04 C17,6.73072054 16.7441627,6.48 16.4285714,6.48 Z M16.4285714,14.32 L9.26514286,14.32 C8.94955157,14.32 8.69371429,14.5707205 8.69371429,14.88 C8.69371429,15.1892795 8.94955157,15.44 9.26514286,15.44 L16.4285714,15.44 C16.7441627,15.44 17,15.1892795 17,14.88 C17,14.5707205 16.7441627,14.32 16.4285714,14.32 Z" stroke="#1D1F23" stroke-width=".3" fill="#1D1F23" fill-rule="nonzero"></path>\n</svg>',
               },
               treeNodeType: 'STATIC',
               name: '全部评审',
@@ -257,8 +314,30 @@ export default {
             },
             {
               text: '用例评审',
-              navAppViewId: 'plmweb.review_todo_all_grid_view',
+              navAppViewId: 'plmweb.review_test_case_grid_view',
+              navDER: {
+                masterOrder: 100,
+                masterRS: 5,
+                pickupDEFName: 'LIBRARY_ID',
+                codeName: 'library',
+                dertype: 'DER1N',
+                logicName: '测试库',
+                minorCodeName: 'reviews',
+                minorServiceCodeName: 'reviews',
+                orderValue: 100,
+                serviceCodeName: 'library',
+                name: 'DER1N_REVIEW_LIBRARY_LIBRARY_ID',
+                id: 'testmgmt.review.der1n_review_library_library_id',
+              },
               nodeType: 'node_1',
+              navigateParams: [
+                {
+                  key: 'n_type_eq',
+                  value: 'TEST_CASE',
+                  rawValue: true,
+                  id: 'n_type_eq',
+                },
+              ],
               sysImage: {
                 cssClass: 'fa fa-list-alt',
                 glyph: 'xf022@FontAwesome',
@@ -364,8 +443,30 @@ export default {
             },
             {
               text: '基线评审',
-              navAppViewId: 'plmweb.sys_todo_all_grid_view',
+              navAppViewId: 'plmweb.review_baseline_grid_view',
+              navDER: {
+                masterOrder: 100,
+                masterRS: 5,
+                pickupDEFName: 'LIBRARY_ID',
+                codeName: 'library',
+                dertype: 'DER1N',
+                logicName: '测试库',
+                minorCodeName: 'reviews',
+                minorServiceCodeName: 'reviews',
+                orderValue: 100,
+                serviceCodeName: 'library',
+                name: 'DER1N_REVIEW_LIBRARY_LIBRARY_ID',
+                id: 'testmgmt.review.der1n_review_library_library_id',
+              },
               nodeType: 'node_2',
+              navigateParams: [
+                {
+                  key: 'n_type_eq',
+                  value: 'BASELINE',
+                  rawValue: true,
+                  id: 'n_type_eq',
+                },
+              ],
               sysImage: {
                 cssClass: 'fa fa-file-zip-o',
                 glyph: 'xf1c6@FontAwesome',
@@ -376,7 +477,29 @@ export default {
             },
             {
               text: '我创建的',
+              navAppViewId: 'plmweb.review_my_created_grid_view',
+              navDER: {
+                masterOrder: 100,
+                masterRS: 5,
+                pickupDEFName: 'LIBRARY_ID',
+                codeName: 'library',
+                dertype: 'DER1N',
+                logicName: '测试库',
+                minorCodeName: 'reviews',
+                minorServiceCodeName: 'reviews',
+                orderValue: 100,
+                serviceCodeName: 'library',
+                name: 'DER1N_REVIEW_LIBRARY_LIBRARY_ID',
+                id: 'testmgmt.review.der1n_review_library_library_id',
+              },
               nodeType: 'node_3',
+              navigateParams: [
+                {
+                  key: 'n_create_man_eq',
+                  value: 'srfuserid',
+                  id: 'n_create_man_eq',
+                },
+              ],
               sysImage: {
                 cssClass: 'fa fa-user-plus',
                 glyph: 'xf234@FontAwesome',
@@ -387,6 +510,21 @@ export default {
             },
             {
               text: '我评审的',
+              navAppViewId: 'plmweb.review_my_reviewed_grid_view',
+              navDER: {
+                masterOrder: 100,
+                masterRS: 5,
+                pickupDEFName: 'LIBRARY_ID',
+                codeName: 'library',
+                dertype: 'DER1N',
+                logicName: '测试库',
+                minorCodeName: 'reviews',
+                minorServiceCodeName: 'reviews',
+                orderValue: 100,
+                serviceCodeName: 'library',
+                name: 'DER1N_REVIEW_LIBRARY_LIBRARY_ID',
+                id: 'testmgmt.review.der1n_review_library_library_id',
+              },
               nodeType: 'node_4',
               sysImage: {
                 cssClass: 'fa fa-legal',
@@ -398,6 +536,21 @@ export default {
             },
             {
               text: '我关注的',
+              navAppViewId: 'plmweb.review_my_attention_grid_view',
+              navDER: {
+                masterOrder: 100,
+                masterRS: 5,
+                pickupDEFName: 'LIBRARY_ID',
+                codeName: 'library',
+                dertype: 'DER1N',
+                logicName: '测试库',
+                minorCodeName: 'reviews',
+                minorServiceCodeName: 'reviews',
+                orderValue: 100,
+                serviceCodeName: 'library',
+                name: 'DER1N_REVIEW_LIBRARY_LIBRARY_ID',
+                id: 'testmgmt.review.der1n_review_library_library_id',
+              },
               nodeType: 'node_5',
               sysImage: {
                 cssClass: 'fa fa-star-o',
@@ -884,9 +1037,6 @@ export default {
             },
           ],
           controlParam: {
-            ctrlParams: {
-              RENDERMODE: 'listTree',
-            },
             id: 'treeexpbar_tree',
           },
           sysPFPluginId: 'group_tree',
@@ -1002,9 +1152,6 @@ export default {
       controlType: 'TREEEXPBAR',
       appDataEntityId: 'plmweb.review',
       controlParam: {
-        ctrlParams: {
-          RENDERMODE: 'listTree',
-        },
         id: 'treeexpbar',
       },
       modelId: 'c5edb6771600e0bfffe9b921790ecf7d_treeexpbar',

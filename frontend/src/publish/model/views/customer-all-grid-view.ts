@@ -13,6 +13,13 @@ export default {
   caption: '全部客户',
   codeName: 'customer_all_grid_view',
   appDataEntityId: 'plmweb.customer',
+  appViewNavParams: [
+    {
+      key: 'product',
+      value: 'product',
+      id: 'product',
+    },
+  ],
   viewLayoutPanel: {
     viewProxyMode: true,
     layoutMode: 'FLEX',
@@ -268,18 +275,18 @@ export default {
     ],
     appViewRefs: [
       {
-        realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
-        realTitle: '客户实体主视图',
-        refAppViewId: 'plmweb.customer_main_view',
-        name: 'EDITDATA',
-        id: 'editdata',
-      },
-      {
         realOpenMode: 'POPUPMODAL',
         realTitle: '新建客户',
         refAppViewId: 'plmweb.customer_quick_create_view',
         name: 'NEWDATA',
         id: 'newdata',
+      },
+      {
+        realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
+        realTitle: '客户实体主视图',
+        refAppViewId: 'plmweb.customer_main_view',
+        name: 'EDITDATA',
+        id: 'editdata',
       },
     ],
     controls: [
@@ -818,6 +825,7 @@ export default {
             id: 'assignee_id',
           },
         ],
+        pagingMode: 1,
         pagingSize: 20,
         sortMode: 'REMOTE',
         enableCustomized: true,

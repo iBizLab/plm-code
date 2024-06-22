@@ -1,4 +1,5 @@
 export default {
+  gridRowActiveMode: 1,
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'relation_grid_view',
@@ -174,49 +175,6 @@ export default {
     },
   ],
   controls: [
-    {
-      detoolbarItems: [
-        {
-          actionLevel: 100,
-          noPrivDisplayMode: 2,
-          uiactionId: 'baseline_plan_test_case@baseline_test_case',
-          uiactionTarget: 'NONE',
-          valid: true,
-          caption: '规划用例',
-          itemType: 'DEUIACTION',
-          controlLogics: [
-            {
-              itemName: 'deuiaction1',
-              logicTag: 'toolbar',
-              logicType: 'SCRIPT',
-              scriptCode: "context.baseline_status !== '2'",
-              triggerType: 'ITEMVISIBLE',
-              id: 'logic',
-            },
-          ],
-          sysImage: {
-            cssClass: 'fa fa-list-ol',
-            glyph: 'xf0cb@FontAwesome',
-          },
-          tooltip: '规划用例',
-          showCaption: true,
-          showIcon: true,
-          id: 'deuiaction1',
-        },
-      ],
-      xdataControlName: 'grid',
-      codeName: 'relation_grid_view_toolbar',
-      controlType: 'TOOLBAR',
-      logicName: '规划用例',
-      appDataEntityId: 'plmweb.baseline_test_case',
-      controlParam: {
-        id: 'toolbar',
-      },
-      modelId: 'bee4c0026c90c771d2391a78f0c32d26',
-      modelType: 'PSDETOOLBAR',
-      name: 'toolbar',
-      id: 'relation_grid_view_toolbar',
-    },
     {
       aggMode: 'NONE',
       columnEnableFilter: 2,
@@ -448,10 +406,11 @@ export default {
           id: 'srfkey',
         },
       ],
+      pagingMode: 1,
       pagingSize: 20,
       sortMode: 'REMOTE',
-      enableCustomized: true,
       enablePagingBar: true,
+      noSort: true,
       fetchControlAction: {
         appDEMethodId: 'fetch_fill_version_data',
         appDataEntityId: 'plmweb.baseline_test_case',
@@ -469,7 +428,7 @@ export default {
           detoolbarItems: [
             {
               actionLevel: 100,
-              noPrivDisplayMode: 2,
+              noPrivDisplayMode: 1,
               uiactionId: 'shift_out_baseline@baseline_test_case',
               uiactionTarget: 'MULTIKEY',
               valid: true,
@@ -560,6 +519,52 @@ export default {
       id: 'plmweb.baseline_test_case.default',
     },
     {
+      detoolbarItems: [
+        {
+          actionLevel: 100,
+          noPrivDisplayMode: 2,
+          uiactionId: 'baseline_plan_test_case@baseline_test_case',
+          uiactionTarget: 'NONE',
+          valid: true,
+          caption: '规划用例',
+          itemType: 'DEUIACTION',
+          controlLogics: [
+            {
+              itemName: 'deuiaction1',
+              logicTag: 'tabtoolbar',
+              logicType: 'SCRIPT',
+              scriptCode: "context.baseline_status !== '2'",
+              triggerType: 'ITEMVISIBLE',
+              id: 'logic',
+            },
+          ],
+          sysImage: {
+            cssClass: 'fa fa-list-ol',
+            glyph: 'xf0cb@FontAwesome',
+          },
+          tooltip: '规划用例',
+          showCaption: true,
+          showIcon: true,
+          id: 'deuiaction1',
+        },
+      ],
+      xdataControlName: 'grid',
+      codeName: 'relation_grid_view_tabtoolbar',
+      controlType: 'TOOLBAR',
+      logicName: '规划用例',
+      appDataEntityId: 'plmweb.baseline_test_case',
+      controlParam: {
+        ctrlParams: {
+          TELEPORTFLAG: 'true',
+        },
+        id: 'tabtoolbar',
+      },
+      modelId: 'bee4c0026c90c771d2391a78f0c32d26',
+      modelType: 'PSDETOOLBAR',
+      name: 'tabtoolbar',
+      id: 'relation_grid_view_tabtoolbar',
+    },
+    {
       groupMode: 'SINGLE',
       controlType: 'SEARCHBAR',
       appDataEntityId: 'plmweb.baseline_test_case',
@@ -596,7 +601,7 @@ export default {
   viewStyle: 'DEFAULT',
   viewType: 'DEGRIDVIEW',
   enableDP: true,
-  showCaptionBar: true,
+  showCaptionBar: false,
   modelId: '26fad733d4b26a4567621de99a3993fc',
   modelType: 'PSAPPDEVIEW',
   name: 'baseline_test_caserelation_grid_view',

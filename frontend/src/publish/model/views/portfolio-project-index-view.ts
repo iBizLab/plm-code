@@ -321,22 +321,35 @@ export default {
             name: '工作项',
             id: 'usrdrgroup0301548518',
           },
+          {
+            caption: '资源',
+            name: '资源',
+            id: 'usrdrgroup0603126886',
+          },
         ],
         showTitle: true,
+        dataRelationTag: 'portfolio',
         editItemCapLanguageRes: {
           lanResTag: 'DE.LNAME.PORTFOLIO',
         },
         editItemCaption: '文件夹',
+        appCounterRefId: '3370a213527b742d8094a795ccb3a0fd',
         dedrctrlItems: [
           {
             dedrbarGroupId: 'drgroup',
             caption: '工作',
+            counterId: 'work',
+            counterMode: 1,
+            enableMode: 'COUNT_GTE_ZERO',
             appViewId: 'plmweb.work_tree_grid_ex_view',
             id: 'work',
           },
           {
             dedrbarGroupId: 'usrdrgroup0301548518',
             caption: '工作项',
+            counterId: 'work_item',
+            counterMode: 1,
+            enableMode: 'COUNT_GTE_ZERO',
             appViewId: 'plmweb.work_item_under_work_grid_view',
             navigateParams: [
               {
@@ -347,12 +360,39 @@ export default {
             ],
             id: 'work_item',
           },
+          {
+            dedrbarGroupId: 'usrdrgroup0603126886',
+            caption: '资源',
+            counterId: 'resource',
+            counterMode: 1,
+            enableMode: 'COUNT_GTE_ZERO',
+            appViewId: 'plmweb.work_item_project_set_resource_gantt_view',
+            id: 'resource',
+          },
         ],
         uniqueTag: 'portfolio_project_index_view__drbar',
         hideEditItem: true,
         autoLoad: true,
         showBusyIndicator: true,
-        codeName: 'item_set_index_view_dr',
+        appCounterRefs: [
+          {
+            appCounter: {
+              codeName: 'portfolio_addon_counters',
+              counterType: 'DEDR',
+              getAppDEActionId: 'portfolio_index_addon_counter',
+              appDataEntityId: 'plmweb.portfolio',
+              uniqueTag: 'portfolio_addon_counters',
+              name: '项目集组件显示隐藏计数器',
+              id: 'plmweb.portfolio_addon_counters',
+            },
+            refMode: {
+              srfdeid: 'PORTFOLIO',
+            },
+            tag: '3370a213527b742d8094a795ccb3a0fd',
+            id: '3370a213527b742d8094a795ccb3a0fd',
+          },
+        ],
+        codeName: 'portfolio',
         controlStyle: 'DRBAR_EX',
         controlType: 'DRBAR',
         appDataEntityId: 'plmweb.portfolio',
@@ -363,7 +403,7 @@ export default {
         modelId: '85ad58ed355f7e90d7746b0a458f8262',
         modelType: 'PSDEDRBAR',
         name: 'drbar',
-        id: 'item_set_index_view_dr',
+        id: 'portfolio',
       },
       {
         createControlAction: {

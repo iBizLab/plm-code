@@ -80,7 +80,6 @@ export default {
                     editable: true,
                     id: 'role_id',
                   },
-                  allowEmpty: true,
                   needCodeListConfig: true,
                   caption: '角色',
                   codeName: 'role_id',
@@ -158,6 +157,10 @@ export default {
       ctrlMsg: {
         codeName: 'UsrCtrlMsg0228593610',
         ctrlMsgItems: [
+          {
+            name: 'BEFOREREMOVE_HIDDEN',
+            id: 'beforeremove_hidden',
+          },
           {
             name: 'CREATESUCCESS_HIDDEN',
             id: 'createsuccess_hidden',

@@ -10,6 +10,15 @@ export default {
   caption: '执行结果分布',
   codeName: 'run_results_report_view',
   appDataEntityId: 'plmweb.run',
+  appViewNavContexts: [
+    {
+      rawValue: true,
+      key: 'SRFREADONLY',
+      value: 'false',
+      name: 'SRFREADONLY',
+      id: 'srfreadonly',
+    },
+  ],
   appViewNavParams: [
     {
       key: 'n_library_id_eq',

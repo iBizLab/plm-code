@@ -182,39 +182,39 @@ export default {
         id: 'view_header',
       },
       {
+        rawItem: {
+          rawItemParams: [
+            {
+              key: 'POSITION',
+              value: 'TOP',
+            },
+          ],
+          predefinedType: 'VIEWMSG_POS',
+          id: 'viewmsg_pos',
+        },
+        caption: '视图消息占位',
+        itemStyle: 'DEFAULT',
+        itemType: 'RAWITEM',
+        controlLogics: [
+          {
+            itemName: 'VIEWMSG_POS',
+            logicTag: 'layoutpanel',
+            logicType: 'SCRIPT',
+            scriptCode: '!!view.common_list_isshow',
+            triggerType: 'ITEMVISIBLE',
+            id: 'logic2',
+          },
+        ],
+        layoutPos: {
+          shrink: 0,
+          layout: 'FLEX',
+        },
+        showCaption: true,
+        id: 'viewmsg_pos',
+      },
+      {
         actionGroupExtractMode: 'ITEM',
         panelItems: [
-          {
-            rawItem: {
-              rawItemParams: [
-                {
-                  key: 'POSITION',
-                  value: 'TOP',
-                },
-              ],
-              predefinedType: 'VIEWMSG_POS',
-              id: 'viewmsg_pos',
-            },
-            caption: '视图消息占位',
-            itemStyle: 'DEFAULT',
-            itemType: 'RAWITEM',
-            controlLogics: [
-              {
-                itemName: 'VIEWMSG_POS',
-                logicTag: 'layoutpanel',
-                logicType: 'SCRIPT',
-                scriptCode: '!!view.common_list_isshow',
-                triggerType: 'ITEMVISIBLE',
-                id: 'logic2',
-              },
-            ],
-            layoutPos: {
-              shrink: 1,
-              layout: 'FLEX',
-            },
-            showCaption: true,
-            id: 'viewmsg_pos',
-          },
           {
             caption: '表单',
             itemStyle: 'DEFAULT',
@@ -988,6 +988,20 @@ export default {
         enableAutoSave: true,
         deformItemUpdates: [
           {
+            codeName: 'remaining_update',
+            defiupdateDetails: [
+              {
+                id: 'workload_schedule',
+              },
+            ],
+            scriptCode:
+              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload; \r\nvar remaining_workload = form_data.remaining_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n}\r\nvar remaining = 0;\r\nif(remaining_workload){\r\n\tremaining = Number(remaining_workload);\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}\r\n',
+            customCode: true,
+            showBusyIndicator: false,
+            name: '剩余工时表单项更新',
+            id: 'remaining_update',
+          },
+          {
             codeName: 'estimated_update',
             defiupdateDetails: [
               {
@@ -1003,20 +1017,6 @@ export default {
             showBusyIndicator: false,
             name: '预估工时表单项更新',
             id: 'estimated_update',
-          },
-          {
-            codeName: 'remaining_update',
-            defiupdateDetails: [
-              {
-                id: 'workload_schedule',
-              },
-            ],
-            scriptCode:
-              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload; \r\nvar remaining_workload = form_data.remaining_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n}\r\nvar remaining = 0;\r\nif(remaining_workload){\r\n\tremaining = Number(remaining_workload);\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}\r\n',
-            customCode: true,
-            showBusyIndicator: false,
-            name: '剩余工时表单项更新',
-            id: 'remaining_update',
           },
         ],
         deformItemVRs: [
@@ -1522,6 +1522,7 @@ export default {
                                   editorStyle: 'COLLAPSE',
                                   editorType: 'HTMLEDITOR',
                                   sysPFPluginId: 'comment',
+                                  placeHolder: '输入描述',
                                   valueType: 'SIMPLE',
                                   editable: true,
                                   id: 'description',
@@ -3941,6 +3942,7 @@ export default {
         tabHeaderPos: 'TOP',
         noTabHeader: true,
         autoLoad: true,
+        enableItemPrivilege: true,
         showBusyIndicator: true,
         appCounterRefs: [
           {

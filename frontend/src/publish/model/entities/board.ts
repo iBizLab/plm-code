@@ -188,7 +188,7 @@ export default {
         layoutPanel: true,
         codeName: 'choose_board',
         controlType: 'PANEL',
-        logicName: '选择看板布局面板',
+        logicName: '选择资源布局面板',
         appDataEntityId: 'plmweb.board',
         controlParam: {
           id: 'panel',
@@ -786,10 +786,12 @@ export default {
       actionTarget: 'NONE',
       caption: '新建看板',
       codeName: 'New',
+      dataAccessAction: 'SUBDATA',
       frontAppViewId: 'plmweb.board_quick_create_view',
       frontProcessType: 'WIZARD',
       fullCodeName: 'board_New',
       nextId: 'open_new_board@board',
+      deopprivId: 'subdata',
       navigateContexts: [
         {
           key: 'BOARD',
@@ -817,9 +819,11 @@ export default {
       actionTarget: 'NONE',
       caption: '看板管理',
       codeName: 'board_management',
+      dataAccessAction: 'SUBDATA',
       frontAppViewId: 'plmweb.board_grid_view',
       frontProcessType: 'WIZARD',
       fullCodeName: 'board_board_management',
+      deopprivId: 'subdata',
       navigateContexts: [
         {
           key: 'PROJECT',
@@ -1008,6 +1012,30 @@ export default {
           id: 'deuiaction1',
         },
         {
+          codeName: 'END1',
+          leftPos: -157,
+          logicNodeType: 'END',
+          topPos: 810,
+          name: '结束',
+          id: 'end1',
+        },
+        {
+          code: 'if (uiLogic.default.id === context.curboard) {\r\n    context.srfdefaulttoroutedepth = 3;\r\n    context.board = context.project;\r\n}',
+          codeName: 'RAWJSCODE1',
+          leftPos: -197,
+          logicNodeType: 'RAWJSCODE',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'deuiaction1',
+              srcDEUILogicNodeId: 'rawjscode1',
+              id: '连接名称',
+            },
+          ],
+          topPos: 548,
+          name: '计算删除看板标识',
+          id: 'rawjscode1',
+        },
+        {
           dstAppDEUIActionId: 'remove',
           dstAppDataEntityId: 'plmweb.board',
           codeName: 'DEUIACTION2',
@@ -1024,14 +1052,6 @@ export default {
           topPos: 248,
           name: '删除看板',
           id: 'deuiaction2',
-        },
-        {
-          codeName: 'END1',
-          leftPos: -157,
-          logicNodeType: 'END',
-          topPos: 810,
-          name: '结束',
-          id: 'end1',
         },
         {
           dstAppDEActionId: 'check_board_is_deleted',
@@ -1079,29 +1099,13 @@ export default {
           name: '判断看板是否已删除',
           id: 'deaction1',
         },
-        {
-          code: 'if (uiLogic.default.id === context.curboard) {\r\n    context.srfdefaulttoroutedepth = 3;\r\n    context.board = context.project;\r\n}',
-          codeName: 'RAWJSCODE1',
-          leftPos: -197,
-          logicNodeType: 'RAWJSCODE',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'deuiaction1',
-              srcDEUILogicNodeId: 'rawjscode1',
-              id: '连接名称',
-            },
-          ],
-          topPos: 548,
-          name: '计算删除看板id',
-          id: 'rawjscode1',
-        },
       ],
       deuilogicParams: [
         {
-          codeName: 'context',
-          navContextParam: true,
-          name: '上下文变量',
-          id: 'context',
+          codeName: 'data',
+          entityParam: true,
+          name: '数据',
+          id: 'data',
         },
         {
           codeName: 'view',
@@ -1110,10 +1114,10 @@ export default {
           id: 'view',
         },
         {
-          codeName: 'data',
-          entityParam: true,
-          name: '数据',
-          id: 'data',
+          codeName: 'context',
+          navContextParam: true,
+          name: '上下文变量',
+          id: 'context',
         },
         {
           codeName: 'Default',
@@ -1190,7 +1194,7 @@ export default {
   deapicodeName2: 'boards',
   deapitag: 'BOARD',
   dataAccCtrlArch: 1,
-  dataAccCtrlMode: 3,
+  dataAccCtrlMode: 2,
   enableUIActions: 15,
   keyAppDEFieldId: 'id',
   lnlanguageRes: {

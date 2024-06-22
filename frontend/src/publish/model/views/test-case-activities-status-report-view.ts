@@ -10,6 +10,15 @@ export default {
   caption: '测试用例活动情况',
   codeName: 'test_case_activities_status_report_view',
   appDataEntityId: 'plmweb.test_case',
+  appViewNavContexts: [
+    {
+      rawValue: true,
+      key: 'SRFREADONLY',
+      value: 'false',
+      name: 'SRFREADONLY',
+      id: 'srfreadonly',
+    },
+  ],
   viewLayoutPanel: {
     viewProxyMode: true,
     layoutMode: 'Flex',

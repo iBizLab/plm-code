@@ -10,6 +10,15 @@ export default {
   caption: '测试用例维护人分布',
   codeName: 'test_case_person_distributions_report_view',
   appDataEntityId: 'plmweb.test_case',
+  appViewNavContexts: [
+    {
+      rawValue: true,
+      key: 'SRFREADONLY',
+      value: 'false',
+      name: 'SRFREADONLY',
+      id: 'srfreadonly',
+    },
+  ],
   viewLayoutPanel: {
     viewProxyMode: true,
     layoutMode: 'Flex',

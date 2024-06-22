@@ -75,6 +75,7 @@ export default {
                   editor: {
                     maxLength: 200,
                     editorType: 'TEXTBOX',
+                    placeHolder: '输入状态名称',
                     valueType: 'SIMPLE',
                     editable: true,
                     id: 'name',
@@ -103,6 +104,7 @@ export default {
                   appDEFieldId: 'sequence',
                   editor: {
                     editorType: 'TEXTBOX',
+                    placeHolder: '输入序号',
                     valueType: 'SIMPLE',
                     editable: true,
                     id: 'sequence',
@@ -130,6 +132,7 @@ export default {
                     singleSelect: true,
                     appCodeListId: 'plmweb.projmgmt__state_type',
                     editorType: 'DROPDOWNLIST',
+                    placeHolder: '选择状态类型',
                     valueType: 'SIMPLE',
                     editable: true,
                     id: 'type',
@@ -157,6 +160,7 @@ export default {
                   editor: {
                     maxLength: 100,
                     editorType: 'TEXTBOX',
+                    placeHolder: '输入样式表',
                     valueType: 'SIMPLE',
                     editable: true,
                     id: 'style',

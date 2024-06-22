@@ -29,6 +29,7 @@ export default {
           id: 'temp',
         },
       ],
+      dataRelationTag: 'tab_exp_view_DR',
       editItemCaption: '实体处理逻辑',
       uniqueTag: 'flow_tab_exp_view__tabexppanel',
       hideEditItem: true,

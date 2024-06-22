@@ -37,6 +37,7 @@ export default {
           id: 'user',
         },
       ],
+      dataRelationTag: 'tab_exp_view_DR',
       editItemCapLanguageRes: {
         lanResTag: 'DE.LNAME.MANAGEMENT',
       },

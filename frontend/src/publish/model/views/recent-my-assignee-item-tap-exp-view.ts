@@ -46,6 +46,7 @@ export default {
           id: 'test_case',
         },
       ],
+      dataRelationTag: 'my_charge_item',
       editItemCapLanguageRes: {
         lanResTag: 'DE.LNAME.RECENT',
       },

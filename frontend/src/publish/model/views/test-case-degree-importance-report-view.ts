@@ -10,6 +10,15 @@ export default {
   caption: '测试用例重要程度分布',
   codeName: 'test_case_degree_importance_report_view',
   appDataEntityId: 'plmweb.test_case',
+  appViewNavContexts: [
+    {
+      rawValue: true,
+      key: 'SRFREADONLY',
+      value: 'false',
+      name: 'SRFREADONLY',
+      id: 'srfreadonly',
+    },
+  ],
   viewLayoutPanel: {
     viewProxyMode: true,
     layoutMode: 'Flex',

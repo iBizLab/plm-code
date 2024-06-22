@@ -68,19 +68,19 @@ export default {
   ],
   appViewRefs: [
     {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '新建工单',
+      refAppViewId: 'plmweb.ticket_quick_create_view',
+      name: 'NEWDATA',
+      id: 'newdata',
+    },
+    {
       openMode: 'INDEXVIEWTAB_POPUPMODAL',
       realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
       realTitle: '工单',
       refAppViewId: 'plmweb.ticket_main_view',
       name: 'EDITDATA',
       id: 'editdata',
-    },
-    {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '新建工单',
-      refAppViewId: 'plmweb.ticket_quick_create_view',
-      name: 'NEWDATA',
-      id: 'newdata',
     },
   ],
   controls: [
@@ -672,6 +672,7 @@ export default {
           id: 'customer_id',
         },
       ],
+      pagingMode: 1,
       pagingSize: 20,
       sortMode: 'REMOTE',
       enableCustomized: true,
@@ -1398,6 +1399,9 @@ export default {
       logicName: '工单搜索栏',
       appDataEntityId: 'plmweb.ticket',
       controlParam: {
+        ctrlParams: {
+          STORAGE: 'true',
+        },
         id: 'searchbar',
       },
       modelId: 'baf226cf8165dfb257dd6b2e757add9e',

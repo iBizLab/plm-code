@@ -1078,8 +1078,8 @@ export default {
       frontProcessType: 'WIZARD',
       fullCodeName: 'test_case_template_template_edit',
       sysImage: {
-        cssClass: 'fa fa-pencil',
-        glyph: 'xf040@FontAwesome',
+        cssClass: 'fa fa-edit',
+        glyph: 'xf044@FontAwesome',
       },
       timeout: 60000,
       tooltip: '编辑模板',

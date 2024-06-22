@@ -41,7 +41,6 @@ public class DiscussReply extends EntityMP implements Serializable
     /**
     * 评论
     */
-    @Transient
     @TableField(exist = false)
     @DEField(name = "comments")
     @JSONField(name = "comments")

@@ -43,20 +43,21 @@
     "@wangeditor/editor": "../js/@wangeditor/editor/5.1.23/index.system.js",
     "@wangeditor/editor-for-vue": "../js/@wangeditor/editor-for-vue/5.1.12/index.system.js",
     "@imengyu/vue3-context-menu": "../js/@imengyu/vue3-context-menu/1.3.3/index.system.min.js",
-    "@ibiz-template-plugin/ai-chat": "../js/@ibiz-template-plugin/ai-chat/0.0.1/index.system.min.js",
+    "@ibiz-template-plugin/ai-chat": "../js/@ibiz-template-plugin/ai-chat/0.0.5/index.system.min.js",
     "@antv/x6": "../js/@antv/x6/2.15.5/index.system.min.js",
-    "@ibiz-template-plugin/gantt": "../js/@ibiz-template-plugin/gantt/0.1.3-alpha.46/index.system.min.js"
+    "@ibiz-template-plugin/gantt": "../js/@ibiz-template-plugin/gantt/0.1.8-alpha.3/index.system.min.js"
   },
   "styles": {
     "@ibiz-template/vue3-components": "../js/@ibiz-template/vue3-components/index.min.css",
     "@ibiz-template/vue3-util": "../js/@ibiz-template/vue3-util/index.min.css",
     "@ibiz-template/web-theme": "../js/@ibiz-template/web-theme/index.min.css",
     "@ibiz-template/devtool": "../js/@ibiz-template/devtool/index.min.css",
+    "@ibiz-template-plugin/ai-chat":"../js/@ibiz-template-plugin/ai-chat/0.0.5/index.min.css",
     "@wangeditor/editor": "../js/@wangeditor/editor/5.1.23/css/style.css",
     "cherry-markdown": "../js/cherry-markdown/0.8.26/cherry-markdown.min.css",
     "@imengyu/vue3-context-menu": "../js/@imengyu/vue3-context-menu/1.3.3/index.min.css",
     "@antv/x6": "../js/@antv/x6/2.15.5/index.min.css",
-    "@ibiz-template-plugin/gantt": "../js/@ibiz-template-plugin/gantt/0.1.3-alpha.46/index.min.css",
+    "@ibiz-template-plugin/gantt": "../js/@ibiz-template-plugin/gantt/0.1.8-alpha.3/index.min.css",
     "vue-grid-layout": "../js/vue-grid-layout/3.0.0-beta1/index.min.css"
   }
 }

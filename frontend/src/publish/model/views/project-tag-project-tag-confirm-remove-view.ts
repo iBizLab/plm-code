@@ -247,6 +247,10 @@ export default {
         codeName: 'UsrCtrlMsg0228593610',
         ctrlMsgItems: [
           {
+            name: 'BEFOREREMOVE_HIDDEN',
+            id: 'beforeremove_hidden',
+          },
+          {
             name: 'CREATESUCCESS_HIDDEN',
             id: 'createsuccess_hidden',
           },

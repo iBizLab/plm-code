@@ -340,6 +340,7 @@ export default {
           },
         ],
         showTitle: true,
+        dataRelationTag: 'product',
         editItemCaption: '产品',
         appCounterRefId: 'a0bae0287de963bd22cdc7c0b52d6895',
         dedrctrlItems: [
@@ -347,13 +348,17 @@ export default {
             dedrbarGroupId: 'usrdrgroup1228809432',
             caption: '需求',
             counterId: 'idea',
+            counterMode: 1,
+            enableMode: 'COUNT_GTE_ZERO',
             appViewId: 'plmweb.idea_tree_exp_view',
             id: 'idea',
           },
           {
             dedrbarGroupId: 'usrdrgroup1228149482',
             caption: '排期',
-            counterId: 'review',
+            counterId: 'plan',
+            counterMode: 1,
+            enableMode: 'COUNT_GTE_ZERO',
             appViewId: 'plmweb.product_plan_tree_exp_view',
             id: 'plan',
           },
@@ -361,6 +366,8 @@ export default {
             dedrbarGroupId: 'usrdrgroup1228280909',
             caption: '工单',
             counterId: 'ticket',
+            counterMode: 1,
+            enableMode: 'COUNT_GTE_ZERO',
             appViewId: 'plmweb.ticket_all_grid_view',
             navigateContexts: [
               {
@@ -376,6 +383,8 @@ export default {
             dedrbarGroupId: 'usrdrgroup1228275731',
             caption: '客户',
             counterId: 'customer',
+            counterMode: 1,
+            enableMode: 'COUNT_GTE_ZERO',
             appViewId: 'plmweb.customer_tree_exp_view',
             navigateContexts: [
               {
@@ -391,6 +400,8 @@ export default {
             dedrbarGroupId: 'usrdrgroup0423482168',
             caption: '基线',
             counterId: 'baseline',
+            counterMode: 1,
+            enableMode: 'COUNT_GTE_ZERO',
             appViewId: 'plmweb.baseline_product_tree_exp_view',
             navigateContexts: [
               {
@@ -406,6 +417,8 @@ export default {
             dedrbarGroupId: 'usrdrgroup0229373827',
             caption: '页面',
             counterId: 'space',
+            counterMode: 1,
+            enableMode: 'COUNT_GTE_ZERO',
             appViewId: 'plmweb.space_product_re_tree_exp_view',
             navigateContexts: [
               {
@@ -461,7 +474,6 @@ export default {
               counterType: 'DEDR',
               getAppDEActionId: 'product_index_addon_counter',
               appDataEntityId: 'plmweb.product',
-              timer: 60000,
               uniqueTag: 'product_add_on_counters',
               name: '产品组件显示隐藏计数器',
               id: 'plmweb.product_add_on_counters',
@@ -473,7 +485,7 @@ export default {
             id: 'a0bae0287de963bd22cdc7c0b52d6895',
           },
         ],
-        codeName: 'index_view_dr',
+        codeName: 'product',
         controlStyle: 'DRBAR_EX',
         controlType: 'DRBAR',
         appDataEntityId: 'plmweb.product',
@@ -484,7 +496,7 @@ export default {
         modelId: '1842ec47d0c1674d37d3c1368731abb2',
         modelType: 'PSDEDRBAR',
         name: 'drbar',
-        id: 'index_view_dr',
+        id: 'product',
       },
       {
         createControlAction: {

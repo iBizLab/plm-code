@@ -8,7 +8,6 @@
 		<result property="libraryIdentifier" column="library_identifier" />
 		<result property="submitterId" column="submitter_id" />
 		<result property="submitterName" column="submitter_name" />
-		<result property="actionRule" column="action_rule" />
 		<result property="showIdentifier" column="show_identifier" />
 		<result property="createMan" column="create_man" />
 		<result property="createTime" column="create_time" />

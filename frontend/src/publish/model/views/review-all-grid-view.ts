@@ -4,7 +4,6 @@ export default {
   loadDefault: true,
   deviewCodeName: 'all_grid_view',
   deviewId: 'EC62F795-75D7-4D40-978D-4F8918240A68',
-  appWFId: 'case_review_flow',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'PAGE.CAPTION.REVIEW.ALL_GRID_VIEW',
@@ -26,12 +25,12 @@ export default {
       builtinAppUILogic: {
         actionAfterWizard: 'DEFAULT',
         newDataAppView: {
-          openMode: 'POPUPMODAL',
+          openMode: 'INDEXVIEWTAB_POPUPMODAL',
           refAppViewId: 'plmweb.review_wizard_create_wizard_view',
         },
         appUILogicRefViews: [
           {
-            openMode: 'POPUPMODAL',
+            openMode: 'INDEXVIEWTAB_POPUPMODAL',
             refAppViewId: 'plmweb.review_wizard_create_wizard_view',
           },
         ],
@@ -48,13 +47,13 @@ export default {
       logicType: 'APPUILOGIC',
       builtinAppUILogic: {
         openDataAppView: {
-          openMode: 'POPUPMODAL',
+          openMode: 'INDEXVIEWTAB_POPUPMODAL',
           refAppViewId: 'plmweb.review_main_view',
         },
         editMode: true,
         appUILogicRefViews: [
           {
-            openMode: 'POPUPMODAL',
+            openMode: 'INDEXVIEWTAB_POPUPMODAL',
             refAppViewId: 'plmweb.review_main_view',
           },
         ],
@@ -69,8 +68,8 @@ export default {
   ],
   appViewRefs: [
     {
-      openMode: 'POPUPMODAL',
-      realOpenMode: 'POPUPMODAL',
+      openMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
       realTitle: '评审新建向导',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.REVIEW.CREATE_WIZARD_VIEW',
@@ -82,14 +81,6 @@ export default {
     {
       openMode: 'INDEXVIEWTAB_POPUPMODAL',
       realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realTitle: '评审工作流动态编辑视图',
-      refAppViewId: 'plmweb.review_wf_dyna_edit_view',
-      name: 'OPENDATA',
-      id: 'opendata',
-    },
-    {
-      openMode: 'POPUPMODAL',
-      realOpenMode: 'POPUPMODAL',
       realTitle: '评审主视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.REVIEW.MAIN_VIEW',
@@ -192,7 +183,7 @@ export default {
                 afterItemType: 'NONE',
                 beforeItemType: 'NONE',
                 detailType: 'DEUIACTION',
-                uiactionId: 'repeal_review',
+                uiactionId: 'repeal_review@review',
                 tooltip: '撤销评审',
                 showIcon: true,
                 sysImage: {
@@ -200,6 +191,36 @@ export default {
                   glyph: 'xf112@FontAwesome',
                 },
                 id: 'u400a479',
+              },
+              {
+                actionLevel: 50,
+                afterItemType: 'NONE',
+                beforeItemType: 'NONE',
+                caption: '删除',
+                detailType: 'DEUIACTION',
+                uiactionId: 'delete@review',
+                showCaption: true,
+                showIcon: true,
+                sysImage: {
+                  cssClass: 'fa fa-trash-o',
+                  glyph: 'xf014@FontAwesome',
+                },
+                id: 'u10cbfb3',
+              },
+              {
+                actionLevel: 50,
+                afterItemType: 'NONE',
+                beforeItemType: 'NONE',
+                caption: '设置类别',
+                detailType: 'DEUIACTION',
+                uiactionId: 'set_category@review',
+                showCaption: true,
+                showIcon: true,
+                sysImage: {
+                  cssClass: 'fa fa-edit',
+                  glyph: 'xf044@FontAwesome',
+                },
+                id: 'u92af992',
               },
             ],
             appDataEntityId: 'plmweb.review',
@@ -239,7 +260,7 @@ export default {
           codeName: 'type',
           columnType: 'DEFGRIDCOLUMN',
           noPrivDisplayMode: 1,
-          width: 100,
+          width: 150,
           widthUnit: 'PX',
           enableSort: true,
           id: 'type',
@@ -432,12 +453,6 @@ export default {
           dataType: 25,
           id: 'srfmajortext',
         },
-        {
-          appDEFieldId: 'state',
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'srfwfstep',
-        },
       ],
       degridEditItems: [
         {
@@ -475,9 +490,9 @@ export default {
           id: 'srfkey',
         },
       ],
+      pagingMode: 1,
       pagingSize: 20,
       sortMode: 'REMOTE',
-      hasWFDataItems: true,
       enableCustomized: true,
       enablePagingBar: true,
       singleSelect: true,
@@ -492,6 +507,7 @@ export default {
         id: 'remove',
       },
       autoLoad: true,
+      enableItemPrivilege: true,
       showBusyIndicator: true,
       codeName: 'all_grid_view_grid',
       controlType: 'GRID',

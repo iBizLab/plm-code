@@ -45,13 +45,13 @@ export default {
       logicType: 'APPUILOGIC',
       builtinAppUILogic: {
         openDataAppView: {
-          openMode: 'DRAWER_RIGHT',
+          openMode: 'POPUPMODAL',
           refAppViewId: 'plmweb.psde_field_quick_cfg_view',
         },
         editMode: true,
         appUILogicRefViews: [
           {
-            openMode: 'DRAWER_RIGHT',
+            openMode: 'POPUPMODAL',
             refAppViewId: 'plmweb.psde_field_quick_cfg_view',
           },
         ],
@@ -74,55 +74,20 @@ export default {
   appViewRefs: [
     {
       realOpenMode: 'POPUPMODAL',
-      realTitle: '实体属性选项操作视图',
-      refAppViewId: 'plmweb.psde_field_quick_create_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
-      realOpenMode: 'DRAWER_RIGHT',
       realTitle: '实体属性编辑视图',
       refAppViewId: 'plmweb.psde_field_quick_cfg_view',
       name: 'EDITDATA',
       id: 'editdata',
     },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '实体属性选项操作视图',
+      refAppViewId: 'plmweb.psde_field_quick_create_view',
+      name: 'NEWDATA',
+      id: 'newdata',
+    },
   ],
   controls: [
-    {
-      searchButtonStyle: 'DEFAULT',
-      deformPages: [
-        {
-          layout: {
-            columnCount: 24,
-            layout: 'TABLE_24COL',
-          },
-          caption: '常规条件',
-          codeName: 'formpage1',
-          detailStyle: 'DEFAULT',
-          detailType: 'FORMPAGE',
-          id: 'formpage1',
-        },
-      ],
-      layout: {
-        columnCount: 24,
-        layout: 'TABLE_24COL',
-      },
-      tabHeaderPos: 'TOP',
-      noTabHeader: true,
-      autoLoad: true,
-      showBusyIndicator: true,
-      codeName: 'default',
-      controlType: 'SEARCHFORM',
-      logicName: '默认搜索表单',
-      appDataEntityId: 'plmweb.psdefield',
-      controlParam: {
-        id: 'searchform',
-      },
-      modelId: '925037b9e90ea161b480bda4231fc866',
-      modelType: 'PSDEFORM_SEARCHFORM',
-      name: 'searchform',
-      id: 'plmweb.psdefield.default',
-    },
     {
       aggMode: 'NONE',
       columnEnableFilter: 2,
@@ -216,6 +181,51 @@ export default {
           enableSort: true,
           id: 'allowempty',
         },
+        {
+          deuiactionGroup: {
+            uiactionGroupDetails: [
+              {
+                actionLevel: 100,
+                afterItemType: 'NONE',
+                beforeItemType: 'NONE',
+                detailType: 'DEUIACTION',
+                uiactionId: 'edit_field@psdefield',
+                showIcon: true,
+                sysImage: {
+                  cssClass: 'fa fa-edit',
+                  glyph: 'xf044@FontAwesome',
+                },
+                id: 'u6ba1aed',
+              },
+              {
+                actionLevel: 100,
+                afterItemType: 'NONE',
+                beforeItemType: 'NONE',
+                detailType: 'DEUIACTION',
+                uiactionId: 'remove_field@psdefield',
+                showIcon: true,
+                sysImage: {
+                  cssClass: 'fa fa-trash-o',
+                  glyph: 'xf014@FontAwesome',
+                },
+                id: 'ua16c1ce',
+              },
+            ],
+            appDataEntityId: 'plmweb.psdefield',
+            uniqueTag: 'PSDEField__Usr0607959687',
+            name: '属性编辑或删除',
+            id: 'usr0607959687',
+          },
+          aggMode: 'NONE',
+          align: 'CENTER',
+          caption: '操作',
+          codeName: 'uagridcolumn1',
+          columnType: 'UAGRIDCOLUMN',
+          noPrivDisplayMode: 1,
+          width: 120,
+          widthUnit: 'PX',
+          id: 'uagridcolumn1',
+        },
       ],
       degridDataItems: [
         {
@@ -283,6 +293,7 @@ export default {
           id: 'srfkey',
         },
       ],
+      pagingMode: 1,
       pagingSize: 20,
       sortMode: 'REMOTE',
       enableCustomized: true,
@@ -316,6 +327,64 @@ export default {
       groupMode: 'SINGLE',
       quickSearchMode: 1,
       enableQuickSearch: true,
+      codeName: 'tabsearchbar',
+      controlType: 'SEARCHBAR',
+      logicName: '快速搜索栏',
+      appDataEntityId: 'plmweb.psdefield',
+      controlParam: {
+        ctrlParams: {
+          TELEPORTFLAG: 'true',
+        },
+        id: 'tabsearchbar',
+      },
+      modelId: '7175D980-9ABB-4FF9-8844-D4A54BBB0B0C',
+      modelType: 'PSSYSSEARCHBAR',
+      name: 'tabsearchbar',
+      id: 'plmweb.psdefield.tabsearchbar',
+    },
+    {
+      detoolbarItems: [
+        {
+          actionLevel: 100,
+          noPrivDisplayMode: 2,
+          uiactionId: 'new',
+          valid: true,
+          capLanguageRes: {
+            lanResTag: 'TBB.TEXT.*.NEW',
+          },
+          caption: '新建属性',
+          itemType: 'DEUIACTION',
+          sysImage: {
+            cssClass: 'fa fa-plus',
+            glyph: 'xf067@FontAwesome',
+          },
+          tooltip: '新建属性',
+          tooltipLanguageRes: {
+            lanResTag: 'TBB.TOOLTIP.*.NEW',
+          },
+          showCaption: true,
+          showIcon: true,
+          id: 'deuiaction1',
+        },
+      ],
+      xdataControlName: 'grid',
+      codeName: 'grid_view_tabtoolbar',
+      controlType: 'TOOLBAR',
+      logicName: '新建属性',
+      appDataEntityId: 'plmweb.psdefield',
+      controlParam: {
+        ctrlParams: {
+          TELEPORTFLAG: 'true',
+        },
+        id: 'tabtoolbar',
+      },
+      modelId: '943B7399-94FD-4848-A5D4-8D9670B4F966',
+      modelType: 'PSDETOOLBAR',
+      name: 'tabtoolbar',
+      id: 'grid_view_tabtoolbar',
+    },
+    {
+      groupMode: 'SINGLE',
       controlType: 'SEARCHBAR',
       appDataEntityId: 'plmweb.psdefield',
       controlParam: {
@@ -348,7 +417,7 @@ export default {
   viewStyle: 'DEFAULT',
   viewType: 'DEGRIDVIEW',
   enableDP: true,
-  showCaptionBar: true,
+  showCaptionBar: false,
   modelId: '774b0fe80dee35da526c296c529d1e8a',
   modelType: 'PSAPPDEVIEW',
   name: 'PSDEFieldgrid_view',

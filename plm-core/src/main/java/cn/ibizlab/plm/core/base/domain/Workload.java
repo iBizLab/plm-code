@@ -155,7 +155,6 @@ public class Workload extends EntityMP implements Serializable
     /**
     * 工作项
     */
-    @Transient
     @TableField(exist = false)
     @DEField(name = "work_item")
     @JSONField(name = "work_item")
@@ -166,7 +165,6 @@ public class Workload extends EntityMP implements Serializable
     /**
     * 需求
     */
-    @Transient
     @TableField(exist = false)
     @DEField(name = "idea")
     @JSONField(name = "idea")
@@ -177,7 +175,6 @@ public class Workload extends EntityMP implements Serializable
     /**
     * 用例
     */
-    @Transient
     @TableField(exist = false)
     @DEField(name = "test_case")
     @JSONField(name = "test_case")

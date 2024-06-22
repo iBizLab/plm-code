@@ -75,6 +75,7 @@ export default {
                   editor: {
                     maxLength: 200,
                     editorType: 'TEXTBOX',
+                    placeHolder: '输入标签名称',
                     valueType: 'SIMPLE',
                     editable: true,
                     id: 'name',

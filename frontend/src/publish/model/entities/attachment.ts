@@ -794,7 +794,8 @@ export default {
       codeName: 'upload_attachment',
       frontProcessType: 'OTHER',
       fullCodeName: 'attachment_upload_attachment',
-      sysPFPluginId: 'file_upload',
+      scriptCode:
+        'const result = await ibiz.util.file.chooseFileAndUpload(context, params,data);\r\nif (result) {\r\n    const items = result.map(item => {\r\n        return {\r\n            uuid: item.id,\r\n            ...item,\r\n        };\r\n    });\r\n    Object.assign(data, items);\r\n}\r\nreturn { data: result };',
       timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'upload_attachment',

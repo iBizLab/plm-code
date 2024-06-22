@@ -29,7 +29,7 @@ export default {
           {
             openMode: 'POPUPMODAL',
             refMode: 'TEST_CASE',
-            refAppViewId: 'plmweb.test_case_mpick_up_view',
+            refAppViewId: 'plmweb.test_case_mpick_up_view2_review',
           },
         ],
         newDataAppView: {
@@ -46,7 +46,7 @@ export default {
           {
             openMode: 'POPUPMODAL',
             refMode: 'TEST_CASE',
-            refAppViewId: 'plmweb.test_case_mpick_up_view',
+            refAppViewId: 'plmweb.test_case_mpick_up_view2_review',
           },
         ],
         builtinLogic: true,
@@ -113,6 +113,26 @@ export default {
   ],
   appViewRefs: [
     {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '执行用例主视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.RUN.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.run_main_view',
+      name: 'OPENDATA',
+      id: 'opendata',
+    },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '执行用例主视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.RUN.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.run_main_view',
+      name: 'NEWDATA',
+      id: 'newdata',
+    },
+    {
       openMode: 'INDEXVIEWTAB_POPUPMODAL',
       navigateContexts: [
         {
@@ -143,31 +163,8 @@ export default {
     },
     {
       realOpenMode: 'POPUPMODAL',
-      realTitle: '执行用例主视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.RUN.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.run_main_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '执行用例主视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.RUN.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.run_main_view',
-      name: 'OPENDATA',
-      id: 'opendata',
-    },
-    {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '用例数据多项选择视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.TEST_CASE.MPICKUPVIEW',
-      },
-      refAppViewId: 'plmweb.test_case_mpick_up_view',
+      realTitle: '用例实体数据多项选择',
+      refAppViewId: 'plmweb.test_case_mpick_up_view2_review',
       name: 'MPICKUPVIEW:TEST_CASE',
       id: 'mpickupview:test_case',
     },
@@ -187,6 +184,16 @@ export default {
           valid: true,
           caption: '规划计划',
           itemType: 'DEUIACTION',
+          controlLogics: [
+            {
+              itemName: 'deuiaction1',
+              logicTag: 'toolbar',
+              logicType: 'SCRIPT',
+              scriptCode: 'context.srfreadonly != true',
+              triggerType: 'ITEMVISIBLE',
+              id: 'deuiaction1',
+            },
+          ],
           tooltip: '规划计划',
           showCaption: true,
           showIcon: true,
@@ -710,6 +717,7 @@ export default {
           id: 'executor_id',
         },
       ],
+      pagingMode: 1,
       pagingSize: 20,
       sortMode: 'REMOTE',
       enableCustomized: true,
@@ -747,6 +755,7 @@ export default {
         id: 'update',
       },
       autoLoad: true,
+      enableItemPrivilege: true,
       showBusyIndicator: true,
       controls: [
         {
@@ -759,6 +768,16 @@ export default {
               valid: true,
               caption: '设置执行结果',
               itemType: 'DEUIACTION',
+              controlLogics: [
+                {
+                  itemName: 'deuiaction1',
+                  logicTag: 'grid_batchtoolbar',
+                  logicType: 'SCRIPT',
+                  scriptCode: 'context.srfreadonly != true',
+                  triggerType: 'ITEMENABLE',
+                  id: 'deuiaction1',
+                },
+              ],
               sysImage: {
                 cssClass: 'fa fa-edit',
                 glyph: 'xf044@FontAwesome',
@@ -776,6 +795,16 @@ export default {
               valid: true,
               caption: '重置为未测',
               itemType: 'DEUIACTION',
+              controlLogics: [
+                {
+                  itemName: 'deuiaction2',
+                  logicTag: 'grid_batchtoolbar',
+                  logicType: 'SCRIPT',
+                  scriptCode: 'context.srfreadonly != true',
+                  triggerType: 'ITEMENABLE',
+                  id: 'deuiaction2',
+                },
+              ],
               sysImage: {
                 cssClass: 'fa fa-refresh',
                 glyph: 'xf021@FontAwesome',
@@ -793,6 +822,16 @@ export default {
               valid: true,
               caption: '设置执行人',
               itemType: 'DEUIACTION',
+              controlLogics: [
+                {
+                  itemName: 'deuiaction3',
+                  logicTag: 'grid_batchtoolbar',
+                  logicType: 'SCRIPT',
+                  scriptCode: 'context.srfreadonly != true',
+                  triggerType: 'ITEMENABLE',
+                  id: 'deuiaction3',
+                },
+              ],
               sysImage: {
                 cssClass: 'fa fa-user',
                 glyph: 'xf007@FontAwesome',
@@ -810,6 +849,16 @@ export default {
               valid: true,
               caption: '移出',
               itemType: 'DEUIACTION',
+              controlLogics: [
+                {
+                  itemName: 'deuiaction5',
+                  logicTag: 'grid_batchtoolbar',
+                  logicType: 'SCRIPT',
+                  scriptCode: 'context.srfreadonly != true',
+                  triggerType: 'ITEMENABLE',
+                  id: 'deuiaction5',
+                },
+              ],
               sysImage: {
                 cssClass: 'fa fa-reply',
                 glyph: 'xf112@FontAwesome',

@@ -136,7 +136,6 @@ public class SearchComment extends EntityMP implements Serializable
     /**
     * 工作项
     */
-    @Transient
     @TableField(exist = false)
     @DEField(name = "work_item")
     @JSONField(name = "work_item")
@@ -147,7 +146,6 @@ public class SearchComment extends EntityMP implements Serializable
     /**
     * 产品需求
     */
-    @Transient
     @TableField(exist = false)
     @DEField(name = "idea")
     @JSONField(name = "idea")
@@ -158,7 +156,6 @@ public class SearchComment extends EntityMP implements Serializable
     /**
     * 工单
     */
-    @Transient
     @TableField(exist = false)
     @DEField(name = "ticket")
     @JSONField(name = "ticket")
@@ -169,7 +166,6 @@ public class SearchComment extends EntityMP implements Serializable
     /**
     * 客户
     */
-    @Transient
     @TableField(exist = false)
     @DEField(name = "customer")
     @JSONField(name = "customer")
@@ -180,7 +176,6 @@ public class SearchComment extends EntityMP implements Serializable
     /**
     * 测试用例
     */
-    @Transient
     @TableField(exist = false)
     @DEField(name = "test_case")
     @JSONField(name = "test_case")
@@ -191,7 +186,6 @@ public class SearchComment extends EntityMP implements Serializable
     /**
     * 执行用例
     */
-    @Transient
     @TableField(exist = false)
     @DEField(name = "run")
     @JSONField(name = "run")
@@ -202,7 +196,6 @@ public class SearchComment extends EntityMP implements Serializable
     /**
     * 页面
     */
-    @Transient
     @TableField(exist = false)
     @DEField(name = "page")
     @JSONField(name = "page")

@@ -763,9 +763,11 @@ export default {
       actionTarget: 'SINGLEKEY',
       caption: '编辑',
       codeName: 'open_update_view',
+      dataAccessAction: 'UPDATE',
       frontAppViewId: 'plmweb.release_update_view',
       frontProcessType: 'WIZARD',
       fullCodeName: 'release_open_update_view',
+      deopprivId: 'project__update',
       sysImage: {
         cssClass: 'fa fa-edit',
         glyph: 'xf044@FontAwesome',
@@ -785,9 +787,11 @@ export default {
       actionTarget: 'NONE',
       caption: '规划工作项',
       codeName: 'plan_work_item',
+      dataAccessAction: 'SUBDATA',
       frontAppViewId: 'plmweb.work_item_plan_work_item_mpick_up_view',
       fullCodeName: 'release_plan_work_item',
       appDEMethodId: 'plan_work_item',
+      deopprivId: 'subdata',
       navigateParams: [
         {
           key: 'release_id',
@@ -815,8 +819,10 @@ export default {
       caption: '删除',
       codeName: 'remove',
       confirmMsg: '确认删除该发布？',
+      dataAccessAction: 'UPDATE',
       fullCodeName: 'release_remove',
       appDEMethodId: 'remove',
+      deopprivId: 'project__update',
       sysImage: {
         cssClass: 'fa fa-trash-o',
         glyph: 'xf014@FontAwesome',

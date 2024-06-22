@@ -190,6 +190,7 @@ export default {
                         itemStyle: 'DEFAULT',
                         itemType: 'CTRLPOS',
                         layoutPos: {
+                          grow: 1,
                           shrink: 1,
                           layout: 'FLEX',
                         },
@@ -210,10 +211,6 @@ export default {
                                     panelItems: [
                                       {
                                         editor: {
-                                          appDEACModeId: 'aichat',
-                                          appDEDataSetId: 'fetch_default',
-                                          appDataEntityId: 'plmweb.ticket',
-                                          enableAC: true,
                                           editorParams: {
                                             USERINSCRIPT:
                                               'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
@@ -223,7 +220,6 @@ export default {
                                               '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype"}',
                                             QUOTEPARAMS:
                                               '{"page":0,"size":20,"sort":"update_time,desc"}',
-                                            AC: 'TRUE',
                                             QUOTEINSCRIPT:
                                               'value.replaceAll(/\\#\\{\\"id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\",\\"identifier\\":\\"(.+?)\\",\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })}).replaceAll(/\\#\\{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })})',
                                             USERSCRIPT:
@@ -299,7 +295,7 @@ export default {
                                         actionType: 'UIACTION',
                                         buttonStyle: 'DEFAULT',
                                         buttonType: 'PANELBUTTON',
-                                        uiactionId: 'send_comment@comment',
+                                        uiactionId: 'send_comment_wiki@comment',
                                         renderMode: 'BUTTON',
                                         tooltip: '发送',
                                         uiactionTarget: 'NONE',
@@ -375,7 +371,7 @@ export default {
                                     layout: {
                                       dir: 'row',
                                       layout: 'FLEX',
-                                      valign: 'flex-start',
+                                      valign: 'flex-end',
                                     },
                                     dataRegionType: 'INHERIT',
                                     caption: '容器',
@@ -843,6 +839,8 @@ export default {
                           editorParams: {
                             contenttype: 'HTML',
                             TITLE: 'name',
+                            PARSESCRIPT:
+                              'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>").replace(/#{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>")',
                           },
                           editorStyle: 'ANCHO_HTML',
                           editorType: 'RAW',
@@ -1885,7 +1883,7 @@ export default {
     controlLogics: [
       {
         eventNames: 'onChange',
-        itemName: 'CONTAINER_ATTENTION',
+        itemName: 'ATTENTIONS',
         logicTag: 'layoutpanel',
         logicType: 'APPDEUILOGIC',
         appDEUILogicId: 'attention_personnel_update',

@@ -37,6 +37,7 @@ export default {
           id: 'workload',
         },
       ],
+      dataRelationTag: 'tab_exp_view_DR',
       editItemCapLanguageRes: {
         lanResTag: 'DE.LNAME.WORKSPACE',
       },

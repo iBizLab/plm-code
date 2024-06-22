@@ -241,6 +241,7 @@ export default {
             id: 'report',
           },
         ],
+        dataRelationTag: 'main_view_DR',
         editItemCapLanguageRes: {
           lanResTag: 'DE.LNAME.TEST_PLAN',
         },

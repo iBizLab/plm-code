@@ -861,6 +861,28 @@ export default {
       id: 'nothing',
     },
     {
+      codeName: 'overview_num',
+      methodType: 'DEACTION',
+      appDEMethodInput: {
+        keyAppDEFieldId: 'id',
+        type: 'KEYFIELD',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'sprint_dto',
+        type: 'DTO',
+        id: '返回对象',
+      },
+      requestMethod: 'GET',
+      requestParamType: 'ENTITY',
+      requestPath: '/overview_num',
+      needResourceKey: true,
+      actionMode: 'READ',
+      actionType: 'REMOTE',
+      dataSetType: 'REMOTE',
+      id: 'overview_num',
+    },
+    {
       codeName: 'remove',
       methodType: 'DEACTION',
       appDEMethodInput: {
@@ -1921,6 +1943,14 @@ export default {
       startDEUILogicNodeId: 'begin',
       name: '删除类别或分组',
       id: 'remove_section_or_category',
+    },
+  ],
+  appPortletCats: [
+    {
+      codeName: 'Ungroup',
+      ungroup: true,
+      name: '（未分类）',
+      id: 'ungroup',
     },
   ],
   demainStates: [

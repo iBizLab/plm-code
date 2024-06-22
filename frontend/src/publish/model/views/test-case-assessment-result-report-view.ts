@@ -10,6 +10,15 @@ export default {
   caption: '测试用例评审结果分布',
   codeName: 'test_case_assessment_result_report_view',
   appDataEntityId: 'plmweb.test_case',
+  appViewNavContexts: [
+    {
+      rawValue: true,
+      key: 'SRFREADONLY',
+      value: 'false',
+      name: 'SRFREADONLY',
+      id: 'srfreadonly',
+    },
+  ],
   viewLayoutPanel: {
     viewProxyMode: true,
     layoutMode: 'Flex',

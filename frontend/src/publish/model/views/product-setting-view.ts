@@ -120,9 +120,9 @@ export default {
           id: 'usrdrgroup0314526198',
         },
         {
-          caption: '配置',
-          name: '配置',
-          id: 'usrdrgroup0418793617',
+          caption: '产品',
+          name: '产品',
+          id: 'usrdrgroup0314174756',
         },
         {
           caption: '设置',
@@ -131,6 +131,7 @@ export default {
         },
       ],
       showTitle: true,
+      dataRelationTag: 'setting_view_dr',
       editItemCaption: '产品',
       dedrctrlItems: [
         {
@@ -154,11 +155,30 @@ export default {
           id: 'recycle',
         },
         {
-          dedrbarGroupId: 'usrdrgroup0418793617',
+          dedrbarGroupId: 'usrdrgroup0314174756',
+          caption: '产品组件',
+          appViewId: 'plmweb.addon_product_setting_grid_view',
+          navigateParams: [
+            {
+              key: 'n_owner_id_eq',
+              value: 'product',
+              id: 'n_owner_id_eq',
+            },
+            {
+              key: 'n_owner_type_eq',
+              value: 'product',
+              rawValue: true,
+              id: 'n_owner_type_eq',
+            },
+          ],
+          id: 'addon',
+        },
+        {
+          dedrbarGroupId: 'usrdrgroup0314174756',
           caption: '工单类型',
           dataAccessAction: 'UPDATE',
           enableMode: 'DEOPPRIV',
-          appViewId: 'plmweb.ticket_config_tab_exp_view',
+          appViewId: 'plmweb.product_ticket_type_global_setting_view',
           id: 'workconfig',
         },
         {

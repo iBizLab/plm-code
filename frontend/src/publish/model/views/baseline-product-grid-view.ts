@@ -353,11 +353,6 @@ export default {
           dataType: 25,
           id: 'srfmajortext',
         },
-        {
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'srfmstag',
-        },
       ],
       degridEditItems: [
         {
@@ -375,12 +370,13 @@ export default {
           id: 'srfkey',
         },
       ],
+      pagingMode: 1,
       pagingSize: 20,
       sortMode: 'REMOTE',
       enablePagingBar: true,
       singleSelect: true,
       fetchControlAction: {
-        appDEMethodId: 'fetch_default',
+        appDEMethodId: 'fetch_baseline',
         appDataEntityId: 'plmweb.baseline',
         id: 'fetch',
       },
@@ -390,6 +386,7 @@ export default {
         id: 'remove',
       },
       autoLoad: true,
+      enableItemPrivilege: true,
       showBusyIndicator: true,
       codeName: 'product_baseline_grid',
       controlType: 'GRID',
@@ -404,15 +401,6 @@ export default {
           appDataEntityId: 'plmweb.baseline',
           triggerType: 'CTRLEVENT',
           id: 'logic',
-        },
-        {
-          eventNames: 'onLoadSuccess',
-          logicTag: 'grid',
-          logicType: 'APPDEUILOGIC',
-          appDEUILogicId: 'readonly_grid_uiaction',
-          appDataEntityId: 'plmweb.baseline',
-          triggerType: 'CTRLEVENT',
-          id: 'col_readonly',
         },
       ],
       controlParam: {

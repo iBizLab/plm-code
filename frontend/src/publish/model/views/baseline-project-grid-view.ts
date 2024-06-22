@@ -80,7 +80,21 @@ export default {
       id: 'opendata',
     },
   ],
+  appViewNavParams: [
+    {
+      key: 'project',
+      value: 'project',
+      id: 'project',
+    },
+  ],
   appViewRefs: [
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '项目基线快速建立视图',
+      refAppViewId: 'plmweb.baseline_project_create_view',
+      name: 'NEWDATA',
+      id: 'newdata',
+    },
     {
       navigateContexts: [
         {
@@ -94,13 +108,6 @@ export default {
       refAppViewId: 'plmweb.baseline_project_main_view',
       name: 'EDITDATA',
       id: 'editdata',
-    },
-    {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '项目基线快速建立视图',
-      refAppViewId: 'plmweb.baseline_project_create_view',
-      name: 'NEWDATA',
-      id: 'newdata',
     },
   ],
   controls: [
@@ -353,11 +360,6 @@ export default {
           dataType: 25,
           id: 'srfmajortext',
         },
-        {
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'srfmstag',
-        },
       ],
       degridEditItems: [
         {
@@ -375,12 +377,13 @@ export default {
           id: 'srfkey',
         },
       ],
+      pagingMode: 1,
       pagingSize: 20,
       sortMode: 'REMOTE',
       enablePagingBar: true,
       singleSelect: true,
       fetchControlAction: {
-        appDEMethodId: 'fetch_default',
+        appDEMethodId: 'fetch_baseline',
         appDataEntityId: 'plmweb.baseline',
         id: 'fetch',
       },
@@ -390,6 +393,7 @@ export default {
         id: 'remove',
       },
       autoLoad: true,
+      enableItemPrivilege: true,
       showBusyIndicator: true,
       codeName: 'main',
       controlType: 'GRID',

@@ -27,6 +27,7 @@ export default {
           id: 'discuss',
         },
       ],
+      dataRelationTag: 'Default',
       editItemCapLanguageRes: {
         lanResTag: 'DE.LNAME.DISCUSS_TOPIC',
       },

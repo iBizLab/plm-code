@@ -114,7 +114,6 @@ public class Portfolio extends EntityMP implements Serializable
     /**
     * 项目集成员
     */
-    @Transient
     @TableField(exist = false)
     @DEField(name = "members")
     @JSONField(name = "members")

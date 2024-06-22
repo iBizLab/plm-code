@@ -90,28 +90,17 @@ export default {
       },
       deformItemUpdates: [
         {
-          codeName: 'calc_parent_work_item_type',
-          defiupdateDetails: [
-            {
-              id: 'work_item_type_name',
-            },
-          ],
-          scriptCode:
-            "if (ctrl.scheduler) {\r\n    ctrl.scheduler.triggerControlEvent(\r\n        'work_item_type_name',\r\n        'onChange',\r\n        null,\r\n    );\r\n}\r\nconsole.log(223)",
-          customCode: true,
-          showBusyIndicator: true,
-          name: '计算父工作项类型',
-          id: 'calc_parent_work_item_type',
-        },
-        {
           codeName: 'set_type_bug',
           appDEMethodId: 'set_type_bug',
           defiupdateDetails: [
             {
+              id: 'work_item_type_name',
+            },
+            {
               id: 'work_item_type_id',
             },
             {
-              id: 'work_item_type_name',
+              id: 'project_type',
             },
           ],
           showBusyIndicator: true,
@@ -129,6 +118,20 @@ export default {
           showBusyIndicator: true,
           name: '选择看板后填充默认看板栏',
           id: 'set_default_entry',
+        },
+        {
+          codeName: 'calc_parent_work_item_type',
+          defiupdateDetails: [
+            {
+              id: 'work_item_type_name',
+            },
+          ],
+          scriptCode:
+            "if (ctrl.scheduler) {\r\n    ctrl.scheduler.triggerControlEvent(\r\n        'work_item_type_name',\r\n        'onChange',\r\n        null,\r\n    );\r\n}\r\nconsole.log(223)",
+          customCode: true,
+          showBusyIndicator: true,
+          name: '计算父工作项类型',
+          id: 'calc_parent_work_item_type',
         },
       ],
       deformItemVRs: [
@@ -293,6 +296,7 @@ export default {
                           ISAUTO: 'true',
                         },
                         editorType: 'TEXTAREA',
+                        placeHolder: '输入标题',
                         valueType: 'SIMPLE',
                         editable: true,
                         id: 'title',
@@ -350,6 +354,7 @@ export default {
                             editorStyle: 'COLLAPSE',
                             editorType: 'HTMLEDITOR',
                             sysPFPluginId: 'comment',
+                            placeHolder: '输入描述',
                             valueType: 'SIMPLE',
                             editable: true,
                             id: 'description',
@@ -716,6 +721,7 @@ export default {
                         editable: true,
                         id: 'board_id',
                       },
+                      resetItemNames: ['project_name'],
                       allowEmpty: true,
                       hidden: true,
                       caption: '看板标识',
@@ -1020,12 +1026,10 @@ export default {
                       appDEFieldId: 'project_name',
                       deformItemUpdateId: 'set_type_bug',
                       editor: {
-                        enablePickupView: true,
                         singleSelect: true,
-                        pickupAppViewId: 'plmweb.project_pick_up_view',
                         handlerType: 'PickupText',
                         appDEACModeId: 'default',
-                        appDEDataSetId: 'fetch_normal',
+                        appDEDataSetId: 'fetch_quick',
                         appDataEntityId: 'plmweb.project',
                         uiactionGroup: {
                           uiactionGroupDetails: [
@@ -1053,14 +1057,16 @@ export default {
                         editorParams: {
                           overflowMode: 'ellipsis',
                           AC: 'TRUE',
-                          PICKUPVIEW: 'TRUE',
+                          TRIGGER: 'TRUE',
+                          PICKUPVIEW: 'FALSE',
                         },
-                        editorType: 'PICKER',
+                        editorType: 'PICKEREX_TRIGGER',
                         editorItems: [
                           {
                             id: 'project_id',
                           },
                         ],
+                        placeHolder: '选择所属项目',
                         valueType: 'SIMPLE',
                         editable: true,
                         id: 'project_name',
@@ -1166,6 +1172,7 @@ export default {
                           TRIGGER: 'TRUE',
                         },
                         editorType: 'AC',
+                        placeHolder: '选择工作项类型',
                         valueType: 'SIMPLE',
                         editable: true,
                         navigateParams: [
@@ -1257,6 +1264,7 @@ export default {
                             id: 'work_item_type_id',
                           },
                         ],
+                        placeHolder: '选择工作项类型',
                         valueType: 'SIMPLE',
                         editable: true,
                         navigateParams: [
@@ -1352,6 +1360,7 @@ export default {
                         showTrigger: true,
                         valueItemName: 'board_id',
                         editorParams: {
+                          'SRFNAVCTX.PROJECT': '%PROJECT_ID%',
                           AC: 'TRUE',
                           PICKUPVIEW: 'TRUE',
                         },
@@ -1361,10 +1370,20 @@ export default {
                             id: 'board_id',
                           },
                         ],
+                        placeHolder: '选择所属看板',
                         valueType: 'SIMPLE',
                         editable: true,
+                        navigateContexts: [
+                          {
+                            key: 'PROJECT',
+                            value: 'PROJECT_ID',
+                            name: 'PROJECT',
+                            id: 'project',
+                          },
+                        ],
                         id: 'board_name',
                       },
+                      resetItemNames: ['project_name'],
                       allowEmpty: true,
                       caption: '所属看板',
                       codeName: 'board_name',
@@ -1428,6 +1447,7 @@ export default {
                             id: 'pid',
                           },
                         ],
+                        placeHolder: '选择父工作项',
                         valueType: 'SIMPLE',
                         editable: true,
                         navigateContexts: [
@@ -1556,6 +1576,7 @@ export default {
                           },
                         ],
                         sysPFPluginId: 'person_select',
+                        placeHolder: '选择负责人',
                         valueType: 'SIMPLE',
                         editable: true,
                         navigateContexts: [
@@ -1650,6 +1671,7 @@ export default {
                         },
                         editorType: 'DATEPICKEREX_NOTIME',
                         editorWidth: 1,
+                        placeHolder: '选择开始时间',
                         valueType: 'SIMPLE',
                         editable: true,
                         id: 'start_at',
@@ -1691,6 +1713,7 @@ export default {
                         },
                         editorType: 'DATEPICKEREX_NOTIME',
                         editorWidth: 1,
+                        placeHolder: '选择结束时间',
                         valueType: 'SIMPLE',
                         editable: true,
                         id: 'end_at',
@@ -1729,6 +1752,7 @@ export default {
                         singleSelect: true,
                         appCodeListId: 'plmweb.projmgmt__work_item_priority',
                         editorType: 'DROPDOWNLIST',
+                        placeHolder: '选择优先级',
                         valueType: 'SIMPLE',
                         editable: true,
                         id: 'priority',
@@ -1764,6 +1788,7 @@ export default {
                             singleSelect: true,
                             appCodeListId: 'plmweb.projmgmt__risk',
                             editorType: 'DROPDOWNLIST',
+                            placeHolder: '选择风险',
                             valueType: 'SIMPLE',
                             editable: true,
                             id: 'risk',
@@ -1792,6 +1817,7 @@ export default {
                             singleSelect: true,
                             appCodeListId: 'plmweb.projmgmt__requirement_type',
                             editorType: 'DROPDOWNLIST',
+                            placeHolder: '选择需求类型',
                             valueType: 'SIMPLE',
                             editable: true,
                             id: 'backlog_type',
@@ -1820,6 +1846,7 @@ export default {
                             singleSelect: true,
                             appCodeListId: 'plmweb.projmgmt__demand_sources',
                             editorType: 'DROPDOWNLIST',
+                            placeHolder: '选择需求来源',
                             valueType: 'SIMPLE',
                             editable: true,
                             id: 'backlog_from',
@@ -1882,6 +1909,7 @@ export default {
                             singleSelect: true,
                             appCodeListId: 'plmweb.projmgmt__task_category',
                             editorType: 'DROPDOWNLIST',
+                            placeHolder: '选择任务类别',
                             valueType: 'SIMPLE',
                             editable: true,
                             id: 'job_type',
@@ -1944,6 +1972,7 @@ export default {
                             singleSelect: true,
                             appCodeListId: 'plmweb.projmgmt__severity',
                             editorType: 'DROPDOWNLIST',
+                            placeHolder: '选择严重程度',
                             valueType: 'SIMPLE',
                             editable: true,
                             id: 'severity',
@@ -1973,6 +2002,7 @@ export default {
                             appCodeListId:
                               'plmweb.projmgmt__reproduction_probability',
                             editorType: 'DROPDOWNLIST',
+                            placeHolder: '选择复现概率',
                             valueType: 'SIMPLE',
                             editable: true,
                             id: 'reappear_probability',

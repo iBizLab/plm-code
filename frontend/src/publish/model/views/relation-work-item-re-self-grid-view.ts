@@ -641,7 +641,7 @@ export default {
             clconvertMode: 'FRONT',
             dataItemName: 'relation_type',
             excelCaption: '关系',
-            appCodeListId: 'plmweb.projmgmt__usrcodelist0520662632',
+            appCodeListId: 'plmweb.projmgmt__relation_type',
             appDEFieldId: 'relation_type',
             deuiactionGroup: {
               uiactionGroupDetails: [

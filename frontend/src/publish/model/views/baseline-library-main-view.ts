@@ -11,69 +11,308 @@ export default {
   caption: '基线',
   codeName: 'baseline_library_main_view',
   appDataEntityId: 'plmweb.baseline',
-  appViewEngines: [
-    {
-      engineCat: 'VIEW',
-      engineType: 'TabExpView',
-      id: 'engine',
-    },
-  ],
-  controls: [
-    {
-      dedrtabPages: [
-        {
-          caption: '基线用例',
-          appViewId: 'plmweb.baseline_test_case_relation_grid_view',
-          id: 'test_case',
-        },
-        {
-          caption: '基线对比',
-          appViewId: 'plmweb.baseline_test_case_comparison_grid_view',
-          id: 'comparison',
-        },
-      ],
-      editItemCapLanguageRes: {
-        lanResTag: 'DE.LNAME.BASELINE',
-      },
-      editItemCaption: '基线',
-      uniqueTag: 'baseline_library_main_view__tabexppanel',
-      hideEditItem: true,
-      autoLoad: true,
-      showBusyIndicator: true,
-      codeName: 'library_tab_exp_view_dr',
-      controlType: 'DRTAB',
-      appDataEntityId: 'plmweb.baseline',
-      controlParam: {
-        id: 'tabexppanel',
-      },
-      modelId: 'BA83CE4E-2DCC-4C14-B7A9-10EDD790FA93',
-      modelType: 'PSDEDRTAB',
-      name: 'tabexppanel',
-      id: 'library_tab_exp_view_dr',
-    },
-    {
-      capLanguageRes: {
-        lanResTag: 'DE.LNAME.BASELINE',
-      },
-      caption: '基线',
-      codeName: 'library_main_view_captionbar',
-      controlType: 'CAPTIONBAR',
-      appDataEntityId: 'plmweb.baseline',
-      controlParam: {},
-      name: 'captionbar',
-      id: 'library_main_view_captionbar',
-    },
-  ],
+  sysCss: {
+    cssName: 'view-content-no-padding',
+  },
   viewLayoutPanel: {
-    layoutBodyOnly: true,
-    useDefaultLayout: true,
+    viewProxyMode: true,
+    layoutMode: 'FLEX',
+    layout: {
+      layout: 'FLEX',
+    },
+    rootPanelItems: [
+      {
+        actionGroupExtractMode: 'ITEM',
+        panelItems: [
+          {
+            actionGroupExtractMode: 'ITEM',
+            panelItems: [
+              {
+                caption: '标题栏',
+                itemStyle: 'DEFAULT',
+                itemType: 'CTRLPOS',
+                layoutPos: {
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                showCaption: true,
+                id: 'captionbar',
+              },
+            ],
+            layout: {
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            caption: '容器',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              shrink: 1,
+              layout: 'FLEX',
+            },
+            id: 'view_captionbar',
+          },
+          {
+            actionGroupExtractMode: 'ITEM',
+            panelItems: [
+              {
+                caption: '分页导航',
+                itemStyle: 'DEFAULT',
+                itemType: 'CTRLPOS',
+                layoutPos: {
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                showCaption: true,
+                id: 'tabexppanel',
+              },
+            ],
+            layout: {
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            caption: '容器',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              grow: 1,
+              shrink: 1,
+              layout: 'FLEX',
+            },
+            id: 'view_tabexppanel',
+          },
+          {
+            actionGroupExtractMode: 'ITEM',
+            panelItems: [
+              {
+                rawItem: {
+                  predefinedType: 'TELEPORT_PLACEHOLDER',
+                  id: 'tabtoolbar',
+                },
+                caption: '传送部件占位',
+                itemStyle: 'DEFAULT',
+                itemType: 'RAWITEM',
+                layoutPos: {
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                showCaption: true,
+                id: 'tabtoolbar',
+              },
+            ],
+            layout: {
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            caption: '容器',
+            cssStyle: 'margin-right:12px',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              shrink: 1,
+              layout: 'FLEX',
+            },
+            id: 'container2',
+          },
+        ],
+        predefinedType: 'VIEWHEADER',
+        layout: {
+          dir: 'row',
+          layout: 'FLEX',
+          valign: 'center',
+        },
+        dataRegionType: 'INHERIT',
+        caption: '容器',
+        itemStyle: 'DEFAULT',
+        itemType: 'CONTAINER',
+        layoutPos: {
+          shrink: 0,
+          layout: 'FLEX',
+        },
+        id: 'view_header',
+      },
+      {
+        actionGroupExtractMode: 'ITEM',
+        panelItems: [
+          {
+            actionGroupExtractMode: 'ITEM',
+            layout: {
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            caption: '容器',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              shrink: 0,
+              layout: 'FLEX',
+            },
+            id: 'view_tabexppanel_left',
+          },
+          {
+            actionGroupExtractMode: 'ITEM',
+            panelItems: [
+              {
+                actionGroupExtractMode: 'ITEM',
+                panelItems: [
+                  {
+                    rawItem: {
+                      predefinedType: 'NAV_POS',
+                      id: 'nav_pos',
+                    },
+                    caption: '导航区占位',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'RAWITEM',
+                    layoutPos: {
+                      grow: 1,
+                      shrink: 1,
+                      layout: 'FLEX',
+                    },
+                    showCaption: true,
+                    id: 'nav_pos',
+                  },
+                ],
+                predefinedType: 'VIEWCONTENT',
+                layout: {
+                  layout: 'FLEX',
+                },
+                dataRegionType: 'INHERIT',
+                caption: '容器',
+                itemStyle: 'DEFAULT',
+                itemType: 'CONTAINER',
+                layoutPos: {
+                  grow: 1,
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                id: 'view_content',
+              },
+              {
+                actionGroupExtractMode: 'ITEM',
+                layout: {
+                  layout: 'FLEX',
+                },
+                dataRegionType: 'INHERIT',
+                caption: '容器',
+                itemStyle: 'DEFAULT',
+                itemType: 'CONTAINER',
+                layoutPos: {
+                  shrink: 0,
+                  layout: 'FLEX',
+                },
+                id: 'view_tabexppanel_bottom',
+              },
+            ],
+            layout: {
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            caption: '容器',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              grow: 1,
+              shrink: 1,
+              layout: 'FLEX',
+            },
+            id: 'container1',
+          },
+          {
+            actionGroupExtractMode: 'ITEM',
+            layout: {
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            caption: '容器',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              shrink: 0,
+              layout: 'FLEX',
+            },
+            id: 'view_tabexppanel_right',
+          },
+        ],
+        layout: {
+          dir: 'row',
+          layout: 'FLEX',
+        },
+        dataRegionType: 'INHERIT',
+        caption: '容器',
+        itemStyle: 'DEFAULT',
+        itemType: 'CONTAINER',
+        layoutPos: {
+          grow: 1,
+          shrink: 1,
+          layout: 'FLEX',
+        },
+        id: 'container',
+      },
+    ],
     layoutPanel: true,
-    codeName: 'layoutpanel',
-    controlStyle: 'APPDETABEXPVIEW',
+    appViewEngines: [
+      {
+        engineCat: 'VIEW',
+        engineType: 'TabExpView',
+        id: 'engine',
+      },
+    ],
+    controls: [
+      {
+        dedrtabPages: [
+          {
+            caption: '基线用例',
+            appViewId: 'plmweb.baseline_test_case_relation_grid_view',
+            id: 'test_case',
+          },
+          {
+            caption: '基线对比',
+            appViewId: 'plmweb.baseline_test_case_comparison_grid_view',
+            id: 'comparison',
+          },
+        ],
+        dataRelationTag: 'library_tab_exp_view_dr',
+        editItemCapLanguageRes: {
+          lanResTag: 'DE.LNAME.BASELINE',
+        },
+        editItemCaption: '基线',
+        uniqueTag: 'baseline_library_main_view__tabexppanel',
+        hideEditItem: true,
+        autoLoad: true,
+        showBusyIndicator: true,
+        codeName: 'library_tab_exp_view_dr',
+        controlType: 'DRTAB',
+        appDataEntityId: 'plmweb.baseline',
+        controlParam: {
+          id: 'tabexppanel',
+        },
+        modelId: 'BA83CE4E-2DCC-4C14-B7A9-10EDD790FA93',
+        modelType: 'PSDEDRTAB',
+        name: 'tabexppanel',
+        id: 'library_tab_exp_view_dr',
+      },
+      {
+        capLanguageRes: {
+          lanResTag: 'DE.LNAME.BASELINE',
+        },
+        caption: '基线',
+        codeName: 'library_main_view_captionbar',
+        controlType: 'CAPTIONBAR',
+        appDataEntityId: 'plmweb.baseline',
+        controlParam: {},
+        name: 'captionbar',
+        id: 'library_main_view_captionbar',
+      },
+    ],
+    codeName: 'usr0530287780',
     controlType: 'VIEWLAYOUTPANEL',
+    logicName: 'library_main_view分页导航视图布局面板',
     appDataEntityId: 'plmweb.baseline',
     controlParam: {},
-    id: 'layoutpanel',
+    modelId: '3A39638E-D644-4E27-821F-E52B89E5174C',
+    modelType: 'PSSYSVIEWLAYOUTPANEL',
+    name: 'layoutpanel',
+    id: 'usr0530287780',
   },
   title: '测试库基线分页导航视图',
   viewStyle: 'DEFAULT',

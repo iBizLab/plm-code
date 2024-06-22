@@ -1,5 +1,6 @@
+/* eslint-disable prettier/prettier */
+import { IAppBICube, IAppBIReport, IAppBIScheme, IAppDataEntity, IAppView, IApplication } from '@ibiz/model-core';
 import { ModelLoaderProvider } from '@ibiz-template/runtime';
-import { IApplication, IAppView, IAppDataEntity } from '@ibiz/model-core';
 import {
   getAppDataEntityModel,
   getAppViewModel,
@@ -17,6 +18,7 @@ import { mergeUIActions } from './merge-ui-action';
  * @implements {ModelLoaderProvider}
  */
 export class ModelLoader implements ModelLoaderProvider {
+
   async initApp(_id?: string): Promise<boolean> {
     return true;
   }
@@ -52,5 +54,17 @@ export class ModelLoader implements ModelLoaderProvider {
     codeName: string,
   ): Promise<IAppDataEntity> {
     return this.getAppDataEntity(appId, codeName);
+  }
+
+  getAppBISchemes(appId: string, ids: string[]): Promise<IAppBIScheme[]> {
+    throw new Error('Method not implemented.');
+  }
+
+  getAppAppBICubes(appId: string, ids: string[]): Promise<IAppBICube[]> {
+    throw new Error('Method not implemented.');
+  }
+
+  getAppBIReports(appId: string, ids: string[]): Promise<IAppBIReport[]> {
+    throw new Error('Method not implemented.');
   }
 }

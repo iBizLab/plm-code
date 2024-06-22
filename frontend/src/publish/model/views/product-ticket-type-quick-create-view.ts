@@ -104,6 +104,7 @@ export default {
                         id: 'name',
                       },
                     ],
+                    placeHolder: '选择工单类型',
                     valueType: 'SIMPLE',
                     editable: true,
                     navigateParams: [

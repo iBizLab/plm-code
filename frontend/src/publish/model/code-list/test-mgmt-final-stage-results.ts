@@ -5,16 +5,16 @@ export default {
   emptyText: '未定义',
   codeItems: [
     {
-      codeName: 'item_0',
-      text: '通过',
-      value: '0',
-      id: 'item_0',
-    },
-    {
       codeName: 'item_1',
-      text: '不通过',
+      text: '通过',
       value: '1',
       id: 'item_1',
+    },
+    {
+      codeName: 'item_0',
+      text: '不通过',
+      value: '0',
+      id: 'item_0',
     },
   ],
   enableCache: true,

@@ -226,7 +226,7 @@ export default {
             {
               openMode: 'POPUPMODAL',
               refMode: 'TEST_CASE',
-              refAppViewId: 'plmweb.test_case_mpick_up_view',
+              refAppViewId: 'plmweb.test_case_mpick_up_view2_review',
             },
           ],
           newDataAppView: {
@@ -243,7 +243,7 @@ export default {
             {
               openMode: 'POPUPMODAL',
               refMode: 'TEST_CASE',
-              refAppViewId: 'plmweb.test_case_mpick_up_view',
+              refAppViewId: 'plmweb.test_case_mpick_up_view2_review',
             },
           ],
           builtinLogic: true,
@@ -302,11 +302,8 @@ export default {
       },
       {
         realOpenMode: 'POPUPMODAL',
-        realTitle: '用例数据多项选择视图',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.TEST_CASE.MPICKUPVIEW',
-        },
-        refAppViewId: 'plmweb.test_case_mpick_up_view',
+        realTitle: '用例实体数据多项选择',
+        refAppViewId: 'plmweb.test_case_mpick_up_view2_review',
         name: 'MPICKUPVIEW:TEST_CASE',
         id: 'mpickupview:test_case',
       },

@@ -112,7 +112,7 @@ export default {
           deuiactionGroup: {
             uiactionGroupDetails: [
               {
-                actionLevel: 100,
+                actionLevel: 200,
                 afterItemType: 'NONE',
                 beforeItemType: 'NONE',
                 caption: '恢复',
@@ -129,7 +129,7 @@ export default {
             ],
             appDataEntityId: 'plmweb.article_page',
             uniqueTag: 'article_page__Usr0227832449',
-            name: '回收站操作列',
+            name: '恢复_回收站',
             id: 'usr0227832449',
           },
           valueType: 'SIMPLE',
@@ -257,11 +257,11 @@ export default {
           id: 'srfkey',
         },
       ],
+      pagingMode: 1,
       pagingSize: 20,
       sortMode: 'REMOTE',
       enableCustomized: true,
       enablePagingBar: true,
-      singleSelect: true,
       fetchControlAction: {
         appDEMethodId: 'fetch_is_deleted',
         appDataEntityId: 'plmweb.article_page',
@@ -274,6 +274,40 @@ export default {
       },
       autoLoad: true,
       showBusyIndicator: true,
+      controls: [
+        {
+          detoolbarItems: [
+            {
+              actionLevel: 200,
+              noPrivDisplayMode: 2,
+              uiactionId: 'recover@article_page',
+              uiactionTarget: 'MULTIKEY',
+              valid: true,
+              caption: '恢复',
+              itemType: 'DEUIACTION',
+              sysImage: {
+                cssClass: 'fa fa-refresh',
+                glyph: 'xf021@FontAwesome',
+              },
+              tooltip: '恢复',
+              showCaption: true,
+              showIcon: true,
+              id: 'deuiaction1',
+            },
+          ],
+          codeName: 'recycle_grid_view_grid_batchtoolbar',
+          controlType: 'TOOLBAR',
+          logicName: '批操作工具栏（回收站恢复）',
+          appDataEntityId: 'plmweb.article_page',
+          controlParam: {
+            id: 'grid_batchtoolbar',
+          },
+          modelId: '594F8D0A-00A5-4FF3-9F3F-884821D0F279',
+          modelType: 'PSDETOOLBAR',
+          name: 'grid_batchtoolbar',
+          id: 'recycle_grid_view_grid_batchtoolbar',
+        },
+      ],
       codeName: 'recycle_grid_view_grid',
       controlType: 'GRID',
       logicName: '页面回收站表格视图_表格',

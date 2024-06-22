@@ -75,6 +75,7 @@ export default {
                   editor: {
                     maxLength: 200,
                     editorType: 'TEXTBOX',
+                    placeHolder: '输入阶段名称',
                     valueType: 'SIMPLE',
                     editable: true,
                     id: 'name',
@@ -105,6 +106,7 @@ export default {
                     singleSelect: true,
                     appCodeListId: 'plmweb.base__stage_type',
                     editorType: 'DROPDOWNLIST',
+                    placeHolder: '选择阶段类型',
                     valueType: 'SIMPLE',
                     editable: true,
                     id: 'type',

@@ -118,7 +118,6 @@ public class TestPlan extends EntityMP implements Serializable
     /**
     * 关联缺陷
     */
-    @Transient
     @TableField(exist = false)
     @DEField(name = "work_item_relations")
     @JSONField(name = "work_item_relations")

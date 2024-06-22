@@ -64,15 +64,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '交付物编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.DELIVERABLE.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.deliverable_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       realTitle: '交付物数据重定向视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.DELIVERABLE.REDIRECTVIEW',
@@ -80,6 +71,15 @@ export default {
       refAppViewId: 'plmweb.deliverable_redirect_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realTitle: '交付物编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.DELIVERABLE.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.deliverable_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -93,6 +93,16 @@ export default {
           valid: true,
           caption: '新建交付目标',
           itemType: 'DEUIACTION',
+          controlLogics: [
+            {
+              itemName: 'deuiaction1',
+              logicTag: 'toolbar',
+              logicType: 'SCRIPT',
+              scriptCode: 'context.srfreadonly != true',
+              triggerType: 'ITEMVISIBLE',
+              id: 'deuiaction1',
+            },
+          ],
           sysImage: {
             cssClass: 'fa fa-plus',
             glyph: 'xf067@FontAwesome',
@@ -100,18 +110,18 @@ export default {
           tooltip: '新建交付目标',
           showCaption: true,
           showIcon: true,
-          id: 'deuiaction1_create_deliver_target',
+          id: 'deuiaction1',
         },
       ],
       xdataControlName: 'grid',
       codeName: 'project_grid_view_toolbar',
       controlType: 'TOOLBAR',
-      logicName: '工具栏模板（只有一个实体界面行为组）',
+      logicName: '新建交付目标',
       appDataEntityId: 'plmweb.deliverable',
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '97b647cbe00cc608f9a368e2d0874c1e',
+      modelId: '4938C1A3-911C-4A51-AB4D-008E9859701B',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'project_grid_view_toolbar',
@@ -218,7 +228,7 @@ export default {
           codeName: 'title',
           columnType: 'DEFGRIDCOLUMN',
           noPrivDisplayMode: 1,
-          width: 300,
+          width: 500,
           widthUnit: 'PX',
           enableSort: true,
           id: 'title',
@@ -355,11 +365,6 @@ export default {
           dataType: 25,
           id: 'srfmajortext',
         },
-        {
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'srfmstag',
-        },
       ],
       degridEditItems: [
         {
@@ -377,6 +382,7 @@ export default {
           id: 'srfkey',
         },
       ],
+      pagingMode: 1,
       pagingSize: 20,
       sortMode: 'REMOTE',
       enablePagingBar: true,
@@ -414,6 +420,7 @@ export default {
         id: 'update',
       },
       autoLoad: true,
+      enableItemPrivilege: true,
       showBusyIndicator: true,
       codeName: 'deliverable_grid',
       controlType: 'GRID',

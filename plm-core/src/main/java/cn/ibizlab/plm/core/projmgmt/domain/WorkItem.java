@@ -335,7 +335,6 @@ public class WorkItem extends EntityMP implements Serializable
     /**
     * 预估工时
     */
-    @Transient
     @TableField(exist = false)
     @DEField(name = "estimated_workload")
     @JSONField(name = "estimated_workload")
@@ -366,7 +365,6 @@ public class WorkItem extends EntityMP implements Serializable
     /**
     * 剩余工时
     */
-    @Transient
     @TableField(exist = false)
     @DEField(name = "remaining_workload")
     @JSONField(name = "remaining_workload")
@@ -377,7 +375,6 @@ public class WorkItem extends EntityMP implements Serializable
     /**
     * 附件
     */
-    @Transient
     @TableField(exist = false)
     @DEField(name = "attachments")
     @JSONField(name = "attachments")
@@ -388,7 +385,6 @@ public class WorkItem extends EntityMP implements Serializable
     /**
     * 实际工时
     */
-    @Transient
     @TableField(exist = false)
     @DEField(name = "actual_workload")
     @JSONField(name = "actual_workload")
@@ -399,7 +395,6 @@ public class WorkItem extends EntityMP implements Serializable
     /**
     * 交付物
     */
-    @Transient
     @TableField(exist = false)
     @DEField(name = "deliverable")
     @JSONField(name = "deliverable")
@@ -430,7 +425,6 @@ public class WorkItem extends EntityMP implements Serializable
     /**
     * 关注
     */
-    @Transient
     @TableField(exist = false)
     @DEField(name = "attentions")
     @JSONField(name = "attentions")

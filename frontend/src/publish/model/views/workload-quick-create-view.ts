@@ -57,10 +57,10 @@ export default {
           codeName: 'duration_updateform',
           defiupdateDetails: [
             {
-              id: 'workload_schedule',
+              id: 'remaining_workload',
             },
             {
-              id: 'remaining_workload',
+              id: 'workload_schedule',
             },
           ],
           scriptCode:

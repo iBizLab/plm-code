@@ -81,6 +81,7 @@ export default {
                       editor: {
                         maxLength: 200,
                         editorType: 'TEXTBOX',
+                        placeHolder: '输入名称',
                         valueType: 'SIMPLE',
                         editable: true,
                         id: 'name',
@@ -147,6 +148,7 @@ export default {
                     singleSelect: true,
                     appCodeListId: 'plmweb.projmgmt__project_type',
                     editorType: 'DROPDOWNLIST',
+                    placeHolder: '选择项目类型',
                     valueType: 'SIMPLE',
                     editable: true,
                     id: 'project_type',
@@ -175,6 +177,7 @@ export default {
                     singleSelect: true,
                     appCodeListId: 'plmweb.projmgmt__work_item_type_group',
                     editorType: 'DROPDOWNLIST',
+                    placeHolder: '选择界面分组',
                     valueType: 'SIMPLE',
                     editable: true,
                     id: 'group',

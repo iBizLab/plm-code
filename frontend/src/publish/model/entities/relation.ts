@@ -1927,6 +1927,14 @@ export default {
       name: '需求-关联',
       id: 'relations',
     },
+    {
+      actionRSMode: 1,
+      codeName: 'relations',
+      majorAppDataEntityId: 'plmweb.article_page',
+      rsmode: 2,
+      name: '页面-关联',
+      id: 'relations',
+    },
   ],
   quickSearchAppDEFieldIds: ['name'],
   sysAPITag: 'ServiceAPI',
@@ -1941,5 +1949,6 @@ export default {
     'work_items/${work_item}/relations/${relation}',
     'test_cases/${test_case}/relations/${relation}',
     'ideas/${idea}/relations/${relation}',
+    'article_pages/${article_page}/relations/${relation}',
   ],
 };

@@ -1106,7 +1106,7 @@ export default {
                           halign: 'LEFT',
                           valign: 'MIDDLE',
                           wrapMode: 'NOWRAP',
-                          appCodeListId: 'plmweb.team__usrcodelist0516148929',
+                          appCodeListId: 'plmweb.team__discuss_status',
                           editorType: 'SPAN',
                           valueType: 'SIMPLE',
                           editable: true,

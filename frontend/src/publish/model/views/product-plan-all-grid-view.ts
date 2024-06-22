@@ -71,6 +71,13 @@ export default {
   ],
   appViewRefs: [
     {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '新建计划',
+      refAppViewId: 'plmweb.product_plan_quick_create_view',
+      name: 'NEWDATA',
+      id: 'newdata',
+    },
+    {
       realTitle: '计划内容',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.IDEA.MAIN_VIEW_PLAN',
@@ -87,13 +94,6 @@ export default {
       refAppViewId: 'plmweb.idea_plan_count_grid_view',
       name: 'EDITDATA',
       id: 'editdata',
-    },
-    {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '新建计划',
-      refAppViewId: 'plmweb.product_plan_quick_create_view',
-      name: 'NEWDATA',
-      id: 'newdata',
     },
   ],
   controls: [
@@ -392,6 +392,7 @@ export default {
           id: 'srfkey',
         },
       ],
+      pagingMode: 1,
       pagingSize: 20,
       sortMode: 'REMOTE',
       enableCustomized: true,
@@ -430,6 +431,7 @@ export default {
         id: 'update',
       },
       autoLoad: true,
+      enableItemPrivilege: true,
       showBusyIndicator: true,
       codeName: 'main',
       controlType: 'GRID',

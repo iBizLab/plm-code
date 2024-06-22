@@ -39,6 +39,7 @@ export default {
           id: 'test_case',
         },
       ],
+      dataRelationTag: 'tab_exp_view_DR',
       editItemCaption: '关注',
       uniqueTag: 'attention_tab_exp_view__tabexppanel',
       hideEditItem: true,

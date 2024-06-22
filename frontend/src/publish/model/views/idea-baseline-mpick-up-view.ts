@@ -630,7 +630,7 @@ export default {
               {
                 idAppDEFieldId: 'id',
                 leafFlagAppDEFieldId: 'is_leaf',
-                appDEDataSetId: 'fetch_product_idea_category',
+                appDEDataSetId: 'fetch_default',
                 sortDir: 'ASC',
                 sortAppDEFieldId: 'sequence',
                 textAppDEFieldId: 'name',

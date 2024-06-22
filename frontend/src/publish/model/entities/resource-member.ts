@@ -45,7 +45,8 @@ export default {
     {
       codeName: 'weekday',
       logicName: '周工作日',
-      stdDataType: 9,
+      stdDataType: 25,
+      stringLength: 4000,
       name: 'WEEKDAY',
       id: 'weekday',
     },
@@ -153,7 +154,7 @@ export default {
           logicName: '周工作日',
           appDEFieldId: 'weekday',
           sourceType: 'DEFIELD',
-          stdDataType: 9,
+          stdDataType: 25,
           type: 'SIMPLE',
           allowEmpty: true,
           id: 'weekday',

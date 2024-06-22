@@ -586,7 +586,7 @@ export default {
             id: 'logicsubtype',
           },
           {
-            caption: '名称',
+            caption: '规则名称',
             dataItemName: 'psdelogicname',
             itemType: 'DATAITEM',
             appDEFieldId: 'psdelogicname',

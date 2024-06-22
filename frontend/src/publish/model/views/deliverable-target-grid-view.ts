@@ -646,11 +646,6 @@ export default {
             dataType: 25,
             id: 'srfmajortext',
           },
-          {
-            valueType: 'SIMPLE',
-            dataType: 25,
-            id: 'srfmstag',
-          },
         ],
         degridEditItems: [
           {
@@ -682,6 +677,7 @@ export default {
           id: 'remove',
         },
         autoLoad: true,
+        enableItemPrivilege: true,
         showBusyIndicator: true,
         codeName: 'target_grid',
         controlType: 'GRID',

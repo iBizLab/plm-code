@@ -47,6 +47,7 @@ export default {
         },
       ],
       showTitle: true,
+      dataRelationTag: 'setting_view',
       editItemCapLanguageRes: {
         lanResTag: 'DE.LNAME.USER',
       },

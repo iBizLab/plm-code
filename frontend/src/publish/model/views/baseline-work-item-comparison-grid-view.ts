@@ -128,6 +128,15 @@ export default {
   ],
   appViewRefs: [
     {
+      realTitle: '基线工作项编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.BASELINE_WORK_ITEM.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.baseline_work_item_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
+    },
+    {
       openMode: 'POPUPMODAL',
       navigateContexts: [
         {
@@ -162,15 +171,6 @@ export default {
       refAppViewId: 'plmweb.work_item_main_view',
       name: 'EDITDATA',
       id: 'editdata',
-    },
-    {
-      realTitle: '基线工作项编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.BASELINE_WORK_ITEM.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.baseline_work_item_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
     },
   ],
   controls: [
@@ -495,7 +495,7 @@ export default {
         ctrlParams: {
           N_OWNER_ID_EQ: '`${context.project}`',
           RESPONSEMAP: '{"id":"id","name":"name"}',
-          REQUESTURL: '`projects/${context.project}/baselines/fetch_default`',
+          REQUESTURL: '`projects/${context.project}/baselines/fetch_baseline`',
           REQUESTMETHOD: 'post',
           N_OWNER_TYPE_EQ: "'project'",
         },

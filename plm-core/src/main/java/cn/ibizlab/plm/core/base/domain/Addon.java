@@ -238,7 +238,6 @@ public class Addon extends EntityMP implements Serializable
     /**
     * 组件-权限成员
     */
-    @Transient
     @TableField(exist = false)
     @JSONField(name = "addon_role_members")
     @JsonProperty("addon_role_members")

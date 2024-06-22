@@ -38,7 +38,7 @@ export default {
         id: 'loaddraft',
       },
       getControlAction: {
-        appDEMethodId: 'get',
+        appDEMethodId: 'nothing',
         appDataEntityId: 'plmweb.deliverable',
         id: 'load',
       },
@@ -48,7 +48,7 @@ export default {
         id: 'remove',
       },
       updateControlAction: {
-        appDEMethodId: 'update',
+        appDEMethodId: 'nothing',
         appDataEntityId: 'plmweb.deliverable',
         id: 'update',
       },
@@ -75,6 +75,7 @@ export default {
                   editor: {
                     maxLength: 100,
                     editorType: 'TEXTBOX',
+                    placeHolder: '输入交付目标',
                     valueType: 'SIMPLE',
                     editable: true,
                     id: 'title',
@@ -118,6 +119,7 @@ export default {
                         id: 'owner_id',
                       },
                     ],
+                    placeHolder: '搜索标题或编号',
                     valueType: 'SIMPLE',
                     editable: true,
                     id: 'work_item_title',

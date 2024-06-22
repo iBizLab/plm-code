@@ -6,8 +6,6 @@
     <resultMap id="ReviewContentExtendResultMap" type="cn.ibizlab.plm.core.testmgmt.domain.ReviewContentExtend" autoMapping="true">
 		<id property="id" column="id" /><!--主键字段映射-->
 		<result property="changeType" column="change_type" />
-		<result property="changeVersion" column="change_version" />
-		<result property="finalStageResults" column="final_stage_results" />
 		<result property="createMan" column="create_man" />
 		<result property="createTime" column="create_time" />
 		<result property="updateMan" column="update_man" />

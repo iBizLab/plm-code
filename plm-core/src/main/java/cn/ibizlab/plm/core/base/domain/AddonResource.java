@@ -101,7 +101,6 @@ public class AddonResource extends EntityMP implements Serializable
     /**
     * 资源成员
     */
-    @Transient
     @TableField(exist = false)
     @DEField(name = "members")
     @JSONField(name = "members")

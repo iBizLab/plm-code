@@ -158,6 +158,37 @@ export default {
         id: 'view_header',
       },
       {
+        rawItem: {
+          rawItemParams: [
+            {
+              key: 'POSITION',
+              value: 'TOP',
+            },
+          ],
+          predefinedType: 'VIEWMSG_POS',
+          id: 'viewmsg_pos',
+        },
+        caption: '视图消息占位',
+        itemStyle: 'DEFAULT',
+        itemType: 'RAWITEM',
+        controlLogics: [
+          {
+            itemName: 'VIEWMSG_POS',
+            logicTag: 'layoutpanel',
+            logicType: 'SCRIPT',
+            scriptCode: '!!view.common_list_isshow',
+            triggerType: 'ITEMVISIBLE',
+            id: 'logic1',
+          },
+        ],
+        layoutPos: {
+          shrink: 0,
+          layout: 'FLEX',
+        },
+        showCaption: true,
+        id: 'viewmsg_pos',
+      },
+      {
         actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
@@ -2234,7 +2265,7 @@ export default {
                               halign: 'LEFT',
                               valign: 'MIDDLE',
                               wrapMode: 'NOWRAP',
-                              appCodeListId: 'plmweb.testmgmt__test_case_state',
+                              appCodeListId: 'plmweb.testmgmt__review_result',
                               editorType: 'SPAN',
                               valueType: 'SIMPLE',
                               editable: true,
@@ -2247,8 +2278,7 @@ export default {
                             detailStyle: 'DEFAULT',
                             detailType: 'FORMITEM',
                             layoutPos: {
-                              colLG: 21,
-                              colMD: 21,
+                              colMD: 24,
                               layout: 'TABLE_24COL',
                             },
                             showCaption: true,

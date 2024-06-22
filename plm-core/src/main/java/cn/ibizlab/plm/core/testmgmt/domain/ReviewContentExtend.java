@@ -61,7 +61,6 @@ public class ReviewContentExtend extends EntityMP implements Serializable
     /**
     * 评审结果
     */
-    @Transient
     @TableField(exist = false)
     @DEField(name = "stage_results")
     @JSONField(name = "stage_results")

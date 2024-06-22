@@ -12,6 +12,13 @@ export default {
   caption: '全部发布',
   codeName: 'release_all_grid_view',
   appDataEntityId: 'plmweb.release',
+  appViewNavParams: [
+    {
+      key: 'project',
+      value: 'project',
+      id: 'project',
+    },
+  ],
   viewLayoutPanel: {
     viewProxyMode: true,
     layoutMode: 'FLEX',
@@ -265,17 +272,17 @@ export default {
     ],
     appViewRefs: [
       {
-        realTitle: '项目发布主视图',
-        refAppViewId: 'plmweb.release_main_view',
-        name: 'EDITDATA',
-        id: 'editdata',
-      },
-      {
         realOpenMode: 'POPUPMODAL',
         realTitle: '新建项目发布操作视图',
         refAppViewId: 'plmweb.release_quick_create_view',
         name: 'NEWDATA',
         id: 'newdata',
+      },
+      {
+        realTitle: '项目发布主视图',
+        refAppViewId: 'plmweb.release_main_view',
+        name: 'EDITDATA',
+        id: 'editdata',
       },
     ],
     controls: [
@@ -722,6 +729,7 @@ export default {
             id: 'assignee_id',
           },
         ],
+        pagingMode: 1,
         pagingSize: 20,
         sortMode: 'REMOTE',
         enablePagingBar: true,
@@ -759,6 +767,7 @@ export default {
           id: 'update',
         },
         autoLoad: true,
+        enableItemPrivilege: true,
         showBusyIndicator: true,
         codeName: 'main',
         controlType: 'GRID',

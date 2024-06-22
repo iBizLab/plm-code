@@ -102,30 +102,6 @@ export default {
                 id: 'view_toolbar',
               },
               {
-                actionType: 'UIACTION',
-                buttonStyle: 'DEFAULT',
-                buttonType: 'PANELBUTTON',
-                uiactionId: 'switch_show_mode@work_item',
-                renderMode: 'BUTTON',
-                tooltip: '树状',
-                uiactionTarget: 'NONE',
-                caption: '树状',
-                itemStyle: 'DEFAULT',
-                itemType: 'BUTTON',
-                layoutPos: {
-                  shrink: 1,
-                  halignSelf: 'LEFT',
-                  layout: 'FLEX',
-                },
-                sysImage: {
-                  cssClass: 'fa fa-reorder',
-                  glyph: 'xf0c9@FontAwesome',
-                },
-                sysPFPluginId: 'switch_show_mode',
-                showCaption: true,
-                id: 'button_calluilogic',
-              },
-              {
                 actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
@@ -320,22 +296,6 @@ export default {
     ],
     appViewRefs: [
       {
-        openMode: 'INDEXVIEWTAB_POPUPMODAL',
-        navigateContexts: [
-          {
-            key: 'WORK_ITEM_TYPE_ID',
-            value: 'work_item_type_id',
-            name: 'WORK_ITEM_TYPE_ID',
-            id: 'work_item_type_id',
-          },
-        ],
-        realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
-        realTitle: '工作项',
-        refAppViewId: 'plmweb.work_item_main_view',
-        name: 'EDITDATA',
-        id: 'editdata',
-      },
-      {
         realTitle: '工作项编辑视图',
         realTitleLanguageRes: {
           lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
@@ -350,6 +310,22 @@ export default {
         refAppViewId: 'plmweb.work_item_test_follow_edit_view',
         name: 'OPENDATA',
         id: 'opendata',
+      },
+      {
+        openMode: 'INDEXVIEWTAB_POPUPMODAL',
+        navigateContexts: [
+          {
+            key: 'WORK_ITEM_TYPE_ID',
+            value: 'work_item_type_id',
+            name: 'WORK_ITEM_TYPE_ID',
+            id: 'work_item_type_id',
+          },
+        ],
+        realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
+        realTitle: '工作项',
+        refAppViewId: 'plmweb.work_item_main_view',
+        name: 'EDITDATA',
+        id: 'editdata',
       },
     ],
     controls: [
@@ -1271,6 +1247,7 @@ export default {
             id: 'assignee_id',
           },
         ],
+        pagingMode: 1,
         pagingSize: 20,
         sortMode: 'REMOTE',
         enableCustomized: true,
@@ -1299,6 +1276,16 @@ export default {
                 valid: true,
                 caption: '移入迭代',
                 itemType: 'DEUIACTION',
+                controlLogics: [
+                  {
+                    itemName: 'deuiaction1',
+                    logicTag: 'treegrid_batchtoolbar',
+                    logicType: 'SCRIPT',
+                    scriptCode: 'context.srfreadonly != true',
+                    triggerType: 'ITEMENABLE',
+                    id: 'deuiaction1',
+                  },
+                ],
                 sysImage: {
                   cssClass: 'fa fa-send-o',
                   glyph: 'xf1d9@FontAwesome',
@@ -1316,6 +1303,16 @@ export default {
                 valid: true,
                 caption: '变更状态',
                 itemType: 'DEUIACTION',
+                controlLogics: [
+                  {
+                    itemName: 'deuiaction2',
+                    logicTag: 'treegrid_batchtoolbar',
+                    logicType: 'SCRIPT',
+                    scriptCode: 'context.srfreadonly != true',
+                    triggerType: 'ITEMENABLE',
+                    id: 'deuiaction2',
+                  },
+                ],
                 sysImage: {
                   cssClass: 'fa fa-stack-exchange',
                   glyph: 'xf18d@FontAwesome',
@@ -1333,6 +1330,16 @@ export default {
                 valid: true,
                 caption: '分配负责人',
                 itemType: 'DEUIACTION',
+                controlLogics: [
+                  {
+                    itemName: 'deuiaction3',
+                    logicTag: 'treegrid_batchtoolbar',
+                    logicType: 'SCRIPT',
+                    scriptCode: 'context.srfreadonly != true',
+                    triggerType: 'ITEMENABLE',
+                    id: 'deuiaction3',
+                  },
+                ],
                 sysImage: {
                   cssClass: 'fa fa-user-plus',
                   glyph: 'xf234@FontAwesome',
@@ -1350,6 +1357,16 @@ export default {
                 valid: true,
                 caption: '修改时间',
                 itemType: 'DEUIACTION',
+                controlLogics: [
+                  {
+                    itemName: 'deuiaction4',
+                    logicTag: 'treegrid_batchtoolbar',
+                    logicType: 'SCRIPT',
+                    scriptCode: 'context.srfreadonly != true',
+                    triggerType: 'ITEMENABLE',
+                    id: 'deuiaction4',
+                  },
+                ],
                 sysImage: {
                   cssClass: 'fa fa-calendar',
                   glyph: 'xf073@FontAwesome',
@@ -1416,6 +1433,16 @@ export default {
                 valid: true,
                 caption: '更多',
                 itemType: 'ITEMS',
+                controlLogics: [
+                  {
+                    itemName: 'items1',
+                    logicTag: 'treegrid_batchtoolbar',
+                    logicType: 'SCRIPT',
+                    scriptCode: 'context.srfreadonly != true',
+                    triggerType: 'ITEMENABLE',
+                    id: 'items1',
+                  },
+                ],
                 sysImage: {
                   cssClass: 'fa fa-list-ul',
                   glyph: 'xf0ca@FontAwesome',
@@ -2032,6 +2059,9 @@ export default {
         logicName: '项目-工作项搜索栏',
         appDataEntityId: 'plmweb.work_item',
         controlParam: {
+          ctrlParams: {
+            STORAGE: 'true',
+          },
           id: 'searchbar',
         },
         modelId: 'e3715ecb283b07a7ddc9d46974124392',

@@ -3,11 +3,18 @@ export default {
   codeListType: 'STATIC',
   codeName: 'TestMgmt__review_result',
   emptyText: '未定义',
+  appDataEntityId: 'plmweb.test_case',
   codeItems: [
     {
-      codeName: 'item_2',
+      codeName: 'item_1',
       color: '#C6CACD',
       text: '未评审',
+      value: '1',
+      id: 'item_1',
+    },
+    {
+      codeName: 'item_2',
+      text: '评审中',
       value: '2',
       id: 'item_2',
     },

@@ -458,7 +458,7 @@ export default {
                 singleSelect: true,
                 handlerType: 'PickupText',
                 appDEACModeId: 'default',
-                appDEDataSetId: 'fetch_normal',
+                appDEDataSetId: 'fetch_main',
                 appDataEntityId: 'plmweb.product',
                 enableAC: true,
                 forceSelection: true,

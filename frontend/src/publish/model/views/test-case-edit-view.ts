@@ -1733,7 +1733,7 @@ export default {
                             halign: 'LEFT',
                             valign: 'MIDDLE',
                             wrapMode: 'NOWRAP',
-                            appCodeListId: 'plmweb.testmgmt__test_case_state',
+                            appCodeListId: 'plmweb.testmgmt__review_result',
                             editorType: 'SPAN',
                             valueType: 'SIMPLE',
                             editable: true,
@@ -1746,8 +1746,7 @@ export default {
                           detailStyle: 'DEFAULT',
                           detailType: 'FORMITEM',
                           layoutPos: {
-                            colLG: 21,
-                            colMD: 21,
+                            colMD: 24,
                             layout: 'TABLE_24COL',
                           },
                           showCaption: true,

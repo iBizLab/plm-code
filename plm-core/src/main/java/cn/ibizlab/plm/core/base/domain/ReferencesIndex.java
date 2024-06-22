@@ -40,7 +40,6 @@ public class ReferencesIndex extends EntityMP implements Serializable
     * 标识
     */
     @Id
-    @Transient
     @TableField(exist = false)
     @DEField(name = "id" , isKeyField = true)
     @JSONField(name = "id")

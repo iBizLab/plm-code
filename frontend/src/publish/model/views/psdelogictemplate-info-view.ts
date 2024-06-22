@@ -237,6 +237,7 @@ export default {
             id: 'template',
           },
         ],
+        dataRelationTag: 'flow_preview',
         editItemCaption: '实体处理逻辑',
         uniqueTag: 'psdelogictemplate_info_view__drtab',
         hideEditItem: true,

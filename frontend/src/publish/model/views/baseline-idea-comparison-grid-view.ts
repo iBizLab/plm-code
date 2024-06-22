@@ -129,6 +129,15 @@ export default {
   ],
   appViewRefs: [
     {
+      realTitle: '基线工需求编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.BASELINE_IDEA.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.baseline_idea_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
+    },
+    {
       openMode: 'POPUPMODAL',
       navigateContexts: [
         {
@@ -166,15 +175,6 @@ export default {
       refAppViewId: 'plmweb.idea_main_view',
       name: 'EDITDATA',
       id: 'editdata',
-    },
-    {
-      realTitle: '基线工需求编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.BASELINE_IDEA.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.baseline_idea_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
     },
   ],
   controls: [
@@ -476,7 +476,7 @@ export default {
         ctrlParams: {
           N_OWNER_ID_EQ: '`${context.product}`',
           RESPONSEMAP: '{"id":"id","name":"name"}',
-          REQUESTURL: '`products/${context.product}/baselines/fetch_default`',
+          REQUESTURL: '`products/${context.product}/baselines/fetch_baseline`',
           REQUESTMETHOD: 'post',
           N_OWNER_TYPE_EQ: "'product'",
         },

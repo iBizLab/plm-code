@@ -318,6 +318,7 @@ export default {
           },
         ],
         showTitle: true,
+        dataRelationTag: 'index_view_DR',
         editItemCapLanguageRes: {
           lanResTag: 'DE.LNAME.DISCUSS_TOPIC',
         },

@@ -81,6 +81,7 @@ export default {
                       editor: {
                         maxLength: 200,
                         editorType: 'TEXTBOX',
+                        placeHolder: '输入工单类型名称',
                         valueType: 'SIMPLE',
                         editable: true,
                         id: 'name',
@@ -88,7 +89,7 @@ export default {
                       capLanguageRes: {
                         lanResTag: 'DEF.LNAME.NAME',
                       },
-                      caption: '名称',
+                      caption: '工单类型名称',
                       codeName: 'name',
                       detailStyle: 'DEFAULT',
                       detailType: 'FORMITEM',
@@ -156,6 +157,7 @@ export default {
                       HEIGHT: '200',
                     },
                     editorType: 'TEXTAREA_10',
+                    placeHolder: '输入工单类型描述',
                     valueType: 'SIMPLE',
                     editable: true,
                     id: 'description',

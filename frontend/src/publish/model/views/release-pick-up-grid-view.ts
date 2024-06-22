@@ -427,6 +427,7 @@ export default {
           id: 'assignee_id',
         },
       ],
+      pagingMode: 1,
       pagingSize: 20,
       sortMode: 'REMOTE',
       enablePagingBar: true,

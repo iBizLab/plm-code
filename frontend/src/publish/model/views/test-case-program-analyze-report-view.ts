@@ -11,6 +11,15 @@ export default {
   caption: '测试用例规划分析',
   codeName: 'test_case_program_analyze_report_view',
   appDataEntityId: 'plmweb.test_case',
+  appViewNavContexts: [
+    {
+      rawValue: true,
+      key: 'SRFREADONLY',
+      value: 'false',
+      name: 'SRFREADONLY',
+      id: 'srfreadonly',
+    },
+  ],
   viewLayoutPanel: {
     viewProxyMode: true,
     layoutMode: 'Flex',

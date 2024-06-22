@@ -1,0 +1,71 @@
+export default {
+  redirectAppViewRefs: [
+    {
+      realTitle: '基线编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.BASELINE.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.baseline_edit_view',
+      name: 'BASELINE:EDITVIEW',
+      id: 'baseline:editview',
+    },
+    {
+      realTitle: '基线编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.BASELINE.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.baseline_edit_view',
+      name: 'EDITVIEW',
+      id: 'editview',
+    },
+  ],
+  enableWorkflow: true,
+  funcViewMode: 'REDIRECTVIEW',
+  deviewCodeName: 'RedirectView',
+  deviewId: '3d48602ef1f3f70ebea0b5a9894ac2f4',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.BASELINE',
+  },
+  caption: '基线',
+  codeName: 'baseline_redirect_view',
+  appDataEntityId: 'plmweb.baseline',
+  controls: [
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.BASELINE',
+      },
+      caption: '基线',
+      codeName: 'redirect_view_captionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.baseline',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'redirect_view_captionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'layoutpanel',
+    controlStyle: 'APPDEREDIRECTVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.baseline',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '基线数据重定向视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.BASELINE.REDIRECTVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEREDIRECTVIEW',
+  enableDP: true,
+  redirectView: true,
+  showCaptionBar: true,
+  modelId: '1ba82d8aa267857d6557fd275d84ab23',
+  modelType: 'PSAPPDEVIEW',
+  name: 'baselineRedirectView',
+  id: 'plmweb.baseline_redirect_view',
+};

@@ -9,7 +9,7 @@ export default {
   accUserMode: 2,
   caption: '实体属性',
   codeName: 'psde_field_quick_create_view',
-  height: 500,
+  height: 300,
   appDataEntityId: 'plmweb.psdefield',
   appViewEngines: [
     {
@@ -134,13 +134,13 @@ export default {
                       noPrivDisplayMode: 1,
                       appDEFieldId: 'psdefieldname',
                       editor: {
-                        maxLength: 200,
-                        editorType: 'TEXTBOX',
+                        editorType: 'HIDDEN',
                         valueType: 'SIMPLE',
                         editable: true,
                         id: 'psdefieldname',
                       },
                       allowEmpty: true,
+                      hidden: true,
                       caption: '实体属性名称',
                       codeName: 'psdefieldname',
                       detailStyle: 'DEFAULT',
@@ -161,13 +161,13 @@ export default {
                       noPrivDisplayMode: 1,
                       appDEFieldId: 'codename',
                       editor: {
-                        maxLength: 60,
-                        editorType: 'TEXTBOX',
+                        editorType: 'HIDDEN',
                         valueType: 'SIMPLE',
                         editable: true,
                         id: 'codename',
                       },
                       allowEmpty: true,
+                      hidden: true,
                       caption: '代码名称',
                       codeName: 'codename',
                       detailStyle: 'DEFAULT',
@@ -459,7 +459,6 @@ export default {
                 colMD: 24,
                 layout: 'TABLE_24COL',
               },
-              showCaption: true,
               id: 'grouppanel1',
             },
             {

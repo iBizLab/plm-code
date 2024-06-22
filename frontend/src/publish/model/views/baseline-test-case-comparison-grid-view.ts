@@ -468,7 +468,7 @@ export default {
         ctrlParams: {
           N_OWNER_ID_EQ: '`${context.library}`',
           RESPONSEMAP: '{"id":"id","name":"name"}',
-          REQUESTURL: '`libraries/${context.library}/baselines/fetch_default`',
+          REQUESTURL: '`libraries/${context.library}/baselines/fetch_baseline`',
           REQUESTMETHOD: 'post',
           N_OWNER_TYPE_EQ: "'library'",
         },

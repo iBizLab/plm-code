@@ -158,6 +158,7 @@ export default {
           },
         ],
         showTitle: true,
+        dataRelationTag: 'config_tab_exp_view_DR',
         editItemCapLanguageRes: {
           lanResTag: 'DE.LNAME.MANAGEMENT',
         },
@@ -212,16 +213,6 @@ export default {
               glyph: 'xf02d@FontAwesome',
             },
             id: 'space',
-          },
-          {
-            dedrbarGroupId: 'usrdrgroup0514569929',
-            caption: '效能度量',
-            appViewId: 'plmweb.insight_view_config_tree_exp_view',
-            sysImage: {
-              cssClass: 'fa fa-bar-chart-o',
-              glyph: 'xf080@FontAwesome',
-            },
-            id: 'insight_view',
           },
           {
             dedrbarGroupId: 'usrdrgroup0514569929',
