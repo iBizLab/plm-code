@@ -187,7 +187,7 @@ public abstract class AbstractEntryService extends ServiceImpl<EntryMapper,Entry
 	}
 
 	public boolean resetByBoardId(String boardId){
-		return this.update(Wrappers.<Entry>lambdaUpdate().eq(Entry::getBoardId,boardId));
+		return this.update(Wrappers.<Entry>lambdaUpdate().set(Entry::getBoardId, null).eq(Entry::getBoardId,boardId));
 	}
 	public boolean saveByBoard(Board board, List<Entry> list){
         if(list==null)
@@ -235,7 +235,7 @@ public abstract class AbstractEntryService extends ServiceImpl<EntryMapper,Entry
 	}
 
 	public boolean resetByProjectId(String projectId){
-		return this.update(Wrappers.<Entry>lambdaUpdate().eq(Entry::getProjectId,projectId));
+		return this.update(Wrappers.<Entry>lambdaUpdate().set(Entry::getProjectId, null).eq(Entry::getProjectId,projectId));
 	}
 	public boolean saveByProject(Project project, List<Entry> list){
         if(list==null)

@@ -385,7 +385,7 @@ public abstract class AbstractWorkloadService extends ServiceImpl<WorkloadMapper
 	}
 
 	public boolean resetByTypeId(String typeId){
-		return this.update(Wrappers.<Workload>lambdaUpdate().eq(Workload::getTypeId,typeId));
+		return this.update(Wrappers.<Workload>lambdaUpdate().set(Workload::getTypeId, null).eq(Workload::getTypeId,typeId));
 	}
 	public boolean saveByWorkloadType(WorkloadType workloadType, List<Workload> list){
         if(list==null)
@@ -432,7 +432,7 @@ public abstract class AbstractWorkloadService extends ServiceImpl<WorkloadMapper
 	}
 
 	public boolean resetByPrincipalId(String principalId){
-		return this.update(Wrappers.<Workload>lambdaUpdate().eq(Workload::getPrincipalId,principalId));
+		return this.update(Wrappers.<Workload>lambdaUpdate().set(Workload::getPrincipalId, null).eq(Workload::getPrincipalId,principalId));
 	}
 	public boolean saveByRelIdea(Idea idea, List<Workload> list){
         if(list==null)

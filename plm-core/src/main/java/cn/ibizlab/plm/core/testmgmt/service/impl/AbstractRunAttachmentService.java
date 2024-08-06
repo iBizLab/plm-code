@@ -166,7 +166,7 @@ public abstract class AbstractRunAttachmentService extends ServiceImpl<RunAttach
 	}
 
 	public boolean resetByOwnerId(String ownerId){
-		return this.update(Wrappers.<RunAttachment>lambdaUpdate().eq(RunAttachment::getOwnerId,ownerId));
+		return this.update(Wrappers.<RunAttachment>lambdaUpdate().set(RunAttachment::getOwnerId, null).eq(RunAttachment::getOwnerId,ownerId));
 	}
 	public boolean saveByRunAttachment(Run run, List<RunAttachment> list){
         if(list==null)

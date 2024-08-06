@@ -220,7 +220,7 @@ public abstract class AbstractReviewContentService extends ServiceImpl<ReviewCon
 	}
 
 	public boolean resetByPrincipalId(String principalId){
-		return this.update(Wrappers.<ReviewContent>lambdaUpdate().eq(ReviewContent::getPrincipalId,principalId));
+		return this.update(Wrappers.<ReviewContent>lambdaUpdate().set(ReviewContent::getPrincipalId, null).eq(ReviewContent::getPrincipalId,principalId));
 	}
 	public boolean saveByReview(Review review, List<ReviewContent> list){
         if(list==null)
@@ -304,7 +304,7 @@ public abstract class AbstractReviewContentService extends ServiceImpl<ReviewCon
 	}
 
 	public boolean resetByTargetVersionId(String targetVersionId){
-		return this.update(Wrappers.<ReviewContent>lambdaUpdate().eq(ReviewContent::getTargetVersionId,targetVersionId));
+		return this.update(Wrappers.<ReviewContent>lambdaUpdate().set(ReviewContent::getTargetVersionId, null).eq(ReviewContent::getTargetVersionId,targetVersionId));
 	}
 	public boolean saveByTargetVersion(Version version, List<ReviewContent> list){
         if(list==null)
@@ -352,7 +352,7 @@ public abstract class AbstractReviewContentService extends ServiceImpl<ReviewCon
 	}
 
 	public boolean resetByTargetId(String targetId){
-		return this.update(Wrappers.<ReviewContent>lambdaUpdate().eq(ReviewContent::getTargetId,targetId));
+		return this.update(Wrappers.<ReviewContent>lambdaUpdate().set(ReviewContent::getTargetId, null).eq(ReviewContent::getTargetId,targetId));
 	}
 	public boolean saveByTestCase(TestCase testCase, List<ReviewContent> list){
         if(list==null)

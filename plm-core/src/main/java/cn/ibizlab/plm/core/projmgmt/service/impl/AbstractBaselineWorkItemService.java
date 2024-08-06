@@ -198,7 +198,7 @@ public abstract class AbstractBaselineWorkItemService extends ServiceImpl<Baseli
 	}
 
 	public boolean resetByPrincipalId(String principalId){
-		return this.update(Wrappers.<BaselineWorkItem>lambdaUpdate().eq(BaselineWorkItem::getPrincipalId,principalId));
+		return this.update(Wrappers.<BaselineWorkItem>lambdaUpdate().set(BaselineWorkItem::getPrincipalId, null).eq(BaselineWorkItem::getPrincipalId,principalId));
 	}
 	public boolean saveByPrincipalBaseline(Baseline baseline, List<BaselineWorkItem> list){
         if(list==null)
@@ -246,7 +246,7 @@ public abstract class AbstractBaselineWorkItemService extends ServiceImpl<Baseli
 	}
 
 	public boolean resetByTargetVersionId(String targetVersionId){
-		return this.update(Wrappers.<BaselineWorkItem>lambdaUpdate().eq(BaselineWorkItem::getTargetVersionId,targetVersionId));
+		return this.update(Wrappers.<BaselineWorkItem>lambdaUpdate().set(BaselineWorkItem::getTargetVersionId, null).eq(BaselineWorkItem::getTargetVersionId,targetVersionId));
 	}
 	public boolean saveByTargetVersion(Version version, List<BaselineWorkItem> list){
         if(list==null)

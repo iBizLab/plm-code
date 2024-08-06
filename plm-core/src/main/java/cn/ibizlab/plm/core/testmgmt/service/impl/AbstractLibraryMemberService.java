@@ -194,7 +194,7 @@ public abstract class AbstractLibraryMemberService extends ServiceImpl<LibraryMe
 	}
 
 	public boolean resetByLibraryId(String libraryId){
-		return this.update(Wrappers.<LibraryMember>lambdaUpdate().eq(LibraryMember::getLibraryId,libraryId));
+		return this.update(Wrappers.<LibraryMember>lambdaUpdate().set(LibraryMember::getLibraryId, null).eq(LibraryMember::getLibraryId,libraryId));
 	}
 	public boolean saveByLibrary(Library library, List<LibraryMember> list){
         if(list==null)
@@ -242,7 +242,7 @@ public abstract class AbstractLibraryMemberService extends ServiceImpl<LibraryMe
 	}
 
 	public boolean resetByUserId(String userId){
-		return this.update(Wrappers.<LibraryMember>lambdaUpdate().eq(LibraryMember::getUserId,userId));
+		return this.update(Wrappers.<LibraryMember>lambdaUpdate().set(LibraryMember::getUserId, null).eq(LibraryMember::getUserId,userId));
 	}
 	public boolean saveByUser(User user, List<LibraryMember> list){
         if(list==null)

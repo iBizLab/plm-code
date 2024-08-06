@@ -233,7 +233,7 @@ public abstract class AbstractTestSuiteService extends ServiceImpl<TestSuiteMapp
 	}
 
 	public boolean resetByLibraryId(String libraryId){
-		return this.update(Wrappers.<TestSuite>lambdaUpdate().eq(TestSuite::getLibraryId,libraryId));
+		return this.update(Wrappers.<TestSuite>lambdaUpdate().set(TestSuite::getLibraryId, null).eq(TestSuite::getLibraryId,libraryId));
 	}
 	public boolean saveByLibrary(Library library, List<TestSuite> list){
         if(list==null)
@@ -281,7 +281,7 @@ public abstract class AbstractTestSuiteService extends ServiceImpl<TestSuiteMapp
 	}
 
 	public boolean resetByPid(String pid){
-		return this.update(Wrappers.<TestSuite>lambdaUpdate().eq(TestSuite::getPid,pid));
+		return this.update(Wrappers.<TestSuite>lambdaUpdate().set(TestSuite::getPid, null).eq(TestSuite::getPid,pid));
 	}
 	public boolean saveByTestSuite(TestSuite testSuite, List<TestSuite> list){
         if(list==null)

@@ -70,6 +70,14 @@ public class CustomerSearchContext extends QueryWrapperContext<Customer> {
     private String categoriesLIKE;
 
     /**
+     * 类别LIKE
+     */
+    @JsonProperty("n_categories_like")
+    @JSONField(name = "n_categories_like")
+    @ApiModelProperty("类别LIKE")
+    private String categoriesLIKE2;
+
+    /**
      * 产品名称EQ
      */
     @JsonProperty("n_product_name_eq")
@@ -188,6 +196,15 @@ public class CustomerSearchContext extends QueryWrapperContext<Customer> {
     @JSONField(name = "n_product_id_eq")
     @ApiModelProperty("产品标识EQ")
     private String productIdEQ;
+
+    /**
+     * 设置类别
+     * @param categoriesLIKE
+     */
+    public void setCategoriesLIKE(String categoriesLIKE) {
+        this.categoriesLIKE = categoriesLIKE;
+        this.categoriesLIKE2 = categoriesLIKE;
+    }
 
     @Override
     public void setContextParentKey(Serializable contextParentKey) {

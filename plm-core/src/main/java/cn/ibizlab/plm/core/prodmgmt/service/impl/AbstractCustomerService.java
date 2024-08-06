@@ -269,7 +269,7 @@ public abstract class AbstractCustomerService extends ServiceImpl<CustomerMapper
 	}
 
 	public boolean resetByProductId(String productId){
-		return this.update(Wrappers.<Customer>lambdaUpdate().eq(Customer::getProductId,productId));
+		return this.update(Wrappers.<Customer>lambdaUpdate().set(Customer::getProductId, null).eq(Customer::getProductId,productId));
 	}
 	public boolean saveByProduct(Product product, List<Customer> list){
         if(list==null)
@@ -316,7 +316,7 @@ public abstract class AbstractCustomerService extends ServiceImpl<CustomerMapper
 	}
 
 	public boolean resetByAssigneeId(String assigneeId){
-		return this.update(Wrappers.<Customer>lambdaUpdate().eq(Customer::getAssigneeId,assigneeId));
+		return this.update(Wrappers.<Customer>lambdaUpdate().set(Customer::getAssigneeId, null).eq(Customer::getAssigneeId,assigneeId));
 	}
 	public boolean saveByUser(User user, List<Customer> list){
         if(list==null)

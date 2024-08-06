@@ -163,7 +163,7 @@ public abstract class AbstractProgressService extends ServiceImpl<ProgressMapper
 	}
 
 	public boolean resetByProjectId(String projectId){
-		return this.update(Wrappers.<Progress>lambdaUpdate().eq(Progress::getProjectId,projectId));
+		return this.update(Wrappers.<Progress>lambdaUpdate().set(Progress::getProjectId, null).eq(Progress::getProjectId,projectId));
 	}
 	public boolean saveByProject(Project project, List<Progress> list){
         if(list==null)

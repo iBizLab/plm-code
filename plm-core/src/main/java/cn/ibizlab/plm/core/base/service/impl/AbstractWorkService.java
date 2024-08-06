@@ -196,7 +196,7 @@ public abstract class AbstractWorkService extends ServiceImpl<WorkMapper,Work> i
 	}
 
 	public boolean resetByPortfolioId(String portfolioId){
-		return this.update(Wrappers.<Work>lambdaUpdate().eq(Work::getPortfolioId,portfolioId));
+		return this.update(Wrappers.<Work>lambdaUpdate().set(Work::getPortfolioId, null).eq(Work::getPortfolioId,portfolioId));
 	}
 	public boolean saveByPortfolio(Portfolio portfolio, List<Work> list){
         if(list==null)
@@ -244,7 +244,7 @@ public abstract class AbstractWorkService extends ServiceImpl<WorkMapper,Work> i
 	}
 
 	public boolean resetByPilotId(String pilotId){
-		return this.update(Wrappers.<Work>lambdaUpdate().eq(Work::getPilotId,pilotId));
+		return this.update(Wrappers.<Work>lambdaUpdate().set(Work::getPilotId, null).eq(Work::getPilotId,pilotId));
 	}
 	public boolean saveByProject(Project project, List<Work> list){
         if(list==null)

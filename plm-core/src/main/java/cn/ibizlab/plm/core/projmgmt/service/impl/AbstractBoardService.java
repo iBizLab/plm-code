@@ -224,7 +224,7 @@ public abstract class AbstractBoardService extends ServiceImpl<BoardMapper,Board
 	}
 
 	public boolean resetByProjectId(String projectId){
-		return this.update(Wrappers.<Board>lambdaUpdate().eq(Board::getProjectId,projectId));
+		return this.update(Wrappers.<Board>lambdaUpdate().set(Board::getProjectId, null).eq(Board::getProjectId,projectId));
 	}
 	public boolean saveByProject(Project project, List<Board> list){
         if(list==null)

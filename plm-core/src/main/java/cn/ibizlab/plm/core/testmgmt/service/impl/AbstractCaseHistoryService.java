@@ -163,7 +163,7 @@ public abstract class AbstractCaseHistoryService extends ServiceImpl<CaseHistory
 	}
 
 	public boolean resetByCaseId(String caseId){
-		return this.update(Wrappers.<CaseHistory>lambdaUpdate().eq(CaseHistory::getCaseId,caseId));
+		return this.update(Wrappers.<CaseHistory>lambdaUpdate().set(CaseHistory::getCaseId, null).eq(CaseHistory::getCaseId,caseId));
 	}
 	public boolean saveByTestCase(TestCase testCase, List<CaseHistory> list){
         if(list==null)

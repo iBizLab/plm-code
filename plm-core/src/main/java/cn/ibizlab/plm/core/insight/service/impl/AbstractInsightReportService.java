@@ -189,7 +189,7 @@ public abstract class AbstractInsightReportService extends ServiceImpl<InsightRe
 	}
 
 	public boolean resetByViewId(String viewId){
-		return this.update(Wrappers.<InsightReport>lambdaUpdate().eq(InsightReport::getViewId,viewId));
+		return this.update(Wrappers.<InsightReport>lambdaUpdate().set(InsightReport::getViewId, null).eq(InsightReport::getViewId,viewId));
 	}
 	public boolean saveByInsightView(InsightView insightView, List<InsightReport> list){
         if(list==null)

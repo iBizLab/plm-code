@@ -179,7 +179,7 @@ public abstract class AbstractRunHistoryService extends ServiceImpl<RunHistoryMa
 	}
 
 	public boolean resetByRunId(String runId){
-		return this.update(Wrappers.<RunHistory>lambdaUpdate().eq(RunHistory::getRunId,runId));
+		return this.update(Wrappers.<RunHistory>lambdaUpdate().set(RunHistory::getRunId, null).eq(RunHistory::getRunId,runId));
 	}
 	public boolean saveByRun(Run run, List<RunHistory> list){
         if(list==null)

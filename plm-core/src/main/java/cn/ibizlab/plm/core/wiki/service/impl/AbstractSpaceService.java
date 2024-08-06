@@ -354,7 +354,7 @@ public abstract class AbstractSpaceService extends ServiceImpl<SpaceMapper,Space
 	}
 
 	public boolean resetByCategoryId(String categoryId){
-		return this.update(Wrappers.<Space>lambdaUpdate().eq(Space::getCategoryId,categoryId));
+		return this.update(Wrappers.<Space>lambdaUpdate().set(Space::getCategoryId, null).eq(Space::getCategoryId,categoryId));
 	}
 	public boolean saveByCategory(Category category, List<Space> list){
         if(list==null)

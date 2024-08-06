@@ -210,7 +210,7 @@ public abstract class AbstractSearchAttachmentService extends ServiceImpl<Search
 	}
 
 	public boolean resetByOwnerId(String ownerId){
-		return this.update(Wrappers.<SearchAttachment>lambdaUpdate().eq(SearchAttachment::getOwnerId,ownerId));
+		return this.update(Wrappers.<SearchAttachment>lambdaUpdate().set(SearchAttachment::getOwnerId, null).eq(SearchAttachment::getOwnerId,ownerId));
 	}
 	public boolean saveByDerCustomer(Customer customer, List<SearchAttachment> list){
         if(list==null)

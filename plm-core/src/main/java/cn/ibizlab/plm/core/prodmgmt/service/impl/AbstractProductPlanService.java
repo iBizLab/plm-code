@@ -184,7 +184,7 @@ public abstract class AbstractProductPlanService extends ServiceImpl<ProductPlan
 	}
 
 	public boolean resetByProductId(String productId){
-		return this.update(Wrappers.<ProductPlan>lambdaUpdate().eq(ProductPlan::getProductId,productId));
+		return this.update(Wrappers.<ProductPlan>lambdaUpdate().set(ProductPlan::getProductId, null).eq(ProductPlan::getProductId,productId));
 	}
 	public boolean saveByProduct(Product product, List<ProductPlan> list){
         if(list==null)

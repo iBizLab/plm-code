@@ -214,7 +214,7 @@ public abstract class AbstractGroupService extends ServiceImpl<GroupMapper,Group
 	}
 
 	public boolean resetBySectionId(String sectionId){
-		return this.update(Wrappers.<Group>lambdaUpdate().eq(Group::getSectionId,sectionId));
+		return this.update(Wrappers.<Group>lambdaUpdate().set(Group::getSectionId, null).eq(Group::getSectionId,sectionId));
 	}
 	public boolean saveBySection(Section section, List<Group> list){
         if(list==null)

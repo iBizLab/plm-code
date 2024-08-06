@@ -488,7 +488,7 @@ public abstract class AbstractIdeaService extends ServiceImpl<IdeaMapper,Idea> i
 	}
 
 	public boolean resetByCategoryId(String categoryId){
-		return this.update(Wrappers.<Idea>lambdaUpdate().eq(Idea::getCategoryId,categoryId));
+		return this.update(Wrappers.<Idea>lambdaUpdate().set(Idea::getCategoryId, null).eq(Idea::getCategoryId,categoryId));
 	}
 	public boolean saveByCategory(Category category, List<Idea> list){
         if(list==null)
@@ -538,7 +538,7 @@ public abstract class AbstractIdeaService extends ServiceImpl<IdeaMapper,Idea> i
 	}
 
 	public boolean resetByProductId(String productId){
-		return this.update(Wrappers.<Idea>lambdaUpdate().eq(Idea::getProductId,productId));
+		return this.update(Wrappers.<Idea>lambdaUpdate().set(Idea::getProductId, null).eq(Idea::getProductId,productId));
 	}
 	public boolean saveByProduct(Product product, List<Idea> list){
         if(list==null)
@@ -588,7 +588,7 @@ public abstract class AbstractIdeaService extends ServiceImpl<IdeaMapper,Idea> i
 	}
 
 	public boolean resetByAssigneeId(String assigneeId){
-		return this.update(Wrappers.<Idea>lambdaUpdate().eq(Idea::getAssigneeId,assigneeId));
+		return this.update(Wrappers.<Idea>lambdaUpdate().set(Idea::getAssigneeId, null).eq(Idea::getAssigneeId,assigneeId));
 	}
 	public boolean saveByUser(User user, List<Idea> list){
         if(list==null)

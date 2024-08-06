@@ -163,7 +163,7 @@ public abstract class AbstractChannelService extends ServiceImpl<ChannelMapper,C
 	}
 
 	public boolean resetByProductId(String productId){
-		return this.update(Wrappers.<Channel>lambdaUpdate().eq(Channel::getProductId,productId));
+		return this.update(Wrappers.<Channel>lambdaUpdate().set(Channel::getProductId, null).eq(Channel::getProductId,productId));
 	}
 	public boolean saveByProduct(Product product, List<Channel> list){
         if(list==null)

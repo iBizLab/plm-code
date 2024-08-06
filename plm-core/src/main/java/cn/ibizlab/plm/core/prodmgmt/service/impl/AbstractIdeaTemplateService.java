@@ -169,7 +169,7 @@ public abstract class AbstractIdeaTemplateService extends ServiceImpl<IdeaTempla
 	}
 
 	public boolean resetByCategoryId(String categoryId){
-		return this.update(Wrappers.<IdeaTemplate>lambdaUpdate().eq(IdeaTemplate::getCategoryId,categoryId));
+		return this.update(Wrappers.<IdeaTemplate>lambdaUpdate().set(IdeaTemplate::getCategoryId, null).eq(IdeaTemplate::getCategoryId,categoryId));
 	}
 	public boolean saveByCategory(Category category, List<IdeaTemplate> list){
         if(list==null)
@@ -213,7 +213,7 @@ public abstract class AbstractIdeaTemplateService extends ServiceImpl<IdeaTempla
 	}
 
 	public boolean resetByProductId(String productId){
-		return this.update(Wrappers.<IdeaTemplate>lambdaUpdate().eq(IdeaTemplate::getProductId,productId));
+		return this.update(Wrappers.<IdeaTemplate>lambdaUpdate().set(IdeaTemplate::getProductId, null).eq(IdeaTemplate::getProductId,productId));
 	}
 	public boolean saveByProduct(Product product, List<IdeaTemplate> list){
         if(list==null)

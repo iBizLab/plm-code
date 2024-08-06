@@ -170,7 +170,7 @@ public abstract class AbstractWorkItemStateService extends ServiceImpl<WorkItemS
 	}
 
 	public boolean resetByWorkItemTypeId(String workItemTypeId){
-		return this.update(Wrappers.<WorkItemState>lambdaUpdate().eq(WorkItemState::getWorkItemTypeId,workItemTypeId));
+		return this.update(Wrappers.<WorkItemState>lambdaUpdate().set(WorkItemState::getWorkItemTypeId, null).eq(WorkItemState::getWorkItemTypeId,workItemTypeId));
 	}
 	public boolean saveByWorkItemType(WorkItemType workItemType, List<WorkItemState> list){
         if(list==null)

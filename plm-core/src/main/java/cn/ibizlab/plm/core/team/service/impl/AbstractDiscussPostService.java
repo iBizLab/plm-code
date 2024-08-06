@@ -301,7 +301,7 @@ public abstract class AbstractDiscussPostService extends ServiceImpl<DiscussPost
 	}
 
 	public boolean resetByTopicId(String topicId){
-		return this.update(Wrappers.<DiscussPost>lambdaUpdate().eq(DiscussPost::getTopicId,topicId));
+		return this.update(Wrappers.<DiscussPost>lambdaUpdate().set(DiscussPost::getTopicId, null).eq(DiscussPost::getTopicId,topicId));
 	}
 	public boolean saveByDiscussTopic(DiscussTopic discussTopic, List<DiscussPost> list){
         if(list==null)

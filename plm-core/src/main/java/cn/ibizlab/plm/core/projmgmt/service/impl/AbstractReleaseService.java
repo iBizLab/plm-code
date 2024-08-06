@@ -279,7 +279,7 @@ public abstract class AbstractReleaseService extends ServiceImpl<ReleaseMapper,R
 	}
 
 	public boolean resetByProjectId(String projectId){
-		return this.update(Wrappers.<Release>lambdaUpdate().eq(Release::getProjectId,projectId));
+		return this.update(Wrappers.<Release>lambdaUpdate().set(Release::getProjectId, null).eq(Release::getProjectId,projectId));
 	}
 	public boolean saveByProject(Project project, List<Release> list){
         if(list==null)

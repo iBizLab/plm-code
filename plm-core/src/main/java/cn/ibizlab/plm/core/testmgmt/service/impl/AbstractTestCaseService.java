@@ -594,7 +594,7 @@ public abstract class AbstractTestCaseService extends ServiceImpl<TestCaseMapper
 	}
 
 	public boolean resetByTestLibraryId(String testLibraryId){
-		return this.update(Wrappers.<TestCase>lambdaUpdate().eq(TestCase::getTestLibraryId,testLibraryId));
+		return this.update(Wrappers.<TestCase>lambdaUpdate().set(TestCase::getTestLibraryId, null).eq(TestCase::getTestLibraryId,testLibraryId));
 	}
 	public boolean saveByLibrary(Library library, List<TestCase> list){
         if(list==null)
@@ -644,7 +644,7 @@ public abstract class AbstractTestCaseService extends ServiceImpl<TestCaseMapper
 	}
 
 	public boolean resetBySuiteId(String suiteId){
-		return this.update(Wrappers.<TestCase>lambdaUpdate().eq(TestCase::getSuiteId,suiteId));
+		return this.update(Wrappers.<TestCase>lambdaUpdate().set(TestCase::getSuiteId, null).eq(TestCase::getSuiteId,suiteId));
 	}
 	public boolean saveByTestSuite(TestSuite testSuite, List<TestCase> list){
         if(list==null)
@@ -694,7 +694,7 @@ public abstract class AbstractTestCaseService extends ServiceImpl<TestCaseMapper
 	}
 
 	public boolean resetByMaintenanceId(String maintenanceId){
-		return this.update(Wrappers.<TestCase>lambdaUpdate().eq(TestCase::getMaintenanceId,maintenanceId));
+		return this.update(Wrappers.<TestCase>lambdaUpdate().set(TestCase::getMaintenanceId, null).eq(TestCase::getMaintenanceId,maintenanceId));
 	}
 	public boolean saveByUser(User user, List<TestCase> list){
         if(list==null)

@@ -165,7 +165,7 @@ public abstract class AbstractTransitionHistoryService extends ServiceImpl<Trans
 	}
 
 	public boolean resetByOwnerId(String ownerId){
-		return this.update(Wrappers.<TransitionHistory>lambdaUpdate().eq(TransitionHistory::getOwnerId,ownerId));
+		return this.update(Wrappers.<TransitionHistory>lambdaUpdate().set(TransitionHistory::getOwnerId, null).eq(TransitionHistory::getOwnerId,ownerId));
 	}
 	public boolean saveByWorkItem(WorkItem workItem, List<TransitionHistory> list){
         if(list==null)

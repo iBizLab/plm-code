@@ -175,7 +175,7 @@ public abstract class AbstractObjectiveService extends ServiceImpl<ObjectiveMapp
 	}
 
 	public boolean resetByPeriodId(String periodId){
-		return this.update(Wrappers.<Objective>lambdaUpdate().eq(Objective::getPeriodId,periodId));
+		return this.update(Wrappers.<Objective>lambdaUpdate().set(Objective::getPeriodId, null).eq(Objective::getPeriodId,periodId));
 	}
 	public boolean saveByPeriod(Period period, List<Objective> list){
         if(list==null)

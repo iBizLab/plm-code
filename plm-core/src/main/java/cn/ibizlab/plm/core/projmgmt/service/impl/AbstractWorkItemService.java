@@ -1024,7 +1024,7 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
 	}
 
 	public boolean resetByBoardId(String boardId){
-		return this.update(Wrappers.<WorkItem>lambdaUpdate().eq(WorkItem::getBoardId,boardId));
+		return this.update(Wrappers.<WorkItem>lambdaUpdate().set(WorkItem::getBoardId, null).eq(WorkItem::getBoardId,boardId));
 	}
 	public boolean saveByBoard(Board board, List<WorkItem> list){
         if(list==null)
@@ -1077,7 +1077,7 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
 	}
 
 	public boolean resetByEntryId(String entryId){
-		return this.update(Wrappers.<WorkItem>lambdaUpdate().eq(WorkItem::getEntryId,entryId));
+		return this.update(Wrappers.<WorkItem>lambdaUpdate().set(WorkItem::getEntryId, null).eq(WorkItem::getEntryId,entryId));
 	}
 	public boolean saveByEntry(Entry entry, List<WorkItem> list){
         if(list==null)
@@ -1130,7 +1130,7 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
 	}
 
 	public boolean resetByProjectId(String projectId){
-		return this.update(Wrappers.<WorkItem>lambdaUpdate().eq(WorkItem::getProjectId,projectId));
+		return this.update(Wrappers.<WorkItem>lambdaUpdate().set(WorkItem::getProjectId, null).eq(WorkItem::getProjectId,projectId));
 	}
 	public boolean saveByProject(Project project, List<WorkItem> list){
         if(list==null)
@@ -1183,7 +1183,7 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
 	}
 
 	public boolean resetByReleaseId(String releaseId){
-		return this.update(Wrappers.<WorkItem>lambdaUpdate().eq(WorkItem::getReleaseId,releaseId));
+		return this.update(Wrappers.<WorkItem>lambdaUpdate().set(WorkItem::getReleaseId, null).eq(WorkItem::getReleaseId,releaseId));
 	}
 	public boolean saveByRelease(Release release, List<WorkItem> list){
         if(list==null)
@@ -1236,7 +1236,7 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
 	}
 
 	public boolean resetBySprintId(String sprintId){
-		return this.update(Wrappers.<WorkItem>lambdaUpdate().eq(WorkItem::getSprintId,sprintId));
+		return this.update(Wrappers.<WorkItem>lambdaUpdate().set(WorkItem::getSprintId, null).eq(WorkItem::getSprintId,sprintId));
 	}
 	public boolean saveBySprint(Sprint sprint, List<WorkItem> list){
         if(list==null)
@@ -1289,7 +1289,7 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
 	}
 
 	public boolean resetBySwimlaneId(String swimlaneId){
-		return this.update(Wrappers.<WorkItem>lambdaUpdate().eq(WorkItem::getSwimlaneId,swimlaneId));
+		return this.update(Wrappers.<WorkItem>lambdaUpdate().set(WorkItem::getSwimlaneId, null).eq(WorkItem::getSwimlaneId,swimlaneId));
 	}
 	public boolean saveBySwimlane(Swimlane swimlane, List<WorkItem> list){
         if(list==null)
@@ -1342,7 +1342,7 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
 	}
 
 	public boolean resetByAssigneeId(String assigneeId){
-		return this.update(Wrappers.<WorkItem>lambdaUpdate().eq(WorkItem::getAssigneeId,assigneeId));
+		return this.update(Wrappers.<WorkItem>lambdaUpdate().set(WorkItem::getAssigneeId, null).eq(WorkItem::getAssigneeId,assigneeId));
 	}
 	public boolean saveByUser(User user, List<WorkItem> list){
         if(list==null)
@@ -1395,7 +1395,7 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
 	}
 
 	public boolean resetByPid(String pid){
-		return this.update(Wrappers.<WorkItem>lambdaUpdate().eq(WorkItem::getPid,pid));
+		return this.update(Wrappers.<WorkItem>lambdaUpdate().set(WorkItem::getPid, null).eq(WorkItem::getPid,pid));
 	}
 	public boolean saveByWorkItem(WorkItem workItem, List<WorkItem> list){
         if(list==null)
@@ -1448,7 +1448,7 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
 	}
 
 	public boolean resetByState(String state){
-		return this.update(Wrappers.<WorkItem>lambdaUpdate().eq(WorkItem::getState,state));
+		return this.update(Wrappers.<WorkItem>lambdaUpdate().set(WorkItem::getState, null).eq(WorkItem::getState,state));
 	}
 	public boolean saveByWorkItemState(WorkItemState workItemState, List<WorkItem> list){
         if(list==null)
@@ -1501,7 +1501,7 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
 	}
 
 	public boolean resetByTopId(String topId){
-		return this.update(Wrappers.<WorkItem>lambdaUpdate().eq(WorkItem::getTopId,topId));
+		return this.update(Wrappers.<WorkItem>lambdaUpdate().set(WorkItem::getTopId, null).eq(WorkItem::getTopId,topId));
 	}
 	public boolean saveByWorkItem2(WorkItem workItem, List<WorkItem> list){
         if(list==null)
@@ -1554,7 +1554,7 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
 	}
 
 	public boolean resetByWorkItemTypeId(String workItemTypeId){
-		return this.update(Wrappers.<WorkItem>lambdaUpdate().eq(WorkItem::getWorkItemTypeId,workItemTypeId));
+		return this.update(Wrappers.<WorkItem>lambdaUpdate().set(WorkItem::getWorkItemTypeId, null).eq(WorkItem::getWorkItemTypeId,workItemTypeId));
 	}
 	public boolean saveByWorkItemType(WorkItemType workItemType, List<WorkItem> list){
         if(list==null)
@@ -1607,7 +1607,7 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
 	}
 
 	public boolean resetById(String id){
-		return this.update(Wrappers.<WorkItem>lambdaUpdate().eq(WorkItem::getId,id));
+		return this.update(Wrappers.<WorkItem>lambdaUpdate().set(WorkItem::getId, null).eq(WorkItem::getId,id));
 	}
 	public boolean saveByCommonFlow(CommonFlow commonFlow, List<WorkItem> list){
         if(list==null)

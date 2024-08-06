@@ -287,7 +287,7 @@ public abstract class AbstractCategoryService extends ServiceImpl<CategoryMapper
 	}
 
 	public boolean resetByPid(String pid){
-		return this.update(Wrappers.<Category>lambdaUpdate().eq(Category::getPid,pid));
+		return this.update(Wrappers.<Category>lambdaUpdate().set(Category::getPid, null).eq(Category::getPid,pid));
 	}
 	public boolean saveByCategory(Category category, List<Category> list){
         if(list==null)
@@ -335,7 +335,7 @@ public abstract class AbstractCategoryService extends ServiceImpl<CategoryMapper
 	}
 
 	public boolean resetBySectionId(String sectionId){
-		return this.update(Wrappers.<Category>lambdaUpdate().eq(Category::getSectionId,sectionId));
+		return this.update(Wrappers.<Category>lambdaUpdate().set(Category::getSectionId, null).eq(Category::getSectionId,sectionId));
 	}
 	public boolean saveBySection(Section section, List<Category> list){
         if(list==null)

@@ -542,7 +542,7 @@ public abstract class AbstractTicketService extends ServiceImpl<TicketMapper,Tic
 	}
 
 	public boolean resetByCustomerId(String customerId){
-		return this.update(Wrappers.<Ticket>lambdaUpdate().eq(Ticket::getCustomerId,customerId));
+		return this.update(Wrappers.<Ticket>lambdaUpdate().set(Ticket::getCustomerId, null).eq(Ticket::getCustomerId,customerId));
 	}
 	public boolean saveByCustomer(Customer customer, List<Ticket> list){
         if(list==null)
@@ -592,7 +592,7 @@ public abstract class AbstractTicketService extends ServiceImpl<TicketMapper,Tic
 	}
 
 	public boolean resetByProductId(String productId){
-		return this.update(Wrappers.<Ticket>lambdaUpdate().eq(Ticket::getProductId,productId));
+		return this.update(Wrappers.<Ticket>lambdaUpdate().set(Ticket::getProductId, null).eq(Ticket::getProductId,productId));
 	}
 	public boolean saveByProduct(Product product, List<Ticket> list){
         if(list==null)
@@ -642,7 +642,7 @@ public abstract class AbstractTicketService extends ServiceImpl<TicketMapper,Tic
 	}
 
 	public boolean resetByAssigneeId(String assigneeId){
-		return this.update(Wrappers.<Ticket>lambdaUpdate().eq(Ticket::getAssigneeId,assigneeId));
+		return this.update(Wrappers.<Ticket>lambdaUpdate().set(Ticket::getAssigneeId, null).eq(Ticket::getAssigneeId,assigneeId));
 	}
 	public boolean saveByUser(User user, List<Ticket> list){
         if(list==null)

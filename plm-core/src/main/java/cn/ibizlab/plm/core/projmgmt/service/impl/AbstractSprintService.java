@@ -307,7 +307,7 @@ public abstract class AbstractSprintService extends ServiceImpl<SprintMapper,Spr
 	}
 
 	public boolean resetByProjectId(String projectId){
-		return this.update(Wrappers.<Sprint>lambdaUpdate().eq(Sprint::getProjectId,projectId));
+		return this.update(Wrappers.<Sprint>lambdaUpdate().set(Sprint::getProjectId, null).eq(Sprint::getProjectId,projectId));
 	}
 	public boolean saveByProject(Project project, List<Sprint> list){
         if(list==null)
@@ -355,7 +355,7 @@ public abstract class AbstractSprintService extends ServiceImpl<SprintMapper,Spr
 	}
 
 	public boolean resetByPid(String pid){
-		return this.update(Wrappers.<Sprint>lambdaUpdate().eq(Sprint::getPid,pid));
+		return this.update(Wrappers.<Sprint>lambdaUpdate().set(Sprint::getPid, null).eq(Sprint::getPid,pid));
 	}
 	public boolean saveBySprint(Sprint sprint, List<Sprint> list){
         if(list==null)

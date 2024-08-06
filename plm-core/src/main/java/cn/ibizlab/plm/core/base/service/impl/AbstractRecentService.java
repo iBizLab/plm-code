@@ -405,7 +405,7 @@ public abstract class AbstractRecentService extends ServiceImpl<RecentMapper,Rec
 	}
 
 	public boolean resetByOwnerId(String ownerId){
-		return this.update(Wrappers.<Recent>lambdaUpdate().eq(Recent::getOwnerId,ownerId));
+		return this.update(Wrappers.<Recent>lambdaUpdate().set(Recent::getOwnerId, null).eq(Recent::getOwnerId,ownerId));
 	}
 	public boolean saveByDercustomRecentWorkItem(WorkItem workItem, List<Recent> list){
         if(list==null)

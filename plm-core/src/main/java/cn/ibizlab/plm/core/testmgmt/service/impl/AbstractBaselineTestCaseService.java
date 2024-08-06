@@ -197,7 +197,7 @@ public abstract class AbstractBaselineTestCaseService extends ServiceImpl<Baseli
 	}
 
 	public boolean resetByPrincipalId(String principalId){
-		return this.update(Wrappers.<BaselineTestCase>lambdaUpdate().eq(BaselineTestCase::getPrincipalId,principalId));
+		return this.update(Wrappers.<BaselineTestCase>lambdaUpdate().set(BaselineTestCase::getPrincipalId, null).eq(BaselineTestCase::getPrincipalId,principalId));
 	}
 	public boolean saveByBaselinePrincipalTestCase(Baseline baseline, List<BaselineTestCase> list){
         if(list==null)
@@ -245,7 +245,7 @@ public abstract class AbstractBaselineTestCaseService extends ServiceImpl<Baseli
 	}
 
 	public boolean resetByTargetVersionId(String targetVersionId){
-		return this.update(Wrappers.<BaselineTestCase>lambdaUpdate().eq(BaselineTestCase::getTargetVersionId,targetVersionId));
+		return this.update(Wrappers.<BaselineTestCase>lambdaUpdate().set(BaselineTestCase::getTargetVersionId, null).eq(BaselineTestCase::getTargetVersionId,targetVersionId));
 	}
 	public boolean saveByTargetVersion(Version version, List<BaselineTestCase> list){
         if(list==null)

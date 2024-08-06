@@ -194,7 +194,7 @@ public abstract class AbstractProductMemberService extends ServiceImpl<ProductMe
 	}
 
 	public boolean resetByProductId(String productId){
-		return this.update(Wrappers.<ProductMember>lambdaUpdate().eq(ProductMember::getProductId,productId));
+		return this.update(Wrappers.<ProductMember>lambdaUpdate().set(ProductMember::getProductId, null).eq(ProductMember::getProductId,productId));
 	}
 	public boolean saveByProduct(Product product, List<ProductMember> list){
         if(list==null)
@@ -242,7 +242,7 @@ public abstract class AbstractProductMemberService extends ServiceImpl<ProductMe
 	}
 
 	public boolean resetByUserId(String userId){
-		return this.update(Wrappers.<ProductMember>lambdaUpdate().eq(ProductMember::getUserId,userId));
+		return this.update(Wrappers.<ProductMember>lambdaUpdate().set(ProductMember::getUserId, null).eq(ProductMember::getUserId,userId));
 	}
 	public boolean saveByUser(User user, List<ProductMember> list){
         if(list==null)

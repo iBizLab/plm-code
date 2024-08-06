@@ -169,7 +169,7 @@ public abstract class AbstractKeyResultService extends ServiceImpl<KeyResultMapp
 	}
 
 	public boolean resetByObjectiveId(String objectiveId){
-		return this.update(Wrappers.<KeyResult>lambdaUpdate().eq(KeyResult::getObjectiveId,objectiveId));
+		return this.update(Wrappers.<KeyResult>lambdaUpdate().set(KeyResult::getObjectiveId, null).eq(KeyResult::getObjectiveId,objectiveId));
 	}
 	public boolean saveByObjective(Objective objective, List<KeyResult> list){
         if(list==null)

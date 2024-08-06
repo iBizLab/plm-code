@@ -168,7 +168,7 @@ public abstract class AbstractPageVersionService extends ServiceImpl<PageVersion
 	}
 
 	public boolean resetByOwnerId(String ownerId){
-		return this.update(Wrappers.<PageVersion>lambdaUpdate().eq(PageVersion::getOwnerId,ownerId));
+		return this.update(Wrappers.<PageVersion>lambdaUpdate().set(PageVersion::getOwnerId, null).eq(PageVersion::getOwnerId,ownerId));
 	}
 	public boolean saveByPage(ArticlePage articlePage, List<PageVersion> list){
         if(list==null)

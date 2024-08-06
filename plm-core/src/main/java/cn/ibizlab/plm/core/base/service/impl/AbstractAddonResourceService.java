@@ -179,7 +179,7 @@ public abstract class AbstractAddonResourceService extends ServiceImpl<AddonReso
 	}
 
 	public boolean resetByOwnerId(String ownerId){
-		return this.update(Wrappers.<AddonResource>lambdaUpdate().eq(AddonResource::getOwnerId,ownerId));
+		return this.update(Wrappers.<AddonResource>lambdaUpdate().set(AddonResource::getOwnerId, null).eq(AddonResource::getOwnerId,ownerId));
 	}
 	public boolean saveByProject(Project project, List<AddonResource> list){
         if(list==null)

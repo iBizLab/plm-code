@@ -229,7 +229,7 @@ public abstract class AbstractAttachmentService extends ServiceImpl<AttachmentMa
 	}
 
 	public boolean resetByOwnerId(String ownerId){
-		return this.update(Wrappers.<Attachment>lambdaUpdate().eq(Attachment::getOwnerId,ownerId));
+		return this.update(Wrappers.<Attachment>lambdaUpdate().set(Attachment::getOwnerId, null).eq(Attachment::getOwnerId,ownerId));
 	}
 	public boolean saveByStencil(Stencil stencil, List<Attachment> list){
         if(list==null)

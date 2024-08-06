@@ -183,7 +183,7 @@ public abstract class AbstractInsightMemberService extends ServiceImpl<InsightMe
 	}
 
 	public boolean resetByOwnerId(String ownerId){
-		return this.update(Wrappers.<InsightMember>lambdaUpdate().eq(InsightMember::getOwnerId,ownerId));
+		return this.update(Wrappers.<InsightMember>lambdaUpdate().set(InsightMember::getOwnerId, null).eq(InsightMember::getOwnerId,ownerId));
 	}
 	public boolean saveByInsightView(InsightView insightView, List<InsightMember> list){
         if(list==null)
@@ -231,7 +231,7 @@ public abstract class AbstractInsightMemberService extends ServiceImpl<InsightMe
 	}
 
 	public boolean resetByUserId(String userId){
-		return this.update(Wrappers.<InsightMember>lambdaUpdate().eq(InsightMember::getUserId,userId));
+		return this.update(Wrappers.<InsightMember>lambdaUpdate().set(InsightMember::getUserId, null).eq(InsightMember::getUserId,userId));
 	}
 	public boolean saveByUser(User user, List<InsightMember> list){
         if(list==null)

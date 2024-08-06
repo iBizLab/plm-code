@@ -194,7 +194,7 @@ public abstract class AbstractPortfolioMemberService extends ServiceImpl<Portfol
 	}
 
 	public boolean resetByPortfolioId(String portfolioId){
-		return this.update(Wrappers.<PortfolioMember>lambdaUpdate().eq(PortfolioMember::getPortfolioId,portfolioId));
+		return this.update(Wrappers.<PortfolioMember>lambdaUpdate().set(PortfolioMember::getPortfolioId, null).eq(PortfolioMember::getPortfolioId,portfolioId));
 	}
 	public boolean saveByPortfolio(Portfolio portfolio, List<PortfolioMember> list){
         if(list==null)
@@ -242,7 +242,7 @@ public abstract class AbstractPortfolioMemberService extends ServiceImpl<Portfol
 	}
 
 	public boolean resetByUserId(String userId){
-		return this.update(Wrappers.<PortfolioMember>lambdaUpdate().eq(PortfolioMember::getUserId,userId));
+		return this.update(Wrappers.<PortfolioMember>lambdaUpdate().set(PortfolioMember::getUserId, null).eq(PortfolioMember::getUserId,userId));
 	}
 	public boolean saveByUser(User user, List<PortfolioMember> list){
         if(list==null)

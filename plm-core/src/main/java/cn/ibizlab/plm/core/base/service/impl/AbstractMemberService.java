@@ -222,7 +222,7 @@ public abstract class AbstractMemberService extends ServiceImpl<MemberMapper,Mem
 	}
 
 	public boolean resetByUserId(String userId){
-		return this.update(Wrappers.<Member>lambdaUpdate().eq(Member::getUserId,userId));
+		return this.update(Wrappers.<Member>lambdaUpdate().set(Member::getUserId, null).eq(Member::getUserId,userId));
 	}
 	public boolean saveByUser(User user, List<Member> list){
         if(list==null)
@@ -272,7 +272,7 @@ public abstract class AbstractMemberService extends ServiceImpl<MemberMapper,Mem
 	}
 
 	public boolean resetById(String id){
-		return this.update(Wrappers.<Member>lambdaUpdate().eq(Member::getId,id));
+		return this.update(Wrappers.<Member>lambdaUpdate().set(Member::getId, null).eq(Member::getId,id));
 	}
 	public boolean saveByMemberCommonFlow(CommonFlow commonFlow, List<Member> list){
         if(list==null)
@@ -323,7 +323,7 @@ public abstract class AbstractMemberService extends ServiceImpl<MemberMapper,Mem
 	}
 
 	public boolean resetByOwnerId(String ownerId){
-		return this.update(Wrappers.<Member>lambdaUpdate().eq(Member::getOwnerId,ownerId));
+		return this.update(Wrappers.<Member>lambdaUpdate().set(Member::getOwnerId, null).eq(Member::getOwnerId,ownerId));
 	}
 	public boolean saveByMemberGroup(Group group, List<Member> list){
         if(list==null)

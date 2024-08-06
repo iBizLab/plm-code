@@ -195,7 +195,7 @@ public abstract class AbstractProjectMemberService extends ServiceImpl<ProjectMe
 	}
 
 	public boolean resetByProjectId(String projectId){
-		return this.update(Wrappers.<ProjectMember>lambdaUpdate().eq(ProjectMember::getProjectId,projectId));
+		return this.update(Wrappers.<ProjectMember>lambdaUpdate().set(ProjectMember::getProjectId, null).eq(ProjectMember::getProjectId,projectId));
 	}
 	public boolean saveByProject(Project project, List<ProjectMember> list){
         if(list==null)
@@ -243,7 +243,7 @@ public abstract class AbstractProjectMemberService extends ServiceImpl<ProjectMe
 	}
 
 	public boolean resetByUserId(String userId){
-		return this.update(Wrappers.<ProjectMember>lambdaUpdate().eq(ProjectMember::getUserId,userId));
+		return this.update(Wrappers.<ProjectMember>lambdaUpdate().set(ProjectMember::getUserId, null).eq(ProjectMember::getUserId,userId));
 	}
 	public boolean saveByUser(User user, List<ProjectMember> list){
         if(list==null)

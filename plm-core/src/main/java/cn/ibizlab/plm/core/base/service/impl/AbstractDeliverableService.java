@@ -177,7 +177,7 @@ public abstract class AbstractDeliverableService extends ServiceImpl<Deliverable
 	}
 
 	public boolean resetByOwnerId(String ownerId){
-		return this.update(Wrappers.<Deliverable>lambdaUpdate().eq(Deliverable::getOwnerId,ownerId));
+		return this.update(Wrappers.<Deliverable>lambdaUpdate().set(Deliverable::getOwnerId, null).eq(Deliverable::getOwnerId,ownerId));
 	}
 	public boolean saveByWorkItem(WorkItem workItem, List<Deliverable> list){
         if(list==null)

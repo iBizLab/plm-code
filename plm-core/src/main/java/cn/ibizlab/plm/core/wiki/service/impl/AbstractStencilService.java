@@ -209,7 +209,7 @@ public abstract class AbstractStencilService extends ServiceImpl<StencilMapper,S
 	}
 
 	public boolean resetBySpaceId(String spaceId){
-		return this.update(Wrappers.<Stencil>lambdaUpdate().eq(Stencil::getSpaceId,spaceId));
+		return this.update(Wrappers.<Stencil>lambdaUpdate().set(Stencil::getSpaceId, null).eq(Stencil::getSpaceId,spaceId));
 	}
 	public boolean saveBySpace(Space space, List<Stencil> list){
         if(list==null)

@@ -183,7 +183,7 @@ public abstract class AbstractDiscussMemberService extends ServiceImpl<DiscussMe
 	}
 
 	public boolean resetByOwnerId(String ownerId){
-		return this.update(Wrappers.<DiscussMember>lambdaUpdate().eq(DiscussMember::getOwnerId,ownerId));
+		return this.update(Wrappers.<DiscussMember>lambdaUpdate().set(DiscussMember::getOwnerId, null).eq(DiscussMember::getOwnerId,ownerId));
 	}
 	public boolean saveByDiscussTopic(DiscussTopic discussTopic, List<DiscussMember> list){
         if(list==null)
@@ -231,7 +231,7 @@ public abstract class AbstractDiscussMemberService extends ServiceImpl<DiscussMe
 	}
 
 	public boolean resetByUserId(String userId){
-		return this.update(Wrappers.<DiscussMember>lambdaUpdate().eq(DiscussMember::getUserId,userId));
+		return this.update(Wrappers.<DiscussMember>lambdaUpdate().set(DiscussMember::getUserId, null).eq(DiscussMember::getUserId,userId));
 	}
 	public boolean saveByUser(User user, List<DiscussMember> list){
         if(list==null)

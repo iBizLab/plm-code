@@ -216,7 +216,7 @@ public abstract class AbstractSearchCommentService extends ServiceImpl<SearchCom
 	}
 
 	public boolean resetByPrincipalId(String principalId){
-		return this.update(Wrappers.<SearchComment>lambdaUpdate().eq(SearchComment::getPrincipalId,principalId));
+		return this.update(Wrappers.<SearchComment>lambdaUpdate().set(SearchComment::getPrincipalId, null).eq(SearchComment::getPrincipalId,principalId));
 	}
 	public boolean saveByDerCustomer(Customer customer, List<SearchComment> list){
         if(list==null)

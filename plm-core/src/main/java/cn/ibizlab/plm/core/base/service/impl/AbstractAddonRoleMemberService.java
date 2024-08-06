@@ -163,7 +163,7 @@ public abstract class AbstractAddonRoleMemberService extends ServiceImpl<AddonRo
 	}
 
 	public boolean resetByAddonId(String addonId){
-		return this.update(Wrappers.<AddonRoleMember>lambdaUpdate().eq(AddonRoleMember::getAddonId,addonId));
+		return this.update(Wrappers.<AddonRoleMember>lambdaUpdate().set(AddonRoleMember::getAddonId, null).eq(AddonRoleMember::getAddonId,addonId));
 	}
 	public boolean saveByAddon(Addon addon, List<AddonRoleMember> list){
         if(list==null)

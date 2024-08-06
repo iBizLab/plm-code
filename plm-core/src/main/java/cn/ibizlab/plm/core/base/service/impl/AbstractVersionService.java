@@ -242,7 +242,7 @@ public abstract class AbstractVersionService extends ServiceImpl<VersionMapper,V
 	}
 
 	public boolean resetByOwnerId(String ownerId){
-		return this.update(Wrappers.<Version>lambdaUpdate().eq(Version::getOwnerId,ownerId));
+		return this.update(Wrappers.<Version>lambdaUpdate().set(Version::getOwnerId, null).eq(Version::getOwnerId,ownerId));
 	}
 	public boolean saveByIdea(Idea idea, List<Version> list){
         if(list==null)

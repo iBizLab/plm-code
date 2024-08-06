@@ -249,7 +249,7 @@ public abstract class AbstractReviewService extends ServiceImpl<ReviewMapper,Rev
 	}
 
 	public boolean resetByGuidelineId(String guidelineId){
-		return this.update(Wrappers.<Review>lambdaUpdate().eq(Review::getGuidelineId,guidelineId));
+		return this.update(Wrappers.<Review>lambdaUpdate().set(Review::getGuidelineId, null).eq(Review::getGuidelineId,guidelineId));
 	}
 	public boolean saveByGuideline(Guideline guideline, List<Review> list){
         if(list==null)
@@ -299,7 +299,7 @@ public abstract class AbstractReviewService extends ServiceImpl<ReviewMapper,Rev
 	}
 
 	public boolean resetByLibraryId(String libraryId){
-		return this.update(Wrappers.<Review>lambdaUpdate().eq(Review::getLibraryId,libraryId));
+		return this.update(Wrappers.<Review>lambdaUpdate().set(Review::getLibraryId, null).eq(Review::getLibraryId,libraryId));
 	}
 	public boolean saveByLibrary(Library library, List<Review> list){
         if(list==null)

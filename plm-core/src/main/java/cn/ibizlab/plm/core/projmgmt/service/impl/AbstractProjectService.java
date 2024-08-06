@@ -462,7 +462,7 @@ public abstract class AbstractProjectService extends ServiceImpl<ProjectMapper,P
 	}
 
 	public boolean resetById(String id){
-		return this.update(Wrappers.<Project>lambdaUpdate().eq(Project::getId,id));
+		return this.update(Wrappers.<Project>lambdaUpdate().set(Project::getId, null).eq(Project::getId,id));
 	}
 	public boolean saveByProject(CommonFlow commonFlow, List<Project> list){
         if(list==null)

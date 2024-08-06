@@ -174,7 +174,7 @@ public abstract class AbstractProductTagService extends ServiceImpl<ProductTagMa
 	}
 
 	public boolean resetByProductId(String productId){
-		return this.update(Wrappers.<ProductTag>lambdaUpdate().eq(ProductTag::getProductId,productId));
+		return this.update(Wrappers.<ProductTag>lambdaUpdate().set(ProductTag::getProductId, null).eq(ProductTag::getProductId,productId));
 	}
 	public boolean saveByProduct(Product product, List<ProductTag> list){
         if(list==null)

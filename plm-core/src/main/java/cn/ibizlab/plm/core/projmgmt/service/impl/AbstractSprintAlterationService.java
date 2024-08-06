@@ -188,7 +188,7 @@ public abstract class AbstractSprintAlterationService extends ServiceImpl<Sprint
 	}
 
 	public boolean resetBySprintId(String sprintId){
-		return this.update(Wrappers.<SprintAlteration>lambdaUpdate().eq(SprintAlteration::getSprintId,sprintId));
+		return this.update(Wrappers.<SprintAlteration>lambdaUpdate().set(SprintAlteration::getSprintId, null).eq(SprintAlteration::getSprintId,sprintId));
 	}
 	public boolean saveBySprint(Sprint sprint, List<SprintAlteration> list){
         if(list==null)
@@ -232,7 +232,7 @@ public abstract class AbstractSprintAlterationService extends ServiceImpl<Sprint
 	}
 
 	public boolean resetByWorkItemId(String workItemId){
-		return this.update(Wrappers.<SprintAlteration>lambdaUpdate().eq(SprintAlteration::getWorkItemId,workItemId));
+		return this.update(Wrappers.<SprintAlteration>lambdaUpdate().set(SprintAlteration::getWorkItemId, null).eq(SprintAlteration::getWorkItemId,workItemId));
 	}
 	public boolean saveByWorkItem(WorkItem workItem, List<SprintAlteration> list){
         if(list==null)

@@ -546,7 +546,7 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
 	}
 
 	public boolean resetByPrincipalId(String principalId){
-		return this.update(Wrappers.<Relation>lambdaUpdate().eq(Relation::getPrincipalId,principalId));
+		return this.update(Wrappers.<Relation>lambdaUpdate().set(Relation::getPrincipalId, null).eq(Relation::getPrincipalId,principalId));
 	}
 	public boolean saveByPrincipalBaseline(Baseline baseline, List<Relation> list){
         if(list==null)
@@ -702,7 +702,7 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
 	}
 
 	public boolean resetById(String id){
-		return this.update(Wrappers.<Relation>lambdaUpdate().eq(Relation::getId,id));
+		return this.update(Wrappers.<Relation>lambdaUpdate().set(Relation::getId, null).eq(Relation::getId,id));
 	}
 	public boolean saveByReviewContentExtend(ReviewContentExtend reviewContentExtend, List<Relation> list){
         if(list==null)
@@ -786,7 +786,7 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
 	}
 
 	public boolean resetByTargetId(String targetId){
-		return this.update(Wrappers.<Relation>lambdaUpdate().eq(Relation::getTargetId,targetId));
+		return this.update(Wrappers.<Relation>lambdaUpdate().set(Relation::getTargetId, null).eq(Relation::getTargetId,targetId));
 	}
 	public boolean saveByTargetCustomer(Customer customer, List<Relation> list){
         if(list==null)

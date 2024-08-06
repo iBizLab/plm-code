@@ -209,7 +209,7 @@ public abstract class AbstractDynaDashboardService extends ServiceImpl<DynaDashb
 	}
 
 	public boolean resetByOwnerId(String ownerId){
-		return this.update(Wrappers.<DynaDashboard>lambdaUpdate().eq(DynaDashboard::getOwnerId,ownerId));
+		return this.update(Wrappers.<DynaDashboard>lambdaUpdate().set(DynaDashboard::getOwnerId, null).eq(DynaDashboard::getOwnerId,ownerId));
 	}
 	public boolean saveByInsightView(InsightView insightView, List<DynaDashboard> list){
         if(list==null)

@@ -453,7 +453,7 @@ public abstract class AbstractArticlePageService extends ServiceImpl<ArticlePage
 	}
 
 	public boolean resetByParentId(String parentId){
-		return this.update(Wrappers.<ArticlePage>lambdaUpdate().eq(ArticlePage::getParentId,parentId));
+		return this.update(Wrappers.<ArticlePage>lambdaUpdate().set(ArticlePage::getParentId, null).eq(ArticlePage::getParentId,parentId));
 	}
 	public boolean saveByPage(ArticlePage articlePage, List<ArticlePage> list){
         if(list==null)
@@ -507,7 +507,7 @@ public abstract class AbstractArticlePageService extends ServiceImpl<ArticlePage
 	}
 
 	public boolean resetBySpaceId(String spaceId){
-		return this.update(Wrappers.<ArticlePage>lambdaUpdate().eq(ArticlePage::getSpaceId,spaceId));
+		return this.update(Wrappers.<ArticlePage>lambdaUpdate().set(ArticlePage::getSpaceId, null).eq(ArticlePage::getSpaceId,spaceId));
 	}
 	public boolean saveBySpace(Space space, List<ArticlePage> list){
         if(list==null)

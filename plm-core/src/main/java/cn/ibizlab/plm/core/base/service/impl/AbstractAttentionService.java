@@ -269,7 +269,7 @@ public abstract class AbstractAttentionService extends ServiceImpl<AttentionMapp
 	}
 
 	public boolean resetByOwnerId(String ownerId){
-		return this.update(Wrappers.<Attention>lambdaUpdate().eq(Attention::getOwnerId,ownerId));
+		return this.update(Wrappers.<Attention>lambdaUpdate().set(Attention::getOwnerId, null).eq(Attention::getOwnerId,ownerId));
 	}
 	public boolean saveByCustomer(Customer customer, List<Attention> list){
         if(list==null)

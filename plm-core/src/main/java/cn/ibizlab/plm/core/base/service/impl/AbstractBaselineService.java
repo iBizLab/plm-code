@@ -248,7 +248,7 @@ public abstract class AbstractBaselineService extends ServiceImpl<BaselineMapper
 	}
 
 	public boolean resetByOwnerId(String ownerId){
-		return this.update(Wrappers.<Baseline>lambdaUpdate().eq(Baseline::getOwnerId,ownerId));
+		return this.update(Wrappers.<Baseline>lambdaUpdate().set(Baseline::getOwnerId, null).eq(Baseline::getOwnerId,ownerId));
 	}
 	public boolean saveByLibrary(Library library, List<Baseline> list){
         if(list==null)

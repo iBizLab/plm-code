@@ -182,7 +182,7 @@ public abstract class AbstractBaselinePageService extends ServiceImpl<BaselinePa
 	}
 
 	public boolean resetByPrincipalId(String principalId){
-		return this.update(Wrappers.<BaselinePage>lambdaUpdate().eq(BaselinePage::getPrincipalId,principalId));
+		return this.update(Wrappers.<BaselinePage>lambdaUpdate().set(BaselinePage::getPrincipalId, null).eq(BaselinePage::getPrincipalId,principalId));
 	}
 	public boolean saveByBaselinePrincipalPage(Baseline baseline, List<BaselinePage> list){
         if(list==null)
@@ -230,7 +230,7 @@ public abstract class AbstractBaselinePageService extends ServiceImpl<BaselinePa
 	}
 
 	public boolean resetByTargetVersionId(String targetVersionId){
-		return this.update(Wrappers.<BaselinePage>lambdaUpdate().eq(BaselinePage::getTargetVersionId,targetVersionId));
+		return this.update(Wrappers.<BaselinePage>lambdaUpdate().set(BaselinePage::getTargetVersionId, null).eq(BaselinePage::getTargetVersionId,targetVersionId));
 	}
 	public boolean saveByTargetVersion(Version version, List<BaselinePage> list){
         if(list==null)

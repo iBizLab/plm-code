@@ -340,7 +340,7 @@ public abstract class AbstractRunService extends ServiceImpl<RunMapper,Run> impl
 	}
 
 	public boolean resetByCaseId(String caseId){
-		return this.update(Wrappers.<Run>lambdaUpdate().eq(Run::getCaseId,caseId));
+		return this.update(Wrappers.<Run>lambdaUpdate().set(Run::getCaseId, null).eq(Run::getCaseId,caseId));
 	}
 	public boolean saveByTestCase(TestCase testCase, List<Run> list){
         if(list==null)
@@ -398,7 +398,7 @@ public abstract class AbstractRunService extends ServiceImpl<RunMapper,Run> impl
 	}
 
 	public boolean resetByPlanId(String planId){
-		return this.update(Wrappers.<Run>lambdaUpdate().eq(Run::getPlanId,planId));
+		return this.update(Wrappers.<Run>lambdaUpdate().set(Run::getPlanId, null).eq(Run::getPlanId,planId));
 	}
 	public boolean saveByTestPlan(TestPlan testPlan, List<Run> list){
         if(list==null)

@@ -173,7 +173,7 @@ public abstract class AbstractReviewResultService extends ServiceImpl<ReviewResu
 	}
 
 	public boolean resetByContentId(String contentId){
-		return this.update(Wrappers.<ReviewResult>lambdaUpdate().eq(ReviewResult::getContentId,contentId));
+		return this.update(Wrappers.<ReviewResult>lambdaUpdate().set(ReviewResult::getContentId, null).eq(ReviewResult::getContentId,contentId));
 	}
 	public boolean saveByReviewContentExtend(ReviewContentExtend reviewContentExtend, List<ReviewResult> list){
         if(list==null)

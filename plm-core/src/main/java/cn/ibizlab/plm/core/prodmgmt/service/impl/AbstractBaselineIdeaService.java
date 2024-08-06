@@ -198,7 +198,7 @@ public abstract class AbstractBaselineIdeaService extends ServiceImpl<BaselineId
 	}
 
 	public boolean resetByPrincipalId(String principalId){
-		return this.update(Wrappers.<BaselineIdea>lambdaUpdate().eq(BaselineIdea::getPrincipalId,principalId));
+		return this.update(Wrappers.<BaselineIdea>lambdaUpdate().set(BaselineIdea::getPrincipalId, null).eq(BaselineIdea::getPrincipalId,principalId));
 	}
 	public boolean saveByBaselinePrincipalIdea(Baseline baseline, List<BaselineIdea> list){
         if(list==null)
@@ -246,7 +246,7 @@ public abstract class AbstractBaselineIdeaService extends ServiceImpl<BaselineId
 	}
 
 	public boolean resetByTargetVersionId(String targetVersionId){
-		return this.update(Wrappers.<BaselineIdea>lambdaUpdate().eq(BaselineIdea::getTargetVersionId,targetVersionId));
+		return this.update(Wrappers.<BaselineIdea>lambdaUpdate().set(BaselineIdea::getTargetVersionId, null).eq(BaselineIdea::getTargetVersionId,targetVersionId));
 	}
 	public boolean saveByTargetVersion(Version version, List<BaselineIdea> list){
         if(list==null)

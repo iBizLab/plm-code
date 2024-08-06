@@ -225,7 +225,7 @@ public abstract class AbstractCommentService extends ServiceImpl<CommentMapper,C
 	}
 
 	public boolean resetByPid(String pid){
-		return this.update(Wrappers.<Comment>lambdaUpdate().eq(Comment::getPid,pid));
+		return this.update(Wrappers.<Comment>lambdaUpdate().set(Comment::getPid, null).eq(Comment::getPid,pid));
 	}
 	public boolean saveByComment(Comment comment, List<Comment> list){
         if(list==null)
@@ -272,7 +272,7 @@ public abstract class AbstractCommentService extends ServiceImpl<CommentMapper,C
 	}
 
 	public boolean resetByPrincipalId(String principalId){
-		return this.update(Wrappers.<Comment>lambdaUpdate().eq(Comment::getPrincipalId,principalId));
+		return this.update(Wrappers.<Comment>lambdaUpdate().set(Comment::getPrincipalId, null).eq(Comment::getPrincipalId,principalId));
 	}
 	public boolean saveByPage(ArticlePage articlePage, List<Comment> list){
         if(list==null)

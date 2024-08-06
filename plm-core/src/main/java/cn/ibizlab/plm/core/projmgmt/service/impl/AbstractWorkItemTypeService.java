@@ -245,7 +245,7 @@ public abstract class AbstractWorkItemTypeService extends ServiceImpl<WorkItemTy
 	}
 
 	public boolean resetByProjectId(String projectId){
-		return this.update(Wrappers.<WorkItemType>lambdaUpdate().eq(WorkItemType::getProjectId,projectId));
+		return this.update(Wrappers.<WorkItemType>lambdaUpdate().set(WorkItemType::getProjectId, null).eq(WorkItemType::getProjectId,projectId));
 	}
 	public boolean saveByProject(Project project, List<WorkItemType> list){
         if(list==null)

@@ -243,7 +243,7 @@ public abstract class AbstractStageService extends ServiceImpl<StageMapper,Stage
 	}
 
 	public boolean resetByReleaseId(String releaseId){
-		return this.update(Wrappers.<Stage>lambdaUpdate().eq(Stage::getReleaseId,releaseId));
+		return this.update(Wrappers.<Stage>lambdaUpdate().set(Stage::getReleaseId, null).eq(Stage::getReleaseId,releaseId));
 	}
 	public boolean saveByRelease(Release release, List<Stage> list){
         if(list==null)
@@ -291,7 +291,7 @@ public abstract class AbstractStageService extends ServiceImpl<StageMapper,Stage
 	}
 
 	public boolean resetByPid(String pid){
-		return this.update(Wrappers.<Stage>lambdaUpdate().eq(Stage::getPid,pid));
+		return this.update(Wrappers.<Stage>lambdaUpdate().set(Stage::getPid, null).eq(Stage::getPid,pid));
 	}
 	public boolean saveByStage(Stage stage, List<Stage> list){
         if(list==null)

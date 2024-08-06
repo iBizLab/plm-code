@@ -195,7 +195,7 @@ public abstract class AbstractReviewWizardService extends ServiceImpl<ReviewWiza
 	}
 
 	public boolean resetByGuidelineId(String guidelineId){
-		return this.update(Wrappers.<ReviewWizard>lambdaUpdate().eq(ReviewWizard::getGuidelineId,guidelineId));
+		return this.update(Wrappers.<ReviewWizard>lambdaUpdate().set(ReviewWizard::getGuidelineId, null).eq(ReviewWizard::getGuidelineId,guidelineId));
 	}
 	public boolean saveByGuideline(Guideline guideline, List<ReviewWizard> list){
         if(list==null)
@@ -245,7 +245,7 @@ public abstract class AbstractReviewWizardService extends ServiceImpl<ReviewWiza
 	}
 
 	public boolean resetByLibraryId(String libraryId){
-		return this.update(Wrappers.<ReviewWizard>lambdaUpdate().eq(ReviewWizard::getLibraryId,libraryId));
+		return this.update(Wrappers.<ReviewWizard>lambdaUpdate().set(ReviewWizard::getLibraryId, null).eq(ReviewWizard::getLibraryId,libraryId));
 	}
 	public boolean saveByLibrary(Library library, List<ReviewWizard> list){
         if(list==null)

@@ -242,7 +242,7 @@ public abstract class AbstractAddonService extends ServiceImpl<AddonMapper,Addon
 	}
 
 	public boolean resetByOwnerId(String ownerId){
-		return this.update(Wrappers.<Addon>lambdaUpdate().eq(Addon::getOwnerId,ownerId));
+		return this.update(Wrappers.<Addon>lambdaUpdate().set(Addon::getOwnerId, null).eq(Addon::getOwnerId,ownerId));
 	}
 	public boolean saveByLibrary(Library library, List<Addon> list){
         if(list==null)

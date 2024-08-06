@@ -171,7 +171,7 @@ public abstract class AbstractTestCaseTemplateService extends ServiceImpl<TestCa
 	}
 
 	public boolean resetByTestLibraryId(String testLibraryId){
-		return this.update(Wrappers.<TestCaseTemplate>lambdaUpdate().eq(TestCaseTemplate::getTestLibraryId,testLibraryId));
+		return this.update(Wrappers.<TestCaseTemplate>lambdaUpdate().set(TestCaseTemplate::getTestLibraryId, null).eq(TestCaseTemplate::getTestLibraryId,testLibraryId));
 	}
 	public boolean saveByLibrary(Library library, List<TestCaseTemplate> list){
         if(list==null)
@@ -215,7 +215,7 @@ public abstract class AbstractTestCaseTemplateService extends ServiceImpl<TestCa
 	}
 
 	public boolean resetBySuiteId(String suiteId){
-		return this.update(Wrappers.<TestCaseTemplate>lambdaUpdate().eq(TestCaseTemplate::getSuiteId,suiteId));
+		return this.update(Wrappers.<TestCaseTemplate>lambdaUpdate().set(TestCaseTemplate::getSuiteId, null).eq(TestCaseTemplate::getSuiteId,suiteId));
 	}
 	public boolean saveByTestSuite(TestSuite testSuite, List<TestCaseTemplate> list){
         if(list==null)

@@ -169,7 +169,7 @@ public abstract class AbstractUpdateRecordService extends ServiceImpl<UpdateReco
 	}
 
 	public boolean resetByKeyResultId(String keyResultId){
-		return this.update(Wrappers.<UpdateRecord>lambdaUpdate().eq(UpdateRecord::getKeyResultId,keyResultId));
+		return this.update(Wrappers.<UpdateRecord>lambdaUpdate().set(UpdateRecord::getKeyResultId, null).eq(UpdateRecord::getKeyResultId,keyResultId));
 	}
 	public boolean saveByKeyResult(KeyResult keyResult, List<UpdateRecord> list){
         if(list==null)
@@ -213,7 +213,7 @@ public abstract class AbstractUpdateRecordService extends ServiceImpl<UpdateReco
 	}
 
 	public boolean resetByObjectiveId(String objectiveId){
-		return this.update(Wrappers.<UpdateRecord>lambdaUpdate().eq(UpdateRecord::getObjectiveId,objectiveId));
+		return this.update(Wrappers.<UpdateRecord>lambdaUpdate().set(UpdateRecord::getObjectiveId, null).eq(UpdateRecord::getObjectiveId,objectiveId));
 	}
 	public boolean saveByObjective(Objective objective, List<UpdateRecord> list){
         if(list==null)

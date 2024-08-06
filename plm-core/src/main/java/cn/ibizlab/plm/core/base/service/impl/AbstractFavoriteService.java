@@ -188,7 +188,7 @@ public abstract class AbstractFavoriteService extends ServiceImpl<FavoriteMapper
 	}
 
 	public boolean resetByOwnerId(String ownerId){
-		return this.update(Wrappers.<Favorite>lambdaUpdate().eq(Favorite::getOwnerId,ownerId));
+		return this.update(Wrappers.<Favorite>lambdaUpdate().set(Favorite::getOwnerId, null).eq(Favorite::getOwnerId,ownerId));
 	}
 	public boolean saveByProject(Project project, List<Favorite> list){
         if(list==null)

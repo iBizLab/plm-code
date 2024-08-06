@@ -194,7 +194,7 @@ public abstract class AbstractSpaceMemberService extends ServiceImpl<SpaceMember
 	}
 
 	public boolean resetBySpaceId(String spaceId){
-		return this.update(Wrappers.<SpaceMember>lambdaUpdate().eq(SpaceMember::getSpaceId,spaceId));
+		return this.update(Wrappers.<SpaceMember>lambdaUpdate().set(SpaceMember::getSpaceId, null).eq(SpaceMember::getSpaceId,spaceId));
 	}
 	public boolean saveBySpace(Space space, List<SpaceMember> list){
         if(list==null)
@@ -242,7 +242,7 @@ public abstract class AbstractSpaceMemberService extends ServiceImpl<SpaceMember
 	}
 
 	public boolean resetByUserId(String userId){
-		return this.update(Wrappers.<SpaceMember>lambdaUpdate().eq(SpaceMember::getUserId,userId));
+		return this.update(Wrappers.<SpaceMember>lambdaUpdate().set(SpaceMember::getUserId, null).eq(SpaceMember::getUserId,userId));
 	}
 	public boolean saveByUser(User user, List<SpaceMember> list){
         if(list==null)

@@ -183,7 +183,7 @@ public abstract class AbstractSwimlaneService extends ServiceImpl<SwimlaneMapper
 	}
 
 	public boolean resetByBoardId(String boardId){
-		return this.update(Wrappers.<Swimlane>lambdaUpdate().eq(Swimlane::getBoardId,boardId));
+		return this.update(Wrappers.<Swimlane>lambdaUpdate().set(Swimlane::getBoardId, null).eq(Swimlane::getBoardId,boardId));
 	}
 	public boolean saveByBoard(Board board, List<Swimlane> list){
         if(list==null)
@@ -231,7 +231,7 @@ public abstract class AbstractSwimlaneService extends ServiceImpl<SwimlaneMapper
 	}
 
 	public boolean resetByProjectId(String projectId){
-		return this.update(Wrappers.<Swimlane>lambdaUpdate().eq(Swimlane::getProjectId,projectId));
+		return this.update(Wrappers.<Swimlane>lambdaUpdate().set(Swimlane::getProjectId, null).eq(Swimlane::getProjectId,projectId));
 	}
 	public boolean saveByProject(Project project, List<Swimlane> list){
         if(list==null)

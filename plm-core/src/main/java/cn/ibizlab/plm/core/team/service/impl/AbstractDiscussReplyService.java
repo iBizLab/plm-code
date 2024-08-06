@@ -210,7 +210,7 @@ public abstract class AbstractDiscussReplyService extends ServiceImpl<DiscussRep
 	}
 
 	public boolean resetByPostId(String postId){
-		return this.update(Wrappers.<DiscussReply>lambdaUpdate().eq(DiscussReply::getPostId,postId));
+		return this.update(Wrappers.<DiscussReply>lambdaUpdate().set(DiscussReply::getPostId, null).eq(DiscussReply::getPostId,postId));
 	}
 	public boolean saveByDiscussPost(DiscussPost discussPost, List<DiscussReply> list){
         if(list==null)

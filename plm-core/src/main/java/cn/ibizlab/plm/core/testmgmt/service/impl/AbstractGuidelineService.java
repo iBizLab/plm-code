@@ -211,7 +211,7 @@ public abstract class AbstractGuidelineService extends ServiceImpl<GuidelineMapp
 	}
 
 	public boolean resetByScopeId(String scopeId){
-		return this.update(Wrappers.<Guideline>lambdaUpdate().eq(Guideline::getScopeId,scopeId));
+		return this.update(Wrappers.<Guideline>lambdaUpdate().set(Guideline::getScopeId, null).eq(Guideline::getScopeId,scopeId));
 	}
 	public boolean saveByLibrary(Library library, List<Guideline> list){
         if(list==null)

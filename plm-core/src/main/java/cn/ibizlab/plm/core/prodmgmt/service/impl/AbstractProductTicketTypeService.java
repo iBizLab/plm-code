@@ -185,7 +185,7 @@ public abstract class AbstractProductTicketTypeService extends ServiceImpl<Produ
 	}
 
 	public boolean resetByProductId(String productId){
-		return this.update(Wrappers.<ProductTicketType>lambdaUpdate().eq(ProductTicketType::getProductId,productId));
+		return this.update(Wrappers.<ProductTicketType>lambdaUpdate().set(ProductTicketType::getProductId, null).eq(ProductTicketType::getProductId,productId));
 	}
 	public boolean saveByProduct(Product product, List<ProductTicketType> list){
         if(list==null)
@@ -233,7 +233,7 @@ public abstract class AbstractProductTicketTypeService extends ServiceImpl<Produ
 	}
 
 	public boolean resetByTicketTypeId(String ticketTypeId){
-		return this.update(Wrappers.<ProductTicketType>lambdaUpdate().eq(ProductTicketType::getTicketTypeId,ticketTypeId));
+		return this.update(Wrappers.<ProductTicketType>lambdaUpdate().set(ProductTicketType::getTicketTypeId, null).eq(ProductTicketType::getTicketTypeId,ticketTypeId));
 	}
 	public boolean saveByTicketType(TicketType ticketType, List<ProductTicketType> list){
         if(list==null)

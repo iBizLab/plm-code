@@ -293,7 +293,7 @@ public abstract class AbstractTestPlanService extends ServiceImpl<TestPlanMapper
 	}
 
 	public boolean resetByLibraryId(String libraryId){
-		return this.update(Wrappers.<TestPlan>lambdaUpdate().eq(TestPlan::getLibraryId,libraryId));
+		return this.update(Wrappers.<TestPlan>lambdaUpdate().set(TestPlan::getLibraryId, null).eq(TestPlan::getLibraryId,libraryId));
 	}
 	public boolean saveByLibrary(Library library, List<TestPlan> list){
         if(list==null)
@@ -340,7 +340,7 @@ public abstract class AbstractTestPlanService extends ServiceImpl<TestPlanMapper
 	}
 
 	public boolean resetByProjectId(String projectId){
-		return this.update(Wrappers.<TestPlan>lambdaUpdate().eq(TestPlan::getProjectId,projectId));
+		return this.update(Wrappers.<TestPlan>lambdaUpdate().set(TestPlan::getProjectId, null).eq(TestPlan::getProjectId,projectId));
 	}
 	public boolean saveByProject(Project project, List<TestPlan> list){
         if(list==null)
@@ -387,7 +387,7 @@ public abstract class AbstractTestPlanService extends ServiceImpl<TestPlanMapper
 	}
 
 	public boolean resetByReleaseId(String releaseId){
-		return this.update(Wrappers.<TestPlan>lambdaUpdate().eq(TestPlan::getReleaseId,releaseId));
+		return this.update(Wrappers.<TestPlan>lambdaUpdate().set(TestPlan::getReleaseId, null).eq(TestPlan::getReleaseId,releaseId));
 	}
 	public boolean saveByRelease(Release release, List<TestPlan> list){
         if(list==null)
@@ -434,7 +434,7 @@ public abstract class AbstractTestPlanService extends ServiceImpl<TestPlanMapper
 	}
 
 	public boolean resetBySprintId(String sprintId){
-		return this.update(Wrappers.<TestPlan>lambdaUpdate().eq(TestPlan::getSprintId,sprintId));
+		return this.update(Wrappers.<TestPlan>lambdaUpdate().set(TestPlan::getSprintId, null).eq(TestPlan::getSprintId,sprintId));
 	}
 	public boolean saveBySprint(Sprint sprint, List<TestPlan> list){
         if(list==null)
@@ -481,7 +481,7 @@ public abstract class AbstractTestPlanService extends ServiceImpl<TestPlanMapper
 	}
 
 	public boolean resetById(String id){
-		return this.update(Wrappers.<TestPlan>lambdaUpdate().eq(TestPlan::getId,id));
+		return this.update(Wrappers.<TestPlan>lambdaUpdate().set(TestPlan::getId, null).eq(TestPlan::getId,id));
 	}
 	public boolean saveByTestPlan(CommonFlow commonFlow, List<TestPlan> list){
         if(list==null)
