@@ -74,10 +74,8 @@ export default {
                   },
                 ],
                 layout: {
-                  align: 'center',
                   dir: 'row',
                   layout: 'FLEX',
-                  valign: 'center',
                 },
                 dataRegionType: 'INHERIT',
                 caption: '容器',
@@ -91,8 +89,10 @@ export default {
               },
             ],
             layout: {
+              align: 'center',
               dir: 'row',
               layout: 'FLEX',
+              valign: 'center',
             },
             dataRegionType: 'INHERIT',
             caption: '容器',
@@ -280,16 +280,6 @@ export default {
     ],
     appViewRefs: [
       {
-        realOpenMode: 'POPUPMODAL',
-        realTitle: '执行用例主视图',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.RUN.EDITVIEW',
-        },
-        refAppViewId: 'plmweb.run_main_view',
-        name: 'NEWDATA',
-        id: 'newdata',
-      },
-      {
         openMode: 'POPUPMODAL',
         realOpenMode: 'POPUPMODAL',
         realTitle: '执行用例数据重定向视图',
@@ -299,6 +289,16 @@ export default {
         refAppViewId: 'plmweb.run_redirect_view',
         name: 'EDITDATA',
         id: 'editdata',
+      },
+      {
+        realOpenMode: 'POPUPMODAL',
+        realTitle: '执行用例主视图',
+        realTitleLanguageRes: {
+          lanResTag: 'PAGE.TITLE.RUN.EDITVIEW',
+        },
+        refAppViewId: 'plmweb.run_main_view',
+        name: 'NEWDATA',
+        id: 'newdata',
       },
       {
         realOpenMode: 'POPUPMODAL',

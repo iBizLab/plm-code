@@ -184,6 +184,25 @@ public interface DiscussPostMapper extends BaseMapper<DiscussPost> {
     List<DiscussPost> findByTopicId(@Param("topicIds") List<String> topicIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<DiscussPost> searchView(IPage<DiscussPost> page, @Param("ctx") DiscussPostSearchContext context, @Param("ew") Wrapper<DiscussPost> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<DiscussPost> listView(@Param("ctx") DiscussPostSearchContext context, @Param("ew") Wrapper<DiscussPost> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

@@ -5,14 +5,14 @@
         <!--通过mybatis将查询结果注入到entity中,通过配置autoMapping="true"由mybatis自动处理映射关系 -->
     <resultMap id="EntryResultMap" type="cn.ibizlab.plm.core.projmgmt.domain.Entry" autoMapping="true">
 		<id property="id" column="id" /><!--主键字段映射-->
-		<result property="isSystem" column="is_system" />
-		<result property="isSplit" column="is_split" />
-		<result property="createMan" column="create_man" />
-		<result property="createTime" column="create_time" />
-		<result property="updateMan" column="update_man" />
-		<result property="updateTime" column="update_time" />
-		<result property="boardId" column="board_id" />
-		<result property="projectId" column="project_id" />
+		<result property="isSystem" column="is_system"/>
+		<result property="isSplit" column="is_split"/>
+		<result property="createMan" column="create_man"/>
+		<result property="createTime" column="create_time"/>
+		<result property="updateMan" column="update_man"/>
+		<result property="updateTime" column="update_time"/>
+		<result property="boardId" column="board_id"/>
+		<result property="projectId" column="project_id"/>
         <association property="board" javaType="cn.ibizlab.plm.core.projmgmt.domain.Board" column="board_id" select="cn.ibizlab.plm.core.projmgmt.mapper.BoardMapper.selectById" fetchType="lazy"></association>
         <association property="project" javaType="cn.ibizlab.plm.core.projmgmt.domain.Project" column="project_id" select="cn.ibizlab.plm.core.projmgmt.mapper.ProjectMapper.selectById" fetchType="lazy"></association>
     </resultMap>
@@ -69,6 +69,15 @@
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
         
+    </select>
+
+    <select id="listView"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.EntrySearchContext"  resultMap="EntryResultMap">
+        select t1.*
+        from (
+            <include refid="view" />
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
     </select>
 
     <select id="findByBoardId" resultMap="EntryResultMap">

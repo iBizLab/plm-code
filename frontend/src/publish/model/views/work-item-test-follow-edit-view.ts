@@ -646,7 +646,7 @@ export default {
                     },
                     valueFormat: 'YYYY-MM-DD',
                     allowEmpty: true,
-                    caption: '结束时间',
+                    caption: '截止时间',
                     codeName: 'end_at',
                     detailStyle: 'DEFAULT',
                     detailType: 'FORMITEM',
@@ -920,7 +920,6 @@ export default {
                   colMD: 24,
                   layout: 'TABLE_24COL',
                 },
-                showCaption: true,
                 id: 'id',
               },
             ],
@@ -1087,6 +1086,26 @@ export default {
         id: 'logic',
       },
       {
+        eventNames: 'onClick',
+        itemName: 'COMMENT_SEND',
+        logicTag: 'layoutpanel',
+        logicType: 'SCRIPT',
+        scriptCode:
+          'const uiDomain = ibiz.uiDomainManager.get(context.srfsessionid);\r\nif (uiDomain) {\r\n    uiDomain.dataChangeCompleted()\r\n}',
+        triggerType: 'CTRLEVENT',
+        id: 'logic2',
+      },
+      {
+        eventNames: 'onClick',
+        itemName: 'COMMENT_CANCEL',
+        logicTag: 'layoutpanel',
+        logicType: 'SCRIPT',
+        scriptCode:
+          'const uiDomain = ibiz.uiDomainManager.get(context.srfsessionid);\r\nif (uiDomain) {\r\n    uiDomain.dataChangeCompleted()\r\n}',
+        triggerType: 'CTRLEVENT',
+        id: 'logic3',
+      },
+      {
         eventNames: 'onBlur',
         itemName: 'FIELD_TEXTBOX',
         logicTag: 'layoutpanel',
@@ -1096,6 +1115,17 @@ export default {
         triggerType: 'CTRLEVENT',
         name: 'onBlur',
         id: 'onblur',
+      },
+      {
+        eventNames: 'onChange',
+        itemName: 'FIELD_TEXTBOX',
+        logicTag: 'layoutpanel',
+        logicType: 'SCRIPT',
+        scriptCode:
+          'const uiDomain = ibiz.uiDomainManager.get(context.srfsessionid);\r\nif (!uiDomain) {\r\n    return;\r\n}\r\n\r\nconst value = data[0].field_textbox;\r\nif (value) {\r\n    uiDomain.dataChange();\r\n} else {\r\n    uiDomain.dataChangeCompleted();\r\n}',
+        triggerType: 'CTRLEVENT',
+        name: 'onChange',
+        id: 'onchange',
       },
       {
         eventNames: 'onFocus',

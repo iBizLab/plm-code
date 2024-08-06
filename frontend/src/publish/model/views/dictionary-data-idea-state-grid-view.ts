@@ -95,6 +95,7 @@ export default {
       columnEnableFilter: 2,
       columnEnableLink: 2,
       groupMode: 'NONE',
+      orderValueAppDEFieldId: 'sequence',
       degridColumns: [
         {
           clconvertMode: 'NONE',
@@ -202,6 +203,7 @@ export default {
                 beforeItemType: 'NONE',
                 detailType: 'DEUIACTION',
                 uiactionId: 'idea_remove@dictionary_data',
+                tooltip: '删除',
                 showIcon: true,
                 sysImage: {
                   cssClass: 'fa fa-trash-o',
@@ -237,6 +239,7 @@ export default {
           caption: '是否系统默认',
           codeName: 'is_system',
           columnType: 'DEFGRIDCOLUMN',
+          hideMode: 1,
           noPrivDisplayMode: 1,
           width: 100,
           widthUnit: 'PX',

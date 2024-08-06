@@ -13,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Page;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.ibizsysmgr.domain.SysPerson;
@@ -80,7 +81,7 @@ public abstract class AbstractSysPersonService implements SysPersonService {
         return sysPersonFeignClient.getDraft(et);
     }
 	
-    public Integer checkKey(SysPerson et) {
+    public CheckKeyStatus checkKey(SysPerson et) {
          return sysPersonFeignClient.checkKey(et);
     }
 	

@@ -51,6 +51,25 @@ public interface RunAttachmentMapper extends BaseMapper<RunAttachment> {
     List<RunAttachment> findByOwnerId(@Param("ownerIds") List<String> ownerIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<RunAttachment> searchView(IPage<RunAttachment> page, @Param("ctx") RunAttachmentSearchContext context, @Param("ew") Wrapper<RunAttachment> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<RunAttachment> listView(@Param("ctx") RunAttachmentSearchContext context, @Param("ew") Wrapper<RunAttachment> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

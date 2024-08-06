@@ -456,7 +456,6 @@ export default {
                 colMD: 3,
                 layout: 'TABLE_24COL',
               },
-              showCaption: true,
               id: 'n_product_id_eq',
             },
           ],

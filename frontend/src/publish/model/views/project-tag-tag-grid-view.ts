@@ -198,7 +198,7 @@ export default {
                 beforeItemType: 'NONE',
                 detailType: 'DEUIACTION',
                 uiactionId: 'edit_tag@project_tag',
-                tooltip: '编辑标签',
+                tooltip: '编辑',
                 showIcon: true,
                 sysImage: {
                   cssClass: 'fa fa-edit',
@@ -212,6 +212,7 @@ export default {
                 beforeItemType: 'NONE',
                 detailType: 'DEUIACTION',
                 uiactionId: 'delete_tag@project_tag',
+                tooltip: '删除',
                 showIcon: true,
                 sysImage: {
                   cssClass: 'fa fa-trash-o',

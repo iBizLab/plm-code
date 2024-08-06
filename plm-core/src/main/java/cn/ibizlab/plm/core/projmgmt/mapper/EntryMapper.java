@@ -59,6 +59,25 @@ public interface EntryMapper extends BaseMapper<Entry> {
     List<Entry> findByProjectId(@Param("projectIds") List<String> projectIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Entry> searchView(IPage<Entry> page, @Param("ctx") EntrySearchContext context, @Param("ew") Wrapper<Entry> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Entry> listView(@Param("ctx") EntrySearchContext context, @Param("ew") Wrapper<Entry> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

@@ -78,6 +78,25 @@ public interface WorkMapper extends BaseMapper<Work> {
     List<Work> findByPilotId(@Param("pilotIds") List<String> pilotIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Work> searchView(IPage<Work> page, @Param("ctx") WorkSearchContext context, @Param("ew") Wrapper<Work> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Work> listView(@Param("ctx") WorkSearchContext context, @Param("ew") Wrapper<Work> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

@@ -70,6 +70,25 @@ public interface SearchAttachmentMapper extends BaseMapper<SearchAttachment> {
     List<SearchAttachment> findByOwnerId(@Param("ownerIds") List<String> ownerIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<SearchAttachment> searchView(IPage<SearchAttachment> page, @Param("ctx") SearchAttachmentSearchContext context, @Param("ew") Wrapper<SearchAttachment> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<SearchAttachment> listView(@Param("ctx") SearchAttachmentSearchContext context, @Param("ew") Wrapper<SearchAttachment> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.Insight;
 import cn.ibizlab.plm.core.base.filter.InsightSearchContext;
 
@@ -137,7 +138,7 @@ public interface InsightService extends IService<Insight> {
     * @param et
     * @return
     */
-    Integer checkKey(Insight et);
+    CheckKeyStatus checkKey(Insight et);
 
     /**
     * 保存
@@ -168,6 +169,22 @@ public interface InsightService extends IService<Insight> {
     * @return
     */
     List<Insight> listDefault(InsightSearchContext context);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Insight> fetchView(InsightSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Insight> listView(InsightSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Insight> list) {

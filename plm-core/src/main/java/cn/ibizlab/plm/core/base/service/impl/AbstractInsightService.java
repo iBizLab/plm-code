@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.base.domain.Insight;
@@ -94,14 +95,14 @@ public abstract class AbstractInsightService extends ServiceImpl<InsightMapper,I
         return et;
     }
 	
-    public Integer checkKey(Insight et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Insight>lambdaQuery().eq(Insight::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(Insight et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Insight>lambdaQuery().eq(Insight::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(Insight et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -136,6 +137,17 @@ public abstract class AbstractInsightService extends ServiceImpl<InsightMapper,I
 
    public List<Insight> listDefault(InsightSearchContext context) {
         List<Insight> list = baseMapper.listDefault(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Insight> fetchView(InsightSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Insight> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<Insight> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Insight> listView(InsightSearchContext context) {
+        List<Insight> list = baseMapper.listView(context,context.getSelectCond());
         return list;
    }
 	

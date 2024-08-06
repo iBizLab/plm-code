@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.base.domain.PortfolioMember;
@@ -116,17 +117,17 @@ public abstract class AbstractPortfolioMemberService extends ServiceImpl<Portfol
         return et;
     }
 	
-    public Integer checkKey(PortfolioMember et) {
+    public CheckKeyStatus checkKey(PortfolioMember et) {
         fillParentData(et);
         if(ObjectUtils.isEmpty(et.getId()))
             et.setId((String)et.getDefaultKey(true));
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<PortfolioMember>lambdaQuery().eq(PortfolioMember::getId, et.getId()))>0)?1:0;
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<PortfolioMember>lambdaQuery().eq(PortfolioMember::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(PortfolioMember et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -184,6 +185,10 @@ public abstract class AbstractPortfolioMemberService extends ServiceImpl<Portfol
         return list;	
 	}
 
+	public List<PortfolioMember> findByPortfolio(Portfolio portfolio){
+        List<PortfolioMember> list = findByPortfolioId(Arrays.asList(portfolio.getId()));
+		return list;
+	}
 	public boolean removeByPortfolioId(String portfolioId){
         return this.remove(Wrappers.<PortfolioMember>lambdaQuery().eq(PortfolioMember::getPortfolioId,portfolioId));
 	}
@@ -194,8 +199,8 @@ public abstract class AbstractPortfolioMemberService extends ServiceImpl<Portfol
 	public boolean saveByPortfolio(Portfolio portfolio, List<PortfolioMember> list){
         if(list==null)
             return true;
-        Map<String,PortfolioMember> before = findByPortfolioId(portfolio.getId()).stream().collect(Collectors.toMap(PortfolioMember::getId,e->e));
 
+        Map<String,PortfolioMember> before = findByPortfolio(portfolio).stream().collect(Collectors.toMap(PortfolioMember::getId,e->e));
         List<PortfolioMember> update = new ArrayList<>();
         List<PortfolioMember> create = new ArrayList<>();
 
@@ -228,6 +233,10 @@ public abstract class AbstractPortfolioMemberService extends ServiceImpl<Portfol
         return list;	
 	}
 
+	public List<PortfolioMember> findByUser(User user){
+        List<PortfolioMember> list = findByUserId(Arrays.asList(user.getId()));
+		return list;
+	}
 	public boolean removeByUserId(String userId){
         return this.remove(Wrappers.<PortfolioMember>lambdaQuery().eq(PortfolioMember::getUserId,userId));
 	}
@@ -238,8 +247,8 @@ public abstract class AbstractPortfolioMemberService extends ServiceImpl<Portfol
 	public boolean saveByUser(User user, List<PortfolioMember> list){
         if(list==null)
             return true;
-        Map<String,PortfolioMember> before = findByUserId(user.getId()).stream().collect(Collectors.toMap(PortfolioMember::getId,e->e));
 
+        Map<String,PortfolioMember> before = findByUser(user).stream().collect(Collectors.toMap(PortfolioMember::getId,e->e));
         List<PortfolioMember> update = new ArrayList<>();
         List<PortfolioMember> create = new ArrayList<>();
 
@@ -267,6 +276,17 @@ public abstract class AbstractPortfolioMemberService extends ServiceImpl<Portfol
             return true;
 			
 	}
+   public Page<PortfolioMember> fetchView(PortfolioMemberSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<PortfolioMember> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<PortfolioMember> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<PortfolioMember> listView(PortfolioMemberSearchContext context) {
+        List<PortfolioMember> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(PortfolioMember et) {
         if(Entities.PORTFOLIO.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

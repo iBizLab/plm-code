@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.projmgmt.domain.Entry;
 import cn.ibizlab.plm.core.projmgmt.filter.EntrySearchContext;
 import cn.ibizlab.plm.core.projmgmt.domain.Board;
@@ -140,7 +141,7 @@ public interface EntryService extends IService<Entry> {
     * @param et
     * @return
     */
-    Integer checkKey(Entry et);
+    CheckKeyStatus checkKey(Entry et);
 
     /**
     * 保存
@@ -179,8 +180,15 @@ public interface EntryService extends IService<Entry> {
     */
     List<Entry> findByBoardId(List<String> boardIds);
     default List<Entry> findByBoardId(String boardId){
-        return findByBoardId(Arrays.asList(boardId));
+        return findByBoard(new Board().setId(boardId));
     }
+
+    /**
+    * findByBoard
+    * @param board
+    * @return
+    */
+    List<Entry> findByBoard(Board board);
 
     /**
     * removeByBoardId
@@ -221,8 +229,15 @@ public interface EntryService extends IService<Entry> {
     */
     List<Entry> findByProjectId(List<String> projectIds);
     default List<Entry> findByProjectId(String projectId){
-        return findByProjectId(Arrays.asList(projectId));
+        return findByProject(new Project().setId(projectId));
     }
+
+    /**
+    * findByProject
+    * @param project
+    * @return
+    */
+    List<Entry> findByProject(Project project);
 
     /**
     * removeByProjectId
@@ -255,6 +270,22 @@ public interface EntryService extends IService<Entry> {
     * @return
     */
     boolean saveByProject(Project project, List<Entry> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Entry> fetchView(EntrySearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Entry> listView(EntrySearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Entry> list) {

@@ -274,10 +274,16 @@ export default {
     ],
     controls: [
       {
-        tabExpPageIds: ['scope'],
+        tabExpPageIds: ['overview', 'scope'],
         tabLayout: 'TOP',
         uniqueTag: 'release_main_view__tabexppanel',
         appViewRefs: [
+          {
+            realTitle: '发布概况看板视图',
+            refAppViewId: 'plmweb.release_overview_dashboard_view',
+            name: 'EXPITEM:overview',
+            id: 'expitem:overview',
+          },
           {
             parentDataJO: {
               srfparentdename: 'RELEASE',
@@ -291,6 +297,20 @@ export default {
           },
         ],
         controls: [
+          {
+            caption: '概览',
+            embeddedAppDEViewId: 'plmweb.release_overview_dashboard_view',
+            codeName: 'main_view_overview',
+            controlType: 'TABVIEWPANEL',
+            appDataEntityId: 'plmweb.release',
+            controlParam: {
+              id: 'overview',
+            },
+            modelId: 'fa71d915210a5b9651651c1ed7b180e8_overview',
+            modelType: 'PSVIEWPANEL',
+            name: 'overview',
+            id: 'main_view_overview',
+          },
           {
             navDER: {
               pickupDEFName: 'RELEASE_ID',

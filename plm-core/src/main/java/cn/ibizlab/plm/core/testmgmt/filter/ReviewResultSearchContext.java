@@ -46,6 +46,14 @@ public class ReviewResultSearchContext extends QueryWrapperContext<ReviewResult>
     private Integer resultStateEQ;
 
     /**
+     * 阶段标识EQ
+     */
+    @JsonProperty("n_stage_id_eq")
+    @JSONField(name = "n_stage_id_eq")
+    @ApiModelProperty("阶段标识EQ")
+    private String stageIdEQ;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")

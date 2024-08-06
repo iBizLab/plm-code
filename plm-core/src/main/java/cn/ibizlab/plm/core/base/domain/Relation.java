@@ -22,8 +22,10 @@ import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import cn.ibizlab.plm.core.base.domain.Baseline;
 import cn.ibizlab.plm.core.prodmgmt.domain.Idea;
+import cn.ibizlab.plm.core.projmgmt.domain.Release;
 import cn.ibizlab.plm.core.testmgmt.domain.Review;
 import cn.ibizlab.plm.core.testmgmt.domain.ReviewContentExtend;
+import cn.ibizlab.plm.core.projmgmt.domain.Sprint;
 import cn.ibizlab.plm.core.prodmgmt.domain.Customer;
 import cn.ibizlab.plm.core.wiki.domain.ArticlePage;
 import cn.ibizlab.plm.core.prodmgmt.domain.ProductPlan;
@@ -46,6 +48,16 @@ import cn.ibizlab.plm.core.testmgmt.domain.TestPlan;
 @ApiModel(value = "RELATION", description = "关联")
 public class Relation extends EntityMP implements Serializable
 {
+
+    /**
+    * 重要程度
+    */
+    @TableField(value = "level")
+    @DEField(name = "level" , dict = "common_level")
+    @JSONField(name = "level")
+    @JsonProperty("level")
+    @ApiModelProperty(value = "level", notes = "重要程度")
+    private String level;
 
     /**
     * 关联主体标识
@@ -248,6 +260,26 @@ public class Relation extends EntityMP implements Serializable
     private String targetParentId;
 
     /**
+    * 源工作项
+    */
+    @TableField(exist = false)
+    @DEField(name = "principal_work_item")
+    @JSONField(name = "principal_work_item")
+    @JsonProperty("principal_work_item")
+    @ApiModelProperty(value = "principal_work_item", notes = "源工作项")
+    private WorkItem principalWorkItem;
+
+    /**
+    * 前后置任务
+    */
+    @TableField(value = "job_type" , exist = false)
+    @DEField(name = "job_type" , dict = "choose_job_type")
+    @JSONField(name = "job_type")
+    @JsonProperty("job_type")
+    @ApiModelProperty(value = "job_type", notes = "前后置任务")
+    private String jobType;
+
+    /**
     * 标识
     */
     @Id
@@ -331,6 +363,16 @@ public class Relation extends EntityMP implements Serializable
     private Idea principalIdea;
 
     /**
+    * 发布-关联
+    */
+    @Transient
+    @TableField(exist = false)
+    @JsonIgnore
+    @JSONField(serialize = false)
+    @ApiModelProperty(value = "relation_release", notes = "发布-关联")
+    private Release relationRelease;
+
+    /**
     * 评审-关联
     */
     @Transient
@@ -349,6 +391,16 @@ public class Relation extends EntityMP implements Serializable
     @JSONField(serialize = false)
     @ApiModelProperty(value = "review_content_extend", notes = "评审内容扩展-关联")
     private ReviewContentExtend reviewContentExtend;
+
+    /**
+    * 迭代-关联
+    */
+    @Transient
+    @TableField(exist = false)
+    @JsonIgnore
+    @JSONField(serialize = false)
+    @ApiModelProperty(value = "principal_sprint", notes = "迭代-关联")
+    private Sprint principalSprint;
 
     /**
     * 客户-关联目标
@@ -441,14 +493,13 @@ public class Relation extends EntityMP implements Serializable
     private TestPlan principalTestPlan;
 
     /**
-    * 工作项-关联源
+    * 设置 [重要程度]
     */
-    @Transient
-    @TableField(exist = false)
-    @JsonIgnore
-    @JSONField(serialize = false)
-    @ApiModelProperty(value = "principal_work_item", notes = "工作项-关联源")
-    private WorkItem principalWorkItem;
+    public Relation setLevel(String level) {
+        this.level = level;
+        this.modify("level", level);
+        return this;
+    }
 
     /**
     * 设置 [关联主体标识]
@@ -613,6 +664,24 @@ public class Relation extends EntityMP implements Serializable
     }
 
     /**
+    * 设置 [源工作项]
+    */
+    public Relation setPrincipalWorkItem(WorkItem principalWorkItem) {
+        this.principalWorkItem = principalWorkItem;
+        this.modify("principal_work_item", principalWorkItem);
+        return this;
+    }
+
+    /**
+    * 设置 [前后置任务]
+    */
+    public Relation setJobType(String jobType) {
+        this.jobType = jobType;
+        this.modify("job_type", jobType);
+        return this;
+    }
+
+    /**
     * 设置 [名称]
     */
     public Relation setName(String name) {
@@ -626,8 +695,9 @@ public class Relation extends EntityMP implements Serializable
     public Serializable getDefaultKey(boolean gen) {
         //Assert.notNull(getPrincipalId(),"未设置关联主体标识");
         //Assert.notNull(getTargetId(),"未设置关联目标标识");
-        String key = String.format("%s||%s"
-            ,getPrincipalId(),getTargetId());
+        //Assert.notNull(getPrincipalType(),"未设置关联主体类型");
+        String key = String.format("%s||%s||%s"
+            ,getPrincipalId(),getTargetId(),getPrincipalType());
         key = DigestUtils.md5DigestAsHex(key.getBytes());
         return key;
     }

@@ -360,11 +360,19 @@ public class BaselineWorkItemDTO extends DTOBase implements Serializable {
     private Integer isLeaf;
 
     /**
+     * 工作项类型
+     */
+    @JsonProperty("work_item_type_id")
+    @JSONField(name = "work_item_type_id")
+    @ApiModelProperty(value = "工作项类型", position = 40)
+    private String workItemTypeId;
+
+    /**
      * 建立人
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 40)
+    @ApiModelProperty(value = "建立人", position = 41)
     private String createMan;
 
     /**
@@ -373,7 +381,7 @@ public class BaselineWorkItemDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 41)
+    @ApiModelProperty(value = "建立时间", position = 42)
     private Date createTime;
 
     /**
@@ -381,7 +389,7 @@ public class BaselineWorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 42)
+    @ApiModelProperty(value = "标识", position = 43)
     private String id;
 
     /**
@@ -389,7 +397,7 @@ public class BaselineWorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 43)
+    @ApiModelProperty(value = "名称", position = 44)
     private String name;
 
     /**
@@ -397,7 +405,7 @@ public class BaselineWorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 44)
+    @ApiModelProperty(value = "更新人", position = 45)
     private String updateMan;
 
     /**
@@ -406,7 +414,7 @@ public class BaselineWorkItemDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 45)
+    @ApiModelProperty(value = "更新时间", position = 46)
     private Date updateTime;
 
 
@@ -758,6 +766,15 @@ public class BaselineWorkItemDTO extends DTOBase implements Serializable {
     public BaselineWorkItemDTO setIsLeaf(Integer isLeaf) {
         this.isLeaf = isLeaf;
         this.modify("is_leaf", isLeaf);
+        return this;
+    }
+
+    /**
+     * 设置 [工作项类型]
+     */
+    public BaselineWorkItemDTO setWorkItemTypeId(String workItemTypeId) {
+        this.workItemTypeId = workItemTypeId;
+        this.modify("work_item_type_id", workItemTypeId);
         return this;
     }
 

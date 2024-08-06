@@ -1,0 +1,1 @@
+declare module '@ibiz-template/vue3-components';

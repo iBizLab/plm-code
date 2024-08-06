@@ -1,0 +1,2332 @@
+[
+  {
+    "tid":"ticket_assignee",
+    "template_name":"工单通知模板(分配负责人)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">给你分配了工单</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.show_identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.show_identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.title}">${data.title}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 产品管理 · ${data.product_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"notice_attention_run",
+    "template_name":"提醒关注执行用例通知模板",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+			    <div class="notice-card__avatar" style="flex-shrink: 0;">
+			        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+			    </div>
+			    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+			        <div class="notice-card__event">
+			            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+	<span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+<span class="notice-card__event-name" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">提醒你关注<#if data.owner_type == 'WORK_ITEM'>${data.parent("owner_id").work_item_type_name}<#elseif data.owner_type == 'IDEA'>需求<#elseif data.owner_type== 'TICKET'>工单<#elseif data.owner_type== 'TEST_CASE'>测试用例<#elseif data.owner_type == 'CUSTOMER'>客户<#elseif data.owner_type == 'RUN'>执行用例<#elseif data.owner_type == 'PAGE'>页面</#if></span></div>
+        </div>
+<#if data.parent("owner_id")??>
+<#assign parent= data.parent("owner_id")>
+        <div class="notice-card-object" style="display: inline-block;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 100%;">
+<span class="notice-card__object-id" style="color: #999; font-size: 14px;"><#if parent.show_identifier??>${parent.show_identifier}</#if></span>
+<#if data.owner_type == 'CUSTOMER' || data.owner_type == 'PAGE'>
+<span class="object-name" title="${parent.name}"> ${parent.name}</span>
+<#else>
+<span class="object-name" title="${parent.title}"> ${parent.title}</span></#if>
+
+        </div>
+    <#if parent.parent("project_id")??>
+    <#assign project= parent.parent("project_id")>
+        <div class="notice-card-pilot" style="font-size: 12px;color: #999;text-transform: lowercase;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 项目管理 · ${project.name}</span></div>
+    <#elseif parent.parent("product_id")??>
+        <#assign product= parent.parent("product_id")>
+  <div class="notice-card-pilot" style="font-size: 12px;color: #999;text-transform: lowercase;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 产品管理 · ${product.name}</span></div>
+    <#elseif parent.parent("plan_id")??>
+        <#assign plan = parent.parent("plan_id")>
+  <div class="notice-card-pilot" style="font-size: 12px;color: #999;text-transform: lowercase;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 测试管理 · ${plan.library_name}</span></div>
+    <#elseif parent.parent("test_library_id")??>
+        <#assign library= parent.parent("test_library_id")>
+  <div class="notice-card-pilot" style="font-size: 12px;color: #999;text-transform: lowercase;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 测试管理 · ${library.name}</span></div>
+    </#if>
+    </div>
+    </#if>
+</div>"
+  },
+  {
+    "tid":"product_member_create",
+    "template_name":"产品通知模板(加入产品成员)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.create_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.create_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">把你加入了产品</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.product_identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.product_identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.product_name}">${data.product_name}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.create_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 产品管理 · ${data.product_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"idea_assignee_cancel",
+    "template_name":"需求通知模板(取消分配负责人)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">取消分配了需求</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.show_identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.show_identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.title}">${data.title}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 产品管理 · ${data.product_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"library_member_remove",
+    "template_name":"测试库通知模板(移除测试库成员)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">把你移除了测试库</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.library_identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.library_identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.library_name}">${data.library_name}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 测试管理 · ${data.library_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"product_member_remove",
+    "template_name":"产品通知模板(移除产品成员)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">把你移除了产品</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.product_identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.product_identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.product_name}">${data.product_name}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 产品管理 · ${data.product_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"comment_work_item",
+    "template_name":"评论工作项通知模板",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">评论了<#if data.principal_type == 'WORK_ITEM'>${data.parent("principal_id").work_item_type_name}<#elseif data.principal_type == 'IDEA'>需求<#elseif data.principal_type == 'TICKET'>工单<#elseif data.principal_type == 'TEST_CASE'>测试用例<#elseif data.principal_type == 'CUSTOMER'>客户<#elseif data.principal_type == 'RUN'>执行用例</#if></span>
+            </div>
+        </div>
+		<#if data.parent("principal_id")??>
+			<#assign parent= data.parent("principal_id")>
+				<div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+					<#if parent.show_identifier??>
+						<span class="notice-card__object-id" style="color: #999; font-size:14px;">${parent.show_identifier}</span>
+					</#if>
+					<#if data.principal_type == 'CUSTOMER' || data.principal_type == 'PAGE'>
+						<span class="notice-card__object-name" title="${parent.name}">${parent.name}</span>
+					<#else>
+						<span class="notice-card__object-name" title="${parent.title}">${parent.title}</span>
+					</#if>		
+				</div>
+			<#assign content = data.content?replace('<img[^>]*>', '[图片]', 'r')?replace('<p[^>]*>', '', 'r')?replace('</?p[^>]*>', '', 'r')>
+			<#assign regex = "(\\@\\{.*?\\})">
+				<#list content?matches(regex) as match>
+					<#assign jsonStr = match>
+                                                  <#assign jsonObject = (jsonStr?replace("@", ""))?eval>  
+							<#if jsonObject.name??>
+								<#assign name = jsonObject.name>
+									<#assign content = content?replace(jsonStr, "<span class='comment-tag'>@" + name + "</span>")>
+							</#if>
+				</#list>
+			<#assign regex = "\\#\\{\"id\":\"(.*?)\",\"name\":\"(.+?)\",\"identifier\":\"(.+?)\",\"icon\":\"((.|[\\t\\r\\f\\n\\s])+?)\"\\}">
+				<#list content?matches(regex) as match>
+					<#assign jsonStr = match>
+                                                     <#assign content = content?replace(jsonStr,"<span class='comment-tag'>" + match?groups[4]+ match?groups[3] + match?groups[2] + "</span>")>
+				</#list>
+			<div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;max-height: 50px;">
+				<span class="notice-card__object-name">${content}</span>
+			</div>
+		</#if>
+		<#if parent.parent("project_id")??>
+		<#assign project= parent.parent("project_id")>
+			<div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 项目管理 · ${project.name}</span></div>
+		<#elseif parent.parent("product_id")??>
+        <#assign product= parent.parent("product_id")>
+			<div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 产品管理 · ${product.name}</span></div>
+		<#elseif parent.parent("plan_id")??>
+        <#assign plan= parent.parent("plan_id")>
+			<div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 测试管理 · ${plan.library_name}</span></div>
+		<#elseif parent.parent("test_library_id")??>
+        <#assign library= parent.parent("test_library_id")>
+			<div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 测试管理 · ${library.name}</span></div>
+		<#elseif parent.parent("space_id")??>
+        <#assign space= parent.parent("space_id")>
+			<div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 知识库管理 · ${space.name}</span></div>
+		</#if>
+    </div>
+</div>"
+  },
+  {
+    "tid":"ticket_assignee_onchange",
+    "template_name":"工单通知模板(负责人变更)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">变更了工单的负责人</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.show_identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.show_identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.title}">${data.title}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 产品管理 · ${data.product_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"project_member_create",
+    "template_name":"项目通知模板(加入项目成员)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.create_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.create_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">把你加入了项目</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.project_identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.project_identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.project_name}">${data.project_name}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.create_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 项目管理 · ${data.project_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"test_plan_assignee_cancel",
+    "template_name":"测试计划通知模板(取消分配负责人)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">取消分配了测试计划</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <span class="notice-card__object-name" title="${data.name}">${data.name}</span>
+        </div>
+		
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 测试管理 · ${data.library_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"comment_run",
+    "template_name":"评论执行用例通知模板",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">评论了<#if data.principal_type == 'WORK_ITEM'>${data.parent("principal_id").work_item_type_name}<#elseif data.principal_type == 'IDEA'>需求<#elseif data.principal_type == 'TICKET'>工单<#elseif data.principal_type == 'TEST_CASE'>测试用例<#elseif data.principal_type == 'CUSTOMER'>客户<#elseif data.principal_type == 'RUN'>执行用例</#if></span>
+            </div>
+        </div>
+		<#if data.parent("principal_id")??>
+			<#assign parent= data.parent("principal_id")>
+				<div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+					<#if parent.show_identifier??>
+						<span class="notice-card__object-id" style="color: #999; font-size:14px;">${parent.show_identifier}</span>
+					</#if>
+					<#if data.principal_type == 'CUSTOMER' || data.principal_type == 'PAGE'>
+						<span class="notice-card__object-name" title="${parent.name}">${parent.name}</span>
+					<#else>
+						<span class="notice-card__object-name" title="${parent.title}">${parent.title}</span>
+					</#if>		
+				</div>
+			<#assign content = data.content?replace('<img[^>]*>', '[图片]', 'r')?replace('<p[^>]*>', '', 'r')?replace('</?p[^>]*>', '', 'r')>
+			<#assign regex = "(\\@\\{.*?\\})">
+				<#list content?matches(regex) as match>
+					<#assign jsonStr = match>
+                                                  <#assign jsonObject = (jsonStr?replace("@", ""))?eval>  
+							<#if jsonObject.name??>
+								<#assign name = jsonObject.name>
+									<#assign content = content?replace(jsonStr, "<span class='comment-tag'>@" + name + "</span>")>
+							</#if>
+				</#list>
+			<#assign regex = "\\#\\{\"id\":\"(.*?)\",\"name\":\"(.+?)\",\"identifier\":\"(.+?)\",\"icon\":\"((.|[\\t\\r\\f\\n\\s])+?)\"\\}">
+				<#list content?matches(regex) as match>
+					<#assign jsonStr = match>
+                                                     <#assign content = content?replace(jsonStr,"<span class='comment-tag'>" + match?groups[4]+ match?groups[3] + match?groups[2] + "</span>")>
+				</#list>
+			<div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;max-height: 50px;">
+				<span class="notice-card__object-name">${content}</span>
+			</div>
+		</#if>
+		<#if parent.parent("project_id")??>
+		<#assign project= parent.parent("project_id")>
+			<div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 项目管理 · ${project.name}</span></div>
+		<#elseif parent.parent("product_id")??>
+        <#assign product= parent.parent("product_id")>
+			<div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 产品管理 · ${product.name}</span></div>
+		<#elseif parent.parent("plan_id")??>
+        <#assign plan= parent.parent("plan_id")>
+			<div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 测试管理 · ${plan.library_name}</span></div>
+		<#elseif parent.parent("test_library_id")??>
+        <#assign library= parent.parent("test_library_id")>
+			<div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 测试管理 · ${library.name}</span></div>
+		<#elseif parent.parent("space_id")??>
+        <#assign space= parent.parent("space_id")>
+			<div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 知识库管理 · ${space.name}</span></div>
+		</#if>
+    </div>
+</div>"
+  },
+  {
+    "tid":"space_member_create",
+    "template_name":"知识库通知模板(加入空间成员)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.create_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.create_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">把你加入了空间</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <span class="notice-card__object-name" title="${data.space_name}">${data.space_name}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.create_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 知识管理 · ${data.space_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"test_case_maintainer_onchange",
+    "template_name":"测试用例通知模板(维护人变更)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">变更了测试用例的维护人</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+			<#if data.show_identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.show_identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.title}">${data.title}</span>
+        </div>
+		
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 测试管理 · ${data.test_library_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"notice_attention_ticket",
+    "template_name":"提醒关注工单通知模板",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+			    <div class="notice-card__avatar" style="flex-shrink: 0;">
+			        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+			    </div>
+			    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+			        <div class="notice-card__event">
+			            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+	<span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+<span class="notice-card__event-name" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">提醒你关注<#if data.owner_type == 'WORK_ITEM'>${data.parent("owner_id").work_item_type_name}<#elseif data.owner_type == 'IDEA'>需求<#elseif data.owner_type== 'TICKET'>工单<#elseif data.owner_type== 'TEST_CASE'>测试用例<#elseif data.owner_type == 'CUSTOMER'>客户<#elseif data.owner_type == 'RUN'>执行用例<#elseif data.owner_type == 'PAGE'>页面</#if></span></div>
+        </div>
+<#if data.parent("owner_id")??>
+<#assign parent= data.parent("owner_id")>
+        <div class="notice-card-object" style="display: inline-block;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 100%;">
+<span class="notice-card__object-id" style="color: #999; font-size: 14px;"><#if parent.show_identifier??>${parent.show_identifier}</#if></span>
+<#if data.owner_type == 'CUSTOMER' || data.owner_type == 'PAGE'>
+<span class="object-name" title="${parent.name}"> ${parent.name}</span>
+<#else>
+<span class="object-name" title="${parent.title}"> ${parent.title}</span></#if>
+
+        </div>
+    <#if parent.parent("project_id")??>
+    <#assign project= parent.parent("project_id")>
+        <div class="notice-card-pilot" style="font-size: 12px;color: #999;text-transform: lowercase;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 项目管理 · ${project.name}</span></div>
+    <#elseif parent.parent("product_id")??>
+        <#assign product= parent.parent("product_id")>
+  <div class="notice-card-pilot" style="font-size: 12px;color: #999;text-transform: lowercase;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 产品管理 · ${product.name}</span></div>
+    <#elseif parent.parent("plan_id")??>
+        <#assign plan = parent.parent("plan_id")>
+  <div class="notice-card-pilot" style="font-size: 12px;color: #999;text-transform: lowercase;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 测试管理 · ${plan.library_name}</span></div>
+    <#elseif parent.parent("test_library_id")??>
+        <#assign library= parent.parent("test_library_id")>
+  <div class="notice-card-pilot" style="font-size: 12px;color: #999;text-transform: lowercase;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 测试管理 · ${library.name}</span></div>
+    </#if>
+    </div>
+    </#if>
+</div>"
+  },
+  {
+    "tid":"notice_attention_work_item",
+    "template_name":"提醒关注工作项通知模板",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+			    <div class="notice-card__avatar" style="flex-shrink: 0;">
+			        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+			    </div>
+			    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+			        <div class="notice-card__event">
+			            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+	<span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+<span class="notice-card__event-name" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">提醒你关注<#if data.owner_type == 'WORK_ITEM'>${data.parent("owner_id").work_item_type_name}<#elseif data.owner_type == 'IDEA'>需求<#elseif data.owner_type== 'TICKET'>工单<#elseif data.owner_type== 'TEST_CASE'>测试用例<#elseif data.owner_type == 'CUSTOMER'>客户<#elseif data.owner_type == 'RUN'>执行用例<#elseif data.owner_type == 'PAGE'>页面</#if></span></div>
+        </div>
+<#if data.parent("owner_id")??>
+<#assign parent= data.parent("owner_id")>
+        <div class="notice-card-object" style="display: inline-block;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 100%;">
+<span class="notice-card__object-id" style="color: #999; font-size: 14px;"><#if parent.show_identifier??>${parent.show_identifier}</#if></span>
+<#if data.owner_type == 'CUSTOMER' || data.owner_type == 'PAGE'>
+<span class="object-name" title="${parent.name}"> ${parent.name}</span>
+<#else>
+<span class="object-name" title="${parent.title}"> ${parent.title}</span></#if>
+
+        </div>
+    <#if parent.parent("project_id")??>
+    <#assign project= parent.parent("project_id")>
+        <div class="notice-card-pilot" style="font-size: 12px;color: #999;text-transform: lowercase;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 项目管理 · ${project.name}</span></div>
+    <#elseif parent.parent("product_id")??>
+        <#assign product= parent.parent("product_id")>
+  <div class="notice-card-pilot" style="font-size: 12px;color: #999;text-transform: lowercase;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 产品管理 · ${product.name}</span></div>
+    <#elseif parent.parent("plan_id")??>
+        <#assign plan = parent.parent("plan_id")>
+  <div class="notice-card-pilot" style="font-size: 12px;color: #999;text-transform: lowercase;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 测试管理 · ${plan.library_name}</span></div>
+    <#elseif parent.parent("test_library_id")??>
+        <#assign library= parent.parent("test_library_id")>
+  <div class="notice-card-pilot" style="font-size: 12px;color: #999;text-transform: lowercase;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 测试管理 · ${library.name}</span></div>
+    </#if>
+    </div>
+    </#if>
+</div>"
+  },
+  {
+    "tid":"project_set_member_remove",
+    "template_name":"项目集通知模板(移除成员)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">把你移除了项目集</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.portfolio_identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.portfolio_identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.portfolio_name}">${data.portfolio_name}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 项目管理 · ${data.portfolio_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"customer_assignee_cancel",
+    "template_name":"客户通知模板(取消分配负责人)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">取消分配了客户</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <span class="notice-card__object-name" title="${data.name}">${data.name}</span>
+        </div>
+		
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 产品管理 · ${data.product_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"library_remove_or_recover",
+    "template_name":"测试库通知模板(删除/恢复测试库)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><#if data.is_deleted==1>删除<#else>恢复</#if>了测试库</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.name}">${data.name}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 测试管理 · ${data.name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"work_item_remove_or_recover",
+    "template_name":"工作项通知模板(删除/恢复工作项)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><#if data.is_deleted==1>删除<#else>恢复</#if>了${data.work_item_type_name}</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.show_identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.show_identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.title}">${data.title}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 项目管理 · ${data.project_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"idea_assignee_onchange",
+    "template_name":"需求通知模板(负责人变更通知)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">变更了需求的负责人</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.show_identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.show_identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.title}">${data.title}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 产品管理 · ${data.product_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"customer_assignee",
+    "template_name":"客户通知模板(分配负责人)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">给你分配了客户</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <span class="notice-card__object-name" title="${data.name}">${data.name}</span>
+        </div>
+		
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 产品管理 · ${data.product_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"comment_at",
+    "template_name":"评论@通知模板",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">在评论中提及了你</span>
+            </div>
+        </div>
+		<#if data.parent("principal_id")??>
+			<#assign parent= data.parent("principal_id")>
+				<div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+					<#if parent.show_identifier??>
+						<span class="notice-card__object-id" style="color: #999; font-size:14px;">${parent.show_identifier}</span>
+					</#if>
+					<#if data.principal_type == 'CUSTOMER' || data.principal_type == 'PAGE'>
+						<span class="notice-card__object-name" title="${parent.name}">${parent.name}</span>
+					<#else>
+						<span class="notice-card__object-name" title="${parent.title}">${parent.title}</span>
+					</#if>		
+				</div>
+			<#assign content = data.content?replace('<img[^>]*>', '[图片]', 'r')?replace('<p[^>]*>', '', 'r')?replace('</?p[^>]*>', '', 'r')>
+			<#assign regex = "(\\@\\{.*?\\})">
+				<#list content?matches(regex) as match>
+					<#assign jsonStr = match>
+                                                  <#assign jsonObject = (jsonStr?replace("@", ""))?eval>  
+							<#if jsonObject.name??>
+								<#assign name = jsonObject.name>
+									<#assign content = content?replace(jsonStr, "<span class='comment-tag'>@" + name + "</span>")>
+							</#if>
+				</#list>
+			<#assign regex = "\\#\\{\"id\":\"(.*?)\",\"name\":\"(.+?)\",\"identifier\":\"(.+?)\",\"icon\":\"((.|[\\t\\r\\f\\n\\s])+?)\"\\}">
+				<#list content?matches(regex) as match>
+					<#assign jsonStr = match>
+                                                     <#assign content = content?replace(jsonStr,"<span class='comment-tag'>" + match?groups[4]+ match?groups[3] + match?groups[2] + "</span>")>
+				</#list>
+			<div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;max-height: 50px;">
+				<span class="notice-card__object-name">${content}</span>
+			</div>
+		</#if>
+		<#if parent.parent("project_id")??>
+		<#assign project= parent.parent("project_id")>
+			<div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 项目管理 · ${project.name}</span></div>
+		<#elseif parent.parent("product_id")??>
+        <#assign product= parent.parent("product_id")>
+			<div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 产品管理 · ${product.name}</span></div>
+		<#elseif parent.parent("plan_id")??>
+        <#assign plan= parent.parent("plan_id")>
+			<div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 测试管理 · ${plan.library_name}</span></div>
+		<#elseif parent.parent("test_library_id")??>
+        <#assign library= parent.parent("test_library_id")>
+			<div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 测试管理 · ${library.name}</span></div>
+		<#elseif parent.parent("space_id")??>
+        <#assign space= parent.parent("space_id")>
+			<div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 知识库管理 · ${space.name}</span></div>
+		</#if>
+    </div>
+</div>"
+  },
+  {
+    "tid":"ticket_state_onchange",
+    "template_name":"工单通知模板(状态变更)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">更改了工单状态</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.show_identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.show_identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.title}">${data.title}</span>
+        </div>
+		<div class="notice-card__object" style="font-size: 12px;margin-bottom:5px;">
+            <#if last.codeitem("STATE")?? && last.codeitem("STATE").getColor()??>
+                <#assign laststatecodeitem = last.codeitem("STATE")>
+                <span class="notice-card__object-last" style="background-color: ${laststatecodeitem.getColor()}; color: #FFF; display: inline-block; padding: 3px 8px; border-radius: 15px; min-width: 60px; text-align: center;">
+                    ${laststatecodeitem.text}
+                </span>
+            <#else>
+                <span class="notice-card__object-last" style="background-color: green; color: #FFF; display: inline-block; padding: 3px 8px; border-radius: 15px; min-width: 60px; text-align: center;">
+                    无
+                </span>
+            </#if>
+            <span class="notice-card__object-last" style="color: #999; display: inline-block; padding: 0 5px;"> → </span>
+            <#if data.codeitem("STATE")?? && data.codeitem("STATE").getColor()??>
+                <#assign statecodeitem = data.codeitem("STATE")>
+                <span class="notice-card__object-last" style="background-color: ${statecodeitem.getColor()}; color: #FFF; display: inline-block; padding: 3px 8px; border-radius: 15px; min-width: 60px; text-align: center;">
+                    ${statecodeitem.text}
+                </span>
+            <#else>
+                <span class="notice-card__object-last" style="background-color: #fac858; color: #FFF; display: inline-block; padding: 3px 8px; border-radius: 15px; min-width: 60px; text-align: center;">
+                    ${data.statetext}
+                </span>
+            </#if>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 产品管理 · ${data.product_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"comment_idea",
+    "template_name":"评论产品需求通知模板",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">评论了<#if data.principal_type == 'WORK_ITEM'>${data.parent("principal_id").work_item_type_name}<#elseif data.principal_type == 'IDEA'>需求<#elseif data.principal_type == 'TICKET'>工单<#elseif data.principal_type == 'TEST_CASE'>测试用例<#elseif data.principal_type == 'CUSTOMER'>客户<#elseif data.principal_type == 'RUN'>执行用例</#if></span>
+            </div>
+        </div>
+		<#if data.parent("principal_id")??>
+			<#assign parent= data.parent("principal_id")>
+				<div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+					<#if parent.show_identifier??>
+						<span class="notice-card__object-id" style="color: #999; font-size:14px;">${parent.show_identifier}</span>
+					</#if>
+					<#if data.principal_type == 'CUSTOMER' || data.principal_type == 'PAGE'>
+						<span class="notice-card__object-name" title="${parent.name}">${parent.name}</span>
+					<#else>
+						<span class="notice-card__object-name" title="${parent.title}">${parent.title}</span>
+					</#if>		
+				</div>
+			<#assign content = data.content?replace('<img[^>]*>', '[图片]', 'r')?replace('<p[^>]*>', '', 'r')?replace('</?p[^>]*>', '', 'r')>
+			<#assign regex = "(\\@\\{.*?\\})">
+				<#list content?matches(regex) as match>
+					<#assign jsonStr = match>
+                                                  <#assign jsonObject = (jsonStr?replace("@", ""))?eval>  
+							<#if jsonObject.name??>
+								<#assign name = jsonObject.name>
+									<#assign content = content?replace(jsonStr, "<span class='comment-tag'>@" + name + "</span>")>
+							</#if>
+				</#list>
+			<#assign regex = "\\#\\{\"id\":\"(.*?)\",\"name\":\"(.+?)\",\"identifier\":\"(.+?)\",\"icon\":\"((.|[\\t\\r\\f\\n\\s])+?)\"\\}">
+				<#list content?matches(regex) as match>
+					<#assign jsonStr = match>
+                                                     <#assign content = content?replace(jsonStr,"<span class='comment-tag'>" + match?groups[4]+ match?groups[3] + match?groups[2] + "</span>")>
+				</#list>
+			<div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;max-height: 50px;">
+				<span class="notice-card__object-name">${content}</span>
+			</div>
+		</#if>
+		<#if parent.parent("project_id")??>
+		<#assign project= parent.parent("project_id")>
+			<div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 项目管理 · ${project.name}</span></div>
+		<#elseif parent.parent("product_id")??>
+        <#assign product= parent.parent("product_id")>
+			<div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 产品管理 · ${product.name}</span></div>
+		<#elseif parent.parent("plan_id")??>
+        <#assign plan= parent.parent("plan_id")>
+			<div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 测试管理 · ${plan.library_name}</span></div>
+		<#elseif parent.parent("test_library_id")??>
+        <#assign library= parent.parent("test_library_id")>
+			<div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 测试管理 · ${library.name}</span></div>
+		<#elseif parent.parent("space_id")??>
+        <#assign space= parent.parent("space_id")>
+			<div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 知识库管理 · ${space.name}</span></div>
+		</#if>
+    </div>
+</div>"
+  },
+  {
+    "tid":"work_item",
+    "template_name":"工作项通知模板(运行时)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${sys.codelist("SysOperator").text(eventdata.update_man)?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${sys.codelist("SysOperator").text(eventdata.update_man)}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">变更了工作项${eventdata.title}</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if eventdata.show_identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${eventdata.show_identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${eventdata.title}">${eventdata.title}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${eventdata.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 项目管理 · ${eventdata.project_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"work_item_assignee_cancel",
+    "template_name":"工作项通知模板(取消分配负责人)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">取消分配了${data.work_item_type_name}</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.show_identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px">${data.show_identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.title}">${data.title}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 项目管理 · ${data.project_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"idea_assignee",
+    "template_name":"需求通知模板(分配负责人)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">给你分配了需求</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.show_identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.show_identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.title}">${data.title}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 产品管理 · ${data.product_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"work_item_create",
+    "template_name":"工作项通知模板（创建工作项）",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+			    <div class="notice-card__avatar" style="flex-shrink: 0;">
+			        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.create_mantext?substring(0,2)!}</span>
+			    </div>
+			    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+			        <div class="notice-card__event">
+			            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+			                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+			                    ${data.create_mantext}
+			                </span> 
+			                <span class="notice-card__event-desc" style="color: #000; font-size: 14px; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">创建了${data.work_item_type_name}</span>
+			            </div>
+			        </div>
+			        <div class="notice-card__object" style="font-size: 14px; color: #000;">
+			            <span class="notice-card__object-id" style="color: #999; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.show_identifier}</span>
+			            <span class="notice-card__object-name" title= "${data.title}" style="color: #000; display: inline-block; max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.title}</span>
+			        </div>
+			        <div class="notice-card__info" style="font-size: 12px; color: #999; text-transform: lowercase;">
+			            <span class="notice-card__time">${data.create_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+			            <span class="notice-card__project-info"> · 项目管理 · ${data.project_name}</span>
+			        </div>
+			    </div>
+			</div>"
+  },
+  {
+    "tid":"work_item_archived_or_activate",
+    "template_name":"工作项通知模板(归档/激活工作项)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><#if data.is_archived==1>归档<#else>激活</#if>了${data.work_item_type_name}</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.show_identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.show_identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.title}">${data.title}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 项目管理 · ${data.project_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"space_remove_or_recover",
+    "template_name":"空间通知模板(删除/恢复空间)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><#if data.is_deleted==1>删除<#else>恢复</#if>了空间</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.name}">${data.name}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 知识管理 · ${data.name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"project_assignee",
+    "template_name":"项目通知模板(分配负责人)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">给你分配了项目</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.name}">${data.name}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 项目管理 · ${data.name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"project_event_hook",
+    "template_name":"项目事件通知",
+    "content":"内容"
+  },
+  {
+    "tid":"comment_page",
+    "template_name":"评论页面通知模板",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">评论了页面</span>
+            </div>
+        </div>
+		<#if data.parent("principal_id")??>
+			<#assign parent= data.parent("principal_id")>
+				<div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+					<#if parent.show_identifier??>
+						<span class="notice-card__object-id" style="color: #999; font-size:14px;">${parent.show_identifier}</span>
+					</#if>
+					<span class="notice-card__object-name" title="${parent.name}">${parent.name}</span>		
+				</div>
+			<#assign content = data.content?replace('<img[^>]*>', '[图片]', 'r')?replace('<p[^>]*>', '', 'r')?replace('</?p[^>]*>', '', 'r')>
+			<#assign regex = "(\\@\\{.*?\\})">
+				<#list content?matches(regex) as match>
+					<#assign jsonStr = match>
+                                                  <#assign jsonObject = (jsonStr?replace("@", ""))?eval>  
+							<#if jsonObject.name??>
+								<#assign name = jsonObject.name>
+									<#assign content = content?replace(jsonStr, "<span class='comment-tag'>@" + name + "</span>")>
+							</#if>
+				</#list>
+			<#assign regex = "\\#\\{\"id\":\"(.*?)\",\"name\":\"(.+?)\",\"identifier\":\"(.+?)\",\"icon\":\"((.|[\\t\\r\\f\\n\\s])+?)\"\\}">
+				<#list content?matches(regex) as match>
+					<#assign jsonStr = match>
+                                                     <#assign content = content?replace(jsonStr,"<span class='comment-tag'>" + match?groups[4]+ match?groups[3] + match?groups[2] + "</span>")>
+				</#list>
+			<div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;max-height: 50px;">
+				<span class="notice-card__object-name">${content}</span>
+			</div>
+		</#if>
+		<#if parent.parent("space_id")??>
+        <#assign space= parent.parent("space_id")>
+			<div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 知识管理 · ${space.name}</span></div>
+		</#if>
+    </div>
+</div>"
+  },
+  {
+    "tid":"ticket_assignee_cancel",
+    "template_name":"工单通知模板(取消分配负责人)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">取消分配了工单</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.show_identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.show_identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.title}">${data.title}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 产品管理 · ${data.product_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"project_set_member_create",
+    "template_name":"项目集通知模板(加入成员)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.create_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.create_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">把你加入了项目集</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.portfolio_identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.portfolio_identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.portfolio_name}">${data.portfolio_name}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.create_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 项目管理 · ${data.portfolio_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"work_item_assignee",
+    "template_name":"工作项通知模板(分配负责人)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">给你分配了${data.work_item_type_name}</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.show_identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.show_identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.title}">${data.title}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 项目管理 · ${data.project_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"comment_customer",
+    "template_name":"评论客户通知模板",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">评论了<#if data.principal_type == 'WORK_ITEM'>${data.parent("principal_id").work_item_type_name}<#elseif data.principal_type == 'IDEA'>需求<#elseif data.principal_type == 'TICKET'>工单<#elseif data.principal_type == 'TEST_CASE'>测试用例<#elseif data.principal_type == 'CUSTOMER'>客户<#elseif data.principal_type == 'RUN'>执行用例</#if></span>
+            </div>
+        </div>
+		<#if data.parent("principal_id")??>
+			<#assign parent= data.parent("principal_id")>
+				<div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+					<#if parent.show_identifier??>
+						<span class="notice-card__object-id" style="color: #999; font-size:14px;">${parent.show_identifier}</span>
+					</#if>
+					<#if data.principal_type == 'CUSTOMER' || data.principal_type == 'PAGE'>
+						<span class="notice-card__object-name" title="${parent.name}">${parent.name}</span>
+					<#else>
+						<span class="notice-card__object-name" title="${parent.title}">${parent.title}</span>
+					</#if>		
+				</div>
+			<#assign content = data.content?replace('<img[^>]*>', '[图片]', 'r')?replace('<p[^>]*>', '', 'r')?replace('</?p[^>]*>', '', 'r')>
+			<#assign regex = "(\\@\\{.*?\\})">
+				<#list content?matches(regex) as match>
+					<#assign jsonStr = match>
+                                                  <#assign jsonObject = (jsonStr?replace("@", ""))?eval>  
+							<#if jsonObject.name??>
+								<#assign name = jsonObject.name>
+									<#assign content = content?replace(jsonStr, "<span class='comment-tag'>@" + name + "</span>")>
+							</#if>
+				</#list>
+			<#assign regex = "\\#\\{\"id\":\"(.*?)\",\"name\":\"(.+?)\",\"identifier\":\"(.+?)\",\"icon\":\"((.|[\\t\\r\\f\\n\\s])+?)\"\\}">
+				<#list content?matches(regex) as match>
+					<#assign jsonStr = match>
+                                                     <#assign content = content?replace(jsonStr,"<span class='comment-tag'>" + match?groups[4]+ match?groups[3] + match?groups[2] + "</span>")>
+				</#list>
+			<div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;max-height: 50px;">
+				<span class="notice-card__object-name">${content}</span>
+			</div>
+		</#if>
+		<#if parent.parent("project_id")??>
+		<#assign project= parent.parent("project_id")>
+			<div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 项目管理 · ${project.name}</span></div>
+		<#elseif parent.parent("product_id")??>
+        <#assign product= parent.parent("product_id")>
+			<div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 产品管理 · ${product.name}</span></div>
+		<#elseif parent.parent("plan_id")??>
+        <#assign plan= parent.parent("plan_id")>
+			<div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 测试管理 · ${plan.library_name}</span></div>
+		<#elseif parent.parent("test_library_id")??>
+        <#assign library= parent.parent("test_library_id")>
+			<div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 测试管理 · ${library.name}</span></div>
+		<#elseif parent.parent("space_id")??>
+        <#assign space= parent.parent("space_id")>
+			<div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 知识库管理 · ${space.name}</span></div>
+		</#if>
+    </div>
+</div>"
+  },
+  {
+    "tid":"work_item_state_onchange",
+    "template_name":"工作项通知模板（状态变更）",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">更改了${data.work_item_type_name}状态</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.show_identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.show_identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.title}">${data.title}</span>
+        </div>
+		<div class="notice-card__object" style="font-size: 12px; margin-bottom: 5px;">
+            <#if last.codeitem("STATE")?? && last.codeitem("STATE").getColor()??>
+                <#assign laststatecodeitem = last.codeitem("STATE")>
+                <span class="notice-card__object-last" style="background-color: ${laststatecodeitem.getColor()}; color: #FFF; display: inline-block; padding: 3px 8px; border-radius: 15px; min-width: 60px; text-align: center;">
+                    ${laststatecodeitem.text}
+                </span>
+            <#else>
+                <span class="notice-card__object-last" style="background-color: green; color: #FFF; display: inline-block; padding: 3px 8px; border-radius: 15px; min-width: 60px; text-align: center;">
+                    无
+                </span>
+            </#if>
+            <span class="notice-card__object-last" style="color: #999; display: inline-block; padding: 0 5px;"> → </span>
+            <#if data.codeitem("STATE")?? && data.codeitem("STATE").getColor()??>
+                <#assign statecodeitem = data.codeitem("STATE")>
+                <span class="notice-card__object-last" style="background-color: ${statecodeitem.getColor()}; color: #FFF; display: inline-block; padding: 3px 8px; border-radius: 15px; min-width: 60px; text-align: center;">
+                    ${statecodeitem.text}
+                </span>
+            <#else>
+                <span class="notice-card__object-last" style="background-color: #fac858; color: #FFF; display: inline-block; padding: 3px 8px; border-radius: 15px; min-width: 60px; text-align: center;">
+                    ${data.statetext}
+                </span>
+            </#if>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 项目管理 · ${data.project_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"project_archived_or_activate",
+    "template_name":"项目通知模板(归档/激活项目)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><#if data.is_archived==1>归档<#else>激活</#if>了项目</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.name}">${data.name}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 项目管理 · ${data.name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"test_case_maintainer",
+    "template_name":"测试用例通知模板(分配维护人)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">给你分配了测试用例</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+			<#if data.show_identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.show_identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.title}">${data.title}</span>
+        </div>
+		
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 测试管理 · ${data.test_library_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"space_archived_or_activate",
+    "template_name":"空间通知模板(归档/激活空间)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><#if data.is_archived==1>归档<#else>激活</#if>了空间</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.name}">${data.name}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 知识管理 · ${data.name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"product_archived_or_activate",
+    "template_name":"产品通知模板(归档/激活产品)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><#if data.is_archived==1>归档<#else>激活</#if>了产品</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.name}">${data.name}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 产品管理 · ${data.name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"library_member_create",
+    "template_name":"测试库通知模板(加入测试库成员)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.create_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.create_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">把你加入了测试库</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.library_identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.library_identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.library_name}">${data.library_name}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.create_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 测试管理 · ${data.library_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"product_remove_or_recover",
+    "template_name":"产品通知模板(删除/恢复产品)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><#if data.is_deleted==1>删除<#else>恢复</#if>了产品</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.name}">${data.name}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 产品管理 · ${data.name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"ticket_archived_or_activate",
+    "template_name":"工单通知模板(归档/激活工单)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><#if data.is_archived==1>归档<#else>激活</#if>了工单</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.show_identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.show_identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.title}">${data.title}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 产品管理 · ${data.product_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"comment_ticket",
+    "template_name":"评论工单通知模板",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">评论了<#if data.principal_type == 'WORK_ITEM'>${data.parent("principal_id").work_item_type_name}<#elseif data.principal_type == 'IDEA'>需求<#elseif data.principal_type == 'TICKET'>工单<#elseif data.principal_type == 'TEST_CASE'>测试用例<#elseif data.principal_type == 'CUSTOMER'>客户<#elseif data.principal_type == 'RUN'>执行用例</#if></span>
+            </div>
+        </div>
+		<#if data.parent("principal_id")??>
+			<#assign parent= data.parent("principal_id")>
+				<div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+					<#if parent.show_identifier??>
+						<span class="notice-card__object-id" style="color: #999; font-size:14px;">${parent.show_identifier}</span>
+					</#if>
+					<#if data.principal_type == 'CUSTOMER' || data.principal_type == 'PAGE'>
+						<span class="notice-card__object-name" title="${parent.name}">${parent.name}</span>
+					<#else>
+						<span class="notice-card__object-name" title="${parent.title}">${parent.title}</span>
+					</#if>		
+				</div>
+			<#assign content = data.content?replace('<img[^>]*>', '[图片]', 'r')?replace('<p[^>]*>', '', 'r')?replace('</?p[^>]*>', '', 'r')>
+			<#assign regex = "(\\@\\{.*?\\})">
+				<#list content?matches(regex) as match>
+					<#assign jsonStr = match>
+                                                  <#assign jsonObject = (jsonStr?replace("@", ""))?eval>  
+							<#if jsonObject.name??>
+								<#assign name = jsonObject.name>
+									<#assign content = content?replace(jsonStr, "<span class='comment-tag'>@" + name + "</span>")>
+							</#if>
+				</#list>
+			<#assign regex = "\\#\\{\"id\":\"(.*?)\",\"name\":\"(.+?)\",\"identifier\":\"(.+?)\",\"icon\":\"((.|[\\t\\r\\f\\n\\s])+?)\"\\}">
+				<#list content?matches(regex) as match>
+					<#assign jsonStr = match>
+                                                     <#assign content = content?replace(jsonStr,"<span class='comment-tag'>" + match?groups[4]+ match?groups[3] + match?groups[2] + "</span>")>
+				</#list>
+			<div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;max-height: 50px;">
+				<span class="notice-card__object-name">${content}</span>
+			</div>
+		</#if>
+		<#if parent.parent("project_id")??>
+		<#assign project= parent.parent("project_id")>
+			<div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 项目管理 · ${project.name}</span></div>
+		<#elseif parent.parent("product_id")??>
+        <#assign product= parent.parent("product_id")>
+			<div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 产品管理 · ${product.name}</span></div>
+		<#elseif parent.parent("plan_id")??>
+        <#assign plan= parent.parent("plan_id")>
+			<div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 测试管理 · ${plan.library_name}</span></div>
+		<#elseif parent.parent("test_library_id")??>
+        <#assign library= parent.parent("test_library_id")>
+			<div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 测试管理 · ${library.name}</span></div>
+		<#elseif parent.parent("space_id")??>
+        <#assign space= parent.parent("space_id")>
+			<div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 知识库管理 · ${space.name}</span></div>
+		</#if>
+    </div>
+</div>"
+  },
+  {
+    "tid":"customer_assignee_onchange",
+    "template_name":"客户通知模板(变更负责人)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">变更了客户的负责人</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <span class="notice-card__object-name" title="${data.name}">${data.name}</span>
+        </div>
+		
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 产品管理 · ${data.product_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"ticket_remove_or_recover",
+    "template_name":"工单通知模板(删除/恢复工单)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><#if data.is_deleted==1>删除<#else>恢复</#if>了工单</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.show_identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.show_identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.title}">${data.title}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 产品管理 · ${data.product_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"idea_remove_or_recover",
+    "template_name":"需求通知模板(删除/恢复需求)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><#if data.is_deleted==1>删除<#else>恢复</#if>了需求</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.show_identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.show_identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.title}">${data.title}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 产品管理 · ${data.product_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"project_change_assignee",
+    "template_name":"项目通知模板(变更负责人)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">变更了项目的负责人</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.name}">${data.name}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 项目管理 · ${data.name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"idea_archived_or_activate",
+    "template_name":"需求通知模板(归档/激活需求)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><#if data.is_archived==1>归档<#else>激活</#if>了需求</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.show_identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.show_identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.title}">${data.title}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 产品管理 · ${data.product_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"project_remove_or_recover",
+    "template_name":"项目通知模板(删除/恢复项目)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><#if data.is_deleted==1>删除<#else>恢复</#if>了项目</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.name}">${data.name}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 项目管理 · ${data.name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"customer_remove",
+    "template_name":"客户通知模板(删除客户)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">删除了客户</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <span class="notice-card__object-name" title="${data.name}">${data.name}</span>
+        </div>
+		
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 产品管理 · ${data.product_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"notice_attention_idea",
+    "template_name":"提醒关注产品需求通知模板",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+			    <div class="notice-card__avatar" style="flex-shrink: 0;">
+			        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+			    </div>
+			    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+			        <div class="notice-card__event">
+			            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+	<span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+<span class="notice-card__event-name" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">提醒你关注<#if data.owner_type == 'WORK_ITEM'>${data.parent("owner_id").work_item_type_name}<#elseif data.owner_type == 'IDEA'>需求<#elseif data.owner_type== 'TICKET'>工单<#elseif data.owner_type== 'TEST_CASE'>测试用例<#elseif data.owner_type == 'CUSTOMER'>客户<#elseif data.owner_type == 'RUN'>执行用例<#elseif data.owner_type == 'PAGE'>页面</#if></span></div>
+        </div>
+<#if data.parent("owner_id")??>
+<#assign parent= data.parent("owner_id")>
+        <div class="notice-card-object" style="display: inline-block;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 100%;">
+<span class="notice-card__object-id" style="color: #999; font-size: 14px;"><#if parent.show_identifier??>${parent.show_identifier}</#if></span>
+<#if data.owner_type == 'CUSTOMER' || data.owner_type == 'PAGE'>
+<span class="object-name" title="${parent.name}"> ${parent.name}</span>
+<#else>
+<span class="object-name" title="${parent.title}"> ${parent.title}</span></#if>
+
+        </div>
+    <#if parent.parent("project_id")??>
+    <#assign project= parent.parent("project_id")>
+        <div class="notice-card-pilot" style="font-size: 12px;color: #999;text-transform: lowercase;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 项目管理 · ${project.name}</span></div>
+    <#elseif parent.parent("product_id")??>
+        <#assign product= parent.parent("product_id")>
+  <div class="notice-card-pilot" style="font-size: 12px;color: #999;text-transform: lowercase;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 产品管理 · ${product.name}</span></div>
+    <#elseif parent.parent("plan_id")??>
+        <#assign plan = parent.parent("plan_id")>
+  <div class="notice-card-pilot" style="font-size: 12px;color: #999;text-transform: lowercase;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 测试管理 · ${plan.library_name}</span></div>
+    <#elseif parent.parent("test_library_id")??>
+        <#assign library= parent.parent("test_library_id")>
+  <div class="notice-card-pilot" style="font-size: 12px;color: #999;text-transform: lowercase;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 测试管理 · ${library.name}</span></div>
+    </#if>
+    </div>
+    </#if>
+</div>"
+  },
+  {
+    "tid":"library_archived_or_activate",
+    "template_name":"测试库通知模板(归档/激活测试库)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><#if data.is_archived==1>归档<#else>激活</#if>了测试库</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.name}">${data.name}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 测试管理 · ${data.name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"comment_test_case",
+    "template_name":"评论测试用例通知模板",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">评论了<#if data.principal_type == 'WORK_ITEM'>${data.parent("principal_id").work_item_type_name}<#elseif data.principal_type == 'IDEA'>需求<#elseif data.principal_type == 'TICKET'>工单<#elseif data.principal_type == 'TEST_CASE'>测试用例<#elseif data.principal_type == 'CUSTOMER'>客户<#elseif data.principal_type == 'RUN'>执行用例</#if></span>
+            </div>
+        </div>
+		<#if data.parent("principal_id")??>
+			<#assign parent= data.parent("principal_id")>
+				<div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+					<#if parent.show_identifier??>
+						<span class="notice-card__object-id" style="color: #999; font-size:14px;">${parent.show_identifier}</span>
+					</#if>
+					<#if data.principal_type == 'CUSTOMER' || data.principal_type == 'PAGE'>
+						<span class="notice-card__object-name" title="${parent.name}">${parent.name}</span>
+					<#else>
+						<span class="notice-card__object-name" title="${parent.title}">${parent.title}</span>
+					</#if>		
+				</div>
+			<#assign content = data.content?replace('<img[^>]*>', '[图片]', 'r')?replace('<p[^>]*>', '', 'r')?replace('</?p[^>]*>', '', 'r')>
+			<#assign regex = "(\\@\\{.*?\\})">
+				<#list content?matches(regex) as match>
+					<#assign jsonStr = match>
+                                                  <#assign jsonObject = (jsonStr?replace("@", ""))?eval>  
+							<#if jsonObject.name??>
+								<#assign name = jsonObject.name>
+									<#assign content = content?replace(jsonStr, "<span class='comment-tag'>@" + name + "</span>")>
+							</#if>
+				</#list>
+			<#assign regex = "\\#\\{\"id\":\"(.*?)\",\"name\":\"(.+?)\",\"identifier\":\"(.+?)\",\"icon\":\"((.|[\\t\\r\\f\\n\\s])+?)\"\\}">
+				<#list content?matches(regex) as match>
+					<#assign jsonStr = match>
+                                                     <#assign content = content?replace(jsonStr,"<span class='comment-tag'>" + match?groups[4]+ match?groups[3] + match?groups[2] + "</span>")>
+				</#list>
+			<div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;max-height: 50px;">
+				<span class="notice-card__object-name">${content}</span>
+			</div>
+		</#if>
+		<#if parent.parent("project_id")??>
+		<#assign project= parent.parent("project_id")>
+			<div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 项目管理 · ${project.name}</span></div>
+		<#elseif parent.parent("product_id")??>
+        <#assign product= parent.parent("product_id")>
+			<div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 产品管理 · ${product.name}</span></div>
+		<#elseif parent.parent("plan_id")??>
+        <#assign plan= parent.parent("plan_id")>
+			<div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 测试管理 · ${plan.library_name}</span></div>
+		<#elseif parent.parent("test_library_id")??>
+        <#assign library= parent.parent("test_library_id")>
+			<div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 测试管理 · ${library.name}</span></div>
+		<#elseif parent.parent("space_id")??>
+        <#assign space= parent.parent("space_id")>
+			<div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 知识库管理 · ${space.name}</span></div>
+		</#if>
+    </div>
+</div>"
+  },
+  {
+    "tid":"test_case_remove_or_recover",
+    "template_name":"测试用例通知模板(删除/恢复测试用例)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><#if data.is_deleted==1>删除<#else>恢复</#if>了测试用例</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+			<#if data.show_identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.show_identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.title}">${data.title}</span>
+        </div>
+		
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 测试管理 · ${data.test_library_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"notice_attention_test_case",
+    "template_name":"提醒关注测试用例通知模板",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+			    <div class="notice-card__avatar" style="flex-shrink: 0;">
+			        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+			    </div>
+			    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+			        <div class="notice-card__event">
+			            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+	<span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+<span class="notice-card__event-name" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">提醒你关注<#if data.owner_type == 'WORK_ITEM'>${data.parent("owner_id").work_item_type_name}<#elseif data.owner_type == 'IDEA'>需求<#elseif data.owner_type== 'TICKET'>工单<#elseif data.owner_type== 'TEST_CASE'>测试用例<#elseif data.owner_type == 'CUSTOMER'>客户<#elseif data.owner_type == 'RUN'>执行用例<#elseif data.owner_type == 'PAGE'>页面</#if></span></div>
+        </div>
+<#if data.parent("owner_id")??>
+<#assign parent= data.parent("owner_id")>
+        <div class="notice-card-object" style="display: inline-block;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 100%;">
+<span class="notice-card__object-id" style="color: #999; font-size: 14px;"><#if parent.show_identifier??>${parent.show_identifier}</#if></span>
+<#if data.owner_type == 'CUSTOMER' || data.owner_type == 'PAGE'>
+<span class="object-name" title="${parent.name}"> ${parent.name}</span>
+<#else>
+<span class="object-name" title="${parent.title}"> ${parent.title}</span></#if>
+
+        </div>
+    <#if parent.parent("project_id")??>
+    <#assign project= parent.parent("project_id")>
+        <div class="notice-card-pilot" style="font-size: 12px;color: #999;text-transform: lowercase;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 项目管理 · ${project.name}</span></div>
+    <#elseif parent.parent("product_id")??>
+        <#assign product= parent.parent("product_id")>
+  <div class="notice-card-pilot" style="font-size: 12px;color: #999;text-transform: lowercase;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 产品管理 · ${product.name}</span></div>
+    <#elseif parent.parent("plan_id")??>
+        <#assign plan = parent.parent("plan_id")>
+  <div class="notice-card-pilot" style="font-size: 12px;color: #999;text-transform: lowercase;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 测试管理 · ${plan.library_name}</span></div>
+    <#elseif parent.parent("test_library_id")??>
+        <#assign library= parent.parent("test_library_id")>
+  <div class="notice-card-pilot" style="font-size: 12px;color: #999;text-transform: lowercase;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 测试管理 · ${library.name}</span></div>
+    </#if>
+    </div>
+    </#if>
+</div>"
+  },
+  {
+    "tid":"test_plan_assignee",
+    "template_name":"测试计划通知模板(分配负责人)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">给你分配了测试计划</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <span class="notice-card__object-name" title="${data.name}">${data.name}</span>
+        </div>
+		
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 测试管理 · ${data.library_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"test_case_maintainer_cancel",
+    "template_name":"测试用例通知模板(取消分配维护人)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">取消分配了测试用例</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+			<#if data.show_identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.show_identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.title}">${data.title}</span>
+        </div>
+		
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 测试管理 · ${data.test_library_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"space_member_remove",
+    "template_name":"知识库通知模板(移除空间成员)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">把你移除了空间</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <span class="notice-card__object-name" title="${data.space_name}">${data.space_name}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 知识管理 · ${data.space_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"idea_state_onchange",
+    "template_name":"需求通知模板(状态变更)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">更改了需求状态</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.show_identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.show_identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.title}">${data.title}</span>
+        </div>
+		<div class="notice-card__object" style="font-size: 12px;margin-bottom:5px;">
+            <#if last.codeitem("STATE")?? && last.codeitem("STATE").getColor()??>
+                <#assign laststatecodeitem = last.codeitem("STATE")>
+                <span class="notice-card__object-last" style="background-color: ${laststatecodeitem.getColor()}; color: #FFF; display: inline-block; padding: 3px 8px; border-radius: 15px; min-width: 60px; text-align: center;">
+                    ${laststatecodeitem.text}
+                </span>
+            <#else>
+                <span class="notice-card__object-last" style="background-color: green; color: #FFF; display: inline-block; padding: 3px 8px; border-radius: 15px; min-width: 60px; text-align: center;">
+                    无
+                </span>
+            </#if>
+            <span class="notice-card__object-last" style="color: #999; display: inline-block; padding: 0 5px;"> → </span>
+            <#if data.codeitem("STATE")?? && data.codeitem("STATE").getColor()??>
+                <#assign statecodeitem = data.codeitem("STATE")>
+                <span class="notice-card__object-last" style="background-color: ${statecodeitem.getColor()}; color: #FFF; display: inline-block; padding: 3px 8px; border-radius: 15px; min-width: 60px; text-align: center;">
+                    ${statecodeitem.text}
+                </span>
+            <#else>
+                <span class="notice-card__object-last" style="background-color: #fac858; color: #FFF; display: inline-block; padding: 3px 8px; border-radius: 15px; min-width: 60px; text-align: center;">
+                    ${data.statetext}
+                </span>
+            </#if>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 产品管理 · ${data.product_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"run_executor",
+    "template_name":"执行用例通知模板(设置执行人)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">给你分配了执行用例</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+			<#if data.identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.library_name}">${data.library_name}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 测试管理 · ${data.library_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"project_member_remove",
+    "template_name":"项目通知模板(移除项目成员)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">把你移除了项目</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.project_identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.project_identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.project_name}">${data.project_name}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 项目管理 · ${data.project_name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"project_state_change",
+    "template_name":"项目通知模板(项目状态变更)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">更改了项目状态</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.name}">${data.name}</span>
+        </div>
+		<div class="notice-card__object" style="font-size: 12px;margin-bottom:5px;">
+            <#if last.codeitem("STATE")?? && last.codeitem("STATE").getColor()??>
+                <#assign laststatecodeitem = last.codeitem("STATE")>
+                <span class="notice-card__object-last" style="background-color: ${laststatecodeitem.getColor()}; color: #FFF; display: inline-block; padding: 3px 8px; border-radius: 15px; min-width: 60px; text-align: center;">
+                    ${laststatecodeitem.text}
+                </span>
+            <#else>
+                <span class="notice-card__object-last" style="background-color: green; color: #FFF; display: inline-block; padding: 3px 8px; border-radius: 15px; min-width: 60px; text-align: center;">
+                    无
+                </span>
+            </#if>
+            <span class="notice-card__object-last" style="color: #999; display: inline-block; padding: 0 5px;"> → </span>
+            <#if data.codeitem("STATE")?? && data.codeitem("STATE").getColor()??>
+                <#assign statecodeitem = data.codeitem("STATE")>
+                <span class="notice-card__object-last" style="background-color: ${statecodeitem.getColor()}; color: #FFF; display: inline-block; padding: 3px 8px; border-radius: 15px; min-width: 60px; text-align: center;">
+                    ${statecodeitem.text}
+                </span>
+            <#else>
+                <span class="notice-card__object-last" style="background-color: #fac858; color: #FFF; display: inline-block; padding: 3px 8px; border-radius: 15px; min-width: 60px; text-align: center;">
+                    ${data.statetext}
+                </span>
+            </#if>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 项目管理 · ${data.name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"notice_attention_page",
+    "template_name":"提醒关注页面通知模板",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+			    <div class="notice-card__avatar" style="flex-shrink: 0;">
+			        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+			    </div>
+			    <div class="notice-card__content" style="flex-grow: 1;">
+			        <div class="notice-card__event">
+			            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+	<span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+<span class="notice-card__event-name" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">提醒你关注页面</span></div>
+        </div>
+<#if data.parent("owner_id")??>
+<#assign parent= data.parent("owner_id")>
+        <div class="notice-card-object" style="display: inline-block;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 100%;">
+<span class="notice-card__object-id" style="color: #999; font-size: 14px;"><#if parent.show_identifier??>${parent.show_identifier}</#if></span>
+<span class="object-name" title="${parent.name}"> ${parent.name}</span>
+</div>
+<#if parent.parent("space_id")??>
+        <#assign space= parent.parent("space_id")>
+  <div class="notice-card-pilot" style="font-size: 12px;color: #999;text-transform: lowercase;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 知识管理 · ${space.name}</span></div>
+    </#if>
+    </div>
+    </#if>
+</div>"
+  },
+  {
+    "tid":"notice_attention_customer",
+    "template_name":"提醒关注客户通知模板",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+			    <div class="notice-card__avatar" style="flex-shrink: 0;">
+			        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+			    </div>
+			    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+			        <div class="notice-card__event">
+			            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+	<span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+<span class="notice-card__event-name" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">提醒你关注<#if data.owner_type == 'WORK_ITEM'>${data.parent("owner_id").work_item_type_name}<#elseif data.owner_type == 'IDEA'>需求<#elseif data.owner_type== 'TICKET'>工单<#elseif data.owner_type== 'TEST_CASE'>测试用例<#elseif data.owner_type == 'CUSTOMER'>客户<#elseif data.owner_type == 'RUN'>执行用例<#elseif data.owner_type == 'PAGE'>页面</#if></span></div>
+        </div>
+<#if data.parent("owner_id")??>
+<#assign parent= data.parent("owner_id")>
+        <div class="notice-card-object" style="display: inline-block;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 100%;">
+<span class="notice-card__object-id" style="color: #999; font-size: 14px;"><#if parent.show_identifier??>${parent.show_identifier}</#if></span>
+<#if data.owner_type == 'CUSTOMER' || data.owner_type == 'PAGE'>
+<span class="object-name" title="${parent.name}"> ${parent.name}</span>
+<#else>
+<span class="object-name" title="${parent.title}"> ${parent.title}</span></#if>
+
+        </div>
+    <#if parent.parent("project_id")??>
+    <#assign project= parent.parent("project_id")>
+        <div class="notice-card-pilot" style="font-size: 12px;color: #999;text-transform: lowercase;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 项目管理 · ${project.name}</span></div>
+    <#elseif parent.parent("product_id")??>
+        <#assign product= parent.parent("product_id")>
+  <div class="notice-card-pilot" style="font-size: 12px;color: #999;text-transform: lowercase;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 产品管理 · ${product.name}</span></div>
+    <#elseif parent.parent("plan_id")??>
+        <#assign plan = parent.parent("plan_id")>
+  <div class="notice-card-pilot" style="font-size: 12px;color: #999;text-transform: lowercase;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 测试管理 · ${plan.library_name}</span></div>
+    <#elseif parent.parent("test_library_id")??>
+        <#assign library= parent.parent("test_library_id")>
+  <div class="notice-card-pilot" style="font-size: 12px;color: #999;text-transform: lowercase;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 测试管理 · ${library.name}</span></div>
+    </#if>
+    </div>
+    </#if>
+</div>"
+  },
+  {
+    "tid":"project_set_remove_recover",
+    "template_name":"项目集删除/恢复通知模板",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><#if data.is_deleted==1>删除<#else>恢复</#if>了项目集</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.name}">${data.name}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 项目管理 · ${data.name}</span>
+        </div>
+    </div>
+</div>"
+  },
+  {
+    "tid":"work_item_ai_chat_history",
+    "template_name":"工作项AIChat历史",
+    "content":"<user>
+<![CDATA[
+你是我的AI助手，为我提供相关工作项的建议
+]]>
+</user>
+<assistant>
+<![CDATA[
+明白，我是你的工作项AI助手
+]]>
+</assistant>
+<user>
+<![CDATA[
+工作项[${data.name}]，来自项目[${data.project_name}]。工作内容如下：
+${data.description}
+]]>
+</user>
+<assistant>
+<![CDATA[
+好的，我已对工作项[${data.name}]有了初步的了解
+]]>
+</assistant>
+<%
+def list = data.children("COMMENT");
+if(list) {%>
+<user>
+<![CDATA[
+对于该工作项，存在以下评论，我将逐一向你介绍。
+]]>
+</user>
+<assistant>
+<![CDATA[
+明白，我会参考相关的评论意见
+]]>
+</assistant>
+<% list.each {%>
+<user>
+<![CDATA[
+用户[${it.codelisttext("update_man")}]于[${it.get("update_time", "未知时间")}]发表下述评论：
+${it.get("content", "")}
+]]>
+</user>
+<assistant>
+<![CDATA[
+明白
+]]>
+</assistant>
+<%}
+}
+%>"
+  },
+  {
+    "tid":"work_item_assignee_onchange",
+    "template_name":"工作项通知模板(变更负责人)",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+    <div class="notice-card__avatar" style="flex-shrink: 0;">
+        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+    </div>
+    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+        <div class="notice-card__event">
+            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+                <span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+                <span class="notice-card__event-desc" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">变更了${data.work_item_type_name}的负责人</span>
+            </div>
+        </div>
+        <div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+            <#if data.show_identifier??>
+                <span class="notice-card__object-id" style="color: #999; font-size:14px;">${data.show_identifier}</span>
+            </#if>
+            <span class="notice-card__object-name" title="${data.title}">${data.title}</span>
+        </div>
+        <div class="notice-card-pilot" style="font-size: 12px; color: #999; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <span class="notice-pilot-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span>
+            <span class="notice-pilot-info"> · 项目管理 · ${data.project_name}</span>
+        </div>
+    </div>
+</div>"
+  }
+]  

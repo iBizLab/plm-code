@@ -23,12 +23,14 @@ import java.util.stream.IntStream;
 import cn.ibizlab.util.domain.ImportResult;
 import cn.ibizlab.util.domain.RequestWrapper;
 import cn.ibizlab.util.domain.ResponseWrapper;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.serviceapi.dto.*;
 import cn.ibizlab.plm.serviceapi.mapping.*;
 import cn.ibizlab.plm.core.base.domain.Work;
 import cn.ibizlab.plm.core.base.service.WorkService;
 import cn.ibizlab.plm.core.base.filter.WorkSearchContext;
 import cn.ibizlab.util.annotation.VersionCheck;
+import reactor.core.publisher.Mono;
 
 /**
  * 实体[Work] rest实现
@@ -54,19 +56,19 @@ public abstract class AbstractWorkResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<WorkDTO>
+    * @return Mono<ResponseEntity<WorkDTO>>
     */
     @ApiOperation(value = "创建Create", tags = {"工作" },  notes = "Work-Create ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Work-Create-all') or hasPermission(this.workDtoMapping.toDomain(#dto),'ibizplm-Work-Create')")
     @PostMapping("works")
-    public ResponseEntity<ResponseWrapper<WorkDTO>> create
+    public Mono<ResponseEntity<ResponseWrapper<WorkDTO>>>create
             (@Validated @RequestBody RequestWrapper<WorkDTO> dto) {
         ResponseWrapper<WorkDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(create(item)));
         else
             rt.set(create(dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -90,13 +92,13 @@ public abstract class AbstractWorkResource {
     *
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<WorkDTO>
+    * @return Mono<ResponseEntity<WorkDTO>>
     */
     @ApiOperation(value = "更新Update", tags = {"工作" },  notes = "Work-Update ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Work-Update-all') or hasPermission(this.workService.get(#id),'ibizplm-Work-Update')")
     @VersionCheck(entity = "work" , versionfield = "updateTime")
     @PutMapping("works/{id}")
-    public ResponseEntity<ResponseWrapper<WorkDTO>> updateById
+    public Mono<ResponseEntity<ResponseWrapper<WorkDTO>>>updateById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<WorkDTO> dto) {
         ResponseWrapper<WorkDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -105,7 +107,7 @@ public abstract class AbstractWorkResource {
         }
         else
             rt.set(updateById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -131,11 +133,11 @@ public abstract class AbstractWorkResource {
     *
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<WorkDTO>
+    * @return Mono<ResponseEntity<WorkDTO>>
     */
     @ApiOperation(value = "add_project", tags = {"工作" },  notes = "Work-add_project ")
     @PostMapping("works/{id}/add_project")
-    public ResponseEntity<ResponseWrapper<WorkDTO>> addProjectById
+    public Mono<ResponseEntity<ResponseWrapper<WorkDTO>>>addProjectById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<WorkDTO> dto) {
         ResponseWrapper<WorkDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -144,7 +146,7 @@ public abstract class AbstractWorkResource {
         }
         else
             rt.set(addProjectById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -169,11 +171,11 @@ public abstract class AbstractWorkResource {
     *
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<WorkDTO>
+    * @return Mono<ResponseEntity<WorkDTO>>
     */
     @ApiOperation(value = "add_project_portfolio", tags = {"工作" },  notes = "Work-add_project_portfolio ")
     @PostMapping("works/{id}/add_project_portfolio")
-    public ResponseEntity<ResponseWrapper<WorkDTO>> addProjectPortfolioById
+    public Mono<ResponseEntity<ResponseWrapper<WorkDTO>>>addProjectPortfolioById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<WorkDTO> dto) {
         ResponseWrapper<WorkDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -182,7 +184,7 @@ public abstract class AbstractWorkResource {
         }
         else
             rt.set(addProjectPortfolioById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -206,19 +208,19 @@ public abstract class AbstractWorkResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<WorkDTO>
+    * @return Mono<ResponseEntity<WorkDTO>>
     */
     @ApiOperation(value = "保存Save", tags = {"工作" },  notes = "Work-Save ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Work-Save-all') or hasPermission(this.workDtoMapping.toDomain(#dto),'ibizplm-Work-Save')")
     @PostMapping("works/save")
-    public ResponseEntity<ResponseWrapper<WorkDTO>> save
+    public Mono<ResponseEntity<ResponseWrapper<WorkDTO>>>save
             (@Validated @RequestBody RequestWrapper<WorkDTO> dto) {
         ResponseWrapper<WorkDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(save(item)));
         else
             rt.set(save(dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -242,19 +244,19 @@ public abstract class AbstractWorkResource {
     *
     * @param portfolioId portfolioId
     * @param dto dto
-    * @return ResponseEntity<WorkDTO>
+    * @return Mono<ResponseEntity<WorkDTO>>
     */
     @ApiOperation(value = "创建Create", tags = {"工作" },  notes = "Work-Create ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Work-Create-all') or hasPermission('portfolio',#portfolioId,this.workDtoMapping.toDomain(#dto),'ibizplm-Work-Create')")
     @PostMapping("portfolios/{portfolioId}/works")
-    public ResponseEntity<ResponseWrapper<WorkDTO>> createByPortfolioId
+    public Mono<ResponseEntity<ResponseWrapper<WorkDTO>>>createByPortfolioId
             (@PathVariable("portfolioId") String portfolioId, @Validated @RequestBody RequestWrapper<WorkDTO> dto) {
         ResponseWrapper<WorkDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(createByPortfolioId(portfolioId, item)));
         else
             rt.set(createByPortfolioId(portfolioId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -281,13 +283,13 @@ public abstract class AbstractWorkResource {
     * @param portfolioId portfolioId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<WorkDTO>
+    * @return Mono<ResponseEntity<WorkDTO>>
     */
     @ApiOperation(value = "更新Update", tags = {"工作" },  notes = "Work-Update ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Work-Update-all') or hasPermission('portfolio',#portfolioId,this.workService.get(#id),'ibizplm-Work-Update')")
     @VersionCheck(entity = "work" , versionfield = "updateTime")
     @PutMapping("portfolios/{portfolioId}/works/{id}")
-    public ResponseEntity<ResponseWrapper<WorkDTO>> updateByPortfolioIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<WorkDTO>>>updateByPortfolioIdAndId
             (@PathVariable("portfolioId") String portfolioId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<WorkDTO> dto) {
         ResponseWrapper<WorkDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -296,7 +298,7 @@ public abstract class AbstractWorkResource {
         }
         else
             rt.set(updateByPortfolioIdAndId(portfolioId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -324,11 +326,11 @@ public abstract class AbstractWorkResource {
     * @param portfolioId portfolioId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<WorkDTO>
+    * @return Mono<ResponseEntity<WorkDTO>>
     */
     @ApiOperation(value = "add_project", tags = {"工作" },  notes = "Work-add_project ")
     @PostMapping("portfolios/{portfolioId}/works/{id}/add_project")
-    public ResponseEntity<ResponseWrapper<WorkDTO>> addProjectByPortfolioIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<WorkDTO>>>addProjectByPortfolioIdAndId
             (@PathVariable("portfolioId") String portfolioId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<WorkDTO> dto) {
         ResponseWrapper<WorkDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -337,7 +339,7 @@ public abstract class AbstractWorkResource {
         }
         else
             rt.set(addProjectByPortfolioIdAndId(portfolioId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -364,11 +366,11 @@ public abstract class AbstractWorkResource {
     * @param portfolioId portfolioId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<WorkDTO>
+    * @return Mono<ResponseEntity<WorkDTO>>
     */
     @ApiOperation(value = "add_project_portfolio", tags = {"工作" },  notes = "Work-add_project_portfolio ")
     @PostMapping("portfolios/{portfolioId}/works/{id}/add_project_portfolio")
-    public ResponseEntity<ResponseWrapper<WorkDTO>> addProjectPortfolioByPortfolioIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<WorkDTO>>>addProjectPortfolioByPortfolioIdAndId
             (@PathVariable("portfolioId") String portfolioId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<WorkDTO> dto) {
         ResponseWrapper<WorkDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -377,7 +379,7 @@ public abstract class AbstractWorkResource {
         }
         else
             rt.set(addProjectPortfolioByPortfolioIdAndId(portfolioId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -403,19 +405,19 @@ public abstract class AbstractWorkResource {
     *
     * @param portfolioId portfolioId
     * @param dto dto
-    * @return ResponseEntity<WorkDTO>
+    * @return Mono<ResponseEntity<WorkDTO>>
     */
     @ApiOperation(value = "保存Save", tags = {"工作" },  notes = "Work-Save ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Work-Save-all') or hasPermission('portfolio',#portfolioId,this.workDtoMapping.toDomain(#dto),'ibizplm-Work-Save')")
     @PostMapping("portfolios/{portfolioId}/works/save")
-    public ResponseEntity<ResponseWrapper<WorkDTO>> saveByPortfolioId
+    public Mono<ResponseEntity<ResponseWrapper<WorkDTO>>>saveByPortfolioId
             (@PathVariable("portfolioId") String portfolioId, @Validated @RequestBody RequestWrapper<WorkDTO> dto) {
         ResponseWrapper<WorkDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(saveByPortfolioId(portfolioId, item)));
         else
             rt.set(saveByPortfolioId(portfolioId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -441,15 +443,15 @@ public abstract class AbstractWorkResource {
     * 
     *
     * @param id id
-    * @return ResponseEntity<WorkDTO>
+    * @return Mono<ResponseEntity<WorkDTO>>
     */
     @ApiOperation(value = "获取Get", tags = {"工作" },  notes = "Work-Get ")
-    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Work-Get-all')  or hasPermission(this.workDtoMapping.toDomain(returnObject.body),'ibizplm-Work-Get')")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Work-Get-all')  or hasPermission(this.workDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-Work-Get')")
     @GetMapping("works/{id}")
-    public ResponseEntity<WorkDTO> getById
+    public Mono<ResponseEntity<WorkDTO>> getById
             (@PathVariable("id") String id) {
         Work rt = workService.get(id);
-        return ResponseEntity.status(HttpStatus.OK).body(workDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(workDtoMapping.toDto(rt)));
     }
 
     /**
@@ -457,15 +459,15 @@ public abstract class AbstractWorkResource {
     * 
     *
     * @param id id
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @ApiOperation(value = "删除Remove", tags = {"工作" },  notes = "Work-Remove ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Work-Remove-all') or hasPermission(this.workService.get(#id),'ibizplm-Work-Remove')")
     @DeleteMapping("works/{id}")
-    public ResponseEntity<Boolean> removeById
+    public Mono<ResponseEntity<Boolean>> removeById
             (@PathVariable("id") String id) {
         Boolean rt = workService.remove(id);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -473,15 +475,15 @@ public abstract class AbstractWorkResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<Integer>
+    * @return Mono<ResponseEntity<Integer>>
     */
     @ApiOperation(value = "校验CheckKey", tags = {"工作" },  notes = "Work-CheckKey ")
     @PostMapping("works/check_key")
-    public ResponseEntity<Integer> checkKey
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKey
             (@Validated @RequestBody WorkDTO dto) {
         Work domain = workDtoMapping.toDomain(dto);
-        Integer rt = workService.checkKey(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        CheckKeyStatus rt = workService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -489,15 +491,15 @@ public abstract class AbstractWorkResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<WorkDTO>
+    * @return Mono<ResponseEntity<WorkDTO>>
     */
     @ApiOperation(value = "草稿GetDraft", tags = {"工作" },  notes = "Work-GetDraft ")
     @GetMapping("works/get_draft")
-    public ResponseEntity<WorkDTO> getDraft
+    public Mono<ResponseEntity<WorkDTO>> getDraft
             (@SpringQueryMap WorkDTO dto) {
         Work domain = workDtoMapping.toDomain(dto);
         Work rt = workService.getDraft(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(workDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(workDtoMapping.toDto(rt)));
     }
 
     /**
@@ -505,21 +507,21 @@ public abstract class AbstractWorkResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<WorkDTO>>
+    * @return Mono<ResponseEntity<List<WorkDTO>>>
     */
     @ApiOperation(value = "查询fetch_default", tags = {"工作" },  notes = "Work-fetch_default ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Work-fetch_default-all') or hasPermission(#dto,'ibizplm-Work-fetch_default')")
     @PostMapping("works/fetch_default")
-    public ResponseEntity<List<WorkDTO>> fetchDefault
+    public Mono<ResponseEntity<List<WorkDTO>>> fetchDefault
             (@Validated @RequestBody WorkFilterDTO dto) {
         WorkSearchContext context = workFilterDtoMapping.toDomain(dto);
         Page<Work> domains = workService.fetchDefault(context) ;
         List<WorkDTO> list = workDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -527,21 +529,21 @@ public abstract class AbstractWorkResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<WorkDTO>>
+    * @return Mono<ResponseEntity<List<WorkDTO>>>
     */
     @ApiOperation(value = "查询fetch_item_set_owner", tags = {"工作" },  notes = "Work-fetch_item_set_owner ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Work-fetch_item_set_owner-all') or hasPermission(#dto,'ibizplm-Work-fetch_item_set_owner')")
     @PostMapping("works/fetch_item_set_owner")
-    public ResponseEntity<List<WorkDTO>> fetchItemSetOwner
+    public Mono<ResponseEntity<List<WorkDTO>>> fetchItemSetOwner
             (@Validated @RequestBody WorkFilterDTO dto) {
         WorkSearchContext context = workFilterDtoMapping.toDomain(dto);
         Page<Work> domains = workService.fetchItemSetOwner(context) ;
         List<WorkDTO> list = workDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -550,15 +552,15 @@ public abstract class AbstractWorkResource {
     *
     * @param portfolioId portfolioId
     * @param id id
-    * @return ResponseEntity<WorkDTO>
+    * @return Mono<ResponseEntity<WorkDTO>>
     */
     @ApiOperation(value = "获取Get", tags = {"工作" },  notes = "Work-Get ")
-    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Work-Get-all')  or hasPermission('portfolio',#portfolioId,this.workDtoMapping.toDomain(returnObject.body),'ibizplm-Work-Get')")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Work-Get-all')  or hasPermission('portfolio',#portfolioId,this.workDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-Work-Get')")
     @GetMapping("portfolios/{portfolioId}/works/{id}")
-    public ResponseEntity<WorkDTO> getByPortfolioIdAndId
+    public Mono<ResponseEntity<WorkDTO>> getByPortfolioIdAndId
             (@PathVariable("portfolioId") String portfolioId, @PathVariable("id") String id) {
         Work rt = workService.get(id);
-        return ResponseEntity.status(HttpStatus.OK).body(workDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(workDtoMapping.toDto(rt)));
     }
 
     /**
@@ -567,15 +569,15 @@ public abstract class AbstractWorkResource {
     *
     * @param portfolioId portfolioId
     * @param id id
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @ApiOperation(value = "删除Remove", tags = {"工作" },  notes = "Work-Remove ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Work-Remove-all') or hasPermission('portfolio',#portfolioId,this.workService.get(#id),'ibizplm-Work-Remove')")
     @DeleteMapping("portfolios/{portfolioId}/works/{id}")
-    public ResponseEntity<Boolean> removeByPortfolioIdAndId
+    public Mono<ResponseEntity<Boolean>> removeByPortfolioIdAndId
             (@PathVariable("portfolioId") String portfolioId, @PathVariable("id") String id) {
         Boolean rt = workService.remove(id);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -584,16 +586,16 @@ public abstract class AbstractWorkResource {
     *
     * @param portfolioId portfolioId
     * @param dto dto
-    * @return ResponseEntity<Integer>
+    * @return Mono<ResponseEntity<Integer>>
     */
     @ApiOperation(value = "校验CheckKey", tags = {"工作" },  notes = "Work-CheckKey ")
     @PostMapping("portfolios/{portfolioId}/works/check_key")
-    public ResponseEntity<Integer> checkKeyByPortfolioId
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKeyByPortfolioId
             (@PathVariable("portfolioId") String portfolioId, @Validated @RequestBody WorkDTO dto) {
         Work domain = workDtoMapping.toDomain(dto);
         domain.setPortfolioId(portfolioId);
-        Integer rt = workService.checkKey(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        CheckKeyStatus rt = workService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -602,16 +604,16 @@ public abstract class AbstractWorkResource {
     *
     * @param portfolioId portfolioId
     * @param dto dto
-    * @return ResponseEntity<WorkDTO>
+    * @return Mono<ResponseEntity<WorkDTO>>
     */
     @ApiOperation(value = "草稿GetDraft", tags = {"工作" },  notes = "Work-GetDraft ")
     @GetMapping("portfolios/{portfolioId}/works/get_draft")
-    public ResponseEntity<WorkDTO> getDraftByPortfolioId
+    public Mono<ResponseEntity<WorkDTO>> getDraftByPortfolioId
             (@PathVariable("portfolioId") String portfolioId, @SpringQueryMap WorkDTO dto) {
         Work domain = workDtoMapping.toDomain(dto);
         domain.setPortfolioId(portfolioId);
         Work rt = workService.getDraft(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(workDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(workDtoMapping.toDto(rt)));
     }
 
     /**
@@ -620,22 +622,22 @@ public abstract class AbstractWorkResource {
     *
     * @param portfolioId portfolioId
     * @param dto dto
-    * @return ResponseEntity<List<WorkDTO>>
+    * @return Mono<ResponseEntity<List<WorkDTO>>>
     */
     @ApiOperation(value = "查询fetch_default", tags = {"工作" },  notes = "Work-fetch_default ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Work-fetch_default-all') or hasPermission('portfolio',#portfolioId,#dto,'ibizplm-Work-fetch_default')")
     @PostMapping("portfolios/{portfolioId}/works/fetch_default")
-    public ResponseEntity<List<WorkDTO>> fetchDefaultByPortfolioId
+    public Mono<ResponseEntity<List<WorkDTO>>> fetchDefaultByPortfolioId
             (@PathVariable("portfolioId") String portfolioId, @Validated @RequestBody WorkFilterDTO dto) {
         dto.setPortfolioIdEQ(portfolioId);
         WorkSearchContext context = workFilterDtoMapping.toDomain(dto);
         Page<Work> domains = workService.fetchDefault(context) ;
         List<WorkDTO> list = workDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -644,88 +646,88 @@ public abstract class AbstractWorkResource {
     *
     * @param portfolioId portfolioId
     * @param dto dto
-    * @return ResponseEntity<List<WorkDTO>>
+    * @return Mono<ResponseEntity<List<WorkDTO>>>
     */
     @ApiOperation(value = "查询fetch_item_set_owner", tags = {"工作" },  notes = "Work-fetch_item_set_owner ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Work-fetch_item_set_owner-all') or hasPermission('portfolio',#portfolioId,#dto,'ibizplm-Work-fetch_item_set_owner')")
     @PostMapping("portfolios/{portfolioId}/works/fetch_item_set_owner")
-    public ResponseEntity<List<WorkDTO>> fetchItemSetOwnerByPortfolioId
+    public Mono<ResponseEntity<List<WorkDTO>>> fetchItemSetOwnerByPortfolioId
             (@PathVariable("portfolioId") String portfolioId, @Validated @RequestBody WorkFilterDTO dto) {
         dto.setPortfolioIdEQ(portfolioId);
         WorkSearchContext context = workFilterDtoMapping.toDomain(dto);
         Page<Work> domains = workService.fetchItemSetOwner(context) ;
         List<WorkDTO> list = workDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
 
     /**
     * 批量新建工作
     * @param dtos
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-Work-Create-all')")
     @ApiOperation(value = "批量新建工作", tags = {"工作" },  notes = "批量新建工作")
 	@PostMapping("works/batch")
-    public ResponseEntity<Boolean> createBatch(@RequestBody List<WorkDTO> dtos) {
+    public Mono<ResponseEntity<Boolean>> createBatch(@RequestBody List<WorkDTO> dtos) {
         workService.create(workDtoMapping.toDomain(dtos));
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量删除工作
     * @param ids ids
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-Work-Remove-all')")
     @ApiOperation(value = "批量删除工作", tags = {"工作" },  notes = "批量删除工作")
 	@DeleteMapping("works/batch")
-    public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
+    public Mono<ResponseEntity<Boolean>> removeBatch(@RequestBody List<String> ids) {
         workService.remove(ids);
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量更新工作
     * @param dtos
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-Work-Update-all')")
     @ApiOperation(value = "批量更新工作", tags = {"工作" },  notes = "批量更新工作")
 	@PutMapping("works/batch")
-    public ResponseEntity<Boolean> updateBatch(@RequestBody List<WorkDTO> dtos) {
+    public Mono<ResponseEntity<Boolean>> updateBatch(@RequestBody List<WorkDTO> dtos) {
         workService.update(workDtoMapping.toDomain(dtos));
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量保存工作
     * @param dtos
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-Work-Save-all')")
     @ApiOperation(value = "批量保存工作", tags = {"工作" },  notes = "批量保存工作")
 	@PostMapping("works/savebatch")
-    public ResponseEntity<Boolean> saveBatch(@RequestBody List<WorkDTO> dtos) {
+    public Mono<ResponseEntity<Boolean>> saveBatch(@RequestBody List<WorkDTO> dtos) {
         workService.save(workDtoMapping.toDomain(dtos));
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量导入工作
     * @param config 导入模式
     * @param ignoreError 导入中忽略错误
-    * @return ResponseEntity<ImportResult>
+    * @return Mono<ResponseEntity<ImportResult>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-Work-Save-all')")
     @ApiOperation(value = "批量导入工作", tags = {"工作" },  notes = "批量导入工作")
 	@PostMapping("works/import")
-    public ResponseEntity<ImportResult> importData(@RequestParam(value = "config" , required = false) String config ,@RequestParam(value = "ignoreerror", required = false, defaultValue = "true") Boolean ignoreError ,@RequestBody List<WorkDTO> dtos) {
-        return  ResponseEntity.status(HttpStatus.OK).body(workService.importData(config,ignoreError,workDtoMapping.toDomain(dtos)));
+    public Mono<ResponseEntity<ImportResult>> importData(@RequestParam(value = "config" , required = false) String config ,@RequestParam(value = "ignoreerror", required = false, defaultValue = "true") Boolean ignoreError ,@RequestBody List<WorkDTO> dtos) {
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(workService.importData(config,ignoreError,workDtoMapping.toDomain(dtos))));
     }
 
 }

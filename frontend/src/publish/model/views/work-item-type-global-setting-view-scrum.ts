@@ -186,7 +186,6 @@ export default {
                         allowEmpty: true,
                         hidden: true,
                         caption: '文本(动态)',
-                        itemStyle: 'DEFAULT',
                         itemType: 'FIELD',
                         layoutPos: {
                           shrink: 1,
@@ -205,7 +204,6 @@ export default {
                         allowEmpty: true,
                         hidden: true,
                         caption: '文本(动态)',
-                        itemStyle: 'DEFAULT',
                         itemType: 'FIELD',
                         layoutPos: {
                           shrink: 1,
@@ -356,7 +354,7 @@ export default {
                                 layout: {
                                   dir: 'row-reverse',
                                   layout: 'FLEX',
-                                  valign: 'center',
+                                  valign: 'flex-end',
                                 },
                                 dataRegionType: 'INHERIT',
                                 caption: '容器',
@@ -768,6 +766,23 @@ export default {
                           shrink: 1,
                           layout: 'FLEX',
                         },
+                        panelItemGroupLogics: [
+                          {
+                            logicCat: 'PANELVISIBLE',
+                            relatedItemNames: ['id'],
+                            groupOP: 'AND',
+                            panelItemLogics: [
+                              {
+                                condOp: 'ISNULL',
+                                dstModelField: 'id',
+                                logicType: 'SINGLE',
+                                id: '逻辑项',
+                              },
+                            ],
+                            logicType: 'GROUP',
+                            id: '面板成员[container_grid2][面板显示]逻辑',
+                          },
+                        ],
                         id: 'container_grid2',
                       },
                       {
@@ -1138,6 +1153,23 @@ export default {
                           shrink: 1,
                           layout: 'FLEX',
                         },
+                        panelItemGroupLogics: [
+                          {
+                            logicCat: 'PANELVISIBLE',
+                            relatedItemNames: ['id'],
+                            groupOP: 'AND',
+                            panelItemLogics: [
+                              {
+                                condOp: 'ISNULL',
+                                dstModelField: 'id',
+                                logicType: 'SINGLE',
+                                id: '逻辑项',
+                              },
+                            ],
+                            logicType: 'GROUP',
+                            id: '面板成员[container_grid4][面板显示]逻辑',
+                          },
+                        ],
                         id: 'container_grid4',
                       },
                     ],
@@ -1185,6 +1217,9 @@ export default {
               colMD: 24,
               layout: 'TABLE_24COL',
             },
+            sysCss: {
+              cssName: 'work_item_type_global_style',
+            },
             id: 'page_container',
           },
         ],
@@ -1200,12 +1235,12 @@ export default {
       },
       delistDataItems: [
         {
-          dataType: 21,
-          id: 'icon',
-        },
-        {
           dataType: 25,
           id: 'id',
+        },
+        {
+          dataType: 21,
+          id: 'icon',
         },
         {
           dataType: 25,

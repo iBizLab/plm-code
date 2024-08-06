@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.prodmgmt.domain.ProductMember;
 import cn.ibizlab.plm.core.prodmgmt.filter.ProductMemberSearchContext;
 import cn.ibizlab.plm.core.prodmgmt.domain.Product;
@@ -139,7 +140,7 @@ public interface ProductMemberService extends IService<ProductMember> {
     * @param et
     * @return
     */
-    Integer checkKey(ProductMember et);
+    CheckKeyStatus checkKey(ProductMember et);
 
     /**
     * 保存
@@ -224,8 +225,15 @@ public interface ProductMemberService extends IService<ProductMember> {
     */
     List<ProductMember> findByProductId(List<String> productIds);
     default List<ProductMember> findByProductId(String productId){
-        return findByProductId(Arrays.asList(productId));
+        return findByProduct(new Product().setId(productId));
     }
+
+    /**
+    * findByProduct
+    * @param product
+    * @return
+    */
+    List<ProductMember> findByProduct(Product product);
 
     /**
     * removeByProductId
@@ -266,8 +274,15 @@ public interface ProductMemberService extends IService<ProductMember> {
     */
     List<ProductMember> findByUserId(List<String> userIds);
     default List<ProductMember> findByUserId(String userId){
-        return findByUserId(Arrays.asList(userId));
+        return findByUser(new User().setId(userId));
     }
+
+    /**
+    * findByUser
+    * @param user
+    * @return
+    */
+    List<ProductMember> findByUser(User user);
 
     /**
     * removeByUserId
@@ -300,6 +315,22 @@ public interface ProductMemberService extends IService<ProductMember> {
     * @return
     */
     boolean saveByUser(User user, List<ProductMember> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<ProductMember> fetchView(ProductMemberSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<ProductMember> listView(ProductMemberSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<ProductMember> list) {

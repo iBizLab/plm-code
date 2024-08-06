@@ -78,6 +78,25 @@ public interface PortfolioMemberMapper extends BaseMapper<PortfolioMember> {
     List<PortfolioMember> findByUserId(@Param("userIds") List<String> userIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<PortfolioMember> searchView(IPage<PortfolioMember> page, @Param("ctx") PortfolioMemberSearchContext context, @Param("ew") Wrapper<PortfolioMember> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<PortfolioMember> listView(@Param("ctx") PortfolioMemberSearchContext context, @Param("ew") Wrapper<PortfolioMember> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

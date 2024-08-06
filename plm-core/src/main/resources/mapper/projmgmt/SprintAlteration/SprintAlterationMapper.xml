@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper	namespace="cn.ibizlab.plm.core.projmgmt.mapper.SprintAlterationMapper">
+
+        <!--通过mybatis将查询结果注入到entity中,通过配置autoMapping="true"由mybatis自动处理映射关系 -->
+    <resultMap id="SprintAlterationResultMap" type="cn.ibizlab.plm.core.projmgmt.domain.SprintAlteration" autoMapping="true">
+		<id property="id" column="id" /><!--主键字段映射-->
+		<result property="isDeleted" column="is_deleted"/>
+		<result property="sprintStatus" column="sprint_status"/>
+		<result property="workItemCompletedAt" column="work_item_completed_at"/>
+		<result property="workItemPriority" column="work_item_priority"/>
+		<result property="createMan" column="create_man"/>
+		<result property="createTime" column="create_time"/>
+		<result property="updateMan" column="update_man"/>
+		<result property="updateTime" column="update_time"/>
+		<result property="sprintId" column="sprint_id"/>
+		<result property="workItemId" column="work_item_id"/>
+		<result property="workItemTitle" column="work_item_title"/>
+		<result property="sprintName" column="sprint_name"/>
+        <association property="sprint" javaType="cn.ibizlab.plm.core.projmgmt.domain.Sprint" column="sprint_id" select="cn.ibizlab.plm.core.projmgmt.mapper.SprintMapper.selectById" fetchType="lazy"></association>
+        <association property="workItem" javaType="cn.ibizlab.plm.core.projmgmt.domain.WorkItem" column="work_item_id" select="cn.ibizlab.plm.core.projmgmt.mapper.WorkItemMapper.selectById" fetchType="lazy"></association>
+    </resultMap>
+
+    <select id="selectById"  resultMap="SprintAlterationResultMap">
+        <include refid="view" /> 
+         where 
+         t1.id=#{ id }
+    </select>
+
+    <select id="selectEntity" parameterType="cn.ibizlab.plm.core.projmgmt.domain.SprintAlteration" resultMap="SprintAlterationResultMap">
+        <include refid="view" /> 
+         where 
+         (t1.id = #{ id })
+    </select>
+
+    <select id="selectEntities" parameterType="java.util.List" resultMap="SprintAlterationResultMap">
+        <include refid="view" /> 
+         where 
+         (t1.id)
+         in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.id }) </foreach>)
+    </select>
+
+    <delete id="deleteEntities" parameterType="java.util.List">
+    delete from SPRINT_ALTERATION
+    where (id)
+         in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.id }) </foreach>)
+    </delete>
+
+    <sql id="default" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t11.`IS_DELETED`, t1.`NAME`, t1.`SPRINT_ID`, t21.`NAME` AS `SPRINT_NAME`, t1.`SPRINT_STATUS`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t11.`COMPLETED_AT` AS `WORK_ITEM_COMPLETED_AT`, t1.`WORK_ITEM_ID`, t11.`PRIORITY` AS `WORK_ITEM_PRIORITY`, t11.`TITLE` AS `WORK_ITEM_TITLE` FROM `SPRINT_ALTERATION` t1  LEFT JOIN `WORK_ITEM` t11 ON t1.`WORK_ITEM_ID` = t11.`ID`  LEFT JOIN `SPRINT` t21 ON t1.`SPRINT_ID` = t21.`ID`   ]]>  
+    </sql>
+
+    <sql id="view" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t11.`IS_DELETED`, t1.`NAME`, t1.`SPRINT_ID`, t21.`NAME` AS `SPRINT_NAME`, t1.`SPRINT_STATUS`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t11.`COMPLETED_AT` AS `WORK_ITEM_COMPLETED_AT`, t1.`WORK_ITEM_ID`, t11.`PRIORITY` AS `WORK_ITEM_PRIORITY`, t11.`TITLE` AS `WORK_ITEM_TITLE` FROM `SPRINT_ALTERATION` t1  LEFT JOIN `WORK_ITEM` t11 ON t1.`WORK_ITEM_ID` = t11.`ID`  LEFT JOIN `SPRINT` t21 ON t1.`SPRINT_ID` = t21.`ID`   ]]>  
+    </sql>
+
+    <sql id="change" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t11.`IS_DELETED`, t1.`NAME`, t1.`SPRINT_ID`, t21.`NAME` AS `SPRINT_NAME`, t1.`SPRINT_STATUS`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t11.`COMPLETED_AT` AS `WORK_ITEM_COMPLETED_AT`, t1.`WORK_ITEM_ID`, t11.`PRIORITY` AS `WORK_ITEM_PRIORITY`, t11.`TITLE` AS `WORK_ITEM_TITLE` FROM `SPRINT_ALTERATION` t1  LEFT JOIN `WORK_ITEM` t11 ON t1.`WORK_ITEM_ID` = t11.`ID`  LEFT JOIN `SPRINT` t21 ON t1.`SPRINT_ID` = t21.`ID`   ]]>  
+    </sql>
+
+    <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.SprintAlterationSearchContext"  resultMap="SprintAlterationResultMap">
+        select t1.* 
+        from (
+            <include refid="default"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listDefault"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.SprintAlterationSearchContext"  resultMap="SprintAlterationResultMap">
+        select t1.*
+        from (
+            <include refid="default"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchChange"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.SprintAlterationSearchContext"  resultMap="SprintAlterationResultMap">
+        select t1.* 
+        from (
+            <include refid="change"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listChange"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.SprintAlterationSearchContext"  resultMap="SprintAlterationResultMap">
+        select t1.*
+        from (
+            <include refid="change"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="listView"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.SprintAlterationSearchContext"  resultMap="SprintAlterationResultMap">
+        select t1.*
+        from (
+            <include refid="view" />
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+    </select>
+
+    <select id="findBySprintId" resultMap="SprintAlterationResultMap">
+        select t1.* from (
+            <include refid="default"/>
+        ) t1
+        where sprint_id in <foreach item="id" index="index" collection="sprintIds" open="(" separator="," close=")">#{id}</foreach> 
+    </select>
+
+    <select id="findByWorkItemId" resultMap="SprintAlterationResultMap">
+        select t1.* from (
+            <include refid="default"/>
+        ) t1
+        where work_item_id in <foreach item="id" index="index" collection="workItemIds" open="(" separator="," close=")">#{id}</foreach> 
+    </select>
+
+
+</mapper>

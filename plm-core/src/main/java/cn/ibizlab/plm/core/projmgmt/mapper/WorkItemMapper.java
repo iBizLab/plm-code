@@ -138,6 +138,44 @@ public interface WorkItemMapper extends BaseMapper<WorkItem> {
     List<WorkItem> listBaselineChooseWorkItem(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
 
     /**
+     * 数据集合bi_detail分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<WorkItem> searchBiDetail(IPage<WorkItem> page, @Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+    
+    /**
+     * 数据集合bi_detail查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<WorkItem> listBiDetail(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+
+    /**
+     * 数据集合bi_search分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<WorkItem> searchBiSearch(IPage<WorkItem> page, @Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+    
+    /**
+     * 数据集合bi_search查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<WorkItem> listBiSearch(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+
+    /**
      * 数据集合bug分页查询
      * 
      * @param page
@@ -231,6 +269,25 @@ public interface WorkItemMapper extends BaseMapper<WorkItem> {
      * @return
      */
     List<WorkItem> listChooseChild(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+
+    /**
+     * 数据集合choose_dependency分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<WorkItem> searchChooseDependency(IPage<WorkItem> page, @Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+    
+    /**
+     * 数据集合choose_dependency查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<WorkItem> listChooseDependency(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
 
     /**
      * 数据集合comment_notify_assignee分页查询
@@ -364,6 +421,25 @@ public interface WorkItemMapper extends BaseMapper<WorkItem> {
      * @return
      */
     List<WorkItem> listMilestone(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+
+    /**
+     * 数据集合move_work_item分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<WorkItem> searchMoveWorkItem(IPage<WorkItem> page, @Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+    
+    /**
+     * 数据集合move_work_item查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<WorkItem> listMoveWorkItem(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
 
     /**
      * 数据集合my_assignee分页查询
@@ -746,6 +822,25 @@ public interface WorkItemMapper extends BaseMapper<WorkItem> {
     List<WorkItem> listReleasePlan(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
 
     /**
+     * 数据集合release_work_item_chart分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<WorkItem> searchReleaseWorkItemChart(IPage<WorkItem> page, @Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+    
+    /**
+     * 数据集合release_work_item_chart查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<WorkItem> listReleaseWorkItemChart(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+
+    /**
      * 数据集合requirement分页查询
      * 
      * @param page
@@ -801,6 +896,63 @@ public interface WorkItemMapper extends BaseMapper<WorkItem> {
      * @return
      */
     List<WorkItem> listResource(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+
+    /**
+     * 数据集合seven_days分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<WorkItem> searchSevenDays(IPage<WorkItem> page, @Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+    
+    /**
+     * 数据集合seven_days查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<WorkItem> listSevenDays(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+
+    /**
+     * 数据集合sprint_completed分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<WorkItem> searchSprintCompleted(IPage<WorkItem> page, @Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+    
+    /**
+     * 数据集合sprint_completed查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<WorkItem> listSprintCompleted(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+
+    /**
+     * 数据集合sprint_work_item_chart分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<WorkItem> searchSprintWorkItemChart(IPage<WorkItem> page, @Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+    
+    /**
+     * 数据集合sprint_work_item_chart查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<WorkItem> listSprintWorkItemChart(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
 
     /**
      * 数据集合test_plan_relation_bug分页查询
@@ -898,6 +1050,25 @@ public interface WorkItemMapper extends BaseMapper<WorkItem> {
     List<WorkItem> listUnderWorkResource(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
 
     /**
+     * 数据集合work_item_type分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<WorkItem> searchWorkItemType(IPage<WorkItem> page, @Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+    
+    /**
+     * 数据集合work_item_type查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<WorkItem> listWorkItemType(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+
+    /**
     * 根据boardId查询
     *
     * @param boardIds
@@ -992,6 +1163,25 @@ public interface WorkItemMapper extends BaseMapper<WorkItem> {
     * @return
     */
     List<WorkItem> findById(@Param("ids") List<String> ids);
+
+    /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<WorkItem> searchView(IPage<WorkItem> page, @Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<WorkItem> listView(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
 
     /**
      * 主键查询

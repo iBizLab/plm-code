@@ -81,6 +81,7 @@ export default {
                     editorParams: {
                       'SRFNAVPARAM.N_PRODUCT_ID_EQ': '%PRODUCT%',
                       FORCESELECTION: 'FALSE',
+                      'SRFNAVPARAM.N_IS_DELETED_EQ': '0',
                       TRIGGER: 'TRUE',
                     },
                     editorType: 'AC',
@@ -91,6 +92,12 @@ export default {
                         key: 'n_product_id_eq',
                         value: 'PRODUCT',
                         id: 'n_product_id_eq',
+                      },
+                      {
+                        key: 'n_is_deleted_eq',
+                        value: '0',
+                        rawValue: true,
+                        id: 'n_is_deleted_eq',
                       },
                     ],
                     id: 'id',

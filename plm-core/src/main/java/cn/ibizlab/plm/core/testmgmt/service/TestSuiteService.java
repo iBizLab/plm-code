@@ -11,6 +11,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.testmgmt.domain.TestSuite;
 import cn.ibizlab.plm.core.testmgmt.filter.TestSuiteSearchContext;
 import cn.ibizlab.plm.core.testmgmt.domain.Library;
@@ -141,7 +142,7 @@ public interface TestSuiteService extends IService<TestSuite> {
     * @param et
     * @return
     */
-    Integer checkKey(TestSuite et);
+    CheckKeyStatus checkKey(TestSuite et);
 
     /**
     * 保存
@@ -244,8 +245,15 @@ public interface TestSuiteService extends IService<TestSuite> {
     */
     List<TestSuite> findByLibraryId(List<String> libraryIds);
     default List<TestSuite> findByLibraryId(String libraryId){
-        return findByLibraryId(Arrays.asList(libraryId));
+        return findByLibrary(new Library().setId(libraryId));
     }
+
+    /**
+    * findByLibrary
+    * @param library
+    * @return
+    */
+    List<TestSuite> findByLibrary(Library library);
 
     /**
     * removeByLibraryId
@@ -286,8 +294,15 @@ public interface TestSuiteService extends IService<TestSuite> {
     */
     List<TestSuite> findByPid(List<String> pids);
     default List<TestSuite> findByPid(String pid){
-        return findByPid(Arrays.asList(pid));
+        return findByTestSuite(new TestSuite().setId(pid));
     }
+
+    /**
+    * findByTestSuite
+    * @param testSuite
+    * @return
+    */
+    List<TestSuite> findByTestSuite(TestSuite testSuite);
 
     /**
     * removeByPid
@@ -320,6 +335,22 @@ public interface TestSuiteService extends IService<TestSuite> {
     * @return
     */
     boolean saveByTestSuite(TestSuite testSuite, List<TestSuite> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<TestSuite> fetchView(TestSuiteSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<TestSuite> listView(TestSuiteSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<TestSuite> list) {

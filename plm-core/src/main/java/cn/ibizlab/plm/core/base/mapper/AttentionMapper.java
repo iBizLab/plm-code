@@ -108,6 +108,25 @@ public interface AttentionMapper extends BaseMapper<Attention> {
     List<Attention> findByOwnerId(@Param("ownerIds") List<String> ownerIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Attention> searchView(IPage<Attention> page, @Param("ctx") AttentionSearchContext context, @Param("ew") Wrapper<Attention> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Attention> listView(@Param("ctx") AttentionSearchContext context, @Param("ew") Wrapper<Attention> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

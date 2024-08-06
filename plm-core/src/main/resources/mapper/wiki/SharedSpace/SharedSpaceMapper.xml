@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper	namespace="cn.ibizlab.plm.core.wiki.mapper.SharedSpaceMapper">
+
+        <!--通过mybatis将查询结果注入到entity中,通过配置autoMapping="true"由mybatis自动处理映射关系 -->
+    <resultMap id="SharedSpaceResultMap" type="cn.ibizlab.plm.core.wiki.domain.SharedSpace" autoMapping="true">
+		<id property="id" column="id" /><!--主键字段映射-->
+		<result property="isShared" column="is_shared"/>
+		<result property="sharedPages" column="shared_pages"/>
+		<result property="expirationDate" column="expiration_date"/>
+		<result property="accessPassword" column="access_password"/>
+		<result property="showTitle" column="show_title"/>
+		<result property="showLogo" column="show_logo"/>
+		<result property="scopeType" column="scope_type"/>
+		<result property="sharedBy" column="shared_by"/>
+		<result property="sharedTime" column="shared_time"/>
+    </resultMap>
+
+    <select id="selectById"  resultMap="SharedSpaceResultMap">
+        <include refid="view" /> 
+         where 
+         t1.id=#{ id }
+    </select>
+
+    <select id="selectEntity" parameterType="cn.ibizlab.plm.core.wiki.domain.SharedSpace" resultMap="SharedSpaceResultMap">
+        <include refid="view" /> 
+         where 
+         (t1.id = #{ id })
+    </select>
+
+    <select id="selectEntities" parameterType="java.util.List" resultMap="SharedSpaceResultMap">
+        <include refid="view" /> 
+         where 
+         (t1.id)
+         in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.id }) </foreach>)
+    </select>
+
+    <delete id="deleteEntities" parameterType="java.util.List">
+    delete from SPACE
+    where (id)
+         in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.id }) </foreach>)
+    </delete>
+
+    <sql id="default" databaseId="mysql">
+         <![CDATA[ SELECT t1.`ACCESS_PASSWORD`, t1.`EXPIRATION_DATE`, t1.`ID`, t1.`IS_SHARED`, t1.`NAME`, t1.`SCOPE_TYPE`, t1.`SHARED_BY`, t1.`SHARED_PAGES`, t1.`SHARED_TIME`, t1.`SHOW_LOGO`, t1.`SHOW_TITLE` FROM `SPACE` t1   ]]>  
+    </sql>
+
+    <sql id="view" databaseId="mysql">
+         <![CDATA[ SELECT t1.`ACCESS_PASSWORD`, t1.`EXPIRATION_DATE`, t1.`ID`, t1.`IS_SHARED`, t1.`NAME`, t1.`SCOPE_TYPE`, t1.`SHARED_BY`, t1.`SHARED_PAGES`, t1.`SHARED_TIME`, t1.`SHOW_LOGO`, t1.`SHOW_TITLE` FROM `SPACE` t1   ]]>  
+    </sql>
+
+    <sql id="admin" databaseId="mysql">
+         <![CDATA[ SELECT t1.`ACCESS_PASSWORD`, t1.`EXPIRATION_DATE`, t1.`ID`, t1.`IS_SHARED`, t1.`NAME`, t1.`SCOPE_TYPE`, t1.`SHARED_BY`, t1.`SHARED_PAGES`, t1.`SHARED_TIME`, t1.`SHOW_LOGO`, t1.`SHOW_TITLE` FROM `SPACE` t1   ]]>  where  <![CDATA[ ( exists(select 1 from `space_member` t2 where t2.`SPACE_ID` = t1.`ID` and  t2.ROLE_ID = 'admin' and t2.USER_ID = #{ctx.sessioncontext.srfpersonid}) ) ]]> 
+    </sql>
+
+    <sql id="shared" databaseId="mysql">
+         <![CDATA[ SELECT t1.`ACCESS_PASSWORD`, t1.`EXPIRATION_DATE`, t1.`ID`, t1.`IS_SHARED`, t1.`NAME`, t1.`SCOPE_TYPE`, t1.`SHARED_BY`, t1.`SHARED_PAGES`, t1.`SHARED_TIME`, t1.`SHOW_LOGO`, t1.`SHOW_TITLE` FROM `SPACE` t1   ]]>  where  <![CDATA[ ( t1.`IS_SHARED` <> '0' ) ]]> 
+    </sql>
+
+    <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.wiki.filter.SharedSpaceSearchContext"  resultMap="SharedSpaceResultMap">
+        select t1.* 
+        from (
+            <include refid="default"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listDefault"  parameterType="cn.ibizlab.plm.core.wiki.filter.SharedSpaceSearchContext"  resultMap="SharedSpaceResultMap">
+        select t1.*
+        from (
+            <include refid="default"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchAdmin"  parameterType="cn.ibizlab.plm.core.wiki.filter.SharedSpaceSearchContext"  resultMap="SharedSpaceResultMap">
+        select t1.* 
+        from (
+            <include refid="admin"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listAdmin"  parameterType="cn.ibizlab.plm.core.wiki.filter.SharedSpaceSearchContext"  resultMap="SharedSpaceResultMap">
+        select t1.*
+        from (
+            <include refid="admin"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchShared"  parameterType="cn.ibizlab.plm.core.wiki.filter.SharedSpaceSearchContext"  resultMap="SharedSpaceResultMap">
+        select t1.* 
+        from (
+            <include refid="shared"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listShared"  parameterType="cn.ibizlab.plm.core.wiki.filter.SharedSpaceSearchContext"  resultMap="SharedSpaceResultMap">
+        select t1.*
+        from (
+            <include refid="shared"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="listView"  parameterType="cn.ibizlab.plm.core.wiki.filter.SharedSpaceSearchContext"  resultMap="SharedSpaceResultMap">
+        select t1.*
+        from (
+            <include refid="view" />
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+    </select>
+
+
+</mapper>

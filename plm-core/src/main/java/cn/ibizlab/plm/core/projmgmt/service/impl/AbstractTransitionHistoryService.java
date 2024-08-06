@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.projmgmt.domain.TransitionHistory;
@@ -103,14 +104,14 @@ public abstract class AbstractTransitionHistoryService extends ServiceImpl<Trans
         return et;
     }
 	
-    public Integer checkKey(TransitionHistory et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<TransitionHistory>lambdaQuery().eq(TransitionHistory::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(TransitionHistory et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<TransitionHistory>lambdaQuery().eq(TransitionHistory::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(TransitionHistory et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -153,6 +154,12 @@ public abstract class AbstractTransitionHistoryService extends ServiceImpl<Trans
         return list;	
 	}
 
+	public List<TransitionHistory> findByWorkItem(WorkItem workItem){
+        List<TransitionHistory> list = this.baseMapper.selectList(Wrappers.<TransitionHistory>lambdaQuery()
+                        .eq(TransitionHistory::getOwnerId, workItem.getId())
+                        .eq(TransitionHistory::getOwnerType,"WORK_ITEM").isNull(TransitionHistory::getOwnerSubtype));
+		return list;
+	}
 	public boolean removeByOwnerId(String ownerId){
         return this.remove(Wrappers.<TransitionHistory>lambdaQuery().eq(TransitionHistory::getOwnerId,ownerId));
 	}
@@ -163,12 +170,8 @@ public abstract class AbstractTransitionHistoryService extends ServiceImpl<Trans
 	public boolean saveByWorkItem(WorkItem workItem, List<TransitionHistory> list){
         if(list==null)
             return true;
-        Map<String,TransitionHistory> before = this.baseMapper.selectList(Wrappers.<TransitionHistory>lambdaQuery()
-                        .eq(TransitionHistory::getOwnerId, workItem.getId())
-                        .eq(TransitionHistory::getOwnerType,"WORK_ITEM").isNull(TransitionHistory::getOwnerSubtype))
-                        .stream()
-                        .collect(Collectors.toMap(TransitionHistory::getId,e->e));
 
+        Map<String,TransitionHistory> before = findByWorkItem(workItem).stream().collect(Collectors.toMap(TransitionHistory::getId,e->e));
         List<TransitionHistory> update = new ArrayList<>();
         List<TransitionHistory> create = new ArrayList<>();
 
@@ -192,6 +195,17 @@ public abstract class AbstractTransitionHistoryService extends ServiceImpl<Trans
             return true;
 			
 	}
+   public Page<TransitionHistory> fetchView(TransitionHistorySearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TransitionHistory> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<TransitionHistory> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<TransitionHistory> listView(TransitionHistorySearchContext context) {
+        List<TransitionHistory> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(TransitionHistory et) {
         if(Entities.WORK_ITEM.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

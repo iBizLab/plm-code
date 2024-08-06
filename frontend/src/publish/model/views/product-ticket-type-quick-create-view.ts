@@ -150,7 +150,6 @@ export default {
                     colMD: 24,
                     layout: 'TABLE_24COL',
                   },
-                  showCaption: true,
                   id: 'ticket_type_id',
                 },
                 {
@@ -178,7 +177,6 @@ export default {
                     colMD: 24,
                     layout: 'TABLE_24COL',
                   },
-                  showCaption: true,
                   id: 'product_id',
                 },
                 {
@@ -207,7 +205,6 @@ export default {
                     colMD: 24,
                     layout: 'TABLE_24COL',
                   },
-                  showCaption: true,
                   id: 'name',
                 },
               ],
@@ -251,7 +248,6 @@ export default {
                 colMD: 24,
                 layout: 'TABLE_24COL',
               },
-              showCaption: true,
               id: 'id',
             },
           ],

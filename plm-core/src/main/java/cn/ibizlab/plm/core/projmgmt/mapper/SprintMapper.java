@@ -43,6 +43,63 @@ public interface SprintMapper extends BaseMapper<Sprint> {
     List<Sprint> listDefault(@Param("ctx") SprintSearchContext context, @Param("ew") Wrapper<Sprint> wrapper);
 
     /**
+     * 数据集合all分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Sprint> searchAll(IPage<Sprint> page, @Param("ctx") SprintSearchContext context, @Param("ew") Wrapper<Sprint> wrapper);
+    
+    /**
+     * 数据集合all查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Sprint> listAll(@Param("ctx") SprintSearchContext context, @Param("ew") Wrapper<Sprint> wrapper);
+
+    /**
+     * 数据集合bi_detail分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Sprint> searchBiDetail(IPage<Sprint> page, @Param("ctx") SprintSearchContext context, @Param("ew") Wrapper<Sprint> wrapper);
+    
+    /**
+     * 数据集合bi_detail查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Sprint> listBiDetail(@Param("ctx") SprintSearchContext context, @Param("ew") Wrapper<Sprint> wrapper);
+
+    /**
+     * 数据集合bi_search分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Sprint> searchBiSearch(IPage<Sprint> page, @Param("ctx") SprintSearchContext context, @Param("ew") Wrapper<Sprint> wrapper);
+    
+    /**
+     * 数据集合bi_search查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Sprint> listBiSearch(@Param("ctx") SprintSearchContext context, @Param("ew") Wrapper<Sprint> wrapper);
+
+    /**
      * 数据集合choose_move分页查询
      * 
      * @param page
@@ -60,6 +117,25 @@ public interface SprintMapper extends BaseMapper<Sprint> {
      * @return
      */
     List<Sprint> listChooseMove(@Param("ctx") SprintSearchContext context, @Param("ew") Wrapper<Sprint> wrapper);
+
+    /**
+     * 数据集合choose_sprint_relation分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Sprint> searchChooseSprintRelation(IPage<Sprint> page, @Param("ctx") SprintSearchContext context, @Param("ew") Wrapper<Sprint> wrapper);
+    
+    /**
+     * 数据集合choose_sprint_relation查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Sprint> listChooseSprintRelation(@Param("ctx") SprintSearchContext context, @Param("ew") Wrapper<Sprint> wrapper);
 
     /**
      * 数据集合cur_sprint_not_finish分页查询
@@ -100,6 +176,44 @@ public interface SprintMapper extends BaseMapper<Sprint> {
     List<Sprint> listNotFinish(@Param("ctx") SprintSearchContext context, @Param("ew") Wrapper<Sprint> wrapper);
 
     /**
+     * 数据集合reader分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Sprint> searchReader(IPage<Sprint> page, @Param("ctx") SprintSearchContext context, @Param("ew") Wrapper<Sprint> wrapper);
+    
+    /**
+     * 数据集合reader查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Sprint> listReader(@Param("ctx") SprintSearchContext context, @Param("ew") Wrapper<Sprint> wrapper);
+
+    /**
+     * 数据集合release_relation分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Sprint> searchReleaseRelation(IPage<Sprint> page, @Param("ctx") SprintSearchContext context, @Param("ew") Wrapper<Sprint> wrapper);
+    
+    /**
+     * 数据集合release_relation查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Sprint> listReleaseRelation(@Param("ctx") SprintSearchContext context, @Param("ew") Wrapper<Sprint> wrapper);
+
+    /**
     * 根据projectId查询
     *
     * @param projectIds
@@ -114,6 +228,25 @@ public interface SprintMapper extends BaseMapper<Sprint> {
     * @return
     */
     List<Sprint> findByPid(@Param("pids") List<String> pids);
+
+    /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Sprint> searchView(IPage<Sprint> page, @Param("ctx") SprintSearchContext context, @Param("ew") Wrapper<Sprint> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Sprint> listView(@Param("ctx") SprintSearchContext context, @Param("ew") Wrapper<Sprint> wrapper);
 
     /**
      * 主键查询

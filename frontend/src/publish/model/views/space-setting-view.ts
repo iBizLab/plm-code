@@ -83,7 +83,6 @@ export default {
                 colMD: 24,
                 layout: 'TABLE_24COL',
               },
-              showCaption: true,
               id: 'id',
             },
           ],
@@ -127,6 +126,11 @@ export default {
           id: 'usrdrgroup0319413322',
         },
         {
+          caption: '共享',
+          name: '共享',
+          id: 'usrdrgroup0625841368',
+        },
+        {
           caption: '空间',
           name: '空间',
           id: 'usrdrgroup0319215816',
@@ -165,6 +169,22 @@ export default {
           enableMode: 'DEOPPRIV',
           appViewId: 'plmweb.article_page_recycle_grid_view',
           id: 'recycle',
+        },
+        {
+          dedrbarGroupId: 'usrdrgroup0625841368',
+          caption: '空间共享',
+          dataAccessAction: 'UPDATE',
+          enableMode: 'DEOPPRIV',
+          appViewId: 'plmweb.space_shared_view',
+          id: 'shared',
+        },
+        {
+          dedrbarGroupId: 'usrdrgroup0625841368',
+          caption: '页面共享',
+          dataAccessAction: 'UPDATE',
+          enableMode: 'DEOPPRIV',
+          appViewId: 'plmweb.article_page_shared_grid_view',
+          id: 'page_shared',
         },
         {
           dedrbarGroupId: 'usrdrgroup0319215816',

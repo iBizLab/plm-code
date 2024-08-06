@@ -1183,6 +1183,28 @@ export default {
       id: 'fetch_archived',
     },
     {
+      codeName: 'fetch_cur_product',
+      methodType: 'FETCH',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'product_filter_dto',
+        type: 'DTO',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'product_dto',
+        type: 'PAGE',
+        id: '返回对象',
+      },
+      requestMethod: 'POST',
+      requestParamType: 'ENTITY',
+      requestPath: '/fetch_cur_product',
+      actionType: 'REMOTE',
+      dataSetName: 'cur_product',
+      dataSetTag: 'cur_product',
+      dataSetType: 'REMOTE',
+      id: 'fetch_cur_product',
+    },
+    {
       codeName: 'fetch_default',
       methodType: 'FETCH',
       appDEMethodInput: {
@@ -1450,6 +1472,46 @@ export default {
       id: 'fetchtemparchived',
     },
     {
+      codeName: 'FetchTempCur_product',
+      methodType: 'FETCHTEMP',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'product_filter_dto',
+        type: 'DTO',
+        name: 'Cur_productInput',
+        id: 'cur_productinput',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'product_dto',
+        type: 'PAGE',
+        name: 'Cur_productResult',
+        id: 'cur_productresult',
+      },
+      tempDataMode: 2,
+      actionType: 'REMOTE',
+      dataSetTag: 'cur_product',
+      dataSetType: 'DATAQUERY',
+      dedqgroupConditions: [
+        {
+          condOp: 'AND',
+          dedqconditions: [
+            {
+              condOp: 'EQ',
+              condValue: 'product',
+              fieldName: 'ID',
+              vartypeId: 'WEBCONTEXT',
+              condType: 'SINGLE',
+              name: '(ID) 等于(=) 网页请求上下文 product',
+              id: '(id) 等于(=) 网页请求上下文 product',
+            },
+          ],
+          condType: 'GROUP',
+          id: '连接条件',
+        },
+      ],
+      name: 'cur_product',
+      id: 'fetchtempcur_product',
+    },
+    {
       codeName: 'FetchTempDefault',
       methodType: 'FETCHTEMP',
       appDEMethodInput: {
@@ -1642,6 +1704,22 @@ export default {
               condType: 'SINGLE',
               name: '(IS_FAVORITE) 等于(=) 0',
               id: '(is_favorite) 等于(=) 0',
+            },
+          ],
+          condType: 'GROUP',
+          id: '连接条件',
+        },
+        {
+          condOp: 'AND',
+          dedqconditions: [
+            {
+              condOp: 'EQ',
+              condValue: 'product',
+              fieldName: 'ID',
+              vartypeId: 'WEBCONTEXT',
+              condType: 'SINGLE',
+              name: '(ID) 等于(=) 网页请求上下文 product',
+              id: '(id) 等于(=) 网页请求上下文 product',
             },
           ],
           condType: 'GROUP',
@@ -2596,22 +2674,6 @@ export default {
           logicNodeType: 'DEACTION',
           deuilogicLinks: [
             {
-              dstDEUILogicNodeId: 'debugparam1',
-              srcDEUILogicNodeId: 'deaction1',
-              id: '连接名称',
-            },
-          ],
-          topPos: 208,
-          name: '获取产品成员（判断）',
-          id: 'deaction1',
-        },
-        {
-          codeName: 'DEBUGPARAM1',
-          dstDEUILogicParamId: 'default',
-          leftPos: 408,
-          logicNodeType: 'DEBUGPARAM',
-          deuilogicLinks: [
-            {
               dstDEUILogicNodeId: 'preparejsparam2',
               deuilogicLinkGroupCond: {
                 groupOP: 'AND',
@@ -2629,13 +2691,13 @@ export default {
                 ],
                 logicType: 'GROUP',
               },
-              srcDEUILogicNodeId: 'debugparam1',
+              srcDEUILogicNodeId: 'deaction1',
               id: '返回readonly为true',
             },
           ],
           topPos: 208,
-          name: '执行获取人员后的返回结果',
-          id: 'debugparam1',
+          name: '获取产品成员（判断）',
+          id: 'deaction1',
         },
         {
           codeName: 'END1',
@@ -2674,10 +2736,22 @@ export default {
       ],
       deuilogicParams: [
         {
+          codeName: 'form',
+          ctrlParam: true,
+          name: '表单',
+          id: 'form',
+        },
+        {
           codeName: 'view_params',
           entityParam: true,
           name: '视图参数',
           id: 'view_params',
+        },
+        {
+          codeName: 'members',
+          entityPageParam: true,
+          name: '成员信息',
+          id: 'members',
         },
         {
           codeName: 'Default',
@@ -2687,27 +2761,15 @@ export default {
           id: 'default',
         },
         {
-          codeName: 'members',
-          entityPageParam: true,
-          name: '成员信息',
-          id: 'members',
-        },
-        {
-          codeName: 'form',
-          ctrlParam: true,
-          name: '表单',
-          id: 'form',
+          codeName: 'view',
+          activeViewParam: true,
+          id: 'view',
         },
         {
           codeName: 'viewctx',
           navContextParam: true,
           name: '上下文',
           id: 'viewctx',
-        },
-        {
-          codeName: 'view',
-          activeViewParam: true,
-          id: 'view',
         },
       ],
       startDEUILogicNodeId: 'begin',

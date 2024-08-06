@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.testmgmt.domain.ReviewResult;
@@ -109,14 +110,14 @@ public abstract class AbstractReviewResultService extends ServiceImpl<ReviewResu
         return et;
     }
 	
-    public Integer checkKey(ReviewResult et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ReviewResult>lambdaQuery().eq(ReviewResult::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(ReviewResult et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ReviewResult>lambdaQuery().eq(ReviewResult::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(ReviewResult et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -163,6 +164,10 @@ public abstract class AbstractReviewResultService extends ServiceImpl<ReviewResu
         return list;	
 	}
 
+	public List<ReviewResult> findByReviewContentExtend(ReviewContentExtend reviewContentExtend){
+        List<ReviewResult> list = findByContentId(Arrays.asList(reviewContentExtend.getId()));
+		return list;
+	}
 	public boolean removeByContentId(String contentId){
         return this.remove(Wrappers.<ReviewResult>lambdaQuery().eq(ReviewResult::getContentId,contentId));
 	}
@@ -173,8 +178,8 @@ public abstract class AbstractReviewResultService extends ServiceImpl<ReviewResu
 	public boolean saveByReviewContentExtend(ReviewContentExtend reviewContentExtend, List<ReviewResult> list){
         if(list==null)
             return true;
-        Map<String,ReviewResult> before = findByContentId(reviewContentExtend.getId()).stream().collect(Collectors.toMap(ReviewResult::getId,e->e));
 
+        Map<String,ReviewResult> before = findByReviewContentExtend(reviewContentExtend).stream().collect(Collectors.toMap(ReviewResult::getId,e->e));
         List<ReviewResult> update = new ArrayList<>();
         List<ReviewResult> create = new ArrayList<>();
 
@@ -198,11 +203,15 @@ public abstract class AbstractReviewResultService extends ServiceImpl<ReviewResu
             return true;
 			
 	}
+	public List<ReviewResult> findByReviewContent(ReviewContent reviewContent){
+        List<ReviewResult> list = findByContentId(Arrays.asList(reviewContent.getId()));
+		return list;
+	}
 	public boolean saveByReviewContent(ReviewContent reviewContent, List<ReviewResult> list){
         if(list==null)
             return true;
-        Map<String,ReviewResult> before = findByContentId(reviewContent.getId()).stream().collect(Collectors.toMap(ReviewResult::getId,e->e));
 
+        Map<String,ReviewResult> before = findByReviewContent(reviewContent).stream().collect(Collectors.toMap(ReviewResult::getId,e->e));
         List<ReviewResult> update = new ArrayList<>();
         List<ReviewResult> create = new ArrayList<>();
 
@@ -226,6 +235,17 @@ public abstract class AbstractReviewResultService extends ServiceImpl<ReviewResu
             return true;
 			
 	}
+   public Page<ReviewResult> fetchView(ReviewResultSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ReviewResult> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<ReviewResult> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<ReviewResult> listView(ReviewResultSearchContext context) {
+        List<ReviewResult> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(ReviewResult et) {
         if(Entities.REVIEW_CONTENT_EXTEND.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

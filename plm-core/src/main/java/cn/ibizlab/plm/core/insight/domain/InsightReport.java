@@ -48,10 +48,20 @@ public class InsightReport extends EntityMP implements Serializable
     private String desc;
 
     /**
+    * 是否系统类型
+    */
+    @TableField(value = "is_system")
+    @DEField(name = "is_system" , defaultValue = "0" , dict = "YesNo")
+    @JSONField(name = "is_system")
+    @JsonProperty("is_system")
+    @ApiModelProperty(value = "is_system", notes = "是否系统类型")
+    private Integer isSystem;
+
+    /**
     * 图表类型
     */
     @TableField(value = "chart_type")
-    @DEField(name = "chart_type" , dict = "report_type")
+    @DEField(name = "chart_type" , dict = "bi_chart_type2")
     @JSONField(name = "chart_type")
     @JsonProperty("chart_type")
     @ApiModelProperty(value = "chart_type", notes = "图表类型")
@@ -61,7 +71,7 @@ public class InsightReport extends EntityMP implements Serializable
     * 组别
     */
     @TableField(value = "group")
-    @DEField(name = "group" , dict = "report_group")
+    @DEField(name = "group" , dict = "report_group_bi")
     @JSONField(name = "group")
     @JsonProperty("group")
     @ApiModelProperty(value = "group", notes = "组别")
@@ -86,6 +96,36 @@ public class InsightReport extends EntityMP implements Serializable
     @JsonProperty("categories_name")
     @ApiModelProperty(value = "categories_name", notes = "类别")
     private String categoriesName;
+
+    /**
+    * 模板模型
+    */
+    @TableField(value = "template_model")
+    @DEField(name = "template_model")
+    @JSONField(name = "template_model")
+    @JsonProperty("template_model")
+    @ApiModelProperty(value = "template_model", notes = "模板模型")
+    private String templateModel;
+
+    /**
+    * 分组数据
+    */
+    @TableField(value = "group_data" , exist = false)
+    @DEField(name = "group_data")
+    @JSONField(name = "group_data")
+    @JsonProperty("group_data")
+    @ApiModelProperty(value = "group_data", notes = "分组数据")
+    private Map groupData;
+
+    /**
+    * 报表部件标识
+    */
+    @TableField(value = "ctrl_id" , exist = false)
+    @DEField(name = "ctrl_id")
+    @JSONField(name = "ctrl_id")
+    @JsonProperty("ctrl_id")
+    @ApiModelProperty(value = "ctrl_id", notes = "报表部件标识")
+    private String ctrlId;
 
     /**
     * 标识
@@ -161,6 +201,16 @@ public class InsightReport extends EntityMP implements Serializable
     private String viewId;
 
     /**
+    * 名称
+    */
+    @TableField(value = "view_name" , exist = false)
+    @DEField(name = "view_name")
+    @JSONField(name = "view_name")
+    @JsonProperty("view_name")
+    @ApiModelProperty(value = "view_name", notes = "名称")
+    private String viewName;
+
+    /**
     * 视图-报表
     */
     @Transient
@@ -176,6 +226,15 @@ public class InsightReport extends EntityMP implements Serializable
     public InsightReport setDesc(String desc) {
         this.desc = desc;
         this.modify("desc", desc);
+        return this;
+    }
+
+    /**
+    * 设置 [是否系统类型]
+    */
+    public InsightReport setIsSystem(Integer isSystem) {
+        this.isSystem = isSystem;
+        this.modify("is_system", isSystem);
         return this;
     }
 
@@ -216,6 +275,33 @@ public class InsightReport extends EntityMP implements Serializable
     }
 
     /**
+    * 设置 [模板模型]
+    */
+    public InsightReport setTemplateModel(String templateModel) {
+        this.templateModel = templateModel;
+        this.modify("template_model", templateModel);
+        return this;
+    }
+
+    /**
+    * 设置 [分组数据]
+    */
+    public InsightReport setGroupData(Map groupData) {
+        this.groupData = groupData;
+        this.modify("group_data", groupData);
+        return this;
+    }
+
+    /**
+    * 设置 [报表部件标识]
+    */
+    public InsightReport setCtrlId(String ctrlId) {
+        this.ctrlId = ctrlId;
+        this.modify("ctrl_id", ctrlId);
+        return this;
+    }
+
+    /**
     * 设置 [名称]
     */
     public InsightReport setName(String name) {
@@ -230,6 +316,15 @@ public class InsightReport extends EntityMP implements Serializable
     public InsightReport setViewId(String viewId) {
         this.viewId = viewId;
         this.modify("view_id", viewId);
+        return this;
+    }
+
+    /**
+    * 设置 [名称]
+    */
+    public InsightReport setViewName(String viewName) {
+        this.viewName = viewName;
+        this.modify("view_name", viewName);
         return this;
     }
 

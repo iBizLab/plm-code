@@ -4,6 +4,7 @@
 package cn.ibizlab.plm.core.projmgmt.domain;
 
 import java.util.*;
+import java.math.BigDecimal;
 import cn.ibizlab.util.domain.IEntity;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.*;
@@ -25,6 +26,7 @@ import cn.ibizlab.plm.core.projmgmt.domain.Board;
 import cn.ibizlab.plm.core.projmgmt.domain.Entry;
 import cn.ibizlab.plm.core.projmgmt.domain.Progress;
 import cn.ibizlab.plm.core.projmgmt.domain.ProjectMember;
+import cn.ibizlab.plm.core.extension.domain.PSDELogicNode;
 import cn.ibizlab.plm.core.projmgmt.domain.Release;
 import cn.ibizlab.plm.core.projmgmt.domain.Sprint;
 import cn.ibizlab.plm.core.projmgmt.domain.Swimlane;
@@ -220,11 +222,61 @@ public class Project extends EntityMP implements Serializable
     * 负责人标识
     */
     @TableField(value = "assignee_id")
-    @DEField(name = "assignee_id")
+    @DEField(name = "assignee_id" , dict = "SysOperator")
     @JSONField(name = "assignee_id")
     @JsonProperty("assignee_id")
     @ApiModelProperty(value = "assignee_id", notes = "负责人标识")
     private String assigneeId;
+
+    /**
+    * 已完成工作项数
+    */
+    @TableField(value = "completed_work_items" , exist = false)
+    @DEField(name = "completed_work_items")
+    @JSONField(name = "completed_work_items")
+    @JsonProperty("completed_work_items")
+    @ApiModelProperty(value = "completed_work_items", notes = "已完成工作项数")
+    private BigDecimal completedWorkItems;
+
+    /**
+    * 全部工作项数
+    */
+    @TableField(value = "all_work_items" , exist = false)
+    @DEField(name = "all_work_items")
+    @JSONField(name = "all_work_items")
+    @JsonProperty("all_work_items")
+    @ApiModelProperty(value = "all_work_items", notes = "全部工作项数")
+    private BigDecimal allWorkItems;
+
+    /**
+    * 临时
+    */
+    @TableField(exist = false)
+    @DEField(name = "temp")
+    @JSONField(name = "temp")
+    @JsonProperty("temp")
+    @ApiModelProperty(value = "temp", notes = "临时")
+    private String temp;
+
+    /**
+    * 公告
+    */
+    @TableField(value = "notice")
+    @DEField(name = "notice")
+    @JSONField(name = "notice")
+    @JsonProperty("notice")
+    @ApiModelProperty(value = "notice", notes = "公告")
+    private String notice;
+
+    /**
+    * 进度
+    */
+    @TableField(value = "schedule" , exist = false)
+    @DEField(name = "schedule")
+    @JSONField(name = "schedule")
+    @JsonProperty("schedule")
+    @ApiModelProperty(value = "schedule", notes = "进度")
+    private BigDecimal schedule;
 
     /**
     * 标识
@@ -449,6 +501,51 @@ public class Project extends EntityMP implements Serializable
     public Project setAssigneeId(String assigneeId) {
         this.assigneeId = assigneeId;
         this.modify("assignee_id", assigneeId);
+        return this;
+    }
+
+    /**
+    * 设置 [已完成工作项数]
+    */
+    public Project setCompletedWorkItems(BigDecimal completedWorkItems) {
+        this.completedWorkItems = completedWorkItems;
+        this.modify("completed_work_items", completedWorkItems);
+        return this;
+    }
+
+    /**
+    * 设置 [全部工作项数]
+    */
+    public Project setAllWorkItems(BigDecimal allWorkItems) {
+        this.allWorkItems = allWorkItems;
+        this.modify("all_work_items", allWorkItems);
+        return this;
+    }
+
+    /**
+    * 设置 [临时]
+    */
+    public Project setTemp(String temp) {
+        this.temp = temp;
+        this.modify("temp", temp);
+        return this;
+    }
+
+    /**
+    * 设置 [公告]
+    */
+    public Project setNotice(String notice) {
+        this.notice = notice;
+        this.modify("notice", notice);
+        return this;
+    }
+
+    /**
+    * 设置 [进度]
+    */
+    public Project setSchedule(BigDecimal schedule) {
+        this.schedule = schedule;
+        this.modify("schedule", schedule);
         return this;
     }
 

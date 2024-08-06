@@ -3,6 +3,7 @@
  */
 package cn.ibizlab.plm.core.projmgmt.service.impl;
 
+import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.projmgmt.domain.Stage;
@@ -38,6 +40,10 @@ public abstract class AbstractStageService extends ServiceImpl<StageMapper,Stage
     @Autowired
     @Lazy
     protected ReleaseService releaseService;
+
+    @Autowired
+    @Lazy
+    protected StageService stageService;
 
     protected int batchSize = 500;
 
@@ -76,6 +82,8 @@ public abstract class AbstractStageService extends ServiceImpl<StageMapper,Stage
 	
    @Transactional
     public boolean remove(Stage et) {
+        String key = et.getId();
+        stageService.removeByPid(key);
         if(!remove(Wrappers.<Stage>lambdaQuery().eq(Stage::getId, et.getId())))
             return false;
         return true;
@@ -83,7 +91,9 @@ public abstract class AbstractStageService extends ServiceImpl<StageMapper,Stage
 
     @Transactional
     public boolean remove(List<Stage> entities) {
-        this.baseMapper.deleteEntities(entities);
+        for (Stage et : entities)
+            if(!getSelf().remove(et))
+                return false;
         return true;
     }		
     public Stage get(Stage et) {
@@ -103,14 +113,14 @@ public abstract class AbstractStageService extends ServiceImpl<StageMapper,Stage
         return et;
     }
 	
-    public Integer checkKey(Stage et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Stage>lambdaQuery().eq(Stage::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(Stage et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Stage>lambdaQuery().eq(Stage::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(Stage et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -138,13 +148,80 @@ public abstract class AbstractStageService extends ServiceImpl<StageMapper,Stage
     }
 	
    public Page<Stage> fetchDefault(StageSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("SEQUENCE,ASC");
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Stage> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<Stage> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
    public List<Stage> listDefault(StageSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("SEQUENCE,ASC");
         List<Stage> list = baseMapper.listDefault(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Stage> fetchCurOwnerSys(StageSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Stage> pages=baseMapper.searchCurOwnerSys(context.getPages(),context,context.getSelectCond());
+        List<Stage> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Stage> listCurOwnerSys(StageSearchContext context) {
+        List<Stage> list = baseMapper.listCurOwnerSys(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Stage> fetchCurProject(StageSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Stage> pages=baseMapper.searchCurProject(context.getPages(),context,context.getSelectCond());
+        List<Stage> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Stage> listCurProject(StageSearchContext context) {
+        List<Stage> list = baseMapper.listCurProject(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Stage> fetchCurStage(StageSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("SEQUENCE,ASC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Stage> pages=baseMapper.searchCurStage(context.getPages(),context,context.getSelectCond());
+        List<Stage> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Stage> listCurStage(StageSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("SEQUENCE,ASC");
+        List<Stage> list = baseMapper.listCurStage(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Stage> fetchOwner(StageSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Stage> pages=baseMapper.searchOwner(context.getPages(),context,context.getSelectCond());
+        List<Stage> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Stage> listOwner(StageSearchContext context) {
+        List<Stage> list = baseMapper.listOwner(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Stage> fetchSystem(StageSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("SEQUENCE,ASC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Stage> pages=baseMapper.searchSystem(context.getPages(),context,context.getSelectCond());
+        List<Stage> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Stage> listSystem(StageSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("SEQUENCE,ASC");
+        List<Stage> list = baseMapper.listSystem(context,context.getSelectCond());
         return list;
    }
 	
@@ -153,8 +230,16 @@ public abstract class AbstractStageService extends ServiceImpl<StageMapper,Stage
         return list;	
 	}
 
+	public List<Stage> findByRelease(Release release){
+        List<Stage> list = findByReleaseId(Arrays.asList(release.getId()));
+		return list;
+	}
 	public boolean removeByReleaseId(String releaseId){
-        return this.remove(Wrappers.<Stage>lambdaQuery().eq(Stage::getReleaseId,releaseId));
+        List<String> ids = baseMapper.findByReleaseId(Arrays.asList(releaseId)).stream().map(e->e.getId()).collect(Collectors.toList());
+        if(!ObjectUtils.isEmpty(ids))
+            return this.remove(ids);
+        else
+            return true;
 	}
 
 	public boolean resetByReleaseId(String releaseId){
@@ -163,8 +248,8 @@ public abstract class AbstractStageService extends ServiceImpl<StageMapper,Stage
 	public boolean saveByRelease(Release release, List<Stage> list){
         if(list==null)
             return true;
-        Map<String,Stage> before = findByReleaseId(release.getId()).stream().collect(Collectors.toMap(Stage::getId,e->e));
 
+        Map<String,Stage> before = findByRelease(release).stream().collect(Collectors.toMap(Stage::getId,e->e));
         List<Stage> update = new ArrayList<>();
         List<Stage> create = new ArrayList<>();
 
@@ -188,10 +273,84 @@ public abstract class AbstractStageService extends ServiceImpl<StageMapper,Stage
             return true;
 			
 	}
+	public List<Stage> findByPid(List<String> pids){
+        List<Stage> list = baseMapper.findByPid(pids);
+        return list;	
+	}
+
+	public List<Stage> findByStage(Stage stage){
+        List<Stage> list = findByPid(Arrays.asList(stage.getId()));
+		return list;
+	}
+	public boolean removeByPid(String pid){
+        List<String> ids = baseMapper.findByPid(Arrays.asList(pid)).stream().map(e->e.getId()).collect(Collectors.toList());
+        if(!ObjectUtils.isEmpty(ids))
+            return this.remove(ids);
+        else
+            return true;
+	}
+
+	public boolean resetByPid(String pid){
+		return this.update(Wrappers.<Stage>lambdaUpdate().eq(Stage::getPid,pid));
+	}
+	public boolean saveByStage(Stage stage, List<Stage> list){
+        if(list==null)
+            return true;
+
+        Map<String,Stage> before = findByStage(stage).stream().collect(Collectors.toMap(Stage::getId,e->e));
+        List<Stage> update = new ArrayList<>();
+        List<Stage> create = new ArrayList<>();
+
+        for(Stage sub:list) {
+            sub.setPid(stage.getId());
+            sub.setStage(stage);
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
+   public Page<Stage> fetchView(StageSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Stage> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<Stage> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Stage> listView(StageSearchContext context) {
+        List<Stage> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(Stage et) {
         if(Entities.RELEASE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
             et.setReleaseId((String)et.getContextParentKey());
+        }
+        if(Entities.STAGE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setPid((String)et.getContextParentKey());
+            Stage stage = et.getStage();
+            if(stage == null) {
+                stage = stageService.getById(et.getPid());
+                et.setStage(stage);
+            }
+            if(!ObjectUtils.isEmpty(stage)) {
+                et.setPColor(stage.getColor());
+                et.setPType(stage.getType());
+                et.setPSequence(stage.getSequence());
+                et.setPid(stage.getId());
+                et.setPname(stage.getName());
+            }
         }
     }
 

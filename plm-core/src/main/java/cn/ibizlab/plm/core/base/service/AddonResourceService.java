@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.AddonResource;
 import cn.ibizlab.plm.core.base.filter.AddonResourceSearchContext;
 import cn.ibizlab.plm.core.projmgmt.domain.Project;
@@ -139,7 +140,7 @@ public interface AddonResourceService extends IService<AddonResource> {
     * @param et
     * @return
     */
-    Integer checkKey(AddonResource et);
+    CheckKeyStatus checkKey(AddonResource et);
 
     /**
     * 保存
@@ -204,8 +205,15 @@ public interface AddonResourceService extends IService<AddonResource> {
     */
     List<AddonResource> findByOwnerId(List<String> ownerIds);
     default List<AddonResource> findByOwnerId(String ownerId){
-        return findByOwnerId(Arrays.asList(ownerId));
+        return findByProject(new Project().setId(ownerId));
     }
+
+    /**
+    * findByProject
+    * @param project
+    * @return
+    */
+    List<AddonResource> findByProject(Project project);
 
     /**
     * removeByOwnerId
@@ -238,6 +246,22 @@ public interface AddonResourceService extends IService<AddonResource> {
     * @return
     */
     boolean saveByProject(Project project, List<AddonResource> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<AddonResource> fetchView(AddonResourceSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<AddonResource> listView(AddonResourceSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<AddonResource> list) {

@@ -59,6 +59,25 @@ public interface ReviewWizardMapper extends BaseMapper<ReviewWizard> {
     List<ReviewWizard> findByLibraryId(@Param("libraryIds") List<String> libraryIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<ReviewWizard> searchView(IPage<ReviewWizard> page, @Param("ctx") ReviewWizardSearchContext context, @Param("ew") Wrapper<ReviewWizard> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<ReviewWizard> listView(@Param("ctx") ReviewWizardSearchContext context, @Param("ew") Wrapper<ReviewWizard> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

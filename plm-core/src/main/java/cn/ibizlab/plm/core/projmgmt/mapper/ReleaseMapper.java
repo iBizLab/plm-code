@@ -43,23 +43,118 @@ public interface ReleaseMapper extends BaseMapper<Release> {
     List<Release> listDefault(@Param("ctx") ReleaseSearchContext context, @Param("ew") Wrapper<Release> wrapper);
 
     /**
-     * 数据集合not_finish分页查询
+     * 数据集合bi_detail分页查询
      * 
      * @param page
      * @param context
      * @param wrapper
      * @return
      */
-    Page<Release> searchNotFinish(IPage<Release> page, @Param("ctx") ReleaseSearchContext context, @Param("ew") Wrapper<Release> wrapper);
+    Page<Release> searchBiDetail(IPage<Release> page, @Param("ctx") ReleaseSearchContext context, @Param("ew") Wrapper<Release> wrapper);
     
     /**
-     * 数据集合not_finish查询
+     * 数据集合bi_detail查询
      * 
      * @param context
      * @param wrapper
      * @return
      */
-    List<Release> listNotFinish(@Param("ctx") ReleaseSearchContext context, @Param("ew") Wrapper<Release> wrapper);
+    List<Release> listBiDetail(@Param("ctx") ReleaseSearchContext context, @Param("ew") Wrapper<Release> wrapper);
+
+    /**
+     * 数据集合bi_search分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Release> searchBiSearch(IPage<Release> page, @Param("ctx") ReleaseSearchContext context, @Param("ew") Wrapper<Release> wrapper);
+    
+    /**
+     * 数据集合bi_search查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Release> listBiSearch(@Param("ctx") ReleaseSearchContext context, @Param("ew") Wrapper<Release> wrapper);
+
+    /**
+     * 数据集合choose_relese_relation分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Release> searchChooseReleseRelation(IPage<Release> page, @Param("ctx") ReleaseSearchContext context, @Param("ew") Wrapper<Release> wrapper);
+    
+    /**
+     * 数据集合choose_relese_relation查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Release> listChooseReleseRelation(@Param("ctx") ReleaseSearchContext context, @Param("ew") Wrapper<Release> wrapper);
+
+    /**
+     * 数据集合not_published分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Release> searchNotPublished(IPage<Release> page, @Param("ctx") ReleaseSearchContext context, @Param("ew") Wrapper<Release> wrapper);
+    
+    /**
+     * 数据集合not_published查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Release> listNotPublished(@Param("ctx") ReleaseSearchContext context, @Param("ew") Wrapper<Release> wrapper);
+
+    /**
+     * 数据集合reader分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Release> searchReader(IPage<Release> page, @Param("ctx") ReleaseSearchContext context, @Param("ew") Wrapper<Release> wrapper);
+    
+    /**
+     * 数据集合reader查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Release> listReader(@Param("ctx") ReleaseSearchContext context, @Param("ew") Wrapper<Release> wrapper);
+
+    /**
+     * 数据集合sprint_relation分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Release> searchSprintRelation(IPage<Release> page, @Param("ctx") ReleaseSearchContext context, @Param("ew") Wrapper<Release> wrapper);
+    
+    /**
+     * 数据集合sprint_relation查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Release> listSprintRelation(@Param("ctx") ReleaseSearchContext context, @Param("ew") Wrapper<Release> wrapper);
 
     /**
     * 根据projectId查询
@@ -68,6 +163,25 @@ public interface ReleaseMapper extends BaseMapper<Release> {
     * @return
     */
     List<Release> findByProjectId(@Param("projectIds") List<String> projectIds);
+
+    /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Release> searchView(IPage<Release> page, @Param("ctx") ReleaseSearchContext context, @Param("ew") Wrapper<Release> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Release> listView(@Param("ctx") ReleaseSearchContext context, @Param("ew") Wrapper<Release> wrapper);
 
     /**
      * 主键查询

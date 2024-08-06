@@ -21,7 +21,7 @@
     "react": "../js/react/18.2.0/react.system.min.js",
     "react-dom": "../js/react-dom/18.2.0/react-dom.system.min.js",
     "scheduler": "../js/scheduler/18.2.0/scheduler.system.min.js",
-    "element-plus": "../js/element-plus/2.4.2/element-plus.system.min.js",
+    "element-plus": "../js/element-plus/2.4.4/element-plus.system.min.js",
     "handlebars": "../js/handlebars/4.7.8/handlebars.system.min.js",
     "interactjs": "../js/interactjs/1.10.20/interact.system.min.js",
     "lodash-es": "../js/lodash/4.17.21/lodash.system.min.js",
@@ -45,7 +45,8 @@
     "@imengyu/vue3-context-menu": "../js/@imengyu/vue3-context-menu/1.3.3/index.system.min.js",
     "@ibiz-template-plugin/ai-chat": "../js/@ibiz-template-plugin/ai-chat/0.0.5/index.system.min.js",
     "@antv/x6": "../js/@antv/x6/2.15.5/index.system.min.js",
-    "@ibiz-template-plugin/gantt": "../js/@ibiz-template-plugin/gantt/0.1.8-alpha.3/index.system.min.js"
+    "@ibiz-template-plugin/gantt": "../js/@ibiz-template-plugin/gantt/0.1.8-alpha.7/index.system.min.js",
+    "@ibiz-template-plugin/bi-report": "../js/@ibiz-template-plugin/bi-report/0.0.18/index.system.min.js"
   },
   "styles": {
     "@ibiz-template/vue3-components": "../js/@ibiz-template/vue3-components/index.min.css",
@@ -57,7 +58,8 @@
     "cherry-markdown": "../js/cherry-markdown/0.8.26/cherry-markdown.min.css",
     "@imengyu/vue3-context-menu": "../js/@imengyu/vue3-context-menu/1.3.3/index.min.css",
     "@antv/x6": "../js/@antv/x6/2.15.5/index.min.css",
-    "@ibiz-template-plugin/gantt": "../js/@ibiz-template-plugin/gantt/0.1.8-alpha.3/index.min.css",
+    "@ibiz-template-plugin/gantt": "../js/@ibiz-template-plugin/gantt/0.1.8-alpha.7/index.min.css",
+    "@ibiz-template-plugin/bi-report": "../js/@ibiz-template-plugin/bi-report/0.0.18/index.min.css",
     "vue-grid-layout": "../js/vue-grid-layout/3.0.0-beta1/index.min.css"
   }
 }

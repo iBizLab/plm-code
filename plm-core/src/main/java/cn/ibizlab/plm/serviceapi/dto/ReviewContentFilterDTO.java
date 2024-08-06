@@ -59,7 +59,7 @@ public class ReviewContentFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 200)
+    @ApiModelProperty(value = "标识EQ", position = 210)
 	private String idEQ;
 
 

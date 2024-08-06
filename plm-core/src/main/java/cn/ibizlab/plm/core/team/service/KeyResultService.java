@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.team.domain.KeyResult;
 import cn.ibizlab.plm.core.team.filter.KeyResultSearchContext;
 import cn.ibizlab.plm.core.team.domain.Objective;
@@ -139,7 +140,7 @@ public interface KeyResultService extends IService<KeyResult> {
     * @param et
     * @return
     */
-    Integer checkKey(KeyResult et);
+    CheckKeyStatus checkKey(KeyResult et);
 
     /**
     * 保存
@@ -178,8 +179,15 @@ public interface KeyResultService extends IService<KeyResult> {
     */
     List<KeyResult> findByObjectiveId(List<String> objectiveIds);
     default List<KeyResult> findByObjectiveId(String objectiveId){
-        return findByObjectiveId(Arrays.asList(objectiveId));
+        return findByObjective(new Objective().setId(objectiveId));
     }
+
+    /**
+    * findByObjective
+    * @param objective
+    * @return
+    */
+    List<KeyResult> findByObjective(Objective objective);
 
     /**
     * removeByObjectiveId
@@ -212,6 +220,22 @@ public interface KeyResultService extends IService<KeyResult> {
     * @return
     */
     boolean saveByObjective(Objective objective, List<KeyResult> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<KeyResult> fetchView(KeyResultSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<KeyResult> listView(KeyResultSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<KeyResult> list) {

@@ -255,7 +255,6 @@ export default {
                     colXS: 24,
                     layout: 'TABLE_24COL',
                   },
-                  showCaption: true,
                   id: 'categorys',
                 },
                 {
@@ -425,7 +424,6 @@ export default {
                 colMD: 24,
                 layout: 'TABLE_24COL',
               },
-              showCaption: true,
               id: 'id',
             },
           ],

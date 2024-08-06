@@ -3,6 +3,7 @@ export default {
   codeListType: 'STATIC',
   codeName: 'extension__WFInfomMsgType',
   orMode: 'NUM',
+  appDataEntityId: 'plmweb.psdenotify',
   codeItems: [
     {
       codeName: 'INTERNAL',

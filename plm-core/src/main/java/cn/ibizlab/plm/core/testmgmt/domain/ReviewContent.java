@@ -1,5 +1,5 @@
 /**
- * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{entities@MINHERIT}}.java.hbs
+ * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{domains@MINHERIT}}.java.hbs
  */
 package cn.ibizlab.plm.core.testmgmt.domain;
 
@@ -23,8 +23,8 @@ import cn.ibizlab.plm.core.testmgmt.domain.ReviewWizard;
 import cn.ibizlab.plm.core.base.domain.Version;
 import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
 import cn.ibizlab.plm.core.testmgmt.domain.ReviewResult;
-import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
-import cn.ibizlab.plm.core.base.domain.Version;
+import cn.ibizlab.plm.core.base.domain.Relation;
+import cn.ibizlab.plm.core.testmgmt.domain.ReviewContentExtend;
 
 /**
  * 评审内容实体类[ReviewContent]
@@ -137,6 +137,15 @@ public class ReviewContent extends EntityBase implements Serializable
     @JsonProperty("parent_version_id")
     @ApiModelProperty(value = "parent_version_id", notes = "父对象版本标识")
     private String parentVersionId;
+
+    /**
+     * 评审数据
+     */
+    @DEField(name = "review_data")
+    @JSONField(name = "review_data")
+    @JsonProperty("review_data")
+    @ApiModelProperty(value = "review_data", notes = "评审数据")
+    private Review reviewData;
 
     /**
      * 测试用例
@@ -381,6 +390,15 @@ public class ReviewContent extends EntityBase implements Serializable
     public ReviewContent setTargetVersionId(String targetVersionId) {
         this.targetVersionId = targetVersionId;
         this.modify("target_version_id", targetVersionId);
+        return this;
+    }
+
+    /**
+    * 设置 [评审数据]
+    */
+    public ReviewContent setReviewData(Review reviewData) {
+        this.reviewData = reviewData;
+        this.modify("review_data", reviewData);
         return this;
     }
 

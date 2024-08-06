@@ -1,5 +1,7 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable prettier/prettier */
-import { IAppBICube, IAppBIReport, IAppBIScheme, IAppDataEntity, IAppView, IApplication } from '@ibiz/model-core';
+import { IAppBICube, IAppBIReport, IAppBIScheme, IAppDataEntity, IAppView, IApplication, ISubAppRef } from '@ibiz/model-core';
+import { DSLHelper } from '@ibiz/rt-model-api';
 import { ModelLoaderProvider } from '@ibiz-template/runtime';
 import {
   getAppDataEntityModel,
@@ -18,6 +20,12 @@ import { mergeUIActions } from './merge-ui-action';
  * @implements {ModelLoaderProvider}
  */
 export class ModelLoader implements ModelLoaderProvider {
+
+  protected dsl = new DSLHelper();
+  
+  async getSubAppRef(appId: string): Promise<ISubAppRef | undefined> {
+    return undefined;
+  }
 
   async initApp(_id?: string): Promise<boolean> {
     return true;
@@ -66,5 +74,22 @@ export class ModelLoader implements ModelLoaderProvider {
 
   getAppBIReports(appId: string, ids: string[]): Promise<IAppBIReport[]> {
     throw new Error('Method not implemented.');
+  }
+
+  async translationModelToDsl(data: IData, type: 'APP' | 'VIEW' | 'CTRL' | 'APPENTITY' | 'APPBIREPORT'): Promise<IModel | undefined> {
+    switch (type) {
+      case 'APP':
+        return this.dsl.application(data);
+      case 'VIEW':
+        return this.dsl.appView(data);
+      case 'CTRL':
+        return this.dsl.control(data);
+      case 'APPENTITY':
+        return this.dsl.appDataEntity(data);
+      case 'APPBIREPORT':
+        return this.dsl.appBIReport(data);
+      default:
+        break;
+    }
   }
 }

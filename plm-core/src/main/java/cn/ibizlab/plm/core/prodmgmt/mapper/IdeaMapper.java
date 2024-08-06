@@ -100,6 +100,44 @@ public interface IdeaMapper extends BaseMapper<Idea> {
     List<Idea> listBaselineChooseIdea(@Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
 
     /**
+     * 数据集合bi_detail分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Idea> searchBiDetail(IPage<Idea> page, @Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
+    
+    /**
+     * 数据集合bi_detail查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Idea> listBiDetail(@Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
+
+    /**
+     * 数据集合bi_search分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Idea> searchBiSearch(IPage<Idea> page, @Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
+    
+    /**
+     * 数据集合bi_search查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Idea> listBiSearch(@Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
+
+    /**
      * 数据集合comment_notify_assignee分页查询
      * 
      * @param page
@@ -309,6 +347,25 @@ public interface IdeaMapper extends BaseMapper<Idea> {
     List<Idea> listPlanRelationIdea(@Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
 
     /**
+     * 数据集合reader分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Idea> searchReader(IPage<Idea> page, @Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
+    
+    /**
+     * 数据集合reader查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Idea> listReader(@Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
+
+    /**
      * 数据集合recent_idea分页查询
      * 
      * @param page
@@ -350,6 +407,25 @@ public interface IdeaMapper extends BaseMapper<Idea> {
     * @return
     */
     List<Idea> findByAssigneeId(@Param("assigneeIds") List<String> assigneeIds);
+
+    /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Idea> searchView(IPage<Idea> page, @Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Idea> listView(@Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
 
     /**
      * 主键查询

@@ -19,6 +19,16 @@ export default {
   ],
   appViewLogics: [
     {
+      eventNames: 'onViewMounted',
+      logicTrigger: 'VIEWEVENT',
+      logicType: 'APPDEUILOGIC',
+      appDEUILogicId: 'recognize_cur_user_role',
+      appDataEntityId: 'plmweb.space',
+      builtinLogic: true,
+      name: 'CUR_USER_ROLE',
+      id: 'cur_user_role',
+    },
+    {
       logicTrigger: 'CUSTOM',
       logicType: 'APPUILOGIC',
       builtinAppUILogic: {
@@ -770,9 +780,10 @@ export default {
                   itemName: 'deuiaction1',
                   logicTag: 'treeexpbar_toolbar',
                   logicType: 'SCRIPT',
-                  scriptCode: '!context.project && !context.srfreadonly',
+                  scriptCode:
+                    '!context.project && !context.srfreadonly && context.user_role != \'reader\' && context.user_role != "user"',
                   triggerType: 'ITEMVISIBLE',
-                  id: 'project',
+                  id: 'product',
                 },
               ],
               sysImage: {
@@ -796,9 +807,9 @@ export default {
                   itemName: 'deuiaction3',
                   logicTag: 'treeexpbar_toolbar',
                   logicType: 'SCRIPT',
-                  scriptCode: '!context.product && !context.srfreadonly',
+                  scriptCode: '!context.product',
                   triggerType: 'ITEMVISIBLE',
-                  id: 'product',
+                  id: 'project',
                 },
               ],
               sysImage: {
@@ -821,7 +832,7 @@ export default {
                   itemName: 'deuiaction2',
                   logicTag: 'treeexpbar_toolbar',
                   logicType: 'SCRIPT',
-                  scriptCode: '!context.srfreadonly',
+                  scriptCode: 'context.srfreadonly == false',
                   triggerType: 'ITEMVISIBLE',
                   id: 'refresh',
                 },

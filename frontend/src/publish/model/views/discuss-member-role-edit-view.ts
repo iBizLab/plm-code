@@ -24,7 +24,7 @@ export default {
   controls: [
     {
       createControlAction: {
-        appDEMethodId: 'create',
+        appDEMethodId: 'nothing',
         appDataEntityId: 'plmweb.discuss_member',
         id: 'create',
       },
@@ -38,7 +38,7 @@ export default {
         id: 'loaddraft',
       },
       getControlAction: {
-        appDEMethodId: 'get',
+        appDEMethodId: 'nothing',
         appDataEntityId: 'plmweb.discuss_member',
         id: 'load',
       },
@@ -48,7 +48,7 @@ export default {
         id: 'remove',
       },
       updateControlAction: {
-        appDEMethodId: 'update',
+        appDEMethodId: 'nothing',
         appDataEntityId: 'plmweb.discuss_member',
         id: 'update',
       },
@@ -129,7 +129,6 @@ export default {
                 colMD: 24,
                 layout: 'TABLE_24COL',
               },
-              showCaption: true,
               id: 'id',
             },
           ],

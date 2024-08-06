@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.wiki.domain.Space;
 import cn.ibizlab.plm.core.wiki.filter.SpaceSearchContext;
 import cn.ibizlab.plm.core.base.domain.Category;
@@ -243,7 +244,7 @@ public interface SpaceService extends IService<Space> {
     * @param et
     * @return
     */
-    Integer checkKey(Space et);
+    CheckKeyStatus checkKey(Space et);
 
     /**
     * 保存
@@ -350,12 +351,32 @@ public interface SpaceService extends IService<Space> {
     }
 
     /**
+    * openShared
+    * 
+    * @param et
+    * @return
+    */
+    default Space openShared(Space et) {
+        return et;
+    }
+
+    /**
     * otherReSpace
     * 
     * @param et
     * @return
     */
     default Space otherReSpace(Space et) {
+        return et;
+    }
+
+    /**
+    * recognizeCurUserRole
+    * 
+    * @param et
+    * @return
+    */
+    default Space recognizeCurUserRole(Space et) {
         return et;
     }
 
@@ -636,8 +657,15 @@ public interface SpaceService extends IService<Space> {
     */
     List<Space> findByCategoryId(List<String> categoryIds);
     default List<Space> findByCategoryId(String categoryId){
-        return findByCategoryId(Arrays.asList(categoryId));
+        return findByCategory(new Category().setId(categoryId));
     }
+
+    /**
+    * findByCategory
+    * @param category
+    * @return
+    */
+    List<Space> findByCategory(Category category);
 
     /**
     * removeByCategoryId
@@ -674,6 +702,22 @@ public interface SpaceService extends IService<Space> {
     default List<SpaceMember> getMembers(Space et) {
         return new ArrayList<>();
     }
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Space> fetchView(SpaceSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Space> listView(SpaceSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Space> list) {

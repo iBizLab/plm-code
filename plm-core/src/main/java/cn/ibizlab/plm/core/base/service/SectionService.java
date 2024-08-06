@@ -11,6 +11,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.Section;
 import cn.ibizlab.plm.core.base.filter.SectionSearchContext;
 import cn.ibizlab.plm.core.base.domain.Category;
@@ -140,7 +141,7 @@ public interface SectionService extends IService<Section> {
     * @param et
     * @return
     */
-    Integer checkKey(Section et);
+    CheckKeyStatus checkKey(Section et);
 
     /**
     * 保存
@@ -203,6 +204,38 @@ public interface SectionService extends IService<Section> {
     * @return
     */
     List<Section> listCheckName(SectionSearchContext context);
+
+    /**
+    * fetchIdeaSection
+    * 
+    * @param context
+    * @return
+    */
+    Page<Section> fetchIdeaSection(SectionSearchContext context);
+
+    /**
+    * listIdeaSection
+    * 
+    * @param context
+    * @return
+    */
+    List<Section> listIdeaSection(SectionSearchContext context);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Section> fetchView(SectionSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Section> listView(SectionSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Section> list) {

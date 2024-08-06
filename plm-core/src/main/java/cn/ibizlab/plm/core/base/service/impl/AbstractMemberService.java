@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.base.domain.Member;
@@ -28,6 +29,8 @@ import cn.ibizlab.plm.core.base.domain.User;
 import cn.ibizlab.plm.core.base.domain.CommonFlow;
 import cn.ibizlab.plm.core.base.domain.Group;
 import cn.ibizlab.plm.core.base.service.GroupService;
+import cn.ibizlab.plm.core.wiki.domain.ArticlePage;
+import cn.ibizlab.plm.core.wiki.service.ArticlePageService;
 import cn.ibizlab.plm.core.projmgmt.domain.Project;
 import cn.ibizlab.plm.core.projmgmt.service.ProjectService;
 
@@ -42,6 +45,10 @@ public abstract class AbstractMemberService extends ServiceImpl<MemberMapper,Mem
     @Autowired
     @Lazy
     protected GroupService groupService;
+
+    @Autowired
+    @Lazy
+    protected ArticlePageService articlePageService;
 
     @Autowired
     @Lazy
@@ -123,17 +130,17 @@ public abstract class AbstractMemberService extends ServiceImpl<MemberMapper,Mem
         return et;
     }
 	
-    public Integer checkKey(Member et) {
+    public CheckKeyStatus checkKey(Member et) {
         fillParentData(et);
         if(ObjectUtils.isEmpty(et.getId()))
             et.setId((String)et.getDefaultKey(true));
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Member>lambdaQuery().eq(Member::getId, et.getId()))>0)?1:0;
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Member>lambdaQuery().eq(Member::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(Member et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -175,6 +182,21 @@ public abstract class AbstractMemberService extends ServiceImpl<MemberMapper,Mem
         return list;
    }
 	
+   public Page<Member> fetchSharedPageMember(MemberSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("CREATE_TIME,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Member> pages=baseMapper.searchSharedPageMember(context.getPages(),context,context.getSelectCond());
+        List<Member> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Member> listSharedPageMember(MemberSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("CREATE_TIME,DESC");
+        List<Member> list = baseMapper.listSharedPageMember(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<Member> fetchUserGroupAdmin(MemberSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Member> pages=baseMapper.searchUserGroupAdmin(context.getPages(),context,context.getSelectCond());
         List<Member> list = pages.getRecords();
@@ -191,6 +213,10 @@ public abstract class AbstractMemberService extends ServiceImpl<MemberMapper,Mem
         return list;	
 	}
 
+	public List<Member> findByUser(User user){
+        List<Member> list = findByUserId(Arrays.asList(user.getId()));
+		return list;
+	}
 	public boolean removeByUserId(String userId){
         return this.remove(Wrappers.<Member>lambdaQuery().eq(Member::getUserId,userId));
 	}
@@ -201,8 +227,8 @@ public abstract class AbstractMemberService extends ServiceImpl<MemberMapper,Mem
 	public boolean saveByUser(User user, List<Member> list){
         if(list==null)
             return true;
-        Map<String,Member> before = findByUserId(user.getId()).stream().collect(Collectors.toMap(Member::getId,e->e));
 
+        Map<String,Member> before = findByUser(user).stream().collect(Collectors.toMap(Member::getId,e->e));
         List<Member> update = new ArrayList<>();
         List<Member> create = new ArrayList<>();
 
@@ -235,6 +261,12 @@ public abstract class AbstractMemberService extends ServiceImpl<MemberMapper,Mem
         return list;	
 	}
 
+	public List<Member> findByMemberCommonFlow(CommonFlow commonFlow){
+        List<Member> list = this.baseMapper.selectList(Wrappers.<Member>lambdaQuery()
+                        .eq(Member::getId, commonFlow.getId())
+                        .eq(Member::getOwnerType,"COMMON_FLOW").isNull(Member::getOwnerSubtype));
+		return list;
+	}
 	public boolean removeById(String id){
         return this.remove(Wrappers.<Member>lambdaQuery().eq(Member::getId,id));
 	}
@@ -245,12 +277,8 @@ public abstract class AbstractMemberService extends ServiceImpl<MemberMapper,Mem
 	public boolean saveByMemberCommonFlow(CommonFlow commonFlow, List<Member> list){
         if(list==null)
             return true;
-        Map<String,Member> before = this.baseMapper.selectList(Wrappers.<Member>lambdaQuery()
-                        .eq(Member::getId, commonFlow.getId())
-                        .eq(Member::getOwnerType,"COMMON_FLOW").isNull(Member::getOwnerSubtype))
-                        .stream()
-                        .collect(Collectors.toMap(Member::getId,e->e));
 
+        Map<String,Member> before = findByMemberCommonFlow(commonFlow).stream().collect(Collectors.toMap(Member::getId,e->e));
         List<Member> update = new ArrayList<>();
         List<Member> create = new ArrayList<>();
 
@@ -283,6 +311,13 @@ public abstract class AbstractMemberService extends ServiceImpl<MemberMapper,Mem
         return list;	
 	}
 
+	public List<Member> findByMemberGroup(Group group){
+        List<Member> list = this.baseMapper.selectList(Wrappers.<Member>lambdaQuery()
+                        .eq(Member::getOwnerId, group.getId())
+                        .eq(Member::getOwnerType,"GROUP")
+                        .eq(Member::getOwnerSubtype,"GROUP"));
+		return list;
+	}
 	public boolean removeByOwnerId(String ownerId){
         return this.remove(Wrappers.<Member>lambdaQuery().eq(Member::getOwnerId,ownerId));
 	}
@@ -293,13 +328,8 @@ public abstract class AbstractMemberService extends ServiceImpl<MemberMapper,Mem
 	public boolean saveByMemberGroup(Group group, List<Member> list){
         if(list==null)
             return true;
-        Map<String,Member> before = this.baseMapper.selectList(Wrappers.<Member>lambdaQuery()
-                        .eq(Member::getOwnerId, group.getId())
-                        .eq(Member::getOwnerType,"GROUP")
-                        .eq(Member::getOwnerSubtype,"GROUP"))
-                        .stream()
-                        .collect(Collectors.toMap(Member::getId,e->e));
 
+        Map<String,Member> before = findByMemberGroup(group).stream().collect(Collectors.toMap(Member::getId,e->e));
         List<Member> update = new ArrayList<>();
         List<Member> create = new ArrayList<>();
 
@@ -327,16 +357,57 @@ public abstract class AbstractMemberService extends ServiceImpl<MemberMapper,Mem
             return true;
 			
 	}
+	public List<Member> findBySharedPageMember(ArticlePage articlePage){
+        List<Member> list = this.baseMapper.selectList(Wrappers.<Member>lambdaQuery()
+                        .eq(Member::getOwnerId, articlePage.getId())
+                        .eq(Member::getOwnerType,"PAGE")
+                        .eq(Member::getOwnerSubtype,"SHARED"));
+		return list;
+	}
+	public boolean saveBySharedPageMember(ArticlePage articlePage, List<Member> list){
+        if(list==null)
+            return true;
+
+        Map<String,Member> before = findBySharedPageMember(articlePage).stream().collect(Collectors.toMap(Member::getId,e->e));
+        List<Member> update = new ArrayList<>();
+        List<Member> create = new ArrayList<>();
+
+        for(Member sub:list) {
+            sub.setOwnerId(articlePage.getId());
+            sub.setSharedPageMember(articlePage);
+            if(ObjectUtils.isEmpty(sub.getId()))
+                before.values().stream()
+                        .filter(e->ObjectUtils.nullSafeEquals(sub.getDefaultKey(true),e.getDefaultKey(true)))
+                        .findFirst().ifPresent(e->sub.setId(e.getId()));
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
+	public List<Member> findByProjectResource(Project project){
+        List<Member> list = this.baseMapper.selectList(Wrappers.<Member>lambdaQuery()
+                        .eq(Member::getOwnerId, project.getId())
+                        .eq(Member::getOwnerType,"PROJECT")
+                        .eq(Member::getOwnerSubtype,"PROJECT_RESOURCE"));
+		return list;
+	}
 	public boolean saveByProjectResource(Project project, List<Member> list){
         if(list==null)
             return true;
-        Map<String,Member> before = this.baseMapper.selectList(Wrappers.<Member>lambdaQuery()
-                        .eq(Member::getOwnerId, project.getId())
-                        .eq(Member::getOwnerType,"PROJECT")
-                        .eq(Member::getOwnerSubtype,"PROJECT_RESOURCE"))
-                        .stream()
-                        .collect(Collectors.toMap(Member::getId,e->e));
 
+        Map<String,Member> before = findByProjectResource(project).stream().collect(Collectors.toMap(Member::getId,e->e));
         List<Member> update = new ArrayList<>();
         List<Member> create = new ArrayList<>();
 
@@ -364,9 +435,23 @@ public abstract class AbstractMemberService extends ServiceImpl<MemberMapper,Mem
             return true;
 			
 	}
+   public Page<Member> fetchView(MemberSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Member> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<Member> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Member> listView(MemberSearchContext context) {
+        List<Member> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(Member et) {
         if(Entities.GROUP.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setOwnerId((String)et.getContextParentKey());
+        }
+        if(Entities.ARTICLE_PAGE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
             et.setOwnerId((String)et.getContextParentKey());
         }
         if(Entities.PROJECT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

@@ -59,6 +59,25 @@ public interface UpdateRecordMapper extends BaseMapper<UpdateRecord> {
     List<UpdateRecord> findByObjectiveId(@Param("objectiveIds") List<String> objectiveIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<UpdateRecord> searchView(IPage<UpdateRecord> page, @Param("ctx") UpdateRecordSearchContext context, @Param("ew") Wrapper<UpdateRecord> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<UpdateRecord> listView(@Param("ctx") UpdateRecordSearchContext context, @Param("ew") Wrapper<UpdateRecord> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

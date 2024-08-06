@@ -49,10 +49,10 @@ export default {
       id: 'timertask',
     },
     {
-      codeName: 'defieldhook',
+      codeName: 'fieldchangehook',
       text: '属性变化处理',
-      value: 'DEFIELDHOOK',
-      id: 'defieldhook',
+      value: 'FIELDCHANGEHOOK',
+      id: 'fieldchangehook',
     },
     {
       codeName: 'user',

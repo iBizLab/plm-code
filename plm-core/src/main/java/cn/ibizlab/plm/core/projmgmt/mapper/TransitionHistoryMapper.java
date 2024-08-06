@@ -51,6 +51,25 @@ public interface TransitionHistoryMapper extends BaseMapper<TransitionHistory> {
     List<TransitionHistory> findByOwnerId(@Param("ownerIds") List<String> ownerIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<TransitionHistory> searchView(IPage<TransitionHistory> page, @Param("ctx") TransitionHistorySearchContext context, @Param("ew") Wrapper<TransitionHistory> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<TransitionHistory> listView(@Param("ctx") TransitionHistorySearchContext context, @Param("ew") Wrapper<TransitionHistory> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

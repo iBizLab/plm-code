@@ -43,6 +43,25 @@ public interface PeriodMapper extends BaseMapper<Period> {
     List<Period> listDefault(@Param("ctx") PeriodSearchContext context, @Param("ew") Wrapper<Period> wrapper);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Period> searchView(IPage<Period> page, @Param("ctx") PeriodSearchContext context, @Param("ew") Wrapper<Period> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Period> listView(@Param("ctx") PeriodSearchContext context, @Param("ew") Wrapper<Period> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

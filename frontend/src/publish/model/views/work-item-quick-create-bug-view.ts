@@ -213,6 +213,7 @@ export default {
                                 caption: '所属数据标识',
                                 codeName: 'owner_id',
                                 columnType: 'DEFGRIDCOLUMN',
+                                hideMode: 1,
                                 noPrivDisplayMode: 1,
                                 width: 100,
                                 widthUnit: 'PX',
@@ -232,6 +233,7 @@ export default {
                                 caption: '所属数据对象',
                                 codeName: 'owner_type',
                                 columnType: 'DEFGRIDCOLUMN',
+                                hideMode: 1,
                                 noPrivDisplayMode: 1,
                                 width: 100,
                                 widthUnit: 'PX',
@@ -790,7 +792,6 @@ export default {
                         colMD: 24,
                         layout: 'TABLE_24COL',
                       },
-                      showCaption: true,
                       id: 'assignee_id',
                     },
                     {
@@ -1280,7 +1281,6 @@ export default {
                 colMD: 24,
                 layout: 'TABLE_24COL',
               },
-              showCaption: true,
               id: 'project_id',
             },
             {
@@ -1306,7 +1306,6 @@ export default {
                 colMD: 24,
                 layout: 'TABLE_24COL',
               },
-              showCaption: true,
               id: 'pid',
             },
             {
@@ -1335,7 +1334,6 @@ export default {
                 colMD: 24,
                 layout: 'TABLE_24COL',
               },
-              showCaption: true,
               id: 'id',
             },
             {
@@ -1361,7 +1359,6 @@ export default {
                 colMD: 24,
                 layout: 'TABLE_24COL',
               },
-              showCaption: true,
               id: 'work_item_type_id',
             },
           ],

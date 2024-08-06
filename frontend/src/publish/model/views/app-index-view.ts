@@ -1,6 +1,5 @@
 export default {
   defaultPage: true,
-  accUserMode: 3,
   capLanguageRes: {
     lanResTag: 'PAGE.CAPTION.PLMWEB.APPINDEXVIEW',
   },
@@ -632,7 +631,6 @@ export default {
               cssClass: 'fa fa-bar-chart',
               glyph: 'xf080@FontAwesome',
             },
-            hidden: true,
             valid: true,
             capLanguageRes: {
               lanResTag: 'CONTROL.APPMENUITEM.CAPTION.PLMWEB.PLMMENU.MENUITEM6',

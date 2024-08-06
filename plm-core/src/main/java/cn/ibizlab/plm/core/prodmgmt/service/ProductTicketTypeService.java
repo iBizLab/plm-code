@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.prodmgmt.domain.ProductTicketType;
 import cn.ibizlab.plm.core.prodmgmt.filter.ProductTicketTypeSearchContext;
 import cn.ibizlab.plm.core.prodmgmt.domain.Product;
@@ -139,7 +140,7 @@ public interface ProductTicketTypeService extends IService<ProductTicketType> {
     * @param et
     * @return
     */
-    Integer checkKey(ProductTicketType et);
+    CheckKeyStatus checkKey(ProductTicketType et);
 
     /**
     * 保存
@@ -178,8 +179,15 @@ public interface ProductTicketTypeService extends IService<ProductTicketType> {
     */
     List<ProductTicketType> findByProductId(List<String> productIds);
     default List<ProductTicketType> findByProductId(String productId){
-        return findByProductId(Arrays.asList(productId));
+        return findByProduct(new Product().setId(productId));
     }
+
+    /**
+    * findByProduct
+    * @param product
+    * @return
+    */
+    List<ProductTicketType> findByProduct(Product product);
 
     /**
     * removeByProductId
@@ -220,8 +228,15 @@ public interface ProductTicketTypeService extends IService<ProductTicketType> {
     */
     List<ProductTicketType> findByTicketTypeId(List<String> ticketTypeIds);
     default List<ProductTicketType> findByTicketTypeId(String ticketTypeId){
-        return findByTicketTypeId(Arrays.asList(ticketTypeId));
+        return findByTicketType(new TicketType().setId(ticketTypeId));
     }
+
+    /**
+    * findByTicketType
+    * @param ticketType
+    * @return
+    */
+    List<ProductTicketType> findByTicketType(TicketType ticketType);
 
     /**
     * removeByTicketTypeId
@@ -254,6 +269,22 @@ public interface ProductTicketTypeService extends IService<ProductTicketType> {
     * @return
     */
     boolean saveByTicketType(TicketType ticketType, List<ProductTicketType> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<ProductTicketType> fetchView(ProductTicketTypeSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<ProductTicketType> listView(ProductTicketTypeSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<ProductTicketType> list) {

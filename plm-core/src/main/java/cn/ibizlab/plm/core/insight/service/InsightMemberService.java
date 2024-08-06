@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.insight.domain.InsightMember;
 import cn.ibizlab.plm.core.insight.filter.InsightMemberSearchContext;
 import cn.ibizlab.plm.core.insight.domain.InsightView;
@@ -139,7 +140,7 @@ public interface InsightMemberService extends IService<InsightMember> {
     * @param et
     * @return
     */
-    Integer checkKey(InsightMember et);
+    CheckKeyStatus checkKey(InsightMember et);
 
     /**
     * 保存
@@ -154,6 +155,26 @@ public interface InsightMemberService extends IService<InsightMember> {
      * @return
      */
     boolean save(List<InsightMember> list);
+
+    /**
+    * changeRole
+    * 
+    * @param et
+    * @return
+    */
+    default InsightMember changeRole(InsightMember et) {
+        return et;
+    }
+
+    /**
+    * nothing
+    * 
+    * @param et
+    * @return
+    */
+    default InsightMember nothing(InsightMember et) {
+        return et;
+    }
 
     /**
     * fetchDefault
@@ -178,8 +199,15 @@ public interface InsightMemberService extends IService<InsightMember> {
     */
     List<InsightMember> findByOwnerId(List<String> ownerIds);
     default List<InsightMember> findByOwnerId(String ownerId){
-        return findByOwnerId(Arrays.asList(ownerId));
+        return findByInsightView(new InsightView().setId(ownerId));
     }
+
+    /**
+    * findByInsightView
+    * @param insightView
+    * @return
+    */
+    List<InsightMember> findByInsightView(InsightView insightView);
 
     /**
     * removeByOwnerId
@@ -220,8 +248,15 @@ public interface InsightMemberService extends IService<InsightMember> {
     */
     List<InsightMember> findByUserId(List<String> userIds);
     default List<InsightMember> findByUserId(String userId){
-        return findByUserId(Arrays.asList(userId));
+        return findByUser(new User().setId(userId));
     }
+
+    /**
+    * findByUser
+    * @param user
+    * @return
+    */
+    List<InsightMember> findByUser(User user);
 
     /**
     * removeByUserId
@@ -254,6 +289,22 @@ public interface InsightMemberService extends IService<InsightMember> {
     * @return
     */
     boolean saveByUser(User user, List<InsightMember> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<InsightMember> fetchView(InsightMemberSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<InsightMember> listView(InsightMemberSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<InsightMember> list) {

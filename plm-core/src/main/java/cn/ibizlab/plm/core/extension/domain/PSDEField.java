@@ -33,6 +33,15 @@ import io.swagger.annotations.*;
 public class PSDEField extends EntityBase implements Serializable
 {
     /**
+     * 扩展模型
+     */
+    @DEField(name = "dynamodelflag" , defaultValue = "0" , dict = "YesNo")
+    @JSONField(name = "dynamodelflag")
+    @JsonProperty("dynamodelflag")
+    @ApiModelProperty(value = "dynamodelflag", notes = "扩展模型")
+    private Integer dynaModelFlag;
+
+    /**
      * 实体属性标识
      */
     @Id
@@ -268,6 +277,15 @@ public class PSDEField extends EntityBase implements Serializable
     @JsonProperty("extension_tag4")
     @ApiModelProperty(value = "extension_tag4", notes = "扩展标记4")
     private String extensionTag4;
+
+    /**
+    * 设置 [扩展模型]
+    */
+    public PSDEField setDynaModelFlag(Integer dynaModelFlag) {
+        this.dynaModelFlag = dynaModelFlag;
+        this.modify("dynamodelflag", dynaModelFlag);
+        return this;
+    }
 
     /**
     * 设置 [实体属性名称]

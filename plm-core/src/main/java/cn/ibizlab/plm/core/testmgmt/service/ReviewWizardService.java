@@ -10,10 +10,12 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.testmgmt.domain.ReviewWizard;
 import cn.ibizlab.plm.core.testmgmt.filter.ReviewWizardSearchContext;
 import cn.ibizlab.plm.core.testmgmt.domain.Guideline;
 import cn.ibizlab.plm.core.testmgmt.domain.Library;
+import cn.ibizlab.plm.core.base.domain.Attention;
 import cn.ibizlab.plm.core.testmgmt.domain.ReviewContent;
 
 /**
@@ -240,7 +242,7 @@ public interface ReviewWizardService extends IService<ReviewWizard> {
     * @param et
     * @return
     */
-    Integer checkKey(ReviewWizard et);
+    CheckKeyStatus checkKey(ReviewWizard et);
 
     /**
     * 保存
@@ -289,8 +291,15 @@ public interface ReviewWizardService extends IService<ReviewWizard> {
     */
     List<ReviewWizard> findByGuidelineId(List<String> guidelineIds);
     default List<ReviewWizard> findByGuidelineId(String guidelineId){
-        return findByGuidelineId(Arrays.asList(guidelineId));
+        return findByGuideline(new Guideline().setId(guidelineId));
     }
+
+    /**
+    * findByGuideline
+    * @param guideline
+    * @return
+    */
+    List<ReviewWizard> findByGuideline(Guideline guideline);
 
     /**
     * removeByGuidelineId
@@ -331,8 +340,15 @@ public interface ReviewWizardService extends IService<ReviewWizard> {
     */
     List<ReviewWizard> findByLibraryId(List<String> libraryIds);
     default List<ReviewWizard> findByLibraryId(String libraryId){
-        return findByLibraryId(Arrays.asList(libraryId));
+        return findByLibrary(new Library().setId(libraryId));
     }
+
+    /**
+    * findByLibrary
+    * @param library
+    * @return
+    */
+    List<ReviewWizard> findByLibrary(Library library);
 
     /**
     * removeByLibraryId
@@ -366,9 +382,29 @@ public interface ReviewWizardService extends IService<ReviewWizard> {
     */
     boolean saveByLibrary(Library library, List<ReviewWizard> list);
 
+    default List<Attention> getAttentions(ReviewWizard et) {
+        return new ArrayList<>();
+    }
+
     default List<ReviewContent> getContents(ReviewWizard et) {
         return new ArrayList<>();
     }
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<ReviewWizard> fetchView(ReviewWizardSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<ReviewWizard> listView(ReviewWizardSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<ReviewWizard> list) {

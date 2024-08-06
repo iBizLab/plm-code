@@ -181,7 +181,7 @@ public class Run extends EntityMP implements Serializable
     * 当前版本标识
     */
     @TableField(value = "cur_version_id")
-    @DEField(name = "cur_version_id" , preType = DEPredefinedFieldType.VERSIONID)
+    @DEField(name = "cur_version_id" , preType = DEPredefinedFieldType.VERSIONID , dict = "version_test")
     @JSONField(name = "cur_version_id")
     @JsonProperty("cur_version_id")
     @ApiModelProperty(value = "cur_version_id", notes = "当前版本标识")
@@ -191,7 +191,7 @@ public class Run extends EntityMP implements Serializable
     * 执行人标识
     */
     @TableField(value = "executor_id")
-    @DEField(name = "executor_id" , defaultValueType = DEFieldDefaultValueType.OPERATOR)
+    @DEField(name = "executor_id" , defaultValueType = DEFieldDefaultValueType.OPERATOR , dict = "SysOperator")
     @JSONField(name = "executor_id")
     @JsonProperty("executor_id")
     @ApiModelProperty(value = "executor_id", notes = "执行人标识")
@@ -248,6 +248,16 @@ public class Run extends EntityMP implements Serializable
     private String suites;
 
     /**
+    * 关联缺陷数
+    */
+    @TableField(value = "relation_total_bug" , exist = false)
+    @DEField(name = "relation_total_bug")
+    @JSONField(name = "relation_total_bug")
+    @JsonProperty("relation_total_bug")
+    @ApiModelProperty(value = "relation_total_bug", notes = "关联缺陷数")
+    private BigDecimal relationTotalBug;
+
+    /**
     * 所属测试库
     */
     @TableField(value = "library_name" , exist = false)
@@ -261,7 +271,7 @@ public class Run extends EntityMP implements Serializable
     * 测试库标识
     */
     @TableField(value = "library_id" , exist = false)
-    @DEField(name = "library_id")
+    @DEField(name = "library_id" , dict = "all_library")
     @JSONField(name = "library_id")
     @JsonProperty("library_id")
     @ApiModelProperty(value = "library_id", notes = "测试库标识")
@@ -271,7 +281,7 @@ public class Run extends EntityMP implements Serializable
     * 关注
     */
     @TableField(exist = false)
-    @DEField(name = "attentions")
+    @DEField(name = "attentions" , dict = "SysOperator")
     @JSONField(name = "attentions")
     @JsonProperty("attentions")
     @ApiModelProperty(value = "attentions", notes = "关注")
@@ -326,6 +336,56 @@ public class Run extends EntityMP implements Serializable
     @JsonProperty("run_attachment")
     @ApiModelProperty(value = "run_attachment", notes = "结果附件")
     private List<RunAttachment> runAttachment;
+
+    /**
+    * 关联执行结果数
+    */
+    @TableField(value = "relation_total_history" , exist = false)
+    @DEField(name = "relation_total_history")
+    @JSONField(name = "relation_total_history")
+    @JsonProperty("relation_total_history")
+    @ApiModelProperty(value = "relation_total_history", notes = "关联执行结果数")
+    private BigDecimal relationTotalHistory;
+
+    /**
+    * 优先级
+    */
+    @TableField(value = "priority")
+    @DEField(name = "priority" , defaultValue = "20" , dict = "work_item_priority")
+    @JSONField(name = "priority")
+    @JsonProperty("priority")
+    @ApiModelProperty(value = "priority", notes = "优先级")
+    private String priority;
+
+    /**
+    * 是否最新
+    */
+    @TableField(value = "is_newest")
+    @DEField(name = "is_newest" , defaultValue = "0" , dict = "YesNo")
+    @JSONField(name = "is_newest")
+    @JsonProperty("is_newest")
+    @ApiModelProperty(value = "is_newest", notes = "是否最新")
+    private Integer isNewest;
+
+    /**
+    * 测试库编号
+    */
+    @TableField(value = "library_identifier" , exist = false)
+    @DEField(name = "library_identifier")
+    @JSONField(name = "library_identifier")
+    @JsonProperty("library_identifier")
+    @ApiModelProperty(value = "library_identifier", notes = "测试库编号")
+    private String libraryIdentifier;
+
+    /**
+    * bi测试计划名称
+    */
+    @TableField(value = "bi_plan_name" , exist = false)
+    @DEField(name = "bi_plan_name")
+    @JSONField(name = "bi_plan_name")
+    @JsonProperty("bi_plan_name")
+    @ApiModelProperty(value = "bi_plan_name", notes = "bi测试计划名称")
+    private String biPlanName;
 
     /**
     * 关注人
@@ -613,6 +673,15 @@ public class Run extends EntityMP implements Serializable
     }
 
     /**
+    * 设置 [关联缺陷数]
+    */
+    public Run setRelationTotalBug(BigDecimal relationTotalBug) {
+        this.relationTotalBug = relationTotalBug;
+        this.modify("relation_total_bug", relationTotalBug);
+        return this;
+    }
+
+    /**
     * 设置 [所属测试库]
     */
     public Run setLibraryName(String libraryName) {
@@ -681,6 +750,51 @@ public class Run extends EntityMP implements Serializable
     public Run setRunAttachment(List<RunAttachment> runAttachment) {
         this.runAttachment = runAttachment;
         this.modify("run_attachment", runAttachment);
+        return this;
+    }
+
+    /**
+    * 设置 [关联执行结果数]
+    */
+    public Run setRelationTotalHistory(BigDecimal relationTotalHistory) {
+        this.relationTotalHistory = relationTotalHistory;
+        this.modify("relation_total_history", relationTotalHistory);
+        return this;
+    }
+
+    /**
+    * 设置 [优先级]
+    */
+    public Run setPriority(String priority) {
+        this.priority = priority;
+        this.modify("priority", priority);
+        return this;
+    }
+
+    /**
+    * 设置 [是否最新]
+    */
+    public Run setIsNewest(Integer isNewest) {
+        this.isNewest = isNewest;
+        this.modify("is_newest", isNewest);
+        return this;
+    }
+
+    /**
+    * 设置 [测试库编号]
+    */
+    public Run setLibraryIdentifier(String libraryIdentifier) {
+        this.libraryIdentifier = libraryIdentifier;
+        this.modify("library_identifier", libraryIdentifier);
+        return this;
+    }
+
+    /**
+    * 设置 [bi测试计划名称]
+    */
+    public Run setBiPlanName(String biPlanName) {
+        this.biPlanName = biPlanName;
+        this.modify("bi_plan_name", biPlanName);
         return this;
     }
 

@@ -1,0 +1,71 @@
+export default {
+  redirectAppViewRefs: [
+    {
+      realTitle: '项目发布编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.RELEASE.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.release_edit_view',
+      name: 'RELEASE:EDITVIEW',
+      id: 'release:editview',
+    },
+    {
+      realTitle: '项目发布编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.RELEASE.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.release_edit_view',
+      name: 'EDITVIEW',
+      id: 'editview',
+    },
+  ],
+  enableWorkflow: true,
+  funcViewMode: 'REDIRECTVIEW',
+  deviewCodeName: 'RedirectView',
+  deviewId: '0643ad31b743bdfbdcdfc82167c54afa',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.RELEASE',
+  },
+  caption: '项目发布',
+  codeName: 'release_redirect_view',
+  appDataEntityId: 'plmweb.release',
+  controls: [
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.RELEASE',
+      },
+      caption: '项目发布',
+      codeName: 'redirect_view_captionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.release',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'redirect_view_captionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'layoutpanel',
+    controlStyle: 'APPDEREDIRECTVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.release',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '项目发布数据重定向视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.RELEASE.REDIRECTVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEREDIRECTVIEW',
+  enableDP: true,
+  redirectView: true,
+  showCaptionBar: true,
+  modelId: '9f238e786d1cd12dffecfef8fe8fa5ab',
+  modelType: 'PSAPPDEVIEW',
+  name: 'releaseRedirectView',
+  id: 'plmweb.release_redirect_view',
+};

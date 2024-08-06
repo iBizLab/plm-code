@@ -60,5 +60,14 @@
         
     </select>
 
+    <select id="listView"  parameterType="cn.ibizlab.plm.core.base.filter.ReferencesIndexSearchContext"  resultMap="ReferencesIndexResultMap">
+        select t1.*
+        from (
+            <include refid="view" />
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+    </select>
+
 
 </mapper>

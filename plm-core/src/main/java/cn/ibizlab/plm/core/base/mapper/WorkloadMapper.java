@@ -43,6 +43,44 @@ public interface WorkloadMapper extends BaseMapper<Workload> {
     List<Workload> listDefault(@Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
 
     /**
+     * 数据集合bi_detail分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Workload> searchBiDetail(IPage<Workload> page, @Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
+    
+    /**
+     * 数据集合bi_detail查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Workload> listBiDetail(@Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
+
+    /**
+     * 数据集合bi_search分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Workload> searchBiSearch(IPage<Workload> page, @Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
+    
+    /**
+     * 数据集合bi_search查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Workload> listBiSearch(@Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
+
+    /**
      * 数据集合calendar分页查询
      * 
      * @param page
@@ -271,6 +309,44 @@ public interface WorkloadMapper extends BaseMapper<Workload> {
     List<Workload> listTypeOf(@Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
 
     /**
+     * 数据集合user_group_link分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Workload> searchUserGroupLink(IPage<Workload> page, @Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
+    
+    /**
+     * 数据集合user_group_link查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Workload> listUserGroupLink(@Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
+
+    /**
+     * 数据集合user_group_workload分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Workload> searchUserGroupWorkload(IPage<Workload> page, @Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
+    
+    /**
+     * 数据集合user_group_workload查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Workload> listUserGroupWorkload(@Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
+
+    /**
      * 数据集合work_item_workload分页查询
      * 
      * @param page
@@ -304,6 +380,25 @@ public interface WorkloadMapper extends BaseMapper<Workload> {
     * @return
     */
     List<Workload> findByPrincipalId(@Param("principalIds") List<String> principalIds);
+
+    /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Workload> searchView(IPage<Workload> page, @Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Workload> listView(@Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
 
     /**
      * 主键查询

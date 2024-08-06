@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.prodmgmt.domain.ProductTag;
@@ -103,14 +104,14 @@ public abstract class AbstractProductTagService extends ServiceImpl<ProductTagMa
         return et;
     }
 	
-    public Integer checkKey(ProductTag et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ProductTag>lambdaQuery().eq(ProductTag::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(ProductTag et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ProductTag>lambdaQuery().eq(ProductTag::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(ProductTag et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -164,6 +165,10 @@ public abstract class AbstractProductTagService extends ServiceImpl<ProductTagMa
         return list;	
 	}
 
+	public List<ProductTag> findByProduct(Product product){
+        List<ProductTag> list = findByProductId(Arrays.asList(product.getId()));
+		return list;
+	}
 	public boolean removeByProductId(String productId){
         return this.remove(Wrappers.<ProductTag>lambdaQuery().eq(ProductTag::getProductId,productId));
 	}
@@ -174,8 +179,8 @@ public abstract class AbstractProductTagService extends ServiceImpl<ProductTagMa
 	public boolean saveByProduct(Product product, List<ProductTag> list){
         if(list==null)
             return true;
-        Map<String,ProductTag> before = findByProductId(product.getId()).stream().collect(Collectors.toMap(ProductTag::getId,e->e));
 
+        Map<String,ProductTag> before = findByProduct(product).stream().collect(Collectors.toMap(ProductTag::getId,e->e));
         List<ProductTag> update = new ArrayList<>();
         List<ProductTag> create = new ArrayList<>();
 
@@ -199,6 +204,17 @@ public abstract class AbstractProductTagService extends ServiceImpl<ProductTagMa
             return true;
 			
 	}
+   public Page<ProductTag> fetchView(ProductTagSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ProductTag> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<ProductTag> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<ProductTag> listView(ProductTagSearchContext context) {
+        List<ProductTag> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(ProductTag et) {
         if(Entities.PRODUCT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

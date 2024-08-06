@@ -23,12 +23,14 @@ import java.util.stream.IntStream;
 import cn.ibizlab.util.domain.ImportResult;
 import cn.ibizlab.util.domain.RequestWrapper;
 import cn.ibizlab.util.domain.ResponseWrapper;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.serviceapi.dto.*;
 import cn.ibizlab.plm.serviceapi.mapping.*;
 import cn.ibizlab.plm.core.projmgmt.domain.ProjectTag;
 import cn.ibizlab.plm.core.projmgmt.service.ProjectTagService;
 import cn.ibizlab.plm.core.projmgmt.filter.ProjectTagSearchContext;
 import cn.ibizlab.util.annotation.VersionCheck;
+import reactor.core.publisher.Mono;
 
 /**
  * 实体[ProjectTag] rest实现
@@ -54,19 +56,19 @@ public abstract class AbstractProjectTagResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<ProjectTagDTO>
+    * @return Mono<ResponseEntity<ProjectTagDTO>>
     */
     @ApiOperation(value = "创建Create", tags = {"项目标签" },  notes = "ProjectTag-Create ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProjectTag-Create-all') or hasPermission(this.projectTagDtoMapping.toDomain(#dto),'ibizplm-ProjectTag-Create')")
     @PostMapping("project_tags")
-    public ResponseEntity<ResponseWrapper<ProjectTagDTO>> create
+    public Mono<ResponseEntity<ResponseWrapper<ProjectTagDTO>>>create
             (@Validated @RequestBody RequestWrapper<ProjectTagDTO> dto) {
         ResponseWrapper<ProjectTagDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(create(item)));
         else
             rt.set(create(dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -90,13 +92,13 @@ public abstract class AbstractProjectTagResource {
     *
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<ProjectTagDTO>
+    * @return Mono<ResponseEntity<ProjectTagDTO>>
     */
     @ApiOperation(value = "更新Update", tags = {"项目标签" },  notes = "ProjectTag-Update ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProjectTag-Update-all') or hasPermission(this.projectTagService.get(#id),'ibizplm-ProjectTag-Update')")
     @VersionCheck(entity = "projecttag" , versionfield = "updateTime")
     @PutMapping("project_tags/{id}")
-    public ResponseEntity<ResponseWrapper<ProjectTagDTO>> updateById
+    public Mono<ResponseEntity<ResponseWrapper<ProjectTagDTO>>>updateById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProjectTagDTO> dto) {
         ResponseWrapper<ProjectTagDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -105,7 +107,7 @@ public abstract class AbstractProjectTagResource {
         }
         else
             rt.set(updateById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -131,11 +133,11 @@ public abstract class AbstractProjectTagResource {
     *
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<ProjectTagDTO>
+    * @return Mono<ResponseEntity<ProjectTagDTO>>
     */
     @ApiOperation(value = "delete_tag", tags = {"项目标签" },  notes = "ProjectTag-delete_tag ")
     @PostMapping("project_tags/{id}/delete_tag")
-    public ResponseEntity<ResponseWrapper<ProjectTagDTO>> deleteTagById
+    public Mono<ResponseEntity<ResponseWrapper<ProjectTagDTO>>>deleteTagById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProjectTagDTO> dto) {
         ResponseWrapper<ProjectTagDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -144,7 +146,7 @@ public abstract class AbstractProjectTagResource {
         }
         else
             rt.set(deleteTagById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -168,19 +170,19 @@ public abstract class AbstractProjectTagResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<ProjectTagDTO>
+    * @return Mono<ResponseEntity<ProjectTagDTO>>
     */
     @ApiOperation(value = "保存Save", tags = {"项目标签" },  notes = "ProjectTag-Save ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProjectTag-Save-all') or hasPermission(this.projectTagDtoMapping.toDomain(#dto),'ibizplm-ProjectTag-Save')")
     @PostMapping("project_tags/save")
-    public ResponseEntity<ResponseWrapper<ProjectTagDTO>> save
+    public Mono<ResponseEntity<ResponseWrapper<ProjectTagDTO>>>save
             (@Validated @RequestBody RequestWrapper<ProjectTagDTO> dto) {
         ResponseWrapper<ProjectTagDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(save(item)));
         else
             rt.set(save(dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -204,15 +206,15 @@ public abstract class AbstractProjectTagResource {
     * 
     *
     * @param id id
-    * @return ResponseEntity<ProjectTagDTO>
+    * @return Mono<ResponseEntity<ProjectTagDTO>>
     */
     @ApiOperation(value = "获取Get", tags = {"项目标签" },  notes = "ProjectTag-Get ")
-    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProjectTag-Get-all')  or hasPermission(this.projectTagDtoMapping.toDomain(returnObject.body),'ibizplm-ProjectTag-Get')")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProjectTag-Get-all')  or hasPermission(this.projectTagDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-ProjectTag-Get')")
     @GetMapping("project_tags/{id}")
-    public ResponseEntity<ProjectTagDTO> getById
+    public Mono<ResponseEntity<ProjectTagDTO>> getById
             (@PathVariable("id") String id) {
         ProjectTag rt = projectTagService.get(id);
-        return ResponseEntity.status(HttpStatus.OK).body(projectTagDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(projectTagDtoMapping.toDto(rt)));
     }
 
     /**
@@ -220,15 +222,15 @@ public abstract class AbstractProjectTagResource {
     * 
     *
     * @param id id
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @ApiOperation(value = "删除Remove", tags = {"项目标签" },  notes = "ProjectTag-Remove ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProjectTag-Remove-all') or hasPermission(this.projectTagService.get(#id),'ibizplm-ProjectTag-Remove')")
     @DeleteMapping("project_tags/{id}")
-    public ResponseEntity<Boolean> removeById
+    public Mono<ResponseEntity<Boolean>> removeById
             (@PathVariable("id") String id) {
         Boolean rt = projectTagService.remove(id);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -236,15 +238,15 @@ public abstract class AbstractProjectTagResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<Integer>
+    * @return Mono<ResponseEntity<Integer>>
     */
     @ApiOperation(value = "校验CheckKey", tags = {"项目标签" },  notes = "ProjectTag-CheckKey ")
     @PostMapping("project_tags/check_key")
-    public ResponseEntity<Integer> checkKey
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKey
             (@Validated @RequestBody ProjectTagDTO dto) {
         ProjectTag domain = projectTagDtoMapping.toDomain(dto);
-        Integer rt = projectTagService.checkKey(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        CheckKeyStatus rt = projectTagService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -252,15 +254,15 @@ public abstract class AbstractProjectTagResource {
     * 
     *
     * @param id id
-    * @return ResponseEntity<ProjectTagDTO>
+    * @return Mono<ResponseEntity<ProjectTagDTO>>
     */
     @ApiOperation(value = "get_con_project_tag", tags = {"项目标签" },  notes = "ProjectTag-get_con_project_tag ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProjectTag-get_con_project_tag-all') or hasPermission(this.projectTagService.get(#id),'ibizplm-ProjectTag-get_con_project_tag')")
     @GetMapping("project_tags/{id}/get_con_project_tag")
-    public ResponseEntity<ProjectTagDTO> getConProjectTagById
+    public Mono<ResponseEntity<ProjectTagDTO>> getConProjectTagById
             (@PathVariable("id") String id) {
         ProjectTag rt = projectTagService.getConProjectTag(id);
-        return ResponseEntity.status(HttpStatus.OK).body(projectTagDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(projectTagDtoMapping.toDto(rt)));
     }
 
     /**
@@ -268,15 +270,15 @@ public abstract class AbstractProjectTagResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<ProjectTagDTO>
+    * @return Mono<ResponseEntity<ProjectTagDTO>>
     */
     @ApiOperation(value = "草稿GetDraft", tags = {"项目标签" },  notes = "ProjectTag-GetDraft ")
     @GetMapping("project_tags/get_draft")
-    public ResponseEntity<ProjectTagDTO> getDraft
+    public Mono<ResponseEntity<ProjectTagDTO>> getDraft
             (@SpringQueryMap ProjectTagDTO dto) {
         ProjectTag domain = projectTagDtoMapping.toDomain(dto);
         ProjectTag rt = projectTagService.getDraft(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(projectTagDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(projectTagDtoMapping.toDto(rt)));
     }
 
     /**
@@ -284,87 +286,87 @@ public abstract class AbstractProjectTagResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<ProjectTagDTO>>
+    * @return Mono<ResponseEntity<List<ProjectTagDTO>>>
     */
     @ApiOperation(value = "查询fetch_default", tags = {"项目标签" },  notes = "ProjectTag-fetch_default ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProjectTag-fetch_default-all') or hasPermission(#dto,'ibizplm-ProjectTag-fetch_default')")
     @PostMapping("project_tags/fetch_default")
-    public ResponseEntity<List<ProjectTagDTO>> fetchDefault
+    public Mono<ResponseEntity<List<ProjectTagDTO>>> fetchDefault
             (@Validated @RequestBody ProjectTagFilterDTO dto) {
         ProjectTagSearchContext context = projectTagFilterDtoMapping.toDomain(dto);
         Page<ProjectTag> domains = projectTagService.fetchDefault(context) ;
         List<ProjectTagDTO> list = projectTagDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
 
     /**
     * 批量新建项目标签
     * @param dtos
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-ProjectTag-Create-all')")
     @ApiOperation(value = "批量新建项目标签", tags = {"项目标签" },  notes = "批量新建项目标签")
 	@PostMapping("project_tags/batch")
-    public ResponseEntity<Boolean> createBatch(@RequestBody List<ProjectTagDTO> dtos) {
+    public Mono<ResponseEntity<Boolean>> createBatch(@RequestBody List<ProjectTagDTO> dtos) {
         projectTagService.create(projectTagDtoMapping.toDomain(dtos));
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量删除项目标签
     * @param ids ids
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-ProjectTag-Remove-all')")
     @ApiOperation(value = "批量删除项目标签", tags = {"项目标签" },  notes = "批量删除项目标签")
 	@DeleteMapping("project_tags/batch")
-    public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
+    public Mono<ResponseEntity<Boolean>> removeBatch(@RequestBody List<String> ids) {
         projectTagService.remove(ids);
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量更新项目标签
     * @param dtos
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-ProjectTag-Update-all')")
     @ApiOperation(value = "批量更新项目标签", tags = {"项目标签" },  notes = "批量更新项目标签")
 	@PutMapping("project_tags/batch")
-    public ResponseEntity<Boolean> updateBatch(@RequestBody List<ProjectTagDTO> dtos) {
+    public Mono<ResponseEntity<Boolean>> updateBatch(@RequestBody List<ProjectTagDTO> dtos) {
         projectTagService.update(projectTagDtoMapping.toDomain(dtos));
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量保存项目标签
     * @param dtos
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-ProjectTag-Save-all')")
     @ApiOperation(value = "批量保存项目标签", tags = {"项目标签" },  notes = "批量保存项目标签")
 	@PostMapping("project_tags/savebatch")
-    public ResponseEntity<Boolean> saveBatch(@RequestBody List<ProjectTagDTO> dtos) {
+    public Mono<ResponseEntity<Boolean>> saveBatch(@RequestBody List<ProjectTagDTO> dtos) {
         projectTagService.save(projectTagDtoMapping.toDomain(dtos));
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量导入项目标签
     * @param config 导入模式
     * @param ignoreError 导入中忽略错误
-    * @return ResponseEntity<ImportResult>
+    * @return Mono<ResponseEntity<ImportResult>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-ProjectTag-Save-all')")
     @ApiOperation(value = "批量导入项目标签", tags = {"项目标签" },  notes = "批量导入项目标签")
 	@PostMapping("project_tags/import")
-    public ResponseEntity<ImportResult> importData(@RequestParam(value = "config" , required = false) String config ,@RequestParam(value = "ignoreerror", required = false, defaultValue = "true") Boolean ignoreError ,@RequestBody List<ProjectTagDTO> dtos) {
-        return  ResponseEntity.status(HttpStatus.OK).body(projectTagService.importData(config,ignoreError,projectTagDtoMapping.toDomain(dtos)));
+    public Mono<ResponseEntity<ImportResult>> importData(@RequestParam(value = "config" , required = false) String config ,@RequestParam(value = "ignoreerror", required = false, defaultValue = "true") Boolean ignoreError ,@RequestBody List<ProjectTagDTO> dtos) {
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(projectTagService.importData(config,ignoreError,projectTagDtoMapping.toDomain(dtos))));
     }
 
 }

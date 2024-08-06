@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.projmgmt.domain.TransitionHistory;
 import cn.ibizlab.plm.core.projmgmt.filter.TransitionHistorySearchContext;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
@@ -138,7 +139,7 @@ public interface TransitionHistoryService extends IService<TransitionHistory> {
     * @param et
     * @return
     */
-    Integer checkKey(TransitionHistory et);
+    CheckKeyStatus checkKey(TransitionHistory et);
 
     /**
     * 保存
@@ -177,8 +178,15 @@ public interface TransitionHistoryService extends IService<TransitionHistory> {
     */
     List<TransitionHistory> findByOwnerId(List<String> ownerIds);
     default List<TransitionHistory> findByOwnerId(String ownerId){
-        return findByOwnerId(Arrays.asList(ownerId));
+        return findByWorkItem(new WorkItem().setId(ownerId));
     }
+
+    /**
+    * findByWorkItem
+    * @param workItem
+    * @return
+    */
+    List<TransitionHistory> findByWorkItem(WorkItem workItem);
 
     /**
     * removeByOwnerId
@@ -211,6 +219,22 @@ public interface TransitionHistoryService extends IService<TransitionHistory> {
     * @return
     */
     boolean saveByWorkItem(WorkItem workItem, List<TransitionHistory> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<TransitionHistory> fetchView(TransitionHistorySearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<TransitionHistory> listView(TransitionHistorySearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<TransitionHistory> list) {

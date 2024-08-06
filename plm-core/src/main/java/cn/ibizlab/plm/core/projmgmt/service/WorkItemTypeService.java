@@ -11,6 +11,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItemType;
 import cn.ibizlab.plm.core.projmgmt.filter.WorkItemTypeSearchContext;
 import cn.ibizlab.plm.core.projmgmt.domain.Project;
@@ -141,7 +142,7 @@ public interface WorkItemTypeService extends IService<WorkItemType> {
     * @param et
     * @return
     */
-    Integer checkKey(WorkItemType et);
+    CheckKeyStatus checkKey(WorkItemType et);
 
     /**
     * 保存
@@ -184,8 +185,24 @@ public interface WorkItemTypeService extends IService<WorkItemType> {
     List<WorkItemType> listDefault(WorkItemTypeSearchContext context);
 
     /**
-    * fetchCurProjectType
+    * fetchChooseTargetType
     * 
+    * @param context
+    * @return
+    */
+    Page<WorkItemType> fetchChooseTargetType(WorkItemTypeSearchContext context);
+
+    /**
+    * listChooseTargetType
+    * 
+    * @param context
+    * @return
+    */
+    List<WorkItemType> listChooseTargetType(WorkItemTypeSearchContext context);
+
+    /**
+    * fetchCurProjectType
+    * 数据上下文过滤，非瀑布项目
     * @param context
     * @return
     */
@@ -193,11 +210,27 @@ public interface WorkItemTypeService extends IService<WorkItemType> {
 
     /**
     * listCurProjectType
-    * 
+    * 数据上下文过滤，非瀑布项目
     * @param context
     * @return
     */
     List<WorkItemType> listCurProjectType(WorkItemTypeSearchContext context);
+
+    /**
+    * fetchGroupByOriginState
+    * 
+    * @param context
+    * @return
+    */
+    Page<WorkItemType> fetchGroupByOriginState(WorkItemTypeSearchContext context);
+
+    /**
+    * listGroupByOriginState
+    * 
+    * @param context
+    * @return
+    */
+    List<WorkItemType> listGroupByOriginState(WorkItemTypeSearchContext context);
 
     /**
     * fetchProjectWorkItemType
@@ -238,8 +271,15 @@ public interface WorkItemTypeService extends IService<WorkItemType> {
     */
     List<WorkItemType> findByProjectId(List<String> projectIds);
     default List<WorkItemType> findByProjectId(String projectId){
-        return findByProjectId(Arrays.asList(projectId));
+        return findByProject(new Project().setId(projectId));
     }
+
+    /**
+    * findByProject
+    * @param project
+    * @return
+    */
+    List<WorkItemType> findByProject(Project project);
 
     /**
     * removeByProjectId
@@ -272,6 +312,22 @@ public interface WorkItemTypeService extends IService<WorkItemType> {
     * @return
     */
     boolean saveByProject(Project project, List<WorkItemType> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<WorkItemType> fetchView(WorkItemTypeSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<WorkItemType> listView(WorkItemTypeSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<WorkItemType> list) {

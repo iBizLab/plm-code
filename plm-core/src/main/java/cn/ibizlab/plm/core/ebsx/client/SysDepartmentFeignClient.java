@@ -21,6 +21,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.util.Assert;
 import org.springframework.beans.factory.annotation.Value;
 import cn.ibizlab.util.errors.BadRequestAlertException;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.ebsx.domain.SysDepartment;
@@ -35,7 +36,7 @@ import org.springframework.web.bind.annotation.*;
 @FeignClient(value = "${ibiz.ref.service.ibizrtclient:ibizrtclient}", contextId = "sysdepartment")
 public interface SysDepartmentFeignClient  {
     @PostMapping("sysdepartments/checkkey")
-    Integer checkKey(@Validated @RequestBody SysDepartment dto) ;
+    CheckKeyStatus checkKey(@Validated @RequestBody SysDepartment dto) ;
 
     @PostMapping("sysdepartments")
     SysDepartment create(@Validated @RequestBody SysDepartment dto) ;

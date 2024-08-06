@@ -89,6 +89,25 @@ public interface DiscussReplyMapper extends BaseMapper<DiscussReply> {
     List<DiscussReply> findByPostId(@Param("postIds") List<String> postIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<DiscussReply> searchView(IPage<DiscussReply> page, @Param("ctx") DiscussReplySearchContext context, @Param("ew") Wrapper<DiscussReply> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<DiscussReply> listView(@Param("ctx") DiscussReplySearchContext context, @Param("ew") Wrapper<DiscussReply> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

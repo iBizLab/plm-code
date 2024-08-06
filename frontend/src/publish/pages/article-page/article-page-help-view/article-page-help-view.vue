@@ -5,6 +5,9 @@
     :modal="props.modal"
     :model-data="model"
   >
+    <template #form="slotProps">
+      <i-biz-edit-form-control v-bind="slotProps" />
+    </template>
   </i-biz-view>
 </template>
 <script setup lang="ts">

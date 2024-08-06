@@ -78,6 +78,25 @@ public interface SpaceMemberMapper extends BaseMapper<SpaceMember> {
     List<SpaceMember> findByUserId(@Param("userIds") List<String> userIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<SpaceMember> searchView(IPage<SpaceMember> page, @Param("ctx") SpaceMemberSearchContext context, @Param("ew") Wrapper<SpaceMember> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<SpaceMember> listView(@Param("ctx") SpaceMemberSearchContext context, @Param("ew") Wrapper<SpaceMember> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

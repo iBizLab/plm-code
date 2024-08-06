@@ -43,6 +43,25 @@ public interface VersionMapper extends BaseMapper<Version> {
     List<Version> listDefault(@Param("ctx") VersionSearchContext context, @Param("ew") Wrapper<Version> wrapper);
 
     /**
+     * 数据集合name_version分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Version> searchNameVersion(IPage<Version> page, @Param("ctx") VersionSearchContext context, @Param("ew") Wrapper<Version> wrapper);
+    
+    /**
+     * 数据集合name_version查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Version> listNameVersion(@Param("ctx") VersionSearchContext context, @Param("ew") Wrapper<Version> wrapper);
+
+    /**
      * 数据集合owner分页查询
      * 
      * @param page
@@ -68,6 +87,25 @@ public interface VersionMapper extends BaseMapper<Version> {
     * @return
     */
     List<Version> findByOwnerId(@Param("ownerIds") List<String> ownerIds);
+
+    /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Version> searchView(IPage<Version> page, @Param("ctx") VersionSearchContext context, @Param("ew") Wrapper<Version> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Version> listView(@Param("ctx") VersionSearchContext context, @Param("ew") Wrapper<Version> wrapper);
 
     /**
      * 主键查询

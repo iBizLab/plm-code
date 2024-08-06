@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.base.domain.Parameter;
@@ -94,14 +95,14 @@ public abstract class AbstractParameterService extends ServiceImpl<ParameterMapp
         return et;
     }
 	
-    public Integer checkKey(Parameter et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Parameter>lambdaQuery().eq(Parameter::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(Parameter et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Parameter>lambdaQuery().eq(Parameter::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(Parameter et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -136,6 +137,17 @@ public abstract class AbstractParameterService extends ServiceImpl<ParameterMapp
 
    public List<Parameter> listDefault(ParameterSearchContext context) {
         List<Parameter> list = baseMapper.listDefault(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Parameter> fetchView(ParameterSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Parameter> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<Parameter> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Parameter> listView(ParameterSearchContext context) {
+        List<Parameter> list = baseMapper.listView(context,context.getSelectCond());
         return list;
    }
 	

@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.testmgmt.domain.RunAttachment;
@@ -103,14 +104,14 @@ public abstract class AbstractRunAttachmentService extends ServiceImpl<RunAttach
         return et;
     }
 	
-    public Integer checkKey(RunAttachment et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<RunAttachment>lambdaQuery().eq(RunAttachment::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(RunAttachment et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<RunAttachment>lambdaQuery().eq(RunAttachment::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(RunAttachment et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -153,6 +154,13 @@ public abstract class AbstractRunAttachmentService extends ServiceImpl<RunAttach
         return list;	
 	}
 
+	public List<RunAttachment> findByRunAttachment(Run run){
+        List<RunAttachment> list = this.baseMapper.selectList(Wrappers.<RunAttachment>lambdaQuery()
+                        .eq(RunAttachment::getOwnerId, run.getId())
+                        .eq(RunAttachment::getOwnerType,"RUN")
+                        .eq(RunAttachment::getOwnerSubtype,"RUN"));
+		return list;
+	}
 	public boolean removeByOwnerId(String ownerId){
         return this.remove(Wrappers.<RunAttachment>lambdaQuery().eq(RunAttachment::getOwnerId,ownerId));
 	}
@@ -163,13 +171,8 @@ public abstract class AbstractRunAttachmentService extends ServiceImpl<RunAttach
 	public boolean saveByRunAttachment(Run run, List<RunAttachment> list){
         if(list==null)
             return true;
-        Map<String,RunAttachment> before = this.baseMapper.selectList(Wrappers.<RunAttachment>lambdaQuery()
-                        .eq(RunAttachment::getOwnerId, run.getId())
-                        .eq(RunAttachment::getOwnerType,"RUN")
-                        .eq(RunAttachment::getOwnerSubtype,"RUN"))
-                        .stream()
-                        .collect(Collectors.toMap(RunAttachment::getId,e->e));
 
+        Map<String,RunAttachment> before = findByRunAttachment(run).stream().collect(Collectors.toMap(RunAttachment::getId,e->e));
         List<RunAttachment> update = new ArrayList<>();
         List<RunAttachment> create = new ArrayList<>();
 
@@ -193,6 +196,17 @@ public abstract class AbstractRunAttachmentService extends ServiceImpl<RunAttach
             return true;
 			
 	}
+   public Page<RunAttachment> fetchView(RunAttachmentSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<RunAttachment> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<RunAttachment> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<RunAttachment> listView(RunAttachmentSearchContext context) {
+        List<RunAttachment> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(RunAttachment et) {
         if(Entities.RUN.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

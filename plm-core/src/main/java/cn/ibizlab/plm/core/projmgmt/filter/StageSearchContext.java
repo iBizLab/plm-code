@@ -6,6 +6,7 @@ package cn.ibizlab.plm.core.projmgmt.filter;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import java.util.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -38,6 +39,22 @@ import cn.ibizlab.plm.core.projmgmt.domain.Stage;
 public class StageSearchContext extends QueryWrapperContext<Stage> {
 
     /**
+     * 标识IN
+     */
+    @JsonProperty("n_id_in")
+    @JSONField(name = "n_id_in")
+    @ApiModelProperty("标识IN")
+    private String idIN;
+
+    /**
+     * 标识NOTEQ
+     */
+    @JsonProperty("n_id_noteq")
+    @JSONField(name = "n_id_noteq")
+    @ApiModelProperty("标识NOTEQ")
+    private String idNOTEQ;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
@@ -61,11 +78,37 @@ public class StageSearchContext extends QueryWrapperContext<Stage> {
     @ApiModelProperty("项目发布标识EQ")
     private String releaseIdEQ;
 
+    /**
+     * 父标识EQ
+     */
+    @JsonProperty("n_pid_eq")
+    @JSONField(name = "n_pid_eq")
+    @ApiModelProperty("父标识EQ")
+    private String pidEQ;
+
+    /**
+     * 父名称EQ
+     */
+    @JsonProperty("n_pname_eq")
+    @JSONField(name = "n_pname_eq")
+    @ApiModelProperty("父名称EQ")
+    private String pnameEQ;
+
+    /**
+     * 父名称LIKE
+     */
+    @JsonProperty("n_pname_like")
+    @JSONField(name = "n_pname_like")
+    @ApiModelProperty("父名称LIKE")
+    private String pnameLIKE;
+
     @Override
     public void setContextParentKey(Serializable contextParentKey) {
         super.setContextParentKey(contextParentKey);
         if(Entities.RELEASE.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("release_id",contextParentKey);
+        if(Entities.STAGE.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("pid",contextParentKey);
     }
 
     @Override

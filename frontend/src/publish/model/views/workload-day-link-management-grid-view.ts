@@ -67,6 +67,13 @@ export default {
   ],
   appViewRefs: [
     {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '修改实际工时视图',
+      refAppViewId: 'plmweb.workload_update_view',
+      name: 'EDITDATA',
+      id: 'editdata',
+    },
+    {
       realTitle: '工时编辑视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.WORKLOAD.EDITVIEW',
@@ -74,13 +81,6 @@ export default {
       refAppViewId: 'plmweb.workload_edit_view',
       name: 'NEWDATA',
       id: 'newdata',
-    },
-    {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '修改实际工时视图',
-      refAppViewId: 'plmweb.workload_update_view',
-      name: 'EDITDATA',
-      id: 'editdata',
     },
   ],
   controls: [
@@ -197,7 +197,7 @@ export default {
           codeName: 'type_name',
           columnType: 'DEFGRIDCOLUMN',
           noPrivDisplayMode: 1,
-          width: 100,
+          width: 120,
           widthUnit: 'PX',
           enableSort: true,
           id: 'type_name',
@@ -233,7 +233,7 @@ export default {
           codeName: 'recent_parent_name',
           columnType: 'DEFGRIDCOLUMN',
           noPrivDisplayMode: 1,
-          width: 150,
+          width: 200,
           widthUnit: 'PX',
           enableSort: true,
           id: 'recent_parent_name',

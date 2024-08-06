@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.team.domain.Objective;
@@ -115,14 +116,14 @@ public abstract class AbstractObjectiveService extends ServiceImpl<ObjectiveMapp
         return et;
     }
 	
-    public Integer checkKey(Objective et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Objective>lambdaQuery().eq(Objective::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(Objective et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Objective>lambdaQuery().eq(Objective::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(Objective et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -165,6 +166,10 @@ public abstract class AbstractObjectiveService extends ServiceImpl<ObjectiveMapp
         return list;	
 	}
 
+	public List<Objective> findByPeriod(Period period){
+        List<Objective> list = findByPeriodId(Arrays.asList(period.getId()));
+		return list;
+	}
 	public boolean removeByPeriodId(String periodId){
         return this.remove(Wrappers.<Objective>lambdaQuery().eq(Objective::getPeriodId,periodId));
 	}
@@ -175,8 +180,8 @@ public abstract class AbstractObjectiveService extends ServiceImpl<ObjectiveMapp
 	public boolean saveByPeriod(Period period, List<Objective> list){
         if(list==null)
             return true;
-        Map<String,Objective> before = findByPeriodId(period.getId()).stream().collect(Collectors.toMap(Objective::getId,e->e));
 
+        Map<String,Objective> before = findByPeriod(period).stream().collect(Collectors.toMap(Objective::getId,e->e));
         List<Objective> update = new ArrayList<>();
         List<Objective> create = new ArrayList<>();
 
@@ -200,6 +205,17 @@ public abstract class AbstractObjectiveService extends ServiceImpl<ObjectiveMapp
             return true;
 			
 	}
+   public Page<Objective> fetchView(ObjectiveSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Objective> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<Objective> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Objective> listView(ObjectiveSearchContext context) {
+        List<Objective> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(Objective et) {
         if(Entities.PERIOD.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

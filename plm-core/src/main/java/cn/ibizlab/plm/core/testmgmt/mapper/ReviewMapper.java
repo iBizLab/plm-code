@@ -43,6 +43,25 @@ public interface ReviewMapper extends BaseMapper<Review> {
     List<Review> listDefault(@Param("ctx") ReviewSearchContext context, @Param("ew") Wrapper<Review> wrapper);
 
     /**
+     * 数据集合bi_search分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Review> searchBiSearch(IPage<Review> page, @Param("ctx") ReviewSearchContext context, @Param("ew") Wrapper<Review> wrapper);
+    
+    /**
+     * 数据集合bi_search查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Review> listBiSearch(@Param("ctx") ReviewSearchContext context, @Param("ew") Wrapper<Review> wrapper);
+
+    /**
      * 数据集合my_attention分页查询
      * 
      * @param page
@@ -95,6 +114,25 @@ public interface ReviewMapper extends BaseMapper<Review> {
     * @return
     */
     List<Review> findByLibraryId(@Param("libraryIds") List<String> libraryIds);
+
+    /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Review> searchView(IPage<Review> page, @Param("ctx") ReviewSearchContext context, @Param("ew") Wrapper<Review> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Review> listView(@Param("ctx") ReviewSearchContext context, @Param("ew") Wrapper<Review> wrapper);
 
     /**
      * 主键查询

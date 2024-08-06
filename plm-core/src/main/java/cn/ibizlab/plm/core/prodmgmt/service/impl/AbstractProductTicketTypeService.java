@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.prodmgmt.domain.ProductTicketType;
@@ -119,16 +120,16 @@ public abstract class AbstractProductTicketTypeService extends ServiceImpl<Produ
         return et;
     }
 	
-    public Integer checkKey(ProductTicketType et) {
+    public CheckKeyStatus checkKey(ProductTicketType et) {
         if(ObjectUtils.isEmpty(et.getId()))
             et.setId((String)et.getDefaultKey(true));
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ProductTicketType>lambdaQuery().eq(ProductTicketType::getId, et.getId()))>0)?1:0;
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ProductTicketType>lambdaQuery().eq(ProductTicketType::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(ProductTicketType et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -175,6 +176,10 @@ public abstract class AbstractProductTicketTypeService extends ServiceImpl<Produ
         return list;	
 	}
 
+	public List<ProductTicketType> findByProduct(Product product){
+        List<ProductTicketType> list = findByProductId(Arrays.asList(product.getId()));
+		return list;
+	}
 	public boolean removeByProductId(String productId){
         return this.remove(Wrappers.<ProductTicketType>lambdaQuery().eq(ProductTicketType::getProductId,productId));
 	}
@@ -185,8 +190,8 @@ public abstract class AbstractProductTicketTypeService extends ServiceImpl<Produ
 	public boolean saveByProduct(Product product, List<ProductTicketType> list){
         if(list==null)
             return true;
-        Map<String,ProductTicketType> before = findByProductId(product.getId()).stream().collect(Collectors.toMap(ProductTicketType::getId,e->e));
 
+        Map<String,ProductTicketType> before = findByProduct(product).stream().collect(Collectors.toMap(ProductTicketType::getId,e->e));
         List<ProductTicketType> update = new ArrayList<>();
         List<ProductTicketType> create = new ArrayList<>();
 
@@ -219,6 +224,10 @@ public abstract class AbstractProductTicketTypeService extends ServiceImpl<Produ
         return list;	
 	}
 
+	public List<ProductTicketType> findByTicketType(TicketType ticketType){
+        List<ProductTicketType> list = findByTicketTypeId(Arrays.asList(ticketType.getId()));
+		return list;
+	}
 	public boolean removeByTicketTypeId(String ticketTypeId){
         return this.remove(Wrappers.<ProductTicketType>lambdaQuery().eq(ProductTicketType::getTicketTypeId,ticketTypeId));
 	}
@@ -229,8 +238,8 @@ public abstract class AbstractProductTicketTypeService extends ServiceImpl<Produ
 	public boolean saveByTicketType(TicketType ticketType, List<ProductTicketType> list){
         if(list==null)
             return true;
-        Map<String,ProductTicketType> before = findByTicketTypeId(ticketType.getId()).stream().collect(Collectors.toMap(ProductTicketType::getId,e->e));
 
+        Map<String,ProductTicketType> before = findByTicketType(ticketType).stream().collect(Collectors.toMap(ProductTicketType::getId,e->e));
         List<ProductTicketType> update = new ArrayList<>();
         List<ProductTicketType> create = new ArrayList<>();
 
@@ -258,6 +267,17 @@ public abstract class AbstractProductTicketTypeService extends ServiceImpl<Produ
             return true;
 			
 	}
+   public Page<ProductTicketType> fetchView(ProductTicketTypeSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ProductTicketType> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<ProductTicketType> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<ProductTicketType> listView(ProductTicketTypeSearchContext context) {
+        List<ProductTicketType> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(ProductTicketType et) {
         if(Entities.PRODUCT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

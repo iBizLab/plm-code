@@ -194,6 +194,7 @@ export default {
           caption: '是否系统类型',
           codeName: 'is_system',
           columnType: 'DEFGRIDCOLUMN',
+          hideMode: 1,
           noPrivDisplayMode: 1,
           width: 100,
           widthUnit: 'PX',

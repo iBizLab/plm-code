@@ -13,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Page;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.extension.domain.SystemExtensionNotifySetting;
@@ -80,7 +81,7 @@ public abstract class AbstractSystemExtensionNotifySettingService implements Sys
         return systemExtensionNotifySettingFeignClient.getDraft(et);
     }
 	
-    public Integer checkKey(SystemExtensionNotifySetting et) {
+    public CheckKeyStatus checkKey(SystemExtensionNotifySetting et) {
          return systemExtensionNotifySettingFeignClient.checkKey(et);
     }
 	

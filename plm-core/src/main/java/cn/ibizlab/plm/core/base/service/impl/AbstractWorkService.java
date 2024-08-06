@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.base.domain.Work;
@@ -119,16 +120,16 @@ public abstract class AbstractWorkService extends ServiceImpl<WorkMapper,Work> i
         return et;
     }
 	
-    public Integer checkKey(Work et) {
+    public CheckKeyStatus checkKey(Work et) {
         if(ObjectUtils.isEmpty(et.getId()))
             et.setId((String)et.getDefaultKey(true));
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Work>lambdaQuery().eq(Work::getId, et.getId()))>0)?1:0;
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Work>lambdaQuery().eq(Work::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(Work et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -186,6 +187,10 @@ public abstract class AbstractWorkService extends ServiceImpl<WorkMapper,Work> i
         return list;	
 	}
 
+	public List<Work> findByPortfolio(Portfolio portfolio){
+        List<Work> list = findByPortfolioId(Arrays.asList(portfolio.getId()));
+		return list;
+	}
 	public boolean removeByPortfolioId(String portfolioId){
         return this.remove(Wrappers.<Work>lambdaQuery().eq(Work::getPortfolioId,portfolioId));
 	}
@@ -196,8 +201,8 @@ public abstract class AbstractWorkService extends ServiceImpl<WorkMapper,Work> i
 	public boolean saveByPortfolio(Portfolio portfolio, List<Work> list){
         if(list==null)
             return true;
-        Map<String,Work> before = findByPortfolioId(portfolio.getId()).stream().collect(Collectors.toMap(Work::getId,e->e));
 
+        Map<String,Work> before = findByPortfolio(portfolio).stream().collect(Collectors.toMap(Work::getId,e->e));
         List<Work> update = new ArrayList<>();
         List<Work> create = new ArrayList<>();
 
@@ -230,6 +235,10 @@ public abstract class AbstractWorkService extends ServiceImpl<WorkMapper,Work> i
         return list;	
 	}
 
+	public List<Work> findByProject(Project project){
+        List<Work> list = findByPilotId(Arrays.asList(project.getId()));
+		return list;
+	}
 	public boolean removeByPilotId(String pilotId){
         return this.remove(Wrappers.<Work>lambdaQuery().eq(Work::getPilotId,pilotId));
 	}
@@ -240,8 +249,8 @@ public abstract class AbstractWorkService extends ServiceImpl<WorkMapper,Work> i
 	public boolean saveByProject(Project project, List<Work> list){
         if(list==null)
             return true;
-        Map<String,Work> before = findByPilotId(project.getId()).stream().collect(Collectors.toMap(Work::getId,e->e));
 
+        Map<String,Work> before = findByProject(project).stream().collect(Collectors.toMap(Work::getId,e->e));
         List<Work> update = new ArrayList<>();
         List<Work> create = new ArrayList<>();
 
@@ -269,6 +278,17 @@ public abstract class AbstractWorkService extends ServiceImpl<WorkMapper,Work> i
             return true;
 			
 	}
+   public Page<Work> fetchView(WorkSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Work> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<Work> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Work> listView(WorkSearchContext context) {
+        List<Work> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(Work et) {
         if(Entities.PORTFOLIO.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

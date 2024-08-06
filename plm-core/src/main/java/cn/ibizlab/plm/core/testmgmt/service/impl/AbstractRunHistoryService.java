@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.testmgmt.domain.RunHistory;
@@ -104,14 +105,14 @@ public abstract class AbstractRunHistoryService extends ServiceImpl<RunHistoryMa
         return et;
     }
 	
-    public Integer checkKey(RunHistory et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<RunHistory>lambdaQuery().eq(RunHistory::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(RunHistory et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<RunHistory>lambdaQuery().eq(RunHistory::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(RunHistory et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -169,6 +170,10 @@ public abstract class AbstractRunHistoryService extends ServiceImpl<RunHistoryMa
         return list;	
 	}
 
+	public List<RunHistory> findByRun(Run run){
+        List<RunHistory> list = findByRunId(Arrays.asList(run.getId()));
+		return list;
+	}
 	public boolean removeByRunId(String runId){
         return this.remove(Wrappers.<RunHistory>lambdaQuery().eq(RunHistory::getRunId,runId));
 	}
@@ -179,8 +184,8 @@ public abstract class AbstractRunHistoryService extends ServiceImpl<RunHistoryMa
 	public boolean saveByRun(Run run, List<RunHistory> list){
         if(list==null)
             return true;
-        Map<String,RunHistory> before = findByRunId(run.getId()).stream().collect(Collectors.toMap(RunHistory::getId,e->e));
 
+        Map<String,RunHistory> before = findByRun(run).stream().collect(Collectors.toMap(RunHistory::getId,e->e));
         List<RunHistory> update = new ArrayList<>();
         List<RunHistory> create = new ArrayList<>();
 
@@ -204,6 +209,17 @@ public abstract class AbstractRunHistoryService extends ServiceImpl<RunHistoryMa
             return true;
 			
 	}
+   public Page<RunHistory> fetchView(RunHistorySearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<RunHistory> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<RunHistory> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<RunHistory> listView(RunHistorySearchContext context) {
+        List<RunHistory> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(RunHistory et) {
         if(Entities.RUN.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

@@ -84,11 +84,19 @@ public class InsightViewDTO extends DTOBase implements Serializable {
     private String isFavorite;
 
     /**
+     * 效能视图成员
+     */
+    @JsonProperty("members")
+    @JSONField(name = "members")
+    @ApiModelProperty(value = "效能视图成员", position = 6)
+    private List<InsightMemberDTO> members;
+
+    /**
      * 所属
      */
     @JsonProperty("scope_type")
     @JSONField(name = "scope_type")
-    @ApiModelProperty(value = "所属", position = 6)
+    @ApiModelProperty(value = "所属", position = 7)
     private String scopeType;
 
     /**
@@ -96,7 +104,7 @@ public class InsightViewDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("scope_id")
     @JSONField(name = "scope_id")
-    @ApiModelProperty(value = "所属对象", position = 7)
+    @ApiModelProperty(value = "所属对象", position = 8)
     private String scopeId;
 
     /**
@@ -104,7 +112,7 @@ public class InsightViewDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 8)
+    @ApiModelProperty(value = "建立人", position = 9)
     private String createMan;
 
     /**
@@ -113,7 +121,7 @@ public class InsightViewDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 9)
+    @ApiModelProperty(value = "建立时间", position = 10)
     private Date createTime;
 
     /**
@@ -121,7 +129,7 @@ public class InsightViewDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 10)
+    @ApiModelProperty(value = "标识", position = 11)
     private String id;
 
     /**
@@ -129,7 +137,7 @@ public class InsightViewDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 11)
+    @ApiModelProperty(value = "名称", position = 12)
     private String name;
 
     /**
@@ -137,7 +145,7 @@ public class InsightViewDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 12)
+    @ApiModelProperty(value = "更新人", position = 13)
     private String updateMan;
 
     /**
@@ -146,7 +154,7 @@ public class InsightViewDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 13)
+    @ApiModelProperty(value = "更新时间", position = 14)
     private Date updateTime;
 
 
@@ -201,6 +209,15 @@ public class InsightViewDTO extends DTOBase implements Serializable {
     public InsightViewDTO setIsFavorite(String isFavorite) {
         this.isFavorite = isFavorite;
         this.modify("is_favorite", isFavorite);
+        return this;
+    }
+
+    /**
+     * 设置 [效能视图成员]
+     */
+    public InsightViewDTO setMembers(List<InsightMemberDTO> members) {
+        this.members = members;
+        this.modify("members", members);
         return this;
     }
 

@@ -51,6 +51,25 @@ public interface WorkItemStateMapper extends BaseMapper<WorkItemState> {
     List<WorkItemState> findByWorkItemTypeId(@Param("workItemTypeIds") List<String> workItemTypeIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<WorkItemState> searchView(IPage<WorkItemState> page, @Param("ctx") WorkItemStateSearchContext context, @Param("ew") Wrapper<WorkItemState> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<WorkItemState> listView(@Param("ctx") WorkItemStateSearchContext context, @Param("ew") Wrapper<WorkItemState> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

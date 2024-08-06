@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.testmgmt.domain.CaseHistory;
 import cn.ibizlab.plm.core.testmgmt.filter.CaseHistorySearchContext;
 import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
@@ -138,7 +139,7 @@ public interface CaseHistoryService extends IService<CaseHistory> {
     * @param et
     * @return
     */
-    Integer checkKey(CaseHistory et);
+    CheckKeyStatus checkKey(CaseHistory et);
 
     /**
     * 保存
@@ -177,8 +178,15 @@ public interface CaseHistoryService extends IService<CaseHistory> {
     */
     List<CaseHistory> findByCaseId(List<String> caseIds);
     default List<CaseHistory> findByCaseId(String caseId){
-        return findByCaseId(Arrays.asList(caseId));
+        return findByTestCase(new TestCase().setId(caseId));
     }
+
+    /**
+    * findByTestCase
+    * @param testCase
+    * @return
+    */
+    List<CaseHistory> findByTestCase(TestCase testCase);
 
     /**
     * removeByCaseId
@@ -211,6 +219,22 @@ public interface CaseHistoryService extends IService<CaseHistory> {
     * @return
     */
     boolean saveByTestCase(TestCase testCase, List<CaseHistory> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<CaseHistory> fetchView(CaseHistorySearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<CaseHistory> listView(CaseHistorySearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<CaseHistory> list) {

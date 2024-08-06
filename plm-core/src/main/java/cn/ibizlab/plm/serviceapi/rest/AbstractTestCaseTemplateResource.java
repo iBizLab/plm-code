@@ -23,12 +23,14 @@ import java.util.stream.IntStream;
 import cn.ibizlab.util.domain.ImportResult;
 import cn.ibizlab.util.domain.RequestWrapper;
 import cn.ibizlab.util.domain.ResponseWrapper;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.serviceapi.dto.*;
 import cn.ibizlab.plm.serviceapi.mapping.*;
 import cn.ibizlab.plm.core.testmgmt.domain.TestCaseTemplate;
 import cn.ibizlab.plm.core.testmgmt.service.TestCaseTemplateService;
 import cn.ibizlab.plm.core.testmgmt.filter.TestCaseTemplateSearchContext;
 import cn.ibizlab.util.annotation.VersionCheck;
+import reactor.core.publisher.Mono;
 
 /**
  * 实体[TestCaseTemplate] rest实现
@@ -55,19 +57,19 @@ public abstract class AbstractTestCaseTemplateResource {
     *
     * @param testLibraryId testLibraryId
     * @param dto dto
-    * @return ResponseEntity<TestCaseTemplateDTO>
+    * @return Mono<ResponseEntity<TestCaseTemplateDTO>>
     */
     @ApiOperation(value = "创建Create", tags = {"用例模板" },  notes = "TestCaseTemplate-Create ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCaseTemplate-Create-all') or hasPermission('library',#testLibraryId,this.testCaseTemplateDtoMapping.toDomain(#dto),'ibizplm-TestCaseTemplate-Create')")
     @PostMapping("libraries/{testLibraryId}/test_case_templates")
-    public ResponseEntity<ResponseWrapper<TestCaseTemplateDTO>> createByTestLibraryId
+    public Mono<ResponseEntity<ResponseWrapper<TestCaseTemplateDTO>>>createByTestLibraryId
             (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody RequestWrapper<TestCaseTemplateDTO> dto) {
         ResponseWrapper<TestCaseTemplateDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(createByTestLibraryId(testLibraryId, item)));
         else
             rt.set(createByTestLibraryId(testLibraryId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -94,13 +96,13 @@ public abstract class AbstractTestCaseTemplateResource {
     * @param testLibraryId testLibraryId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<TestCaseTemplateDTO>
+    * @return Mono<ResponseEntity<TestCaseTemplateDTO>>
     */
     @ApiOperation(value = "更新Update", tags = {"用例模板" },  notes = "TestCaseTemplate-Update ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCaseTemplate-Update-all') or hasPermission('library',#testLibraryId,this.testCaseTemplateService.get(#id),'ibizplm-TestCaseTemplate-Update')")
     @VersionCheck(entity = "testcasetemplate" , versionfield = "updateTime")
     @PutMapping("libraries/{testLibraryId}/test_case_templates/{id}")
-    public ResponseEntity<ResponseWrapper<TestCaseTemplateDTO>> updateByTestLibraryIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<TestCaseTemplateDTO>>>updateByTestLibraryIdAndId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseTemplateDTO> dto) {
         ResponseWrapper<TestCaseTemplateDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -109,7 +111,7 @@ public abstract class AbstractTestCaseTemplateResource {
         }
         else
             rt.set(updateByTestLibraryIdAndId(testLibraryId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -136,19 +138,19 @@ public abstract class AbstractTestCaseTemplateResource {
     *
     * @param testLibraryId testLibraryId
     * @param dto dto
-    * @return ResponseEntity<TestCaseTemplateDTO>
+    * @return Mono<ResponseEntity<TestCaseTemplateDTO>>
     */
     @ApiOperation(value = "保存Save", tags = {"用例模板" },  notes = "TestCaseTemplate-Save ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCaseTemplate-Save-all') or hasPermission('library',#testLibraryId,this.testCaseTemplateDtoMapping.toDomain(#dto),'ibizplm-TestCaseTemplate-Save')")
     @PostMapping("libraries/{testLibraryId}/test_case_templates/save")
-    public ResponseEntity<ResponseWrapper<TestCaseTemplateDTO>> saveByTestLibraryId
+    public Mono<ResponseEntity<ResponseWrapper<TestCaseTemplateDTO>>>saveByTestLibraryId
             (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody RequestWrapper<TestCaseTemplateDTO> dto) {
         ResponseWrapper<TestCaseTemplateDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(saveByTestLibraryId(testLibraryId, item)));
         else
             rt.set(saveByTestLibraryId(testLibraryId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -175,15 +177,15 @@ public abstract class AbstractTestCaseTemplateResource {
     *
     * @param testLibraryId testLibraryId
     * @param id id
-    * @return ResponseEntity<TestCaseTemplateDTO>
+    * @return Mono<ResponseEntity<TestCaseTemplateDTO>>
     */
     @ApiOperation(value = "获取Get", tags = {"用例模板" },  notes = "TestCaseTemplate-Get ")
-    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCaseTemplate-Get-all')  or hasPermission('library',#testLibraryId,this.testCaseTemplateDtoMapping.toDomain(returnObject.body),'ibizplm-TestCaseTemplate-Get')")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCaseTemplate-Get-all')  or hasPermission('library',#testLibraryId,this.testCaseTemplateDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-TestCaseTemplate-Get')")
     @GetMapping("libraries/{testLibraryId}/test_case_templates/{id}")
-    public ResponseEntity<TestCaseTemplateDTO> getByTestLibraryIdAndId
+    public Mono<ResponseEntity<TestCaseTemplateDTO>> getByTestLibraryIdAndId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("id") String id) {
         TestCaseTemplate rt = testCaseTemplateService.get(id);
-        return ResponseEntity.status(HttpStatus.OK).body(testCaseTemplateDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(testCaseTemplateDtoMapping.toDto(rt)));
     }
 
     /**
@@ -192,15 +194,15 @@ public abstract class AbstractTestCaseTemplateResource {
     *
     * @param testLibraryId testLibraryId
     * @param id id
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @ApiOperation(value = "删除Remove", tags = {"用例模板" },  notes = "TestCaseTemplate-Remove ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCaseTemplate-Remove-all') or hasPermission('library',#testLibraryId,this.testCaseTemplateService.get(#id),'ibizplm-TestCaseTemplate-Remove')")
     @DeleteMapping("libraries/{testLibraryId}/test_case_templates/{id}")
-    public ResponseEntity<Boolean> removeByTestLibraryIdAndId
+    public Mono<ResponseEntity<Boolean>> removeByTestLibraryIdAndId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("id") String id) {
         Boolean rt = testCaseTemplateService.remove(id);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -209,16 +211,16 @@ public abstract class AbstractTestCaseTemplateResource {
     *
     * @param testLibraryId testLibraryId
     * @param dto dto
-    * @return ResponseEntity<Integer>
+    * @return Mono<ResponseEntity<Integer>>
     */
     @ApiOperation(value = "校验CheckKey", tags = {"用例模板" },  notes = "TestCaseTemplate-CheckKey ")
     @PostMapping("libraries/{testLibraryId}/test_case_templates/check_key")
-    public ResponseEntity<Integer> checkKeyByTestLibraryId
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKeyByTestLibraryId
             (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseTemplateDTO dto) {
         TestCaseTemplate domain = testCaseTemplateDtoMapping.toDomain(dto);
         domain.setTestLibraryId(testLibraryId);
-        Integer rt = testCaseTemplateService.checkKey(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        CheckKeyStatus rt = testCaseTemplateService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -227,16 +229,16 @@ public abstract class AbstractTestCaseTemplateResource {
     *
     * @param testLibraryId testLibraryId
     * @param dto dto
-    * @return ResponseEntity<TestCaseTemplateDTO>
+    * @return Mono<ResponseEntity<TestCaseTemplateDTO>>
     */
     @ApiOperation(value = "草稿GetDraft", tags = {"用例模板" },  notes = "TestCaseTemplate-GetDraft ")
     @GetMapping("libraries/{testLibraryId}/test_case_templates/get_draft")
-    public ResponseEntity<TestCaseTemplateDTO> getDraftByTestLibraryId
+    public Mono<ResponseEntity<TestCaseTemplateDTO>> getDraftByTestLibraryId
             (@PathVariable("testLibraryId") String testLibraryId, @SpringQueryMap TestCaseTemplateDTO dto) {
         TestCaseTemplate domain = testCaseTemplateDtoMapping.toDomain(dto);
         domain.setTestLibraryId(testLibraryId);
         TestCaseTemplate rt = testCaseTemplateService.getDraft(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(testCaseTemplateDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(testCaseTemplateDtoMapping.toDto(rt)));
     }
 
     /**
@@ -245,22 +247,22 @@ public abstract class AbstractTestCaseTemplateResource {
     *
     * @param testLibraryId testLibraryId
     * @param dto dto
-    * @return ResponseEntity<List<TestCaseTemplateDTO>>
+    * @return Mono<ResponseEntity<List<TestCaseTemplateDTO>>>
     */
     @ApiOperation(value = "查询fetch_default", tags = {"用例模板" },  notes = "TestCaseTemplate-fetch_default ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCaseTemplate-fetch_default-all') or hasPermission('library',#testLibraryId,#dto,'ibizplm-TestCaseTemplate-fetch_default')")
     @PostMapping("libraries/{testLibraryId}/test_case_templates/fetch_default")
-    public ResponseEntity<List<TestCaseTemplateDTO>> fetchDefaultByTestLibraryId
+    public Mono<ResponseEntity<List<TestCaseTemplateDTO>>> fetchDefaultByTestLibraryId
             (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseTemplateFilterDTO dto) {
         dto.setTestLibraryIdEQ(testLibraryId);
         TestCaseTemplateSearchContext context = testCaseTemplateFilterDtoMapping.toDomain(dto);
         Page<TestCaseTemplate> domains = testCaseTemplateService.fetchDefault(context) ;
         List<TestCaseTemplateDTO> list = testCaseTemplateDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
 

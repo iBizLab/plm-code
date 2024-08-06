@@ -191,7 +191,7 @@ export default {
                             convertToCodeItemText: true,
                             caption: '文本(动态)',
                             cssStyle:
-                              'min-width: 74px;\nheight: var(--ibiz-height-control-default);\npadding: 0 var(--ibiz-spacing-tight);\ntext-align: center;\nborder: none;\nborder-radius: var(--ibiz-height-control-default);\nbackground: var(--ibiz-color-primary-light-default);\nline-height: 0;\ndisplay: flex;\nalign-items: center;\njustify-content: center;\nmargin-top: -4px;',
+                              'min-width: 74px;\nheight: var(--ibiz-height-control-default);\npadding: 0 var(--ibiz-spacing-tight);\ntext-align: center;\nborder: none;\nborder-radius: var(--ibiz-height-control-default);\nbackground: var(--ibiz-color-primary-light-default);\ndisplay: flex;\nalign-items: center;\njustify-content: center;\nmargin-top: -4px;',
                             itemStyle: 'DEFAULT',
                             itemType: 'FIELD',
                             layoutPos: {
@@ -312,7 +312,6 @@ export default {
                             allowEmpty: true,
                             hidden: true,
                             caption: '文本(动态)',
-                            itemStyle: 'DEFAULT',
                             itemType: 'FIELD',
                             layoutPos: {
                               shrink: 1,

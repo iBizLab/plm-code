@@ -108,6 +108,25 @@ public interface GuidelineMapper extends BaseMapper<Guideline> {
     List<Guideline> findByScopeId(@Param("scopeIds") List<String> scopeIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Guideline> searchView(IPage<Guideline> page, @Param("ctx") GuidelineSearchContext context, @Param("ew") Wrapper<Guideline> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Guideline> listView(@Param("ctx") GuidelineSearchContext context, @Param("ew") Wrapper<Guideline> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

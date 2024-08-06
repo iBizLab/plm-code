@@ -62,6 +62,25 @@ public interface RelationMapper extends BaseMapper<Relation> {
     List<Relation> listAll(@Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
 
     /**
+     * 数据集合dependency_work_items分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Relation> searchDependencyWorkItems(IPage<Relation> page, @Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+    
+    /**
+     * 数据集合dependency_work_items查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Relation> listDependencyWorkItems(@Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+
+    /**
      * 数据集合exists_run_relation_bug分页查询
      * 
      * @param page
@@ -521,6 +540,25 @@ public interface RelationMapper extends BaseMapper<Relation> {
     * @return
     */
     List<Relation> findByTargetId(@Param("targetIds") List<String> targetIds);
+
+    /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Relation> searchView(IPage<Relation> page, @Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Relation> listView(@Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
 
     /**
      * 主键查询

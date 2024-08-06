@@ -25,6 +25,7 @@ import cn.ibizlab.plm.core.projmgmt.domain.Project;
 import cn.ibizlab.plm.core.projmgmt.domain.Stage;
 import cn.ibizlab.plm.core.testmgmt.domain.TestPlan;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
+import cn.ibizlab.plm.core.base.domain.Relation;
 
 /**
  * 项目发布实体类[Release]
@@ -74,20 +75,10 @@ public class Release extends EntityMP implements Serializable
     private String description;
 
     /**
-    * 发布进度
-    */
-    @TableField(value = "progress")
-    @DEField(name = "progress")
-    @JSONField(name = "progress")
-    @JsonProperty("progress")
-    @ApiModelProperty(value = "progress", notes = "发布进度")
-    private BigDecimal progress;
-
-    /**
     * 阶段
     */
     @TableField(value = "status")
-    @DEField(name = "status" , defaultValue = "10" , dict = "release_stage")
+    @DEField(name = "status" , dict = "cur_project_stage")
     @JSONField(name = "status")
     @JsonProperty("status")
     @ApiModelProperty(value = "status", notes = "阶段")
@@ -114,6 +105,26 @@ public class Release extends EntityMP implements Serializable
     private String categoriesName;
 
     /**
+    * 发布阶段
+    */
+    @TableField(exist = false)
+    @DEField(name = "stage_transitions")
+    @JSONField(name = "stage_transitions")
+    @JsonProperty("stage_transitions")
+    @ApiModelProperty(value = "stage_transitions", notes = "发布阶段")
+    private List<Stage> stageTransitions;
+
+    /**
+    * 进度
+    */
+    @TableField(value = "schedule" , exist = false)
+    @DEField(name = "schedule")
+    @JSONField(name = "schedule")
+    @JsonProperty("schedule")
+    @ApiModelProperty(value = "schedule", notes = "进度")
+    private BigDecimal schedule;
+
+    /**
     * 负责人
     */
     @TableField(value = "assignee_name")
@@ -127,11 +138,31 @@ public class Release extends EntityMP implements Serializable
     * 负责人标识
     */
     @TableField(value = "assignee_id")
-    @DEField(name = "assignee_id")
+    @DEField(name = "assignee_id" , dict = "SysOperator")
     @JSONField(name = "assignee_id")
     @JsonProperty("assignee_id")
     @ApiModelProperty(value = "assignee_id", notes = "负责人标识")
     private String assigneeId;
+
+    /**
+    * 已完成工作项数
+    */
+    @TableField(value = "completed_work_items" , exist = false)
+    @DEField(name = "completed_work_items")
+    @JSONField(name = "completed_work_items")
+    @JsonProperty("completed_work_items")
+    @ApiModelProperty(value = "completed_work_items", notes = "已完成工作项数")
+    private BigDecimal completedWorkItems;
+
+    /**
+    * 全部工作项数
+    */
+    @TableField(value = "all_work_items" , exist = false)
+    @DEField(name = "all_work_items")
+    @JSONField(name = "all_work_items")
+    @JsonProperty("all_work_items")
+    @ApiModelProperty(value = "all_work_items", notes = "全部工作项数")
+    private BigDecimal allWorkItems;
 
     /**
     * 标识
@@ -254,15 +285,6 @@ public class Release extends EntityMP implements Serializable
     }
 
     /**
-    * 设置 [发布进度]
-    */
-    public Release setProgress(BigDecimal progress) {
-        this.progress = progress;
-        this.modify("progress", progress);
-        return this;
-    }
-
-    /**
     * 设置 [阶段]
     */
     public Release setStatus(String status) {
@@ -290,6 +312,24 @@ public class Release extends EntityMP implements Serializable
     }
 
     /**
+    * 设置 [发布阶段]
+    */
+    public Release setStageTransitions(List<Stage> stageTransitions) {
+        this.stageTransitions = stageTransitions;
+        this.modify("stage_transitions", stageTransitions);
+        return this;
+    }
+
+    /**
+    * 设置 [进度]
+    */
+    public Release setSchedule(BigDecimal schedule) {
+        this.schedule = schedule;
+        this.modify("schedule", schedule);
+        return this;
+    }
+
+    /**
     * 设置 [负责人]
     */
     public Release setAssigneeName(String assigneeName) {
@@ -304,6 +344,24 @@ public class Release extends EntityMP implements Serializable
     public Release setAssigneeId(String assigneeId) {
         this.assigneeId = assigneeId;
         this.modify("assignee_id", assigneeId);
+        return this;
+    }
+
+    /**
+    * 设置 [已完成工作项数]
+    */
+    public Release setCompletedWorkItems(BigDecimal completedWorkItems) {
+        this.completedWorkItems = completedWorkItems;
+        this.modify("completed_work_items", completedWorkItems);
+        return this;
+    }
+
+    /**
+    * 设置 [全部工作项数]
+    */
+    public Release setAllWorkItems(BigDecimal allWorkItems) {
+        this.allWorkItems = allWorkItems;
+        this.modify("all_work_items", allWorkItems);
         return this;
     }
 

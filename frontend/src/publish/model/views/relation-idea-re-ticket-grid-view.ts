@@ -104,10 +104,8 @@ export default {
                   },
                 ],
                 layout: {
-                  align: 'center',
                   dir: 'row',
                   layout: 'FLEX',
-                  valign: 'center',
                 },
                 dataRegionType: 'INHERIT',
                 caption: '容器',
@@ -121,8 +119,10 @@ export default {
               },
             ],
             layout: {
+              align: 'center',
               dir: 'row',
               layout: 'FLEX',
+              valign: 'center',
             },
             dataRegionType: 'INHERIT',
             caption: '容器',
@@ -419,15 +419,6 @@ export default {
     ],
     appViewRefs: [
       {
-        realTitle: '工作项关联编辑视图',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.RELATION.EDITVIEW',
-        },
-        refAppViewId: 'plmweb.relation_edit_view',
-        name: 'NEWDATA',
-        id: 'newdata',
-      },
-      {
         openMode: 'POPUPMODAL',
         navigateContexts: [
           {
@@ -449,13 +440,22 @@ export default {
         name: 'EDITDATA',
         id: 'editdata',
       },
+      {
+        realTitle: '工作项关联编辑视图',
+        realTitleLanguageRes: {
+          lanResTag: 'PAGE.TITLE.RELATION.EDITVIEW',
+        },
+        refAppViewId: 'plmweb.relation_edit_view',
+        name: 'NEWDATA',
+        id: 'newdata',
+      },
     ],
     controls: [
       {
         detoolbarItems: [
           {
             actionLevel: 100,
-            noPrivDisplayMode: 6,
+            noPrivDisplayMode: 2,
             uiactionId: 'add_relation@relation',
             uiactionTarget: 'NONE',
             valid: true,
@@ -468,7 +468,7 @@ export default {
                 logicType: 'SCRIPT',
                 scriptCode: 'context.srfreadonly != true',
                 triggerType: 'ITEMVISIBLE',
-                id: 'logic',
+                id: 'deuiaction1',
               },
             ],
             sysImage: {
@@ -623,6 +623,7 @@ export default {
             caption: '关联目标标识',
             codeName: 'target_id',
             columnType: 'DEFGRIDCOLUMN',
+            hideMode: 1,
             noPrivDisplayMode: 1,
             width: 100,
             widthUnit: 'PX',
@@ -642,6 +643,7 @@ export default {
             caption: '产品标识',
             codeName: 'target_parent_id',
             columnType: 'DEFGRIDCOLUMN',
+            hideMode: 1,
             noPrivDisplayMode: 1,
             width: 100,
             widthUnit: 'PX',
@@ -659,6 +661,7 @@ export default {
             caption: '工单',
             codeName: 'ticket',
             columnType: 'DEFGRIDCOLUMN',
+            hideMode: 1,
             noPrivDisplayMode: 1,
             width: 150,
             widthUnit: 'PX',

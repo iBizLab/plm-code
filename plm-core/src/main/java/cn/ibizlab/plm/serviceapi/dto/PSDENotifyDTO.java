@@ -36,11 +36,19 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
+     * 通知目标
+     */
+    @JsonProperty("psdenotifytargets")
+    @JSONField(name = "psdenotifytargets")
+    @ApiModelProperty(value = "通知目标", position = 0)
+    private List<PSDENotifyTargetDTO> psdeNotifyTargets;
+
+    /**
      * 开始时间属性
      */
     @JsonProperty("beginpsdefid")
     @JSONField(name = "beginpsdefid")
-    @ApiModelProperty(value = "开始时间属性", position = 0)
+    @ApiModelProperty(value = "开始时间属性", position = 1)
     private String beginPsdefid;
 
     /**
@@ -48,7 +56,7 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("beginpsdefname")
     @JSONField(name = "beginpsdefname")
-    @ApiModelProperty(value = "开始时间属性", position = 1)
+    @ApiModelProperty(value = "开始时间属性", position = 2)
     private String beginPsdefName;
 
     /**
@@ -56,7 +64,7 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("checktimer")
     @JSONField(name = "checktimer")
-    @ApiModelProperty(value = "检查间隔", position = 2)
+    @ApiModelProperty(value = "检查间隔", position = 3)
     private Integer checkTimer;
 
     /**
@@ -64,7 +72,7 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("codename")
     @JSONField(name = "codename")
-    @ApiModelProperty(value = "代码名称", position = 3)
+    @ApiModelProperty(value = "代码名称", position = 4)
     private String codeName;
 
     /**
@@ -72,7 +80,7 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("customcond")
     @JSONField(name = "customcond")
-    @ApiModelProperty(value = "自定义条件", position = 4)
+    @ApiModelProperty(value = "自定义条件", position = 5)
     private String customCond;
 
     /**
@@ -80,7 +88,7 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("endpsdefid")
     @JSONField(name = "endpsdefid")
-    @ApiModelProperty(value = "结束时间属性", position = 5)
+    @ApiModelProperty(value = "结束时间属性", position = 6)
     private String endPsdefid;
 
     /**
@@ -88,7 +96,7 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("endpsdefname")
     @JSONField(name = "endpsdefname")
-    @ApiModelProperty(value = "结束时间属性", position = 6)
+    @ApiModelProperty(value = "结束时间属性", position = 7)
     private String endPsdefName;
 
     /**
@@ -96,7 +104,7 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("events")
     @JSONField(name = "events")
-    @ApiModelProperty(value = "监控事件集", position = 7)
+    @ApiModelProperty(value = "监控事件集", position = 8)
     private String events;
 
     /**
@@ -104,7 +112,7 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("fields")
     @JSONField(name = "fields")
-    @ApiModelProperty(value = "监控变化属性集", position = 8)
+    @ApiModelProperty(value = "监控变化属性集", position = 9)
     private String fields;
 
     /**
@@ -112,7 +120,7 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("msgtype")
     @JSONField(name = "msgtype")
-    @ApiModelProperty(value = "通知消息类型", position = 9)
+    @ApiModelProperty(value = "通知消息类型", position = 10)
     private Integer msgType;
 
     /**
@@ -120,7 +128,7 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("notifyend")
     @JSONField(name = "notifyend")
-    @ApiModelProperty(value = "延后通知间隔", position = 10)
+    @ApiModelProperty(value = "延后通知间隔", position = 11)
     private Integer notifyEnd;
 
     /**
@@ -128,7 +136,7 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("notifystart")
     @JSONField(name = "notifystart")
-    @ApiModelProperty(value = "提前通知间隔", position = 11)
+    @ApiModelProperty(value = "提前通知间隔", position = 12)
     private Integer notifyStart;
 
     /**
@@ -136,7 +144,7 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("notifysubtype")
     @JSONField(name = "notifysubtype")
-    @ApiModelProperty(value = "通知子类", position = 12)
+    @ApiModelProperty(value = "通知子类", position = 13)
     private String notifySubType;
 
     /**
@@ -144,7 +152,7 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("notifytag")
     @JSONField(name = "notifytag")
-    @ApiModelProperty(value = "通知标记", position = 13)
+    @ApiModelProperty(value = "通知标记", position = 14)
     private String notifyTag;
 
     /**
@@ -152,7 +160,7 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("notifytag2")
     @JSONField(name = "notifytag2")
-    @ApiModelProperty(value = "通知标记2", position = 14)
+    @ApiModelProperty(value = "通知标记2", position = 15)
     private String notifyTag2;
 
     /**
@@ -160,7 +168,7 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("psdedsid")
     @JSONField(name = "psdedsid")
-    @ApiModelProperty(value = "实体数据集", position = 15)
+    @ApiModelProperty(value = "实体数据集", position = 16)
     private String psdedsid;
 
     /**
@@ -168,7 +176,7 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("psdedsname")
     @JSONField(name = "psdedsname")
-    @ApiModelProperty(value = "实体数据集", position = 16)
+    @ApiModelProperty(value = "实体数据集", position = 17)
     private String psdedsName;
 
     /**
@@ -176,7 +184,7 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("psdeid")
     @JSONField(name = "psdeid")
-    @ApiModelProperty(value = "实体", position = 17)
+    @ApiModelProperty(value = "实体", position = 18)
     private String psdeid;
 
     /**
@@ -184,7 +192,7 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("psdename")
     @JSONField(name = "psdename")
-    @ApiModelProperty(value = "实体", position = 18)
+    @ApiModelProperty(value = "实体", position = 19)
     private String psdeName;
 
     /**
@@ -192,7 +200,7 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("psdenotifyid")
     @JSONField(name = "psdenotifyid")
-    @ApiModelProperty(value = "实体通知标识", position = 19)
+    @ApiModelProperty(value = "实体通知标识", position = 20)
     private String psdeNotifyId;
 
     /**
@@ -200,7 +208,7 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("psdenotifyname")
     @JSONField(name = "psdenotifyname")
-    @ApiModelProperty(value = "实体通知名称", position = 20)
+    @ApiModelProperty(value = "实体通知名称", position = 21)
     private String psdeNotifyName;
 
     /**
@@ -208,7 +216,7 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("pssysmsgqueueid")
     @JSONField(name = "pssysmsgqueueid")
-    @ApiModelProperty(value = "系统消息队列", position = 21)
+    @ApiModelProperty(value = "系统消息队列", position = 22)
     private String psSysMsgQueueId;
 
     /**
@@ -216,7 +224,7 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("pssysmsgqueuename")
     @JSONField(name = "pssysmsgqueuename")
-    @ApiModelProperty(value = "系统消息队列", position = 22)
+    @ApiModelProperty(value = "系统消息队列", position = 23)
     private String psSysMsgQueueName;
 
     /**
@@ -224,7 +232,7 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("pssysmsgtemplid")
     @JSONField(name = "pssysmsgtemplid")
-    @ApiModelProperty(value = "系统消息模板", position = 23)
+    @ApiModelProperty(value = "系统消息模板", position = 24)
     private String psSysMsgTemplId;
 
     /**
@@ -232,15 +240,31 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("pssysmsgtemplname")
     @JSONField(name = "pssysmsgtemplname")
-    @ApiModelProperty(value = "系统消息模板", position = 24)
+    @ApiModelProperty(value = "系统消息模板", position = 25)
     private String psSysMsgTemplName;
+
+    /**
+     * 后端模板插件
+     */
+    @JsonProperty("pssyssfpluginid")
+    @JSONField(name = "pssyssfpluginid")
+    @ApiModelProperty(value = "后端模板插件", position = 26)
+    private String psSysSfPluginId;
+
+    /**
+     * 后端模板插件
+     */
+    @JsonProperty("pssyssfpluginname")
+    @JSONField(name = "pssyssfpluginname")
+    @ApiModelProperty(value = "后端模板插件", position = 27)
+    private String psSysSfPluginName;
 
     /**
      * 附加任务模式
      */
     @JsonProperty("taskmode")
     @JSONField(name = "taskmode")
-    @ApiModelProperty(value = "附加任务模式", position = 25)
+    @ApiModelProperty(value = "附加任务模式", position = 28)
     private Integer taskMode;
 
     /**
@@ -248,7 +272,7 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("timermode")
     @JSONField(name = "timermode")
-    @ApiModelProperty(value = "定时触发模式", position = 26)
+    @ApiModelProperty(value = "定时触发模式", position = 29)
     private Integer timerMode;
 
     /**
@@ -256,7 +280,7 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("usertag")
     @JSONField(name = "usertag")
-    @ApiModelProperty(value = "用户标识", position = 27)
+    @ApiModelProperty(value = "用户标识", position = 30)
     private String userTag;
 
     /**
@@ -264,7 +288,7 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("usertag2")
     @JSONField(name = "usertag2")
-    @ApiModelProperty(value = "用户标识2", position = 28)
+    @ApiModelProperty(value = "用户标识2", position = 31)
     private String userTag2;
 
     /**
@@ -272,7 +296,7 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("usertag3")
     @JSONField(name = "usertag3")
-    @ApiModelProperty(value = "用户标识3", position = 29)
+    @ApiModelProperty(value = "用户标识3", position = 32)
     private String userTag3;
 
     /**
@@ -280,7 +304,7 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("usertag4")
     @JSONField(name = "usertag4")
-    @ApiModelProperty(value = "用户标识4", position = 30)
+    @ApiModelProperty(value = "用户标识4", position = 33)
     private String userTag4;
 
     /**
@@ -288,7 +312,7 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("validflag")
     @JSONField(name = "validflag")
-    @ApiModelProperty(value = "启用", position = 31)
+    @ApiModelProperty(value = "启用", position = 34)
     private Integer validFlag;
 
     /**
@@ -296,7 +320,7 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 32)
+    @ApiModelProperty(value = "建立人", position = 35)
     private String createMan;
 
     /**
@@ -305,7 +329,7 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 33)
+    @ApiModelProperty(value = "建立时间", position = 36)
     private Date createTime;
 
     /**
@@ -313,7 +337,7 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 34)
+    @ApiModelProperty(value = "更新人", position = 37)
     private String updateMan;
 
     /**
@@ -322,17 +346,18 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 35)
+    @ApiModelProperty(value = "更新时间", position = 38)
     private Date updateTime;
 
-    /**
-     * 消息通知目标
-     */
-    @JsonProperty("psdenotifytargets")
-    @JSONField(name = "psdenotifytargets")
-    @ApiModelProperty(value = "消息通知目标", position = 36)
-    private List<PSDENotifyTargetDTO> psdeNotifyTargets;
 
+    /**
+     * 设置 [通知目标]
+     */
+    public PSDENotifyDTO setPsdeNotifyTargets(List<PSDENotifyTargetDTO> psdeNotifyTargets) {
+        this.psdeNotifyTargets = psdeNotifyTargets;
+        this.modify("psdenotifytargets", psdeNotifyTargets);
+        return this;
+    }
 
     /**
      * 设置 [开始时间属性]
@@ -551,6 +576,24 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
     }
 
     /**
+     * 设置 [后端模板插件]
+     */
+    public PSDENotifyDTO setPsSysSfPluginId(String psSysSfPluginId) {
+        this.psSysSfPluginId = psSysSfPluginId;
+        this.modify("pssyssfpluginid", psSysSfPluginId);
+        return this;
+    }
+
+    /**
+     * 设置 [后端模板插件]
+     */
+    public PSDENotifyDTO setPsSysSfPluginName(String psSysSfPluginName) {
+        this.psSysSfPluginName = psSysSfPluginName;
+        this.modify("pssyssfpluginname", psSysSfPluginName);
+        return this;
+    }
+
+    /**
      * 设置 [附加任务模式]
      */
     public PSDENotifyDTO setTaskMode(Integer taskMode) {
@@ -610,15 +653,6 @@ public class PSDENotifyDTO extends DTOBase implements Serializable {
     public PSDENotifyDTO setValidFlag(Integer validFlag) {
         this.validFlag = validFlag;
         this.modify("validflag", validFlag);
-        return this;
-    }
-
-    /**
-     * 设置 [消息通知目标]
-     */
-    public PSDENotifyDTO setPsdeNotifyTargets(List<PSDENotifyTargetDTO> psdeNotifyTargets) {
-        this.psdeNotifyTargets = psdeNotifyTargets;
-        this.modify("psdenotifytargets", psdeNotifyTargets);
         return this;
     }
 

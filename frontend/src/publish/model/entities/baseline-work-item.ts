@@ -345,6 +345,14 @@ export default {
       id: 'is_leaf',
     },
     {
+      codeName: 'work_item_type_id',
+      logicName: '工作项类型',
+      stdDataType: 25,
+      stringLength: 100,
+      name: 'WORK_ITEM_TYPE_ID',
+      id: 'work_item_type_id',
+    },
+    {
       codeName: 'id',
       lnlanguageRes: {
         lanResTag: 'DEF.LNAME.ID',
@@ -820,6 +828,16 @@ export default {
           type: 'SIMPLE',
           allowEmpty: true,
           id: 'is_leaf',
+        },
+        {
+          codeName: 'work_item_type_id',
+          logicName: '工作项类型',
+          appDEFieldId: 'work_item_type_id',
+          sourceType: 'DEFIELD',
+          stdDataType: 25,
+          type: 'SIMPLE',
+          allowEmpty: true,
+          id: 'work_item_type_id',
         },
         {
           codeName: 'create_man',

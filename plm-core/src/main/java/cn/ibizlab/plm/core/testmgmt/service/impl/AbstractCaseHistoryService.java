@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.testmgmt.domain.CaseHistory;
@@ -103,14 +104,14 @@ public abstract class AbstractCaseHistoryService extends ServiceImpl<CaseHistory
         return et;
     }
 	
-    public Integer checkKey(CaseHistory et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<CaseHistory>lambdaQuery().eq(CaseHistory::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(CaseHistory et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<CaseHistory>lambdaQuery().eq(CaseHistory::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(CaseHistory et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -153,6 +154,10 @@ public abstract class AbstractCaseHistoryService extends ServiceImpl<CaseHistory
         return list;	
 	}
 
+	public List<CaseHistory> findByTestCase(TestCase testCase){
+        List<CaseHistory> list = findByCaseId(Arrays.asList(testCase.getId()));
+		return list;
+	}
 	public boolean removeByCaseId(String caseId){
         return this.remove(Wrappers.<CaseHistory>lambdaQuery().eq(CaseHistory::getCaseId,caseId));
 	}
@@ -163,8 +168,8 @@ public abstract class AbstractCaseHistoryService extends ServiceImpl<CaseHistory
 	public boolean saveByTestCase(TestCase testCase, List<CaseHistory> list){
         if(list==null)
             return true;
-        Map<String,CaseHistory> before = findByCaseId(testCase.getId()).stream().collect(Collectors.toMap(CaseHistory::getId,e->e));
 
+        Map<String,CaseHistory> before = findByTestCase(testCase).stream().collect(Collectors.toMap(CaseHistory::getId,e->e));
         List<CaseHistory> update = new ArrayList<>();
         List<CaseHistory> create = new ArrayList<>();
 
@@ -188,6 +193,17 @@ public abstract class AbstractCaseHistoryService extends ServiceImpl<CaseHistory
             return true;
 			
 	}
+   public Page<CaseHistory> fetchView(CaseHistorySearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<CaseHistory> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<CaseHistory> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<CaseHistory> listView(CaseHistorySearchContext context) {
+        List<CaseHistory> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(CaseHistory et) {
         if(Entities.TEST_CASE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

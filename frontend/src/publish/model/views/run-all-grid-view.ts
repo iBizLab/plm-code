@@ -65,17 +65,10 @@ export default {
           openMode: 'INDEXVIEWTAB_POPUPMODAL',
           navigateContexts: [
             {
-              key: 'TEST_CASE',
+              key: 'CASE_ID',
               value: 'case_id',
-              name: 'TEST_CASE',
-              id: 'test_case',
-            },
-          ],
-          navigateParams: [
-            {
-              key: 'test_case',
-              value: 'case_id',
-              id: 'test_case',
+              name: 'CASE_ID',
+              id: 'case_id',
             },
           ],
           refAppViewId: 'plmweb.run_main_view',
@@ -86,17 +79,10 @@ export default {
             openMode: 'INDEXVIEWTAB_POPUPMODAL',
             navigateContexts: [
               {
-                key: 'TEST_CASE',
+                key: 'CASE_ID',
                 value: 'case_id',
-                name: 'TEST_CASE',
-                id: 'test_case',
-              },
-            ],
-            navigateParams: [
-              {
-                key: 'test_case',
-                value: 'case_id',
-                id: 'test_case',
+                name: 'CASE_ID',
+                id: 'case_id',
               },
             ],
             refAppViewId: 'plmweb.run_main_view',
@@ -112,6 +98,28 @@ export default {
     },
   ],
   appViewRefs: [
+    {
+      openMode: 'INDEXVIEWTAB_POPUPMODAL',
+      navigateContexts: [
+        {
+          key: 'CASE_ID',
+          value: 'case_id',
+          name: 'CASE_ID',
+          id: 'case_id',
+        },
+      ],
+      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realTitle: '执行用例主视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.RUN.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.run_main_view',
+      viewParamJO: {
+        test_case: '%case_id%',
+      },
+      name: 'EDITDATA',
+      id: 'editdata',
+    },
     {
       realOpenMode: 'POPUPMODAL',
       realTitle: '执行用例主视图',
@@ -131,35 +139,6 @@ export default {
       refAppViewId: 'plmweb.run_main_view',
       name: 'NEWDATA',
       id: 'newdata',
-    },
-    {
-      openMode: 'INDEXVIEWTAB_POPUPMODAL',
-      navigateContexts: [
-        {
-          key: 'TEST_CASE',
-          value: 'case_id',
-          name: 'TEST_CASE',
-          id: 'test_case',
-        },
-      ],
-      navigateParams: [
-        {
-          key: 'test_case',
-          value: 'case_id',
-          id: 'test_case',
-        },
-      ],
-      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realTitle: '执行用例主视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.RUN.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.run_main_view',
-      viewParamJO: {
-        test_case: '%case_id%',
-      },
-      name: 'EDITDATA',
-      id: 'editdata',
     },
     {
       realOpenMode: 'POPUPMODAL',
@@ -322,7 +301,7 @@ export default {
           codeName: 'status',
           columnType: 'DEFGRIDCOLUMN',
           noPrivDisplayMode: 1,
-          width: 100,
+          width: 120,
           widthUnit: 'PX',
           enableSort: true,
           id: 'status',
@@ -430,6 +409,7 @@ export default {
           caption: '更新人',
           codeName: 'update_man',
           columnType: 'DEFGRIDCOLUMN',
+          hideMode: 1,
           noPrivDisplayMode: 1,
           width: 100,
           widthUnit: 'PX',
@@ -473,6 +453,7 @@ export default {
           caption: '建立人',
           codeName: 'create_man',
           columnType: 'DEFGRIDCOLUMN',
+          hideMode: 1,
           noPrivDisplayMode: 1,
           width: 100,
           widthUnit: 'PX',
@@ -495,6 +476,7 @@ export default {
           caption: '建立时间',
           codeName: 'create_time',
           columnType: 'DEFGRIDCOLUMN',
+          hideMode: 1,
           noPrivDisplayMode: 1,
           width: 200,
           widthUnit: 'PX',
@@ -583,6 +565,12 @@ export default {
           valueType: 'SIMPLE',
           dataType: 5,
           id: 'create_time',
+        },
+        {
+          appDEFieldId: 'is_newest',
+          valueType: 'SIMPLE',
+          dataType: 9,
+          id: 'is_newest',
         },
         {
           appDEFieldId: 'executor_id',
@@ -1149,6 +1137,7 @@ export default {
             id: 'executor_is_null',
           },
           allowEmpty: true,
+          convertToCodeItemText: true,
           caption: '执行人标识(Nil)',
           itemType: 'FILTER',
           appDEFieldId: 'executor_id',
@@ -1171,6 +1160,7 @@ export default {
             id: 'executor_notnull',
           },
           allowEmpty: true,
+          convertToCodeItemText: true,
           caption: '执行人标识(NotNil)',
           itemType: 'FILTER',
           appDEFieldId: 'executor_id',

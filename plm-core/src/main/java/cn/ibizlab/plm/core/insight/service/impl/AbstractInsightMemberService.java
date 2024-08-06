@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.insight.domain.InsightMember;
@@ -116,17 +117,17 @@ public abstract class AbstractInsightMemberService extends ServiceImpl<InsightMe
         return et;
     }
 	
-    public Integer checkKey(InsightMember et) {
+    public CheckKeyStatus checkKey(InsightMember et) {
         fillParentData(et);
         if(ObjectUtils.isEmpty(et.getId()))
             et.setId((String)et.getDefaultKey(true));
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<InsightMember>lambdaQuery().eq(InsightMember::getId, et.getId()))>0)?1:0;
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<InsightMember>lambdaQuery().eq(InsightMember::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(InsightMember et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -173,6 +174,10 @@ public abstract class AbstractInsightMemberService extends ServiceImpl<InsightMe
         return list;	
 	}
 
+	public List<InsightMember> findByInsightView(InsightView insightView){
+        List<InsightMember> list = findByOwnerId(Arrays.asList(insightView.getId()));
+		return list;
+	}
 	public boolean removeByOwnerId(String ownerId){
         return this.remove(Wrappers.<InsightMember>lambdaQuery().eq(InsightMember::getOwnerId,ownerId));
 	}
@@ -183,8 +188,8 @@ public abstract class AbstractInsightMemberService extends ServiceImpl<InsightMe
 	public boolean saveByInsightView(InsightView insightView, List<InsightMember> list){
         if(list==null)
             return true;
-        Map<String,InsightMember> before = findByOwnerId(insightView.getId()).stream().collect(Collectors.toMap(InsightMember::getId,e->e));
 
+        Map<String,InsightMember> before = findByInsightView(insightView).stream().collect(Collectors.toMap(InsightMember::getId,e->e));
         List<InsightMember> update = new ArrayList<>();
         List<InsightMember> create = new ArrayList<>();
 
@@ -217,6 +222,10 @@ public abstract class AbstractInsightMemberService extends ServiceImpl<InsightMe
         return list;	
 	}
 
+	public List<InsightMember> findByUser(User user){
+        List<InsightMember> list = findByUserId(Arrays.asList(user.getId()));
+		return list;
+	}
 	public boolean removeByUserId(String userId){
         return this.remove(Wrappers.<InsightMember>lambdaQuery().eq(InsightMember::getUserId,userId));
 	}
@@ -227,8 +236,8 @@ public abstract class AbstractInsightMemberService extends ServiceImpl<InsightMe
 	public boolean saveByUser(User user, List<InsightMember> list){
         if(list==null)
             return true;
-        Map<String,InsightMember> before = findByUserId(user.getId()).stream().collect(Collectors.toMap(InsightMember::getId,e->e));
 
+        Map<String,InsightMember> before = findByUser(user).stream().collect(Collectors.toMap(InsightMember::getId,e->e));
         List<InsightMember> update = new ArrayList<>();
         List<InsightMember> create = new ArrayList<>();
 
@@ -256,6 +265,17 @@ public abstract class AbstractInsightMemberService extends ServiceImpl<InsightMe
             return true;
 			
 	}
+   public Page<InsightMember> fetchView(InsightMemberSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<InsightMember> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<InsightMember> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<InsightMember> listView(InsightMemberSearchContext context) {
+        List<InsightMember> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(InsightMember et) {
         if(Entities.INSIGHT_VIEW.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

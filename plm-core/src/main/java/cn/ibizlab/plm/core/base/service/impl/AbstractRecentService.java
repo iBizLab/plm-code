@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.base.domain.Recent;
@@ -113,16 +114,16 @@ public abstract class AbstractRecentService extends ServiceImpl<RecentMapper,Rec
         return et;
     }
 	
-    public Integer checkKey(Recent et) {
+    public CheckKeyStatus checkKey(Recent et) {
         if(ObjectUtils.isEmpty(et.getId()))
             et.setId((String)et.getDefaultKey(true));
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Recent>lambdaQuery().eq(Recent::getId, et.getId()))>0)?1:0;
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Recent>lambdaQuery().eq(Recent::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(Recent et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -366,6 +367,17 @@ public abstract class AbstractRecentService extends ServiceImpl<RecentMapper,Rec
         return list;
    }
 	
+   public Page<Recent> fetchRecentWorkItemDependency(RecentSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Recent> pages=baseMapper.searchRecentWorkItemDependency(context.getPages(),context,context.getSelectCond());
+        List<Recent> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Recent> listRecentWorkItemDependency(RecentSearchContext context) {
+        List<Recent> list = baseMapper.listRecentWorkItemDependency(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<Recent> fetchUser(RecentSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Recent> pages=baseMapper.searchUser(context.getPages(),context,context.getSelectCond());
         List<Recent> list = pages.getRecords();
@@ -382,6 +394,12 @@ public abstract class AbstractRecentService extends ServiceImpl<RecentMapper,Rec
         return list;	
 	}
 
+	public List<Recent> findByDercustomRecentWorkItem(WorkItem workItem){
+        List<Recent> list = this.baseMapper.selectList(Wrappers.<Recent>lambdaQuery()
+                        .eq(Recent::getOwnerId, workItem.getId())
+                        .eq(Recent::getOwnerType,"WORK_ITEM").isNull(Recent::getOwnerSubtype));
+		return list;
+	}
 	public boolean removeByOwnerId(String ownerId){
         return this.remove(Wrappers.<Recent>lambdaQuery().eq(Recent::getOwnerId,ownerId));
 	}
@@ -392,12 +410,8 @@ public abstract class AbstractRecentService extends ServiceImpl<RecentMapper,Rec
 	public boolean saveByDercustomRecentWorkItem(WorkItem workItem, List<Recent> list){
         if(list==null)
             return true;
-        Map<String,Recent> before = this.baseMapper.selectList(Wrappers.<Recent>lambdaQuery()
-                        .eq(Recent::getOwnerId, workItem.getId())
-                        .eq(Recent::getOwnerType,"WORK_ITEM").isNull(Recent::getOwnerSubtype))
-                        .stream()
-                        .collect(Collectors.toMap(Recent::getId,e->e));
 
+        Map<String,Recent> before = findByDercustomRecentWorkItem(workItem).stream().collect(Collectors.toMap(Recent::getId,e->e));
         List<Recent> update = new ArrayList<>();
         List<Recent> create = new ArrayList<>();
 
@@ -425,6 +439,17 @@ public abstract class AbstractRecentService extends ServiceImpl<RecentMapper,Rec
             return true;
 			
 	}
+   public Page<Recent> fetchView(RecentSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Recent> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<Recent> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Recent> listView(RecentSearchContext context) {
+        List<Recent> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(Recent et) {
         if(Entities.WORK_ITEM.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

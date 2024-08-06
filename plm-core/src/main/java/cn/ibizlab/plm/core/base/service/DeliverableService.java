@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.Deliverable;
 import cn.ibizlab.plm.core.base.filter.DeliverableSearchContext;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
@@ -138,7 +139,7 @@ public interface DeliverableService extends IService<Deliverable> {
     * @param et
     * @return
     */
-    Integer checkKey(Deliverable et);
+    CheckKeyStatus checkKey(Deliverable et);
 
     /**
     * 保存
@@ -203,8 +204,15 @@ public interface DeliverableService extends IService<Deliverable> {
     */
     List<Deliverable> findByOwnerId(List<String> ownerIds);
     default List<Deliverable> findByOwnerId(String ownerId){
-        return findByOwnerId(Arrays.asList(ownerId));
+        return findByWorkItem(new WorkItem().setId(ownerId));
     }
+
+    /**
+    * findByWorkItem
+    * @param workItem
+    * @return
+    */
+    List<Deliverable> findByWorkItem(WorkItem workItem);
 
     /**
     * removeByOwnerId
@@ -237,6 +245,22 @@ public interface DeliverableService extends IService<Deliverable> {
     * @return
     */
     boolean saveByWorkItem(WorkItem workItem, List<Deliverable> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Deliverable> fetchView(DeliverableSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Deliverable> listView(DeliverableSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Deliverable> list) {

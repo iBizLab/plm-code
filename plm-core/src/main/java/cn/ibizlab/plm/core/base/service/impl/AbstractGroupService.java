@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.base.domain.Group;
@@ -110,14 +111,14 @@ public abstract class AbstractGroupService extends ServiceImpl<GroupMapper,Group
         return et;
     }
 	
-    public Integer checkKey(Group et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Group>lambdaQuery().eq(Group::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(Group et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Group>lambdaQuery().eq(Group::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(Group et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -177,6 +178,17 @@ public abstract class AbstractGroupService extends ServiceImpl<GroupMapper,Group
         return list;
    }
 	
+   public Page<Group> fetchUser(GroupSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Group> pages=baseMapper.searchUser(context.getPages(),context,context.getSelectCond());
+        List<Group> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Group> listUser(GroupSearchContext context) {
+        List<Group> list = baseMapper.listUser(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<Group> fetchUserGroupAdmin(GroupSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Group> pages=baseMapper.searchUserGroupAdmin(context.getPages(),context,context.getSelectCond());
         List<Group> list = pages.getRecords();
@@ -193,6 +205,10 @@ public abstract class AbstractGroupService extends ServiceImpl<GroupMapper,Group
         return list;	
 	}
 
+	public List<Group> findBySection(Section section){
+        List<Group> list = findBySectionId(Arrays.asList(section.getId()));
+		return list;
+	}
 	public boolean removeBySectionId(String sectionId){
         return this.remove(Wrappers.<Group>lambdaQuery().eq(Group::getSectionId,sectionId));
 	}
@@ -203,8 +219,8 @@ public abstract class AbstractGroupService extends ServiceImpl<GroupMapper,Group
 	public boolean saveBySection(Section section, List<Group> list){
         if(list==null)
             return true;
-        Map<String,Group> before = findBySectionId(section.getId()).stream().collect(Collectors.toMap(Group::getId,e->e));
 
+        Map<String,Group> before = findBySection(section).stream().collect(Collectors.toMap(Group::getId,e->e));
         List<Group> update = new ArrayList<>();
         List<Group> create = new ArrayList<>();
 
@@ -228,6 +244,17 @@ public abstract class AbstractGroupService extends ServiceImpl<GroupMapper,Group
             return true;
 			
 	}
+   public Page<Group> fetchView(GroupSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Group> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<Group> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Group> listView(GroupSearchContext context) {
+        List<Group> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(Group et) {
         if(Entities.SECTION.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

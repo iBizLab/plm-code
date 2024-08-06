@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.testmgmt.domain.Run;
@@ -163,16 +164,16 @@ public abstract class AbstractRunService extends ServiceImpl<RunMapper,Run> impl
         return et;
     }
 	
-    public Integer checkKey(Run et) {
+    public CheckKeyStatus checkKey(Run et) {
         if(ObjectUtils.isEmpty(et.getId()))
             et.setId((String)et.getDefaultKey(true));
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Run>lambdaQuery().eq(Run::getId, et.getId()))>0)?1:0;
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Run>lambdaQuery().eq(Run::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(Run et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -225,6 +226,28 @@ public abstract class AbstractRunService extends ServiceImpl<RunMapper,Run> impl
 
    public List<Run> listImplementationResults(RunSearchContext context) {
         return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listImplementationResults(context,context.getSelectCond()),Run.class);
+   }
+	
+   public Page<Run> fetchBiDetail(RunSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Run> pages=baseMapper.searchBiDetail(context.getPages(),context,context.getSelectCond());
+        List<Run> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Run> listBiDetail(RunSearchContext context) {
+        List<Run> list = baseMapper.listBiDetail(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Run> fetchBiSearch(RunSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Run> pages=baseMapper.searchBiSearch(context.getPages(),context,context.getSelectCond());
+        List<Run> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Run> listBiSearch(RunSearchContext context) {
+        List<Run> list = baseMapper.listBiSearch(context,context.getSelectCond());
+        return list;
    }
 	
    public Page<Run> fetchCasePerson(RunSearchContext context) {
@@ -282,6 +305,17 @@ public abstract class AbstractRunService extends ServiceImpl<RunMapper,Run> impl
         return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listPriorityDistributions(context,context.getSelectCond()),Run.class);
    }
 	
+   public Page<Run> fetchReader(RunSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Run> pages=baseMapper.searchReader(context.getPages(),context,context.getSelectCond());
+        List<Run> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Run> listReader(RunSearchContext context) {
+        List<Run> list = baseMapper.listReader(context,context.getSelectCond());
+        return list;
+   }
+	
 	public List<Run> findByCaseId(List<String> caseIds){
         List<Run> list = baseMapper.findByCaseId(caseIds);
         if(!ObjectUtils.isEmpty(list))
@@ -293,6 +327,10 @@ public abstract class AbstractRunService extends ServiceImpl<RunMapper,Run> impl
         return list;	
 	}
 
+	public List<Run> findByTestCase(TestCase testCase){
+        List<Run> list = findByCaseId(Arrays.asList(testCase.getId()));
+		return list;
+	}
 	public boolean removeByCaseId(String caseId){
         List<String> ids = baseMapper.findByCaseId(Arrays.asList(caseId)).stream().map(e->e.getId()).collect(Collectors.toList());
         if(!ObjectUtils.isEmpty(ids))
@@ -307,8 +345,8 @@ public abstract class AbstractRunService extends ServiceImpl<RunMapper,Run> impl
 	public boolean saveByTestCase(TestCase testCase, List<Run> list){
         if(list==null)
             return true;
-        Map<String,Run> before = findByCaseId(testCase.getId()).stream().collect(Collectors.toMap(Run::getId,e->e));
 
+        Map<String,Run> before = findByTestCase(testCase).stream().collect(Collectors.toMap(Run::getId,e->e));
         List<Run> update = new ArrayList<>();
         List<Run> create = new ArrayList<>();
 
@@ -347,6 +385,10 @@ public abstract class AbstractRunService extends ServiceImpl<RunMapper,Run> impl
         return list;	
 	}
 
+	public List<Run> findByTestPlan(TestPlan testPlan){
+        List<Run> list = findByPlanId(Arrays.asList(testPlan.getId()));
+		return list;
+	}
 	public boolean removeByPlanId(String planId){
         List<String> ids = baseMapper.findByPlanId(Arrays.asList(planId)).stream().map(e->e.getId()).collect(Collectors.toList());
         if(!ObjectUtils.isEmpty(ids))
@@ -361,8 +403,8 @@ public abstract class AbstractRunService extends ServiceImpl<RunMapper,Run> impl
 	public boolean saveByTestPlan(TestPlan testPlan, List<Run> list){
         if(list==null)
             return true;
-        Map<String,Run> before = findByPlanId(testPlan.getId()).stream().collect(Collectors.toMap(Run::getId,e->e));
 
+        Map<String,Run> before = findByTestPlan(testPlan).stream().collect(Collectors.toMap(Run::getId,e->e));
         List<Run> update = new ArrayList<>();
         List<Run> create = new ArrayList<>();
 
@@ -392,17 +434,28 @@ public abstract class AbstractRunService extends ServiceImpl<RunMapper,Run> impl
 	}
 	@Override
     public List<Attention> getAttentions(Run et) {
-        List<Attention> list = attentionService.findByOwnerId(et.getId());
+        List<Attention> list = attentionService.findByRun(et);
         et.setAttentions(list);
         return list;
     }
 	
 	@Override
     public List<RunAttachment> getRunAttachment(Run et) {
-        List<RunAttachment> list = runAttachmentService.findByOwnerId(et.getId());
+        List<RunAttachment> list = runAttachmentService.findByRunAttachment(et);
         et.setRunAttachment(list);
         return list;
     }
+	
+   public Page<Run> fetchView(RunSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Run> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<Run> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Run> listView(RunSearchContext context) {
+        List<Run> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
 	
 
     public void fillParentData(Run et) {
@@ -440,6 +493,7 @@ public abstract class AbstractRunService extends ServiceImpl<RunMapper,Run> impl
                 et.setPlanName(testPlan.getName());
                 et.setLibraryName(testPlan.getLibraryName());
                 et.setLibraryId(testPlan.getLibraryId());
+                et.setLibraryIdentifier(testPlan.getLibraryIdentifier());
                 et.setPlanId(testPlan.getId());
             }
         }

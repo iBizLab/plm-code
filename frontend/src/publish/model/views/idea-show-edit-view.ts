@@ -840,7 +840,7 @@ export default {
                             contenttype: 'HTML',
                             TITLE: 'name',
                             PARSESCRIPT:
-                              'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>").replace(/#{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>")',
+                              'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>").replace(/#{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>").replaceAll(/\\{\\"\\emoji\\":\\"(.+?)\\"\\}/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji)); return `<span class="emoji-tag">${tempVal}</span>`})',
                           },
                           editorStyle: 'ANCHO_HTML',
                           editorType: 'RAW',
@@ -956,6 +956,7 @@ export default {
                               caption: '所属数据标识',
                               codeName: 'owner_id',
                               columnType: 'DEFGRIDCOLUMN',
+                              hideMode: 1,
                               noPrivDisplayMode: 1,
                               width: 100,
                               widthUnit: 'PX',
@@ -1152,7 +1153,7 @@ export default {
                       },
                     ],
                     caption: '附件',
-                    codeName: 'grouppanel4',
+                    codeName: 'grouppanel_attachments_grid',
                     detailStyle: 'DEFAULT',
                     detailType: 'GROUPPANEL',
                     layoutPos: {
@@ -1160,7 +1161,7 @@ export default {
                       layout: 'TABLE_24COL',
                     },
                     showCaption: true,
-                    id: 'grouppanel4',
+                    id: 'grouppanel_attachments_grid',
                   },
                   {
                     layout: {
@@ -1200,6 +1201,8 @@ export default {
                         detailType: 'FORMITEM',
                         layoutPos: {
                           shrink: 1,
+                          height: 48,
+                          heightMode: 'PX',
                           layout: 'FLEX',
                         },
                         id: 'create_man',
@@ -1211,6 +1214,9 @@ export default {
                           valign: 'MIDDLE',
                           wrapMode: 'NOWRAP',
                           contentType: 'RAW',
+                          sysCss: {
+                            cssName: 'idea_create_info',
+                          },
                           id: 'rawitem2',
                         },
                         codeName: 'rawitem2',
@@ -1219,6 +1225,9 @@ export default {
                         layoutPos: {
                           shrink: 1,
                           layout: 'FLEX',
+                        },
+                        sysCss: {
+                          cssName: 'idea_create_info',
                         },
                         showCaption: true,
                         id: 'rawitem2',
@@ -1300,7 +1309,6 @@ export default {
                   colMD: 24,
                   layout: 'TABLE_24COL',
                 },
-                showCaption: true,
                 id: 'id',
               },
             ],
@@ -1415,7 +1423,6 @@ export default {
                           allowEmpty: true,
                           hidden: true,
                           caption: '文本(动态)',
-                          itemStyle: 'DEFAULT',
                           itemType: 'FIELD',
                           layoutPos: {
                             shrink: 1,
@@ -1435,7 +1442,6 @@ export default {
                           allowEmpty: true,
                           hidden: true,
                           caption: '文本(动态)',
-                          itemStyle: 'DEFAULT',
                           itemType: 'FIELD',
                           layoutPos: {
                             shrink: 1,
@@ -1559,6 +1565,16 @@ export default {
                       caption: '容器',
                       itemStyle: 'DEFAULT',
                       itemType: 'CONTAINER',
+                      controlLogics: [
+                        {
+                          itemName: 'CONTAINER2',
+                          logicTag: 'list_itempanel',
+                          logicType: 'SCRIPT',
+                          scriptCode: 'context.srfreadonly != true',
+                          triggerType: 'ITEMVISIBLE',
+                          id: 'logic_readonly',
+                        },
+                      ],
                       layoutPos: {
                         shrink: 1,
                         layout: 'FLEX',
@@ -1590,7 +1606,7 @@ export default {
                         editorParams: {
                           contenttype: 'HTML',
                           SCRIPTCODE:
-                            'data.content?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g, "<span class=\'comment-tag\'>$4 $3 $2</span>").replace(/#{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)}/g, "<span class=\'comment-tag\'>$4 $3 $2</span>")',
+                            'data.content?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g, "<span class=\'comment-tag\'>$4 $3 $2</span>").replace(/#{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)}/g, "<span class=\'comment-tag\'>$4 $3 $2</span>").replaceAll(/\\{\\"\\emoji\\":\\"(.+?)\\"\\}/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji)); return `<span class="emoji-tag">${tempVal}</span>`})',
                         },
                         editorStyle: 'COMMENT_ITEM',
                         editorType: 'RAW',
@@ -1764,15 +1780,24 @@ export default {
         minorSortAppDEFieldId: 'create_time',
         delistDataItems: [
           {
+            appDEFieldId: 'id',
+            dataType: 25,
+            id: 'id',
+          },
+          {
+            appDEFieldId: 'pid',
+            dataType: 25,
+            id: 'pid',
+          },
+          {
+            appDEFieldId: 'pcontent',
+            dataType: 21,
+            id: 'pcontent',
+          },
+          {
             appDEFieldId: 'content',
             dataType: 21,
             id: 'content',
-          },
-          {
-            appDEFieldId: 'create_man',
-            frontCodeListId: 'plmweb.sysoperator',
-            dataType: 25,
-            id: 'create_man',
           },
           {
             appDEFieldId: 'create_time',
@@ -1781,25 +1806,16 @@ export default {
             id: 'create_time',
           },
           {
-            appDEFieldId: 'pid',
-            dataType: 25,
-            id: 'pid',
-          },
-          {
-            appDEFieldId: 'id',
-            dataType: 25,
-            id: 'id',
-          },
-          {
             appDEFieldId: 'pcreate_man',
             frontCodeListId: 'plmweb.sysoperator',
             dataType: 25,
             id: 'pcreate_man',
           },
           {
-            appDEFieldId: 'pcontent',
-            dataType: 21,
-            id: 'pcontent',
+            appDEFieldId: 'create_man',
+            frontCodeListId: 'plmweb.sysoperator',
+            dataType: 25,
+            id: 'create_man',
           },
           {
             appDEFieldId: 'id',
@@ -1924,7 +1940,7 @@ export default {
   viewStyle: 'DEFAULT',
   viewType: 'DEEDITVIEW',
   enableDP: true,
-  showCaptionBar: true,
+  showCaptionBar: false,
   modelId: '64deb42a96f2fc396358117216cab066',
   modelType: 'PSAPPDEVIEW',
   name: 'ideashow_edit_view',

@@ -351,7 +351,6 @@ export default {
                   colMD: 24,
                   layout: 'TABLE_24COL',
                 },
-                showCaption: true,
                 id: 'space_id',
               },
               {
@@ -382,7 +381,6 @@ export default {
                   colMD: 24,
                   layout: 'TABLE_24COL',
                 },
-                showCaption: true,
                 id: 'name',
               },
               {
@@ -470,7 +468,6 @@ export default {
                   colMD: 24,
                   layout: 'TABLE_24COL',
                 },
-                showCaption: true,
                 id: 'parent_id',
               },
               {
@@ -499,7 +496,6 @@ export default {
                   colMD: 24,
                   layout: 'TABLE_24COL',
                 },
-                showCaption: true,
                 id: 'id',
               },
             ],

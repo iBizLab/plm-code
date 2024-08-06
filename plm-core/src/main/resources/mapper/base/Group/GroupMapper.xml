@@ -5,12 +5,12 @@
         <!--通过mybatis将查询结果注入到entity中,通过配置autoMapping="true"由mybatis自动处理映射关系 -->
     <resultMap id="GroupResultMap" type="cn.ibizlab.plm.core.base.domain.Group" autoMapping="true">
 		<id property="id" column="id" /><!--主键字段映射-->
-		<result property="createMan" column="create_man" />
-		<result property="createTime" column="create_time" />
-		<result property="updateMan" column="update_man" />
-		<result property="updateTime" column="update_time" />
-		<result property="sectionId" column="section_id" />
-		<result property="sectionName" column="section_name" />
+		<result property="createMan" column="create_man"/>
+		<result property="createTime" column="create_time"/>
+		<result property="updateMan" column="update_man"/>
+		<result property="updateTime" column="update_time"/>
+		<result property="sectionId" column="section_id"/>
+		<result property="sectionName" column="section_name"/>
         <association property="section" javaType="cn.ibizlab.plm.core.base.domain.Section" column="section_id" select="cn.ibizlab.plm.core.base.mapper.SectionMapper.selectById" fetchType="lazy"></association>
     </resultMap>
 
@@ -40,19 +40,27 @@
     </delete>
 
     <sql id="default" databaseId="mysql">
-         <![CDATA[ SELECT t1.`AVATAR`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`NAME`, t1.`SECTION_ID`, t11.`NAME` AS `SECTION_NAME`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `USER_GROUP` t1  LEFT JOIN `SECTION` t11 ON t1.`SECTION_ID` = t11.`ID`   ]]>  
+         <![CDATA[ SELECT t1.`AVATAR`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`NAME`, t1.`SECTION_ID`, t11.`NAME` AS `SECTION_NAME`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VISIBILITY` FROM `USER_GROUP` t1  LEFT JOIN `SECTION` t11 ON t1.`SECTION_ID` = t11.`ID`   ]]>  
     </sql>
 
     <sql id="view" databaseId="mysql">
-         <![CDATA[ SELECT t1.`AVATAR`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`NAME`, t1.`SECTION_ID`, t11.`NAME` AS `SECTION_NAME`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `USER_GROUP` t1  LEFT JOIN `SECTION` t11 ON t1.`SECTION_ID` = t11.`ID`   ]]>  
+         <![CDATA[ SELECT t1.`AVATAR`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`NAME`, t1.`SECTION_ID`, t11.`NAME` AS `SECTION_NAME`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VISIBILITY` FROM `USER_GROUP` t1  LEFT JOIN `SECTION` t11 ON t1.`SECTION_ID` = t11.`ID`   ]]>  
     </sql>
 
     <sql id="noSection" databaseId="mysql">
-         <![CDATA[ SELECT t1.`AVATAR`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`NAME`, t1.`SECTION_ID`, t11.`NAME` AS `SECTION_NAME`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `USER_GROUP` t1  LEFT JOIN `SECTION` t11 ON t1.`SECTION_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`SECTION_ID` IS NULL ) ]]> 
+         <![CDATA[ SELECT t1.`AVATAR`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`NAME`, t1.`SECTION_ID`, t11.`NAME` AS `SECTION_NAME`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VISIBILITY` FROM `USER_GROUP` t1  LEFT JOIN `SECTION` t11 ON t1.`SECTION_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`SECTION_ID` IS NULL ) ]]> 
+    </sql>
+
+    <sql id="public" databaseId="mysql">
+         <![CDATA[ SELECT t1.`AVATAR`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`NAME`, t1.`SECTION_ID`, t11.`NAME` AS `SECTION_NAME`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VISIBILITY` FROM `USER_GROUP` t1  LEFT JOIN `SECTION` t11 ON t1.`SECTION_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`VISIBILITY` = 'public' ) ]]> 
+    </sql>
+
+    <sql id="user" databaseId="mysql">
+         <![CDATA[ SELECT t1.`AVATAR`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`NAME`, t1.`SECTION_ID`, t11.`NAME` AS `SECTION_NAME`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VISIBILITY` FROM `USER_GROUP` t1  LEFT JOIN `SECTION` t11 ON t1.`SECTION_ID` = t11.`ID`   ]]>  where  <![CDATA[ EXISTS(SELECT * FROM `MEMBER` t21   WHERE   t1.`ID` = t21.`OWNER_ID`  AND  t21.`OWNER_TYPE` = 'GROUP'  AND  t21.`OWNER_SUBTYPE` = 'GROUP'  AND  ( t21.`USER_ID` = #{ctx.sessioncontext.srfpersonid}  AND  t21.`OWNER_TYPE` = 'GROUP' ) ) ]]> 
     </sql>
 
     <sql id="userGroupAdmin" databaseId="mysql">
-         <![CDATA[ SELECT t1.`AVATAR`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`NAME`, t1.`SECTION_ID`, t11.`NAME` AS `SECTION_NAME`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `USER_GROUP` t1  LEFT JOIN `SECTION` t11 ON t1.`SECTION_ID` = t11.`ID`   ]]>  where  <![CDATA[ EXISTS(SELECT * FROM `MEMBER` t21   WHERE   t1.`ID` = t21.`OWNER_ID`  AND  t21.`OWNER_TYPE` = 'GROUP'  AND  t21.`OWNER_SUBTYPE` = 'GROUP'  AND  ( t21.`USER_ID` = #{ctx.sessioncontext.srfpersonid}  AND  t21.`OWNER_TYPE` = 'GROUP'  AND  t21.`ROLE_ID` = 'admin' ) ) ]]> 
+         <![CDATA[ SELECT t1.`AVATAR`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`NAME`, t1.`SECTION_ID`, t11.`NAME` AS `SECTION_NAME`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VISIBILITY` FROM `USER_GROUP` t1  LEFT JOIN `SECTION` t11 ON t1.`SECTION_ID` = t11.`ID`   ]]>  where  <![CDATA[ EXISTS(SELECT * FROM `MEMBER` t21   WHERE   t1.`ID` = t21.`OWNER_ID`  AND  t21.`OWNER_TYPE` = 'GROUP'  AND  t21.`OWNER_SUBTYPE` = 'GROUP'  AND  ( t21.`USER_ID` = #{ctx.sessioncontext.srfpersonid}  AND  t21.`OWNER_TYPE` = 'GROUP'  AND  t21.`ROLE_ID` = 'admin' ) ) ]]> 
     </sql>
 
     <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.base.filter.GroupSearchContext"  resultMap="GroupResultMap">
@@ -118,6 +126,31 @@
         
     </select>
 
+    <select id="searchUser"  parameterType="cn.ibizlab.plm.core.base.filter.GroupSearchContext"  resultMap="GroupResultMap">
+        select t1.* 
+        from (
+            <include refid="user"/>
+                 union
+            <include refid="public"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listUser"  parameterType="cn.ibizlab.plm.core.base.filter.GroupSearchContext"  resultMap="GroupResultMap">
+        select t1.*
+        from (
+            <include refid="user"/>
+                 union
+            <include refid="public"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
     <select id="searchUserGroupAdmin"  parameterType="cn.ibizlab.plm.core.base.filter.GroupSearchContext"  resultMap="GroupResultMap">
         select t1.* 
         from (
@@ -137,6 +170,15 @@
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
         
+    </select>
+
+    <select id="listView"  parameterType="cn.ibizlab.plm.core.base.filter.GroupSearchContext"  resultMap="GroupResultMap">
+        select t1.*
+        from (
+            <include refid="view" />
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
     </select>
 
     <select id="findBySectionId" resultMap="GroupResultMap">

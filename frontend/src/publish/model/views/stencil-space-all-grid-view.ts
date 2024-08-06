@@ -224,6 +224,7 @@ export default {
                 beforeItemType: 'NONE',
                 detailType: 'DEUIACTION',
                 uiactionId: 'delete@stencil',
+                tooltip: '删除',
                 showIcon: true,
                 sysImage: {
                   cssClass: 'fa fa-trash-o',

@@ -43,6 +43,25 @@ public interface ReviewContentExtendMapper extends BaseMapper<ReviewContentExten
     List<ReviewContentExtend> listDefault(@Param("ctx") ReviewContentExtendSearchContext context, @Param("ew") Wrapper<ReviewContentExtend> wrapper);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<ReviewContentExtend> searchView(IPage<ReviewContentExtend> page, @Param("ctx") ReviewContentExtendSearchContext context, @Param("ew") Wrapper<ReviewContentExtend> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<ReviewContentExtend> listView(@Param("ctx") ReviewContentExtendSearchContext context, @Param("ew") Wrapper<ReviewContentExtend> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

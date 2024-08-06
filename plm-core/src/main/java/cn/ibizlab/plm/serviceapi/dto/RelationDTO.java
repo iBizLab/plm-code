@@ -36,11 +36,19 @@ public class RelationDTO extends DTOBase implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
+     * 重要程度
+     */
+    @JsonProperty("level")
+    @JSONField(name = "level")
+    @ApiModelProperty(value = "重要程度", position = 0)
+    private String level;
+
+    /**
      * 关联主体标识
      */
     @JsonProperty("principal_id")
     @JSONField(name = "principal_id")
-    @ApiModelProperty(value = "关联主体标识", position = 0)
+    @ApiModelProperty(value = "关联主体标识", position = 1)
     private String principalId;
 
     /**
@@ -48,7 +56,7 @@ public class RelationDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("owner_type")
     @JSONField(name = "owner_type")
-    @ApiModelProperty(value = "所属数据对象", position = 1)
+    @ApiModelProperty(value = "所属数据对象", position = 2)
     private String ownerType;
 
     /**
@@ -56,7 +64,7 @@ public class RelationDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("principal_type")
     @JSONField(name = "principal_type")
-    @ApiModelProperty(value = "关联主体类型", position = 2)
+    @ApiModelProperty(value = "关联主体类型", position = 3)
     private String principalType;
 
     /**
@@ -64,7 +72,7 @@ public class RelationDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("target_type")
     @JSONField(name = "target_type")
-    @ApiModelProperty(value = "关联目标类型", position = 3)
+    @ApiModelProperty(value = "关联目标类型", position = 4)
     private String targetType;
 
     /**
@@ -72,7 +80,7 @@ public class RelationDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("target_id")
     @JSONField(name = "target_id")
-    @ApiModelProperty(value = "关联目标标识", position = 4)
+    @ApiModelProperty(value = "关联目标标识", position = 5)
     private String targetId;
 
     /**
@@ -80,7 +88,7 @@ public class RelationDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("parent_version_id")
     @JSONField(name = "parent_version_id")
-    @ApiModelProperty(value = "父对象版本标识", position = 5)
+    @ApiModelProperty(value = "父对象版本标识", position = 6)
     private String parentVersionId;
 
     /**
@@ -88,7 +96,7 @@ public class RelationDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("target_version_id")
     @JSONField(name = "target_version_id")
-    @ApiModelProperty(value = "目标对象版本标识", position = 6)
+    @ApiModelProperty(value = "目标对象版本标识", position = 7)
     private String targetVersionId;
 
     /**
@@ -96,7 +104,7 @@ public class RelationDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("work_item")
     @JSONField(name = "work_item")
-    @ApiModelProperty(value = "工作项", position = 7)
+    @ApiModelProperty(value = "工作项", position = 8)
     private WorkItemDTO workItem;
 
     /**
@@ -104,7 +112,7 @@ public class RelationDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("idea")
     @JSONField(name = "idea")
-    @ApiModelProperty(value = "产品需求", position = 8)
+    @ApiModelProperty(value = "产品需求", position = 9)
     private IdeaDTO idea;
 
     /**
@@ -112,7 +120,7 @@ public class RelationDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("ticket")
     @JSONField(name = "ticket")
-    @ApiModelProperty(value = "工单", position = 9)
+    @ApiModelProperty(value = "工单", position = 10)
     private TicketDTO ticket;
 
     /**
@@ -120,7 +128,7 @@ public class RelationDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("customer")
     @JSONField(name = "customer")
-    @ApiModelProperty(value = "客户", position = 10)
+    @ApiModelProperty(value = "客户", position = 11)
     private CustomerDTO customer;
 
     /**
@@ -128,7 +136,7 @@ public class RelationDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("test_case")
     @JSONField(name = "test_case")
-    @ApiModelProperty(value = "测试用例", position = 11)
+    @ApiModelProperty(value = "测试用例", position = 12)
     private TestCaseDTO testCase;
 
     /**
@@ -136,7 +144,7 @@ public class RelationDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("cur_version_id")
     @JSONField(name = "cur_version_id")
-    @ApiModelProperty(value = "当前版本标识", position = 12)
+    @ApiModelProperty(value = "当前版本标识", position = 13)
     private String curVersionId;
 
     /**
@@ -144,7 +152,7 @@ public class RelationDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("target_identifier")
     @JSONField(name = "target_identifier")
-    @ApiModelProperty(value = "目标对象编号", position = 13)
+    @ApiModelProperty(value = "目标对象编号", position = 14)
     private String targetIdentifier;
 
     /**
@@ -152,7 +160,7 @@ public class RelationDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("target_title")
     @JSONField(name = "target_title")
-    @ApiModelProperty(value = "目标对象标题", position = 14)
+    @ApiModelProperty(value = "目标对象标题", position = 15)
     private String targetTitle;
 
     /**
@@ -160,7 +168,7 @@ public class RelationDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("target_state")
     @JSONField(name = "target_state")
-    @ApiModelProperty(value = "目标对象状态", position = 15)
+    @ApiModelProperty(value = "目标对象状态", position = 16)
     private String targetState;
 
     /**
@@ -168,7 +176,7 @@ public class RelationDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("target_assignee")
     @JSONField(name = "target_assignee")
-    @ApiModelProperty(value = "目标对象负责人", position = 16)
+    @ApiModelProperty(value = "目标对象负责人", position = 17)
     private String targetAssignee;
 
     /**
@@ -176,7 +184,7 @@ public class RelationDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("relation_type")
     @JSONField(name = "relation_type")
-    @ApiModelProperty(value = "关联类型", position = 17)
+    @ApiModelProperty(value = "关联类型", position = 18)
     private String relationType;
 
     /**
@@ -184,7 +192,7 @@ public class RelationDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("target_priority")
     @JSONField(name = "target_priority")
-    @ApiModelProperty(value = "目标对象优先级", position = 18)
+    @ApiModelProperty(value = "目标对象优先级", position = 19)
     private String targetPriority;
 
     /**
@@ -192,15 +200,31 @@ public class RelationDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("target_parent_id")
     @JSONField(name = "target_parent_id")
-    @ApiModelProperty(value = "目标对象父标识", position = 19)
+    @ApiModelProperty(value = "目标对象父标识", position = 20)
     private String targetParentId;
+
+    /**
+     * 源工作项
+     */
+    @JsonProperty("principal_work_item")
+    @JSONField(name = "principal_work_item")
+    @ApiModelProperty(value = "源工作项", position = 21)
+    private WorkItemDTO principalWorkItem;
+
+    /**
+     * 前后置任务
+     */
+    @JsonProperty("job_type")
+    @JSONField(name = "job_type")
+    @ApiModelProperty(value = "前后置任务", position = 22)
+    private String jobType;
 
     /**
      * 建立人
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 20)
+    @ApiModelProperty(value = "建立人", position = 23)
     private String createMan;
 
     /**
@@ -209,7 +233,7 @@ public class RelationDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 21)
+    @ApiModelProperty(value = "建立时间", position = 24)
     private Date createTime;
 
     /**
@@ -217,7 +241,7 @@ public class RelationDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 22)
+    @ApiModelProperty(value = "标识", position = 25)
     private String id;
 
     /**
@@ -225,7 +249,7 @@ public class RelationDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 23)
+    @ApiModelProperty(value = "名称", position = 26)
     private String name;
 
     /**
@@ -233,7 +257,7 @@ public class RelationDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 24)
+    @ApiModelProperty(value = "更新人", position = 27)
     private String updateMan;
 
     /**
@@ -242,9 +266,18 @@ public class RelationDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 25)
+    @ApiModelProperty(value = "更新时间", position = 28)
     private Date updateTime;
 
+
+    /**
+     * 设置 [重要程度]
+     */
+    public RelationDTO setLevel(String level) {
+        this.level = level;
+        this.modify("level", level);
+        return this;
+    }
 
     /**
      * 设置 [关联主体标识]
@@ -405,6 +438,24 @@ public class RelationDTO extends DTOBase implements Serializable {
     public RelationDTO setTargetParentId(String targetParentId) {
         this.targetParentId = targetParentId;
         this.modify("target_parent_id", targetParentId);
+        return this;
+    }
+
+    /**
+     * 设置 [源工作项]
+     */
+    public RelationDTO setPrincipalWorkItem(WorkItemDTO principalWorkItem) {
+        this.principalWorkItem = principalWorkItem;
+        this.modify("principal_work_item", principalWorkItem);
+        return this;
+    }
+
+    /**
+     * 设置 [前后置任务]
+     */
+    public RelationDTO setJobType(String jobType) {
+        this.jobType = jobType;
+        this.modify("job_type", jobType);
         return this;
     }
 

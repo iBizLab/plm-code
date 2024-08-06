@@ -4,6 +4,7 @@
 package cn.ibizlab.plm.serviceapi.dto;
 
 import java.util.*;
+import java.math.BigDecimal;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -100,12 +101,12 @@ public class WorkItemResourceAssignmentDTO extends DTOBase implements Serializab
     private String workItemTypeName;
 
     /**
-     * 结束时间
+     * 截止时间
      */
     @JsonProperty("end_at")
     @JsonFormat(pattern = "yyyy-MM-dd", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "end_at" , format = "yyyy-MM-dd")
-    @ApiModelProperty(value = "结束时间", position = 8)
+    @ApiModelProperty(value = "截止时间", position = 8)
     private Date endAt;
 
     /**
@@ -156,6 +157,22 @@ public class WorkItemResourceAssignmentDTO extends DTOBase implements Serializab
     @JSONField(name = "assignee_id")
     @ApiModelProperty(value = "负责人", position = 14)
     private String assigneeId;
+
+    /**
+     * 剩余工时
+     */
+    @JsonProperty("remaining_workload")
+    @JSONField(name = "remaining_workload")
+    @ApiModelProperty(value = "剩余工时", position = 15)
+    private BigDecimal remainingWorkload;
+
+    /**
+     * 预估工时
+     */
+    @JsonProperty("estimated_workload")
+    @JSONField(name = "estimated_workload")
+    @ApiModelProperty(value = "预估工时", position = 16)
+    private BigDecimal estimatedWorkload;
 
 
     /**
@@ -231,7 +248,7 @@ public class WorkItemResourceAssignmentDTO extends DTOBase implements Serializab
     }
 
     /**
-     * 设置 [结束时间]
+     * 设置 [截止时间]
      */
     public WorkItemResourceAssignmentDTO setEndAt(Date endAt) {
         this.endAt = endAt;
@@ -281,6 +298,24 @@ public class WorkItemResourceAssignmentDTO extends DTOBase implements Serializab
     public WorkItemResourceAssignmentDTO setAssigneeId(String assigneeId) {
         this.assigneeId = assigneeId;
         this.modify("assignee_id", assigneeId);
+        return this;
+    }
+
+    /**
+     * 设置 [剩余工时]
+     */
+    public WorkItemResourceAssignmentDTO setRemainingWorkload(BigDecimal remainingWorkload) {
+        this.remainingWorkload = remainingWorkload;
+        this.modify("remaining_workload", remainingWorkload);
+        return this;
+    }
+
+    /**
+     * 设置 [预估工时]
+     */
+    public WorkItemResourceAssignmentDTO setEstimatedWorkload(BigDecimal estimatedWorkload) {
+        this.estimatedWorkload = estimatedWorkload;
+        this.modify("estimated_workload", estimatedWorkload);
         return this;
     }
 

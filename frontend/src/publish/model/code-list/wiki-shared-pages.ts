@@ -1,0 +1,17 @@
+export default {
+  codeListTag: 'Wiki__shared_pages',
+  codeListType: 'DYNAMIC',
+  codeName: 'Wiki__shared_pages',
+  emptyText: '未定义',
+  iconPathAppDEFieldId: 'icon',
+  orMode: 'STR',
+  appDEDataSetId: 'fetch_choose_shared',
+  appDataEntityId: 'plmweb.article_page',
+  pvalueAppDEFieldId: 'parent_id',
+  textAppDEFieldId: 'publish_name',
+  textSeparator: ',',
+  valueAppDEFieldId: 'id',
+  valueSeparator: ',',
+  name: '共享页面',
+  id: 'plmweb.wiki__shared_pages',
+};

@@ -195,6 +195,25 @@ public interface PortfolioMapper extends BaseMapper<Portfolio> {
     List<Portfolio> listWorkProjectPortfolio(@Param("ctx") PortfolioSearchContext context, @Param("ew") Wrapper<Portfolio> wrapper);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Portfolio> searchView(IPage<Portfolio> page, @Param("ctx") PortfolioSearchContext context, @Param("ew") Wrapper<Portfolio> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Portfolio> listView(@Param("ctx") PortfolioSearchContext context, @Param("ew") Wrapper<Portfolio> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

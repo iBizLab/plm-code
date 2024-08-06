@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.base.domain.SearchComment;
@@ -139,14 +140,14 @@ public abstract class AbstractSearchCommentService extends ServiceImpl<SearchCom
         return et;
     }
 	
-    public Integer checkKey(SearchComment et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<SearchComment>lambdaQuery().eq(SearchComment::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(SearchComment et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<SearchComment>lambdaQuery().eq(SearchComment::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(SearchComment et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -204,6 +205,12 @@ public abstract class AbstractSearchCommentService extends ServiceImpl<SearchCom
         return list;	
 	}
 
+	public List<SearchComment> findByDerCustomer(Customer customer){
+        List<SearchComment> list = this.baseMapper.selectList(Wrappers.<SearchComment>lambdaQuery()
+                        .eq(SearchComment::getPrincipalId, customer.getId())
+                        .eq(SearchComment::getOwnerType,"CUSTOMER").isNull(SearchComment::getPrincipalType));
+		return list;
+	}
 	public boolean removeByPrincipalId(String principalId){
         return this.remove(Wrappers.<SearchComment>lambdaQuery().eq(SearchComment::getPrincipalId,principalId));
 	}
@@ -214,12 +221,8 @@ public abstract class AbstractSearchCommentService extends ServiceImpl<SearchCom
 	public boolean saveByDerCustomer(Customer customer, List<SearchComment> list){
         if(list==null)
             return true;
-        Map<String,SearchComment> before = this.baseMapper.selectList(Wrappers.<SearchComment>lambdaQuery()
-                        .eq(SearchComment::getPrincipalId, customer.getId())
-                        .eq(SearchComment::getOwnerType,"CUSTOMER").isNull(SearchComment::getPrincipalType))
-                        .stream()
-                        .collect(Collectors.toMap(SearchComment::getId,e->e));
 
+        Map<String,SearchComment> before = findByDerCustomer(customer).stream().collect(Collectors.toMap(SearchComment::getId,e->e));
         List<SearchComment> update = new ArrayList<>();
         List<SearchComment> create = new ArrayList<>();
 
@@ -243,15 +246,17 @@ public abstract class AbstractSearchCommentService extends ServiceImpl<SearchCom
             return true;
 			
 	}
+	public List<SearchComment> findByDerIdea(Idea idea){
+        List<SearchComment> list = this.baseMapper.selectList(Wrappers.<SearchComment>lambdaQuery()
+                        .eq(SearchComment::getPrincipalId, idea.getId())
+                        .eq(SearchComment::getOwnerType,"IDEA").isNull(SearchComment::getPrincipalType));
+		return list;
+	}
 	public boolean saveByDerIdea(Idea idea, List<SearchComment> list){
         if(list==null)
             return true;
-        Map<String,SearchComment> before = this.baseMapper.selectList(Wrappers.<SearchComment>lambdaQuery()
-                        .eq(SearchComment::getPrincipalId, idea.getId())
-                        .eq(SearchComment::getOwnerType,"IDEA").isNull(SearchComment::getPrincipalType))
-                        .stream()
-                        .collect(Collectors.toMap(SearchComment::getId,e->e));
 
+        Map<String,SearchComment> before = findByDerIdea(idea).stream().collect(Collectors.toMap(SearchComment::getId,e->e));
         List<SearchComment> update = new ArrayList<>();
         List<SearchComment> create = new ArrayList<>();
 
@@ -275,15 +280,17 @@ public abstract class AbstractSearchCommentService extends ServiceImpl<SearchCom
             return true;
 			
 	}
+	public List<SearchComment> findByDerPage(ArticlePage articlePage){
+        List<SearchComment> list = this.baseMapper.selectList(Wrappers.<SearchComment>lambdaQuery()
+                        .eq(SearchComment::getPrincipalId, articlePage.getId())
+                        .eq(SearchComment::getOwnerType,"PAGE").isNull(SearchComment::getPrincipalType));
+		return list;
+	}
 	public boolean saveByDerPage(ArticlePage articlePage, List<SearchComment> list){
         if(list==null)
             return true;
-        Map<String,SearchComment> before = this.baseMapper.selectList(Wrappers.<SearchComment>lambdaQuery()
-                        .eq(SearchComment::getPrincipalId, articlePage.getId())
-                        .eq(SearchComment::getOwnerType,"PAGE").isNull(SearchComment::getPrincipalType))
-                        .stream()
-                        .collect(Collectors.toMap(SearchComment::getId,e->e));
 
+        Map<String,SearchComment> before = findByDerPage(articlePage).stream().collect(Collectors.toMap(SearchComment::getId,e->e));
         List<SearchComment> update = new ArrayList<>();
         List<SearchComment> create = new ArrayList<>();
 
@@ -307,15 +314,17 @@ public abstract class AbstractSearchCommentService extends ServiceImpl<SearchCom
             return true;
 			
 	}
+	public List<SearchComment> findByDerRun(Run run){
+        List<SearchComment> list = this.baseMapper.selectList(Wrappers.<SearchComment>lambdaQuery()
+                        .eq(SearchComment::getPrincipalId, run.getId())
+                        .eq(SearchComment::getOwnerType,"RUN").isNull(SearchComment::getPrincipalType));
+		return list;
+	}
 	public boolean saveByDerRun(Run run, List<SearchComment> list){
         if(list==null)
             return true;
-        Map<String,SearchComment> before = this.baseMapper.selectList(Wrappers.<SearchComment>lambdaQuery()
-                        .eq(SearchComment::getPrincipalId, run.getId())
-                        .eq(SearchComment::getOwnerType,"RUN").isNull(SearchComment::getPrincipalType))
-                        .stream()
-                        .collect(Collectors.toMap(SearchComment::getId,e->e));
 
+        Map<String,SearchComment> before = findByDerRun(run).stream().collect(Collectors.toMap(SearchComment::getId,e->e));
         List<SearchComment> update = new ArrayList<>();
         List<SearchComment> create = new ArrayList<>();
 
@@ -339,15 +348,17 @@ public abstract class AbstractSearchCommentService extends ServiceImpl<SearchCom
             return true;
 			
 	}
+	public List<SearchComment> findByDerTestCase(TestCase testCase){
+        List<SearchComment> list = this.baseMapper.selectList(Wrappers.<SearchComment>lambdaQuery()
+                        .eq(SearchComment::getPrincipalId, testCase.getId())
+                        .eq(SearchComment::getOwnerType,"TEST_CASE").isNull(SearchComment::getPrincipalType));
+		return list;
+	}
 	public boolean saveByDerTestCase(TestCase testCase, List<SearchComment> list){
         if(list==null)
             return true;
-        Map<String,SearchComment> before = this.baseMapper.selectList(Wrappers.<SearchComment>lambdaQuery()
-                        .eq(SearchComment::getPrincipalId, testCase.getId())
-                        .eq(SearchComment::getOwnerType,"TEST_CASE").isNull(SearchComment::getPrincipalType))
-                        .stream()
-                        .collect(Collectors.toMap(SearchComment::getId,e->e));
 
+        Map<String,SearchComment> before = findByDerTestCase(testCase).stream().collect(Collectors.toMap(SearchComment::getId,e->e));
         List<SearchComment> update = new ArrayList<>();
         List<SearchComment> create = new ArrayList<>();
 
@@ -371,15 +382,17 @@ public abstract class AbstractSearchCommentService extends ServiceImpl<SearchCom
             return true;
 			
 	}
+	public List<SearchComment> findByDerTicket(Ticket ticket){
+        List<SearchComment> list = this.baseMapper.selectList(Wrappers.<SearchComment>lambdaQuery()
+                        .eq(SearchComment::getPrincipalId, ticket.getId())
+                        .eq(SearchComment::getOwnerType,"TICKET").isNull(SearchComment::getPrincipalType));
+		return list;
+	}
 	public boolean saveByDerTicket(Ticket ticket, List<SearchComment> list){
         if(list==null)
             return true;
-        Map<String,SearchComment> before = this.baseMapper.selectList(Wrappers.<SearchComment>lambdaQuery()
-                        .eq(SearchComment::getPrincipalId, ticket.getId())
-                        .eq(SearchComment::getOwnerType,"TICKET").isNull(SearchComment::getPrincipalType))
-                        .stream()
-                        .collect(Collectors.toMap(SearchComment::getId,e->e));
 
+        Map<String,SearchComment> before = findByDerTicket(ticket).stream().collect(Collectors.toMap(SearchComment::getId,e->e));
         List<SearchComment> update = new ArrayList<>();
         List<SearchComment> create = new ArrayList<>();
 
@@ -403,15 +416,17 @@ public abstract class AbstractSearchCommentService extends ServiceImpl<SearchCom
             return true;
 			
 	}
+	public List<SearchComment> findByDerWorkItem(WorkItem workItem){
+        List<SearchComment> list = this.baseMapper.selectList(Wrappers.<SearchComment>lambdaQuery()
+                        .eq(SearchComment::getPrincipalId, workItem.getId())
+                        .eq(SearchComment::getOwnerType,"WORK_ITEM").isNull(SearchComment::getPrincipalType));
+		return list;
+	}
 	public boolean saveByDerWorkItem(WorkItem workItem, List<SearchComment> list){
         if(list==null)
             return true;
-        Map<String,SearchComment> before = this.baseMapper.selectList(Wrappers.<SearchComment>lambdaQuery()
-                        .eq(SearchComment::getPrincipalId, workItem.getId())
-                        .eq(SearchComment::getOwnerType,"WORK_ITEM").isNull(SearchComment::getPrincipalType))
-                        .stream()
-                        .collect(Collectors.toMap(SearchComment::getId,e->e));
 
+        Map<String,SearchComment> before = findByDerWorkItem(workItem).stream().collect(Collectors.toMap(SearchComment::getId,e->e));
         List<SearchComment> update = new ArrayList<>();
         List<SearchComment> create = new ArrayList<>();
 
@@ -435,6 +450,17 @@ public abstract class AbstractSearchCommentService extends ServiceImpl<SearchCom
             return true;
 			
 	}
+   public Page<SearchComment> fetchView(SearchCommentSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<SearchComment> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<SearchComment> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<SearchComment> listView(SearchCommentSearchContext context) {
+        List<SearchComment> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(SearchComment et) {
         if(Entities.CUSTOMER.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

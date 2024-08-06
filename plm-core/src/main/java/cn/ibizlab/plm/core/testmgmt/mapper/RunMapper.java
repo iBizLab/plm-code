@@ -62,6 +62,44 @@ public interface RunMapper extends BaseMapper<Run> {
     List<Map> listImplementationResults(@Param("ctx") RunSearchContext context, @Param("ew") Wrapper<Run> wrapper);
 
     /**
+     * 数据集合bi_detail分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Run> searchBiDetail(IPage<Run> page, @Param("ctx") RunSearchContext context, @Param("ew") Wrapper<Run> wrapper);
+    
+    /**
+     * 数据集合bi_detail查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Run> listBiDetail(@Param("ctx") RunSearchContext context, @Param("ew") Wrapper<Run> wrapper);
+
+    /**
+     * 数据集合bi_search分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Run> searchBiSearch(IPage<Run> page, @Param("ctx") RunSearchContext context, @Param("ew") Wrapper<Run> wrapper);
+    
+    /**
+     * 数据集合bi_search查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Run> listBiSearch(@Param("ctx") RunSearchContext context, @Param("ew") Wrapper<Run> wrapper);
+
+    /**
      * 数据集合casePerson分页查询
      * 
      * @param page
@@ -157,6 +195,25 @@ public interface RunMapper extends BaseMapper<Run> {
     List<Map> listPriorityDistributions(@Param("ctx") RunSearchContext context, @Param("ew") Wrapper<Run> wrapper);
 
     /**
+     * 数据集合reader分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Run> searchReader(IPage<Run> page, @Param("ctx") RunSearchContext context, @Param("ew") Wrapper<Run> wrapper);
+    
+    /**
+     * 数据集合reader查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Run> listReader(@Param("ctx") RunSearchContext context, @Param("ew") Wrapper<Run> wrapper);
+
+    /**
     * 根据caseId查询
     *
     * @param caseIds
@@ -171,6 +228,25 @@ public interface RunMapper extends BaseMapper<Run> {
     * @return
     */
     List<Run> findByPlanId(@Param("planIds") List<String> planIds);
+
+    /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Run> searchView(IPage<Run> page, @Param("ctx") RunSearchContext context, @Param("ew") Wrapper<Run> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Run> listView(@Param("ctx") RunSearchContext context, @Param("ew") Wrapper<Run> wrapper);
 
     /**
      * 主键查询

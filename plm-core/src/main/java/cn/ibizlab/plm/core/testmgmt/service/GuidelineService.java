@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.testmgmt.domain.Guideline;
 import cn.ibizlab.plm.core.testmgmt.filter.GuidelineSearchContext;
 import cn.ibizlab.plm.core.testmgmt.domain.Library;
@@ -143,7 +144,7 @@ public interface GuidelineService extends IService<Guideline> {
     * @param et
     * @return
     */
-    Integer checkKey(Guideline et);
+    CheckKeyStatus checkKey(Guideline et);
 
     /**
     * 保存
@@ -230,8 +231,15 @@ public interface GuidelineService extends IService<Guideline> {
     */
     List<Guideline> findByScopeId(List<String> scopeIds);
     default List<Guideline> findByScopeId(String scopeId){
-        return findByScopeId(Arrays.asList(scopeId));
+        return findByLibrary(new Library().setId(scopeId));
     }
+
+    /**
+    * findByLibrary
+    * @param library
+    * @return
+    */
+    List<Guideline> findByLibrary(Library library);
 
     /**
     * removeByScopeId
@@ -264,6 +272,22 @@ public interface GuidelineService extends IService<Guideline> {
     * @return
     */
     boolean saveByLibrary(Library library, List<Guideline> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Guideline> fetchView(GuidelineSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Guideline> listView(GuidelineSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Guideline> list) {

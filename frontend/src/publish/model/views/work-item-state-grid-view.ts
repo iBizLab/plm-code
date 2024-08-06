@@ -31,6 +31,16 @@ export default {
       id: 'onloadsuccess',
     },
     {
+      eventNames: 'onLoadSuccess',
+      logicTrigger: 'VIEWEVENT',
+      logicType: 'APPDEUILOGIC',
+      appDEUILogicId: 'cal_is_system',
+      appDataEntityId: 'plmweb.work_item_state',
+      builtinLogic: true,
+      name: 'LOGIC_VIEWMSG',
+      id: 'logic_viewmsg',
+    },
+    {
       logicTrigger: 'CUSTOM',
       logicType: 'APPUILOGIC',
       builtinAppUILogic: {
@@ -82,14 +92,6 @@ export default {
     {
       openMode: 'POPUPMODAL',
       realOpenMode: 'POPUPMODAL',
-      realTitle: '编辑工作项状态',
-      refAppViewId: 'plmweb.work_item_state_update_view',
-      name: 'OPENDATA',
-      id: 'opendata',
-    },
-    {
-      openMode: 'POPUPMODAL',
-      realOpenMode: 'POPUPMODAL',
       realTitle: '新建工作项状态',
       refAppViewId: 'plmweb.work_item_state_quick_create_view',
       name: 'NEWDATA',
@@ -102,6 +104,14 @@ export default {
       refAppViewId: 'plmweb.work_item_state_update_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      openMode: 'POPUPMODAL',
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '编辑工作项状态',
+      refAppViewId: 'plmweb.work_item_state_update_view',
+      name: 'OPENDATA',
+      id: 'opendata',
     },
   ],
   controls: [
@@ -122,6 +132,7 @@ export default {
           caption: '序号',
           codeName: 'sequence',
           columnType: 'DEFGRIDCOLUMN',
+          hideMode: 1,
           noPrivDisplayMode: 1,
           width: 100,
           widthUnit: 'PX',
@@ -171,44 +182,38 @@ export default {
           deuiactionGroup: {
             uiactionGroupDetails: [
               {
-                actionLevel: 200,
+                actionLevel: 100,
                 afterItemType: 'NONE',
                 beforeItemType: 'NONE',
                 detailType: 'DEUIACTION',
-                uiactionId: 'edit',
+                uiactionId: 'edit@work_item_state',
                 tooltip: '编辑',
-                tooltipLanguageRes: {
-                  lanResTag: 'TBB.TOOLTIP.*.EDIT',
-                },
                 showIcon: true,
                 sysImage: {
                   cssClass: 'fa fa-edit',
                   glyph: 'xf044@FontAwesome',
                 },
-                id: 'u767bbd2',
+                id: 'u57914a9',
               },
               {
-                actionLevel: 200,
+                actionLevel: 100,
                 afterItemType: 'NONE',
                 beforeItemType: 'NONE',
                 detailType: 'DEUIACTION',
-                uiactionId: 'remove',
+                uiactionId: 'del@work_item_state',
                 tooltip: '删除',
-                tooltipLanguageRes: {
-                  lanResTag: 'TBB.TOOLTIP.*.REMOVE',
-                },
                 showIcon: true,
                 sysImage: {
                   cssClass: 'fa fa-trash-o',
                   glyph: 'xf014@FontAwesome',
                 },
-                id: 'u2c2fd3c',
+                id: 'u639d4f1',
               },
             ],
             appDataEntityId: 'plmweb.work_item_state',
-            uniqueTag: 'work_item_state__Usr0306874265',
-            name: '工作项状态表格',
-            id: 'usr0306874265',
+            uniqueTag: 'work_item_state__Usr0705139560',
+            name: '工作项状态操作',
+            id: 'usr0705139560',
           },
           aggMode: 'NONE',
           align: 'CENTER',
@@ -230,7 +235,10 @@ export default {
         },
         {
           appDEFieldId: 'name',
+          scriptCode:
+            'data.is_system === 1 ? data.name + \'<span style="border-radius: 18px;background-color: #f5f5f5;color: #666;height: 24px;line-height: 24px;padding-left: 12px;padding-right: 12px;font-size: .75rem;font-weight: 400;display: inline-flex;align-items: center;border: 1px solid transparent;margin-left: .5rem !important;">系统</span>\':data.name',
           valueType: 'SIMPLE',
+          customCode: true,
           dataType: 25,
           id: 'name',
         },
@@ -239,6 +247,12 @@ export default {
           valueType: 'SIMPLE',
           dataType: 25,
           id: 'type',
+        },
+        {
+          appDEFieldId: 'is_system',
+          valueType: 'SIMPLE',
+          dataType: 9,
+          id: 'is_system',
         },
         {
           appDEFieldId: 'id',

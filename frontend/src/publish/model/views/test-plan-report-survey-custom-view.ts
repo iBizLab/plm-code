@@ -737,7 +737,6 @@ export default {
                   colMD: 12,
                   layout: 'TABLE_24COL',
                 },
-                showCaption: true,
                 id: 'id',
               },
             ],

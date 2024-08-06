@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.base.domain.AddonRoleMember;
@@ -103,14 +104,14 @@ public abstract class AbstractAddonRoleMemberService extends ServiceImpl<AddonRo
         return et;
     }
 	
-    public Integer checkKey(AddonRoleMember et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<AddonRoleMember>lambdaQuery().eq(AddonRoleMember::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(AddonRoleMember et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<AddonRoleMember>lambdaQuery().eq(AddonRoleMember::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(AddonRoleMember et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -153,6 +154,10 @@ public abstract class AbstractAddonRoleMemberService extends ServiceImpl<AddonRo
         return list;	
 	}
 
+	public List<AddonRoleMember> findByAddon(Addon addon){
+        List<AddonRoleMember> list = findByAddonId(Arrays.asList(addon.getId()));
+		return list;
+	}
 	public boolean removeByAddonId(String addonId){
         return this.remove(Wrappers.<AddonRoleMember>lambdaQuery().eq(AddonRoleMember::getAddonId,addonId));
 	}
@@ -163,8 +168,8 @@ public abstract class AbstractAddonRoleMemberService extends ServiceImpl<AddonRo
 	public boolean saveByAddon(Addon addon, List<AddonRoleMember> list){
         if(list==null)
             return true;
-        Map<String,AddonRoleMember> before = findByAddonId(addon.getId()).stream().collect(Collectors.toMap(AddonRoleMember::getId,e->e));
 
+        Map<String,AddonRoleMember> before = findByAddon(addon).stream().collect(Collectors.toMap(AddonRoleMember::getId,e->e));
         List<AddonRoleMember> update = new ArrayList<>();
         List<AddonRoleMember> create = new ArrayList<>();
 
@@ -188,6 +193,17 @@ public abstract class AbstractAddonRoleMemberService extends ServiceImpl<AddonRo
             return true;
 			
 	}
+   public Page<AddonRoleMember> fetchView(AddonRoleMemberSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<AddonRoleMember> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<AddonRoleMember> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<AddonRoleMember> listView(AddonRoleMemberSearchContext context) {
+        List<AddonRoleMember> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(AddonRoleMember et) {
         if(Entities.ADDON.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

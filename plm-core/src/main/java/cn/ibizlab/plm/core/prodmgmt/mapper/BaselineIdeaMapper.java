@@ -97,6 +97,25 @@ public interface BaselineIdeaMapper extends BaseMapper<BaselineIdea> {
     List<BaselineIdea> findByTargetVersionId(@Param("targetVersionIds") List<String> targetVersionIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<BaselineIdea> searchView(IPage<BaselineIdea> page, @Param("ctx") BaselineIdeaSearchContext context, @Param("ew") Wrapper<BaselineIdea> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<BaselineIdea> listView(@Param("ctx") BaselineIdeaSearchContext context, @Param("ew") Wrapper<BaselineIdea> wrapper);
+
+    /**
      * 主键查询
      *
      * @param id

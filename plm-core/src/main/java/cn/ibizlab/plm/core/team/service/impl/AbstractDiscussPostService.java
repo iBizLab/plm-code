@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.team.domain.DiscussPost;
@@ -139,14 +140,14 @@ public abstract class AbstractDiscussPostService extends ServiceImpl<DiscussPost
         return et;
     }
 	
-    public Integer checkKey(DiscussPost et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<DiscussPost>lambdaQuery().eq(DiscussPost::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(DiscussPost et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<DiscussPost>lambdaQuery().eq(DiscussPost::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(DiscussPost et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -291,6 +292,10 @@ public abstract class AbstractDiscussPostService extends ServiceImpl<DiscussPost
         return list;	
 	}
 
+	public List<DiscussPost> findByDiscussTopic(DiscussTopic discussTopic){
+        List<DiscussPost> list = findByTopicId(Arrays.asList(discussTopic.getId()));
+		return list;
+	}
 	public boolean removeByTopicId(String topicId){
         return this.remove(Wrappers.<DiscussPost>lambdaQuery().eq(DiscussPost::getTopicId,topicId));
 	}
@@ -301,8 +306,8 @@ public abstract class AbstractDiscussPostService extends ServiceImpl<DiscussPost
 	public boolean saveByDiscussTopic(DiscussTopic discussTopic, List<DiscussPost> list){
         if(list==null)
             return true;
-        Map<String,DiscussPost> before = findByTopicId(discussTopic.getId()).stream().collect(Collectors.toMap(DiscussPost::getId,e->e));
 
+        Map<String,DiscussPost> before = findByDiscussTopic(discussTopic).stream().collect(Collectors.toMap(DiscussPost::getId,e->e));
         List<DiscussPost> update = new ArrayList<>();
         List<DiscussPost> create = new ArrayList<>();
 
@@ -328,24 +333,35 @@ public abstract class AbstractDiscussPostService extends ServiceImpl<DiscussPost
 	}
 	@Override
     public List<Attention> getAttentions(DiscussPost et) {
-        List<Attention> list = attentionService.findByOwnerId(et.getId());
+        List<Attention> list = attentionService.findByDiscussPost(et);
         et.setAttentions(list);
         return list;
     }
 	
 	@Override
     public List<Comment> getComments(DiscussPost et) {
-        List<Comment> list = commentService.findByPrincipalId(et.getId());
+        List<Comment> list = commentService.findByDiscussPost(et);
         et.setComments(list);
         return list;
     }
 	
 	@Override
     public List<Attachment> getAttachments(DiscussPost et) {
-        List<Attachment> list = attachmentService.findByOwnerId(et.getId());
+        List<Attachment> list = attachmentService.findByDiscussPost(et);
         et.setAttachments(list);
         return list;
     }
+	
+   public Page<DiscussPost> fetchView(DiscussPostSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<DiscussPost> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<DiscussPost> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<DiscussPost> listView(DiscussPostSearchContext context) {
+        List<DiscussPost> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
 	
 
     public void fillParentData(DiscussPost et) {

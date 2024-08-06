@@ -39,6 +39,14 @@ public class ProductPlanFilterDTO extends FilterBase implements Serializable {
 	private String categoriesLIKE;
 
     /**
+     * 是否已删除EQ
+     */
+    @JsonProperty("n_is_deleted_eq")
+    @JSONField(name = "n_is_deleted_eq")
+    @ApiModelProperty(value = "是否已删除EQ", position = 50)
+	private Integer isDeletedEQ;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")

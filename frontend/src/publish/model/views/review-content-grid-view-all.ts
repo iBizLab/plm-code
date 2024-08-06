@@ -430,6 +430,15 @@ export default {
     ],
     appViewRefs: [
       {
+        realTitle: '评审内容编辑视图',
+        realTitleLanguageRes: {
+          lanResTag: 'PAGE.TITLE.REVIEW_CONTENT.EDITVIEW',
+        },
+        refAppViewId: 'plmweb.review_content_edit_view',
+        name: 'NEWDATA',
+        id: 'newdata',
+      },
+      {
         openMode: 'POPUPMODAL',
         navigateContexts: [
           {
@@ -444,15 +453,6 @@ export default {
         refAppViewId: 'plmweb.test_case_main_view',
         name: 'EDITDATA',
         id: 'editdata',
-      },
-      {
-        realTitle: '评审内容编辑视图',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.REVIEW_CONTENT.EDITVIEW',
-        },
-        refAppViewId: 'plmweb.review_content_edit_view',
-        name: 'NEWDATA',
-        id: 'newdata',
       },
       {
         name: 'MPICKUPVIEW:REVIEW_WIZARD',
@@ -471,8 +471,8 @@ export default {
         detoolbarItems: [
           {
             actionLevel: 100,
-            noPrivDisplayMode: 2,
-            uiactionId: 'complete_review@review_content',
+            noPrivDisplayMode: 1,
+            uiactionId: 'open_complete_review@review',
             uiactionTarget: 'NONE',
             valid: true,
             caption: '完成评审',
@@ -499,35 +499,7 @@ export default {
           },
           {
             actionLevel: 100,
-            noPrivDisplayMode: 2,
-            uiactionId: 'start_cur_stage_review@review_content',
-            uiactionTarget: 'NONE',
-            valid: true,
-            caption: '开始评审',
-            itemType: 'DEUIACTION',
-            controlLogics: [
-              {
-                itemName: 'deuiaction2',
-                logicTag: 'toolbar',
-                logicType: 'SCRIPT',
-                scriptCode:
-                  '(context.review_state == 20&&!!context.curstage_id&&context._parent.curstage_state == 10&&context.cur_reviewer_id == context.srfuserid)',
-                triggerType: 'ITEMVISIBLE',
-                id: 'deuiaction2',
-              },
-            ],
-            sysImage: {
-              cssClass: 'fa fa-legal',
-              glyph: 'xf0e3@FontAwesome',
-            },
-            tooltip: '开始评审',
-            showCaption: true,
-            showIcon: true,
-            id: 'deuiaction2',
-          },
-          {
-            actionLevel: 100,
-            noPrivDisplayMode: 2,
+            noPrivDisplayMode: 1,
             uiactionId: 'submit_review@review_content',
             uiactionTarget: 'NONE',
             valid: true,
@@ -599,6 +571,43 @@ export default {
             excelCaption: '标题',
             objectNameField: 'title',
             appDEFieldId: 'test_case',
+            deuiactionGroup: {
+              uiactionGroupDetails: [
+                {
+                  actionLevel: 200,
+                  afterItemType: 'NONE',
+                  beforeItemType: 'NONE',
+                  detailType: 'DEUIACTION',
+                  uiactionId: 'remove_case@review_content',
+                  tooltip: '移出',
+                  showIcon: true,
+                  sysImage: {
+                    cssClass: 'fa fa-mail-reply',
+                    glyph: 'xf112@FontAwesome',
+                  },
+                  id: 'uafa07b8',
+                },
+                {
+                  actionLevel: 200,
+                  afterItemType: 'NONE',
+                  beforeItemType: 'NONE',
+                  detailType: 'DEUIACTION',
+                  uiactionId:
+                    'review_content_version_comparison@review_content',
+                  tooltip: '版本比对',
+                  showIcon: true,
+                  sysImage: {
+                    cssClass: 'fa fa-exchange',
+                    glyph: 'xf0ec@FontAwesome',
+                  },
+                  id: 'u7c6b8ab',
+                },
+              ],
+              appDataEntityId: 'plmweb.review_content',
+              uniqueTag: 'review_content__Usr0507142853',
+              name: '界面行为组（评审结果）',
+              id: 'usr0507142853',
+            },
             valueType: 'OBJECT',
             aggMode: 'NONE',
             align: 'LEFT',
@@ -847,11 +856,96 @@ export default {
           id: 'update',
         },
         autoLoad: true,
+        enableItemPrivilege: true,
         showBusyIndicator: true,
+        controls: [
+          {
+            detoolbarItems: [
+              {
+                actionLevel: 100,
+                noPrivDisplayMode: 1,
+                uiactionId: 'complete_review_quickly@review_content',
+                uiactionTarget: 'MULTIKEY',
+                valid: true,
+                caption: '评审',
+                itemType: 'DEUIACTION',
+                controlLogics: [
+                  {
+                    itemName: 'deuiaction1',
+                    logicTag: 'grid_batchtoolbar',
+                    logicType: 'SCRIPT',
+                    scriptCode:
+                      'context.review!= null && context.cur_reviewer_id != null && context.cur_reviewer_id == context.srfuserid && context.review_state == 20&&context.srfreadonly != true',
+                    triggerType: 'ITEMVISIBLE',
+                    id: 'deuiaction1',
+                  },
+                ],
+                sysImage: {
+                  cssClass: 'fa fa-legal',
+                  glyph: 'xf0e3@FontAwesome',
+                },
+                tooltip: '评审',
+                showCaption: true,
+                showIcon: true,
+                id: 'deuiaction1',
+              },
+              {
+                actionLevel: 100,
+                noPrivDisplayMode: 1,
+                uiactionId: 'remove_case@review_content',
+                uiactionTarget: 'MULTIKEY',
+                valid: true,
+                caption: '移出',
+                itemType: 'DEUIACTION',
+                controlLogics: [
+                  {
+                    itemName: 'deuiaction2',
+                    logicTag: 'grid_batchtoolbar',
+                    logicType: 'SCRIPT',
+                    scriptCode:
+                      "((context.curstage_id == null && context.review_state == '10')||(context.curstage_id == null&&context.review_state == null))&&context.srfreadonly != true",
+                    triggerType: 'ITEMVISIBLE',
+                    id: 'deuiaction2',
+                  },
+                ],
+                sysImage: {
+                  cssClass: 'fa fa-reply-all',
+                  glyph: 'xf122@FontAwesome',
+                },
+                tooltip: '移出',
+                showCaption: true,
+                showIcon: true,
+                id: 'deuiaction2',
+              },
+            ],
+            codeName: 'grid_view_all_grid_batchtoolbar',
+            controlType: 'TOOLBAR',
+            logicName: '批操作工具栏',
+            appDataEntityId: 'plmweb.review_content',
+            controlParam: {
+              id: 'grid_batchtoolbar',
+            },
+            modelId: 'F6B0E272-B2D5-48E0-B73E-5B17BC0EDE73',
+            modelType: 'PSDETOOLBAR',
+            name: 'grid_batchtoolbar',
+            id: 'grid_view_all_grid_batchtoolbar',
+          },
+        ],
         codeName: 'wf_grid_view_grid',
         controlType: 'GRID',
         logicName: '评审内容表格_表格',
         appDataEntityId: 'plmweb.review_content',
+        controlLogics: [
+          {
+            eventNames: 'onLoadSuccess',
+            logicTag: 'grid',
+            logicType: 'APPDEUILOGIC',
+            appDEUILogicId: 'calc_column_action_state',
+            appDataEntityId: 'plmweb.review_content',
+            triggerType: 'CTRLEVENT',
+            id: 'calc_button_state',
+          },
+        ],
         controlParam: {
           id: 'grid',
         },
@@ -859,41 +953,6 @@ export default {
         modelType: 'PSDEGRID',
         name: 'grid',
         id: 'plmweb.review_content.wf_grid_view_grid',
-      },
-      {
-        searchButtonStyle: 'DEFAULT',
-        deformPages: [
-          {
-            layout: {
-              columnCount: 24,
-              layout: 'TABLE_24COL',
-            },
-            caption: '常规条件',
-            codeName: 'formpage1',
-            detailStyle: 'DEFAULT',
-            detailType: 'FORMPAGE',
-            id: 'formpage1',
-          },
-        ],
-        layout: {
-          columnCount: 24,
-          layout: 'TABLE_24COL',
-        },
-        tabHeaderPos: 'TOP',
-        noTabHeader: true,
-        autoLoad: true,
-        showBusyIndicator: true,
-        codeName: 'wf_grid_view_search_form',
-        controlType: 'SEARCHFORM',
-        logicName: '工作流评审内容表格_搜索表单',
-        appDataEntityId: 'plmweb.review_content',
-        controlParam: {
-          id: 'searchform',
-        },
-        modelId: '5996BEF1-1A83-4CCB-8821-85DEF056E218',
-        modelType: 'PSDEFORM_SEARCHFORM',
-        name: 'searchform',
-        id: 'plmweb.review_content.wf_grid_view_search_form',
       },
       {
         groupMode: 'SINGLE',

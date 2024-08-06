@@ -63,6 +63,16 @@ public class Space extends EntityMP implements Serializable
     private String visibility;
 
     /**
+    * 是否开启共享
+    */
+    @TableField(value = "is_shared")
+    @DEField(name = "is_shared" , defaultValue = "0" , dict = "space_shared_status")
+    @JSONField(name = "is_shared")
+    @JsonProperty("is_shared")
+    @ApiModelProperty(value = "is_shared", notes = "是否开启共享")
+    private String isShared;
+
+    /**
     * 描述
     */
     @TableField(value = "description")
@@ -250,6 +260,15 @@ public class Space extends EntityMP implements Serializable
     public Space setVisibility(String visibility) {
         this.visibility = visibility;
         this.modify("visibility", visibility);
+        return this;
+    }
+
+    /**
+    * 设置 [是否开启共享]
+    */
+    public Space setIsShared(String isShared) {
+        this.isShared = isShared;
+        this.modify("is_shared", isShared);
         return this;
     }
 

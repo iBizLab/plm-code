@@ -195,6 +195,7 @@ export default {
                 beforeItemType: 'NONE',
                 detailType: 'DEUIACTION',
                 uiactionId: 'edit_guideline@guideline',
+                tooltip: '配置',
                 showIcon: true,
                 sysImage: {
                   cssClass: 'fa fa-sun-o',
@@ -209,7 +210,7 @@ export default {
             id: 'usr0520946801',
           },
           aggMode: 'NONE',
-          align: 'LEFT',
+          align: 'CENTER',
           caption: '操作',
           codeName: 'uagridcolumn1',
           columnType: 'UAGRIDCOLUMN',

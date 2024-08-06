@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.testmgmt.domain.TestSuite;
@@ -125,14 +126,14 @@ public abstract class AbstractTestSuiteService extends ServiceImpl<TestSuiteMapp
         return et;
     }
 	
-    public Integer checkKey(TestSuite et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<TestSuite>lambdaQuery().eq(TestSuite::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(TestSuite et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<TestSuite>lambdaQuery().eq(TestSuite::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(TestSuite et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -219,6 +220,10 @@ public abstract class AbstractTestSuiteService extends ServiceImpl<TestSuiteMapp
         return list;	
 	}
 
+	public List<TestSuite> findByLibrary(Library library){
+        List<TestSuite> list = findByLibraryId(Arrays.asList(library.getId()));
+		return list;
+	}
 	public boolean removeByLibraryId(String libraryId){
         List<String> ids = baseMapper.findByLibraryId(Arrays.asList(libraryId)).stream().map(e->e.getId()).collect(Collectors.toList());
         if(!ObjectUtils.isEmpty(ids))
@@ -233,8 +238,8 @@ public abstract class AbstractTestSuiteService extends ServiceImpl<TestSuiteMapp
 	public boolean saveByLibrary(Library library, List<TestSuite> list){
         if(list==null)
             return true;
-        Map<String,TestSuite> before = findByLibraryId(library.getId()).stream().collect(Collectors.toMap(TestSuite::getId,e->e));
 
+        Map<String,TestSuite> before = findByLibrary(library).stream().collect(Collectors.toMap(TestSuite::getId,e->e));
         List<TestSuite> update = new ArrayList<>();
         List<TestSuite> create = new ArrayList<>();
 
@@ -263,6 +268,10 @@ public abstract class AbstractTestSuiteService extends ServiceImpl<TestSuiteMapp
         return list;	
 	}
 
+	public List<TestSuite> findByTestSuite(TestSuite testSuite){
+        List<TestSuite> list = findByPid(Arrays.asList(testSuite.getId()));
+		return list;
+	}
 	public boolean removeByPid(String pid){
         List<String> ids = baseMapper.findByPid(Arrays.asList(pid)).stream().map(e->e.getId()).collect(Collectors.toList());
         if(!ObjectUtils.isEmpty(ids))
@@ -277,8 +286,8 @@ public abstract class AbstractTestSuiteService extends ServiceImpl<TestSuiteMapp
 	public boolean saveByTestSuite(TestSuite testSuite, List<TestSuite> list){
         if(list==null)
             return true;
-        Map<String,TestSuite> before = findByPid(testSuite.getId()).stream().collect(Collectors.toMap(TestSuite::getId,e->e));
 
+        Map<String,TestSuite> before = findByTestSuite(testSuite).stream().collect(Collectors.toMap(TestSuite::getId,e->e));
         List<TestSuite> update = new ArrayList<>();
         List<TestSuite> create = new ArrayList<>();
 
@@ -302,6 +311,17 @@ public abstract class AbstractTestSuiteService extends ServiceImpl<TestSuiteMapp
             return true;
 			
 	}
+   public Page<TestSuite> fetchView(TestSuiteSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestSuite> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<TestSuite> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<TestSuite> listView(TestSuiteSearchContext context) {
+        List<TestSuite> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(TestSuite et) {
         if(Entities.LIBRARY.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

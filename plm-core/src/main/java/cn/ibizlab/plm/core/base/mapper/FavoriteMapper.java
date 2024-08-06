@@ -51,6 +51,25 @@ public interface FavoriteMapper extends BaseMapper<Favorite> {
     List<Favorite> findByOwnerId(@Param("ownerIds") List<String> ownerIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Favorite> searchView(IPage<Favorite> page, @Param("ctx") FavoriteSearchContext context, @Param("ew") Wrapper<Favorite> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Favorite> listView(@Param("ctx") FavoriteSearchContext context, @Param("ew") Wrapper<Favorite> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

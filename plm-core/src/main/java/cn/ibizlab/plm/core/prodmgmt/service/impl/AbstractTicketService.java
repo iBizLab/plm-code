@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.prodmgmt.domain.Ticket;
@@ -156,15 +157,15 @@ public abstract class AbstractTicketService extends ServiceImpl<TicketMapper,Tic
         return et;
     }
 	
-    public Integer checkKey(Ticket et) {
+    public CheckKeyStatus checkKey(Ticket et) {
         fillParentData(et);
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Ticket>lambdaQuery().eq(Ticket::getId, et.getId()))>0)?1:0;
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Ticket>lambdaQuery().eq(Ticket::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(Ticket et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -229,6 +230,28 @@ public abstract class AbstractTicketService extends ServiceImpl<TicketMapper,Tic
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("SHOW_IDENTIFIER,DESC");
         List<Ticket> list = baseMapper.listArchived(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Ticket> fetchBiDetail(TicketSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Ticket> pages=baseMapper.searchBiDetail(context.getPages(),context,context.getSelectCond());
+        List<Ticket> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Ticket> listBiDetail(TicketSearchContext context) {
+        List<Ticket> list = baseMapper.listBiDetail(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Ticket> fetchBiSearch(TicketSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Ticket> pages=baseMapper.searchBiSearch(context.getPages(),context,context.getSelectCond());
+        List<Ticket> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Ticket> listBiSearch(TicketSearchContext context) {
+        List<Ticket> list = baseMapper.listBiSearch(context,context.getSelectCond());
         return list;
    }
 	
@@ -417,6 +440,17 @@ public abstract class AbstractTicketService extends ServiceImpl<TicketMapper,Tic
         return list;
    }
 	
+   public Page<Ticket> fetchReader(TicketSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Ticket> pages=baseMapper.searchReader(context.getPages(),context,context.getSelectCond());
+        List<Ticket> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Ticket> listReader(TicketSearchContext context) {
+        List<Ticket> list = baseMapper.listReader(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<Ticket> fetchRecentTicket(TicketSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("SHOW_IDENTIFIER,ASC");
@@ -462,6 +496,17 @@ public abstract class AbstractTicketService extends ServiceImpl<TicketMapper,Tic
         return list;
    }
 	
+   public Page<Ticket> fetchTicketStatePieChart(TicketSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Ticket> pages=baseMapper.searchTicketStatePieChart(context.getPages(),context,context.getSelectCond());
+        List<Ticket> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Ticket> listTicketStatePieChart(TicketSearchContext context) {
+        List<Ticket> list = baseMapper.listTicketStatePieChart(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<Ticket> fetchWorkItemRelationTicket(TicketSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("SHOW_IDENTIFIER,DESC");
@@ -488,6 +533,10 @@ public abstract class AbstractTicketService extends ServiceImpl<TicketMapper,Tic
         return list;	
 	}
 
+	public List<Ticket> findByCustomer(Customer customer){
+        List<Ticket> list = findByCustomerId(Arrays.asList(customer.getId()));
+		return list;
+	}
 	public boolean removeByCustomerId(String customerId){
         return this.remove(Wrappers.<Ticket>lambdaQuery().eq(Ticket::getCustomerId,customerId));
 	}
@@ -498,8 +547,8 @@ public abstract class AbstractTicketService extends ServiceImpl<TicketMapper,Tic
 	public boolean saveByCustomer(Customer customer, List<Ticket> list){
         if(list==null)
             return true;
-        Map<String,Ticket> before = findByCustomerId(customer.getId()).stream().collect(Collectors.toMap(Ticket::getId,e->e));
 
+        Map<String,Ticket> before = findByCustomer(customer).stream().collect(Collectors.toMap(Ticket::getId,e->e));
         List<Ticket> update = new ArrayList<>();
         List<Ticket> create = new ArrayList<>();
 
@@ -534,6 +583,10 @@ public abstract class AbstractTicketService extends ServiceImpl<TicketMapper,Tic
         return list;	
 	}
 
+	public List<Ticket> findByProduct(Product product){
+        List<Ticket> list = findByProductId(Arrays.asList(product.getId()));
+		return list;
+	}
 	public boolean removeByProductId(String productId){
         return this.remove(Wrappers.<Ticket>lambdaQuery().eq(Ticket::getProductId,productId));
 	}
@@ -544,8 +597,8 @@ public abstract class AbstractTicketService extends ServiceImpl<TicketMapper,Tic
 	public boolean saveByProduct(Product product, List<Ticket> list){
         if(list==null)
             return true;
-        Map<String,Ticket> before = findByProductId(product.getId()).stream().collect(Collectors.toMap(Ticket::getId,e->e));
 
+        Map<String,Ticket> before = findByProduct(product).stream().collect(Collectors.toMap(Ticket::getId,e->e));
         List<Ticket> update = new ArrayList<>();
         List<Ticket> create = new ArrayList<>();
 
@@ -580,6 +633,10 @@ public abstract class AbstractTicketService extends ServiceImpl<TicketMapper,Tic
         return list;	
 	}
 
+	public List<Ticket> findByUser(User user){
+        List<Ticket> list = findByAssigneeId(Arrays.asList(user.getId()));
+		return list;
+	}
 	public boolean removeByAssigneeId(String assigneeId){
         return this.remove(Wrappers.<Ticket>lambdaQuery().eq(Ticket::getAssigneeId,assigneeId));
 	}
@@ -590,8 +647,8 @@ public abstract class AbstractTicketService extends ServiceImpl<TicketMapper,Tic
 	public boolean saveByUser(User user, List<Ticket> list){
         if(list==null)
             return true;
-        Map<String,Ticket> before = findByAssigneeId(user.getId()).stream().collect(Collectors.toMap(Ticket::getId,e->e));
 
+        Map<String,Ticket> before = findByUser(user).stream().collect(Collectors.toMap(Ticket::getId,e->e));
         List<Ticket> update = new ArrayList<>();
         List<Ticket> create = new ArrayList<>();
 
@@ -617,17 +674,28 @@ public abstract class AbstractTicketService extends ServiceImpl<TicketMapper,Tic
 	}
 	@Override
     public List<Attention> getAttentions(Ticket et) {
-        List<Attention> list = attentionService.findByOwnerId(et.getId());
+        List<Attention> list = attentionService.findByTicket(et);
         et.setAttentions(list);
         return list;
     }
 	
 	@Override
     public List<Attachment> getAttachments(Ticket et) {
-        List<Attachment> list = attachmentService.findByOwnerId(et.getId());
+        List<Attachment> list = attachmentService.findByTicket(et);
         et.setAttachments(list);
         return list;
     }
+	
+   public Page<Ticket> fetchView(TicketSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Ticket> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<Ticket> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Ticket> listView(TicketSearchContext context) {
+        List<Ticket> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
 	
 
     public void fillParentData(Ticket et) {

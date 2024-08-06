@@ -38,6 +38,14 @@ import cn.ibizlab.plm.core.prodmgmt.domain.IdeaTemplate;
 public class IdeaTemplateSearchContext extends QueryWrapperContext<IdeaTemplate> {
 
     /**
+     * 标题LIKE
+     */
+    @JsonProperty("n_title_like")
+    @JSONField(name = "n_title_like")
+    @ApiModelProperty("标题LIKE")
+    private String titleLIKE;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")

@@ -66,6 +66,7 @@ export default {
             id: 'plmweb.base__my_charge_entry',
           },
           tag: '07d5ede6359564bafce7f09f39d5934d',
+          uniqueTag: 'Base__my_charge_entry',
           id: '07d5ede6359564bafce7f09f39d5934d',
         },
       ],

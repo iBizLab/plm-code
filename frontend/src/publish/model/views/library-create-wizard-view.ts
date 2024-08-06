@@ -69,6 +69,7 @@ export default {
                 regExCode: '^[A-Z0-9]{1,15}$',
                 ruleInfo: '请填写大写字母和数字',
                 ruleType: 'REGEX',
+                uniqueTag: 'UsrValueRule0312488358',
                 name: '大写字母和数字',
                 id: 'usrvaluerule0312488358',
               },
@@ -176,7 +177,6 @@ export default {
                         colMD: 24,
                         layout: 'TABLE_24COL',
                       },
-                      showCaption: true,
                       id: 'scope_id',
                     },
                     {
@@ -299,6 +299,7 @@ export default {
                           regExCode: '^[A-Z0-9]{1,15}$',
                           ruleInfo: '请填写大写字母和数字',
                           ruleType: 'REGEX',
+                          uniqueTag: 'UsrValueRule0312488358',
                           name: '大写字母和数字',
                           id: 'plmweb.usrvaluerule0312488358',
                         },
@@ -391,7 +392,6 @@ export default {
                     colMD: 12,
                     layout: 'TABLE_24COL',
                   },
-                  showCaption: true,
                   id: 'id',
                 },
               ],
@@ -608,7 +608,6 @@ export default {
                     colMD: 12,
                     layout: 'TABLE_24COL',
                   },
-                  showCaption: true,
                   id: 'formitem',
                 },
                 {
@@ -637,7 +636,6 @@ export default {
                     colMD: 12,
                     layout: 'TABLE_24COL',
                   },
-                  showCaption: true,
                   id: 'name',
                 },
                 {
@@ -663,7 +661,6 @@ export default {
                     colMD: 12,
                     layout: 'TABLE_24COL',
                   },
-                  showCaption: true,
                   id: 'visibility',
                 },
                 {
@@ -689,7 +686,6 @@ export default {
                     colMD: 12,
                     layout: 'TABLE_24COL',
                   },
-                  showCaption: true,
                   id: 'identifier',
                 },
                 {
@@ -716,7 +712,6 @@ export default {
                     colMD: 12,
                     layout: 'TABLE_24COL',
                   },
-                  showCaption: true,
                   id: 'description',
                 },
                 {
@@ -746,7 +741,6 @@ export default {
                     colMD: 12,
                     layout: 'TABLE_24COL',
                   },
-                  showCaption: true,
                   id: 'id',
                 },
               ],

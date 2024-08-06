@@ -124,11 +124,19 @@ public class ReviewContentDTO extends DTOBase implements Serializable {
     private String targetVersionId;
 
     /**
+     * 评审数据
+     */
+    @JsonProperty("review_data")
+    @JSONField(name = "review_data")
+    @ApiModelProperty(value = "评审数据", position = 11)
+    private ReviewDTO reviewData;
+
+    /**
      * 测试用例
      */
     @JsonProperty("test_case")
     @JSONField(name = "test_case")
-    @ApiModelProperty(value = "测试用例", position = 11)
+    @ApiModelProperty(value = "测试用例", position = 12)
     private TestCaseDTO testCase;
 
     /**
@@ -136,7 +144,7 @@ public class ReviewContentDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("cur_version_id")
     @JSONField(name = "cur_version_id")
-    @ApiModelProperty(value = "当前版本标识", position = 12)
+    @ApiModelProperty(value = "当前版本标识", position = 13)
     private String curVersionId;
 
     /**
@@ -144,7 +152,7 @@ public class ReviewContentDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("target_identifier")
     @JSONField(name = "target_identifier")
-    @ApiModelProperty(value = "目标对象编号", position = 13)
+    @ApiModelProperty(value = "目标对象编号", position = 14)
     private String targetIdentifier;
 
     /**
@@ -152,7 +160,7 @@ public class ReviewContentDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("target_title")
     @JSONField(name = "target_title")
-    @ApiModelProperty(value = "目标对象标题", position = 14)
+    @ApiModelProperty(value = "目标对象标题", position = 15)
     private String targetTitle;
 
     /**
@@ -160,7 +168,7 @@ public class ReviewContentDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("target_state")
     @JSONField(name = "target_state")
-    @ApiModelProperty(value = "目标对象状态", position = 15)
+    @ApiModelProperty(value = "目标对象状态", position = 16)
     private String targetState;
 
     /**
@@ -168,7 +176,7 @@ public class ReviewContentDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("target_assignee")
     @JSONField(name = "target_assignee")
-    @ApiModelProperty(value = "目标对象负责人", position = 16)
+    @ApiModelProperty(value = "目标对象负责人", position = 17)
     private String targetAssignee;
 
     /**
@@ -176,7 +184,7 @@ public class ReviewContentDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("target_version")
     @JSONField(name = "target_version")
-    @ApiModelProperty(value = "关联目标版本", position = 17)
+    @ApiModelProperty(value = "关联目标版本", position = 18)
     private VersionDTO targetVersion;
 
     /**
@@ -184,7 +192,7 @@ public class ReviewContentDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("target_priority")
     @JSONField(name = "target_priority")
-    @ApiModelProperty(value = "目标对象优先级", position = 18)
+    @ApiModelProperty(value = "目标对象优先级", position = 19)
     private String targetPriority;
 
     /**
@@ -192,7 +200,7 @@ public class ReviewContentDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("target_parent_id")
     @JSONField(name = "target_parent_id")
-    @ApiModelProperty(value = "目标对象父标识", position = 19)
+    @ApiModelProperty(value = "目标对象父标识", position = 20)
     private String targetParentId;
 
     /**
@@ -200,7 +208,7 @@ public class ReviewContentDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 20)
+    @ApiModelProperty(value = "建立人", position = 21)
     private String createMan;
 
     /**
@@ -209,7 +217,7 @@ public class ReviewContentDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 21)
+    @ApiModelProperty(value = "建立时间", position = 22)
     private Date createTime;
 
     /**
@@ -217,7 +225,7 @@ public class ReviewContentDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 22)
+    @ApiModelProperty(value = "标识", position = 23)
     private String id;
 
     /**
@@ -225,7 +233,7 @@ public class ReviewContentDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 23)
+    @ApiModelProperty(value = "名称", position = 24)
     private String name;
 
     /**
@@ -233,7 +241,7 @@ public class ReviewContentDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 24)
+    @ApiModelProperty(value = "更新人", position = 25)
     private String updateMan;
 
     /**
@@ -242,7 +250,7 @@ public class ReviewContentDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 25)
+    @ApiModelProperty(value = "更新时间", position = 26)
     private Date updateTime;
 
 
@@ -333,6 +341,15 @@ public class ReviewContentDTO extends DTOBase implements Serializable {
     public ReviewContentDTO setTargetVersionId(String targetVersionId) {
         this.targetVersionId = targetVersionId;
         this.modify("target_version_id", targetVersionId);
+        return this;
+    }
+
+    /**
+     * 设置 [评审数据]
+     */
+    public ReviewContentDTO setReviewData(ReviewDTO reviewData) {
+        this.reviewData = reviewData;
+        this.modify("review_data", reviewData);
         return this;
     }
 

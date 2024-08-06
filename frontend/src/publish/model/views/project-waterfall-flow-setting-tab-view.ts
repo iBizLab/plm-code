@@ -1,0 +1,342 @@
+export default {
+  tabLayout: 'TOP',
+  loadDefault: true,
+  showDataInfoBar: true,
+  deviewCodeName: 'waterfall_flow_setting_tab_view',
+  deviewId: '5888FE36-05AF-4FFB-8797-19EFB66B46CA',
+  accUserMode: 2,
+  caption: '瀑布项目',
+  codeName: 'project_waterfall_flow_setting_tab_view',
+  appDataEntityId: 'plmweb.project',
+  viewLayoutPanel: {
+    viewProxyMode: true,
+    layoutMode: 'FLEX',
+    layout: {
+      layout: 'FLEX',
+    },
+    rootPanelItems: [
+      {
+        actionGroupExtractMode: 'ITEM',
+        panelItems: [
+          {
+            actionGroupExtractMode: 'ITEM',
+            panelItems: [
+              {
+                caption: '标题栏',
+                itemStyle: 'DEFAULT',
+                itemType: 'CTRLPOS',
+                layoutPos: {
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                showCaption: true,
+                id: 'captionbar',
+              },
+            ],
+            layout: {
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            caption: '容器',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              shrink: 1,
+              layout: 'FLEX',
+            },
+            id: 'view_captionbar',
+          },
+          {
+            actionGroupExtractMode: 'ITEM',
+            panelItems: [
+              {
+                caption: '分页导航',
+                itemStyle: 'DEFAULT',
+                itemType: 'CTRLPOS',
+                layoutPos: {
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                showCaption: true,
+                id: 'tabexppanel',
+              },
+            ],
+            layout: {
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            caption: '容器',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              grow: 1,
+              shrink: 1,
+              layout: 'FLEX',
+            },
+            id: 'view_tabexppanel',
+          },
+          {
+            actionGroupExtractMode: 'ITEM',
+            panelItems: [
+              {
+                rawItem: {
+                  predefinedType: 'TELEPORT_PLACEHOLDER',
+                  id: 'tabsearchbar',
+                },
+                caption: '传送部件占位',
+                itemStyle: 'DEFAULT',
+                itemType: 'RAWITEM',
+                layoutPos: {
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                showCaption: true,
+                id: 'tabsearchbar',
+              },
+            ],
+            layout: {
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            caption: '容器',
+            cssStyle: 'margin-right:7px',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              shrink: 1,
+              layout: 'FLEX',
+            },
+            id: 'container2',
+          },
+        ],
+        predefinedType: 'VIEWHEADER',
+        layout: {
+          dir: 'row',
+          layout: 'FLEX',
+          valign: 'center',
+        },
+        dataRegionType: 'INHERIT',
+        caption: '容器',
+        itemStyle: 'DEFAULT',
+        itemType: 'CONTAINER',
+        layoutPos: {
+          shrink: 0,
+          layout: 'FLEX',
+        },
+        id: 'view_header',
+      },
+      {
+        actionGroupExtractMode: 'ITEM',
+        panelItems: [
+          {
+            actionGroupExtractMode: 'ITEM',
+            layout: {
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            caption: '容器',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              shrink: 0,
+              layout: 'FLEX',
+            },
+            id: 'view_tabexppanel_left',
+          },
+          {
+            actionGroupExtractMode: 'ITEM',
+            panelItems: [
+              {
+                actionGroupExtractMode: 'ITEM',
+                panelItems: [
+                  {
+                    rawItem: {
+                      predefinedType: 'NAV_POS',
+                      id: 'nav_pos',
+                    },
+                    caption: '导航区占位',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'RAWITEM',
+                    layoutPos: {
+                      grow: 1,
+                      shrink: 1,
+                      layout: 'FLEX',
+                    },
+                    showCaption: true,
+                    id: 'nav_pos',
+                  },
+                ],
+                predefinedType: 'VIEWCONTENT',
+                layout: {
+                  layout: 'FLEX',
+                },
+                dataRegionType: 'INHERIT',
+                caption: '容器',
+                itemStyle: 'DEFAULT',
+                itemType: 'CONTAINER',
+                layoutPos: {
+                  grow: 1,
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                id: 'view_content',
+              },
+              {
+                actionGroupExtractMode: 'ITEM',
+                layout: {
+                  layout: 'FLEX',
+                },
+                dataRegionType: 'INHERIT',
+                caption: '容器',
+                itemStyle: 'DEFAULT',
+                itemType: 'CONTAINER',
+                layoutPos: {
+                  shrink: 0,
+                  layout: 'FLEX',
+                },
+                id: 'view_tabexppanel_bottom',
+              },
+            ],
+            layout: {
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            caption: '容器',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              grow: 1,
+              shrink: 1,
+              layout: 'FLEX',
+            },
+            id: 'container1',
+          },
+          {
+            actionGroupExtractMode: 'ITEM',
+            layout: {
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            caption: '容器',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              shrink: 0,
+              layout: 'FLEX',
+            },
+            id: 'view_tabexppanel_right',
+          },
+        ],
+        layout: {
+          dir: 'row',
+          layout: 'FLEX',
+        },
+        dataRegionType: 'INHERIT',
+        caption: '容器',
+        itemStyle: 'DEFAULT',
+        itemType: 'CONTAINER',
+        layoutPos: {
+          grow: 1,
+          shrink: 1,
+          layout: 'FLEX',
+        },
+        id: 'container',
+      },
+    ],
+    layoutPanel: true,
+    appViewEngines: [
+      {
+        engineCat: 'VIEW',
+        engineType: 'TabExpView',
+        id: 'engine',
+      },
+    ],
+    controls: [
+      {
+        dedrtabPages: [
+          {
+            caption: '工作项类型',
+            appViewId: 'plmweb.work_item_type_global_setting_view_waterfall',
+            navigateParams: [
+              {
+                key: 'n_project_type_eq',
+                value: 'waterfall',
+                rawValue: true,
+                id: 'n_project_type_eq',
+              },
+            ],
+            id: 'work_item_type',
+          },
+          {
+            caption: '组件设置',
+            appViewId: 'plmweb.addon_no_name_setting_grid_view',
+            navigateParams: [
+              {
+                key: 'n_owner_subtype_eq',
+                value: 'waterfall',
+                rawValue: true,
+                id: 'n_owner_subtype_eq',
+              },
+              {
+                key: 'n_owner_type_eq',
+                value: 'project',
+                rawValue: true,
+                id: 'n_owner_type_eq',
+              },
+              {
+                key: 'n_owner_id_isnull',
+                value: '1',
+                rawValue: true,
+                id: 'n_owner_id_isnull',
+              },
+            ],
+            id: 'addon_setting',
+          },
+        ],
+        dataRelationTag: 'setting_tab_view_waterfall_flow_dr',
+        editItemCaption: '项目',
+        uniqueTag: 'project_waterfall_flow_setting_tab_view__tabexppanel',
+        hideEditItem: true,
+        autoLoad: true,
+        showBusyIndicator: true,
+        codeName: 'setting_tab_view_waterfall_flow_dr',
+        controlType: 'DRTAB',
+        appDataEntityId: 'plmweb.project',
+        controlParam: {
+          id: 'tabexppanel',
+        },
+        modelId: '7bc939b77caf9beca92e83e1d862a6be',
+        modelType: 'PSDEDRTAB',
+        name: 'tabexppanel',
+        id: 'setting_tab_view_waterfall_flow_dr',
+      },
+      {
+        caption: '瀑布项目',
+        codeName: 'waterfall_flow_setting_tab_view_captionbar',
+        controlType: 'CAPTIONBAR',
+        appDataEntityId: 'plmweb.project',
+        controlParam: {},
+        name: 'captionbar',
+        id: 'waterfall_flow_setting_tab_view_captionbar',
+      },
+    ],
+    codeName: 'usr0530654467',
+    controlType: 'VIEWLAYOUTPANEL',
+    logicName: 'scrum_flow_setting_tab_view分页导航视图布局面板',
+    appDataEntityId: 'plmweb.project',
+    controlParam: {},
+    modelId: '09D86D63-9C92-44EB-A64A-86B5EE98B3D8',
+    modelType: 'PSSYSVIEWLAYOUTPANEL',
+    name: 'layoutpanel',
+    id: 'usr0530654467',
+  },
+  title: 'waterfall项目流程全局配置分页视图',
+  viewStyle: 'DEFAULT',
+  viewType: 'DETABEXPVIEW',
+  enableDP: true,
+  showCaptionBar: false,
+  modelId: '62dd300bca4e1309b7ddb70852a2990b',
+  modelType: 'PSAPPDEVIEW',
+  name: 'projectwaterfall_flow_setting_tab_view',
+  id: 'plmweb.project_waterfall_flow_setting_tab_view',
+};

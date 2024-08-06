@@ -23,12 +23,14 @@ import java.util.stream.IntStream;
 import cn.ibizlab.util.domain.ImportResult;
 import cn.ibizlab.util.domain.RequestWrapper;
 import cn.ibizlab.util.domain.ResponseWrapper;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.serviceapi.dto.*;
 import cn.ibizlab.plm.serviceapi.mapping.*;
 import cn.ibizlab.plm.core.testmgmt.domain.LibraryMember;
 import cn.ibizlab.plm.core.testmgmt.service.LibraryMemberService;
 import cn.ibizlab.plm.core.testmgmt.filter.LibraryMemberSearchContext;
 import cn.ibizlab.util.annotation.VersionCheck;
+import reactor.core.publisher.Mono;
 
 /**
  * 实体[LibraryMember] rest实现
@@ -54,19 +56,19 @@ public abstract class AbstractLibraryMemberResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<LibraryMemberDTO>
+    * @return Mono<ResponseEntity<LibraryMemberDTO>>
     */
     @ApiOperation(value = "创建Create", tags = {"测试库成员" },  notes = "LibraryMember-Create ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-LibraryMember-Create-all') or hasPermission(this.libraryMemberDtoMapping.toDomain(#dto),'ibizplm-LibraryMember-Create')")
     @PostMapping("library_members")
-    public ResponseEntity<ResponseWrapper<LibraryMemberDTO>> create
+    public Mono<ResponseEntity<ResponseWrapper<LibraryMemberDTO>>>create
             (@Validated @RequestBody RequestWrapper<LibraryMemberDTO> dto) {
         ResponseWrapper<LibraryMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(create(item)));
         else
             rt.set(create(dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -90,13 +92,13 @@ public abstract class AbstractLibraryMemberResource {
     *
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<LibraryMemberDTO>
+    * @return Mono<ResponseEntity<LibraryMemberDTO>>
     */
     @ApiOperation(value = "更新Update", tags = {"测试库成员" },  notes = "LibraryMember-Update ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-LibraryMember-Update-all') or hasPermission(this.libraryMemberService.get(#id),'ibizplm-LibraryMember-Update')")
     @VersionCheck(entity = "librarymember" , versionfield = "updateTime")
     @PutMapping("library_members/{id}")
-    public ResponseEntity<ResponseWrapper<LibraryMemberDTO>> updateById
+    public Mono<ResponseEntity<ResponseWrapper<LibraryMemberDTO>>>updateById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<LibraryMemberDTO> dto) {
         ResponseWrapper<LibraryMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -105,7 +107,7 @@ public abstract class AbstractLibraryMemberResource {
         }
         else
             rt.set(updateById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -131,11 +133,11 @@ public abstract class AbstractLibraryMemberResource {
     *
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<LibraryMemberDTO>
+    * @return Mono<ResponseEntity<LibraryMemberDTO>>
     */
     @ApiOperation(value = "change_role", tags = {"测试库成员" },  notes = "LibraryMember-change_role ")
     @PostMapping("library_members/{id}/change_role")
-    public ResponseEntity<ResponseWrapper<LibraryMemberDTO>> changeRoleById
+    public Mono<ResponseEntity<ResponseWrapper<LibraryMemberDTO>>>changeRoleById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<LibraryMemberDTO> dto) {
         ResponseWrapper<LibraryMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -144,7 +146,7 @@ public abstract class AbstractLibraryMemberResource {
         }
         else
             rt.set(changeRoleById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -168,19 +170,19 @@ public abstract class AbstractLibraryMemberResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<LibraryMemberDTO>
+    * @return Mono<ResponseEntity<LibraryMemberDTO>>
     */
     @ApiOperation(value = "create_library_member", tags = {"测试库成员" },  notes = "LibraryMember-create_library_member ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-LibraryMember-create_library_member-all') or hasPermission(this.libraryMemberDtoMapping.toDomain(#dto),'ibizplm-LibraryMember-create_library_member')")
     @PostMapping("library_members/create_library_member")
-    public ResponseEntity<ResponseWrapper<LibraryMemberDTO>> createLibraryMember
+    public Mono<ResponseEntity<ResponseWrapper<LibraryMemberDTO>>>createLibraryMember
             (@Validated @RequestBody RequestWrapper<LibraryMemberDTO> dto) {
         ResponseWrapper<LibraryMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(createLibraryMember(item)));
         else
             rt.set(createLibraryMember(dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -202,19 +204,19 @@ public abstract class AbstractLibraryMemberResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<LibraryMemberDTO>
+    * @return Mono<ResponseEntity<LibraryMemberDTO>>
     */
     @ApiOperation(value = "保存Save", tags = {"测试库成员" },  notes = "LibraryMember-Save ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-LibraryMember-Save-all') or hasPermission(this.libraryMemberDtoMapping.toDomain(#dto),'ibizplm-LibraryMember-Save')")
     @PostMapping("library_members/save")
-    public ResponseEntity<ResponseWrapper<LibraryMemberDTO>> save
+    public Mono<ResponseEntity<ResponseWrapper<LibraryMemberDTO>>>save
             (@Validated @RequestBody RequestWrapper<LibraryMemberDTO> dto) {
         ResponseWrapper<LibraryMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(save(item)));
         else
             rt.set(save(dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -238,19 +240,19 @@ public abstract class AbstractLibraryMemberResource {
     *
     * @param libraryId libraryId
     * @param dto dto
-    * @return ResponseEntity<LibraryMemberDTO>
+    * @return Mono<ResponseEntity<LibraryMemberDTO>>
     */
     @ApiOperation(value = "创建Create", tags = {"测试库成员" },  notes = "LibraryMember-Create ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-LibraryMember-Create-all') or hasPermission('library',#libraryId,this.libraryMemberDtoMapping.toDomain(#dto),'ibizplm-LibraryMember-Create')")
     @PostMapping("libraries/{libraryId}/library_members")
-    public ResponseEntity<ResponseWrapper<LibraryMemberDTO>> createByLibraryId
+    public Mono<ResponseEntity<ResponseWrapper<LibraryMemberDTO>>>createByLibraryId
             (@PathVariable("libraryId") String libraryId, @Validated @RequestBody RequestWrapper<LibraryMemberDTO> dto) {
         ResponseWrapper<LibraryMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(createByLibraryId(libraryId, item)));
         else
             rt.set(createByLibraryId(libraryId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -277,13 +279,13 @@ public abstract class AbstractLibraryMemberResource {
     * @param libraryId libraryId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<LibraryMemberDTO>
+    * @return Mono<ResponseEntity<LibraryMemberDTO>>
     */
     @ApiOperation(value = "更新Update", tags = {"测试库成员" },  notes = "LibraryMember-Update ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-LibraryMember-Update-all') or hasPermission('library',#libraryId,this.libraryMemberService.get(#id),'ibizplm-LibraryMember-Update')")
     @VersionCheck(entity = "librarymember" , versionfield = "updateTime")
     @PutMapping("libraries/{libraryId}/library_members/{id}")
-    public ResponseEntity<ResponseWrapper<LibraryMemberDTO>> updateByLibraryIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<LibraryMemberDTO>>>updateByLibraryIdAndId
             (@PathVariable("libraryId") String libraryId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<LibraryMemberDTO> dto) {
         ResponseWrapper<LibraryMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -292,7 +294,7 @@ public abstract class AbstractLibraryMemberResource {
         }
         else
             rt.set(updateByLibraryIdAndId(libraryId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -320,11 +322,11 @@ public abstract class AbstractLibraryMemberResource {
     * @param libraryId libraryId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<LibraryMemberDTO>
+    * @return Mono<ResponseEntity<LibraryMemberDTO>>
     */
     @ApiOperation(value = "change_role", tags = {"测试库成员" },  notes = "LibraryMember-change_role ")
     @PostMapping("libraries/{libraryId}/library_members/{id}/change_role")
-    public ResponseEntity<ResponseWrapper<LibraryMemberDTO>> changeRoleByLibraryIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<LibraryMemberDTO>>>changeRoleByLibraryIdAndId
             (@PathVariable("libraryId") String libraryId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<LibraryMemberDTO> dto) {
         ResponseWrapper<LibraryMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -333,7 +335,7 @@ public abstract class AbstractLibraryMemberResource {
         }
         else
             rt.set(changeRoleByLibraryIdAndId(libraryId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -359,19 +361,19 @@ public abstract class AbstractLibraryMemberResource {
     *
     * @param libraryId libraryId
     * @param dto dto
-    * @return ResponseEntity<LibraryMemberDTO>
+    * @return Mono<ResponseEntity<LibraryMemberDTO>>
     */
     @ApiOperation(value = "create_library_member", tags = {"测试库成员" },  notes = "LibraryMember-create_library_member ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-LibraryMember-create_library_member-all') or hasPermission('library',#libraryId,this.libraryMemberDtoMapping.toDomain(#dto),'ibizplm-LibraryMember-create_library_member')")
     @PostMapping("libraries/{libraryId}/library_members/create_library_member")
-    public ResponseEntity<ResponseWrapper<LibraryMemberDTO>> createLibraryMemberByLibraryId
+    public Mono<ResponseEntity<ResponseWrapper<LibraryMemberDTO>>>createLibraryMemberByLibraryId
             (@PathVariable("libraryId") String libraryId, @Validated @RequestBody RequestWrapper<LibraryMemberDTO> dto) {
         ResponseWrapper<LibraryMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(createLibraryMemberByLibraryId(libraryId, item)));
         else
             rt.set(createLibraryMemberByLibraryId(libraryId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -396,19 +398,19 @@ public abstract class AbstractLibraryMemberResource {
     *
     * @param libraryId libraryId
     * @param dto dto
-    * @return ResponseEntity<LibraryMemberDTO>
+    * @return Mono<ResponseEntity<LibraryMemberDTO>>
     */
     @ApiOperation(value = "保存Save", tags = {"测试库成员" },  notes = "LibraryMember-Save ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-LibraryMember-Save-all') or hasPermission('library',#libraryId,this.libraryMemberDtoMapping.toDomain(#dto),'ibizplm-LibraryMember-Save')")
     @PostMapping("libraries/{libraryId}/library_members/save")
-    public ResponseEntity<ResponseWrapper<LibraryMemberDTO>> saveByLibraryId
+    public Mono<ResponseEntity<ResponseWrapper<LibraryMemberDTO>>>saveByLibraryId
             (@PathVariable("libraryId") String libraryId, @Validated @RequestBody RequestWrapper<LibraryMemberDTO> dto) {
         ResponseWrapper<LibraryMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(saveByLibraryId(libraryId, item)));
         else
             rt.set(saveByLibraryId(libraryId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -434,19 +436,19 @@ public abstract class AbstractLibraryMemberResource {
     *
     * @param userId userId
     * @param dto dto
-    * @return ResponseEntity<LibraryMemberDTO>
+    * @return Mono<ResponseEntity<LibraryMemberDTO>>
     */
     @ApiOperation(value = "创建Create", tags = {"测试库成员" },  notes = "LibraryMember-Create ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-LibraryMember-Create-all') or hasPermission('user',#userId,this.libraryMemberDtoMapping.toDomain(#dto),'ibizplm-LibraryMember-Create')")
     @PostMapping("users/{userId}/library_members")
-    public ResponseEntity<ResponseWrapper<LibraryMemberDTO>> createByUserId
+    public Mono<ResponseEntity<ResponseWrapper<LibraryMemberDTO>>>createByUserId
             (@PathVariable("userId") String userId, @Validated @RequestBody RequestWrapper<LibraryMemberDTO> dto) {
         ResponseWrapper<LibraryMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(createByUserId(userId, item)));
         else
             rt.set(createByUserId(userId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -473,13 +475,13 @@ public abstract class AbstractLibraryMemberResource {
     * @param userId userId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<LibraryMemberDTO>
+    * @return Mono<ResponseEntity<LibraryMemberDTO>>
     */
     @ApiOperation(value = "更新Update", tags = {"测试库成员" },  notes = "LibraryMember-Update ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-LibraryMember-Update-all') or hasPermission('user',#userId,this.libraryMemberService.get(#id),'ibizplm-LibraryMember-Update')")
     @VersionCheck(entity = "librarymember" , versionfield = "updateTime")
     @PutMapping("users/{userId}/library_members/{id}")
-    public ResponseEntity<ResponseWrapper<LibraryMemberDTO>> updateByUserIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<LibraryMemberDTO>>>updateByUserIdAndId
             (@PathVariable("userId") String userId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<LibraryMemberDTO> dto) {
         ResponseWrapper<LibraryMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -488,7 +490,7 @@ public abstract class AbstractLibraryMemberResource {
         }
         else
             rt.set(updateByUserIdAndId(userId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -516,11 +518,11 @@ public abstract class AbstractLibraryMemberResource {
     * @param userId userId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<LibraryMemberDTO>
+    * @return Mono<ResponseEntity<LibraryMemberDTO>>
     */
     @ApiOperation(value = "change_role", tags = {"测试库成员" },  notes = "LibraryMember-change_role ")
     @PostMapping("users/{userId}/library_members/{id}/change_role")
-    public ResponseEntity<ResponseWrapper<LibraryMemberDTO>> changeRoleByUserIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<LibraryMemberDTO>>>changeRoleByUserIdAndId
             (@PathVariable("userId") String userId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<LibraryMemberDTO> dto) {
         ResponseWrapper<LibraryMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -529,7 +531,7 @@ public abstract class AbstractLibraryMemberResource {
         }
         else
             rt.set(changeRoleByUserIdAndId(userId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -555,19 +557,19 @@ public abstract class AbstractLibraryMemberResource {
     *
     * @param userId userId
     * @param dto dto
-    * @return ResponseEntity<LibraryMemberDTO>
+    * @return Mono<ResponseEntity<LibraryMemberDTO>>
     */
     @ApiOperation(value = "create_library_member", tags = {"测试库成员" },  notes = "LibraryMember-create_library_member ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-LibraryMember-create_library_member-all') or hasPermission('user',#userId,this.libraryMemberDtoMapping.toDomain(#dto),'ibizplm-LibraryMember-create_library_member')")
     @PostMapping("users/{userId}/library_members/create_library_member")
-    public ResponseEntity<ResponseWrapper<LibraryMemberDTO>> createLibraryMemberByUserId
+    public Mono<ResponseEntity<ResponseWrapper<LibraryMemberDTO>>>createLibraryMemberByUserId
             (@PathVariable("userId") String userId, @Validated @RequestBody RequestWrapper<LibraryMemberDTO> dto) {
         ResponseWrapper<LibraryMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(createLibraryMemberByUserId(userId, item)));
         else
             rt.set(createLibraryMemberByUserId(userId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -592,19 +594,19 @@ public abstract class AbstractLibraryMemberResource {
     *
     * @param userId userId
     * @param dto dto
-    * @return ResponseEntity<LibraryMemberDTO>
+    * @return Mono<ResponseEntity<LibraryMemberDTO>>
     */
     @ApiOperation(value = "保存Save", tags = {"测试库成员" },  notes = "LibraryMember-Save ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-LibraryMember-Save-all') or hasPermission('user',#userId,this.libraryMemberDtoMapping.toDomain(#dto),'ibizplm-LibraryMember-Save')")
     @PostMapping("users/{userId}/library_members/save")
-    public ResponseEntity<ResponseWrapper<LibraryMemberDTO>> saveByUserId
+    public Mono<ResponseEntity<ResponseWrapper<LibraryMemberDTO>>>saveByUserId
             (@PathVariable("userId") String userId, @Validated @RequestBody RequestWrapper<LibraryMemberDTO> dto) {
         ResponseWrapper<LibraryMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(saveByUserId(userId, item)));
         else
             rt.set(saveByUserId(userId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -630,15 +632,15 @@ public abstract class AbstractLibraryMemberResource {
     * 
     *
     * @param id id
-    * @return ResponseEntity<LibraryMemberDTO>
+    * @return Mono<ResponseEntity<LibraryMemberDTO>>
     */
     @ApiOperation(value = "获取Get", tags = {"测试库成员" },  notes = "LibraryMember-Get ")
-    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-LibraryMember-Get-all')  or hasPermission(this.libraryMemberDtoMapping.toDomain(returnObject.body),'ibizplm-LibraryMember-Get')")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-LibraryMember-Get-all')  or hasPermission(this.libraryMemberDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-LibraryMember-Get')")
     @GetMapping("library_members/{id}")
-    public ResponseEntity<LibraryMemberDTO> getById
+    public Mono<ResponseEntity<LibraryMemberDTO>> getById
             (@PathVariable("id") String id) {
         LibraryMember rt = libraryMemberService.get(id);
-        return ResponseEntity.status(HttpStatus.OK).body(libraryMemberDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(libraryMemberDtoMapping.toDto(rt)));
     }
 
     /**
@@ -646,15 +648,15 @@ public abstract class AbstractLibraryMemberResource {
     * 
     *
     * @param id id
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @ApiOperation(value = "删除Remove", tags = {"测试库成员" },  notes = "LibraryMember-Remove ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-LibraryMember-Remove-all') or hasPermission(this.libraryMemberService.get(#id),'ibizplm-LibraryMember-Remove')")
     @DeleteMapping("library_members/{id}")
-    public ResponseEntity<Boolean> removeById
+    public Mono<ResponseEntity<Boolean>> removeById
             (@PathVariable("id") String id) {
         Boolean rt = libraryMemberService.remove(id);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -662,15 +664,15 @@ public abstract class AbstractLibraryMemberResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<Integer>
+    * @return Mono<ResponseEntity<Integer>>
     */
     @ApiOperation(value = "校验CheckKey", tags = {"测试库成员" },  notes = "LibraryMember-CheckKey ")
     @PostMapping("library_members/check_key")
-    public ResponseEntity<Integer> checkKey
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKey
             (@Validated @RequestBody LibraryMemberDTO dto) {
         LibraryMember domain = libraryMemberDtoMapping.toDomain(dto);
-        Integer rt = libraryMemberService.checkKey(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        CheckKeyStatus rt = libraryMemberService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -678,15 +680,15 @@ public abstract class AbstractLibraryMemberResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<LibraryMemberDTO>
+    * @return Mono<ResponseEntity<LibraryMemberDTO>>
     */
     @ApiOperation(value = "草稿GetDraft", tags = {"测试库成员" },  notes = "LibraryMember-GetDraft ")
     @GetMapping("library_members/get_draft")
-    public ResponseEntity<LibraryMemberDTO> getDraft
+    public Mono<ResponseEntity<LibraryMemberDTO>> getDraft
             (@SpringQueryMap LibraryMemberDTO dto) {
         LibraryMember domain = libraryMemberDtoMapping.toDomain(dto);
         LibraryMember rt = libraryMemberService.getDraft(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(libraryMemberDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(libraryMemberDtoMapping.toDto(rt)));
     }
 
     /**
@@ -694,21 +696,21 @@ public abstract class AbstractLibraryMemberResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<LibraryMemberDTO>>
+    * @return Mono<ResponseEntity<List<LibraryMemberDTO>>>
     */
     @ApiOperation(value = "查询fetch_cur_library_member", tags = {"测试库成员" },  notes = "LibraryMember-fetch_cur_library_member ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-LibraryMember-fetch_cur_library_member-all') or hasPermission(#dto,'ibizplm-LibraryMember-fetch_cur_library_member')")
     @PostMapping("library_members/fetch_cur_library_member")
-    public ResponseEntity<List<LibraryMemberDTO>> fetchCurLibraryMember
+    public Mono<ResponseEntity<List<LibraryMemberDTO>>> fetchCurLibraryMember
             (@Validated @RequestBody LibraryMemberFilterDTO dto) {
         LibraryMemberSearchContext context = libraryMemberFilterDtoMapping.toDomain(dto);
         Page<LibraryMember> domains = libraryMemberService.fetchCurLibraryMember(context) ;
         List<LibraryMemberDTO> list = libraryMemberDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -716,21 +718,21 @@ public abstract class AbstractLibraryMemberResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<LibraryMemberDTO>>
+    * @return Mono<ResponseEntity<List<LibraryMemberDTO>>>
     */
     @ApiOperation(value = "查询fetch_default", tags = {"测试库成员" },  notes = "LibraryMember-fetch_default ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-LibraryMember-fetch_default-all') or hasPermission(#dto,'ibizplm-LibraryMember-fetch_default')")
     @PostMapping("library_members/fetch_default")
-    public ResponseEntity<List<LibraryMemberDTO>> fetchDefault
+    public Mono<ResponseEntity<List<LibraryMemberDTO>>> fetchDefault
             (@Validated @RequestBody LibraryMemberFilterDTO dto) {
         LibraryMemberSearchContext context = libraryMemberFilterDtoMapping.toDomain(dto);
         Page<LibraryMember> domains = libraryMemberService.fetchDefault(context) ;
         List<LibraryMemberDTO> list = libraryMemberDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -739,15 +741,15 @@ public abstract class AbstractLibraryMemberResource {
     *
     * @param libraryId libraryId
     * @param id id
-    * @return ResponseEntity<LibraryMemberDTO>
+    * @return Mono<ResponseEntity<LibraryMemberDTO>>
     */
     @ApiOperation(value = "获取Get", tags = {"测试库成员" },  notes = "LibraryMember-Get ")
-    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-LibraryMember-Get-all')  or hasPermission('library',#libraryId,this.libraryMemberDtoMapping.toDomain(returnObject.body),'ibizplm-LibraryMember-Get')")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-LibraryMember-Get-all')  or hasPermission('library',#libraryId,this.libraryMemberDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-LibraryMember-Get')")
     @GetMapping("libraries/{libraryId}/library_members/{id}")
-    public ResponseEntity<LibraryMemberDTO> getByLibraryIdAndId
+    public Mono<ResponseEntity<LibraryMemberDTO>> getByLibraryIdAndId
             (@PathVariable("libraryId") String libraryId, @PathVariable("id") String id) {
         LibraryMember rt = libraryMemberService.get(id);
-        return ResponseEntity.status(HttpStatus.OK).body(libraryMemberDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(libraryMemberDtoMapping.toDto(rt)));
     }
 
     /**
@@ -756,15 +758,15 @@ public abstract class AbstractLibraryMemberResource {
     *
     * @param libraryId libraryId
     * @param id id
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @ApiOperation(value = "删除Remove", tags = {"测试库成员" },  notes = "LibraryMember-Remove ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-LibraryMember-Remove-all') or hasPermission('library',#libraryId,this.libraryMemberService.get(#id),'ibizplm-LibraryMember-Remove')")
     @DeleteMapping("libraries/{libraryId}/library_members/{id}")
-    public ResponseEntity<Boolean> removeByLibraryIdAndId
+    public Mono<ResponseEntity<Boolean>> removeByLibraryIdAndId
             (@PathVariable("libraryId") String libraryId, @PathVariable("id") String id) {
         Boolean rt = libraryMemberService.remove(id);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -773,16 +775,16 @@ public abstract class AbstractLibraryMemberResource {
     *
     * @param libraryId libraryId
     * @param dto dto
-    * @return ResponseEntity<Integer>
+    * @return Mono<ResponseEntity<Integer>>
     */
     @ApiOperation(value = "校验CheckKey", tags = {"测试库成员" },  notes = "LibraryMember-CheckKey ")
     @PostMapping("libraries/{libraryId}/library_members/check_key")
-    public ResponseEntity<Integer> checkKeyByLibraryId
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKeyByLibraryId
             (@PathVariable("libraryId") String libraryId, @Validated @RequestBody LibraryMemberDTO dto) {
         LibraryMember domain = libraryMemberDtoMapping.toDomain(dto);
         domain.setLibraryId(libraryId);
-        Integer rt = libraryMemberService.checkKey(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        CheckKeyStatus rt = libraryMemberService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -791,16 +793,16 @@ public abstract class AbstractLibraryMemberResource {
     *
     * @param libraryId libraryId
     * @param dto dto
-    * @return ResponseEntity<LibraryMemberDTO>
+    * @return Mono<ResponseEntity<LibraryMemberDTO>>
     */
     @ApiOperation(value = "草稿GetDraft", tags = {"测试库成员" },  notes = "LibraryMember-GetDraft ")
     @GetMapping("libraries/{libraryId}/library_members/get_draft")
-    public ResponseEntity<LibraryMemberDTO> getDraftByLibraryId
+    public Mono<ResponseEntity<LibraryMemberDTO>> getDraftByLibraryId
             (@PathVariable("libraryId") String libraryId, @SpringQueryMap LibraryMemberDTO dto) {
         LibraryMember domain = libraryMemberDtoMapping.toDomain(dto);
         domain.setLibraryId(libraryId);
         LibraryMember rt = libraryMemberService.getDraft(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(libraryMemberDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(libraryMemberDtoMapping.toDto(rt)));
     }
 
     /**
@@ -809,22 +811,22 @@ public abstract class AbstractLibraryMemberResource {
     *
     * @param libraryId libraryId
     * @param dto dto
-    * @return ResponseEntity<List<LibraryMemberDTO>>
+    * @return Mono<ResponseEntity<List<LibraryMemberDTO>>>
     */
     @ApiOperation(value = "查询fetch_cur_library_member", tags = {"测试库成员" },  notes = "LibraryMember-fetch_cur_library_member ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-LibraryMember-fetch_cur_library_member-all') or hasPermission('library',#libraryId,#dto,'ibizplm-LibraryMember-fetch_cur_library_member')")
     @PostMapping("libraries/{libraryId}/library_members/fetch_cur_library_member")
-    public ResponseEntity<List<LibraryMemberDTO>> fetchCurLibraryMemberByLibraryId
+    public Mono<ResponseEntity<List<LibraryMemberDTO>>> fetchCurLibraryMemberByLibraryId
             (@PathVariable("libraryId") String libraryId, @Validated @RequestBody LibraryMemberFilterDTO dto) {
         dto.setLibraryIdEQ(libraryId);
         LibraryMemberSearchContext context = libraryMemberFilterDtoMapping.toDomain(dto);
         Page<LibraryMember> domains = libraryMemberService.fetchCurLibraryMember(context) ;
         List<LibraryMemberDTO> list = libraryMemberDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -833,22 +835,22 @@ public abstract class AbstractLibraryMemberResource {
     *
     * @param libraryId libraryId
     * @param dto dto
-    * @return ResponseEntity<List<LibraryMemberDTO>>
+    * @return Mono<ResponseEntity<List<LibraryMemberDTO>>>
     */
     @ApiOperation(value = "查询fetch_default", tags = {"测试库成员" },  notes = "LibraryMember-fetch_default ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-LibraryMember-fetch_default-all') or hasPermission('library',#libraryId,#dto,'ibizplm-LibraryMember-fetch_default')")
     @PostMapping("libraries/{libraryId}/library_members/fetch_default")
-    public ResponseEntity<List<LibraryMemberDTO>> fetchDefaultByLibraryId
+    public Mono<ResponseEntity<List<LibraryMemberDTO>>> fetchDefaultByLibraryId
             (@PathVariable("libraryId") String libraryId, @Validated @RequestBody LibraryMemberFilterDTO dto) {
         dto.setLibraryIdEQ(libraryId);
         LibraryMemberSearchContext context = libraryMemberFilterDtoMapping.toDomain(dto);
         Page<LibraryMember> domains = libraryMemberService.fetchDefault(context) ;
         List<LibraryMemberDTO> list = libraryMemberDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -857,15 +859,15 @@ public abstract class AbstractLibraryMemberResource {
     *
     * @param userId userId
     * @param id id
-    * @return ResponseEntity<LibraryMemberDTO>
+    * @return Mono<ResponseEntity<LibraryMemberDTO>>
     */
     @ApiOperation(value = "获取Get", tags = {"测试库成员" },  notes = "LibraryMember-Get ")
-    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-LibraryMember-Get-all')  or hasPermission('user',#userId,this.libraryMemberDtoMapping.toDomain(returnObject.body),'ibizplm-LibraryMember-Get')")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-LibraryMember-Get-all')  or hasPermission('user',#userId,this.libraryMemberDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-LibraryMember-Get')")
     @GetMapping("users/{userId}/library_members/{id}")
-    public ResponseEntity<LibraryMemberDTO> getByUserIdAndId
+    public Mono<ResponseEntity<LibraryMemberDTO>> getByUserIdAndId
             (@PathVariable("userId") String userId, @PathVariable("id") String id) {
         LibraryMember rt = libraryMemberService.get(id);
-        return ResponseEntity.status(HttpStatus.OK).body(libraryMemberDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(libraryMemberDtoMapping.toDto(rt)));
     }
 
     /**
@@ -874,15 +876,15 @@ public abstract class AbstractLibraryMemberResource {
     *
     * @param userId userId
     * @param id id
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @ApiOperation(value = "删除Remove", tags = {"测试库成员" },  notes = "LibraryMember-Remove ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-LibraryMember-Remove-all') or hasPermission('user',#userId,this.libraryMemberService.get(#id),'ibizplm-LibraryMember-Remove')")
     @DeleteMapping("users/{userId}/library_members/{id}")
-    public ResponseEntity<Boolean> removeByUserIdAndId
+    public Mono<ResponseEntity<Boolean>> removeByUserIdAndId
             (@PathVariable("userId") String userId, @PathVariable("id") String id) {
         Boolean rt = libraryMemberService.remove(id);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -891,16 +893,16 @@ public abstract class AbstractLibraryMemberResource {
     *
     * @param userId userId
     * @param dto dto
-    * @return ResponseEntity<Integer>
+    * @return Mono<ResponseEntity<Integer>>
     */
     @ApiOperation(value = "校验CheckKey", tags = {"测试库成员" },  notes = "LibraryMember-CheckKey ")
     @PostMapping("users/{userId}/library_members/check_key")
-    public ResponseEntity<Integer> checkKeyByUserId
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKeyByUserId
             (@PathVariable("userId") String userId, @Validated @RequestBody LibraryMemberDTO dto) {
         LibraryMember domain = libraryMemberDtoMapping.toDomain(dto);
         domain.setUserId(userId);
-        Integer rt = libraryMemberService.checkKey(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        CheckKeyStatus rt = libraryMemberService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -909,16 +911,16 @@ public abstract class AbstractLibraryMemberResource {
     *
     * @param userId userId
     * @param dto dto
-    * @return ResponseEntity<LibraryMemberDTO>
+    * @return Mono<ResponseEntity<LibraryMemberDTO>>
     */
     @ApiOperation(value = "草稿GetDraft", tags = {"测试库成员" },  notes = "LibraryMember-GetDraft ")
     @GetMapping("users/{userId}/library_members/get_draft")
-    public ResponseEntity<LibraryMemberDTO> getDraftByUserId
+    public Mono<ResponseEntity<LibraryMemberDTO>> getDraftByUserId
             (@PathVariable("userId") String userId, @SpringQueryMap LibraryMemberDTO dto) {
         LibraryMember domain = libraryMemberDtoMapping.toDomain(dto);
         domain.setUserId(userId);
         LibraryMember rt = libraryMemberService.getDraft(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(libraryMemberDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(libraryMemberDtoMapping.toDto(rt)));
     }
 
     /**
@@ -927,22 +929,22 @@ public abstract class AbstractLibraryMemberResource {
     *
     * @param userId userId
     * @param dto dto
-    * @return ResponseEntity<List<LibraryMemberDTO>>
+    * @return Mono<ResponseEntity<List<LibraryMemberDTO>>>
     */
     @ApiOperation(value = "查询fetch_cur_library_member", tags = {"测试库成员" },  notes = "LibraryMember-fetch_cur_library_member ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-LibraryMember-fetch_cur_library_member-all') or hasPermission('user',#userId,#dto,'ibizplm-LibraryMember-fetch_cur_library_member')")
     @PostMapping("users/{userId}/library_members/fetch_cur_library_member")
-    public ResponseEntity<List<LibraryMemberDTO>> fetchCurLibraryMemberByUserId
+    public Mono<ResponseEntity<List<LibraryMemberDTO>>> fetchCurLibraryMemberByUserId
             (@PathVariable("userId") String userId, @Validated @RequestBody LibraryMemberFilterDTO dto) {
         dto.setUserIdEQ(userId);
         LibraryMemberSearchContext context = libraryMemberFilterDtoMapping.toDomain(dto);
         Page<LibraryMember> domains = libraryMemberService.fetchCurLibraryMember(context) ;
         List<LibraryMemberDTO> list = libraryMemberDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -951,88 +953,88 @@ public abstract class AbstractLibraryMemberResource {
     *
     * @param userId userId
     * @param dto dto
-    * @return ResponseEntity<List<LibraryMemberDTO>>
+    * @return Mono<ResponseEntity<List<LibraryMemberDTO>>>
     */
     @ApiOperation(value = "查询fetch_default", tags = {"测试库成员" },  notes = "LibraryMember-fetch_default ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-LibraryMember-fetch_default-all') or hasPermission('user',#userId,#dto,'ibizplm-LibraryMember-fetch_default')")
     @PostMapping("users/{userId}/library_members/fetch_default")
-    public ResponseEntity<List<LibraryMemberDTO>> fetchDefaultByUserId
+    public Mono<ResponseEntity<List<LibraryMemberDTO>>> fetchDefaultByUserId
             (@PathVariable("userId") String userId, @Validated @RequestBody LibraryMemberFilterDTO dto) {
         dto.setUserIdEQ(userId);
         LibraryMemberSearchContext context = libraryMemberFilterDtoMapping.toDomain(dto);
         Page<LibraryMember> domains = libraryMemberService.fetchDefault(context) ;
         List<LibraryMemberDTO> list = libraryMemberDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
 
     /**
     * 批量新建测试库成员
     * @param dtos
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-LibraryMember-Create-all')")
     @ApiOperation(value = "批量新建测试库成员", tags = {"测试库成员" },  notes = "批量新建测试库成员")
 	@PostMapping("library_members/batch")
-    public ResponseEntity<Boolean> createBatch(@RequestBody List<LibraryMemberDTO> dtos) {
+    public Mono<ResponseEntity<Boolean>> createBatch(@RequestBody List<LibraryMemberDTO> dtos) {
         libraryMemberService.create(libraryMemberDtoMapping.toDomain(dtos));
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量删除测试库成员
     * @param ids ids
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-LibraryMember-Remove-all')")
     @ApiOperation(value = "批量删除测试库成员", tags = {"测试库成员" },  notes = "批量删除测试库成员")
 	@DeleteMapping("library_members/batch")
-    public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
+    public Mono<ResponseEntity<Boolean>> removeBatch(@RequestBody List<String> ids) {
         libraryMemberService.remove(ids);
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量更新测试库成员
     * @param dtos
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-LibraryMember-Update-all')")
     @ApiOperation(value = "批量更新测试库成员", tags = {"测试库成员" },  notes = "批量更新测试库成员")
 	@PutMapping("library_members/batch")
-    public ResponseEntity<Boolean> updateBatch(@RequestBody List<LibraryMemberDTO> dtos) {
+    public Mono<ResponseEntity<Boolean>> updateBatch(@RequestBody List<LibraryMemberDTO> dtos) {
         libraryMemberService.update(libraryMemberDtoMapping.toDomain(dtos));
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量保存测试库成员
     * @param dtos
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-LibraryMember-Save-all')")
     @ApiOperation(value = "批量保存测试库成员", tags = {"测试库成员" },  notes = "批量保存测试库成员")
 	@PostMapping("library_members/savebatch")
-    public ResponseEntity<Boolean> saveBatch(@RequestBody List<LibraryMemberDTO> dtos) {
+    public Mono<ResponseEntity<Boolean>> saveBatch(@RequestBody List<LibraryMemberDTO> dtos) {
         libraryMemberService.save(libraryMemberDtoMapping.toDomain(dtos));
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量导入测试库成员
     * @param config 导入模式
     * @param ignoreError 导入中忽略错误
-    * @return ResponseEntity<ImportResult>
+    * @return Mono<ResponseEntity<ImportResult>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-LibraryMember-Save-all')")
     @ApiOperation(value = "批量导入测试库成员", tags = {"测试库成员" },  notes = "批量导入测试库成员")
 	@PostMapping("library_members/import")
-    public ResponseEntity<ImportResult> importData(@RequestParam(value = "config" , required = false) String config ,@RequestParam(value = "ignoreerror", required = false, defaultValue = "true") Boolean ignoreError ,@RequestBody List<LibraryMemberDTO> dtos) {
-        return  ResponseEntity.status(HttpStatus.OK).body(libraryMemberService.importData(config,ignoreError,libraryMemberDtoMapping.toDomain(dtos)));
+    public Mono<ResponseEntity<ImportResult>> importData(@RequestParam(value = "config" , required = false) String config ,@RequestParam(value = "ignoreerror", required = false, defaultValue = "true") Boolean ignoreError ,@RequestBody List<LibraryMemberDTO> dtos) {
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(libraryMemberService.importData(config,ignoreError,libraryMemberDtoMapping.toDomain(dtos))));
     }
 
 }

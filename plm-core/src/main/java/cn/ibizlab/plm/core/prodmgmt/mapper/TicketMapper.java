@@ -81,6 +81,44 @@ public interface TicketMapper extends BaseMapper<Ticket> {
     List<Ticket> listArchived(@Param("ctx") TicketSearchContext context, @Param("ew") Wrapper<Ticket> wrapper);
 
     /**
+     * 数据集合bi_detail分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Ticket> searchBiDetail(IPage<Ticket> page, @Param("ctx") TicketSearchContext context, @Param("ew") Wrapper<Ticket> wrapper);
+    
+    /**
+     * 数据集合bi_detail查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Ticket> listBiDetail(@Param("ctx") TicketSearchContext context, @Param("ew") Wrapper<Ticket> wrapper);
+
+    /**
+     * 数据集合bi_search分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Ticket> searchBiSearch(IPage<Ticket> page, @Param("ctx") TicketSearchContext context, @Param("ew") Wrapper<Ticket> wrapper);
+    
+    /**
+     * 数据集合bi_search查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Ticket> listBiSearch(@Param("ctx") TicketSearchContext context, @Param("ew") Wrapper<Ticket> wrapper);
+
+    /**
      * 数据集合comment_notify_assignee分页查询
      * 
      * @param page
@@ -328,6 +366,25 @@ public interface TicketMapper extends BaseMapper<Ticket> {
     List<Ticket> listNotifyAssignee(@Param("ctx") TicketSearchContext context, @Param("ew") Wrapper<Ticket> wrapper);
 
     /**
+     * 数据集合reader分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Ticket> searchReader(IPage<Ticket> page, @Param("ctx") TicketSearchContext context, @Param("ew") Wrapper<Ticket> wrapper);
+    
+    /**
+     * 数据集合reader查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Ticket> listReader(@Param("ctx") TicketSearchContext context, @Param("ew") Wrapper<Ticket> wrapper);
+
+    /**
      * 数据集合recent_ticket分页查询
      * 
      * @param page
@@ -385,6 +442,25 @@ public interface TicketMapper extends BaseMapper<Ticket> {
     List<Ticket> listTicketRelationTicket(@Param("ctx") TicketSearchContext context, @Param("ew") Wrapper<Ticket> wrapper);
 
     /**
+     * 数据集合ticket_state_pie_chart分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Ticket> searchTicketStatePieChart(IPage<Ticket> page, @Param("ctx") TicketSearchContext context, @Param("ew") Wrapper<Ticket> wrapper);
+    
+    /**
+     * 数据集合ticket_state_pie_chart查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Ticket> listTicketStatePieChart(@Param("ctx") TicketSearchContext context, @Param("ew") Wrapper<Ticket> wrapper);
+
+    /**
      * 数据集合work_item_relation_ticket分页查询
      * 
      * @param page
@@ -426,6 +502,25 @@ public interface TicketMapper extends BaseMapper<Ticket> {
     * @return
     */
     List<Ticket> findByAssigneeId(@Param("assigneeIds") List<String> assigneeIds);
+
+    /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Ticket> searchView(IPage<Ticket> page, @Param("ctx") TicketSearchContext context, @Param("ew") Wrapper<Ticket> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Ticket> listView(@Param("ctx") TicketSearchContext context, @Param("ew") Wrapper<Ticket> wrapper);
 
     /**
      * 主键查询

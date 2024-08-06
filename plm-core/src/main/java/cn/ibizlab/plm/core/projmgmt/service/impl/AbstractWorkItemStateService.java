@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItemState;
@@ -110,14 +111,14 @@ public abstract class AbstractWorkItemStateService extends ServiceImpl<WorkItemS
         return et;
     }
 	
-    public Integer checkKey(WorkItemState et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<WorkItemState>lambdaQuery().eq(WorkItemState::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(WorkItemState et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<WorkItemState>lambdaQuery().eq(WorkItemState::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(WorkItemState et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -160,6 +161,10 @@ public abstract class AbstractWorkItemStateService extends ServiceImpl<WorkItemS
         return list;	
 	}
 
+	public List<WorkItemState> findByWorkItemType(WorkItemType workItemType){
+        List<WorkItemState> list = findByWorkItemTypeId(Arrays.asList(workItemType.getId()));
+		return list;
+	}
 	public boolean removeByWorkItemTypeId(String workItemTypeId){
         return this.remove(Wrappers.<WorkItemState>lambdaQuery().eq(WorkItemState::getWorkItemTypeId,workItemTypeId));
 	}
@@ -170,8 +175,8 @@ public abstract class AbstractWorkItemStateService extends ServiceImpl<WorkItemS
 	public boolean saveByWorkItemType(WorkItemType workItemType, List<WorkItemState> list){
         if(list==null)
             return true;
-        Map<String,WorkItemState> before = findByWorkItemTypeId(workItemType.getId()).stream().collect(Collectors.toMap(WorkItemState::getId,e->e));
 
+        Map<String,WorkItemState> before = findByWorkItemType(workItemType).stream().collect(Collectors.toMap(WorkItemState::getId,e->e));
         List<WorkItemState> update = new ArrayList<>();
         List<WorkItemState> create = new ArrayList<>();
 
@@ -195,6 +200,17 @@ public abstract class AbstractWorkItemStateService extends ServiceImpl<WorkItemS
             return true;
 			
 	}
+   public Page<WorkItemState> fetchView(WorkItemStateSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItemState> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<WorkItemState> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItemState> listView(WorkItemStateSearchContext context) {
+        List<WorkItemState> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(WorkItemState et) {
         if(Entities.WORK_ITEM_TYPE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

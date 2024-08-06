@@ -45,11 +45,19 @@ public class WorkItemStateDTO extends DTOBase implements Serializable {
     private BigDecimal sequence;
 
     /**
+     * 是否系统类型
+     */
+    @JsonProperty("is_system")
+    @JSONField(name = "is_system")
+    @ApiModelProperty(value = "是否系统类型", position = 1)
+    private Integer isSystem;
+
+    /**
      * 颜色
      */
     @JsonProperty("color")
     @JSONField(name = "color")
-    @ApiModelProperty(value = "颜色", position = 1)
+    @ApiModelProperty(value = "颜色", position = 2)
     private String color;
 
     /**
@@ -57,7 +65,7 @@ public class WorkItemStateDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("style")
     @JSONField(name = "style")
-    @ApiModelProperty(value = "样式表", position = 2)
+    @ApiModelProperty(value = "样式表", position = 3)
     private String style;
 
     /**
@@ -65,7 +73,7 @@ public class WorkItemStateDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("type")
     @JSONField(name = "type")
-    @ApiModelProperty(value = "状态类型", position = 3)
+    @ApiModelProperty(value = "状态类型", position = 4)
     private String type;
 
     /**
@@ -73,7 +81,7 @@ public class WorkItemStateDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 4)
+    @ApiModelProperty(value = "建立人", position = 5)
     private String createMan;
 
     /**
@@ -82,7 +90,7 @@ public class WorkItemStateDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 5)
+    @ApiModelProperty(value = "建立时间", position = 6)
     private Date createTime;
 
     /**
@@ -90,7 +98,7 @@ public class WorkItemStateDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 6)
+    @ApiModelProperty(value = "标识", position = 7)
     private String id;
 
     /**
@@ -98,7 +106,7 @@ public class WorkItemStateDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 7)
+    @ApiModelProperty(value = "名称", position = 8)
     private String name;
 
     /**
@@ -106,7 +114,7 @@ public class WorkItemStateDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 8)
+    @ApiModelProperty(value = "更新人", position = 9)
     private String updateMan;
 
     /**
@@ -115,7 +123,7 @@ public class WorkItemStateDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 9)
+    @ApiModelProperty(value = "更新时间", position = 10)
     private Date updateTime;
 
     /**
@@ -123,7 +131,7 @@ public class WorkItemStateDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("work_item_type_id")
     @JSONField(name = "work_item_type_id")
-    @ApiModelProperty(value = "工作项类型标识", position = 10)
+    @ApiModelProperty(value = "工作项类型标识", position = 11)
     private String workItemTypeId;
 
 
@@ -133,6 +141,15 @@ public class WorkItemStateDTO extends DTOBase implements Serializable {
     public WorkItemStateDTO setSequence(BigDecimal sequence) {
         this.sequence = sequence;
         this.modify("sequence", sequence);
+        return this;
+    }
+
+    /**
+     * 设置 [是否系统类型]
+     */
+    public WorkItemStateDTO setIsSystem(Integer isSystem) {
+        this.isSystem = isSystem;
+        this.modify("is_system", isSystem);
         return this;
     }
 

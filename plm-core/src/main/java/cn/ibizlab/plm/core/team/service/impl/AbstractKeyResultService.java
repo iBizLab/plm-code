@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.team.domain.KeyResult;
@@ -109,14 +110,14 @@ public abstract class AbstractKeyResultService extends ServiceImpl<KeyResultMapp
         return et;
     }
 	
-    public Integer checkKey(KeyResult et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<KeyResult>lambdaQuery().eq(KeyResult::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(KeyResult et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<KeyResult>lambdaQuery().eq(KeyResult::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(KeyResult et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -159,6 +160,10 @@ public abstract class AbstractKeyResultService extends ServiceImpl<KeyResultMapp
         return list;	
 	}
 
+	public List<KeyResult> findByObjective(Objective objective){
+        List<KeyResult> list = findByObjectiveId(Arrays.asList(objective.getId()));
+		return list;
+	}
 	public boolean removeByObjectiveId(String objectiveId){
         return this.remove(Wrappers.<KeyResult>lambdaQuery().eq(KeyResult::getObjectiveId,objectiveId));
 	}
@@ -169,8 +174,8 @@ public abstract class AbstractKeyResultService extends ServiceImpl<KeyResultMapp
 	public boolean saveByObjective(Objective objective, List<KeyResult> list){
         if(list==null)
             return true;
-        Map<String,KeyResult> before = findByObjectiveId(objective.getId()).stream().collect(Collectors.toMap(KeyResult::getId,e->e));
 
+        Map<String,KeyResult> before = findByObjective(objective).stream().collect(Collectors.toMap(KeyResult::getId,e->e));
         List<KeyResult> update = new ArrayList<>();
         List<KeyResult> create = new ArrayList<>();
 
@@ -194,6 +199,17 @@ public abstract class AbstractKeyResultService extends ServiceImpl<KeyResultMapp
             return true;
 			
 	}
+   public Page<KeyResult> fetchView(KeyResultSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<KeyResult> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<KeyResult> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<KeyResult> listView(KeyResultSearchContext context) {
+        List<KeyResult> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(KeyResult et) {
         if(Entities.OBJECTIVE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

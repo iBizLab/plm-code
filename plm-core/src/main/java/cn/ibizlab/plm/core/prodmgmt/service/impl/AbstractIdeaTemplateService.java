@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.prodmgmt.domain.IdeaTemplate;
@@ -109,14 +110,14 @@ public abstract class AbstractIdeaTemplateService extends ServiceImpl<IdeaTempla
         return et;
     }
 	
-    public Integer checkKey(IdeaTemplate et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<IdeaTemplate>lambdaQuery().eq(IdeaTemplate::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(IdeaTemplate et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<IdeaTemplate>lambdaQuery().eq(IdeaTemplate::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(IdeaTemplate et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -159,6 +160,10 @@ public abstract class AbstractIdeaTemplateService extends ServiceImpl<IdeaTempla
         return list;	
 	}
 
+	public List<IdeaTemplate> findByCategory(Category category){
+        List<IdeaTemplate> list = findByCategoryId(Arrays.asList(category.getId()));
+		return list;
+	}
 	public boolean removeByCategoryId(String categoryId){
         return this.remove(Wrappers.<IdeaTemplate>lambdaQuery().eq(IdeaTemplate::getCategoryId,categoryId));
 	}
@@ -169,8 +174,8 @@ public abstract class AbstractIdeaTemplateService extends ServiceImpl<IdeaTempla
 	public boolean saveByCategory(Category category, List<IdeaTemplate> list){
         if(list==null)
             return true;
-        Map<String,IdeaTemplate> before = findByCategoryId(category.getId()).stream().collect(Collectors.toMap(IdeaTemplate::getId,e->e));
 
+        Map<String,IdeaTemplate> before = findByCategory(category).stream().collect(Collectors.toMap(IdeaTemplate::getId,e->e));
         List<IdeaTemplate> update = new ArrayList<>();
         List<IdeaTemplate> create = new ArrayList<>();
 
@@ -199,6 +204,10 @@ public abstract class AbstractIdeaTemplateService extends ServiceImpl<IdeaTempla
         return list;	
 	}
 
+	public List<IdeaTemplate> findByProduct(Product product){
+        List<IdeaTemplate> list = findByProductId(Arrays.asList(product.getId()));
+		return list;
+	}
 	public boolean removeByProductId(String productId){
         return this.remove(Wrappers.<IdeaTemplate>lambdaQuery().eq(IdeaTemplate::getProductId,productId));
 	}
@@ -209,8 +218,8 @@ public abstract class AbstractIdeaTemplateService extends ServiceImpl<IdeaTempla
 	public boolean saveByProduct(Product product, List<IdeaTemplate> list){
         if(list==null)
             return true;
-        Map<String,IdeaTemplate> before = findByProductId(product.getId()).stream().collect(Collectors.toMap(IdeaTemplate::getId,e->e));
 
+        Map<String,IdeaTemplate> before = findByProduct(product).stream().collect(Collectors.toMap(IdeaTemplate::getId,e->e));
         List<IdeaTemplate> update = new ArrayList<>();
         List<IdeaTemplate> create = new ArrayList<>();
 
@@ -234,6 +243,17 @@ public abstract class AbstractIdeaTemplateService extends ServiceImpl<IdeaTempla
             return true;
 			
 	}
+   public Page<IdeaTemplate> fetchView(IdeaTemplateSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<IdeaTemplate> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<IdeaTemplate> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<IdeaTemplate> listView(IdeaTemplateSearchContext context) {
+        List<IdeaTemplate> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(IdeaTemplate et) {
         if(Entities.CATEGORY.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
@@ -244,6 +264,9 @@ public abstract class AbstractIdeaTemplateService extends ServiceImpl<IdeaTempla
                 et.setCategory(category);
             }
             if(!ObjectUtils.isEmpty(category)) {
+                et.setSectionName(category.getSectionName());
+                et.setSectionId(category.getSectionId());
+                et.setCategories(category.getCategories());
                 et.setCategoryId(category.getId());
                 et.setCategoryName(category.getName());
             }
@@ -256,6 +279,7 @@ public abstract class AbstractIdeaTemplateService extends ServiceImpl<IdeaTempla
                 et.setProduct(product);
             }
             if(!ObjectUtils.isEmpty(product)) {
+                et.setProductIdentifier(product.getIdentifier());
                 et.setProductId(product.getId());
                 et.setProductName(product.getName());
             }

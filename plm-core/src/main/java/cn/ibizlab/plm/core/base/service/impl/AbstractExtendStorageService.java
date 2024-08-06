@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.base.domain.ExtendStorage;
@@ -105,16 +106,16 @@ public abstract class AbstractExtendStorageService extends ServiceImpl<ExtendSto
         return et;
     }
 	
-    public Integer checkKey(ExtendStorage et) {
+    public CheckKeyStatus checkKey(ExtendStorage et) {
         if(ObjectUtils.isEmpty(et.getId()))
             et.setId((String)et.getDefaultKey(true));
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ExtendStorage>lambdaQuery().eq(ExtendStorage::getId, et.getId()))>0)?1:0;
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ExtendStorage>lambdaQuery().eq(ExtendStorage::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(ExtendStorage et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -153,6 +154,17 @@ public abstract class AbstractExtendStorageService extends ServiceImpl<ExtendSto
 
    public List<ExtendStorage> listDefault(ExtendStorageSearchContext context) {
         List<ExtendStorage> list = baseMapper.listDefault(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<ExtendStorage> fetchView(ExtendStorageSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ExtendStorage> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<ExtendStorage> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<ExtendStorage> listView(ExtendStorageSearchContext context) {
+        List<ExtendStorage> list = baseMapper.listView(context,context.getSelectCond());
         return list;
    }
 	

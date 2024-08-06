@@ -45,12 +45,12 @@ export default {
       logicType: 'APPUILOGIC',
       builtinAppUILogic: {
         openDataAppView: {
-          refAppViewId: 'plmweb.insight_view_index_view2',
+          refAppViewId: 'plmweb.insight_view_index_view',
         },
         editMode: true,
         appUILogicRefViews: [
           {
-            refAppViewId: 'plmweb.insight_view_index_view2',
+            refAppViewId: 'plmweb.insight_view_index_view',
           },
         ],
         builtinLogic: true,
@@ -72,7 +72,10 @@ export default {
   appViewRefs: [
     {
       realTitle: '效能度量首页',
-      refAppViewId: 'plmweb.insight_view_index_view2',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.INSIGHT_VIEW.INDEX_VIEW_2',
+      },
+      refAppViewId: 'plmweb.insight_view_index_view',
       name: 'EDITDATA',
       id: 'editdata',
     },
@@ -125,8 +128,6 @@ export default {
       columnEnableFilter: 2,
       columnEnableLink: 2,
       groupMode: 'NONE',
-      minorSortDir: 'DESC',
-      minorSortAppDEFieldId: 'update_time',
       degridColumns: [
         {
           clconvertMode: 'NONE',
@@ -412,7 +413,7 @@ export default {
       enablePagingBar: true,
       singleSelect: true,
       fetchControlAction: {
-        appDEMethodId: 'fetch_default',
+        appDEMethodId: 'fetch_main',
         appDataEntityId: 'plmweb.insight_view',
         id: 'fetch',
       },
@@ -422,6 +423,7 @@ export default {
         id: 'remove',
       },
       autoLoad: true,
+      enableItemPrivilege: true,
       showBusyIndicator: true,
       codeName: 'all_grid_view_grid',
       controlType: 'GRID',

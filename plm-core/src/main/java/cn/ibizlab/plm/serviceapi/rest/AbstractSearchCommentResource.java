@@ -23,12 +23,14 @@ import java.util.stream.IntStream;
 import cn.ibizlab.util.domain.ImportResult;
 import cn.ibizlab.util.domain.RequestWrapper;
 import cn.ibizlab.util.domain.ResponseWrapper;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.serviceapi.dto.*;
 import cn.ibizlab.plm.serviceapi.mapping.*;
 import cn.ibizlab.plm.core.base.domain.SearchComment;
 import cn.ibizlab.plm.core.base.service.SearchCommentService;
 import cn.ibizlab.plm.core.base.filter.SearchCommentSearchContext;
 import cn.ibizlab.util.annotation.VersionCheck;
+import reactor.core.publisher.Mono;
 
 /**
  * 实体[SearchComment] rest实现
@@ -55,21 +57,21 @@ public abstract class AbstractSearchCommentResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<SearchCommentDTO>>
+    * @return Mono<ResponseEntity<List<SearchCommentDTO>>>
     */
     @ApiOperation(value = "查询fetch_default", tags = {"评论搜索" },  notes = "SearchComment-fetch_default ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-SearchComment-fetch_default-all') or hasPermission(#dto,'ibizplm-SearchComment-fetch_default')")
     @PostMapping("search_comments/fetch_default")
-    public ResponseEntity<List<SearchCommentDTO>> fetchDefault
+    public Mono<ResponseEntity<List<SearchCommentDTO>>> fetchDefault
             (@Validated @RequestBody SearchCommentFilterDTO dto) {
         SearchCommentSearchContext context = searchCommentFilterDtoMapping.toDomain(dto);
         Page<SearchComment> domains = searchCommentService.fetchDefault(context) ;
         List<SearchCommentDTO> list = searchCommentDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -77,21 +79,21 @@ public abstract class AbstractSearchCommentResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<SearchCommentDTO>>
+    * @return Mono<ResponseEntity<List<SearchCommentDTO>>>
     */
     @ApiOperation(value = "查询fetch_relation", tags = {"评论搜索" },  notes = "SearchComment-fetch_relation ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-SearchComment-fetch_relation-all') or hasPermission(#dto,'ibizplm-SearchComment-fetch_relation')")
     @PostMapping("search_comments/fetch_relation")
-    public ResponseEntity<List<SearchCommentDTO>> fetchRelation
+    public Mono<ResponseEntity<List<SearchCommentDTO>>> fetchRelation
             (@Validated @RequestBody SearchCommentFilterDTO dto) {
         SearchCommentSearchContext context = searchCommentFilterDtoMapping.toDomain(dto);
         Page<SearchComment> domains = searchCommentService.fetchRelation(context) ;
         List<SearchCommentDTO> list = searchCommentDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
 

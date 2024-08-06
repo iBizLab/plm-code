@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.base.domain.SearchAttachment;
@@ -133,14 +134,14 @@ public abstract class AbstractSearchAttachmentService extends ServiceImpl<Search
         return et;
     }
 	
-    public Integer checkKey(SearchAttachment et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<SearchAttachment>lambdaQuery().eq(SearchAttachment::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(SearchAttachment et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<SearchAttachment>lambdaQuery().eq(SearchAttachment::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(SearchAttachment et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -198,6 +199,12 @@ public abstract class AbstractSearchAttachmentService extends ServiceImpl<Search
         return list;	
 	}
 
+	public List<SearchAttachment> findByDerCustomer(Customer customer){
+        List<SearchAttachment> list = this.baseMapper.selectList(Wrappers.<SearchAttachment>lambdaQuery()
+                        .eq(SearchAttachment::getOwnerId, customer.getId())
+                        .eq(SearchAttachment::getOwnerType,"CUSTOMER").isNull(SearchAttachment::getOwnerSubtype));
+		return list;
+	}
 	public boolean removeByOwnerId(String ownerId){
         return this.remove(Wrappers.<SearchAttachment>lambdaQuery().eq(SearchAttachment::getOwnerId,ownerId));
 	}
@@ -208,12 +215,8 @@ public abstract class AbstractSearchAttachmentService extends ServiceImpl<Search
 	public boolean saveByDerCustomer(Customer customer, List<SearchAttachment> list){
         if(list==null)
             return true;
-        Map<String,SearchAttachment> before = this.baseMapper.selectList(Wrappers.<SearchAttachment>lambdaQuery()
-                        .eq(SearchAttachment::getOwnerId, customer.getId())
-                        .eq(SearchAttachment::getOwnerType,"CUSTOMER").isNull(SearchAttachment::getOwnerSubtype))
-                        .stream()
-                        .collect(Collectors.toMap(SearchAttachment::getId,e->e));
 
+        Map<String,SearchAttachment> before = findByDerCustomer(customer).stream().collect(Collectors.toMap(SearchAttachment::getId,e->e));
         List<SearchAttachment> update = new ArrayList<>();
         List<SearchAttachment> create = new ArrayList<>();
 
@@ -237,15 +240,17 @@ public abstract class AbstractSearchAttachmentService extends ServiceImpl<Search
             return true;
 			
 	}
+	public List<SearchAttachment> findByDerIdea(Idea idea){
+        List<SearchAttachment> list = this.baseMapper.selectList(Wrappers.<SearchAttachment>lambdaQuery()
+                        .eq(SearchAttachment::getOwnerId, idea.getId())
+                        .eq(SearchAttachment::getOwnerType,"IDEA").isNull(SearchAttachment::getOwnerSubtype));
+		return list;
+	}
 	public boolean saveByDerIdea(Idea idea, List<SearchAttachment> list){
         if(list==null)
             return true;
-        Map<String,SearchAttachment> before = this.baseMapper.selectList(Wrappers.<SearchAttachment>lambdaQuery()
-                        .eq(SearchAttachment::getOwnerId, idea.getId())
-                        .eq(SearchAttachment::getOwnerType,"IDEA").isNull(SearchAttachment::getOwnerSubtype))
-                        .stream()
-                        .collect(Collectors.toMap(SearchAttachment::getId,e->e));
 
+        Map<String,SearchAttachment> before = findByDerIdea(idea).stream().collect(Collectors.toMap(SearchAttachment::getId,e->e));
         List<SearchAttachment> update = new ArrayList<>();
         List<SearchAttachment> create = new ArrayList<>();
 
@@ -269,15 +274,17 @@ public abstract class AbstractSearchAttachmentService extends ServiceImpl<Search
             return true;
 			
 	}
+	public List<SearchAttachment> findByDerPage(ArticlePage articlePage){
+        List<SearchAttachment> list = this.baseMapper.selectList(Wrappers.<SearchAttachment>lambdaQuery()
+                        .eq(SearchAttachment::getOwnerId, articlePage.getId())
+                        .eq(SearchAttachment::getOwnerType,"PAGE").isNull(SearchAttachment::getOwnerSubtype));
+		return list;
+	}
 	public boolean saveByDerPage(ArticlePage articlePage, List<SearchAttachment> list){
         if(list==null)
             return true;
-        Map<String,SearchAttachment> before = this.baseMapper.selectList(Wrappers.<SearchAttachment>lambdaQuery()
-                        .eq(SearchAttachment::getOwnerId, articlePage.getId())
-                        .eq(SearchAttachment::getOwnerType,"PAGE").isNull(SearchAttachment::getOwnerSubtype))
-                        .stream()
-                        .collect(Collectors.toMap(SearchAttachment::getId,e->e));
 
+        Map<String,SearchAttachment> before = findByDerPage(articlePage).stream().collect(Collectors.toMap(SearchAttachment::getId,e->e));
         List<SearchAttachment> update = new ArrayList<>();
         List<SearchAttachment> create = new ArrayList<>();
 
@@ -301,15 +308,17 @@ public abstract class AbstractSearchAttachmentService extends ServiceImpl<Search
             return true;
 			
 	}
+	public List<SearchAttachment> findByDerTestCase(TestCase testCase){
+        List<SearchAttachment> list = this.baseMapper.selectList(Wrappers.<SearchAttachment>lambdaQuery()
+                        .eq(SearchAttachment::getOwnerId, testCase.getId())
+                        .eq(SearchAttachment::getOwnerType,"TEST_CASE").isNull(SearchAttachment::getOwnerSubtype));
+		return list;
+	}
 	public boolean saveByDerTestCase(TestCase testCase, List<SearchAttachment> list){
         if(list==null)
             return true;
-        Map<String,SearchAttachment> before = this.baseMapper.selectList(Wrappers.<SearchAttachment>lambdaQuery()
-                        .eq(SearchAttachment::getOwnerId, testCase.getId())
-                        .eq(SearchAttachment::getOwnerType,"TEST_CASE").isNull(SearchAttachment::getOwnerSubtype))
-                        .stream()
-                        .collect(Collectors.toMap(SearchAttachment::getId,e->e));
 
+        Map<String,SearchAttachment> before = findByDerTestCase(testCase).stream().collect(Collectors.toMap(SearchAttachment::getId,e->e));
         List<SearchAttachment> update = new ArrayList<>();
         List<SearchAttachment> create = new ArrayList<>();
 
@@ -333,15 +342,17 @@ public abstract class AbstractSearchAttachmentService extends ServiceImpl<Search
             return true;
 			
 	}
+	public List<SearchAttachment> findByDerTicket(Ticket ticket){
+        List<SearchAttachment> list = this.baseMapper.selectList(Wrappers.<SearchAttachment>lambdaQuery()
+                        .eq(SearchAttachment::getOwnerId, ticket.getId())
+                        .eq(SearchAttachment::getOwnerType,"TICKET").isNull(SearchAttachment::getOwnerSubtype));
+		return list;
+	}
 	public boolean saveByDerTicket(Ticket ticket, List<SearchAttachment> list){
         if(list==null)
             return true;
-        Map<String,SearchAttachment> before = this.baseMapper.selectList(Wrappers.<SearchAttachment>lambdaQuery()
-                        .eq(SearchAttachment::getOwnerId, ticket.getId())
-                        .eq(SearchAttachment::getOwnerType,"TICKET").isNull(SearchAttachment::getOwnerSubtype))
-                        .stream()
-                        .collect(Collectors.toMap(SearchAttachment::getId,e->e));
 
+        Map<String,SearchAttachment> before = findByDerTicket(ticket).stream().collect(Collectors.toMap(SearchAttachment::getId,e->e));
         List<SearchAttachment> update = new ArrayList<>();
         List<SearchAttachment> create = new ArrayList<>();
 
@@ -365,15 +376,17 @@ public abstract class AbstractSearchAttachmentService extends ServiceImpl<Search
             return true;
 			
 	}
+	public List<SearchAttachment> findByDerWorkItem(WorkItem workItem){
+        List<SearchAttachment> list = this.baseMapper.selectList(Wrappers.<SearchAttachment>lambdaQuery()
+                        .eq(SearchAttachment::getOwnerId, workItem.getId())
+                        .eq(SearchAttachment::getOwnerType,"WORK_ITEM").isNull(SearchAttachment::getOwnerSubtype));
+		return list;
+	}
 	public boolean saveByDerWorkItem(WorkItem workItem, List<SearchAttachment> list){
         if(list==null)
             return true;
-        Map<String,SearchAttachment> before = this.baseMapper.selectList(Wrappers.<SearchAttachment>lambdaQuery()
-                        .eq(SearchAttachment::getOwnerId, workItem.getId())
-                        .eq(SearchAttachment::getOwnerType,"WORK_ITEM").isNull(SearchAttachment::getOwnerSubtype))
-                        .stream()
-                        .collect(Collectors.toMap(SearchAttachment::getId,e->e));
 
+        Map<String,SearchAttachment> before = findByDerWorkItem(workItem).stream().collect(Collectors.toMap(SearchAttachment::getId,e->e));
         List<SearchAttachment> update = new ArrayList<>();
         List<SearchAttachment> create = new ArrayList<>();
 
@@ -397,6 +410,17 @@ public abstract class AbstractSearchAttachmentService extends ServiceImpl<Search
             return true;
 			
 	}
+   public Page<SearchAttachment> fetchView(SearchAttachmentSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<SearchAttachment> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<SearchAttachment> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<SearchAttachment> listView(SearchAttachmentSearchContext context) {
+        List<SearchAttachment> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(SearchAttachment et) {
         if(Entities.CUSTOMER.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

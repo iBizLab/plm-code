@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.testmgmt.domain.TestPlan;
 import cn.ibizlab.plm.core.testmgmt.filter.TestPlanSearchContext;
 import cn.ibizlab.plm.core.testmgmt.domain.Library;
@@ -144,7 +145,7 @@ public interface TestPlanService extends IService<TestPlan> {
     * @param et
     * @return
     */
-    Integer checkKey(TestPlan et);
+    CheckKeyStatus checkKey(TestPlan et);
 
     /**
     * 保存
@@ -215,6 +216,38 @@ public interface TestPlanService extends IService<TestPlan> {
     * @return
     */
     List<TestPlan> listDefault(TestPlanSearchContext context);
+
+    /**
+    * fetchBiDetail
+    * 
+    * @param context
+    * @return
+    */
+    Page<TestPlan> fetchBiDetail(TestPlanSearchContext context);
+
+    /**
+    * listBiDetail
+    * 
+    * @param context
+    * @return
+    */
+    List<TestPlan> listBiDetail(TestPlanSearchContext context);
+
+    /**
+    * fetchBiSearch
+    * 
+    * @param context
+    * @return
+    */
+    Page<TestPlan> fetchBiSearch(TestPlanSearchContext context);
+
+    /**
+    * listBiSearch
+    * 
+    * @param context
+    * @return
+    */
+    List<TestPlan> listBiSearch(TestPlanSearchContext context);
 
     /**
     * fetchMyAssignee
@@ -319,8 +352,15 @@ public interface TestPlanService extends IService<TestPlan> {
     */
     List<TestPlan> findByLibraryId(List<String> libraryIds);
     default List<TestPlan> findByLibraryId(String libraryId){
-        return findByLibraryId(Arrays.asList(libraryId));
+        return findByLibrary(new Library().setId(libraryId));
     }
+
+    /**
+    * findByLibrary
+    * @param library
+    * @return
+    */
+    List<TestPlan> findByLibrary(Library library);
 
     /**
     * removeByLibraryId
@@ -361,8 +401,15 @@ public interface TestPlanService extends IService<TestPlan> {
     */
     List<TestPlan> findByProjectId(List<String> projectIds);
     default List<TestPlan> findByProjectId(String projectId){
-        return findByProjectId(Arrays.asList(projectId));
+        return findByProject(new Project().setId(projectId));
     }
+
+    /**
+    * findByProject
+    * @param project
+    * @return
+    */
+    List<TestPlan> findByProject(Project project);
 
     /**
     * removeByProjectId
@@ -403,8 +450,15 @@ public interface TestPlanService extends IService<TestPlan> {
     */
     List<TestPlan> findByReleaseId(List<String> releaseIds);
     default List<TestPlan> findByReleaseId(String releaseId){
-        return findByReleaseId(Arrays.asList(releaseId));
+        return findByRelease(new Release().setId(releaseId));
     }
+
+    /**
+    * findByRelease
+    * @param release
+    * @return
+    */
+    List<TestPlan> findByRelease(Release release);
 
     /**
     * removeByReleaseId
@@ -445,8 +499,15 @@ public interface TestPlanService extends IService<TestPlan> {
     */
     List<TestPlan> findBySprintId(List<String> sprintIds);
     default List<TestPlan> findBySprintId(String sprintId){
-        return findBySprintId(Arrays.asList(sprintId));
+        return findBySprint(new Sprint().setId(sprintId));
     }
+
+    /**
+    * findBySprint
+    * @param sprint
+    * @return
+    */
+    List<TestPlan> findBySprint(Sprint sprint);
 
     /**
     * removeBySprintId
@@ -487,8 +548,15 @@ public interface TestPlanService extends IService<TestPlan> {
     */
     List<TestPlan> findById(List<String> ids);
     default List<TestPlan> findById(String id){
-        return findById(Arrays.asList(id));
+        return findByTestPlan(new CommonFlow().setId(id));
     }
+
+    /**
+    * findByTestPlan
+    * @param commonFlow
+    * @return
+    */
+    List<TestPlan> findByTestPlan(CommonFlow commonFlow);
 
     /**
     * removeById
@@ -535,6 +603,22 @@ public interface TestPlanService extends IService<TestPlan> {
     default TestPlan testPlanReportSurvey(TestPlan et) {
         return et;
     }
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<TestPlan> fetchView(TestPlanSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<TestPlan> listView(TestPlanSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<TestPlan> list) {

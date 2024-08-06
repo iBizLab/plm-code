@@ -81,6 +81,25 @@ public interface ProductMapper extends BaseMapper<Product> {
     List<Product> listArchived(@Param("ctx") ProductSearchContext context, @Param("ew") Wrapper<Product> wrapper);
 
     /**
+     * 数据集合cur_product分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Product> searchCurProduct(IPage<Product> page, @Param("ctx") ProductSearchContext context, @Param("ew") Wrapper<Product> wrapper);
+    
+    /**
+     * 数据集合cur_product查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Product> listCurProduct(@Param("ctx") ProductSearchContext context, @Param("ew") Wrapper<Product> wrapper);
+
+    /**
      * 数据集合deleted分页查询
      * 
      * @param page
@@ -212,6 +231,25 @@ public interface ProductMapper extends BaseMapper<Product> {
      * @return
      */
     List<Product> listUser(@Param("ctx") ProductSearchContext context, @Param("ew") Wrapper<Product> wrapper);
+
+    /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Product> searchView(IPage<Product> page, @Param("ctx") ProductSearchContext context, @Param("ew") Wrapper<Product> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Product> listView(@Param("ctx") ProductSearchContext context, @Param("ew") Wrapper<Product> wrapper);
 
     /**
      * 主键查询

@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.team.domain.Period;
 import cn.ibizlab.plm.core.team.filter.PeriodSearchContext;
 import cn.ibizlab.plm.core.team.domain.Objective;
@@ -138,7 +139,7 @@ public interface PeriodService extends IService<Period> {
     * @param et
     * @return
     */
-    Integer checkKey(Period et);
+    CheckKeyStatus checkKey(Period et);
 
     /**
     * 保存
@@ -169,6 +170,22 @@ public interface PeriodService extends IService<Period> {
     * @return
     */
     List<Period> listDefault(PeriodSearchContext context);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Period> fetchView(PeriodSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Period> listView(PeriodSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Period> list) {

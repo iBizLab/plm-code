@@ -4,6 +4,7 @@
 package cn.ibizlab.plm.serviceapi.dto;
 
 import java.util.*;
+import java.math.BigDecimal;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -102,11 +103,19 @@ public class SprintDTO extends DTOBase implements Serializable {
     private String categoriesName;
 
     /**
+     * 进度
+     */
+    @JsonProperty("schedule")
+    @JSONField(name = "schedule")
+    @ApiModelProperty(value = "进度", position = 8)
+    private BigDecimal schedule;
+
+    /**
      * 负责人
      */
     @JsonProperty("assignee_name")
     @JSONField(name = "assignee_name")
-    @ApiModelProperty(value = "负责人", position = 8)
+    @ApiModelProperty(value = "负责人", position = 9)
     private String assigneeName;
 
     /**
@@ -114,15 +123,39 @@ public class SprintDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("assignee_id")
     @JSONField(name = "assignee_id")
-    @ApiModelProperty(value = "负责人标识", position = 9)
+    @ApiModelProperty(value = "负责人标识", position = 10)
     private String assigneeId;
+
+    /**
+     * 已完成工作项数
+     */
+    @JsonProperty("completed_work_items")
+    @JSONField(name = "completed_work_items")
+    @ApiModelProperty(value = "已完成工作项数", position = 11)
+    private BigDecimal completedWorkItems;
+
+    /**
+     * 全部工作项数
+     */
+    @JsonProperty("all_work_items")
+    @JSONField(name = "all_work_items")
+    @ApiModelProperty(value = "全部工作项数", position = 12)
+    private BigDecimal allWorkItems;
+
+    /**
+     * 迭代已过天数
+     */
+    @JsonProperty("past_days")
+    @JSONField(name = "past_days")
+    @ApiModelProperty(value = "迭代已过天数", position = 13)
+    private BigDecimal pastDays;
 
     /**
      * 建立人
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 10)
+    @ApiModelProperty(value = "建立人", position = 14)
     private String createMan;
 
     /**
@@ -131,7 +164,7 @@ public class SprintDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 11)
+    @ApiModelProperty(value = "建立时间", position = 15)
     private Date createTime;
 
     /**
@@ -139,7 +172,7 @@ public class SprintDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 12)
+    @ApiModelProperty(value = "标识", position = 16)
     private String id;
 
     /**
@@ -147,7 +180,7 @@ public class SprintDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 13)
+    @ApiModelProperty(value = "名称", position = 17)
     private String name;
 
     /**
@@ -155,15 +188,15 @@ public class SprintDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("pid")
     @JSONField(name = "pid")
-    @ApiModelProperty(value = "父标识", position = 14)
+    @ApiModelProperty(value = "父标识", position = 18)
     private String pid;
 
     /**
-     * 产品标识
+     * 项目标识
      */
     @JsonProperty("project_id")
     @JSONField(name = "project_id")
-    @ApiModelProperty(value = "产品标识", position = 15)
+    @ApiModelProperty(value = "项目标识", position = 19)
     private String projectId;
 
     /**
@@ -171,7 +204,7 @@ public class SprintDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 16)
+    @ApiModelProperty(value = "更新人", position = 20)
     private String updateMan;
 
     /**
@@ -180,7 +213,7 @@ public class SprintDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 17)
+    @ApiModelProperty(value = "更新时间", position = 21)
     private Date updateTime;
 
 
@@ -257,6 +290,15 @@ public class SprintDTO extends DTOBase implements Serializable {
     }
 
     /**
+     * 设置 [进度]
+     */
+    public SprintDTO setSchedule(BigDecimal schedule) {
+        this.schedule = schedule;
+        this.modify("schedule", schedule);
+        return this;
+    }
+
+    /**
      * 设置 [负责人]
      */
     public SprintDTO setAssigneeName(String assigneeName) {
@@ -271,6 +313,33 @@ public class SprintDTO extends DTOBase implements Serializable {
     public SprintDTO setAssigneeId(String assigneeId) {
         this.assigneeId = assigneeId;
         this.modify("assignee_id", assigneeId);
+        return this;
+    }
+
+    /**
+     * 设置 [已完成工作项数]
+     */
+    public SprintDTO setCompletedWorkItems(BigDecimal completedWorkItems) {
+        this.completedWorkItems = completedWorkItems;
+        this.modify("completed_work_items", completedWorkItems);
+        return this;
+    }
+
+    /**
+     * 设置 [全部工作项数]
+     */
+    public SprintDTO setAllWorkItems(BigDecimal allWorkItems) {
+        this.allWorkItems = allWorkItems;
+        this.modify("all_work_items", allWorkItems);
+        return this;
+    }
+
+    /**
+     * 设置 [迭代已过天数]
+     */
+    public SprintDTO setPastDays(BigDecimal pastDays) {
+        this.pastDays = pastDays;
+        this.modify("past_days", pastDays);
         return this;
     }
 
@@ -293,7 +362,7 @@ public class SprintDTO extends DTOBase implements Serializable {
     }
 
     /**
-     * 设置 [产品标识]
+     * 设置 [项目标识]
      */
     public SprintDTO setProjectId(String projectId) {
         this.projectId = projectId;

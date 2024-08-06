@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.prodmgmt.domain.Ticket;
 import cn.ibizlab.plm.core.prodmgmt.filter.TicketSearchContext;
 import cn.ibizlab.plm.core.prodmgmt.domain.Customer;
@@ -146,7 +147,7 @@ public interface TicketService extends IService<Ticket> {
     * @param et
     * @return
     */
-    Integer checkKey(Ticket et);
+    CheckKeyStatus checkKey(Ticket et);
 
     /**
     * 保存
@@ -351,6 +352,38 @@ public interface TicketService extends IService<Ticket> {
     List<Ticket> listArchived(TicketSearchContext context);
 
     /**
+    * fetchBiDetail
+    * 
+    * @param context
+    * @return
+    */
+    Page<Ticket> fetchBiDetail(TicketSearchContext context);
+
+    /**
+    * listBiDetail
+    * 
+    * @param context
+    * @return
+    */
+    List<Ticket> listBiDetail(TicketSearchContext context);
+
+    /**
+    * fetchBiSearch
+    * 
+    * @param context
+    * @return
+    */
+    Page<Ticket> fetchBiSearch(TicketSearchContext context);
+
+    /**
+    * listBiSearch
+    * 
+    * @param context
+    * @return
+    */
+    List<Ticket> listBiSearch(TicketSearchContext context);
+
+    /**
     * fetchCommentNotifyAssignee
     * 
     * @param context
@@ -368,7 +401,7 @@ public interface TicketService extends IService<Ticket> {
 
     /**
     * fetchCommon
-    * 
+    * 通用查询，非删除数据
     * @param context
     * @return
     */
@@ -376,7 +409,7 @@ public interface TicketService extends IService<Ticket> {
 
     /**
     * listCommon
-    * 
+    * 通用查询，非删除数据
     * @param context
     * @return
     */
@@ -384,7 +417,7 @@ public interface TicketService extends IService<Ticket> {
 
     /**
     * fetchCustomerNotreTicket
-    * 
+    * 查询未关联工单的数据；客户关联工单表格调用
     * @param context
     * @return
     */
@@ -392,7 +425,7 @@ public interface TicketService extends IService<Ticket> {
 
     /**
     * listCustomerNotreTicket
-    * 
+    * 查询未关联工单的数据；客户关联工单表格调用
     * @param context
     * @return
     */
@@ -432,7 +465,7 @@ public interface TicketService extends IService<Ticket> {
 
     /**
     * fetchIdeaRelationTicket
-    * 
+    * 产品关联工单表格调用
     * @param context
     * @return
     */
@@ -440,7 +473,7 @@ public interface TicketService extends IService<Ticket> {
 
     /**
     * listIdeaRelationTicket
-    * 
+    * 产品关联工单表格调用
     * @param context
     * @return
     */
@@ -448,7 +481,7 @@ public interface TicketService extends IService<Ticket> {
 
     /**
     * fetchMyAssign
-    * 
+    * 首页我负责的工单表格调用
     * @param context
     * @return
     */
@@ -456,7 +489,7 @@ public interface TicketService extends IService<Ticket> {
 
     /**
     * listMyAssign
-    * 
+    * 首页我负责的工单表格调用
     * @param context
     * @return
     */
@@ -464,7 +497,7 @@ public interface TicketService extends IService<Ticket> {
 
     /**
     * fetchMyAssigneeCount
-    * 
+    * 首页我负责的工单表格调用
     * @param context
     * @return
     */
@@ -472,7 +505,7 @@ public interface TicketService extends IService<Ticket> {
 
     /**
     * listMyAssigneeCount
-    * 
+    * 首页我负责的工单表格调用
     * @param context
     * @return
     */
@@ -512,7 +545,7 @@ public interface TicketService extends IService<Ticket> {
 
     /**
     * fetchNormal
-    * 
+    * 非归档，非删除数据
     * @param context
     * @return
     */
@@ -520,7 +553,7 @@ public interface TicketService extends IService<Ticket> {
 
     /**
     * listNormal
-    * 
+    * 非归档，非删除数据
     * @param context
     * @return
     */
@@ -559,6 +592,22 @@ public interface TicketService extends IService<Ticket> {
     List<Ticket> listNotifyAssignee(TicketSearchContext context);
 
     /**
+    * fetchReader
+    * 
+    * @param context
+    * @return
+    */
+    Page<Ticket> fetchReader(TicketSearchContext context);
+
+    /**
+    * listReader
+    * 
+    * @param context
+    * @return
+    */
+    List<Ticket> listReader(TicketSearchContext context);
+
+    /**
     * fetchRecentTicket
     * 
     * @param context
@@ -576,7 +625,7 @@ public interface TicketService extends IService<Ticket> {
 
     /**
     * fetchTicketReProductTag
-    * 
+    * 当前标签下工单表格视图调用
     * @param context
     * @return
     */
@@ -584,7 +633,7 @@ public interface TicketService extends IService<Ticket> {
 
     /**
     * listTicketReProductTag
-    * 
+    * 当前标签下工单表格视图调用
     * @param context
     * @return
     */
@@ -605,6 +654,24 @@ public interface TicketService extends IService<Ticket> {
     * @return
     */
     List<Ticket> listTicketRelationTicket(TicketSearchContext context);
+
+    /**
+    * fetchTicketStatePieChart
+    * 工单状态饼图数据
+在需求关联工单统计视图中使用
+    * @param context
+    * @return
+    */
+    Page<Ticket> fetchTicketStatePieChart(TicketSearchContext context);
+
+    /**
+    * listTicketStatePieChart
+    * 工单状态饼图数据
+在需求关联工单统计视图中使用
+    * @param context
+    * @return
+    */
+    List<Ticket> listTicketStatePieChart(TicketSearchContext context);
 
     /**
     * fetchWorkItemRelationTicket
@@ -629,8 +696,15 @@ public interface TicketService extends IService<Ticket> {
     */
     List<Ticket> findByCustomerId(List<String> customerIds);
     default List<Ticket> findByCustomerId(String customerId){
-        return findByCustomerId(Arrays.asList(customerId));
+        return findByCustomer(new Customer().setId(customerId));
     }
+
+    /**
+    * findByCustomer
+    * @param customer
+    * @return
+    */
+    List<Ticket> findByCustomer(Customer customer);
 
     /**
     * removeByCustomerId
@@ -671,8 +745,15 @@ public interface TicketService extends IService<Ticket> {
     */
     List<Ticket> findByProductId(List<String> productIds);
     default List<Ticket> findByProductId(String productId){
-        return findByProductId(Arrays.asList(productId));
+        return findByProduct(new Product().setId(productId));
     }
+
+    /**
+    * findByProduct
+    * @param product
+    * @return
+    */
+    List<Ticket> findByProduct(Product product);
 
     /**
     * removeByProductId
@@ -713,8 +794,15 @@ public interface TicketService extends IService<Ticket> {
     */
     List<Ticket> findByAssigneeId(List<String> assigneeIds);
     default List<Ticket> findByAssigneeId(String assigneeId){
-        return findByAssigneeId(Arrays.asList(assigneeId));
+        return findByUser(new User().setId(assigneeId));
     }
+
+    /**
+    * findByUser
+    * @param user
+    * @return
+    */
+    List<Ticket> findByUser(User user);
 
     /**
     * removeByAssigneeId
@@ -765,6 +853,22 @@ public interface TicketService extends IService<Ticket> {
     default Ticket testGetArchivedInfo(Ticket et) {
         return et;
     }
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Ticket> fetchView(TicketSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Ticket> listView(TicketSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Ticket> list) {

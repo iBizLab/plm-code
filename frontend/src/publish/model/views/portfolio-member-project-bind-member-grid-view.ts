@@ -107,6 +107,15 @@ export default {
   ],
   appViewRefs: [
     {
+      realTitle: '文件夹成员数据重定向视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.PORTFOLIO_MEMBER.REDIRECTVIEW',
+      },
+      refAppViewId: 'plmweb.portfolio_member_redirect_view',
+      name: 'EDITDATA',
+      id: 'editdata',
+    },
+    {
       openMode: 'POPUPMODAL',
       realOpenMode: 'POPUPMODAL',
       realTitle: '文件夹成员编辑视图',
@@ -116,15 +125,6 @@ export default {
       refAppViewId: 'plmweb.portfolio_member_edit_view',
       name: 'NEWDATA',
       id: 'newdata',
-    },
-    {
-      realTitle: '文件夹成员数据重定向视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.PORTFOLIO_MEMBER.REDIRECTVIEW',
-      },
-      refAppViewId: 'plmweb.portfolio_member_redirect_view',
-      name: 'EDITDATA',
-      id: 'editdata',
     },
     {
       realOpenMode: 'POPUPMODAL',
@@ -170,6 +170,7 @@ export default {
           id: 'deuiaction1',
         },
       ],
+      toolbarStyle: 'USER',
       xdataControlName: 'grid',
       codeName: 'project_bind_member_grid_view_toolbar',
       controlType: 'TOOLBAR',

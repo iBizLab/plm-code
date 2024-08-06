@@ -11,6 +11,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.Category;
 import cn.ibizlab.plm.core.base.filter.CategorySearchContext;
 import cn.ibizlab.plm.core.base.domain.Section;
@@ -142,7 +143,7 @@ public interface CategoryService extends IService<Category> {
     * @param et
     * @return
     */
-    Integer checkKey(Category et);
+    CheckKeyStatus checkKey(Category et);
 
     /**
     * 保存
@@ -217,6 +218,22 @@ public interface CategoryService extends IService<Category> {
     List<Category> listCommonCategories(CategorySearchContext context);
 
     /**
+    * fetchCurProductIdeaCategory
+    * 
+    * @param context
+    * @return
+    */
+    Page<Category> fetchCurProductIdeaCategory(CategorySearchContext context);
+
+    /**
+    * listCurProductIdeaCategory
+    * 
+    * @param context
+    * @return
+    */
+    List<Category> listCurProductIdeaCategory(CategorySearchContext context);
+
+    /**
     * fetchNoSection
     * 
     * @param context
@@ -234,7 +251,7 @@ public interface CategoryService extends IService<Category> {
 
     /**
     * fetchProductIdeaCategory
-    * 
+    * 需求下子产品中父标识为空的模块
     * @param context
     * @return
     */
@@ -242,7 +259,7 @@ public interface CategoryService extends IService<Category> {
 
     /**
     * listProductIdeaCategory
-    * 
+    * 需求下子产品中父标识为空的模块
     * @param context
     * @return
     */
@@ -303,8 +320,15 @@ public interface CategoryService extends IService<Category> {
     */
     List<Category> findByPid(List<String> pids);
     default List<Category> findByPid(String pid){
-        return findByPid(Arrays.asList(pid));
+        return findByCategory(new Category().setId(pid));
     }
+
+    /**
+    * findByCategory
+    * @param category
+    * @return
+    */
+    List<Category> findByCategory(Category category);
 
     /**
     * removeByPid
@@ -345,8 +369,15 @@ public interface CategoryService extends IService<Category> {
     */
     List<Category> findBySectionId(List<String> sectionIds);
     default List<Category> findBySectionId(String sectionId){
-        return findBySectionId(Arrays.asList(sectionId));
+        return findBySection(new Section().setId(sectionId));
     }
+
+    /**
+    * findBySection
+    * @param section
+    * @return
+    */
+    List<Category> findBySection(Section section);
 
     /**
     * removeBySectionId
@@ -379,6 +410,22 @@ public interface CategoryService extends IService<Category> {
     * @return
     */
     boolean saveBySection(Section section, List<Category> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Category> fetchView(CategorySearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Category> listView(CategorySearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Category> list) {

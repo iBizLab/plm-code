@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.base.domain.Attention;
@@ -34,6 +35,8 @@ import cn.ibizlab.plm.core.wiki.domain.ArticlePage;
 import cn.ibizlab.plm.core.wiki.service.ArticlePageService;
 import cn.ibizlab.plm.core.testmgmt.domain.Review;
 import cn.ibizlab.plm.core.testmgmt.service.ReviewService;
+import cn.ibizlab.plm.core.testmgmt.domain.ReviewWizard;
+import cn.ibizlab.plm.core.testmgmt.service.ReviewWizardService;
 import cn.ibizlab.plm.core.testmgmt.domain.Run;
 import cn.ibizlab.plm.core.testmgmt.service.RunService;
 import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
@@ -70,6 +73,10 @@ public abstract class AbstractAttentionService extends ServiceImpl<AttentionMapp
     @Autowired
     @Lazy
     protected ReviewService reviewService;
+
+    @Autowired
+    @Lazy
+    protected ReviewWizardService reviewWizardService;
 
     @Autowired
     @Lazy
@@ -161,16 +168,16 @@ public abstract class AbstractAttentionService extends ServiceImpl<AttentionMapp
         return et;
     }
 	
-    public Integer checkKey(Attention et) {
+    public CheckKeyStatus checkKey(Attention et) {
         if(ObjectUtils.isEmpty(et.getId()))
             et.setId((String)et.getDefaultKey(true));
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Attention>lambdaQuery().eq(Attention::getId, et.getId()))>0)?1:0;
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Attention>lambdaQuery().eq(Attention::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(Attention et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -250,6 +257,13 @@ public abstract class AbstractAttentionService extends ServiceImpl<AttentionMapp
         return list;	
 	}
 
+	public List<Attention> findByCustomer(Customer customer){
+        List<Attention> list = this.baseMapper.selectList(Wrappers.<Attention>lambdaQuery()
+                        .eq(Attention::getOwnerId, customer.getId())
+                        .eq(Attention::getOwnerType,"CUSTOMER")
+                        .eq(Attention::getOwnerSubtype,"CUSTOMER"));
+		return list;
+	}
 	public boolean removeByOwnerId(String ownerId){
         return this.remove(Wrappers.<Attention>lambdaQuery().eq(Attention::getOwnerId,ownerId));
 	}
@@ -260,13 +274,8 @@ public abstract class AbstractAttentionService extends ServiceImpl<AttentionMapp
 	public boolean saveByCustomer(Customer customer, List<Attention> list){
         if(list==null)
             return true;
-        Map<String,Attention> before = this.baseMapper.selectList(Wrappers.<Attention>lambdaQuery()
-                        .eq(Attention::getOwnerId, customer.getId())
-                        .eq(Attention::getOwnerType,"CUSTOMER")
-                        .eq(Attention::getOwnerSubtype,"CUSTOMER"))
-                        .stream()
-                        .collect(Collectors.toMap(Attention::getId,e->e));
 
+        Map<String,Attention> before = findByCustomer(customer).stream().collect(Collectors.toMap(Attention::getId,e->e));
         List<Attention> update = new ArrayList<>();
         List<Attention> create = new ArrayList<>();
 
@@ -294,16 +303,18 @@ public abstract class AbstractAttentionService extends ServiceImpl<AttentionMapp
             return true;
 			
 	}
+	public List<Attention> findByDiscussPost(DiscussPost discussPost){
+        List<Attention> list = this.baseMapper.selectList(Wrappers.<Attention>lambdaQuery()
+                        .eq(Attention::getOwnerId, discussPost.getId())
+                        .eq(Attention::getOwnerType,"DISCUSS_POST")
+                        .eq(Attention::getOwnerSubtype,"DISCUSS_POST"));
+		return list;
+	}
 	public boolean saveByDiscussPost(DiscussPost discussPost, List<Attention> list){
         if(list==null)
             return true;
-        Map<String,Attention> before = this.baseMapper.selectList(Wrappers.<Attention>lambdaQuery()
-                        .eq(Attention::getOwnerId, discussPost.getId())
-                        .eq(Attention::getOwnerType,"DISCUSS_POST")
-                        .eq(Attention::getOwnerSubtype,"DISCUSS_POST"))
-                        .stream()
-                        .collect(Collectors.toMap(Attention::getId,e->e));
 
+        Map<String,Attention> before = findByDiscussPost(discussPost).stream().collect(Collectors.toMap(Attention::getId,e->e));
         List<Attention> update = new ArrayList<>();
         List<Attention> create = new ArrayList<>();
 
@@ -331,16 +342,18 @@ public abstract class AbstractAttentionService extends ServiceImpl<AttentionMapp
             return true;
 			
 	}
+	public List<Attention> findByIdea(Idea idea){
+        List<Attention> list = this.baseMapper.selectList(Wrappers.<Attention>lambdaQuery()
+                        .eq(Attention::getOwnerId, idea.getId())
+                        .eq(Attention::getOwnerType,"IDEA")
+                        .eq(Attention::getOwnerSubtype,"IDEA"));
+		return list;
+	}
 	public boolean saveByIdea(Idea idea, List<Attention> list){
         if(list==null)
             return true;
-        Map<String,Attention> before = this.baseMapper.selectList(Wrappers.<Attention>lambdaQuery()
-                        .eq(Attention::getOwnerId, idea.getId())
-                        .eq(Attention::getOwnerType,"IDEA")
-                        .eq(Attention::getOwnerSubtype,"IDEA"))
-                        .stream()
-                        .collect(Collectors.toMap(Attention::getId,e->e));
 
+        Map<String,Attention> before = findByIdea(idea).stream().collect(Collectors.toMap(Attention::getId,e->e));
         List<Attention> update = new ArrayList<>();
         List<Attention> create = new ArrayList<>();
 
@@ -368,16 +381,18 @@ public abstract class AbstractAttentionService extends ServiceImpl<AttentionMapp
             return true;
 			
 	}
+	public List<Attention> findByPage(ArticlePage articlePage){
+        List<Attention> list = this.baseMapper.selectList(Wrappers.<Attention>lambdaQuery()
+                        .eq(Attention::getOwnerId, articlePage.getId())
+                        .eq(Attention::getOwnerType,"PAGE")
+                        .eq(Attention::getOwnerSubtype,"PAGE"));
+		return list;
+	}
 	public boolean saveByPage(ArticlePage articlePage, List<Attention> list){
         if(list==null)
             return true;
-        Map<String,Attention> before = this.baseMapper.selectList(Wrappers.<Attention>lambdaQuery()
-                        .eq(Attention::getOwnerId, articlePage.getId())
-                        .eq(Attention::getOwnerType,"PAGE")
-                        .eq(Attention::getOwnerSubtype,"PAGE"))
-                        .stream()
-                        .collect(Collectors.toMap(Attention::getId,e->e));
 
+        Map<String,Attention> before = findByPage(articlePage).stream().collect(Collectors.toMap(Attention::getId,e->e));
         List<Attention> update = new ArrayList<>();
         List<Attention> create = new ArrayList<>();
 
@@ -405,16 +420,18 @@ public abstract class AbstractAttentionService extends ServiceImpl<AttentionMapp
             return true;
 			
 	}
+	public List<Attention> findByReview(Review review){
+        List<Attention> list = this.baseMapper.selectList(Wrappers.<Attention>lambdaQuery()
+                        .eq(Attention::getOwnerId, review.getId())
+                        .eq(Attention::getOwnerType,"REVIEW")
+                        .eq(Attention::getOwnerSubtype,"REVIEW"));
+		return list;
+	}
 	public boolean saveByReview(Review review, List<Attention> list){
         if(list==null)
             return true;
-        Map<String,Attention> before = this.baseMapper.selectList(Wrappers.<Attention>lambdaQuery()
-                        .eq(Attention::getOwnerId, review.getId())
-                        .eq(Attention::getOwnerType,"REVIEW")
-                        .eq(Attention::getOwnerSubtype,"REVIEW"))
-                        .stream()
-                        .collect(Collectors.toMap(Attention::getId,e->e));
 
+        Map<String,Attention> before = findByReview(review).stream().collect(Collectors.toMap(Attention::getId,e->e));
         List<Attention> update = new ArrayList<>();
         List<Attention> create = new ArrayList<>();
 
@@ -442,16 +459,57 @@ public abstract class AbstractAttentionService extends ServiceImpl<AttentionMapp
             return true;
 			
 	}
+	public List<Attention> findByReviewWizard(ReviewWizard reviewWizard){
+        List<Attention> list = this.baseMapper.selectList(Wrappers.<Attention>lambdaQuery()
+                        .eq(Attention::getOwnerId, reviewWizard.getId())
+                        .eq(Attention::getOwnerType,"REVIEW_WIZARD")
+                        .eq(Attention::getOwnerSubtype,"REVIEW:REVIEW"));
+		return list;
+	}
+	public boolean saveByReviewWizard(ReviewWizard reviewWizard, List<Attention> list){
+        if(list==null)
+            return true;
+
+        Map<String,Attention> before = findByReviewWizard(reviewWizard).stream().collect(Collectors.toMap(Attention::getId,e->e));
+        List<Attention> update = new ArrayList<>();
+        List<Attention> create = new ArrayList<>();
+
+        for(Attention sub:list) {
+            sub.setOwnerId(reviewWizard.getId());
+            sub.setReviewWizard(reviewWizard);
+            if(ObjectUtils.isEmpty(sub.getId()))
+                before.values().stream()
+                        .filter(e->ObjectUtils.nullSafeEquals(sub.getDefaultKey(true),e.getDefaultKey(true)))
+                        .findFirst().ifPresent(e->sub.setId(e.getId()));
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
+	public List<Attention> findByRun(Run run){
+        List<Attention> list = this.baseMapper.selectList(Wrappers.<Attention>lambdaQuery()
+                        .eq(Attention::getOwnerId, run.getId())
+                        .eq(Attention::getOwnerType,"RUN")
+                        .eq(Attention::getOwnerSubtype,"RUN"));
+		return list;
+	}
 	public boolean saveByRun(Run run, List<Attention> list){
         if(list==null)
             return true;
-        Map<String,Attention> before = this.baseMapper.selectList(Wrappers.<Attention>lambdaQuery()
-                        .eq(Attention::getOwnerId, run.getId())
-                        .eq(Attention::getOwnerType,"RUN")
-                        .eq(Attention::getOwnerSubtype,"RUN"))
-                        .stream()
-                        .collect(Collectors.toMap(Attention::getId,e->e));
 
+        Map<String,Attention> before = findByRun(run).stream().collect(Collectors.toMap(Attention::getId,e->e));
         List<Attention> update = new ArrayList<>();
         List<Attention> create = new ArrayList<>();
 
@@ -479,16 +537,18 @@ public abstract class AbstractAttentionService extends ServiceImpl<AttentionMapp
             return true;
 			
 	}
+	public List<Attention> findByTestCase(TestCase testCase){
+        List<Attention> list = this.baseMapper.selectList(Wrappers.<Attention>lambdaQuery()
+                        .eq(Attention::getOwnerId, testCase.getId())
+                        .eq(Attention::getOwnerType,"TEST_CASE")
+                        .eq(Attention::getOwnerSubtype,"TEST_CASE"));
+		return list;
+	}
 	public boolean saveByTestCase(TestCase testCase, List<Attention> list){
         if(list==null)
             return true;
-        Map<String,Attention> before = this.baseMapper.selectList(Wrappers.<Attention>lambdaQuery()
-                        .eq(Attention::getOwnerId, testCase.getId())
-                        .eq(Attention::getOwnerType,"TEST_CASE")
-                        .eq(Attention::getOwnerSubtype,"TEST_CASE"))
-                        .stream()
-                        .collect(Collectors.toMap(Attention::getId,e->e));
 
+        Map<String,Attention> before = findByTestCase(testCase).stream().collect(Collectors.toMap(Attention::getId,e->e));
         List<Attention> update = new ArrayList<>();
         List<Attention> create = new ArrayList<>();
 
@@ -516,16 +576,18 @@ public abstract class AbstractAttentionService extends ServiceImpl<AttentionMapp
             return true;
 			
 	}
+	public List<Attention> findByTicket(Ticket ticket){
+        List<Attention> list = this.baseMapper.selectList(Wrappers.<Attention>lambdaQuery()
+                        .eq(Attention::getOwnerId, ticket.getId())
+                        .eq(Attention::getOwnerType,"TICKET")
+                        .eq(Attention::getOwnerSubtype,"TICKET"));
+		return list;
+	}
 	public boolean saveByTicket(Ticket ticket, List<Attention> list){
         if(list==null)
             return true;
-        Map<String,Attention> before = this.baseMapper.selectList(Wrappers.<Attention>lambdaQuery()
-                        .eq(Attention::getOwnerId, ticket.getId())
-                        .eq(Attention::getOwnerType,"TICKET")
-                        .eq(Attention::getOwnerSubtype,"TICKET"))
-                        .stream()
-                        .collect(Collectors.toMap(Attention::getId,e->e));
 
+        Map<String,Attention> before = findByTicket(ticket).stream().collect(Collectors.toMap(Attention::getId,e->e));
         List<Attention> update = new ArrayList<>();
         List<Attention> create = new ArrayList<>();
 
@@ -553,16 +615,18 @@ public abstract class AbstractAttentionService extends ServiceImpl<AttentionMapp
             return true;
 			
 	}
+	public List<Attention> findByWorkItem(WorkItem workItem){
+        List<Attention> list = this.baseMapper.selectList(Wrappers.<Attention>lambdaQuery()
+                        .eq(Attention::getOwnerId, workItem.getId())
+                        .eq(Attention::getOwnerType,"WORK_ITEM")
+                        .eq(Attention::getOwnerSubtype,"WORK_ITEM"));
+		return list;
+	}
 	public boolean saveByWorkItem(WorkItem workItem, List<Attention> list){
         if(list==null)
             return true;
-        Map<String,Attention> before = this.baseMapper.selectList(Wrappers.<Attention>lambdaQuery()
-                        .eq(Attention::getOwnerId, workItem.getId())
-                        .eq(Attention::getOwnerType,"WORK_ITEM")
-                        .eq(Attention::getOwnerSubtype,"WORK_ITEM"))
-                        .stream()
-                        .collect(Collectors.toMap(Attention::getId,e->e));
 
+        Map<String,Attention> before = findByWorkItem(workItem).stream().collect(Collectors.toMap(Attention::getId,e->e));
         List<Attention> update = new ArrayList<>();
         List<Attention> create = new ArrayList<>();
 
@@ -590,6 +654,17 @@ public abstract class AbstractAttentionService extends ServiceImpl<AttentionMapp
             return true;
 			
 	}
+   public Page<Attention> fetchView(AttentionSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Attention> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<Attention> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Attention> listView(AttentionSearchContext context) {
+        List<Attention> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(Attention et) {
         if(Entities.CUSTOMER.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
@@ -605,6 +680,9 @@ public abstract class AbstractAttentionService extends ServiceImpl<AttentionMapp
             et.setOwnerId((String)et.getContextParentKey());
         }
         if(Entities.REVIEW.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setOwnerId((String)et.getContextParentKey());
+        }
+        if(Entities.REVIEW_WIZARD.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
             et.setOwnerId((String)et.getContextParentKey());
         }
         if(Entities.RUN.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

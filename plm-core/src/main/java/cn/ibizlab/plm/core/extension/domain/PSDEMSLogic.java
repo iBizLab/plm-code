@@ -18,6 +18,8 @@ import java.io.Serializable;
 import lombok.*;
 import lombok.experimental.Accessors;
 import io.swagger.annotations.*;
+import cn.ibizlab.plm.core.extension.domain.PSDELogicLink;
+import cn.ibizlab.plm.core.extension.domain.PSDELogicNode;
 
 /**
  * 实体主状态迁移逻辑实体类[PSDEMSLogic]
@@ -40,6 +42,24 @@ public class PSDEMSLogic extends EntityBase implements Serializable
     @JsonProperty("dynamodelflag")
     @ApiModelProperty(value = "dynamodelflag", notes = "扩展模型")
     private Integer dynaModelFlag;
+
+    /**
+     * 逻辑节点
+     */
+    @DEField(name = "psdelogicnodes")
+    @JSONField(name = "psdelogicnodes")
+    @JsonProperty("psdelogicnodes")
+    @ApiModelProperty(value = "psdelogicnodes", notes = "逻辑节点")
+    private List<PSDELogicNode> psdeLogicNodes;
+
+    /**
+     * 逻辑连接
+     */
+    @DEField(name = "psdelogiclinks")
+    @JSONField(name = "psdelogiclinks")
+    @JsonProperty("psdelogiclinks")
+    @ApiModelProperty(value = "psdelogiclinks", notes = "逻辑连接")
+    private List<PSDELogicLink> psdeLogicLinks;
 
     /**
      * 实体处理逻辑标识
@@ -126,6 +146,15 @@ public class PSDEMSLogic extends EntityBase implements Serializable
     private String codeName;
 
     /**
+     * 逻辑类型
+     */
+    @DEField(name = "logictype" , defaultValue = "MAINSTATELOGIC")
+    @JSONField(name = "logictype")
+    @JsonProperty("logictype")
+    @ApiModelProperty(value = "logictype", notes = "逻辑类型")
+    private String logicType;
+
+    /**
      * 扩展标记
      */
     @DEField(name = "extension_tag")
@@ -171,6 +200,24 @@ public class PSDEMSLogic extends EntityBase implements Serializable
     }
 
     /**
+    * 设置 [逻辑节点]
+    */
+    public PSDEMSLogic setPsdeLogicNodes(List<PSDELogicNode> psdeLogicNodes) {
+        this.psdeLogicNodes = psdeLogicNodes;
+        this.modify("psdelogicnodes", psdeLogicNodes);
+        return this;
+    }
+
+    /**
+    * 设置 [逻辑连接]
+    */
+    public PSDEMSLogic setPsdeLogicLinks(List<PSDELogicLink> psdeLogicLinks) {
+        this.psdeLogicLinks = psdeLogicLinks;
+        this.modify("psdelogiclinks", psdeLogicLinks);
+        return this;
+    }
+
+    /**
     * 设置 [实体处理逻辑名称]
     */
     public PSDEMSLogic setPsdeLogicName(String psdeLogicName) {
@@ -203,6 +250,15 @@ public class PSDEMSLogic extends EntityBase implements Serializable
     public PSDEMSLogic setCodeName(String codeName) {
         this.codeName = codeName;
         this.modify("codename", codeName);
+        return this;
+    }
+
+    /**
+    * 设置 [逻辑类型]
+    */
+    public PSDEMSLogic setLogicType(String logicType) {
+        this.logicType = logicType;
+        this.modify("logictype", logicType);
         return this;
     }
 

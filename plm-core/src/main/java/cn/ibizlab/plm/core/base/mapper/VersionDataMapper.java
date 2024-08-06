@@ -43,6 +43,25 @@ public interface VersionDataMapper extends BaseMapper<VersionData> {
     List<VersionData> listDefault(@Param("ctx") VersionDataSearchContext context, @Param("ew") Wrapper<VersionData> wrapper);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<VersionData> searchView(IPage<VersionData> page, @Param("ctx") VersionDataSearchContext context, @Param("ew") Wrapper<VersionData> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<VersionData> listView(@Param("ctx") VersionDataSearchContext context, @Param("ew") Wrapper<VersionData> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

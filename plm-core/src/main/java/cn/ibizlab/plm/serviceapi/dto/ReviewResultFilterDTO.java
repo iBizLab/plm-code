@@ -39,6 +39,14 @@ public class ReviewResultFilterDTO extends FilterBase implements Serializable {
 	private Integer resultStateEQ;
 
     /**
+     * 阶段标识EQ
+     */
+    @JsonProperty("n_stage_id_eq")
+    @JSONField(name = "n_stage_id_eq")
+    @ApiModelProperty(value = "阶段标识EQ", position = 30)
+	private String stageIdEQ;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")

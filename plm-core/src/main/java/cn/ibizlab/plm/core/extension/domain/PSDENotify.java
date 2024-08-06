@@ -34,6 +34,15 @@ import cn.ibizlab.plm.core.extension.domain.PSDENotifyTarget;
 public class PSDENotify extends EntityBase implements Serializable
 {
     /**
+     * 通知目标
+     */
+    @DEField(name = "psdenotifytargets")
+    @JSONField(name = "psdenotifytargets")
+    @JsonProperty("psdenotifytargets")
+    @ApiModelProperty(value = "psdenotifytargets", notes = "通知目标")
+    private List<PSDENotifyTarget> psdeNotifyTargets;
+
+    /**
      * 实体通知标识
      */
     @Id
@@ -361,6 +370,33 @@ public class PSDENotify extends EntityBase implements Serializable
     private String fields;
 
     /**
+     * 后端模板插件
+     */
+    @DEField(name = "pssyssfpluginname")
+    @JSONField(name = "pssyssfpluginname")
+    @JsonProperty("pssyssfpluginname")
+    @ApiModelProperty(value = "pssyssfpluginname", notes = "后端模板插件")
+    private String psSysSfPluginName;
+
+    /**
+     * 后端模板插件
+     */
+    @DEField(name = "pssyssfpluginid")
+    @JSONField(name = "pssyssfpluginid")
+    @JsonProperty("pssyssfpluginid")
+    @ApiModelProperty(value = "pssyssfpluginid", notes = "后端模板插件")
+    private String psSysSfPluginId;
+
+    /**
+    * 设置 [通知目标]
+    */
+    public PSDENotify setPsdeNotifyTargets(List<PSDENotifyTarget> psdeNotifyTargets) {
+        this.psdeNotifyTargets = psdeNotifyTargets;
+        this.modify("psdenotifytargets", psdeNotifyTargets);
+        return this;
+    }
+
+    /**
     * 设置 [实体通知名称]
     */
     public PSDENotify setPsdeNotifyName(String psdeNotifyName) {
@@ -636,6 +672,24 @@ public class PSDENotify extends EntityBase implements Serializable
     public PSDENotify setFields(String fields) {
         this.fields = fields;
         this.modify("fields", fields);
+        return this;
+    }
+
+    /**
+    * 设置 [后端模板插件]
+    */
+    public PSDENotify setPsSysSfPluginName(String psSysSfPluginName) {
+        this.psSysSfPluginName = psSysSfPluginName;
+        this.modify("pssyssfpluginname", psSysSfPluginName);
+        return this;
+    }
+
+    /**
+    * 设置 [后端模板插件]
+    */
+    public PSDENotify setPsSysSfPluginId(String psSysSfPluginId) {
+        this.psSysSfPluginId = psSysSfPluginId;
+        this.modify("pssyssfpluginid", psSysSfPluginId);
         return this;
     }
 

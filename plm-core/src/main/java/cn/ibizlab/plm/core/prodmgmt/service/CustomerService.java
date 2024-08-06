@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.prodmgmt.domain.Customer;
 import cn.ibizlab.plm.core.prodmgmt.filter.CustomerSearchContext;
 import cn.ibizlab.plm.core.prodmgmt.domain.Product;
@@ -145,7 +146,7 @@ public interface CustomerService extends IService<Customer> {
     * @param et
     * @return
     */
-    Integer checkKey(Customer et);
+    CheckKeyStatus checkKey(Customer et);
 
     /**
     * 保存
@@ -219,6 +220,16 @@ public interface CustomerService extends IService<Customer> {
     */
     default Customer getAttention(String key) {
         return null;
+    }
+
+    /**
+    * getIdeaCustomerInfo
+    * 
+    * @param et
+    * @return
+    */
+    default Customer getIdeaCustomerInfo(Customer et) {
+        return et;
     }
 
     /**
@@ -354,8 +365,15 @@ public interface CustomerService extends IService<Customer> {
     */
     List<Customer> findByProductId(List<String> productIds);
     default List<Customer> findByProductId(String productId){
-        return findByProductId(Arrays.asList(productId));
+        return findByProduct(new Product().setId(productId));
     }
+
+    /**
+    * findByProduct
+    * @param product
+    * @return
+    */
+    List<Customer> findByProduct(Product product);
 
     /**
     * removeByProductId
@@ -396,8 +414,15 @@ public interface CustomerService extends IService<Customer> {
     */
     List<Customer> findByAssigneeId(List<String> assigneeIds);
     default List<Customer> findByAssigneeId(String assigneeId){
-        return findByAssigneeId(Arrays.asList(assigneeId));
+        return findByUser(new User().setId(assigneeId));
     }
+
+    /**
+    * findByUser
+    * @param user
+    * @return
+    */
+    List<Customer> findByUser(User user);
 
     /**
     * removeByAssigneeId
@@ -434,6 +459,22 @@ public interface CustomerService extends IService<Customer> {
     default List<Attention> getAttentions(Customer et) {
         return new ArrayList<>();
     }
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Customer> fetchView(CustomerSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Customer> listView(CustomerSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Customer> list) {

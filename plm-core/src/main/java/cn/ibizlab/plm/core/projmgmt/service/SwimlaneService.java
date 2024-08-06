@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.projmgmt.domain.Swimlane;
 import cn.ibizlab.plm.core.projmgmt.filter.SwimlaneSearchContext;
 import cn.ibizlab.plm.core.projmgmt.domain.Board;
@@ -140,7 +141,7 @@ public interface SwimlaneService extends IService<Swimlane> {
     * @param et
     * @return
     */
-    Integer checkKey(Swimlane et);
+    CheckKeyStatus checkKey(Swimlane et);
 
     /**
     * 保存
@@ -179,8 +180,15 @@ public interface SwimlaneService extends IService<Swimlane> {
     */
     List<Swimlane> findByBoardId(List<String> boardIds);
     default List<Swimlane> findByBoardId(String boardId){
-        return findByBoardId(Arrays.asList(boardId));
+        return findByBoard(new Board().setId(boardId));
     }
+
+    /**
+    * findByBoard
+    * @param board
+    * @return
+    */
+    List<Swimlane> findByBoard(Board board);
 
     /**
     * removeByBoardId
@@ -221,8 +229,15 @@ public interface SwimlaneService extends IService<Swimlane> {
     */
     List<Swimlane> findByProjectId(List<String> projectIds);
     default List<Swimlane> findByProjectId(String projectId){
-        return findByProjectId(Arrays.asList(projectId));
+        return findByProject(new Project().setId(projectId));
     }
+
+    /**
+    * findByProject
+    * @param project
+    * @return
+    */
+    List<Swimlane> findByProject(Project project);
 
     /**
     * removeByProjectId
@@ -255,6 +270,22 @@ public interface SwimlaneService extends IService<Swimlane> {
     * @return
     */
     boolean saveByProject(Project project, List<Swimlane> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Swimlane> fetchView(SwimlaneSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Swimlane> listView(SwimlaneSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Swimlane> list) {

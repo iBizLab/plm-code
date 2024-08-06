@@ -3,6 +3,7 @@
  */
 package cn.ibizlab.plm.core.base.service;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 import org.springframework.data.domain.Page;
@@ -10,8 +11,10 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.DynaDashboard;
 import cn.ibizlab.plm.core.base.filter.DynaDashboardSearchContext;
+import cn.ibizlab.plm.core.insight.domain.InsightView;
 
 /**
  * 动态数据看板服务接口[DynaDashboardService]
@@ -137,7 +140,7 @@ public interface DynaDashboardService extends IService<DynaDashboard> {
     * @param et
     * @return
     */
-    Integer checkKey(DynaDashboard et);
+    CheckKeyStatus checkKey(DynaDashboard et);
 
     /**
     * 保存
@@ -154,6 +157,36 @@ public interface DynaDashboardService extends IService<DynaDashboard> {
     boolean save(List<DynaDashboard> list);
 
     /**
+    * fillOtherBoard
+    * 
+    * @param et
+    * @return
+    */
+    default DynaDashboard fillOtherBoard(DynaDashboard et) {
+        return et;
+    }
+
+    /**
+    * moveOrder
+    * 
+    * @param et
+    * @return
+    */
+    default List<DynaDashboard> moveOrder(DynaDashboard et) {
+        return new ArrayList<>();
+    }
+
+    /**
+    * useCurTemplate
+    * 
+    * @param et
+    * @return
+    */
+    default DynaDashboard useCurTemplate(DynaDashboard et) {
+        return et;
+    }
+
+    /**
     * fetchDefault
     * 
     * @param context
@@ -168,6 +201,119 @@ public interface DynaDashboardService extends IService<DynaDashboard> {
     * @return
     */
     List<DynaDashboard> listDefault(DynaDashboardSearchContext context);
+
+    /**
+    * fetchExampleChart
+    * 
+    * @param context
+    * @return
+    */
+    Page<DynaDashboard> fetchExampleChart(DynaDashboardSearchContext context);
+
+    /**
+    * listExampleChart
+    * 
+    * @param context
+    * @return
+    */
+    List<DynaDashboard> listExampleChart(DynaDashboardSearchContext context);
+
+    /**
+    * fetchIsSystem
+    * 
+    * @param context
+    * @return
+    */
+    Page<DynaDashboard> fetchIsSystem(DynaDashboardSearchContext context);
+
+    /**
+    * listIsSystem
+    * 
+    * @param context
+    * @return
+    */
+    List<DynaDashboard> listIsSystem(DynaDashboardSearchContext context);
+
+    /**
+    * fetchNormal
+    * 
+    * @param context
+    * @return
+    */
+    Page<DynaDashboard> fetchNormal(DynaDashboardSearchContext context);
+
+    /**
+    * listNormal
+    * 
+    * @param context
+    * @return
+    */
+    List<DynaDashboard> listNormal(DynaDashboardSearchContext context);
+
+    /**
+    * findByOwnerId
+    * @param ownerIds
+    * @return
+    */
+    List<DynaDashboard> findByOwnerId(List<String> ownerIds);
+    default List<DynaDashboard> findByOwnerId(String ownerId){
+        return findByInsightView(new InsightView().setId(ownerId));
+    }
+
+    /**
+    * findByInsightView
+    * @param insightView
+    * @return
+    */
+    List<DynaDashboard> findByInsightView(InsightView insightView);
+
+    /**
+    * removeByOwnerId
+    * @param ownerId
+    * @return
+    */
+    boolean removeByOwnerId(String ownerId);
+
+    /**
+    * resetByOwnerId
+    * @param ownerId
+    * @return
+    */
+    boolean resetByOwnerId(String ownerId);
+
+    /**
+    * saveByOwnerId
+    * @param ownerId
+    * @param list
+    * @return
+    */
+    default boolean saveByOwnerId(String ownerId, List<DynaDashboard> list){
+        return getSelf().saveByInsightView(new InsightView().setId(ownerId),list);
+    }
+
+    /**
+    * saveByInsightView
+    * @param insightView
+    * @param list
+    * @return
+    */
+    boolean saveByInsightView(InsightView insightView, List<DynaDashboard> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<DynaDashboard> fetchView(DynaDashboardSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<DynaDashboard> listView(DynaDashboardSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<DynaDashboard> list) {

@@ -62,6 +62,25 @@ public interface ArticlePageMapper extends BaseMapper<ArticlePage> {
     List<ArticlePage> listAdvancedSearch(@Param("ctx") ArticlePageSearchContext context, @Param("ew") Wrapper<ArticlePage> wrapper);
 
     /**
+     * 数据集合all_shared_pages分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<ArticlePage> searchAllSharedPages(IPage<ArticlePage> page, @Param("ctx") ArticlePageSearchContext context, @Param("ew") Wrapper<ArticlePage> wrapper);
+    
+    /**
+     * 数据集合all_shared_pages查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<ArticlePage> listAllSharedPages(@Param("ctx") ArticlePageSearchContext context, @Param("ew") Wrapper<ArticlePage> wrapper);
+
+    /**
      * 数据集合baseline_choose_page分页查询
      * 
      * @param page
@@ -79,6 +98,25 @@ public interface ArticlePageMapper extends BaseMapper<ArticlePage> {
      * @return
      */
     List<ArticlePage> listBaselineChoosePage(@Param("ctx") ArticlePageSearchContext context, @Param("ew") Wrapper<ArticlePage> wrapper);
+
+    /**
+     * 数据集合choose_shared分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<ArticlePage> searchChooseShared(IPage<ArticlePage> page, @Param("ctx") ArticlePageSearchContext context, @Param("ew") Wrapper<ArticlePage> wrapper);
+    
+    /**
+     * 数据集合choose_shared查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<ArticlePage> listChooseShared(@Param("ctx") ArticlePageSearchContext context, @Param("ew") Wrapper<ArticlePage> wrapper);
 
     /**
      * 数据集合draft_page分页查询
@@ -214,6 +252,120 @@ public interface ArticlePageMapper extends BaseMapper<ArticlePage> {
     List<ArticlePage> listOnlyPage(@Param("ctx") ArticlePageSearchContext context, @Param("ew") Wrapper<ArticlePage> wrapper);
 
     /**
+     * 数据集合shared_page分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<ArticlePage> searchSharedPage(IPage<ArticlePage> page, @Param("ctx") ArticlePageSearchContext context, @Param("ew") Wrapper<ArticlePage> wrapper);
+    
+    /**
+     * 数据集合shared_page查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<ArticlePage> listSharedPage(@Param("ctx") ArticlePageSearchContext context, @Param("ew") Wrapper<ArticlePage> wrapper);
+
+    /**
+     * 数据集合shared_reader分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<ArticlePage> searchSharedReader(IPage<ArticlePage> page, @Param("ctx") ArticlePageSearchContext context, @Param("ew") Wrapper<ArticlePage> wrapper);
+    
+    /**
+     * 数据集合shared_reader查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<ArticlePage> listSharedReader(@Param("ctx") ArticlePageSearchContext context, @Param("ew") Wrapper<ArticlePage> wrapper);
+
+    /**
+     * 数据集合shared_search分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<ArticlePage> searchSharedSearch(IPage<ArticlePage> page, @Param("ctx") ArticlePageSearchContext context, @Param("ew") Wrapper<ArticlePage> wrapper);
+    
+    /**
+     * 数据集合shared_search查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<ArticlePage> listSharedSearch(@Param("ctx") ArticlePageSearchContext context, @Param("ew") Wrapper<ArticlePage> wrapper);
+
+    /**
+     * 数据集合shared_sub_pages分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<ArticlePage> searchSharedSubPages(IPage<ArticlePage> page, @Param("ctx") ArticlePageSearchContext context, @Param("ew") Wrapper<ArticlePage> wrapper);
+    
+    /**
+     * 数据集合shared_sub_pages查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<ArticlePage> listSharedSubPages(@Param("ctx") ArticlePageSearchContext context, @Param("ew") Wrapper<ArticlePage> wrapper);
+
+    /**
+     * 数据集合shared_with_me分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<ArticlePage> searchSharedWithMe(IPage<ArticlePage> page, @Param("ctx") ArticlePageSearchContext context, @Param("ew") Wrapper<ArticlePage> wrapper);
+    
+    /**
+     * 数据集合shared_with_me查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<ArticlePage> listSharedWithMe(@Param("ctx") ArticlePageSearchContext context, @Param("ew") Wrapper<ArticlePage> wrapper);
+
+    /**
+     * 数据集合shared_with_me_edit分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<ArticlePage> searchSharedWithMeEdit(IPage<ArticlePage> page, @Param("ctx") ArticlePageSearchContext context, @Param("ew") Wrapper<ArticlePage> wrapper);
+    
+    /**
+     * 数据集合shared_with_me_edit查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<ArticlePage> listSharedWithMeEdit(@Param("ctx") ArticlePageSearchContext context, @Param("ew") Wrapper<ArticlePage> wrapper);
+
+    /**
     * 根据parentId查询
     *
     * @param parentIds
@@ -228,6 +380,25 @@ public interface ArticlePageMapper extends BaseMapper<ArticlePage> {
     * @return
     */
     List<ArticlePage> findBySpaceId(@Param("spaceIds") List<String> spaceIds);
+
+    /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<ArticlePage> searchView(IPage<ArticlePage> page, @Param("ctx") ArticlePageSearchContext context, @Param("ew") Wrapper<ArticlePage> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<ArticlePage> listView(@Param("ctx") ArticlePageSearchContext context, @Param("ew") Wrapper<ArticlePage> wrapper);
 
     /**
      * 主键查询

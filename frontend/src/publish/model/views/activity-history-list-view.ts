@@ -152,7 +152,6 @@ export default {
                     allowEmpty: true,
                     hidden: true,
                     caption: '文本(动态)',
-                    itemStyle: 'DEFAULT',
                     itemType: 'FIELD',
                     layoutPos: {
                       shrink: 1,
@@ -172,7 +171,6 @@ export default {
                     allowEmpty: true,
                     hidden: true,
                     caption: '文本框',
-                    itemStyle: 'DEFAULT',
                     itemType: 'FIELD',
                     layoutPos: {
                       shrink: 1,

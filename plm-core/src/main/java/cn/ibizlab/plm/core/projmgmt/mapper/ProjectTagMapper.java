@@ -43,6 +43,25 @@ public interface ProjectTagMapper extends BaseMapper<ProjectTag> {
     List<ProjectTag> listDefault(@Param("ctx") ProjectTagSearchContext context, @Param("ew") Wrapper<ProjectTag> wrapper);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<ProjectTag> searchView(IPage<ProjectTag> page, @Param("ctx") ProjectTagSearchContext context, @Param("ew") Wrapper<ProjectTag> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<ProjectTag> listView(@Param("ctx") ProjectTagSearchContext context, @Param("ew") Wrapper<ProjectTag> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

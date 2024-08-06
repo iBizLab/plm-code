@@ -1,0 +1,71 @@
+export default {
+  redirectAppViewRefs: [
+    {
+      realTitle: '发布阶段编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.STAGE.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.stage_edit_view',
+      name: 'STAGE:EDITVIEW',
+      id: 'stage:editview',
+    },
+    {
+      realTitle: '发布阶段编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.STAGE.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.stage_edit_view',
+      name: 'EDITVIEW',
+      id: 'editview',
+    },
+  ],
+  enableWorkflow: true,
+  funcViewMode: 'REDIRECTVIEW',
+  deviewCodeName: 'RedirectView',
+  deviewId: 'e02e7c654bc9eea3efa0d496f32f1f83',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.STAGE',
+  },
+  caption: '发布阶段',
+  codeName: 'stage_redirect_view',
+  appDataEntityId: 'plmweb.stage',
+  controls: [
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.STAGE',
+      },
+      caption: '发布阶段',
+      codeName: 'redirect_view_captionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.stage',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'redirect_view_captionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'layoutpanel',
+    controlStyle: 'APPDEREDIRECTVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.stage',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '发布阶段数据重定向视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.STAGE.REDIRECTVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEREDIRECTVIEW',
+  enableDP: true,
+  redirectView: true,
+  showCaptionBar: true,
+  modelId: '08bfd6207c55aa27a7c6fd0bc5e7bcbb',
+  modelType: 'PSAPPDEVIEW',
+  name: 'stageRedirectView',
+  id: 'plmweb.stage_redirect_view',
+};

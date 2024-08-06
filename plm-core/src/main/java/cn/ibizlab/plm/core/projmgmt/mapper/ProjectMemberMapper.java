@@ -78,6 +78,25 @@ public interface ProjectMemberMapper extends BaseMapper<ProjectMember> {
     List<ProjectMember> findByUserId(@Param("userIds") List<String> userIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<ProjectMember> searchView(IPage<ProjectMember> page, @Param("ctx") ProjectMemberSearchContext context, @Param("ew") Wrapper<ProjectMember> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<ProjectMember> listView(@Param("ctx") ProjectMemberSearchContext context, @Param("ew") Wrapper<ProjectMember> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

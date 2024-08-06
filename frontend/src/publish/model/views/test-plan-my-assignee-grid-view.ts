@@ -1,5 +1,4 @@
 export default {
-  gridRowActiveMode: 1,
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'my_assignee_grid_view',
@@ -47,28 +46,12 @@ export default {
       logicType: 'APPUILOGIC',
       builtinAppUILogic: {
         openDataAppView: {
-          navigateContexts: [
-            {
-              key: 'LIBRARY',
-              value: 'library_id',
-              name: 'LIBRARY',
-              id: 'library',
-            },
-          ],
-          refAppViewId: 'plmweb.library_index_view',
+          refAppViewId: 'plmweb.test_plan_redirect_view',
         },
         editMode: true,
         appUILogicRefViews: [
           {
-            navigateContexts: [
-              {
-                key: 'LIBRARY',
-                value: 'library_id',
-                name: 'LIBRARY',
-                id: 'library',
-              },
-            ],
-            refAppViewId: 'plmweb.library_index_view',
+            refAppViewId: 'plmweb.test_plan_redirect_view',
           },
         ],
         builtinLogic: true,
@@ -89,16 +72,11 @@ export default {
       id: 'newdata',
     },
     {
-      navigateContexts: [
-        {
-          key: 'LIBRARY',
-          value: 'library_id',
-          name: 'LIBRARY',
-          id: 'library',
-        },
-      ],
-      realTitle: '测试库',
-      refAppViewId: 'plmweb.library_index_view',
+      realTitle: '测试计划数据重定向视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.TEST_PLAN.REDIRECTVIEW',
+      },
+      refAppViewId: 'plmweb.test_plan_redirect_view',
       name: 'EDITDATA',
       id: 'editdata',
     },
@@ -115,7 +93,7 @@ export default {
           dataItemName: 'name',
           excelCaption: '计划名称',
           appDEFieldId: 'name',
-          deuiactionId: 'open_library@test_plan',
+          deuiactionId: 'open_test_plan_main_view@test_plan',
           valueType: 'SIMPLE',
           aggMode: 'NONE',
           align: 'LEFT',
@@ -213,6 +191,12 @@ export default {
           id: 'library_name',
         },
         {
+          appDEFieldId: 'library_id',
+          valueType: 'SIMPLE',
+          dataType: 25,
+          id: 'library_id',
+        },
+        {
           appDEFieldId: 'id',
           valueType: 'SIMPLE',
           dataType: 25,
@@ -223,12 +207,6 @@ export default {
           valueType: 'SIMPLE',
           dataType: 25,
           id: 'srfdataaccaction',
-        },
-        {
-          appDEFieldId: 'library_id',
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'library_id',
         },
         {
           appDEFieldId: 'project_id',

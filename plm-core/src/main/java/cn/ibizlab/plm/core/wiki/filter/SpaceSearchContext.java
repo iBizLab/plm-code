@@ -46,6 +46,14 @@ public class SpaceSearchContext extends QueryWrapperContext<Space> {
     private String visibilityEQ;
 
     /**
+     * 是否开启共享EQ
+     */
+    @JsonProperty("n_is_shared_eq")
+    @JSONField(name = "n_is_shared_eq")
+    @ApiModelProperty("是否开启共享EQ")
+    private String isSharedEQ;
+
+    /**
      * 所属EQ
      */
     @JsonProperty("n_scope_type_eq")

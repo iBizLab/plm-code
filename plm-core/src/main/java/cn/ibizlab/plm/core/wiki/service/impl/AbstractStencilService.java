@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.wiki.domain.Stencil;
@@ -113,14 +114,14 @@ public abstract class AbstractStencilService extends ServiceImpl<StencilMapper,S
         return et;
     }
 	
-    public Integer checkKey(Stencil et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Stencil>lambdaQuery().eq(Stencil::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(Stencil et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Stencil>lambdaQuery().eq(Stencil::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(Stencil et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -199,6 +200,10 @@ public abstract class AbstractStencilService extends ServiceImpl<StencilMapper,S
         return list;	
 	}
 
+	public List<Stencil> findBySpace(Space space){
+        List<Stencil> list = findBySpaceId(Arrays.asList(space.getId()));
+		return list;
+	}
 	public boolean removeBySpaceId(String spaceId){
         return this.remove(Wrappers.<Stencil>lambdaQuery().eq(Stencil::getSpaceId,spaceId));
 	}
@@ -209,8 +214,8 @@ public abstract class AbstractStencilService extends ServiceImpl<StencilMapper,S
 	public boolean saveBySpace(Space space, List<Stencil> list){
         if(list==null)
             return true;
-        Map<String,Stencil> before = findBySpaceId(space.getId()).stream().collect(Collectors.toMap(Stencil::getId,e->e));
 
+        Map<String,Stencil> before = findBySpace(space).stream().collect(Collectors.toMap(Stencil::getId,e->e));
         List<Stencil> update = new ArrayList<>();
         List<Stencil> create = new ArrayList<>();
 
@@ -236,10 +241,21 @@ public abstract class AbstractStencilService extends ServiceImpl<StencilMapper,S
 	}
 	@Override
     public List<Attachment> getAttachments(Stencil et) {
-        List<Attachment> list = attachmentService.findByOwnerId(et.getId());
+        List<Attachment> list = attachmentService.findByStencil(et);
         et.setAttachments(list);
         return list;
     }
+	
+   public Page<Stencil> fetchView(StencilSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Stencil> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<Stencil> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Stencil> listView(StencilSearchContext context) {
+        List<Stencil> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
 	
 
     public void fillParentData(Stencil et) {

@@ -245,7 +245,7 @@ export default {
                           contenttype: 'HTML',
                           TITLE: 'name',
                           PARSESCRIPT:
-                            'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>").replace(/#{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>")',
+                            'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>").replace(/#{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>").replaceAll(/\\{\\"\\emoji\\":\\"(.+?)\\"\\}/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji)); return `<span class="emoji-tag">${tempVal}</span>`})',
                         },
                         editorStyle: 'ANCHO_HTML',
                         editorType: 'RAW',
@@ -508,6 +508,7 @@ export default {
                             caption: '所属数据标识',
                             codeName: 'owner_id',
                             columnType: 'DEFGRIDCOLUMN',
+                            hideMode: 1,
                             noPrivDisplayMode: 1,
                             width: 100,
                             widthUnit: 'PX',
@@ -969,7 +970,6 @@ export default {
                 shrink: 1,
                 layout: 'FLEX',
               },
-              showCaption: true,
               id: 'format_type',
             },
             {
@@ -998,7 +998,6 @@ export default {
                 shrink: 1,
                 layout: 'FLEX',
               },
-              showCaption: true,
               id: 'id',
             },
           ],

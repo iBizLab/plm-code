@@ -23,12 +23,14 @@ import java.util.stream.IntStream;
 import cn.ibizlab.util.domain.ImportResult;
 import cn.ibizlab.util.domain.RequestWrapper;
 import cn.ibizlab.util.domain.ResponseWrapper;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.serviceapi.dto.*;
 import cn.ibizlab.plm.serviceapi.mapping.*;
 import cn.ibizlab.plm.core.prodmgmt.domain.Ticket;
 import cn.ibizlab.plm.core.prodmgmt.service.TicketService;
 import cn.ibizlab.plm.core.prodmgmt.filter.TicketSearchContext;
 import cn.ibizlab.util.annotation.VersionCheck;
+import reactor.core.publisher.Mono;
 
 /**
  * 实体[Ticket] rest实现
@@ -51,6 +53,10 @@ public abstract class AbstractTicketResource {
 
     @Autowired
     @Lazy
+    public TicketBiSearchGroupDTOMapping ticketBiSearchGroupDtoMapping;
+
+    @Autowired
+    @Lazy
     public TicketDTOMapping ticketDtoMapping;
 
     @Autowired
@@ -62,19 +68,19 @@ public abstract class AbstractTicketResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<TicketDTO>
+    * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "创建Create", tags = {"工单" },  notes = "Ticket-Create ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-Create-all') or hasPermission(this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-Create')")
     @PostMapping("tickets")
-    public ResponseEntity<ResponseWrapper<TicketDTO>> create
+    public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>create
             (@Validated @RequestBody RequestWrapper<TicketDTO> dto) {
         ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(create(item)));
         else
             rt.set(create(dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -98,13 +104,13 @@ public abstract class AbstractTicketResource {
     *
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<TicketDTO>
+    * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "更新Update", tags = {"工单" },  notes = "Ticket-Update ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-Update-all') or hasPermission(this.ticketService.get(#id),'ibizplm-Ticket-Update')")
     @VersionCheck(entity = "ticket" , versionfield = "updateTime")
     @PutMapping("tickets/{id}")
-    public ResponseEntity<ResponseWrapper<TicketDTO>> updateById
+    public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>updateById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
         ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -113,7 +119,7 @@ public abstract class AbstractTicketResource {
         }
         else
             rt.set(updateById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -139,12 +145,12 @@ public abstract class AbstractTicketResource {
     *
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<TicketDTO>
+    * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "activate", tags = {"工单" },  notes = "Ticket-activate ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-activate-all') or hasPermission(this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-activate')")
     @PostMapping("tickets/{id}/activate")
-    public ResponseEntity<ResponseWrapper<TicketDTO>> activateById
+    public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>activateById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
         ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -153,7 +159,7 @@ public abstract class AbstractTicketResource {
         }
         else
             rt.set(activateById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -178,11 +184,11 @@ public abstract class AbstractTicketResource {
     *
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<TicketDTO>
+    * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "allocate_person", tags = {"工单" },  notes = "Ticket-allocate_person ")
     @PostMapping("tickets/{id}/allocate_person")
-    public ResponseEntity<ResponseWrapper<TicketDTO>> allocatePersonById
+    public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>allocatePersonById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
         ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -191,7 +197,7 @@ public abstract class AbstractTicketResource {
         }
         else
             rt.set(allocatePersonById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -216,12 +222,12 @@ public abstract class AbstractTicketResource {
     *
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<TicketDTO>
+    * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "archive", tags = {"工单" },  notes = "Ticket-archive ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-archive-all') or hasPermission(this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-archive')")
     @PostMapping("tickets/{id}/archive")
-    public ResponseEntity<ResponseWrapper<TicketDTO>> archiveById
+    public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>archiveById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
         ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -230,7 +236,7 @@ public abstract class AbstractTicketResource {
         }
         else
             rt.set(archiveById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -255,11 +261,11 @@ public abstract class AbstractTicketResource {
     *
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<TicketDTO>
+    * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "choose_tag", tags = {"工单" },  notes = "Ticket-choose_tag ")
     @PostMapping("tickets/{id}/choose_tag")
-    public ResponseEntity<ResponseWrapper<TicketDTO>> chooseTagById
+    public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>chooseTagById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
         ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -268,7 +274,7 @@ public abstract class AbstractTicketResource {
         }
         else
             rt.set(chooseTagById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -293,12 +299,12 @@ public abstract class AbstractTicketResource {
     *
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<TicketDTO>
+    * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "customer_choose_ticket", tags = {"工单" },  notes = "Ticket-customer_choose_ticket ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-customer_choose_ticket-all') or hasPermission(this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-customer_choose_ticket')")
     @PutMapping("tickets/{id}/customer_choose_ticket")
-    public ResponseEntity<ResponseWrapper<TicketDTO>> customerChooseTicketById
+    public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>customerChooseTicketById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
         ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -307,7 +313,7 @@ public abstract class AbstractTicketResource {
         }
         else
             rt.set(customerChooseTicketById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -332,11 +338,11 @@ public abstract class AbstractTicketResource {
     *
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<TicketDTO>
+    * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "customer_del_ticket", tags = {"工单" },  notes = "Ticket-customer_del_ticket ")
     @PostMapping("tickets/{id}/customer_del_ticket")
-    public ResponseEntity<ResponseWrapper<TicketDTO>> customerDelTicketById
+    public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>customerDelTicketById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
         ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -345,7 +351,7 @@ public abstract class AbstractTicketResource {
         }
         else
             rt.set(customerDelTicketById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -370,12 +376,12 @@ public abstract class AbstractTicketResource {
     *
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<TicketDTO>
+    * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "delete", tags = {"工单" },  notes = "Ticket-delete ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-delete-all') or hasPermission(this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-delete')")
     @PostMapping("tickets/{id}/delete")
-    public ResponseEntity<ResponseWrapper<TicketDTO>> deleteById
+    public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>deleteById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
         ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -384,7 +390,7 @@ public abstract class AbstractTicketResource {
         }
         else
             rt.set(deleteById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -409,12 +415,12 @@ public abstract class AbstractTicketResource {
     *
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<TicketDTO>
+    * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "others_relation_ticket", tags = {"工单" },  notes = "Ticket-others_relation_ticket ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-others_relation_ticket-all') or hasPermission(this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-others_relation_ticket')")
     @PutMapping("tickets/{id}/others_relation_ticket")
-    public ResponseEntity<ResponseWrapper<TicketDTO>> othersRelationTicketById
+    public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>othersRelationTicketById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
         ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -423,7 +429,7 @@ public abstract class AbstractTicketResource {
         }
         else
             rt.set(othersRelationTicketById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -448,11 +454,11 @@ public abstract class AbstractTicketResource {
     *
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<TicketDTO>
+    * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "product_ticket_re_counters", tags = {"工单" },  notes = "Ticket-product_ticket_re_counters ")
     @PostMapping("tickets/{id}/product_ticket_re_counters")
-    public ResponseEntity<ResponseWrapper<TicketDTO>> productTicketReCountersById
+    public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>productTicketReCountersById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
         ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -461,7 +467,7 @@ public abstract class AbstractTicketResource {
         }
         else
             rt.set(productTicketReCountersById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -486,12 +492,12 @@ public abstract class AbstractTicketResource {
     *
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<TicketDTO>
+    * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "recover", tags = {"工单" },  notes = "Ticket-recover ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-recover-all') or hasPermission(this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-recover')")
     @PostMapping("tickets/{id}/recover")
-    public ResponseEntity<ResponseWrapper<TicketDTO>> recoverById
+    public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>recoverById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
         ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -500,7 +506,7 @@ public abstract class AbstractTicketResource {
         }
         else
             rt.set(recoverById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -524,19 +530,19 @@ public abstract class AbstractTicketResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<TicketDTO>
+    * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "保存Save", tags = {"工单" },  notes = "Ticket-Save ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-Save-all') or hasPermission(this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-Save')")
     @PostMapping("tickets/save")
-    public ResponseEntity<ResponseWrapper<TicketDTO>> save
+    public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>save
             (@Validated @RequestBody RequestWrapper<TicketDTO> dto) {
         ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(save(item)));
         else
             rt.set(save(dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -560,12 +566,12 @@ public abstract class AbstractTicketResource {
     *
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<TicketDTO>
+    * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "ticket_readonly_recognize", tags = {"工单" },  notes = "Ticket-ticket_readonly_recognize ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-ticket_readonly_recognize-all') or hasPermission(this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-ticket_readonly_recognize')")
     @PostMapping("tickets/{id}/ticket_readonly_recognize")
-    public ResponseEntity<ResponseWrapper<TicketDTO>> ticketReadonlyRecognizeById
+    public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>ticketReadonlyRecognizeById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
         ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -574,7 +580,7 @@ public abstract class AbstractTicketResource {
         }
         else
             rt.set(ticketReadonlyRecognizeById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -599,19 +605,19 @@ public abstract class AbstractTicketResource {
     *
     * @param productId productId
     * @param dto dto
-    * @return ResponseEntity<TicketDTO>
+    * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "创建Create", tags = {"工单" },  notes = "Ticket-Create ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-Create-all') or hasPermission('product',#productId,this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-Create')")
     @PostMapping("products/{productId}/tickets")
-    public ResponseEntity<ResponseWrapper<TicketDTO>> createByProductId
+    public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>createByProductId
             (@PathVariable("productId") String productId, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
         ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(createByProductId(productId, item)));
         else
             rt.set(createByProductId(productId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -638,13 +644,13 @@ public abstract class AbstractTicketResource {
     * @param productId productId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<TicketDTO>
+    * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "更新Update", tags = {"工单" },  notes = "Ticket-Update ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-Update-all') or hasPermission('product',#productId,this.ticketService.get(#id),'ibizplm-Ticket-Update')")
     @VersionCheck(entity = "ticket" , versionfield = "updateTime")
     @PutMapping("products/{productId}/tickets/{id}")
-    public ResponseEntity<ResponseWrapper<TicketDTO>> updateByProductIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>updateByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
         ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -653,7 +659,7 @@ public abstract class AbstractTicketResource {
         }
         else
             rt.set(updateByProductIdAndId(productId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -681,12 +687,12 @@ public abstract class AbstractTicketResource {
     * @param productId productId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<TicketDTO>
+    * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "activate", tags = {"工单" },  notes = "Ticket-activate ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-activate-all') or hasPermission('product',#productId,this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-activate')")
     @PostMapping("products/{productId}/tickets/{id}/activate")
-    public ResponseEntity<ResponseWrapper<TicketDTO>> activateByProductIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>activateByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
         ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -695,7 +701,7 @@ public abstract class AbstractTicketResource {
         }
         else
             rt.set(activateByProductIdAndId(productId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -722,11 +728,11 @@ public abstract class AbstractTicketResource {
     * @param productId productId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<TicketDTO>
+    * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "allocate_person", tags = {"工单" },  notes = "Ticket-allocate_person ")
     @PostMapping("products/{productId}/tickets/{id}/allocate_person")
-    public ResponseEntity<ResponseWrapper<TicketDTO>> allocatePersonByProductIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>allocatePersonByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
         ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -735,7 +741,7 @@ public abstract class AbstractTicketResource {
         }
         else
             rt.set(allocatePersonByProductIdAndId(productId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -762,12 +768,12 @@ public abstract class AbstractTicketResource {
     * @param productId productId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<TicketDTO>
+    * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "archive", tags = {"工单" },  notes = "Ticket-archive ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-archive-all') or hasPermission('product',#productId,this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-archive')")
     @PostMapping("products/{productId}/tickets/{id}/archive")
-    public ResponseEntity<ResponseWrapper<TicketDTO>> archiveByProductIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>archiveByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
         ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -776,7 +782,7 @@ public abstract class AbstractTicketResource {
         }
         else
             rt.set(archiveByProductIdAndId(productId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -803,11 +809,11 @@ public abstract class AbstractTicketResource {
     * @param productId productId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<TicketDTO>
+    * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "choose_tag", tags = {"工单" },  notes = "Ticket-choose_tag ")
     @PostMapping("products/{productId}/tickets/{id}/choose_tag")
-    public ResponseEntity<ResponseWrapper<TicketDTO>> chooseTagByProductIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>chooseTagByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
         ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -816,7 +822,7 @@ public abstract class AbstractTicketResource {
         }
         else
             rt.set(chooseTagByProductIdAndId(productId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -843,12 +849,12 @@ public abstract class AbstractTicketResource {
     * @param productId productId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<TicketDTO>
+    * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "customer_choose_ticket", tags = {"工单" },  notes = "Ticket-customer_choose_ticket ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-customer_choose_ticket-all') or hasPermission('product',#productId,this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-customer_choose_ticket')")
     @PutMapping("products/{productId}/tickets/{id}/customer_choose_ticket")
-    public ResponseEntity<ResponseWrapper<TicketDTO>> customerChooseTicketByProductIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>customerChooseTicketByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
         ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -857,7 +863,7 @@ public abstract class AbstractTicketResource {
         }
         else
             rt.set(customerChooseTicketByProductIdAndId(productId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -884,11 +890,11 @@ public abstract class AbstractTicketResource {
     * @param productId productId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<TicketDTO>
+    * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "customer_del_ticket", tags = {"工单" },  notes = "Ticket-customer_del_ticket ")
     @PostMapping("products/{productId}/tickets/{id}/customer_del_ticket")
-    public ResponseEntity<ResponseWrapper<TicketDTO>> customerDelTicketByProductIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>customerDelTicketByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
         ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -897,7 +903,7 @@ public abstract class AbstractTicketResource {
         }
         else
             rt.set(customerDelTicketByProductIdAndId(productId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -924,12 +930,12 @@ public abstract class AbstractTicketResource {
     * @param productId productId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<TicketDTO>
+    * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "delete", tags = {"工单" },  notes = "Ticket-delete ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-delete-all') or hasPermission('product',#productId,this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-delete')")
     @PostMapping("products/{productId}/tickets/{id}/delete")
-    public ResponseEntity<ResponseWrapper<TicketDTO>> deleteByProductIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>deleteByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
         ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -938,7 +944,7 @@ public abstract class AbstractTicketResource {
         }
         else
             rt.set(deleteByProductIdAndId(productId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -965,12 +971,12 @@ public abstract class AbstractTicketResource {
     * @param productId productId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<TicketDTO>
+    * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "others_relation_ticket", tags = {"工单" },  notes = "Ticket-others_relation_ticket ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-others_relation_ticket-all') or hasPermission('product',#productId,this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-others_relation_ticket')")
     @PutMapping("products/{productId}/tickets/{id}/others_relation_ticket")
-    public ResponseEntity<ResponseWrapper<TicketDTO>> othersRelationTicketByProductIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>othersRelationTicketByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
         ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -979,7 +985,7 @@ public abstract class AbstractTicketResource {
         }
         else
             rt.set(othersRelationTicketByProductIdAndId(productId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -1006,11 +1012,11 @@ public abstract class AbstractTicketResource {
     * @param productId productId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<TicketDTO>
+    * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "product_ticket_re_counters", tags = {"工单" },  notes = "Ticket-product_ticket_re_counters ")
     @PostMapping("products/{productId}/tickets/{id}/product_ticket_re_counters")
-    public ResponseEntity<ResponseWrapper<TicketDTO>> productTicketReCountersByProductIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>productTicketReCountersByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
         ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -1019,7 +1025,7 @@ public abstract class AbstractTicketResource {
         }
         else
             rt.set(productTicketReCountersByProductIdAndId(productId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -1046,12 +1052,12 @@ public abstract class AbstractTicketResource {
     * @param productId productId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<TicketDTO>
+    * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "recover", tags = {"工单" },  notes = "Ticket-recover ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-recover-all') or hasPermission('product',#productId,this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-recover')")
     @PostMapping("products/{productId}/tickets/{id}/recover")
-    public ResponseEntity<ResponseWrapper<TicketDTO>> recoverByProductIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>recoverByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
         ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -1060,7 +1066,7 @@ public abstract class AbstractTicketResource {
         }
         else
             rt.set(recoverByProductIdAndId(productId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -1086,19 +1092,19 @@ public abstract class AbstractTicketResource {
     *
     * @param productId productId
     * @param dto dto
-    * @return ResponseEntity<TicketDTO>
+    * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "保存Save", tags = {"工单" },  notes = "Ticket-Save ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-Save-all') or hasPermission('product',#productId,this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-Save')")
     @PostMapping("products/{productId}/tickets/save")
-    public ResponseEntity<ResponseWrapper<TicketDTO>> saveByProductId
+    public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>saveByProductId
             (@PathVariable("productId") String productId, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
         ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(saveByProductId(productId, item)));
         else
             rt.set(saveByProductId(productId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -1125,12 +1131,12 @@ public abstract class AbstractTicketResource {
     * @param productId productId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<TicketDTO>
+    * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "ticket_readonly_recognize", tags = {"工单" },  notes = "Ticket-ticket_readonly_recognize ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-ticket_readonly_recognize-all') or hasPermission('product',#productId,this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-ticket_readonly_recognize')")
     @PostMapping("products/{productId}/tickets/{id}/ticket_readonly_recognize")
-    public ResponseEntity<ResponseWrapper<TicketDTO>> ticketReadonlyRecognizeByProductIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>ticketReadonlyRecognizeByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
         ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -1139,7 +1145,7 @@ public abstract class AbstractTicketResource {
         }
         else
             rt.set(ticketReadonlyRecognizeByProductIdAndId(productId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -1165,15 +1171,15 @@ public abstract class AbstractTicketResource {
     * 
     *
     * @param id id
-    * @return ResponseEntity<TicketDTO>
+    * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "获取Get", tags = {"工单" },  notes = "Ticket-Get ")
-    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-Get-all')  or hasPermission(this.ticketDtoMapping.toDomain(returnObject.body),'ibizplm-Ticket-Get')")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-Get-all')  or hasPermission(this.ticketDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-Ticket-Get')")
     @GetMapping("tickets/{id}")
-    public ResponseEntity<TicketDTO> getById
+    public Mono<ResponseEntity<TicketDTO>> getById
             (@PathVariable("id") String id) {
         Ticket rt = ticketService.get(id);
-        return ResponseEntity.status(HttpStatus.OK).body(ticketDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(ticketDtoMapping.toDto(rt)));
     }
 
     /**
@@ -1181,15 +1187,15 @@ public abstract class AbstractTicketResource {
     * 
     *
     * @param id id
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @ApiOperation(value = "删除Remove", tags = {"工单" },  notes = "Ticket-Remove ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-Remove-all') or hasPermission(this.ticketService.get(#id),'ibizplm-Ticket-Remove')")
     @DeleteMapping("tickets/{id}")
-    public ResponseEntity<Boolean> removeById
+    public Mono<ResponseEntity<Boolean>> removeById
             (@PathVariable("id") String id) {
         Boolean rt = ticketService.remove(id);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -1197,15 +1203,15 @@ public abstract class AbstractTicketResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<Integer>
+    * @return Mono<ResponseEntity<Integer>>
     */
     @ApiOperation(value = "校验CheckKey", tags = {"工单" },  notes = "Ticket-CheckKey ")
     @PostMapping("tickets/check_key")
-    public ResponseEntity<Integer> checkKey
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKey
             (@Validated @RequestBody TicketDTO dto) {
         Ticket domain = ticketDtoMapping.toDomain(dto);
-        Integer rt = ticketService.checkKey(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        CheckKeyStatus rt = ticketService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -1213,15 +1219,15 @@ public abstract class AbstractTicketResource {
     * 
     *
     * @param id id
-    * @return ResponseEntity<TicketDTO>
+    * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "get_attention", tags = {"工单" },  notes = "Ticket-get_attention ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-get_attention-all') or hasPermission(this.ticketService.get(#id),'ibizplm-Ticket-get_attention')")
     @GetMapping("tickets/{id}/get_attention")
-    public ResponseEntity<TicketDTO> getAttentionById
+    public Mono<ResponseEntity<TicketDTO>> getAttentionById
             (@PathVariable("id") String id) {
         Ticket rt = ticketService.getAttention(id);
-        return ResponseEntity.status(HttpStatus.OK).body(ticketDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(ticketDtoMapping.toDto(rt)));
     }
 
     /**
@@ -1229,15 +1235,15 @@ public abstract class AbstractTicketResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<TicketDTO>
+    * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "草稿GetDraft", tags = {"工单" },  notes = "Ticket-GetDraft ")
     @GetMapping("tickets/get_draft")
-    public ResponseEntity<TicketDTO> getDraft
+    public Mono<ResponseEntity<TicketDTO>> getDraft
             (@SpringQueryMap TicketDTO dto) {
         Ticket domain = ticketDtoMapping.toDomain(dto);
         Ticket rt = ticketService.getDraft(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(ticketDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(ticketDtoMapping.toDto(rt)));
     }
 
     /**
@@ -1245,15 +1251,15 @@ public abstract class AbstractTicketResource {
     * 
     *
     * @param id id
-    * @return ResponseEntity<TicketDTO>
+    * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "test_get_archived_info", tags = {"工单" },  notes = "Ticket-test_get_archived_info ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-test_get_archived_info-all') or hasPermission(this.ticketService.get(#id),'ibizplm-Ticket-test_get_archived_info')")
     @GetMapping("tickets/{id}/test_get_archived_info")
-    public ResponseEntity<TicketDTO> testGetArchivedInfoById
+    public Mono<ResponseEntity<TicketDTO>> testGetArchivedInfoById
             (@PathVariable("id") String id) {
         Ticket rt = ticketService.testGetArchivedInfo(id);
-        return ResponseEntity.status(HttpStatus.OK).body(ticketDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(ticketDtoMapping.toDto(rt)));
     }
 
     /**
@@ -1261,20 +1267,20 @@ public abstract class AbstractTicketResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<TicketAdvancedSearchDTO>>
+    * @return Mono<ResponseEntity<List<TicketAdvancedSearchDTO>>>
     */
     @ApiOperation(value = "查询fetch_advanced_search", tags = {"工单" },  notes = "Ticket-fetch_advanced_search ")
     @PostMapping("tickets/fetch_advanced_search")
-    public ResponseEntity<List<TicketAdvancedSearchDTO>> fetchAdvancedSearch
+    public Mono<ResponseEntity<List<TicketAdvancedSearchDTO>>> fetchAdvancedSearch
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchAdvancedSearch(context) ;
         List<TicketAdvancedSearchDTO> list = ticketAdvancedSearchDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -1282,21 +1288,65 @@ public abstract class AbstractTicketResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<TicketDTO>>
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
     */
     @ApiOperation(value = "查询fetch_archived", tags = {"工单" },  notes = "Ticket-fetch_archived ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_archived-all') or hasPermission(#dto,'ibizplm-Ticket-fetch_archived')")
     @PostMapping("tickets/fetch_archived")
-    public ResponseEntity<List<TicketDTO>> fetchArchived
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchArchived
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchArchived(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_bi_detail 工单
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_bi_detail", tags = {"工单" },  notes = "Ticket-fetch_bi_detail ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_bi_detail-all') or hasPermission(#dto,'ibizplm-Ticket-fetch_bi_detail')")
+    @PostMapping("tickets/fetch_bi_detail")
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchBiDetail
+            (@Validated @RequestBody TicketFilterDTO dto) {
+        TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
+        Page<Ticket> domains = ticketService.fetchBiDetail(context) ;
+        List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_bi_search 工单
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<TicketBiSearchGroupDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_bi_search", tags = {"工单" },  notes = "Ticket-fetch_bi_search ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_bi_search-all') or hasPermission(#dto,'ibizplm-Ticket-fetch_bi_search')")
+    @PostMapping("tickets/fetch_bi_search")
+    public Mono<ResponseEntity<List<TicketBiSearchGroupDTO>>> fetchBiSearch
+            (@Validated @RequestBody TicketFilterDTO dto) {
+        TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
+        Page<Ticket> domains = ticketService.fetchBiSearch(context) ;
+        List<TicketBiSearchGroupDTO> list = ticketBiSearchGroupDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
     }
 
     /**
@@ -1304,21 +1354,21 @@ public abstract class AbstractTicketResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<TicketAssigneeDTO>>
+    * @return Mono<ResponseEntity<List<TicketAssigneeDTO>>>
     */
     @ApiOperation(value = "查询fetch_comment_notify_assignee", tags = {"工单" },  notes = "Ticket-fetch_comment_notify_assignee ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_comment_notify_assignee-all') or hasPermission(#dto,'ibizplm-Ticket-fetch_comment_notify_assignee')")
     @PostMapping("tickets/fetch_comment_notify_assignee")
-    public ResponseEntity<List<TicketAssigneeDTO>> fetchCommentNotifyAssignee
+    public Mono<ResponseEntity<List<TicketAssigneeDTO>>> fetchCommentNotifyAssignee
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchCommentNotifyAssignee(context) ;
         List<TicketAssigneeDTO> list = ticketAssigneeDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -1326,21 +1376,21 @@ public abstract class AbstractTicketResource {
     * 通用查询，非删除数据
     *
     * @param dto dto
-    * @return ResponseEntity<List<TicketDTO>>
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
     */
     @ApiOperation(value = "查询fetch_common", tags = {"工单" },  notes = "Ticket-fetch_common 通用查询，非删除数据")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_common-all') or hasPermission(#dto,'ibizplm-Ticket-fetch_common')")
     @PostMapping("tickets/fetch_common")
-    public ResponseEntity<List<TicketDTO>> fetchCommon
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchCommon
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchCommon(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -1348,20 +1398,20 @@ public abstract class AbstractTicketResource {
     * 查询未关联工单的数据；客户关联工单表格调用
     *
     * @param dto dto
-    * @return ResponseEntity<List<TicketDTO>>
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
     */
     @ApiOperation(value = "查询fetch_customer_notre_ticket", tags = {"工单" },  notes = "Ticket-fetch_customer_notre_ticket 查询未关联工单的数据；客户关联工单表格调用")
     @PostMapping("tickets/fetch_customer_notre_ticket")
-    public ResponseEntity<List<TicketDTO>> fetchCustomerNotreTicket
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchCustomerNotreTicket
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchCustomerNotreTicket(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -1369,21 +1419,21 @@ public abstract class AbstractTicketResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<TicketDTO>>
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
     */
     @ApiOperation(value = "查询fetch_customer_relation_ticket", tags = {"工单" },  notes = "Ticket-fetch_customer_relation_ticket ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_customer_relation_ticket-all') or hasPermission(#dto,'ibizplm-Ticket-fetch_customer_relation_ticket')")
     @PostMapping("tickets/fetch_customer_relation_ticket")
-    public ResponseEntity<List<TicketDTO>> fetchCustomerRelationTicket
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchCustomerRelationTicket
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchCustomerRelationTicket(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -1391,21 +1441,21 @@ public abstract class AbstractTicketResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<TicketDTO>>
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
     */
     @ApiOperation(value = "查询fetch_default", tags = {"工单" },  notes = "Ticket-fetch_default ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_default-all') or hasPermission(#dto,'ibizplm-Ticket-fetch_default')")
     @PostMapping("tickets/fetch_default")
-    public ResponseEntity<List<TicketDTO>> fetchDefault
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchDefault
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchDefault(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -1413,21 +1463,21 @@ public abstract class AbstractTicketResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<TicketDTO>>
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
     */
     @ApiOperation(value = "查询fetch_deleted", tags = {"工单" },  notes = "Ticket-fetch_deleted ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_deleted-all') or hasPermission(#dto,'ibizplm-Ticket-fetch_deleted')")
     @PostMapping("tickets/fetch_deleted")
-    public ResponseEntity<List<TicketDTO>> fetchDeleted
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchDeleted
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchDeleted(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -1435,20 +1485,20 @@ public abstract class AbstractTicketResource {
     * 产品关联工单表格调用
     *
     * @param dto dto
-    * @return ResponseEntity<List<TicketDTO>>
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
     */
     @ApiOperation(value = "查询fetch_idea_relation_ticket", tags = {"工单" },  notes = "Ticket-fetch_idea_relation_ticket 产品关联工单表格调用")
     @PostMapping("tickets/fetch_idea_relation_ticket")
-    public ResponseEntity<List<TicketDTO>> fetchIdeaRelationTicket
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchIdeaRelationTicket
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchIdeaRelationTicket(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -1456,20 +1506,20 @@ public abstract class AbstractTicketResource {
     * 首页我负责的工单表格调用
     *
     * @param dto dto
-    * @return ResponseEntity<List<TicketDTO>>
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
     */
     @ApiOperation(value = "查询fetch_my_assign", tags = {"工单" },  notes = "Ticket-fetch_my_assign 首页我负责的工单表格调用")
     @PostMapping("tickets/fetch_my_assign")
-    public ResponseEntity<List<TicketDTO>> fetchMyAssign
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchMyAssign
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchMyAssign(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -1477,21 +1527,21 @@ public abstract class AbstractTicketResource {
     * 首页我负责的工单表格调用
     *
     * @param dto dto
-    * @return ResponseEntity<List<TicketDTO>>
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
     */
     @ApiOperation(value = "查询fetch_my_assignee_count", tags = {"工单" },  notes = "Ticket-fetch_my_assignee_count 首页我负责的工单表格调用")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_my_assignee_count-all') or hasPermission(#dto,'ibizplm-Ticket-fetch_my_assignee_count')")
     @PostMapping("tickets/fetch_my_assignee_count")
-    public ResponseEntity<List<TicketDTO>> fetchMyAssigneeCount
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchMyAssigneeCount
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchMyAssigneeCount(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -1499,20 +1549,20 @@ public abstract class AbstractTicketResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<TicketDTO>>
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
     */
     @ApiOperation(value = "查询fetch_my_attention", tags = {"工单" },  notes = "Ticket-fetch_my_attention ")
     @PostMapping("tickets/fetch_my_attention")
-    public ResponseEntity<List<TicketDTO>> fetchMyAttention
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchMyAttention
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchMyAttention(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -1520,20 +1570,20 @@ public abstract class AbstractTicketResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<TicketDTO>>
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
     */
     @ApiOperation(value = "查询fetch_my_created", tags = {"工单" },  notes = "Ticket-fetch_my_created ")
     @PostMapping("tickets/fetch_my_created")
-    public ResponseEntity<List<TicketDTO>> fetchMyCreated
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchMyCreated
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchMyCreated(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -1541,21 +1591,21 @@ public abstract class AbstractTicketResource {
     * 非归档，非删除数据
     *
     * @param dto dto
-    * @return ResponseEntity<List<TicketDTO>>
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
     */
     @ApiOperation(value = "查询fetch_normal", tags = {"工单" },  notes = "Ticket-fetch_normal 非归档，非删除数据")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_normal-all') or hasPermission(#dto,'ibizplm-Ticket-fetch_normal')")
     @PostMapping("tickets/fetch_normal")
-    public ResponseEntity<List<TicketDTO>> fetchNormal
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchNormal
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchNormal(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -1563,21 +1613,21 @@ public abstract class AbstractTicketResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<TicketDTO>>
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
     */
     @ApiOperation(value = "查询fetch_not_exsists_relation", tags = {"工单" },  notes = "Ticket-fetch_not_exsists_relation ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_not_exsists_relation-all') or hasPermission(#dto,'ibizplm-Ticket-fetch_not_exsists_relation')")
     @PostMapping("tickets/fetch_not_exsists_relation")
-    public ResponseEntity<List<TicketDTO>> fetchNotExsistsRelation
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchNotExsistsRelation
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchNotExsistsRelation(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -1585,21 +1635,43 @@ public abstract class AbstractTicketResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<TicketAssigneeDTO>>
+    * @return Mono<ResponseEntity<List<TicketAssigneeDTO>>>
     */
     @ApiOperation(value = "查询fetch_notify_assignee", tags = {"工单" },  notes = "Ticket-fetch_notify_assignee ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_notify_assignee-all') or hasPermission(#dto,'ibizplm-Ticket-fetch_notify_assignee')")
     @PostMapping("tickets/fetch_notify_assignee")
-    public ResponseEntity<List<TicketAssigneeDTO>> fetchNotifyAssignee
+    public Mono<ResponseEntity<List<TicketAssigneeDTO>>> fetchNotifyAssignee
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchNotifyAssignee(context) ;
         List<TicketAssigneeDTO> list = ticketAssigneeDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_reader 工单
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_reader", tags = {"工单" },  notes = "Ticket-fetch_reader ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_reader-all') or hasPermission(#dto,'ibizplm-Ticket-fetch_reader')")
+    @PostMapping("tickets/fetch_reader")
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchReader
+            (@Validated @RequestBody TicketFilterDTO dto) {
+        TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
+        Page<Ticket> domains = ticketService.fetchReader(context) ;
+        List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
     }
 
     /**
@@ -1607,20 +1679,20 @@ public abstract class AbstractTicketResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<TicketDTO>>
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
     */
     @ApiOperation(value = "查询fetch_recent_ticket", tags = {"工单" },  notes = "Ticket-fetch_recent_ticket ")
     @PostMapping("tickets/fetch_recent_ticket")
-    public ResponseEntity<List<TicketDTO>> fetchRecentTicket
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchRecentTicket
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchRecentTicket(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -1628,21 +1700,21 @@ public abstract class AbstractTicketResource {
     * 当前标签下工单表格视图调用
     *
     * @param dto dto
-    * @return ResponseEntity<List<TicketDTO>>
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
     */
     @ApiOperation(value = "查询fetch_ticket_re_product_tag", tags = {"工单" },  notes = "Ticket-fetch_ticket_re_product_tag 当前标签下工单表格视图调用")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_ticket_re_product_tag-all') or hasPermission(#dto,'ibizplm-Ticket-fetch_ticket_re_product_tag')")
     @PostMapping("tickets/fetch_ticket_re_product_tag")
-    public ResponseEntity<List<TicketDTO>> fetchTicketReProductTag
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchTicketReProductTag
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchTicketReProductTag(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -1650,20 +1722,43 @@ public abstract class AbstractTicketResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<TicketDTO>>
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
     */
     @ApiOperation(value = "查询fetch_ticket_relation_ticket", tags = {"工单" },  notes = "Ticket-fetch_ticket_relation_ticket ")
     @PostMapping("tickets/fetch_ticket_relation_ticket")
-    public ResponseEntity<List<TicketDTO>> fetchTicketRelationTicket
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchTicketRelationTicket
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchTicketRelationTicket(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_ticket_state_pie_chart 工单
+    * 工单状态饼图数据
+在需求关联工单统计视图中使用
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_ticket_state_pie_chart", tags = {"工单" },  notes = "Ticket-fetch_ticket_state_pie_chart 工单状态饼图数据 在需求关联工单统计视图中使用")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_ticket_state_pie_chart-all') or hasPermission(#dto,'ibizplm-Ticket-fetch_ticket_state_pie_chart')")
+    @PostMapping("tickets/fetch_ticket_state_pie_chart")
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchTicketStatePieChart
+            (@Validated @RequestBody TicketFilterDTO dto) {
+        TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
+        Page<Ticket> domains = ticketService.fetchTicketStatePieChart(context) ;
+        List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
     }
 
     /**
@@ -1671,20 +1766,20 @@ public abstract class AbstractTicketResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<TicketDTO>>
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
     */
     @ApiOperation(value = "查询fetch_work_item_relation_ticket", tags = {"工单" },  notes = "Ticket-fetch_work_item_relation_ticket ")
     @PostMapping("tickets/fetch_work_item_relation_ticket")
-    public ResponseEntity<List<TicketDTO>> fetchWorkItemRelationTicket
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchWorkItemRelationTicket
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchWorkItemRelationTicket(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -1693,15 +1788,15 @@ public abstract class AbstractTicketResource {
     *
     * @param productId productId
     * @param id id
-    * @return ResponseEntity<TicketDTO>
+    * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "获取Get", tags = {"工单" },  notes = "Ticket-Get ")
-    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-Get-all')  or hasPermission('product',#productId,this.ticketDtoMapping.toDomain(returnObject.body),'ibizplm-Ticket-Get')")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-Get-all')  or hasPermission('product',#productId,this.ticketDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-Ticket-Get')")
     @GetMapping("products/{productId}/tickets/{id}")
-    public ResponseEntity<TicketDTO> getByProductIdAndId
+    public Mono<ResponseEntity<TicketDTO>> getByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id) {
         Ticket rt = ticketService.get(id);
-        return ResponseEntity.status(HttpStatus.OK).body(ticketDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(ticketDtoMapping.toDto(rt)));
     }
 
     /**
@@ -1710,15 +1805,15 @@ public abstract class AbstractTicketResource {
     *
     * @param productId productId
     * @param id id
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @ApiOperation(value = "删除Remove", tags = {"工单" },  notes = "Ticket-Remove ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-Remove-all') or hasPermission('product',#productId,this.ticketService.get(#id),'ibizplm-Ticket-Remove')")
     @DeleteMapping("products/{productId}/tickets/{id}")
-    public ResponseEntity<Boolean> removeByProductIdAndId
+    public Mono<ResponseEntity<Boolean>> removeByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id) {
         Boolean rt = ticketService.remove(id);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -1727,16 +1822,16 @@ public abstract class AbstractTicketResource {
     *
     * @param productId productId
     * @param dto dto
-    * @return ResponseEntity<Integer>
+    * @return Mono<ResponseEntity<Integer>>
     */
     @ApiOperation(value = "校验CheckKey", tags = {"工单" },  notes = "Ticket-CheckKey ")
     @PostMapping("products/{productId}/tickets/check_key")
-    public ResponseEntity<Integer> checkKeyByProductId
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKeyByProductId
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketDTO dto) {
         Ticket domain = ticketDtoMapping.toDomain(dto);
         domain.setProductId(productId);
-        Integer rt = ticketService.checkKey(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        CheckKeyStatus rt = ticketService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -1745,15 +1840,15 @@ public abstract class AbstractTicketResource {
     *
     * @param productId productId
     * @param id id
-    * @return ResponseEntity<TicketDTO>
+    * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "get_attention", tags = {"工单" },  notes = "Ticket-get_attention ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-get_attention-all') or hasPermission('product',#productId,this.ticketService.get(#id),'ibizplm-Ticket-get_attention')")
     @GetMapping("products/{productId}/tickets/{id}/get_attention")
-    public ResponseEntity<TicketDTO> getAttentionByProductIdAndId
+    public Mono<ResponseEntity<TicketDTO>> getAttentionByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id) {
         Ticket rt = ticketService.getAttention(id);
-        return ResponseEntity.status(HttpStatus.OK).body(ticketDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(ticketDtoMapping.toDto(rt)));
     }
 
     /**
@@ -1762,16 +1857,16 @@ public abstract class AbstractTicketResource {
     *
     * @param productId productId
     * @param dto dto
-    * @return ResponseEntity<TicketDTO>
+    * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "草稿GetDraft", tags = {"工单" },  notes = "Ticket-GetDraft ")
     @GetMapping("products/{productId}/tickets/get_draft")
-    public ResponseEntity<TicketDTO> getDraftByProductId
+    public Mono<ResponseEntity<TicketDTO>> getDraftByProductId
             (@PathVariable("productId") String productId, @SpringQueryMap TicketDTO dto) {
         Ticket domain = ticketDtoMapping.toDomain(dto);
         domain.setProductId(productId);
         Ticket rt = ticketService.getDraft(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(ticketDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(ticketDtoMapping.toDto(rt)));
     }
 
     /**
@@ -1780,15 +1875,15 @@ public abstract class AbstractTicketResource {
     *
     * @param productId productId
     * @param id id
-    * @return ResponseEntity<TicketDTO>
+    * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "test_get_archived_info", tags = {"工单" },  notes = "Ticket-test_get_archived_info ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-test_get_archived_info-all') or hasPermission('product',#productId,this.ticketService.get(#id),'ibizplm-Ticket-test_get_archived_info')")
     @GetMapping("products/{productId}/tickets/{id}/test_get_archived_info")
-    public ResponseEntity<TicketDTO> testGetArchivedInfoByProductIdAndId
+    public Mono<ResponseEntity<TicketDTO>> testGetArchivedInfoByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id) {
         Ticket rt = ticketService.testGetArchivedInfo(id);
-        return ResponseEntity.status(HttpStatus.OK).body(ticketDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(ticketDtoMapping.toDto(rt)));
     }
 
     /**
@@ -1797,21 +1892,21 @@ public abstract class AbstractTicketResource {
     *
     * @param productId productId
     * @param dto dto
-    * @return ResponseEntity<List<TicketAdvancedSearchDTO>>
+    * @return Mono<ResponseEntity<List<TicketAdvancedSearchDTO>>>
     */
     @ApiOperation(value = "查询fetch_advanced_search", tags = {"工单" },  notes = "Ticket-fetch_advanced_search ")
     @PostMapping("products/{productId}/tickets/fetch_advanced_search")
-    public ResponseEntity<List<TicketAdvancedSearchDTO>> fetchAdvancedSearchByProductId
+    public Mono<ResponseEntity<List<TicketAdvancedSearchDTO>>> fetchAdvancedSearchByProductId
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchAdvancedSearch(context) ;
         List<TicketAdvancedSearchDTO> list = ticketAdvancedSearchDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -1820,22 +1915,70 @@ public abstract class AbstractTicketResource {
     *
     * @param productId productId
     * @param dto dto
-    * @return ResponseEntity<List<TicketDTO>>
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
     */
     @ApiOperation(value = "查询fetch_archived", tags = {"工单" },  notes = "Ticket-fetch_archived ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_archived-all') or hasPermission('product',#productId,#dto,'ibizplm-Ticket-fetch_archived')")
     @PostMapping("products/{productId}/tickets/fetch_archived")
-    public ResponseEntity<List<TicketDTO>> fetchArchivedByProductId
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchArchivedByProductId
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchArchived(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_bi_detail 工单
+    * 
+    *
+    * @param productId productId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_bi_detail", tags = {"工单" },  notes = "Ticket-fetch_bi_detail ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_bi_detail-all') or hasPermission('product',#productId,#dto,'ibizplm-Ticket-fetch_bi_detail')")
+    @PostMapping("products/{productId}/tickets/fetch_bi_detail")
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchBiDetailByProductId
+            (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
+        dto.setProductIdEQ(productId);
+        TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
+        Page<Ticket> domains = ticketService.fetchBiDetail(context) ;
+        List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_bi_search 工单
+    * 
+    *
+    * @param productId productId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<TicketBiSearchGroupDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_bi_search", tags = {"工单" },  notes = "Ticket-fetch_bi_search ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_bi_search-all') or hasPermission('product',#productId,#dto,'ibizplm-Ticket-fetch_bi_search')")
+    @PostMapping("products/{productId}/tickets/fetch_bi_search")
+    public Mono<ResponseEntity<List<TicketBiSearchGroupDTO>>> fetchBiSearchByProductId
+            (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
+        dto.setProductIdEQ(productId);
+        TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
+        Page<Ticket> domains = ticketService.fetchBiSearch(context) ;
+        List<TicketBiSearchGroupDTO> list = ticketBiSearchGroupDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
     }
 
     /**
@@ -1844,22 +1987,22 @@ public abstract class AbstractTicketResource {
     *
     * @param productId productId
     * @param dto dto
-    * @return ResponseEntity<List<TicketAssigneeDTO>>
+    * @return Mono<ResponseEntity<List<TicketAssigneeDTO>>>
     */
     @ApiOperation(value = "查询fetch_comment_notify_assignee", tags = {"工单" },  notes = "Ticket-fetch_comment_notify_assignee ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_comment_notify_assignee-all') or hasPermission('product',#productId,#dto,'ibizplm-Ticket-fetch_comment_notify_assignee')")
     @PostMapping("products/{productId}/tickets/fetch_comment_notify_assignee")
-    public ResponseEntity<List<TicketAssigneeDTO>> fetchCommentNotifyAssigneeByProductId
+    public Mono<ResponseEntity<List<TicketAssigneeDTO>>> fetchCommentNotifyAssigneeByProductId
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchCommentNotifyAssignee(context) ;
         List<TicketAssigneeDTO> list = ticketAssigneeDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -1868,22 +2011,22 @@ public abstract class AbstractTicketResource {
     *
     * @param productId productId
     * @param dto dto
-    * @return ResponseEntity<List<TicketDTO>>
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
     */
     @ApiOperation(value = "查询fetch_common", tags = {"工单" },  notes = "Ticket-fetch_common 通用查询，非删除数据")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_common-all') or hasPermission('product',#productId,#dto,'ibizplm-Ticket-fetch_common')")
     @PostMapping("products/{productId}/tickets/fetch_common")
-    public ResponseEntity<List<TicketDTO>> fetchCommonByProductId
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchCommonByProductId
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchCommon(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -1892,21 +2035,21 @@ public abstract class AbstractTicketResource {
     *
     * @param productId productId
     * @param dto dto
-    * @return ResponseEntity<List<TicketDTO>>
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
     */
     @ApiOperation(value = "查询fetch_customer_notre_ticket", tags = {"工单" },  notes = "Ticket-fetch_customer_notre_ticket 查询未关联工单的数据；客户关联工单表格调用")
     @PostMapping("products/{productId}/tickets/fetch_customer_notre_ticket")
-    public ResponseEntity<List<TicketDTO>> fetchCustomerNotreTicketByProductId
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchCustomerNotreTicketByProductId
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchCustomerNotreTicket(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -1915,22 +2058,22 @@ public abstract class AbstractTicketResource {
     *
     * @param productId productId
     * @param dto dto
-    * @return ResponseEntity<List<TicketDTO>>
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
     */
     @ApiOperation(value = "查询fetch_customer_relation_ticket", tags = {"工单" },  notes = "Ticket-fetch_customer_relation_ticket ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_customer_relation_ticket-all') or hasPermission('product',#productId,#dto,'ibizplm-Ticket-fetch_customer_relation_ticket')")
     @PostMapping("products/{productId}/tickets/fetch_customer_relation_ticket")
-    public ResponseEntity<List<TicketDTO>> fetchCustomerRelationTicketByProductId
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchCustomerRelationTicketByProductId
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchCustomerRelationTicket(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -1939,22 +2082,22 @@ public abstract class AbstractTicketResource {
     *
     * @param productId productId
     * @param dto dto
-    * @return ResponseEntity<List<TicketDTO>>
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
     */
     @ApiOperation(value = "查询fetch_default", tags = {"工单" },  notes = "Ticket-fetch_default ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_default-all') or hasPermission('product',#productId,#dto,'ibizplm-Ticket-fetch_default')")
     @PostMapping("products/{productId}/tickets/fetch_default")
-    public ResponseEntity<List<TicketDTO>> fetchDefaultByProductId
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchDefaultByProductId
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchDefault(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -1963,22 +2106,22 @@ public abstract class AbstractTicketResource {
     *
     * @param productId productId
     * @param dto dto
-    * @return ResponseEntity<List<TicketDTO>>
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
     */
     @ApiOperation(value = "查询fetch_deleted", tags = {"工单" },  notes = "Ticket-fetch_deleted ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_deleted-all') or hasPermission('product',#productId,#dto,'ibizplm-Ticket-fetch_deleted')")
     @PostMapping("products/{productId}/tickets/fetch_deleted")
-    public ResponseEntity<List<TicketDTO>> fetchDeletedByProductId
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchDeletedByProductId
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchDeleted(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -1987,21 +2130,21 @@ public abstract class AbstractTicketResource {
     *
     * @param productId productId
     * @param dto dto
-    * @return ResponseEntity<List<TicketDTO>>
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
     */
     @ApiOperation(value = "查询fetch_idea_relation_ticket", tags = {"工单" },  notes = "Ticket-fetch_idea_relation_ticket 产品关联工单表格调用")
     @PostMapping("products/{productId}/tickets/fetch_idea_relation_ticket")
-    public ResponseEntity<List<TicketDTO>> fetchIdeaRelationTicketByProductId
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchIdeaRelationTicketByProductId
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchIdeaRelationTicket(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -2010,21 +2153,21 @@ public abstract class AbstractTicketResource {
     *
     * @param productId productId
     * @param dto dto
-    * @return ResponseEntity<List<TicketDTO>>
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
     */
     @ApiOperation(value = "查询fetch_my_assign", tags = {"工单" },  notes = "Ticket-fetch_my_assign 首页我负责的工单表格调用")
     @PostMapping("products/{productId}/tickets/fetch_my_assign")
-    public ResponseEntity<List<TicketDTO>> fetchMyAssignByProductId
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchMyAssignByProductId
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchMyAssign(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -2033,22 +2176,22 @@ public abstract class AbstractTicketResource {
     *
     * @param productId productId
     * @param dto dto
-    * @return ResponseEntity<List<TicketDTO>>
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
     */
     @ApiOperation(value = "查询fetch_my_assignee_count", tags = {"工单" },  notes = "Ticket-fetch_my_assignee_count 首页我负责的工单表格调用")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_my_assignee_count-all') or hasPermission('product',#productId,#dto,'ibizplm-Ticket-fetch_my_assignee_count')")
     @PostMapping("products/{productId}/tickets/fetch_my_assignee_count")
-    public ResponseEntity<List<TicketDTO>> fetchMyAssigneeCountByProductId
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchMyAssigneeCountByProductId
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchMyAssigneeCount(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -2057,21 +2200,21 @@ public abstract class AbstractTicketResource {
     *
     * @param productId productId
     * @param dto dto
-    * @return ResponseEntity<List<TicketDTO>>
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
     */
     @ApiOperation(value = "查询fetch_my_attention", tags = {"工单" },  notes = "Ticket-fetch_my_attention ")
     @PostMapping("products/{productId}/tickets/fetch_my_attention")
-    public ResponseEntity<List<TicketDTO>> fetchMyAttentionByProductId
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchMyAttentionByProductId
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchMyAttention(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -2080,21 +2223,21 @@ public abstract class AbstractTicketResource {
     *
     * @param productId productId
     * @param dto dto
-    * @return ResponseEntity<List<TicketDTO>>
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
     */
     @ApiOperation(value = "查询fetch_my_created", tags = {"工单" },  notes = "Ticket-fetch_my_created ")
     @PostMapping("products/{productId}/tickets/fetch_my_created")
-    public ResponseEntity<List<TicketDTO>> fetchMyCreatedByProductId
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchMyCreatedByProductId
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchMyCreated(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -2103,22 +2246,22 @@ public abstract class AbstractTicketResource {
     *
     * @param productId productId
     * @param dto dto
-    * @return ResponseEntity<List<TicketDTO>>
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
     */
     @ApiOperation(value = "查询fetch_normal", tags = {"工单" },  notes = "Ticket-fetch_normal 非归档，非删除数据")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_normal-all') or hasPermission('product',#productId,#dto,'ibizplm-Ticket-fetch_normal')")
     @PostMapping("products/{productId}/tickets/fetch_normal")
-    public ResponseEntity<List<TicketDTO>> fetchNormalByProductId
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchNormalByProductId
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchNormal(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -2127,22 +2270,22 @@ public abstract class AbstractTicketResource {
     *
     * @param productId productId
     * @param dto dto
-    * @return ResponseEntity<List<TicketDTO>>
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
     */
     @ApiOperation(value = "查询fetch_not_exsists_relation", tags = {"工单" },  notes = "Ticket-fetch_not_exsists_relation ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_not_exsists_relation-all') or hasPermission('product',#productId,#dto,'ibizplm-Ticket-fetch_not_exsists_relation')")
     @PostMapping("products/{productId}/tickets/fetch_not_exsists_relation")
-    public ResponseEntity<List<TicketDTO>> fetchNotExsistsRelationByProductId
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchNotExsistsRelationByProductId
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchNotExsistsRelation(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -2151,22 +2294,46 @@ public abstract class AbstractTicketResource {
     *
     * @param productId productId
     * @param dto dto
-    * @return ResponseEntity<List<TicketAssigneeDTO>>
+    * @return Mono<ResponseEntity<List<TicketAssigneeDTO>>>
     */
     @ApiOperation(value = "查询fetch_notify_assignee", tags = {"工单" },  notes = "Ticket-fetch_notify_assignee ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_notify_assignee-all') or hasPermission('product',#productId,#dto,'ibizplm-Ticket-fetch_notify_assignee')")
     @PostMapping("products/{productId}/tickets/fetch_notify_assignee")
-    public ResponseEntity<List<TicketAssigneeDTO>> fetchNotifyAssigneeByProductId
+    public Mono<ResponseEntity<List<TicketAssigneeDTO>>> fetchNotifyAssigneeByProductId
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchNotifyAssignee(context) ;
         List<TicketAssigneeDTO> list = ticketAssigneeDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_reader 工单
+    * 
+    *
+    * @param productId productId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_reader", tags = {"工单" },  notes = "Ticket-fetch_reader ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_reader-all') or hasPermission('product',#productId,#dto,'ibizplm-Ticket-fetch_reader')")
+    @PostMapping("products/{productId}/tickets/fetch_reader")
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchReaderByProductId
+            (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
+        dto.setProductIdEQ(productId);
+        TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
+        Page<Ticket> domains = ticketService.fetchReader(context) ;
+        List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
     }
 
     /**
@@ -2175,21 +2342,21 @@ public abstract class AbstractTicketResource {
     *
     * @param productId productId
     * @param dto dto
-    * @return ResponseEntity<List<TicketDTO>>
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
     */
     @ApiOperation(value = "查询fetch_recent_ticket", tags = {"工单" },  notes = "Ticket-fetch_recent_ticket ")
     @PostMapping("products/{productId}/tickets/fetch_recent_ticket")
-    public ResponseEntity<List<TicketDTO>> fetchRecentTicketByProductId
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchRecentTicketByProductId
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchRecentTicket(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -2198,22 +2365,22 @@ public abstract class AbstractTicketResource {
     *
     * @param productId productId
     * @param dto dto
-    * @return ResponseEntity<List<TicketDTO>>
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
     */
     @ApiOperation(value = "查询fetch_ticket_re_product_tag", tags = {"工单" },  notes = "Ticket-fetch_ticket_re_product_tag 当前标签下工单表格视图调用")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_ticket_re_product_tag-all') or hasPermission('product',#productId,#dto,'ibizplm-Ticket-fetch_ticket_re_product_tag')")
     @PostMapping("products/{productId}/tickets/fetch_ticket_re_product_tag")
-    public ResponseEntity<List<TicketDTO>> fetchTicketReProductTagByProductId
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchTicketReProductTagByProductId
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchTicketReProductTag(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -2222,21 +2389,46 @@ public abstract class AbstractTicketResource {
     *
     * @param productId productId
     * @param dto dto
-    * @return ResponseEntity<List<TicketDTO>>
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
     */
     @ApiOperation(value = "查询fetch_ticket_relation_ticket", tags = {"工单" },  notes = "Ticket-fetch_ticket_relation_ticket ")
     @PostMapping("products/{productId}/tickets/fetch_ticket_relation_ticket")
-    public ResponseEntity<List<TicketDTO>> fetchTicketRelationTicketByProductId
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchTicketRelationTicketByProductId
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchTicketRelationTicket(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_ticket_state_pie_chart 工单
+    * 工单状态饼图数据
+在需求关联工单统计视图中使用
+    *
+    * @param productId productId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_ticket_state_pie_chart", tags = {"工单" },  notes = "Ticket-fetch_ticket_state_pie_chart 工单状态饼图数据 在需求关联工单统计视图中使用")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_ticket_state_pie_chart-all') or hasPermission('product',#productId,#dto,'ibizplm-Ticket-fetch_ticket_state_pie_chart')")
+    @PostMapping("products/{productId}/tickets/fetch_ticket_state_pie_chart")
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchTicketStatePieChartByProductId
+            (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
+        dto.setProductIdEQ(productId);
+        TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
+        Page<Ticket> domains = ticketService.fetchTicketStatePieChart(context) ;
+        List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
     }
 
     /**
@@ -2245,87 +2437,87 @@ public abstract class AbstractTicketResource {
     *
     * @param productId productId
     * @param dto dto
-    * @return ResponseEntity<List<TicketDTO>>
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
     */
     @ApiOperation(value = "查询fetch_work_item_relation_ticket", tags = {"工单" },  notes = "Ticket-fetch_work_item_relation_ticket ")
     @PostMapping("products/{productId}/tickets/fetch_work_item_relation_ticket")
-    public ResponseEntity<List<TicketDTO>> fetchWorkItemRelationTicketByProductId
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchWorkItemRelationTicketByProductId
             (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchWorkItemRelationTicket(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
 
     /**
     * 批量新建工单
     * @param dtos
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-Ticket-Create-all')")
     @ApiOperation(value = "批量新建工单", tags = {"工单" },  notes = "批量新建工单")
 	@PostMapping("tickets/batch")
-    public ResponseEntity<Boolean> createBatch(@RequestBody List<TicketDTO> dtos) {
+    public Mono<ResponseEntity<Boolean>> createBatch(@RequestBody List<TicketDTO> dtos) {
         ticketService.create(ticketDtoMapping.toDomain(dtos));
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量删除工单
     * @param ids ids
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-Ticket-Remove-all')")
     @ApiOperation(value = "批量删除工单", tags = {"工单" },  notes = "批量删除工单")
 	@DeleteMapping("tickets/batch")
-    public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
+    public Mono<ResponseEntity<Boolean>> removeBatch(@RequestBody List<String> ids) {
         ticketService.remove(ids);
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量更新工单
     * @param dtos
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-Ticket-Update-all')")
     @ApiOperation(value = "批量更新工单", tags = {"工单" },  notes = "批量更新工单")
 	@PutMapping("tickets/batch")
-    public ResponseEntity<Boolean> updateBatch(@RequestBody List<TicketDTO> dtos) {
+    public Mono<ResponseEntity<Boolean>> updateBatch(@RequestBody List<TicketDTO> dtos) {
         ticketService.update(ticketDtoMapping.toDomain(dtos));
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量保存工单
     * @param dtos
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-Ticket-Save-all')")
     @ApiOperation(value = "批量保存工单", tags = {"工单" },  notes = "批量保存工单")
 	@PostMapping("tickets/savebatch")
-    public ResponseEntity<Boolean> saveBatch(@RequestBody List<TicketDTO> dtos) {
+    public Mono<ResponseEntity<Boolean>> saveBatch(@RequestBody List<TicketDTO> dtos) {
         ticketService.save(ticketDtoMapping.toDomain(dtos));
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量导入工单
     * @param config 导入模式
     * @param ignoreError 导入中忽略错误
-    * @return ResponseEntity<ImportResult>
+    * @return Mono<ResponseEntity<ImportResult>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-Ticket-Save-all')")
     @ApiOperation(value = "批量导入工单", tags = {"工单" },  notes = "批量导入工单")
 	@PostMapping("tickets/import")
-    public ResponseEntity<ImportResult> importData(@RequestParam(value = "config" , required = false) String config ,@RequestParam(value = "ignoreerror", required = false, defaultValue = "true") Boolean ignoreError ,@RequestBody List<TicketDTO> dtos) {
-        return  ResponseEntity.status(HttpStatus.OK).body(ticketService.importData(config,ignoreError,ticketDtoMapping.toDomain(dtos)));
+    public Mono<ResponseEntity<ImportResult>> importData(@RequestParam(value = "config" , required = false) String config ,@RequestParam(value = "ignoreerror", required = false, defaultValue = "true") Boolean ignoreError ,@RequestBody List<TicketDTO> dtos) {
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(ticketService.importData(config,ignoreError,ticketDtoMapping.toDomain(dtos))));
     }
 
 }

@@ -85,6 +85,22 @@ public class InsightReportSearchContext extends QueryWrapperContext<InsightRepor
     @ApiModelProperty("视图标识EQ")
     private String viewIdEQ;
 
+    /**
+     * 名称EQ
+     */
+    @JsonProperty("n_view_name_eq")
+    @JSONField(name = "n_view_name_eq")
+    @ApiModelProperty("名称EQ")
+    private String viewNameEQ;
+
+    /**
+     * 名称LIKE
+     */
+    @JsonProperty("n_view_name_like")
+    @JSONField(name = "n_view_name_like")
+    @ApiModelProperty("名称LIKE")
+    private String viewNameLIKE;
+
     @Override
     public void setContextParentKey(Serializable contextParentKey) {
         super.setContextParentKey(contextParentKey);

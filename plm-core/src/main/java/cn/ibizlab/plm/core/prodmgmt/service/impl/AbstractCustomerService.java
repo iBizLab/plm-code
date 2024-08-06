@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.prodmgmt.domain.Customer;
@@ -146,15 +147,15 @@ public abstract class AbstractCustomerService extends ServiceImpl<CustomerMapper
         return et;
     }
 	
-    public Integer checkKey(Customer et) {
+    public CheckKeyStatus checkKey(Customer et) {
         fillParentData(et);
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Customer>lambdaQuery().eq(Customer::getId, et.getId()))>0)?1:0;
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Customer>lambdaQuery().eq(Customer::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(Customer et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -259,6 +260,10 @@ public abstract class AbstractCustomerService extends ServiceImpl<CustomerMapper
         return list;	
 	}
 
+	public List<Customer> findByProduct(Product product){
+        List<Customer> list = findByProductId(Arrays.asList(product.getId()));
+		return list;
+	}
 	public boolean removeByProductId(String productId){
         return this.remove(Wrappers.<Customer>lambdaQuery().eq(Customer::getProductId,productId));
 	}
@@ -269,8 +274,8 @@ public abstract class AbstractCustomerService extends ServiceImpl<CustomerMapper
 	public boolean saveByProduct(Product product, List<Customer> list){
         if(list==null)
             return true;
-        Map<String,Customer> before = findByProductId(product.getId()).stream().collect(Collectors.toMap(Customer::getId,e->e));
 
+        Map<String,Customer> before = findByProduct(product).stream().collect(Collectors.toMap(Customer::getId,e->e));
         List<Customer> update = new ArrayList<>();
         List<Customer> create = new ArrayList<>();
 
@@ -302,6 +307,10 @@ public abstract class AbstractCustomerService extends ServiceImpl<CustomerMapper
         return list;	
 	}
 
+	public List<Customer> findByUser(User user){
+        List<Customer> list = findByAssigneeId(Arrays.asList(user.getId()));
+		return list;
+	}
 	public boolean removeByAssigneeId(String assigneeId){
         return this.remove(Wrappers.<Customer>lambdaQuery().eq(Customer::getAssigneeId,assigneeId));
 	}
@@ -312,8 +321,8 @@ public abstract class AbstractCustomerService extends ServiceImpl<CustomerMapper
 	public boolean saveByUser(User user, List<Customer> list){
         if(list==null)
             return true;
-        Map<String,Customer> before = findByAssigneeId(user.getId()).stream().collect(Collectors.toMap(Customer::getId,e->e));
 
+        Map<String,Customer> before = findByUser(user).stream().collect(Collectors.toMap(Customer::getId,e->e));
         List<Customer> update = new ArrayList<>();
         List<Customer> create = new ArrayList<>();
 
@@ -339,10 +348,21 @@ public abstract class AbstractCustomerService extends ServiceImpl<CustomerMapper
 	}
 	@Override
     public List<Attention> getAttentions(Customer et) {
-        List<Attention> list = attentionService.findByOwnerId(et.getId());
+        List<Attention> list = attentionService.findByCustomer(et);
         et.setAttentions(list);
         return list;
     }
+	
+   public Page<Customer> fetchView(CustomerSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Customer> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<Customer> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Customer> listView(CustomerSearchContext context) {
+        List<Customer> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
 	
 
     public void fillParentData(Customer et) {

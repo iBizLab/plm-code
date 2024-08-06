@@ -38,6 +38,14 @@ import cn.ibizlab.plm.core.base.domain.Relation;
 public class RelationSearchContext extends QueryWrapperContext<Relation> {
 
     /**
+     * 重要程度EQ
+     */
+    @JsonProperty("n_level_eq")
+    @JSONField(name = "n_level_eq")
+    @ApiModelProperty("重要程度EQ")
+    private String levelEQ;
+
+    /**
      * 关联主体标识EQ
      */
     @JsonProperty("n_principal_id_eq")
@@ -78,6 +86,14 @@ public class RelationSearchContext extends QueryWrapperContext<Relation> {
     private String targetVersionIdEQ;
 
     /**
+     * 前后置任务EQ
+     */
+    @JsonProperty("n_job_type_eq")
+    @JSONField(name = "n_job_type_eq")
+    @ApiModelProperty("前后置任务EQ")
+    private String jobTypeEQ;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
@@ -100,10 +116,14 @@ public class RelationSearchContext extends QueryWrapperContext<Relation> {
             this.getFilter().eq("principal_id",contextParentKey);
         if(Entities.IDEA.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("principal_id",contextParentKey);
+        if(Entities.RELEASE.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("principal_id",contextParentKey);
         if(Entities.REVIEW.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("principal_id",contextParentKey);
         if(Entities.REVIEW_CONTENT_EXTEND.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("id",contextParentKey);
+        if(Entities.SPRINT.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("principal_id",contextParentKey);
         if(Entities.CUSTOMER.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("target_id",contextParentKey);
         if(Entities.IDEA.equals(this.getContextParentEntity())&&contextParentKey!=null)

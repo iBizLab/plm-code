@@ -76,11 +76,19 @@ public class ExtendLogDTO extends DTOBase implements Serializable {
     private String level;
 
     /**
+     * 调试日志信息
+     */
+    @JsonProperty("debug_info")
+    @JSONField(name = "debug_info")
+    @ApiModelProperty(value = "调试日志信息", position = 5)
+    private String debugInfo;
+
+    /**
      * 日志信息
      */
     @JsonProperty("info")
     @JSONField(name = "info")
-    @ApiModelProperty(value = "日志信息", position = 5)
+    @ApiModelProperty(value = "日志信息", position = 6)
     private String info;
 
     /**
@@ -89,7 +97,7 @@ public class ExtendLogDTO extends DTOBase implements Serializable {
     @JsonProperty("start_at")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "start_at" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "起始时间", position = 6)
+    @ApiModelProperty(value = "起始时间", position = 7)
     private Date startAt;
 
     /**
@@ -98,7 +106,7 @@ public class ExtendLogDTO extends DTOBase implements Serializable {
     @JsonProperty("end_at")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "end_at" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "结束时间", position = 7)
+    @ApiModelProperty(value = "结束时间", position = 8)
     private Date endAt;
 
     /**
@@ -106,7 +114,7 @@ public class ExtendLogDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("elapsed_time")
     @JSONField(name = "elapsed_time")
-    @ApiModelProperty(value = "持续时间", position = 8)
+    @ApiModelProperty(value = "持续时间", position = 9)
     private Integer elapsedTime;
 
     /**
@@ -114,7 +122,7 @@ public class ExtendLogDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("state")
     @JSONField(name = "state")
-    @ApiModelProperty(value = "状态", position = 9)
+    @ApiModelProperty(value = "状态", position = 10)
     private String state;
 
     /**
@@ -122,7 +130,7 @@ public class ExtendLogDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 10)
+    @ApiModelProperty(value = "建立人", position = 11)
     private String createMan;
 
     /**
@@ -131,7 +139,7 @@ public class ExtendLogDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 11)
+    @ApiModelProperty(value = "建立时间", position = 12)
     private Date createTime;
 
     /**
@@ -139,7 +147,7 @@ public class ExtendLogDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 12)
+    @ApiModelProperty(value = "标识", position = 13)
     private String id;
 
     /**
@@ -147,7 +155,7 @@ public class ExtendLogDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 13)
+    @ApiModelProperty(value = "名称", position = 14)
     private String name;
 
     /**
@@ -155,7 +163,7 @@ public class ExtendLogDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 14)
+    @ApiModelProperty(value = "更新人", position = 15)
     private String updateMan;
 
     /**
@@ -164,7 +172,7 @@ public class ExtendLogDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 15)
+    @ApiModelProperty(value = "更新时间", position = 16)
     private Date updateTime;
 
 
@@ -183,6 +191,15 @@ public class ExtendLogDTO extends DTOBase implements Serializable {
     public ExtendLogDTO setLevel(String level) {
         this.level = level;
         this.modify("level", level);
+        return this;
+    }
+
+    /**
+     * 设置 [调试日志信息]
+     */
+    public ExtendLogDTO setDebugInfo(String debugInfo) {
+        this.debugInfo = debugInfo;
+        this.modify("debug_info", debugInfo);
         return this;
     }
 

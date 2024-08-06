@@ -59,6 +59,25 @@ public interface SwimlaneMapper extends BaseMapper<Swimlane> {
     List<Swimlane> findByProjectId(@Param("projectIds") List<String> projectIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Swimlane> searchView(IPage<Swimlane> page, @Param("ctx") SwimlaneSearchContext context, @Param("ew") Wrapper<Swimlane> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Swimlane> listView(@Param("ctx") SwimlaneSearchContext context, @Param("ew") Wrapper<Swimlane> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

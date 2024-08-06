@@ -11,6 +11,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.testmgmt.domain.Run;
 import cn.ibizlab.plm.core.testmgmt.filter.RunSearchContext;
 import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
@@ -146,7 +147,7 @@ public interface RunService extends IService<Run> {
     * @param et
     * @return
     */
-    Integer checkKey(Run et);
+    CheckKeyStatus checkKey(Run et);
 
     /**
     * 保存
@@ -315,6 +316,38 @@ public interface RunService extends IService<Run> {
     List<Run> listImplementationResults(RunSearchContext context);
 
     /**
+    * fetchBiDetail
+    * 
+    * @param context
+    * @return
+    */
+    Page<Run> fetchBiDetail(RunSearchContext context);
+
+    /**
+    * listBiDetail
+    * 
+    * @param context
+    * @return
+    */
+    List<Run> listBiDetail(RunSearchContext context);
+
+    /**
+    * fetchBiSearch
+    * 
+    * @param context
+    * @return
+    */
+    Page<Run> fetchBiSearch(RunSearchContext context);
+
+    /**
+    * listBiSearch
+    * 
+    * @param context
+    * @return
+    */
+    List<Run> listBiSearch(RunSearchContext context);
+
+    /**
     * fetchCasePerson
     * 
     * @param context
@@ -395,14 +428,37 @@ public interface RunService extends IService<Run> {
     List<Run> listPriorityDistributions(RunSearchContext context);
 
     /**
+    * fetchReader
+    * 
+    * @param context
+    * @return
+    */
+    Page<Run> fetchReader(RunSearchContext context);
+
+    /**
+    * listReader
+    * 
+    * @param context
+    * @return
+    */
+    List<Run> listReader(RunSearchContext context);
+
+    /**
     * findByCaseId
     * @param caseIds
     * @return
     */
     List<Run> findByCaseId(List<String> caseIds);
     default List<Run> findByCaseId(String caseId){
-        return findByCaseId(Arrays.asList(caseId));
+        return findByTestCase(new TestCase().setId(caseId));
     }
+
+    /**
+    * findByTestCase
+    * @param testCase
+    * @return
+    */
+    List<Run> findByTestCase(TestCase testCase);
 
     /**
     * removeByCaseId
@@ -443,8 +499,15 @@ public interface RunService extends IService<Run> {
     */
     List<Run> findByPlanId(List<String> planIds);
     default List<Run> findByPlanId(String planId){
-        return findByPlanId(Arrays.asList(planId));
+        return findByTestPlan(new TestPlan().setId(planId));
     }
+
+    /**
+    * findByTestPlan
+    * @param testPlan
+    * @return
+    */
+    List<Run> findByTestPlan(TestPlan testPlan);
 
     /**
     * removeByPlanId
@@ -505,6 +568,22 @@ public interface RunService extends IService<Run> {
     default Run thisRunDetails(Run et) {
         return et;
     }
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Run> fetchView(RunSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Run> listView(RunSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Run> list) {

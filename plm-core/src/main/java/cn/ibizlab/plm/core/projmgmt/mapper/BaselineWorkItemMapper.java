@@ -97,6 +97,25 @@ public interface BaselineWorkItemMapper extends BaseMapper<BaselineWorkItem> {
     List<BaselineWorkItem> findByTargetVersionId(@Param("targetVersionIds") List<String> targetVersionIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<BaselineWorkItem> searchView(IPage<BaselineWorkItem> page, @Param("ctx") BaselineWorkItemSearchContext context, @Param("ew") Wrapper<BaselineWorkItem> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<BaselineWorkItem> listView(@Param("ctx") BaselineWorkItemSearchContext context, @Param("ew") Wrapper<BaselineWorkItem> wrapper);
+
+    /**
      * 主键查询
      *
      * @param id

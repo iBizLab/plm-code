@@ -6,6 +6,13 @@ export default {
   caption: '产品',
   codeName: 'product_index_view',
   appDataEntityId: 'plmweb.product',
+  appViewNavParams: [
+    {
+      key: 'product',
+      value: 'product',
+      id: 'product',
+    },
+  ],
   viewLayoutPanel: {
     viewProxyMode: true,
     layoutMode: 'FLEX',
@@ -111,9 +118,11 @@ export default {
                       forceSelection: true,
                       showTrigger: true,
                       editorParams: {
+                        'SRFNAVPARAM.product': '%product%',
                         ENABLESEARCH: 'TRUE',
                         AC: 'TRUE',
                         SUFFIX: 'chevron-expand-outline',
+                        'SRFNAVCTX.product': '%product%',
                         PICKUPVIEW: 'TRUE',
                       },
                       editorStyle: 'ROUTE',
@@ -122,6 +131,21 @@ export default {
                       predefinedType: 'FIELD_TEXT_DYNAMIC',
                       valueType: 'SIMPLE',
                       editable: true,
+                      navigateContexts: [
+                        {
+                          key: 'PRODUCT',
+                          value: 'product',
+                          name: 'PRODUCT',
+                          id: 'product',
+                        },
+                      ],
+                      navigateParams: [
+                        {
+                          key: 'product',
+                          value: 'product',
+                          id: 'product',
+                        },
+                      ],
                       id: 'route_picker',
                     },
                     allowEmpty: true,
@@ -482,6 +506,7 @@ export default {
               srfdeid: 'PRODUCT',
             },
             tag: 'a0bae0287de963bd22cdc7c0b52d6895',
+            uniqueTag: 'product_add_on_counters',
             id: 'a0bae0287de963bd22cdc7c0b52d6895',
           },
         ],
@@ -561,7 +586,6 @@ export default {
                   colMD: 24,
                   layout: 'TABLE_24COL',
                 },
-                showCaption: true,
                 id: 'id',
               },
             ],

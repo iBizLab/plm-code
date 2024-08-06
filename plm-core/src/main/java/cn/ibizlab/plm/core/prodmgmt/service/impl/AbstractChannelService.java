@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.prodmgmt.domain.Channel;
@@ -103,14 +104,14 @@ public abstract class AbstractChannelService extends ServiceImpl<ChannelMapper,C
         return et;
     }
 	
-    public Integer checkKey(Channel et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Channel>lambdaQuery().eq(Channel::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(Channel et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Channel>lambdaQuery().eq(Channel::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(Channel et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -153,6 +154,10 @@ public abstract class AbstractChannelService extends ServiceImpl<ChannelMapper,C
         return list;	
 	}
 
+	public List<Channel> findByProduct(Product product){
+        List<Channel> list = findByProductId(Arrays.asList(product.getId()));
+		return list;
+	}
 	public boolean removeByProductId(String productId){
         return this.remove(Wrappers.<Channel>lambdaQuery().eq(Channel::getProductId,productId));
 	}
@@ -163,8 +168,8 @@ public abstract class AbstractChannelService extends ServiceImpl<ChannelMapper,C
 	public boolean saveByProduct(Product product, List<Channel> list){
         if(list==null)
             return true;
-        Map<String,Channel> before = findByProductId(product.getId()).stream().collect(Collectors.toMap(Channel::getId,e->e));
 
+        Map<String,Channel> before = findByProduct(product).stream().collect(Collectors.toMap(Channel::getId,e->e));
         List<Channel> update = new ArrayList<>();
         List<Channel> create = new ArrayList<>();
 
@@ -188,6 +193,17 @@ public abstract class AbstractChannelService extends ServiceImpl<ChannelMapper,C
             return true;
 			
 	}
+   public Page<Channel> fetchView(ChannelSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Channel> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<Channel> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Channel> listView(ChannelSearchContext context) {
+        List<Channel> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(Channel et) {
         if(Entities.PRODUCT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

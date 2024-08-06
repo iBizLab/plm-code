@@ -22,6 +22,11 @@ export default {
       id: 'n_owner_subtype_eq',
     },
     {
+      key: 'project',
+      value: 'project',
+      id: 'project',
+    },
+    {
       key: 'n_project_id_eq',
       value: 'project',
       id: 'n_project_id_eq',

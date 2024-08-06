@@ -120,7 +120,7 @@ export default {
             },
             dataRegionType: 'INHERIT',
             caption: '容器',
-            cssStyle: 'margin-right:12px',
+            cssStyle: 'margin-right:6px',
             itemStyle: 'DEFAULT',
             itemType: 'CONTAINER',
             layoutPos: {

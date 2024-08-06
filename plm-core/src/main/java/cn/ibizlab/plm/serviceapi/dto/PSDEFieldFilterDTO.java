@@ -35,7 +35,7 @@ public class PSDEFieldFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_psdefieldid_eq")
     @JSONField(name = "n_psdefieldid_eq")
-    @ApiModelProperty(value = "实体属性标识EQ", position = 0)
+    @ApiModelProperty(value = "实体属性标识EQ", position = 10)
 	private String psdeFieldIdEQ;
 
     /**
@@ -43,7 +43,7 @@ public class PSDEFieldFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_psdefieldname_like")
     @JSONField(name = "n_psdefieldname_like")
-    @ApiModelProperty(value = "实体属性名称LIKE", position = 10)
+    @ApiModelProperty(value = "实体属性名称LIKE", position = 20)
 	private String psdeFieldNameLIKE;
 
     /**
@@ -51,7 +51,7 @@ public class PSDEFieldFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_psdeid_eq")
     @JSONField(name = "n_psdeid_eq")
-    @ApiModelProperty(value = "实体EQ", position = 70)
+    @ApiModelProperty(value = "实体EQ", position = 80)
 	private String psdeidEQ;
 
     /**
@@ -59,7 +59,7 @@ public class PSDEFieldFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_deftype_eq")
     @JSONField(name = "n_deftype_eq")
-    @ApiModelProperty(value = "属性类型EQ", position = 90)
+    @ApiModelProperty(value = "属性类型EQ", position = 100)
 	private Integer defTypeEQ;
 
     /**
@@ -67,7 +67,7 @@ public class PSDEFieldFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_psdename_eq")
     @JSONField(name = "n_psdename_eq")
-    @ApiModelProperty(value = "实体EQ", position = 100)
+    @ApiModelProperty(value = "实体EQ", position = 110)
 	private String psdeNameEQ;
 
     /**
@@ -75,15 +75,23 @@ public class PSDEFieldFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_psdename_like")
     @JSONField(name = "n_psdename_like")
-    @ApiModelProperty(value = "实体LIKE", position = 101)
+    @ApiModelProperty(value = "实体LIKE", position = 111)
 	private String psdeNameLIKE;
+
+    /**
+     * 中文名称LIKE
+     */
+    @JsonProperty("n_logicname_like")
+    @JSONField(name = "n_logicname_like")
+    @ApiModelProperty(value = "中文名称LIKE", position = 160)
+	private String logicNameLIKE;
 
     /**
      * 属性标记2EQ
      */
     @JsonProperty("n_fieldtag2_eq")
     @JSONField(name = "n_fieldtag2_eq")
-    @ApiModelProperty(value = "属性标记2EQ", position = 160)
+    @ApiModelProperty(value = "属性标记2EQ", position = 170)
 	private String fieldTag2EQ;
 
     /**
@@ -91,7 +99,7 @@ public class PSDEFieldFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_fieldtag_eq")
     @JSONField(name = "n_fieldtag_eq")
-    @ApiModelProperty(value = "属性标记EQ", position = 170)
+    @ApiModelProperty(value = "属性标记EQ", position = 180)
 	private String fieldTagEQ;
 
     /**
@@ -99,7 +107,7 @@ public class PSDEFieldFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_usertag2_eq")
     @JSONField(name = "n_usertag2_eq")
-    @ApiModelProperty(value = "用户标记2EQ", position = 180)
+    @ApiModelProperty(value = "用户标记2EQ", position = 190)
 	private String userTag2EQ;
 
     /**
@@ -107,7 +115,7 @@ public class PSDEFieldFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_usertag2_noteq")
     @JSONField(name = "n_usertag2_noteq")
-    @ApiModelProperty(value = "用户标记2NOTEQ", position = 181)
+    @ApiModelProperty(value = "用户标记2NOTEQ", position = 191)
 	private String userTag2NOTEQ;
 
     /**
@@ -115,7 +123,7 @@ public class PSDEFieldFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_usertag3_eq")
     @JSONField(name = "n_usertag3_eq")
-    @ApiModelProperty(value = "用户标记3EQ", position = 190)
+    @ApiModelProperty(value = "用户标记3EQ", position = 200)
 	private String userTag3EQ;
 
     /**
@@ -123,7 +131,7 @@ public class PSDEFieldFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_usertag3_noteq")
     @JSONField(name = "n_usertag3_noteq")
-    @ApiModelProperty(value = "用户标记3NOTEQ", position = 191)
+    @ApiModelProperty(value = "用户标记3NOTEQ", position = 201)
 	private String userTag3NOTEQ;
 
     /**
@@ -131,7 +139,7 @@ public class PSDEFieldFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_usertag_eq")
     @JSONField(name = "n_usertag_eq")
-    @ApiModelProperty(value = "用户标记EQ", position = 200)
+    @ApiModelProperty(value = "用户标记EQ", position = 210)
 	private String userTagEQ;
 
     /**
@@ -139,7 +147,7 @@ public class PSDEFieldFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_usertag_noteq")
     @JSONField(name = "n_usertag_noteq")
-    @ApiModelProperty(value = "用户标记NOTEQ", position = 201)
+    @ApiModelProperty(value = "用户标记NOTEQ", position = 211)
 	private String userTagNOTEQ;
 
     /**
@@ -147,7 +155,7 @@ public class PSDEFieldFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_usertag4_eq")
     @JSONField(name = "n_usertag4_eq")
-    @ApiModelProperty(value = "用户标记4EQ", position = 210)
+    @ApiModelProperty(value = "用户标记4EQ", position = 220)
 	private String userTag4EQ;
 
     /**
@@ -155,7 +163,7 @@ public class PSDEFieldFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_usertag4_noteq")
     @JSONField(name = "n_usertag4_noteq")
-    @ApiModelProperty(value = "用户标记4NOTEQ", position = 211)
+    @ApiModelProperty(value = "用户标记4NOTEQ", position = 221)
 	private String userTag4NOTEQ;
 
 

@@ -434,7 +434,6 @@ export default {
           'overview',
           'guihua',
           'workitem',
-          'story',
           'defect',
           'sprint',
           'test',
@@ -472,17 +471,6 @@ export default {
             refAppViewId: 'plmweb.work_item_all_scrum_grid_view',
             name: 'EXPITEM:workitem',
             id: 'expitem:workitem',
-          },
-          {
-            parentDataJO: {
-              srfparentdename: 'PROJECT',
-              srfparentmode: 'DER1N_WORK_ITEM_PROJECT_PROJECT_ID',
-              srfparentdefname: 'PROJECT_ID',
-            },
-            realTitle: '全部需求',
-            refAppViewId: 'plmweb.work_item_all_story_scrum_grid_view',
-            name: 'EXPITEM:story',
-            id: 'expitem:story',
           },
           {
             parentDataJO: {
@@ -616,39 +604,6 @@ export default {
             modelType: 'PSVIEWPANEL',
             name: 'workitem',
             id: 'scrum_main_view_workitem',
-          },
-          {
-            navDER: {
-              masterOrder: 100,
-              masterRS: 101,
-              pickupDEFName: 'PROJECT_ID',
-              codeName: 'project',
-              dertype: 'DER1N',
-              logicName: '项目-工作项',
-              minorCodeName: 'work_items',
-              minorServiceCodeName: 'work_items',
-              orderValue: 100,
-              serviceCodeName: 'project',
-              name: 'DER1N_WORK_ITEM_PROJECT_PROJECT_ID',
-              id: 'projmgmt.work_item.der1n_work_item_project_project_id',
-            },
-            parentDataJO: {
-              srfparentdename: 'PROJECT',
-              srfparentmode: 'DER1N_WORK_ITEM_PROJECT_PROJECT_ID',
-              srfparentdefname: 'PROJECT_ID',
-            },
-            caption: '需求',
-            embeddedAppDEViewId: 'plmweb.work_item_all_story_scrum_grid_view',
-            codeName: 'scrum_main_view_story',
-            controlType: 'TABVIEWPANEL',
-            appDataEntityId: 'plmweb.work_item',
-            controlParam: {
-              id: 'story',
-            },
-            modelId: '3c6311066a97250de9e77d37074c6c3d_story',
-            modelType: 'PSVIEWPANEL',
-            name: 'story',
-            id: 'scrum_main_view_story',
           },
           {
             navDER: {

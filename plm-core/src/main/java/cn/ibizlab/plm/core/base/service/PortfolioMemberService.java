@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.PortfolioMember;
 import cn.ibizlab.plm.core.base.filter.PortfolioMemberSearchContext;
 import cn.ibizlab.plm.core.base.domain.Portfolio;
@@ -139,7 +140,7 @@ public interface PortfolioMemberService extends IService<PortfolioMember> {
     * @param et
     * @return
     */
-    Integer checkKey(PortfolioMember et);
+    CheckKeyStatus checkKey(PortfolioMember et);
 
     /**
     * 保存
@@ -214,8 +215,15 @@ public interface PortfolioMemberService extends IService<PortfolioMember> {
     */
     List<PortfolioMember> findByPortfolioId(List<String> portfolioIds);
     default List<PortfolioMember> findByPortfolioId(String portfolioId){
-        return findByPortfolioId(Arrays.asList(portfolioId));
+        return findByPortfolio(new Portfolio().setId(portfolioId));
     }
+
+    /**
+    * findByPortfolio
+    * @param portfolio
+    * @return
+    */
+    List<PortfolioMember> findByPortfolio(Portfolio portfolio);
 
     /**
     * removeByPortfolioId
@@ -256,8 +264,15 @@ public interface PortfolioMemberService extends IService<PortfolioMember> {
     */
     List<PortfolioMember> findByUserId(List<String> userIds);
     default List<PortfolioMember> findByUserId(String userId){
-        return findByUserId(Arrays.asList(userId));
+        return findByUser(new User().setId(userId));
     }
+
+    /**
+    * findByUser
+    * @param user
+    * @return
+    */
+    List<PortfolioMember> findByUser(User user);
 
     /**
     * removeByUserId
@@ -290,6 +305,22 @@ public interface PortfolioMemberService extends IService<PortfolioMember> {
     * @return
     */
     boolean saveByUser(User user, List<PortfolioMember> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<PortfolioMember> fetchView(PortfolioMemberSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<PortfolioMember> listView(PortfolioMemberSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<PortfolioMember> list) {

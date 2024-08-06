@@ -117,6 +117,16 @@ public class Version extends EntityMP implements Serializable
     private Integer manual;
 
     /**
+    * 是否命名
+    */
+    @TableField(value = "is_named")
+    @DEField(name = "is_named" , defaultValue = "0" , dict = "YesNo")
+    @JSONField(name = "is_named")
+    @JsonProperty("is_named")
+    @ApiModelProperty(value = "is_named", notes = "是否命名")
+    private Integer isNamed;
+
+    /**
     * 标识
     */
     @Id
@@ -261,6 +271,15 @@ public class Version extends EntityMP implements Serializable
     public Version setManual(Integer manual) {
         this.manual = manual;
         this.modify("manual", manual);
+        return this;
+    }
+
+    /**
+    * 设置 [是否命名]
+    */
+    public Version setIsNamed(Integer isNamed) {
+        this.isNamed = isNamed;
+        this.modify("is_named", isNamed);
         return this;
     }
 

@@ -31,11 +31,19 @@ import io.swagger.annotations.ApiModelProperty;
 public class IdeaTemplateFilterDTO extends FilterBase implements Serializable {
 
     /**
+     * 标题LIKE
+     */
+    @JsonProperty("n_title_like")
+    @JSONField(name = "n_title_like")
+    @ApiModelProperty(value = "标题LIKE", position = 0)
+	private String titleLIKE;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 20)
+    @ApiModelProperty(value = "标识EQ", position = 60)
 	private String idEQ;
 
     /**
@@ -43,7 +51,7 @@ public class IdeaTemplateFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 70)
+    @ApiModelProperty(value = "名称LIKE", position = 110)
 	private String nameLIKE;
 
     /**
@@ -51,7 +59,7 @@ public class IdeaTemplateFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_product_id_eq")
     @JSONField(name = "n_product_id_eq")
-    @ApiModelProperty(value = "产品EQ", position = 80)
+    @ApiModelProperty(value = "产品EQ", position = 120)
 	private String productIdEQ;
 
     /**
@@ -59,7 +67,7 @@ public class IdeaTemplateFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_product_name_eq")
     @JSONField(name = "n_product_name_eq")
-    @ApiModelProperty(value = "产品名称EQ", position = 90)
+    @ApiModelProperty(value = "产品名称EQ", position = 130)
 	private String productNameEQ;
 
     /**
@@ -67,7 +75,7 @@ public class IdeaTemplateFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_product_name_like")
     @JSONField(name = "n_product_name_like")
-    @ApiModelProperty(value = "产品名称LIKE", position = 91)
+    @ApiModelProperty(value = "产品名称LIKE", position = 131)
 	private String productNameLIKE;
 
     /**
@@ -75,7 +83,7 @@ public class IdeaTemplateFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_category_id_eq")
     @JSONField(name = "n_category_id_eq")
-    @ApiModelProperty(value = "类别标识EQ", position = 100)
+    @ApiModelProperty(value = "类别标识EQ", position = 140)
 	private String categoryIdEQ;
 
     /**
@@ -83,7 +91,7 @@ public class IdeaTemplateFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_category_name_eq")
     @JSONField(name = "n_category_name_eq")
-    @ApiModelProperty(value = "名称EQ", position = 110)
+    @ApiModelProperty(value = "名称EQ", position = 150)
 	private String categoryNameEQ;
 
     /**
@@ -91,7 +99,7 @@ public class IdeaTemplateFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_category_name_like")
     @JSONField(name = "n_category_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 111)
+    @ApiModelProperty(value = "名称LIKE", position = 151)
 	private String categoryNameLIKE;
 
 

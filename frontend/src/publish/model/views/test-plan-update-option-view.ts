@@ -120,7 +120,6 @@ export default {
               id: '默认组',
             },
             ruleInfo: '开始时间必须小于等于发布时间',
-            checkDefault: true,
             name: '开始时间',
             id: 'start_at',
           },
@@ -183,7 +182,6 @@ export default {
               id: '默认组',
             },
             ruleInfo: '发布时间必须大于等于开始时间',
-            checkDefault: true,
             name: '结束时间',
             id: 'end_at',
           },
@@ -742,7 +740,6 @@ export default {
                         colMD: 24,
                         layout: 'TABLE_24COL',
                       },
-                      showCaption: true,
                       id: 'categories',
                     },
                   ],
@@ -866,7 +863,6 @@ export default {
                     colMD: 12,
                     layout: 'TABLE_24COL',
                   },
-                  showCaption: true,
                   id: 'assignee_id',
                 },
                 {
@@ -893,7 +889,6 @@ export default {
                     colMD: 12,
                     layout: 'TABLE_24COL',
                   },
-                  showCaption: true,
                   id: 'project_id',
                 },
                 {
@@ -956,7 +951,6 @@ export default {
                 colMD: 24,
                 layout: 'TABLE_24COL',
               },
-              showCaption: true,
               id: 'release_id',
             },
             {
@@ -982,7 +976,6 @@ export default {
                 colMD: 24,
                 layout: 'TABLE_24COL',
               },
-              showCaption: true,
               id: 'library_id',
             },
             {
@@ -1008,7 +1001,6 @@ export default {
                 colMD: 24,
                 layout: 'TABLE_24COL',
               },
-              showCaption: true,
               id: 'sprint_id',
             },
             {
@@ -1037,7 +1029,6 @@ export default {
                 colMD: 24,
                 layout: 'TABLE_24COL',
               },
-              showCaption: true,
               id: 'id',
             },
           ],

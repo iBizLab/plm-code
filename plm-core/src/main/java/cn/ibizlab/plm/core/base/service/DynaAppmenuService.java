@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.DynaAppmenu;
 import cn.ibizlab.plm.core.base.filter.DynaAppmenuSearchContext;
 
@@ -137,7 +138,7 @@ public interface DynaAppmenuService extends IService<DynaAppmenu> {
     * @param et
     * @return
     */
-    Integer checkKey(DynaAppmenu et);
+    CheckKeyStatus checkKey(DynaAppmenu et);
 
     /**
     * 保存
@@ -168,6 +169,22 @@ public interface DynaAppmenuService extends IService<DynaAppmenu> {
     * @return
     */
     List<DynaAppmenu> listDefault(DynaAppmenuSearchContext context);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<DynaAppmenu> fetchView(DynaAppmenuSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<DynaAppmenu> listView(DynaAppmenuSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<DynaAppmenu> list) {

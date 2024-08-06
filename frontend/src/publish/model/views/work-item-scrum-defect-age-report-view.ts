@@ -490,7 +490,6 @@ export default {
                   colMD: 24,
                   layout: 'TABLE_24COL',
                 },
-                showCaption: true,
                 id: 'n_create_time_gtandeq',
               },
               {
@@ -517,7 +516,6 @@ export default {
                   colMD: 24,
                   layout: 'TABLE_24COL',
                 },
-                showCaption: true,
                 id: 'n_create_time_ltandeq',
               },
             ],

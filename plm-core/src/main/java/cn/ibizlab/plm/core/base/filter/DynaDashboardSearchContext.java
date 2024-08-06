@@ -6,6 +6,7 @@ package cn.ibizlab.plm.core.base.filter;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import java.util.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -38,12 +39,35 @@ import cn.ibizlab.plm.core.base.domain.DynaDashboard;
 public class DynaDashboardSearchContext extends QueryWrapperContext<DynaDashboard> {
 
     /**
+     * 所属数据标识EQ
+     */
+    @JsonProperty("n_owner_id_eq")
+    @JSONField(name = "n_owner_id_eq")
+    @ApiModelProperty("所属数据标识EQ")
+    private String ownerIdEQ;
+
+    /**
      * 动态数据看板标识EQ
      */
     @JsonProperty("n_dynadashboardid_eq")
     @JSONField(name = "n_dynadashboardid_eq")
     @ApiModelProperty("动态数据看板标识EQ")
     private String dynaDashboardIdEQ;
+
+    /**
+     * 名称LIKE
+     */
+    @JsonProperty("n_dynadashboardname_like")
+    @JSONField(name = "n_dynadashboardname_like")
+    @ApiModelProperty("名称LIKE")
+    private String dynaDashboardNameLIKE;
+
+    @Override
+    public void setContextParentKey(Serializable contextParentKey) {
+        super.setContextParentKey(contextParentKey);
+        if(Entities.INSIGHT_VIEW.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("owner_id",contextParentKey);
+    }
 
     @Override
     public void setQuery(String query) {

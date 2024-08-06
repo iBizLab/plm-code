@@ -5,17 +5,19 @@
         <!--通过mybatis将查询结果注入到entity中,通过配置autoMapping="true"由mybatis自动处理映射关系 -->
     <resultMap id="SprintResultMap" type="cn.ibizlab.plm.core.projmgmt.domain.Sprint" autoMapping="true">
 		<id property="id" column="id" /><!--主键字段映射-->
-		<result property="startAt" column="start_at" />
-		<result property="endAt" column="end_at" />
-		<result property="projectName" column="project_name" />
-		<result property="assigneeName" column="assignee_name" />
-		<result property="assigneeId" column="assignee_id" />
-		<result property="createMan" column="create_man" />
-		<result property="createTime" column="create_time" />
-		<result property="updateMan" column="update_man" />
-		<result property="updateTime" column="update_time" />
-		<result property="projectId" column="project_id" />
-		<result property="pid" column="pid" />
+		<result property="startAt" column="start_at"/>
+		<result property="endAt" column="end_at"/>
+		<result property="projectName" column="project_name"/>
+		<result property="assigneeName" column="assignee_name"/>
+		<result property="assigneeId" column="assignee_id"/>
+		<result property="completedWorkItems" column="completed_work_items"/>
+		<result property="allWorkItems" column="all_work_items"/>
+		<result property="createMan" column="create_man"/>
+		<result property="createTime" column="create_time"/>
+		<result property="updateMan" column="update_man"/>
+		<result property="updateTime" column="update_time"/>
+		<result property="projectId" column="project_id"/>
+		<result property="pid" column="pid"/>
         <association property="project" javaType="cn.ibizlab.plm.core.projmgmt.domain.Project" column="project_id" select="cn.ibizlab.plm.core.projmgmt.mapper.ProjectMapper.selectById" fetchType="lazy"></association>
         <association property="sprint" javaType="cn.ibizlab.plm.core.projmgmt.domain.Sprint" column="pid" select="cn.ibizlab.plm.core.projmgmt.mapper.SprintMapper.selectById" fetchType="lazy"></association>
     </resultMap>
@@ -46,23 +48,51 @@
     </delete>
 
     <sql id="default" databaseId="mysql">
-         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`NAME`, t1.`PID`, t11.`NAME` AS `PNAME`, t1.`PROJECT_ID`, t21.`NAME` AS `PROJECT_NAME`, t1.`START_AT`, t1.`STATUS`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `SPRINT` t1  LEFT JOIN `SPRINT` t11 ON t1.`PID` = t11.`ID`  LEFT JOIN `PROJECT` t21 ON t1.`PROJECT_ID` = t21.`ID`   ]]>  
+         <![CDATA[ SELECT (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND SPRINT_ID = t1.`ID`) AS `ALL_WORK_ITEMS`, t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND `STATE` in (select ID from work_item_state where TYPE = 'completed') AND SPRINT_ID = t1.`ID`) AS `COMPLETED_WORK_ITEMS`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`NAME`, t1.`PID`, t11.`NAME` AS `PNAME`, t1.`PROJECT_ID`, t21.`NAME` AS `PROJECT_NAME`, t1.`START_AT`, t1.`STATUS`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `SPRINT` t1  LEFT JOIN `SPRINT` t11 ON t1.`PID` = t11.`ID`  LEFT JOIN `PROJECT` t21 ON t1.`PROJECT_ID` = t21.`ID`   ]]>  
     </sql>
 
     <sql id="view" databaseId="mysql">
-         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`NAME`, t1.`PID`, t11.`NAME` AS `PNAME`, t1.`PROJECT_ID`, t21.`NAME` AS `PROJECT_NAME`, t1.`START_AT`, t1.`STATUS`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `SPRINT` t1  LEFT JOIN `SPRINT` t11 ON t1.`PID` = t11.`ID`  LEFT JOIN `PROJECT` t21 ON t1.`PROJECT_ID` = t21.`ID`   ]]>  
+         <![CDATA[ SELECT (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND SPRINT_ID = t1.`ID`) AS `ALL_WORK_ITEMS`, t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND `STATE` in (select ID from work_item_state where TYPE = 'completed') AND SPRINT_ID = t1.`ID`) AS `COMPLETED_WORK_ITEMS`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`NAME`, t1.`PID`, t11.`NAME` AS `PNAME`, t1.`PROJECT_ID`, t21.`NAME` AS `PROJECT_NAME`, t1.`START_AT`, t1.`STATUS`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `SPRINT` t1  LEFT JOIN `SPRINT` t11 ON t1.`PID` = t11.`ID`  LEFT JOIN `PROJECT` t21 ON t1.`PROJECT_ID` = t21.`ID`   ]]>  
+    </sql>
+
+    <sql id="all" databaseId="mysql">
+         <![CDATA[ SELECT (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND SPRINT_ID = t1.`ID`) AS `ALL_WORK_ITEMS`, t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND `STATE` in (select ID from work_item_state where TYPE = 'completed') AND SPRINT_ID = t1.`ID`) AS `COMPLETED_WORK_ITEMS`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`NAME`, t1.`PID`, t11.`NAME` AS `PNAME`, t1.`PROJECT_ID`, t21.`NAME` AS `PROJECT_NAME`, t1.`START_AT`, t1.`STATUS`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `SPRINT` t1  LEFT JOIN `SPRINT` t11 ON t1.`PID` = t11.`ID`  LEFT JOIN `PROJECT` t21 ON t1.`PROJECT_ID` = t21.`ID`   ]]>  
+    </sql>
+
+    <sql id="biDetail" databaseId="mysql">
+         <![CDATA[ SELECT (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND SPRINT_ID = t1.`ID`) AS `ALL_WORK_ITEMS`, t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND `STATE` in (select ID from work_item_state where TYPE = 'completed') AND SPRINT_ID = t1.`ID`) AS `COMPLETED_WORK_ITEMS`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`NAME`, t1.`PID`, t11.`NAME` AS `PNAME`, t1.`PROJECT_ID`, t21.`NAME` AS `PROJECT_NAME`, t1.`START_AT`, t1.`STATUS`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `SPRINT` t1  LEFT JOIN `SPRINT` t11 ON t1.`PID` = t11.`ID`  LEFT JOIN `PROJECT` t21 ON t1.`PROJECT_ID` = t21.`ID`   ]]>  
+    </sql>
+
+    <sql id="biSearch" databaseId="mysql">
+         <![CDATA[ SELECT (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND SPRINT_ID = t1.`ID`) AS `ALL_WORK_ITEMS`, t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND `STATE` in (select ID from work_item_state where TYPE = 'completed') AND SPRINT_ID = t1.`ID`) AS `COMPLETED_WORK_ITEMS`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`END_AT`, t1.`ID`, t1.`NAME`, t1.`PROJECT_ID`, t11.`NAME` AS `PROJECT_NAME`, t1.`START_AT`, t1.`STATUS`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `SPRINT` t1  LEFT JOIN `PROJECT` t11 ON t1.`PROJECT_ID` = t11.`ID`   ]]>  
     </sql>
 
     <sql id="chooseMove" databaseId="mysql">
          <![CDATA[ select null as id, '待分配工作项' as name union all select t1.id, t1.name from `sprint` `t1`  ]]>  where  <![CDATA[ (`id` <> #{ctx.webcontext.sprint_id} and `status` <>  '3' ) ]]> 
     </sql>
 
+    <sql id="chooseSprintRelation" databaseId="mysql">
+         <![CDATA[ SELECT (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND SPRINT_ID = t1.`ID`) AS `ALL_WORK_ITEMS`, t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND `STATE` in (select ID from work_item_state where TYPE = 'completed') AND SPRINT_ID = t1.`ID`) AS `COMPLETED_WORK_ITEMS`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`NAME`, t1.`PID`, t11.`NAME` AS `PNAME`, t1.`PROJECT_ID`, t21.`NAME` AS `PROJECT_NAME`, t1.`START_AT`, t1.`STATUS`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `SPRINT` t1  LEFT JOIN `SPRINT` t11 ON t1.`PID` = t11.`ID`  LEFT JOIN `PROJECT` t21 ON t1.`PROJECT_ID` = t21.`ID`   ]]>  where  <![CDATA[ NOT(EXISTS(SELECT * FROM `RELATION` t31   WHERE   t1.`ID` = t31.`PRINCIPAL_ID`  AND  ( t31.`TARGET_TYPE` = 'release'  AND  t31.`PRINCIPAL_TYPE` = 'sprint'  AND  t31.`TARGET_ID` = #{ctx.webcontext.release} ) )) ]]> 
+    </sql>
+
     <sql id="curSprintNotFinish" databaseId="mysql">
-         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`NAME`, t1.`PID`, t11.`NAME` AS `PNAME`, t1.`PROJECT_ID`, t21.`NAME` AS `PROJECT_NAME`, t1.`START_AT`, t1.`STATUS`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `SPRINT` t1  LEFT JOIN `SPRINT` t11 ON t1.`PID` = t11.`ID`  LEFT JOIN `PROJECT` t21 ON t1.`PROJECT_ID` = t21.`ID`   ]]>  where  <![CDATA[ ( t1.`STATUS` <> '3'  AND  t1.`PROJECT_ID` = #{ctx.datacontext.project} ) ]]> 
+         <![CDATA[ SELECT (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND SPRINT_ID = t1.`ID`) AS `ALL_WORK_ITEMS`, t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND `STATE` in (select ID from work_item_state where TYPE = 'completed') AND SPRINT_ID = t1.`ID`) AS `COMPLETED_WORK_ITEMS`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`NAME`, t1.`PID`, t11.`NAME` AS `PNAME`, t1.`PROJECT_ID`, t21.`NAME` AS `PROJECT_NAME`, t1.`START_AT`, t1.`STATUS`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `SPRINT` t1  LEFT JOIN `SPRINT` t11 ON t1.`PID` = t11.`ID`  LEFT JOIN `PROJECT` t21 ON t1.`PROJECT_ID` = t21.`ID`   ]]>  where  <![CDATA[ ( t1.`STATUS` <> '3'  AND  t1.`PROJECT_ID` = #{ctx.datacontext.project} ) ]]> 
     </sql>
 
     <sql id="notFinish" databaseId="mysql">
-         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`NAME`, t1.`PID`, t11.`NAME` AS `PNAME`, t1.`PROJECT_ID`, t21.`NAME` AS `PROJECT_NAME`, t1.`START_AT`, t1.`STATUS`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `SPRINT` t1  LEFT JOIN `SPRINT` t11 ON t1.`PID` = t11.`ID`  LEFT JOIN `PROJECT` t21 ON t1.`PROJECT_ID` = t21.`ID`   ]]>  where  <![CDATA[ NOT(EXISTS(SELECT * FROM `WORK_ITEM` t31   WHERE   t1.`ID` = t31.`SPRINT_ID`  AND  ( t31.`ID` = #{ctx.webcontext.work_item} ) )) ]]> and  <![CDATA[ ( t1.`STATUS` <> '3' ) ]]> 
+         <![CDATA[ SELECT (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND SPRINT_ID = t1.`ID`) AS `ALL_WORK_ITEMS`, t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND `STATE` in (select ID from work_item_state where TYPE = 'completed') AND SPRINT_ID = t1.`ID`) AS `COMPLETED_WORK_ITEMS`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`NAME`, t1.`PID`, t11.`NAME` AS `PNAME`, t1.`PROJECT_ID`, t21.`NAME` AS `PROJECT_NAME`, t1.`START_AT`, t1.`STATUS`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `SPRINT` t1  LEFT JOIN `SPRINT` t11 ON t1.`PID` = t11.`ID`  LEFT JOIN `PROJECT` t21 ON t1.`PROJECT_ID` = t21.`ID`   ]]>  where  <![CDATA[ NOT(EXISTS(SELECT * FROM `WORK_ITEM` t31   WHERE   t1.`ID` = t31.`SPRINT_ID`  AND  ( t31.`ID` = #{ctx.webcontext.work_item} ) )) ]]> and  <![CDATA[ ( t1.`STATUS` <> '3' ) ]]> 
+    </sql>
+
+    <sql id="public" databaseId="mysql">
+         <![CDATA[ SELECT (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND SPRINT_ID = t1.`ID`) AS `ALL_WORK_ITEMS`, t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND `STATE` in (select ID from work_item_state where TYPE = 'completed') AND SPRINT_ID = t1.`ID`) AS `COMPLETED_WORK_ITEMS`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`NAME`, t1.`PID`, t11.`NAME` AS `PNAME`, t1.`PROJECT_ID`, t21.`NAME` AS `PROJECT_NAME`, t1.`START_AT`, t1.`STATUS`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `SPRINT` t1  LEFT JOIN `SPRINT` t11 ON t1.`PID` = t11.`ID`  LEFT JOIN `PROJECT` t21 ON t1.`PROJECT_ID` = t21.`ID`   ]]>  where  <![CDATA[ ( t21.`VISIBILITY` = 'public' ) ]]> 
+    </sql>
+
+    <sql id="reader" databaseId="mysql">
+         <![CDATA[ SELECT (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND SPRINT_ID = t1.`ID`) AS `ALL_WORK_ITEMS`, t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND `STATE` in (select ID from work_item_state where TYPE = 'completed') AND SPRINT_ID = t1.`ID`) AS `COMPLETED_WORK_ITEMS`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`NAME`, t1.`PID`, t11.`NAME` AS `PNAME`, t1.`PROJECT_ID`, t21.`NAME` AS `PROJECT_NAME`, t1.`START_AT`, t1.`STATUS`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `SPRINT` t1  LEFT JOIN `SPRINT` t11 ON t1.`PID` = t11.`ID`  LEFT JOIN `PROJECT` t21 ON t1.`PROJECT_ID` = t21.`ID`   ]]>  where  <![CDATA[ EXISTS(SELECT * FROM `PROJECT_MEMBER` t31   WHERE   t21.`ID` = t31.`PROJECT_ID`  AND  ( t31.`USER_ID` = #{ctx.sessioncontext.srfpersonid} ) ) ]]> 
+    </sql>
+
+    <sql id="releaseRelation" databaseId="mysql">
+         <![CDATA[ SELECT (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND SPRINT_ID = t1.`ID`) AS `ALL_WORK_ITEMS`, t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND `STATE` in (select ID from work_item_state where TYPE = 'completed') AND SPRINT_ID = t1.`ID`) AS `COMPLETED_WORK_ITEMS`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`NAME`, t1.`PID`, t11.`NAME` AS `PNAME`, t1.`PROJECT_ID`, t21.`NAME` AS `PROJECT_NAME`, t1.`START_AT`, t1.`STATUS`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `SPRINT` t1  LEFT JOIN `SPRINT` t11 ON t1.`PID` = t11.`ID`  LEFT JOIN `PROJECT` t21 ON t1.`PROJECT_ID` = t21.`ID`   ]]>  where  <![CDATA[ EXISTS(SELECT * FROM `RELATION` t31   WHERE   t1.`ID` = t31.`PRINCIPAL_ID`  AND  ( t31.`PRINCIPAL_TYPE` = 'sprint'  AND  t31.`TARGET_TYPE` = 'release'  AND  t31.`TARGET_ID` = #{ctx.webcontext.release} ) ) ]]> 
     </sql>
 
     <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.SprintSearchContext"  resultMap="SprintResultMap">
@@ -86,6 +116,69 @@
         
     </select>
 
+    <select id="searchAll"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.SprintSearchContext"  resultMap="SprintResultMap">
+        select t1.* 
+        from (
+            <include refid="all"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listAll"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.SprintSearchContext"  resultMap="SprintResultMap">
+        select t1.*
+        from (
+            <include refid="all"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchBiDetail"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.SprintSearchContext"  resultMap="SprintResultMap">
+        select t1.* 
+        from (
+            <include refid="biDetail"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listBiDetail"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.SprintSearchContext"  resultMap="SprintResultMap">
+        select t1.*
+        from (
+            <include refid="biDetail"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchBiSearch"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.SprintSearchContext"  resultMap="SprintResultMap">
+        select t1.* 
+        from (
+            <include refid="biSearch"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listBiSearch"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.SprintSearchContext"  resultMap="SprintResultMap">
+        select t1.*
+        from (
+            <include refid="biSearch"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
     <select id="searchChooseMove"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.SprintSearchContext"  resultMap="SprintResultMap">
         select t1.* 
         from (
@@ -101,6 +194,27 @@
         select t1.*
         from (
             <include refid="chooseMove"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchChooseSprintRelation"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.SprintSearchContext"  resultMap="SprintResultMap">
+        select t1.* 
+        from (
+            <include refid="chooseSprintRelation"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listChooseSprintRelation"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.SprintSearchContext"  resultMap="SprintResultMap">
+        select t1.*
+        from (
+            <include refid="chooseSprintRelation"/>
         ) t1
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
@@ -147,6 +261,61 @@
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
         
+    </select>
+
+    <select id="searchReader"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.SprintSearchContext"  resultMap="SprintResultMap">
+        select t1.* 
+        from (
+            <include refid="reader"/>
+                 union
+            <include refid="public"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listReader"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.SprintSearchContext"  resultMap="SprintResultMap">
+        select t1.*
+        from (
+            <include refid="reader"/>
+                 union
+            <include refid="public"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchReleaseRelation"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.SprintSearchContext"  resultMap="SprintResultMap">
+        select t1.* 
+        from (
+            <include refid="releaseRelation"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listReleaseRelation"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.SprintSearchContext"  resultMap="SprintResultMap">
+        select t1.*
+        from (
+            <include refid="releaseRelation"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="listView"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.SprintSearchContext"  resultMap="SprintResultMap">
+        select t1.*
+        from (
+            <include refid="view" />
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
     </select>
 
     <select id="findByProjectId" resultMap="SprintResultMap">

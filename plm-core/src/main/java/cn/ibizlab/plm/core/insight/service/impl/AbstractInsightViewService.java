@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.insight.domain.InsightView;
@@ -28,6 +29,8 @@ import cn.ibizlab.plm.core.insight.domain.InsightMember;
 import cn.ibizlab.plm.core.insight.service.InsightMemberService;
 import cn.ibizlab.plm.core.insight.domain.InsightReport;
 import cn.ibizlab.plm.core.insight.service.InsightReportService;
+import cn.ibizlab.plm.core.base.domain.DynaDashboard;
+import cn.ibizlab.plm.core.base.service.DynaDashboardService;
 
 /**
  * 实体[效能视图] 服务对象接口实现
@@ -45,6 +48,10 @@ public abstract class AbstractInsightViewService extends ServiceImpl<InsightView
     @Lazy
     protected InsightReportService insightReportService;
 
+    @Autowired
+    @Lazy
+    protected DynaDashboardService dynaDashboardService;
+
     protected int batchSize = 500;
 
     @Override
@@ -52,6 +59,7 @@ public abstract class AbstractInsightViewService extends ServiceImpl<InsightView
     public boolean create(InsightView et) {
         if(this.baseMapper.insert(et) < 1)
             return false;
+        insightMemberService.saveByInsightView(et,et.getMembers());
         get(et);
         return true;
     }
@@ -68,6 +76,7 @@ public abstract class AbstractInsightViewService extends ServiceImpl<InsightView
         qw.eq("id", et.getId());
         if(!update(et, qw))
             return false;
+        insightMemberService.saveByInsightView(et,et.getMembers());
         get(et);
         return true;
     }
@@ -80,6 +89,8 @@ public abstract class AbstractInsightViewService extends ServiceImpl<InsightView
 	
    @Transactional
     public boolean remove(InsightView et) {
+        String key = et.getId();
+        insightReportService.removeByViewId(key);
         if(!remove(Wrappers.<InsightView>lambdaQuery().eq(InsightView::getId, et.getId())))
             return false;
         return true;
@@ -87,7 +98,9 @@ public abstract class AbstractInsightViewService extends ServiceImpl<InsightView
 
     @Transactional
     public boolean remove(List<InsightView> entities) {
-        this.baseMapper.deleteEntities(entities);
+        for (InsightView et : entities)
+            if(!getSelf().remove(et))
+                return false;
         return true;
     }		
     public InsightView get(InsightView et) {
@@ -95,6 +108,8 @@ public abstract class AbstractInsightViewService extends ServiceImpl<InsightView
         if(rt == null)
             throw new NotFoundException("数据不存在",Entities.INSIGHT_VIEW.toString(),et.getId());
         rt.copyTo(et,true);
+        //设置 [效能成员]
+        getMembers(et);
         return et;
     }	
 
@@ -106,14 +121,14 @@ public abstract class AbstractInsightViewService extends ServiceImpl<InsightView
         return et;
     }
 	
-    public Integer checkKey(InsightView et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<InsightView>lambdaQuery().eq(InsightView::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(InsightView et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<InsightView>lambdaQuery().eq(InsightView::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(InsightView et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -159,6 +174,17 @@ public abstract class AbstractInsightViewService extends ServiceImpl<InsightView
 
    public List<InsightView> listAdmin(InsightViewSearchContext context) {
         List<InsightView> list = baseMapper.listAdmin(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<InsightView> fetchDeleted(InsightViewSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<InsightView> pages=baseMapper.searchDeleted(context.getPages(),context,context.getSelectCond());
+        List<InsightView> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<InsightView> listDeleted(InsightViewSearchContext context) {
+        List<InsightView> list = baseMapper.listDeleted(context,context.getSelectCond());
         return list;
    }
 	
@@ -218,6 +244,24 @@ public abstract class AbstractInsightViewService extends ServiceImpl<InsightView
 
    public List<InsightView> listUser(InsightViewSearchContext context) {
         List<InsightView> list = baseMapper.listUser(context,context.getSelectCond());
+        return list;
+   }
+	
+	@Override
+    public List<InsightMember> getMembers(InsightView et) {
+        List<InsightMember> list = insightMemberService.findByInsightView(et);
+        et.setMembers(list);
+        return list;
+    }
+	
+   public Page<InsightView> fetchView(InsightViewSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<InsightView> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<InsightView> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<InsightView> listView(InsightViewSearchContext context) {
+        List<InsightView> list = baseMapper.listView(context,context.getSelectCond());
         return list;
    }
 	

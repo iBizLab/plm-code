@@ -240,6 +240,7 @@ export default {
                             caption: '所属数据标识',
                             codeName: 'owner_id',
                             columnType: 'DEFGRIDCOLUMN',
+                            hideMode: 1,
                             noPrivDisplayMode: 1,
                             width: 100,
                             widthUnit: 'PX',
@@ -601,7 +602,6 @@ export default {
                     colMD: 24,
                     layout: 'TABLE_24COL',
                   },
-                  showCaption: true,
                   id: 'product_id',
                 },
                 {
@@ -613,7 +613,7 @@ export default {
                   appDEFieldId: 'type',
                   editor: {
                     singleSelect: true,
-                    appCodeListId: 'plmweb.prodmgmt__product_ticket_type',
+                    appCodeListId: 'plmweb.prodmgmt__base_ticket_type',
                     editorParams: {
                       'SRFNAVCTX.PRODUCT': '%PRODUCT_ID%',
                     },
@@ -857,7 +857,6 @@ export default {
                     colMD: 24,
                     layout: 'TABLE_24COL',
                   },
-                  showCaption: true,
                   id: 'submitter_id',
                 },
                 {
@@ -1004,7 +1003,6 @@ export default {
                 colMD: 24,
                 layout: 'TABLE_24COL',
               },
-              showCaption: true,
               id: 'id',
             },
             {
@@ -1031,7 +1029,6 @@ export default {
                 colMD: 24,
                 layout: 'TABLE_24COL',
               },
-              showCaption: true,
               id: 'customer_id',
             },
           ],

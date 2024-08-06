@@ -13,14 +13,14 @@
     <parent>
         <groupId>cn.ibizlab.plugin</groupId>
         <artifactId>ibizlab-boot-starter-parent</artifactId>
-        <version>2.6.12.7</version>
+        <version>2.6.12.8</version>
     </parent>
 
     <properties>
         <docker.image.prefix>ibizlab</docker.image.prefix>
-        <ibizlab-boot-starter.version>2.6.12.7</ibizlab-boot-starter.version>
-        <ibizlab-boot-adapter.version>2.6.1.21</ibizlab-boot-adapter.version>
-        <ibizlab-generator-plugin.version>2.0.2</ibizlab-generator-plugin.version>
+        <ibizlab-boot-starter.version>2.6.12.8</ibizlab-boot-starter.version>
+        <ibizlab-boot-adapter.version>2.6.1.22</ibizlab-boot-adapter.version>
+        <ibizlab-generator-plugin.version>2.0.5</ibizlab-generator-plugin.version>
         <ibizlab-template-ibizedge.version>2.6.1.P-SNAPSHOT</ibizlab-template-ibizedge.version>
     </properties>
 

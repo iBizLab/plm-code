@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
@@ -188,15 +189,15 @@ public abstract class AbstractTestCaseService extends ServiceImpl<TestCaseMapper
         return et;
     }
 	
-    public Integer checkKey(TestCase et) {
+    public CheckKeyStatus checkKey(TestCase et) {
         fillParentData(et);
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<TestCase>lambdaQuery().eq(TestCase::getId, et.getId()))>0)?1:0;
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<TestCase>lambdaQuery().eq(TestCase::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(TestCase et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -292,6 +293,28 @@ public abstract class AbstractTestCaseService extends ServiceImpl<TestCaseMapper
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("IDENTIFIER,DESC");
         List<TestCase> list = baseMapper.listBaselineChooseCase(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<TestCase> fetchBiDetail(TestCaseSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestCase> pages=baseMapper.searchBiDetail(context.getPages(),context,context.getSelectCond());
+        List<TestCase> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<TestCase> listBiDetail(TestCaseSearchContext context) {
+        List<TestCase> list = baseMapper.listBiDetail(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<TestCase> fetchBiSearch(TestCaseSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestCase> pages=baseMapper.searchBiSearch(context.getPages(),context,context.getSelectCond());
+        List<TestCase> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<TestCase> listBiSearch(TestCaseSearchContext context) {
+        List<TestCase> list = baseMapper.listBiSearch(context,context.getSelectCond());
         return list;
    }
 	
@@ -499,6 +522,17 @@ public abstract class AbstractTestCaseService extends ServiceImpl<TestCaseMapper
         return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listPriorityDistributions(context,context.getSelectCond()),TestCase.class);
    }
 	
+   public Page<TestCase> fetchReader(TestCaseSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestCase> pages=baseMapper.searchReader(context.getPages(),context,context.getSelectCond());
+        List<TestCase> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<TestCase> listReader(TestCaseSearchContext context) {
+        List<TestCase> list = baseMapper.listReader(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<TestCase> fetchRecentTestCase(TestCaseSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("SHOW_IDENTIFIER,DESC");
@@ -551,6 +585,10 @@ public abstract class AbstractTestCaseService extends ServiceImpl<TestCaseMapper
         return list;	
 	}
 
+	public List<TestCase> findByLibrary(Library library){
+        List<TestCase> list = findByTestLibraryId(Arrays.asList(library.getId()));
+		return list;
+	}
 	public boolean removeByTestLibraryId(String testLibraryId){
         return this.remove(Wrappers.<TestCase>lambdaQuery().eq(TestCase::getTestLibraryId,testLibraryId));
 	}
@@ -561,8 +599,8 @@ public abstract class AbstractTestCaseService extends ServiceImpl<TestCaseMapper
 	public boolean saveByLibrary(Library library, List<TestCase> list){
         if(list==null)
             return true;
-        Map<String,TestCase> before = findByTestLibraryId(library.getId()).stream().collect(Collectors.toMap(TestCase::getId,e->e));
 
+        Map<String,TestCase> before = findByLibrary(library).stream().collect(Collectors.toMap(TestCase::getId,e->e));
         List<TestCase> update = new ArrayList<>();
         List<TestCase> create = new ArrayList<>();
 
@@ -597,6 +635,10 @@ public abstract class AbstractTestCaseService extends ServiceImpl<TestCaseMapper
         return list;	
 	}
 
+	public List<TestCase> findByTestSuite(TestSuite testSuite){
+        List<TestCase> list = findBySuiteId(Arrays.asList(testSuite.getId()));
+		return list;
+	}
 	public boolean removeBySuiteId(String suiteId){
         return this.remove(Wrappers.<TestCase>lambdaQuery().eq(TestCase::getSuiteId,suiteId));
 	}
@@ -607,8 +649,8 @@ public abstract class AbstractTestCaseService extends ServiceImpl<TestCaseMapper
 	public boolean saveByTestSuite(TestSuite testSuite, List<TestCase> list){
         if(list==null)
             return true;
-        Map<String,TestCase> before = findBySuiteId(testSuite.getId()).stream().collect(Collectors.toMap(TestCase::getId,e->e));
 
+        Map<String,TestCase> before = findByTestSuite(testSuite).stream().collect(Collectors.toMap(TestCase::getId,e->e));
         List<TestCase> update = new ArrayList<>();
         List<TestCase> create = new ArrayList<>();
 
@@ -643,6 +685,10 @@ public abstract class AbstractTestCaseService extends ServiceImpl<TestCaseMapper
         return list;	
 	}
 
+	public List<TestCase> findByUser(User user){
+        List<TestCase> list = findByMaintenanceId(Arrays.asList(user.getId()));
+		return list;
+	}
 	public boolean removeByMaintenanceId(String maintenanceId){
         return this.remove(Wrappers.<TestCase>lambdaQuery().eq(TestCase::getMaintenanceId,maintenanceId));
 	}
@@ -653,8 +699,8 @@ public abstract class AbstractTestCaseService extends ServiceImpl<TestCaseMapper
 	public boolean saveByUser(User user, List<TestCase> list){
         if(list==null)
             return true;
-        Map<String,TestCase> before = findByMaintenanceId(user.getId()).stream().collect(Collectors.toMap(TestCase::getId,e->e));
 
+        Map<String,TestCase> before = findByUser(user).stream().collect(Collectors.toMap(TestCase::getId,e->e));
         List<TestCase> update = new ArrayList<>();
         List<TestCase> create = new ArrayList<>();
 
@@ -680,17 +726,28 @@ public abstract class AbstractTestCaseService extends ServiceImpl<TestCaseMapper
 	}
 	@Override
     public List<Attention> getAttentions(TestCase et) {
-        List<Attention> list = attentionService.findByOwnerId(et.getId());
+        List<Attention> list = attentionService.findByTestCase(et);
         et.setAttentions(list);
         return list;
     }
 	
 	@Override
     public List<Attachment> getAttachments(TestCase et) {
-        List<Attachment> list = attachmentService.findByOwnerId(et.getId());
+        List<Attachment> list = attachmentService.findByTestCase(et);
         et.setAttachments(list);
         return list;
     }
+	
+   public Page<TestCase> fetchView(TestCaseSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestCase> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<TestCase> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<TestCase> listView(TestCaseSearchContext context) {
+        List<TestCase> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
 	
 
     public void fillParentData(TestCase et) {

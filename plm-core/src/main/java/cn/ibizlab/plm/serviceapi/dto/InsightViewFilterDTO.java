@@ -43,7 +43,7 @@ public class InsightViewFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_scope_type_eq")
     @JSONField(name = "n_scope_type_eq")
-    @ApiModelProperty(value = "所属EQ", position = 60)
+    @ApiModelProperty(value = "所属EQ", position = 70)
 	private String scopeTypeEQ;
 
     /**
@@ -51,7 +51,7 @@ public class InsightViewFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 80)
+    @ApiModelProperty(value = "标识EQ", position = 90)
 	private String idEQ;
 
     /**
@@ -59,7 +59,7 @@ public class InsightViewFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 90)
+    @ApiModelProperty(value = "名称LIKE", position = 100)
 	private String nameLIKE;
 
 

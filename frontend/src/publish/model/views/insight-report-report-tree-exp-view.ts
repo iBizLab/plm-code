@@ -88,6 +88,30 @@ export default {
         {
           realTitle: '全部报表表格',
           refAppViewId: 'plmweb.insight_report_all_report_grid_view',
+          name: 'EXPITEM:node_11',
+          id: 'expitem:node_11',
+        },
+        {
+          realTitle: '全部报表表格',
+          refAppViewId: 'plmweb.insight_report_all_report_grid_view',
+          name: 'EXPITEM:node_12',
+          id: 'expitem:node_12',
+        },
+        {
+          realTitle: '全部报表表格',
+          refAppViewId: 'plmweb.insight_report_all_report_grid_view',
+          name: 'EXPITEM:node_13',
+          id: 'expitem:node_13',
+        },
+        {
+          realTitle: '全部报表表格',
+          refAppViewId: 'plmweb.insight_report_all_report_grid_view',
+          name: 'EXPITEM:node_14',
+          id: 'expitem:node_14',
+        },
+        {
+          realTitle: '全部报表表格',
+          refAppViewId: 'plmweb.insight_report_all_report_grid_view',
           name: 'EXPITEM:node_2',
           id: 'expitem:node_2',
         },
@@ -216,6 +240,13 @@ export default {
               id: '默认根节点 - 测试计划',
             },
             {
+              childDETreeNodeId: 'node_14',
+              parentDETreeNodeId: 'root',
+              parentValueLevel: 1,
+              searchMode: 3,
+              id: '默认根节点 - 测试评审',
+            },
+            {
               childDETreeNodeId: 'node_8',
               parentDETreeNodeId: 'root',
               parentValueLevel: 1,
@@ -301,6 +332,16 @@ export default {
                     valid: true,
                     caption: '编辑',
                     itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction1',
+                        logicTag: 'node_1_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: 'context.srfreadonly != true',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction1',
+                      },
+                    ],
                     sysImage: {
                       cssClass: 'fa fa-edit',
                       glyph: 'xf044@FontAwesome',
@@ -319,6 +360,16 @@ export default {
                     valid: true,
                     caption: '删除',
                     itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction2',
+                        logicTag: 'node_1_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: 'context.srfreadonly != true',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction2',
+                      },
+                    ],
                     sysImage: {
                       cssClass: 'fa fa-trash-o',
                       glyph: 'xf014@FontAwesome',
@@ -363,7 +414,7 @@ export default {
               navigateParams: [
                 {
                   key: 'n_group_eq',
-                  value: '100',
+                  value: 'BIScheme.workload',
                   rawValue: true,
                   id: 'n_group_eq',
                 },
@@ -383,11 +434,12 @@ export default {
             },
             {
               text: '发布',
+              navAppViewId: 'plmweb.insight_report_all_report_grid_view',
               nodeType: 'node_11',
               navigateParams: [
                 {
                   key: 'n_group_eq',
-                  value: '20',
+                  value: 'BIScheme.release',
                   rawValue: true,
                   id: 'n_group_eq',
                 },
@@ -407,11 +459,12 @@ export default {
             },
             {
               text: '迭代',
+              navAppViewId: 'plmweb.insight_report_all_report_grid_view',
               nodeType: 'node_12',
               navigateParams: [
                 {
                   key: 'n_group_eq',
-                  value: '30',
+                  value: 'BIScheme.sprint',
                   rawValue: true,
                   id: 'n_group_eq',
                 },
@@ -431,11 +484,12 @@ export default {
             },
             {
               text: '项目',
+              navAppViewId: 'plmweb.insight_report_all_report_grid_view',
               nodeType: 'node_13',
               navigateParams: [
                 {
                   key: 'n_group_eq',
-                  value: '40',
+                  value: 'BIScheme.project',
                   rawValue: true,
                   id: 'n_group_eq',
                 },
@@ -452,6 +506,31 @@ export default {
               treeNodeType: 'STATIC',
               name: '项目',
               id: 'node_13',
+            },
+            {
+              text: '测试评审',
+              navAppViewId: 'plmweb.insight_report_all_report_grid_view',
+              nodeType: 'node_14',
+              navigateParams: [
+                {
+                  key: 'n_group_eq',
+                  value: 'BIScheme.review',
+                  rawValue: true,
+                  id: 'n_group_eq',
+                },
+                {
+                  key: 'n_view_id_eq',
+                  value: 'insight_view',
+                  id: 'n_view_id_eq',
+                },
+              ],
+              sysImage: {
+                rawContent:
+                  '<svg viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" fit="" height="1em" width="1em" preserveAspectRatio="xMidYMid meet" focusable="false"><g stroke-width="1" fill-rule="evenodd" fill="#73E3A9"><path d="M12.1928438,7.144639 L12.2973033,7.19718248 L13.9963183,8.17834542 C14.4744149,8.45464466 14.6383285,9.06609274 14.3625462,9.54448771 L11.8353171,13.9241416 L8.70621824,15.2739844 L8.40425029,11.9432143 L10.9314781,7.56355962 C11.1876054,7.11926307 11.7332078,6.94610373 12.1928438,7.144639 Z M11,1 C12.1045695,1 13,1.8954305 13,3 L13,6 L11.8,6 L11.8,3 C11.8,2.59215895 11.4948119,2.25559842 11.1003503,2.20623314 L11,2.2 L3,2.2 C2.59215895,2.2 2.25559842,2.50518815 2.20623314,2.8996497 L2.2,3 L2.2,13 C2.2,13.407841 2.50518815,13.7444016 2.8996497,13.7937669 L3,13.8 L6,13.8 L6,15 L3,15 C1.8954305,15 1,14.1045695 1,13 L1,3 C1,1.8954305 1.8954305,1 3,1 L11,1 Z M10.734,10.305 L9.6568734,12.1727751 L9.78907713,13.499201 L11.0136051,12.9468469 L12.08,11.097 L10.734,10.305 Z M6.5,8.9 C6.83137085,8.9 7.1,9.16862915 7.1,9.5 C7.1,9.79823376 6.88241039,10.0456468 6.59732312,10.092147 L6.5,10.1 L4.5,10.1 C4.16862915,10.1 3.9,9.83137085 3.9,9.5 C3.9,9.20176624 4.11758961,8.95435325 4.40267688,8.90785299 L4.5,8.9 L6.5,8.9 Z M11.8720074,8.3340505 L11.334,9.266 L12.68,10.058 L13.2237391,9.11678255 L11.8720074,8.3340505 Z M9.5,4.9 C9.83137085,4.9 10.1,5.16862915 10.1,5.5 C10.1,5.79823376 9.88241039,6.04564675 9.59732312,6.09214701 L9.5,6.1 L4.5,6.1 C4.16862915,6.1 3.9,5.83137085 3.9,5.5 C3.9,5.20176624 4.11758961,4.95435325 4.40267688,4.90785299 L4.5,4.9 L9.5,4.9 Z" id="v形状结合"></path></g></svg>',
+              },
+              treeNodeType: 'STATIC',
+              name: '测试评审',
+              id: 'node_14',
             },
             {
               idAppDEFieldId: 'id',
@@ -474,6 +553,16 @@ export default {
                     valid: true,
                     caption: '编辑',
                     itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction1',
+                        logicTag: 'node_2_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: 'context.srfreadonly != true',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction1',
+                      },
+                    ],
                     sysImage: {
                       cssClass: 'fa fa-edit',
                       glyph: 'xf044@FontAwesome',
@@ -492,6 +581,16 @@ export default {
                     valid: true,
                     caption: '删除',
                     itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction2',
+                        logicTag: 'node_2_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: 'context.srfreadonly != true',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction2',
+                      },
+                    ],
                     sysImage: {
                       cssClass: 'fa fa-trash-o',
                       glyph: 'xf014@FontAwesome',
@@ -556,6 +655,16 @@ export default {
                     valid: true,
                     caption: '编辑',
                     itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction1',
+                        logicTag: 'node_3_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: 'context.srfreadonly != true',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction1',
+                      },
+                    ],
                     sysImage: {
                       cssClass: 'fa fa-edit',
                       glyph: 'xf044@FontAwesome',
@@ -574,6 +683,16 @@ export default {
                     valid: true,
                     caption: '删除',
                     itemType: 'DEUIACTION',
+                    controlLogics: [
+                      {
+                        itemName: 'deuiaction2',
+                        logicTag: 'node_3_cm',
+                        logicType: 'SCRIPT',
+                        scriptCode: 'context.srfreadonly != true',
+                        triggerType: 'ITEMVISIBLE',
+                        id: 'deuiaction2',
+                      },
+                    ],
                     sysImage: {
                       cssClass: 'fa fa-trash-o',
                       glyph: 'xf014@FontAwesome',
@@ -622,7 +741,7 @@ export default {
               navigateParams: [
                 {
                   key: 'n_group_eq',
-                  value: '10',
+                  value: 'BIScheme.work_item',
                   rawValue: true,
                   id: 'n_group_eq',
                 },
@@ -647,7 +766,7 @@ export default {
               navigateParams: [
                 {
                   key: 'n_group_eq',
-                  value: '50',
+                  value: 'BIScheme.test_case',
                   rawValue: true,
                   id: 'n_group_eq',
                 },
@@ -672,7 +791,7 @@ export default {
               navigateParams: [
                 {
                   key: 'n_group_eq',
-                  value: '60',
+                  value: 'BIScheme.run',
                   rawValue: true,
                   id: 'n_group_eq',
                 },
@@ -697,7 +816,7 @@ export default {
               navigateParams: [
                 {
                   key: 'n_group_eq',
-                  value: '70',
+                  value: 'BIScheme.test_plan',
                   rawValue: true,
                   id: 'n_group_eq',
                 },
@@ -722,7 +841,7 @@ export default {
               navigateParams: [
                 {
                   key: 'n_group_eq',
-                  value: '80',
+                  value: 'BIScheme.ticket',
                   rawValue: true,
                   id: 'n_group_eq',
                 },
@@ -747,7 +866,7 @@ export default {
               navigateParams: [
                 {
                   key: 'n_group_eq',
-                  value: '90',
+                  value: 'BIScheme.idea',
                   rawValue: true,
                   id: 'n_group_eq',
                 },
@@ -800,63 +919,21 @@ export default {
                   actionLevel: 100,
                   noPrivDisplayMode: 2,
                   uiactionId:
-                    'toolbar_report_tree_exp_view_node1_cm_deuiaction1_click@insight_report',
-                  uiactionTarget: 'SINGLEDATA',
-                  valid: true,
-                  caption: '编辑',
-                  itemType: 'DEUIACTION',
-                  sysImage: {
-                    cssClass: 'fa fa-edit',
-                    glyph: 'xf044@FontAwesome',
-                  },
-                  tooltip: '编辑',
-                  showCaption: true,
-                  showIcon: true,
-                  id: 'deuiaction1',
-                },
-                {
-                  actionLevel: 100,
-                  noPrivDisplayMode: 2,
-                  uiactionId:
-                    'toolbar_report_tree_exp_view_node1_cm_deuiaction2_click@insight_report',
-                  uiactionTarget: 'SINGLEDATA',
-                  valid: true,
-                  caption: '删除',
-                  itemType: 'DEUIACTION',
-                  sysImage: {
-                    cssClass: 'fa fa-trash-o',
-                    glyph: 'xf014@FontAwesome',
-                  },
-                  tooltip: '删除',
-                  showCaption: true,
-                  showIcon: true,
-                  id: 'deuiaction2',
-                },
-              ],
-              toolbarStyle: 'CONTEXTMENU',
-              codeName: 'report_tree_exp_view_node1_cm',
-              controlType: 'CONTEXTMENU',
-              logicName: '树节点上下文菜单',
-              appDataEntityId: 'plmweb.insight_report',
-              controlParam: {
-                id: 'node_1_cm',
-              },
-              modelId: '186092ED-74B0-4486-A4DB-A3E0B23A2CCF',
-              modelType: 'PSDETOOLBAR',
-              name: 'node_1_cm',
-              id: 'report_tree_exp_view_node1_cm',
-            },
-            {
-              detoolbarItems: [
-                {
-                  actionLevel: 100,
-                  noPrivDisplayMode: 2,
-                  uiactionId:
                     'toolbar_report_tree_exp_view_node3_cm_deuiaction1_click@insight_report',
                   uiactionTarget: 'SINGLEDATA',
                   valid: true,
                   caption: '编辑',
                   itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction1',
+                      logicTag: 'node_3_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: 'context.srfreadonly != true',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction1',
+                    },
+                  ],
                   sysImage: {
                     cssClass: 'fa fa-edit',
                     glyph: 'xf044@FontAwesome',
@@ -875,6 +952,16 @@ export default {
                   valid: true,
                   caption: '删除',
                   itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction2',
+                      logicTag: 'node_3_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: 'context.srfreadonly != true',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction2',
+                    },
+                  ],
                   sysImage: {
                     cssClass: 'fa fa-trash-o',
                     glyph: 'xf014@FontAwesome',
@@ -904,11 +991,93 @@ export default {
                   actionLevel: 100,
                   noPrivDisplayMode: 2,
                   uiactionId:
+                    'toolbar_report_tree_exp_view_node1_cm_deuiaction1_click@insight_report',
+                  uiactionTarget: 'SINGLEDATA',
+                  valid: true,
+                  caption: '编辑',
+                  itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction1',
+                      logicTag: 'node_1_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: 'context.srfreadonly != true',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction1',
+                    },
+                  ],
+                  sysImage: {
+                    cssClass: 'fa fa-edit',
+                    glyph: 'xf044@FontAwesome',
+                  },
+                  tooltip: '编辑',
+                  showCaption: true,
+                  showIcon: true,
+                  id: 'deuiaction1',
+                },
+                {
+                  actionLevel: 100,
+                  noPrivDisplayMode: 2,
+                  uiactionId:
+                    'toolbar_report_tree_exp_view_node1_cm_deuiaction2_click@insight_report',
+                  uiactionTarget: 'SINGLEDATA',
+                  valid: true,
+                  caption: '删除',
+                  itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction2',
+                      logicTag: 'node_1_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: 'context.srfreadonly != true',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction2',
+                    },
+                  ],
+                  sysImage: {
+                    cssClass: 'fa fa-trash-o',
+                    glyph: 'xf014@FontAwesome',
+                  },
+                  tooltip: '删除',
+                  showCaption: true,
+                  showIcon: true,
+                  id: 'deuiaction2',
+                },
+              ],
+              toolbarStyle: 'CONTEXTMENU',
+              codeName: 'report_tree_exp_view_node1_cm',
+              controlType: 'CONTEXTMENU',
+              logicName: '树节点上下文菜单',
+              appDataEntityId: 'plmweb.insight_report',
+              controlParam: {
+                id: 'node_1_cm',
+              },
+              modelId: '186092ED-74B0-4486-A4DB-A3E0B23A2CCF',
+              modelType: 'PSDETOOLBAR',
+              name: 'node_1_cm',
+              id: 'report_tree_exp_view_node1_cm',
+            },
+            {
+              detoolbarItems: [
+                {
+                  actionLevel: 100,
+                  noPrivDisplayMode: 2,
+                  uiactionId:
                     'toolbar_report_tree_exp_view_node2_cm_deuiaction1_click@insight_report',
                   uiactionTarget: 'SINGLEDATA',
                   valid: true,
                   caption: '编辑',
                   itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction1',
+                      logicTag: 'node_2_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: 'context.srfreadonly != true',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction1',
+                    },
+                  ],
                   sysImage: {
                     cssClass: 'fa fa-edit',
                     glyph: 'xf044@FontAwesome',
@@ -927,6 +1096,16 @@ export default {
                   valid: true,
                   caption: '删除',
                   itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction2',
+                      logicTag: 'node_2_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: 'context.srfreadonly != true',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction2',
+                    },
+                  ],
                   sysImage: {
                     cssClass: 'fa fa-trash-o',
                     glyph: 'xf014@FontAwesome',
@@ -954,7 +1133,7 @@ export default {
           codeName: 'report_tree_exp_view_tree_view',
           controlStyle: 'GROUP_TREE',
           controlType: 'TREEVIEW',
-          logicName: '执行用例',
+          logicName: '报表树导航',
           appDataEntityId: 'plmweb.insight_report',
           controlLogics: [
             {
@@ -1026,6 +1205,16 @@ export default {
               valid: true,
               caption: '新建',
               itemType: 'ITEMS',
+              controlLogics: [
+                {
+                  itemName: 'items1',
+                  logicTag: 'treeexpbar_toolbar',
+                  logicType: 'SCRIPT',
+                  scriptCode: 'context.srfreadonly != true',
+                  triggerType: 'ITEMVISIBLE',
+                  id: 'items1',
+                },
+              ],
               sysImage: {
                 cssClass: 'fa fa-plus',
                 glyph: 'xf067@FontAwesome',
@@ -1041,6 +1230,16 @@ export default {
               valid: true,
               caption: '刷新',
               itemType: 'DEUIACTION',
+              controlLogics: [
+                {
+                  itemName: 'deuiaction3',
+                  logicTag: 'treeexpbar_toolbar',
+                  logicType: 'SCRIPT',
+                  scriptCode: 'context.srfreadonly != true',
+                  triggerType: 'ITEMVISIBLE',
+                  id: 'deuiaction3',
+                },
+              ],
               sysImage: {
                 cssClass: 'fa fa-refresh',
                 glyph: 'xf021@FontAwesome',

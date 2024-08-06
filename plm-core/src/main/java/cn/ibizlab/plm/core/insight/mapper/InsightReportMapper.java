@@ -43,12 +43,69 @@ public interface InsightReportMapper extends BaseMapper<InsightReport> {
     List<InsightReport> listDefault(@Param("ctx") InsightReportSearchContext context, @Param("ew") Wrapper<InsightReport> wrapper);
 
     /**
+     * 数据集合is_system分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<InsightReport> searchIsSystem(IPage<InsightReport> page, @Param("ctx") InsightReportSearchContext context, @Param("ew") Wrapper<InsightReport> wrapper);
+    
+    /**
+     * 数据集合is_system查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<InsightReport> listIsSystem(@Param("ctx") InsightReportSearchContext context, @Param("ew") Wrapper<InsightReport> wrapper);
+
+    /**
+     * 数据集合normal分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<InsightReport> searchNormal(IPage<InsightReport> page, @Param("ctx") InsightReportSearchContext context, @Param("ew") Wrapper<InsightReport> wrapper);
+    
+    /**
+     * 数据集合normal查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<InsightReport> listNormal(@Param("ctx") InsightReportSearchContext context, @Param("ew") Wrapper<InsightReport> wrapper);
+
+    /**
     * 根据viewId查询
     *
     * @param viewIds
     * @return
     */
     List<InsightReport> findByViewId(@Param("viewIds") List<String> viewIds);
+
+    /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<InsightReport> searchView(IPage<InsightReport> page, @Param("ctx") InsightReportSearchContext context, @Param("ew") Wrapper<InsightReport> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<InsightReport> listView(@Param("ctx") InsightReportSearchContext context, @Param("ew") Wrapper<InsightReport> wrapper);
 
     /**
      * 主键查询

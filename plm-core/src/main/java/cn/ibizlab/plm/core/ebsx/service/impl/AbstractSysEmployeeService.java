@@ -14,6 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Page;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.ebsx.domain.SysEmployee;
@@ -81,7 +82,7 @@ public abstract class AbstractSysEmployeeService implements SysEmployeeService {
         return sysEmployeeFeignClient.getDraft(et);
     }
 	
-    public Integer checkKey(SysEmployee et) {
+    public CheckKeyStatus checkKey(SysEmployee et) {
          return sysEmployeeFeignClient.checkKey(et);
     }
 	

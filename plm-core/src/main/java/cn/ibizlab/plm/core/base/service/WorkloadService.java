@@ -11,6 +11,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.Workload;
 import cn.ibizlab.plm.core.base.filter.WorkloadSearchContext;
 import cn.ibizlab.plm.core.base.domain.WorkloadType;
@@ -142,7 +143,7 @@ public interface WorkloadService extends IService<Workload> {
     * @param et
     * @return
     */
-    Integer checkKey(Workload et);
+    CheckKeyStatus checkKey(Workload et);
 
     /**
     * 保存
@@ -170,7 +171,7 @@ public interface WorkloadService extends IService<Workload> {
 
     /**
     * getRegisterWorkload
-    * 
+    * 修改实际工时表单获取数据行为
     * @param key
     * @return
     */
@@ -203,6 +204,38 @@ public interface WorkloadService extends IService<Workload> {
     * @return
     */
     List<Workload> listDefault(WorkloadSearchContext context);
+
+    /**
+    * fetchBiDetail
+    * 
+    * @param context
+    * @return
+    */
+    Page<Workload> fetchBiDetail(WorkloadSearchContext context);
+
+    /**
+    * listBiDetail
+    * 
+    * @param context
+    * @return
+    */
+    List<Workload> listBiDetail(WorkloadSearchContext context);
+
+    /**
+    * fetchBiSearch
+    * 
+    * @param context
+    * @return
+    */
+    Page<Workload> fetchBiSearch(WorkloadSearchContext context);
+
+    /**
+    * listBiSearch
+    * 
+    * @param context
+    * @return
+    */
+    List<Workload> listBiSearch(WorkloadSearchContext context);
 
     /**
     * fetchCalendar
@@ -397,6 +430,38 @@ public interface WorkloadService extends IService<Workload> {
     List<Workload> listTypeOf(WorkloadSearchContext context);
 
     /**
+    * fetchUserGroupLink
+    * 
+    * @param context
+    * @return
+    */
+    Page<Workload> fetchUserGroupLink(WorkloadSearchContext context);
+
+    /**
+    * listUserGroupLink
+    * 
+    * @param context
+    * @return
+    */
+    List<Workload> listUserGroupLink(WorkloadSearchContext context);
+
+    /**
+    * fetchUserGroupWorkload
+    * 
+    * @param context
+    * @return
+    */
+    Page<Workload> fetchUserGroupWorkload(WorkloadSearchContext context);
+
+    /**
+    * listUserGroupWorkload
+    * 
+    * @param context
+    * @return
+    */
+    List<Workload> listUserGroupWorkload(WorkloadSearchContext context);
+
+    /**
     * fetchWorkItemWorkload
     * 
     * @param context
@@ -419,8 +484,15 @@ public interface WorkloadService extends IService<Workload> {
     */
     List<Workload> findByTypeId(List<String> typeIds);
     default List<Workload> findByTypeId(String typeId){
-        return findByTypeId(Arrays.asList(typeId));
+        return findByWorkloadType(new WorkloadType().setId(typeId));
     }
+
+    /**
+    * findByWorkloadType
+    * @param workloadType
+    * @return
+    */
+    List<Workload> findByWorkloadType(WorkloadType workloadType);
 
     /**
     * removeByTypeId
@@ -461,8 +533,15 @@ public interface WorkloadService extends IService<Workload> {
     */
     List<Workload> findByPrincipalId(List<String> principalIds);
     default List<Workload> findByPrincipalId(String principalId){
-        return findByPrincipalId(Arrays.asList(principalId));
+        return findByRelIdea(new Idea().setId(principalId));
     }
+
+    /**
+    * findByRelIdea
+    * @param idea
+    * @return
+    */
+    List<Workload> findByRelIdea(Idea idea);
 
     /**
     * removeByPrincipalId
@@ -497,12 +576,26 @@ public interface WorkloadService extends IService<Workload> {
     boolean saveByRelIdea(Idea idea, List<Workload> list);
 
     /**
+    * findByRelTestCase
+    * @param testCase
+    * @return
+    */
+    List<Workload> findByRelTestCase(TestCase testCase);
+
+    /**
     * saveByRelTestCase
     * @param testCase
     * @param list
     * @return
     */
     boolean saveByRelTestCase(TestCase testCase, List<Workload> list);
+
+    /**
+    * findByRelWorkItem
+    * @param workItem
+    * @return
+    */
+    List<Workload> findByRelWorkItem(WorkItem workItem);
 
     /**
     * saveByRelWorkItem
@@ -514,13 +607,29 @@ public interface WorkloadService extends IService<Workload> {
 
     /**
     * getRegisterWorkload
-    * 
+    * 修改实际工时表单获取数据行为
     * @param et
     * @return
     */
     default Workload getRegisterWorkload(Workload et) {
         return et;
     }
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Workload> fetchView(WorkloadSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Workload> listView(WorkloadSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Workload> list) {

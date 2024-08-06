@@ -97,6 +97,25 @@ public interface BaselineTestCaseMapper extends BaseMapper<BaselineTestCase> {
     List<BaselineTestCase> findByTargetVersionId(@Param("targetVersionIds") List<String> targetVersionIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<BaselineTestCase> searchView(IPage<BaselineTestCase> page, @Param("ctx") BaselineTestCaseSearchContext context, @Param("ew") Wrapper<BaselineTestCase> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<BaselineTestCase> listView(@Param("ctx") BaselineTestCaseSearchContext context, @Param("ew") Wrapper<BaselineTestCase> wrapper);
+
+    /**
      * 主键查询
      *
      * @param id

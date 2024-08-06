@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.team.domain.DiscussReply;
 import cn.ibizlab.plm.core.team.filter.DiscussReplySearchContext;
 import cn.ibizlab.plm.core.team.domain.DiscussPost;
@@ -139,7 +140,7 @@ public interface DiscussReplyService extends IService<DiscussReply> {
     * @param et
     * @return
     */
-    Integer checkKey(DiscussReply et);
+    CheckKeyStatus checkKey(DiscussReply et);
 
     /**
     * 保存
@@ -250,8 +251,15 @@ public interface DiscussReplyService extends IService<DiscussReply> {
     */
     List<DiscussReply> findByPostId(List<String> postIds);
     default List<DiscussReply> findByPostId(String postId){
-        return findByPostId(Arrays.asList(postId));
+        return findByDiscussPost(new DiscussPost().setId(postId));
     }
+
+    /**
+    * findByDiscussPost
+    * @param discussPost
+    * @return
+    */
+    List<DiscussReply> findByDiscussPost(DiscussPost discussPost);
 
     /**
     * removeByPostId
@@ -288,6 +296,22 @@ public interface DiscussReplyService extends IService<DiscussReply> {
     default List<Comment> getComments(DiscussReply et) {
         return new ArrayList<>();
     }
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<DiscussReply> fetchView(DiscussReplySearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<DiscussReply> listView(DiscussReplySearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<DiscussReply> list) {

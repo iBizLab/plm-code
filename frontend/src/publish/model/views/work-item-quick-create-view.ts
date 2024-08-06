@@ -94,13 +94,13 @@ export default {
           appDEMethodId: 'set_type_bug',
           defiupdateDetails: [
             {
+              id: 'project_type',
+            },
+            {
               id: 'work_item_type_name',
             },
             {
               id: 'work_item_type_id',
-            },
-            {
-              id: 'project_type',
             },
           ],
           showBusyIndicator: true,
@@ -127,7 +127,7 @@ export default {
             },
           ],
           scriptCode:
-            "if (ctrl.scheduler) {\r\n    ctrl.scheduler.triggerControlEvent(\r\n        'work_item_type_name',\r\n        'onChange',\r\n        null,\r\n    );\r\n}\r\nconsole.log(223)",
+            "if (ctrl.scheduler) {\r\n    ctrl.scheduler.triggerControlEvent(\r\n        'work_item_type_name',\r\n        'onChange',\r\n        null,\r\n    );\r\n}",
           customCode: true,
           showBusyIndicator: true,
           name: '计算父工作项类型',
@@ -190,7 +190,6 @@ export default {
               id: '默认组',
             },
             ruleInfo: '开始时间必须小于等于结束时间',
-            checkDefault: true,
             name: '开始时间',
             id: 'start_at',
           },
@@ -253,7 +252,6 @@ export default {
               id: '默认组',
             },
             ruleInfo: '结束时间必须大于等于开始时间',
-            checkDefault: true,
             name: '结束时间',
             id: 'end_at',
           },
@@ -473,6 +471,7 @@ export default {
                                 caption: '所属数据标识',
                                 codeName: 'owner_id',
                                 columnType: 'DEFGRIDCOLUMN',
+                                hideMode: 1,
                                 noPrivDisplayMode: 1,
                                 width: 100,
                                 widthUnit: 'PX',
@@ -732,7 +731,6 @@ export default {
                         colMD: 24,
                         layout: 'TABLE_24COL',
                       },
-                      showCaption: true,
                       id: 'board_id',
                     },
                     {
@@ -761,7 +759,6 @@ export default {
                         colMD: 24,
                         layout: 'TABLE_24COL',
                       },
-                      showCaption: true,
                       id: 'entry_id',
                     },
                     {
@@ -789,7 +786,6 @@ export default {
                         colMD: 24,
                         layout: 'TABLE_24COL',
                       },
-                      showCaption: true,
                       id: 'pid',
                     },
                     {
@@ -815,7 +811,6 @@ export default {
                         colMD: 24,
                         layout: 'TABLE_24COL',
                       },
-                      showCaption: true,
                       id: 'work_item_type_group',
                     },
                     {
@@ -841,7 +836,6 @@ export default {
                         colMD: 24,
                         layout: 'TABLE_24COL',
                       },
-                      showCaption: true,
                       id: 'project_type',
                     },
                     {
@@ -867,7 +861,6 @@ export default {
                         colMD: 24,
                         layout: 'TABLE_24COL',
                       },
-                      showCaption: true,
                       id: 'test_plan_id',
                     },
                     {
@@ -892,7 +885,6 @@ export default {
                         colMD: 24,
                         layout: 'TABLE_24COL',
                       },
-                      showCaption: true,
                       id: 'work_item_type_group_bug',
                     },
                     {
@@ -918,7 +910,6 @@ export default {
                         colMD: 24,
                         layout: 'TABLE_24COL',
                       },
-                      showCaption: true,
                       id: 'project_id',
                     },
                     {
@@ -946,7 +937,6 @@ export default {
                         colMD: 24,
                         layout: 'TABLE_24COL',
                       },
-                      showCaption: true,
                       id: 'sprint_id',
                     },
                     {
@@ -972,7 +962,6 @@ export default {
                         colMD: 24,
                         layout: 'TABLE_24COL',
                       },
-                      showCaption: true,
                       id: 'work_item_type_id',
                     },
                     {
@@ -997,7 +986,6 @@ export default {
                         colMD: 24,
                         layout: 'TABLE_24COL',
                       },
-                      showCaption: true,
                       id: 'n_work_item_type_id_in',
                     },
                   ],
@@ -1147,7 +1135,6 @@ export default {
                         colMD: 24,
                         layout: 'TABLE_24COL',
                       },
-                      showCaption: true,
                       id: 'test_case_not_bug',
                     },
                     {
@@ -1210,17 +1197,6 @@ export default {
                           ],
                           logicType: 'GROUP',
                           id: '表单成员[work_item_type2][面板显示]逻辑',
-                        },
-                        {
-                          logicCat: 'SCRIPTCODE_CHANGE',
-                          groupOP: 'AND',
-                          defdlogics: [
-                            {
-                              logicType: 'SINGLE',
-                            },
-                          ],
-                          logicType: 'GROUP',
-                          id: '表单成员[work_item_type2][表单项值变更（脚本处理）]逻辑',
                         },
                       ],
                       layoutPos: {
@@ -1319,17 +1295,6 @@ export default {
                           ],
                           logicType: 'GROUP',
                           id: '表单成员[work_item_type_name][表单项启用]逻辑',
-                        },
-                        {
-                          logicCat: 'SCRIPTCODE_CHANGE',
-                          groupOP: 'AND',
-                          defdlogics: [
-                            {
-                              logicType: 'SINGLE',
-                            },
-                          ],
-                          logicType: 'GROUP',
-                          id: '表单成员[work_item_type_name][表单项值变更（脚本处理）]逻辑',
                         },
                       ],
                       layoutPos: {
@@ -1653,7 +1618,6 @@ export default {
                         colMD: 24,
                         layout: 'TABLE_24COL',
                       },
-                      showCaption: true,
                       id: 'assignee_id',
                     },
                     {
@@ -2171,7 +2135,6 @@ export default {
                 colMD: 24,
                 layout: 'TABLE_24COL',
               },
-              showCaption: true,
               id: 'id',
             },
           ],

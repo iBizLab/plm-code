@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.insight.domain.InsightReport;
@@ -103,14 +104,14 @@ public abstract class AbstractInsightReportService extends ServiceImpl<InsightRe
         return et;
     }
 	
-    public Integer checkKey(InsightReport et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<InsightReport>lambdaQuery().eq(InsightReport::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(InsightReport et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<InsightReport>lambdaQuery().eq(InsightReport::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(InsightReport et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -148,11 +149,41 @@ public abstract class AbstractInsightReportService extends ServiceImpl<InsightRe
         return list;
    }
 	
+   public Page<InsightReport> fetchIsSystem(InsightReportSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<InsightReport> pages=baseMapper.searchIsSystem(context.getPages(),context,context.getSelectCond());
+        List<InsightReport> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<InsightReport> listIsSystem(InsightReportSearchContext context) {
+        List<InsightReport> list = baseMapper.listIsSystem(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<InsightReport> fetchNormal(InsightReportSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("UPDATE_TIME,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<InsightReport> pages=baseMapper.searchNormal(context.getPages(),context,context.getSelectCond());
+        List<InsightReport> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<InsightReport> listNormal(InsightReportSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("UPDATE_TIME,DESC");
+        List<InsightReport> list = baseMapper.listNormal(context,context.getSelectCond());
+        return list;
+   }
+	
 	public List<InsightReport> findByViewId(List<String> viewIds){
         List<InsightReport> list = baseMapper.findByViewId(viewIds);
         return list;	
 	}
 
+	public List<InsightReport> findByInsightView(InsightView insightView){
+        List<InsightReport> list = findByViewId(Arrays.asList(insightView.getId()));
+		return list;
+	}
 	public boolean removeByViewId(String viewId){
         return this.remove(Wrappers.<InsightReport>lambdaQuery().eq(InsightReport::getViewId,viewId));
 	}
@@ -163,8 +194,8 @@ public abstract class AbstractInsightReportService extends ServiceImpl<InsightRe
 	public boolean saveByInsightView(InsightView insightView, List<InsightReport> list){
         if(list==null)
             return true;
-        Map<String,InsightReport> before = findByViewId(insightView.getId()).stream().collect(Collectors.toMap(InsightReport::getId,e->e));
 
+        Map<String,InsightReport> before = findByInsightView(insightView).stream().collect(Collectors.toMap(InsightReport::getId,e->e));
         List<InsightReport> update = new ArrayList<>();
         List<InsightReport> create = new ArrayList<>();
 
@@ -188,10 +219,30 @@ public abstract class AbstractInsightReportService extends ServiceImpl<InsightRe
             return true;
 			
 	}
+   public Page<InsightReport> fetchView(InsightReportSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<InsightReport> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<InsightReport> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<InsightReport> listView(InsightReportSearchContext context) {
+        List<InsightReport> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(InsightReport et) {
         if(Entities.INSIGHT_VIEW.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
             et.setViewId((String)et.getContextParentKey());
+            InsightView insightView = et.getInsightView();
+            if(insightView == null) {
+                insightView = insightViewService.getById(et.getViewId());
+                et.setInsightView(insightView);
+            }
+            if(!ObjectUtils.isEmpty(insightView)) {
+                et.setViewId(insightView.getId());
+                et.setViewName(insightView.getName());
+            }
         }
     }
 

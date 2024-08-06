@@ -51,6 +51,25 @@ public interface ProgressMapper extends BaseMapper<Progress> {
     List<Progress> findByProjectId(@Param("projectIds") List<String> projectIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Progress> searchView(IPage<Progress> page, @Param("ctx") ProgressSearchContext context, @Param("ew") Wrapper<Progress> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Progress> listView(@Param("ctx") ProgressSearchContext context, @Param("ew") Wrapper<Progress> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

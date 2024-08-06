@@ -114,6 +114,8 @@ public class AttentionSearchContext extends QueryWrapperContext<Attention> {
             this.getFilter().eq("owner_id",contextParentKey);
         if(Entities.REVIEW.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("owner_id",contextParentKey);
+        if(Entities.REVIEW_WIZARD.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("owner_id",contextParentKey);
         if(Entities.RUN.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("owner_id",contextParentKey);
         if(Entities.TEST_CASE.equals(this.getContextParentEntity())&&contextParentKey!=null)

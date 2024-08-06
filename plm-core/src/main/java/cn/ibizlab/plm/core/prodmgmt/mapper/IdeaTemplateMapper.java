@@ -59,6 +59,25 @@ public interface IdeaTemplateMapper extends BaseMapper<IdeaTemplate> {
     List<IdeaTemplate> findByProductId(@Param("productIds") List<String> productIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<IdeaTemplate> searchView(IPage<IdeaTemplate> page, @Param("ctx") IdeaTemplateSearchContext context, @Param("ew") Wrapper<IdeaTemplate> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<IdeaTemplate> listView(@Param("ctx") IdeaTemplateSearchContext context, @Param("ew") Wrapper<IdeaTemplate> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

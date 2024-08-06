@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.base.domain.Addon;
@@ -147,16 +148,16 @@ public abstract class AbstractAddonService extends ServiceImpl<AddonMapper,Addon
         return et;
     }
 	
-    public Integer checkKey(Addon et) {
+    public CheckKeyStatus checkKey(Addon et) {
         if(ObjectUtils.isEmpty(et.getId()))
             et.setId((String)et.getDefaultKey(true));
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Addon>lambdaQuery().eq(Addon::getId, et.getId()))>0)?1:0;
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Addon>lambdaQuery().eq(Addon::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(Addon et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -232,6 +233,10 @@ public abstract class AbstractAddonService extends ServiceImpl<AddonMapper,Addon
         return list;	
 	}
 
+	public List<Addon> findByLibrary(Library library){
+        List<Addon> list = findByOwnerId(Arrays.asList(library.getId()));
+		return list;
+	}
 	public boolean removeByOwnerId(String ownerId){
         return this.remove(Wrappers.<Addon>lambdaQuery().eq(Addon::getOwnerId,ownerId));
 	}
@@ -242,8 +247,8 @@ public abstract class AbstractAddonService extends ServiceImpl<AddonMapper,Addon
 	public boolean saveByLibrary(Library library, List<Addon> list){
         if(list==null)
             return true;
-        Map<String,Addon> before = findByOwnerId(library.getId()).stream().collect(Collectors.toMap(Addon::getId,e->e));
 
+        Map<String,Addon> before = findByLibrary(library).stream().collect(Collectors.toMap(Addon::getId,e->e));
         List<Addon> update = new ArrayList<>();
         List<Addon> create = new ArrayList<>();
 
@@ -271,11 +276,15 @@ public abstract class AbstractAddonService extends ServiceImpl<AddonMapper,Addon
             return true;
 			
 	}
+	public List<Addon> findByPortfolio(Portfolio portfolio){
+        List<Addon> list = findByOwnerId(Arrays.asList(portfolio.getId()));
+		return list;
+	}
 	public boolean saveByPortfolio(Portfolio portfolio, List<Addon> list){
         if(list==null)
             return true;
-        Map<String,Addon> before = findByOwnerId(portfolio.getId()).stream().collect(Collectors.toMap(Addon::getId,e->e));
 
+        Map<String,Addon> before = findByPortfolio(portfolio).stream().collect(Collectors.toMap(Addon::getId,e->e));
         List<Addon> update = new ArrayList<>();
         List<Addon> create = new ArrayList<>();
 
@@ -303,11 +312,15 @@ public abstract class AbstractAddonService extends ServiceImpl<AddonMapper,Addon
             return true;
 			
 	}
+	public List<Addon> findByProduct(Product product){
+        List<Addon> list = findByOwnerId(Arrays.asList(product.getId()));
+		return list;
+	}
 	public boolean saveByProduct(Product product, List<Addon> list){
         if(list==null)
             return true;
-        Map<String,Addon> before = findByOwnerId(product.getId()).stream().collect(Collectors.toMap(Addon::getId,e->e));
 
+        Map<String,Addon> before = findByProduct(product).stream().collect(Collectors.toMap(Addon::getId,e->e));
         List<Addon> update = new ArrayList<>();
         List<Addon> create = new ArrayList<>();
 
@@ -335,11 +348,15 @@ public abstract class AbstractAddonService extends ServiceImpl<AddonMapper,Addon
             return true;
 			
 	}
+	public List<Addon> findByProject(Project project){
+        List<Addon> list = findByOwnerId(Arrays.asList(project.getId()));
+		return list;
+	}
 	public boolean saveByProject(Project project, List<Addon> list){
         if(list==null)
             return true;
-        Map<String,Addon> before = findByOwnerId(project.getId()).stream().collect(Collectors.toMap(Addon::getId,e->e));
 
+        Map<String,Addon> before = findByProject(project).stream().collect(Collectors.toMap(Addon::getId,e->e));
         List<Addon> update = new ArrayList<>();
         List<Addon> create = new ArrayList<>();
 
@@ -367,11 +384,15 @@ public abstract class AbstractAddonService extends ServiceImpl<AddonMapper,Addon
             return true;
 			
 	}
+	public List<Addon> findBySpace(Space space){
+        List<Addon> list = findByOwnerId(Arrays.asList(space.getId()));
+		return list;
+	}
 	public boolean saveBySpace(Space space, List<Addon> list){
         if(list==null)
             return true;
-        Map<String,Addon> before = findByOwnerId(space.getId()).stream().collect(Collectors.toMap(Addon::getId,e->e));
 
+        Map<String,Addon> before = findBySpace(space).stream().collect(Collectors.toMap(Addon::getId,e->e));
         List<Addon> update = new ArrayList<>();
         List<Addon> create = new ArrayList<>();
 
@@ -401,10 +422,21 @@ public abstract class AbstractAddonService extends ServiceImpl<AddonMapper,Addon
 	}
 	@Override
     public List<AddonRoleMember> getAddonRoleMembers(Addon et) {
-        List<AddonRoleMember> list = addonRoleMemberService.findByAddonId(et.getId());
+        List<AddonRoleMember> list = addonRoleMemberService.findByAddon(et);
         et.setAddonRoleMembers(list);
         return list;
     }
+	
+   public Page<Addon> fetchView(AddonSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Addon> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<Addon> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Addon> listView(AddonSearchContext context) {
+        List<Addon> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
 	
 
     public void fillParentData(Addon et) {

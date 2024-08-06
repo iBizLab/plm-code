@@ -27,6 +27,9 @@ export default {
   appDEFields: [
     {
       codeName: 'owner_type',
+      lnlanguageRes: {
+        lanResTag: 'DEF.LNAME.OWNER_TYPE',
+      },
       logicName: '所属数据对象',
       stdDataType: 25,
       stringLength: 100,
@@ -35,6 +38,9 @@ export default {
     },
     {
       codeName: 'owner_subtype',
+      lnlanguageRes: {
+        lanResTag: 'DEF.LNAME.OWNER_SUBTYPE',
+      },
       logicName: '所属对象子类型',
       stdDataType: 25,
       stringLength: 100,
@@ -43,6 +49,9 @@ export default {
     },
     {
       codeName: 'role_id',
+      lnlanguageRes: {
+        lanResTag: 'DEF.LNAME.ROLE_ID',
+      },
       logicName: '角色',
       stdDataType: 25,
       stringLength: 60,
@@ -118,6 +127,9 @@ export default {
     },
     {
       codeName: 'user_id',
+      lnlanguageRes: {
+        lanResTag: 'DEF.LNAME.USER_ID',
+      },
       logicName: '用户标识',
       stdDataType: 25,
       stringLength: 100,
@@ -126,11 +138,47 @@ export default {
     },
     {
       codeName: 'owner_id',
+      lnlanguageRes: {
+        lanResTag: 'DEF.LNAME.OWNER_ID',
+      },
       logicName: '效能标识',
       stdDataType: 25,
       stringLength: 100,
       name: 'OWNER_ID',
       id: 'owner_id',
+    },
+  ],
+  appDELogics: [
+    {
+      codeName: 'nothing',
+      defaultParamName: 'Default',
+      logicName: '无操作',
+      logicSubType: 'NONE',
+      delogicNodes: [
+        {
+          codeName: 'Begin',
+          leftPos: 200,
+          logicNodeType: 'BEGIN',
+          topPos: 200,
+          parallelOutput: true,
+          name: '开始',
+          id: 'begin',
+        },
+      ],
+      delogicParams: [
+        {
+          codeName: 'Default',
+          default: true,
+          entityParam: true,
+          paramAppDataEntityId: 'plmweb.insight_member',
+          name: '传入变量',
+          id: 'default',
+        },
+      ],
+      startDELogicNodeId: 'begin',
+      valid: true,
+      name: '无操作',
+      id: 'nothing',
     },
   ],
   appDEMethodDTOs: [
@@ -330,6 +378,27 @@ export default {
   ],
   appDEMethods: [
     {
+      codeName: 'change_role',
+      methodType: 'DEACTION',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'insight_member_dto',
+        type: 'DTO',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        type: 'VOID',
+        id: '返回对象',
+      },
+      requestMethod: 'POST',
+      requestParamType: 'ENTITY',
+      requestPath: '/change_role',
+      needResourceKey: true,
+      actionMode: 'CUSTOM',
+      actionType: 'REMOTE',
+      dataSetType: 'REMOTE',
+      id: 'change_role',
+    },
+    {
       codeName: 'check_key',
       methodType: 'DEACTION',
       appDEMethodInput: {
@@ -423,6 +492,26 @@ export default {
       dataSetType: 'REMOTE',
       name: 'GetDraft',
       id: 'get_draft',
+    },
+    {
+      codeName: 'nothing',
+      methodType: 'DEACTION',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'insight_member_dto',
+        type: 'DTO',
+        name: 'NothingInput',
+        id: 'nothinginput',
+      },
+      appDEMethodReturn: {
+        type: 'VOID',
+        name: 'NothingResult',
+        id: 'nothingresult',
+      },
+      actionMode: 'CUSTOM',
+      actionType: 'DELOGIC',
+      appDELogicId: 'nothing',
+      dataSetType: 'REMOTE',
+      id: 'nothing',
     },
     {
       codeName: 'remove',
@@ -583,6 +672,57 @@ export default {
       dataSetType: 'REMOTE',
       name: 'FILTERUPDATE',
       id: 'filterupdate',
+    },
+  ],
+  appDEUIActions: [
+    {
+      actionLevel: 100,
+      actionTarget: 'SINGLEKEY',
+      caption: '移除成员',
+      codeName: 'remove_member',
+      confirmMsg: '确认删除该成员？',
+      fullCodeName: 'insight_member_remove_member',
+      appDEMethodId: 'remove',
+      refreshMode: 1,
+      successMsg: '删除成功',
+      timeout: 60000,
+      uiactionMode: 'BACKEND',
+      uiactionTag: 'remove_member',
+      uiactionType: 'DEUIACTION',
+      enableConfirm: true,
+      reloadData: true,
+      showBusyIndicator: true,
+      noPrivDisplayMode: 2,
+      appDataEntityId: 'plmweb.insight_member',
+      name: '移除成员',
+      id: 'remove_member@insight_member',
+    },
+    {
+      actionLevel: 100,
+      actionTarget: 'MULTIKEY',
+      caption: '设置角色',
+      codeName: 'setting_role',
+      frontAppViewId: 'plmweb.insight_member_role_edit_view',
+      fullCodeName: 'insight_member_setting_role',
+      appDEMethodId: 'change_role',
+      sysImage: {
+        cssClass: 'fa fa-sun-o',
+        glyph: 'xf185@FontAwesome',
+      },
+      refreshMode: 1,
+      successMsg: '变更角色成功',
+      timeout: 60000,
+      tooltip: '设置角色',
+      uiactionMode: 'BACKEND',
+      uiactionTag: 'setting_role',
+      uiactionType: 'DEUIACTION',
+      enableConfirm: true,
+      reloadData: true,
+      showBusyIndicator: true,
+      noPrivDisplayMode: 2,
+      appDataEntityId: 'plmweb.insight_member',
+      name: '设置角色',
+      id: 'setting_role@insight_member',
     },
   ],
   appDEUILogics: [
@@ -847,6 +987,13 @@ export default {
   deopprivs: [
     {
       logicName: '建立',
+      mapDEName: 'INSIGHT_VIEW',
+      mapDEOPPrivName: 'UPDATE',
+      name: 'CREATE',
+      id: 'insight_view__create',
+    },
+    {
+      logicName: '建立',
       name: 'CREATE',
       id: 'create',
     },
@@ -856,14 +1003,35 @@ export default {
       id: 'delete',
     },
     {
+      logicName: '删除',
+      mapDEName: 'INSIGHT_VIEW',
+      mapDEOPPrivName: 'DELETE',
+      name: 'DELETE',
+      id: 'insight_view__delete',
+    },
+    {
       logicName: '读取',
       name: 'READ',
       id: 'read',
     },
     {
+      logicName: '读取',
+      mapDEName: 'INSIGHT_VIEW',
+      mapDEOPPrivName: 'READ',
+      name: 'READ',
+      id: 'insight_view__read',
+    },
+    {
       logicName: '更新',
       name: 'UPDATE',
       id: 'update',
+    },
+    {
+      logicName: '更新',
+      mapDEName: 'INSIGHT_VIEW',
+      mapDEOPPrivName: 'UPDATE',
+      name: 'UPDATE',
+      id: 'insight_view__update',
     },
   ],
   codeName: 'insight_member',
@@ -871,7 +1039,7 @@ export default {
   deapicodeName2: 'insight_members',
   deapitag: 'INSIGHT_MEMBER',
   dataAccCtrlArch: 1,
-  dataAccCtrlMode: 2,
+  dataAccCtrlMode: 3,
   enableUIActions: 15,
   keyAppDEFieldId: 'id',
   lnlanguageRes: {
@@ -889,16 +1057,27 @@ export default {
       name: 'DER1N_INSIGHT_MEMBER_INSIGHT_VIEW_OWNER_ID',
       id: 'insight_members',
     },
+    {
+      actionRSMode: 1,
+      codeName: 'insight_members',
+      majorAppDataEntityId: 'plmweb.user',
+      parentAppDEFieldId: 'user_id',
+      rsmode: 2,
+      name: 'DER1N_INSIGHT_MEMBER_USER_USER_ID',
+      id: 'insight_members',
+    },
   ],
   quickSearchAppDEFieldIds: ['name'],
   sysAPITag: 'ServiceAPI',
   unionKeyValueAppDEFieldIds: ['owner_id', 'user_id', 'owner_type'],
   defaultMode: true,
   enableFilterActions: true,
+  major: true,
   name: 'INSIGHT_MEMBER',
   id: 'plmweb.insight_member',
   codeName2: 'insight_members',
   requestPaths: [
     'insight_views/${insight_view}/insight_members/${insight_member}',
+    'users/${user}/insight_members/${insight_member}',
   ],
 };

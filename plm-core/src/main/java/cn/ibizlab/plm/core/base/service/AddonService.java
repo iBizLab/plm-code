@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.Addon;
 import cn.ibizlab.plm.core.base.filter.AddonSearchContext;
 import cn.ibizlab.plm.core.testmgmt.domain.Library;
@@ -143,7 +144,7 @@ public interface AddonService extends IService<Addon> {
     * @param et
     * @return
     */
-    Integer checkKey(Addon et);
+    CheckKeyStatus checkKey(Addon et);
 
     /**
     * 保存
@@ -213,7 +214,7 @@ public interface AddonService extends IService<Addon> {
 
     /**
     * fetchPsmodelSync
-    * 
+    * 用于定义实体数据关系界面组同步的数据
     * @param context
     * @return
     */
@@ -221,7 +222,7 @@ public interface AddonService extends IService<Addon> {
 
     /**
     * listPsmodelSync
-    * 
+    * 用于定义实体数据关系界面组同步的数据
     * @param context
     * @return
     */
@@ -234,8 +235,15 @@ public interface AddonService extends IService<Addon> {
     */
     List<Addon> findByOwnerId(List<String> ownerIds);
     default List<Addon> findByOwnerId(String ownerId){
-        return findByOwnerId(Arrays.asList(ownerId));
+        return findByLibrary(new Library().setId(ownerId));
     }
+
+    /**
+    * findByLibrary
+    * @param library
+    * @return
+    */
+    List<Addon> findByLibrary(Library library);
 
     /**
     * removeByOwnerId
@@ -270,12 +278,26 @@ public interface AddonService extends IService<Addon> {
     boolean saveByLibrary(Library library, List<Addon> list);
 
     /**
+    * findByPortfolio
+    * @param portfolio
+    * @return
+    */
+    List<Addon> findByPortfolio(Portfolio portfolio);
+
+    /**
     * saveByPortfolio
     * @param portfolio
     * @param list
     * @return
     */
     boolean saveByPortfolio(Portfolio portfolio, List<Addon> list);
+
+    /**
+    * findByProduct
+    * @param product
+    * @return
+    */
+    List<Addon> findByProduct(Product product);
 
     /**
     * saveByProduct
@@ -286,12 +308,26 @@ public interface AddonService extends IService<Addon> {
     boolean saveByProduct(Product product, List<Addon> list);
 
     /**
+    * findByProject
+    * @param project
+    * @return
+    */
+    List<Addon> findByProject(Project project);
+
+    /**
     * saveByProject
     * @param project
     * @param list
     * @return
     */
     boolean saveByProject(Project project, List<Addon> list);
+
+    /**
+    * findBySpace
+    * @param space
+    * @return
+    */
+    List<Addon> findBySpace(Space space);
 
     /**
     * saveBySpace
@@ -304,6 +340,22 @@ public interface AddonService extends IService<Addon> {
     default List<AddonRoleMember> getAddonRoleMembers(Addon et) {
         return new ArrayList<>();
     }
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Addon> fetchView(AddonSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Addon> listView(AddonSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Addon> list) {

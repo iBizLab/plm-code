@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.prodmgmt.domain.Product;
@@ -182,14 +183,14 @@ public abstract class AbstractProductService extends ServiceImpl<ProductMapper,P
         return et;
     }
 	
-    public Integer checkKey(Product et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Product>lambdaQuery().eq(Product::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(Product et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Product>lambdaQuery().eq(Product::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(Product et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -246,6 +247,17 @@ public abstract class AbstractProductService extends ServiceImpl<ProductMapper,P
 
    public List<Product> listArchived(ProductSearchContext context) {
         List<Product> list = baseMapper.listArchived(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Product> fetchCurProduct(ProductSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Product> pages=baseMapper.searchCurProduct(context.getPages(),context,context.getSelectCond());
+        List<Product> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Product> listCurProduct(ProductSearchContext context) {
+        List<Product> list = baseMapper.listCurProduct(context,context.getSelectCond());
         return list;
    }
 	
@@ -332,10 +344,21 @@ public abstract class AbstractProductService extends ServiceImpl<ProductMapper,P
 	
 	@Override
     public List<ProductMember> getMembers(Product et) {
-        List<ProductMember> list = productMemberService.findByProductId(et.getId());
+        List<ProductMember> list = productMemberService.findByProduct(et);
         et.setMembers(list);
         return list;
     }
+	
+   public Page<Product> fetchView(ProductSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Product> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<Product> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Product> listView(ProductSearchContext context) {
+        List<Product> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
 	
 
 

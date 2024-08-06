@@ -81,6 +81,44 @@ public interface ProjectMapper extends BaseMapper<Project> {
     List<Project> listArchived(@Param("ctx") ProjectSearchContext context, @Param("ew") Wrapper<Project> wrapper);
 
     /**
+     * 数据集合bi_detail分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Project> searchBiDetail(IPage<Project> page, @Param("ctx") ProjectSearchContext context, @Param("ew") Wrapper<Project> wrapper);
+    
+    /**
+     * 数据集合bi_detail查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Project> listBiDetail(@Param("ctx") ProjectSearchContext context, @Param("ew") Wrapper<Project> wrapper);
+
+    /**
+     * 数据集合bi_search分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Project> searchBiSearch(IPage<Project> page, @Param("ctx") ProjectSearchContext context, @Param("ew") Wrapper<Project> wrapper);
+    
+    /**
+     * 数据集合bi_search查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Project> listBiSearch(@Param("ctx") ProjectSearchContext context, @Param("ew") Wrapper<Project> wrapper);
+
+    /**
      * 数据集合choose_project分页查询
      * 
      * @param page
@@ -315,6 +353,25 @@ public interface ProjectMapper extends BaseMapper<Project> {
     * @return
     */
     List<Project> findById(@Param("ids") List<String> ids);
+
+    /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Project> searchView(IPage<Project> page, @Param("ctx") ProjectSearchContext context, @Param("ew") Wrapper<Project> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Project> listView(@Param("ctx") ProjectSearchContext context, @Param("ew") Wrapper<Project> wrapper);
 
     /**
      * 主键查询

@@ -99,6 +99,7 @@ export default {
             },
             dataRegionType: 'INHERIT',
             caption: '容器',
+            cssStyle: 'margin-right:10px',
             itemStyle: 'DEFAULT',
             itemType: 'CONTAINER',
             layoutPos: {

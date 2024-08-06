@@ -631,7 +631,6 @@ export default {
         id: 'main_view_toolbar',
       },
       {
-        autoSaveMode: 1,
         createControlAction: {
           appDEMethodId: 'create',
           appDataEntityId: 'plmweb.review',
@@ -661,7 +660,6 @@ export default {
           appDataEntityId: 'plmweb.review',
           id: 'update',
         },
-        enableAutoSave: true,
         deformPages: [
           {
             layout: {
@@ -701,6 +699,19 @@ export default {
                     codeName: 'title',
                     detailStyle: 'DEFAULT',
                     detailType: 'FORMITEM',
+                    defdgroupLogics: [
+                      {
+                        logicCat: 'SCRIPTCODE_CHANGE',
+                        groupOP: 'AND',
+                        defdlogics: [
+                          {
+                            logicType: 'SINGLE',
+                          },
+                        ],
+                        logicType: 'GROUP',
+                        id: '表单成员[title][表单项值变更（脚本处理）]逻辑',
+                      },
+                    ],
                     layoutPos: {
                       colLG: 24,
                       colMD: 24,
@@ -711,51 +722,34 @@ export default {
                   {
                     dataType: 25,
                     enableCond: 3,
+                    ignoreInput: 3,
                     labelPos: 'TOP',
                     labelWidth: 130,
                     noPrivDisplayMode: 1,
                     appDEFieldId: 'submitter_name',
                     editor: {
-                      singleSelect: true,
-                      handlerType: 'PickupText',
-                      enableAC: true,
-                      forceSelection: true,
-                      showTrigger: true,
-                      valueItemName: 'submitter_id',
+                      halign: 'LEFT',
+                      valign: 'MIDDLE',
+                      wrapMode: 'NOWRAP',
+                      appCodeListId: 'plmweb.sysoperator',
                       editorParams: {
-                        'SRFNAVPARAM.n_department_id_eq': '%srforgsectorid%',
-                        AC: 'TRUE',
                         readonly: 'true',
-                        TRIGGER: 'TRUE',
-                        URL: 'libraries/${context.library}/library_members/fetch_default',
-                        PICKUPVIEW: 'FALSE',
-                        USERMETHOD: 'post',
-                        USERMAP: '{"id":"user_id","name":"name"}',
-                        DEPTMAP: '{"id":"id","name":"display_name"}',
-                        DEPTMETHOD: 'get',
-                        DEPTURL: '/users/fetch_default',
                       },
-                      editorStyle: 'PERSONEL_SELECT_LIBRARY',
-                      editorType: 'PICKEREX_TRIGGER',
+                      editorStyle: 'PERSONNEL_INFO',
+                      editorType: 'SPAN',
                       editorItems: [
                         {
                           id: 'submitter_id',
                         },
                       ],
-                      sysPFPluginId: 'person_select',
+                      sysPFPluginId: 'personnel_info',
                       valueType: 'SIMPLE',
                       editable: true,
                       readOnly: true,
-                      navigateParams: [
-                        {
-                          key: 'n_department_id_eq',
-                          value: 'srforgsectorid',
-                          id: 'n_department_id_eq',
-                        },
-                      ],
                       id: 'submitter_name',
                     },
                     allowEmpty: true,
+                    convertToCodeItemText: true,
                     capLanguageRes: {
                       lanResTag: 'DEF.LNAME.SUBMITTER_NAME',
                     },
@@ -900,7 +894,6 @@ export default {
                       colMD: 6,
                       layout: 'TABLE_24COL',
                     },
-                    showCaption: true,
                     id: 'submitter_id',
                   },
                   {
@@ -930,7 +923,6 @@ export default {
                       colMD: 6,
                       layout: 'TABLE_24COL',
                     },
-                    showCaption: true,
                     id: 'identifier',
                   },
                   {
@@ -957,7 +949,6 @@ export default {
                       colMD: 6,
                       layout: 'TABLE_24COL',
                     },
-                    showCaption: true,
                     id: 'choosed_content',
                   },
                   {
@@ -983,7 +974,6 @@ export default {
                       colMD: 6,
                       layout: 'TABLE_24COL',
                     },
-                    showCaption: true,
                     id: 'cur_reviewer_id',
                   },
                   {
@@ -1009,7 +999,6 @@ export default {
                       colMD: 6,
                       layout: 'TABLE_24COL',
                     },
-                    showCaption: true,
                     id: 'curstage_id',
                   },
                   {
@@ -1035,7 +1024,6 @@ export default {
                       colMD: 6,
                       layout: 'TABLE_24COL',
                     },
-                    showCaption: true,
                     id: 'need_refresh',
                   },
                   {
@@ -1078,15 +1066,110 @@ export default {
                               srfparentdename: 'REVIEW',
                               SRFPARENTTYPE: 'CUSTOM',
                             },
+                            refreshItems: 'curstage_id',
                             codeName: 'druipart4',
                             detailStyle: 'DEFAULT',
                             detailType: 'DRUIPART',
+                            defdgroupLogics: [
+                              {
+                                logicCat: 'PANELVISIBLE',
+                                relatedDetailNames: ['curstage_id', 'state'],
+                                groupOP: 'AND',
+                                defdlogics: [
+                                  {
+                                    groupOP: 'AND',
+                                    defdlogics: [
+                                      {
+                                        condOP: 'ISNULL',
+                                        defdname: 'curstage_id',
+                                        logicType: 'SINGLE',
+                                      },
+                                      {
+                                        condOP: 'EQ',
+                                        defdname: 'state',
+                                        value: '20',
+                                        logicType: 'SINGLE',
+                                      },
+                                    ],
+                                    notMode: true,
+                                    logicType: 'GROUP',
+                                  },
+                                ],
+                                logicType: 'GROUP',
+                                id: '表单成员[druipart4][面板显示]逻辑',
+                              },
+                            ],
                             layoutPos: {
                               colMD: 24,
                               layout: 'TABLE_24COL',
                             },
                             showCaption: true,
                             id: 'druipart4',
+                          },
+                          {
+                            appViewId: 'plmweb.review_content_no_grid_view_all',
+                            navigateContexts: [
+                              {
+                                key: 'CUR_REVIEWER_ID',
+                                value: 'cur_reviewer_id',
+                                name: 'CUR_REVIEWER_ID',
+                                id: 'cur_reviewer_id',
+                              },
+                              {
+                                key: 'CURSTAGE_STATE',
+                                value: 'curstage_state',
+                                name: 'CURSTAGE_STATE',
+                                id: 'curstage_state',
+                              },
+                              {
+                                key: 'CURSTAGE_ID',
+                                value: 'curstage_id',
+                                name: 'CURSTAGE_ID',
+                                id: 'curstage_id',
+                              },
+                              {
+                                key: 'REVIEW_STATE',
+                                value: 'state',
+                                name: 'REVIEW_STATE',
+                                id: 'review_state',
+                              },
+                            ],
+                            parentDataJO: {
+                              srfparentdename: 'REVIEW',
+                              SRFPARENTTYPE: 'CUSTOM',
+                            },
+                            refreshItems: 'curstage_id',
+                            codeName: 'druipart5',
+                            detailStyle: 'DEFAULT',
+                            detailType: 'DRUIPART',
+                            defdgroupLogics: [
+                              {
+                                logicCat: 'PANELVISIBLE',
+                                relatedDetailNames: ['curstage_id', 'state'],
+                                groupOP: 'AND',
+                                defdlogics: [
+                                  {
+                                    condOP: 'ISNULL',
+                                    defdname: 'curstage_id',
+                                    logicType: 'SINGLE',
+                                  },
+                                  {
+                                    condOP: 'EQ',
+                                    defdname: 'state',
+                                    value: '20',
+                                    logicType: 'SINGLE',
+                                  },
+                                ],
+                                logicType: 'GROUP',
+                                id: '表单成员[druipart5][面板显示]逻辑',
+                              },
+                            ],
+                            layoutPos: {
+                              colMD: 24,
+                              layout: 'TABLE_24COL',
+                            },
+                            showCaption: true,
+                            id: 'druipart5',
                           },
                         ],
                         caption: '评审内容',
@@ -1272,6 +1355,7 @@ export default {
                                       caption: '所属数据标识',
                                       codeName: 'owner_id',
                                       columnType: 'DEFGRIDCOLUMN',
+                                      hideMode: 1,
                                       noPrivDisplayMode: 1,
                                       width: 100,
                                       widthUnit: 'PX',
@@ -1851,6 +1935,12 @@ export default {
                         appViewId: 'plmweb.review_content_set_result_edit_view',
                         navigateContexts: [
                           {
+                            key: 'REVIEW_STATE',
+                            value: 'state',
+                            name: 'REVIEW_STATE',
+                            id: 'review_state',
+                          },
+                          {
                             key: 'CURSTAGE_ID',
                             value: 'curstage_id',
                             name: 'CURSTAGE_ID',
@@ -1873,6 +1963,7 @@ export default {
                           srfparentdename: 'REVIEW',
                           SRFPARENTTYPE: 'CUSTOM',
                         },
+                        refreshItems: 'choosed_content',
                         codeName: 'druipart3',
                         detailStyle: 'DEFAULT',
                         detailType: 'DRUIPART',
@@ -1947,7 +2038,6 @@ export default {
                   colMD: 24,
                   layout: 'TABLE_24COL',
                 },
-                showCaption: true,
                 id: 'id',
               },
             ],
@@ -1982,12 +2072,58 @@ export default {
             triggerType: 'CTRLEVENT',
             id: 'logic',
           },
+          {
+            eventNames: 'onChange',
+            itemName: 'title',
+            logicTag: 'form',
+            logicType: 'APPDEUIACTION',
+            appDEUIActionId: 'save',
+            triggerType: 'CTRLEVENT',
+            id: 'change_title',
+          },
+          {
+            eventNames: 'onChange',
+            itemName: 'description',
+            logicTag: 'form',
+            logicType: 'APPDEUIACTION',
+            appDEUIActionId: 'save',
+            triggerType: 'CTRLEVENT',
+            id: 'change_description',
+          },
+          {
+            eventNames: 'onClick',
+            itemName: 'attachments',
+            logicTag: 'form',
+            logicType: 'APPDEUIACTION',
+            appDEUIActionId: 'save',
+            triggerType: 'CTRLEVENT',
+            id: 'change_attachments',
+          },
         ],
         controlParam: {
           ctrlParams: {
             EDITMODE: 'hover',
           },
           id: 'form',
+        },
+        ctrlMsg: {
+          codeName: 'UsrCtrlMsg0228593610',
+          ctrlMsgItems: [
+            {
+              name: 'BEFOREREMOVE_HIDDEN',
+              id: 'beforeremove_hidden',
+            },
+            {
+              name: 'CREATESUCCESS_HIDDEN',
+              id: 'createsuccess_hidden',
+            },
+            {
+              name: 'UPDATESUCCESS_HIDDEN',
+              id: 'updatesuccess_hidden',
+            },
+          ],
+          name: '编辑表单自定义消息(隐藏)',
+          id: 'usrctrlmsg0228593610',
         },
         modelId: '04873E7D-AD13-4F72-9070-820D4145744C',
         modelType: 'PSDEFORM_EDITFORM',

@@ -44,11 +44,19 @@ public class SpaceDTO extends DTOBase implements Serializable {
     private String identifier;
 
     /**
+     * 是否开启共享
+     */
+    @JsonProperty("is_shared")
+    @JSONField(name = "is_shared")
+    @ApiModelProperty(value = "是否开启共享", position = 1)
+    private String isShared;
+
+    /**
      * 可见范围
      */
     @JsonProperty("visibility")
     @JSONField(name = "visibility")
-    @ApiModelProperty(value = "可见范围", position = 1)
+    @ApiModelProperty(value = "可见范围", position = 2)
     private String visibility;
 
     /**
@@ -56,7 +64,7 @@ public class SpaceDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("description")
     @JSONField(name = "description")
-    @ApiModelProperty(value = "描述", position = 2)
+    @ApiModelProperty(value = "描述", position = 3)
     private String description;
 
     /**
@@ -64,7 +72,7 @@ public class SpaceDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("is_archived")
     @JSONField(name = "is_archived")
-    @ApiModelProperty(value = "是否已归档", position = 3)
+    @ApiModelProperty(value = "是否已归档", position = 4)
     private Integer isArchived;
 
     /**
@@ -72,7 +80,7 @@ public class SpaceDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("is_deleted")
     @JSONField(name = "is_deleted")
-    @ApiModelProperty(value = "是否已删除", position = 4)
+    @ApiModelProperty(value = "是否已删除", position = 5)
     private Integer isDeleted;
 
     /**
@@ -80,7 +88,7 @@ public class SpaceDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("is_favorite")
     @JSONField(name = "is_favorite")
-    @ApiModelProperty(value = "是否星标", position = 5)
+    @ApiModelProperty(value = "是否星标", position = 6)
     private String isFavorite;
 
     /**
@@ -88,7 +96,7 @@ public class SpaceDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("categories")
     @JSONField(name = "categories")
-    @ApiModelProperty(value = "分类路径", position = 6)
+    @ApiModelProperty(value = "分类路径", position = 7)
     private String categories;
 
     /**
@@ -96,7 +104,7 @@ public class SpaceDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("scope_type")
     @JSONField(name = "scope_type")
-    @ApiModelProperty(value = "所属", position = 7)
+    @ApiModelProperty(value = "所属", position = 8)
     private String scopeType;
 
     /**
@@ -104,7 +112,7 @@ public class SpaceDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("scope_id")
     @JSONField(name = "scope_id")
-    @ApiModelProperty(value = "所属对象", position = 8)
+    @ApiModelProperty(value = "所属对象", position = 9)
     private String scopeId;
 
     /**
@@ -112,7 +120,7 @@ public class SpaceDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("members")
     @JSONField(name = "members")
-    @ApiModelProperty(value = "成员", position = 9)
+    @ApiModelProperty(value = "成员", position = 10)
     private List<SpaceMemberDTO> members;
 
     /**
@@ -120,7 +128,7 @@ public class SpaceDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("category_id")
     @JSONField(name = "category_id")
-    @ApiModelProperty(value = "分类", position = 10)
+    @ApiModelProperty(value = "分类", position = 11)
     private String categoryId;
 
     /**
@@ -128,7 +136,7 @@ public class SpaceDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("category_name")
     @JSONField(name = "category_name")
-    @ApiModelProperty(value = "分类", position = 11)
+    @ApiModelProperty(value = "分类", position = 12)
     private String categoryName;
 
     /**
@@ -136,7 +144,7 @@ public class SpaceDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 12)
+    @ApiModelProperty(value = "建立人", position = 13)
     private String createMan;
 
     /**
@@ -145,7 +153,7 @@ public class SpaceDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 13)
+    @ApiModelProperty(value = "建立时间", position = 14)
     private Date createTime;
 
     /**
@@ -153,7 +161,7 @@ public class SpaceDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 14)
+    @ApiModelProperty(value = "标识", position = 15)
     private String id;
 
     /**
@@ -161,7 +169,7 @@ public class SpaceDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "空间名称", position = 15)
+    @ApiModelProperty(value = "空间名称", position = 16)
     private String name;
 
     /**
@@ -169,7 +177,7 @@ public class SpaceDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 16)
+    @ApiModelProperty(value = "更新人", position = 17)
     private String updateMan;
 
     /**
@@ -178,7 +186,7 @@ public class SpaceDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 17)
+    @ApiModelProperty(value = "更新时间", position = 18)
     private Date updateTime;
 
 
@@ -188,6 +196,15 @@ public class SpaceDTO extends DTOBase implements Serializable {
     public SpaceDTO setIdentifier(String identifier) {
         this.identifier = identifier;
         this.modify("identifier", identifier);
+        return this;
+    }
+
+    /**
+     * 设置 [是否开启共享]
+     */
+    public SpaceDTO setIsShared(String isShared) {
+        this.isShared = isShared;
+        this.modify("is_shared", isShared);
         return this;
     }
 

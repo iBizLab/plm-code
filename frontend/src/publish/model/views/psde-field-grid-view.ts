@@ -46,13 +46,13 @@ export default {
       builtinAppUILogic: {
         openDataAppView: {
           openMode: 'POPUPMODAL',
-          refAppViewId: 'plmweb.psde_field_quick_cfg_view',
+          refAppViewId: 'plmweb.psde_field_quick_create_view',
         },
         editMode: true,
         appUILogicRefViews: [
           {
             openMode: 'POPUPMODAL',
-            refAppViewId: 'plmweb.psde_field_quick_cfg_view',
+            refAppViewId: 'plmweb.psde_field_quick_create_view',
           },
         ],
         builtinLogic: true,
@@ -66,6 +66,12 @@ export default {
   ],
   appViewNavParams: [
     {
+      rawValue: true,
+      key: 'n_usertag4_noteq',
+      value: 'INTENAL',
+      id: 'n_usertag4_noteq',
+    },
+    {
       key: 'n_psdeid_eq',
       value: 'psdataentity',
       id: 'n_psdeid_eq',
@@ -74,8 +80,8 @@ export default {
   appViewRefs: [
     {
       realOpenMode: 'POPUPMODAL',
-      realTitle: '实体属性编辑视图',
-      refAppViewId: 'plmweb.psde_field_quick_cfg_view',
+      realTitle: '实体属性选项操作视图',
+      refAppViewId: 'plmweb.psde_field_quick_create_view',
       name: 'EDITDATA',
       id: 'editdata',
     },
@@ -93,24 +99,9 @@ export default {
       columnEnableFilter: 2,
       columnEnableLink: 2,
       groupMode: 'NONE',
+      minorSortDir: 'ASC',
+      minorSortAppDEFieldId: 'createdate',
       degridColumns: [
-        {
-          clconvertMode: 'NONE',
-          dataItemName: 'psdefieldname',
-          excelCaption: '属性名称',
-          appDEFieldId: 'psdefieldname',
-          valueType: 'SIMPLE',
-          aggMode: 'NONE',
-          align: 'LEFT',
-          caption: '属性名称',
-          codeName: 'psdefieldname',
-          columnType: 'DEFGRIDCOLUMN',
-          noPrivDisplayMode: 1,
-          width: 300,
-          widthUnit: 'PX',
-          enableSort: true,
-          id: 'psdefieldname',
-        },
         {
           clconvertMode: 'NONE',
           dataItemName: 'logicname',
@@ -130,21 +121,21 @@ export default {
         },
         {
           clconvertMode: 'FRONT',
-          dataItemName: 'psdatatypename',
+          dataItemName: 'psdatatypeid',
           excelCaption: '数据类型',
           appCodeListId: 'plmweb.field_data_type',
-          appDEFieldId: 'psdatatypename',
+          appDEFieldId: 'psdatatypeid',
           valueType: 'SIMPLE',
           aggMode: 'NONE',
           align: 'LEFT',
           caption: '数据类型',
-          codeName: 'psdatatypename',
+          codeName: 'psdatatypeid',
           columnType: 'DEFGRIDCOLUMN',
           noPrivDisplayMode: 1,
           width: 200,
           widthUnit: 'PX',
           enableSort: true,
-          id: 'psdatatypename',
+          id: 'psdatatypeid',
         },
         {
           clconvertMode: 'NONE',
@@ -190,6 +181,7 @@ export default {
                 beforeItemType: 'NONE',
                 detailType: 'DEUIACTION',
                 uiactionId: 'edit_field@psdefield',
+                tooltip: '编辑',
                 showIcon: true,
                 sysImage: {
                   cssClass: 'fa fa-edit',
@@ -203,6 +195,7 @@ export default {
                 beforeItemType: 'NONE',
                 detailType: 'DEUIACTION',
                 uiactionId: 'remove_field@psdefield',
+                tooltip: '删除',
                 showIcon: true,
                 sysImage: {
                   cssClass: 'fa fa-trash-o',
@@ -229,22 +222,19 @@ export default {
       ],
       degridDataItems: [
         {
-          appDEFieldId: 'psdefieldname',
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'psdefieldname',
-        },
-        {
           appDEFieldId: 'logicname',
+          scriptCode:
+            'data.dynamodelflag === 0 ? data.logicname + \'<span style="border-radius: 18px;background-color: #f5f5f5;color: #666;height: 24px;line-height: 24px;padding-left: 12px;padding-right: 12px;font-size: .75rem;font-weight: 400;display: inline-flex;align-items: center;border: 1px solid transparent;margin-left: .5rem !important;">系统</span>\':data.logicname',
           valueType: 'SIMPLE',
+          customCode: true,
           dataType: 25,
           id: 'logicname',
         },
         {
-          appDEFieldId: 'psdatatypename',
+          appDEFieldId: 'psdatatypeid',
           valueType: 'SIMPLE',
           dataType: 25,
-          id: 'psdatatypename',
+          id: 'psdatatypeid',
         },
         {
           appDEFieldId: 'length',
@@ -257,6 +247,12 @@ export default {
           valueType: 'SIMPLE',
           dataType: 9,
           id: 'allowempty',
+        },
+        {
+          appDEFieldId: 'psdefieldname',
+          valueType: 'SIMPLE',
+          dataType: 25,
+          id: 'psdefieldname',
         },
         {
           appDEFieldId: 'psdefieldid',
@@ -315,6 +311,17 @@ export default {
       controlType: 'GRID',
       logicName: '主表格',
       appDataEntityId: 'plmweb.psdefield',
+      controlLogics: [
+        {
+          eventNames: 'onLoadSuccess',
+          logicTag: 'grid',
+          logicType: 'APPDEUILOGIC',
+          appDEUILogicId: 'judge_column_state',
+          appDataEntityId: 'plmweb.psdefield',
+          triggerType: 'CTRLEVENT',
+          id: 'judge_column_state',
+        },
+      ],
       controlParam: {
         id: 'grid',
       },

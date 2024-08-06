@@ -23,12 +23,14 @@ import java.util.stream.IntStream;
 import cn.ibizlab.util.domain.ImportResult;
 import cn.ibizlab.util.domain.RequestWrapper;
 import cn.ibizlab.util.domain.ResponseWrapper;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.serviceapi.dto.*;
 import cn.ibizlab.plm.serviceapi.mapping.*;
 import cn.ibizlab.plm.core.base.domain.Favorite;
 import cn.ibizlab.plm.core.base.service.FavoriteService;
 import cn.ibizlab.plm.core.base.filter.FavoriteSearchContext;
 import cn.ibizlab.util.annotation.VersionCheck;
+import reactor.core.publisher.Mono;
 
 /**
  * 实体[Favorite] rest实现
@@ -54,19 +56,19 @@ public abstract class AbstractFavoriteResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<FavoriteDTO>
+    * @return Mono<ResponseEntity<FavoriteDTO>>
     */
     @ApiOperation(value = "创建Create", tags = {"收藏" },  notes = "Favorite-Create ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Favorite-Create-all') or hasPermission(this.favoriteDtoMapping.toDomain(#dto),'ibizplm-Favorite-Create')")
     @PostMapping("favorites")
-    public ResponseEntity<ResponseWrapper<FavoriteDTO>> create
+    public Mono<ResponseEntity<ResponseWrapper<FavoriteDTO>>>create
             (@Validated @RequestBody RequestWrapper<FavoriteDTO> dto) {
         ResponseWrapper<FavoriteDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(create(item)));
         else
             rt.set(create(dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -90,13 +92,13 @@ public abstract class AbstractFavoriteResource {
     *
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<FavoriteDTO>
+    * @return Mono<ResponseEntity<FavoriteDTO>>
     */
     @ApiOperation(value = "更新Update", tags = {"收藏" },  notes = "Favorite-Update ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Favorite-Update-all') or hasPermission(this.favoriteService.get(#id),'ibizplm-Favorite-Update')")
     @VersionCheck(entity = "favorite" , versionfield = "updateTime")
     @PutMapping("favorites/{id}")
-    public ResponseEntity<ResponseWrapper<FavoriteDTO>> updateById
+    public Mono<ResponseEntity<ResponseWrapper<FavoriteDTO>>>updateById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<FavoriteDTO> dto) {
         ResponseWrapper<FavoriteDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -105,7 +107,7 @@ public abstract class AbstractFavoriteResource {
         }
         else
             rt.set(updateById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -130,19 +132,19 @@ public abstract class AbstractFavoriteResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<FavoriteDTO>
+    * @return Mono<ResponseEntity<FavoriteDTO>>
     */
     @ApiOperation(value = "保存Save", tags = {"收藏" },  notes = "Favorite-Save ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Favorite-Save-all') or hasPermission(this.favoriteDtoMapping.toDomain(#dto),'ibizplm-Favorite-Save')")
     @PostMapping("favorites/save")
-    public ResponseEntity<ResponseWrapper<FavoriteDTO>> save
+    public Mono<ResponseEntity<ResponseWrapper<FavoriteDTO>>>save
             (@Validated @RequestBody RequestWrapper<FavoriteDTO> dto) {
         ResponseWrapper<FavoriteDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(save(item)));
         else
             rt.set(save(dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -166,15 +168,15 @@ public abstract class AbstractFavoriteResource {
     * 
     *
     * @param id id
-    * @return ResponseEntity<FavoriteDTO>
+    * @return Mono<ResponseEntity<FavoriteDTO>>
     */
     @ApiOperation(value = "获取Get", tags = {"收藏" },  notes = "Favorite-Get ")
-    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Favorite-Get-all')  or hasPermission(this.favoriteDtoMapping.toDomain(returnObject.body),'ibizplm-Favorite-Get')")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Favorite-Get-all')  or hasPermission(this.favoriteDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-Favorite-Get')")
     @GetMapping("favorites/{id}")
-    public ResponseEntity<FavoriteDTO> getById
+    public Mono<ResponseEntity<FavoriteDTO>> getById
             (@PathVariable("id") String id) {
         Favorite rt = favoriteService.get(id);
-        return ResponseEntity.status(HttpStatus.OK).body(favoriteDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(favoriteDtoMapping.toDto(rt)));
     }
 
     /**
@@ -182,15 +184,15 @@ public abstract class AbstractFavoriteResource {
     * 
     *
     * @param id id
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @ApiOperation(value = "删除Remove", tags = {"收藏" },  notes = "Favorite-Remove ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Favorite-Remove-all') or hasPermission(this.favoriteService.get(#id),'ibizplm-Favorite-Remove')")
     @DeleteMapping("favorites/{id}")
-    public ResponseEntity<Boolean> removeById
+    public Mono<ResponseEntity<Boolean>> removeById
             (@PathVariable("id") String id) {
         Boolean rt = favoriteService.remove(id);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -198,15 +200,15 @@ public abstract class AbstractFavoriteResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<Integer>
+    * @return Mono<ResponseEntity<Integer>>
     */
     @ApiOperation(value = "校验CheckKey", tags = {"收藏" },  notes = "Favorite-CheckKey ")
     @PostMapping("favorites/check_key")
-    public ResponseEntity<Integer> checkKey
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKey
             (@Validated @RequestBody FavoriteDTO dto) {
         Favorite domain = favoriteDtoMapping.toDomain(dto);
-        Integer rt = favoriteService.checkKey(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        CheckKeyStatus rt = favoriteService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -214,15 +216,15 @@ public abstract class AbstractFavoriteResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<FavoriteDTO>
+    * @return Mono<ResponseEntity<FavoriteDTO>>
     */
     @ApiOperation(value = "草稿GetDraft", tags = {"收藏" },  notes = "Favorite-GetDraft ")
     @GetMapping("favorites/get_draft")
-    public ResponseEntity<FavoriteDTO> getDraft
+    public Mono<ResponseEntity<FavoriteDTO>> getDraft
             (@SpringQueryMap FavoriteDTO dto) {
         Favorite domain = favoriteDtoMapping.toDomain(dto);
         Favorite rt = favoriteService.getDraft(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(favoriteDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(favoriteDtoMapping.toDto(rt)));
     }
 
     /**
@@ -230,87 +232,87 @@ public abstract class AbstractFavoriteResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<FavoriteDTO>>
+    * @return Mono<ResponseEntity<List<FavoriteDTO>>>
     */
     @ApiOperation(value = "查询fetch_default", tags = {"收藏" },  notes = "Favorite-fetch_default ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Favorite-fetch_default-all') or hasPermission(#dto,'ibizplm-Favorite-fetch_default')")
     @PostMapping("favorites/fetch_default")
-    public ResponseEntity<List<FavoriteDTO>> fetchDefault
+    public Mono<ResponseEntity<List<FavoriteDTO>>> fetchDefault
             (@Validated @RequestBody FavoriteFilterDTO dto) {
         FavoriteSearchContext context = favoriteFilterDtoMapping.toDomain(dto);
         Page<Favorite> domains = favoriteService.fetchDefault(context) ;
         List<FavoriteDTO> list = favoriteDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
 
     /**
     * 批量新建收藏
     * @param dtos
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-Favorite-Create-all')")
     @ApiOperation(value = "批量新建收藏", tags = {"收藏" },  notes = "批量新建收藏")
 	@PostMapping("favorites/batch")
-    public ResponseEntity<Boolean> createBatch(@RequestBody List<FavoriteDTO> dtos) {
+    public Mono<ResponseEntity<Boolean>> createBatch(@RequestBody List<FavoriteDTO> dtos) {
         favoriteService.create(favoriteDtoMapping.toDomain(dtos));
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量删除收藏
     * @param ids ids
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-Favorite-Remove-all')")
     @ApiOperation(value = "批量删除收藏", tags = {"收藏" },  notes = "批量删除收藏")
 	@DeleteMapping("favorites/batch")
-    public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
+    public Mono<ResponseEntity<Boolean>> removeBatch(@RequestBody List<String> ids) {
         favoriteService.remove(ids);
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量更新收藏
     * @param dtos
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-Favorite-Update-all')")
     @ApiOperation(value = "批量更新收藏", tags = {"收藏" },  notes = "批量更新收藏")
 	@PutMapping("favorites/batch")
-    public ResponseEntity<Boolean> updateBatch(@RequestBody List<FavoriteDTO> dtos) {
+    public Mono<ResponseEntity<Boolean>> updateBatch(@RequestBody List<FavoriteDTO> dtos) {
         favoriteService.update(favoriteDtoMapping.toDomain(dtos));
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量保存收藏
     * @param dtos
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-Favorite-Save-all')")
     @ApiOperation(value = "批量保存收藏", tags = {"收藏" },  notes = "批量保存收藏")
 	@PostMapping("favorites/savebatch")
-    public ResponseEntity<Boolean> saveBatch(@RequestBody List<FavoriteDTO> dtos) {
+    public Mono<ResponseEntity<Boolean>> saveBatch(@RequestBody List<FavoriteDTO> dtos) {
         favoriteService.save(favoriteDtoMapping.toDomain(dtos));
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量导入收藏
     * @param config 导入模式
     * @param ignoreError 导入中忽略错误
-    * @return ResponseEntity<ImportResult>
+    * @return Mono<ResponseEntity<ImportResult>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-Favorite-Save-all')")
     @ApiOperation(value = "批量导入收藏", tags = {"收藏" },  notes = "批量导入收藏")
 	@PostMapping("favorites/import")
-    public ResponseEntity<ImportResult> importData(@RequestParam(value = "config" , required = false) String config ,@RequestParam(value = "ignoreerror", required = false, defaultValue = "true") Boolean ignoreError ,@RequestBody List<FavoriteDTO> dtos) {
-        return  ResponseEntity.status(HttpStatus.OK).body(favoriteService.importData(config,ignoreError,favoriteDtoMapping.toDomain(dtos)));
+    public Mono<ResponseEntity<ImportResult>> importData(@RequestParam(value = "config" , required = false) String config ,@RequestParam(value = "ignoreerror", required = false, defaultValue = "true") Boolean ignoreError ,@RequestBody List<FavoriteDTO> dtos) {
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(favoriteService.importData(config,ignoreError,favoriteDtoMapping.toDomain(dtos))));
     }
 
 }

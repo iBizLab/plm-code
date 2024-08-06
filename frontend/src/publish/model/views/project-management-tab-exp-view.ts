@@ -95,11 +95,11 @@ export default {
               },
             ],
             layout: {
-              dir: 'row-reverse',
               layout: 'FLEX',
             },
             dataRegionType: 'INHERIT',
             caption: '容器',
+            cssStyle: 'margin-right:10px',
             itemStyle: 'DEFAULT',
             itemType: 'CONTAINER',
             layoutPos: {

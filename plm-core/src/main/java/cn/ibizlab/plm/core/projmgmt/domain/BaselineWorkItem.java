@@ -1,5 +1,5 @@
 /**
- * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{entities@MINHERIT}}.java.hbs
+ * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{domains@MINHERIT}}.java.hbs
  */
 package cn.ibizlab.plm.core.projmgmt.domain;
 
@@ -21,8 +21,7 @@ import lombok.experimental.Accessors;
 import io.swagger.annotations.*;
 import cn.ibizlab.plm.core.base.domain.Baseline;
 import cn.ibizlab.plm.core.base.domain.Version;
-import cn.ibizlab.plm.core.base.domain.Version;
-import cn.ibizlab.plm.core.base.domain.Baseline;
+import cn.ibizlab.plm.core.base.domain.Relation;
 
 /**
  * 基线工作项实体类[BaselineWorkItem]
@@ -399,6 +398,15 @@ public class BaselineWorkItem extends EntityBase implements Serializable
     @JsonProperty("is_leaf")
     @ApiModelProperty(value = "is_leaf", notes = "是否叶子节点")
     private Integer isLeaf;
+
+    /**
+     * 工作项类型
+     */
+    @DEField(name = "work_item_type_id")
+    @JSONField(name = "work_item_type_id")
+    @JsonProperty("work_item_type_id")
+    @ApiModelProperty(value = "work_item_type_id", notes = "工作项类型")
+    private String workItemTypeId;
 
     /**
      * 标识
@@ -814,6 +822,15 @@ public class BaselineWorkItem extends EntityBase implements Serializable
     public BaselineWorkItem setIsLeaf(Integer isLeaf) {
         this.isLeaf = isLeaf;
         this.modify("is_leaf", isLeaf);
+        return this;
+    }
+
+    /**
+    * 设置 [工作项类型]
+    */
+    public BaselineWorkItem setWorkItemTypeId(String workItemTypeId) {
+        this.workItemTypeId = workItemTypeId;
+        this.modify("work_item_type_id", workItemTypeId);
         return this;
     }
 

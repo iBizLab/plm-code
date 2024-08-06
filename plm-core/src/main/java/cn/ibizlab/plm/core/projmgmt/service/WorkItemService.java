@@ -11,6 +11,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
 import cn.ibizlab.plm.core.projmgmt.filter.WorkItemSearchContext;
 import cn.ibizlab.plm.core.projmgmt.domain.Board;
@@ -23,6 +24,7 @@ import cn.ibizlab.plm.core.base.domain.User;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItemState;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItemType;
 import cn.ibizlab.plm.core.base.domain.CommonFlow;
+import cn.ibizlab.plm.core.projmgmt.domain.SprintAlteration;
 import cn.ibizlab.plm.core.base.domain.Attention;
 import cn.ibizlab.plm.core.base.domain.Comment;
 import cn.ibizlab.plm.core.base.domain.Recent;
@@ -159,7 +161,7 @@ public interface WorkItemService extends IService<WorkItem> {
     * @param et
     * @return
     */
-    Integer checkKey(WorkItem et);
+    CheckKeyStatus checkKey(WorkItem et);
 
     /**
     * 保存
@@ -193,6 +195,16 @@ public interface WorkItemService extends IService<WorkItem> {
     */
     default WorkItem archive(WorkItem et) {
         return et;
+    }
+
+    /**
+    * boardMovePosition
+    * 
+    * @param et
+    * @return
+    */
+    default List<WorkItem> boardMovePosition(WorkItem et) {
+        return new ArrayList<>();
     }
 
     /**
@@ -313,6 +325,16 @@ public interface WorkItemService extends IService<WorkItem> {
     */
     default WorkItem getBaselineName(String key) {
         return getSelf().getBaselineName(new WorkItem().setId(key));
+    }
+
+    /**
+    * moveOrder
+    * 
+    * @param et
+    * @return
+    */
+    default List<WorkItem> moveOrder(WorkItem et) {
+        return new ArrayList<>();
     }
 
     /**
@@ -496,6 +518,16 @@ public interface WorkItemService extends IService<WorkItem> {
     }
 
     /**
+    * workItemTypeId
+    * 
+    * @param key
+    * @return
+    */
+    default WorkItem workItemTypeId(String key) {
+        return getSelf().workItemTypeId(new WorkItem().setId(key));
+    }
+
+    /**
     * fetchDefault
     * 
     * @param context
@@ -592,6 +624,38 @@ public interface WorkItemService extends IService<WorkItem> {
     List<WorkItem> listBaselineChooseWorkItem(WorkItemSearchContext context);
 
     /**
+    * fetchBiDetail
+    * 
+    * @param context
+    * @return
+    */
+    Page<WorkItem> fetchBiDetail(WorkItemSearchContext context);
+
+    /**
+    * listBiDetail
+    * 
+    * @param context
+    * @return
+    */
+    List<WorkItem> listBiDetail(WorkItemSearchContext context);
+
+    /**
+    * fetchBiSearch
+    * 
+    * @param context
+    * @return
+    */
+    Page<WorkItem> fetchBiSearch(WorkItemSearchContext context);
+
+    /**
+    * listBiSearch
+    * 
+    * @param context
+    * @return
+    */
+    List<WorkItem> listBiSearch(WorkItemSearchContext context);
+
+    /**
     * fetchBug
     * 
     * @param context
@@ -672,6 +736,22 @@ public interface WorkItemService extends IService<WorkItem> {
     List<WorkItem> listChooseChild(WorkItemSearchContext context);
 
     /**
+    * fetchChooseDependency
+    * 
+    * @param context
+    * @return
+    */
+    Page<WorkItem> fetchChooseDependency(WorkItemSearchContext context);
+
+    /**
+    * listChooseDependency
+    * 
+    * @param context
+    * @return
+    */
+    List<WorkItem> listChooseDependency(WorkItemSearchContext context);
+
+    /**
     * fetchCommentNotifyAssignee
     * 
     * @param context
@@ -689,7 +769,7 @@ public interface WorkItemService extends IService<WorkItem> {
 
     /**
     * fetchCommon
-    * 
+    * 未删除
     * @param context
     * @return
     */
@@ -697,7 +777,7 @@ public interface WorkItemService extends IService<WorkItem> {
 
     /**
     * listCommon
-    * 
+    * 未删除
     * @param context
     * @return
     */
@@ -782,6 +862,22 @@ public interface WorkItemService extends IService<WorkItem> {
     * @return
     */
     List<WorkItem> listMilestone(WorkItemSearchContext context);
+
+    /**
+    * fetchMoveWorkItem
+    * 
+    * @param context
+    * @return
+    */
+    Page<WorkItem> fetchMoveWorkItem(WorkItemSearchContext context);
+
+    /**
+    * listMoveWorkItem
+    * 
+    * @param context
+    * @return
+    */
+    List<WorkItem> listMoveWorkItem(WorkItemSearchContext context);
 
     /**
     * fetchMyAssignee
@@ -913,7 +1009,7 @@ public interface WorkItemService extends IService<WorkItem> {
 
     /**
     * fetchNotExsistsBugRelation
-    * 
+    * 仅缺陷
     * @param context
     * @return
     */
@@ -921,7 +1017,7 @@ public interface WorkItemService extends IService<WorkItem> {
 
     /**
     * listNotExsistsBugRelation
-    * 
+    * 仅缺陷
     * @param context
     * @return
     */
@@ -945,7 +1041,7 @@ public interface WorkItemService extends IService<WorkItem> {
 
     /**
     * fetchNotbugExsistsRelation
-    * 
+    * 未关联且不为缺陷工作项
     * @param context
     * @return
     */
@@ -953,7 +1049,7 @@ public interface WorkItemService extends IService<WorkItem> {
 
     /**
     * listNotbugExsistsRelation
-    * 
+    * 未关联且不为缺陷工作项
     * @param context
     * @return
     */
@@ -1104,6 +1200,22 @@ public interface WorkItemService extends IService<WorkItem> {
     List<WorkItem> listReleasePlan(WorkItemSearchContext context);
 
     /**
+    * fetchReleaseWorkItemChart
+    * 
+    * @param context
+    * @return
+    */
+    Page<WorkItem> fetchReleaseWorkItemChart(WorkItemSearchContext context);
+
+    /**
+    * listReleaseWorkItemChart
+    * 
+    * @param context
+    * @return
+    */
+    List<WorkItem> listReleaseWorkItemChart(WorkItemSearchContext context);
+
+    /**
     * fetchRequirement
     * 
     * @param context
@@ -1152,6 +1264,54 @@ public interface WorkItemService extends IService<WorkItem> {
     List<WorkItem> listResource(WorkItemSearchContext context);
 
     /**
+    * fetchSevenDays
+    * 工作项完成趋势逻辑中使用
+    * @param context
+    * @return
+    */
+    Page<WorkItem> fetchSevenDays(WorkItemSearchContext context);
+
+    /**
+    * listSevenDays
+    * 工作项完成趋势逻辑中使用
+    * @param context
+    * @return
+    */
+    List<WorkItem> listSevenDays(WorkItemSearchContext context);
+
+    /**
+    * fetchSprintCompleted
+    * 
+    * @param context
+    * @return
+    */
+    Page<WorkItem> fetchSprintCompleted(WorkItemSearchContext context);
+
+    /**
+    * listSprintCompleted
+    * 
+    * @param context
+    * @return
+    */
+    List<WorkItem> listSprintCompleted(WorkItemSearchContext context);
+
+    /**
+    * fetchSprintWorkItemChart
+    * 
+    * @param context
+    * @return
+    */
+    Page<WorkItem> fetchSprintWorkItemChart(WorkItemSearchContext context);
+
+    /**
+    * listSprintWorkItemChart
+    * 
+    * @param context
+    * @return
+    */
+    List<WorkItem> listSprintWorkItemChart(WorkItemSearchContext context);
+
+    /**
     * fetchTestPlanRelationBug
     * 
     * @param context
@@ -1185,7 +1345,7 @@ public interface WorkItemService extends IService<WorkItem> {
 
     /**
     * fetchTree
-    * 
+    * 未删除
     * @param context
     * @return
     */
@@ -1193,7 +1353,7 @@ public interface WorkItemService extends IService<WorkItem> {
 
     /**
     * listTree
-    * 
+    * 未删除
     * @param context
     * @return
     */
@@ -1232,14 +1392,37 @@ public interface WorkItemService extends IService<WorkItem> {
     List<WorkItem> listUnderWorkResource(WorkItemSearchContext context);
 
     /**
+    * fetchWorkItemType
+    * 
+    * @param context
+    * @return
+    */
+    Page<WorkItem> fetchWorkItemType(WorkItemSearchContext context);
+
+    /**
+    * listWorkItemType
+    * 
+    * @param context
+    * @return
+    */
+    List<WorkItem> listWorkItemType(WorkItemSearchContext context);
+
+    /**
     * findByBoardId
     * @param boardIds
     * @return
     */
     List<WorkItem> findByBoardId(List<String> boardIds);
     default List<WorkItem> findByBoardId(String boardId){
-        return findByBoardId(Arrays.asList(boardId));
+        return findByBoard(new Board().setId(boardId));
     }
+
+    /**
+    * findByBoard
+    * @param board
+    * @return
+    */
+    List<WorkItem> findByBoard(Board board);
 
     /**
     * removeByBoardId
@@ -1280,8 +1463,15 @@ public interface WorkItemService extends IService<WorkItem> {
     */
     List<WorkItem> findByEntryId(List<String> entryIds);
     default List<WorkItem> findByEntryId(String entryId){
-        return findByEntryId(Arrays.asList(entryId));
+        return findByEntry(new Entry().setId(entryId));
     }
+
+    /**
+    * findByEntry
+    * @param entry
+    * @return
+    */
+    List<WorkItem> findByEntry(Entry entry);
 
     /**
     * removeByEntryId
@@ -1322,8 +1512,15 @@ public interface WorkItemService extends IService<WorkItem> {
     */
     List<WorkItem> findByProjectId(List<String> projectIds);
     default List<WorkItem> findByProjectId(String projectId){
-        return findByProjectId(Arrays.asList(projectId));
+        return findByProject(new Project().setId(projectId));
     }
+
+    /**
+    * findByProject
+    * @param project
+    * @return
+    */
+    List<WorkItem> findByProject(Project project);
 
     /**
     * removeByProjectId
@@ -1364,8 +1561,15 @@ public interface WorkItemService extends IService<WorkItem> {
     */
     List<WorkItem> findByReleaseId(List<String> releaseIds);
     default List<WorkItem> findByReleaseId(String releaseId){
-        return findByReleaseId(Arrays.asList(releaseId));
+        return findByRelease(new Release().setId(releaseId));
     }
+
+    /**
+    * findByRelease
+    * @param release
+    * @return
+    */
+    List<WorkItem> findByRelease(Release release);
 
     /**
     * removeByReleaseId
@@ -1406,8 +1610,15 @@ public interface WorkItemService extends IService<WorkItem> {
     */
     List<WorkItem> findBySprintId(List<String> sprintIds);
     default List<WorkItem> findBySprintId(String sprintId){
-        return findBySprintId(Arrays.asList(sprintId));
+        return findBySprint(new Sprint().setId(sprintId));
     }
+
+    /**
+    * findBySprint
+    * @param sprint
+    * @return
+    */
+    List<WorkItem> findBySprint(Sprint sprint);
 
     /**
     * removeBySprintId
@@ -1448,8 +1659,15 @@ public interface WorkItemService extends IService<WorkItem> {
     */
     List<WorkItem> findBySwimlaneId(List<String> swimlaneIds);
     default List<WorkItem> findBySwimlaneId(String swimlaneId){
-        return findBySwimlaneId(Arrays.asList(swimlaneId));
+        return findBySwimlane(new Swimlane().setId(swimlaneId));
     }
+
+    /**
+    * findBySwimlane
+    * @param swimlane
+    * @return
+    */
+    List<WorkItem> findBySwimlane(Swimlane swimlane);
 
     /**
     * removeBySwimlaneId
@@ -1490,8 +1708,15 @@ public interface WorkItemService extends IService<WorkItem> {
     */
     List<WorkItem> findByAssigneeId(List<String> assigneeIds);
     default List<WorkItem> findByAssigneeId(String assigneeId){
-        return findByAssigneeId(Arrays.asList(assigneeId));
+        return findByUser(new User().setId(assigneeId));
     }
+
+    /**
+    * findByUser
+    * @param user
+    * @return
+    */
+    List<WorkItem> findByUser(User user);
 
     /**
     * removeByAssigneeId
@@ -1532,8 +1757,15 @@ public interface WorkItemService extends IService<WorkItem> {
     */
     List<WorkItem> findByPid(List<String> pids);
     default List<WorkItem> findByPid(String pid){
-        return findByPid(Arrays.asList(pid));
+        return findByWorkItem(new WorkItem().setId(pid));
     }
+
+    /**
+    * findByWorkItem
+    * @param workItem
+    * @return
+    */
+    List<WorkItem> findByWorkItem(WorkItem workItem);
 
     /**
     * removeByPid
@@ -1574,8 +1806,15 @@ public interface WorkItemService extends IService<WorkItem> {
     */
     List<WorkItem> findByState(List<String> states);
     default List<WorkItem> findByState(String state){
-        return findByState(Arrays.asList(state));
+        return findByWorkItemState(new WorkItemState().setId(state));
     }
+
+    /**
+    * findByWorkItemState
+    * @param workItemState
+    * @return
+    */
+    List<WorkItem> findByWorkItemState(WorkItemState workItemState);
 
     /**
     * removeByState
@@ -1616,8 +1855,15 @@ public interface WorkItemService extends IService<WorkItem> {
     */
     List<WorkItem> findByTopId(List<String> topIds);
     default List<WorkItem> findByTopId(String topId){
-        return findByTopId(Arrays.asList(topId));
+        return findByWorkItem2(new WorkItem().setId(topId));
     }
+
+    /**
+    * findByWorkItem2
+    * @param workItem
+    * @return
+    */
+    List<WorkItem> findByWorkItem2(WorkItem workItem);
 
     /**
     * removeByTopId
@@ -1658,8 +1904,15 @@ public interface WorkItemService extends IService<WorkItem> {
     */
     List<WorkItem> findByWorkItemTypeId(List<String> workItemTypeIds);
     default List<WorkItem> findByWorkItemTypeId(String workItemTypeId){
-        return findByWorkItemTypeId(Arrays.asList(workItemTypeId));
+        return findByWorkItemType(new WorkItemType().setId(workItemTypeId));
     }
+
+    /**
+    * findByWorkItemType
+    * @param workItemType
+    * @return
+    */
+    List<WorkItem> findByWorkItemType(WorkItemType workItemType);
 
     /**
     * removeByWorkItemTypeId
@@ -1700,8 +1953,15 @@ public interface WorkItemService extends IService<WorkItem> {
     */
     List<WorkItem> findById(List<String> ids);
     default List<WorkItem> findById(String id){
-        return findById(Arrays.asList(id));
+        return findByCommonFlow(new CommonFlow().setId(id));
     }
+
+    /**
+    * findByCommonFlow
+    * @param commonFlow
+    * @return
+    */
+    List<WorkItem> findByCommonFlow(CommonFlow commonFlow);
 
     /**
     * removeById
@@ -1756,6 +2016,32 @@ public interface WorkItemService extends IService<WorkItem> {
     default WorkItem getBaselineName(WorkItem et) {
         return et;
     }
+
+    /**
+    * workItemTypeId
+    * 
+    * @param et
+    * @return
+    */
+    default WorkItem workItemTypeId(WorkItem et) {
+        return et;
+    }
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<WorkItem> fetchView(WorkItemSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<WorkItem> listView(WorkItemSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<WorkItem> list) {

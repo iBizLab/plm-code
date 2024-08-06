@@ -62,6 +62,25 @@ public interface InsightViewMapper extends BaseMapper<InsightView> {
     List<InsightView> listAdmin(@Param("ctx") InsightViewSearchContext context, @Param("ew") Wrapper<InsightView> wrapper);
 
     /**
+     * 数据集合deleted分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<InsightView> searchDeleted(IPage<InsightView> page, @Param("ctx") InsightViewSearchContext context, @Param("ew") Wrapper<InsightView> wrapper);
+    
+    /**
+     * 数据集合deleted查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<InsightView> listDeleted(@Param("ctx") InsightViewSearchContext context, @Param("ew") Wrapper<InsightView> wrapper);
+
+    /**
      * 数据集合favorite分页查询
      * 
      * @param page
@@ -155,6 +174,25 @@ public interface InsightViewMapper extends BaseMapper<InsightView> {
      * @return
      */
     List<InsightView> listUser(@Param("ctx") InsightViewSearchContext context, @Param("ew") Wrapper<InsightView> wrapper);
+
+    /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<InsightView> searchView(IPage<InsightView> page, @Param("ctx") InsightViewSearchContext context, @Param("ew") Wrapper<InsightView> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<InsightView> listView(@Param("ctx") InsightViewSearchContext context, @Param("ew") Wrapper<InsightView> wrapper);
 
     /**
      * 主键查询

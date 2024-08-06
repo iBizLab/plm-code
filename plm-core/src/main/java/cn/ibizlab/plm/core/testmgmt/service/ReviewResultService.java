@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.testmgmt.domain.ReviewResult;
 import cn.ibizlab.plm.core.testmgmt.filter.ReviewResultSearchContext;
 import cn.ibizlab.plm.core.testmgmt.domain.ReviewContentExtend;
@@ -139,7 +140,7 @@ public interface ReviewResultService extends IService<ReviewResult> {
     * @param et
     * @return
     */
-    Integer checkKey(ReviewResult et);
+    CheckKeyStatus checkKey(ReviewResult et);
 
     /**
     * 保存
@@ -188,8 +189,15 @@ public interface ReviewResultService extends IService<ReviewResult> {
     */
     List<ReviewResult> findByContentId(List<String> contentIds);
     default List<ReviewResult> findByContentId(String contentId){
-        return findByContentId(Arrays.asList(contentId));
+        return findByReviewContentExtend(new ReviewContentExtend().setId(contentId));
     }
+
+    /**
+    * findByReviewContentExtend
+    * @param reviewContentExtend
+    * @return
+    */
+    List<ReviewResult> findByReviewContentExtend(ReviewContentExtend reviewContentExtend);
 
     /**
     * removeByContentId
@@ -224,12 +232,35 @@ public interface ReviewResultService extends IService<ReviewResult> {
     boolean saveByReviewContentExtend(ReviewContentExtend reviewContentExtend, List<ReviewResult> list);
 
     /**
+    * findByReviewContent
+    * @param reviewContent
+    * @return
+    */
+    List<ReviewResult> findByReviewContent(ReviewContent reviewContent);
+
+    /**
     * saveByReviewContent
     * @param reviewContent
     * @param list
     * @return
     */
     boolean saveByReviewContent(ReviewContent reviewContent, List<ReviewResult> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<ReviewResult> fetchView(ReviewResultSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<ReviewResult> listView(ReviewResultSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<ReviewResult> list) {

@@ -43,6 +43,25 @@ public interface ParameterMapper extends BaseMapper<Parameter> {
     List<Parameter> listDefault(@Param("ctx") ParameterSearchContext context, @Param("ew") Wrapper<Parameter> wrapper);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Parameter> searchView(IPage<Parameter> page, @Param("ctx") ParameterSearchContext context, @Param("ew") Wrapper<Parameter> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Parameter> listView(@Param("ctx") ParameterSearchContext context, @Param("ew") Wrapper<Parameter> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

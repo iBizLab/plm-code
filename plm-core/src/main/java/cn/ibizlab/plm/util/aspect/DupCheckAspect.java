@@ -172,6 +172,15 @@ public class DupCheckAspect {
         check(point, "fetchDefault");
     }
     /**
+     * 实体[Stage]
+     *
+     * @param point
+     */
+    @AfterReturning(value = "execution(* cn.ibizlab.plm.core.*.service.StageService.create*(..))||execution(* cn.ibizlab.plm.core.*.service.StageService.update*(..))")
+    public void checkStage(JoinPoint point) {
+        check(point, "fetchDefault");
+    }
+    /**
      * 实体[TestCase]
      *
      * @param point

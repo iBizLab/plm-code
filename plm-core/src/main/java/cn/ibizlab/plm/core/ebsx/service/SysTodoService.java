@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import com.alibaba.fastjson.JSONObject;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.ebsx.domain.SysTodo;
 import cn.ibizlab.plm.core.ebsx.filter.SysTodoSearchContext;
 
@@ -136,7 +137,7 @@ public interface SysTodoService{
     * @param et
     * @return
     */
-    Integer checkKey(SysTodo et);
+    CheckKeyStatus checkKey(SysTodo et);
 
     /**
     * getLinkUrl

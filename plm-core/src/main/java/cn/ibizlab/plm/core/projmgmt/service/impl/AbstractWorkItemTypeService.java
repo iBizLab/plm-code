@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItemType;
@@ -116,14 +117,14 @@ public abstract class AbstractWorkItemTypeService extends ServiceImpl<WorkItemTy
         return et;
     }
 	
-    public Integer checkKey(WorkItemType et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<WorkItemType>lambdaQuery().eq(WorkItemType::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(WorkItemType et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<WorkItemType>lambdaQuery().eq(WorkItemType::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(WorkItemType et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -165,6 +166,21 @@ public abstract class AbstractWorkItemTypeService extends ServiceImpl<WorkItemTy
         return list;
    }
 	
+   public Page<WorkItemType> fetchChooseTargetType(WorkItemTypeSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("SEQUENCE,ASC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItemType> pages=baseMapper.searchChooseTargetType(context.getPages(),context,context.getSelectCond());
+        List<WorkItemType> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItemType> listChooseTargetType(WorkItemTypeSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("SEQUENCE,ASC");
+        List<WorkItemType> list = baseMapper.listChooseTargetType(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<WorkItemType> fetchCurProjectType(WorkItemTypeSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItemType> pages=baseMapper.searchCurProjectType(context.getPages(),context,context.getSelectCond());
         List<WorkItemType> list = pages.getRecords();
@@ -174,6 +190,15 @@ public abstract class AbstractWorkItemTypeService extends ServiceImpl<WorkItemTy
    public List<WorkItemType> listCurProjectType(WorkItemTypeSearchContext context) {
         List<WorkItemType> list = baseMapper.listCurProjectType(context,context.getSelectCond());
         return list;
+   }
+	
+   public Page<WorkItemType> fetchGroupByOriginState(WorkItemTypeSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchGroupByOriginState(context.getPages(),context,context.getSelectCond());
+        return new PageImpl<WorkItemType>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),WorkItemType.class), context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItemType> listGroupByOriginState(WorkItemTypeSearchContext context) {
+        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listGroupByOriginState(context,context.getSelectCond()),WorkItemType.class);
    }
 	
    public Page<WorkItemType> fetchProjectWorkItemType(WorkItemTypeSearchContext context) {
@@ -211,6 +236,10 @@ public abstract class AbstractWorkItemTypeService extends ServiceImpl<WorkItemTy
         return list;	
 	}
 
+	public List<WorkItemType> findByProject(Project project){
+        List<WorkItemType> list = findByProjectId(Arrays.asList(project.getId()));
+		return list;
+	}
 	public boolean removeByProjectId(String projectId){
         return this.remove(Wrappers.<WorkItemType>lambdaQuery().eq(WorkItemType::getProjectId,projectId));
 	}
@@ -221,8 +250,8 @@ public abstract class AbstractWorkItemTypeService extends ServiceImpl<WorkItemTy
 	public boolean saveByProject(Project project, List<WorkItemType> list){
         if(list==null)
             return true;
-        Map<String,WorkItemType> before = findByProjectId(project.getId()).stream().collect(Collectors.toMap(WorkItemType::getId,e->e));
 
+        Map<String,WorkItemType> before = findByProject(project).stream().collect(Collectors.toMap(WorkItemType::getId,e->e));
         List<WorkItemType> update = new ArrayList<>();
         List<WorkItemType> create = new ArrayList<>();
 
@@ -246,6 +275,17 @@ public abstract class AbstractWorkItemTypeService extends ServiceImpl<WorkItemTy
             return true;
 			
 	}
+   public Page<WorkItemType> fetchView(WorkItemTypeSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItemType> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<WorkItemType> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItemType> listView(WorkItemTypeSearchContext context) {
+        List<WorkItemType> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(WorkItemType et) {
         if(Entities.PROJECT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

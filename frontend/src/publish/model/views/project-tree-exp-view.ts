@@ -103,6 +103,12 @@ export default {
           id: 'expitem:filter',
         },
         {
+          realTitle: '归档项目表格',
+          refAppViewId: 'plmweb.project_is_archived_grid_view',
+          name: 'EXPITEM:node_2',
+          id: 'expitem:node_2',
+        },
+        {
           realTitle: '组织项目',
           realTitleLanguageRes: {
             lanResTag: 'PAGE.TITLE.PROJECT.GRID_VIEW_ORG',
@@ -141,18 +147,18 @@ export default {
               id: '项目 - 全部项目',
             },
             {
-              childDETreeNodeId: 'node_favorite',
-              parentDETreeNodeId: 'star',
-              parentValueLevel: 1,
-              searchMode: 3,
-              id: '星标 - 星标_项目',
-            },
-            {
               childDETreeNodeId: 'node',
               parentDETreeNodeId: 'root',
               parentValueLevel: 1,
               searchMode: 3,
               id: '默认根节点 - 项目',
+            },
+            {
+              childDETreeNodeId: 'node_favorite',
+              parentDETreeNodeId: 'star',
+              parentValueLevel: 1,
+              searchMode: 3,
+              id: '星标 - 星标_项目',
             },
             {
               childDETreeNodeId: 'project_set',
@@ -169,13 +175,6 @@ export default {
               id: '项目 - 组织项目',
             },
             {
-              childDETreeNodeId: 'work',
-              parentDETreeNodeId: 'root',
-              parentValueLevel: 1,
-              searchMode: 3,
-              id: '默认根节点 - 工作',
-            },
-            {
               childDETreeNodeId: 'filter',
               parentDETreeNodeId: 'work',
               parentValueLevel: 1,
@@ -190,18 +189,11 @@ export default {
               id: '项目 - 团队项目',
             },
             {
-              childDETreeNodeId: 'star',
+              childDETreeNodeId: 'work',
               parentDETreeNodeId: 'root',
               parentValueLevel: 1,
               searchMode: 3,
-              id: '默认根节点 - 星标',
-            },
-            {
-              childDETreeNodeId: 'config',
-              parentDETreeNodeId: 'root',
-              parentValueLevel: 1,
-              searchMode: 3,
-              id: '默认根节点 - 配置中心',
+              id: '默认根节点 - 工作',
             },
             {
               childDETreeNodeId: 'node_1',
@@ -209,6 +201,27 @@ export default {
               parentValueLevel: 1,
               searchMode: 3,
               id: '星标 - 星标项目集',
+            },
+            {
+              childDETreeNodeId: 'star',
+              parentDETreeNodeId: 'root',
+              parentValueLevel: 1,
+              searchMode: 3,
+              id: '默认根节点 - 星标',
+            },
+            {
+              childDETreeNodeId: 'node_2',
+              parentDETreeNodeId: 'root',
+              parentValueLevel: 1,
+              searchMode: 3,
+              id: '默认根节点 - 归档项目',
+            },
+            {
+              childDETreeNodeId: 'config',
+              parentDETreeNodeId: 'root',
+              parentValueLevel: 1,
+              searchMode: 3,
+              id: '默认根节点 - 配置中心',
             },
           ],
           detreeNodes: [
@@ -362,6 +375,26 @@ export default {
               enableRemoveData: true,
               name: '星标项目集',
               id: 'node_1',
+            },
+            {
+              text: '归档项目',
+              navAppViewId: 'plmweb.project_is_archived_grid_view',
+              nodeType: 'node_2',
+              navigateParams: [
+                {
+                  key: 'n_is_archived_eq',
+                  value: '1',
+                  rawValue: true,
+                  id: 'n_is_archived_eq',
+                },
+              ],
+              sysImage: {
+                rawContent:
+                  '<svg xmlns="http://www.w3.org/2000/svg" class="icon design-iconfont" viewBox="0 0 1024 1024" width="128" height="128">\n  <path d="M820 120.016C815.888 98.784 794.928 64 764 64H232c-30.928 0-50.768 35.536-56 56.016L64 596.272V876A84 84 0 0 0 148 960h728A84 84 0 0 0 960 876V596.272L820 120.016zM271.344 144h456.16c14.832 0 26.832 11.584 26.832 25.904L864.016 544H673.84c-28.288 0-26.832 40.384-26.832 40.384v77.712c0 14.32-12 25.904-26.832 25.904H405.504c-14.816 0-26.832-11.584-26.832-25.904v-77.712S378.672 544 351.84 544H160l84.512-374.096c0-14.32 12-25.904 26.832-25.904z m44.64 480v84c0 30.896 25.088 60 56.016 60h280c30.928 0 56-29.104 56-60V624H880v208c0 30.896-33.072 48-64 48H208c-30.928 0-64-17.104-64-48V624h172zM512 199.2a36.72 36.72 0 0 1 36.736 36.72l-0.016 224.064 80.96-80.944a36.736 36.736 0 0 1 49.824-1.952l2.112 1.952c14.336 14.352 14.336 37.6 0 51.936l-143.648 143.632a36.704 36.704 0 0 1-51.936 0L342.4 430.976a36.72 36.72 0 1 1 51.936-51.936l80.928 80.928V235.92c0-19.44 15.12-35.344 34.24-36.64z" fill="#F6C659"></path>\n</svg>',
+              },
+              treeNodeType: 'STATIC',
+              name: '归档项目',
+              id: 'node_2',
             },
             {
               idAppDEFieldId: 'id',
@@ -535,51 +568,6 @@ export default {
                 {
                   actionLevel: 200,
                   noPrivDisplayMode: 2,
-                  uiactionId: 'open_project_set_index_view@portfolio',
-                  uiactionTarget: 'SINGLEKEY',
-                  valid: true,
-                  caption: '打开项目集主视图',
-                  itemType: 'DEUIACTION',
-                  sysImage: {},
-                  tooltip: '打开项目集主视图',
-                  width: 1,
-                  showIcon: true,
-                  id: 'deuiaction1',
-                },
-                {
-                  actionLevel: 250,
-                  noPrivDisplayMode: 2,
-                  uiactionId: 'cancel_favorite@portfolio',
-                  uiactionTarget: 'SINGLEKEY',
-                  valid: true,
-                  caption: '取消星标',
-                  itemType: 'DEUIACTION',
-                  sysImage: {
-                    rawContent:
-                      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="design-iconfont" width="16" height="16">\n  <path d="M14.53135,6.20219551 C14.77745,6.23794551 14.87565,6.54033551 14.69765,6.71389551 L11.56645,9.76604551 L12.30565,14.0757255 C12.34765,14.3208255 12.09045,14.5077255 11.87035,14.3920255 L8,12.3572255 L4.12966,14.3920255 C3.90957,14.5077255 3.65234,14.3208255 3.69437,14.0757255 L4.43354,9.76604551 L1.30237,6.71389551 C1.12431,6.54033551 1.22256,6.23794551 1.46863,6.20219551 L5.79581,5.57341551 L7.73098,1.65232551 C7.84103,1.42934551 8.15898,1.42935551 8.26902,1.65232551 L10.20415,5.57341551 L14.53135,6.20219551 Z" fill-opacity=".9" fill="#FFB31A" fill-rule="nonzero"></path>\n</svg>',
-                  },
-                  tooltip: '取消星标',
-                  showIcon: true,
-                  id: 'deuiaction2',
-                },
-              ],
-              codeName: 'tree_exp_view_node1_cm',
-              controlType: 'CONTEXTMENU',
-              logicName: '星标项目集树节点菜单',
-              appDataEntityId: 'plmweb.portfolio',
-              controlParam: {
-                id: 'node_1_cm',
-              },
-              modelId: '4aaab1340b4ab2a100a2e9b81ad17dc1',
-              modelType: 'PSDETOOLBAR',
-              name: 'node_1_cm',
-              id: 'tree_exp_view_node1_cm',
-            },
-            {
-              detoolbarItems: [
-                {
-                  actionLevel: 200,
-                  noPrivDisplayMode: 2,
                   uiactionId: 'open_project_main_view@project',
                   uiactionTarget: 'SINGLEKEY',
                   valid: true,
@@ -619,6 +607,51 @@ export default {
               modelType: 'PSDETOOLBAR',
               name: 'node_favorite_cm',
               id: 'tree_exp_view_node_favorite_cm',
+            },
+            {
+              detoolbarItems: [
+                {
+                  actionLevel: 200,
+                  noPrivDisplayMode: 2,
+                  uiactionId: 'open_project_set_index_view@portfolio',
+                  uiactionTarget: 'SINGLEKEY',
+                  valid: true,
+                  caption: '打开项目集主视图',
+                  itemType: 'DEUIACTION',
+                  sysImage: {},
+                  tooltip: '打开项目集主视图',
+                  width: 1,
+                  showIcon: true,
+                  id: 'deuiaction1',
+                },
+                {
+                  actionLevel: 250,
+                  noPrivDisplayMode: 2,
+                  uiactionId: 'cancel_favorite@portfolio',
+                  uiactionTarget: 'SINGLEKEY',
+                  valid: true,
+                  caption: '取消星标',
+                  itemType: 'DEUIACTION',
+                  sysImage: {
+                    rawContent:
+                      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="design-iconfont" width="16" height="16">\n  <path d="M14.53135,6.20219551 C14.77745,6.23794551 14.87565,6.54033551 14.69765,6.71389551 L11.56645,9.76604551 L12.30565,14.0757255 C12.34765,14.3208255 12.09045,14.5077255 11.87035,14.3920255 L8,12.3572255 L4.12966,14.3920255 C3.90957,14.5077255 3.65234,14.3208255 3.69437,14.0757255 L4.43354,9.76604551 L1.30237,6.71389551 C1.12431,6.54033551 1.22256,6.23794551 1.46863,6.20219551 L5.79581,5.57341551 L7.73098,1.65232551 C7.84103,1.42934551 8.15898,1.42935551 8.26902,1.65232551 L10.20415,5.57341551 L14.53135,6.20219551 Z" fill-opacity=".9" fill="#FFB31A" fill-rule="nonzero"></path>\n</svg>',
+                  },
+                  tooltip: '取消星标',
+                  showIcon: true,
+                  id: 'deuiaction2',
+                },
+              ],
+              codeName: 'tree_exp_view_node1_cm',
+              controlType: 'CONTEXTMENU',
+              logicName: '星标项目集树节点菜单',
+              appDataEntityId: 'plmweb.portfolio',
+              controlParam: {
+                id: 'node_1_cm',
+              },
+              modelId: '4aaab1340b4ab2a100a2e9b81ad17dc1',
+              modelType: 'PSDETOOLBAR',
+              name: 'node_1_cm',
+              id: 'tree_exp_view_node1_cm',
             },
             {
               detoolbarItems: [

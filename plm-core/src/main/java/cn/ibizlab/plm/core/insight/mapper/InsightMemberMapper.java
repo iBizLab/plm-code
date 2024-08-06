@@ -59,6 +59,25 @@ public interface InsightMemberMapper extends BaseMapper<InsightMember> {
     List<InsightMember> findByUserId(@Param("userIds") List<String> userIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<InsightMember> searchView(IPage<InsightMember> page, @Param("ctx") InsightMemberSearchContext context, @Param("ew") Wrapper<InsightMember> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<InsightMember> listView(@Param("ctx") InsightMemberSearchContext context, @Param("ew") Wrapper<InsightMember> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

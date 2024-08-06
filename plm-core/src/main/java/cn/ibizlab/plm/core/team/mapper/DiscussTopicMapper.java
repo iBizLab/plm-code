@@ -252,6 +252,25 @@ public interface DiscussTopicMapper extends BaseMapper<DiscussTopic> {
     List<DiscussTopic> listUser(@Param("ctx") DiscussTopicSearchContext context, @Param("ew") Wrapper<DiscussTopic> wrapper);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<DiscussTopic> searchView(IPage<DiscussTopic> page, @Param("ctx") DiscussTopicSearchContext context, @Param("ew") Wrapper<DiscussTopic> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<DiscussTopic> listView(@Param("ctx") DiscussTopicSearchContext context, @Param("ew") Wrapper<DiscussTopic> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

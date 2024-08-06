@@ -6,13 +6,21 @@ export default {
   codeItems: [
     {
       codeName: 'item_3',
+      sysCss: {
+        cssName: 'green-span',
+      },
       text: '通过',
+      textCls: 'green-span',
       value: '3',
       id: 'item_3',
     },
     {
       codeName: 'item_4',
+      sysCss: {
+        cssName: 'red-span',
+      },
       text: '拒绝',
+      textCls: 'red-span',
       value: '4',
       id: 'item_4',
     },

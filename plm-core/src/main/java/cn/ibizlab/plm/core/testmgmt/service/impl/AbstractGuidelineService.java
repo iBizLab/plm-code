@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.testmgmt.domain.Guideline;
@@ -118,14 +119,14 @@ public abstract class AbstractGuidelineService extends ServiceImpl<GuidelineMapp
         return et;
     }
 	
-    public Integer checkKey(Guideline et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Guideline>lambdaQuery().eq(Guideline::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(Guideline et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Guideline>lambdaQuery().eq(Guideline::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(Guideline et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -201,6 +202,10 @@ public abstract class AbstractGuidelineService extends ServiceImpl<GuidelineMapp
         return list;	
 	}
 
+	public List<Guideline> findByLibrary(Library library){
+        List<Guideline> list = findByScopeId(Arrays.asList(library.getId()));
+		return list;
+	}
 	public boolean removeByScopeId(String scopeId){
         return this.remove(Wrappers.<Guideline>lambdaQuery().eq(Guideline::getScopeId,scopeId));
 	}
@@ -211,8 +216,8 @@ public abstract class AbstractGuidelineService extends ServiceImpl<GuidelineMapp
 	public boolean saveByLibrary(Library library, List<Guideline> list){
         if(list==null)
             return true;
-        Map<String,Guideline> before = findByScopeId(library.getId()).stream().collect(Collectors.toMap(Guideline::getId,e->e));
 
+        Map<String,Guideline> before = findByLibrary(library).stream().collect(Collectors.toMap(Guideline::getId,e->e));
         List<Guideline> update = new ArrayList<>();
         List<Guideline> create = new ArrayList<>();
 
@@ -236,6 +241,17 @@ public abstract class AbstractGuidelineService extends ServiceImpl<GuidelineMapp
             return true;
 			
 	}
+   public Page<Guideline> fetchView(GuidelineSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Guideline> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<Guideline> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Guideline> listView(GuidelineSearchContext context) {
+        List<Guideline> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(Guideline et) {
         if(Entities.LIBRARY.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

@@ -95,15 +95,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '空间成员编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.SPACE_MEMBER.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.space_member_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       realTitle: '空间成员数据重定向视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.SPACE_MEMBER.REDIRECTVIEW',
@@ -111,6 +102,15 @@ export default {
       refAppViewId: 'plmweb.space_member_redirect_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realTitle: '空间成员编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.SPACE_MEMBER.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.space_member_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
     {
       realOpenMode: 'POPUPMODAL',
@@ -146,6 +146,7 @@ export default {
           id: 'deuiaction1',
         },
       ],
+      toolbarStyle: 'USER',
       xdataControlName: 'grid',
       codeName: 'assigned_grid_view_toolbar',
       controlType: 'TOOLBAR',
@@ -208,7 +209,7 @@ export default {
             id: 'usr0227475921',
           },
           aggMode: 'NONE',
-          align: 'RIGHT',
+          align: 'CENTER',
           caption: '操作',
           codeName: 'uagridcolumn1',
           columnType: 'UAGRIDCOLUMN',

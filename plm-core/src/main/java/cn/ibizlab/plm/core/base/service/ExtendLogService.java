@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.ExtendLog;
 import cn.ibizlab.plm.core.base.filter.ExtendLogSearchContext;
 
@@ -137,7 +138,7 @@ public interface ExtendLogService extends IService<ExtendLog> {
     * @param et
     * @return
     */
-    Integer checkKey(ExtendLog et);
+    CheckKeyStatus checkKey(ExtendLog et);
 
     /**
     * 保存
@@ -184,6 +185,22 @@ public interface ExtendLogService extends IService<ExtendLog> {
     * @return
     */
     List<ExtendLog> listExecutionStatistics(ExtendLogSearchContext context);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<ExtendLog> fetchView(ExtendLogSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<ExtendLog> listView(ExtendLogSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<ExtendLog> list) {

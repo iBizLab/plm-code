@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.team.domain.Objective;
 import cn.ibizlab.plm.core.team.filter.ObjectiveSearchContext;
 import cn.ibizlab.plm.core.team.domain.Period;
@@ -140,7 +141,7 @@ public interface ObjectiveService extends IService<Objective> {
     * @param et
     * @return
     */
-    Integer checkKey(Objective et);
+    CheckKeyStatus checkKey(Objective et);
 
     /**
     * 保存
@@ -179,8 +180,15 @@ public interface ObjectiveService extends IService<Objective> {
     */
     List<Objective> findByPeriodId(List<String> periodIds);
     default List<Objective> findByPeriodId(String periodId){
-        return findByPeriodId(Arrays.asList(periodId));
+        return findByPeriod(new Period().setId(periodId));
     }
+
+    /**
+    * findByPeriod
+    * @param period
+    * @return
+    */
+    List<Objective> findByPeriod(Period period);
 
     /**
     * removeByPeriodId
@@ -213,6 +221,22 @@ public interface ObjectiveService extends IService<Objective> {
     * @return
     */
     boolean saveByPeriod(Period period, List<Objective> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Objective> fetchView(ObjectiveSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Objective> listView(ObjectiveSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Objective> list) {

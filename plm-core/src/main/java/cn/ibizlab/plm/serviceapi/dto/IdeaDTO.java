@@ -273,11 +273,27 @@ public class IdeaDTO extends DTOBase implements Serializable {
     private String ideaType;
 
     /**
+     * 关联产品需求数
+     */
+    @JsonProperty("relation_total_idea")
+    @JSONField(name = "relation_total_idea")
+    @ApiModelProperty(value = "关联产品需求数", position = 29)
+    private BigDecimal relationTotalIdea;
+
+    /**
+     * 关联工单数
+     */
+    @JsonProperty("relation_total_ticket")
+    @JSONField(name = "relation_total_ticket")
+    @ApiModelProperty(value = "关联工单数", position = 30)
+    private BigDecimal relationTotalTicket;
+
+    /**
      * 工时进度
      */
     @JsonProperty("workload_schedule")
     @JSONField(name = "workload_schedule")
-    @ApiModelProperty(value = "工时进度", position = 29)
+    @ApiModelProperty(value = "工时进度", position = 31)
     private BigDecimal workloadSchedule;
 
     /**
@@ -285,23 +301,47 @@ public class IdeaDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("estimated_workload")
     @JSONField(name = "estimated_workload")
-    @ApiModelProperty(value = "预估工时", position = 30)
+    @ApiModelProperty(value = "预估工时", position = 32)
     private BigDecimal estimatedWorkload;
+
+    /**
+     * 关联工作项数
+     */
+    @JsonProperty("relation_total_work_item")
+    @JSONField(name = "relation_total_work_item")
+    @ApiModelProperty(value = "关联工作项数", position = 33)
+    private BigDecimal relationTotalWorkItem;
+
+    /**
+     * 关联测试用例数
+     */
+    @JsonProperty("relation_total_test_case")
+    @JSONField(name = "relation_total_test_case")
+    @ApiModelProperty(value = "关联测试用例数", position = 34)
+    private BigDecimal relationTotalTestCase;
 
     /**
      * 剩余工时
      */
     @JsonProperty("remaining_workload")
     @JSONField(name = "remaining_workload")
-    @ApiModelProperty(value = "剩余工时", position = 31)
+    @ApiModelProperty(value = "剩余工时", position = 35)
     private BigDecimal remainingWorkload;
+
+    /**
+     * 关联客户数
+     */
+    @JsonProperty("relation_total_customer")
+    @JSONField(name = "relation_total_customer")
+    @ApiModelProperty(value = "关联客户数", position = 36)
+    private BigDecimal relationTotalCustomer;
 
     /**
      * 实际工时
      */
     @JsonProperty("actual_workload")
     @JSONField(name = "actual_workload")
-    @ApiModelProperty(value = "实际工时", position = 32)
+    @ApiModelProperty(value = "实际工时", position = 37)
     private BigDecimal actualWorkload;
 
     /**
@@ -309,7 +349,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("cur_version_name")
     @JSONField(name = "cur_version_name")
-    @ApiModelProperty(value = "当前版本名称", position = 33)
+    @ApiModelProperty(value = "当前版本名称", position = 38)
     private String curVersionName;
 
     /**
@@ -317,7 +357,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("choose_version_id")
     @JSONField(name = "choose_version_id")
-    @ApiModelProperty(value = "选择版本标识", position = 34)
+    @ApiModelProperty(value = "选择版本标识", position = 39)
     private String chooseVersionId;
 
     /**
@@ -325,7 +365,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("choose_version_name")
     @JSONField(name = "choose_version_name")
-    @ApiModelProperty(value = "选择版本名称", position = 35)
+    @ApiModelProperty(value = "选择版本名称", position = 40)
     private String chooseVersionName;
 
     /**
@@ -333,7 +373,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("attentions_imp")
     @JSONField(name = "attentions_imp")
-    @ApiModelProperty(value = "关注人", position = 36)
+    @ApiModelProperty(value = "关注人", position = 41)
     private String attentionsImp;
 
     /**
@@ -341,7 +381,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("category_id")
     @JSONField(name = "category_id")
-    @ApiModelProperty(value = "类别标识", position = 37)
+    @ApiModelProperty(value = "类别标识", position = 42)
     private String categoryId;
 
     /**
@@ -349,7 +389,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("category_name")
     @JSONField(name = "category_name")
-    @ApiModelProperty(value = "名称", position = 38)
+    @ApiModelProperty(value = "名称", position = 43)
     private String categoryName;
 
     /**
@@ -357,7 +397,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 39)
+    @ApiModelProperty(value = "建立人", position = 44)
     private String createMan;
 
     /**
@@ -366,7 +406,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 40)
+    @ApiModelProperty(value = "建立时间", position = 45)
     private Date createTime;
 
     /**
@@ -374,7 +414,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 41)
+    @ApiModelProperty(value = "标识", position = 46)
     private String id;
 
     /**
@@ -382,7 +422,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 42)
+    @ApiModelProperty(value = "名称", position = 47)
     private String name;
 
     /**
@@ -390,7 +430,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("product_id")
     @JSONField(name = "product_id")
-    @ApiModelProperty(value = "产品", position = 43)
+    @ApiModelProperty(value = "产品", position = 48)
     private String productId;
 
     /**
@@ -398,7 +438,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("product_name")
     @JSONField(name = "product_name")
-    @ApiModelProperty(value = "所属产品", position = 44)
+    @ApiModelProperty(value = "所属产品", position = 49)
     private String productName;
 
     /**
@@ -406,7 +446,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 45)
+    @ApiModelProperty(value = "更新人", position = 50)
     private String updateMan;
 
     /**
@@ -415,7 +455,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 46)
+    @ApiModelProperty(value = "更新时间", position = 51)
     private Date updateTime;
 
 
@@ -672,6 +712,24 @@ public class IdeaDTO extends DTOBase implements Serializable {
     }
 
     /**
+     * 设置 [关联产品需求数]
+     */
+    public IdeaDTO setRelationTotalIdea(BigDecimal relationTotalIdea) {
+        this.relationTotalIdea = relationTotalIdea;
+        this.modify("relation_total_idea", relationTotalIdea);
+        return this;
+    }
+
+    /**
+     * 设置 [关联工单数]
+     */
+    public IdeaDTO setRelationTotalTicket(BigDecimal relationTotalTicket) {
+        this.relationTotalTicket = relationTotalTicket;
+        this.modify("relation_total_ticket", relationTotalTicket);
+        return this;
+    }
+
+    /**
      * 设置 [工时进度]
      */
     public IdeaDTO setWorkloadSchedule(BigDecimal workloadSchedule) {
@@ -690,11 +748,38 @@ public class IdeaDTO extends DTOBase implements Serializable {
     }
 
     /**
+     * 设置 [关联工作项数]
+     */
+    public IdeaDTO setRelationTotalWorkItem(BigDecimal relationTotalWorkItem) {
+        this.relationTotalWorkItem = relationTotalWorkItem;
+        this.modify("relation_total_work_item", relationTotalWorkItem);
+        return this;
+    }
+
+    /**
+     * 设置 [关联测试用例数]
+     */
+    public IdeaDTO setRelationTotalTestCase(BigDecimal relationTotalTestCase) {
+        this.relationTotalTestCase = relationTotalTestCase;
+        this.modify("relation_total_test_case", relationTotalTestCase);
+        return this;
+    }
+
+    /**
      * 设置 [剩余工时]
      */
     public IdeaDTO setRemainingWorkload(BigDecimal remainingWorkload) {
         this.remainingWorkload = remainingWorkload;
         this.modify("remaining_workload", remainingWorkload);
+        return this;
+    }
+
+    /**
+     * 设置 [关联客户数]
+     */
+    public IdeaDTO setRelationTotalCustomer(BigDecimal relationTotalCustomer) {
+        this.relationTotalCustomer = relationTotalCustomer;
+        this.modify("relation_total_customer", relationTotalCustomer);
         return this;
     }
 

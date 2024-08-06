@@ -138,6 +138,44 @@ public interface TestCaseMapper extends BaseMapper<TestCase> {
     List<TestCase> listBaselineChooseCase(@Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
 
     /**
+     * 数据集合bi_detail分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<TestCase> searchBiDetail(IPage<TestCase> page, @Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
+    
+    /**
+     * 数据集合bi_detail查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<TestCase> listBiDetail(@Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
+
+    /**
+     * 数据集合bi_search分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<TestCase> searchBiSearch(IPage<TestCase> page, @Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
+    
+    /**
+     * 数据集合bi_search查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<TestCase> listBiSearch(@Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
+
+    /**
      * 数据集合casePerson分页查询
      * 
      * @param page
@@ -480,6 +518,25 @@ public interface TestCaseMapper extends BaseMapper<TestCase> {
     List<Map> listPriorityDistributions(@Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
 
     /**
+     * 数据集合reader分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<TestCase> searchReader(IPage<TestCase> page, @Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
+    
+    /**
+     * 数据集合reader查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<TestCase> listReader(@Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
+
+    /**
      * 数据集合recent_test_case分页查询
      * 
      * @param page
@@ -559,6 +616,25 @@ public interface TestCaseMapper extends BaseMapper<TestCase> {
     * @return
     */
     List<TestCase> findByMaintenanceId(@Param("maintenanceIds") List<String> maintenanceIds);
+
+    /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<TestCase> searchView(IPage<TestCase> page, @Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<TestCase> listView(@Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
 
     /**
      * 主键查询

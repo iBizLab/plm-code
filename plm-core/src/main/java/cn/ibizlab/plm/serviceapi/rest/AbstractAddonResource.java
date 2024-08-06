@@ -23,12 +23,14 @@ import java.util.stream.IntStream;
 import cn.ibizlab.util.domain.ImportResult;
 import cn.ibizlab.util.domain.RequestWrapper;
 import cn.ibizlab.util.domain.ResponseWrapper;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.serviceapi.dto.*;
 import cn.ibizlab.plm.serviceapi.mapping.*;
 import cn.ibizlab.plm.core.base.domain.Addon;
 import cn.ibizlab.plm.core.base.service.AddonService;
 import cn.ibizlab.plm.core.base.filter.AddonSearchContext;
 import cn.ibizlab.util.annotation.VersionCheck;
+import reactor.core.publisher.Mono;
 
 /**
  * 实体[Addon] rest实现
@@ -54,19 +56,19 @@ public abstract class AbstractAddonResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<AddonDTO>
+    * @return Mono<ResponseEntity<AddonDTO>>
     */
     @ApiOperation(value = "创建Create", tags = {"组件" },  notes = "Addon-Create ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Addon-Create-all') or hasPermission(this.addonDtoMapping.toDomain(#dto),'ibizplm-Addon-Create')")
     @PostMapping("addons")
-    public ResponseEntity<ResponseWrapper<AddonDTO>> create
+    public Mono<ResponseEntity<ResponseWrapper<AddonDTO>>>create
             (@Validated @RequestBody RequestWrapper<AddonDTO> dto) {
         ResponseWrapper<AddonDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(create(item)));
         else
             rt.set(create(dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -90,13 +92,13 @@ public abstract class AbstractAddonResource {
     *
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<AddonDTO>
+    * @return Mono<ResponseEntity<AddonDTO>>
     */
     @ApiOperation(value = "更新Update", tags = {"组件" },  notes = "Addon-Update ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Addon-Update-all') or hasPermission(this.addonService.get(#id),'ibizplm-Addon-Update')")
     @VersionCheck(entity = "addon" , versionfield = "updateTime")
     @PutMapping("addons/{id}")
-    public ResponseEntity<ResponseWrapper<AddonDTO>> updateById
+    public Mono<ResponseEntity<ResponseWrapper<AddonDTO>>>updateById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<AddonDTO> dto) {
         ResponseWrapper<AddonDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -105,7 +107,7 @@ public abstract class AbstractAddonResource {
         }
         else
             rt.set(updateById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -131,12 +133,12 @@ public abstract class AbstractAddonResource {
     *
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<AddonDTO>
+    * @return Mono<ResponseEntity<AddonDTO>>
     */
     @ApiOperation(value = "addon_authority", tags = {"组件" },  notes = "Addon-addon_authority ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Addon-addon_authority-all') or hasPermission(this.addonDtoMapping.toDomain(#dto),'ibizplm-Addon-addon_authority')")
     @PostMapping("addons/{id}/addon_authority")
-    public ResponseEntity<ResponseWrapper<AddonDTO>> addonAuthorityById
+    public Mono<ResponseEntity<ResponseWrapper<AddonDTO>>>addonAuthorityById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<AddonDTO> dto) {
         ResponseWrapper<AddonDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -145,7 +147,7 @@ public abstract class AbstractAddonResource {
         }
         else
             rt.set(addonAuthorityById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -169,19 +171,19 @@ public abstract class AbstractAddonResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<AddonDTO>
+    * @return Mono<ResponseEntity<AddonDTO>>
     */
     @ApiOperation(value = "保存Save", tags = {"组件" },  notes = "Addon-Save ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Addon-Save-all') or hasPermission(this.addonDtoMapping.toDomain(#dto),'ibizplm-Addon-Save')")
     @PostMapping("addons/save")
-    public ResponseEntity<ResponseWrapper<AddonDTO>> save
+    public Mono<ResponseEntity<ResponseWrapper<AddonDTO>>>save
             (@Validated @RequestBody RequestWrapper<AddonDTO> dto) {
         ResponseWrapper<AddonDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(save(item)));
         else
             rt.set(save(dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -205,19 +207,19 @@ public abstract class AbstractAddonResource {
     *
     * @param ownerId ownerId
     * @param dto dto
-    * @return ResponseEntity<AddonDTO>
+    * @return Mono<ResponseEntity<AddonDTO>>
     */
     @ApiOperation(value = "创建Create", tags = {"组件" },  notes = "Addon-Create ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Addon-Create-all') or hasPermission('library',#ownerId,this.addonDtoMapping.toDomain(#dto),'ibizplm-Addon-Create')")
     @PostMapping("libraries/{ownerId}/addons")
-    public ResponseEntity<ResponseWrapper<AddonDTO>> createByOwnerId
+    public Mono<ResponseEntity<ResponseWrapper<AddonDTO>>>createByOwnerId
             (@PathVariable("ownerId") String ownerId, @Validated @RequestBody RequestWrapper<AddonDTO> dto) {
         ResponseWrapper<AddonDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(createByOwnerId(ownerId, item)));
         else
             rt.set(createByOwnerId(ownerId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -244,13 +246,13 @@ public abstract class AbstractAddonResource {
     * @param ownerId ownerId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<AddonDTO>
+    * @return Mono<ResponseEntity<AddonDTO>>
     */
     @ApiOperation(value = "更新Update", tags = {"组件" },  notes = "Addon-Update ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Addon-Update-all') or hasPermission('library',#ownerId,this.addonService.get(#id),'ibizplm-Addon-Update')")
     @VersionCheck(entity = "addon" , versionfield = "updateTime")
     @PutMapping("libraries/{ownerId}/addons/{id}")
-    public ResponseEntity<ResponseWrapper<AddonDTO>> updateByOwnerIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<AddonDTO>>>updateByOwnerIdAndId
             (@PathVariable("ownerId") String ownerId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<AddonDTO> dto) {
         ResponseWrapper<AddonDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -259,7 +261,7 @@ public abstract class AbstractAddonResource {
         }
         else
             rt.set(updateByOwnerIdAndId(ownerId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -287,12 +289,12 @@ public abstract class AbstractAddonResource {
     * @param ownerId ownerId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<AddonDTO>
+    * @return Mono<ResponseEntity<AddonDTO>>
     */
     @ApiOperation(value = "addon_authority", tags = {"组件" },  notes = "Addon-addon_authority ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Addon-addon_authority-all') or hasPermission('library',#ownerId,this.addonDtoMapping.toDomain(#dto),'ibizplm-Addon-addon_authority')")
     @PostMapping("libraries/{ownerId}/addons/{id}/addon_authority")
-    public ResponseEntity<ResponseWrapper<AddonDTO>> addonAuthorityByOwnerIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<AddonDTO>>>addonAuthorityByOwnerIdAndId
             (@PathVariable("ownerId") String ownerId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<AddonDTO> dto) {
         ResponseWrapper<AddonDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -301,7 +303,7 @@ public abstract class AbstractAddonResource {
         }
         else
             rt.set(addonAuthorityByOwnerIdAndId(ownerId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -327,19 +329,19 @@ public abstract class AbstractAddonResource {
     *
     * @param ownerId ownerId
     * @param dto dto
-    * @return ResponseEntity<AddonDTO>
+    * @return Mono<ResponseEntity<AddonDTO>>
     */
     @ApiOperation(value = "保存Save", tags = {"组件" },  notes = "Addon-Save ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Addon-Save-all') or hasPermission('library',#ownerId,this.addonDtoMapping.toDomain(#dto),'ibizplm-Addon-Save')")
     @PostMapping("libraries/{ownerId}/addons/save")
-    public ResponseEntity<ResponseWrapper<AddonDTO>> saveByOwnerId
+    public Mono<ResponseEntity<ResponseWrapper<AddonDTO>>>saveByOwnerId
             (@PathVariable("ownerId") String ownerId, @Validated @RequestBody RequestWrapper<AddonDTO> dto) {
         ResponseWrapper<AddonDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(saveByOwnerId(ownerId, item)));
         else
             rt.set(saveByOwnerId(ownerId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -365,15 +367,15 @@ public abstract class AbstractAddonResource {
     * 
     *
     * @param id id
-    * @return ResponseEntity<AddonDTO>
+    * @return Mono<ResponseEntity<AddonDTO>>
     */
     @ApiOperation(value = "获取Get", tags = {"组件" },  notes = "Addon-Get ")
-    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Addon-Get-all')  or hasPermission(this.addonDtoMapping.toDomain(returnObject.body),'ibizplm-Addon-Get')")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Addon-Get-all')  or hasPermission(this.addonDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-Addon-Get')")
     @GetMapping("addons/{id}")
-    public ResponseEntity<AddonDTO> getById
+    public Mono<ResponseEntity<AddonDTO>> getById
             (@PathVariable("id") String id) {
         Addon rt = addonService.get(id);
-        return ResponseEntity.status(HttpStatus.OK).body(addonDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(addonDtoMapping.toDto(rt)));
     }
 
     /**
@@ -381,15 +383,15 @@ public abstract class AbstractAddonResource {
     * 
     *
     * @param id id
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @ApiOperation(value = "删除Remove", tags = {"组件" },  notes = "Addon-Remove ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Addon-Remove-all') or hasPermission(this.addonService.get(#id),'ibizplm-Addon-Remove')")
     @DeleteMapping("addons/{id}")
-    public ResponseEntity<Boolean> removeById
+    public Mono<ResponseEntity<Boolean>> removeById
             (@PathVariable("id") String id) {
         Boolean rt = addonService.remove(id);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -397,15 +399,15 @@ public abstract class AbstractAddonResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<Integer>
+    * @return Mono<ResponseEntity<Integer>>
     */
     @ApiOperation(value = "校验CheckKey", tags = {"组件" },  notes = "Addon-CheckKey ")
     @PostMapping("addons/check_key")
-    public ResponseEntity<Integer> checkKey
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKey
             (@Validated @RequestBody AddonDTO dto) {
         Addon domain = addonDtoMapping.toDomain(dto);
-        Integer rt = addonService.checkKey(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        CheckKeyStatus rt = addonService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -413,15 +415,15 @@ public abstract class AbstractAddonResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<AddonDTO>
+    * @return Mono<ResponseEntity<AddonDTO>>
     */
     @ApiOperation(value = "草稿GetDraft", tags = {"组件" },  notes = "Addon-GetDraft ")
     @GetMapping("addons/get_draft")
-    public ResponseEntity<AddonDTO> getDraft
+    public Mono<ResponseEntity<AddonDTO>> getDraft
             (@SpringQueryMap AddonDTO dto) {
         Addon domain = addonDtoMapping.toDomain(dto);
         Addon rt = addonService.getDraft(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(addonDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(addonDtoMapping.toDto(rt)));
     }
 
     /**
@@ -429,21 +431,21 @@ public abstract class AbstractAddonResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<AddonDTO>>
+    * @return Mono<ResponseEntity<List<AddonDTO>>>
     */
     @ApiOperation(value = "查询fetch_cur_owner_sys", tags = {"组件" },  notes = "Addon-fetch_cur_owner_sys ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Addon-fetch_cur_owner_sys-all') or hasPermission(#dto,'ibizplm-Addon-fetch_cur_owner_sys')")
     @PostMapping("addons/fetch_cur_owner_sys")
-    public ResponseEntity<List<AddonDTO>> fetchCurOwnerSys
+    public Mono<ResponseEntity<List<AddonDTO>>> fetchCurOwnerSys
             (@Validated @RequestBody AddonFilterDTO dto) {
         AddonSearchContext context = addonFilterDtoMapping.toDomain(dto);
         Page<Addon> domains = addonService.fetchCurOwnerSys(context) ;
         List<AddonDTO> list = addonDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -451,21 +453,21 @@ public abstract class AbstractAddonResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<AddonDTO>>
+    * @return Mono<ResponseEntity<List<AddonDTO>>>
     */
     @ApiOperation(value = "查询fetch_default", tags = {"组件" },  notes = "Addon-fetch_default ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Addon-fetch_default-all') or hasPermission(#dto,'ibizplm-Addon-fetch_default')")
     @PostMapping("addons/fetch_default")
-    public ResponseEntity<List<AddonDTO>> fetchDefault
+    public Mono<ResponseEntity<List<AddonDTO>>> fetchDefault
             (@Validated @RequestBody AddonFilterDTO dto) {
         AddonSearchContext context = addonFilterDtoMapping.toDomain(dto);
         Page<Addon> domains = addonService.fetchDefault(context) ;
         List<AddonDTO> list = addonDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -474,15 +476,15 @@ public abstract class AbstractAddonResource {
     *
     * @param ownerId ownerId
     * @param id id
-    * @return ResponseEntity<AddonDTO>
+    * @return Mono<ResponseEntity<AddonDTO>>
     */
     @ApiOperation(value = "获取Get", tags = {"组件" },  notes = "Addon-Get ")
-    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Addon-Get-all')  or hasPermission('library',#ownerId,this.addonDtoMapping.toDomain(returnObject.body),'ibizplm-Addon-Get')")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Addon-Get-all')  or hasPermission('library',#ownerId,this.addonDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-Addon-Get')")
     @GetMapping("libraries/{ownerId}/addons/{id}")
-    public ResponseEntity<AddonDTO> getByOwnerIdAndId
+    public Mono<ResponseEntity<AddonDTO>> getByOwnerIdAndId
             (@PathVariable("ownerId") String ownerId, @PathVariable("id") String id) {
         Addon rt = addonService.get(id);
-        return ResponseEntity.status(HttpStatus.OK).body(addonDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(addonDtoMapping.toDto(rt)));
     }
 
     /**
@@ -491,15 +493,15 @@ public abstract class AbstractAddonResource {
     *
     * @param ownerId ownerId
     * @param id id
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @ApiOperation(value = "删除Remove", tags = {"组件" },  notes = "Addon-Remove ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Addon-Remove-all') or hasPermission('library',#ownerId,this.addonService.get(#id),'ibizplm-Addon-Remove')")
     @DeleteMapping("libraries/{ownerId}/addons/{id}")
-    public ResponseEntity<Boolean> removeByOwnerIdAndId
+    public Mono<ResponseEntity<Boolean>> removeByOwnerIdAndId
             (@PathVariable("ownerId") String ownerId, @PathVariable("id") String id) {
         Boolean rt = addonService.remove(id);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -508,16 +510,16 @@ public abstract class AbstractAddonResource {
     *
     * @param ownerId ownerId
     * @param dto dto
-    * @return ResponseEntity<Integer>
+    * @return Mono<ResponseEntity<Integer>>
     */
     @ApiOperation(value = "校验CheckKey", tags = {"组件" },  notes = "Addon-CheckKey ")
     @PostMapping("libraries/{ownerId}/addons/check_key")
-    public ResponseEntity<Integer> checkKeyByOwnerId
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKeyByOwnerId
             (@PathVariable("ownerId") String ownerId, @Validated @RequestBody AddonDTO dto) {
         Addon domain = addonDtoMapping.toDomain(dto);
         domain.setOwnerId(ownerId);
-        Integer rt = addonService.checkKey(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        CheckKeyStatus rt = addonService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -526,16 +528,16 @@ public abstract class AbstractAddonResource {
     *
     * @param ownerId ownerId
     * @param dto dto
-    * @return ResponseEntity<AddonDTO>
+    * @return Mono<ResponseEntity<AddonDTO>>
     */
     @ApiOperation(value = "草稿GetDraft", tags = {"组件" },  notes = "Addon-GetDraft ")
     @GetMapping("libraries/{ownerId}/addons/get_draft")
-    public ResponseEntity<AddonDTO> getDraftByOwnerId
+    public Mono<ResponseEntity<AddonDTO>> getDraftByOwnerId
             (@PathVariable("ownerId") String ownerId, @SpringQueryMap AddonDTO dto) {
         Addon domain = addonDtoMapping.toDomain(dto);
         domain.setOwnerId(ownerId);
         Addon rt = addonService.getDraft(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(addonDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(addonDtoMapping.toDto(rt)));
     }
 
     /**
@@ -544,22 +546,22 @@ public abstract class AbstractAddonResource {
     *
     * @param ownerId ownerId
     * @param dto dto
-    * @return ResponseEntity<List<AddonDTO>>
+    * @return Mono<ResponseEntity<List<AddonDTO>>>
     */
     @ApiOperation(value = "查询fetch_cur_owner_sys", tags = {"组件" },  notes = "Addon-fetch_cur_owner_sys ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Addon-fetch_cur_owner_sys-all') or hasPermission('library',#ownerId,#dto,'ibizplm-Addon-fetch_cur_owner_sys')")
     @PostMapping("libraries/{ownerId}/addons/fetch_cur_owner_sys")
-    public ResponseEntity<List<AddonDTO>> fetchCurOwnerSysByOwnerId
+    public Mono<ResponseEntity<List<AddonDTO>>> fetchCurOwnerSysByOwnerId
             (@PathVariable("ownerId") String ownerId, @Validated @RequestBody AddonFilterDTO dto) {
         dto.setOwnerIdEQ(ownerId);
         AddonSearchContext context = addonFilterDtoMapping.toDomain(dto);
         Page<Addon> domains = addonService.fetchCurOwnerSys(context) ;
         List<AddonDTO> list = addonDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -568,88 +570,88 @@ public abstract class AbstractAddonResource {
     *
     * @param ownerId ownerId
     * @param dto dto
-    * @return ResponseEntity<List<AddonDTO>>
+    * @return Mono<ResponseEntity<List<AddonDTO>>>
     */
     @ApiOperation(value = "查询fetch_default", tags = {"组件" },  notes = "Addon-fetch_default ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Addon-fetch_default-all') or hasPermission('library',#ownerId,#dto,'ibizplm-Addon-fetch_default')")
     @PostMapping("libraries/{ownerId}/addons/fetch_default")
-    public ResponseEntity<List<AddonDTO>> fetchDefaultByOwnerId
+    public Mono<ResponseEntity<List<AddonDTO>>> fetchDefaultByOwnerId
             (@PathVariable("ownerId") String ownerId, @Validated @RequestBody AddonFilterDTO dto) {
         dto.setOwnerIdEQ(ownerId);
         AddonSearchContext context = addonFilterDtoMapping.toDomain(dto);
         Page<Addon> domains = addonService.fetchDefault(context) ;
         List<AddonDTO> list = addonDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
 
     /**
     * 批量新建组件
     * @param dtos
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-Addon-Create-all')")
     @ApiOperation(value = "批量新建组件", tags = {"组件" },  notes = "批量新建组件")
 	@PostMapping("addons/batch")
-    public ResponseEntity<Boolean> createBatch(@RequestBody List<AddonDTO> dtos) {
+    public Mono<ResponseEntity<Boolean>> createBatch(@RequestBody List<AddonDTO> dtos) {
         addonService.create(addonDtoMapping.toDomain(dtos));
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量删除组件
     * @param ids ids
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-Addon-Remove-all')")
     @ApiOperation(value = "批量删除组件", tags = {"组件" },  notes = "批量删除组件")
 	@DeleteMapping("addons/batch")
-    public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
+    public Mono<ResponseEntity<Boolean>> removeBatch(@RequestBody List<String> ids) {
         addonService.remove(ids);
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量更新组件
     * @param dtos
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-Addon-Update-all')")
     @ApiOperation(value = "批量更新组件", tags = {"组件" },  notes = "批量更新组件")
 	@PutMapping("addons/batch")
-    public ResponseEntity<Boolean> updateBatch(@RequestBody List<AddonDTO> dtos) {
+    public Mono<ResponseEntity<Boolean>> updateBatch(@RequestBody List<AddonDTO> dtos) {
         addonService.update(addonDtoMapping.toDomain(dtos));
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量保存组件
     * @param dtos
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-Addon-Save-all')")
     @ApiOperation(value = "批量保存组件", tags = {"组件" },  notes = "批量保存组件")
 	@PostMapping("addons/savebatch")
-    public ResponseEntity<Boolean> saveBatch(@RequestBody List<AddonDTO> dtos) {
+    public Mono<ResponseEntity<Boolean>> saveBatch(@RequestBody List<AddonDTO> dtos) {
         addonService.save(addonDtoMapping.toDomain(dtos));
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量导入组件
     * @param config 导入模式
     * @param ignoreError 导入中忽略错误
-    * @return ResponseEntity<ImportResult>
+    * @return Mono<ResponseEntity<ImportResult>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-Addon-Save-all')")
     @ApiOperation(value = "批量导入组件", tags = {"组件" },  notes = "批量导入组件")
 	@PostMapping("addons/import")
-    public ResponseEntity<ImportResult> importData(@RequestParam(value = "config" , required = false) String config ,@RequestParam(value = "ignoreerror", required = false, defaultValue = "true") Boolean ignoreError ,@RequestBody List<AddonDTO> dtos) {
-        return  ResponseEntity.status(HttpStatus.OK).body(addonService.importData(config,ignoreError,addonDtoMapping.toDomain(dtos)));
+    public Mono<ResponseEntity<ImportResult>> importData(@RequestParam(value = "config" , required = false) String config ,@RequestParam(value = "ignoreerror", required = false, defaultValue = "true") Boolean ignoreError ,@RequestBody List<AddonDTO> dtos) {
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(addonService.importData(config,ignoreError,addonDtoMapping.toDomain(dtos))));
     }
 
 }

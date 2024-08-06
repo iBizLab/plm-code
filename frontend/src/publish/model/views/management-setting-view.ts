@@ -216,6 +216,16 @@ export default {
           },
           {
             dedrbarGroupId: 'usrdrgroup0514569929',
+            caption: '效能度量',
+            appViewId: 'plmweb.insight_view_config_tree_exp_view',
+            sysImage: {
+              cssClass: 'fa fa-bar-chart-o',
+              glyph: 'xf080@FontAwesome',
+            },
+            id: 'insight_view',
+          },
+          {
+            dedrbarGroupId: 'usrdrgroup0514569929',
             caption: '协作空间',
             appViewId: 'plmweb.discuss_topic_config_tree_exp_view',
             sysImage: {

@@ -70,17 +70,17 @@ export default {
   appViewRefs: [
     {
       realOpenMode: 'POPUPMODAL',
-      realTitle: '新建类别',
-      refAppViewId: 'plmweb.workload_type_quick_create_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
-      realOpenMode: 'POPUPMODAL',
       realTitle: '编辑类别',
       refAppViewId: 'plmweb.workload_type_quick_edit_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '新建类别',
+      refAppViewId: 'plmweb.workload_type_quick_create_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -212,6 +212,7 @@ export default {
                 beforeItemType: 'NONE',
                 detailType: 'DEUIACTION',
                 uiactionId: 'remove@workload_type',
+                tooltip: '删除',
                 showIcon: true,
                 sysImage: {
                   cssClass: 'fa fa-trash-o',
@@ -246,6 +247,7 @@ export default {
           caption: '序号',
           codeName: 'sequence',
           columnType: 'DEFGRIDCOLUMN',
+          hideMode: 1,
           noPrivDisplayMode: 1,
           width: 100,
           widthUnit: 'PX',
@@ -326,6 +328,11 @@ export default {
         appDEMethodId: 'fetch_default',
         appDataEntityId: 'plmweb.workload_type',
         id: 'fetch',
+      },
+      moveControlAction: {
+        appDEMethodId: 'move_order',
+        appDataEntityId: 'plmweb.workload_type',
+        id: 'move',
       },
       removeControlAction: {
         appDEMethodId: 'remove',

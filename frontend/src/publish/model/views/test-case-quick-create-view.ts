@@ -341,7 +341,6 @@ export default {
                             layout: 'TABLE_24COL',
                           },
                           repeatContent: true,
-                          showCaption: true,
                           id: 'is_group',
                         },
                         {
@@ -367,7 +366,6 @@ export default {
                             layout: 'TABLE_24COL',
                           },
                           repeatContent: true,
-                          showCaption: true,
                           id: 'group_id',
                         },
                         {
@@ -394,7 +392,6 @@ export default {
                             layout: 'TABLE_24COL',
                           },
                           repeatContent: true,
-                          showCaption: true,
                           id: 'id',
                         },
                       ],
@@ -562,6 +559,7 @@ export default {
                             caption: '所属数据标识',
                             codeName: 'owner_id',
                             columnType: 'DEFGRIDCOLUMN',
+                            hideMode: 1,
                             noPrivDisplayMode: 1,
                             width: 100,
                             widthUnit: 'PX',
@@ -1181,7 +1179,6 @@ export default {
                     colMD: 24,
                     layout: 'TABLE_24COL',
                   },
-                  showCaption: true,
                   id: 'maintenance_id',
                 },
                 {
@@ -1207,7 +1204,6 @@ export default {
                     colMD: 24,
                     layout: 'TABLE_24COL',
                   },
-                  showCaption: true,
                   id: 'test_library_id',
                 },
                 {
@@ -1234,7 +1230,6 @@ export default {
                     colMD: 24,
                     layout: 'TABLE_24COL',
                   },
-                  showCaption: true,
                   id: 'suite_id',
                 },
                 {
@@ -1263,7 +1258,6 @@ export default {
                     colMD: 24,
                     layout: 'TABLE_24COL',
                   },
-                  showCaption: true,
                   id: 'id1',
                 },
                 {
@@ -1378,7 +1372,6 @@ export default {
                 colMD: 24,
                 layout: 'TABLE_24COL',
               },
-              showCaption: true,
               id: 'id',
             },
           ],

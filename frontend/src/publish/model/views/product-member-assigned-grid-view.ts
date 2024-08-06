@@ -7,7 +7,7 @@ export default {
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PRODUCT_MEMBER',
   },
-  caption: '产品成员',
+  caption: '成员',
   codeName: 'product_member_assigned_grid_view',
   appDataEntityId: 'plmweb.product_member',
   appViewEngines: [
@@ -154,6 +154,7 @@ export default {
           id: 'deuiaction1',
         },
       ],
+      toolbarStyle: 'USER',
       xdataControlName: 'grid',
       codeName: 'assigned_grid_view_toolbar',
       controlType: 'TOOLBAR',
@@ -360,7 +361,7 @@ export default {
       capLanguageRes: {
         lanResTag: 'DE.LNAME.PRODUCT_MEMBER',
       },
-      caption: '产品成员',
+      caption: '成员',
       codeName: 'assigned_grid_view_captionbar',
       controlType: 'CAPTIONBAR',
       appDataEntityId: 'plmweb.product_member',

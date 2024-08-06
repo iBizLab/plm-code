@@ -57,10 +57,10 @@ export default {
           codeName: 'duration_updateform',
           defiupdateDetails: [
             {
-              id: 'remaining_workload',
+              id: 'workload_schedule',
             },
             {
-              id: 'workload_schedule',
+              id: 'remaining_workload',
             },
           ],
           scriptCode:
@@ -422,7 +422,6 @@ export default {
                 colMD: 24,
                 layout: 'TABLE_24COL',
               },
-              showCaption: true,
               id: 'principal_id',
             },
             {
@@ -448,7 +447,6 @@ export default {
                 colMD: 24,
                 layout: 'TABLE_24COL',
               },
-              showCaption: true,
               id: 'type_id',
             },
             {
@@ -477,7 +475,6 @@ export default {
                 colMD: 24,
                 layout: 'TABLE_24COL',
               },
-              showCaption: true,
               id: 'id',
             },
           ],

@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.Attention;
 import cn.ibizlab.plm.core.base.filter.AttentionSearchContext;
 import cn.ibizlab.plm.core.prodmgmt.domain.Customer;
@@ -17,6 +18,7 @@ import cn.ibizlab.plm.core.team.domain.DiscussPost;
 import cn.ibizlab.plm.core.prodmgmt.domain.Idea;
 import cn.ibizlab.plm.core.wiki.domain.ArticlePage;
 import cn.ibizlab.plm.core.testmgmt.domain.Review;
+import cn.ibizlab.plm.core.testmgmt.domain.ReviewWizard;
 import cn.ibizlab.plm.core.testmgmt.domain.Run;
 import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
 import cn.ibizlab.plm.core.prodmgmt.domain.Ticket;
@@ -146,7 +148,7 @@ public interface AttentionService extends IService<Attention> {
     * @param et
     * @return
     */
-    Integer checkKey(Attention et);
+    CheckKeyStatus checkKey(Attention et);
 
     /**
     * 保存
@@ -233,8 +235,15 @@ public interface AttentionService extends IService<Attention> {
     */
     List<Attention> findByOwnerId(List<String> ownerIds);
     default List<Attention> findByOwnerId(String ownerId){
-        return findByOwnerId(Arrays.asList(ownerId));
+        return findByCustomer(new Customer().setId(ownerId));
     }
+
+    /**
+    * findByCustomer
+    * @param customer
+    * @return
+    */
+    List<Attention> findByCustomer(Customer customer);
 
     /**
     * removeByOwnerId
@@ -269,12 +278,26 @@ public interface AttentionService extends IService<Attention> {
     boolean saveByCustomer(Customer customer, List<Attention> list);
 
     /**
+    * findByDiscussPost
+    * @param discussPost
+    * @return
+    */
+    List<Attention> findByDiscussPost(DiscussPost discussPost);
+
+    /**
     * saveByDiscussPost
     * @param discussPost
     * @param list
     * @return
     */
     boolean saveByDiscussPost(DiscussPost discussPost, List<Attention> list);
+
+    /**
+    * findByIdea
+    * @param idea
+    * @return
+    */
+    List<Attention> findByIdea(Idea idea);
 
     /**
     * saveByIdea
@@ -285,12 +308,26 @@ public interface AttentionService extends IService<Attention> {
     boolean saveByIdea(Idea idea, List<Attention> list);
 
     /**
+    * findByPage
+    * @param articlePage
+    * @return
+    */
+    List<Attention> findByPage(ArticlePage articlePage);
+
+    /**
     * saveByPage
     * @param articlePage
     * @param list
     * @return
     */
     boolean saveByPage(ArticlePage articlePage, List<Attention> list);
+
+    /**
+    * findByReview
+    * @param review
+    * @return
+    */
+    List<Attention> findByReview(Review review);
 
     /**
     * saveByReview
@@ -301,12 +338,41 @@ public interface AttentionService extends IService<Attention> {
     boolean saveByReview(Review review, List<Attention> list);
 
     /**
+    * findByReviewWizard
+    * @param reviewWizard
+    * @return
+    */
+    List<Attention> findByReviewWizard(ReviewWizard reviewWizard);
+
+    /**
+    * saveByReviewWizard
+    * @param reviewWizard
+    * @param list
+    * @return
+    */
+    boolean saveByReviewWizard(ReviewWizard reviewWizard, List<Attention> list);
+
+    /**
+    * findByRun
+    * @param run
+    * @return
+    */
+    List<Attention> findByRun(Run run);
+
+    /**
     * saveByRun
     * @param run
     * @param list
     * @return
     */
     boolean saveByRun(Run run, List<Attention> list);
+
+    /**
+    * findByTestCase
+    * @param testCase
+    * @return
+    */
+    List<Attention> findByTestCase(TestCase testCase);
 
     /**
     * saveByTestCase
@@ -317,6 +383,13 @@ public interface AttentionService extends IService<Attention> {
     boolean saveByTestCase(TestCase testCase, List<Attention> list);
 
     /**
+    * findByTicket
+    * @param ticket
+    * @return
+    */
+    List<Attention> findByTicket(Ticket ticket);
+
+    /**
     * saveByTicket
     * @param ticket
     * @param list
@@ -325,12 +398,35 @@ public interface AttentionService extends IService<Attention> {
     boolean saveByTicket(Ticket ticket, List<Attention> list);
 
     /**
+    * findByWorkItem
+    * @param workItem
+    * @return
+    */
+    List<Attention> findByWorkItem(WorkItem workItem);
+
+    /**
     * saveByWorkItem
     * @param workItem
     * @param list
     * @return
     */
     boolean saveByWorkItem(WorkItem workItem, List<Attention> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Attention> fetchView(AttentionSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Attention> listView(AttentionSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Attention> list) {

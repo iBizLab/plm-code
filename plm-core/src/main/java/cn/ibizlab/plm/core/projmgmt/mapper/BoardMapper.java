@@ -81,12 +81,50 @@ public interface BoardMapper extends BaseMapper<Board> {
     List<Board> listCurProjectBoard(@Param("ctx") BoardSearchContext context, @Param("ew") Wrapper<Board> wrapper);
 
     /**
+     * 数据集合reader分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Board> searchReader(IPage<Board> page, @Param("ctx") BoardSearchContext context, @Param("ew") Wrapper<Board> wrapper);
+    
+    /**
+     * 数据集合reader查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Board> listReader(@Param("ctx") BoardSearchContext context, @Param("ew") Wrapper<Board> wrapper);
+
+    /**
     * 根据projectId查询
     *
     * @param projectIds
     * @return
     */
     List<Board> findByProjectId(@Param("projectIds") List<String> projectIds);
+
+    /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Board> searchView(IPage<Board> page, @Param("ctx") BoardSearchContext context, @Param("ew") Wrapper<Board> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Board> listView(@Param("ctx") BoardSearchContext context, @Param("ew") Wrapper<Board> wrapper);
 
     /**
      * 主键查询

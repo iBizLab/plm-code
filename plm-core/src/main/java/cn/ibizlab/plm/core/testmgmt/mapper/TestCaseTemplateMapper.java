@@ -59,6 +59,25 @@ public interface TestCaseTemplateMapper extends BaseMapper<TestCaseTemplate> {
     List<TestCaseTemplate> findBySuiteId(@Param("suiteIds") List<String> suiteIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<TestCaseTemplate> searchView(IPage<TestCaseTemplate> page, @Param("ctx") TestCaseTemplateSearchContext context, @Param("ew") Wrapper<TestCaseTemplate> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<TestCaseTemplate> listView(@Param("ctx") TestCaseTemplateSearchContext context, @Param("ew") Wrapper<TestCaseTemplate> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

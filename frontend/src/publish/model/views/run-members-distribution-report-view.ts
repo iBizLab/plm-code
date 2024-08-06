@@ -381,7 +381,6 @@ export default {
                   colMD: 24,
                   layout: 'TABLE_24COL',
                 },
-                showCaption: true,
                 id: 'n_plan_id_eq',
               },
               {
@@ -481,7 +480,6 @@ export default {
                   colMD: 24,
                   layout: 'TABLE_24COL',
                 },
-                showCaption: true,
                 id: 'n_executed_at_gtandeq',
               },
               {
@@ -508,7 +506,6 @@ export default {
                   colMD: 24,
                   layout: 'TABLE_24COL',
                 },
-                showCaption: true,
                 id: 'n_executed_at_ltandeq',
               },
               {

@@ -44,11 +44,19 @@ public class InsightReportDTO extends DTOBase implements Serializable {
     private String desc;
 
     /**
+     * 是否系统类型
+     */
+    @JsonProperty("is_system")
+    @JSONField(name = "is_system")
+    @ApiModelProperty(value = "是否系统类型", position = 1)
+    private Integer isSystem;
+
+    /**
      * 图表类型
      */
     @JsonProperty("chart_type")
     @JSONField(name = "chart_type")
-    @ApiModelProperty(value = "图表类型", position = 1)
+    @ApiModelProperty(value = "图表类型", position = 2)
     private String chartType;
 
     /**
@@ -56,7 +64,7 @@ public class InsightReportDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("group")
     @JSONField(name = "group")
-    @ApiModelProperty(value = "组别", position = 2)
+    @ApiModelProperty(value = "组别", position = 3)
     private String group;
 
     /**
@@ -64,7 +72,7 @@ public class InsightReportDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("categories")
     @JSONField(name = "categories")
-    @ApiModelProperty(value = "类别", position = 3)
+    @ApiModelProperty(value = "类别", position = 4)
     private String categories;
 
     /**
@@ -72,15 +80,39 @@ public class InsightReportDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("categories_name")
     @JSONField(name = "categories_name")
-    @ApiModelProperty(value = "类别", position = 4)
+    @ApiModelProperty(value = "类别", position = 5)
     private String categoriesName;
+
+    /**
+     * 模板模型
+     */
+    @JsonProperty("template_model")
+    @JSONField(name = "template_model")
+    @ApiModelProperty(value = "模板模型", position = 6)
+    private String templateModel;
+
+    /**
+     * 分组数据
+     */
+    @JsonProperty("group_data")
+    @JSONField(name = "group_data")
+    @ApiModelProperty(value = "分组数据", position = 7)
+    private Map groupData;
+
+    /**
+     * 报表部件标识
+     */
+    @JsonProperty("ctrl_id")
+    @JSONField(name = "ctrl_id")
+    @ApiModelProperty(value = "报表部件标识", position = 8)
+    private String ctrlId;
 
     /**
      * 建立人
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 5)
+    @ApiModelProperty(value = "建立人", position = 9)
     private String createMan;
 
     /**
@@ -89,7 +121,7 @@ public class InsightReportDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 6)
+    @ApiModelProperty(value = "建立时间", position = 10)
     private Date createTime;
 
     /**
@@ -97,7 +129,7 @@ public class InsightReportDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 7)
+    @ApiModelProperty(value = "标识", position = 11)
     private String id;
 
     /**
@@ -105,7 +137,7 @@ public class InsightReportDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 8)
+    @ApiModelProperty(value = "名称", position = 12)
     private String name;
 
     /**
@@ -113,7 +145,7 @@ public class InsightReportDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 9)
+    @ApiModelProperty(value = "更新人", position = 13)
     private String updateMan;
 
     /**
@@ -122,7 +154,7 @@ public class InsightReportDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 10)
+    @ApiModelProperty(value = "更新时间", position = 14)
     private Date updateTime;
 
     /**
@@ -130,8 +162,16 @@ public class InsightReportDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("view_id")
     @JSONField(name = "view_id")
-    @ApiModelProperty(value = "视图标识", position = 11)
+    @ApiModelProperty(value = "视图标识", position = 15)
     private String viewId;
+
+    /**
+     * 名称
+     */
+    @JsonProperty("view_name")
+    @JSONField(name = "view_name")
+    @ApiModelProperty(value = "名称", position = 16)
+    private String viewName;
 
 
     /**
@@ -140,6 +180,15 @@ public class InsightReportDTO extends DTOBase implements Serializable {
     public InsightReportDTO setDesc(String desc) {
         this.desc = desc;
         this.modify("desc", desc);
+        return this;
+    }
+
+    /**
+     * 设置 [是否系统类型]
+     */
+    public InsightReportDTO setIsSystem(Integer isSystem) {
+        this.isSystem = isSystem;
+        this.modify("is_system", isSystem);
         return this;
     }
 
@@ -180,6 +229,33 @@ public class InsightReportDTO extends DTOBase implements Serializable {
     }
 
     /**
+     * 设置 [模板模型]
+     */
+    public InsightReportDTO setTemplateModel(String templateModel) {
+        this.templateModel = templateModel;
+        this.modify("template_model", templateModel);
+        return this;
+    }
+
+    /**
+     * 设置 [分组数据]
+     */
+    public InsightReportDTO setGroupData(Map groupData) {
+        this.groupData = groupData;
+        this.modify("group_data", groupData);
+        return this;
+    }
+
+    /**
+     * 设置 [报表部件标识]
+     */
+    public InsightReportDTO setCtrlId(String ctrlId) {
+        this.ctrlId = ctrlId;
+        this.modify("ctrl_id", ctrlId);
+        return this;
+    }
+
+    /**
      * 设置 [名称]
      */
     public InsightReportDTO setName(String name) {
@@ -194,6 +270,15 @@ public class InsightReportDTO extends DTOBase implements Serializable {
     public InsightReportDTO setViewId(String viewId) {
         this.viewId = viewId;
         this.modify("view_id", viewId);
+        return this;
+    }
+
+    /**
+     * 设置 [名称]
+     */
+    public InsightReportDTO setViewName(String viewName) {
+        this.viewName = viewName;
+        this.modify("view_name", viewName);
         return this;
     }
 

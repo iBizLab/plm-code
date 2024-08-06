@@ -11,6 +11,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItemState;
 import cn.ibizlab.plm.core.projmgmt.filter.WorkItemStateSearchContext;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItemType;
@@ -140,7 +141,7 @@ public interface WorkItemStateService extends IService<WorkItemState> {
     * @param et
     * @return
     */
-    Integer checkKey(WorkItemState et);
+    CheckKeyStatus checkKey(WorkItemState et);
 
     /**
     * 保存
@@ -189,8 +190,15 @@ public interface WorkItemStateService extends IService<WorkItemState> {
     */
     List<WorkItemState> findByWorkItemTypeId(List<String> workItemTypeIds);
     default List<WorkItemState> findByWorkItemTypeId(String workItemTypeId){
-        return findByWorkItemTypeId(Arrays.asList(workItemTypeId));
+        return findByWorkItemType(new WorkItemType().setId(workItemTypeId));
     }
+
+    /**
+    * findByWorkItemType
+    * @param workItemType
+    * @return
+    */
+    List<WorkItemState> findByWorkItemType(WorkItemType workItemType);
 
     /**
     * removeByWorkItemTypeId
@@ -223,6 +231,22 @@ public interface WorkItemStateService extends IService<WorkItemState> {
     * @return
     */
     boolean saveByWorkItemType(WorkItemType workItemType, List<WorkItemState> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<WorkItemState> fetchView(WorkItemStateSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<WorkItemState> listView(WorkItemStateSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<WorkItemState> list) {

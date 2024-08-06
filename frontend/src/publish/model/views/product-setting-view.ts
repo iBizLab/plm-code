@@ -80,7 +80,6 @@ export default {
                 colMD: 24,
                 layout: 'TABLE_24COL',
               },
-              showCaption: true,
               id: 'id',
             },
           ],
@@ -145,6 +144,12 @@ export default {
           caption: '标签管理',
           appViewId: 'plmweb.product_tag_tag_grid_view',
           id: 'tag',
+        },
+        {
+          dedrbarGroupId: 'usrdrgroup0314526198',
+          caption: '需求模版',
+          appViewId: 'plmweb.idea_template_all_grid_view',
+          id: 'idea_template',
         },
         {
           dedrbarGroupId: 'usrdrgroup0314526198',

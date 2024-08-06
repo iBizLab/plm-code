@@ -102,6 +102,8 @@ public class MemberSearchContext extends QueryWrapperContext<Member> {
             this.getFilter().eq("id",contextParentKey);
         if(Entities.GROUP.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("owner_id",contextParentKey);
+        if(Entities.ARTICLE_PAGE.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("owner_id",contextParentKey);
         if(Entities.PROJECT.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("owner_id",contextParentKey);
     }

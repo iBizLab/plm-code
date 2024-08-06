@@ -623,20 +623,6 @@ export default {
         enableAutoSave: true,
         deformItemUpdates: [
           {
-            codeName: 'remaining_update',
-            defiupdateDetails: [
-              {
-                id: 'workload_schedule',
-              },
-            ],
-            scriptCode:
-              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload; \r\nvar remaining_workload = form_data.remaining_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n}\r\nvar remaining = 0;\r\nif(remaining_workload){\r\n\tremaining = Number(remaining_workload);\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}\r\n',
-            customCode: true,
-            showBusyIndicator: false,
-            name: '剩余工时表单项更新',
-            id: 'remaining_update',
-          },
-          {
             codeName: 'estimated_update',
             defiupdateDetails: [
               {
@@ -652,6 +638,20 @@ export default {
             showBusyIndicator: false,
             name: '预估工时表单项更新',
             id: 'estimated_update',
+          },
+          {
+            codeName: 'remaining_update',
+            defiupdateDetails: [
+              {
+                id: 'workload_schedule',
+              },
+            ],
+            scriptCode:
+              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload; \r\nvar remaining_workload = form_data.remaining_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n}\r\nvar remaining = 0;\r\nif(remaining_workload){\r\n\tremaining = Number(remaining_workload);\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}\r\n',
+            customCode: true,
+            showBusyIndicator: false,
+            name: '剩余工时表单项更新',
+            id: 'remaining_update',
           },
         ],
         deformPages: [
@@ -802,6 +802,13 @@ export default {
                     codeName: 'state',
                     detailStyle: 'DEFAULT',
                     detailType: 'FORMITEM',
+                    controlAttributes: [
+                      {
+                        attrName: 'clearable',
+                        attrValue: 'false',
+                        id: 'set_state_logic',
+                      },
+                    ],
                     layoutPos: {
                       colLG: 6,
                       colMD: 6,
@@ -892,7 +899,6 @@ export default {
                       colMD: 6,
                       layout: 'TABLE_24COL',
                     },
-                    showCaption: true,
                     id: 'maintenance_id',
                   },
                   {
@@ -919,7 +925,6 @@ export default {
                       colMD: 6,
                       layout: 'TABLE_24COL',
                     },
-                    showCaption: true,
                     id: 'is_deleted',
                   },
                   {
@@ -1148,7 +1153,6 @@ export default {
                                       layout: 'TABLE_24COL',
                                     },
                                     repeatContent: true,
-                                    showCaption: true,
                                     id: 'is_group',
                                   },
                                   {
@@ -1174,7 +1178,6 @@ export default {
                                       layout: 'TABLE_24COL',
                                     },
                                     repeatContent: true,
-                                    showCaption: true,
                                     id: 'group_id',
                                   },
                                   {
@@ -1201,7 +1204,6 @@ export default {
                                       layout: 'TABLE_24COL',
                                     },
                                     repeatContent: true,
-                                    showCaption: true,
                                     id: 'id',
                                   },
                                 ],
@@ -1369,6 +1371,7 @@ export default {
                                       caption: '所属数据标识',
                                       codeName: 'owner_id',
                                       columnType: 'DEFGRIDCOLUMN',
+                                      hideMode: 1,
                                       noPrivDisplayMode: 1,
                                       width: 100,
                                       widthUnit: 'PX',
@@ -1740,6 +1743,7 @@ export default {
                         caption: '产品需求',
                         codeName: 'tabpanel1_product_idea',
                         counterId: 'test_case_re_idea',
+                        counterMode: 1,
                         detailStyle: 'DEFAULT',
                         detailType: 'TABPAGE',
                         appCounterRefId: '2e738c8baf09274f2233bd1b89455aee',
@@ -1801,6 +1805,7 @@ export default {
                         caption: '工作项',
                         codeName: 'tabpanel1_work_item',
                         counterId: 'test_case_re_work_item',
+                        counterMode: 1,
                         detailStyle: 'DEFAULT',
                         detailType: 'TABPAGE',
                         appCounterRefId: '2e738c8baf09274f2233bd1b89455aee',
@@ -1862,6 +1867,7 @@ export default {
                         caption: '缺陷',
                         codeName: 'tabpanel1_bug',
                         counterId: 'test_case_re_bug',
+                        counterMode: 1,
                         detailStyle: 'DEFAULT',
                         detailType: 'TABPAGE',
                         appCounterRefId: '2e738c8baf09274f2233bd1b89455aee',
@@ -1891,9 +1897,10 @@ export default {
                             id: 'tabpanel1_comment_history_druipart',
                           },
                         ],
-                        caption: '评审历史',
+                        caption: '执行历史',
                         codeName: 'tabpanel1_comment_history',
                         counterId: 'test_case_re_run_history',
+                        counterMode: 1,
                         detailStyle: 'DEFAULT',
                         detailType: 'TABPAGE',
                         appCounterRefId: '2e738c8baf09274f2233bd1b89455aee',
@@ -1954,6 +1961,7 @@ export default {
                         caption: '版本记录',
                         codeName: 'tabpanel1_version',
                         counterId: 'test_case_version',
+                        counterMode: 1,
                         detailStyle: 'DEFAULT',
                         detailType: 'TABPAGE',
                         appCounterRefId: '2e738c8baf09274f2233bd1b89455aee',
@@ -2101,7 +2109,6 @@ export default {
                               colMD: 24,
                               layout: 'TABLE_24COL',
                             },
-                            showCaption: true,
                             id: 'suite_id',
                           },
                         ],
@@ -2186,7 +2193,6 @@ export default {
                               colMD: 24,
                               layout: 'TABLE_24COL',
                             },
-                            showCaption: true,
                             id: 'cur_version_id',
                           },
                           {
@@ -2278,11 +2284,48 @@ export default {
                             detailStyle: 'DEFAULT',
                             detailType: 'FORMITEM',
                             layoutPos: {
-                              colMD: 24,
+                              colLG: 21,
+                              colMD: 21,
                               layout: 'TABLE_24COL',
                             },
                             showCaption: true,
                             id: 'review_result_state',
+                          },
+                          {
+                            layout: {
+                              columnCount: 24,
+                              layout: 'TABLE_24COL',
+                            },
+                            deformDetails: [
+                              {
+                                actionType: 'UIACTION',
+                                uiactionId: 'check_review_history@test_case',
+                                tooltip: '评审历史',
+                                uiactionTarget: 'NONE',
+                                caption: '评审历史',
+                                codeName: 'button4',
+                                detailStyle: 'STYLE2',
+                                detailType: 'BUTTON',
+                                layoutPos: {
+                                  colMD: 24,
+                                  layout: 'TABLE_24COL',
+                                },
+                                sysImage: {
+                                  cssClass: 'fa fa-arrow-circle-o-right',
+                                  glyph: 'xf18e@FontAwesome',
+                                },
+                                id: 'button4',
+                              },
+                            ],
+                            codeName: 'grouppanel13',
+                            detailStyle: 'DEFAULT',
+                            detailType: 'GROUPPANEL',
+                            layoutPos: {
+                              colLG: 3,
+                              colMD: 3,
+                              layout: 'TABLE_24COL',
+                            },
+                            id: 'grouppanel13',
                           },
                         ],
                         caption: '变更',
@@ -2504,14 +2547,17 @@ export default {
                           },
                           {
                             dataType: 6,
-                            enableCond: 3,
                             labelPos: 'LEFT',
                             labelWidth: 130,
                             noPrivDisplayMode: 1,
                             appDEFieldId: 'actual_workload',
                             editor: {
-                              contentType: 'RAW',
-                              editorType: 'RAW',
+                              precision: 1,
+                              editorParams: {
+                                precision: '1',
+                                minvalue: '0',
+                              },
+                              editorType: 'NUMBER',
                               valueType: 'SIMPLE',
                               editable: true,
                               id: 'actual_workload',
@@ -2869,7 +2915,6 @@ export default {
                               colMD: 24,
                               layout: 'TABLE_24COL',
                             },
-                            showCaption: true,
                             id: 'test_library_id',
                           },
                         ],
@@ -3000,6 +3045,55 @@ export default {
                     },
                     id: 'baseline',
                   },
+                  {
+                    layout: {
+                      columnCount: 24,
+                      layout: 'TABLE_24COL',
+                    },
+                    deformDetails: [
+                      {
+                        appViewId: 'plmweb.review_content_list_view',
+                        parentDataJO: {
+                          srfparentdename: 'TEST_CASE',
+                          SRFPARENTTYPE: 'CUSTOM',
+                        },
+                        caption: '评审历史',
+                        codeName: 'druipart5',
+                        detailStyle: 'DEFAULT',
+                        detailType: 'DRUIPART',
+                        layoutPos: {
+                          colMD: 24,
+                          layout: 'TABLE_24COL',
+                        },
+                        showCaption: true,
+                        id: 'druipart5',
+                      },
+                    ],
+                    codeName: 'grouppanel11',
+                    detailStyle: 'DEFAULT',
+                    detailType: 'GROUPPANEL',
+                    defdgroupLogics: [
+                      {
+                        logicCat: 'PANELVISIBLE',
+                        relatedDetailNames: ['id'],
+                        groupOP: 'AND',
+                        defdlogics: [
+                          {
+                            condOP: 'ISNULL',
+                            defdname: 'id',
+                            logicType: 'SINGLE',
+                          },
+                        ],
+                        logicType: 'GROUP',
+                        id: '表单成员[grouppanel11][面板显示]逻辑',
+                      },
+                    ],
+                    layoutPos: {
+                      colMD: 24,
+                      layout: 'TABLE_24COL',
+                    },
+                    id: 'grouppanel11',
+                  },
                 ],
                 codeName: 'right_grouppanel',
                 detailStyle: 'DEFAULT',
@@ -3037,7 +3131,6 @@ export default {
                   colMD: 24,
                   layout: 'TABLE_24COL',
                 },
-                showCaption: true,
                 id: 'id',
               },
             ],
@@ -3069,6 +3162,7 @@ export default {
               id: 'plmweb.test_case_re_counters',
             },
             tag: '2e738c8baf09274f2233bd1b89455aee',
+            uniqueTag: 'test_case_re_counters',
             id: '2e738c8baf09274f2233bd1b89455aee',
           },
         ],

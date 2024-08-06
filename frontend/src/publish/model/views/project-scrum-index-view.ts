@@ -113,6 +113,7 @@ export default {
                       editorParams: {
                         ENABLESEARCH: 'TRUE',
                         AC: 'TRUE',
+                        'SRFNAVPARAM.project': '%project%',
                         SUFFIX: 'chevron-expand-outline',
                         PICKUPVIEW: 'TRUE',
                       },
@@ -122,6 +123,13 @@ export default {
                       predefinedType: 'FIELD_TEXT_DYNAMIC',
                       valueType: 'SIMPLE',
                       editable: true,
+                      navigateParams: [
+                        {
+                          key: 'project',
+                          value: 'project',
+                          id: 'project',
+                        },
+                      ],
                       id: 'route_picker',
                     },
                     allowEmpty: true,
@@ -377,7 +385,6 @@ export default {
                   colMD: 24,
                   layout: 'TABLE_24COL',
                 },
-                showCaption: true,
                 id: 'id',
               },
             ],
@@ -501,7 +508,7 @@ export default {
             counterId: 'work_item',
             counterMode: 1,
             enableMode: 'COUNT_GTE_ZERO',
-            appViewId: 'plmweb.work_item_srcum_tree_grid_view',
+            appViewId: 'plmweb.work_item_dyna_srcum_tree_grid_view',
             id: 'work_item',
           },
           {
@@ -510,7 +517,7 @@ export default {
             counterId: 'requirement',
             counterMode: 1,
             enableMode: 'COUNT_GTE_ZERO',
-            appViewId: 'plmweb.work_item_requirement_tree_grid_view',
+            appViewId: 'plmweb.work_item_scrum_require_tree_grid_view',
             id: 'requirement',
           },
           {
@@ -645,6 +652,7 @@ export default {
               srfdeid: 'PROJECT',
             },
             tag: '66ac10a2d294987993f581b2c962e011',
+            uniqueTag: 'scrum_project_add_on_counters',
             id: '66ac10a2d294987993f581b2c962e011',
           },
         ],
@@ -653,6 +661,9 @@ export default {
         controlType: 'DRBAR',
         appDataEntityId: 'plmweb.project',
         controlParam: {
+          ctrlParams: {
+            SHOWMORE: 'true',
+          },
           id: 'drbar',
         },
         sysPFPluginId: 'drbar_ex',

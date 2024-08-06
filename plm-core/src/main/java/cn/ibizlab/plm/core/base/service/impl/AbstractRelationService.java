@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.base.domain.Relation;
@@ -28,10 +29,14 @@ import cn.ibizlab.plm.core.base.domain.Baseline;
 import cn.ibizlab.plm.core.base.service.BaselineService;
 import cn.ibizlab.plm.core.prodmgmt.domain.Idea;
 import cn.ibizlab.plm.core.prodmgmt.service.IdeaService;
+import cn.ibizlab.plm.core.projmgmt.domain.Release;
+import cn.ibizlab.plm.core.projmgmt.service.ReleaseService;
 import cn.ibizlab.plm.core.testmgmt.domain.Review;
 import cn.ibizlab.plm.core.testmgmt.service.ReviewService;
 import cn.ibizlab.plm.core.testmgmt.domain.ReviewContentExtend;
 import cn.ibizlab.plm.core.testmgmt.service.ReviewContentExtendService;
+import cn.ibizlab.plm.core.projmgmt.domain.Sprint;
+import cn.ibizlab.plm.core.projmgmt.service.SprintService;
 import cn.ibizlab.plm.core.prodmgmt.domain.Customer;
 import cn.ibizlab.plm.core.prodmgmt.service.CustomerService;
 import cn.ibizlab.plm.core.wiki.domain.ArticlePage;
@@ -65,11 +70,19 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
 
     @Autowired
     @Lazy
+    protected ReleaseService releaseService;
+
+    @Autowired
+    @Lazy
     protected ReviewService reviewService;
 
     @Autowired
     @Lazy
     protected ReviewContentExtendService reviewContentExtendService;
+
+    @Autowired
+    @Lazy
+    protected SprintService sprintService;
 
     @Autowired
     @Lazy
@@ -173,16 +186,16 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
         return et;
     }
 	
-    public Integer checkKey(Relation et) {
+    public CheckKeyStatus checkKey(Relation et) {
         if(ObjectUtils.isEmpty(et.getId()))
             et.setId((String)et.getDefaultKey(true));
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Relation>lambdaQuery().eq(Relation::getId, et.getId()))>0)?1:0;
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Relation>lambdaQuery().eq(Relation::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(Relation et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -232,6 +245,21 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
 
    public List<Relation> listAll(RelationSearchContext context) {
         List<Relation> list = baseMapper.listAll(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Relation> fetchDependencyWorkItems(RelationSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("RELATION_TYPE,ASC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Relation> pages=baseMapper.searchDependencyWorkItems(context.getPages(),context,context.getSelectCond());
+        List<Relation> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Relation> listDependencyWorkItems(RelationSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("RELATION_TYPE,ASC");
+        List<Relation> list = baseMapper.listDependencyWorkItems(context,context.getSelectCond());
         return list;
    }
 	
@@ -509,6 +537,10 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
         return list;	
 	}
 
+	public List<Relation> findByPrincipalBaseline(Baseline baseline){
+        List<Relation> list = findByPrincipalId(Arrays.asList(baseline.getId()));
+		return list;
+	}
 	public boolean removeByPrincipalId(String principalId){
         return this.remove(Wrappers.<Relation>lambdaQuery().eq(Relation::getPrincipalId,principalId));
 	}
@@ -519,8 +551,8 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
 	public boolean saveByPrincipalBaseline(Baseline baseline, List<Relation> list){
         if(list==null)
             return true;
-        Map<String,Relation> before = findByPrincipalId(baseline.getId()).stream().collect(Collectors.toMap(Relation::getId,e->e));
 
+        Map<String,Relation> before = findByPrincipalBaseline(baseline).stream().collect(Collectors.toMap(Relation::getId,e->e));
         List<Relation> update = new ArrayList<>();
         List<Relation> create = new ArrayList<>();
 
@@ -548,11 +580,15 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
             return true;
 			
 	}
+	public List<Relation> findByPrincipalIdea(Idea idea){
+        List<Relation> list = findByPrincipalId(Arrays.asList(idea.getId()));
+		return list;
+	}
 	public boolean saveByPrincipalIdea(Idea idea, List<Relation> list){
         if(list==null)
             return true;
-        Map<String,Relation> before = findByPrincipalId(idea.getId()).stream().collect(Collectors.toMap(Relation::getId,e->e));
 
+        Map<String,Relation> before = findByPrincipalIdea(idea).stream().collect(Collectors.toMap(Relation::getId,e->e));
         List<Relation> update = new ArrayList<>();
         List<Relation> create = new ArrayList<>();
 
@@ -580,11 +616,51 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
             return true;
 			
 	}
+	public List<Relation> findByRelationRelease(Release release){
+        List<Relation> list = findByPrincipalId(Arrays.asList(release.getId()));
+		return list;
+	}
+	public boolean saveByRelationRelease(Release release, List<Relation> list){
+        if(list==null)
+            return true;
+
+        Map<String,Relation> before = findByRelationRelease(release).stream().collect(Collectors.toMap(Relation::getId,e->e));
+        List<Relation> update = new ArrayList<>();
+        List<Relation> create = new ArrayList<>();
+
+        for(Relation sub:list) {
+            sub.setPrincipalId(release.getId());
+            sub.setRelationRelease(release);
+            if(ObjectUtils.isEmpty(sub.getId()))
+                before.values().stream()
+                        .filter(e->ObjectUtils.nullSafeEquals(sub.getDefaultKey(true),e.getDefaultKey(true)))
+                        .findFirst().ifPresent(e->sub.setId(e.getId()));
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
+	public List<Relation> findByPrincipalReview(Review review){
+        List<Relation> list = findByPrincipalId(Arrays.asList(review.getId()));
+		return list;
+	}
 	public boolean saveByPrincipalReview(Review review, List<Relation> list){
         if(list==null)
             return true;
-        Map<String,Relation> before = findByPrincipalId(review.getId()).stream().collect(Collectors.toMap(Relation::getId,e->e));
 
+        Map<String,Relation> before = findByPrincipalReview(review).stream().collect(Collectors.toMap(Relation::getId,e->e));
         List<Relation> update = new ArrayList<>();
         List<Relation> create = new ArrayList<>();
 
@@ -617,6 +693,10 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
         return list;	
 	}
 
+	public List<Relation> findByReviewContentExtend(ReviewContentExtend reviewContentExtend){
+        List<Relation> list = findById(Arrays.asList(reviewContentExtend.getId()));
+		return list;
+	}
 	public boolean removeById(String id){
         return this.remove(Wrappers.<Relation>lambdaQuery().eq(Relation::getId,id));
 	}
@@ -627,8 +707,8 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
 	public boolean saveByReviewContentExtend(ReviewContentExtend reviewContentExtend, List<Relation> list){
         if(list==null)
             return true;
-        Map<String,Relation> before = findById(reviewContentExtend.getId()).stream().collect(Collectors.toMap(Relation::getId,e->e));
 
+        Map<String,Relation> before = findByReviewContentExtend(reviewContentExtend).stream().collect(Collectors.toMap(Relation::getId,e->e));
         List<Relation> update = new ArrayList<>();
         List<Relation> create = new ArrayList<>();
 
@@ -656,11 +736,51 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
             return true;
 			
 	}
+	public List<Relation> findByPrincipalSprint(Sprint sprint){
+        List<Relation> list = findByPrincipalId(Arrays.asList(sprint.getId()));
+		return list;
+	}
+	public boolean saveByPrincipalSprint(Sprint sprint, List<Relation> list){
+        if(list==null)
+            return true;
+
+        Map<String,Relation> before = findByPrincipalSprint(sprint).stream().collect(Collectors.toMap(Relation::getId,e->e));
+        List<Relation> update = new ArrayList<>();
+        List<Relation> create = new ArrayList<>();
+
+        for(Relation sub:list) {
+            sub.setPrincipalId(sprint.getId());
+            sub.setPrincipalSprint(sprint);
+            if(ObjectUtils.isEmpty(sub.getId()))
+                before.values().stream()
+                        .filter(e->ObjectUtils.nullSafeEquals(sub.getDefaultKey(true),e.getDefaultKey(true)))
+                        .findFirst().ifPresent(e->sub.setId(e.getId()));
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
 	public List<Relation> findByTargetId(List<String> targetIds){
         List<Relation> list = baseMapper.findByTargetId(targetIds);
         return list;	
 	}
 
+	public List<Relation> findByTargetCustomer(Customer customer){
+        List<Relation> list = findByTargetId(Arrays.asList(customer.getId()));
+		return list;
+	}
 	public boolean removeByTargetId(String targetId){
         return this.remove(Wrappers.<Relation>lambdaQuery().eq(Relation::getTargetId,targetId));
 	}
@@ -671,8 +791,8 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
 	public boolean saveByTargetCustomer(Customer customer, List<Relation> list){
         if(list==null)
             return true;
-        Map<String,Relation> before = findByTargetId(customer.getId()).stream().collect(Collectors.toMap(Relation::getId,e->e));
 
+        Map<String,Relation> before = findByTargetCustomer(customer).stream().collect(Collectors.toMap(Relation::getId,e->e));
         List<Relation> update = new ArrayList<>();
         List<Relation> create = new ArrayList<>();
 
@@ -700,11 +820,15 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
             return true;
 			
 	}
+	public List<Relation> findByTargetIdea(Idea idea){
+        List<Relation> list = findByTargetId(Arrays.asList(idea.getId()));
+		return list;
+	}
 	public boolean saveByTargetIdea(Idea idea, List<Relation> list){
         if(list==null)
             return true;
-        Map<String,Relation> before = findByTargetId(idea.getId()).stream().collect(Collectors.toMap(Relation::getId,e->e));
 
+        Map<String,Relation> before = findByTargetIdea(idea).stream().collect(Collectors.toMap(Relation::getId,e->e));
         List<Relation> update = new ArrayList<>();
         List<Relation> create = new ArrayList<>();
 
@@ -732,11 +856,15 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
             return true;
 			
 	}
+	public List<Relation> findByTargetPage(ArticlePage articlePage){
+        List<Relation> list = findByTargetId(Arrays.asList(articlePage.getId()));
+		return list;
+	}
 	public boolean saveByTargetPage(ArticlePage articlePage, List<Relation> list){
         if(list==null)
             return true;
-        Map<String,Relation> before = findByTargetId(articlePage.getId()).stream().collect(Collectors.toMap(Relation::getId,e->e));
 
+        Map<String,Relation> before = findByTargetPage(articlePage).stream().collect(Collectors.toMap(Relation::getId,e->e));
         List<Relation> update = new ArrayList<>();
         List<Relation> create = new ArrayList<>();
 
@@ -764,11 +892,15 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
             return true;
 			
 	}
+	public List<Relation> findByTargetProductPlanCategory(ProductPlan productPlan){
+        List<Relation> list = findByTargetId(Arrays.asList(productPlan.getId()));
+		return list;
+	}
 	public boolean saveByTargetProductPlanCategory(ProductPlan productPlan, List<Relation> list){
         if(list==null)
             return true;
-        Map<String,Relation> before = findByTargetId(productPlan.getId()).stream().collect(Collectors.toMap(Relation::getId,e->e));
 
+        Map<String,Relation> before = findByTargetProductPlanCategory(productPlan).stream().collect(Collectors.toMap(Relation::getId,e->e));
         List<Relation> update = new ArrayList<>();
         List<Relation> create = new ArrayList<>();
 
@@ -796,11 +928,15 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
             return true;
 			
 	}
+	public List<Relation> findByTargetTestCase(TestCase testCase){
+        List<Relation> list = findByTargetId(Arrays.asList(testCase.getId()));
+		return list;
+	}
 	public boolean saveByTargetTestCase(TestCase testCase, List<Relation> list){
         if(list==null)
             return true;
-        Map<String,Relation> before = findByTargetId(testCase.getId()).stream().collect(Collectors.toMap(Relation::getId,e->e));
 
+        Map<String,Relation> before = findByTargetTestCase(testCase).stream().collect(Collectors.toMap(Relation::getId,e->e));
         List<Relation> update = new ArrayList<>();
         List<Relation> create = new ArrayList<>();
 
@@ -828,11 +964,15 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
             return true;
 			
 	}
+	public List<Relation> findByTargetTicket(Ticket ticket){
+        List<Relation> list = findByTargetId(Arrays.asList(ticket.getId()));
+		return list;
+	}
 	public boolean saveByTargetTicket(Ticket ticket, List<Relation> list){
         if(list==null)
             return true;
-        Map<String,Relation> before = findByTargetId(ticket.getId()).stream().collect(Collectors.toMap(Relation::getId,e->e));
 
+        Map<String,Relation> before = findByTargetTicket(ticket).stream().collect(Collectors.toMap(Relation::getId,e->e));
         List<Relation> update = new ArrayList<>();
         List<Relation> create = new ArrayList<>();
 
@@ -860,11 +1000,15 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
             return true;
 			
 	}
+	public List<Relation> findByTargetWorkItem(WorkItem workItem){
+        List<Relation> list = findByTargetId(Arrays.asList(workItem.getId()));
+		return list;
+	}
 	public boolean saveByTargetWorkItem(WorkItem workItem, List<Relation> list){
         if(list==null)
             return true;
-        Map<String,Relation> before = findByTargetId(workItem.getId()).stream().collect(Collectors.toMap(Relation::getId,e->e));
 
+        Map<String,Relation> before = findByTargetWorkItem(workItem).stream().collect(Collectors.toMap(Relation::getId,e->e));
         List<Relation> update = new ArrayList<>();
         List<Relation> create = new ArrayList<>();
 
@@ -892,11 +1036,15 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
             return true;
 			
 	}
+	public List<Relation> findByPrincipalTestCase(TestCase testCase){
+        List<Relation> list = findByPrincipalId(Arrays.asList(testCase.getId()));
+		return list;
+	}
 	public boolean saveByPrincipalTestCase(TestCase testCase, List<Relation> list){
         if(list==null)
             return true;
-        Map<String,Relation> before = findByPrincipalId(testCase.getId()).stream().collect(Collectors.toMap(Relation::getId,e->e));
 
+        Map<String,Relation> before = findByPrincipalTestCase(testCase).stream().collect(Collectors.toMap(Relation::getId,e->e));
         List<Relation> update = new ArrayList<>();
         List<Relation> create = new ArrayList<>();
 
@@ -924,11 +1072,15 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
             return true;
 			
 	}
+	public List<Relation> findByPrincipalTestPlan(TestPlan testPlan){
+        List<Relation> list = findByPrincipalId(Arrays.asList(testPlan.getId()));
+		return list;
+	}
 	public boolean saveByPrincipalTestPlan(TestPlan testPlan, List<Relation> list){
         if(list==null)
             return true;
-        Map<String,Relation> before = findByPrincipalId(testPlan.getId()).stream().collect(Collectors.toMap(Relation::getId,e->e));
 
+        Map<String,Relation> before = findByPrincipalTestPlan(testPlan).stream().collect(Collectors.toMap(Relation::getId,e->e));
         List<Relation> update = new ArrayList<>();
         List<Relation> create = new ArrayList<>();
 
@@ -956,11 +1108,15 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
             return true;
 			
 	}
+	public List<Relation> findByPrincipalWorkItem(WorkItem workItem){
+        List<Relation> list = findByPrincipalId(Arrays.asList(workItem.getId()));
+		return list;
+	}
 	public boolean saveByPrincipalWorkItem(WorkItem workItem, List<Relation> list){
         if(list==null)
             return true;
-        Map<String,Relation> before = findByPrincipalId(workItem.getId()).stream().collect(Collectors.toMap(Relation::getId,e->e));
 
+        Map<String,Relation> before = findByPrincipalWorkItem(workItem).stream().collect(Collectors.toMap(Relation::getId,e->e));
         List<Relation> update = new ArrayList<>();
         List<Relation> create = new ArrayList<>();
 
@@ -988,6 +1144,17 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
             return true;
 			
 	}
+   public Page<Relation> fetchView(RelationSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Relation> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<Relation> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Relation> listView(RelationSearchContext context) {
+        List<Relation> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(Relation et) {
         if(Entities.BASELINE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
@@ -996,11 +1163,17 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
         if(Entities.IDEA.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
             et.setPrincipalId((String)et.getContextParentKey());
         }
+        if(Entities.RELEASE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setPrincipalId((String)et.getContextParentKey());
+        }
         if(Entities.REVIEW.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
             et.setPrincipalId((String)et.getContextParentKey());
         }
         if(Entities.REVIEW_CONTENT_EXTEND.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
             et.setId((String)et.getContextParentKey());
+        }
+        if(Entities.SPRINT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setPrincipalId((String)et.getContextParentKey());
         }
         if(Entities.CUSTOMER.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
             et.setTargetId((String)et.getContextParentKey());

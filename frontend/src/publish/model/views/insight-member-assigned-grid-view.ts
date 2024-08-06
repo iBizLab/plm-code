@@ -1,12 +1,11 @@
 export default {
-  gridRowActiveMode: 1,
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'assigned_grid_view',
   deviewId: '3BC2CB00-0067-4F55-8328-20B6A3187F02',
   accUserMode: 2,
   capLanguageRes: {
-    lanResTag: 'DE.LNAME.INSIGHT_MEMBER',
+    lanResTag: 'PAGE.CAPTION.INSIGHT_MEMBER.ASSIGNED_GRID_VIEW',
   },
   caption: '视图成员',
   codeName: 'insight_member_assigned_grid_view',
@@ -42,12 +41,14 @@ export default {
           },
         ],
         newDataAppView: {
+          openMode: 'POPUPMODAL',
           refAppViewId: 'plmweb.insight_member_edit_view',
         },
         enableBatchAdd: true,
         appDataEntityId: 'plmweb.insight_member',
         appUILogicRefViews: [
           {
+            openMode: 'POPUPMODAL',
             refAppViewId: 'plmweb.insight_member_edit_view',
           },
           {
@@ -86,6 +87,14 @@ export default {
       id: 'opendata',
     },
   ],
+  appViewParams: [
+    {
+      key: 'PROPERTYMAP',
+      value: 'display_name:name',
+      name: 'PROPERTYMAP',
+      id: 'propertymap',
+    },
+  ],
   appViewRefs: [
     {
       realTitle: '效能成员数据重定向视图',
@@ -97,6 +106,8 @@ export default {
       id: 'editdata',
     },
     {
+      openMode: 'POPUPMODAL',
+      realOpenMode: 'POPUPMODAL',
       realTitle: '效能成员编辑视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.INSIGHT_MEMBER.EDITVIEW',
@@ -143,6 +154,7 @@ export default {
           id: 'deuiaction1',
         },
       ],
+      toolbarStyle: 'USER',
       xdataControlName: 'grid',
       codeName: 'assigned_grid_view_toolbar',
       controlType: 'TOOLBAR',
@@ -166,24 +178,54 @@ export default {
           clconvertMode: 'NONE',
           dataItemName: 'name',
           excelCaption: '姓名',
-          linkAppViewId: 'plmweb.user_redirect_view',
-          linkValueItem: 'user_id',
           appDEFieldId: 'name',
           valueType: 'SIMPLE',
-          enableLinkView: true,
           aggMode: 'NONE',
           align: 'LEFT',
           capLanguageRes: {
-            lanResTag: 'DEF.LNAME.NAME',
+            lanResTag:
+              'CONTROL.DEGRID.INSIGHT_MEMBER.ASSIGNED_GRID_VIEW_GRID.DEFGRIDCOLUMN.NAME',
           },
           caption: '姓名',
           codeName: 'name',
           columnType: 'DEFGRIDCOLUMN',
           noPrivDisplayMode: 1,
-          width: 150,
-          widthUnit: 'PX',
+          width: 200,
+          widthUnit: 'STAR',
           enableSort: true,
           id: 'name',
+        },
+        {
+          deuiactionGroup: {
+            uiactionGroupDetails: [
+              {
+                actionLevel: 100,
+                afterItemType: 'NONE',
+                beforeItemType: 'NONE',
+                detailType: 'DEUIACTION',
+                uiactionId: 'remove_member@insight_member',
+                showIcon: true,
+                sysImage: {
+                  cssClass: 'fa fa-trash-o',
+                  glyph: 'xf014@FontAwesome',
+                },
+                id: 'u179f60c',
+              },
+            ],
+            appDataEntityId: 'plmweb.insight_member',
+            uniqueTag: 'insight_member__Usr0702314164',
+            name: '效能成员配置',
+            id: 'usr0702314164',
+          },
+          aggMode: 'NONE',
+          align: 'CENTER',
+          caption: '操作',
+          codeName: 'uagridcolumn1',
+          columnType: 'UAGRIDCOLUMN',
+          noPrivDisplayMode: 1,
+          width: 100,
+          widthUnit: 'PX',
+          id: 'uagridcolumn1',
         },
       ],
       degridDataItems: [
@@ -240,11 +282,10 @@ export default {
           id: 'srfkey',
         },
       ],
-      pagingMode: 1,
       pagingSize: 20,
       sortMode: 'REMOTE',
       enableCustomized: true,
-      enablePagingBar: true,
+      singleSelect: true,
       fetchControlAction: {
         appDEMethodId: 'fetch_default',
         appDataEntityId: 'plmweb.insight_member',
@@ -277,6 +318,10 @@ export default {
             columnCount: 24,
             layout: 'TABLE_24COL',
           },
+          capLanguageRes: {
+            lanResTag:
+              'CONTROL.DEFORM.INSIGHT_MEMBER.ASSIGNED_GRID_VIEW_SEARCHFORM.FORMPAGE.FORMPAGE1',
+          },
           caption: '常规条件',
           codeName: 'formpage1',
           detailStyle: 'DEFAULT',
@@ -306,8 +351,6 @@ export default {
     },
     {
       groupMode: 'SINGLE',
-      quickSearchMode: 1,
-      enableQuickSearch: true,
       controlType: 'SEARCHBAR',
       appDataEntityId: 'plmweb.insight_member',
       controlParam: {
@@ -317,7 +360,7 @@ export default {
     },
     {
       capLanguageRes: {
-        lanResTag: 'DE.LNAME.INSIGHT_MEMBER',
+        lanResTag: 'PAGE.CAPTION.INSIGHT_MEMBER.ASSIGNED_GRID_VIEW',
       },
       caption: '视图成员',
       codeName: 'assigned_grid_view_captionbar',
@@ -340,10 +383,13 @@ export default {
     id: 'layoutpanel',
   },
   title: '视图成员',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.INSIGHT_MEMBER.ASSIGNED_GRID_VIEW',
+  },
   viewStyle: 'DEFAULT',
   viewType: 'DEGRIDVIEW',
   enableDP: true,
-  showCaptionBar: true,
+  showCaptionBar: false,
   modelId: '3aecf8ad74bab2d8e96376a1d75d4f4f',
   modelType: 'PSAPPDEVIEW',
   name: 'insight_memberassigned_grid_view',

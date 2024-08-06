@@ -120,7 +120,7 @@ export default {
             },
             dataRegionType: 'INHERIT',
             caption: '容器',
-            cssStyle: 'margin-right:12px',
+            cssStyle: 'margin-right:4px',
             itemStyle: 'DEFAULT',
             itemType: 'CONTAINER',
             layoutPos: {
@@ -276,6 +276,11 @@ export default {
       {
         dedrtabPages: [
           {
+            caption: '工作项类型',
+            appViewId: 'plmweb.work_item_type_global_grid_view',
+            id: 'dritem3',
+          },
+          {
             caption: '工作项属性',
             appViewId: 'plmweb.psde_field_grid_view',
             navigateContexts: [
@@ -300,11 +305,6 @@ export default {
             caption: '工作项状态',
             appViewId: 'plmweb.work_item_state_grid_view',
             id: 'dritem2',
-          },
-          {
-            caption: '工作项类型',
-            appViewId: 'plmweb.work_item_type_global_grid_view',
-            id: 'dritem3',
           },
         ],
         dataRelationTag: 'global_setting_view_DR',

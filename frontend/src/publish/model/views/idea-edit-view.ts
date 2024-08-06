@@ -107,6 +107,23 @@ export default {
       },
       deformItemUpdates: [
         {
+          codeName: 'estimated_update',
+          defiupdateDetails: [
+            {
+              id: 'remaining_workload',
+            },
+            {
+              id: 'workload_schedule',
+            },
+          ],
+          scriptCode:
+            'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nvar remaining = 0; // 剩余工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n\tif(estimated_workload){\r\n\t\t// 计算剩余工时\r\n\t\tremaining = (estimated - actual) >= 0 ? (estimated - actual) : 0;\r\n\t\tform_data.remaining_workload = remaining;\r\n\t}\r\n} else {\r\n\tremaining = estimated;\r\n\tform_data.remaining_workload = estimated_workload;\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}',
+          customCode: true,
+          showBusyIndicator: false,
+          name: '预估工时表单项更新',
+          id: 'estimated_update',
+        },
+        {
           codeName: 'remaining_update',
           defiupdateDetails: [
             {
@@ -119,23 +136,6 @@ export default {
           showBusyIndicator: false,
           name: '剩余工时表单项更新',
           id: 'remaining_update',
-        },
-        {
-          codeName: 'estimated_update',
-          defiupdateDetails: [
-            {
-              id: 'workload_schedule',
-            },
-            {
-              id: 'remaining_workload',
-            },
-          ],
-          scriptCode:
-            'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nvar remaining = 0; // 剩余工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n\tif(estimated_workload){\r\n\t\t// 计算剩余工时\r\n\t\tremaining = (estimated - actual) >= 0 ? (estimated - actual) : 0;\r\n\t\tform_data.remaining_workload = remaining;\r\n\t}\r\n} else {\r\n\tremaining = estimated;\r\n\tform_data.remaining_workload = estimated_workload;\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}',
-          customCode: true,
-          showBusyIndicator: false,
-          name: '预估工时表单项更新',
-          id: 'estimated_update',
         },
       ],
       deformPages: [
@@ -291,6 +291,13 @@ export default {
                   codeName: 'state',
                   detailStyle: 'DEFAULT',
                   detailType: 'FORMITEM',
+                  controlAttributes: [
+                    {
+                      attrName: 'clearable',
+                      attrValue: 'false',
+                      id: 'set_state_logic',
+                    },
+                  ],
                   layoutPos: {
                     colLG: 6,
                     colMD: 6,
@@ -390,7 +397,6 @@ export default {
                     colMD: 6,
                     layout: 'TABLE_24COL',
                   },
-                  showCaption: true,
                   id: 'assignee_id',
                 },
                 {
@@ -420,7 +426,6 @@ export default {
                     colMD: 6,
                     layout: 'TABLE_24COL',
                   },
-                  showCaption: true,
                   id: 'is_deleted',
                 },
                 {
@@ -600,6 +605,7 @@ export default {
                                     caption: '所属数据标识',
                                     codeName: 'owner_id',
                                     columnType: 'DEFGRIDCOLUMN',
+                                    hideMode: 1,
                                     noPrivDisplayMode: 1,
                                     width: 100,
                                     widthUnit: 'PX',
@@ -1021,6 +1027,7 @@ export default {
                       caption: '客户',
                       codeName: 'tabpanel1_customer',
                       counterId: 'idea_re_customer',
+                      counterMode: 1,
                       detailStyle: 'DEFAULT',
                       detailType: 'TABPAGE',
                       appCounterRefId: 'e7055521eeb711936d36f027b585c5d3',
@@ -1093,6 +1100,7 @@ export default {
                       caption: '关联',
                       codeName: 'tabpanel1_relation',
                       counterId: 'idea_re_idea',
+                      counterMode: 1,
                       detailStyle: 'DEFAULT',
                       detailType: 'TABPAGE',
                       appCounterRefId: 'e7055521eeb711936d36f027b585c5d3',
@@ -1159,6 +1167,7 @@ export default {
                       caption: '工单',
                       codeName: 'tabpanel1_ticket',
                       counterId: 'idea_re_ticket',
+                      counterMode: 1,
                       detailStyle: 'DEFAULT',
                       detailType: 'TABPAGE',
                       appCounterRefId: 'e7055521eeb711936d36f027b585c5d3',
@@ -1220,6 +1229,7 @@ export default {
                       caption: '工作项',
                       codeName: 'tabpanel1_work_item',
                       counterId: 'idea_re_work_item',
+                      counterMode: 1,
                       detailStyle: 'DEFAULT',
                       detailType: 'TABPAGE',
                       appCounterRefId: 'e7055521eeb711936d36f027b585c5d3',
@@ -1281,6 +1291,7 @@ export default {
                       caption: '测试',
                       codeName: 'tabpanel1_test_case',
                       counterId: 'idea_re_test_case',
+                      counterMode: 1,
                       detailStyle: 'DEFAULT',
                       detailType: 'TABPAGE',
                       appCounterRefId: 'e7055521eeb711936d36f027b585c5d3',
@@ -1341,6 +1352,7 @@ export default {
                       caption: '版本记录',
                       codeName: 'tabpanel1_version',
                       counterId: 'idea_version',
+                      counterMode: 1,
                       detailStyle: 'DEFAULT',
                       detailType: 'TABPAGE',
                       appCounterRefId: 'e7055521eeb711936d36f027b585c5d3',
@@ -1529,7 +1541,6 @@ export default {
                             colMD: 24,
                             layout: 'TABLE_24COL',
                           },
-                          showCaption: true,
                           id: 'category_id',
                         },
                         {
@@ -1741,7 +1752,6 @@ export default {
                             colMD: 24,
                             layout: 'TABLE_24COL',
                           },
-                          showCaption: true,
                           id: 'is_readonly',
                         },
                         {
@@ -1767,7 +1777,6 @@ export default {
                             colMD: 24,
                             layout: 'TABLE_24COL',
                           },
-                          showCaption: true,
                           id: 'cur_version_id',
                         },
                         {
@@ -1796,7 +1805,6 @@ export default {
                             colMD: 24,
                             layout: 'TABLE_24COL',
                           },
-                          showCaption: true,
                           id: 'id',
                         },
                       ],
@@ -1853,14 +1861,17 @@ export default {
                         },
                         {
                           dataType: 6,
-                          enableCond: 3,
                           labelPos: 'LEFT',
                           labelWidth: 130,
                           noPrivDisplayMode: 1,
                           appDEFieldId: 'actual_workload',
                           editor: {
-                            contentType: 'RAW',
-                            editorType: 'RAW',
+                            precision: 1,
+                            editorParams: {
+                              precision: '1',
+                              minvalue: '0',
+                            },
+                            editorType: 'NUMBER',
                             valueType: 'SIMPLE',
                             editable: true,
                             id: 'actual_workload',
@@ -2074,6 +2085,99 @@ export default {
                       deformDetails: [
                         {
                           dataType: 25,
+                          labelPos: 'LEFT',
+                          labelWidth: 130,
+                          noPrivDisplayMode: 1,
+                          editor: {
+                            stepValue: 1,
+                            maxValue: 1,
+                            editorParams: {
+                              maxvalue: '1',
+                              showText: 'true',
+                              format: '0',
+                              textItem: 'customer_score',
+                            },
+                            editorType: 'SLIDER',
+                            valueType: 'SIMPLE',
+                            editable: true,
+                            id: 'customer_score_precent',
+                          },
+                          allowEmpty: true,
+                          caption: '客户',
+                          codeName: 'customer_score_precent',
+                          detailStyle: 'DEFAULT',
+                          detailType: 'FORMITEM',
+                          defdgroupLogics: [
+                            {
+                              logicCat: 'SCRIPTCODE_CLICK',
+                              groupOP: 'AND',
+                              defdlogics: [
+                                {
+                                  logicType: 'SINGLE',
+                                },
+                              ],
+                              logicType: 'GROUP',
+                              id: '表单成员[customer_score_precent][表单项点击（脚本处理）]逻辑',
+                            },
+                          ],
+                          layoutPos: {
+                            colMD: 24,
+                            layout: 'TABLE_24COL',
+                          },
+                          showCaption: true,
+                          id: 'customer_score_precent',
+                        },
+                        {
+                          dataType: 25,
+                          labelPos: 'LEFT',
+                          labelWidth: 130,
+                          noPrivDisplayMode: 1,
+                          editor: {
+                            stepValue: 1,
+                            maxValue: 1,
+                            editorParams: {
+                              maxvalue: '1',
+                              showText: 'true',
+                              format: '0',
+                              textItem: 'ticket_num',
+                            },
+                            editorType: 'SLIDER',
+                            valueType: 'SIMPLE',
+                            editable: true,
+                            id: 'ticket_num_percent',
+                          },
+                          allowEmpty: true,
+                          caption: '工单',
+                          codeName: 'ticket_num_percent',
+                          detailStyle: 'DEFAULT',
+                          detailType: 'FORMITEM',
+                          layoutPos: {
+                            colMD: 24,
+                            layout: 'TABLE_24COL',
+                          },
+                          showCaption: true,
+                          id: 'ticket_num_percent',
+                        },
+                      ],
+                      caption: '洞察',
+                      codeName: 'grouppanel10',
+                      detailStyle: 'DEFAULT',
+                      detailType: 'GROUPPANEL',
+                      layoutPos: {
+                        colMD: 24,
+                        layout: 'TABLE_24COL',
+                      },
+                      showCaption: true,
+                      id: 'grouppanel10',
+                    },
+                    {
+                      layout: {
+                        columnCount: 24,
+                        layout: 'TABLE_24COL',
+                      },
+                      deformDetails: [
+                        {
+                          dataType: 25,
                           enableCond: 3,
                           labelPos: 'LEFT',
                           labelWidth: 130,
@@ -2134,7 +2238,6 @@ export default {
                             colMD: 24,
                             layout: 'TABLE_24COL',
                           },
-                          showCaption: true,
                           id: 'product_id',
                         },
                         {
@@ -2412,6 +2515,106 @@ export default {
                   },
                   id: 'baseline',
                 },
+                {
+                  layout: {
+                    columnCount: 24,
+                    layout: 'TABLE_24COL',
+                  },
+                  deformDetails: [
+                    {
+                      appViewId: 'plmweb.customer_idea_customer_info_view',
+                      parentDataJO: {
+                        srfparentdename: 'IDEA',
+                        SRFPARENTTYPE: 'CUSTOM',
+                      },
+                      codeName: 'druipart6',
+                      detailStyle: 'DEFAULT',
+                      detailType: 'DRUIPART',
+                      layoutPos: {
+                        colMD: 24,
+                        layout: 'TABLE_24COL',
+                      },
+                      showCaption: true,
+                      id: 'druipart6',
+                    },
+                  ],
+                  caption: '客户统计信息',
+                  codeName: 'grouppanel11',
+                  detailStyle: 'DEFAULT',
+                  detailType: 'GROUPPANEL',
+                  defdgroupLogics: [
+                    {
+                      logicCat: 'PANELVISIBLE',
+                      relatedDetailNames: ['customer_score_prcent'],
+                      groupOP: 'AND',
+                      defdlogics: [
+                        {
+                          condOP: 'EQ',
+                          defdname: 'customer_score_prcent',
+                          value: '-1',
+                          logicType: 'SINGLE',
+                        },
+                      ],
+                      logicType: 'GROUP',
+                      id: '表单成员[grouppanel11][面板显示]逻辑',
+                    },
+                  ],
+                  layoutPos: {
+                    colMD: 24,
+                    layout: 'TABLE_24COL',
+                  },
+                  id: 'grouppanel11',
+                },
+                {
+                  layout: {
+                    columnCount: 24,
+                    layout: 'TABLE_24COL',
+                  },
+                  deformDetails: [
+                    {
+                      appViewId: 'plmweb.ticket_idea_re_ticket_chart_view',
+                      parentDataJO: {
+                        srfparentdename: 'IDEA',
+                        SRFPARENTTYPE: 'CUSTOM',
+                      },
+                      codeName: 'druipart7',
+                      detailStyle: 'DEFAULT',
+                      detailType: 'DRUIPART',
+                      layoutPos: {
+                        colMD: 24,
+                        layout: 'TABLE_24COL',
+                      },
+                      showCaption: true,
+                      id: 'druipart7',
+                    },
+                  ],
+                  caption: '工单统计',
+                  codeName: 'grouppanel12',
+                  detailStyle: 'DEFAULT',
+                  detailType: 'GROUPPANEL',
+                  defdgroupLogics: [
+                    {
+                      logicCat: 'PANELVISIBLE',
+                      relatedDetailNames: ['id'],
+                      groupOP: 'AND',
+                      defdlogics: [
+                        {
+                          condOP: 'EQ',
+                          defdname: 'id',
+                          value: '-1',
+                          logicType: 'SINGLE',
+                        },
+                      ],
+                      logicType: 'GROUP',
+                      id: '表单成员[grouppanel12][面板显示]逻辑',
+                    },
+                  ],
+                  layoutPos: {
+                    colMD: 24,
+                    layout: 'TABLE_24COL',
+                  },
+                  id: 'grouppanel12',
+                },
               ],
               codeName: 'right_grouppanel',
               detailStyle: 'DEFAULT',
@@ -2455,6 +2658,7 @@ export default {
             id: 'plmweb.product_idea_re_counters',
           },
           tag: 'e7055521eeb711936d36f027b585c5d3',
+          uniqueTag: 'product_idea_re_counters',
           id: 'e7055521eeb711936d36f027b585c5d3',
         },
       ],
@@ -2471,6 +2675,33 @@ export default {
           appDataEntityId: 'plmweb.idea',
           triggerType: 'CTRLEVENT',
           id: 'get_actual_workload',
+        },
+        {
+          eventNames: 'onClick',
+          itemName: 'customer_score_precent',
+          logicTag: 'form',
+          logicType: 'APPDEUIACTION',
+          appDEUIActionId: 'check_customer_info@idea',
+          triggerType: 'CTRLEVENT',
+          id: 'check_customer_info',
+        },
+        {
+          eventNames: 'onLoadSuccess',
+          logicTag: 'form',
+          logicType: 'APPDEUILOGIC',
+          appDEUILogicId: 'get_customer_score',
+          appDataEntityId: 'plmweb.idea',
+          triggerType: 'CTRLEVENT',
+          id: 'get_customer_score',
+        },
+        {
+          eventNames: 'onLoadSuccess',
+          logicTag: 'form',
+          logicType: 'APPDEUILOGIC',
+          appDEUILogicId: 'get_ticket_num',
+          appDataEntityId: 'plmweb.idea',
+          triggerType: 'CTRLEVENT',
+          id: 'get_ticket_num',
         },
       ],
       controlParam: {

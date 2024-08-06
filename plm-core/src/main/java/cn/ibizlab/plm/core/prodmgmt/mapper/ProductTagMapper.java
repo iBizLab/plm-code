@@ -70,6 +70,25 @@ public interface ProductTagMapper extends BaseMapper<ProductTag> {
     List<ProductTag> findByProductId(@Param("productIds") List<String> productIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<ProductTag> searchView(IPage<ProductTag> page, @Param("ctx") ProductTagSearchContext context, @Param("ew") Wrapper<ProductTag> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<ProductTag> listView(@Param("ctx") ProductTagSearchContext context, @Param("ew") Wrapper<ProductTag> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

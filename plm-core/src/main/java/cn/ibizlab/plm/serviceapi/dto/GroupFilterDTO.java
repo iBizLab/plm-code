@@ -31,11 +31,19 @@ import io.swagger.annotations.ApiModelProperty;
 public class GroupFilterDTO extends FilterBase implements Serializable {
 
     /**
+     * 可见范围EQ
+     */
+    @JsonProperty("n_visibility_eq")
+    @JSONField(name = "n_visibility_eq")
+    @ApiModelProperty(value = "可见范围EQ", position = 0)
+	private String visibilityEQ;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 30)
+    @ApiModelProperty(value = "标识EQ", position = 40)
 	private String idEQ;
 
     /**
@@ -43,7 +51,7 @@ public class GroupFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "团队名称LIKE", position = 40)
+    @ApiModelProperty(value = "团队名称LIKE", position = 50)
 	private String nameLIKE;
 
     /**
@@ -51,7 +59,7 @@ public class GroupFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_section_id_eq")
     @JSONField(name = "n_section_id_eq")
-    @ApiModelProperty(value = "分组标识EQ", position = 90)
+    @ApiModelProperty(value = "分组标识EQ", position = 100)
 	private String sectionIdEQ;
 
     /**
@@ -59,7 +67,7 @@ public class GroupFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_section_name_eq")
     @JSONField(name = "n_section_name_eq")
-    @ApiModelProperty(value = "所属分组EQ", position = 100)
+    @ApiModelProperty(value = "所属分组EQ", position = 110)
 	private String sectionNameEQ;
 
     /**
@@ -67,7 +75,7 @@ public class GroupFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_section_name_like")
     @JSONField(name = "n_section_name_like")
-    @ApiModelProperty(value = "所属分组LIKE", position = 101)
+    @ApiModelProperty(value = "所属分组LIKE", position = 111)
 	private String sectionNameLIKE;
 
 

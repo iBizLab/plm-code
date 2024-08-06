@@ -154,6 +154,25 @@ public interface CustomerMapper extends BaseMapper<Customer> {
     List<Customer> findByAssigneeId(@Param("assigneeIds") List<String> assigneeIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Customer> searchView(IPage<Customer> page, @Param("ctx") CustomerSearchContext context, @Param("ew") Wrapper<Customer> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Customer> listView(@Param("ctx") CustomerSearchContext context, @Param("ew") Wrapper<Customer> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

@@ -3,6 +3,7 @@
  */
 package cn.ibizlab.plm.core.projmgmt.service;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 import org.springframework.data.domain.Page;
@@ -10,6 +11,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.projmgmt.domain.Stage;
 import cn.ibizlab.plm.core.projmgmt.filter.StageSearchContext;
 import cn.ibizlab.plm.core.projmgmt.domain.Release;
@@ -138,7 +140,7 @@ public interface StageService extends IService<Stage> {
     * @param et
     * @return
     */
-    Integer checkKey(Stage et);
+    CheckKeyStatus checkKey(Stage et);
 
     /**
     * 保存
@@ -153,6 +155,46 @@ public interface StageService extends IService<Stage> {
      * @return
      */
     boolean save(List<Stage> list);
+
+    /**
+    * addPredefined
+    * 
+    * @param et
+    * @return
+    */
+    default Stage addPredefined(Stage et) {
+        return et;
+    }
+
+    /**
+    * del
+    * 
+    * @param et
+    * @return
+    */
+    default Stage del(Stage et) {
+        return et;
+    }
+
+    /**
+    * moveOrder
+    * 
+    * @param et
+    * @return
+    */
+    default List<Stage> moveOrder(Stage et) {
+        return new ArrayList<>();
+    }
+
+    /**
+    * nothing
+    * 
+    * @param et
+    * @return
+    */
+    default Stage nothing(Stage et) {
+        return et;
+    }
 
     /**
     * fetchDefault
@@ -171,14 +213,101 @@ public interface StageService extends IService<Stage> {
     List<Stage> listDefault(StageSearchContext context);
 
     /**
+    * fetchCurOwnerSys
+    * 
+    * @param context
+    * @return
+    */
+    Page<Stage> fetchCurOwnerSys(StageSearchContext context);
+
+    /**
+    * listCurOwnerSys
+    * 
+    * @param context
+    * @return
+    */
+    List<Stage> listCurOwnerSys(StageSearchContext context);
+
+    /**
+    * fetchCurProject
+    * 
+    * @param context
+    * @return
+    */
+    Page<Stage> fetchCurProject(StageSearchContext context);
+
+    /**
+    * listCurProject
+    * 
+    * @param context
+    * @return
+    */
+    List<Stage> listCurProject(StageSearchContext context);
+
+    /**
+    * fetchCurStage
+    * 
+    * @param context
+    * @return
+    */
+    Page<Stage> fetchCurStage(StageSearchContext context);
+
+    /**
+    * listCurStage
+    * 
+    * @param context
+    * @return
+    */
+    List<Stage> listCurStage(StageSearchContext context);
+
+    /**
+    * fetchOwner
+    * 
+    * @param context
+    * @return
+    */
+    Page<Stage> fetchOwner(StageSearchContext context);
+
+    /**
+    * listOwner
+    * 
+    * @param context
+    * @return
+    */
+    List<Stage> listOwner(StageSearchContext context);
+
+    /**
+    * fetchSystem
+    * 
+    * @param context
+    * @return
+    */
+    Page<Stage> fetchSystem(StageSearchContext context);
+
+    /**
+    * listSystem
+    * 
+    * @param context
+    * @return
+    */
+    List<Stage> listSystem(StageSearchContext context);
+
+    /**
     * findByReleaseId
     * @param releaseIds
     * @return
     */
     List<Stage> findByReleaseId(List<String> releaseIds);
     default List<Stage> findByReleaseId(String releaseId){
-        return findByReleaseId(Arrays.asList(releaseId));
+        return findByRelease(new Release().setId(releaseId));
     }
+
+    /**
+    * findByRelease
+    * @param release
+    * @return
+    */
+    List<Stage> findByRelease(Release release);
 
     /**
     * removeByReleaseId
@@ -211,6 +340,71 @@ public interface StageService extends IService<Stage> {
     * @return
     */
     boolean saveByRelease(Release release, List<Stage> list);
+
+    /**
+    * findByPid
+    * @param pids
+    * @return
+    */
+    List<Stage> findByPid(List<String> pids);
+    default List<Stage> findByPid(String pid){
+        return findByStage(new Stage().setId(pid));
+    }
+
+    /**
+    * findByStage
+    * @param stage
+    * @return
+    */
+    List<Stage> findByStage(Stage stage);
+
+    /**
+    * removeByPid
+    * @param pid
+    * @return
+    */
+    boolean removeByPid(String pid);
+
+    /**
+    * resetByPid
+    * @param pid
+    * @return
+    */
+    boolean resetByPid(String pid);
+
+    /**
+    * saveByPid
+    * @param pid
+    * @param list
+    * @return
+    */
+    default boolean saveByPid(String pid, List<Stage> list){
+        return getSelf().saveByStage(new Stage().setId(pid),list);
+    }
+
+    /**
+    * saveByStage
+    * @param stage
+    * @param list
+    * @return
+    */
+    boolean saveByStage(Stage stage, List<Stage> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Stage> fetchView(StageSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Stage> listView(StageSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Stage> list) {

@@ -25,6 +25,7 @@ import cn.ibizlab.plm.core.team.domain.DiscussPost;
 import cn.ibizlab.plm.core.prodmgmt.domain.Idea;
 import cn.ibizlab.plm.core.wiki.domain.ArticlePage;
 import cn.ibizlab.plm.core.testmgmt.domain.Review;
+import cn.ibizlab.plm.core.testmgmt.domain.ReviewWizard;
 import cn.ibizlab.plm.core.testmgmt.domain.Run;
 import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
 import cn.ibizlab.plm.core.prodmgmt.domain.Ticket;
@@ -207,6 +208,16 @@ public class Attention extends EntityMP implements Serializable
     @JSONField(serialize = false)
     @ApiModelProperty(value = "review", notes = "评审_关注")
     private Review review;
+
+    /**
+    * 评审_关注
+    */
+    @Transient
+    @TableField(exist = false)
+    @JsonIgnore
+    @JSONField(serialize = false)
+    @ApiModelProperty(value = "review_wizard", notes = "评审_关注")
+    private ReviewWizard reviewWizard;
 
     /**
     * 名称

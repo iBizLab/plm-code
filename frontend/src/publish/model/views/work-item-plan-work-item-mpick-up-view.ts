@@ -9,6 +9,14 @@ export default {
   caption: '工作项',
   codeName: 'work_item_plan_work_item_mpick_up_view',
   appDataEntityId: 'plmweb.work_item',
+  appViewNavContexts: [
+    {
+      rawValue: true,
+      key: 'RELEASE',
+      name: 'RELEASE',
+      id: 'release',
+    },
+  ],
   appViewNavParams: [
     {
       key: 'project',
@@ -581,10 +589,10 @@ export default {
                 nodeType: 'node_5',
                 navigateParams: [
                   {
-                    key: 'n_state_eq',
-                    value: '10',
+                    key: 'n_state_type_eq',
+                    value: 'pending',
                     rawValue: true,
-                    id: 'n_state_eq',
+                    id: 'n_state_type_eq',
                   },
                 ],
                 treeNodeType: 'STATIC',
@@ -596,10 +604,10 @@ export default {
                 nodeType: 'node_6',
                 navigateParams: [
                   {
-                    key: 'n_state_eq',
-                    value: '40',
+                    key: 'n_state_type_eq',
+                    value: 'completed',
                     rawValue: true,
-                    id: 'n_state_eq',
+                    id: 'n_state_type_eq',
                   },
                 ],
                 treeNodeType: 'STATIC',

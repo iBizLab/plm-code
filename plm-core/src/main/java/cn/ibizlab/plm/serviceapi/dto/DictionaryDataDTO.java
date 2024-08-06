@@ -136,15 +136,6 @@ public class DictionaryDataDTO extends DTOBase implements Serializable {
 
 
     /**
-     * 设置 [序号]
-     */
-    public DictionaryDataDTO setSequence(BigDecimal sequence) {
-        this.sequence = sequence;
-        this.modify("sequence", sequence);
-        return this;
-    }
-
-    /**
      * 设置 [类型]
      */
     public DictionaryDataDTO setType(String type) {

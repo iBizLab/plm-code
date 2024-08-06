@@ -81,6 +81,25 @@ public interface CategoryMapper extends BaseMapper<Category> {
     List<Category> listCommonCategories(@Param("ctx") CategorySearchContext context, @Param("ew") Wrapper<Category> wrapper);
 
     /**
+     * 数据集合cur_product_idea_category分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Category> searchCurProductIdeaCategory(IPage<Category> page, @Param("ctx") CategorySearchContext context, @Param("ew") Wrapper<Category> wrapper);
+    
+    /**
+     * 数据集合cur_product_idea_category查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Category> listCurProductIdeaCategory(@Param("ctx") CategorySearchContext context, @Param("ew") Wrapper<Category> wrapper);
+
+    /**
      * 数据集合no_section分页查询
      * 
      * @param page
@@ -190,6 +209,25 @@ public interface CategoryMapper extends BaseMapper<Category> {
     * @return
     */
     List<Category> findBySectionId(@Param("sectionIds") List<String> sectionIds);
+
+    /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Category> searchView(IPage<Category> page, @Param("ctx") CategorySearchContext context, @Param("ew") Wrapper<Category> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Category> listView(@Param("ctx") CategorySearchContext context, @Param("ew") Wrapper<Category> wrapper);
 
     /**
      * 主键查询

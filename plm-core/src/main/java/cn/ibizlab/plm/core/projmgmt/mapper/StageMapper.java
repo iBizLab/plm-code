@@ -43,12 +43,134 @@ public interface StageMapper extends BaseMapper<Stage> {
     List<Stage> listDefault(@Param("ctx") StageSearchContext context, @Param("ew") Wrapper<Stage> wrapper);
 
     /**
+     * 数据集合cur_owner_sys分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Stage> searchCurOwnerSys(IPage<Stage> page, @Param("ctx") StageSearchContext context, @Param("ew") Wrapper<Stage> wrapper);
+    
+    /**
+     * 数据集合cur_owner_sys查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Stage> listCurOwnerSys(@Param("ctx") StageSearchContext context, @Param("ew") Wrapper<Stage> wrapper);
+
+    /**
+     * 数据集合cur_project分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Stage> searchCurProject(IPage<Stage> page, @Param("ctx") StageSearchContext context, @Param("ew") Wrapper<Stage> wrapper);
+    
+    /**
+     * 数据集合cur_project查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Stage> listCurProject(@Param("ctx") StageSearchContext context, @Param("ew") Wrapper<Stage> wrapper);
+
+    /**
+     * 数据集合cur_stage分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Stage> searchCurStage(IPage<Stage> page, @Param("ctx") StageSearchContext context, @Param("ew") Wrapper<Stage> wrapper);
+    
+    /**
+     * 数据集合cur_stage查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Stage> listCurStage(@Param("ctx") StageSearchContext context, @Param("ew") Wrapper<Stage> wrapper);
+
+    /**
+     * 数据集合owner分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Stage> searchOwner(IPage<Stage> page, @Param("ctx") StageSearchContext context, @Param("ew") Wrapper<Stage> wrapper);
+    
+    /**
+     * 数据集合owner查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Stage> listOwner(@Param("ctx") StageSearchContext context, @Param("ew") Wrapper<Stage> wrapper);
+
+    /**
+     * 数据集合system分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Stage> searchSystem(IPage<Stage> page, @Param("ctx") StageSearchContext context, @Param("ew") Wrapper<Stage> wrapper);
+    
+    /**
+     * 数据集合system查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Stage> listSystem(@Param("ctx") StageSearchContext context, @Param("ew") Wrapper<Stage> wrapper);
+
+    /**
     * 根据releaseId查询
     *
     * @param releaseIds
     * @return
     */
     List<Stage> findByReleaseId(@Param("releaseIds") List<String> releaseIds);
+
+    /**
+    * 根据pid查询
+    *
+    * @param pids
+    * @return
+    */
+    List<Stage> findByPid(@Param("pids") List<String> pids);
+
+    /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Stage> searchView(IPage<Stage> page, @Param("ctx") StageSearchContext context, @Param("ew") Wrapper<Stage> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Stage> listView(@Param("ctx") StageSearchContext context, @Param("ew") Wrapper<Stage> wrapper);
 
     /**
      * 主键查询

@@ -63,6 +63,14 @@ public class VersionSearchContext extends QueryWrapperContext<Version> {
     private String ownerTypeEQ;
 
     /**
+     * 是否命名EQ
+     */
+    @JsonProperty("n_is_named_eq")
+    @JSONField(name = "n_is_named_eq")
+    @ApiModelProperty("是否命名EQ")
+    private Integer isNamedEQ;
+
+    /**
      * 标识IN
      */
     @JsonProperty("n_id_in")

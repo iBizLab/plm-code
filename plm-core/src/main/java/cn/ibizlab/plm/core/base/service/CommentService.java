@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.Comment;
 import cn.ibizlab.plm.core.base.filter.CommentSearchContext;
 import cn.ibizlab.plm.core.wiki.domain.ArticlePage;
@@ -147,7 +148,7 @@ public interface CommentService extends IService<Comment> {
     * @param et
     * @return
     */
-    Integer checkKey(Comment et);
+    CheckKeyStatus checkKey(Comment et);
 
     /**
     * 保存
@@ -196,8 +197,15 @@ public interface CommentService extends IService<Comment> {
     */
     List<Comment> findByPid(List<String> pids);
     default List<Comment> findByPid(String pid){
-        return findByPid(Arrays.asList(pid));
+        return findByComment(new Comment().setId(pid));
     }
+
+    /**
+    * findByComment
+    * @param comment
+    * @return
+    */
+    List<Comment> findByComment(Comment comment);
 
     /**
     * removeByPid
@@ -238,8 +246,15 @@ public interface CommentService extends IService<Comment> {
     */
     List<Comment> findByPrincipalId(List<String> principalIds);
     default List<Comment> findByPrincipalId(String principalId){
-        return findByPrincipalId(Arrays.asList(principalId));
+        return findByPage(new ArticlePage().setId(principalId));
     }
+
+    /**
+    * findByPage
+    * @param articlePage
+    * @return
+    */
+    List<Comment> findByPage(ArticlePage articlePage);
 
     /**
     * removeByPrincipalId
@@ -274,12 +289,26 @@ public interface CommentService extends IService<Comment> {
     boolean saveByPage(ArticlePage articlePage, List<Comment> list);
 
     /**
+    * findByRun
+    * @param run
+    * @return
+    */
+    List<Comment> findByRun(Run run);
+
+    /**
     * saveByRun
     * @param run
     * @param list
     * @return
     */
     boolean saveByRun(Run run, List<Comment> list);
+
+    /**
+    * findByCustomer
+    * @param customer
+    * @return
+    */
+    List<Comment> findByCustomer(Customer customer);
 
     /**
     * saveByCustomer
@@ -290,12 +319,26 @@ public interface CommentService extends IService<Comment> {
     boolean saveByCustomer(Customer customer, List<Comment> list);
 
     /**
+    * findByDiscussPost
+    * @param discussPost
+    * @return
+    */
+    List<Comment> findByDiscussPost(DiscussPost discussPost);
+
+    /**
     * saveByDiscussPost
     * @param discussPost
     * @param list
     * @return
     */
     boolean saveByDiscussPost(DiscussPost discussPost, List<Comment> list);
+
+    /**
+    * findByDiscussReply
+    * @param discussReply
+    * @return
+    */
+    List<Comment> findByDiscussReply(DiscussReply discussReply);
 
     /**
     * saveByDiscussReply
@@ -306,12 +349,26 @@ public interface CommentService extends IService<Comment> {
     boolean saveByDiscussReply(DiscussReply discussReply, List<Comment> list);
 
     /**
+    * findByIdea
+    * @param idea
+    * @return
+    */
+    List<Comment> findByIdea(Idea idea);
+
+    /**
     * saveByIdea
     * @param idea
     * @param list
     * @return
     */
     boolean saveByIdea(Idea idea, List<Comment> list);
+
+    /**
+    * findByReview
+    * @param review
+    * @return
+    */
+    List<Comment> findByReview(Review review);
 
     /**
     * saveByReview
@@ -322,12 +379,26 @@ public interface CommentService extends IService<Comment> {
     boolean saveByReview(Review review, List<Comment> list);
 
     /**
+    * findByTestCase
+    * @param testCase
+    * @return
+    */
+    List<Comment> findByTestCase(TestCase testCase);
+
+    /**
     * saveByTestCase
     * @param testCase
     * @param list
     * @return
     */
     boolean saveByTestCase(TestCase testCase, List<Comment> list);
+
+    /**
+    * findByTicket
+    * @param ticket
+    * @return
+    */
+    List<Comment> findByTicket(Ticket ticket);
 
     /**
     * saveByTicket
@@ -338,12 +409,35 @@ public interface CommentService extends IService<Comment> {
     boolean saveByTicket(Ticket ticket, List<Comment> list);
 
     /**
+    * findByWorkItem
+    * @param workItem
+    * @return
+    */
+    List<Comment> findByWorkItem(WorkItem workItem);
+
+    /**
     * saveByWorkItem
     * @param workItem
     * @param list
     * @return
     */
     boolean saveByWorkItem(WorkItem workItem, List<Comment> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Comment> fetchView(CommentSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Comment> listView(CommentSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Comment> list) {

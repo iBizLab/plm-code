@@ -347,7 +347,7 @@ public class TestCase extends EntityMP implements Serializable
     /**
     * 最新执行结果
     */
-    @TableField(value = "latest_executed" , exist = false)
+    @TableField(exist = false)
     @DEField(name = "latest_executed")
     @JSONField(name = "latest_executed")
     @JsonProperty("latest_executed")

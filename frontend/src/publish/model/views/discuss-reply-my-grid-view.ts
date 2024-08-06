@@ -239,7 +239,6 @@ export default {
                         allowEmpty: true,
                         hidden: true,
                         caption: '文本(动态)',
-                        itemStyle: 'DEFAULT',
                         itemType: 'FIELD',
                         layoutPos: {
                           shrink: 1,
@@ -259,7 +258,6 @@ export default {
                         allowEmpty: true,
                         hidden: true,
                         caption: '文本(动态)',
-                        itemStyle: 'DEFAULT',
                         itemType: 'FIELD',
                         layoutPos: {
                           shrink: 1,
@@ -307,7 +305,7 @@ export default {
                       editorParams: {
                         contenttype: 'HTML',
                         SCRIPTCODE:
-                          'data.content?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g, "<span class=\'comment-tag\'>$4 $3 $2</span>").replace(/#{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)}/g, "<span class=\'comment-tag\'>$4 $3 $2</span>")',
+                          'data.content?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g, "<span class=\'comment-tag\'>$4 $3 $2</span>").replace(/#{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)}/g, "<span class=\'comment-tag\'>$4 $3 $2</span>").replaceAll(/\\{\\"\\emoji\\":\\"(.+?)\\"\\}/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji)); return `<span class="emoji-tag">${tempVal}</span>`})',
                       },
                       editorStyle: 'COMMENT_ITEM',
                       editorType: 'RAW',

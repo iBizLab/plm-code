@@ -22,11 +22,14 @@ import io.swagger.annotations.*;
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import cn.ibizlab.plm.core.wiki.domain.Space;
+import cn.ibizlab.plm.core.wiki.domain.SharedSpace;
 import cn.ibizlab.plm.core.base.domain.Comment;
 import cn.ibizlab.plm.core.base.domain.Attention;
+import cn.ibizlab.plm.core.base.domain.Member;
 import cn.ibizlab.plm.core.base.domain.Attachment;
 import cn.ibizlab.plm.core.base.domain.SearchAttachment;
 import cn.ibizlab.plm.core.base.domain.SearchComment;
+import cn.ibizlab.plm.core.wiki.domain.PageVersion;
 import cn.ibizlab.plm.core.base.domain.Relation;
 import cn.ibizlab.plm.core.base.domain.Version;
 
@@ -54,6 +57,37 @@ public class ArticlePage extends EntityMP implements Serializable
     @JsonProperty("identifier")
     @ApiModelProperty(value = "identifier", notes = "编号")
     private String identifier;
+
+    /**
+    * 是否开启共享
+    */
+    @TableField(value = "is_shared")
+    @DEField(name = "is_shared" , defaultValue = "0" , dict = "YesNo")
+    @JSONField(name = "is_shared")
+    @JsonProperty("is_shared")
+    @ApiModelProperty(value = "is_shared", notes = "是否开启共享")
+    private String isShared;
+
+    /**
+    * 共享有效期
+    */
+    @TableField(value = "expiration_date")
+    @DEField(name = "expiration_date")
+    @JsonFormat(pattern = "yyyy-MM-dd", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "expiration_date" , format = "yyyy-MM-dd")
+    @JsonProperty("expiration_date")
+    @ApiModelProperty(value = "expiration_date", notes = "共享有效期")
+    private Date expirationDate;
+
+    /**
+    * 访问密码
+    */
+    @TableField(value = "access_password")
+    @DEField(name = "access_password")
+    @JSONField(name = "access_password")
+    @JsonProperty("access_password")
+    @ApiModelProperty(value = "access_password", notes = "访问密码")
+    private String accessPassword;
 
     /**
     * 正文格式
@@ -277,6 +311,57 @@ public class ArticlePage extends EntityMP implements Serializable
     private Integer isLock;
 
     /**
+    * 图标
+    */
+    @TableField(value = "icon")
+    @DEField(name = "icon")
+    @JSONField(name = "icon")
+    @JsonProperty("icon")
+    @ApiModelProperty(value = "icon", notes = "图标")
+    private String icon;
+
+    /**
+    * 是否同时共享子页面
+    */
+    @TableField(value = "is_shared_subset")
+    @DEField(name = "is_shared_subset" , defaultValue = "0" , dict = "YesNo")
+    @JSONField(name = "is_shared_subset")
+    @JsonProperty("is_shared_subset")
+    @ApiModelProperty(value = "is_shared_subset", notes = "是否同时共享子页面")
+    private String isSharedSubset;
+
+    /**
+    * 共享只读能力
+    */
+    @TableField(value = "read_shared" , exist = false)
+    @DEField(name = "read_shared")
+    @JSONField(name = "read_shared")
+    @JsonProperty("read_shared")
+    @ApiModelProperty(value = "read_shared", notes = "共享只读能力")
+    private String readShared;
+
+    /**
+    * 共享人
+    */
+    @TableField(value = "shared_by")
+    @DEField(name = "shared_by")
+    @JSONField(name = "shared_by")
+    @JsonProperty("shared_by")
+    @ApiModelProperty(value = "shared_by", notes = "共享人")
+    private String sharedBy;
+
+    /**
+    * 共享时间
+    */
+    @TableField(value = "shared_time")
+    @DEField(name = "shared_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "shared_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("shared_time")
+    @ApiModelProperty(value = "shared_time", notes = "共享时间")
+    private Date sharedTime;
+
+    /**
     * 选择版本标识
     */
     @TableField(value = "choose_version_id" , exist = false)
@@ -410,11 +495,48 @@ public class ArticlePage extends EntityMP implements Serializable
     private Space space;
 
     /**
+    * 名称
+    */
+    @Transient
+    @TableField(exist = false)
+    @JsonIgnore
+    @JSONField(serialize = false)
+    @ApiModelProperty(value = "shared_space_page", notes = "名称")
+    private SharedSpace sharedSpacePage;
+
+    /**
     * 设置 [编号]
     */
     public ArticlePage setIdentifier(String identifier) {
         this.identifier = identifier;
         this.modify("identifier", identifier);
+        return this;
+    }
+
+    /**
+    * 设置 [是否开启共享]
+    */
+    public ArticlePage setIsShared(String isShared) {
+        this.isShared = isShared;
+        this.modify("is_shared", isShared);
+        return this;
+    }
+
+    /**
+    * 设置 [共享有效期]
+    */
+    public ArticlePage setExpirationDate(Date expirationDate) {
+        this.expirationDate = expirationDate;
+        this.modify("expiration_date", expirationDate);
+        return this;
+    }
+
+    /**
+    * 设置 [访问密码]
+    */
+    public ArticlePage setAccessPassword(String accessPassword) {
+        this.accessPassword = accessPassword;
+        this.modify("access_password", accessPassword);
         return this;
     }
 
@@ -586,6 +708,51 @@ public class ArticlePage extends EntityMP implements Serializable
     public ArticlePage setIsLock(Integer isLock) {
         this.isLock = isLock;
         this.modify("is_lock", isLock);
+        return this;
+    }
+
+    /**
+    * 设置 [图标]
+    */
+    public ArticlePage setIcon(String icon) {
+        this.icon = icon;
+        this.modify("icon", icon);
+        return this;
+    }
+
+    /**
+    * 设置 [是否同时共享子页面]
+    */
+    public ArticlePage setIsSharedSubset(String isSharedSubset) {
+        this.isSharedSubset = isSharedSubset;
+        this.modify("is_shared_subset", isSharedSubset);
+        return this;
+    }
+
+    /**
+    * 设置 [共享只读能力]
+    */
+    public ArticlePage setReadShared(String readShared) {
+        this.readShared = readShared;
+        this.modify("read_shared", readShared);
+        return this;
+    }
+
+    /**
+    * 设置 [共享人]
+    */
+    public ArticlePage setSharedBy(String sharedBy) {
+        this.sharedBy = sharedBy;
+        this.modify("shared_by", sharedBy);
+        return this;
+    }
+
+    /**
+    * 设置 [共享时间]
+    */
+    public ArticlePage setSharedTime(Date sharedTime) {
+        this.sharedTime = sharedTime;
+        this.modify("shared_time", sharedTime);
         return this;
     }
 

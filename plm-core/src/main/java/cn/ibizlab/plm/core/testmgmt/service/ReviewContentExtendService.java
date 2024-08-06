@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.testmgmt.domain.ReviewContentExtend;
 import cn.ibizlab.plm.core.testmgmt.filter.ReviewContentExtendSearchContext;
 import cn.ibizlab.plm.core.testmgmt.domain.ReviewResult;
@@ -139,7 +140,7 @@ public interface ReviewContentExtendService extends IService<ReviewContentExtend
     * @param et
     * @return
     */
-    Integer checkKey(ReviewContentExtend et);
+    CheckKeyStatus checkKey(ReviewContentExtend et);
 
     /**
     * 保存
@@ -174,6 +175,22 @@ public interface ReviewContentExtendService extends IService<ReviewContentExtend
     default List<ReviewResult> getStageResults(ReviewContentExtend et) {
         return new ArrayList<>();
     }
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<ReviewContentExtend> fetchView(ReviewContentExtendSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<ReviewContentExtend> listView(ReviewContentExtendSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<ReviewContentExtend> list) {

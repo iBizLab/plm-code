@@ -1,5 +1,4 @@
 export default {
-  bkcolorAppDEFieldId: 'color',
   clsAppDEFieldId: 'style',
   codeListTag: 'ProjMgmt__work_item_state',
   codeListType: 'DYNAMIC',

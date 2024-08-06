@@ -108,6 +108,25 @@ public interface StencilMapper extends BaseMapper<Stencil> {
     List<Stencil> findBySpaceId(@Param("spaceIds") List<String> spaceIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Stencil> searchView(IPage<Stencil> page, @Param("ctx") StencilSearchContext context, @Param("ew") Wrapper<Stencil> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Stencil> listView(@Param("ctx") StencilSearchContext context, @Param("ew") Wrapper<Stencil> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

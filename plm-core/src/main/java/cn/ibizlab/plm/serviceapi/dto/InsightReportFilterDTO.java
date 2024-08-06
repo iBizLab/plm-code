@@ -35,7 +35,7 @@ public class InsightReportFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_chart_type_eq")
     @JSONField(name = "n_chart_type_eq")
-    @ApiModelProperty(value = "图表类型EQ", position = 10)
+    @ApiModelProperty(value = "图表类型EQ", position = 20)
 	private String chartTypeEQ;
 
     /**
@@ -43,7 +43,7 @@ public class InsightReportFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_group_eq")
     @JSONField(name = "n_group_eq")
-    @ApiModelProperty(value = "组别EQ", position = 20)
+    @ApiModelProperty(value = "组别EQ", position = 30)
 	private String groupEQ;
 
     /**
@@ -51,7 +51,7 @@ public class InsightReportFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_categories_like")
     @JSONField(name = "n_categories_like")
-    @ApiModelProperty(value = "类别LIKE", position = 30)
+    @ApiModelProperty(value = "类别LIKE", position = 40)
 	private String categoriesLIKE;
 
     /**
@@ -59,7 +59,7 @@ public class InsightReportFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 50)
+    @ApiModelProperty(value = "标识EQ", position = 90)
 	private String idEQ;
 
     /**
@@ -67,7 +67,7 @@ public class InsightReportFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 60)
+    @ApiModelProperty(value = "名称LIKE", position = 100)
 	private String nameLIKE;
 
     /**
@@ -75,8 +75,24 @@ public class InsightReportFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_view_id_eq")
     @JSONField(name = "n_view_id_eq")
-    @ApiModelProperty(value = "视图标识EQ", position = 110)
+    @ApiModelProperty(value = "视图标识EQ", position = 150)
 	private String viewIdEQ;
+
+    /**
+     * 名称EQ
+     */
+    @JsonProperty("n_view_name_eq")
+    @JSONField(name = "n_view_name_eq")
+    @ApiModelProperty(value = "名称EQ", position = 160)
+	private String viewNameEQ;
+
+    /**
+     * 名称LIKE
+     */
+    @JsonProperty("n_view_name_like")
+    @JSONField(name = "n_view_name_like")
+    @ApiModelProperty(value = "名称LIKE", position = 161)
+	private String viewNameLIKE;
 
 
 }

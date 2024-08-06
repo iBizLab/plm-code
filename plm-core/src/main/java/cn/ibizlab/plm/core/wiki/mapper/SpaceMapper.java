@@ -317,6 +317,25 @@ public interface SpaceMapper extends BaseMapper<Space> {
     List<Space> findByCategoryId(@Param("categoryIds") List<String> categoryIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Space> searchView(IPage<Space> page, @Param("ctx") SpaceSearchContext context, @Param("ew") Wrapper<Space> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Space> listView(@Param("ctx") SpaceSearchContext context, @Param("ew") Wrapper<Space> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

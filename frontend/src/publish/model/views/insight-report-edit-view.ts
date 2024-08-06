@@ -13,268 +13,169 @@ export default {
   caption: '效能报表',
   codeName: 'insight_report_edit_view',
   appDataEntityId: 'plmweb.insight_report',
-  appViewEngines: [
-    {
-      engineCat: 'VIEW',
-      engineType: 'EditView',
-      id: 'engine',
-    },
-  ],
-  controls: [
-    {
-      detoolbarItems: [
-        {
-          actionLevel: 100,
-          noPrivDisplayMode: 2,
-          uiactionId: 'saveandexit',
-          valid: true,
-          capLanguageRes: {
-            lanResTag: 'TBB.TEXT.EDITVIEW.SAVEANDCLOSE',
-          },
-          caption: '保存',
-          itemType: 'DEUIACTION',
-          sysImage: {
-            cssClass: 'fa fa-save',
-            glyph: 'xf0c7@FontAwesome',
-          },
-          tooltip: '保存',
-          tooltipLanguageRes: {
-            lanResTag: 'TBB.TOOLTIP.EDITVIEW.SAVEANDCLOSE',
-          },
-          showCaption: true,
-          showIcon: true,
-          id: 'deuiaction1',
-        },
-      ],
-      xdataControlName: 'form',
-      codeName: 'edit_view_toolbar',
-      controlType: 'TOOLBAR',
-      logicName: '工具栏模板（默认编辑界面）',
-      appDataEntityId: 'plmweb.insight_report',
-      controlParam: {
-        id: 'toolbar',
-      },
-      modelId: '48c8f789be8a5522d3003293c1cf2ffb',
-      modelType: 'PSDETOOLBAR',
-      name: 'toolbar',
-      id: 'edit_view_toolbar',
-    },
-    {
-      createControlAction: {
-        appDEMethodId: 'create',
-        appDataEntityId: 'plmweb.insight_report',
-        id: 'create',
-      },
-      getDraftFromControlAction: {
-        appDataEntityId: 'plmweb.insight_report',
-        id: 'loaddraftfrom',
-      },
-      getDraftControlAction: {
-        appDEMethodId: 'get_draft',
-        appDataEntityId: 'plmweb.insight_report',
-        id: 'loaddraft',
-      },
-      getControlAction: {
-        appDEMethodId: 'get',
-        appDataEntityId: 'plmweb.insight_report',
-        id: 'load',
-      },
-      removeControlAction: {
-        appDEMethodId: 'remove',
-        appDataEntityId: 'plmweb.insight_report',
-        id: 'remove',
-      },
-      updateControlAction: {
-        appDEMethodId: 'update',
-        appDataEntityId: 'plmweb.insight_report',
-        id: 'update',
-      },
-      deformPages: [
-        {
-          layout: {
-            columnCount: 24,
-            layout: 'TABLE_24COL',
-          },
-          deformDetails: [
-            {
-              layout: {
-                columnCount: 24,
-                layout: 'TABLE_24COL',
-              },
-              deformDetails: [
-                {
-                  dataType: 25,
-                  enableCond: 3,
-                  labelPos: 'LEFT',
-                  labelWidth: 130,
-                  noPrivDisplayMode: 1,
-                  appDEFieldId: 'name',
-                  editor: {
-                    maxLength: 200,
-                    editorType: 'TEXTBOX',
-                    valueType: 'SIMPLE',
-                    editable: true,
-                    id: 'name',
-                  },
-                  allowEmpty: true,
-                  capLanguageRes: {
-                    lanResTag: 'DEF.LNAME.NAME',
-                  },
-                  caption: '名称',
-                  codeName: 'name',
-                  detailStyle: 'DEFAULT',
-                  detailType: 'FORMITEM',
-                  layoutPos: {
-                    colMD: 24,
-                    layout: 'TABLE_24COL',
-                  },
-                  showCaption: true,
-                  id: 'name',
-                },
-              ],
-              capLanguageRes: {
-                lanResTag:
-                  'CONTROL.DEFORM.INSIGHT_REPORT.MAIN.GROUPPANEL.GROUP1',
-              },
-              caption: '效能报表基本信息',
-              codeName: 'group1',
-              detailStyle: 'DEFAULT',
-              detailType: 'GROUPPANEL',
-              layoutPos: {
-                colMD: 24,
-                layout: 'TABLE_24COL',
-              },
-              showCaption: true,
-              id: 'group1',
-            },
-            {
-              dataType: 25,
-              enableCond: 3,
-              labelPos: 'LEFT',
-              labelWidth: 130,
-              noPrivDisplayMode: 1,
-              appDEFieldId: 'id',
-              editor: {
-                editorType: 'HIDDEN',
-                valueType: 'SIMPLE',
-                editable: true,
-                id: 'id',
-              },
-              allowEmpty: true,
-              hidden: true,
-              capLanguageRes: {
-                lanResTag: 'DEF.LNAME.ID',
-              },
-              caption: '标识',
-              codeName: 'id',
-              detailStyle: 'DEFAULT',
-              detailType: 'FORMITEM',
-              layoutPos: {
-                colMD: 24,
-                layout: 'TABLE_24COL',
-              },
-              showCaption: true,
-              id: 'id',
-            },
-          ],
-          capLanguageRes: {
-            lanResTag: 'CONTROL.DEFORM.INSIGHT_REPORT.MAIN.FORMPAGE.FORMPAGE1',
-          },
-          caption: '基本信息',
-          codeName: 'formpage1',
-          detailStyle: 'DEFAULT',
-          detailType: 'FORMPAGE',
-          id: 'formpage1',
-        },
-        {
-          layout: {
-            columnCount: 24,
-            layout: 'TABLE_24COL',
-          },
-          deformDetails: [
-            {
-              layout: {
-                columnCount: 24,
-                layout: 'TABLE_24COL',
-              },
-              capLanguageRes: {
-                lanResTag:
-                  'CONTROL.DEFORM.INSIGHT_REPORT.MAIN.GROUPPANEL.GROUP2',
-              },
-              caption: '操作信息',
-              codeName: 'group2',
-              detailStyle: 'DEFAULT',
-              detailType: 'GROUPPANEL',
-              layoutPos: {
-                colMD: 24,
-                layout: 'TABLE_24COL',
-              },
-              showCaption: true,
-              id: 'group2',
-            },
-          ],
-          capLanguageRes: {
-            lanResTag: 'CONTROL.DEFORM.INSIGHT_REPORT.MAIN.FORMPAGE.FORMPAGE2',
-          },
-          caption: '其它',
-          codeName: 'formpage2',
-          detailStyle: 'DEFAULT',
-          detailType: 'FORMPAGE',
-          id: 'formpage2',
-        },
-      ],
-      layout: {
-        columnCount: 24,
-        layout: 'TABLE_24COL',
-      },
-      tabHeaderPos: 'TOP',
-      autoLoad: true,
-      showBusyIndicator: true,
-      codeName: 'main',
-      controlType: 'FORM',
-      logicName: '主编辑表单',
-      appDataEntityId: 'plmweb.insight_report',
-      controlParam: {
-        id: 'form',
-      },
-      modelId: 'ece1a3b7da8b33394a3116d0fa4179ba',
-      modelType: 'PSDEFORM_EDITFORM',
-      name: 'form',
-      id: 'plmweb.insight_report.main',
-    },
-    {
-      codeName: 'edit_view_datainfobar',
-      controlType: 'DATAINFOBAR',
-      appDataEntityId: 'plmweb.insight_report',
-      controlParam: {
-        id: 'datainfobar',
-      },
-      name: 'datainfobar',
-      id: 'edit_view_datainfobar',
-    },
-    {
-      capLanguageRes: {
-        lanResTag: 'DE.LNAME.INSIGHT_REPORT',
-      },
-      caption: '效能报表',
-      codeName: 'edit_view_captionbar',
-      controlType: 'CAPTIONBAR',
-      appDataEntityId: 'plmweb.insight_report',
-      controlParam: {},
-      name: 'captionbar',
-      id: 'edit_view_captionbar',
-    },
-  ],
   viewLayoutPanel: {
-    layoutBodyOnly: true,
-    useDefaultLayout: true,
+    viewProxyMode: true,
+    layoutMode: 'FLEX',
+    layout: {
+      layout: 'FLEX',
+    },
+    rootPanelItems: [
+      {
+        actionGroupExtractMode: 'ITEM',
+        panelItems: [
+          {
+            actionGroupExtractMode: 'ITEM',
+            panelItems: [
+              {
+                actionGroupExtractMode: 'ITEM',
+                panelItems: [
+                  {
+                    caption: '页面标题',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'CTRLPOS',
+                    layoutPos: {
+                      shrink: 1,
+                      layout: 'FLEX',
+                    },
+                    showCaption: true,
+                    id: 'captionbar',
+                  },
+                ],
+                layout: {
+                  align: 'center',
+                  layout: 'FLEX',
+                },
+                dataRegionType: 'INHERIT',
+                caption: '容器',
+                itemStyle: 'DEFAULT',
+                itemType: 'CONTAINER',
+                layoutPos: {
+                  shrink: 1,
+                  heightMode: 'FULL',
+                  layout: 'FLEX',
+                },
+                id: 'view_captionbar',
+              },
+            ],
+            layout: {
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            caption: '容器',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              shrink: 1,
+              heightMode: 'FULL',
+              layout: 'FLEX',
+            },
+            id: 'view_header_left',
+          },
+        ],
+        predefinedType: 'VIEWHEADER',
+        layout: {
+          align: 'space-between',
+          dir: 'row',
+          layout: 'FLEX',
+          valign: 'center',
+        },
+        dataRegionType: 'INHERIT',
+        caption: '容器',
+        itemStyle: 'DEFAULT',
+        itemType: 'CONTAINER',
+        layoutPos: {
+          shrink: 0,
+          layout: 'FLEX',
+        },
+        id: 'view_header',
+      },
+      {
+        actionGroupExtractMode: 'ITEM',
+        panelItems: [
+          {
+            editor: {
+              halign: 'LEFT',
+              renderMode: 'TEXT_DYNAMIC',
+              valign: 'MIDDLE',
+              wrapMode: 'NOWRAP',
+              editorParams: {
+                appDataEntityId: 'insight_report',
+              },
+              editorType: 'SPAN',
+              predefinedType: 'FIELD_TEXT_DYNAMIC',
+              valueType: 'SIMPLE',
+              editable: true,
+              id: 'field_text_dynamic',
+            },
+            allowEmpty: true,
+            caption: '文本(动态)',
+            itemStyle: 'DEFAULT',
+            itemType: 'FIELD',
+            layoutPos: {
+              grow: 1,
+              shrink: 1,
+              layout: 'FLEX',
+            },
+            sysPFPluginId: 'bi_report_panel',
+            id: 'field_text_dynamic',
+          },
+        ],
+        layout: {
+          layout: 'FLEX',
+        },
+        dataRegionType: 'INHERIT',
+        caption: '容器',
+        itemStyle: 'DEFAULT',
+        itemType: 'CONTAINER',
+        layoutPos: {
+          grow: 1,
+          shrink: 1,
+          layout: 'FLEX',
+        },
+        id: 'container',
+      },
+    ],
     layoutPanel: true,
-    codeName: 'layoutpanel',
-    controlStyle: 'APPDEEDITVIEW',
+    appViewEngines: [
+      {
+        engineCat: 'VIEW',
+        engineType: 'EditView',
+        id: 'engine',
+      },
+    ],
+    controls: [
+      {
+        codeName: 'edit_view_datainfobar',
+        controlType: 'DATAINFOBAR',
+        appDataEntityId: 'plmweb.insight_report',
+        controlParam: {
+          id: 'datainfobar',
+        },
+        name: 'datainfobar',
+        id: 'edit_view_datainfobar',
+      },
+      {
+        capLanguageRes: {
+          lanResTag: 'DE.LNAME.INSIGHT_REPORT',
+        },
+        caption: '效能报表',
+        codeName: 'edit_view_captionbar',
+        controlType: 'CAPTIONBAR',
+        appDataEntityId: 'plmweb.insight_report',
+        controlParam: {},
+        name: 'captionbar',
+        id: 'edit_view_captionbar',
+      },
+    ],
+    codeName: 'usr0702541121',
     controlType: 'VIEWLAYOUTPANEL',
+    logicName: 'EditView编辑视图布局面板',
     appDataEntityId: 'plmweb.insight_report',
     controlParam: {},
-    id: 'layoutpanel',
+    modelId: '10CA5153-7F0F-4A0E-A599-92A4D0F2CABF',
+    modelType: 'PSSYSVIEWLAYOUTPANEL',
+    name: 'layoutpanel',
+    id: 'usr0702541121',
   },
   title: '效能报表编辑视图',
   titleLanguageRes: {

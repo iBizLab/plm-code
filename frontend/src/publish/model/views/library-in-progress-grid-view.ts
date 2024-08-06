@@ -171,6 +171,7 @@ export default {
                 beforeItemType: 'NONE',
                 detailType: 'DEUIACTION',
                 uiactionId: 'archive@library',
+                tooltip: '归档',
                 showIcon: true,
                 sysImage: {
                   cssClass: 'fa fa-file-archive-o',
@@ -184,6 +185,7 @@ export default {
                 beforeItemType: 'NONE',
                 detailType: 'DEUIACTION',
                 uiactionId: 'delete@library',
+                tooltip: '删除',
                 showIcon: true,
                 sysImage: {
                   cssClass: 'fa fa-trash-o',

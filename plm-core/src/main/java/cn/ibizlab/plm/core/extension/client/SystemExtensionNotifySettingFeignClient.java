@@ -21,6 +21,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.util.Assert;
 import org.springframework.beans.factory.annotation.Value;
 import cn.ibizlab.util.errors.BadRequestAlertException;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.extension.domain.SystemExtensionNotifySetting;
@@ -35,7 +36,7 @@ import org.springframework.web.bind.annotation.*;
 @FeignClient(value = "${ibiz.ref.service.extension:extension}", contextId = "systemextensionnotifysetting")
 public interface SystemExtensionNotifySettingFeignClient  {
     @PostMapping("system_extension_notify_settings/check_key")
-    Integer checkKey(@Validated @RequestBody SystemExtensionNotifySetting dto) ;
+    CheckKeyStatus checkKey(@Validated @RequestBody SystemExtensionNotifySetting dto) ;
 
     @PostMapping("system_extension_notify_settings")
     SystemExtensionNotifySetting create(@Validated @RequestBody SystemExtensionNotifySetting dto) ;

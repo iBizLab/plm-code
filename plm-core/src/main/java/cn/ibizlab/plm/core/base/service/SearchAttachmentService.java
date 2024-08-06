@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.SearchAttachment;
 import cn.ibizlab.plm.core.base.filter.SearchAttachmentSearchContext;
 import cn.ibizlab.plm.core.prodmgmt.domain.Customer;
@@ -143,7 +144,7 @@ public interface SearchAttachmentService extends IService<SearchAttachment> {
     * @param et
     * @return
     */
-    Integer checkKey(SearchAttachment et);
+    CheckKeyStatus checkKey(SearchAttachment et);
 
     /**
     * 保存
@@ -198,8 +199,15 @@ public interface SearchAttachmentService extends IService<SearchAttachment> {
     */
     List<SearchAttachment> findByOwnerId(List<String> ownerIds);
     default List<SearchAttachment> findByOwnerId(String ownerId){
-        return findByOwnerId(Arrays.asList(ownerId));
+        return findByDerCustomer(new Customer().setId(ownerId));
     }
+
+    /**
+    * findByDerCustomer
+    * @param customer
+    * @return
+    */
+    List<SearchAttachment> findByDerCustomer(Customer customer);
 
     /**
     * removeByOwnerId
@@ -234,12 +242,26 @@ public interface SearchAttachmentService extends IService<SearchAttachment> {
     boolean saveByDerCustomer(Customer customer, List<SearchAttachment> list);
 
     /**
+    * findByDerIdea
+    * @param idea
+    * @return
+    */
+    List<SearchAttachment> findByDerIdea(Idea idea);
+
+    /**
     * saveByDerIdea
     * @param idea
     * @param list
     * @return
     */
     boolean saveByDerIdea(Idea idea, List<SearchAttachment> list);
+
+    /**
+    * findByDerPage
+    * @param articlePage
+    * @return
+    */
+    List<SearchAttachment> findByDerPage(ArticlePage articlePage);
 
     /**
     * saveByDerPage
@@ -250,12 +272,26 @@ public interface SearchAttachmentService extends IService<SearchAttachment> {
     boolean saveByDerPage(ArticlePage articlePage, List<SearchAttachment> list);
 
     /**
+    * findByDerTestCase
+    * @param testCase
+    * @return
+    */
+    List<SearchAttachment> findByDerTestCase(TestCase testCase);
+
+    /**
     * saveByDerTestCase
     * @param testCase
     * @param list
     * @return
     */
     boolean saveByDerTestCase(TestCase testCase, List<SearchAttachment> list);
+
+    /**
+    * findByDerTicket
+    * @param ticket
+    * @return
+    */
+    List<SearchAttachment> findByDerTicket(Ticket ticket);
 
     /**
     * saveByDerTicket
@@ -266,12 +302,35 @@ public interface SearchAttachmentService extends IService<SearchAttachment> {
     boolean saveByDerTicket(Ticket ticket, List<SearchAttachment> list);
 
     /**
+    * findByDerWorkItem
+    * @param workItem
+    * @return
+    */
+    List<SearchAttachment> findByDerWorkItem(WorkItem workItem);
+
+    /**
     * saveByDerWorkItem
     * @param workItem
     * @param list
     * @return
     */
     boolean saveByDerWorkItem(WorkItem workItem, List<SearchAttachment> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<SearchAttachment> fetchView(SearchAttachmentSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<SearchAttachment> listView(SearchAttachmentSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<SearchAttachment> list) {

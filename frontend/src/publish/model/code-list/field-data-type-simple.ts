@@ -1,0 +1,66 @@
+export default {
+  codeListTag: 'field_data_type_simple',
+  codeListType: 'STATIC',
+  codeName: 'field_data_type_simple',
+  emptyText: '未定义',
+  appDataEntityId: 'plmweb.psdefield',
+  codeItems: [
+    {
+      codeName: 'text',
+      text: '单行文本',
+      value: 'TEXT',
+      id: 'text',
+    },
+    {
+      codeName: 'longtext_1000',
+      text: '多行文本（长度1000）',
+      value: 'LONGTEXT_1000',
+      id: 'longtext_1000',
+    },
+    {
+      codeName: 'longtext',
+      text: '多行文本（无长度限制）',
+      value: 'LONGTEXT',
+      id: 'longtext',
+    },
+    {
+      codeName: 'sscodelist',
+      text: '单项选择',
+      value: 'SSCODELIST',
+      id: 'sscodelist',
+    },
+    {
+      codeName: 'smcodelist',
+      text: '多项选择',
+      value: 'SMCODELIST',
+      id: 'smcodelist',
+    },
+    {
+      codeName: 'decimal',
+      text: '数值',
+      value: 'DECIMAL',
+      id: 'decimal',
+    },
+    {
+      codeName: 'date',
+      text: '日期型',
+      value: 'DATE',
+      id: 'date',
+    },
+    {
+      codeName: 'time',
+      text: '时间型',
+      value: 'TIME',
+      id: 'time',
+    },
+    {
+      codeName: 'datetime',
+      text: '日期时间型',
+      value: 'DATETIME',
+      id: 'datetime',
+    },
+  ],
+  enableCache: true,
+  name: '实体属性数据类型(简化)',
+  id: 'plmweb.field_data_type_simple',
+};

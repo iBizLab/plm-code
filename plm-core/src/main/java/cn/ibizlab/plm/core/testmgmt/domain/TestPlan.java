@@ -139,7 +139,7 @@ public class TestPlan extends EntityMP implements Serializable
     * 负责人标识
     */
     @TableField(value = "assignee_id")
-    @DEField(name = "assignee_id")
+    @DEField(name = "assignee_id" , dict = "SysOperator")
     @JSONField(name = "assignee_id")
     @JsonProperty("assignee_id")
     @ApiModelProperty(value = "assignee_id", notes = "负责人标识")

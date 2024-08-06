@@ -329,7 +329,6 @@ export default {
                 allowEmpty: true,
                 hidden: true,
                 caption: '文本(动态)',
-                itemStyle: 'DEFAULT',
                 itemType: 'FIELD',
                 layoutPos: {
                   shrink: 1,
@@ -384,14 +383,14 @@ export default {
       },
       delistDataItems: [
         {
-          appDEFieldId: 'baseline',
-          dataType: 21,
-          id: 'baseline',
-        },
-        {
           appDEFieldId: 'target_version',
           dataType: 21,
           id: 'target_version',
+        },
+        {
+          appDEFieldId: 'baseline',
+          dataType: 21,
+          id: 'baseline',
         },
         {
           appDEFieldId: 'id',

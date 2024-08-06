@@ -89,6 +89,25 @@ public interface BaselineMapper extends BaseMapper<Baseline> {
     List<Baseline> findByOwnerId(@Param("ownerIds") List<String> ownerIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Baseline> searchView(IPage<Baseline> page, @Param("ctx") BaselineSearchContext context, @Param("ew") Wrapper<Baseline> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Baseline> listView(@Param("ctx") BaselineSearchContext context, @Param("ew") Wrapper<Baseline> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

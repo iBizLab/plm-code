@@ -157,6 +157,7 @@ export default {
                 beforeItemType: 'NONE',
                 detailType: 'DEUIACTION',
                 uiactionId: 'activate@library',
+                tooltip: '激活',
                 showIcon: true,
                 sysImage: {
                   cssClass: 'fa fa-lightbulb-o',
@@ -170,6 +171,7 @@ export default {
                 beforeItemType: 'NONE',
                 detailType: 'DEUIACTION',
                 uiactionId: 'delete@library',
+                tooltip: '删除',
                 showIcon: true,
                 sysImage: {
                   cssClass: 'fa fa-trash-o',

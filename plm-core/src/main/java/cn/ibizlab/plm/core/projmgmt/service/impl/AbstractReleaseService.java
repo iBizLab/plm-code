@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.projmgmt.domain.Release;
@@ -33,6 +34,8 @@ import cn.ibizlab.plm.core.testmgmt.domain.TestPlan;
 import cn.ibizlab.plm.core.testmgmt.service.TestPlanService;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
 import cn.ibizlab.plm.core.projmgmt.service.WorkItemService;
+import cn.ibizlab.plm.core.base.domain.Relation;
+import cn.ibizlab.plm.core.base.service.RelationService;
 
 /**
  * 实体[项目发布] 服务对象接口实现
@@ -58,6 +61,10 @@ public abstract class AbstractReleaseService extends ServiceImpl<ReleaseMapper,R
     @Lazy
     protected WorkItemService workItemService;
 
+    @Autowired
+    @Lazy
+    protected RelationService relationService;
+
     protected int batchSize = 500;
 
     @Override
@@ -66,6 +73,7 @@ public abstract class AbstractReleaseService extends ServiceImpl<ReleaseMapper,R
         fillParentData(et);
         if(this.baseMapper.insert(et) < 1)
             return false;
+        stageService.saveByRelease(et,et.getStageTransitions());
         get(et);
         return true;
     }
@@ -83,6 +91,7 @@ public abstract class AbstractReleaseService extends ServiceImpl<ReleaseMapper,R
         qw.eq("id", et.getId());
         if(!update(et, qw))
             return false;
+        stageService.saveByRelease(et,et.getStageTransitions());
         get(et);
         return true;
     }
@@ -96,6 +105,7 @@ public abstract class AbstractReleaseService extends ServiceImpl<ReleaseMapper,R
    @Transactional
     public boolean remove(Release et) {
         String key = et.getId();
+        stageService.removeByReleaseId(key);
         testPlanService.resetByReleaseId(key);
         workItemService.resetByReleaseId(key);
         if(!remove(Wrappers.<Release>lambdaQuery().eq(Release::getId, et.getId())))
@@ -115,6 +125,8 @@ public abstract class AbstractReleaseService extends ServiceImpl<ReleaseMapper,R
         if(rt == null)
             throw new NotFoundException("数据不存在",Entities.RELEASE.toString(),et.getId());
         rt.copyTo(et,true);
+        //设置 [发布阶段]
+        getStageTransitions(et);
         return et;
     }	
 
@@ -127,14 +139,14 @@ public abstract class AbstractReleaseService extends ServiceImpl<ReleaseMapper,R
         return et;
     }
 	
-    public Integer checkKey(Release et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Release>lambdaQuery().eq(Release::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(Release et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Release>lambdaQuery().eq(Release::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(Release et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -176,22 +188,88 @@ public abstract class AbstractReleaseService extends ServiceImpl<ReleaseMapper,R
         return list;
    }
 	
-   public Page<Release> fetchNotFinish(ReleaseSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Release> pages=baseMapper.searchNotFinish(context.getPages(),context,context.getSelectCond());
+   public Page<Release> fetchBiDetail(ReleaseSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Release> pages=baseMapper.searchBiDetail(context.getPages(),context,context.getSelectCond());
         List<Release> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
-   public List<Release> listNotFinish(ReleaseSearchContext context) {
-        List<Release> list = baseMapper.listNotFinish(context,context.getSelectCond());
+   public List<Release> listBiDetail(ReleaseSearchContext context) {
+        List<Release> list = baseMapper.listBiDetail(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Release> fetchBiSearch(ReleaseSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Release> pages=baseMapper.searchBiSearch(context.getPages(),context,context.getSelectCond());
+        List<Release> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Release> listBiSearch(ReleaseSearchContext context) {
+        List<Release> list = baseMapper.listBiSearch(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Release> fetchChooseReleseRelation(ReleaseSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("END_AT,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Release> pages=baseMapper.searchChooseReleseRelation(context.getPages(),context,context.getSelectCond());
+        List<Release> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Release> listChooseReleseRelation(ReleaseSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("END_AT,DESC");
+        List<Release> list = baseMapper.listChooseReleseRelation(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Release> fetchNotPublished(ReleaseSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Release> pages=baseMapper.searchNotPublished(context.getPages(),context,context.getSelectCond());
+        List<Release> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Release> listNotPublished(ReleaseSearchContext context) {
+        List<Release> list = baseMapper.listNotPublished(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Release> fetchReader(ReleaseSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Release> pages=baseMapper.searchReader(context.getPages(),context,context.getSelectCond());
+        List<Release> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Release> listReader(ReleaseSearchContext context) {
+        List<Release> list = baseMapper.listReader(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Release> fetchSprintRelation(ReleaseSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Release> pages=baseMapper.searchSprintRelation(context.getPages(),context,context.getSelectCond());
+        List<Release> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Release> listSprintRelation(ReleaseSearchContext context) {
+        List<Release> list = baseMapper.listSprintRelation(context,context.getSelectCond());
         return list;
    }
 	
 	public List<Release> findByProjectId(List<String> projectIds){
         List<Release> list = baseMapper.findByProjectId(projectIds);
+        if(!ObjectUtils.isEmpty(list))
+            stageService.findByReleaseId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getReleaseId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setStageTransitions(sub.getValue())));
         return list;	
 	}
 
+	public List<Release> findByProject(Project project){
+        List<Release> list = findByProjectId(Arrays.asList(project.getId()));
+		return list;
+	}
 	public boolean removeByProjectId(String projectId){
         List<String> ids = baseMapper.findByProjectId(Arrays.asList(projectId)).stream().map(e->e.getId()).collect(Collectors.toList());
         if(!ObjectUtils.isEmpty(ids))
@@ -206,8 +284,8 @@ public abstract class AbstractReleaseService extends ServiceImpl<ReleaseMapper,R
 	public boolean saveByProject(Project project, List<Release> list){
         if(list==null)
             return true;
-        Map<String,Release> before = findByProjectId(project.getId()).stream().collect(Collectors.toMap(Release::getId,e->e));
 
+        Map<String,Release> before = findByProject(project).stream().collect(Collectors.toMap(Release::getId,e->e));
         List<Release> update = new ArrayList<>();
         List<Release> create = new ArrayList<>();
 
@@ -231,6 +309,24 @@ public abstract class AbstractReleaseService extends ServiceImpl<ReleaseMapper,R
             return true;
 			
 	}
+	@Override
+    public List<Stage> getStageTransitions(Release et) {
+        List<Stage> list = stageService.findByRelease(et);
+        et.setStageTransitions(list);
+        return list;
+    }
+	
+   public Page<Release> fetchView(ReleaseSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Release> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<Release> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Release> listView(ReleaseSearchContext context) {
+        List<Release> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(Release et) {
         if(Entities.PROJECT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

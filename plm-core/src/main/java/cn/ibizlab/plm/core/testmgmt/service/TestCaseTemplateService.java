@@ -11,6 +11,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.testmgmt.domain.TestCaseTemplate;
 import cn.ibizlab.plm.core.testmgmt.filter.TestCaseTemplateSearchContext;
 import cn.ibizlab.plm.core.testmgmt.domain.Library;
@@ -141,7 +142,7 @@ public interface TestCaseTemplateService extends IService<TestCaseTemplate> {
     * @param et
     * @return
     */
-    Integer checkKey(TestCaseTemplate et);
+    CheckKeyStatus checkKey(TestCaseTemplate et);
 
     /**
     * 保存
@@ -190,8 +191,15 @@ public interface TestCaseTemplateService extends IService<TestCaseTemplate> {
     */
     List<TestCaseTemplate> findByTestLibraryId(List<String> testLibraryIds);
     default List<TestCaseTemplate> findByTestLibraryId(String testLibraryId){
-        return findByTestLibraryId(Arrays.asList(testLibraryId));
+        return findByLibrary(new Library().setId(testLibraryId));
     }
+
+    /**
+    * findByLibrary
+    * @param library
+    * @return
+    */
+    List<TestCaseTemplate> findByLibrary(Library library);
 
     /**
     * removeByTestLibraryId
@@ -232,8 +240,15 @@ public interface TestCaseTemplateService extends IService<TestCaseTemplate> {
     */
     List<TestCaseTemplate> findBySuiteId(List<String> suiteIds);
     default List<TestCaseTemplate> findBySuiteId(String suiteId){
-        return findBySuiteId(Arrays.asList(suiteId));
+        return findByTestSuite(new TestSuite().setId(suiteId));
     }
+
+    /**
+    * findByTestSuite
+    * @param testSuite
+    * @return
+    */
+    List<TestCaseTemplate> findByTestSuite(TestSuite testSuite);
 
     /**
     * removeBySuiteId
@@ -266,6 +281,22 @@ public interface TestCaseTemplateService extends IService<TestCaseTemplate> {
     * @return
     */
     boolean saveByTestSuite(TestSuite testSuite, List<TestCaseTemplate> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<TestCaseTemplate> fetchView(TestCaseTemplateSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<TestCaseTemplate> listView(TestCaseTemplateSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<TestCaseTemplate> list) {

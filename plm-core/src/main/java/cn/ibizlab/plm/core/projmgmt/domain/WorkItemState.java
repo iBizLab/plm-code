@@ -50,6 +50,16 @@ public class WorkItemState extends EntityMP implements Serializable
     private BigDecimal sequence;
 
     /**
+    * 是否系统类型
+    */
+    @TableField(value = "is_system")
+    @DEField(name = "is_system" , defaultValue = "0" , dict = "YesNo")
+    @JSONField(name = "is_system")
+    @JsonProperty("is_system")
+    @ApiModelProperty(value = "is_system", notes = "是否系统类型")
+    private Integer isSystem;
+
+    /**
     * 颜色
     */
     @TableField(value = "color")
@@ -168,6 +178,15 @@ public class WorkItemState extends EntityMP implements Serializable
     public WorkItemState setSequence(BigDecimal sequence) {
         this.sequence = sequence;
         this.modify("sequence", sequence);
+        return this;
+    }
+
+    /**
+    * 设置 [是否系统类型]
+    */
+    public WorkItemState setIsSystem(Integer isSystem) {
+        this.isSystem = isSystem;
+        this.modify("is_system", isSystem);
         return this;
     }
 

@@ -639,6 +639,7 @@ export default {
       refreshMode: 1,
       successMsg: '删除成功',
       timeout: 60000,
+      tooltip: '删除',
       uiactionMode: 'BACKEND',
       uiactionTag: 'remove',
       uiactionType: 'DEUIACTION',

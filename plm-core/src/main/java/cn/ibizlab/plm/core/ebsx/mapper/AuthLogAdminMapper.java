@@ -82,6 +82,25 @@ public interface AuthLogAdminMapper extends BaseMapper<AuthLogAdmin> {
     List<Map> listGroupByData(@Param("ctx") AuthLogAdminSearchContext context, @Param("ew") Wrapper<AuthLogAdmin> wrapper);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<AuthLogAdmin> searchView(IPage<AuthLogAdmin> page, @Param("ctx") AuthLogAdminSearchContext context, @Param("ew") Wrapper<AuthLogAdmin> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<AuthLogAdmin> listView(@Param("ctx") AuthLogAdminSearchContext context, @Param("ew") Wrapper<AuthLogAdmin> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

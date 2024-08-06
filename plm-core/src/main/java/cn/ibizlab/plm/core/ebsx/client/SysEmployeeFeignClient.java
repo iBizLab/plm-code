@@ -21,6 +21,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.util.Assert;
 import org.springframework.beans.factory.annotation.Value;
 import cn.ibizlab.util.errors.BadRequestAlertException;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.ebsx.domain.SysEmployee;
@@ -38,7 +39,7 @@ public interface SysEmployeeFeignClient  {
     SysEmployee changePwdByUserId(@PathVariable("userId") String userId, @Validated @RequestBody SysEmployee dto) ;
 
     @PostMapping("sysemployees/checkkey")
-    Integer checkKey(@Validated @RequestBody SysEmployee dto) ;
+    CheckKeyStatus checkKey(@Validated @RequestBody SysEmployee dto) ;
 
     @PostMapping("sysemployees")
     SysEmployee create(@Validated @RequestBody SysEmployee dto) ;

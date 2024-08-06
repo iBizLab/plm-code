@@ -43,6 +43,44 @@ public interface TestPlanMapper extends BaseMapper<TestPlan> {
     List<TestPlan> listDefault(@Param("ctx") TestPlanSearchContext context, @Param("ew") Wrapper<TestPlan> wrapper);
 
     /**
+     * 数据集合bi_detail分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<TestPlan> searchBiDetail(IPage<TestPlan> page, @Param("ctx") TestPlanSearchContext context, @Param("ew") Wrapper<TestPlan> wrapper);
+    
+    /**
+     * 数据集合bi_detail查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<TestPlan> listBiDetail(@Param("ctx") TestPlanSearchContext context, @Param("ew") Wrapper<TestPlan> wrapper);
+
+    /**
+     * 数据集合bi_search分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<TestPlan> searchBiSearch(IPage<TestPlan> page, @Param("ctx") TestPlanSearchContext context, @Param("ew") Wrapper<TestPlan> wrapper);
+    
+    /**
+     * 数据集合bi_search查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<TestPlan> listBiSearch(@Param("ctx") TestPlanSearchContext context, @Param("ew") Wrapper<TestPlan> wrapper);
+
+    /**
      * 数据集合my_assignee分页查询
      * 
      * @param page
@@ -195,6 +233,25 @@ public interface TestPlanMapper extends BaseMapper<TestPlan> {
     * @return
     */
     List<TestPlan> findById(@Param("ids") List<String> ids);
+
+    /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<TestPlan> searchView(IPage<TestPlan> page, @Param("ctx") TestPlanSearchContext context, @Param("ew") Wrapper<TestPlan> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<TestPlan> listView(@Param("ctx") TestPlanSearchContext context, @Param("ew") Wrapper<TestPlan> wrapper);
 
     /**
      * 主键查询

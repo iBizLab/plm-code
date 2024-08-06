@@ -44,11 +44,27 @@ public class PSDEMSLogicDTO extends DTOBase implements Serializable {
     private Integer dynaModelFlag;
 
     /**
+     * 逻辑节点
+     */
+    @JsonProperty("psdelogicnodes")
+    @JSONField(name = "psdelogicnodes")
+    @ApiModelProperty(value = "逻辑节点", position = 1)
+    private List<PSDELogicNodeDTO> psdeLogicNodes;
+
+    /**
+     * 逻辑连接
+     */
+    @JsonProperty("psdelogiclinks")
+    @JSONField(name = "psdelogiclinks")
+    @ApiModelProperty(value = "逻辑连接", position = 2)
+    private List<PSDELogicLinkDTO> psdeLogicLinks;
+
+    /**
      * 代码标识
      */
     @JsonProperty("codename")
     @JSONField(name = "codename")
-    @ApiModelProperty(value = "代码标识", position = 1)
+    @ApiModelProperty(value = "代码标识", position = 3)
     private String codeName;
 
     /**
@@ -57,7 +73,7 @@ public class PSDEMSLogicDTO extends DTOBase implements Serializable {
     @JsonProperty("createdate")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "createdate" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 2)
+    @ApiModelProperty(value = "建立时间", position = 4)
     private Date createDate;
 
     /**
@@ -65,15 +81,23 @@ public class PSDEMSLogicDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("createman")
     @JSONField(name = "createman")
-    @ApiModelProperty(value = "建立人", position = 3)
+    @ApiModelProperty(value = "建立人", position = 5)
     private String createMan;
+
+    /**
+     * 逻辑类型
+     */
+    @JsonProperty("logictype")
+    @JSONField(name = "logictype")
+    @ApiModelProperty(value = "逻辑类型", position = 6)
+    private String logicType;
 
     /**
      * 实体
      */
     @JsonProperty("psdeid")
     @JSONField(name = "psdeid")
-    @ApiModelProperty(value = "实体", position = 4)
+    @ApiModelProperty(value = "实体", position = 7)
     private String psdeid;
 
     /**
@@ -81,7 +105,7 @@ public class PSDEMSLogicDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("psdelogicid")
     @JSONField(name = "psdelogicid")
-    @ApiModelProperty(value = "实体处理逻辑标识", position = 5)
+    @ApiModelProperty(value = "实体处理逻辑标识", position = 8)
     private String psdeLogicId;
 
     /**
@@ -89,7 +113,7 @@ public class PSDEMSLogicDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("psdelogicname")
     @JSONField(name = "psdelogicname")
-    @ApiModelProperty(value = "实体处理逻辑名称", position = 6)
+    @ApiModelProperty(value = "实体处理逻辑名称", position = 9)
     private String psdeLogicName;
 
     /**
@@ -97,7 +121,7 @@ public class PSDEMSLogicDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("psdename")
     @JSONField(name = "psdename")
-    @ApiModelProperty(value = "实体", position = 7)
+    @ApiModelProperty(value = "实体", position = 10)
     private String psdeName;
 
     /**
@@ -106,7 +130,7 @@ public class PSDEMSLogicDTO extends DTOBase implements Serializable {
     @JsonProperty("updatedate")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "updatedate" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 8)
+    @ApiModelProperty(value = "更新时间", position = 11)
     private Date updateDate;
 
     /**
@@ -114,7 +138,7 @@ public class PSDEMSLogicDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("updateman")
     @JSONField(name = "updateman")
-    @ApiModelProperty(value = "更新人", position = 9)
+    @ApiModelProperty(value = "更新人", position = 12)
     private String updateMan;
 
     /**
@@ -122,7 +146,7 @@ public class PSDEMSLogicDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("extension_tag")
     @JSONField(name = "extension_tag")
-    @ApiModelProperty(value = "扩展标记", position = 10)
+    @ApiModelProperty(value = "扩展标记", position = 13)
     private String extensionTag;
 
     /**
@@ -130,7 +154,7 @@ public class PSDEMSLogicDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("extension_tag2")
     @JSONField(name = "extension_tag2")
-    @ApiModelProperty(value = "扩展标记2", position = 11)
+    @ApiModelProperty(value = "扩展标记2", position = 14)
     private String extensionTag2;
 
     /**
@@ -138,7 +162,7 @@ public class PSDEMSLogicDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("extension_tag3")
     @JSONField(name = "extension_tag3")
-    @ApiModelProperty(value = "扩展标记3", position = 12)
+    @ApiModelProperty(value = "扩展标记3", position = 15)
     private String extensionTag3;
 
     /**
@@ -146,7 +170,7 @@ public class PSDEMSLogicDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("extension_tag4")
     @JSONField(name = "extension_tag4")
-    @ApiModelProperty(value = "扩展标记4", position = 13)
+    @ApiModelProperty(value = "扩展标记4", position = 16)
     private String extensionTag4;
 
 
@@ -160,11 +184,38 @@ public class PSDEMSLogicDTO extends DTOBase implements Serializable {
     }
 
     /**
+     * 设置 [逻辑节点]
+     */
+    public PSDEMSLogicDTO setPsdeLogicNodes(List<PSDELogicNodeDTO> psdeLogicNodes) {
+        this.psdeLogicNodes = psdeLogicNodes;
+        this.modify("psdelogicnodes", psdeLogicNodes);
+        return this;
+    }
+
+    /**
+     * 设置 [逻辑连接]
+     */
+    public PSDEMSLogicDTO setPsdeLogicLinks(List<PSDELogicLinkDTO> psdeLogicLinks) {
+        this.psdeLogicLinks = psdeLogicLinks;
+        this.modify("psdelogiclinks", psdeLogicLinks);
+        return this;
+    }
+
+    /**
      * 设置 [代码标识]
      */
     public PSDEMSLogicDTO setCodeName(String codeName) {
         this.codeName = codeName;
         this.modify("codename", codeName);
+        return this;
+    }
+
+    /**
+     * 设置 [逻辑类型]
+     */
+    public PSDEMSLogicDTO setLogicType(String logicType) {
+        this.logicType = logicType;
+        this.modify("logictype", logicType);
         return this;
     }
 

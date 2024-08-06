@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.Recent;
 import cn.ibizlab.plm.core.base.filter.RecentSearchContext;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
@@ -138,7 +139,7 @@ public interface RecentService extends IService<Recent> {
     * @param et
     * @return
     */
-    Integer checkKey(Recent et);
+    CheckKeyStatus checkKey(Recent et);
 
     /**
     * 保存
@@ -171,16 +172,6 @@ public interface RecentService extends IService<Recent> {
     * @return
     */
     default Recent myCreatedEntry(Recent et) {
-        return et;
-    }
-
-    /**
-    * recentClean
-    * 
-    * @param et
-    * @return
-    */
-    default Recent recentClean(Recent et) {
         return et;
     }
 
@@ -425,6 +416,22 @@ public interface RecentService extends IService<Recent> {
     List<Recent> listRecentWorkItemBug(RecentSearchContext context);
 
     /**
+    * fetchRecentWorkItemDependency
+    * 
+    * @param context
+    * @return
+    */
+    Page<Recent> fetchRecentWorkItemDependency(RecentSearchContext context);
+
+    /**
+    * listRecentWorkItemDependency
+    * 
+    * @param context
+    * @return
+    */
+    List<Recent> listRecentWorkItemDependency(RecentSearchContext context);
+
+    /**
     * fetchUser
     * 
     * @param context
@@ -447,8 +454,15 @@ public interface RecentService extends IService<Recent> {
     */
     List<Recent> findByOwnerId(List<String> ownerIds);
     default List<Recent> findByOwnerId(String ownerId){
-        return findByOwnerId(Arrays.asList(ownerId));
+        return findByDercustomRecentWorkItem(new WorkItem().setId(ownerId));
     }
+
+    /**
+    * findByDercustomRecentWorkItem
+    * @param workItem
+    * @return
+    */
+    List<Recent> findByDercustomRecentWorkItem(WorkItem workItem);
 
     /**
     * removeByOwnerId
@@ -481,6 +495,22 @@ public interface RecentService extends IService<Recent> {
     * @return
     */
     boolean saveByDercustomRecentWorkItem(WorkItem workItem, List<Recent> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Recent> fetchView(RecentSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Recent> listView(RecentSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Recent> list) {

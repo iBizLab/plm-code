@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.prodmgmt.domain.IdeaTemplate;
 import cn.ibizlab.plm.core.prodmgmt.filter.IdeaTemplateSearchContext;
 import cn.ibizlab.plm.core.base.domain.Category;
@@ -139,7 +140,7 @@ public interface IdeaTemplateService extends IService<IdeaTemplate> {
     * @param et
     * @return
     */
-    Integer checkKey(IdeaTemplate et);
+    CheckKeyStatus checkKey(IdeaTemplate et);
 
     /**
     * 保存
@@ -178,8 +179,15 @@ public interface IdeaTemplateService extends IService<IdeaTemplate> {
     */
     List<IdeaTemplate> findByCategoryId(List<String> categoryIds);
     default List<IdeaTemplate> findByCategoryId(String categoryId){
-        return findByCategoryId(Arrays.asList(categoryId));
+        return findByCategory(new Category().setId(categoryId));
     }
+
+    /**
+    * findByCategory
+    * @param category
+    * @return
+    */
+    List<IdeaTemplate> findByCategory(Category category);
 
     /**
     * removeByCategoryId
@@ -220,8 +228,15 @@ public interface IdeaTemplateService extends IService<IdeaTemplate> {
     */
     List<IdeaTemplate> findByProductId(List<String> productIds);
     default List<IdeaTemplate> findByProductId(String productId){
-        return findByProductId(Arrays.asList(productId));
+        return findByProduct(new Product().setId(productId));
     }
+
+    /**
+    * findByProduct
+    * @param product
+    * @return
+    */
+    List<IdeaTemplate> findByProduct(Product product);
 
     /**
     * removeByProductId
@@ -254,6 +269,22 @@ public interface IdeaTemplateService extends IService<IdeaTemplate> {
     * @return
     */
     boolean saveByProduct(Product product, List<IdeaTemplate> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<IdeaTemplate> fetchView(IdeaTemplateSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<IdeaTemplate> listView(IdeaTemplateSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<IdeaTemplate> list) {

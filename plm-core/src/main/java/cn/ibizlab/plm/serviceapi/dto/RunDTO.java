@@ -198,11 +198,19 @@ public class RunDTO extends DTOBase implements Serializable {
     private String suites;
 
     /**
+     * 关联缺陷数
+     */
+    @JsonProperty("relation_total_bug")
+    @JSONField(name = "relation_total_bug")
+    @ApiModelProperty(value = "关联缺陷数", position = 20)
+    private BigDecimal relationTotalBug;
+
+    /**
      * 所属测试库
      */
     @JsonProperty("library_name")
     @JSONField(name = "library_name")
-    @ApiModelProperty(value = "所属测试库", position = 20)
+    @ApiModelProperty(value = "所属测试库", position = 21)
     private String libraryName;
 
     /**
@@ -210,7 +218,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("library_id")
     @JSONField(name = "library_id")
-    @ApiModelProperty(value = "测试库标识", position = 21)
+    @ApiModelProperty(value = "测试库标识", position = 22)
     private String libraryId;
 
     /**
@@ -218,7 +226,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("attentions")
     @JSONField(name = "attentions")
-    @ApiModelProperty(value = "关注", position = 22)
+    @ApiModelProperty(value = "关注", position = 23)
     private List<AttentionDTO> attentions;
 
     /**
@@ -226,7 +234,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("estimated_workload")
     @JSONField(name = "estimated_workload")
-    @ApiModelProperty(value = "预估工时", position = 23)
+    @ApiModelProperty(value = "预估工时", position = 24)
     private BigDecimal estimatedWorkload;
 
     /**
@@ -234,7 +242,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("workload_schedule")
     @JSONField(name = "workload_schedule")
-    @ApiModelProperty(value = "工时进度", position = 24)
+    @ApiModelProperty(value = "工时进度", position = 25)
     private BigDecimal workloadSchedule;
 
     /**
@@ -242,7 +250,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("remaining_workload")
     @JSONField(name = "remaining_workload")
-    @ApiModelProperty(value = "剩余工时", position = 25)
+    @ApiModelProperty(value = "剩余工时", position = 26)
     private BigDecimal remainingWorkload;
 
     /**
@@ -250,7 +258,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("actual_workload")
     @JSONField(name = "actual_workload")
-    @ApiModelProperty(value = "实际工时", position = 26)
+    @ApiModelProperty(value = "实际工时", position = 27)
     private BigDecimal actualWorkload;
 
     /**
@@ -258,15 +266,55 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("run_attachment")
     @JSONField(name = "run_attachment")
-    @ApiModelProperty(value = "结果附件", position = 27)
+    @ApiModelProperty(value = "结果附件", position = 28)
     private List<RunAttachmentDTO> runAttachment;
+
+    /**
+     * 关联执行结果数
+     */
+    @JsonProperty("relation_total_history")
+    @JSONField(name = "relation_total_history")
+    @ApiModelProperty(value = "关联执行结果数", position = 29)
+    private BigDecimal relationTotalHistory;
+
+    /**
+     * 优先级
+     */
+    @JsonProperty("priority")
+    @JSONField(name = "priority")
+    @ApiModelProperty(value = "优先级", position = 30)
+    private String priority;
+
+    /**
+     * 是否最新
+     */
+    @JsonProperty("is_newest")
+    @JSONField(name = "is_newest")
+    @ApiModelProperty(value = "是否最新", position = 31)
+    private Integer isNewest;
+
+    /**
+     * 测试库编号
+     */
+    @JsonProperty("library_identifier")
+    @JSONField(name = "library_identifier")
+    @ApiModelProperty(value = "测试库编号", position = 32)
+    private String libraryIdentifier;
+
+    /**
+     * bi测试计划名称
+     */
+    @JsonProperty("bi_plan_name")
+    @JSONField(name = "bi_plan_name")
+    @ApiModelProperty(value = "bi测试计划名称", position = 33)
+    private String biPlanName;
 
     /**
      * 关注人
      */
     @JsonProperty("attentions_imp")
     @JSONField(name = "attentions_imp")
-    @ApiModelProperty(value = "关注人", position = 28)
+    @ApiModelProperty(value = "关注人", position = 34)
     private String attentionsImp;
 
     /**
@@ -274,7 +322,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("case_id")
     @JSONField(name = "case_id")
-    @ApiModelProperty(value = "测试用例标识", position = 29)
+    @ApiModelProperty(value = "测试用例标识", position = 35)
     private String caseId;
 
     /**
@@ -282,7 +330,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("case_name")
     @JSONField(name = "case_name")
-    @ApiModelProperty(value = "名称", position = 30)
+    @ApiModelProperty(value = "名称", position = 36)
     private String caseName;
 
     /**
@@ -290,7 +338,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 31)
+    @ApiModelProperty(value = "建立人", position = 37)
     private String createMan;
 
     /**
@@ -299,7 +347,7 @@ public class RunDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 32)
+    @ApiModelProperty(value = "建立时间", position = 38)
     private Date createTime;
 
     /**
@@ -307,7 +355,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 33)
+    @ApiModelProperty(value = "标识", position = 39)
     private String id;
 
     /**
@@ -315,7 +363,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 34)
+    @ApiModelProperty(value = "名称", position = 40)
     private String name;
 
     /**
@@ -323,7 +371,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("plan_id")
     @JSONField(name = "plan_id")
-    @ApiModelProperty(value = "测试计划标识", position = 35)
+    @ApiModelProperty(value = "测试计划标识", position = 41)
     private String planId;
 
     /**
@@ -331,7 +379,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 36)
+    @ApiModelProperty(value = "更新人", position = 42)
     private String updateMan;
 
     /**
@@ -340,7 +388,7 @@ public class RunDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 37)
+    @ApiModelProperty(value = "更新时间", position = 43)
     private Date updateTime;
 
 
@@ -507,6 +555,15 @@ public class RunDTO extends DTOBase implements Serializable {
     }
 
     /**
+     * 设置 [关联缺陷数]
+     */
+    public RunDTO setRelationTotalBug(BigDecimal relationTotalBug) {
+        this.relationTotalBug = relationTotalBug;
+        this.modify("relation_total_bug", relationTotalBug);
+        return this;
+    }
+
+    /**
      * 设置 [所属测试库]
      */
     public RunDTO setLibraryName(String libraryName) {
@@ -575,6 +632,51 @@ public class RunDTO extends DTOBase implements Serializable {
     public RunDTO setRunAttachment(List<RunAttachmentDTO> runAttachment) {
         this.runAttachment = runAttachment;
         this.modify("run_attachment", runAttachment);
+        return this;
+    }
+
+    /**
+     * 设置 [关联执行结果数]
+     */
+    public RunDTO setRelationTotalHistory(BigDecimal relationTotalHistory) {
+        this.relationTotalHistory = relationTotalHistory;
+        this.modify("relation_total_history", relationTotalHistory);
+        return this;
+    }
+
+    /**
+     * 设置 [优先级]
+     */
+    public RunDTO setPriority(String priority) {
+        this.priority = priority;
+        this.modify("priority", priority);
+        return this;
+    }
+
+    /**
+     * 设置 [是否最新]
+     */
+    public RunDTO setIsNewest(Integer isNewest) {
+        this.isNewest = isNewest;
+        this.modify("is_newest", isNewest);
+        return this;
+    }
+
+    /**
+     * 设置 [测试库编号]
+     */
+    public RunDTO setLibraryIdentifier(String libraryIdentifier) {
+        this.libraryIdentifier = libraryIdentifier;
+        this.modify("library_identifier", libraryIdentifier);
+        return this;
+    }
+
+    /**
+     * 设置 [bi测试计划名称]
+     */
+    public RunDTO setBiPlanName(String biPlanName) {
+        this.biPlanName = biPlanName;
+        this.modify("bi_plan_name", biPlanName);
         return this;
     }
 

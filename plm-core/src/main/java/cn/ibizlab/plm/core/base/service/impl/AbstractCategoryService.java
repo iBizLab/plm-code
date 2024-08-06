@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.base.domain.Category;
@@ -131,14 +132,14 @@ public abstract class AbstractCategoryService extends ServiceImpl<CategoryMapper
         return et;
     }
 	
-    public Integer checkKey(Category et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Category>lambdaQuery().eq(Category::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(Category et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Category>lambdaQuery().eq(Category::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(Category et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -202,6 +203,17 @@ public abstract class AbstractCategoryService extends ServiceImpl<CategoryMapper
         return list;
    }
 	
+   public Page<Category> fetchCurProductIdeaCategory(CategorySearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Category> pages=baseMapper.searchCurProductIdeaCategory(context.getPages(),context,context.getSelectCond());
+        List<Category> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Category> listCurProductIdeaCategory(CategorySearchContext context) {
+        List<Category> list = baseMapper.listCurProductIdeaCategory(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<Category> fetchNoSection(CategorySearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Category> pages=baseMapper.searchNoSection(context.getPages(),context,context.getSelectCond());
         List<Category> list = pages.getRecords();
@@ -262,6 +274,10 @@ public abstract class AbstractCategoryService extends ServiceImpl<CategoryMapper
         return list;	
 	}
 
+	public List<Category> findByCategory(Category category){
+        List<Category> list = findByPid(Arrays.asList(category.getId()));
+		return list;
+	}
 	public boolean removeByPid(String pid){
         List<String> ids = baseMapper.findByPid(Arrays.asList(pid)).stream().map(e->e.getId()).collect(Collectors.toList());
         if(!ObjectUtils.isEmpty(ids))
@@ -276,8 +292,8 @@ public abstract class AbstractCategoryService extends ServiceImpl<CategoryMapper
 	public boolean saveByCategory(Category category, List<Category> list){
         if(list==null)
             return true;
-        Map<String,Category> before = findByPid(category.getId()).stream().collect(Collectors.toMap(Category::getId,e->e));
 
+        Map<String,Category> before = findByCategory(category).stream().collect(Collectors.toMap(Category::getId,e->e));
         List<Category> update = new ArrayList<>();
         List<Category> create = new ArrayList<>();
 
@@ -306,6 +322,10 @@ public abstract class AbstractCategoryService extends ServiceImpl<CategoryMapper
         return list;	
 	}
 
+	public List<Category> findBySection(Section section){
+        List<Category> list = findBySectionId(Arrays.asList(section.getId()));
+		return list;
+	}
 	public boolean removeBySectionId(String sectionId){
         List<String> ids = baseMapper.findBySectionId(Arrays.asList(sectionId)).stream().map(e->e.getId()).collect(Collectors.toList());
         if(!ObjectUtils.isEmpty(ids))
@@ -320,8 +340,8 @@ public abstract class AbstractCategoryService extends ServiceImpl<CategoryMapper
 	public boolean saveBySection(Section section, List<Category> list){
         if(list==null)
             return true;
-        Map<String,Category> before = findBySectionId(section.getId()).stream().collect(Collectors.toMap(Category::getId,e->e));
 
+        Map<String,Category> before = findBySection(section).stream().collect(Collectors.toMap(Category::getId,e->e));
         List<Category> update = new ArrayList<>();
         List<Category> create = new ArrayList<>();
 
@@ -345,6 +365,17 @@ public abstract class AbstractCategoryService extends ServiceImpl<CategoryMapper
             return true;
 			
 	}
+   public Page<Category> fetchView(CategorySearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Category> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<Category> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Category> listView(CategorySearchContext context) {
+        List<Category> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(Category et) {
         if(Entities.CATEGORY.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

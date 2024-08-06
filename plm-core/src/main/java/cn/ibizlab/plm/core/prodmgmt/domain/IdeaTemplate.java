@@ -49,6 +49,16 @@ public class IdeaTemplate extends EntityMP implements Serializable
     private String title;
 
     /**
+    * 产品标识
+    */
+    @TableField(value = "product_identifier" , exist = false)
+    @DEField(name = "product_identifier")
+    @JSONField(name = "product_identifier")
+    @JsonProperty("product_identifier")
+    @ApiModelProperty(value = "product_identifier", notes = "产品标识")
+    private String productIdentifier;
+
+    /**
     * 描述
     */
     @TableField(value = "description")
@@ -57,6 +67,36 @@ public class IdeaTemplate extends EntityMP implements Serializable
     @JsonProperty("description")
     @ApiModelProperty(value = "description", notes = "描述")
     private String description;
+
+    /**
+    * 子产品名称
+    */
+    @TableField(value = "section_name" , exist = false)
+    @DEField(name = "section_name")
+    @JSONField(name = "section_name")
+    @JsonProperty("section_name")
+    @ApiModelProperty(value = "section_name", notes = "子产品名称")
+    private String sectionName;
+
+    /**
+    * 子产品标识
+    */
+    @TableField(value = "section_id" , exist = false)
+    @DEField(name = "section_id")
+    @JSONField(name = "section_id")
+    @JsonProperty("section_id")
+    @ApiModelProperty(value = "section_id", notes = "子产品标识")
+    private String sectionId;
+
+    /**
+    * 类别路径
+    */
+    @TableField(value = "categories" , exist = false)
+    @DEField(name = "categories")
+    @JSONField(name = "categories")
+    @JsonProperty("categories")
+    @ApiModelProperty(value = "categories", notes = "类别路径")
+    private String categories;
 
     /**
     * 标识
@@ -191,11 +231,47 @@ public class IdeaTemplate extends EntityMP implements Serializable
     }
 
     /**
+    * 设置 [产品标识]
+    */
+    public IdeaTemplate setProductIdentifier(String productIdentifier) {
+        this.productIdentifier = productIdentifier;
+        this.modify("product_identifier", productIdentifier);
+        return this;
+    }
+
+    /**
     * 设置 [描述]
     */
     public IdeaTemplate setDescription(String description) {
         this.description = description;
         this.modify("description", description);
+        return this;
+    }
+
+    /**
+    * 设置 [子产品名称]
+    */
+    public IdeaTemplate setSectionName(String sectionName) {
+        this.sectionName = sectionName;
+        this.modify("section_name", sectionName);
+        return this;
+    }
+
+    /**
+    * 设置 [子产品标识]
+    */
+    public IdeaTemplate setSectionId(String sectionId) {
+        this.sectionId = sectionId;
+        this.modify("section_id", sectionId);
+        return this;
+    }
+
+    /**
+    * 设置 [类别路径]
+    */
+    public IdeaTemplate setCategories(String categories) {
+        this.categories = categories;
+        this.modify("categories", categories);
         return this;
     }
 

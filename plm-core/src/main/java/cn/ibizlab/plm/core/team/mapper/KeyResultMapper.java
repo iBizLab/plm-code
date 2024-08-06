@@ -51,6 +51,25 @@ public interface KeyResultMapper extends BaseMapper<KeyResult> {
     List<KeyResult> findByObjectiveId(@Param("objectiveIds") List<String> objectiveIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<KeyResult> searchView(IPage<KeyResult> page, @Param("ctx") KeyResultSearchContext context, @Param("ew") Wrapper<KeyResult> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<KeyResult> listView(@Param("ctx") KeyResultSearchContext context, @Param("ew") Wrapper<KeyResult> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

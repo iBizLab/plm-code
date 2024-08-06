@@ -162,6 +162,7 @@ export default {
           id: 'deuiaction1',
         },
       ],
+      toolbarStyle: 'USER',
       xdataControlName: 'grid',
       codeName: 'assigned_grid_view_toolbar',
       controlType: 'TOOLBAR',

@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.insight.domain.InsightReport;
 import cn.ibizlab.plm.core.insight.filter.InsightReportSearchContext;
 import cn.ibizlab.plm.core.insight.domain.InsightView;
@@ -138,7 +139,7 @@ public interface InsightReportService extends IService<InsightReport> {
     * @param et
     * @return
     */
-    Integer checkKey(InsightReport et);
+    CheckKeyStatus checkKey(InsightReport et);
 
     /**
     * 保存
@@ -155,12 +156,52 @@ public interface InsightReportService extends IService<InsightReport> {
     boolean save(List<InsightReport> list);
 
     /**
+    * copyReport
+    * 
+    * @param et
+    * @return
+    */
+    default InsightReport copyReport(InsightReport et) {
+        return et;
+    }
+
+    /**
     * deleteCategories
     * 
     * @param et
     * @return
     */
     default InsightReport deleteCategories(InsightReport et) {
+        return et;
+    }
+
+    /**
+    * nothing
+    * 
+    * @param et
+    * @return
+    */
+    default InsightReport nothing(InsightReport et) {
+        return et;
+    }
+
+    /**
+    * syncModel
+    * 
+    * @param et
+    * @return
+    */
+    default InsightReport syncModel(InsightReport et) {
+        return et;
+    }
+
+    /**
+    * useCurTemplate
+    * 
+    * @param et
+    * @return
+    */
+    default InsightReport useCurTemplate(InsightReport et) {
         return et;
     }
 
@@ -181,14 +222,53 @@ public interface InsightReportService extends IService<InsightReport> {
     List<InsightReport> listDefault(InsightReportSearchContext context);
 
     /**
+    * fetchIsSystem
+    * 
+    * @param context
+    * @return
+    */
+    Page<InsightReport> fetchIsSystem(InsightReportSearchContext context);
+
+    /**
+    * listIsSystem
+    * 
+    * @param context
+    * @return
+    */
+    List<InsightReport> listIsSystem(InsightReportSearchContext context);
+
+    /**
+    * fetchNormal
+    * 
+    * @param context
+    * @return
+    */
+    Page<InsightReport> fetchNormal(InsightReportSearchContext context);
+
+    /**
+    * listNormal
+    * 
+    * @param context
+    * @return
+    */
+    List<InsightReport> listNormal(InsightReportSearchContext context);
+
+    /**
     * findByViewId
     * @param viewIds
     * @return
     */
     List<InsightReport> findByViewId(List<String> viewIds);
     default List<InsightReport> findByViewId(String viewId){
-        return findByViewId(Arrays.asList(viewId));
+        return findByInsightView(new InsightView().setId(viewId));
     }
+
+    /**
+    * findByInsightView
+    * @param insightView
+    * @return
+    */
+    List<InsightReport> findByInsightView(InsightView insightView);
 
     /**
     * removeByViewId
@@ -221,6 +301,22 @@ public interface InsightReportService extends IService<InsightReport> {
     * @return
     */
     boolean saveByInsightView(InsightView insightView, List<InsightReport> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<InsightReport> fetchView(InsightReportSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<InsightReport> listView(InsightReportSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<InsightReport> list) {

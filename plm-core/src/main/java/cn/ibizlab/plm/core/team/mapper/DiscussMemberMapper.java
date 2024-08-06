@@ -59,6 +59,25 @@ public interface DiscussMemberMapper extends BaseMapper<DiscussMember> {
     List<DiscussMember> findByUserId(@Param("userIds") List<String> userIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<DiscussMember> searchView(IPage<DiscussMember> page, @Param("ctx") DiscussMemberSearchContext context, @Param("ew") Wrapper<DiscussMember> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<DiscussMember> listView(@Param("ctx") DiscussMemberSearchContext context, @Param("ew") Wrapper<DiscussMember> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

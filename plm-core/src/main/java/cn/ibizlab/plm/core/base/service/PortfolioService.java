@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.Portfolio;
 import cn.ibizlab.plm.core.base.filter.PortfolioSearchContext;
 import cn.ibizlab.plm.core.base.domain.PortfolioMember;
@@ -240,7 +241,7 @@ public interface PortfolioService extends IService<Portfolio> {
     * @param et
     * @return
     */
-    Integer checkKey(Portfolio et);
+    CheckKeyStatus checkKey(Portfolio et);
 
     /**
     * 保存
@@ -473,6 +474,22 @@ public interface PortfolioService extends IService<Portfolio> {
     default List<PortfolioMember> getMembers(Portfolio et) {
         return new ArrayList<>();
     }
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Portfolio> fetchView(PortfolioSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Portfolio> listView(PortfolioSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Portfolio> list) {

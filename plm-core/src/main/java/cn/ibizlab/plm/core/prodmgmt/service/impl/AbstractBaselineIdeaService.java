@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.prodmgmt.domain.BaselineIdea;
@@ -124,16 +125,16 @@ public abstract class AbstractBaselineIdeaService extends ServiceImpl<BaselineId
         return et;
     }
 	
-    public Integer checkKey(BaselineIdea et) {
+    public CheckKeyStatus checkKey(BaselineIdea et) {
         if(ObjectUtils.isEmpty(et.getId()))
             et.setId((String)et.getDefaultKey(true));
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<BaselineIdea>lambdaQuery().eq(BaselineIdea::getId, et.getId()))>0)?1:0;
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<BaselineIdea>lambdaQuery().eq(BaselineIdea::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED: CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(BaselineIdea et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -186,6 +187,11 @@ public abstract class AbstractBaselineIdeaService extends ServiceImpl<BaselineId
         List<BaselineIdea> list = baseMapper.findByPrincipalId(principalIds);
         return list;	
 	}
+	
+	public List<BaselineIdea> findByBaselinePrincipalIdea(Baseline baseline){
+        List<BaselineIdea> list = findByPrincipalId(Arrays.asList(baseline.getId()));
+		return list;
+	}	
 
 	public boolean removeByPrincipalId(String principalId){
         return this.remove(Wrappers.<BaselineIdea>lambdaQuery().eq(BaselineIdea::getPrincipalId,principalId));
@@ -229,6 +235,11 @@ public abstract class AbstractBaselineIdeaService extends ServiceImpl<BaselineId
         List<BaselineIdea> list = baseMapper.findByTargetVersionId(targetVersionIds);
         return list;	
 	}
+	
+	public List<BaselineIdea> findByTargetVersion(Version version){
+        List<BaselineIdea> list = findByTargetVersionId(Arrays.asList(version.getId()));
+		return list;
+	}	
 
 	public boolean removeByTargetVersionId(String targetVersionId){
         return this.remove(Wrappers.<BaselineIdea>lambdaQuery().eq(BaselineIdea::getTargetVersionId,targetVersionId));

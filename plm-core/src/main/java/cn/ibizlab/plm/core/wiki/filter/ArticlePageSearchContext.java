@@ -55,6 +55,14 @@ public class ArticlePageSearchContext extends QueryWrapperContext<ArticlePage> {
     private String identifierLIKE;
 
     /**
+     * 是否开启共享EQ
+     */
+    @JsonProperty("n_is_shared_eq")
+    @JSONField(name = "n_is_shared_eq")
+    @ApiModelProperty("是否开启共享EQ")
+    private String isSharedEQ;
+
+    /**
      * 正文格式EQ
      */
     @JsonProperty("n_format_type_eq")
@@ -119,6 +127,14 @@ public class ArticlePageSearchContext extends QueryWrapperContext<ArticlePage> {
     @JSONField(name = "n_publish_man_eq")
     @ApiModelProperty("发布人EQ")
     private String publishManEQ;
+
+    /**
+     * 是否同时共享子页面EQ
+     */
+    @JsonProperty("n_is_shared_subset_eq")
+    @JSONField(name = "n_is_shared_subset_eq")
+    @ApiModelProperty("是否同时共享子页面EQ")
+    private String isSharedSubsetEQ;
 
     /**
      * 标识EQ
@@ -241,6 +257,8 @@ public class ArticlePageSearchContext extends QueryWrapperContext<ArticlePage> {
         if(Entities.ARTICLE_PAGE.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("parent_id",contextParentKey);
         if(Entities.SPACE.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("space_id",contextParentKey);
+        if(Entities.SHARED_SPACE.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("space_id",contextParentKey);
     }
 

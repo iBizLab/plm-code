@@ -10,10 +10,12 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.insight.domain.InsightView;
 import cn.ibizlab.plm.core.insight.filter.InsightViewSearchContext;
 import cn.ibizlab.plm.core.insight.domain.InsightMember;
 import cn.ibizlab.plm.core.insight.domain.InsightReport;
+import cn.ibizlab.plm.core.base.domain.DynaDashboard;
 
 /**
  * 效能视图服务接口[InsightViewService]
@@ -239,7 +241,7 @@ public interface InsightViewService extends IService<InsightView> {
     * @param et
     * @return
     */
-    Integer checkKey(InsightView et);
+    CheckKeyStatus checkKey(InsightView et);
 
     /**
     * 保存
@@ -254,6 +256,26 @@ public interface InsightViewService extends IService<InsightView> {
      * @return
      */
     boolean save(List<InsightView> list);
+
+    /**
+    * changeAdminRole
+    * 
+    * @param et
+    * @return
+    */
+    default InsightView changeAdminRole(InsightView et) {
+        return et;
+    }
+
+    /**
+    * delete
+    * 
+    * @param et
+    * @return
+    */
+    default InsightView delete(InsightView et) {
+        return et;
+    }
 
     /**
     * favorite
@@ -276,12 +298,52 @@ public interface InsightViewService extends IService<InsightView> {
     }
 
     /**
+    * recognizeChooseTemplate
+    * 
+    * @param et
+    * @return
+    */
+    default InsightView recognizeChooseTemplate(InsightView et) {
+        return et;
+    }
+
+    /**
+    * recover
+    * 
+    * @param et
+    * @return
+    */
+    default InsightView recover(InsightView et) {
+        return et;
+    }
+
+    /**
     * unFavorite
     * 
     * @param et
     * @return
     */
     default InsightView unFavorite(InsightView et) {
+        return et;
+    }
+
+    /**
+    * useCurTemplate
+    * 
+    * @param et
+    * @return
+    */
+    default InsightView useCurTemplate(InsightView et) {
+        return et;
+    }
+
+    /**
+    * viewMove
+    * 
+    * @param et
+    * @return
+    */
+    default InsightView viewMove(InsightView et) {
         return et;
     }
 
@@ -318,6 +380,22 @@ public interface InsightViewService extends IService<InsightView> {
     List<InsightView> listAdmin(InsightViewSearchContext context);
 
     /**
+    * fetchDeleted
+    * 
+    * @param context
+    * @return
+    */
+    Page<InsightView> fetchDeleted(InsightViewSearchContext context);
+
+    /**
+    * listDeleted
+    * 
+    * @param context
+    * @return
+    */
+    List<InsightView> listDeleted(InsightViewSearchContext context);
+
+    /**
     * fetchFavorite
     * 
     * @param context
@@ -351,7 +429,7 @@ public interface InsightViewService extends IService<InsightView> {
 
     /**
     * fetchNormal
-    * 
+    * 正常状态
     * @param context
     * @return
     */
@@ -359,7 +437,7 @@ public interface InsightViewService extends IService<InsightView> {
 
     /**
     * listNormal
-    * 
+    * 正常状态
     * @param context
     * @return
     */
@@ -396,6 +474,26 @@ public interface InsightViewService extends IService<InsightView> {
     * @return
     */
     List<InsightView> listUser(InsightViewSearchContext context);
+
+    default List<InsightMember> getMembers(InsightView et) {
+        return new ArrayList<>();
+    }
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<InsightView> fetchView(InsightViewSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<InsightView> listView(InsightViewSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<InsightView> list) {

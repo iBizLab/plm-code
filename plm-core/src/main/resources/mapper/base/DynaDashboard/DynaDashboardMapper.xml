@@ -5,10 +5,13 @@
         <!--通过mybatis将查询结果注入到entity中,通过配置autoMapping="true"由mybatis自动处理映射关系 -->
     <resultMap id="DynaDashboardResultMap" type="cn.ibizlab.plm.core.base.domain.DynaDashboard" autoMapping="true">
 		<id property="dynaDashboardId" column="dynadashboardid" /><!--主键字段映射-->
-		<result property="ownerType" column="owner_type" />
-		<result property="ownerId" column="owner_id" />
-		<result property="updateMan" column="update_man" />
-		<result property="updateTime" column="update_time" />
+		<result property="isSystem" column="is_system"/>
+		<result property="ownerType" column="owner_type"/>
+		<result property="ownerId" column="owner_id"/>
+		<result property="exampleChart" column="example_chart"/>
+		<result property="updateMan" column="update_man"/>
+		<result property="updateTime" column="update_time"/>
+        <association property="insightView" javaType="cn.ibizlab.plm.core.insight.domain.InsightView" column="owner_id" select="cn.ibizlab.plm.core.insight.mapper.InsightViewMapper.selectById" fetchType="lazy"></association>
     </resultMap>
 
     <select id="selectById"  resultMap="DynaDashboardResultMap">
@@ -37,11 +40,23 @@
     </delete>
 
     <sql id="default" databaseId="mysql">
-         <![CDATA[ SELECT t1.`APPID`, t1.`CREATEDATE`, t1.`CREATEMAN`, t1.`DYNADASHBOARDID`, t1.`DYNADASHBOARDNAME`, t1.`MODELID`, t1.`OWNER_ID`, t1.`OWNER_TYPE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`USERID` FROM `DYNADASHBOARD` t1   ]]>  
+         <![CDATA[ SELECT t1.`APPID`, t1.`CREATEDATE`, t1.`CREATEMAN`, t1.`DYNADASHBOARDID`, t1.`DYNADASHBOARDNAME`, t1.`EXAMPLE_CHART`, t1.`IS_SYSTEM`, t1.`MODELID`, t1.`OWNER_ID`, t1.`OWNER_TYPE`, t1.`SEQUENCES`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`USERID` FROM `DYNADASHBOARD` t1   ]]>  
     </sql>
 
     <sql id="view" databaseId="mysql">
-         <![CDATA[ SELECT t1.`APPID`, t1.`CREATEDATE`, t1.`CREATEMAN`, t1.`DYNADASHBOARDID`, t1.`DYNADASHBOARDNAME`, t1.`MODEL`, t1.`MODELID`, t1.`OWNER_ID`, t1.`OWNER_TYPE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`USERID` FROM `DYNADASHBOARD` t1   ]]>  
+         <![CDATA[ SELECT t1.`APPID`, t1.`CREATEDATE`, t1.`CREATEMAN`, t1.`DESC`, t1.`DYNADASHBOARDID`, t1.`DYNADASHBOARDNAME`, t1.`EXAMPLE_CHART`, t1.`IS_SYSTEM`, t1.`MODEL`, t1.`MODELID`, t1.`OWNER_ID`, t1.`OWNER_TYPE`, t1.`SEQUENCES`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`USERID` FROM `DYNADASHBOARD` t1   ]]>  
+    </sql>
+
+    <sql id="exampleChart" databaseId="mysql">
+         <![CDATA[ SELECT t1.`APPID`, t1.`DESC`, t1.`DYNADASHBOARDID`, t1.`DYNADASHBOARDNAME`, t1.`EXAMPLE_CHART`, t1.`IS_SYSTEM`, t1.`MODELID`, t1.`SEQUENCES`, t1.`TYPE` FROM `DYNADASHBOARD` t1   ]]>  where  <![CDATA[ ( t1.`IS_SYSTEM` = 1 ) ]]> 
+    </sql>
+
+    <sql id="isSystem" databaseId="mysql">
+         <![CDATA[ SELECT t1.`APPID`, t1.`CREATEDATE`, t1.`CREATEMAN`, t1.`DYNADASHBOARDID`, t1.`DYNADASHBOARDNAME`, t1.`EXAMPLE_CHART`, t1.`IS_SYSTEM`, t1.`MODELID`, t1.`OWNER_ID`, t1.`OWNER_TYPE`, t1.`SEQUENCES`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`USERID` FROM `DYNADASHBOARD` t1   ]]>  where  <![CDATA[ ( t1.`IS_SYSTEM` = 1 ) ]]> 
+    </sql>
+
+    <sql id="normal" databaseId="mysql">
+         <![CDATA[ SELECT t1.`APPID`, t1.`CREATEDATE`, t1.`CREATEMAN`, t1.`DYNADASHBOARDID`, t1.`DYNADASHBOARDNAME`, t1.`EXAMPLE_CHART`, t1.`IS_SYSTEM`, t1.`MODELID`, t1.`OWNER_ID`, t1.`OWNER_TYPE`, t1.`SEQUENCES`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`USERID` FROM `DYNADASHBOARD` t1   ]]>  
     </sql>
 
     <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.base.filter.DynaDashboardSearchContext"  resultMap="DynaDashboardResultMap">
@@ -63,6 +78,85 @@
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
         
+    </select>
+
+    <select id="searchExampleChart"  parameterType="cn.ibizlab.plm.core.base.filter.DynaDashboardSearchContext"  resultMap="DynaDashboardResultMap">
+        select t1.* 
+        from (
+            <include refid="exampleChart"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listExampleChart"  parameterType="cn.ibizlab.plm.core.base.filter.DynaDashboardSearchContext"  resultMap="DynaDashboardResultMap">
+        select t1.*
+        from (
+            <include refid="exampleChart"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchIsSystem"  parameterType="cn.ibizlab.plm.core.base.filter.DynaDashboardSearchContext"  resultMap="DynaDashboardResultMap">
+        select t1.* 
+        from (
+            <include refid="isSystem"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listIsSystem"  parameterType="cn.ibizlab.plm.core.base.filter.DynaDashboardSearchContext"  resultMap="DynaDashboardResultMap">
+        select t1.*
+        from (
+            <include refid="isSystem"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchNormal"  parameterType="cn.ibizlab.plm.core.base.filter.DynaDashboardSearchContext"  resultMap="DynaDashboardResultMap">
+        select t1.* 
+        from (
+            <include refid="normal"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listNormal"  parameterType="cn.ibizlab.plm.core.base.filter.DynaDashboardSearchContext"  resultMap="DynaDashboardResultMap">
+        select t1.*
+        from (
+            <include refid="normal"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="listView"  parameterType="cn.ibizlab.plm.core.base.filter.DynaDashboardSearchContext"  resultMap="DynaDashboardResultMap">
+        select t1.*
+        from (
+            <include refid="view" />
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+    </select>
+
+    <select id="findByOwnerId" resultMap="DynaDashboardResultMap">
+        select t1.* from (
+            <include refid="default"/>
+        ) t1
+        where owner_id in <foreach item="id" index="index" collection="ownerIds" open="(" separator="," close=")">#{id}</foreach> 
     </select>
 
 

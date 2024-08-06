@@ -760,6 +760,39 @@ export default {
       id: 'fetch_common_categories',
     },
     {
+      codeName: 'fetch_cur_product_idea_category',
+      methodType: 'FETCH',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'category_filter_dto',
+        type: 'DTO',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'category_dto',
+        type: 'PAGE',
+        id: '返回对象',
+      },
+      requestMethod: 'POST',
+      requestParamType: 'ENTITY',
+      requestPath: '/fetch_cur_product_idea_category',
+      actionType: 'REMOTE',
+      addedqconditions: [
+        {
+          condOp: 'EQ',
+          condValue: 'product',
+          fieldName: 'OWNER_ID',
+          vartypeId: 'DATACONTEXT',
+          condType: 'SINGLE',
+          name: '(OWNER_ID) 等于(=) 数据上下文 product',
+          id: '(owner_id) 等于(=) 数据上下文 product',
+        },
+      ],
+      dataSetName: 'cur_product_idea_category',
+      dataSetTag: 'cur_product_idea_category',
+      dataSetType: 'REMOTE',
+      id: 'fetch_cur_product_idea_category',
+    },
+    {
       codeName: 'fetch_default',
       methodType: 'FETCH',
       appDEMethodInput: {

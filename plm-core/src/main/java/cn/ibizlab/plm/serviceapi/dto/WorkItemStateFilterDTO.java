@@ -35,7 +35,7 @@ public class WorkItemStateFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_type_eq")
     @JSONField(name = "n_type_eq")
-    @ApiModelProperty(value = "状态类型EQ", position = 30)
+    @ApiModelProperty(value = "状态类型EQ", position = 40)
 	private String typeEQ;
 
     /**
@@ -43,7 +43,7 @@ public class WorkItemStateFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 40)
+    @ApiModelProperty(value = "标识EQ", position = 50)
 	private String idEQ;
 
     /**
@@ -51,7 +51,7 @@ public class WorkItemStateFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 50)
+    @ApiModelProperty(value = "名称LIKE", position = 60)
 	private String nameLIKE;
 
     /**
@@ -59,7 +59,7 @@ public class WorkItemStateFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_work_item_type_id_eq")
     @JSONField(name = "n_work_item_type_id_eq")
-    @ApiModelProperty(value = "工作项类型标识EQ", position = 100)
+    @ApiModelProperty(value = "工作项类型标识EQ", position = 110)
 	private String workItemTypeIdEQ;
 
 

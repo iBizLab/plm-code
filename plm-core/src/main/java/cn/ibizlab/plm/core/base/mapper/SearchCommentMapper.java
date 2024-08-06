@@ -70,6 +70,25 @@ public interface SearchCommentMapper extends BaseMapper<SearchComment> {
     List<SearchComment> findByPrincipalId(@Param("principalIds") List<String> principalIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<SearchComment> searchView(IPage<SearchComment> page, @Param("ctx") SearchCommentSearchContext context, @Param("ew") Wrapper<SearchComment> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<SearchComment> listView(@Param("ctx") SearchCommentSearchContext context, @Param("ew") Wrapper<SearchComment> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

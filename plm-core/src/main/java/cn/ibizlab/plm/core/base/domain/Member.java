@@ -23,6 +23,7 @@ import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import cn.ibizlab.plm.core.base.domain.User;
 import cn.ibizlab.plm.core.base.domain.CommonFlow;
 import cn.ibizlab.plm.core.base.domain.Group;
+import cn.ibizlab.plm.core.wiki.domain.ArticlePage;
 import cn.ibizlab.plm.core.projmgmt.domain.Project;
 
 /**
@@ -222,6 +223,16 @@ public class Member extends EntityMP implements Serializable
     @JSONField(serialize = false)
     @ApiModelProperty(value = "member_group", notes = "团队-成员")
     private Group memberGroup;
+
+    /**
+    * 名称
+    */
+    @Transient
+    @TableField(exist = false)
+    @JsonIgnore
+    @JSONField(serialize = false)
+    @ApiModelProperty(value = "shared_page_member", notes = "名称")
+    private ArticlePage sharedPageMember;
 
     /**
     * 名称

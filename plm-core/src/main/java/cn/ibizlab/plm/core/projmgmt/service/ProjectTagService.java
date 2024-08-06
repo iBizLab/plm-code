@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.projmgmt.domain.ProjectTag;
 import cn.ibizlab.plm.core.projmgmt.filter.ProjectTagSearchContext;
 
@@ -137,7 +138,7 @@ public interface ProjectTagService extends IService<ProjectTag> {
     * @param et
     * @return
     */
-    Integer checkKey(ProjectTag et);
+    CheckKeyStatus checkKey(ProjectTag et);
 
     /**
     * 保存
@@ -208,6 +209,22 @@ public interface ProjectTagService extends IService<ProjectTag> {
     default ProjectTag getConProjectTag(ProjectTag et) {
         return et;
     }
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<ProjectTag> fetchView(ProjectTagSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<ProjectTag> listView(ProjectTagSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<ProjectTag> list) {

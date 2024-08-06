@@ -51,7 +51,7 @@ public class DictionaryData extends EntityMP implements Serializable
     * 序号
     */
     @TableField(value = "sequence")
-    @DEField(name = "sequence")
+    @DEField(name = "sequence" , preType = DEPredefinedFieldType.ORDERVALUE)
     @JSONField(name = "sequence")
     @JsonProperty("sequence")
     @ApiModelProperty(value = "sequence", notes = "序号")
@@ -166,15 +166,6 @@ public class DictionaryData extends EntityMP implements Serializable
     public DictionaryData setType(String type) {
         this.type = type;
         this.modify("type", type);
-        return this;
-    }
-
-    /**
-    * 设置 [序号]
-    */
-    public DictionaryData setSequence(BigDecimal sequence) {
-        this.sequence = sequence;
-        this.modify("sequence", sequence);
         return this;
     }
 

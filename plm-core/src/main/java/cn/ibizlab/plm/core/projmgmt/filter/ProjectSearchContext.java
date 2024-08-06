@@ -6,6 +6,7 @@ package cn.ibizlab.plm.core.projmgmt.filter;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import java.util.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;

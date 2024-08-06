@@ -5,16 +5,18 @@
         <!--通过mybatis将查询结果注入到entity中,通过配置autoMapping="true"由mybatis自动处理映射关系 -->
     <resultMap id="ReleaseResultMap" type="cn.ibizlab.plm.core.projmgmt.domain.Release" autoMapping="true">
 		<id property="id" column="id" /><!--主键字段映射-->
-		<result property="startAt" column="start_at" />
-		<result property="endAt" column="end_at" />
-		<result property="assigneeName" column="assignee_name" />
-		<result property="assigneeId" column="assignee_id" />
-		<result property="createMan" column="create_man" />
-		<result property="createTime" column="create_time" />
-		<result property="updateMan" column="update_man" />
-		<result property="updateTime" column="update_time" />
-		<result property="projectId" column="project_id" />
-		<result property="projectName" column="project_name" />
+		<result property="startAt" column="start_at"/>
+		<result property="endAt" column="end_at"/>
+		<result property="assigneeName" column="assignee_name"/>
+		<result property="assigneeId" column="assignee_id"/>
+		<result property="completedWorkItems" column="completed_work_items"/>
+		<result property="allWorkItems" column="all_work_items"/>
+		<result property="createMan" column="create_man"/>
+		<result property="createTime" column="create_time"/>
+		<result property="updateMan" column="update_man"/>
+		<result property="updateTime" column="update_time"/>
+		<result property="projectId" column="project_id"/>
+		<result property="projectName" column="project_name"/>
         <association property="project" javaType="cn.ibizlab.plm.core.projmgmt.domain.Project" column="project_id" select="cn.ibizlab.plm.core.projmgmt.mapper.ProjectMapper.selectById" fetchType="lazy"></association>
     </resultMap>
 
@@ -44,15 +46,35 @@
     </delete>
 
     <sql id="default" databaseId="mysql">
-         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`NAME`, t1.`PROGRESS`, t1.`PROJECT_ID`, t11.`NAME` AS `PROJECT_NAME`, t1.`START_AT`, t1.`STATUS`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PROJECT_RELEASE` t1  LEFT JOIN `PROJECT` t11 ON t1.`PROJECT_ID` = t11.`ID`   ]]>  
+         <![CDATA[ SELECT (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND RELEASE_ID = t1.`ID`) AS `ALL_WORK_ITEMS`, t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND `STATE` in (select ID from work_item_state where TYPE = 'completed') AND RELEASE_ID = t1.`ID`) AS `COMPLETED_WORK_ITEMS`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`NAME`, t1.`PROJECT_ID`, t11.`NAME` AS `PROJECT_NAME`, t1.`START_AT`, t1.`STATUS`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PROJECT_RELEASE` t1  LEFT JOIN `PROJECT` t11 ON t1.`PROJECT_ID` = t11.`ID`   ]]>  
     </sql>
 
     <sql id="view" databaseId="mysql">
-         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`NAME`, t1.`PROGRESS`, t1.`PROJECT_ID`, t11.`NAME` AS `PROJECT_NAME`, t1.`START_AT`, t1.`STATUS`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PROJECT_RELEASE` t1  LEFT JOIN `PROJECT` t11 ON t1.`PROJECT_ID` = t11.`ID`   ]]>  
+         <![CDATA[ SELECT (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND RELEASE_ID = t1.`ID`) AS `ALL_WORK_ITEMS`, t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND `STATE` in (select ID from work_item_state where TYPE = 'completed') AND RELEASE_ID = t1.`ID`) AS `COMPLETED_WORK_ITEMS`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`NAME`, t1.`PROJECT_ID`, t11.`NAME` AS `PROJECT_NAME`, t1.`START_AT`, t1.`STATUS`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PROJECT_RELEASE` t1  LEFT JOIN `PROJECT` t11 ON t1.`PROJECT_ID` = t11.`ID`   ]]>  
     </sql>
 
-    <sql id="notFinish" databaseId="mysql">
-         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`NAME`, t1.`PROGRESS`, t1.`PROJECT_ID`, t11.`NAME` AS `PROJECT_NAME`, t1.`START_AT`, t1.`STATUS`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PROJECT_RELEASE` t1  LEFT JOIN `PROJECT` t11 ON t1.`PROJECT_ID` = t11.`ID`   ]]>  where  <![CDATA[ NOT(EXISTS(SELECT * FROM `WORK_ITEM` t21   WHERE   t1.`ID` = t21.`RELEASE_ID`  AND  ( t21.`ID` = #{ctx.webcontext.work_item} ) )) ]]> and  <![CDATA[ ( t1.`STATUS` <> '30' ) ]]> 
+    <sql id="biDetail" databaseId="mysql">
+         <![CDATA[ SELECT (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND RELEASE_ID = t1.`ID`) AS `ALL_WORK_ITEMS`, t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND `STATE` in (select ID from work_item_state where TYPE = 'completed') AND RELEASE_ID = t1.`ID`) AS `COMPLETED_WORK_ITEMS`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`NAME`, t1.`PROJECT_ID`, t11.`NAME` AS `PROJECT_NAME`, t1.`START_AT`, t1.`STATUS`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PROJECT_RELEASE` t1  LEFT JOIN `PROJECT` t11 ON t1.`PROJECT_ID` = t11.`ID`   ]]>  
+    </sql>
+
+    <sql id="biSearch" databaseId="mysql">
+         <![CDATA[ SELECT (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND RELEASE_ID = t1.`ID`) AS `ALL_WORK_ITEMS`, t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND `STATE` in (select ID from work_item_state where TYPE = 'completed') AND RELEASE_ID = t1.`ID`) AS `COMPLETED_WORK_ITEMS`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`END_AT`, t1.`ID`, t1.`NAME`, t1.`PROJECT_ID`, t11.`NAME` AS `PROJECT_NAME`, t1.`START_AT`, t1.`STATUS`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PROJECT_RELEASE` t1  LEFT JOIN `PROJECT` t11 ON t1.`PROJECT_ID` = t11.`ID`   ]]>  
+    </sql>
+
+    <sql id="chooseReleseRelation" databaseId="mysql">
+         <![CDATA[ SELECT (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND RELEASE_ID = t1.`ID`) AS `ALL_WORK_ITEMS`, t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND `STATE` in (select ID from work_item_state where TYPE = 'completed') AND RELEASE_ID = t1.`ID`) AS `COMPLETED_WORK_ITEMS`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`NAME`, t1.`PROJECT_ID`, t11.`NAME` AS `PROJECT_NAME`, t1.`START_AT`, t1.`STATUS`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PROJECT_RELEASE` t1  LEFT JOIN `PROJECT` t11 ON t1.`PROJECT_ID` = t11.`ID`   ]]>  where  <![CDATA[ NOT(EXISTS(SELECT * FROM `RELATION` t21   WHERE   t1.`ID` = t21.`PRINCIPAL_ID`  AND  ( t21.`TARGET_TYPE` = 'sprint'  AND  t21.`TARGET_ID` = #{ctx.webcontext.sprint}  AND  t21.`PRINCIPAL_TYPE` = 'release' ) )) ]]> 
+    </sql>
+
+    <sql id="notPublished" databaseId="mysql">
+         <![CDATA[ SELECT (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND RELEASE_ID = t1.`ID`) AS `ALL_WORK_ITEMS`, t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND `STATE` in (select ID from work_item_state where TYPE = 'completed') AND RELEASE_ID = t1.`ID`) AS `COMPLETED_WORK_ITEMS`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`NAME`, t1.`PROJECT_ID`, t11.`NAME` AS `PROJECT_NAME`, t1.`START_AT`, t1.`STATUS`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PROJECT_RELEASE` t1  LEFT JOIN `PROJECT` t11 ON t1.`PROJECT_ID` = t11.`ID`   ]]>  where  <![CDATA[ NOT(EXISTS(SELECT * FROM `WORK_ITEM` t21   WHERE   t1.`ID` = t21.`RELEASE_ID`  AND  ( t21.`ID` = #{ctx.webcontext.work_item} ) )) ]]> and  <![CDATA[ ( not exists(select 1 from `stage` s1, `stage` s2 where t1.`STATUS`  = s1.`id` and s1.`pid` = s2.`id` and s2.`TYPE` = 'published' and s1.`RELEASE_ID`= t1.`id`) ) ]]> 
+    </sql>
+
+    <sql id="reader" databaseId="mysql">
+         <![CDATA[ SELECT (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND RELEASE_ID = t1.`ID`) AS `ALL_WORK_ITEMS`, t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND `STATE` in (select ID from work_item_state where TYPE = 'completed') AND RELEASE_ID = t1.`ID`) AS `COMPLETED_WORK_ITEMS`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`NAME`, t1.`PROJECT_ID`, t11.`NAME` AS `PROJECT_NAME`, t1.`START_AT`, t1.`STATUS`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PROJECT_RELEASE` t1  LEFT JOIN `PROJECT` t11 ON t1.`PROJECT_ID` = t11.`ID`   ]]>  where  <![CDATA[ EXISTS(SELECT * FROM `PROJECT_MEMBER` t21   WHERE   t11.`ID` = t21.`PROJECT_ID`  AND  ( t21.`USER_ID` = #{ctx.sessioncontext.srfpersonid} ) ) ]]> 
+    </sql>
+
+    <sql id="sprintRelation" databaseId="mysql">
+         <![CDATA[ SELECT (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND RELEASE_ID = t1.`ID`) AS `ALL_WORK_ITEMS`, t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, (SELECT count(1) FROM work_item WHERE IS_DELETED = '0' AND `STATE` in (select ID from work_item_state where TYPE = 'completed') AND RELEASE_ID = t1.`ID`) AS `COMPLETED_WORK_ITEMS`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`END_AT`, t1.`ID`, t1.`NAME`, t1.`PROJECT_ID`, t11.`NAME` AS `PROJECT_NAME`, t1.`START_AT`, t1.`STATUS`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `PROJECT_RELEASE` t1  LEFT JOIN `PROJECT` t11 ON t1.`PROJECT_ID` = t11.`ID`   ]]>  where  <![CDATA[ EXISTS(SELECT * FROM `RELATION` t21   WHERE   t1.`ID` = t21.`PRINCIPAL_ID`  AND  ( t21.`TARGET_ID` = #{ctx.webcontext.sprint}  AND  t21.`TARGET_TYPE` = 'sprint'  AND  t21.`PRINCIPAL_TYPE` = 'release' ) ) ]]> 
     </sql>
 
     <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.ReleaseSearchContext"  resultMap="ReleaseResultMap">
@@ -76,10 +98,10 @@
         
     </select>
 
-    <select id="searchNotFinish"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.ReleaseSearchContext"  resultMap="ReleaseResultMap">
+    <select id="searchBiDetail"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.ReleaseSearchContext"  resultMap="ReleaseResultMap">
         select t1.* 
         from (
-            <include refid="notFinish"/>
+            <include refid="biDetail"/>
         ) t1 
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
@@ -87,14 +109,128 @@
     </select>
 
 
-    <select id="listNotFinish"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.ReleaseSearchContext"  resultMap="ReleaseResultMap">
+    <select id="listBiDetail"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.ReleaseSearchContext"  resultMap="ReleaseResultMap">
         select t1.*
         from (
-            <include refid="notFinish"/>
+            <include refid="biDetail"/>
         ) t1
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
         
+    </select>
+
+    <select id="searchBiSearch"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.ReleaseSearchContext"  resultMap="ReleaseResultMap">
+        select t1.* 
+        from (
+            <include refid="biSearch"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listBiSearch"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.ReleaseSearchContext"  resultMap="ReleaseResultMap">
+        select t1.*
+        from (
+            <include refid="biSearch"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchChooseReleseRelation"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.ReleaseSearchContext"  resultMap="ReleaseResultMap">
+        select t1.* 
+        from (
+            <include refid="chooseReleseRelation"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listChooseReleseRelation"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.ReleaseSearchContext"  resultMap="ReleaseResultMap">
+        select t1.*
+        from (
+            <include refid="chooseReleseRelation"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchNotPublished"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.ReleaseSearchContext"  resultMap="ReleaseResultMap">
+        select t1.* 
+        from (
+            <include refid="notPublished"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listNotPublished"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.ReleaseSearchContext"  resultMap="ReleaseResultMap">
+        select t1.*
+        from (
+            <include refid="notPublished"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchReader"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.ReleaseSearchContext"  resultMap="ReleaseResultMap">
+        select t1.* 
+        from (
+            <include refid="reader"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listReader"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.ReleaseSearchContext"  resultMap="ReleaseResultMap">
+        select t1.*
+        from (
+            <include refid="reader"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchSprintRelation"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.ReleaseSearchContext"  resultMap="ReleaseResultMap">
+        select t1.* 
+        from (
+            <include refid="sprintRelation"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listSprintRelation"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.ReleaseSearchContext"  resultMap="ReleaseResultMap">
+        select t1.*
+        from (
+            <include refid="sprintRelation"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="listView"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.ReleaseSearchContext"  resultMap="ReleaseResultMap">
+        select t1.*
+        from (
+            <include refid="view" />
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
     </select>
 
     <select id="findByProjectId" resultMap="ReleaseResultMap">

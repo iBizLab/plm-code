@@ -11,14 +11,18 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.wiki.domain.ArticlePage;
 import cn.ibizlab.plm.core.wiki.filter.ArticlePageSearchContext;
 import cn.ibizlab.plm.core.wiki.domain.Space;
+import cn.ibizlab.plm.core.wiki.domain.SharedSpace;
 import cn.ibizlab.plm.core.base.domain.Comment;
 import cn.ibizlab.plm.core.base.domain.Attention;
+import cn.ibizlab.plm.core.base.domain.Member;
 import cn.ibizlab.plm.core.base.domain.Attachment;
 import cn.ibizlab.plm.core.base.domain.SearchAttachment;
 import cn.ibizlab.plm.core.base.domain.SearchComment;
+import cn.ibizlab.plm.core.wiki.domain.PageVersion;
 import cn.ibizlab.plm.core.base.domain.Relation;
 import cn.ibizlab.plm.core.base.domain.Version;
 
@@ -146,7 +150,7 @@ public interface ArticlePageService extends IService<ArticlePage> {
     * @param et
     * @return
     */
-    Integer checkKey(ArticlePage et);
+    CheckKeyStatus checkKey(ArticlePage et);
 
     /**
     * 保存
@@ -161,6 +165,36 @@ public interface ArticlePageService extends IService<ArticlePage> {
      * @return
      */
     boolean save(List<ArticlePage> list);
+
+    /**
+    * checkAccessPassword
+    * 
+    * @param et
+    * @return
+    */
+    default ArticlePage checkAccessPassword(ArticlePage et) {
+        return et;
+    }
+
+    /**
+    * checkShared
+    * 
+    * @param key
+    * @return
+    */
+    default ArticlePage checkShared(String key) {
+        return getSelf().checkShared(new ArticlePage().setId(key));
+    }
+
+    /**
+    * closedShared
+    * 
+    * @param et
+    * @return
+    */
+    default ArticlePage closedShared(ArticlePage et) {
+        return et;
+    }
 
     /**
     * commitVersion
@@ -189,6 +223,16 @@ public interface ArticlePageService extends IService<ArticlePage> {
     * @return
     */
     default ArticlePage delete(ArticlePage et) {
+        return et;
+    }
+
+    /**
+    * exportToPdf
+    * 
+    * @param et
+    * @return
+    */
+    default ArticlePage exportToPdf(ArticlePage et) {
         return et;
     }
 
@@ -229,6 +273,16 @@ public interface ArticlePageService extends IService<ArticlePage> {
     * @return
     */
     default ArticlePage movePage(ArticlePage et) {
+        return et;
+    }
+
+    /**
+    * nameVersionSave
+    * 
+    * @param et
+    * @return
+    */
+    default ArticlePage nameVersionSave(ArticlePage et) {
         return et;
     }
 
@@ -303,6 +357,36 @@ public interface ArticlePageService extends IService<ArticlePage> {
     }
 
     /**
+    * shared
+    * 
+    * @param key
+    * @return
+    */
+    default ArticlePage shared(String key) {
+        return getSelf().shared(new ArticlePage().setId(key));
+    }
+
+    /**
+    * sharedSetting
+    * 
+    * @param et
+    * @return
+    */
+    default ArticlePage sharedSetting(ArticlePage et) {
+        return et;
+    }
+
+    /**
+    * sharedUrl
+    * 
+    * @param et
+    * @return
+    */
+    default ArticlePage sharedUrl(ArticlePage et) {
+        return et;
+    }
+
+    /**
     * unFavorite
     * 
     * @param et
@@ -355,6 +439,22 @@ public interface ArticlePageService extends IService<ArticlePage> {
     List<ArticlePage> listAdvancedSearch(ArticlePageSearchContext context);
 
     /**
+    * fetchAllSharedPages
+    * 
+    * @param context
+    * @return
+    */
+    Page<ArticlePage> fetchAllSharedPages(ArticlePageSearchContext context);
+
+    /**
+    * listAllSharedPages
+    * 
+    * @param context
+    * @return
+    */
+    List<ArticlePage> listAllSharedPages(ArticlePageSearchContext context);
+
+    /**
     * fetchBaselineChoosePage
     * 
     * @param context
@@ -369,6 +469,22 @@ public interface ArticlePageService extends IService<ArticlePage> {
     * @return
     */
     List<ArticlePage> listBaselineChoosePage(ArticlePageSearchContext context);
+
+    /**
+    * fetchChooseShared
+    * 
+    * @param context
+    * @return
+    */
+    Page<ArticlePage> fetchChooseShared(ArticlePageSearchContext context);
+
+    /**
+    * listChooseShared
+    * 
+    * @param context
+    * @return
+    */
+    List<ArticlePage> listChooseShared(ArticlePageSearchContext context);
 
     /**
     * fetchDraftPage
@@ -468,7 +584,7 @@ public interface ArticlePageService extends IService<ArticlePage> {
 
     /**
     * fetchOnlyPage
-    * 
+    * 只查询页面。不包含分组及草稿
     * @param context
     * @return
     */
@@ -476,11 +592,107 @@ public interface ArticlePageService extends IService<ArticlePage> {
 
     /**
     * listOnlyPage
-    * 
+    * 只查询页面。不包含分组及草稿
     * @param context
     * @return
     */
     List<ArticlePage> listOnlyPage(ArticlePageSearchContext context);
+
+    /**
+    * fetchSharedPage
+    * 
+    * @param context
+    * @return
+    */
+    Page<ArticlePage> fetchSharedPage(ArticlePageSearchContext context);
+
+    /**
+    * listSharedPage
+    * 
+    * @param context
+    * @return
+    */
+    List<ArticlePage> listSharedPage(ArticlePageSearchContext context);
+
+    /**
+    * fetchSharedReader
+    * 
+    * @param context
+    * @return
+    */
+    Page<ArticlePage> fetchSharedReader(ArticlePageSearchContext context);
+
+    /**
+    * listSharedReader
+    * 
+    * @param context
+    * @return
+    */
+    List<ArticlePage> listSharedReader(ArticlePageSearchContext context);
+
+    /**
+    * fetchSharedSearch
+    * 
+    * @param context
+    * @return
+    */
+    Page<ArticlePage> fetchSharedSearch(ArticlePageSearchContext context);
+
+    /**
+    * listSharedSearch
+    * 
+    * @param context
+    * @return
+    */
+    List<ArticlePage> listSharedSearch(ArticlePageSearchContext context);
+
+    /**
+    * fetchSharedSubPages
+    * 
+    * @param context
+    * @return
+    */
+    Page<ArticlePage> fetchSharedSubPages(ArticlePageSearchContext context);
+
+    /**
+    * listSharedSubPages
+    * 
+    * @param context
+    * @return
+    */
+    List<ArticlePage> listSharedSubPages(ArticlePageSearchContext context);
+
+    /**
+    * fetchSharedWithMe
+    * 
+    * @param context
+    * @return
+    */
+    Page<ArticlePage> fetchSharedWithMe(ArticlePageSearchContext context);
+
+    /**
+    * listSharedWithMe
+    * 
+    * @param context
+    * @return
+    */
+    List<ArticlePage> listSharedWithMe(ArticlePageSearchContext context);
+
+    /**
+    * fetchSharedWithMeEdit
+    * 
+    * @param context
+    * @return
+    */
+    Page<ArticlePage> fetchSharedWithMeEdit(ArticlePageSearchContext context);
+
+    /**
+    * listSharedWithMeEdit
+    * 
+    * @param context
+    * @return
+    */
+    List<ArticlePage> listSharedWithMeEdit(ArticlePageSearchContext context);
 
     /**
     * findByParentId
@@ -489,8 +701,15 @@ public interface ArticlePageService extends IService<ArticlePage> {
     */
     List<ArticlePage> findByParentId(List<String> parentIds);
     default List<ArticlePage> findByParentId(String parentId){
-        return findByParentId(Arrays.asList(parentId));
+        return findByPage(new ArticlePage().setId(parentId));
     }
+
+    /**
+    * findByPage
+    * @param articlePage
+    * @return
+    */
+    List<ArticlePage> findByPage(ArticlePage articlePage);
 
     /**
     * removeByParentId
@@ -531,8 +750,15 @@ public interface ArticlePageService extends IService<ArticlePage> {
     */
     List<ArticlePage> findBySpaceId(List<String> spaceIds);
     default List<ArticlePage> findBySpaceId(String spaceId){
-        return findBySpaceId(Arrays.asList(spaceId));
+        return findBySpace(new Space().setId(spaceId));
     }
+
+    /**
+    * findBySpace
+    * @param space
+    * @return
+    */
+    List<ArticlePage> findBySpace(Space space);
 
     /**
     * removeBySpaceId
@@ -566,6 +792,21 @@ public interface ArticlePageService extends IService<ArticlePage> {
     */
     boolean saveBySpace(Space space, List<ArticlePage> list);
 
+    /**
+    * findBySharedSpacePage
+    * @param sharedSpace
+    * @return
+    */
+    List<ArticlePage> findBySharedSpacePage(SharedSpace sharedSpace);
+
+    /**
+    * saveBySharedSpacePage
+    * @param sharedSpace
+    * @param list
+    * @return
+    */
+    boolean saveBySharedSpacePage(SharedSpace sharedSpace, List<ArticlePage> list);
+
     default List<Attention> getAttentions(ArticlePage et) {
         return new ArrayList<>();
     }
@@ -573,6 +814,42 @@ public interface ArticlePageService extends IService<ArticlePage> {
     default List<Attachment> getAttachments(ArticlePage et) {
         return new ArrayList<>();
     }
+
+    /**
+    * checkShared
+    * 
+    * @param et
+    * @return
+    */
+    default ArticlePage checkShared(ArticlePage et) {
+        return et;
+    }
+
+    /**
+    * shared
+    * 
+    * @param et
+    * @return
+    */
+    default ArticlePage shared(ArticlePage et) {
+        return et;
+    }
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<ArticlePage> fetchView(ArticlePageSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<ArticlePage> listView(ArticlePageSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<ArticlePage> list) {

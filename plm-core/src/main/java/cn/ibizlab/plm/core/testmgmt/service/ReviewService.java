@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.testmgmt.domain.Review;
 import cn.ibizlab.plm.core.testmgmt.filter.ReviewSearchContext;
 import cn.ibizlab.plm.core.testmgmt.domain.Guideline;
@@ -244,7 +245,7 @@ public interface ReviewService extends IService<Review> {
     * @param et
     * @return
     */
-    Integer checkKey(Review et);
+    CheckKeyStatus checkKey(Review et);
 
     /**
     * 保存
@@ -281,12 +282,42 @@ public interface ReviewService extends IService<Review> {
     }
 
     /**
+    * completedReview
+    * 
+    * @param et
+    * @return
+    */
+    default Review completedReview(Review et) {
+        return et;
+    }
+
+    /**
+    * fillCureentStageInfo
+    * 
+    * @param et
+    * @return
+    */
+    default Review fillCureentStageInfo(Review et) {
+        return et;
+    }
+
+    /**
     * fillGuideline
     * 
     * @param et
     * @return
     */
     default Review fillGuideline(Review et) {
+        return et;
+    }
+
+    /**
+    * fillStageReviewer
+    * 
+    * @param et
+    * @return
+    */
+    default Review fillStageReviewer(Review et) {
         return et;
     }
 
@@ -298,6 +329,16 @@ public interface ReviewService extends IService<Review> {
     */
     default Review getAttention(String key) {
         return null;
+    }
+
+    /**
+    * nothing
+    * 
+    * @param et
+    * @return
+    */
+    default Review nothing(Review et) {
+        return et;
     }
 
     /**
@@ -337,8 +378,24 @@ public interface ReviewService extends IService<Review> {
     List<Review> listDefault(ReviewSearchContext context);
 
     /**
-    * fetchMyAttention
+    * fetchBiSearch
     * 
+    * @param context
+    * @return
+    */
+    Page<Review> fetchBiSearch(ReviewSearchContext context);
+
+    /**
+    * listBiSearch
+    * 
+    * @param context
+    * @return
+    */
+    List<Review> listBiSearch(ReviewSearchContext context);
+
+    /**
+    * fetchMyAttention
+    * 查询我关注的评审
     * @param context
     * @return
     */
@@ -346,7 +403,7 @@ public interface ReviewService extends IService<Review> {
 
     /**
     * listMyAttention
-    * 
+    * 查询我关注的评审
     * @param context
     * @return
     */
@@ -375,8 +432,15 @@ public interface ReviewService extends IService<Review> {
     */
     List<Review> findByGuidelineId(List<String> guidelineIds);
     default List<Review> findByGuidelineId(String guidelineId){
-        return findByGuidelineId(Arrays.asList(guidelineId));
+        return findByGuideline(new Guideline().setId(guidelineId));
     }
+
+    /**
+    * findByGuideline
+    * @param guideline
+    * @return
+    */
+    List<Review> findByGuideline(Guideline guideline);
 
     /**
     * removeByGuidelineId
@@ -417,8 +481,15 @@ public interface ReviewService extends IService<Review> {
     */
     List<Review> findByLibraryId(List<String> libraryIds);
     default List<Review> findByLibraryId(String libraryId){
-        return findByLibraryId(Arrays.asList(libraryId));
+        return findByLibrary(new Library().setId(libraryId));
     }
+
+    /**
+    * findByLibrary
+    * @param library
+    * @return
+    */
+    List<Review> findByLibrary(Library library);
 
     /**
     * removeByLibraryId
@@ -459,6 +530,22 @@ public interface ReviewService extends IService<Review> {
     default List<Attachment> getAttachments(Review et) {
         return new ArrayList<>();
     }
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Review> fetchView(ReviewSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Review> listView(ReviewSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Review> list) {

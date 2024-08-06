@@ -236,7 +236,6 @@ export default {
                 editable: true,
                 id: 'state',
               },
-              allowEmpty: true,
               needCodeListConfig: true,
               capLanguageRes: {
                 lanResTag: 'DEF.LNAME.STATE',
@@ -387,7 +386,6 @@ export default {
                     colMD: 24,
                     layout: 'TABLE_24COL',
                   },
-                  showCaption: true,
                   id: 'cur_version_id',
                 },
                 {
@@ -853,7 +851,6 @@ export default {
                 colMD: 24,
                 layout: 'TABLE_24COL',
               },
-              showCaption: true,
               id: 'assignee_id',
             },
             {
@@ -882,7 +879,6 @@ export default {
                 colMD: 24,
                 layout: 'TABLE_24COL',
               },
-              showCaption: true,
               id: 'category_id',
             },
             {
@@ -911,7 +907,6 @@ export default {
                 colMD: 24,
                 layout: 'TABLE_24COL',
               },
-              showCaption: true,
               id: 'id',
             },
           ],

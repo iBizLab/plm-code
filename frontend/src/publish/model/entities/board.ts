@@ -717,6 +717,28 @@ export default {
       id: 'fetch_default',
     },
     {
+      codeName: 'fetch_reader',
+      methodType: 'FETCH',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'board_filter_dto',
+        type: 'DTO',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'board_dto',
+        type: 'PAGE',
+        id: '返回对象',
+      },
+      requestMethod: 'POST',
+      requestParamType: 'ENTITY',
+      requestPath: '/fetch_reader',
+      actionType: 'REMOTE',
+      dataSetName: 'reader',
+      dataSetTag: 'reader',
+      dataSetType: 'REMOTE',
+      id: 'fetch_reader',
+    },
+    {
       codeName: 'FilterCreate',
       methodType: 'FILTERACTION',
       builtinMethod: true,
@@ -1194,7 +1216,7 @@ export default {
   deapicodeName2: 'boards',
   deapitag: 'BOARD',
   dataAccCtrlArch: 1,
-  dataAccCtrlMode: 2,
+  dataAccCtrlMode: 3,
   enableUIActions: 15,
   keyAppDEFieldId: 'id',
   lnlanguageRes: {

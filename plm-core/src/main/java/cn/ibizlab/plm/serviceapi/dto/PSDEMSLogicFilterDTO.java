@@ -35,7 +35,7 @@ public class PSDEMSLogicFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_psdelogicid_eq")
     @JSONField(name = "n_psdelogicid_eq")
-    @ApiModelProperty(value = "实体处理逻辑标识EQ", position = 10)
+    @ApiModelProperty(value = "实体处理逻辑标识EQ", position = 30)
 	private String psdeLogicIdEQ;
 
     /**
@@ -43,7 +43,7 @@ public class PSDEMSLogicFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_psdelogicname_like")
     @JSONField(name = "n_psdelogicname_like")
-    @ApiModelProperty(value = "实体处理逻辑名称LIKE", position = 20)
+    @ApiModelProperty(value = "实体处理逻辑名称LIKE", position = 40)
 	private String psdeLogicNameLIKE;
 
     /**
@@ -51,7 +51,7 @@ public class PSDEMSLogicFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_psdeid_eq")
     @JSONField(name = "n_psdeid_eq")
-    @ApiModelProperty(value = "实体EQ", position = 70)
+    @ApiModelProperty(value = "实体EQ", position = 90)
 	private String psdeidEQ;
 
     /**
@@ -59,7 +59,7 @@ public class PSDEMSLogicFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_psdename_eq")
     @JSONField(name = "n_psdename_eq")
-    @ApiModelProperty(value = "实体EQ", position = 80)
+    @ApiModelProperty(value = "实体EQ", position = 100)
 	private String psdeNameEQ;
 
     /**
@@ -67,7 +67,7 @@ public class PSDEMSLogicFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_psdename_like")
     @JSONField(name = "n_psdename_like")
-    @ApiModelProperty(value = "实体LIKE", position = 81)
+    @ApiModelProperty(value = "实体LIKE", position = 101)
 	private String psdeNameLIKE;
 
 

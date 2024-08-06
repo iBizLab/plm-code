@@ -22,6 +22,7 @@ import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import cn.ibizlab.plm.core.insight.domain.InsightMember;
 import cn.ibizlab.plm.core.insight.domain.InsightReport;
+import cn.ibizlab.plm.core.base.domain.DynaDashboard;
 
 /**
  * 效能视图实体类[InsightView]
@@ -97,6 +98,16 @@ public class InsightView extends EntityMP implements Serializable
     @JsonProperty("is_favorite")
     @ApiModelProperty(value = "is_favorite", notes = "是否星标")
     private String isFavorite;
+
+    /**
+    * 效能视图成员
+    */
+    @TableField(exist = false)
+    @DEField(name = "members")
+    @JSONField(name = "members")
+    @JsonProperty("members")
+    @ApiModelProperty(value = "members", notes = "效能视图成员")
+    private List<InsightMember> members;
 
     /**
     * 所属
@@ -232,6 +243,15 @@ public class InsightView extends EntityMP implements Serializable
     public InsightView setIsFavorite(String isFavorite) {
         this.isFavorite = isFavorite;
         this.modify("is_favorite", isFavorite);
+        return this;
+    }
+
+    /**
+    * 设置 [效能视图成员]
+    */
+    public InsightView setMembers(List<InsightMember> members) {
+        this.members = members;
+        this.modify("members", members);
         return this;
     }
 

@@ -252,7 +252,6 @@ export default {
                 shrink: 1,
                 layout: 'FLEX',
               },
-              showCaption: true,
               id: 'id',
             },
           ],

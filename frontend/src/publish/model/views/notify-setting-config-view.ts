@@ -176,7 +176,6 @@ export default {
                                           allowEmpty: true,
                                           hidden: true,
                                           caption: '文本(动态)',
-                                          itemStyle: 'DEFAULT',
                                           itemType: 'FIELD',
                                           layoutPos: {
                                             shrink: 1,
@@ -465,7 +464,6 @@ export default {
                 colMD: 24,
                 layout: 'TABLE_24COL',
               },
-              showCaption: true,
               id: 'id',
             },
           ],

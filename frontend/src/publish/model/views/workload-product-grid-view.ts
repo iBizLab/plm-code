@@ -386,7 +386,7 @@ export default {
         enableGroup: true,
         singleSelect: true,
         fetchControlAction: {
-          appDEMethodId: 'fetch_my_idea_workload',
+          appDEMethodId: 'fetch_idea_dimension',
           appDataEntityId: 'plmweb.workload',
           id: 'fetch',
         },
@@ -516,7 +516,6 @@ export default {
                   colMD: 24,
                   layout: 'TABLE_24COL',
                 },
-                showCaption: true,
                 id: 'n_register_date_gtandeq',
               },
               {
@@ -543,7 +542,6 @@ export default {
                   colMD: 24,
                   layout: 'TABLE_24COL',
                 },
-                showCaption: true,
                 id: 'n_register_date_ltandeq',
               },
             ],

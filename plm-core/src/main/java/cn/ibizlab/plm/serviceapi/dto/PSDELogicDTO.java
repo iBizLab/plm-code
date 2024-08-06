@@ -4,6 +4,7 @@
 package cn.ibizlab.plm.serviceapi.dto;
 
 import java.util.*;
+import java.math.BigDecimal;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -154,7 +155,7 @@ public class PSDELogicDTO extends DTOBase implements Serializable {
     @JsonProperty("psdelogicnodes")
     @JSONField(name = "psdelogicnodes")
     @ApiModelProperty(value = "逻辑节点", position = 14)
-    private List<PSDELogicNodeDTO> psdelogicnodes;
+    private List<PSDELogicNodeDTO> psdeLogicNodes;
 
     /**
      * 逻辑连接
@@ -162,14 +163,54 @@ public class PSDELogicDTO extends DTOBase implements Serializable {
     @JsonProperty("psdelogiclinks")
     @JSONField(name = "psdelogiclinks")
     @ApiModelProperty(value = "逻辑连接", position = 15)
-    private List<PSDELogicLinkDTO> psdelogiclinks;
+    private List<PSDELogicLinkDTO> psdeLogicLinks;
+
+    /**
+     * WebHook地址
+     */
+    @JsonProperty("webhookurl")
+    @JSONField(name = "webhookurl")
+    @ApiModelProperty(value = "WebHook地址", position = 16)
+    private String webHookUrl;
+
+    /**
+     * 成功率
+     */
+    @JsonProperty("success_per")
+    @JSONField(name = "success_per")
+    @ApiModelProperty(value = "成功率", position = 17)
+    private BigDecimal successPer;
+
+    /**
+     * 成功率
+     */
+    @JsonProperty("success_rate")
+    @JSONField(name = "success_rate")
+    @ApiModelProperty(value = "成功率", position = 18)
+    private BigDecimal successRate;
+
+    /**
+     * 失败率
+     */
+    @JsonProperty("failure_per")
+    @JSONField(name = "failure_per")
+    @ApiModelProperty(value = "失败率", position = 19)
+    private BigDecimal failurePer;
+
+    /**
+     * 失败率
+     */
+    @JsonProperty("failure_rate")
+    @JSONField(name = "failure_rate")
+    @ApiModelProperty(value = "失败率", position = 20)
+    private BigDecimal failureRate;
 
     /**
      * 代码标识
      */
     @JsonProperty("codename")
     @JSONField(name = "codename")
-    @ApiModelProperty(value = "代码标识", position = 16)
+    @ApiModelProperty(value = "代码标识", position = 21)
     private String codeName;
 
     /**
@@ -178,7 +219,7 @@ public class PSDELogicDTO extends DTOBase implements Serializable {
     @JsonProperty("createdate")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "createdate" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 17)
+    @ApiModelProperty(value = "建立时间", position = 22)
     private Date createDate;
 
     /**
@@ -186,7 +227,7 @@ public class PSDELogicDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("createman")
     @JSONField(name = "createman")
-    @ApiModelProperty(value = "建立人", position = 18)
+    @ApiModelProperty(value = "建立人", position = 23)
     private String createMan;
 
     /**
@@ -194,7 +235,7 @@ public class PSDELogicDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("logicsubtype")
     @JSONField(name = "logicsubtype")
-    @ApiModelProperty(value = "逻辑子类", position = 19)
+    @ApiModelProperty(value = "逻辑子类", position = 24)
     private String logicSubType;
 
     /**
@@ -202,7 +243,7 @@ public class PSDELogicDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("logictag")
     @JSONField(name = "logictag")
-    @ApiModelProperty(value = "逻辑标记", position = 20)
+    @ApiModelProperty(value = "逻辑标记", position = 25)
     private String logicTag;
 
     /**
@@ -210,7 +251,7 @@ public class PSDELogicDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("logictag2")
     @JSONField(name = "logictag2")
-    @ApiModelProperty(value = "逻辑标记2", position = 21)
+    @ApiModelProperty(value = "逻辑标记2", position = 26)
     private String logicTag2;
 
     /**
@@ -218,7 +259,7 @@ public class PSDELogicDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("logictag3")
     @JSONField(name = "logictag3")
-    @ApiModelProperty(value = "逻辑标记3", position = 22)
+    @ApiModelProperty(value = "逻辑标记3", position = 27)
     private String logicTag3;
 
     /**
@@ -226,7 +267,7 @@ public class PSDELogicDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("logictag4")
     @JSONField(name = "logictag4")
-    @ApiModelProperty(value = "逻辑标记4", position = 23)
+    @ApiModelProperty(value = "逻辑标记4", position = 28)
     private String logicTag4;
 
     /**
@@ -234,7 +275,7 @@ public class PSDELogicDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("logictype")
     @JSONField(name = "logictype")
-    @ApiModelProperty(value = "逻辑类型", position = 24)
+    @ApiModelProperty(value = "逻辑类型", position = 29)
     private String logicType;
 
     /**
@@ -242,7 +283,7 @@ public class PSDELogicDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("memo")
     @JSONField(name = "memo")
-    @ApiModelProperty(value = "备注", position = 25)
+    @ApiModelProperty(value = "备注", position = 30)
     private String memo;
 
     /**
@@ -250,7 +291,7 @@ public class PSDELogicDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("ordervalue")
     @JSONField(name = "ordervalue")
-    @ApiModelProperty(value = "附加次序", position = 26)
+    @ApiModelProperty(value = "附加次序", position = 31)
     private Integer orderValue;
 
     /**
@@ -258,7 +299,7 @@ public class PSDELogicDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("psdeid")
     @JSONField(name = "psdeid")
-    @ApiModelProperty(value = "实体", position = 27)
+    @ApiModelProperty(value = "实体", position = 32)
     private String psdeid;
 
     /**
@@ -266,7 +307,7 @@ public class PSDELogicDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("psdelogicid")
     @JSONField(name = "psdelogicid")
-    @ApiModelProperty(value = "实体处理逻辑标识", position = 28)
+    @ApiModelProperty(value = "实体处理逻辑标识", position = 33)
     private String psdeLogicId;
 
     /**
@@ -274,7 +315,7 @@ public class PSDELogicDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("psdelogicname")
     @JSONField(name = "psdelogicname")
-    @ApiModelProperty(value = "规则名称", position = 29)
+    @ApiModelProperty(value = "规则名称", position = 34)
     private String psdeLogicName;
 
     /**
@@ -282,7 +323,7 @@ public class PSDELogicDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("psdename")
     @JSONField(name = "psdename")
-    @ApiModelProperty(value = "实体", position = 30)
+    @ApiModelProperty(value = "实体", position = 35)
     private String psdeName;
 
     /**
@@ -291,7 +332,7 @@ public class PSDELogicDTO extends DTOBase implements Serializable {
     @JsonProperty("updatedate")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "updatedate" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 31)
+    @ApiModelProperty(value = "更新时间", position = 36)
     private Date updateDate;
 
     /**
@@ -299,7 +340,7 @@ public class PSDELogicDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("updateman")
     @JSONField(name = "updateman")
-    @ApiModelProperty(value = "更新人", position = 32)
+    @ApiModelProperty(value = "更新人", position = 37)
     private String updateMan;
 
     /**
@@ -307,7 +348,7 @@ public class PSDELogicDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("usertag")
     @JSONField(name = "usertag")
-    @ApiModelProperty(value = "用户标记", position = 33)
+    @ApiModelProperty(value = "用户标记", position = 38)
     private String userTag;
 
     /**
@@ -315,7 +356,7 @@ public class PSDELogicDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("usertag2")
     @JSONField(name = "usertag2")
-    @ApiModelProperty(value = "用户标记2", position = 34)
+    @ApiModelProperty(value = "用户标记2", position = 39)
     private String userTag2;
 
     /**
@@ -323,7 +364,7 @@ public class PSDELogicDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("usertag3")
     @JSONField(name = "usertag3")
-    @ApiModelProperty(value = "用户标记3", position = 35)
+    @ApiModelProperty(value = "用户标记3", position = 40)
     private String userTag3;
 
     /**
@@ -331,7 +372,7 @@ public class PSDELogicDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("usertag4")
     @JSONField(name = "usertag4")
-    @ApiModelProperty(value = "用户标记4", position = 36)
+    @ApiModelProperty(value = "用户标记4", position = 41)
     private String userTag4;
 
     /**
@@ -339,7 +380,7 @@ public class PSDELogicDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("validflag")
     @JSONField(name = "validflag")
-    @ApiModelProperty(value = "启用", position = 37)
+    @ApiModelProperty(value = "启用", position = 42)
     private Integer validFlag;
 
     /**
@@ -347,7 +388,7 @@ public class PSDELogicDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("extension_tag")
     @JSONField(name = "extension_tag")
-    @ApiModelProperty(value = "扩展标记", position = 38)
+    @ApiModelProperty(value = "扩展标记", position = 43)
     private String extensionTag;
 
     /**
@@ -355,7 +396,7 @@ public class PSDELogicDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("extension_tag2")
     @JSONField(name = "extension_tag2")
-    @ApiModelProperty(value = "扩展标记2", position = 39)
+    @ApiModelProperty(value = "扩展标记2", position = 44)
     private String extensionTag2;
 
     /**
@@ -363,7 +404,7 @@ public class PSDELogicDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("extension_tag3")
     @JSONField(name = "extension_tag3")
-    @ApiModelProperty(value = "扩展标记3", position = 40)
+    @ApiModelProperty(value = "扩展标记3", position = 45)
     private String extensionTag3;
 
     /**
@@ -371,7 +412,7 @@ public class PSDELogicDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("extension_tag4")
     @JSONField(name = "extension_tag4")
-    @ApiModelProperty(value = "扩展标记4", position = 41)
+    @ApiModelProperty(value = "扩展标记4", position = 46)
     private String extensionTag4;
 
 
@@ -504,18 +545,63 @@ public class PSDELogicDTO extends DTOBase implements Serializable {
     /**
      * 设置 [逻辑节点]
      */
-    public PSDELogicDTO setPsdelogicnodes(List<PSDELogicNodeDTO> psdelogicnodes) {
-        this.psdelogicnodes = psdelogicnodes;
-        this.modify("psdelogicnodes", psdelogicnodes);
+    public PSDELogicDTO setPsdeLogicNodes(List<PSDELogicNodeDTO> psdeLogicNodes) {
+        this.psdeLogicNodes = psdeLogicNodes;
+        this.modify("psdelogicnodes", psdeLogicNodes);
         return this;
     }
 
     /**
      * 设置 [逻辑连接]
      */
-    public PSDELogicDTO setPsdelogiclinks(List<PSDELogicLinkDTO> psdelogiclinks) {
-        this.psdelogiclinks = psdelogiclinks;
-        this.modify("psdelogiclinks", psdelogiclinks);
+    public PSDELogicDTO setPsdeLogicLinks(List<PSDELogicLinkDTO> psdeLogicLinks) {
+        this.psdeLogicLinks = psdeLogicLinks;
+        this.modify("psdelogiclinks", psdeLogicLinks);
+        return this;
+    }
+
+    /**
+     * 设置 [WebHook地址]
+     */
+    public PSDELogicDTO setWebHookUrl(String webHookUrl) {
+        this.webHookUrl = webHookUrl;
+        this.modify("webhookurl", webHookUrl);
+        return this;
+    }
+
+    /**
+     * 设置 [成功率]
+     */
+    public PSDELogicDTO setSuccessPer(BigDecimal successPer) {
+        this.successPer = successPer;
+        this.modify("success_per", successPer);
+        return this;
+    }
+
+    /**
+     * 设置 [成功率]
+     */
+    public PSDELogicDTO setSuccessRate(BigDecimal successRate) {
+        this.successRate = successRate;
+        this.modify("success_rate", successRate);
+        return this;
+    }
+
+    /**
+     * 设置 [失败率]
+     */
+    public PSDELogicDTO setFailurePer(BigDecimal failurePer) {
+        this.failurePer = failurePer;
+        this.modify("failure_per", failurePer);
+        return this;
+    }
+
+    /**
+     * 设置 [失败率]
+     */
+    public PSDELogicDTO setFailureRate(BigDecimal failureRate) {
+        this.failureRate = failureRate;
+        this.modify("failure_rate", failureRate);
         return this;
     }
 

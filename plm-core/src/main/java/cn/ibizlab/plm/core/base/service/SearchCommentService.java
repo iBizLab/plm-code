@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.SearchComment;
 import cn.ibizlab.plm.core.base.filter.SearchCommentSearchContext;
 import cn.ibizlab.plm.core.prodmgmt.domain.Customer;
@@ -144,7 +145,7 @@ public interface SearchCommentService extends IService<SearchComment> {
     * @param et
     * @return
     */
-    Integer checkKey(SearchComment et);
+    CheckKeyStatus checkKey(SearchComment et);
 
     /**
     * 保存
@@ -199,8 +200,15 @@ public interface SearchCommentService extends IService<SearchComment> {
     */
     List<SearchComment> findByPrincipalId(List<String> principalIds);
     default List<SearchComment> findByPrincipalId(String principalId){
-        return findByPrincipalId(Arrays.asList(principalId));
+        return findByDerCustomer(new Customer().setId(principalId));
     }
+
+    /**
+    * findByDerCustomer
+    * @param customer
+    * @return
+    */
+    List<SearchComment> findByDerCustomer(Customer customer);
 
     /**
     * removeByPrincipalId
@@ -235,12 +243,26 @@ public interface SearchCommentService extends IService<SearchComment> {
     boolean saveByDerCustomer(Customer customer, List<SearchComment> list);
 
     /**
+    * findByDerIdea
+    * @param idea
+    * @return
+    */
+    List<SearchComment> findByDerIdea(Idea idea);
+
+    /**
     * saveByDerIdea
     * @param idea
     * @param list
     * @return
     */
     boolean saveByDerIdea(Idea idea, List<SearchComment> list);
+
+    /**
+    * findByDerPage
+    * @param articlePage
+    * @return
+    */
+    List<SearchComment> findByDerPage(ArticlePage articlePage);
 
     /**
     * saveByDerPage
@@ -251,12 +273,26 @@ public interface SearchCommentService extends IService<SearchComment> {
     boolean saveByDerPage(ArticlePage articlePage, List<SearchComment> list);
 
     /**
+    * findByDerRun
+    * @param run
+    * @return
+    */
+    List<SearchComment> findByDerRun(Run run);
+
+    /**
     * saveByDerRun
     * @param run
     * @param list
     * @return
     */
     boolean saveByDerRun(Run run, List<SearchComment> list);
+
+    /**
+    * findByDerTestCase
+    * @param testCase
+    * @return
+    */
+    List<SearchComment> findByDerTestCase(TestCase testCase);
 
     /**
     * saveByDerTestCase
@@ -267,6 +303,13 @@ public interface SearchCommentService extends IService<SearchComment> {
     boolean saveByDerTestCase(TestCase testCase, List<SearchComment> list);
 
     /**
+    * findByDerTicket
+    * @param ticket
+    * @return
+    */
+    List<SearchComment> findByDerTicket(Ticket ticket);
+
+    /**
     * saveByDerTicket
     * @param ticket
     * @param list
@@ -275,12 +318,35 @@ public interface SearchCommentService extends IService<SearchComment> {
     boolean saveByDerTicket(Ticket ticket, List<SearchComment> list);
 
     /**
+    * findByDerWorkItem
+    * @param workItem
+    * @return
+    */
+    List<SearchComment> findByDerWorkItem(WorkItem workItem);
+
+    /**
     * saveByDerWorkItem
     * @param workItem
     * @param list
     * @return
     */
     boolean saveByDerWorkItem(WorkItem workItem, List<SearchComment> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<SearchComment> fetchView(SearchCommentSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<SearchComment> listView(SearchCommentSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<SearchComment> list) {

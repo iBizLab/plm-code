@@ -23,12 +23,14 @@ import java.util.stream.IntStream;
 import cn.ibizlab.util.domain.ImportResult;
 import cn.ibizlab.util.domain.RequestWrapper;
 import cn.ibizlab.util.domain.ResponseWrapper;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.serviceapi.dto.*;
 import cn.ibizlab.plm.serviceapi.mapping.*;
 import cn.ibizlab.plm.core.projmgmt.domain.Entry;
 import cn.ibizlab.plm.core.projmgmt.service.EntryService;
 import cn.ibizlab.plm.core.projmgmt.filter.EntrySearchContext;
 import cn.ibizlab.util.annotation.VersionCheck;
+import reactor.core.publisher.Mono;
 
 /**
  * 实体[Entry] rest实现
@@ -54,19 +56,19 @@ public abstract class AbstractEntryResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<EntryDTO>
+    * @return Mono<ResponseEntity<EntryDTO>>
     */
     @ApiOperation(value = "创建Create", tags = {"看板栏" },  notes = "Entry-Create ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Entry-Create-all') or hasPermission(this.entryDtoMapping.toDomain(#dto),'ibizplm-Entry-Create')")
     @PostMapping("entries")
-    public ResponseEntity<ResponseWrapper<EntryDTO>> create
+    public Mono<ResponseEntity<ResponseWrapper<EntryDTO>>>create
             (@Validated @RequestBody RequestWrapper<EntryDTO> dto) {
         ResponseWrapper<EntryDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(create(item)));
         else
             rt.set(create(dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -90,13 +92,13 @@ public abstract class AbstractEntryResource {
     *
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<EntryDTO>
+    * @return Mono<ResponseEntity<EntryDTO>>
     */
     @ApiOperation(value = "更新Update", tags = {"看板栏" },  notes = "Entry-Update ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Entry-Update-all') or hasPermission(this.entryService.get(#id),'ibizplm-Entry-Update')")
     @VersionCheck(entity = "entry" , versionfield = "updateTime")
     @PutMapping("entries/{id}")
-    public ResponseEntity<ResponseWrapper<EntryDTO>> updateById
+    public Mono<ResponseEntity<ResponseWrapper<EntryDTO>>>updateById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<EntryDTO> dto) {
         ResponseWrapper<EntryDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -105,7 +107,7 @@ public abstract class AbstractEntryResource {
         }
         else
             rt.set(updateById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -130,19 +132,19 @@ public abstract class AbstractEntryResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<EntryDTO>
+    * @return Mono<ResponseEntity<EntryDTO>>
     */
     @ApiOperation(value = "保存Save", tags = {"看板栏" },  notes = "Entry-Save ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Entry-Save-all') or hasPermission(this.entryDtoMapping.toDomain(#dto),'ibizplm-Entry-Save')")
     @PostMapping("entries/save")
-    public ResponseEntity<ResponseWrapper<EntryDTO>> save
+    public Mono<ResponseEntity<ResponseWrapper<EntryDTO>>>save
             (@Validated @RequestBody RequestWrapper<EntryDTO> dto) {
         ResponseWrapper<EntryDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(save(item)));
         else
             rt.set(save(dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -166,19 +168,19 @@ public abstract class AbstractEntryResource {
     *
     * @param boardId boardId
     * @param dto dto
-    * @return ResponseEntity<EntryDTO>
+    * @return Mono<ResponseEntity<EntryDTO>>
     */
     @ApiOperation(value = "创建Create", tags = {"看板栏" },  notes = "Entry-Create ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Entry-Create-all') or hasPermission('board',#boardId,this.entryDtoMapping.toDomain(#dto),'ibizplm-Entry-Create')")
     @PostMapping("boards/{boardId}/entries")
-    public ResponseEntity<ResponseWrapper<EntryDTO>> createByBoardId
+    public Mono<ResponseEntity<ResponseWrapper<EntryDTO>>>createByBoardId
             (@PathVariable("boardId") String boardId, @Validated @RequestBody RequestWrapper<EntryDTO> dto) {
         ResponseWrapper<EntryDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(createByBoardId(boardId, item)));
         else
             rt.set(createByBoardId(boardId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -205,13 +207,13 @@ public abstract class AbstractEntryResource {
     * @param boardId boardId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<EntryDTO>
+    * @return Mono<ResponseEntity<EntryDTO>>
     */
     @ApiOperation(value = "更新Update", tags = {"看板栏" },  notes = "Entry-Update ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Entry-Update-all') or hasPermission('board',#boardId,this.entryService.get(#id),'ibizplm-Entry-Update')")
     @VersionCheck(entity = "entry" , versionfield = "updateTime")
     @PutMapping("boards/{boardId}/entries/{id}")
-    public ResponseEntity<ResponseWrapper<EntryDTO>> updateByBoardIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<EntryDTO>>>updateByBoardIdAndId
             (@PathVariable("boardId") String boardId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<EntryDTO> dto) {
         ResponseWrapper<EntryDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -220,7 +222,7 @@ public abstract class AbstractEntryResource {
         }
         else
             rt.set(updateByBoardIdAndId(boardId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -247,19 +249,19 @@ public abstract class AbstractEntryResource {
     *
     * @param boardId boardId
     * @param dto dto
-    * @return ResponseEntity<EntryDTO>
+    * @return Mono<ResponseEntity<EntryDTO>>
     */
     @ApiOperation(value = "保存Save", tags = {"看板栏" },  notes = "Entry-Save ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Entry-Save-all') or hasPermission('board',#boardId,this.entryDtoMapping.toDomain(#dto),'ibizplm-Entry-Save')")
     @PostMapping("boards/{boardId}/entries/save")
-    public ResponseEntity<ResponseWrapper<EntryDTO>> saveByBoardId
+    public Mono<ResponseEntity<ResponseWrapper<EntryDTO>>>saveByBoardId
             (@PathVariable("boardId") String boardId, @Validated @RequestBody RequestWrapper<EntryDTO> dto) {
         ResponseWrapper<EntryDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(saveByBoardId(boardId, item)));
         else
             rt.set(saveByBoardId(boardId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -286,19 +288,19 @@ public abstract class AbstractEntryResource {
     * @param projectId projectId
     * @param boardId boardId
     * @param dto dto
-    * @return ResponseEntity<EntryDTO>
+    * @return Mono<ResponseEntity<EntryDTO>>
     */
     @ApiOperation(value = "创建Create", tags = {"看板栏" },  notes = "Entry-Create ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Entry-Create-all') or hasPermission('project',#projectId,this.entryDtoMapping.toDomain(#dto),'ibizplm-Entry-Create')")
     @PostMapping("projects/{projectId}/boards/{boardId}/entries")
-    public ResponseEntity<ResponseWrapper<EntryDTO>> createByProjectIdAndBoardId
+    public Mono<ResponseEntity<ResponseWrapper<EntryDTO>>>createByProjectIdAndBoardId
             (@PathVariable("projectId") String projectId, @PathVariable("boardId") String boardId, @Validated @RequestBody RequestWrapper<EntryDTO> dto) {
         ResponseWrapper<EntryDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(createByProjectIdAndBoardId(projectId, boardId, item)));
         else
             rt.set(createByProjectIdAndBoardId(projectId, boardId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -327,13 +329,13 @@ public abstract class AbstractEntryResource {
     * @param boardId boardId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<EntryDTO>
+    * @return Mono<ResponseEntity<EntryDTO>>
     */
     @ApiOperation(value = "更新Update", tags = {"看板栏" },  notes = "Entry-Update ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Entry-Update-all') or hasPermission('project',#projectId,this.entryService.get(#id),'ibizplm-Entry-Update')")
     @VersionCheck(entity = "entry" , versionfield = "updateTime")
     @PutMapping("projects/{projectId}/boards/{boardId}/entries/{id}")
-    public ResponseEntity<ResponseWrapper<EntryDTO>> updateByProjectIdAndBoardIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<EntryDTO>>>updateByProjectIdAndBoardIdAndId
             (@PathVariable("projectId") String projectId, @PathVariable("boardId") String boardId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<EntryDTO> dto) {
         ResponseWrapper<EntryDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -342,7 +344,7 @@ public abstract class AbstractEntryResource {
         }
         else
             rt.set(updateByProjectIdAndBoardIdAndId(projectId, boardId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -371,19 +373,19 @@ public abstract class AbstractEntryResource {
     * @param projectId projectId
     * @param boardId boardId
     * @param dto dto
-    * @return ResponseEntity<EntryDTO>
+    * @return Mono<ResponseEntity<EntryDTO>>
     */
     @ApiOperation(value = "保存Save", tags = {"看板栏" },  notes = "Entry-Save ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Entry-Save-all') or hasPermission('project',#projectId,this.entryDtoMapping.toDomain(#dto),'ibizplm-Entry-Save')")
     @PostMapping("projects/{projectId}/boards/{boardId}/entries/save")
-    public ResponseEntity<ResponseWrapper<EntryDTO>> saveByProjectIdAndBoardId
+    public Mono<ResponseEntity<ResponseWrapper<EntryDTO>>>saveByProjectIdAndBoardId
             (@PathVariable("projectId") String projectId, @PathVariable("boardId") String boardId, @Validated @RequestBody RequestWrapper<EntryDTO> dto) {
         ResponseWrapper<EntryDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(saveByProjectIdAndBoardId(projectId, boardId, item)));
         else
             rt.set(saveByProjectIdAndBoardId(projectId, boardId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -410,19 +412,19 @@ public abstract class AbstractEntryResource {
     *
     * @param projectId projectId
     * @param dto dto
-    * @return ResponseEntity<EntryDTO>
+    * @return Mono<ResponseEntity<EntryDTO>>
     */
     @ApiOperation(value = "创建Create", tags = {"看板栏" },  notes = "Entry-Create ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Entry-Create-all') or hasPermission('project',#projectId,this.entryDtoMapping.toDomain(#dto),'ibizplm-Entry-Create')")
     @PostMapping("projects/{projectId}/entries")
-    public ResponseEntity<ResponseWrapper<EntryDTO>> createByProjectId
+    public Mono<ResponseEntity<ResponseWrapper<EntryDTO>>>createByProjectId
             (@PathVariable("projectId") String projectId, @Validated @RequestBody RequestWrapper<EntryDTO> dto) {
         ResponseWrapper<EntryDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(createByProjectId(projectId, item)));
         else
             rt.set(createByProjectId(projectId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -449,13 +451,13 @@ public abstract class AbstractEntryResource {
     * @param projectId projectId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<EntryDTO>
+    * @return Mono<ResponseEntity<EntryDTO>>
     */
     @ApiOperation(value = "更新Update", tags = {"看板栏" },  notes = "Entry-Update ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Entry-Update-all') or hasPermission('project',#projectId,this.entryService.get(#id),'ibizplm-Entry-Update')")
     @VersionCheck(entity = "entry" , versionfield = "updateTime")
     @PutMapping("projects/{projectId}/entries/{id}")
-    public ResponseEntity<ResponseWrapper<EntryDTO>> updateByProjectIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<EntryDTO>>>updateByProjectIdAndId
             (@PathVariable("projectId") String projectId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<EntryDTO> dto) {
         ResponseWrapper<EntryDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -464,7 +466,7 @@ public abstract class AbstractEntryResource {
         }
         else
             rt.set(updateByProjectIdAndId(projectId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -491,19 +493,19 @@ public abstract class AbstractEntryResource {
     *
     * @param projectId projectId
     * @param dto dto
-    * @return ResponseEntity<EntryDTO>
+    * @return Mono<ResponseEntity<EntryDTO>>
     */
     @ApiOperation(value = "保存Save", tags = {"看板栏" },  notes = "Entry-Save ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Entry-Save-all') or hasPermission('project',#projectId,this.entryDtoMapping.toDomain(#dto),'ibizplm-Entry-Save')")
     @PostMapping("projects/{projectId}/entries/save")
-    public ResponseEntity<ResponseWrapper<EntryDTO>> saveByProjectId
+    public Mono<ResponseEntity<ResponseWrapper<EntryDTO>>>saveByProjectId
             (@PathVariable("projectId") String projectId, @Validated @RequestBody RequestWrapper<EntryDTO> dto) {
         ResponseWrapper<EntryDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(saveByProjectId(projectId, item)));
         else
             rt.set(saveByProjectId(projectId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -529,15 +531,15 @@ public abstract class AbstractEntryResource {
     * 
     *
     * @param id id
-    * @return ResponseEntity<EntryDTO>
+    * @return Mono<ResponseEntity<EntryDTO>>
     */
     @ApiOperation(value = "获取Get", tags = {"看板栏" },  notes = "Entry-Get ")
-    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Entry-Get-all')  or hasPermission(this.entryDtoMapping.toDomain(returnObject.body),'ibizplm-Entry-Get')")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Entry-Get-all')  or hasPermission(this.entryDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-Entry-Get')")
     @GetMapping("entries/{id}")
-    public ResponseEntity<EntryDTO> getById
+    public Mono<ResponseEntity<EntryDTO>> getById
             (@PathVariable("id") String id) {
         Entry rt = entryService.get(id);
-        return ResponseEntity.status(HttpStatus.OK).body(entryDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(entryDtoMapping.toDto(rt)));
     }
 
     /**
@@ -545,15 +547,15 @@ public abstract class AbstractEntryResource {
     * 
     *
     * @param id id
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @ApiOperation(value = "删除Remove", tags = {"看板栏" },  notes = "Entry-Remove ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Entry-Remove-all') or hasPermission(this.entryService.get(#id),'ibizplm-Entry-Remove')")
     @DeleteMapping("entries/{id}")
-    public ResponseEntity<Boolean> removeById
+    public Mono<ResponseEntity<Boolean>> removeById
             (@PathVariable("id") String id) {
         Boolean rt = entryService.remove(id);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -561,15 +563,15 @@ public abstract class AbstractEntryResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<Integer>
+    * @return Mono<ResponseEntity<Integer>>
     */
     @ApiOperation(value = "校验CheckKey", tags = {"看板栏" },  notes = "Entry-CheckKey ")
     @PostMapping("entries/check_key")
-    public ResponseEntity<Integer> checkKey
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKey
             (@Validated @RequestBody EntryDTO dto) {
         Entry domain = entryDtoMapping.toDomain(dto);
-        Integer rt = entryService.checkKey(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        CheckKeyStatus rt = entryService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -577,15 +579,15 @@ public abstract class AbstractEntryResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<EntryDTO>
+    * @return Mono<ResponseEntity<EntryDTO>>
     */
     @ApiOperation(value = "草稿GetDraft", tags = {"看板栏" },  notes = "Entry-GetDraft ")
     @GetMapping("entries/get_draft")
-    public ResponseEntity<EntryDTO> getDraft
+    public Mono<ResponseEntity<EntryDTO>> getDraft
             (@SpringQueryMap EntryDTO dto) {
         Entry domain = entryDtoMapping.toDomain(dto);
         Entry rt = entryService.getDraft(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(entryDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(entryDtoMapping.toDto(rt)));
     }
 
     /**
@@ -593,21 +595,21 @@ public abstract class AbstractEntryResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<EntryDTO>>
+    * @return Mono<ResponseEntity<List<EntryDTO>>>
     */
     @ApiOperation(value = "查询fetch_default", tags = {"看板栏" },  notes = "Entry-fetch_default ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Entry-fetch_default-all') or hasPermission(#dto,'ibizplm-Entry-fetch_default')")
     @PostMapping("entries/fetch_default")
-    public ResponseEntity<List<EntryDTO>> fetchDefault
+    public Mono<ResponseEntity<List<EntryDTO>>> fetchDefault
             (@Validated @RequestBody EntryFilterDTO dto) {
         EntrySearchContext context = entryFilterDtoMapping.toDomain(dto);
         Page<Entry> domains = entryService.fetchDefault(context) ;
         List<EntryDTO> list = entryDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -616,15 +618,15 @@ public abstract class AbstractEntryResource {
     *
     * @param boardId boardId
     * @param id id
-    * @return ResponseEntity<EntryDTO>
+    * @return Mono<ResponseEntity<EntryDTO>>
     */
     @ApiOperation(value = "获取Get", tags = {"看板栏" },  notes = "Entry-Get ")
-    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Entry-Get-all')  or hasPermission('board',#boardId,this.entryDtoMapping.toDomain(returnObject.body),'ibizplm-Entry-Get')")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Entry-Get-all')  or hasPermission('board',#boardId,this.entryDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-Entry-Get')")
     @GetMapping("boards/{boardId}/entries/{id}")
-    public ResponseEntity<EntryDTO> getByBoardIdAndId
+    public Mono<ResponseEntity<EntryDTO>> getByBoardIdAndId
             (@PathVariable("boardId") String boardId, @PathVariable("id") String id) {
         Entry rt = entryService.get(id);
-        return ResponseEntity.status(HttpStatus.OK).body(entryDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(entryDtoMapping.toDto(rt)));
     }
 
     /**
@@ -633,15 +635,15 @@ public abstract class AbstractEntryResource {
     *
     * @param boardId boardId
     * @param id id
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @ApiOperation(value = "删除Remove", tags = {"看板栏" },  notes = "Entry-Remove ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Entry-Remove-all') or hasPermission('board',#boardId,this.entryService.get(#id),'ibizplm-Entry-Remove')")
     @DeleteMapping("boards/{boardId}/entries/{id}")
-    public ResponseEntity<Boolean> removeByBoardIdAndId
+    public Mono<ResponseEntity<Boolean>> removeByBoardIdAndId
             (@PathVariable("boardId") String boardId, @PathVariable("id") String id) {
         Boolean rt = entryService.remove(id);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -650,16 +652,16 @@ public abstract class AbstractEntryResource {
     *
     * @param boardId boardId
     * @param dto dto
-    * @return ResponseEntity<Integer>
+    * @return Mono<ResponseEntity<Integer>>
     */
     @ApiOperation(value = "校验CheckKey", tags = {"看板栏" },  notes = "Entry-CheckKey ")
     @PostMapping("boards/{boardId}/entries/check_key")
-    public ResponseEntity<Integer> checkKeyByBoardId
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKeyByBoardId
             (@PathVariable("boardId") String boardId, @Validated @RequestBody EntryDTO dto) {
         Entry domain = entryDtoMapping.toDomain(dto);
         domain.setBoardId(boardId);
-        Integer rt = entryService.checkKey(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        CheckKeyStatus rt = entryService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -668,16 +670,16 @@ public abstract class AbstractEntryResource {
     *
     * @param boardId boardId
     * @param dto dto
-    * @return ResponseEntity<EntryDTO>
+    * @return Mono<ResponseEntity<EntryDTO>>
     */
     @ApiOperation(value = "草稿GetDraft", tags = {"看板栏" },  notes = "Entry-GetDraft ")
     @GetMapping("boards/{boardId}/entries/get_draft")
-    public ResponseEntity<EntryDTO> getDraftByBoardId
+    public Mono<ResponseEntity<EntryDTO>> getDraftByBoardId
             (@PathVariable("boardId") String boardId, @SpringQueryMap EntryDTO dto) {
         Entry domain = entryDtoMapping.toDomain(dto);
         domain.setBoardId(boardId);
         Entry rt = entryService.getDraft(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(entryDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(entryDtoMapping.toDto(rt)));
     }
 
     /**
@@ -686,22 +688,22 @@ public abstract class AbstractEntryResource {
     *
     * @param boardId boardId
     * @param dto dto
-    * @return ResponseEntity<List<EntryDTO>>
+    * @return Mono<ResponseEntity<List<EntryDTO>>>
     */
     @ApiOperation(value = "查询fetch_default", tags = {"看板栏" },  notes = "Entry-fetch_default ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Entry-fetch_default-all') or hasPermission('board',#boardId,#dto,'ibizplm-Entry-fetch_default')")
     @PostMapping("boards/{boardId}/entries/fetch_default")
-    public ResponseEntity<List<EntryDTO>> fetchDefaultByBoardId
+    public Mono<ResponseEntity<List<EntryDTO>>> fetchDefaultByBoardId
             (@PathVariable("boardId") String boardId, @Validated @RequestBody EntryFilterDTO dto) {
         dto.setBoardIdEQ(boardId);
         EntrySearchContext context = entryFilterDtoMapping.toDomain(dto);
         Page<Entry> domains = entryService.fetchDefault(context) ;
         List<EntryDTO> list = entryDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -711,15 +713,15 @@ public abstract class AbstractEntryResource {
     * @param projectId projectId
     * @param boardId boardId
     * @param id id
-    * @return ResponseEntity<EntryDTO>
+    * @return Mono<ResponseEntity<EntryDTO>>
     */
     @ApiOperation(value = "获取Get", tags = {"看板栏" },  notes = "Entry-Get ")
-    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Entry-Get-all')  or hasPermission('project',#projectId,this.entryDtoMapping.toDomain(returnObject.body),'ibizplm-Entry-Get')")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Entry-Get-all')  or hasPermission('project',#projectId,this.entryDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-Entry-Get')")
     @GetMapping("projects/{projectId}/boards/{boardId}/entries/{id}")
-    public ResponseEntity<EntryDTO> getByProjectIdAndBoardIdAndId
+    public Mono<ResponseEntity<EntryDTO>> getByProjectIdAndBoardIdAndId
             (@PathVariable("projectId") String projectId, @PathVariable("boardId") String boardId, @PathVariable("id") String id) {
         Entry rt = entryService.get(id);
-        return ResponseEntity.status(HttpStatus.OK).body(entryDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(entryDtoMapping.toDto(rt)));
     }
 
     /**
@@ -729,15 +731,15 @@ public abstract class AbstractEntryResource {
     * @param projectId projectId
     * @param boardId boardId
     * @param id id
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @ApiOperation(value = "删除Remove", tags = {"看板栏" },  notes = "Entry-Remove ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Entry-Remove-all') or hasPermission('project',#projectId,this.entryService.get(#id),'ibizplm-Entry-Remove')")
     @DeleteMapping("projects/{projectId}/boards/{boardId}/entries/{id}")
-    public ResponseEntity<Boolean> removeByProjectIdAndBoardIdAndId
+    public Mono<ResponseEntity<Boolean>> removeByProjectIdAndBoardIdAndId
             (@PathVariable("projectId") String projectId, @PathVariable("boardId") String boardId, @PathVariable("id") String id) {
         Boolean rt = entryService.remove(id);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -747,16 +749,16 @@ public abstract class AbstractEntryResource {
     * @param projectId projectId
     * @param boardId boardId
     * @param dto dto
-    * @return ResponseEntity<Integer>
+    * @return Mono<ResponseEntity<Integer>>
     */
     @ApiOperation(value = "校验CheckKey", tags = {"看板栏" },  notes = "Entry-CheckKey ")
     @PostMapping("projects/{projectId}/boards/{boardId}/entries/check_key")
-    public ResponseEntity<Integer> checkKeyByProjectIdAndBoardId
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKeyByProjectIdAndBoardId
             (@PathVariable("projectId") String projectId, @PathVariable("boardId") String boardId, @Validated @RequestBody EntryDTO dto) {
         Entry domain = entryDtoMapping.toDomain(dto);
         domain.setBoardId(boardId);
-        Integer rt = entryService.checkKey(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        CheckKeyStatus rt = entryService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -766,16 +768,16 @@ public abstract class AbstractEntryResource {
     * @param projectId projectId
     * @param boardId boardId
     * @param dto dto
-    * @return ResponseEntity<EntryDTO>
+    * @return Mono<ResponseEntity<EntryDTO>>
     */
     @ApiOperation(value = "草稿GetDraft", tags = {"看板栏" },  notes = "Entry-GetDraft ")
     @GetMapping("projects/{projectId}/boards/{boardId}/entries/get_draft")
-    public ResponseEntity<EntryDTO> getDraftByProjectIdAndBoardId
+    public Mono<ResponseEntity<EntryDTO>> getDraftByProjectIdAndBoardId
             (@PathVariable("projectId") String projectId, @PathVariable("boardId") String boardId, @SpringQueryMap EntryDTO dto) {
         Entry domain = entryDtoMapping.toDomain(dto);
         domain.setBoardId(boardId);
         Entry rt = entryService.getDraft(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(entryDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(entryDtoMapping.toDto(rt)));
     }
 
     /**
@@ -785,22 +787,22 @@ public abstract class AbstractEntryResource {
     * @param projectId projectId
     * @param boardId boardId
     * @param dto dto
-    * @return ResponseEntity<List<EntryDTO>>
+    * @return Mono<ResponseEntity<List<EntryDTO>>>
     */
     @ApiOperation(value = "查询fetch_default", tags = {"看板栏" },  notes = "Entry-fetch_default ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Entry-fetch_default-all') or hasPermission('project',#projectId,#dto,'ibizplm-Entry-fetch_default')")
     @PostMapping("projects/{projectId}/boards/{boardId}/entries/fetch_default")
-    public ResponseEntity<List<EntryDTO>> fetchDefaultByProjectIdAndBoardId
+    public Mono<ResponseEntity<List<EntryDTO>>> fetchDefaultByProjectIdAndBoardId
             (@PathVariable("projectId") String projectId, @PathVariable("boardId") String boardId, @Validated @RequestBody EntryFilterDTO dto) {
         dto.setBoardIdEQ(boardId);
         EntrySearchContext context = entryFilterDtoMapping.toDomain(dto);
         Page<Entry> domains = entryService.fetchDefault(context) ;
         List<EntryDTO> list = entryDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -809,15 +811,15 @@ public abstract class AbstractEntryResource {
     *
     * @param projectId projectId
     * @param id id
-    * @return ResponseEntity<EntryDTO>
+    * @return Mono<ResponseEntity<EntryDTO>>
     */
     @ApiOperation(value = "获取Get", tags = {"看板栏" },  notes = "Entry-Get ")
-    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Entry-Get-all')  or hasPermission('project',#projectId,this.entryDtoMapping.toDomain(returnObject.body),'ibizplm-Entry-Get')")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Entry-Get-all')  or hasPermission('project',#projectId,this.entryDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-Entry-Get')")
     @GetMapping("projects/{projectId}/entries/{id}")
-    public ResponseEntity<EntryDTO> getByProjectIdAndId
+    public Mono<ResponseEntity<EntryDTO>> getByProjectIdAndId
             (@PathVariable("projectId") String projectId, @PathVariable("id") String id) {
         Entry rt = entryService.get(id);
-        return ResponseEntity.status(HttpStatus.OK).body(entryDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(entryDtoMapping.toDto(rt)));
     }
 
     /**
@@ -826,15 +828,15 @@ public abstract class AbstractEntryResource {
     *
     * @param projectId projectId
     * @param id id
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @ApiOperation(value = "删除Remove", tags = {"看板栏" },  notes = "Entry-Remove ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Entry-Remove-all') or hasPermission('project',#projectId,this.entryService.get(#id),'ibizplm-Entry-Remove')")
     @DeleteMapping("projects/{projectId}/entries/{id}")
-    public ResponseEntity<Boolean> removeByProjectIdAndId
+    public Mono<ResponseEntity<Boolean>> removeByProjectIdAndId
             (@PathVariable("projectId") String projectId, @PathVariable("id") String id) {
         Boolean rt = entryService.remove(id);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -843,16 +845,16 @@ public abstract class AbstractEntryResource {
     *
     * @param projectId projectId
     * @param dto dto
-    * @return ResponseEntity<Integer>
+    * @return Mono<ResponseEntity<Integer>>
     */
     @ApiOperation(value = "校验CheckKey", tags = {"看板栏" },  notes = "Entry-CheckKey ")
     @PostMapping("projects/{projectId}/entries/check_key")
-    public ResponseEntity<Integer> checkKeyByProjectId
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKeyByProjectId
             (@PathVariable("projectId") String projectId, @Validated @RequestBody EntryDTO dto) {
         Entry domain = entryDtoMapping.toDomain(dto);
         domain.setProjectId(projectId);
-        Integer rt = entryService.checkKey(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        CheckKeyStatus rt = entryService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -861,16 +863,16 @@ public abstract class AbstractEntryResource {
     *
     * @param projectId projectId
     * @param dto dto
-    * @return ResponseEntity<EntryDTO>
+    * @return Mono<ResponseEntity<EntryDTO>>
     */
     @ApiOperation(value = "草稿GetDraft", tags = {"看板栏" },  notes = "Entry-GetDraft ")
     @GetMapping("projects/{projectId}/entries/get_draft")
-    public ResponseEntity<EntryDTO> getDraftByProjectId
+    public Mono<ResponseEntity<EntryDTO>> getDraftByProjectId
             (@PathVariable("projectId") String projectId, @SpringQueryMap EntryDTO dto) {
         Entry domain = entryDtoMapping.toDomain(dto);
         domain.setProjectId(projectId);
         Entry rt = entryService.getDraft(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(entryDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(entryDtoMapping.toDto(rt)));
     }
 
     /**
@@ -879,88 +881,88 @@ public abstract class AbstractEntryResource {
     *
     * @param projectId projectId
     * @param dto dto
-    * @return ResponseEntity<List<EntryDTO>>
+    * @return Mono<ResponseEntity<List<EntryDTO>>>
     */
     @ApiOperation(value = "查询fetch_default", tags = {"看板栏" },  notes = "Entry-fetch_default ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Entry-fetch_default-all') or hasPermission('project',#projectId,#dto,'ibizplm-Entry-fetch_default')")
     @PostMapping("projects/{projectId}/entries/fetch_default")
-    public ResponseEntity<List<EntryDTO>> fetchDefaultByProjectId
+    public Mono<ResponseEntity<List<EntryDTO>>> fetchDefaultByProjectId
             (@PathVariable("projectId") String projectId, @Validated @RequestBody EntryFilterDTO dto) {
         dto.setProjectIdEQ(projectId);
         EntrySearchContext context = entryFilterDtoMapping.toDomain(dto);
         Page<Entry> domains = entryService.fetchDefault(context) ;
         List<EntryDTO> list = entryDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
 
     /**
     * 批量新建看板栏
     * @param dtos
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-Entry-Create-all')")
     @ApiOperation(value = "批量新建看板栏", tags = {"看板栏" },  notes = "批量新建看板栏")
 	@PostMapping("entries/batch")
-    public ResponseEntity<Boolean> createBatch(@RequestBody List<EntryDTO> dtos) {
+    public Mono<ResponseEntity<Boolean>> createBatch(@RequestBody List<EntryDTO> dtos) {
         entryService.create(entryDtoMapping.toDomain(dtos));
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量删除看板栏
     * @param ids ids
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-Entry-Remove-all')")
     @ApiOperation(value = "批量删除看板栏", tags = {"看板栏" },  notes = "批量删除看板栏")
 	@DeleteMapping("entries/batch")
-    public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
+    public Mono<ResponseEntity<Boolean>> removeBatch(@RequestBody List<String> ids) {
         entryService.remove(ids);
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量更新看板栏
     * @param dtos
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-Entry-Update-all')")
     @ApiOperation(value = "批量更新看板栏", tags = {"看板栏" },  notes = "批量更新看板栏")
 	@PutMapping("entries/batch")
-    public ResponseEntity<Boolean> updateBatch(@RequestBody List<EntryDTO> dtos) {
+    public Mono<ResponseEntity<Boolean>> updateBatch(@RequestBody List<EntryDTO> dtos) {
         entryService.update(entryDtoMapping.toDomain(dtos));
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量保存看板栏
     * @param dtos
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-Entry-Save-all')")
     @ApiOperation(value = "批量保存看板栏", tags = {"看板栏" },  notes = "批量保存看板栏")
 	@PostMapping("entries/savebatch")
-    public ResponseEntity<Boolean> saveBatch(@RequestBody List<EntryDTO> dtos) {
+    public Mono<ResponseEntity<Boolean>> saveBatch(@RequestBody List<EntryDTO> dtos) {
         entryService.save(entryDtoMapping.toDomain(dtos));
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量导入看板栏
     * @param config 导入模式
     * @param ignoreError 导入中忽略错误
-    * @return ResponseEntity<ImportResult>
+    * @return Mono<ResponseEntity<ImportResult>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-Entry-Save-all')")
     @ApiOperation(value = "批量导入看板栏", tags = {"看板栏" },  notes = "批量导入看板栏")
 	@PostMapping("entries/import")
-    public ResponseEntity<ImportResult> importData(@RequestParam(value = "config" , required = false) String config ,@RequestParam(value = "ignoreerror", required = false, defaultValue = "true") Boolean ignoreError ,@RequestBody List<EntryDTO> dtos) {
-        return  ResponseEntity.status(HttpStatus.OK).body(entryService.importData(config,ignoreError,entryDtoMapping.toDomain(dtos)));
+    public Mono<ResponseEntity<ImportResult>> importData(@RequestParam(value = "config" , required = false) String config ,@RequestParam(value = "ignoreerror", required = false, defaultValue = "true") Boolean ignoreError ,@RequestBody List<EntryDTO> dtos) {
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(entryService.importData(config,ignoreError,entryDtoMapping.toDomain(dtos))));
     }
 
 }

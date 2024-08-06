@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import com.alibaba.fastjson.JSONObject;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.ebsx.domain.SysDepartment;
 import cn.ibizlab.plm.core.ebsx.filter.SysDepartmentSearchContext;
 
@@ -137,7 +138,7 @@ public interface SysDepartmentService{
     * @param et
     * @return
     */
-    Integer checkKey(SysDepartment et);
+    CheckKeyStatus checkKey(SysDepartment et);
 
     /**
     * 保存

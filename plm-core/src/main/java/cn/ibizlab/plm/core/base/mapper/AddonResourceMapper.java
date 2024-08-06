@@ -70,6 +70,25 @@ public interface AddonResourceMapper extends BaseMapper<AddonResource> {
     List<AddonResource> findByOwnerId(@Param("ownerIds") List<String> ownerIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<AddonResource> searchView(IPage<AddonResource> page, @Param("ctx") AddonResourceSearchContext context, @Param("ew") Wrapper<AddonResource> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<AddonResource> listView(@Param("ctx") AddonResourceSearchContext context, @Param("ew") Wrapper<AddonResource> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

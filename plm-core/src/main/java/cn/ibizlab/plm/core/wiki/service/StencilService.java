@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.wiki.domain.Stencil;
 import cn.ibizlab.plm.core.wiki.filter.StencilSearchContext;
 import cn.ibizlab.plm.core.wiki.domain.Space;
@@ -139,7 +140,7 @@ public interface StencilService extends IService<Stencil> {
     * @param et
     * @return
     */
-    Integer checkKey(Stencil et);
+    CheckKeyStatus checkKey(Stencil et);
 
     /**
     * 保存
@@ -246,8 +247,15 @@ public interface StencilService extends IService<Stencil> {
     */
     List<Stencil> findBySpaceId(List<String> spaceIds);
     default List<Stencil> findBySpaceId(String spaceId){
-        return findBySpaceId(Arrays.asList(spaceId));
+        return findBySpace(new Space().setId(spaceId));
     }
+
+    /**
+    * findBySpace
+    * @param space
+    * @return
+    */
+    List<Stencil> findBySpace(Space space);
 
     /**
     * removeBySpaceId
@@ -284,6 +292,22 @@ public interface StencilService extends IService<Stencil> {
     default List<Attachment> getAttachments(Stencil et) {
         return new ArrayList<>();
     }
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Stencil> fetchView(StencilSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Stencil> listView(StencilSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Stencil> list) {

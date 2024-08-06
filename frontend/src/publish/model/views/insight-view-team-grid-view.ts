@@ -72,15 +72,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '效能视图数据重定向视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.INSIGHT_VIEW.REDIRECTVIEW',
-      },
-      refAppViewId: 'plmweb.insight_view_redirect_view',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
-    {
       realTitle: '效能视图编辑视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.INSIGHT_VIEW.EDITVIEW',
@@ -88,6 +79,15 @@ export default {
       refAppViewId: 'plmweb.insight_view_edit_view',
       name: 'NEWDATA',
       id: 'newdata',
+    },
+    {
+      realTitle: '效能视图数据重定向视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.INSIGHT_VIEW.REDIRECTVIEW',
+      },
+      refAppViewId: 'plmweb.insight_view_redirect_view',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
   ],
   controls: [
@@ -110,8 +110,6 @@ export default {
       columnEnableFilter: 2,
       columnEnableLink: 2,
       groupMode: 'NONE',
-      minorSortDir: 'DESC',
-      minorSortAppDEFieldId: 'update_time',
       degridColumns: [
         {
           clconvertMode: 'NONE',
@@ -396,7 +394,7 @@ export default {
       enableCustomized: true,
       enablePagingBar: true,
       fetchControlAction: {
-        appDEMethodId: 'fetch_default',
+        appDEMethodId: 'fetch_main',
         appDataEntityId: 'plmweb.insight_view',
         id: 'fetch',
       },

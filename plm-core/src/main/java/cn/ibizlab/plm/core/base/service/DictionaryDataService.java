@@ -11,6 +11,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.DictionaryData;
 import cn.ibizlab.plm.core.base.filter.DictionaryDataSearchContext;
 
@@ -138,7 +139,7 @@ public interface DictionaryDataService extends IService<DictionaryData> {
     * @param et
     * @return
     */
-    Integer checkKey(DictionaryData et);
+    CheckKeyStatus checkKey(DictionaryData et);
 
     /**
     * 保存
@@ -153,6 +154,16 @@ public interface DictionaryDataService extends IService<DictionaryData> {
      * @return
      */
     boolean save(List<DictionaryData> list);
+
+    /**
+    * moveOrder
+    * 
+    * @param et
+    * @return
+    */
+    default List<DictionaryData> moveOrder(DictionaryData et) {
+        return new ArrayList<>();
+    }
 
     /**
     * nothing
@@ -227,6 +238,22 @@ public interface DictionaryDataService extends IService<DictionaryData> {
     * @return
     */
     List<DictionaryData> listTicketState(DictionaryDataSearchContext context);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<DictionaryData> fetchView(DictionaryDataSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<DictionaryData> listView(DictionaryDataSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<DictionaryData> list) {

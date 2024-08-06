@@ -161,7 +161,7 @@ public class Review extends EntityMP implements Serializable
     /**
     * 评审内容
     */
-    @TableField(value = "contents" , exist = false)
+    @TableField(exist = false)
     @DEField(name = "contents")
     @JSONField(name = "contents")
     @JsonProperty("contents")
@@ -172,7 +172,7 @@ public class Review extends EntityMP implements Serializable
     * 提交人标识
     */
     @TableField(value = "submitter_id")
-    @DEField(name = "submitter_id")
+    @DEField(name = "submitter_id" , dict = "SysOperator")
     @JSONField(name = "submitter_id")
     @JsonProperty("submitter_id")
     @ApiModelProperty(value = "submitter_id", notes = "提交人标识")

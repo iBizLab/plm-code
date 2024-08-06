@@ -274,10 +274,16 @@ export default {
     ],
     controls: [
       {
-        tabExpPageIds: ['work_item'],
+        tabExpPageIds: ['overview', 'work_item'],
         tabLayout: 'TOP',
         uniqueTag: 'sprint_main_view__tabexppanel',
         appViewRefs: [
+          {
+            realTitle: '迭代概况',
+            refAppViewId: 'plmweb.sprint_overview_dashboard_view',
+            name: 'EXPITEM:overview',
+            id: 'expitem:overview',
+          },
           {
             parentDataJO: {
               srfparentdename: 'SPRINT',
@@ -291,6 +297,20 @@ export default {
           },
         ],
         controls: [
+          {
+            caption: '概览',
+            embeddedAppDEViewId: 'plmweb.sprint_overview_dashboard_view',
+            codeName: 'main_view_overview',
+            controlType: 'TABVIEWPANEL',
+            appDataEntityId: 'plmweb.sprint',
+            controlParam: {
+              id: 'overview',
+            },
+            modelId: '01c20953bb0fb9b9b5be3730e60e427c_overview',
+            modelType: 'PSVIEWPANEL',
+            name: 'overview',
+            id: 'main_view_overview',
+          },
           {
             navDER: {
               pickupDEFName: 'SPRINT_ID',

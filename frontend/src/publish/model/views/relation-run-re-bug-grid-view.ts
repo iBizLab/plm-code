@@ -11,6 +11,14 @@ export default {
   caption: '关联',
   codeName: 'relation_run_re_bug_grid_view',
   appDataEntityId: 'plmweb.relation',
+  appViewNavContexts: [
+    {
+      key: 'TEST_CASE',
+      value: 'case_id',
+      name: 'TEST_CASE',
+      id: 'test_case',
+    },
+  ],
   viewLayoutPanel: {
     viewProxyMode: true,
     layoutMode: 'FLEX',
@@ -477,7 +485,7 @@ export default {
         detoolbarItems: [
           {
             actionLevel: 100,
-            noPrivDisplayMode: 6,
+            noPrivDisplayMode: 2,
             uiactionId: 'add_relation@relation',
             uiactionTarget: 'NONE',
             valid: true,
@@ -646,6 +654,7 @@ export default {
             caption: '工作项',
             codeName: 'target_parent_id',
             columnType: 'DEFGRIDCOLUMN',
+            hideMode: 1,
             noPrivDisplayMode: 1,
             width: 100,
             widthUnit: 'PX',
@@ -663,6 +672,7 @@ export default {
             caption: '工作项',
             codeName: 'work_item',
             columnType: 'DEFGRIDCOLUMN',
+            hideMode: 1,
             noPrivDisplayMode: 1,
             width: 100,
             widthUnit: 'PX',

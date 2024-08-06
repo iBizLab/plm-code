@@ -323,13 +323,55 @@ export default {
         builtinAppUILogic: {
           openDataAppView: {
             openMode: 'INDEXVIEWTAB_POPUPMODAL',
-            refAppViewId: 'plmweb.work_item_main_view',
+            navigateContexts: [
+              {
+                key: 'WORK_ITEM_TYPE_ID',
+                value: 'work_item_type_id',
+                name: 'WORK_ITEM_TYPE_ID',
+                id: 'work_item_type_id',
+              },
+              {
+                key: 'SRFDATATYPE',
+                value: 'work_item_type_id',
+                name: 'SRFDATATYPE',
+                id: 'srfdatatype',
+              },
+            ],
+            navigateParams: [
+              {
+                key: 'srfdatatype',
+                value: 'work_item_type_id',
+                id: 'srfdatatype',
+              },
+            ],
+            refAppViewId: 'plmweb.work_item_dyna_main_view',
           },
           editMode: true,
           appUILogicRefViews: [
             {
               openMode: 'INDEXVIEWTAB_POPUPMODAL',
-              refAppViewId: 'plmweb.work_item_main_view',
+              navigateContexts: [
+                {
+                  key: 'WORK_ITEM_TYPE_ID',
+                  value: 'work_item_type_id',
+                  name: 'WORK_ITEM_TYPE_ID',
+                  id: 'work_item_type_id',
+                },
+                {
+                  key: 'SRFDATATYPE',
+                  value: 'work_item_type_id',
+                  name: 'SRFDATATYPE',
+                  id: 'srfdatatype',
+                },
+              ],
+              navigateParams: [
+                {
+                  key: 'srfdatatype',
+                  value: 'work_item_type_id',
+                  id: 'srfdatatype',
+                },
+              ],
+              refAppViewId: 'plmweb.work_item_dyna_main_view',
             },
           ],
           builtinLogic: true,
@@ -344,9 +386,30 @@ export default {
     appViewRefs: [
       {
         openMode: 'INDEXVIEWTAB_POPUPMODAL',
+        navigateContexts: [
+          {
+            key: 'WORK_ITEM_TYPE_ID',
+            value: 'work_item_type_id',
+            name: 'WORK_ITEM_TYPE_ID',
+            id: 'work_item_type_id',
+          },
+          {
+            key: 'SRFDATATYPE',
+            value: 'work_item_type_id',
+            name: 'SRFDATATYPE',
+            id: 'srfdatatype',
+          },
+        ],
+        navigateParams: [
+          {
+            key: 'srfdatatype',
+            value: 'work_item_type_id',
+            id: 'srfdatatype',
+          },
+        ],
         realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
-        realTitle: '工作项',
-        refAppViewId: 'plmweb.work_item_main_view',
+        realTitle: '工作项（动态）',
+        refAppViewId: 'plmweb.work_item_dyna_main_view',
         name: 'EDITDATA',
         id: 'editdata',
       },
@@ -606,7 +669,6 @@ export default {
                   colMD: 3,
                   layout: 'TABLE_24COL',
                 },
-                showCaption: true,
                 id: 'n_project_id_eq',
               },
             ],
@@ -1321,6 +1383,7 @@ export default {
         },
         minorSortDir: 'ASC',
         minorSortAppDEFieldId: 'entry_position',
+        orderValueAppDEFieldId: 'sequence',
         dedataViewDataItems: [
           {
             appDEFieldId: 'title',
@@ -1410,6 +1473,24 @@ export default {
           },
         ],
         dedataViewItems: [
+          {
+            caption: '标题',
+            dataItemName: 'title',
+            itemType: 'DATAITEM',
+            appDEFieldId: 'title',
+            enableSort: true,
+            name: 'TITLE',
+            id: 'title',
+          },
+          {
+            caption: '编号',
+            dataItemName: 'identifier',
+            itemType: 'DATAITEM',
+            appDEFieldId: 'identifier',
+            enableSort: true,
+            name: 'IDENTIFIER',
+            id: 'identifier',
+          },
           {
             dataItemName: 'operate',
             itemType: 'ACTIONITEM',
@@ -1619,24 +1700,6 @@ export default {
             name: 'OPERATE',
             id: 'operate',
           },
-          {
-            caption: '标题',
-            dataItemName: 'title',
-            itemType: 'DATAITEM',
-            appDEFieldId: 'title',
-            enableSort: true,
-            name: 'TITLE',
-            id: 'title',
-          },
-          {
-            caption: '编号',
-            dataItemName: 'identifier',
-            itemType: 'DATAITEM',
-            appDEFieldId: 'identifier',
-            enableSort: true,
-            name: 'IDENTIFIER',
-            id: 'identifier',
-          },
         ],
         pagingSize: 1000,
         appendDEItems: true,
@@ -1658,6 +1721,11 @@ export default {
           appDEMethodId: 'get',
           appDataEntityId: 'plmweb.work_item',
           id: 'load',
+        },
+        moveControlAction: {
+          appDEMethodId: 'board_move_position',
+          appDataEntityId: 'plmweb.work_item',
+          id: 'move',
         },
         dedataImportId: 'import_work_item_waterfall',
         removeControlAction: {

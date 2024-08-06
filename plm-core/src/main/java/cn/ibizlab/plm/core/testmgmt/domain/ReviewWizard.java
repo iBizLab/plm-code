@@ -22,8 +22,8 @@ import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import cn.ibizlab.plm.core.testmgmt.domain.Guideline;
 import cn.ibizlab.plm.core.testmgmt.domain.Library;
-import cn.ibizlab.plm.core.testmgmt.domain.ReviewContent;
 import cn.ibizlab.plm.core.base.domain.Attention;
+import cn.ibizlab.plm.core.testmgmt.domain.ReviewContent;
 
 /**
  * 评审向导实体类[ReviewWizard]
@@ -143,7 +143,7 @@ public class ReviewWizard extends EntityMP implements Serializable
     /**
     * 规则
     */
-    @TableField(value = "rule")
+    @TableField(value = "rule", jdbcType = org.apache.ibatis.type.JdbcType.VARCHAR, typeHandler =com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler.class)
     @DEField(name = "rule")
     @JSONField(name = "rule")
     @JsonProperty("rule")
@@ -153,7 +153,7 @@ public class ReviewWizard extends EntityMP implements Serializable
     /**
     * 阶段
     */
-    @TableField(value = "stage")
+    @TableField(value = "stage", jdbcType = org.apache.ibatis.type.JdbcType.VARCHAR, typeHandler =com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler.class)
     @DEField(name = "stage")
     @JSONField(name = "stage")
     @JsonProperty("stage")
@@ -163,7 +163,7 @@ public class ReviewWizard extends EntityMP implements Serializable
     /**
     * 后置动作
     */
-    @TableField(value = "action_rule")
+    @TableField(value = "action_rule", jdbcType = org.apache.ibatis.type.JdbcType.VARCHAR, typeHandler =com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler.class)
     @DEField(name = "action_rule")
     @JSONField(name = "action_rule")
     @JsonProperty("action_rule")

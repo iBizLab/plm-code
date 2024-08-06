@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.testmgmt.domain.TestPlan;
@@ -138,14 +139,14 @@ public abstract class AbstractTestPlanService extends ServiceImpl<TestPlanMapper
         return et;
     }
 	
-    public Integer checkKey(TestPlan et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<TestPlan>lambdaQuery().eq(TestPlan::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(TestPlan et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<TestPlan>lambdaQuery().eq(TestPlan::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(TestPlan et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -184,6 +185,28 @@ public abstract class AbstractTestPlanService extends ServiceImpl<TestPlanMapper
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("UPDATE_TIME,DESC");
         List<TestPlan> list = baseMapper.listDefault(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<TestPlan> fetchBiDetail(TestPlanSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestPlan> pages=baseMapper.searchBiDetail(context.getPages(),context,context.getSelectCond());
+        List<TestPlan> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<TestPlan> listBiDetail(TestPlanSearchContext context) {
+        List<TestPlan> list = baseMapper.listBiDetail(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<TestPlan> fetchBiSearch(TestPlanSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestPlan> pages=baseMapper.searchBiSearch(context.getPages(),context,context.getSelectCond());
+        List<TestPlan> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<TestPlan> listBiSearch(TestPlanSearchContext context) {
+        List<TestPlan> list = baseMapper.listBiSearch(context,context.getSelectCond());
         return list;
    }
 	
@@ -261,6 +284,10 @@ public abstract class AbstractTestPlanService extends ServiceImpl<TestPlanMapper
         return list;	
 	}
 
+	public List<TestPlan> findByLibrary(Library library){
+        List<TestPlan> list = findByLibraryId(Arrays.asList(library.getId()));
+		return list;
+	}
 	public boolean removeByLibraryId(String libraryId){
         return this.remove(Wrappers.<TestPlan>lambdaQuery().eq(TestPlan::getLibraryId,libraryId));
 	}
@@ -271,8 +298,8 @@ public abstract class AbstractTestPlanService extends ServiceImpl<TestPlanMapper
 	public boolean saveByLibrary(Library library, List<TestPlan> list){
         if(list==null)
             return true;
-        Map<String,TestPlan> before = findByLibraryId(library.getId()).stream().collect(Collectors.toMap(TestPlan::getId,e->e));
 
+        Map<String,TestPlan> before = findByLibrary(library).stream().collect(Collectors.toMap(TestPlan::getId,e->e));
         List<TestPlan> update = new ArrayList<>();
         List<TestPlan> create = new ArrayList<>();
 
@@ -304,6 +331,10 @@ public abstract class AbstractTestPlanService extends ServiceImpl<TestPlanMapper
         return list;	
 	}
 
+	public List<TestPlan> findByProject(Project project){
+        List<TestPlan> list = findByProjectId(Arrays.asList(project.getId()));
+		return list;
+	}
 	public boolean removeByProjectId(String projectId){
         return this.remove(Wrappers.<TestPlan>lambdaQuery().eq(TestPlan::getProjectId,projectId));
 	}
@@ -314,8 +345,8 @@ public abstract class AbstractTestPlanService extends ServiceImpl<TestPlanMapper
 	public boolean saveByProject(Project project, List<TestPlan> list){
         if(list==null)
             return true;
-        Map<String,TestPlan> before = findByProjectId(project.getId()).stream().collect(Collectors.toMap(TestPlan::getId,e->e));
 
+        Map<String,TestPlan> before = findByProject(project).stream().collect(Collectors.toMap(TestPlan::getId,e->e));
         List<TestPlan> update = new ArrayList<>();
         List<TestPlan> create = new ArrayList<>();
 
@@ -347,6 +378,10 @@ public abstract class AbstractTestPlanService extends ServiceImpl<TestPlanMapper
         return list;	
 	}
 
+	public List<TestPlan> findByRelease(Release release){
+        List<TestPlan> list = findByReleaseId(Arrays.asList(release.getId()));
+		return list;
+	}
 	public boolean removeByReleaseId(String releaseId){
         return this.remove(Wrappers.<TestPlan>lambdaQuery().eq(TestPlan::getReleaseId,releaseId));
 	}
@@ -357,8 +392,8 @@ public abstract class AbstractTestPlanService extends ServiceImpl<TestPlanMapper
 	public boolean saveByRelease(Release release, List<TestPlan> list){
         if(list==null)
             return true;
-        Map<String,TestPlan> before = findByReleaseId(release.getId()).stream().collect(Collectors.toMap(TestPlan::getId,e->e));
 
+        Map<String,TestPlan> before = findByRelease(release).stream().collect(Collectors.toMap(TestPlan::getId,e->e));
         List<TestPlan> update = new ArrayList<>();
         List<TestPlan> create = new ArrayList<>();
 
@@ -390,6 +425,10 @@ public abstract class AbstractTestPlanService extends ServiceImpl<TestPlanMapper
         return list;	
 	}
 
+	public List<TestPlan> findBySprint(Sprint sprint){
+        List<TestPlan> list = findBySprintId(Arrays.asList(sprint.getId()));
+		return list;
+	}
 	public boolean removeBySprintId(String sprintId){
         return this.remove(Wrappers.<TestPlan>lambdaQuery().eq(TestPlan::getSprintId,sprintId));
 	}
@@ -400,8 +439,8 @@ public abstract class AbstractTestPlanService extends ServiceImpl<TestPlanMapper
 	public boolean saveBySprint(Sprint sprint, List<TestPlan> list){
         if(list==null)
             return true;
-        Map<String,TestPlan> before = findBySprintId(sprint.getId()).stream().collect(Collectors.toMap(TestPlan::getId,e->e));
 
+        Map<String,TestPlan> before = findBySprint(sprint).stream().collect(Collectors.toMap(TestPlan::getId,e->e));
         List<TestPlan> update = new ArrayList<>();
         List<TestPlan> create = new ArrayList<>();
 
@@ -433,6 +472,10 @@ public abstract class AbstractTestPlanService extends ServiceImpl<TestPlanMapper
         return list;	
 	}
 
+	public List<TestPlan> findByTestPlan(CommonFlow commonFlow){
+        List<TestPlan> list = findById(Arrays.asList(commonFlow.getId()));
+		return list;
+	}
 	public boolean removeById(String id){
         return this.remove(Wrappers.<TestPlan>lambdaQuery().eq(TestPlan::getId,id));
 	}
@@ -443,8 +486,8 @@ public abstract class AbstractTestPlanService extends ServiceImpl<TestPlanMapper
 	public boolean saveByTestPlan(CommonFlow commonFlow, List<TestPlan> list){
         if(list==null)
             return true;
-        Map<String,TestPlan> before = findById(commonFlow.getId()).stream().collect(Collectors.toMap(TestPlan::getId,e->e));
 
+        Map<String,TestPlan> before = findByTestPlan(commonFlow).stream().collect(Collectors.toMap(TestPlan::getId,e->e));
         List<TestPlan> update = new ArrayList<>();
         List<TestPlan> create = new ArrayList<>();
 
@@ -470,10 +513,21 @@ public abstract class AbstractTestPlanService extends ServiceImpl<TestPlanMapper
 	}
 	@Override
     public List<Relation> getWorkItemRelations(TestPlan et) {
-        List<Relation> list = relationService.findByPrincipalId(et.getId());
+        List<Relation> list = relationService.findByPrincipalTestPlan(et);
         et.setWorkItemRelations(list);
         return list;
     }
+	
+   public Page<TestPlan> fetchView(TestPlanSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestPlan> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<TestPlan> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<TestPlan> listView(TestPlanSearchContext context) {
+        List<TestPlan> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
 	
 
     public void fillParentData(TestPlan et) {

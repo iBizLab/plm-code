@@ -43,6 +43,25 @@ public interface WorkItemTypeMapper extends BaseMapper<WorkItemType> {
     List<WorkItemType> listDefault(@Param("ctx") WorkItemTypeSearchContext context, @Param("ew") Wrapper<WorkItemType> wrapper);
 
     /**
+     * 数据集合choose_target_type分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<WorkItemType> searchChooseTargetType(IPage<WorkItemType> page, @Param("ctx") WorkItemTypeSearchContext context, @Param("ew") Wrapper<WorkItemType> wrapper);
+    
+    /**
+     * 数据集合choose_target_type查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<WorkItemType> listChooseTargetType(@Param("ctx") WorkItemTypeSearchContext context, @Param("ew") Wrapper<WorkItemType> wrapper);
+
+    /**
      * 数据集合cur_project_type分页查询
      * 
      * @param page
@@ -60,6 +79,25 @@ public interface WorkItemTypeMapper extends BaseMapper<WorkItemType> {
      * @return
      */
     List<WorkItemType> listCurProjectType(@Param("ctx") WorkItemTypeSearchContext context, @Param("ew") Wrapper<WorkItemType> wrapper);
+
+    /**
+     * 数据集合group_by_origin_state分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Map> searchGroupByOriginState(IPage<WorkItemType> page, @Param("ctx") WorkItemTypeSearchContext context, @Param("ew") Wrapper<WorkItemType> wrapper);
+    
+    /**
+     * 数据集合group_by_origin_state查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Map> listGroupByOriginState(@Param("ctx") WorkItemTypeSearchContext context, @Param("ew") Wrapper<WorkItemType> wrapper);
 
     /**
      * 数据集合project_work_item_type分页查询
@@ -106,6 +144,25 @@ public interface WorkItemTypeMapper extends BaseMapper<WorkItemType> {
     * @return
     */
     List<WorkItemType> findByProjectId(@Param("projectIds") List<String> projectIds);
+
+    /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<WorkItemType> searchView(IPage<WorkItemType> page, @Param("ctx") WorkItemTypeSearchContext context, @Param("ew") Wrapper<WorkItemType> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<WorkItemType> listView(@Param("ctx") WorkItemTypeSearchContext context, @Param("ew") Wrapper<WorkItemType> wrapper);
 
     /**
      * 主键查询

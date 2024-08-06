@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.base.domain.Comment;
@@ -161,14 +162,14 @@ public abstract class AbstractCommentService extends ServiceImpl<CommentMapper,C
         return et;
     }
 	
-    public Integer checkKey(Comment et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Comment>lambdaQuery().eq(Comment::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(Comment et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Comment>lambdaQuery().eq(Comment::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(Comment et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -215,6 +216,10 @@ public abstract class AbstractCommentService extends ServiceImpl<CommentMapper,C
         return list;	
 	}
 
+	public List<Comment> findByComment(Comment comment){
+        List<Comment> list = findByPid(Arrays.asList(comment.getId()));
+		return list;
+	}
 	public boolean removeByPid(String pid){
         return this.remove(Wrappers.<Comment>lambdaQuery().eq(Comment::getPid,pid));
 	}
@@ -225,8 +230,8 @@ public abstract class AbstractCommentService extends ServiceImpl<CommentMapper,C
 	public boolean saveByComment(Comment comment, List<Comment> list){
         if(list==null)
             return true;
-        Map<String,Comment> before = findByPid(comment.getId()).stream().collect(Collectors.toMap(Comment::getId,e->e));
 
+        Map<String,Comment> before = findByComment(comment).stream().collect(Collectors.toMap(Comment::getId,e->e));
         List<Comment> update = new ArrayList<>();
         List<Comment> create = new ArrayList<>();
 
@@ -255,6 +260,13 @@ public abstract class AbstractCommentService extends ServiceImpl<CommentMapper,C
         return list;	
 	}
 
+	public List<Comment> findByPage(ArticlePage articlePage){
+        List<Comment> list = this.baseMapper.selectList(Wrappers.<Comment>lambdaQuery()
+                        .eq(Comment::getPrincipalId, articlePage.getId())
+                        .eq(Comment::getOwnerType,"PAGE")
+                        .eq(Comment::getPrincipalType,"PAGE"));
+		return list;
+	}
 	public boolean removeByPrincipalId(String principalId){
         return this.remove(Wrappers.<Comment>lambdaQuery().eq(Comment::getPrincipalId,principalId));
 	}
@@ -265,13 +277,8 @@ public abstract class AbstractCommentService extends ServiceImpl<CommentMapper,C
 	public boolean saveByPage(ArticlePage articlePage, List<Comment> list){
         if(list==null)
             return true;
-        Map<String,Comment> before = this.baseMapper.selectList(Wrappers.<Comment>lambdaQuery()
-                        .eq(Comment::getPrincipalId, articlePage.getId())
-                        .eq(Comment::getOwnerType,"PAGE")
-                        .eq(Comment::getPrincipalType,"PAGE"))
-                        .stream()
-                        .collect(Collectors.toMap(Comment::getId,e->e));
 
+        Map<String,Comment> before = findByPage(articlePage).stream().collect(Collectors.toMap(Comment::getId,e->e));
         List<Comment> update = new ArrayList<>();
         List<Comment> create = new ArrayList<>();
 
@@ -295,16 +302,18 @@ public abstract class AbstractCommentService extends ServiceImpl<CommentMapper,C
             return true;
 			
 	}
+	public List<Comment> findByRun(Run run){
+        List<Comment> list = this.baseMapper.selectList(Wrappers.<Comment>lambdaQuery()
+                        .eq(Comment::getPrincipalId, run.getId())
+                        .eq(Comment::getOwnerType,"RUN")
+                        .eq(Comment::getPrincipalType,"RUN"));
+		return list;
+	}
 	public boolean saveByRun(Run run, List<Comment> list){
         if(list==null)
             return true;
-        Map<String,Comment> before = this.baseMapper.selectList(Wrappers.<Comment>lambdaQuery()
-                        .eq(Comment::getPrincipalId, run.getId())
-                        .eq(Comment::getOwnerType,"RUN")
-                        .eq(Comment::getPrincipalType,"RUN"))
-                        .stream()
-                        .collect(Collectors.toMap(Comment::getId,e->e));
 
+        Map<String,Comment> before = findByRun(run).stream().collect(Collectors.toMap(Comment::getId,e->e));
         List<Comment> update = new ArrayList<>();
         List<Comment> create = new ArrayList<>();
 
@@ -328,16 +337,18 @@ public abstract class AbstractCommentService extends ServiceImpl<CommentMapper,C
             return true;
 			
 	}
+	public List<Comment> findByCustomer(Customer customer){
+        List<Comment> list = this.baseMapper.selectList(Wrappers.<Comment>lambdaQuery()
+                        .eq(Comment::getPrincipalId, customer.getId())
+                        .eq(Comment::getOwnerType,"CUSTOMER")
+                        .eq(Comment::getPrincipalType,"CUSTOMER"));
+		return list;
+	}
 	public boolean saveByCustomer(Customer customer, List<Comment> list){
         if(list==null)
             return true;
-        Map<String,Comment> before = this.baseMapper.selectList(Wrappers.<Comment>lambdaQuery()
-                        .eq(Comment::getPrincipalId, customer.getId())
-                        .eq(Comment::getOwnerType,"CUSTOMER")
-                        .eq(Comment::getPrincipalType,"CUSTOMER"))
-                        .stream()
-                        .collect(Collectors.toMap(Comment::getId,e->e));
 
+        Map<String,Comment> before = findByCustomer(customer).stream().collect(Collectors.toMap(Comment::getId,e->e));
         List<Comment> update = new ArrayList<>();
         List<Comment> create = new ArrayList<>();
 
@@ -361,16 +372,18 @@ public abstract class AbstractCommentService extends ServiceImpl<CommentMapper,C
             return true;
 			
 	}
+	public List<Comment> findByDiscussPost(DiscussPost discussPost){
+        List<Comment> list = this.baseMapper.selectList(Wrappers.<Comment>lambdaQuery()
+                        .eq(Comment::getPrincipalId, discussPost.getId())
+                        .eq(Comment::getOwnerType,"DISCUSS_POST")
+                        .eq(Comment::getPrincipalType,"DISCUSS_POST"));
+		return list;
+	}
 	public boolean saveByDiscussPost(DiscussPost discussPost, List<Comment> list){
         if(list==null)
             return true;
-        Map<String,Comment> before = this.baseMapper.selectList(Wrappers.<Comment>lambdaQuery()
-                        .eq(Comment::getPrincipalId, discussPost.getId())
-                        .eq(Comment::getOwnerType,"DISCUSS_POST")
-                        .eq(Comment::getPrincipalType,"DISCUSS_POST"))
-                        .stream()
-                        .collect(Collectors.toMap(Comment::getId,e->e));
 
+        Map<String,Comment> before = findByDiscussPost(discussPost).stream().collect(Collectors.toMap(Comment::getId,e->e));
         List<Comment> update = new ArrayList<>();
         List<Comment> create = new ArrayList<>();
 
@@ -394,16 +407,18 @@ public abstract class AbstractCommentService extends ServiceImpl<CommentMapper,C
             return true;
 			
 	}
+	public List<Comment> findByDiscussReply(DiscussReply discussReply){
+        List<Comment> list = this.baseMapper.selectList(Wrappers.<Comment>lambdaQuery()
+                        .eq(Comment::getPrincipalId, discussReply.getId())
+                        .eq(Comment::getOwnerType,"DISCUSS_REPLY")
+                        .eq(Comment::getPrincipalType,"DISCUSS_REPLY"));
+		return list;
+	}
 	public boolean saveByDiscussReply(DiscussReply discussReply, List<Comment> list){
         if(list==null)
             return true;
-        Map<String,Comment> before = this.baseMapper.selectList(Wrappers.<Comment>lambdaQuery()
-                        .eq(Comment::getPrincipalId, discussReply.getId())
-                        .eq(Comment::getOwnerType,"DISCUSS_REPLY")
-                        .eq(Comment::getPrincipalType,"DISCUSS_REPLY"))
-                        .stream()
-                        .collect(Collectors.toMap(Comment::getId,e->e));
 
+        Map<String,Comment> before = findByDiscussReply(discussReply).stream().collect(Collectors.toMap(Comment::getId,e->e));
         List<Comment> update = new ArrayList<>();
         List<Comment> create = new ArrayList<>();
 
@@ -427,16 +442,18 @@ public abstract class AbstractCommentService extends ServiceImpl<CommentMapper,C
             return true;
 			
 	}
+	public List<Comment> findByIdea(Idea idea){
+        List<Comment> list = this.baseMapper.selectList(Wrappers.<Comment>lambdaQuery()
+                        .eq(Comment::getPrincipalId, idea.getId())
+                        .eq(Comment::getOwnerType,"IDEA")
+                        .eq(Comment::getPrincipalType,"IDEA"));
+		return list;
+	}
 	public boolean saveByIdea(Idea idea, List<Comment> list){
         if(list==null)
             return true;
-        Map<String,Comment> before = this.baseMapper.selectList(Wrappers.<Comment>lambdaQuery()
-                        .eq(Comment::getPrincipalId, idea.getId())
-                        .eq(Comment::getOwnerType,"IDEA")
-                        .eq(Comment::getPrincipalType,"IDEA"))
-                        .stream()
-                        .collect(Collectors.toMap(Comment::getId,e->e));
 
+        Map<String,Comment> before = findByIdea(idea).stream().collect(Collectors.toMap(Comment::getId,e->e));
         List<Comment> update = new ArrayList<>();
         List<Comment> create = new ArrayList<>();
 
@@ -460,16 +477,18 @@ public abstract class AbstractCommentService extends ServiceImpl<CommentMapper,C
             return true;
 			
 	}
+	public List<Comment> findByReview(Review review){
+        List<Comment> list = this.baseMapper.selectList(Wrappers.<Comment>lambdaQuery()
+                        .eq(Comment::getPrincipalId, review.getId())
+                        .eq(Comment::getOwnerType,"REVIEW")
+                        .eq(Comment::getPrincipalType,"REVIEW"));
+		return list;
+	}
 	public boolean saveByReview(Review review, List<Comment> list){
         if(list==null)
             return true;
-        Map<String,Comment> before = this.baseMapper.selectList(Wrappers.<Comment>lambdaQuery()
-                        .eq(Comment::getPrincipalId, review.getId())
-                        .eq(Comment::getOwnerType,"REVIEW")
-                        .eq(Comment::getPrincipalType,"REVIEW"))
-                        .stream()
-                        .collect(Collectors.toMap(Comment::getId,e->e));
 
+        Map<String,Comment> before = findByReview(review).stream().collect(Collectors.toMap(Comment::getId,e->e));
         List<Comment> update = new ArrayList<>();
         List<Comment> create = new ArrayList<>();
 
@@ -493,16 +512,18 @@ public abstract class AbstractCommentService extends ServiceImpl<CommentMapper,C
             return true;
 			
 	}
+	public List<Comment> findByTestCase(TestCase testCase){
+        List<Comment> list = this.baseMapper.selectList(Wrappers.<Comment>lambdaQuery()
+                        .eq(Comment::getPrincipalId, testCase.getId())
+                        .eq(Comment::getOwnerType,"TEST_CASE")
+                        .eq(Comment::getPrincipalType,"TEST_CASE"));
+		return list;
+	}
 	public boolean saveByTestCase(TestCase testCase, List<Comment> list){
         if(list==null)
             return true;
-        Map<String,Comment> before = this.baseMapper.selectList(Wrappers.<Comment>lambdaQuery()
-                        .eq(Comment::getPrincipalId, testCase.getId())
-                        .eq(Comment::getOwnerType,"TEST_CASE")
-                        .eq(Comment::getPrincipalType,"TEST_CASE"))
-                        .stream()
-                        .collect(Collectors.toMap(Comment::getId,e->e));
 
+        Map<String,Comment> before = findByTestCase(testCase).stream().collect(Collectors.toMap(Comment::getId,e->e));
         List<Comment> update = new ArrayList<>();
         List<Comment> create = new ArrayList<>();
 
@@ -526,16 +547,18 @@ public abstract class AbstractCommentService extends ServiceImpl<CommentMapper,C
             return true;
 			
 	}
+	public List<Comment> findByTicket(Ticket ticket){
+        List<Comment> list = this.baseMapper.selectList(Wrappers.<Comment>lambdaQuery()
+                        .eq(Comment::getPrincipalId, ticket.getId())
+                        .eq(Comment::getOwnerType,"TICKET")
+                        .eq(Comment::getPrincipalType,"TICKET"));
+		return list;
+	}
 	public boolean saveByTicket(Ticket ticket, List<Comment> list){
         if(list==null)
             return true;
-        Map<String,Comment> before = this.baseMapper.selectList(Wrappers.<Comment>lambdaQuery()
-                        .eq(Comment::getPrincipalId, ticket.getId())
-                        .eq(Comment::getOwnerType,"TICKET")
-                        .eq(Comment::getPrincipalType,"TICKET"))
-                        .stream()
-                        .collect(Collectors.toMap(Comment::getId,e->e));
 
+        Map<String,Comment> before = findByTicket(ticket).stream().collect(Collectors.toMap(Comment::getId,e->e));
         List<Comment> update = new ArrayList<>();
         List<Comment> create = new ArrayList<>();
 
@@ -559,16 +582,18 @@ public abstract class AbstractCommentService extends ServiceImpl<CommentMapper,C
             return true;
 			
 	}
+	public List<Comment> findByWorkItem(WorkItem workItem){
+        List<Comment> list = this.baseMapper.selectList(Wrappers.<Comment>lambdaQuery()
+                        .eq(Comment::getPrincipalId, workItem.getId())
+                        .eq(Comment::getOwnerType,"WORK_ITEM")
+                        .eq(Comment::getPrincipalType,"WORK_ITEM"));
+		return list;
+	}
 	public boolean saveByWorkItem(WorkItem workItem, List<Comment> list){
         if(list==null)
             return true;
-        Map<String,Comment> before = this.baseMapper.selectList(Wrappers.<Comment>lambdaQuery()
-                        .eq(Comment::getPrincipalId, workItem.getId())
-                        .eq(Comment::getOwnerType,"WORK_ITEM")
-                        .eq(Comment::getPrincipalType,"WORK_ITEM"))
-                        .stream()
-                        .collect(Collectors.toMap(Comment::getId,e->e));
 
+        Map<String,Comment> before = findByWorkItem(workItem).stream().collect(Collectors.toMap(Comment::getId,e->e));
         List<Comment> update = new ArrayList<>();
         List<Comment> create = new ArrayList<>();
 
@@ -592,6 +617,17 @@ public abstract class AbstractCommentService extends ServiceImpl<CommentMapper,C
             return true;
 			
 	}
+   public Page<Comment> fetchView(CommentSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Comment> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<Comment> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Comment> listView(CommentSearchContext context) {
+        List<Comment> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(Comment et) {
         if(Entities.COMMENT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

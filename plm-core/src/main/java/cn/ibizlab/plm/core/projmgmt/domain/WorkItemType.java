@@ -111,6 +111,16 @@ public class WorkItemType extends EntityMP implements Serializable
     private String subType;
 
     /**
+    * 原始状态
+    */
+    @TableField(value = "orgin_state")
+    @DEField(name = "orgin_state")
+    @JSONField(name = "orgin_state")
+    @JsonProperty("orgin_state")
+    @ApiModelProperty(value = "orgin_state", notes = "原始状态")
+    private String orginState;
+
+    /**
     * 标识
     */
     @Id
@@ -253,6 +263,15 @@ public class WorkItemType extends EntityMP implements Serializable
     public WorkItemType setSubType(String subType) {
         this.subType = subType;
         this.modify("sub_type", subType);
+        return this;
+    }
+
+    /**
+    * 设置 [原始状态]
+    */
+    public WorkItemType setOrginState(String orginState) {
+        this.orginState = orginState;
+        this.modify("orgin_state", orginState);
         return this;
     }
 

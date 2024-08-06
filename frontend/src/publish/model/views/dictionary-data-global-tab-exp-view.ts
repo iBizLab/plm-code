@@ -120,7 +120,7 @@ export default {
             },
             dataRegionType: 'INHERIT',
             caption: '容器',
-            cssStyle: 'margin-right:12px',
+            cssStyle: 'margin-right:4px',
             itemStyle: 'DEFAULT',
             itemType: 'CONTAINER',
             layoutPos: {
@@ -277,16 +277,7 @@ export default {
         dedrtabPages: [
           {
             caption: '发布阶段',
-            appViewId: 'plmweb.dictionary_data_global_grid_view',
-            navigateContexts: [
-              {
-                key: 'CATALOG',
-                value: 'release_stage',
-                rawValue: true,
-                name: 'CATALOG',
-                id: 'catalog',
-              },
-            ],
+            appViewId: 'plmweb.stage_data_global_grid_view',
             id: 'stage',
           },
         ],

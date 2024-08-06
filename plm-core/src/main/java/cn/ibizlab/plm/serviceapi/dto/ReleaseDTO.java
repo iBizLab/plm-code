@@ -63,19 +63,11 @@ public class ReleaseDTO extends DTOBase implements Serializable {
     private String description;
 
     /**
-     * 发布进度
-     */
-    @JsonProperty("progress")
-    @JSONField(name = "progress")
-    @ApiModelProperty(value = "发布进度", position = 3)
-    private BigDecimal progress;
-
-    /**
      * 阶段
      */
     @JsonProperty("status")
     @JSONField(name = "status")
-    @ApiModelProperty(value = "阶段", position = 4)
+    @ApiModelProperty(value = "阶段", position = 3)
     private String status;
 
     /**
@@ -83,7 +75,7 @@ public class ReleaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("categories")
     @JSONField(name = "categories")
-    @ApiModelProperty(value = "类别", position = 5)
+    @ApiModelProperty(value = "类别", position = 4)
     private String categories;
 
     /**
@@ -91,15 +83,31 @@ public class ReleaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("categories_name")
     @JSONField(name = "categories_name")
-    @ApiModelProperty(value = "类别", position = 6)
+    @ApiModelProperty(value = "类别", position = 5)
     private String categoriesName;
+
+    /**
+     * 发布阶段
+     */
+    @JsonProperty("stage_transitions")
+    @JSONField(name = "stage_transitions")
+    @ApiModelProperty(value = "发布阶段", position = 6)
+    private List<StageDTO> stageTransitions;
+
+    /**
+     * 进度
+     */
+    @JsonProperty("schedule")
+    @JSONField(name = "schedule")
+    @ApiModelProperty(value = "进度", position = 7)
+    private BigDecimal schedule;
 
     /**
      * 负责人
      */
     @JsonProperty("assignee_name")
     @JSONField(name = "assignee_name")
-    @ApiModelProperty(value = "负责人", position = 7)
+    @ApiModelProperty(value = "负责人", position = 8)
     private String assigneeName;
 
     /**
@@ -107,15 +115,31 @@ public class ReleaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("assignee_id")
     @JSONField(name = "assignee_id")
-    @ApiModelProperty(value = "负责人标识", position = 8)
+    @ApiModelProperty(value = "负责人标识", position = 9)
     private String assigneeId;
+
+    /**
+     * 已完成工作项数
+     */
+    @JsonProperty("completed_work_items")
+    @JSONField(name = "completed_work_items")
+    @ApiModelProperty(value = "已完成工作项数", position = 10)
+    private BigDecimal completedWorkItems;
+
+    /**
+     * 全部工作项数
+     */
+    @JsonProperty("all_work_items")
+    @JSONField(name = "all_work_items")
+    @ApiModelProperty(value = "全部工作项数", position = 11)
+    private BigDecimal allWorkItems;
 
     /**
      * 建立人
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 9)
+    @ApiModelProperty(value = "建立人", position = 12)
     private String createMan;
 
     /**
@@ -124,7 +148,7 @@ public class ReleaseDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 10)
+    @ApiModelProperty(value = "建立时间", position = 13)
     private Date createTime;
 
     /**
@@ -132,7 +156,7 @@ public class ReleaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 11)
+    @ApiModelProperty(value = "标识", position = 14)
     private String id;
 
     /**
@@ -140,7 +164,7 @@ public class ReleaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 12)
+    @ApiModelProperty(value = "名称", position = 15)
     private String name;
 
     /**
@@ -148,7 +172,7 @@ public class ReleaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("project_id")
     @JSONField(name = "project_id")
-    @ApiModelProperty(value = "项目标识", position = 13)
+    @ApiModelProperty(value = "项目标识", position = 16)
     private String projectId;
 
     /**
@@ -156,7 +180,7 @@ public class ReleaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("project_name")
     @JSONField(name = "project_name")
-    @ApiModelProperty(value = "项目名称", position = 14)
+    @ApiModelProperty(value = "项目名称", position = 17)
     private String projectName;
 
     /**
@@ -164,7 +188,7 @@ public class ReleaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 15)
+    @ApiModelProperty(value = "更新人", position = 18)
     private String updateMan;
 
     /**
@@ -173,7 +197,7 @@ public class ReleaseDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 16)
+    @ApiModelProperty(value = "更新时间", position = 19)
     private Date updateTime;
 
 
@@ -205,15 +229,6 @@ public class ReleaseDTO extends DTOBase implements Serializable {
     }
 
     /**
-     * 设置 [发布进度]
-     */
-    public ReleaseDTO setProgress(BigDecimal progress) {
-        this.progress = progress;
-        this.modify("progress", progress);
-        return this;
-    }
-
-    /**
      * 设置 [阶段]
      */
     public ReleaseDTO setStatus(String status) {
@@ -241,6 +256,24 @@ public class ReleaseDTO extends DTOBase implements Serializable {
     }
 
     /**
+     * 设置 [发布阶段]
+     */
+    public ReleaseDTO setStageTransitions(List<StageDTO> stageTransitions) {
+        this.stageTransitions = stageTransitions;
+        this.modify("stage_transitions", stageTransitions);
+        return this;
+    }
+
+    /**
+     * 设置 [进度]
+     */
+    public ReleaseDTO setSchedule(BigDecimal schedule) {
+        this.schedule = schedule;
+        this.modify("schedule", schedule);
+        return this;
+    }
+
+    /**
      * 设置 [负责人]
      */
     public ReleaseDTO setAssigneeName(String assigneeName) {
@@ -255,6 +288,24 @@ public class ReleaseDTO extends DTOBase implements Serializable {
     public ReleaseDTO setAssigneeId(String assigneeId) {
         this.assigneeId = assigneeId;
         this.modify("assignee_id", assigneeId);
+        return this;
+    }
+
+    /**
+     * 设置 [已完成工作项数]
+     */
+    public ReleaseDTO setCompletedWorkItems(BigDecimal completedWorkItems) {
+        this.completedWorkItems = completedWorkItems;
+        this.modify("completed_work_items", completedWorkItems);
+        return this;
+    }
+
+    /**
+     * 设置 [全部工作项数]
+     */
+    public ReleaseDTO setAllWorkItems(BigDecimal allWorkItems) {
+        this.allWorkItems = allWorkItems;
+        this.modify("all_work_items", allWorkItems);
         return this;
     }
 

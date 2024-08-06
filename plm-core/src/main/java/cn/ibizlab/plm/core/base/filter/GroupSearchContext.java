@@ -39,6 +39,14 @@ import cn.ibizlab.plm.core.base.domain.Group;
 public class GroupSearchContext extends QueryWrapperContext<Group> {
 
     /**
+     * 可见范围EQ
+     */
+    @JsonProperty("n_visibility_eq")
+    @JSONField(name = "n_visibility_eq")
+    @ApiModelProperty("可见范围EQ")
+    private String visibilityEQ;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")

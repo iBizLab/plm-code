@@ -108,37 +108,19 @@ public class WorkItemUsuallyDTO extends DTOBase implements Serializable {
     private String priority;
 
     /**
-     * 结束时间
-     */
-    @JsonProperty("end_at")
-    @JsonFormat(pattern = "yyyy-MM-dd", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "end_at" , format = "yyyy-MM-dd")
-    @ApiModelProperty(value = "结束时间", position = 9)
-    private Date endAt;
-
-    /**
      * 父标识
      */
     @JsonProperty("pid")
     @JSONField(name = "pid")
-    @ApiModelProperty(value = "父标识", position = 10)
+    @ApiModelProperty(value = "父标识", position = 9)
     private String pid;
-
-    /**
-     * 开始时间
-     */
-    @JsonProperty("start_at")
-    @JsonFormat(pattern = "yyyy-MM-dd", locale = "zh", timezone = "GMT+8")
-    @JSONField(name = "start_at" , format = "yyyy-MM-dd")
-    @ApiModelProperty(value = "开始时间", position = 11)
-    private Date startAt;
 
     /**
      * 顶级工作项标识
      */
     @JsonProperty("top_id")
     @JSONField(name = "top_id")
-    @ApiModelProperty(value = "顶级工作项标识", position = 12)
+    @ApiModelProperty(value = "顶级工作项标识", position = 10)
     private String topId;
 
     /**
@@ -146,7 +128,7 @@ public class WorkItemUsuallyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("project_id")
     @JSONField(name = "project_id")
-    @ApiModelProperty(value = "项目", position = 13)
+    @ApiModelProperty(value = "项目", position = 11)
     private String projectId;
 
     /**
@@ -154,7 +136,7 @@ public class WorkItemUsuallyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("is_archived")
     @JSONField(name = "is_archived")
-    @ApiModelProperty(value = "是否已归档", position = 14)
+    @ApiModelProperty(value = "是否已归档", position = 12)
     private Integer isArchived;
 
     /**
@@ -162,7 +144,7 @@ public class WorkItemUsuallyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("ptitle")
     @JSONField(name = "ptitle")
-    @ApiModelProperty(value = "父工作项", position = 15)
+    @ApiModelProperty(value = "父工作项", position = 13)
     private String ptitle;
 
     /**
@@ -170,7 +152,7 @@ public class WorkItemUsuallyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("reappear_probability")
     @JSONField(name = "reappear_probability")
-    @ApiModelProperty(value = "复现概率", position = 16)
+    @ApiModelProperty(value = "复现概率", position = 14)
     private String reappearProbability;
 
     /**
@@ -178,7 +160,7 @@ public class WorkItemUsuallyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("severity")
     @JSONField(name = "severity")
-    @ApiModelProperty(value = "严重程度", position = 17)
+    @ApiModelProperty(value = "严重程度", position = 15)
     private String severity;
 
     /**
@@ -187,7 +169,7 @@ public class WorkItemUsuallyDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 18)
+    @ApiModelProperty(value = "建立时间", position = 16)
     private Date createTime;
 
     /**
@@ -195,7 +177,7 @@ public class WorkItemUsuallyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("show_identifier")
     @JSONField(name = "show_identifier")
-    @ApiModelProperty(value = "编号", position = 19)
+    @ApiModelProperty(value = "编号", position = 17)
     private String showIdentifier;
 
     /**
@@ -203,7 +185,7 @@ public class WorkItemUsuallyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("project_name")
     @JSONField(name = "project_name")
-    @ApiModelProperty(value = "所属项目", position = 20)
+    @ApiModelProperty(value = "所属项目", position = 18)
     private String projectName;
 
     /**
@@ -211,7 +193,7 @@ public class WorkItemUsuallyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("sprint_id")
     @JSONField(name = "sprint_id")
-    @ApiModelProperty(value = "迭代标识", position = 21)
+    @ApiModelProperty(value = "迭代标识", position = 19)
     private String sprintId;
 
     /**
@@ -219,7 +201,7 @@ public class WorkItemUsuallyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("backlog_type")
     @JSONField(name = "backlog_type")
-    @ApiModelProperty(value = "需求类型", position = 22)
+    @ApiModelProperty(value = "需求类型", position = 20)
     private String backlogType;
 
     /**
@@ -227,7 +209,7 @@ public class WorkItemUsuallyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("backlog_from")
     @JSONField(name = "backlog_from")
-    @ApiModelProperty(value = "需求来源", position = 23)
+    @ApiModelProperty(value = "需求来源", position = 21)
     private String backlogFrom;
 
     /**
@@ -235,7 +217,7 @@ public class WorkItemUsuallyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("risk")
     @JSONField(name = "risk")
-    @ApiModelProperty(value = "风险", position = 24)
+    @ApiModelProperty(value = "风险", position = 22)
     private String risk;
 
     /**
@@ -243,7 +225,7 @@ public class WorkItemUsuallyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("sprint_name")
     @JSONField(name = "sprint_name")
-    @ApiModelProperty(value = "迭代名称", position = 25)
+    @ApiModelProperty(value = "迭代名称", position = 23)
     private String sprintName;
 
     /**
@@ -251,8 +233,34 @@ public class WorkItemUsuallyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("cur_version_id")
     @JSONField(name = "cur_version_id")
-    @ApiModelProperty(value = "当前版本标识", position = 26)
+    @ApiModelProperty(value = "当前版本标识", position = 24)
     private String curVersionId;
+
+    /**
+     * 截止时间
+     */
+    @JsonProperty("end_at")
+    @JsonFormat(pattern = "yyyy-MM-dd", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "end_at" , format = "yyyy-MM-dd")
+    @ApiModelProperty(value = "截止时间", position = 25)
+    private Date endAt;
+
+    /**
+     * 开始时间
+     */
+    @JsonProperty("start_at")
+    @JsonFormat(pattern = "yyyy-MM-dd", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "start_at" , format = "yyyy-MM-dd")
+    @ApiModelProperty(value = "开始时间", position = 26)
+    private Date startAt;
+
+    /**
+     * 工作项状态类型
+     */
+    @JsonProperty("state_type")
+    @JSONField(name = "state_type")
+    @ApiModelProperty(value = "工作项状态类型", position = 27)
+    private String stateType;
 
 
     /**
@@ -328,29 +336,11 @@ public class WorkItemUsuallyDTO extends DTOBase implements Serializable {
     }
 
     /**
-     * 设置 [结束时间]
-     */
-    public WorkItemUsuallyDTO setEndAt(Date endAt) {
-        this.endAt = endAt;
-        this.modify("end_at", endAt);
-        return this;
-    }
-
-    /**
      * 设置 [父标识]
      */
     public WorkItemUsuallyDTO setPid(String pid) {
         this.pid = pid;
         this.modify("pid", pid);
-        return this;
-    }
-
-    /**
-     * 设置 [开始时间]
-     */
-    public WorkItemUsuallyDTO setStartAt(Date startAt) {
-        this.startAt = startAt;
-        this.modify("start_at", startAt);
         return this;
     }
 
@@ -468,6 +458,33 @@ public class WorkItemUsuallyDTO extends DTOBase implements Serializable {
     public WorkItemUsuallyDTO setSprintName(String sprintName) {
         this.sprintName = sprintName;
         this.modify("sprint_name", sprintName);
+        return this;
+    }
+
+    /**
+     * 设置 [截止时间]
+     */
+    public WorkItemUsuallyDTO setEndAt(Date endAt) {
+        this.endAt = endAt;
+        this.modify("end_at", endAt);
+        return this;
+    }
+
+    /**
+     * 设置 [开始时间]
+     */
+    public WorkItemUsuallyDTO setStartAt(Date startAt) {
+        this.startAt = startAt;
+        this.modify("start_at", startAt);
+        return this;
+    }
+
+    /**
+     * 设置 [工作项状态类型]
+     */
+    public WorkItemUsuallyDTO setStateType(String stateType) {
+        this.stateType = stateType;
+        this.modify("state_type", stateType);
         return this;
     }
 

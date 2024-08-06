@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.testmgmt.domain.ReviewContent;
 import cn.ibizlab.plm.core.testmgmt.filter.ReviewContentSearchContext;
 import cn.ibizlab.plm.core.testmgmt.domain.Review;
@@ -142,7 +143,7 @@ public interface ReviewContentService extends IService<ReviewContent> {
     * @param et
     * @return
     */
-    Integer checkKey(ReviewContent et);
+    CheckKeyStatus checkKey(ReviewContent et);
 
     /**
     * 保存
@@ -175,6 +176,16 @@ public interface ReviewContentService extends IService<ReviewContent> {
     * @return
     */
     default ReviewContent completeReview(ReviewContent et) {
+        return et;
+    }
+
+    /**
+    * nothing
+    * 
+    * @param et
+    * @return
+    */
+    default ReviewContent nothing(ReviewContent et) {
         return et;
     }
 
@@ -271,14 +282,37 @@ public interface ReviewContentService extends IService<ReviewContent> {
     List<ReviewContent> listAll(ReviewContentSearchContext context);
 
     /**
+    * fetchHistoryList
+    * 
+    * @param context
+    * @return
+    */
+    Page<ReviewContent> fetchHistoryList(ReviewContentSearchContext context);
+
+    /**
+    * listHistoryList
+    * 
+    * @param context
+    * @return
+    */
+    List<ReviewContent> listHistoryList(ReviewContentSearchContext context);
+
+    /**
     * findByPrincipalId
     * @param principalIds
     * @return
     */
     List<ReviewContent> findByPrincipalId(List<String> principalIds);
     default List<ReviewContent> findByPrincipalId(String principalId){
-        return findByPrincipalId(Arrays.asList(principalId));
+        return findByReview(new Review().setId(principalId));
     }
+	
+    /**
+    * findByReview
+    * @param review
+    * @return
+    */
+    List<ReviewContent> findByReview(Review review);	
 
     /**
     * removeByPrincipalId
@@ -313,6 +347,13 @@ public interface ReviewContentService extends IService<ReviewContent> {
     boolean saveByReview(Review review, List<ReviewContent> list);
 
     /**
+    * findByReviewWizard
+    * @param reviewWizard
+    * @return
+    */
+    List<ReviewContent> findByReviewWizard(ReviewWizard reviewWizard);	
+
+    /**
     * saveByReviewWizard
     * @param reviewWizard
     * @param list
@@ -327,8 +368,15 @@ public interface ReviewContentService extends IService<ReviewContent> {
     */
     List<ReviewContent> findByTargetVersionId(List<String> targetVersionIds);
     default List<ReviewContent> findByTargetVersionId(String targetVersionId){
-        return findByTargetVersionId(Arrays.asList(targetVersionId));
+        return findByTargetVersion(new Version().setId(targetVersionId));
     }
+	
+    /**
+    * findByTargetVersion
+    * @param version
+    * @return
+    */
+    List<ReviewContent> findByTargetVersion(Version version);	
 
     /**
     * removeByTargetVersionId
@@ -369,8 +417,15 @@ public interface ReviewContentService extends IService<ReviewContent> {
     */
     List<ReviewContent> findByTargetId(List<String> targetIds);
     default List<ReviewContent> findByTargetId(String targetId){
-        return findByTargetId(Arrays.asList(targetId));
+        return findByTestCase(new TestCase().setId(targetId));
     }
+	
+    /**
+    * findByTestCase
+    * @param testCase
+    * @return
+    */
+    List<ReviewContent> findByTestCase(TestCase testCase);	
 
     /**
     * removeByTargetId

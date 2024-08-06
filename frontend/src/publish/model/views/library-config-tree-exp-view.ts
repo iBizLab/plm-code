@@ -112,13 +112,6 @@ export default {
               id: '默认根节点 - 配置',
             },
             {
-              childDETreeNodeId: 'node_4',
-              parentDETreeNodeId: 'node_2',
-              parentValueLevel: 1,
-              searchMode: 3,
-              id: '配置 - 测试用例配置',
-            },
-            {
               childDETreeNodeId: 'node_5',
               parentDETreeNodeId: 'node_2',
               parentValueLevel: 1,

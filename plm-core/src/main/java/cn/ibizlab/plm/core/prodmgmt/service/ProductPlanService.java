@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.prodmgmt.domain.ProductPlan;
 import cn.ibizlab.plm.core.prodmgmt.filter.ProductPlanSearchContext;
 import cn.ibizlab.plm.core.prodmgmt.domain.Product;
@@ -139,7 +140,7 @@ public interface ProductPlanService extends IService<ProductPlan> {
     * @param et
     * @return
     */
-    Integer checkKey(ProductPlan et);
+    CheckKeyStatus checkKey(ProductPlan et);
 
     /**
     * 保存
@@ -224,8 +225,15 @@ public interface ProductPlanService extends IService<ProductPlan> {
     */
     List<ProductPlan> findByProductId(List<String> productIds);
     default List<ProductPlan> findByProductId(String productId){
-        return findByProductId(Arrays.asList(productId));
+        return findByProduct(new Product().setId(productId));
     }
+
+    /**
+    * findByProduct
+    * @param product
+    * @return
+    */
+    List<ProductPlan> findByProduct(Product product);
 
     /**
     * removeByProductId
@@ -258,6 +266,22 @@ public interface ProductPlanService extends IService<ProductPlan> {
     * @return
     */
     boolean saveByProduct(Product product, List<ProductPlan> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<ProductPlan> fetchView(ProductPlanSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<ProductPlan> listView(ProductPlanSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<ProductPlan> list) {

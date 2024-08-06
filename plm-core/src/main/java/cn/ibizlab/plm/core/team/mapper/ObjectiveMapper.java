@@ -51,6 +51,25 @@ public interface ObjectiveMapper extends BaseMapper<Objective> {
     List<Objective> findByPeriodId(@Param("periodIds") List<String> periodIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Objective> searchView(IPage<Objective> page, @Param("ctx") ObjectiveSearchContext context, @Param("ew") Wrapper<Objective> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Objective> listView(@Param("ctx") ObjectiveSearchContext context, @Param("ew") Wrapper<Objective> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

@@ -287,7 +287,7 @@ public class Idea extends EntityMP implements Serializable
     * 子产品标识
     */
     @TableField(value = "section_id" , exist = false)
-    @DEField(name = "section_id")
+    @DEField(name = "section_id" , dict = "idea_section2")
     @JSONField(name = "section_id")
     @JsonProperty("section_id")
     @ApiModelProperty(value = "section_id", notes = "子产品标识")
@@ -297,7 +297,7 @@ public class Idea extends EntityMP implements Serializable
     * 关注
     */
     @TableField(exist = false)
-    @DEField(name = "attentions")
+    @DEField(name = "attentions" , dict = "SysOperator")
     @JSONField(name = "attentions")
     @JsonProperty("attentions")
     @ApiModelProperty(value = "attentions", notes = "关注")
@@ -344,6 +344,26 @@ public class Idea extends EntityMP implements Serializable
     private String ideaType;
 
     /**
+    * 关联产品需求数
+    */
+    @TableField(value = "relation_total_idea" , exist = false)
+    @DEField(name = "relation_total_idea")
+    @JSONField(name = "relation_total_idea")
+    @JsonProperty("relation_total_idea")
+    @ApiModelProperty(value = "relation_total_idea", notes = "关联产品需求数")
+    private BigDecimal relationTotalIdea;
+
+    /**
+    * 关联工单数
+    */
+    @TableField(value = "relation_total_ticket" , exist = false)
+    @DEField(name = "relation_total_ticket")
+    @JSONField(name = "relation_total_ticket")
+    @JsonProperty("relation_total_ticket")
+    @ApiModelProperty(value = "relation_total_ticket", notes = "关联工单数")
+    private BigDecimal relationTotalTicket;
+
+    /**
     * 工时进度
     */
     @TableField(value = "workload_schedule" , exist = false)
@@ -364,6 +384,26 @@ public class Idea extends EntityMP implements Serializable
     private BigDecimal estimatedWorkload;
 
     /**
+    * 关联工作项数
+    */
+    @TableField(value = "relation_total_work_item" , exist = false)
+    @DEField(name = "relation_total_work_item")
+    @JSONField(name = "relation_total_work_item")
+    @JsonProperty("relation_total_work_item")
+    @ApiModelProperty(value = "relation_total_work_item", notes = "关联工作项数")
+    private BigDecimal relationTotalWorkItem;
+
+    /**
+    * 关联测试用例数
+    */
+    @TableField(value = "relation_total_test_case" , exist = false)
+    @DEField(name = "relation_total_test_case")
+    @JSONField(name = "relation_total_test_case")
+    @JsonProperty("relation_total_test_case")
+    @ApiModelProperty(value = "relation_total_test_case", notes = "关联测试用例数")
+    private BigDecimal relationTotalTestCase;
+
+    /**
     * 剩余工时
     */
     @TableField(exist = false)
@@ -372,6 +412,16 @@ public class Idea extends EntityMP implements Serializable
     @JsonProperty("remaining_workload")
     @ApiModelProperty(value = "remaining_workload", notes = "剩余工时")
     private BigDecimal remainingWorkload;
+
+    /**
+    * 关联客户数
+    */
+    @TableField(value = "relation_total_customer" , exist = false)
+    @DEField(name = "relation_total_customer")
+    @JSONField(name = "relation_total_customer")
+    @JsonProperty("relation_total_customer")
+    @ApiModelProperty(value = "relation_total_customer", notes = "关联客户数")
+    private BigDecimal relationTotalCustomer;
 
     /**
     * 实际工时
@@ -809,6 +859,24 @@ public class Idea extends EntityMP implements Serializable
     }
 
     /**
+    * 设置 [关联产品需求数]
+    */
+    public Idea setRelationTotalIdea(BigDecimal relationTotalIdea) {
+        this.relationTotalIdea = relationTotalIdea;
+        this.modify("relation_total_idea", relationTotalIdea);
+        return this;
+    }
+
+    /**
+    * 设置 [关联工单数]
+    */
+    public Idea setRelationTotalTicket(BigDecimal relationTotalTicket) {
+        this.relationTotalTicket = relationTotalTicket;
+        this.modify("relation_total_ticket", relationTotalTicket);
+        return this;
+    }
+
+    /**
     * 设置 [工时进度]
     */
     public Idea setWorkloadSchedule(BigDecimal workloadSchedule) {
@@ -827,11 +895,38 @@ public class Idea extends EntityMP implements Serializable
     }
 
     /**
+    * 设置 [关联工作项数]
+    */
+    public Idea setRelationTotalWorkItem(BigDecimal relationTotalWorkItem) {
+        this.relationTotalWorkItem = relationTotalWorkItem;
+        this.modify("relation_total_work_item", relationTotalWorkItem);
+        return this;
+    }
+
+    /**
+    * 设置 [关联测试用例数]
+    */
+    public Idea setRelationTotalTestCase(BigDecimal relationTotalTestCase) {
+        this.relationTotalTestCase = relationTotalTestCase;
+        this.modify("relation_total_test_case", relationTotalTestCase);
+        return this;
+    }
+
+    /**
     * 设置 [剩余工时]
     */
     public Idea setRemainingWorkload(BigDecimal remainingWorkload) {
         this.remainingWorkload = remainingWorkload;
         this.modify("remaining_workload", remainingWorkload);
+        return this;
+    }
+
+    /**
+    * 设置 [关联客户数]
+    */
+    public Idea setRelationTotalCustomer(BigDecimal relationTotalCustomer) {
+        this.relationTotalCustomer = relationTotalCustomer;
+        this.modify("relation_total_customer", relationTotalCustomer);
         return this;
     }
 

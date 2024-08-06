@@ -23,12 +23,14 @@ import java.util.stream.IntStream;
 import cn.ibizlab.util.domain.ImportResult;
 import cn.ibizlab.util.domain.RequestWrapper;
 import cn.ibizlab.util.domain.ResponseWrapper;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.serviceapi.dto.*;
 import cn.ibizlab.plm.serviceapi.mapping.*;
 import cn.ibizlab.plm.core.prodmgmt.domain.ProductMember;
 import cn.ibizlab.plm.core.prodmgmt.service.ProductMemberService;
 import cn.ibizlab.plm.core.prodmgmt.filter.ProductMemberSearchContext;
 import cn.ibizlab.util.annotation.VersionCheck;
+import reactor.core.publisher.Mono;
 
 /**
  * 实体[ProductMember] rest实现
@@ -54,19 +56,19 @@ public abstract class AbstractProductMemberResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<ProductMemberDTO>
+    * @return Mono<ResponseEntity<ProductMemberDTO>>
     */
     @ApiOperation(value = "创建Create", tags = {"产品成员" },  notes = "ProductMember-Create ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductMember-Create-all') or hasPermission(this.productMemberDtoMapping.toDomain(#dto),'ibizplm-ProductMember-Create')")
     @PostMapping("product_members")
-    public ResponseEntity<ResponseWrapper<ProductMemberDTO>> create
+    public Mono<ResponseEntity<ResponseWrapper<ProductMemberDTO>>>create
             (@Validated @RequestBody RequestWrapper<ProductMemberDTO> dto) {
         ResponseWrapper<ProductMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(create(item)));
         else
             rt.set(create(dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -90,13 +92,13 @@ public abstract class AbstractProductMemberResource {
     *
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<ProductMemberDTO>
+    * @return Mono<ResponseEntity<ProductMemberDTO>>
     */
     @ApiOperation(value = "更新Update", tags = {"产品成员" },  notes = "ProductMember-Update ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductMember-Update-all') or hasPermission(this.productMemberService.get(#id),'ibizplm-ProductMember-Update')")
     @VersionCheck(entity = "productmember" , versionfield = "updateTime")
     @PutMapping("product_members/{id}")
-    public ResponseEntity<ResponseWrapper<ProductMemberDTO>> updateById
+    public Mono<ResponseEntity<ResponseWrapper<ProductMemberDTO>>>updateById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProductMemberDTO> dto) {
         ResponseWrapper<ProductMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -105,7 +107,7 @@ public abstract class AbstractProductMemberResource {
         }
         else
             rt.set(updateById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -131,11 +133,11 @@ public abstract class AbstractProductMemberResource {
     *
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<ProductMemberDTO>
+    * @return Mono<ResponseEntity<ProductMemberDTO>>
     */
     @ApiOperation(value = "change_role", tags = {"产品成员" },  notes = "ProductMember-change_role ")
     @PostMapping("product_members/{id}/change_role")
-    public ResponseEntity<ResponseWrapper<ProductMemberDTO>> changeRoleById
+    public Mono<ResponseEntity<ResponseWrapper<ProductMemberDTO>>>changeRoleById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProductMemberDTO> dto) {
         ResponseWrapper<ProductMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -144,7 +146,7 @@ public abstract class AbstractProductMemberResource {
         }
         else
             rt.set(changeRoleById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -168,19 +170,19 @@ public abstract class AbstractProductMemberResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<ProductMemberDTO>
+    * @return Mono<ResponseEntity<ProductMemberDTO>>
     */
     @ApiOperation(value = "create_product_member", tags = {"产品成员" },  notes = "ProductMember-create_product_member ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductMember-create_product_member-all') or hasPermission(this.productMemberDtoMapping.toDomain(#dto),'ibizplm-ProductMember-create_product_member')")
     @PostMapping("product_members/create_product_member")
-    public ResponseEntity<ResponseWrapper<ProductMemberDTO>> createProductMember
+    public Mono<ResponseEntity<ResponseWrapper<ProductMemberDTO>>>createProductMember
             (@Validated @RequestBody RequestWrapper<ProductMemberDTO> dto) {
         ResponseWrapper<ProductMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(createProductMember(item)));
         else
             rt.set(createProductMember(dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -202,19 +204,19 @@ public abstract class AbstractProductMemberResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<ProductMemberDTO>
+    * @return Mono<ResponseEntity<ProductMemberDTO>>
     */
     @ApiOperation(value = "保存Save", tags = {"产品成员" },  notes = "ProductMember-Save ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductMember-Save-all') or hasPermission(this.productMemberDtoMapping.toDomain(#dto),'ibizplm-ProductMember-Save')")
     @PostMapping("product_members/save")
-    public ResponseEntity<ResponseWrapper<ProductMemberDTO>> save
+    public Mono<ResponseEntity<ResponseWrapper<ProductMemberDTO>>>save
             (@Validated @RequestBody RequestWrapper<ProductMemberDTO> dto) {
         ResponseWrapper<ProductMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(save(item)));
         else
             rt.set(save(dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -238,19 +240,19 @@ public abstract class AbstractProductMemberResource {
     *
     * @param productId productId
     * @param dto dto
-    * @return ResponseEntity<ProductMemberDTO>
+    * @return Mono<ResponseEntity<ProductMemberDTO>>
     */
     @ApiOperation(value = "创建Create", tags = {"产品成员" },  notes = "ProductMember-Create ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductMember-Create-all') or hasPermission('product',#productId,this.productMemberDtoMapping.toDomain(#dto),'ibizplm-ProductMember-Create')")
     @PostMapping("products/{productId}/product_members")
-    public ResponseEntity<ResponseWrapper<ProductMemberDTO>> createByProductId
+    public Mono<ResponseEntity<ResponseWrapper<ProductMemberDTO>>>createByProductId
             (@PathVariable("productId") String productId, @Validated @RequestBody RequestWrapper<ProductMemberDTO> dto) {
         ResponseWrapper<ProductMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(createByProductId(productId, item)));
         else
             rt.set(createByProductId(productId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -277,13 +279,13 @@ public abstract class AbstractProductMemberResource {
     * @param productId productId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<ProductMemberDTO>
+    * @return Mono<ResponseEntity<ProductMemberDTO>>
     */
     @ApiOperation(value = "更新Update", tags = {"产品成员" },  notes = "ProductMember-Update ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductMember-Update-all') or hasPermission('product',#productId,this.productMemberService.get(#id),'ibizplm-ProductMember-Update')")
     @VersionCheck(entity = "productmember" , versionfield = "updateTime")
     @PutMapping("products/{productId}/product_members/{id}")
-    public ResponseEntity<ResponseWrapper<ProductMemberDTO>> updateByProductIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<ProductMemberDTO>>>updateByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProductMemberDTO> dto) {
         ResponseWrapper<ProductMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -292,7 +294,7 @@ public abstract class AbstractProductMemberResource {
         }
         else
             rt.set(updateByProductIdAndId(productId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -320,11 +322,11 @@ public abstract class AbstractProductMemberResource {
     * @param productId productId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<ProductMemberDTO>
+    * @return Mono<ResponseEntity<ProductMemberDTO>>
     */
     @ApiOperation(value = "change_role", tags = {"产品成员" },  notes = "ProductMember-change_role ")
     @PostMapping("products/{productId}/product_members/{id}/change_role")
-    public ResponseEntity<ResponseWrapper<ProductMemberDTO>> changeRoleByProductIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<ProductMemberDTO>>>changeRoleByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProductMemberDTO> dto) {
         ResponseWrapper<ProductMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -333,7 +335,7 @@ public abstract class AbstractProductMemberResource {
         }
         else
             rt.set(changeRoleByProductIdAndId(productId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -359,19 +361,19 @@ public abstract class AbstractProductMemberResource {
     *
     * @param productId productId
     * @param dto dto
-    * @return ResponseEntity<ProductMemberDTO>
+    * @return Mono<ResponseEntity<ProductMemberDTO>>
     */
     @ApiOperation(value = "create_product_member", tags = {"产品成员" },  notes = "ProductMember-create_product_member ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductMember-create_product_member-all') or hasPermission('product',#productId,this.productMemberDtoMapping.toDomain(#dto),'ibizplm-ProductMember-create_product_member')")
     @PostMapping("products/{productId}/product_members/create_product_member")
-    public ResponseEntity<ResponseWrapper<ProductMemberDTO>> createProductMemberByProductId
+    public Mono<ResponseEntity<ResponseWrapper<ProductMemberDTO>>>createProductMemberByProductId
             (@PathVariable("productId") String productId, @Validated @RequestBody RequestWrapper<ProductMemberDTO> dto) {
         ResponseWrapper<ProductMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(createProductMemberByProductId(productId, item)));
         else
             rt.set(createProductMemberByProductId(productId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -396,19 +398,19 @@ public abstract class AbstractProductMemberResource {
     *
     * @param productId productId
     * @param dto dto
-    * @return ResponseEntity<ProductMemberDTO>
+    * @return Mono<ResponseEntity<ProductMemberDTO>>
     */
     @ApiOperation(value = "保存Save", tags = {"产品成员" },  notes = "ProductMember-Save ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductMember-Save-all') or hasPermission('product',#productId,this.productMemberDtoMapping.toDomain(#dto),'ibizplm-ProductMember-Save')")
     @PostMapping("products/{productId}/product_members/save")
-    public ResponseEntity<ResponseWrapper<ProductMemberDTO>> saveByProductId
+    public Mono<ResponseEntity<ResponseWrapper<ProductMemberDTO>>>saveByProductId
             (@PathVariable("productId") String productId, @Validated @RequestBody RequestWrapper<ProductMemberDTO> dto) {
         ResponseWrapper<ProductMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(saveByProductId(productId, item)));
         else
             rt.set(saveByProductId(productId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -434,19 +436,19 @@ public abstract class AbstractProductMemberResource {
     *
     * @param userId userId
     * @param dto dto
-    * @return ResponseEntity<ProductMemberDTO>
+    * @return Mono<ResponseEntity<ProductMemberDTO>>
     */
     @ApiOperation(value = "创建Create", tags = {"产品成员" },  notes = "ProductMember-Create ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductMember-Create-all') or hasPermission('user',#userId,this.productMemberDtoMapping.toDomain(#dto),'ibizplm-ProductMember-Create')")
     @PostMapping("users/{userId}/product_members")
-    public ResponseEntity<ResponseWrapper<ProductMemberDTO>> createByUserId
+    public Mono<ResponseEntity<ResponseWrapper<ProductMemberDTO>>>createByUserId
             (@PathVariable("userId") String userId, @Validated @RequestBody RequestWrapper<ProductMemberDTO> dto) {
         ResponseWrapper<ProductMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(createByUserId(userId, item)));
         else
             rt.set(createByUserId(userId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -473,13 +475,13 @@ public abstract class AbstractProductMemberResource {
     * @param userId userId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<ProductMemberDTO>
+    * @return Mono<ResponseEntity<ProductMemberDTO>>
     */
     @ApiOperation(value = "更新Update", tags = {"产品成员" },  notes = "ProductMember-Update ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductMember-Update-all') or hasPermission('user',#userId,this.productMemberService.get(#id),'ibizplm-ProductMember-Update')")
     @VersionCheck(entity = "productmember" , versionfield = "updateTime")
     @PutMapping("users/{userId}/product_members/{id}")
-    public ResponseEntity<ResponseWrapper<ProductMemberDTO>> updateByUserIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<ProductMemberDTO>>>updateByUserIdAndId
             (@PathVariable("userId") String userId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProductMemberDTO> dto) {
         ResponseWrapper<ProductMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -488,7 +490,7 @@ public abstract class AbstractProductMemberResource {
         }
         else
             rt.set(updateByUserIdAndId(userId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -516,11 +518,11 @@ public abstract class AbstractProductMemberResource {
     * @param userId userId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<ProductMemberDTO>
+    * @return Mono<ResponseEntity<ProductMemberDTO>>
     */
     @ApiOperation(value = "change_role", tags = {"产品成员" },  notes = "ProductMember-change_role ")
     @PostMapping("users/{userId}/product_members/{id}/change_role")
-    public ResponseEntity<ResponseWrapper<ProductMemberDTO>> changeRoleByUserIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<ProductMemberDTO>>>changeRoleByUserIdAndId
             (@PathVariable("userId") String userId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProductMemberDTO> dto) {
         ResponseWrapper<ProductMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -529,7 +531,7 @@ public abstract class AbstractProductMemberResource {
         }
         else
             rt.set(changeRoleByUserIdAndId(userId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -555,19 +557,19 @@ public abstract class AbstractProductMemberResource {
     *
     * @param userId userId
     * @param dto dto
-    * @return ResponseEntity<ProductMemberDTO>
+    * @return Mono<ResponseEntity<ProductMemberDTO>>
     */
     @ApiOperation(value = "create_product_member", tags = {"产品成员" },  notes = "ProductMember-create_product_member ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductMember-create_product_member-all') or hasPermission('user',#userId,this.productMemberDtoMapping.toDomain(#dto),'ibizplm-ProductMember-create_product_member')")
     @PostMapping("users/{userId}/product_members/create_product_member")
-    public ResponseEntity<ResponseWrapper<ProductMemberDTO>> createProductMemberByUserId
+    public Mono<ResponseEntity<ResponseWrapper<ProductMemberDTO>>>createProductMemberByUserId
             (@PathVariable("userId") String userId, @Validated @RequestBody RequestWrapper<ProductMemberDTO> dto) {
         ResponseWrapper<ProductMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(createProductMemberByUserId(userId, item)));
         else
             rt.set(createProductMemberByUserId(userId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -592,19 +594,19 @@ public abstract class AbstractProductMemberResource {
     *
     * @param userId userId
     * @param dto dto
-    * @return ResponseEntity<ProductMemberDTO>
+    * @return Mono<ResponseEntity<ProductMemberDTO>>
     */
     @ApiOperation(value = "保存Save", tags = {"产品成员" },  notes = "ProductMember-Save ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductMember-Save-all') or hasPermission('user',#userId,this.productMemberDtoMapping.toDomain(#dto),'ibizplm-ProductMember-Save')")
     @PostMapping("users/{userId}/product_members/save")
-    public ResponseEntity<ResponseWrapper<ProductMemberDTO>> saveByUserId
+    public Mono<ResponseEntity<ResponseWrapper<ProductMemberDTO>>>saveByUserId
             (@PathVariable("userId") String userId, @Validated @RequestBody RequestWrapper<ProductMemberDTO> dto) {
         ResponseWrapper<ProductMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(saveByUserId(userId, item)));
         else
             rt.set(saveByUserId(userId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -630,15 +632,15 @@ public abstract class AbstractProductMemberResource {
     * 
     *
     * @param id id
-    * @return ResponseEntity<ProductMemberDTO>
+    * @return Mono<ResponseEntity<ProductMemberDTO>>
     */
     @ApiOperation(value = "获取Get", tags = {"产品成员" },  notes = "ProductMember-Get ")
-    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductMember-Get-all')  or hasPermission(this.productMemberDtoMapping.toDomain(returnObject.body),'ibizplm-ProductMember-Get')")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductMember-Get-all')  or hasPermission(this.productMemberDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-ProductMember-Get')")
     @GetMapping("product_members/{id}")
-    public ResponseEntity<ProductMemberDTO> getById
+    public Mono<ResponseEntity<ProductMemberDTO>> getById
             (@PathVariable("id") String id) {
         ProductMember rt = productMemberService.get(id);
-        return ResponseEntity.status(HttpStatus.OK).body(productMemberDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(productMemberDtoMapping.toDto(rt)));
     }
 
     /**
@@ -646,15 +648,15 @@ public abstract class AbstractProductMemberResource {
     * 
     *
     * @param id id
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @ApiOperation(value = "删除Remove", tags = {"产品成员" },  notes = "ProductMember-Remove ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductMember-Remove-all') or hasPermission(this.productMemberService.get(#id),'ibizplm-ProductMember-Remove')")
     @DeleteMapping("product_members/{id}")
-    public ResponseEntity<Boolean> removeById
+    public Mono<ResponseEntity<Boolean>> removeById
             (@PathVariable("id") String id) {
         Boolean rt = productMemberService.remove(id);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -662,15 +664,15 @@ public abstract class AbstractProductMemberResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<Integer>
+    * @return Mono<ResponseEntity<Integer>>
     */
     @ApiOperation(value = "校验CheckKey", tags = {"产品成员" },  notes = "ProductMember-CheckKey ")
     @PostMapping("product_members/check_key")
-    public ResponseEntity<Integer> checkKey
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKey
             (@Validated @RequestBody ProductMemberDTO dto) {
         ProductMember domain = productMemberDtoMapping.toDomain(dto);
-        Integer rt = productMemberService.checkKey(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        CheckKeyStatus rt = productMemberService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -678,15 +680,15 @@ public abstract class AbstractProductMemberResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<ProductMemberDTO>
+    * @return Mono<ResponseEntity<ProductMemberDTO>>
     */
     @ApiOperation(value = "草稿GetDraft", tags = {"产品成员" },  notes = "ProductMember-GetDraft ")
     @GetMapping("product_members/get_draft")
-    public ResponseEntity<ProductMemberDTO> getDraft
+    public Mono<ResponseEntity<ProductMemberDTO>> getDraft
             (@SpringQueryMap ProductMemberDTO dto) {
         ProductMember domain = productMemberDtoMapping.toDomain(dto);
         ProductMember rt = productMemberService.getDraft(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(productMemberDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(productMemberDtoMapping.toDto(rt)));
     }
 
     /**
@@ -694,21 +696,21 @@ public abstract class AbstractProductMemberResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<ProductMemberDTO>>
+    * @return Mono<ResponseEntity<List<ProductMemberDTO>>>
     */
     @ApiOperation(value = "查询fetch_cur_product", tags = {"产品成员" },  notes = "ProductMember-fetch_cur_product ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductMember-fetch_cur_product-all') or hasPermission(#dto,'ibizplm-ProductMember-fetch_cur_product')")
     @PostMapping("product_members/fetch_cur_product")
-    public ResponseEntity<List<ProductMemberDTO>> fetchCurProduct
+    public Mono<ResponseEntity<List<ProductMemberDTO>>> fetchCurProduct
             (@Validated @RequestBody ProductMemberFilterDTO dto) {
         ProductMemberSearchContext context = productMemberFilterDtoMapping.toDomain(dto);
         Page<ProductMember> domains = productMemberService.fetchCurProduct(context) ;
         List<ProductMemberDTO> list = productMemberDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -716,21 +718,21 @@ public abstract class AbstractProductMemberResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<ProductMemberDTO>>
+    * @return Mono<ResponseEntity<List<ProductMemberDTO>>>
     */
     @ApiOperation(value = "查询fetch_default", tags = {"产品成员" },  notes = "ProductMember-fetch_default ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductMember-fetch_default-all') or hasPermission(#dto,'ibizplm-ProductMember-fetch_default')")
     @PostMapping("product_members/fetch_default")
-    public ResponseEntity<List<ProductMemberDTO>> fetchDefault
+    public Mono<ResponseEntity<List<ProductMemberDTO>>> fetchDefault
             (@Validated @RequestBody ProductMemberFilterDTO dto) {
         ProductMemberSearchContext context = productMemberFilterDtoMapping.toDomain(dto);
         Page<ProductMember> domains = productMemberService.fetchDefault(context) ;
         List<ProductMemberDTO> list = productMemberDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -739,15 +741,15 @@ public abstract class AbstractProductMemberResource {
     *
     * @param productId productId
     * @param id id
-    * @return ResponseEntity<ProductMemberDTO>
+    * @return Mono<ResponseEntity<ProductMemberDTO>>
     */
     @ApiOperation(value = "获取Get", tags = {"产品成员" },  notes = "ProductMember-Get ")
-    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductMember-Get-all')  or hasPermission('product',#productId,this.productMemberDtoMapping.toDomain(returnObject.body),'ibizplm-ProductMember-Get')")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductMember-Get-all')  or hasPermission('product',#productId,this.productMemberDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-ProductMember-Get')")
     @GetMapping("products/{productId}/product_members/{id}")
-    public ResponseEntity<ProductMemberDTO> getByProductIdAndId
+    public Mono<ResponseEntity<ProductMemberDTO>> getByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id) {
         ProductMember rt = productMemberService.get(id);
-        return ResponseEntity.status(HttpStatus.OK).body(productMemberDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(productMemberDtoMapping.toDto(rt)));
     }
 
     /**
@@ -756,15 +758,15 @@ public abstract class AbstractProductMemberResource {
     *
     * @param productId productId
     * @param id id
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @ApiOperation(value = "删除Remove", tags = {"产品成员" },  notes = "ProductMember-Remove ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductMember-Remove-all') or hasPermission('product',#productId,this.productMemberService.get(#id),'ibizplm-ProductMember-Remove')")
     @DeleteMapping("products/{productId}/product_members/{id}")
-    public ResponseEntity<Boolean> removeByProductIdAndId
+    public Mono<ResponseEntity<Boolean>> removeByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id) {
         Boolean rt = productMemberService.remove(id);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -773,16 +775,16 @@ public abstract class AbstractProductMemberResource {
     *
     * @param productId productId
     * @param dto dto
-    * @return ResponseEntity<Integer>
+    * @return Mono<ResponseEntity<Integer>>
     */
     @ApiOperation(value = "校验CheckKey", tags = {"产品成员" },  notes = "ProductMember-CheckKey ")
     @PostMapping("products/{productId}/product_members/check_key")
-    public ResponseEntity<Integer> checkKeyByProductId
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKeyByProductId
             (@PathVariable("productId") String productId, @Validated @RequestBody ProductMemberDTO dto) {
         ProductMember domain = productMemberDtoMapping.toDomain(dto);
         domain.setProductId(productId);
-        Integer rt = productMemberService.checkKey(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        CheckKeyStatus rt = productMemberService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -791,16 +793,16 @@ public abstract class AbstractProductMemberResource {
     *
     * @param productId productId
     * @param dto dto
-    * @return ResponseEntity<ProductMemberDTO>
+    * @return Mono<ResponseEntity<ProductMemberDTO>>
     */
     @ApiOperation(value = "草稿GetDraft", tags = {"产品成员" },  notes = "ProductMember-GetDraft ")
     @GetMapping("products/{productId}/product_members/get_draft")
-    public ResponseEntity<ProductMemberDTO> getDraftByProductId
+    public Mono<ResponseEntity<ProductMemberDTO>> getDraftByProductId
             (@PathVariable("productId") String productId, @SpringQueryMap ProductMemberDTO dto) {
         ProductMember domain = productMemberDtoMapping.toDomain(dto);
         domain.setProductId(productId);
         ProductMember rt = productMemberService.getDraft(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(productMemberDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(productMemberDtoMapping.toDto(rt)));
     }
 
     /**
@@ -809,22 +811,22 @@ public abstract class AbstractProductMemberResource {
     *
     * @param productId productId
     * @param dto dto
-    * @return ResponseEntity<List<ProductMemberDTO>>
+    * @return Mono<ResponseEntity<List<ProductMemberDTO>>>
     */
     @ApiOperation(value = "查询fetch_cur_product", tags = {"产品成员" },  notes = "ProductMember-fetch_cur_product ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductMember-fetch_cur_product-all') or hasPermission('product',#productId,#dto,'ibizplm-ProductMember-fetch_cur_product')")
     @PostMapping("products/{productId}/product_members/fetch_cur_product")
-    public ResponseEntity<List<ProductMemberDTO>> fetchCurProductByProductId
+    public Mono<ResponseEntity<List<ProductMemberDTO>>> fetchCurProductByProductId
             (@PathVariable("productId") String productId, @Validated @RequestBody ProductMemberFilterDTO dto) {
         dto.setProductIdEQ(productId);
         ProductMemberSearchContext context = productMemberFilterDtoMapping.toDomain(dto);
         Page<ProductMember> domains = productMemberService.fetchCurProduct(context) ;
         List<ProductMemberDTO> list = productMemberDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -833,22 +835,22 @@ public abstract class AbstractProductMemberResource {
     *
     * @param productId productId
     * @param dto dto
-    * @return ResponseEntity<List<ProductMemberDTO>>
+    * @return Mono<ResponseEntity<List<ProductMemberDTO>>>
     */
     @ApiOperation(value = "查询fetch_default", tags = {"产品成员" },  notes = "ProductMember-fetch_default ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductMember-fetch_default-all') or hasPermission('product',#productId,#dto,'ibizplm-ProductMember-fetch_default')")
     @PostMapping("products/{productId}/product_members/fetch_default")
-    public ResponseEntity<List<ProductMemberDTO>> fetchDefaultByProductId
+    public Mono<ResponseEntity<List<ProductMemberDTO>>> fetchDefaultByProductId
             (@PathVariable("productId") String productId, @Validated @RequestBody ProductMemberFilterDTO dto) {
         dto.setProductIdEQ(productId);
         ProductMemberSearchContext context = productMemberFilterDtoMapping.toDomain(dto);
         Page<ProductMember> domains = productMemberService.fetchDefault(context) ;
         List<ProductMemberDTO> list = productMemberDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -857,15 +859,15 @@ public abstract class AbstractProductMemberResource {
     *
     * @param userId userId
     * @param id id
-    * @return ResponseEntity<ProductMemberDTO>
+    * @return Mono<ResponseEntity<ProductMemberDTO>>
     */
     @ApiOperation(value = "获取Get", tags = {"产品成员" },  notes = "ProductMember-Get ")
-    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductMember-Get-all')  or hasPermission('user',#userId,this.productMemberDtoMapping.toDomain(returnObject.body),'ibizplm-ProductMember-Get')")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductMember-Get-all')  or hasPermission('user',#userId,this.productMemberDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-ProductMember-Get')")
     @GetMapping("users/{userId}/product_members/{id}")
-    public ResponseEntity<ProductMemberDTO> getByUserIdAndId
+    public Mono<ResponseEntity<ProductMemberDTO>> getByUserIdAndId
             (@PathVariable("userId") String userId, @PathVariable("id") String id) {
         ProductMember rt = productMemberService.get(id);
-        return ResponseEntity.status(HttpStatus.OK).body(productMemberDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(productMemberDtoMapping.toDto(rt)));
     }
 
     /**
@@ -874,15 +876,15 @@ public abstract class AbstractProductMemberResource {
     *
     * @param userId userId
     * @param id id
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @ApiOperation(value = "删除Remove", tags = {"产品成员" },  notes = "ProductMember-Remove ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductMember-Remove-all') or hasPermission('user',#userId,this.productMemberService.get(#id),'ibizplm-ProductMember-Remove')")
     @DeleteMapping("users/{userId}/product_members/{id}")
-    public ResponseEntity<Boolean> removeByUserIdAndId
+    public Mono<ResponseEntity<Boolean>> removeByUserIdAndId
             (@PathVariable("userId") String userId, @PathVariable("id") String id) {
         Boolean rt = productMemberService.remove(id);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -891,16 +893,16 @@ public abstract class AbstractProductMemberResource {
     *
     * @param userId userId
     * @param dto dto
-    * @return ResponseEntity<Integer>
+    * @return Mono<ResponseEntity<Integer>>
     */
     @ApiOperation(value = "校验CheckKey", tags = {"产品成员" },  notes = "ProductMember-CheckKey ")
     @PostMapping("users/{userId}/product_members/check_key")
-    public ResponseEntity<Integer> checkKeyByUserId
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKeyByUserId
             (@PathVariable("userId") String userId, @Validated @RequestBody ProductMemberDTO dto) {
         ProductMember domain = productMemberDtoMapping.toDomain(dto);
         domain.setUserId(userId);
-        Integer rt = productMemberService.checkKey(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        CheckKeyStatus rt = productMemberService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -909,16 +911,16 @@ public abstract class AbstractProductMemberResource {
     *
     * @param userId userId
     * @param dto dto
-    * @return ResponseEntity<ProductMemberDTO>
+    * @return Mono<ResponseEntity<ProductMemberDTO>>
     */
     @ApiOperation(value = "草稿GetDraft", tags = {"产品成员" },  notes = "ProductMember-GetDraft ")
     @GetMapping("users/{userId}/product_members/get_draft")
-    public ResponseEntity<ProductMemberDTO> getDraftByUserId
+    public Mono<ResponseEntity<ProductMemberDTO>> getDraftByUserId
             (@PathVariable("userId") String userId, @SpringQueryMap ProductMemberDTO dto) {
         ProductMember domain = productMemberDtoMapping.toDomain(dto);
         domain.setUserId(userId);
         ProductMember rt = productMemberService.getDraft(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(productMemberDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(productMemberDtoMapping.toDto(rt)));
     }
 
     /**
@@ -927,22 +929,22 @@ public abstract class AbstractProductMemberResource {
     *
     * @param userId userId
     * @param dto dto
-    * @return ResponseEntity<List<ProductMemberDTO>>
+    * @return Mono<ResponseEntity<List<ProductMemberDTO>>>
     */
     @ApiOperation(value = "查询fetch_cur_product", tags = {"产品成员" },  notes = "ProductMember-fetch_cur_product ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductMember-fetch_cur_product-all') or hasPermission('user',#userId,#dto,'ibizplm-ProductMember-fetch_cur_product')")
     @PostMapping("users/{userId}/product_members/fetch_cur_product")
-    public ResponseEntity<List<ProductMemberDTO>> fetchCurProductByUserId
+    public Mono<ResponseEntity<List<ProductMemberDTO>>> fetchCurProductByUserId
             (@PathVariable("userId") String userId, @Validated @RequestBody ProductMemberFilterDTO dto) {
         dto.setUserIdEQ(userId);
         ProductMemberSearchContext context = productMemberFilterDtoMapping.toDomain(dto);
         Page<ProductMember> domains = productMemberService.fetchCurProduct(context) ;
         List<ProductMemberDTO> list = productMemberDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -951,88 +953,88 @@ public abstract class AbstractProductMemberResource {
     *
     * @param userId userId
     * @param dto dto
-    * @return ResponseEntity<List<ProductMemberDTO>>
+    * @return Mono<ResponseEntity<List<ProductMemberDTO>>>
     */
     @ApiOperation(value = "查询fetch_default", tags = {"产品成员" },  notes = "ProductMember-fetch_default ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductMember-fetch_default-all') or hasPermission('user',#userId,#dto,'ibizplm-ProductMember-fetch_default')")
     @PostMapping("users/{userId}/product_members/fetch_default")
-    public ResponseEntity<List<ProductMemberDTO>> fetchDefaultByUserId
+    public Mono<ResponseEntity<List<ProductMemberDTO>>> fetchDefaultByUserId
             (@PathVariable("userId") String userId, @Validated @RequestBody ProductMemberFilterDTO dto) {
         dto.setUserIdEQ(userId);
         ProductMemberSearchContext context = productMemberFilterDtoMapping.toDomain(dto);
         Page<ProductMember> domains = productMemberService.fetchDefault(context) ;
         List<ProductMemberDTO> list = productMemberDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
 
     /**
     * 批量新建产品成员
     * @param dtos
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-ProductMember-Create-all')")
     @ApiOperation(value = "批量新建产品成员", tags = {"产品成员" },  notes = "批量新建产品成员")
 	@PostMapping("product_members/batch")
-    public ResponseEntity<Boolean> createBatch(@RequestBody List<ProductMemberDTO> dtos) {
+    public Mono<ResponseEntity<Boolean>> createBatch(@RequestBody List<ProductMemberDTO> dtos) {
         productMemberService.create(productMemberDtoMapping.toDomain(dtos));
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量删除产品成员
     * @param ids ids
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-ProductMember-Remove-all')")
     @ApiOperation(value = "批量删除产品成员", tags = {"产品成员" },  notes = "批量删除产品成员")
 	@DeleteMapping("product_members/batch")
-    public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
+    public Mono<ResponseEntity<Boolean>> removeBatch(@RequestBody List<String> ids) {
         productMemberService.remove(ids);
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量更新产品成员
     * @param dtos
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-ProductMember-Update-all')")
     @ApiOperation(value = "批量更新产品成员", tags = {"产品成员" },  notes = "批量更新产品成员")
 	@PutMapping("product_members/batch")
-    public ResponseEntity<Boolean> updateBatch(@RequestBody List<ProductMemberDTO> dtos) {
+    public Mono<ResponseEntity<Boolean>> updateBatch(@RequestBody List<ProductMemberDTO> dtos) {
         productMemberService.update(productMemberDtoMapping.toDomain(dtos));
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量保存产品成员
     * @param dtos
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-ProductMember-Save-all')")
     @ApiOperation(value = "批量保存产品成员", tags = {"产品成员" },  notes = "批量保存产品成员")
 	@PostMapping("product_members/savebatch")
-    public ResponseEntity<Boolean> saveBatch(@RequestBody List<ProductMemberDTO> dtos) {
+    public Mono<ResponseEntity<Boolean>> saveBatch(@RequestBody List<ProductMemberDTO> dtos) {
         productMemberService.save(productMemberDtoMapping.toDomain(dtos));
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量导入产品成员
     * @param config 导入模式
     * @param ignoreError 导入中忽略错误
-    * @return ResponseEntity<ImportResult>
+    * @return Mono<ResponseEntity<ImportResult>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-ProductMember-Save-all')")
     @ApiOperation(value = "批量导入产品成员", tags = {"产品成员" },  notes = "批量导入产品成员")
 	@PostMapping("product_members/import")
-    public ResponseEntity<ImportResult> importData(@RequestParam(value = "config" , required = false) String config ,@RequestParam(value = "ignoreerror", required = false, defaultValue = "true") Boolean ignoreError ,@RequestBody List<ProductMemberDTO> dtos) {
-        return  ResponseEntity.status(HttpStatus.OK).body(productMemberService.importData(config,ignoreError,productMemberDtoMapping.toDomain(dtos)));
+    public Mono<ResponseEntity<ImportResult>> importData(@RequestParam(value = "config" , required = false) String config ,@RequestParam(value = "ignoreerror", required = false, defaultValue = "true") Boolean ignoreError ,@RequestBody List<ProductMemberDTO> dtos) {
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(productMemberService.importData(config,ignoreError,productMemberDtoMapping.toDomain(dtos))));
     }
 
 }

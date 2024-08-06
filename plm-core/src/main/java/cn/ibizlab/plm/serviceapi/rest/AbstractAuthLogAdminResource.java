@@ -23,11 +23,13 @@ import java.util.stream.IntStream;
 import cn.ibizlab.util.domain.ImportResult;
 import cn.ibizlab.util.domain.RequestWrapper;
 import cn.ibizlab.util.domain.ResponseWrapper;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.serviceapi.dto.*;
 import cn.ibizlab.plm.serviceapi.mapping.*;
 import cn.ibizlab.plm.core.ebsx.domain.AuthLogAdmin;
 import cn.ibizlab.plm.core.ebsx.service.AuthLogAdminService;
 import cn.ibizlab.plm.core.ebsx.filter.AuthLogAdminSearchContext;
+import reactor.core.publisher.Mono;
 
 /**
  * 实体[AuthLogAdmin] rest实现
@@ -53,19 +55,19 @@ public abstract class AbstractAuthLogAdminResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<AuthLogAdminDTO>
+    * @return Mono<ResponseEntity<AuthLogAdminDTO>>
     */
     @ApiOperation(value = "创建Create", tags = {"认证日志" },  notes = "AuthLogAdmin-Create ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-AuthLogAdmin-Create-all')")
     @PostMapping("auth_log_admins")
-    public ResponseEntity<ResponseWrapper<AuthLogAdminDTO>> create
+    public Mono<ResponseEntity<ResponseWrapper<AuthLogAdminDTO>>>create
             (@Validated @RequestBody RequestWrapper<AuthLogAdminDTO> dto) {
         ResponseWrapper<AuthLogAdminDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(create(item)));
         else
             rt.set(create(dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -89,12 +91,12 @@ public abstract class AbstractAuthLogAdminResource {
     *
     * @param logId logId
     * @param dto dto
-    * @return ResponseEntity<AuthLogAdminDTO>
+    * @return Mono<ResponseEntity<AuthLogAdminDTO>>
     */
     @ApiOperation(value = "更新Update", tags = {"认证日志" },  notes = "AuthLogAdmin-Update ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-AuthLogAdmin-Update-all')")
     @PutMapping("auth_log_admins/{logId}")
-    public ResponseEntity<ResponseWrapper<AuthLogAdminDTO>> updateByLogId
+    public Mono<ResponseEntity<ResponseWrapper<AuthLogAdminDTO>>>updateByLogId
             (@PathVariable("logId") String logId, @Validated @RequestBody RequestWrapper<AuthLogAdminDTO> dto) {
         ResponseWrapper<AuthLogAdminDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -103,7 +105,7 @@ public abstract class AbstractAuthLogAdminResource {
         }
         else
             rt.set(updateByLogId(logId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -128,19 +130,19 @@ public abstract class AbstractAuthLogAdminResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<AuthLogAdminDTO>
+    * @return Mono<ResponseEntity<AuthLogAdminDTO>>
     */
     @ApiOperation(value = "保存Save", tags = {"认证日志" },  notes = "AuthLogAdmin-Save ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-AuthLogAdmin-Save-all')")
     @PostMapping("auth_log_admins/save")
-    public ResponseEntity<ResponseWrapper<AuthLogAdminDTO>> save
+    public Mono<ResponseEntity<ResponseWrapper<AuthLogAdminDTO>>>save
             (@Validated @RequestBody RequestWrapper<AuthLogAdminDTO> dto) {
         ResponseWrapper<AuthLogAdminDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(save(item)));
         else
             rt.set(save(dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -164,15 +166,15 @@ public abstract class AbstractAuthLogAdminResource {
     * 
     *
     * @param logId logId
-    * @return ResponseEntity<AuthLogAdminDTO>
+    * @return Mono<ResponseEntity<AuthLogAdminDTO>>
     */
     @ApiOperation(value = "获取Get", tags = {"认证日志" },  notes = "AuthLogAdmin-Get ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-AuthLogAdmin-Get-all')")
     @GetMapping("auth_log_admins/{logId}")
-    public ResponseEntity<AuthLogAdminDTO> getByLogId
+    public Mono<ResponseEntity<AuthLogAdminDTO>> getByLogId
             (@PathVariable("logId") String logId) {
         AuthLogAdmin rt = authLogAdminService.get(logId);
-        return ResponseEntity.status(HttpStatus.OK).body(authLogAdminDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(authLogAdminDtoMapping.toDto(rt)));
     }
 
     /**
@@ -180,15 +182,15 @@ public abstract class AbstractAuthLogAdminResource {
     * 
     *
     * @param logId logId
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @ApiOperation(value = "删除Remove", tags = {"认证日志" },  notes = "AuthLogAdmin-Remove ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-AuthLogAdmin-Remove-all')")
     @DeleteMapping("auth_log_admins/{logId}")
-    public ResponseEntity<Boolean> removeByLogId
+    public Mono<ResponseEntity<Boolean>> removeByLogId
             (@PathVariable("logId") String logId) {
         Boolean rt = authLogAdminService.remove(logId);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -196,15 +198,15 @@ public abstract class AbstractAuthLogAdminResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<Integer>
+    * @return Mono<ResponseEntity<Integer>>
     */
     @ApiOperation(value = "校验CheckKey", tags = {"认证日志" },  notes = "AuthLogAdmin-CheckKey ")
     @PostMapping("auth_log_admins/checkkey")
-    public ResponseEntity<Integer> checkKey
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKey
             (@Validated @RequestBody AuthLogAdminDTO dto) {
         AuthLogAdmin domain = authLogAdminDtoMapping.toDomain(dto);
-        Integer rt = authLogAdminService.checkKey(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        CheckKeyStatus rt = authLogAdminService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -212,15 +214,15 @@ public abstract class AbstractAuthLogAdminResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<AuthLogAdminDTO>
+    * @return Mono<ResponseEntity<AuthLogAdminDTO>>
     */
     @ApiOperation(value = "草稿GetDraft", tags = {"认证日志" },  notes = "AuthLogAdmin-GetDraft ")
     @GetMapping("auth_log_admins/getdraft")
-    public ResponseEntity<AuthLogAdminDTO> getDraft
+    public Mono<ResponseEntity<AuthLogAdminDTO>> getDraft
             (@SpringQueryMap AuthLogAdminDTO dto) {
         AuthLogAdmin domain = authLogAdminDtoMapping.toDomain(dto);
         AuthLogAdmin rt = authLogAdminService.getDraft(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(authLogAdminDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(authLogAdminDtoMapping.toDto(rt)));
     }
 
     /**
@@ -228,21 +230,21 @@ public abstract class AbstractAuthLogAdminResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<AuthLogAdminDTO>>
+    * @return Mono<ResponseEntity<List<AuthLogAdminDTO>>>
     */
     @ApiOperation(value = "查询FetchDefault", tags = {"认证日志" },  notes = "AuthLogAdmin-FetchDefault ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-AuthLogAdmin-FetchDefault-all')")
     @PostMapping("auth_log_admins/fetchdefault")
-    public ResponseEntity<List<AuthLogAdminDTO>> fetchDefault
+    public Mono<ResponseEntity<List<AuthLogAdminDTO>>> fetchDefault
             (@Validated @RequestBody AuthLogAdminFilterDTO dto) {
         AuthLogAdminSearchContext context = authLogAdminFilterDtoMapping.toDomain(dto);
         Page<AuthLogAdmin> domains = authLogAdminService.fetchDefault(context) ;
         List<AuthLogAdminDTO> list = authLogAdminDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -250,21 +252,21 @@ public abstract class AbstractAuthLogAdminResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<AuthLogAdminDTO>>
+    * @return Mono<ResponseEntity<List<AuthLogAdminDTO>>>
     */
     @ApiOperation(value = "查询FetchDistinct_userid", tags = {"认证日志" },  notes = "AuthLogAdmin-FetchDistinct_userid ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-AuthLogAdmin-FetchDistinct_userid-all')")
     @PostMapping("auth_log_admins/fetchdistinct_userid")
-    public ResponseEntity<List<AuthLogAdminDTO>> fetchDistinctUserid
+    public Mono<ResponseEntity<List<AuthLogAdminDTO>>> fetchDistinctUserid
             (@Validated @RequestBody AuthLogAdminFilterDTO dto) {
         AuthLogAdminSearchContext context = authLogAdminFilterDtoMapping.toDomain(dto);
         Page<AuthLogAdmin> domains = authLogAdminService.fetchDistinctUserid(context) ;
         List<AuthLogAdminDTO> list = authLogAdminDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -272,87 +274,87 @@ public abstract class AbstractAuthLogAdminResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<AuthLogAdminDTO>>
+    * @return Mono<ResponseEntity<List<AuthLogAdminDTO>>>
     */
     @ApiOperation(value = "查询FetchGroup_by_data", tags = {"认证日志" },  notes = "AuthLogAdmin-FetchGroup_by_data ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-AuthLogAdmin-FetchGroup_by_data-all')")
     @PostMapping("auth_log_admins/fetchgroup_by_data")
-    public ResponseEntity<List<AuthLogAdminDTO>> fetchGroupByData
+    public Mono<ResponseEntity<List<AuthLogAdminDTO>>> fetchGroupByData
             (@Validated @RequestBody AuthLogAdminFilterDTO dto) {
         AuthLogAdminSearchContext context = authLogAdminFilterDtoMapping.toDomain(dto);
         Page<AuthLogAdmin> domains = authLogAdminService.fetchGroupByData(context) ;
         List<AuthLogAdminDTO> list = authLogAdminDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
 
     /**
     * 批量新建认证日志
     * @param dtos
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-AuthLogAdmin-Create-all')")
     @ApiOperation(value = "批量新建认证日志", tags = {"认证日志" },  notes = "批量新建认证日志")
 	@PostMapping("auth_log_admins/batch")
-    public ResponseEntity<Boolean> createBatch(@RequestBody List<AuthLogAdminDTO> dtos) {
+    public Mono<ResponseEntity<Boolean>> createBatch(@RequestBody List<AuthLogAdminDTO> dtos) {
         authLogAdminService.create(authLogAdminDtoMapping.toDomain(dtos));
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量删除认证日志
     * @param ids ids
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-AuthLogAdmin-Remove-all')")
     @ApiOperation(value = "批量删除认证日志", tags = {"认证日志" },  notes = "批量删除认证日志")
 	@DeleteMapping("auth_log_admins/batch")
-    public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
+    public Mono<ResponseEntity<Boolean>> removeBatch(@RequestBody List<String> ids) {
         authLogAdminService.remove(ids);
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量更新认证日志
     * @param dtos
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-AuthLogAdmin-Update-all')")
     @ApiOperation(value = "批量更新认证日志", tags = {"认证日志" },  notes = "批量更新认证日志")
 	@PutMapping("auth_log_admins/batch")
-    public ResponseEntity<Boolean> updateBatch(@RequestBody List<AuthLogAdminDTO> dtos) {
+    public Mono<ResponseEntity<Boolean>> updateBatch(@RequestBody List<AuthLogAdminDTO> dtos) {
         authLogAdminService.update(authLogAdminDtoMapping.toDomain(dtos));
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量保存认证日志
     * @param dtos
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-AuthLogAdmin-Save-all')")
     @ApiOperation(value = "批量保存认证日志", tags = {"认证日志" },  notes = "批量保存认证日志")
 	@PostMapping("auth_log_admins/savebatch")
-    public ResponseEntity<Boolean> saveBatch(@RequestBody List<AuthLogAdminDTO> dtos) {
+    public Mono<ResponseEntity<Boolean>> saveBatch(@RequestBody List<AuthLogAdminDTO> dtos) {
         authLogAdminService.save(authLogAdminDtoMapping.toDomain(dtos));
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量导入认证日志
     * @param config 导入模式
     * @param ignoreError 导入中忽略错误
-    * @return ResponseEntity<ImportResult>
+    * @return Mono<ResponseEntity<ImportResult>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-AuthLogAdmin-Save-all')")
     @ApiOperation(value = "批量导入认证日志", tags = {"认证日志" },  notes = "批量导入认证日志")
 	@PostMapping("auth_log_admins/import")
-    public ResponseEntity<ImportResult> importData(@RequestParam(value = "config" , required = false) String config ,@RequestParam(value = "ignoreerror", required = false, defaultValue = "true") Boolean ignoreError ,@RequestBody List<AuthLogAdminDTO> dtos) {
-        return  ResponseEntity.status(HttpStatus.OK).body(authLogAdminService.importData(config,ignoreError,authLogAdminDtoMapping.toDomain(dtos)));
+    public Mono<ResponseEntity<ImportResult>> importData(@RequestParam(value = "config" , required = false) String config ,@RequestParam(value = "ignoreerror", required = false, defaultValue = "true") Boolean ignoreError ,@RequestBody List<AuthLogAdminDTO> dtos) {
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(authLogAdminService.importData(config,ignoreError,authLogAdminDtoMapping.toDomain(dtos))));
     }
 
 }

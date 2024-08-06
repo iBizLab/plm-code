@@ -31,6 +31,7 @@ import cn.ibizlab.plm.core.base.domain.User;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItemState;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItemType;
 import cn.ibizlab.plm.core.base.domain.CommonFlow;
+import cn.ibizlab.plm.core.projmgmt.domain.SprintAlteration;
 import cn.ibizlab.plm.core.base.domain.Attention;
 import cn.ibizlab.plm.core.base.domain.Comment;
 import cn.ibizlab.plm.core.base.domain.Recent;
@@ -58,6 +59,16 @@ import cn.ibizlab.plm.core.base.domain.Workload;
 @ApiModel(value = "WORK_ITEM", description = "工作项")
 public class WorkItem extends EntityMP implements Serializable
 {
+
+    /**
+    * 编号
+    */
+    @TableField(value = "show_identifier" , exist = false)
+    @DEField(name = "show_identifier")
+    @JSONField(name = "show_identifier")
+    @JsonProperty("show_identifier")
+    @ApiModelProperty(value = "show_identifier", notes = "编号")
+    private String showIdentifier;
 
     /**
     * 编号
@@ -111,14 +122,14 @@ public class WorkItem extends EntityMP implements Serializable
     private Date startAt;
 
     /**
-    * 结束时间
+    * 截止时间
     */
     @TableField(value = "end_at")
     @DEField(name = "end_at" , fieldType = "DATE", format = "yyyy-MM-dd")
     @JsonFormat(pattern = "yyyy-MM-dd", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "end_at" , format = "yyyy-MM-dd")
     @JsonProperty("end_at")
-    @ApiModelProperty(value = "end_at", notes = "结束时间")
+    @ApiModelProperty(value = "end_at", notes = "截止时间")
     private Date endAt;
 
     /**
@@ -265,7 +276,7 @@ public class WorkItem extends EntityMP implements Serializable
     * 标签
     */
     @TableField(value = "tags")
-    @DEField(name = "tags")
+    @DEField(name = "tags" , dict = "project_tag")
     @JSONField(name = "tags")
     @JsonProperty("tags")
     @ApiModelProperty(value = "tags", notes = "标签")
@@ -403,16 +414,6 @@ public class WorkItem extends EntityMP implements Serializable
     private List<Deliverable> deliverable;
 
     /**
-    * 编号
-    */
-    @TableField(value = "show_identifier" , exist = false)
-    @DEField(name = "show_identifier")
-    @JSONField(name = "show_identifier")
-    @JsonProperty("show_identifier")
-    @ApiModelProperty(value = "show_identifier", notes = "编号")
-    private String showIdentifier;
-
-    /**
     * 项目标识
     */
     @TableField(value = "project_identifier" , exist = false)
@@ -426,7 +427,7 @@ public class WorkItem extends EntityMP implements Serializable
     * 关注
     */
     @TableField(exist = false)
-    @DEField(name = "attentions")
+    @DEField(name = "attentions" , dict = "SysOperator")
     @JSONField(name = "attentions")
     @JsonProperty("attentions")
     @ApiModelProperty(value = "attentions", notes = "关注")
@@ -461,6 +462,16 @@ public class WorkItem extends EntityMP implements Serializable
     @JsonProperty("rep_value_1")
     @ApiModelProperty(value = "rep_value_1", notes = "报表值1")
     private Integer repValue1;
+
+    /**
+    * 报表值3
+    */
+    @TableField(value = "rep_value_3" , exist = false)
+    @DEField(name = "rep_value_3")
+    @JSONField(name = "rep_value_3")
+    @JsonProperty("rep_value_3")
+    @ApiModelProperty(value = "rep_value_3", notes = "报表值3")
+    private Integer repValue3;
 
     /**
     * 报表值2
@@ -536,7 +547,7 @@ public class WorkItem extends EntityMP implements Serializable
     * 发布阶段
     */
     @TableField(value = "release_status" , exist = false)
-    @DEField(name = "release_status" , dict = "release_stage")
+    @DEField(name = "release_status" , dict = "cur_release_stage")
     @JSONField(name = "release_status")
     @JsonProperty("release_status")
     @ApiModelProperty(value = "release_status", notes = "发布阶段")
@@ -553,6 +564,17 @@ public class WorkItem extends EntityMP implements Serializable
     private String workItemSubType;
 
     /**
+    * 统计日期字段
+    */
+    @TableField(value = "rep_date" , exist = false)
+    @DEField(name = "rep_date")
+    @JsonFormat(pattern = "yyyy-MM-dd", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "rep_date" , format = "yyyy-MM-dd")
+    @JsonProperty("rep_date")
+    @ApiModelProperty(value = "rep_date", notes = "统计日期字段")
+    private Date repDate;
+
+    /**
     * 最近创建日期
     */
     @TableField(value = "recent_create_days" , exist = false)
@@ -561,6 +583,66 @@ public class WorkItem extends EntityMP implements Serializable
     @JsonProperty("recent_create_days")
     @ApiModelProperty(value = "recent_create_days", notes = "最近创建日期")
     private Integer recentCreateDays;
+
+    /**
+    * 序号
+    */
+    @TableField(value = "sequence")
+    @DEField(name = "sequence" , preType = DEPredefinedFieldType.ORDERVALUE)
+    @JSONField(name = "sequence")
+    @JsonProperty("sequence")
+    @ApiModelProperty(value = "sequence", notes = "序号")
+    private BigDecimal sequence;
+
+    /**
+    * 关联产品需求数
+    */
+    @TableField(value = "relation_total_idea" , exist = false)
+    @DEField(name = "relation_total_idea")
+    @JSONField(name = "relation_total_idea")
+    @JsonProperty("relation_total_idea")
+    @ApiModelProperty(value = "relation_total_idea", notes = "关联产品需求数")
+    private BigDecimal relationTotalIdea;
+
+    /**
+    * 关联测试用例数
+    */
+    @TableField(value = "relation_total_test_case" , exist = false)
+    @DEField(name = "relation_total_test_case")
+    @JSONField(name = "relation_total_test_case")
+    @JsonProperty("relation_total_test_case")
+    @ApiModelProperty(value = "relation_total_test_case", notes = "关联测试用例数")
+    private BigDecimal relationTotalTestCase;
+
+    /**
+    * 关联工单数
+    */
+    @TableField(value = "relation_total_ticket" , exist = false)
+    @DEField(name = "relation_total_ticket")
+    @JSONField(name = "relation_total_ticket")
+    @JsonProperty("relation_total_ticket")
+    @ApiModelProperty(value = "relation_total_ticket", notes = "关联工单数")
+    private BigDecimal relationTotalTicket;
+
+    /**
+    * 关联工作项数
+    */
+    @TableField(value = "relation_total_work_item" , exist = false)
+    @DEField(name = "relation_total_work_item")
+    @JSONField(name = "relation_total_work_item")
+    @JsonProperty("relation_total_work_item")
+    @ApiModelProperty(value = "relation_total_work_item", notes = "关联工作项数")
+    private BigDecimal relationTotalWorkItem;
+
+    /**
+    * 原始状态
+    */
+    @TableField(value = "work_item_origin_state" , exist = false)
+    @DEField(name = "work_item_origin_state" , dict = "work_item_origin_state")
+    @JSONField(name = "work_item_origin_state")
+    @JsonProperty("work_item_origin_state")
+    @ApiModelProperty(value = "work_item_origin_state", notes = "原始状态")
+    private String workItemOriginState;
 
     /**
     * 标识
@@ -689,7 +771,7 @@ public class WorkItem extends EntityMP implements Serializable
     * 看板标识
     */
     @TableField(value = "board_id")
-    @DEField(name = "board_id")
+    @DEField(name = "board_id" , dict = "project_board")
     @JSONField(name = "board_id")
     @JsonProperty("board_id")
     @ApiModelProperty(value = "board_id", notes = "看板标识")
@@ -908,6 +990,15 @@ public class WorkItem extends EntityMP implements Serializable
     /**
     * 设置 [编号]
     */
+    public WorkItem setShowIdentifier(String showIdentifier) {
+        this.showIdentifier = showIdentifier;
+        this.modify("show_identifier", showIdentifier);
+        return this;
+    }
+
+    /**
+    * 设置 [编号]
+    */
     public WorkItem setIdentifier(String identifier) {
         this.identifier = identifier;
         this.modify("identifier", identifier);
@@ -951,7 +1042,7 @@ public class WorkItem extends EntityMP implements Serializable
     }
 
     /**
-    * 设置 [结束时间]
+    * 设置 [截止时间]
     */
     public WorkItem setEndAt(Date endAt) {
         this.endAt = endAt;
@@ -1203,15 +1294,6 @@ public class WorkItem extends EntityMP implements Serializable
     }
 
     /**
-    * 设置 [编号]
-    */
-    public WorkItem setShowIdentifier(String showIdentifier) {
-        this.showIdentifier = showIdentifier;
-        this.modify("show_identifier", showIdentifier);
-        return this;
-    }
-
-    /**
     * 设置 [项目标识]
     */
     public WorkItem setProjectIdentifier(String projectIdentifier) {
@@ -1253,6 +1335,15 @@ public class WorkItem extends EntityMP implements Serializable
     public WorkItem setRepValue1(Integer repValue1) {
         this.repValue1 = repValue1;
         this.modify("rep_value_1", repValue1);
+        return this;
+    }
+
+    /**
+    * 设置 [报表值3]
+    */
+    public WorkItem setRepValue3(Integer repValue3) {
+        this.repValue3 = repValue3;
+        this.modify("rep_value_3", repValue3);
         return this;
     }
 
@@ -1338,11 +1429,65 @@ public class WorkItem extends EntityMP implements Serializable
     }
 
     /**
+    * 设置 [统计日期字段]
+    */
+    public WorkItem setRepDate(Date repDate) {
+        this.repDate = repDate;
+        this.modify("rep_date", repDate);
+        return this;
+    }
+
+    /**
     * 设置 [最近创建日期]
     */
     public WorkItem setRecentCreateDays(Integer recentCreateDays) {
         this.recentCreateDays = recentCreateDays;
         this.modify("recent_create_days", recentCreateDays);
+        return this;
+    }
+
+    /**
+    * 设置 [关联产品需求数]
+    */
+    public WorkItem setRelationTotalIdea(BigDecimal relationTotalIdea) {
+        this.relationTotalIdea = relationTotalIdea;
+        this.modify("relation_total_idea", relationTotalIdea);
+        return this;
+    }
+
+    /**
+    * 设置 [关联测试用例数]
+    */
+    public WorkItem setRelationTotalTestCase(BigDecimal relationTotalTestCase) {
+        this.relationTotalTestCase = relationTotalTestCase;
+        this.modify("relation_total_test_case", relationTotalTestCase);
+        return this;
+    }
+
+    /**
+    * 设置 [关联工单数]
+    */
+    public WorkItem setRelationTotalTicket(BigDecimal relationTotalTicket) {
+        this.relationTotalTicket = relationTotalTicket;
+        this.modify("relation_total_ticket", relationTotalTicket);
+        return this;
+    }
+
+    /**
+    * 设置 [关联工作项数]
+    */
+    public WorkItem setRelationTotalWorkItem(BigDecimal relationTotalWorkItem) {
+        this.relationTotalWorkItem = relationTotalWorkItem;
+        this.modify("relation_total_work_item", relationTotalWorkItem);
+        return this;
+    }
+
+    /**
+    * 设置 [原始状态]
+    */
+    public WorkItem setWorkItemOriginState(String workItemOriginState) {
+        this.workItemOriginState = workItemOriginState;
+        this.modify("work_item_origin_state", workItemOriginState);
         return this;
     }
 

@@ -469,6 +469,16 @@ export default {
       controlType: 'GRID',
       logicName: '自动化规则逻辑表格视图_表格',
       appDataEntityId: 'plmweb.psdelogic',
+      controlLogics: [
+        {
+          eventNames: 'onSaveSuccess',
+          logicTag: 'grid',
+          logicType: 'APPDEUIACTION',
+          appDEUIActionId: 'refresh',
+          triggerType: 'CTRLEVENT',
+          id: 'refresh',
+        },
+      ],
       controlParam: {
         id: 'grid',
       },

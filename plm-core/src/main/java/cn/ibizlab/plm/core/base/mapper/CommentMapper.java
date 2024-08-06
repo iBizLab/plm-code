@@ -59,6 +59,25 @@ public interface CommentMapper extends BaseMapper<Comment> {
     List<Comment> findByPrincipalId(@Param("principalIds") List<String> principalIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Comment> searchView(IPage<Comment> page, @Param("ctx") CommentSearchContext context, @Param("ew") Wrapper<Comment> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Comment> listView(@Param("ctx") CommentSearchContext context, @Param("ew") Wrapper<Comment> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

@@ -43,6 +43,25 @@ public interface ReferencesIndexMapper extends BaseMapper<ReferencesIndex> {
     List<ReferencesIndex> listDefault(@Param("ctx") ReferencesIndexSearchContext context, @Param("ew") Wrapper<ReferencesIndex> wrapper);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<ReferencesIndex> searchView(IPage<ReferencesIndex> page, @Param("ctx") ReferencesIndexSearchContext context, @Param("ew") Wrapper<ReferencesIndex> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<ReferencesIndex> listView(@Param("ctx") ReferencesIndexSearchContext context, @Param("ew") Wrapper<ReferencesIndex> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

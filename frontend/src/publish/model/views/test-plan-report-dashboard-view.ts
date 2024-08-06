@@ -27,6 +27,7 @@ export default {
   ],
   controls: [
     {
+      customizeMode: 1,
       appDynaDashboardUtilId: 'dynadashboard',
       layout: {
         columnCount: 24,
@@ -776,7 +777,6 @@ export default {
                             colMD: 12,
                             layout: 'TABLE_24COL',
                           },
-                          showCaption: true,
                           id: 'id',
                         },
                       ],
@@ -999,7 +999,6 @@ export default {
                           colMD: 24,
                           layout: 'TABLE_24COL',
                         },
-                        showCaption: true,
                         id: 'id',
                       },
                     ],

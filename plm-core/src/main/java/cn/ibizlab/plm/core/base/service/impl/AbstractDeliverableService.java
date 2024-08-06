@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.base.domain.Deliverable;
@@ -103,14 +104,14 @@ public abstract class AbstractDeliverableService extends ServiceImpl<Deliverable
         return et;
     }
 	
-    public Integer checkKey(Deliverable et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Deliverable>lambdaQuery().eq(Deliverable::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(Deliverable et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Deliverable>lambdaQuery().eq(Deliverable::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(Deliverable et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -164,6 +165,13 @@ public abstract class AbstractDeliverableService extends ServiceImpl<Deliverable
         return list;	
 	}
 
+	public List<Deliverable> findByWorkItem(WorkItem workItem){
+        List<Deliverable> list = this.baseMapper.selectList(Wrappers.<Deliverable>lambdaQuery()
+                        .eq(Deliverable::getOwnerId, workItem.getId())
+                        .eq(Deliverable::getOwnerType,"WORK_ITEM")
+                        .eq(Deliverable::getOwnerSubtype,"DELIVERABLE"));
+		return list;
+	}
 	public boolean removeByOwnerId(String ownerId){
         return this.remove(Wrappers.<Deliverable>lambdaQuery().eq(Deliverable::getOwnerId,ownerId));
 	}
@@ -174,13 +182,8 @@ public abstract class AbstractDeliverableService extends ServiceImpl<Deliverable
 	public boolean saveByWorkItem(WorkItem workItem, List<Deliverable> list){
         if(list==null)
             return true;
-        Map<String,Deliverable> before = this.baseMapper.selectList(Wrappers.<Deliverable>lambdaQuery()
-                        .eq(Deliverable::getOwnerId, workItem.getId())
-                        .eq(Deliverable::getOwnerType,"WORK_ITEM")
-                        .eq(Deliverable::getOwnerSubtype,"DELIVERABLE"))
-                        .stream()
-                        .collect(Collectors.toMap(Deliverable::getId,e->e));
 
+        Map<String,Deliverable> before = findByWorkItem(workItem).stream().collect(Collectors.toMap(Deliverable::getId,e->e));
         List<Deliverable> update = new ArrayList<>();
         List<Deliverable> create = new ArrayList<>();
 
@@ -204,6 +207,17 @@ public abstract class AbstractDeliverableService extends ServiceImpl<Deliverable
             return true;
 			
 	}
+   public Page<Deliverable> fetchView(DeliverableSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Deliverable> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<Deliverable> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Deliverable> listView(DeliverableSearchContext context) {
+        List<Deliverable> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(Deliverable et) {
         if(Entities.WORK_ITEM.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.team.domain.DiscussMember;
 import cn.ibizlab.plm.core.team.filter.DiscussMemberSearchContext;
 import cn.ibizlab.plm.core.team.domain.DiscussTopic;
@@ -139,7 +140,7 @@ public interface DiscussMemberService extends IService<DiscussMember> {
     * @param et
     * @return
     */
-    Integer checkKey(DiscussMember et);
+    CheckKeyStatus checkKey(DiscussMember et);
 
     /**
     * 保存
@@ -166,6 +167,16 @@ public interface DiscussMemberService extends IService<DiscussMember> {
     }
 
     /**
+    * nothing
+    * 
+    * @param et
+    * @return
+    */
+    default DiscussMember nothing(DiscussMember et) {
+        return et;
+    }
+
+    /**
     * fetchDefault
     * 
     * @param context
@@ -188,8 +199,15 @@ public interface DiscussMemberService extends IService<DiscussMember> {
     */
     List<DiscussMember> findByOwnerId(List<String> ownerIds);
     default List<DiscussMember> findByOwnerId(String ownerId){
-        return findByOwnerId(Arrays.asList(ownerId));
+        return findByDiscussTopic(new DiscussTopic().setId(ownerId));
     }
+
+    /**
+    * findByDiscussTopic
+    * @param discussTopic
+    * @return
+    */
+    List<DiscussMember> findByDiscussTopic(DiscussTopic discussTopic);
 
     /**
     * removeByOwnerId
@@ -230,8 +248,15 @@ public interface DiscussMemberService extends IService<DiscussMember> {
     */
     List<DiscussMember> findByUserId(List<String> userIds);
     default List<DiscussMember> findByUserId(String userId){
-        return findByUserId(Arrays.asList(userId));
+        return findByUser(new User().setId(userId));
     }
+
+    /**
+    * findByUser
+    * @param user
+    * @return
+    */
+    List<DiscussMember> findByUser(User user);
 
     /**
     * removeByUserId
@@ -264,6 +289,22 @@ public interface DiscussMemberService extends IService<DiscussMember> {
     * @return
     */
     boolean saveByUser(User user, List<DiscussMember> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<DiscussMember> fetchView(DiscussMemberSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<DiscussMember> listView(DiscussMemberSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<DiscussMember> list) {

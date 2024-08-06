@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.base.domain.Version;
@@ -152,14 +153,14 @@ public abstract class AbstractVersionService extends ServiceImpl<VersionMapper,V
         return et;
     }
 	
-    public Integer checkKey(Version et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Version>lambdaQuery().eq(Version::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(Version et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Version>lambdaQuery().eq(Version::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(Version et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -201,6 +202,21 @@ public abstract class AbstractVersionService extends ServiceImpl<VersionMapper,V
         return list;
    }
 	
+   public Page<Version> fetchNameVersion(VersionSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Version> pages=baseMapper.searchNameVersion(context.getPages(),context,context.getSelectCond());
+        List<Version> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Version> listNameVersion(VersionSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        List<Version> list = baseMapper.listNameVersion(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<Version> fetchOwner(VersionSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Version> pages=baseMapper.searchOwner(context.getPages(),context,context.getSelectCond());
         List<Version> list = pages.getRecords();
@@ -217,6 +233,10 @@ public abstract class AbstractVersionService extends ServiceImpl<VersionMapper,V
         return list;	
 	}
 
+	public List<Version> findByIdea(Idea idea){
+        List<Version> list = findByOwnerId(Arrays.asList(idea.getId()));
+		return list;
+	}
 	public boolean removeByOwnerId(String ownerId){
         return this.remove(Wrappers.<Version>lambdaQuery().eq(Version::getOwnerId,ownerId));
 	}
@@ -227,8 +247,8 @@ public abstract class AbstractVersionService extends ServiceImpl<VersionMapper,V
 	public boolean saveByIdea(Idea idea, List<Version> list){
         if(list==null)
             return true;
-        Map<String,Version> before = findByOwnerId(idea.getId()).stream().collect(Collectors.toMap(Version::getId,e->e));
 
+        Map<String,Version> before = findByIdea(idea).stream().collect(Collectors.toMap(Version::getId,e->e));
         List<Version> update = new ArrayList<>();
         List<Version> create = new ArrayList<>();
 
@@ -252,11 +272,15 @@ public abstract class AbstractVersionService extends ServiceImpl<VersionMapper,V
             return true;
 			
 	}
+	public List<Version> findByPage(ArticlePage articlePage){
+        List<Version> list = findByOwnerId(Arrays.asList(articlePage.getId()));
+		return list;
+	}
 	public boolean saveByPage(ArticlePage articlePage, List<Version> list){
         if(list==null)
             return true;
-        Map<String,Version> before = findByOwnerId(articlePage.getId()).stream().collect(Collectors.toMap(Version::getId,e->e));
 
+        Map<String,Version> before = findByPage(articlePage).stream().collect(Collectors.toMap(Version::getId,e->e));
         List<Version> update = new ArrayList<>();
         List<Version> create = new ArrayList<>();
 
@@ -280,11 +304,15 @@ public abstract class AbstractVersionService extends ServiceImpl<VersionMapper,V
             return true;
 			
 	}
+	public List<Version> findByTestCase(TestCase testCase){
+        List<Version> list = findByOwnerId(Arrays.asList(testCase.getId()));
+		return list;
+	}
 	public boolean saveByTestCase(TestCase testCase, List<Version> list){
         if(list==null)
             return true;
-        Map<String,Version> before = findByOwnerId(testCase.getId()).stream().collect(Collectors.toMap(Version::getId,e->e));
 
+        Map<String,Version> before = findByTestCase(testCase).stream().collect(Collectors.toMap(Version::getId,e->e));
         List<Version> update = new ArrayList<>();
         List<Version> create = new ArrayList<>();
 
@@ -308,11 +336,15 @@ public abstract class AbstractVersionService extends ServiceImpl<VersionMapper,V
             return true;
 			
 	}
+	public List<Version> findByWorkItem(WorkItem workItem){
+        List<Version> list = findByOwnerId(Arrays.asList(workItem.getId()));
+		return list;
+	}
 	public boolean saveByWorkItem(WorkItem workItem, List<Version> list){
         if(list==null)
             return true;
-        Map<String,Version> before = findByOwnerId(workItem.getId()).stream().collect(Collectors.toMap(Version::getId,e->e));
 
+        Map<String,Version> before = findByWorkItem(workItem).stream().collect(Collectors.toMap(Version::getId,e->e));
         List<Version> update = new ArrayList<>();
         List<Version> create = new ArrayList<>();
 
@@ -336,6 +368,17 @@ public abstract class AbstractVersionService extends ServiceImpl<VersionMapper,V
             return true;
 			
 	}
+   public Page<Version> fetchView(VersionSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Version> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<Version> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Version> listView(VersionSearchContext context) {
+        List<Version> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(Version et) {
         if(Entities.IDEA.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

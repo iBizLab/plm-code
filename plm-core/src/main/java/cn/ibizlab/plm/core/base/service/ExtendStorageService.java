@@ -11,6 +11,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.ExtendStorage;
 import cn.ibizlab.plm.core.base.filter.ExtendStorageSearchContext;
 
@@ -138,7 +139,7 @@ public interface ExtendStorageService extends IService<ExtendStorage> {
     * @param et
     * @return
     */
-    Integer checkKey(ExtendStorage et);
+    CheckKeyStatus checkKey(ExtendStorage et);
 
     /**
     * 保存
@@ -169,6 +170,22 @@ public interface ExtendStorageService extends IService<ExtendStorage> {
     * @return
     */
     List<ExtendStorage> listDefault(ExtendStorageSearchContext context);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<ExtendStorage> fetchView(ExtendStorageSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<ExtendStorage> listView(ExtendStorageSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<ExtendStorage> list) {

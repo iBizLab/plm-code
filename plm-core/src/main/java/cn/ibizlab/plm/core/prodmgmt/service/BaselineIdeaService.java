@@ -11,6 +11,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.prodmgmt.domain.BaselineIdea;
 import cn.ibizlab.plm.core.prodmgmt.filter.BaselineIdeaSearchContext;
 import cn.ibizlab.plm.core.base.domain.Baseline;
@@ -140,7 +141,7 @@ public interface BaselineIdeaService extends IService<BaselineIdea> {
     * @param et
     * @return
     */
-    Integer checkKey(BaselineIdea et);
+    CheckKeyStatus checkKey(BaselineIdea et);
 
     /**
     * 保存
@@ -231,8 +232,15 @@ public interface BaselineIdeaService extends IService<BaselineIdea> {
     */
     List<BaselineIdea> findByPrincipalId(List<String> principalIds);
     default List<BaselineIdea> findByPrincipalId(String principalId){
-        return findByPrincipalId(Arrays.asList(principalId));
+        return findByBaselinePrincipalIdea(new Baseline().setId(principalId));
     }
+	
+    /**
+    * findByBaselinePrincipalIdea
+    * @param baseline
+    * @return
+    */
+    List<BaselineIdea> findByBaselinePrincipalIdea(Baseline baseline);	
 
     /**
     * removeByPrincipalId
@@ -273,8 +281,15 @@ public interface BaselineIdeaService extends IService<BaselineIdea> {
     */
     List<BaselineIdea> findByTargetVersionId(List<String> targetVersionIds);
     default List<BaselineIdea> findByTargetVersionId(String targetVersionId){
-        return findByTargetVersionId(Arrays.asList(targetVersionId));
+        return findByTargetVersion(new Version().setId(targetVersionId));
     }
+	
+    /**
+    * findByTargetVersion
+    * @param version
+    * @return
+    */
+    List<BaselineIdea> findByTargetVersion(Version version);	
 
     /**
     * removeByTargetVersionId

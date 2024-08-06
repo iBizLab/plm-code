@@ -121,7 +121,10 @@ export default {
         {
           idAppDEFieldId: 'id',
           leafFlagAppDEFieldId: 'is_leaf',
+          moveAppDEActionId: 'move_order',
           appDEDataSetId: 'fetch_default',
+          sortDir: 'ASC',
+          sortAppDEFieldId: 'sequence',
           textAppDEFieldId: 'title',
           nodeType: 'node',
           appDataEntityId: 'plmweb.work_item',
@@ -306,7 +309,28 @@ export default {
           ],
           detreeNodeRVs: [
             {
-              refAppViewId: 'plmweb.work_item_main_view',
+              navigateContexts: [
+                {
+                  key: 'WORK_ITEM_TYPE_ID',
+                  value: 'work_item_type_id',
+                  name: 'WORK_ITEM_TYPE_ID',
+                  id: 'work_item_type_id',
+                },
+                {
+                  key: 'SRFDATATYPE',
+                  value: 'work_item_type_id',
+                  name: 'SRFDATATYPE',
+                  id: 'srfdatatype',
+                },
+              ],
+              navigateParams: [
+                {
+                  key: 'srfdatatype',
+                  value: 'work_item_type_id',
+                  id: 'srfdatatype',
+                },
+              ],
+              refAppViewId: 'plmweb.work_item_dyna_main_view',
               id: 'editdata',
             },
           ],
@@ -469,7 +493,6 @@ export default {
                                 layoutPos: {
                                   colMD: 24,
                                   layout: 'TABLE_24COL',
-                                  spacingBottom: 'OUTERSMALL',
                                 },
                                 showCaption: true,
                                 id: 'static_text1',
@@ -482,6 +505,7 @@ export default {
                                   wrapMode: 'NOWRAP',
                                   appCodeListId:
                                     'plmweb.projmgmt__work_item_state',
+                                  editorHeight: 32,
                                   editorType: 'SPAN',
                                   predefinedType: 'FIELD_TEXT_DYNAMIC',
                                   valueType: 'SIMPLE',
@@ -492,11 +516,16 @@ export default {
                                 allowEmpty: true,
                                 convertToCodeItemText: true,
                                 caption: '文本(动态)',
+                                contentHeight: 32,
+                                height: 32,
                                 itemStyle: 'DEFAULT',
                                 itemType: 'FIELD',
                                 layoutPos: {
                                   colMD: 24,
+                                  height: 32,
+                                  heightMode: 'PX',
                                   layout: 'TABLE_24COL',
+                                  valignSelf: 'MIDDLE',
                                 },
                                 id: 'state',
                               },
@@ -536,7 +565,6 @@ export default {
                                 layoutPos: {
                                   colMD: 24,
                                   layout: 'TABLE_24COL',
-                                  spacingBottom: 'OUTERSMALL',
                                 },
                                 showCaption: true,
                                 id: 'static_text2',
@@ -547,6 +575,7 @@ export default {
                                   renderMode: 'TEXT_DYNAMIC',
                                   valign: 'MIDDLE',
                                   wrapMode: 'NOWRAP',
+                                  editorHeight: 32,
                                   editorType: 'SPAN',
                                   predefinedType: 'FIELD_TEXT_DYNAMIC',
                                   valueType: 'SIMPLE',
@@ -557,11 +586,16 @@ export default {
                                 viewFieldName: 'end_at',
                                 allowEmpty: true,
                                 caption: '文本(动态)',
+                                contentHeight: 32,
+                                height: 32,
                                 itemStyle: 'DEFAULT',
                                 itemType: 'FIELD',
                                 layoutPos: {
                                   colMD: 24,
+                                  height: 32,
+                                  heightMode: 'PX',
                                   layout: 'TABLE_24COL',
+                                  valignSelf: 'MIDDLE',
                                 },
                                 id: 'end_at',
                               },
@@ -632,7 +666,10 @@ export default {
         {
           idAppDEFieldId: 'id',
           leafFlagAppDEFieldId: 'is_leaf',
+          moveAppDEActionId: 'move_order',
           appDEDataSetId: 'fetch_top',
+          sortDir: 'ASC',
+          sortAppDEFieldId: 'sequence',
           textAppDEFieldId: 'title',
           nodeType: 'top_node',
           appDataEntityId: 'plmweb.work_item',
@@ -817,12 +854,35 @@ export default {
           ],
           detreeNodeRVs: [
             {
-              refAppViewId: 'plmweb.work_item_main_view',
+              navigateContexts: [
+                {
+                  key: 'WORK_ITEM_TYPE_ID',
+                  value: 'work_item_type_id',
+                  name: 'WORK_ITEM_TYPE_ID',
+                  id: 'work_item_type_id',
+                },
+                {
+                  key: 'SRFDATATYPE',
+                  value: 'work_item_type_id',
+                  name: 'SRFDATATYPE',
+                  id: 'srfdatatype',
+                },
+              ],
+              navigateParams: [
+                {
+                  key: 'srfdatatype',
+                  value: 'work_item_type_id',
+                  id: 'srfdatatype',
+                },
+              ],
+              refAppViewId: 'plmweb.work_item_dyna_main_view',
               id: 'editdata',
             },
           ],
           treeNodeType: 'DE',
           hasDETreeNodeRSs: true,
+          allowDrag: true,
+          allowOrder: true,
           enableEditData: true,
           enableNewData: true,
           enableRemoveData: true,
@@ -978,7 +1038,6 @@ export default {
                                 layoutPos: {
                                   colMD: 24,
                                   layout: 'TABLE_24COL',
-                                  spacingBottom: 'OUTERSMALL',
                                 },
                                 showCaption: true,
                                 id: 'static_text1',
@@ -991,6 +1050,7 @@ export default {
                                   wrapMode: 'NOWRAP',
                                   appCodeListId:
                                     'plmweb.projmgmt__work_item_state',
+                                  editorHeight: 32,
                                   editorType: 'SPAN',
                                   predefinedType: 'FIELD_TEXT_DYNAMIC',
                                   valueType: 'SIMPLE',
@@ -1001,11 +1061,16 @@ export default {
                                 allowEmpty: true,
                                 convertToCodeItemText: true,
                                 caption: '文本(动态)',
+                                contentHeight: 32,
+                                height: 32,
                                 itemStyle: 'DEFAULT',
                                 itemType: 'FIELD',
                                 layoutPos: {
                                   colMD: 24,
+                                  height: 32,
+                                  heightMode: 'PX',
                                   layout: 'TABLE_24COL',
+                                  valignSelf: 'MIDDLE',
                                 },
                                 id: 'state',
                               },
@@ -1045,7 +1110,6 @@ export default {
                                 layoutPos: {
                                   colMD: 24,
                                   layout: 'TABLE_24COL',
-                                  spacingBottom: 'OUTERSMALL',
                                 },
                                 showCaption: true,
                                 id: 'static_text2',
@@ -1056,6 +1120,7 @@ export default {
                                   renderMode: 'TEXT_DYNAMIC',
                                   valign: 'MIDDLE',
                                   wrapMode: 'NOWRAP',
+                                  editorHeight: 32,
                                   editorType: 'SPAN',
                                   predefinedType: 'FIELD_TEXT_DYNAMIC',
                                   valueType: 'SIMPLE',
@@ -1066,11 +1131,16 @@ export default {
                                 viewFieldName: 'end_at',
                                 allowEmpty: true,
                                 caption: '文本(动态)',
+                                contentHeight: 32,
+                                height: 32,
                                 itemStyle: 'DEFAULT',
                                 itemType: 'FIELD',
                                 layoutPos: {
                                   colMD: 24,
+                                  height: 32,
+                                  heightMode: 'PX',
                                   layout: 'TABLE_24COL',
+                                  valignSelf: 'MIDDLE',
                                 },
                                 id: 'end_at',
                               },
@@ -1156,7 +1226,7 @@ export default {
             id: '新建数据',
           },
           builtinLogic: true,
-          id: 'top_node_newdata',
+          id: 'node_newdata',
         },
         {
           logicTrigger: 'CUSTOM',
@@ -1164,13 +1234,55 @@ export default {
           builtinAppUILogic: {
             openDataAppView: {
               openMode: 'INDEXVIEWTAB_POPUPMODAL',
-              refAppViewId: 'plmweb.work_item_main_view',
+              navigateContexts: [
+                {
+                  key: 'WORK_ITEM_TYPE_ID',
+                  value: 'work_item_type_id',
+                  name: 'WORK_ITEM_TYPE_ID',
+                  id: 'work_item_type_id',
+                },
+                {
+                  key: 'SRFDATATYPE',
+                  value: 'work_item_type_id',
+                  name: 'SRFDATATYPE',
+                  id: 'srfdatatype',
+                },
+              ],
+              navigateParams: [
+                {
+                  key: 'srfdatatype',
+                  value: 'work_item_type_id',
+                  id: 'srfdatatype',
+                },
+              ],
+              refAppViewId: 'plmweb.work_item_dyna_main_view',
             },
             editMode: true,
             appUILogicRefViews: [
               {
                 openMode: 'INDEXVIEWTAB_POPUPMODAL',
-                refAppViewId: 'plmweb.work_item_main_view',
+                navigateContexts: [
+                  {
+                    key: 'WORK_ITEM_TYPE_ID',
+                    value: 'work_item_type_id',
+                    name: 'WORK_ITEM_TYPE_ID',
+                    id: 'work_item_type_id',
+                  },
+                  {
+                    key: 'SRFDATATYPE',
+                    value: 'work_item_type_id',
+                    name: 'SRFDATATYPE',
+                    id: 'srfdatatype',
+                  },
+                ],
+                navigateParams: [
+                  {
+                    key: 'srfdatatype',
+                    value: 'work_item_type_id',
+                    id: 'srfdatatype',
+                  },
+                ],
+                refAppViewId: 'plmweb.work_item_dyna_main_view',
               },
             ],
             builtinLogic: true,
@@ -1179,7 +1291,7 @@ export default {
             id: '打开数据',
           },
           builtinLogic: true,
-          id: 'top_node_opendata',
+          id: 'node_opendata',
         },
         {
           logicTrigger: 'CUSTOM',
@@ -1192,7 +1304,7 @@ export default {
             id: '新建数据',
           },
           builtinLogic: true,
-          id: 'node_newdata',
+          id: 'top_node_newdata',
         },
         {
           logicTrigger: 'CUSTOM',
@@ -1200,13 +1312,55 @@ export default {
           builtinAppUILogic: {
             openDataAppView: {
               openMode: 'INDEXVIEWTAB_POPUPMODAL',
-              refAppViewId: 'plmweb.work_item_main_view',
+              navigateContexts: [
+                {
+                  key: 'WORK_ITEM_TYPE_ID',
+                  value: 'work_item_type_id',
+                  name: 'WORK_ITEM_TYPE_ID',
+                  id: 'work_item_type_id',
+                },
+                {
+                  key: 'SRFDATATYPE',
+                  value: 'work_item_type_id',
+                  name: 'SRFDATATYPE',
+                  id: 'srfdatatype',
+                },
+              ],
+              navigateParams: [
+                {
+                  key: 'srfdatatype',
+                  value: 'work_item_type_id',
+                  id: 'srfdatatype',
+                },
+              ],
+              refAppViewId: 'plmweb.work_item_dyna_main_view',
             },
             editMode: true,
             appUILogicRefViews: [
               {
                 openMode: 'INDEXVIEWTAB_POPUPMODAL',
-                refAppViewId: 'plmweb.work_item_main_view',
+                navigateContexts: [
+                  {
+                    key: 'WORK_ITEM_TYPE_ID',
+                    value: 'work_item_type_id',
+                    name: 'WORK_ITEM_TYPE_ID',
+                    id: 'work_item_type_id',
+                  },
+                  {
+                    key: 'SRFDATATYPE',
+                    value: 'work_item_type_id',
+                    name: 'SRFDATATYPE',
+                    id: 'srfdatatype',
+                  },
+                ],
+                navigateParams: [
+                  {
+                    key: 'srfdatatype',
+                    value: 'work_item_type_id',
+                    id: 'srfdatatype',
+                  },
+                ],
+                refAppViewId: 'plmweb.work_item_dyna_main_view',
               },
             ],
             builtinLogic: true,
@@ -1215,58 +1369,10 @@ export default {
             id: '打开数据',
           },
           builtinLogic: true,
-          id: 'node_opendata',
+          id: 'top_node_opendata',
         },
       ],
       controls: [
-        {
-          detoolbarItems: [
-            {
-              actionLevel: 100,
-              noPrivDisplayMode: 2,
-              uiactionId: 'new_waterfall_plan@work_item',
-              uiactionTarget: 'SINGLEDATA',
-              valid: true,
-              caption: '新建计划',
-              itemType: 'DEUIACTION',
-              sysImage: {
-                cssClass: 'add',
-              },
-              tooltip: '新建计划',
-              showCaption: true,
-              showIcon: true,
-              id: 'deuiaction1',
-            },
-            {
-              actionLevel: 100,
-              noPrivDisplayMode: 2,
-              uiactionId: 'remove_waterfall_plan@work_item',
-              uiactionTarget: 'SINGLEKEY',
-              valid: true,
-              caption: '删除计划',
-              itemType: 'DEUIACTION',
-              sysImage: {
-                cssClass: 'fa fa-trash-o',
-                glyph: 'xf014@FontAwesome',
-              },
-              tooltip: '删除计划',
-              showCaption: true,
-              showIcon: true,
-              id: 'deuiaction2',
-            },
-          ],
-          codeName: 'gantt_view_top_node_cm',
-          controlType: 'CONTEXTMENU',
-          logicName: '甘特图节点上下文菜单',
-          appDataEntityId: 'plmweb.work_item',
-          controlParam: {
-            id: 'top_node_cm',
-          },
-          modelId: '0a34a6f6b626c24922b75f3d9f736eb8',
-          modelType: 'PSDETOOLBAR',
-          name: 'top_node_cm',
-          id: 'gantt_view_top_node_cm',
-        },
         {
           detoolbarItems: [
             {
@@ -1314,6 +1420,54 @@ export default {
           modelType: 'PSDETOOLBAR',
           name: 'node_cm',
           id: 'gantt_view_node_cm',
+        },
+        {
+          detoolbarItems: [
+            {
+              actionLevel: 100,
+              noPrivDisplayMode: 2,
+              uiactionId: 'new_waterfall_plan@work_item',
+              uiactionTarget: 'SINGLEDATA',
+              valid: true,
+              caption: '新建计划',
+              itemType: 'DEUIACTION',
+              sysImage: {
+                cssClass: 'add',
+              },
+              tooltip: '新建计划',
+              showCaption: true,
+              showIcon: true,
+              id: 'deuiaction1',
+            },
+            {
+              actionLevel: 100,
+              noPrivDisplayMode: 2,
+              uiactionId: 'remove_waterfall_plan@work_item',
+              uiactionTarget: 'SINGLEKEY',
+              valid: true,
+              caption: '删除计划',
+              itemType: 'DEUIACTION',
+              sysImage: {
+                cssClass: 'fa fa-trash-o',
+                glyph: 'xf014@FontAwesome',
+              },
+              tooltip: '删除计划',
+              showCaption: true,
+              showIcon: true,
+              id: 'deuiaction2',
+            },
+          ],
+          codeName: 'gantt_view_top_node_cm',
+          controlType: 'CONTEXTMENU',
+          logicName: '甘特图节点上下文菜单',
+          appDataEntityId: 'plmweb.work_item',
+          controlParam: {
+            id: 'top_node_cm',
+          },
+          modelId: '0a34a6f6b626c24922b75f3d9f736eb8',
+          modelType: 'PSDETOOLBAR',
+          name: 'top_node_cm',
+          id: 'gantt_view_top_node_cm',
         },
       ],
       codeName: 'gantt_view_gantt',

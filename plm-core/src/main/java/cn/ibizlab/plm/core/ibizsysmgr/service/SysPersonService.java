@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import com.alibaba.fastjson.JSONObject;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.ibizsysmgr.domain.SysPerson;
 import cn.ibizlab.plm.core.ibizsysmgr.filter.SysPersonSearchContext;
 
@@ -136,7 +137,7 @@ public interface SysPersonService{
     * @param et
     * @return
     */
-    Integer checkKey(SysPerson et);
+    CheckKeyStatus checkKey(SysPerson et);
 
     /**
     * 保存

@@ -93,11 +93,19 @@ public class WorkItemTypeDTO extends DTOBase implements Serializable {
     private String subType;
 
     /**
+     * 原始状态
+     */
+    @JsonProperty("orgin_state")
+    @JSONField(name = "orgin_state")
+    @ApiModelProperty(value = "原始状态", position = 7)
+    private String orginState;
+
+    /**
      * 建立人
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 7)
+    @ApiModelProperty(value = "建立人", position = 8)
     private String createMan;
 
     /**
@@ -106,7 +114,7 @@ public class WorkItemTypeDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 8)
+    @ApiModelProperty(value = "建立时间", position = 9)
     private Date createTime;
 
     /**
@@ -114,7 +122,7 @@ public class WorkItemTypeDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 9)
+    @ApiModelProperty(value = "标识", position = 10)
     private String id;
 
     /**
@@ -122,7 +130,7 @@ public class WorkItemTypeDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 10)
+    @ApiModelProperty(value = "名称", position = 11)
     private String name;
 
     /**
@@ -130,7 +138,7 @@ public class WorkItemTypeDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("project_id")
     @JSONField(name = "project_id")
-    @ApiModelProperty(value = "项目标识", position = 11)
+    @ApiModelProperty(value = "项目标识", position = 12)
     private String projectId;
 
     /**
@@ -138,7 +146,7 @@ public class WorkItemTypeDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 12)
+    @ApiModelProperty(value = "更新人", position = 13)
     private String updateMan;
 
     /**
@@ -147,7 +155,7 @@ public class WorkItemTypeDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 13)
+    @ApiModelProperty(value = "更新时间", position = 14)
     private Date updateTime;
 
 
@@ -211,6 +219,15 @@ public class WorkItemTypeDTO extends DTOBase implements Serializable {
     public WorkItemTypeDTO setSubType(String subType) {
         this.subType = subType;
         this.modify("sub_type", subType);
+        return this;
+    }
+
+    /**
+     * 设置 [原始状态]
+     */
+    public WorkItemTypeDTO setOrginState(String orginState) {
+        this.orginState = orginState;
+        this.modify("orgin_state", orginState);
         return this;
     }
 

@@ -472,7 +472,6 @@ export default {
                 colMD: 3,
                 layout: 'TABLE_24COL',
               },
-              showCaption: true,
               id: 'n_test_library_id_eq',
             },
           ],

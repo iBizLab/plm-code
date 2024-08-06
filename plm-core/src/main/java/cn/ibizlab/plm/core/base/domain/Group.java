@@ -40,6 +40,16 @@ public class Group extends EntityMP implements Serializable
 {
 
     /**
+    * 可见范围
+    */
+    @TableField(value = "visibility")
+    @DEField(name = "visibility" , dict = "visibility")
+    @JSONField(name = "visibility")
+    @JsonProperty("visibility")
+    @ApiModelProperty(value = "visibility", notes = "可见范围")
+    private String visibility;
+
+    /**
     * 序号
     */
     @TableField(value = "sequence")
@@ -161,6 +171,15 @@ public class Group extends EntityMP implements Serializable
     @JSONField(serialize = false)
     @ApiModelProperty(value = "section", notes = "分组")
     private Section section;
+
+    /**
+    * 设置 [可见范围]
+    */
+    public Group setVisibility(String visibility) {
+        this.visibility = visibility;
+        this.modify("visibility", visibility);
+        return this;
+    }
 
     /**
     * 设置 [序号]

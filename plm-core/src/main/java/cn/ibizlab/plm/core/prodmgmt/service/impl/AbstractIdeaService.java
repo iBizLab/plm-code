@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.prodmgmt.domain.Idea;
@@ -169,15 +170,15 @@ public abstract class AbstractIdeaService extends ServiceImpl<IdeaMapper,Idea> i
         return et;
     }
 	
-    public Integer checkKey(Idea et) {
+    public CheckKeyStatus checkKey(Idea et) {
         fillParentData(et);
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Idea>lambdaQuery().eq(Idea::getId, et.getId()))>0)?1:0;
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Idea>lambdaQuery().eq(Idea::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(Idea et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -261,6 +262,28 @@ public abstract class AbstractIdeaService extends ServiceImpl<IdeaMapper,Idea> i
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("IDENTIFIER,DESC");
         List<Idea> list = baseMapper.listBaselineChooseIdea(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Idea> fetchBiDetail(IdeaSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Idea> pages=baseMapper.searchBiDetail(context.getPages(),context,context.getSelectCond());
+        List<Idea> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Idea> listBiDetail(IdeaSearchContext context) {
+        List<Idea> list = baseMapper.listBiDetail(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Idea> fetchBiSearch(IdeaSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Idea> pages=baseMapper.searchBiSearch(context.getPages(),context,context.getSelectCond());
+        List<Idea> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Idea> listBiSearch(IdeaSearchContext context) {
+        List<Idea> list = baseMapper.listBiSearch(context,context.getSelectCond());
         return list;
    }
 	
@@ -419,6 +442,17 @@ public abstract class AbstractIdeaService extends ServiceImpl<IdeaMapper,Idea> i
         return list;
    }
 	
+   public Page<Idea> fetchReader(IdeaSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Idea> pages=baseMapper.searchReader(context.getPages(),context,context.getSelectCond());
+        List<Idea> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Idea> listReader(IdeaSearchContext context) {
+        List<Idea> list = baseMapper.listReader(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<Idea> fetchRecentIdea(IdeaSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("SHOW_IDENTIFIER,DESC");
@@ -445,6 +479,10 @@ public abstract class AbstractIdeaService extends ServiceImpl<IdeaMapper,Idea> i
         return list;	
 	}
 
+	public List<Idea> findByCategory(Category category){
+        List<Idea> list = findByCategoryId(Arrays.asList(category.getId()));
+		return list;
+	}
 	public boolean removeByCategoryId(String categoryId){
         return this.remove(Wrappers.<Idea>lambdaQuery().eq(Idea::getCategoryId,categoryId));
 	}
@@ -455,8 +493,8 @@ public abstract class AbstractIdeaService extends ServiceImpl<IdeaMapper,Idea> i
 	public boolean saveByCategory(Category category, List<Idea> list){
         if(list==null)
             return true;
-        Map<String,Idea> before = findByCategoryId(category.getId()).stream().collect(Collectors.toMap(Idea::getId,e->e));
 
+        Map<String,Idea> before = findByCategory(category).stream().collect(Collectors.toMap(Idea::getId,e->e));
         List<Idea> update = new ArrayList<>();
         List<Idea> create = new ArrayList<>();
 
@@ -491,6 +529,10 @@ public abstract class AbstractIdeaService extends ServiceImpl<IdeaMapper,Idea> i
         return list;	
 	}
 
+	public List<Idea> findByProduct(Product product){
+        List<Idea> list = findByProductId(Arrays.asList(product.getId()));
+		return list;
+	}
 	public boolean removeByProductId(String productId){
         return this.remove(Wrappers.<Idea>lambdaQuery().eq(Idea::getProductId,productId));
 	}
@@ -501,8 +543,8 @@ public abstract class AbstractIdeaService extends ServiceImpl<IdeaMapper,Idea> i
 	public boolean saveByProduct(Product product, List<Idea> list){
         if(list==null)
             return true;
-        Map<String,Idea> before = findByProductId(product.getId()).stream().collect(Collectors.toMap(Idea::getId,e->e));
 
+        Map<String,Idea> before = findByProduct(product).stream().collect(Collectors.toMap(Idea::getId,e->e));
         List<Idea> update = new ArrayList<>();
         List<Idea> create = new ArrayList<>();
 
@@ -537,6 +579,10 @@ public abstract class AbstractIdeaService extends ServiceImpl<IdeaMapper,Idea> i
         return list;	
 	}
 
+	public List<Idea> findByUser(User user){
+        List<Idea> list = findByAssigneeId(Arrays.asList(user.getId()));
+		return list;
+	}
 	public boolean removeByAssigneeId(String assigneeId){
         return this.remove(Wrappers.<Idea>lambdaQuery().eq(Idea::getAssigneeId,assigneeId));
 	}
@@ -547,8 +593,8 @@ public abstract class AbstractIdeaService extends ServiceImpl<IdeaMapper,Idea> i
 	public boolean saveByUser(User user, List<Idea> list){
         if(list==null)
             return true;
-        Map<String,Idea> before = findByAssigneeId(user.getId()).stream().collect(Collectors.toMap(Idea::getId,e->e));
 
+        Map<String,Idea> before = findByUser(user).stream().collect(Collectors.toMap(Idea::getId,e->e));
         List<Idea> update = new ArrayList<>();
         List<Idea> create = new ArrayList<>();
 
@@ -574,17 +620,28 @@ public abstract class AbstractIdeaService extends ServiceImpl<IdeaMapper,Idea> i
 	}
 	@Override
     public List<Attention> getAttentions(Idea et) {
-        List<Attention> list = attentionService.findByOwnerId(et.getId());
+        List<Attention> list = attentionService.findByIdea(et);
         et.setAttentions(list);
         return list;
     }
 	
 	@Override
     public List<Attachment> getAttachments(Idea et) {
-        List<Attachment> list = attachmentService.findByOwnerId(et.getId());
+        List<Attachment> list = attachmentService.findByIdea(et);
         et.setAttachments(list);
         return list;
     }
+	
+   public Page<Idea> fetchView(IdeaSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Idea> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<Idea> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Idea> listView(IdeaSearchContext context) {
+        List<Idea> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
 	
 
     public void fillParentData(Idea et) {

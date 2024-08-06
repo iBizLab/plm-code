@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.projmgmt.domain.Board;
 import cn.ibizlab.plm.core.projmgmt.filter.BoardSearchContext;
 import cn.ibizlab.plm.core.projmgmt.domain.Project;
@@ -141,7 +142,7 @@ public interface BoardService extends IService<Board> {
     * @param et
     * @return
     */
-    Integer checkKey(Board et);
+    CheckKeyStatus checkKey(Board et);
 
     /**
     * 保存
@@ -226,14 +227,37 @@ public interface BoardService extends IService<Board> {
     List<Board> listCurProjectBoard(BoardSearchContext context);
 
     /**
+    * fetchReader
+    * 
+    * @param context
+    * @return
+    */
+    Page<Board> fetchReader(BoardSearchContext context);
+
+    /**
+    * listReader
+    * 
+    * @param context
+    * @return
+    */
+    List<Board> listReader(BoardSearchContext context);
+
+    /**
     * findByProjectId
     * @param projectIds
     * @return
     */
     List<Board> findByProjectId(List<String> projectIds);
     default List<Board> findByProjectId(String projectId){
-        return findByProjectId(Arrays.asList(projectId));
+        return findByProject(new Project().setId(projectId));
     }
+
+    /**
+    * findByProject
+    * @param project
+    * @return
+    */
+    List<Board> findByProject(Project project);
 
     /**
     * removeByProjectId
@@ -266,6 +290,22 @@ public interface BoardService extends IService<Board> {
     * @return
     */
     boolean saveByProject(Project project, List<Board> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Board> fetchView(BoardSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Board> listView(BoardSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Board> list) {

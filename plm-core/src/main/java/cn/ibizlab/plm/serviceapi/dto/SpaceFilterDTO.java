@@ -39,11 +39,19 @@ public class SpaceFilterDTO extends FilterBase implements Serializable {
 	private String visibilityEQ;
 
     /**
+     * 是否开启共享EQ
+     */
+    @JsonProperty("n_is_shared_eq")
+    @JSONField(name = "n_is_shared_eq")
+    @ApiModelProperty(value = "是否开启共享EQ", position = 20)
+	private String isSharedEQ;
+
+    /**
      * 所属EQ
      */
     @JsonProperty("n_scope_type_eq")
     @JSONField(name = "n_scope_type_eq")
-    @ApiModelProperty(value = "所属EQ", position = 70)
+    @ApiModelProperty(value = "所属EQ", position = 80)
 	private String scopeTypeEQ;
 
     /**
@@ -51,7 +59,7 @@ public class SpaceFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_scope_id_eq")
     @JSONField(name = "n_scope_id_eq")
-    @ApiModelProperty(value = "所属对象EQ", position = 80)
+    @ApiModelProperty(value = "所属对象EQ", position = 90)
 	private String scopeIdEQ;
 
     /**
@@ -59,7 +67,7 @@ public class SpaceFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 100)
+    @ApiModelProperty(value = "标识EQ", position = 110)
 	private String idEQ;
 
     /**
@@ -67,7 +75,7 @@ public class SpaceFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "空间名称LIKE", position = 110)
+    @ApiModelProperty(value = "空间名称LIKE", position = 120)
 	private String nameLIKE;
 
     /**
@@ -75,7 +83,7 @@ public class SpaceFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_category_id_eq")
     @JSONField(name = "n_category_id_eq")
-    @ApiModelProperty(value = "分类EQ", position = 160)
+    @ApiModelProperty(value = "分类EQ", position = 170)
 	private String categoryIdEQ;
 
     /**
@@ -83,7 +91,7 @@ public class SpaceFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_category_name_eq")
     @JSONField(name = "n_category_name_eq")
-    @ApiModelProperty(value = "分类EQ", position = 170)
+    @ApiModelProperty(value = "分类EQ", position = 180)
 	private String categoryNameEQ;
 
     /**
@@ -91,7 +99,7 @@ public class SpaceFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_category_name_like")
     @JSONField(name = "n_category_name_like")
-    @ApiModelProperty(value = "分类LIKE", position = 171)
+    @ApiModelProperty(value = "分类LIKE", position = 181)
 	private String categoryNameLIKE;
 
 

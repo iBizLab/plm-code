@@ -80,7 +80,7 @@ public class Ticket extends EntityMP implements Serializable
     * 类型
     */
     @TableField(value = "type")
-    @DEField(name = "type" , dict = "product_ticket_type")
+    @DEField(name = "type" , dict = "base_ticket_type")
     @JSONField(name = "type")
     @JsonProperty("type")
     @ApiModelProperty(value = "type", notes = "类型")
@@ -171,7 +171,7 @@ public class Ticket extends EntityMP implements Serializable
     * 标签
     */
     @TableField(value = "tags")
-    @DEField(name = "tags")
+    @DEField(name = "tags" , dict = "product_tag")
     @JSONField(name = "tags")
     @JsonProperty("tags")
     @ApiModelProperty(value = "tags", notes = "标签")
@@ -201,7 +201,7 @@ public class Ticket extends EntityMP implements Serializable
     * 提交人标识
     */
     @TableField(value = "submitter_id")
-    @DEField(name = "submitter_id")
+    @DEField(name = "submitter_id" , dict = "SysOperator")
     @JSONField(name = "submitter_id")
     @JsonProperty("submitter_id")
     @ApiModelProperty(value = "submitter_id", notes = "提交人标识")
@@ -256,6 +256,16 @@ public class Ticket extends EntityMP implements Serializable
     @JsonProperty("attentions")
     @ApiModelProperty(value = "attentions", notes = "关注")
     private List<Attention> attentions;
+
+    /**
+    * 工单数
+    */
+    @TableField(value = "rep_num" , exist = false)
+    @DEField(name = "rep_num")
+    @JSONField(name = "rep_num")
+    @JsonProperty("rep_num")
+    @ApiModelProperty(value = "rep_num", notes = "工单数")
+    private String repNum;
 
     /**
     * 关注人
@@ -586,6 +596,15 @@ public class Ticket extends EntityMP implements Serializable
     public Ticket setAttentions(List<Attention> attentions) {
         this.attentions = attentions;
         this.modify("attentions", attentions);
+        return this;
+    }
+
+    /**
+    * 设置 [工单数]
+    */
+    public Ticket setRepNum(String repNum) {
+        this.repNum = repNum;
+        this.modify("rep_num", repNum);
         return this;
     }
 

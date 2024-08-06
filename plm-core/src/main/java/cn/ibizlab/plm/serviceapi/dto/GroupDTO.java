@@ -37,11 +37,19 @@ public class GroupDTO extends DTOBase implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
+     * 可见范围
+     */
+    @JsonProperty("visibility")
+    @JSONField(name = "visibility")
+    @ApiModelProperty(value = "可见范围", position = 0)
+    private String visibility;
+
+    /**
      * 序号
      */
     @JsonProperty("sequence")
     @JSONField(name = "sequence")
-    @ApiModelProperty(value = "序号", position = 0)
+    @ApiModelProperty(value = "序号", position = 1)
     private BigDecimal sequence;
 
     /**
@@ -49,7 +57,7 @@ public class GroupDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("description")
     @JSONField(name = "description")
-    @ApiModelProperty(value = "描述", position = 1)
+    @ApiModelProperty(value = "描述", position = 2)
     private String description;
 
     /**
@@ -57,7 +65,7 @@ public class GroupDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("avatar")
     @JSONField(name = "avatar")
-    @ApiModelProperty(value = "团队头像", position = 2)
+    @ApiModelProperty(value = "团队头像", position = 3)
     private String avatar;
 
     /**
@@ -65,7 +73,7 @@ public class GroupDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 3)
+    @ApiModelProperty(value = "建立人", position = 4)
     private String createMan;
 
     /**
@@ -74,7 +82,7 @@ public class GroupDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 4)
+    @ApiModelProperty(value = "建立时间", position = 5)
     private Date createTime;
 
     /**
@@ -82,7 +90,7 @@ public class GroupDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 5)
+    @ApiModelProperty(value = "标识", position = 6)
     private String id;
 
     /**
@@ -90,7 +98,7 @@ public class GroupDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "团队名称", position = 6)
+    @ApiModelProperty(value = "团队名称", position = 7)
     private String name;
 
     /**
@@ -98,7 +106,7 @@ public class GroupDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("section_id")
     @JSONField(name = "section_id")
-    @ApiModelProperty(value = "分组标识", position = 7)
+    @ApiModelProperty(value = "分组标识", position = 8)
     private String sectionId;
 
     /**
@@ -106,7 +114,7 @@ public class GroupDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("section_name")
     @JSONField(name = "section_name")
-    @ApiModelProperty(value = "所属分组", position = 8)
+    @ApiModelProperty(value = "所属分组", position = 9)
     private String sectionName;
 
     /**
@@ -114,7 +122,7 @@ public class GroupDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 9)
+    @ApiModelProperty(value = "更新人", position = 10)
     private String updateMan;
 
     /**
@@ -123,9 +131,18 @@ public class GroupDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 10)
+    @ApiModelProperty(value = "更新时间", position = 11)
     private Date updateTime;
 
+
+    /**
+     * 设置 [可见范围]
+     */
+    public GroupDTO setVisibility(String visibility) {
+        this.visibility = visibility;
+        this.modify("visibility", visibility);
+        return this;
+    }
 
     /**
      * 设置 [序号]

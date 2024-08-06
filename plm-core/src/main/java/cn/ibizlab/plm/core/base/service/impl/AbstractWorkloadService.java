@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.base.domain.Workload;
@@ -122,14 +123,14 @@ public abstract class AbstractWorkloadService extends ServiceImpl<WorkloadMapper
         return et;
     }
 	
-    public Integer checkKey(Workload et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Workload>lambdaQuery().eq(Workload::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(Workload et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Workload>lambdaQuery().eq(Workload::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(Workload et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -164,6 +165,28 @@ public abstract class AbstractWorkloadService extends ServiceImpl<WorkloadMapper
 
    public List<Workload> listDefault(WorkloadSearchContext context) {
         List<Workload> list = baseMapper.listDefault(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Workload> fetchBiDetail(WorkloadSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Workload> pages=baseMapper.searchBiDetail(context.getPages(),context,context.getSelectCond());
+        List<Workload> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Workload> listBiDetail(WorkloadSearchContext context) {
+        List<Workload> list = baseMapper.listBiDetail(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Workload> fetchBiSearch(WorkloadSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Workload> pages=baseMapper.searchBiSearch(context.getPages(),context,context.getSelectCond());
+        List<Workload> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Workload> listBiSearch(WorkloadSearchContext context) {
+        List<Workload> list = baseMapper.listBiSearch(context,context.getSelectCond());
         return list;
    }
 	
@@ -315,6 +338,28 @@ public abstract class AbstractWorkloadService extends ServiceImpl<WorkloadMapper
         return list;
    }
 	
+   public Page<Workload> fetchUserGroupLink(WorkloadSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Workload> pages=baseMapper.searchUserGroupLink(context.getPages(),context,context.getSelectCond());
+        List<Workload> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Workload> listUserGroupLink(WorkloadSearchContext context) {
+        List<Workload> list = baseMapper.listUserGroupLink(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Workload> fetchUserGroupWorkload(WorkloadSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Workload> pages=baseMapper.searchUserGroupWorkload(context.getPages(),context,context.getSelectCond());
+        List<Workload> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Workload> listUserGroupWorkload(WorkloadSearchContext context) {
+        List<Workload> list = baseMapper.listUserGroupWorkload(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<Workload> fetchWorkItemWorkload(WorkloadSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Workload> pages=baseMapper.searchWorkItemWorkload(context.getPages(),context,context.getSelectCond());
         List<Workload> list = pages.getRecords();
@@ -331,6 +376,10 @@ public abstract class AbstractWorkloadService extends ServiceImpl<WorkloadMapper
         return list;	
 	}
 
+	public List<Workload> findByWorkloadType(WorkloadType workloadType){
+        List<Workload> list = findByTypeId(Arrays.asList(workloadType.getId()));
+		return list;
+	}
 	public boolean removeByTypeId(String typeId){
         return this.remove(Wrappers.<Workload>lambdaQuery().eq(Workload::getTypeId,typeId));
 	}
@@ -341,8 +390,8 @@ public abstract class AbstractWorkloadService extends ServiceImpl<WorkloadMapper
 	public boolean saveByWorkloadType(WorkloadType workloadType, List<Workload> list){
         if(list==null)
             return true;
-        Map<String,Workload> before = findByTypeId(workloadType.getId()).stream().collect(Collectors.toMap(Workload::getId,e->e));
 
+        Map<String,Workload> before = findByWorkloadType(workloadType).stream().collect(Collectors.toMap(Workload::getId,e->e));
         List<Workload> update = new ArrayList<>();
         List<Workload> create = new ArrayList<>();
 
@@ -371,6 +420,13 @@ public abstract class AbstractWorkloadService extends ServiceImpl<WorkloadMapper
         return list;	
 	}
 
+	public List<Workload> findByRelIdea(Idea idea){
+        List<Workload> list = this.baseMapper.selectList(Wrappers.<Workload>lambdaQuery()
+                        .eq(Workload::getPrincipalId, idea.getId())
+                        .eq(Workload::getOwnerType,"IDEA")
+                        .eq(Workload::getPrincipalType,"IDEA"));
+		return list;
+	}
 	public boolean removeByPrincipalId(String principalId){
         return this.remove(Wrappers.<Workload>lambdaQuery().eq(Workload::getPrincipalId,principalId));
 	}
@@ -381,13 +437,8 @@ public abstract class AbstractWorkloadService extends ServiceImpl<WorkloadMapper
 	public boolean saveByRelIdea(Idea idea, List<Workload> list){
         if(list==null)
             return true;
-        Map<String,Workload> before = this.baseMapper.selectList(Wrappers.<Workload>lambdaQuery()
-                        .eq(Workload::getPrincipalId, idea.getId())
-                        .eq(Workload::getOwnerType,"IDEA")
-                        .eq(Workload::getPrincipalType,"IDEA"))
-                        .stream()
-                        .collect(Collectors.toMap(Workload::getId,e->e));
 
+        Map<String,Workload> before = findByRelIdea(idea).stream().collect(Collectors.toMap(Workload::getId,e->e));
         List<Workload> update = new ArrayList<>();
         List<Workload> create = new ArrayList<>();
 
@@ -411,16 +462,18 @@ public abstract class AbstractWorkloadService extends ServiceImpl<WorkloadMapper
             return true;
 			
 	}
+	public List<Workload> findByRelTestCase(TestCase testCase){
+        List<Workload> list = this.baseMapper.selectList(Wrappers.<Workload>lambdaQuery()
+                        .eq(Workload::getPrincipalId, testCase.getId())
+                        .eq(Workload::getOwnerType,"TEST_CASE")
+                        .eq(Workload::getPrincipalType,"TEST_CASE"));
+		return list;
+	}
 	public boolean saveByRelTestCase(TestCase testCase, List<Workload> list){
         if(list==null)
             return true;
-        Map<String,Workload> before = this.baseMapper.selectList(Wrappers.<Workload>lambdaQuery()
-                        .eq(Workload::getPrincipalId, testCase.getId())
-                        .eq(Workload::getOwnerType,"TEST_CASE")
-                        .eq(Workload::getPrincipalType,"TEST_CASE"))
-                        .stream()
-                        .collect(Collectors.toMap(Workload::getId,e->e));
 
+        Map<String,Workload> before = findByRelTestCase(testCase).stream().collect(Collectors.toMap(Workload::getId,e->e));
         List<Workload> update = new ArrayList<>();
         List<Workload> create = new ArrayList<>();
 
@@ -444,16 +497,18 @@ public abstract class AbstractWorkloadService extends ServiceImpl<WorkloadMapper
             return true;
 			
 	}
+	public List<Workload> findByRelWorkItem(WorkItem workItem){
+        List<Workload> list = this.baseMapper.selectList(Wrappers.<Workload>lambdaQuery()
+                        .eq(Workload::getPrincipalId, workItem.getId())
+                        .eq(Workload::getOwnerType,"WORK_ITEM")
+                        .eq(Workload::getPrincipalType,"WORK_ITEM"));
+		return list;
+	}
 	public boolean saveByRelWorkItem(WorkItem workItem, List<Workload> list){
         if(list==null)
             return true;
-        Map<String,Workload> before = this.baseMapper.selectList(Wrappers.<Workload>lambdaQuery()
-                        .eq(Workload::getPrincipalId, workItem.getId())
-                        .eq(Workload::getOwnerType,"WORK_ITEM")
-                        .eq(Workload::getPrincipalType,"WORK_ITEM"))
-                        .stream()
-                        .collect(Collectors.toMap(Workload::getId,e->e));
 
+        Map<String,Workload> before = findByRelWorkItem(workItem).stream().collect(Collectors.toMap(Workload::getId,e->e));
         List<Workload> update = new ArrayList<>();
         List<Workload> create = new ArrayList<>();
 
@@ -477,6 +532,17 @@ public abstract class AbstractWorkloadService extends ServiceImpl<WorkloadMapper
             return true;
 			
 	}
+   public Page<Workload> fetchView(WorkloadSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Workload> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<Workload> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Workload> listView(WorkloadSearchContext context) {
+        List<Workload> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(Workload et) {
         if(Entities.WORKLOAD_TYPE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

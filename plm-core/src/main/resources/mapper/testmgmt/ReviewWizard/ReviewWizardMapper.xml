@@ -5,17 +5,20 @@
         <!--通过mybatis将查询结果注入到entity中,通过配置autoMapping="true"由mybatis自动处理映射关系 -->
     <resultMap id="ReviewWizardResultMap" type="cn.ibizlab.plm.core.testmgmt.domain.ReviewWizard" autoMapping="true">
 		<id property="id" column="id" /><!--主键字段映射-->
-		<result property="libraryIdentifier" column="library_identifier" />
-		<result property="submitterId" column="submitter_id" />
-		<result property="submitterName" column="submitter_name" />
-		<result property="showIdentifier" column="show_identifier" />
-		<result property="createMan" column="create_man" />
-		<result property="createTime" column="create_time" />
-		<result property="updateMan" column="update_man" />
-		<result property="updateTime" column="update_time" />
-		<result property="guidelineId" column="guideline_id" />
-		<result property="libraryName" column="library_name" />
-		<result property="libraryId" column="library_id" />
+		<result property="libraryIdentifier" column="library_identifier"/>
+		<result property="submitterId" column="submitter_id"/>
+		<result property="submitterName" column="submitter_name"/>
+		<result property="rule" column="rule" jdbcType="VARCHAR" typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler"/>
+		<result property="stage" column="stage" jdbcType="VARCHAR" typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler"/>
+		<result property="actionRule" column="action_rule" jdbcType="VARCHAR" typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler"/>
+		<result property="showIdentifier" column="show_identifier"/>
+		<result property="createMan" column="create_man"/>
+		<result property="createTime" column="create_time"/>
+		<result property="updateMan" column="update_man"/>
+		<result property="updateTime" column="update_time"/>
+		<result property="guidelineId" column="guideline_id"/>
+		<result property="libraryName" column="library_name"/>
+		<result property="libraryId" column="library_id"/>
         <association property="guideline" javaType="cn.ibizlab.plm.core.testmgmt.domain.Guideline" column="guideline_id" select="cn.ibizlab.plm.core.testmgmt.mapper.GuidelineMapper.selectById" fetchType="lazy"></association>
         <association property="library" javaType="cn.ibizlab.plm.core.testmgmt.domain.Library" column="library_id" select="cn.ibizlab.plm.core.testmgmt.mapper.LibraryMapper.selectById" fetchType="lazy"></association>
     </resultMap>
@@ -72,6 +75,15 @@
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
         
+    </select>
+
+    <select id="listView"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.ReviewWizardSearchContext"  resultMap="ReviewWizardResultMap">
+        select t1.*
+        from (
+            <include refid="view" />
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
     </select>
 
     <select id="findByGuidelineId" resultMap="ReviewWizardResultMap">

@@ -39,6 +39,30 @@ import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
 public class WorkItemSearchContext extends QueryWrapperContext<WorkItem> {
 
     /**
+     * 编号EQ
+     */
+    @JsonProperty("n_show_identifier_eq")
+    @JSONField(name = "n_show_identifier_eq")
+    @ApiModelProperty("编号EQ")
+    private String showIdentifierEQ;
+
+    /**
+     * 编号LIKE
+     */
+    @JsonProperty("n_show_identifier_like")
+    @JSONField(name = "n_show_identifier_like")
+    @ApiModelProperty("编号LIKE")
+    private String showIdentifierLIKE;
+
+    /**
+     * 编号EQ
+     */
+    @JsonProperty("n_identifier_eq")
+    @JSONField(name = "n_identifier_eq")
+    @ApiModelProperty("编号EQ")
+    private String identifierEQ;
+
+    /**
      * 编号LIKE
      */
     @JsonProperty("n_identifier_like")
@@ -85,6 +109,42 @@ public class WorkItemSearchContext extends QueryWrapperContext<WorkItem> {
     @JSONField(name = "n_is_deleted_in")
     @ApiModelProperty("是否已删除IN")
     private String isDeletedIN;
+
+    /**
+     * 开始时间GTANDEQ
+     */
+    @JsonProperty("n_start_at_gtandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_start_at_gtandeq" , format = "yyyy-MM-dd")
+    @ApiModelProperty("开始时间GTANDEQ")
+    private Date startAtGTANDEQ;
+
+    /**
+     * 开始时间LTANDEQ
+     */
+    @JsonProperty("n_start_at_ltandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_start_at_ltandeq" , format = "yyyy-MM-dd")
+    @ApiModelProperty("开始时间LTANDEQ")
+    private Date startAtLTANDEQ;
+
+    /**
+     * 截止时间GTANDEQ
+     */
+    @JsonProperty("n_end_at_gtandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_end_at_gtandeq" , format = "yyyy-MM-dd")
+    @ApiModelProperty("截止时间GTANDEQ")
+    private Date endAtGTANDEQ;
+
+    /**
+     * 截止时间LTANDEQ
+     */
+    @JsonProperty("n_end_at_ltandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_end_at_ltandeq" , format = "yyyy-MM-dd")
+    @ApiModelProperty("截止时间LTANDEQ")
+    private Date endAtLTANDEQ;
 
     /**
      * 状态EQ
@@ -239,14 +299,6 @@ public class WorkItemSearchContext extends QueryWrapperContext<WorkItem> {
     private String jobTypeEQ;
 
     /**
-     * 编号LIKE
-     */
-    @JsonProperty("n_show_identifier_like")
-    @JSONField(name = "n_show_identifier_like")
-    @ApiModelProperty("编号LIKE")
-    private String showIdentifierLIKE;
-
-    /**
      * 关注EXISTS
      */
     @JsonProperty("n_attentions_exists__n_owner_id_eq")
@@ -287,6 +339,22 @@ public class WorkItemSearchContext extends QueryWrapperContext<WorkItem> {
     private String attentionsNOTEXISTSuser_idEQ;
 
     /**
+     * 工作项状态类型EQ
+     */
+    @JsonProperty("n_state_type_eq")
+    @JSONField(name = "n_state_type_eq")
+    @ApiModelProperty("工作项状态类型EQ")
+    private String stateTypeEQ;
+
+    /**
+     * 工作项状态类型NOTEQ
+     */
+    @JsonProperty("n_state_type_noteq")
+    @JSONField(name = "n_state_type_noteq")
+    @ApiModelProperty("工作项状态类型NOTEQ")
+    private String stateTypeNOTEQ;
+
+    /**
      * 最近创建日期LTANDEQ
      */
     @JsonProperty("n_recent_create_days_ltandeq")
@@ -325,6 +393,14 @@ public class WorkItemSearchContext extends QueryWrapperContext<WorkItem> {
     @JSONField(name = "n_id_noteq")
     @ApiModelProperty("标识NOTEQ")
     private String idNOTEQ;
+
+    /**
+     * 标识NOTIN
+     */
+    @JsonProperty("n_id_notin")
+    @JSONField(name = "n_id_notin")
+    @ApiModelProperty("标识NOTIN")
+    private String idNOTIN;
 
     /**
      * 建立人EQ

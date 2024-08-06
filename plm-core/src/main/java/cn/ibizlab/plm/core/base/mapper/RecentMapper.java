@@ -309,6 +309,25 @@ public interface RecentMapper extends BaseMapper<Recent> {
     List<Recent> listRecentWorkItemBug(@Param("ctx") RecentSearchContext context, @Param("ew") Wrapper<Recent> wrapper);
 
     /**
+     * 数据集合recent_work_item_dependency分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Recent> searchRecentWorkItemDependency(IPage<Recent> page, @Param("ctx") RecentSearchContext context, @Param("ew") Wrapper<Recent> wrapper);
+    
+    /**
+     * 数据集合recent_work_item_dependency查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Recent> listRecentWorkItemDependency(@Param("ctx") RecentSearchContext context, @Param("ew") Wrapper<Recent> wrapper);
+
+    /**
      * 数据集合user分页查询
      * 
      * @param page
@@ -334,6 +353,25 @@ public interface RecentMapper extends BaseMapper<Recent> {
     * @return
     */
     List<Recent> findByOwnerId(@Param("ownerIds") List<String> ownerIds);
+
+    /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Recent> searchView(IPage<Recent> page, @Param("ctx") RecentSearchContext context, @Param("ew") Wrapper<Recent> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Recent> listView(@Param("ctx") RecentSearchContext context, @Param("ew") Wrapper<Recent> wrapper);
 
     /**
      * 主键查询

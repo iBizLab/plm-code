@@ -5,15 +5,15 @@
         <!--通过mybatis将查询结果注入到entity中,通过配置autoMapping="true"由mybatis自动处理映射关系 -->
     <resultMap id="ProductResultMap" type="cn.ibizlab.plm.core.prodmgmt.domain.Product" autoMapping="true">
 		<id property="id" column="id" /><!--主键字段映射-->
-		<result property="isArchived" column="is_archived" />
-		<result property="isDeleted" column="is_deleted" />
-		<result property="isFavorite" column="is_favorite" />
-		<result property="scopeType" column="scope_type" />
-		<result property="scopeId" column="scope_id" />
-		<result property="createMan" column="create_man" />
-		<result property="createTime" column="create_time" />
-		<result property="updateMan" column="update_man" />
-		<result property="updateTime" column="update_time" />
+		<result property="isArchived" column="is_archived"/>
+		<result property="isDeleted" column="is_deleted"/>
+		<result property="isFavorite" column="is_favorite"/>
+		<result property="scopeType" column="scope_type"/>
+		<result property="scopeId" column="scope_id"/>
+		<result property="createMan" column="create_man"/>
+		<result property="createTime" column="create_time"/>
+		<result property="updateMan" column="update_man"/>
+		<result property="updateTime" column="update_time"/>
     </resultMap>
 
     <select id="selectById"  resultMap="ProductResultMap">
@@ -55,6 +55,10 @@
 
     <sql id="archived" databaseId="mysql">
          <![CDATA[ SELECT t1.`COLOR`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`NAME`, t1.`SCOPE_ID`, t1.`SCOPE_TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VISIBILITY` FROM `PRODUCT` t1   ]]>  where  <![CDATA[ ( t1.`IS_ARCHIVED` = 1  AND  t1.`IS_DELETED` = 0 ) ]]> 
+    </sql>
+
+    <sql id="curProduct" databaseId="mysql">
+         <![CDATA[ SELECT t1.`COLOR`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`NAME`, t1.`SCOPE_ID`, t1.`SCOPE_TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VISIBILITY` FROM `PRODUCT` t1   ]]>  where  <![CDATA[ ( t1.`ID` = #{ctx.webcontext.product} ) ]]> 
     </sql>
 
     <sql id="deleted" databaseId="mysql">
@@ -156,6 +160,27 @@
         
     </select>
 
+    <select id="searchCurProduct"  parameterType="cn.ibizlab.plm.core.prodmgmt.filter.ProductSearchContext"  resultMap="ProductResultMap">
+        select t1.* 
+        from (
+            <include refid="curProduct"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listCurProduct"  parameterType="cn.ibizlab.plm.core.prodmgmt.filter.ProductSearchContext"  resultMap="ProductResultMap">
+        select t1.*
+        from (
+            <include refid="curProduct"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
     <select id="searchDeleted"  parameterType="cn.ibizlab.plm.core.prodmgmt.filter.ProductSearchContext"  resultMap="ProductResultMap">
         select t1.* 
         from (
@@ -202,8 +227,10 @@
         select t1.* 
         from (
             <include refid="favorite"/>
-                 union all 
+                 union
             <include refid="unfavorite"/>
+                 union
+            <include refid="curProduct"/>
         ) t1 
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
@@ -215,8 +242,10 @@
         select t1.*
         from (
             <include refid="favorite"/>
-                 union all
+                 union
             <include refid="unfavorite"/>
+                 union
+            <include refid="curProduct"/>
         ) t1
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
@@ -248,7 +277,7 @@
         select t1.* 
         from (
             <include refid="favoriteUser"/>
-                 union all 
+                 union
             <include refid="unfavoriteUser"/>
         ) t1 
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
@@ -261,7 +290,7 @@
         select t1.*
         from (
             <include refid="favoriteUser"/>
-                 union all
+                 union
             <include refid="unfavoriteUser"/>
         ) t1
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
@@ -273,7 +302,7 @@
         select t1.* 
         from (
             <include refid="reader"/>
-                 union all 
+                 union
             <include refid="public"/>
         ) t1 
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
@@ -286,7 +315,7 @@
         select t1.*
         from (
             <include refid="reader"/>
-                 union all
+                 union
             <include refid="public"/>
         ) t1
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
@@ -313,6 +342,15 @@
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
         
+    </select>
+
+    <select id="listView"  parameterType="cn.ibizlab.plm.core.prodmgmt.filter.ProductSearchContext"  resultMap="ProductResultMap">
+        select t1.*
+        from (
+            <include refid="view" />
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
     </select>
 
 

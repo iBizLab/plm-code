@@ -76,17 +76,17 @@ export default {
   appViewRefs: [
     {
       realOpenMode: 'POPUPMODAL',
-      realTitle: '编辑状态',
-      refAppViewId: 'plmweb.dictionary_data_state_edit_view',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
-    {
-      realOpenMode: 'POPUPMODAL',
       realTitle: '新建状态',
       refAppViewId: 'plmweb.dictionary_data_quick_create_view',
       name: 'NEWDATA',
       id: 'newdata',
+    },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '编辑状态',
+      refAppViewId: 'plmweb.dictionary_data_state_edit_view',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
   ],
   controls: [
@@ -95,6 +95,7 @@ export default {
       columnEnableFilter: 2,
       columnEnableLink: 2,
       groupMode: 'NONE',
+      orderValueAppDEFieldId: 'sequence',
       degridColumns: [
         {
           clconvertMode: 'NONE',
@@ -202,6 +203,7 @@ export default {
                 beforeItemType: 'NONE',
                 detailType: 'DEUIACTION',
                 uiactionId: 'ticket_remove@dictionary_data',
+                tooltip: '删除',
                 showIcon: true,
                 sysImage: {
                   cssClass: 'fa fa-trash-o',
@@ -237,12 +239,32 @@ export default {
           caption: '是否系统默认',
           codeName: 'is_system',
           columnType: 'DEFGRIDCOLUMN',
+          hideMode: 1,
           noPrivDisplayMode: 1,
           width: 100,
           widthUnit: 'PX',
           enableSort: true,
           hideDefault: true,
           id: 'is_system',
+        },
+        {
+          clconvertMode: 'NONE',
+          dataItemName: 'sequence',
+          excelCaption: '序号',
+          appDEFieldId: 'sequence',
+          valueType: 'SIMPLE',
+          aggMode: 'NONE',
+          align: 'LEFT',
+          caption: '序号',
+          codeName: 'sequence',
+          columnType: 'DEFGRIDCOLUMN',
+          hideMode: 1,
+          noPrivDisplayMode: 1,
+          width: 100,
+          widthUnit: 'PX',
+          enableSort: true,
+          hideDefault: true,
+          id: 'sequence',
         },
       ],
       degridDataItems: [
@@ -279,6 +301,12 @@ export default {
           valueType: 'SIMPLE',
           dataType: 9,
           id: 'is_system',
+        },
+        {
+          appDEFieldId: 'sequence',
+          valueType: 'SIMPLE',
+          dataType: 6,
+          id: 'sequence',
         },
         {
           appDEFieldId: 'id',
@@ -326,6 +354,11 @@ export default {
         appDEMethodId: 'fetch_default',
         appDataEntityId: 'plmweb.dictionary_data',
         id: 'fetch',
+      },
+      moveControlAction: {
+        appDEMethodId: 'move_order',
+        appDataEntityId: 'plmweb.dictionary_data',
+        id: 'move',
       },
       removeControlAction: {
         appDEMethodId: 'remove',

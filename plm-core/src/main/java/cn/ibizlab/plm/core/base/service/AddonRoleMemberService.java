@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.AddonRoleMember;
 import cn.ibizlab.plm.core.base.filter.AddonRoleMemberSearchContext;
 import cn.ibizlab.plm.core.base.domain.Addon;
@@ -138,7 +139,7 @@ public interface AddonRoleMemberService extends IService<AddonRoleMember> {
     * @param et
     * @return
     */
-    Integer checkKey(AddonRoleMember et);
+    CheckKeyStatus checkKey(AddonRoleMember et);
 
     /**
     * 保存
@@ -177,8 +178,15 @@ public interface AddonRoleMemberService extends IService<AddonRoleMember> {
     */
     List<AddonRoleMember> findByAddonId(List<String> addonIds);
     default List<AddonRoleMember> findByAddonId(String addonId){
-        return findByAddonId(Arrays.asList(addonId));
+        return findByAddon(new Addon().setId(addonId));
     }
+
+    /**
+    * findByAddon
+    * @param addon
+    * @return
+    */
+    List<AddonRoleMember> findByAddon(Addon addon);
 
     /**
     * removeByAddonId
@@ -211,6 +219,22 @@ public interface AddonRoleMemberService extends IService<AddonRoleMember> {
     * @return
     */
     boolean saveByAddon(Addon addon, List<AddonRoleMember> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<AddonRoleMember> fetchView(AddonRoleMemberSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<AddonRoleMember> listView(AddonRoleMemberSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<AddonRoleMember> list) {

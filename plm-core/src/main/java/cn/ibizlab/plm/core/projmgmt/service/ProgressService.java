@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.projmgmt.domain.Progress;
 import cn.ibizlab.plm.core.projmgmt.filter.ProgressSearchContext;
 import cn.ibizlab.plm.core.projmgmt.domain.Project;
@@ -138,7 +139,7 @@ public interface ProgressService extends IService<Progress> {
     * @param et
     * @return
     */
-    Integer checkKey(Progress et);
+    CheckKeyStatus checkKey(Progress et);
 
     /**
     * 保存
@@ -177,8 +178,15 @@ public interface ProgressService extends IService<Progress> {
     */
     List<Progress> findByProjectId(List<String> projectIds);
     default List<Progress> findByProjectId(String projectId){
-        return findByProjectId(Arrays.asList(projectId));
+        return findByProject(new Project().setId(projectId));
     }
+
+    /**
+    * findByProject
+    * @param project
+    * @return
+    */
+    List<Progress> findByProject(Project project);
 
     /**
     * removeByProjectId
@@ -211,6 +219,22 @@ public interface ProgressService extends IService<Progress> {
     * @return
     */
     boolean saveByProject(Project project, List<Progress> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Progress> fetchView(ProgressSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Progress> listView(ProgressSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Progress> list) {

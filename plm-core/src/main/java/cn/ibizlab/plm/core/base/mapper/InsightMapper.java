@@ -43,6 +43,25 @@ public interface InsightMapper extends BaseMapper<Insight> {
     List<Insight> listDefault(@Param("ctx") InsightSearchContext context, @Param("ew") Wrapper<Insight> wrapper);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Insight> searchView(IPage<Insight> page, @Param("ctx") InsightSearchContext context, @Param("ew") Wrapper<Insight> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Insight> listView(@Param("ctx") InsightSearchContext context, @Param("ew") Wrapper<Insight> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

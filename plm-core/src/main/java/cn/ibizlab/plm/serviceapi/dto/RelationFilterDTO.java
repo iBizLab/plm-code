@@ -31,11 +31,19 @@ import io.swagger.annotations.ApiModelProperty;
 public class RelationFilterDTO extends FilterBase implements Serializable {
 
     /**
+     * 重要程度EQ
+     */
+    @JsonProperty("n_level_eq")
+    @JSONField(name = "n_level_eq")
+    @ApiModelProperty(value = "重要程度EQ", position = 0)
+	private String levelEQ;
+
+    /**
      * 关联主体标识EQ
      */
     @JsonProperty("n_principal_id_eq")
     @JSONField(name = "n_principal_id_eq")
-    @ApiModelProperty(value = "关联主体标识EQ", position = 0)
+    @ApiModelProperty(value = "关联主体标识EQ", position = 10)
 	private String principalIdEQ;
 
     /**
@@ -43,7 +51,7 @@ public class RelationFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_principal_type_eq")
     @JSONField(name = "n_principal_type_eq")
-    @ApiModelProperty(value = "关联主体类型EQ", position = 10)
+    @ApiModelProperty(value = "关联主体类型EQ", position = 20)
 	private String principalTypeEQ;
 
     /**
@@ -51,7 +59,7 @@ public class RelationFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_target_type_eq")
     @JSONField(name = "n_target_type_eq")
-    @ApiModelProperty(value = "关联目标类型EQ", position = 30)
+    @ApiModelProperty(value = "关联目标类型EQ", position = 40)
 	private String targetTypeEQ;
 
     /**
@@ -59,7 +67,7 @@ public class RelationFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_target_id_eq")
     @JSONField(name = "n_target_id_eq")
-    @ApiModelProperty(value = "关联目标标识EQ", position = 40)
+    @ApiModelProperty(value = "关联目标标识EQ", position = 50)
 	private String targetIdEQ;
 
     /**
@@ -67,15 +75,23 @@ public class RelationFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_target_version_id_eq")
     @JSONField(name = "n_target_version_id_eq")
-    @ApiModelProperty(value = "目标对象版本标识EQ", position = 60)
+    @ApiModelProperty(value = "目标对象版本标识EQ", position = 70)
 	private String targetVersionIdEQ;
+
+    /**
+     * 前后置任务EQ
+     */
+    @JsonProperty("n_job_type_eq")
+    @JSONField(name = "n_job_type_eq")
+    @ApiModelProperty(value = "前后置任务EQ", position = 220)
+	private String jobTypeEQ;
 
     /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 200)
+    @ApiModelProperty(value = "标识EQ", position = 230)
 	private String idEQ;
 
     /**
@@ -83,7 +99,7 @@ public class RelationFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 210)
+    @ApiModelProperty(value = "名称LIKE", position = 240)
 	private String nameLIKE;
 
 

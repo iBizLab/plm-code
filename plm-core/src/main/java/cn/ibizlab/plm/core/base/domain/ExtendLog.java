@@ -97,6 +97,16 @@ public class ExtendLog extends EntityMP implements Serializable
     private String info;
 
     /**
+    * 调试日志信息
+    */
+    @TableField(value = "debug_info")
+    @DEField(name = "debug_info")
+    @JSONField(name = "debug_info")
+    @JsonProperty("debug_info")
+    @ApiModelProperty(value = "debug_info", notes = "调试日志信息")
+    private String debugInfo;
+
+    /**
     * 起始时间
     */
     @TableField(value = "start_at")
@@ -225,6 +235,15 @@ public class ExtendLog extends EntityMP implements Serializable
     public ExtendLog setInfo(String info) {
         this.info = info;
         this.modify("info", info);
+        return this;
+    }
+
+    /**
+    * 设置 [调试日志信息]
+    */
+    public ExtendLog setDebugInfo(String debugInfo) {
+        this.debugInfo = debugInfo;
+        this.modify("debug_info", debugInfo);
         return this;
     }
 

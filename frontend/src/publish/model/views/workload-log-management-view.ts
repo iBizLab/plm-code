@@ -371,7 +371,7 @@ export default {
             codeName: 'type_name',
             columnType: 'DEFGRIDCOLUMN',
             noPrivDisplayMode: 1,
-            width: 100,
+            width: 120,
             widthUnit: 'PX',
             enableSort: true,
             id: 'type_name',
@@ -407,7 +407,7 @@ export default {
             codeName: 'recent_parent_name',
             columnType: 'DEFGRIDCOLUMN',
             noPrivDisplayMode: 1,
-            width: 150,
+            width: 200,
             widthUnit: 'PX',
             enableSort: true,
             id: 'recent_parent_name',
@@ -726,7 +726,6 @@ export default {
                   colXS: 6,
                   layout: 'TABLE_24COL',
                 },
-                showCaption: true,
                 id: 'n_register_date_gtandeq',
               },
               {
@@ -756,7 +755,6 @@ export default {
                   colXS: 6,
                   layout: 'TABLE_24COL',
                 },
-                showCaption: true,
                 id: 'n_register_date_ltandeq',
               },
               {

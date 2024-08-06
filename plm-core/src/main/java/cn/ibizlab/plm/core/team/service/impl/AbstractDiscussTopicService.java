@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.team.domain.DiscussTopic;
@@ -110,14 +111,14 @@ public abstract class AbstractDiscussTopicService extends ServiceImpl<DiscussTop
         return et;
     }
 	
-    public Integer checkKey(DiscussTopic et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<DiscussTopic>lambdaQuery().eq(DiscussTopic::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(DiscussTopic et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<DiscussTopic>lambdaQuery().eq(DiscussTopic::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(DiscussTopic et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -298,10 +299,21 @@ public abstract class AbstractDiscussTopicService extends ServiceImpl<DiscussTop
 	
 	@Override
     public List<DiscussMember> getMembers(DiscussTopic et) {
-        List<DiscussMember> list = discussMemberService.findByOwnerId(et.getId());
+        List<DiscussMember> list = discussMemberService.findByDiscussTopic(et);
         et.setMembers(list);
         return list;
     }
+	
+   public Page<DiscussTopic> fetchView(DiscussTopicSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<DiscussTopic> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<DiscussTopic> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<DiscussTopic> listView(DiscussTopicSearchContext context) {
+        List<DiscussTopic> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
 	
 
 

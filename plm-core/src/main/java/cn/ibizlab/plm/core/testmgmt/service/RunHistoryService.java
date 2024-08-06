@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.testmgmt.domain.RunHistory;
 import cn.ibizlab.plm.core.testmgmt.filter.RunHistorySearchContext;
 import cn.ibizlab.plm.core.testmgmt.domain.Run;
@@ -139,7 +140,7 @@ public interface RunHistoryService extends IService<RunHistory> {
     * @param et
     * @return
     */
-    Integer checkKey(RunHistory et);
+    CheckKeyStatus checkKey(RunHistory et);
 
     /**
     * 保存
@@ -204,8 +205,15 @@ public interface RunHistoryService extends IService<RunHistory> {
     */
     List<RunHistory> findByRunId(List<String> runIds);
     default List<RunHistory> findByRunId(String runId){
-        return findByRunId(Arrays.asList(runId));
+        return findByRun(new Run().setId(runId));
     }
+
+    /**
+    * findByRun
+    * @param run
+    * @return
+    */
+    List<RunHistory> findByRun(Run run);
 
     /**
     * removeByRunId
@@ -238,6 +246,22 @@ public interface RunHistoryService extends IService<RunHistory> {
     * @return
     */
     boolean saveByRun(Run run, List<RunHistory> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<RunHistory> fetchView(RunHistorySearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<RunHistory> listView(RunHistorySearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<RunHistory> list) {

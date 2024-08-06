@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.projmgmt.domain.Swimlane;
@@ -119,14 +120,14 @@ public abstract class AbstractSwimlaneService extends ServiceImpl<SwimlaneMapper
         return et;
     }
 	
-    public Integer checkKey(Swimlane et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Swimlane>lambdaQuery().eq(Swimlane::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(Swimlane et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Swimlane>lambdaQuery().eq(Swimlane::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(Swimlane et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -169,6 +170,10 @@ public abstract class AbstractSwimlaneService extends ServiceImpl<SwimlaneMapper
         return list;	
 	}
 
+	public List<Swimlane> findByBoard(Board board){
+        List<Swimlane> list = findByBoardId(Arrays.asList(board.getId()));
+		return list;
+	}
 	public boolean removeByBoardId(String boardId){
         List<String> ids = baseMapper.findByBoardId(Arrays.asList(boardId)).stream().map(e->e.getId()).collect(Collectors.toList());
         if(!ObjectUtils.isEmpty(ids))
@@ -183,8 +188,8 @@ public abstract class AbstractSwimlaneService extends ServiceImpl<SwimlaneMapper
 	public boolean saveByBoard(Board board, List<Swimlane> list){
         if(list==null)
             return true;
-        Map<String,Swimlane> before = findByBoardId(board.getId()).stream().collect(Collectors.toMap(Swimlane::getId,e->e));
 
+        Map<String,Swimlane> before = findByBoard(board).stream().collect(Collectors.toMap(Swimlane::getId,e->e));
         List<Swimlane> update = new ArrayList<>();
         List<Swimlane> create = new ArrayList<>();
 
@@ -213,6 +218,10 @@ public abstract class AbstractSwimlaneService extends ServiceImpl<SwimlaneMapper
         return list;	
 	}
 
+	public List<Swimlane> findByProject(Project project){
+        List<Swimlane> list = findByProjectId(Arrays.asList(project.getId()));
+		return list;
+	}
 	public boolean removeByProjectId(String projectId){
         List<String> ids = baseMapper.findByProjectId(Arrays.asList(projectId)).stream().map(e->e.getId()).collect(Collectors.toList());
         if(!ObjectUtils.isEmpty(ids))
@@ -227,8 +236,8 @@ public abstract class AbstractSwimlaneService extends ServiceImpl<SwimlaneMapper
 	public boolean saveByProject(Project project, List<Swimlane> list){
         if(list==null)
             return true;
-        Map<String,Swimlane> before = findByProjectId(project.getId()).stream().collect(Collectors.toMap(Swimlane::getId,e->e));
 
+        Map<String,Swimlane> before = findByProject(project).stream().collect(Collectors.toMap(Swimlane::getId,e->e));
         List<Swimlane> update = new ArrayList<>();
         List<Swimlane> create = new ArrayList<>();
 
@@ -252,6 +261,17 @@ public abstract class AbstractSwimlaneService extends ServiceImpl<SwimlaneMapper
             return true;
 			
 	}
+   public Page<Swimlane> fetchView(SwimlaneSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Swimlane> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<Swimlane> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Swimlane> listView(SwimlaneSearchContext context) {
+        List<Swimlane> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(Swimlane et) {
         if(Entities.BOARD.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

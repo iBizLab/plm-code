@@ -53,13 +53,55 @@ export default {
       builtinAppUILogic: {
         openDataAppView: {
           openMode: 'INDEXVIEWTAB_POPUPMODAL',
-          refAppViewId: 'plmweb.work_item_main_view',
+          navigateContexts: [
+            {
+              key: 'WORK_ITEM_TYPE_ID',
+              value: 'work_item_type_id',
+              name: 'WORK_ITEM_TYPE_ID',
+              id: 'work_item_type_id',
+            },
+            {
+              key: 'SRFDATATYPE',
+              value: 'work_item_type_id',
+              name: 'SRFDATATYPE',
+              id: 'srfdatatype',
+            },
+          ],
+          navigateParams: [
+            {
+              key: 'srfdatatype',
+              value: 'work_item_type_id',
+              id: 'srfdatatype',
+            },
+          ],
+          refAppViewId: 'plmweb.work_item_dyna_main_view',
         },
         editMode: true,
         appUILogicRefViews: [
           {
             openMode: 'INDEXVIEWTAB_POPUPMODAL',
-            refAppViewId: 'plmweb.work_item_main_view',
+            navigateContexts: [
+              {
+                key: 'WORK_ITEM_TYPE_ID',
+                value: 'work_item_type_id',
+                name: 'WORK_ITEM_TYPE_ID',
+                id: 'work_item_type_id',
+              },
+              {
+                key: 'SRFDATATYPE',
+                value: 'work_item_type_id',
+                name: 'SRFDATATYPE',
+                id: 'srfdatatype',
+              },
+            ],
+            navigateParams: [
+              {
+                key: 'srfdatatype',
+                value: 'work_item_type_id',
+                id: 'srfdatatype',
+              },
+            ],
+            refAppViewId: 'plmweb.work_item_dyna_main_view',
           },
         ],
         builtinLogic: true,
@@ -80,13 +122,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realTitle: '工作项',
-      refAppViewId: 'plmweb.work_item_main_view',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
-    {
       realTitle: '工作项编辑视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
@@ -95,6 +130,35 @@ export default {
       name: 'NEWDATA',
       id: 'newdata',
     },
+    {
+      openMode: 'INDEXVIEWTAB_POPUPMODAL',
+      navigateContexts: [
+        {
+          key: 'WORK_ITEM_TYPE_ID',
+          value: 'work_item_type_id',
+          name: 'WORK_ITEM_TYPE_ID',
+          id: 'work_item_type_id',
+        },
+        {
+          key: 'SRFDATATYPE',
+          value: 'work_item_type_id',
+          name: 'SRFDATATYPE',
+          id: 'srfdatatype',
+        },
+      ],
+      navigateParams: [
+        {
+          key: 'srfdatatype',
+          value: 'work_item_type_id',
+          id: 'srfdatatype',
+        },
+      ],
+      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realTitle: '工作项（动态）',
+      refAppViewId: 'plmweb.work_item_dyna_main_view',
+      name: 'EDITDATA',
+      id: 'editdata',
+    },
   ],
   controls: [
     {
@@ -102,6 +166,7 @@ export default {
       columnEnableFilter: 2,
       columnEnableLink: 2,
       groupMode: 'NONE',
+      orderValueAppDEFieldId: 'sequence',
       degridColumns: [
         {
           clconvertMode: 'NONE',
@@ -287,7 +352,7 @@ export default {
           clconvertMode: 'FRONT',
           dataItemName: 'state_text',
           excelCaption: '状态',
-          appCodeListId: 'plmweb.projmgmt__work_item_state',
+          appCodeListId: 'plmweb.projmgmt__scrum_state',
           appDEFieldId: 'state',
           valueType: 'SIMPLE',
           enableRowEdit: true,
@@ -297,7 +362,7 @@ export default {
           codeName: 'state',
           columnType: 'DEFGRIDCOLUMN',
           noPrivDisplayMode: 1,
-          width: 100,
+          width: 150,
           widthUnit: 'PX',
           enableSort: true,
           id: 'state',
@@ -498,6 +563,12 @@ export default {
           id: 'work_item_type_origin',
         },
         {
+          appDEFieldId: 'sprint_id',
+          valueType: 'SIMPLE',
+          dataType: 25,
+          id: 'sprint_id',
+        },
+        {
           appDEFieldId: 'id',
           valueType: 'SIMPLE',
           dataType: 25,
@@ -526,12 +597,6 @@ export default {
           valueType: 'SIMPLE',
           dataType: 25,
           id: 'pid',
-        },
-        {
-          appDEFieldId: 'sprint_id',
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'sprint_id',
         },
         {
           appDEFieldId: 'board_id',
@@ -575,6 +640,22 @@ export default {
           id: 'srfmstag',
         },
       ],
+      degridEditItemUpdates: [
+        {
+          codeName: 'UpdateStateCodeList',
+          degeiupdateDetails: [
+            {
+              id: 'state',
+            },
+          ],
+          scriptCode:
+            "const msg = {\r\n    messageid: 'updatestate',\r\n    messagename: 'command',\r\n    type: 'COMMAND',\r\n    subtype: 'OBJECTUPDATED',\r\n    triggerKey: ctrl.triggerKey,\r\n    data: data || {},\r\n    params: {\r\n        state: data?.state,\r\n        srfcustomtag: data?.srfkey\r\n    }\r\n};\r\nibiz.mc.command.update.next(msg);",
+          customCode: true,
+          showBusyIndicator: true,
+          name: '更新状态代码表',
+          id: 'updatestatecodelist',
+        },
+      ],
       degridEditItems: [
         {
           caption: '标题',
@@ -596,20 +677,62 @@ export default {
           codeName: 'state',
           enableCond: 3,
           appDEFieldId: 'state',
+          degridEditItemUpdateId: 'updatestatecodelist',
           editor: {
             singleSelect: true,
-            appCodeListId: 'plmweb.projmgmt__work_item_state',
+            appCodeListId: 'plmweb.projmgmt__scrum_state',
+            editorParams: {
+              'srfnavparam.state': '%state%',
+              'srfnavparam.project_id': '%project_id%',
+              'srfnavparam.work_item_type_id': '%work_item_type_id%',
+              type: 'round',
+              alwaysLoad: 'true',
+            },
             editorType: 'DROPDOWNLIST',
             editorItems: [
               {
                 appDEACModeId: 'default',
                 appDEDataSetId: 'fetch_default',
                 appDataEntityId: 'plmweb.work_item_state',
+                navigateParams: [
+                  {
+                    key: 'state',
+                    value: 'state',
+                    id: 'state',
+                  },
+                  {
+                    key: 'project_id',
+                    value: 'project_id',
+                    id: 'project_id',
+                  },
+                  {
+                    key: 'work_item_type_id',
+                    value: 'work_item_type_id',
+                    id: 'work_item_type_id',
+                  },
+                ],
                 id: 'state',
               },
             ],
             valueType: 'SIMPLE',
             editable: true,
+            navigateParams: [
+              {
+                key: 'state',
+                value: 'state',
+                id: 'state',
+              },
+              {
+                key: 'project_id',
+                value: 'project_id',
+                id: 'project_id',
+              },
+              {
+                key: 'work_item_type_id',
+                value: 'work_item_type_id',
+                id: 'work_item_type_id',
+              },
+            ],
             id: 'state',
           },
           allowEmpty: true,

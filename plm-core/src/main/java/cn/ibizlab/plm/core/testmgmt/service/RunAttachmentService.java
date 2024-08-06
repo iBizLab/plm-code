@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.testmgmt.domain.RunAttachment;
 import cn.ibizlab.plm.core.testmgmt.filter.RunAttachmentSearchContext;
 import cn.ibizlab.plm.core.testmgmt.domain.Run;
@@ -138,7 +139,7 @@ public interface RunAttachmentService extends IService<RunAttachment> {
     * @param et
     * @return
     */
-    Integer checkKey(RunAttachment et);
+    CheckKeyStatus checkKey(RunAttachment et);
 
     /**
     * 保存
@@ -177,8 +178,15 @@ public interface RunAttachmentService extends IService<RunAttachment> {
     */
     List<RunAttachment> findByOwnerId(List<String> ownerIds);
     default List<RunAttachment> findByOwnerId(String ownerId){
-        return findByOwnerId(Arrays.asList(ownerId));
+        return findByRunAttachment(new Run().setId(ownerId));
     }
+
+    /**
+    * findByRunAttachment
+    * @param run
+    * @return
+    */
+    List<RunAttachment> findByRunAttachment(Run run);
 
     /**
     * removeByOwnerId
@@ -211,6 +219,22 @@ public interface RunAttachmentService extends IService<RunAttachment> {
     * @return
     */
     boolean saveByRunAttachment(Run run, List<RunAttachment> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<RunAttachment> fetchView(RunAttachmentSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<RunAttachment> listView(RunAttachmentSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<RunAttachment> list) {

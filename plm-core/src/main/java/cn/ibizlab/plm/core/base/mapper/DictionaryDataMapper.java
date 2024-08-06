@@ -100,6 +100,25 @@ public interface DictionaryDataMapper extends BaseMapper<DictionaryData> {
     List<DictionaryData> listTicketState(@Param("ctx") DictionaryDataSearchContext context, @Param("ew") Wrapper<DictionaryData> wrapper);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<DictionaryData> searchView(IPage<DictionaryData> page, @Param("ctx") DictionaryDataSearchContext context, @Param("ew") Wrapper<DictionaryData> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<DictionaryData> listView(@Param("ctx") DictionaryDataSearchContext context, @Param("ew") Wrapper<DictionaryData> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

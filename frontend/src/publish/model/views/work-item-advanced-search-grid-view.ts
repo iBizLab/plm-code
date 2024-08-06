@@ -56,6 +56,12 @@ export default {
           openMode: 'INDEXVIEWTAB_POPUPMODAL',
           navigateContexts: [
             {
+              key: 'SRFDATATYPE',
+              value: 'work_item_type_id',
+              name: 'SRFDATATYPE',
+              id: 'srfdatatype',
+            },
+            {
               key: 'PROJECT',
               value: 'project_id',
               name: 'PROJECT',
@@ -68,13 +74,26 @@ export default {
               id: 'work_item_type_id',
             },
           ],
-          refAppViewId: 'plmweb.work_item_main_view',
+          navigateParams: [
+            {
+              key: 'srfdatatype',
+              value: 'work_item_type_id',
+              id: 'srfdatatype',
+            },
+          ],
+          refAppViewId: 'plmweb.work_item_dyna_main_view',
         },
         editMode: true,
         appUILogicRefViews: [
           {
             openMode: 'INDEXVIEWTAB_POPUPMODAL',
             navigateContexts: [
+              {
+                key: 'SRFDATATYPE',
+                value: 'work_item_type_id',
+                name: 'SRFDATATYPE',
+                id: 'srfdatatype',
+              },
               {
                 key: 'PROJECT',
                 value: 'project_id',
@@ -88,7 +107,14 @@ export default {
                 id: 'work_item_type_id',
               },
             ],
-            refAppViewId: 'plmweb.work_item_main_view',
+            navigateParams: [
+              {
+                key: 'srfdatatype',
+                value: 'work_item_type_id',
+                id: 'srfdatatype',
+              },
+            ],
+            refAppViewId: 'plmweb.work_item_dyna_main_view',
           },
         ],
         builtinLogic: true,
@@ -105,6 +131,12 @@ export default {
       openMode: 'INDEXVIEWTAB_POPUPMODAL',
       navigateContexts: [
         {
+          key: 'SRFDATATYPE',
+          value: 'work_item_type_id',
+          name: 'SRFDATATYPE',
+          id: 'srfdatatype',
+        },
+        {
           key: 'PROJECT',
           value: 'project_id',
           name: 'PROJECT',
@@ -117,9 +149,16 @@ export default {
           id: 'work_item_type_id',
         },
       ],
+      navigateParams: [
+        {
+          key: 'srfdatatype',
+          value: 'work_item_type_id',
+          id: 'srfdatatype',
+        },
+      ],
       realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realTitle: '工作项',
-      refAppViewId: 'plmweb.work_item_main_view',
+      realTitle: '工作项（动态）',
+      refAppViewId: 'plmweb.work_item_dyna_main_view',
       name: 'EDITDATA',
       id: 'editdata',
     },
@@ -139,6 +178,7 @@ export default {
       columnEnableFilter: 2,
       columnEnableLink: 2,
       groupMode: 'NONE',
+      orderValueAppDEFieldId: 'sequence',
       degridColumns: [
         {
           clconvertMode: 'NONE',
@@ -248,6 +288,12 @@ export default {
           id: 'project_id',
         },
         {
+          appDEFieldId: 'work_item_type_id',
+          valueType: 'SIMPLE',
+          dataType: 25,
+          id: 'work_item_type_id',
+        },
+        {
           appDEFieldId: 'id',
           valueType: 'SIMPLE',
           dataType: 25,
@@ -270,12 +316,6 @@ export default {
           valueType: 'SIMPLE',
           dataType: 25,
           id: 'srfdatatype',
-        },
-        {
-          appDEFieldId: 'work_item_type_id',
-          valueType: 'SIMPLE',
-          dataType: 25,
-          id: 'work_item_type_id',
         },
         {
           appDEFieldId: 'pid',
@@ -675,7 +715,6 @@ export default {
                     colMD: 24,
                     layout: 'TABLE_24COL',
                   },
-                  showCaption: true,
                   id: 'n_create_time_gtandeq',
                 },
                 {
@@ -702,7 +741,6 @@ export default {
                     colMD: 24,
                     layout: 'TABLE_24COL',
                   },
-                  showCaption: true,
                   id: 'n_create_time_ltandeq',
                 },
               ],

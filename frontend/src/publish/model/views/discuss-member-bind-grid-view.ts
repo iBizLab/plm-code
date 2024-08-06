@@ -97,6 +97,15 @@ export default {
   ],
   appViewRefs: [
     {
+      realTitle: '协作成员数据重定向视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.DISCUSS_MEMBER.REDIRECTVIEW',
+      },
+      refAppViewId: 'plmweb.discuss_member_redirect_view',
+      name: 'EDITDATA',
+      id: 'editdata',
+    },
+    {
       openMode: 'POPUPMODAL',
       realOpenMode: 'POPUPMODAL',
       realTitle: '协作成员编辑视图',
@@ -106,15 +115,6 @@ export default {
       refAppViewId: 'plmweb.discuss_member_edit_view',
       name: 'NEWDATA',
       id: 'newdata',
-    },
-    {
-      realTitle: '协作成员数据重定向视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.DISCUSS_MEMBER.REDIRECTVIEW',
-      },
-      refAppViewId: 'plmweb.discuss_member_redirect_view',
-      name: 'EDITDATA',
-      id: 'editdata',
     },
     {
       name: 'MPICKUPVIEW:DISCUSS_TOPIC',
@@ -154,6 +154,7 @@ export default {
           id: 'deuiaction1',
         },
       ],
+      toolbarStyle: 'USER',
       xdataControlName: 'grid',
       codeName: 'bind_grid_view_toolbar',
       controlType: 'TOOLBAR',
@@ -192,7 +193,7 @@ export default {
           columnType: 'DEFGRIDCOLUMN',
           noPrivDisplayMode: 1,
           width: 200,
-          widthUnit: 'PX',
+          widthUnit: 'STAR',
           enableSort: true,
           id: 'name',
         },

@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.wiki.domain.Space;
@@ -137,14 +138,14 @@ public abstract class AbstractSpaceService extends ServiceImpl<SpaceMapper,Space
         return et;
     }
 	
-    public Integer checkKey(Space et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Space>lambdaQuery().eq(Space::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(Space et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Space>lambdaQuery().eq(Space::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(Space et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -344,6 +345,10 @@ public abstract class AbstractSpaceService extends ServiceImpl<SpaceMapper,Space
         return list;	
 	}
 
+	public List<Space> findByCategory(Category category){
+        List<Space> list = findByCategoryId(Arrays.asList(category.getId()));
+		return list;
+	}
 	public boolean removeByCategoryId(String categoryId){
         return this.remove(Wrappers.<Space>lambdaQuery().eq(Space::getCategoryId,categoryId));
 	}
@@ -354,8 +359,8 @@ public abstract class AbstractSpaceService extends ServiceImpl<SpaceMapper,Space
 	public boolean saveByCategory(Category category, List<Space> list){
         if(list==null)
             return true;
-        Map<String,Space> before = findByCategoryId(category.getId()).stream().collect(Collectors.toMap(Space::getId,e->e));
 
+        Map<String,Space> before = findByCategory(category).stream().collect(Collectors.toMap(Space::getId,e->e));
         List<Space> update = new ArrayList<>();
         List<Space> create = new ArrayList<>();
 
@@ -381,10 +386,21 @@ public abstract class AbstractSpaceService extends ServiceImpl<SpaceMapper,Space
 	}
 	@Override
     public List<SpaceMember> getMembers(Space et) {
-        List<SpaceMember> list = spaceMemberService.findBySpaceId(et.getId());
+        List<SpaceMember> list = spaceMemberService.findBySpace(et);
         et.setMembers(list);
         return list;
     }
+	
+   public Page<Space> fetchView(SpaceSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Space> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<Space> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Space> listView(SpaceSearchContext context) {
+        List<Space> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
 	
 
     public void fillParentData(Space et) {

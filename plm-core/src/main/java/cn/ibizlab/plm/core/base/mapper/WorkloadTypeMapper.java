@@ -43,6 +43,25 @@ public interface WorkloadTypeMapper extends BaseMapper<WorkloadType> {
     List<WorkloadType> listDefault(@Param("ctx") WorkloadTypeSearchContext context, @Param("ew") Wrapper<WorkloadType> wrapper);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<WorkloadType> searchView(IPage<WorkloadType> page, @Param("ctx") WorkloadTypeSearchContext context, @Param("ew") Wrapper<WorkloadType> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<WorkloadType> listView(@Param("ctx") WorkloadTypeSearchContext context, @Param("ew") Wrapper<WorkloadType> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

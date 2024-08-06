@@ -6,6 +6,7 @@ export default {
   emptyTextLanguageRes: {
     lanResTag: 'CL.ITEM.LNAME.DELOGICNODETYPE3._EMTPY_',
   },
+  appDataEntityId: 'plmweb.psdelogicnode',
   codeItems: [
     {
       codeName: 'baseevent',
@@ -493,6 +494,13 @@ export default {
           text: '系统功能组件调用',
           value: 'SYSUTIL',
           id: 'sysutil',
+        },
+        {
+          codeName: 'create_work_item',
+          data: '{"logicnodetype": "CREATE_WORK_ITEM", "psdelogicnodename": "建立工作项"}',
+          text: '建立工作项',
+          value: 'CREATE_WORK_ITEM',
+          id: 'create_work_item',
         },
       ],
       text: '高级',

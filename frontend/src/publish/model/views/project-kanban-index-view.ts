@@ -6,6 +6,13 @@ export default {
   caption: '项目',
   codeName: 'project_kanban_index_view',
   appDataEntityId: 'plmweb.project',
+  appViewNavParams: [
+    {
+      key: 'project',
+      value: 'project',
+      id: 'project',
+    },
+  ],
   viewLayoutPanel: {
     viewProxyMode: true,
     layoutMode: 'FLEX',
@@ -113,6 +120,7 @@ export default {
                       editorParams: {
                         ENABLESEARCH: 'TRUE',
                         AC: 'TRUE',
+                        'SRFNAVPARAM.project': '%project%',
                         SUFFIX: 'chevron-expand-outline',
                         PICKUPVIEW: 'TRUE',
                       },
@@ -122,6 +130,13 @@ export default {
                       predefinedType: 'FIELD_TEXT_DYNAMIC',
                       valueType: 'SIMPLE',
                       editable: true,
+                      navigateParams: [
+                        {
+                          key: 'project',
+                          value: 'project',
+                          id: 'project',
+                        },
+                      ],
                       id: 'route_picker',
                     },
                     allowEmpty: true,
@@ -413,7 +428,7 @@ export default {
             counterId: 'work_item',
             counterMode: 1,
             enableMode: 'COUNT_GTE_ZERO',
-            appViewId: 'plmweb.work_item_kanban_tree_grid_view',
+            appViewId: 'plmweb.work_item_dyna_kanban_tree_grid_view',
             id: 'work_item',
           },
           {
@@ -530,6 +545,7 @@ export default {
               srfdeid: 'PROJECT',
             },
             tag: '61bfe1bee0b950d694c40659d403053c',
+            uniqueTag: 'kanban_project_add_on_counters',
             id: '61bfe1bee0b950d694c40659d403053c',
           },
         ],
@@ -609,7 +625,6 @@ export default {
                   colMD: 24,
                   layout: 'TABLE_24COL',
                 },
-                showCaption: true,
                 id: 'id',
               },
             ],

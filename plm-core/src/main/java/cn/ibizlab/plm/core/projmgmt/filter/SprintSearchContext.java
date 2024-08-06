@@ -6,6 +6,7 @@ package cn.ibizlab.plm.core.projmgmt.filter;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import java.util.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -190,11 +191,11 @@ public class SprintSearchContext extends QueryWrapperContext<Sprint> {
     private String createManNOTIN;
 
     /**
-     * 产品标识EQ
+     * 项目标识EQ
      */
     @JsonProperty("n_project_id_eq")
     @JSONField(name = "n_project_id_eq")
-    @ApiModelProperty("产品标识EQ")
+    @ApiModelProperty("项目标识EQ")
     private String projectIdEQ;
 
     /**

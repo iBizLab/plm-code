@@ -371,7 +371,6 @@ export default {
                       colMD: 24,
                       layout: 'TABLE_24COL',
                     },
-                    showCaption: true,
                     id: 'n_work_item_type_id_eq',
                   },
                   {

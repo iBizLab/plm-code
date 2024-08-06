@@ -51,6 +51,25 @@ public interface ChannelMapper extends BaseMapper<Channel> {
     List<Channel> findByProductId(@Param("productIds") List<String> productIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Channel> searchView(IPage<Channel> page, @Param("ctx") ChannelSearchContext context, @Param("ew") Wrapper<Channel> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Channel> listView(@Param("ctx") ChannelSearchContext context, @Param("ew") Wrapper<Channel> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

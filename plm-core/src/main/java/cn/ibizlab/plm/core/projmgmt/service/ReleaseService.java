@@ -11,12 +11,14 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.projmgmt.domain.Release;
 import cn.ibizlab.plm.core.projmgmt.filter.ReleaseSearchContext;
 import cn.ibizlab.plm.core.projmgmt.domain.Project;
 import cn.ibizlab.plm.core.projmgmt.domain.Stage;
 import cn.ibizlab.plm.core.testmgmt.domain.TestPlan;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
+import cn.ibizlab.plm.core.base.domain.Relation;
 
 /**
  * 项目发布服务接口[ReleaseService]
@@ -142,7 +144,7 @@ public interface ReleaseService extends IService<Release> {
     * @param et
     * @return
     */
-    Integer checkKey(Release et);
+    CheckKeyStatus checkKey(Release et);
 
     /**
     * 保存
@@ -157,6 +159,46 @@ public interface ReleaseService extends IService<Release> {
      * @return
      */
     boolean save(List<Release> list);
+
+    /**
+    * calReleaseWorkItemNum
+    * 
+    * @param key
+    * @return
+    */
+    default Release calReleaseWorkItemNum(String key) {
+        return getSelf().calReleaseWorkItemNum(new Release().setId(key));
+    }
+
+    /**
+    * changeDraft
+    * 
+    * @param et
+    * @return
+    */
+    default Release changeDraft(Release et) {
+        return et;
+    }
+
+    /**
+    * changeStage
+    * 
+    * @param et
+    * @return
+    */
+    default Release changeStage(Release et) {
+        return et;
+    }
+
+    /**
+    * delRelation
+    * 
+    * @param et
+    * @return
+    */
+    default Release delRelation(Release et) {
+        return et;
+    }
 
     /**
     * deleteCategories
@@ -179,6 +221,16 @@ public interface ReleaseService extends IService<Release> {
     }
 
     /**
+    * releaseRelationSprint
+    * 
+    * @param et
+    * @return
+    */
+    default Release releaseRelationSprint(Release et) {
+        return et;
+    }
+
+    /**
     * fetchDefault
     * 
     * @param context
@@ -195,20 +247,100 @@ public interface ReleaseService extends IService<Release> {
     List<Release> listDefault(ReleaseSearchContext context);
 
     /**
-    * fetchNotFinish
+    * fetchBiDetail
     * 
     * @param context
     * @return
     */
-    Page<Release> fetchNotFinish(ReleaseSearchContext context);
+    Page<Release> fetchBiDetail(ReleaseSearchContext context);
 
     /**
-    * listNotFinish
+    * listBiDetail
     * 
     * @param context
     * @return
     */
-    List<Release> listNotFinish(ReleaseSearchContext context);
+    List<Release> listBiDetail(ReleaseSearchContext context);
+
+    /**
+    * fetchBiSearch
+    * 
+    * @param context
+    * @return
+    */
+    Page<Release> fetchBiSearch(ReleaseSearchContext context);
+
+    /**
+    * listBiSearch
+    * 
+    * @param context
+    * @return
+    */
+    List<Release> listBiSearch(ReleaseSearchContext context);
+
+    /**
+    * fetchChooseReleseRelation
+    * 
+    * @param context
+    * @return
+    */
+    Page<Release> fetchChooseReleseRelation(ReleaseSearchContext context);
+
+    /**
+    * listChooseReleseRelation
+    * 
+    * @param context
+    * @return
+    */
+    List<Release> listChooseReleseRelation(ReleaseSearchContext context);
+
+    /**
+    * fetchNotPublished
+    * 
+    * @param context
+    * @return
+    */
+    Page<Release> fetchNotPublished(ReleaseSearchContext context);
+
+    /**
+    * listNotPublished
+    * 
+    * @param context
+    * @return
+    */
+    List<Release> listNotPublished(ReleaseSearchContext context);
+
+    /**
+    * fetchReader
+    * 
+    * @param context
+    * @return
+    */
+    Page<Release> fetchReader(ReleaseSearchContext context);
+
+    /**
+    * listReader
+    * 
+    * @param context
+    * @return
+    */
+    List<Release> listReader(ReleaseSearchContext context);
+
+    /**
+    * fetchSprintRelation
+    * 
+    * @param context
+    * @return
+    */
+    Page<Release> fetchSprintRelation(ReleaseSearchContext context);
+
+    /**
+    * listSprintRelation
+    * 
+    * @param context
+    * @return
+    */
+    List<Release> listSprintRelation(ReleaseSearchContext context);
 
     /**
     * findByProjectId
@@ -217,8 +349,15 @@ public interface ReleaseService extends IService<Release> {
     */
     List<Release> findByProjectId(List<String> projectIds);
     default List<Release> findByProjectId(String projectId){
-        return findByProjectId(Arrays.asList(projectId));
+        return findByProject(new Project().setId(projectId));
     }
+
+    /**
+    * findByProject
+    * @param project
+    * @return
+    */
+    List<Release> findByProject(Project project);
 
     /**
     * removeByProjectId
@@ -251,6 +390,36 @@ public interface ReleaseService extends IService<Release> {
     * @return
     */
     boolean saveByProject(Project project, List<Release> list);
+
+    default List<Stage> getStageTransitions(Release et) {
+        return new ArrayList<>();
+    }
+
+    /**
+    * calReleaseWorkItemNum
+    * 
+    * @param et
+    * @return
+    */
+    default Release calReleaseWorkItemNum(Release et) {
+        return et;
+    }
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Release> fetchView(ReleaseSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Release> listView(ReleaseSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Release> list) {

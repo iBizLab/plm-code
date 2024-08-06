@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.testmgmt.domain.ReviewWizard;
@@ -28,10 +29,10 @@ import cn.ibizlab.plm.core.testmgmt.domain.Guideline;
 import cn.ibizlab.plm.core.testmgmt.service.GuidelineService;
 import cn.ibizlab.plm.core.testmgmt.domain.Library;
 import cn.ibizlab.plm.core.testmgmt.service.LibraryService;
-import cn.ibizlab.plm.core.testmgmt.domain.ReviewContent;
-import cn.ibizlab.plm.core.testmgmt.service.ReviewContentService;
 import cn.ibizlab.plm.core.base.domain.Attention;
 import cn.ibizlab.plm.core.base.service.AttentionService;
+import cn.ibizlab.plm.core.testmgmt.domain.ReviewContent;
+import cn.ibizlab.plm.core.testmgmt.service.ReviewContentService;
 
 /**
  * 实体[评审向导] 服务对象接口实现
@@ -51,6 +52,10 @@ public abstract class AbstractReviewWizardService extends ServiceImpl<ReviewWiza
 
     @Autowired
     @Lazy
+    protected AttentionService attentionService;
+
+    @Autowired
+    @Lazy
     protected ReviewContentService reviewContentService;
 
     protected int batchSize = 500;
@@ -61,6 +66,7 @@ public abstract class AbstractReviewWizardService extends ServiceImpl<ReviewWiza
         fillParentData(et);
         if(this.baseMapper.insert(et) < 1)
             return false;
+        attentionService.saveByReviewWizard(et,et.getAttentions());
         reviewContentService.saveByReviewWizard(et,et.getContents());
         get(et);
         return true;
@@ -79,6 +85,7 @@ public abstract class AbstractReviewWizardService extends ServiceImpl<ReviewWiza
         qw.eq("id", et.getId());
         if(!update(et, qw))
             return false;
+        attentionService.saveByReviewWizard(et,et.getAttentions());
         reviewContentService.saveByReviewWizard(et,et.getContents());
         get(et);
         return true;
@@ -107,6 +114,8 @@ public abstract class AbstractReviewWizardService extends ServiceImpl<ReviewWiza
         if(rt == null)
             throw new NotFoundException("数据不存在",Entities.REVIEW_WIZARD.toString(),et.getId());
         rt.copyTo(et,true);
+        //设置 [关注]
+        getAttentions(et);
         //设置 [评审内容]
         getContents(et);
         return et;
@@ -121,14 +130,14 @@ public abstract class AbstractReviewWizardService extends ServiceImpl<ReviewWiza
         return et;
     }
 	
-    public Integer checkKey(ReviewWizard et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ReviewWizard>lambdaQuery().eq(ReviewWizard::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(ReviewWizard et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ReviewWizard>lambdaQuery().eq(ReviewWizard::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(ReviewWizard et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -169,11 +178,18 @@ public abstract class AbstractReviewWizardService extends ServiceImpl<ReviewWiza
 	public List<ReviewWizard> findByGuidelineId(List<String> guidelineIds){
         List<ReviewWizard> list = baseMapper.findByGuidelineId(guidelineIds);
         if(!ObjectUtils.isEmpty(list))
+            attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
             reviewContentService.findByPrincipalId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
                 .stream().collect(Collectors.groupingBy(e->e.getPrincipalId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setContents(sub.getValue())));
         return list;	
 	}
 
+	public List<ReviewWizard> findByGuideline(Guideline guideline){
+        List<ReviewWizard> list = findByGuidelineId(Arrays.asList(guideline.getId()));
+		return list;
+	}
 	public boolean removeByGuidelineId(String guidelineId){
         return this.remove(Wrappers.<ReviewWizard>lambdaQuery().eq(ReviewWizard::getGuidelineId,guidelineId));
 	}
@@ -184,8 +200,8 @@ public abstract class AbstractReviewWizardService extends ServiceImpl<ReviewWiza
 	public boolean saveByGuideline(Guideline guideline, List<ReviewWizard> list){
         if(list==null)
             return true;
-        Map<String,ReviewWizard> before = findByGuidelineId(guideline.getId()).stream().collect(Collectors.toMap(ReviewWizard::getId,e->e));
 
+        Map<String,ReviewWizard> before = findByGuideline(guideline).stream().collect(Collectors.toMap(ReviewWizard::getId,e->e));
         List<ReviewWizard> update = new ArrayList<>();
         List<ReviewWizard> create = new ArrayList<>();
 
@@ -212,11 +228,18 @@ public abstract class AbstractReviewWizardService extends ServiceImpl<ReviewWiza
 	public List<ReviewWizard> findByLibraryId(List<String> libraryIds){
         List<ReviewWizard> list = baseMapper.findByLibraryId(libraryIds);
         if(!ObjectUtils.isEmpty(list))
+            attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
             reviewContentService.findByPrincipalId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
                 .stream().collect(Collectors.groupingBy(e->e.getPrincipalId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setContents(sub.getValue())));
         return list;	
 	}
 
+	public List<ReviewWizard> findByLibrary(Library library){
+        List<ReviewWizard> list = findByLibraryId(Arrays.asList(library.getId()));
+		return list;
+	}
 	public boolean removeByLibraryId(String libraryId){
         return this.remove(Wrappers.<ReviewWizard>lambdaQuery().eq(ReviewWizard::getLibraryId,libraryId));
 	}
@@ -227,8 +250,8 @@ public abstract class AbstractReviewWizardService extends ServiceImpl<ReviewWiza
 	public boolean saveByLibrary(Library library, List<ReviewWizard> list){
         if(list==null)
             return true;
-        Map<String,ReviewWizard> before = findByLibraryId(library.getId()).stream().collect(Collectors.toMap(ReviewWizard::getId,e->e));
 
+        Map<String,ReviewWizard> before = findByLibrary(library).stream().collect(Collectors.toMap(ReviewWizard::getId,e->e));
         List<ReviewWizard> update = new ArrayList<>();
         List<ReviewWizard> create = new ArrayList<>();
 
@@ -253,11 +276,29 @@ public abstract class AbstractReviewWizardService extends ServiceImpl<ReviewWiza
 			
 	}
 	@Override
+    public List<Attention> getAttentions(ReviewWizard et) {
+        List<Attention> list = attentionService.findByReviewWizard(et);
+        et.setAttentions(list);
+        return list;
+    }
+	
+	@Override
     public List<ReviewContent> getContents(ReviewWizard et) {
-        List<ReviewContent> list = reviewContentService.findByPrincipalId(et.getId());
+        List<ReviewContent> list = reviewContentService.findByReviewWizard(et);
         et.setContents(list);
         return list;
     }
+	
+   public Page<ReviewWizard> fetchView(ReviewWizardSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ReviewWizard> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<ReviewWizard> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<ReviewWizard> listView(ReviewWizardSearchContext context) {
+        List<ReviewWizard> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
 	
 
     public void fillParentData(ReviewWizard et) {

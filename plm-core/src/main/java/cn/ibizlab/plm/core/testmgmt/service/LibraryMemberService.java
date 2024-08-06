@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.testmgmt.domain.LibraryMember;
 import cn.ibizlab.plm.core.testmgmt.filter.LibraryMemberSearchContext;
 import cn.ibizlab.plm.core.testmgmt.domain.Library;
@@ -149,7 +150,7 @@ public interface LibraryMemberService extends IService<LibraryMember> {
     * @param et
     * @return
     */
-    Integer checkKey(LibraryMember et);
+    CheckKeyStatus checkKey(LibraryMember et);
 
     /**
     * 保存
@@ -234,8 +235,15 @@ public interface LibraryMemberService extends IService<LibraryMember> {
     */
     List<LibraryMember> findByLibraryId(List<String> libraryIds);
     default List<LibraryMember> findByLibraryId(String libraryId){
-        return findByLibraryId(Arrays.asList(libraryId));
+        return findByLibrary(new Library().setId(libraryId));
     }
+
+    /**
+    * findByLibrary
+    * @param library
+    * @return
+    */
+    List<LibraryMember> findByLibrary(Library library);
 
     /**
     * removeByLibraryId
@@ -276,8 +284,15 @@ public interface LibraryMemberService extends IService<LibraryMember> {
     */
     List<LibraryMember> findByUserId(List<String> userIds);
     default List<LibraryMember> findByUserId(String userId){
-        return findByUserId(Arrays.asList(userId));
+        return findByUser(new User().setId(userId));
     }
+
+    /**
+    * findByUser
+    * @param user
+    * @return
+    */
+    List<LibraryMember> findByUser(User user);
 
     /**
     * removeByUserId
@@ -310,6 +325,22 @@ public interface LibraryMemberService extends IService<LibraryMember> {
     * @return
     */
     boolean saveByUser(User user, List<LibraryMember> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<LibraryMember> fetchView(LibraryMemberSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<LibraryMember> listView(LibraryMemberSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<LibraryMember> list) {

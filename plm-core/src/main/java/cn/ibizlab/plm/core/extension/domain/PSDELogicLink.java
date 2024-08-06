@@ -20,6 +20,7 @@ import lombok.experimental.Accessors;
 import io.swagger.annotations.*;
 import cn.ibizlab.plm.core.extension.domain.PSDELogicNode;
 import cn.ibizlab.plm.core.extension.domain.PSDELogic;
+import cn.ibizlab.plm.core.extension.domain.PSDEMSLogic;
 
 /**
  * 实体处理逻辑链接实体类[PSDELogicLink]
@@ -133,6 +134,15 @@ public class PSDELogicLink extends EntityBase implements Serializable
     @JSONField(serialize = false)
     @ApiModelProperty(value = "psdelogic", notes = "")
     private PSDELogic psdeLogic;
+
+    /**
+     * 主状态-连接
+     */
+    @DEField()
+    @JsonIgnore
+    @JSONField(serialize = false)
+    @ApiModelProperty(value = "psdemslogic", notes = "主状态-连接")
+    private PSDEMSLogic psdemslogic;
 
     /**
     * 设置 [连接名称]

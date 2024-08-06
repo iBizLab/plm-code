@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.prodmgmt.domain.TicketType;
 import cn.ibizlab.plm.core.prodmgmt.filter.TicketTypeSearchContext;
 import cn.ibizlab.plm.core.prodmgmt.domain.ProductTicketType;
@@ -138,7 +139,7 @@ public interface TicketTypeService extends IService<TicketType> {
     * @param et
     * @return
     */
-    Integer checkKey(TicketType et);
+    CheckKeyStatus checkKey(TicketType et);
 
     /**
     * 保存
@@ -215,6 +216,22 @@ public interface TicketTypeService extends IService<TicketType> {
     default TicketType getConTicket(TicketType et) {
         return et;
     }
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<TicketType> fetchView(TicketTypeSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<TicketType> listView(TicketTypeSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<TicketType> list) {

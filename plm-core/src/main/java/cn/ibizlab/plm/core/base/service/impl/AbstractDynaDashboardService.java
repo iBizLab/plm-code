@@ -3,6 +3,7 @@
  */
 package cn.ibizlab.plm.core.base.service.impl;
 
+import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.base.domain.DynaDashboard;
@@ -24,6 +26,8 @@ import com.baomidou.mybatisplus.core.enums.SqlMethod;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import cn.ibizlab.plm.core.insight.domain.InsightView;
+import cn.ibizlab.plm.core.insight.service.InsightViewService;
 
 /**
  * 实体[动态数据看板] 服务对象接口实现
@@ -33,11 +37,16 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 @Slf4j
 public abstract class AbstractDynaDashboardService extends ServiceImpl<DynaDashboardMapper,DynaDashboard> implements DynaDashboardService {
 
+    @Autowired
+    @Lazy
+    protected InsightViewService insightViewService;
+
     protected int batchSize = 500;
 
     @Override
     @Transactional
     public boolean create(DynaDashboard et) {
+        fillParentData(et);
         if(this.baseMapper.insert(et) < 1)
             return false;
         get(et);
@@ -46,6 +55,7 @@ public abstract class AbstractDynaDashboardService extends ServiceImpl<DynaDashb
 	
     @Transactional
     public boolean create(List<DynaDashboard> list) {
+        list.forEach(this::fillParentData);
         this.saveBatch(list, batchSize);
         return true;
     }
@@ -91,17 +101,18 @@ public abstract class AbstractDynaDashboardService extends ServiceImpl<DynaDashb
     }	
 	
     public DynaDashboard getDraft(DynaDashboard et) {
+        fillParentData(et);
         return et;
     }
 	
-    public Integer checkKey(DynaDashboard et) {
-        return (!ObjectUtils.isEmpty(et.getDynaDashboardId()) && this.count(Wrappers.<DynaDashboard>lambdaQuery().eq(DynaDashboard::getDynaDashboardId, et.getDynaDashboardId()))>0)?1:0;
+    public CheckKeyStatus checkKey(DynaDashboard et) {
+        return (!ObjectUtils.isEmpty(et.getDynaDashboardId()) && this.count(Wrappers.<DynaDashboard>lambdaQuery().eq(DynaDashboard::getDynaDashboardId, et.getDynaDashboardId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(DynaDashboard et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -139,6 +150,112 @@ public abstract class AbstractDynaDashboardService extends ServiceImpl<DynaDashb
         return list;
    }
 	
+   public Page<DynaDashboard> fetchExampleChart(DynaDashboardSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("SEQUENCES,ASC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<DynaDashboard> pages=baseMapper.searchExampleChart(context.getPages(),context,context.getSelectCond());
+        List<DynaDashboard> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<DynaDashboard> listExampleChart(DynaDashboardSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("SEQUENCES,ASC");
+        List<DynaDashboard> list = baseMapper.listExampleChart(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<DynaDashboard> fetchIsSystem(DynaDashboardSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("SEQUENCES,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<DynaDashboard> pages=baseMapper.searchIsSystem(context.getPages(),context,context.getSelectCond());
+        List<DynaDashboard> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<DynaDashboard> listIsSystem(DynaDashboardSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("SEQUENCES,DESC");
+        List<DynaDashboard> list = baseMapper.listIsSystem(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<DynaDashboard> fetchNormal(DynaDashboardSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("SEQUENCES,ASC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<DynaDashboard> pages=baseMapper.searchNormal(context.getPages(),context,context.getSelectCond());
+        List<DynaDashboard> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<DynaDashboard> listNormal(DynaDashboardSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("SEQUENCES,ASC");
+        List<DynaDashboard> list = baseMapper.listNormal(context,context.getSelectCond());
+        return list;
+   }
+	
+	public List<DynaDashboard> findByOwnerId(List<String> ownerIds){
+        List<DynaDashboard> list = baseMapper.findByOwnerId(ownerIds);
+        return list;	
+	}
+
+	public List<DynaDashboard> findByInsightView(InsightView insightView){
+        List<DynaDashboard> list = findByOwnerId(Arrays.asList(insightView.getId()));
+		return list;
+	}
+	public boolean removeByOwnerId(String ownerId){
+        return this.remove(Wrappers.<DynaDashboard>lambdaQuery().eq(DynaDashboard::getOwnerId,ownerId));
+	}
+
+	public boolean resetByOwnerId(String ownerId){
+		return this.update(Wrappers.<DynaDashboard>lambdaUpdate().eq(DynaDashboard::getOwnerId,ownerId));
+	}
+	public boolean saveByInsightView(InsightView insightView, List<DynaDashboard> list){
+        if(list==null)
+            return true;
+
+        Map<String,DynaDashboard> before = findByInsightView(insightView).stream().collect(Collectors.toMap(DynaDashboard::getDynaDashboardId,e->e));
+        List<DynaDashboard> update = new ArrayList<>();
+        List<DynaDashboard> create = new ArrayList<>();
+
+        for(DynaDashboard sub:list) {
+            sub.setOwnerId(insightView.getId());
+            sub.setInsightView(insightView);
+            if(!ObjectUtils.isEmpty(sub.getDynaDashboardId())&&before.containsKey(sub.getDynaDashboardId())) {
+                before.remove(sub.getDynaDashboardId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
+   public Page<DynaDashboard> fetchView(DynaDashboardSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<DynaDashboard> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<DynaDashboard> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<DynaDashboard> listView(DynaDashboardSearchContext context) {
+        List<DynaDashboard> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
+
+    public void fillParentData(DynaDashboard et) {
+        if(Entities.INSIGHT_VIEW.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setOwnerId((String)et.getContextParentKey());
+        }
+    }
 
 
     @Override

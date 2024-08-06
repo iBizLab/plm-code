@@ -3,6 +3,7 @@
  */
 package cn.ibizlab.plm.core.projmgmt.service;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 import org.springframework.data.domain.Page;
@@ -10,11 +11,14 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.projmgmt.domain.Sprint;
 import cn.ibizlab.plm.core.projmgmt.filter.SprintSearchContext;
 import cn.ibizlab.plm.core.projmgmt.domain.Project;
+import cn.ibizlab.plm.core.projmgmt.domain.SprintAlteration;
 import cn.ibizlab.plm.core.testmgmt.domain.TestPlan;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
+import cn.ibizlab.plm.core.base.domain.Relation;
 
 /**
  * 迭代服务接口[SprintService]
@@ -140,7 +144,7 @@ public interface SprintService extends IService<Sprint> {
     * @param et
     * @return
     */
-    Integer checkKey(Sprint et);
+    CheckKeyStatus checkKey(Sprint et);
 
     /**
     * 保存
@@ -155,6 +159,26 @@ public interface SprintService extends IService<Sprint> {
      * @return
      */
     boolean save(List<Sprint> list);
+
+    /**
+    * calSprintWorkItemNum
+    * 
+    * @param key
+    * @return
+    */
+    default Sprint calSprintWorkItemNum(String key) {
+        return getSelf().calSprintWorkItemNum(new Sprint().setId(key));
+    }
+
+    /**
+    * delRelation
+    * 
+    * @param et
+    * @return
+    */
+    default Sprint delRelation(Sprint et) {
+        return et;
+    }
 
     /**
     * deleteCategories
@@ -197,13 +221,23 @@ public interface SprintService extends IService<Sprint> {
     }
 
     /**
-    * overviewNum
+    * overview
     * 
     * @param key
     * @return
     */
-    default Sprint overviewNum(String key) {
-        return getSelf().overviewNum(new Sprint().setId(key));
+    default Sprint overview(String key) {
+        return getSelf().overview(new Sprint().setId(key));
+    }
+
+    /**
+    * sprintRelationRelease
+    * 
+    * @param et
+    * @return
+    */
+    default Sprint sprintRelationRelease(Sprint et) {
+        return et;
     }
 
     /**
@@ -233,8 +267,56 @@ public interface SprintService extends IService<Sprint> {
     List<Sprint> listDefault(SprintSearchContext context);
 
     /**
-    * fetchChooseMove
+    * fetchAll
     * 
+    * @param context
+    * @return
+    */
+    Page<Sprint> fetchAll(SprintSearchContext context);
+
+    /**
+    * listAll
+    * 
+    * @param context
+    * @return
+    */
+    List<Sprint> listAll(SprintSearchContext context);
+
+    /**
+    * fetchBiDetail
+    * 
+    * @param context
+    * @return
+    */
+    Page<Sprint> fetchBiDetail(SprintSearchContext context);
+
+    /**
+    * listBiDetail
+    * 
+    * @param context
+    * @return
+    */
+    List<Sprint> listBiDetail(SprintSearchContext context);
+
+    /**
+    * fetchBiSearch
+    * 
+    * @param context
+    * @return
+    */
+    Page<Sprint> fetchBiSearch(SprintSearchContext context);
+
+    /**
+    * listBiSearch
+    * 
+    * @param context
+    * @return
+    */
+    List<Sprint> listBiSearch(SprintSearchContext context);
+
+    /**
+    * fetchChooseMove
+    * 确认迭代完成时，选择移动至其他迭代
     * @param context
     * @return
     */
@@ -242,11 +324,27 @@ public interface SprintService extends IService<Sprint> {
 
     /**
     * listChooseMove
-    * 
+    * 确认迭代完成时，选择移动至其他迭代
     * @param context
     * @return
     */
     List<Sprint> listChooseMove(SprintSearchContext context);
+
+    /**
+    * fetchChooseSprintRelation
+    * 
+    * @param context
+    * @return
+    */
+    Page<Sprint> fetchChooseSprintRelation(SprintSearchContext context);
+
+    /**
+    * listChooseSprintRelation
+    * 
+    * @param context
+    * @return
+    */
+    List<Sprint> listChooseSprintRelation(SprintSearchContext context);
 
     /**
     * fetchCurSprintNotFinish
@@ -281,14 +379,53 @@ public interface SprintService extends IService<Sprint> {
     List<Sprint> listNotFinish(SprintSearchContext context);
 
     /**
+    * fetchReader
+    * 
+    * @param context
+    * @return
+    */
+    Page<Sprint> fetchReader(SprintSearchContext context);
+
+    /**
+    * listReader
+    * 
+    * @param context
+    * @return
+    */
+    List<Sprint> listReader(SprintSearchContext context);
+
+    /**
+    * fetchReleaseRelation
+    * 
+    * @param context
+    * @return
+    */
+    Page<Sprint> fetchReleaseRelation(SprintSearchContext context);
+
+    /**
+    * listReleaseRelation
+    * 
+    * @param context
+    * @return
+    */
+    List<Sprint> listReleaseRelation(SprintSearchContext context);
+
+    /**
     * findByProjectId
     * @param projectIds
     * @return
     */
     List<Sprint> findByProjectId(List<String> projectIds);
     default List<Sprint> findByProjectId(String projectId){
-        return findByProjectId(Arrays.asList(projectId));
+        return findByProject(new Project().setId(projectId));
     }
+
+    /**
+    * findByProject
+    * @param project
+    * @return
+    */
+    List<Sprint> findByProject(Project project);
 
     /**
     * removeByProjectId
@@ -329,8 +466,15 @@ public interface SprintService extends IService<Sprint> {
     */
     List<Sprint> findByPid(List<String> pids);
     default List<Sprint> findByPid(String pid){
-        return findByPid(Arrays.asList(pid));
+        return findBySprint(new Sprint().setId(pid));
     }
+
+    /**
+    * findBySprint
+    * @param sprint
+    * @return
+    */
+    List<Sprint> findBySprint(Sprint sprint);
 
     /**
     * removeByPid
@@ -365,6 +509,16 @@ public interface SprintService extends IService<Sprint> {
     boolean saveBySprint(Sprint sprint, List<Sprint> list);
 
     /**
+    * calSprintWorkItemNum
+    * 
+    * @param et
+    * @return
+    */
+    default Sprint calSprintWorkItemNum(Sprint et) {
+        return et;
+    }
+
+    /**
     * getNotFinish
     * 
     * @param et
@@ -375,14 +529,30 @@ public interface SprintService extends IService<Sprint> {
     }
 
     /**
-    * overviewNum
+    * overview
     * 
     * @param et
     * @return
     */
-    default Sprint overviewNum(Sprint et) {
+    default Sprint overview(Sprint et) {
         return et;
     }
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Sprint> fetchView(SprintSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Sprint> listView(SprintSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Sprint> list) {

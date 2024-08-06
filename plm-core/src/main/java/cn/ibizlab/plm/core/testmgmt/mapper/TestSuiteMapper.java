@@ -135,6 +135,25 @@ public interface TestSuiteMapper extends BaseMapper<TestSuite> {
     List<TestSuite> findByPid(@Param("pids") List<String> pids);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<TestSuite> searchView(IPage<TestSuite> page, @Param("ctx") TestSuiteSearchContext context, @Param("ew") Wrapper<TestSuite> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<TestSuite> listView(@Param("ctx") TestSuiteSearchContext context, @Param("ew") Wrapper<TestSuite> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

@@ -11,6 +11,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.prodmgmt.domain.Idea;
 import cn.ibizlab.plm.core.prodmgmt.filter.IdeaSearchContext;
 import cn.ibizlab.plm.core.base.domain.Category;
@@ -149,7 +150,7 @@ public interface IdeaService extends IService<Idea> {
     * @param et
     * @return
     */
-    Integer checkKey(Idea et);
+    CheckKeyStatus checkKey(Idea et);
 
     /**
     * 保存
@@ -196,6 +197,16 @@ public interface IdeaService extends IService<Idea> {
     }
 
     /**
+    * chooseCaseTemplate
+    * 
+    * @param et
+    * @return
+    */
+    default Idea chooseCaseTemplate(Idea et) {
+        return et;
+    }
+
+    /**
     * delete
     * 
     * @param et
@@ -223,6 +234,26 @@ public interface IdeaService extends IService<Idea> {
     */
     default Idea getBaselineName(String key) {
         return getSelf().getBaselineName(new Idea().setId(key));
+    }
+
+    /**
+    * getCustomerScore
+    * 获取客户分数数据
+    * @param key
+    * @return
+    */
+    default Idea getCustomerScore(String key) {
+        return getSelf().getCustomerScore(new Idea().setId(key));
+    }
+
+    /**
+    * getTicketNum
+    * 
+    * @param key
+    * @return
+    */
+    default Idea getTicketNum(String key) {
+        return getSelf().getTicketNum(new Idea().setId(key));
     }
 
     /**
@@ -327,7 +358,7 @@ public interface IdeaService extends IService<Idea> {
 
     /**
     * fetchDefault
-    * 
+    * 默认普通数据查询
     * @param context
     * @return
     */
@@ -335,7 +366,7 @@ public interface IdeaService extends IService<Idea> {
 
     /**
     * listDefault
-    * 
+    * 默认普通数据查询
     * @param context
     * @return
     */
@@ -343,7 +374,7 @@ public interface IdeaService extends IService<Idea> {
 
     /**
     * fetchAdvancedSearch
-    * 
+    * 指定属性组；查询未删除的需求数据
     * @param context
     * @return
     */
@@ -351,7 +382,7 @@ public interface IdeaService extends IService<Idea> {
 
     /**
     * listAdvancedSearch
-    * 
+    * 指定属性组；查询未删除的需求数据
     * @param context
     * @return
     */
@@ -359,7 +390,7 @@ public interface IdeaService extends IService<Idea> {
 
     /**
     * fetchArchived
-    * 
+    * 查询已归档且未删除的需求数据
     * @param context
     * @return
     */
@@ -367,7 +398,7 @@ public interface IdeaService extends IService<Idea> {
 
     /**
     * listArchived
-    * 
+    * 查询已归档且未删除的需求数据
     * @param context
     * @return
     */
@@ -375,7 +406,7 @@ public interface IdeaService extends IService<Idea> {
 
     /**
     * fetchBaselineChooseIdea
-    * 
+    * 基线选择需求
     * @param context
     * @return
     */
@@ -383,15 +414,47 @@ public interface IdeaService extends IService<Idea> {
 
     /**
     * listBaselineChooseIdea
-    * 
+    * 基线选择需求
     * @param context
     * @return
     */
     List<Idea> listBaselineChooseIdea(IdeaSearchContext context);
 
     /**
-    * fetchCommentNotifyAssignee
+    * fetchBiDetail
     * 
+    * @param context
+    * @return
+    */
+    Page<Idea> fetchBiDetail(IdeaSearchContext context);
+
+    /**
+    * listBiDetail
+    * 
+    * @param context
+    * @return
+    */
+    List<Idea> listBiDetail(IdeaSearchContext context);
+
+    /**
+    * fetchBiSearch
+    * 
+    * @param context
+    * @return
+    */
+    Page<Idea> fetchBiSearch(IdeaSearchContext context);
+
+    /**
+    * listBiSearch
+    * 
+    * @param context
+    * @return
+    */
+    List<Idea> listBiSearch(IdeaSearchContext context);
+
+    /**
+    * fetchCommentNotifyAssignee
+    * 查询指定属性组；评论负责人
     * @param context
     * @return
     */
@@ -399,7 +462,7 @@ public interface IdeaService extends IService<Idea> {
 
     /**
     * listCommentNotifyAssignee
-    * 
+    * 查询指定属性组；评论负责人
     * @param context
     * @return
     */
@@ -407,7 +470,7 @@ public interface IdeaService extends IService<Idea> {
 
     /**
     * fetchCommon
-    * 
+    * 状态非删除，如果上下文传递了类别参数，显示该类别下数据
     * @param context
     * @return
     */
@@ -415,7 +478,7 @@ public interface IdeaService extends IService<Idea> {
 
     /**
     * listCommon
-    * 
+    * 状态非删除，如果上下文传递了类别参数，显示该类别下数据
     * @param context
     * @return
     */
@@ -423,7 +486,7 @@ public interface IdeaService extends IService<Idea> {
 
     /**
     * fetchDeleted
-    * 
+    * 查询已删除的需求数据
     * @param context
     * @return
     */
@@ -431,7 +494,7 @@ public interface IdeaService extends IService<Idea> {
 
     /**
     * listDeleted
-    * 
+    * 查询已删除的需求数据
     * @param context
     * @return
     */
@@ -439,7 +502,7 @@ public interface IdeaService extends IService<Idea> {
 
     /**
     * fetchMyAssign
-    * 
+    * 非归档数据，且负责人为当前登录人的数据
     * @param context
     * @return
     */
@@ -447,7 +510,7 @@ public interface IdeaService extends IService<Idea> {
 
     /**
     * listMyAssign
-    * 
+    * 非归档数据，且负责人为当前登录人的数据
     * @param context
     * @return
     */
@@ -455,7 +518,7 @@ public interface IdeaService extends IService<Idea> {
 
     /**
     * fetchMyAssigneeCount
-    * 
+    * 非归档数据，且负责人为当前登录人的数据
     * @param context
     * @return
     */
@@ -463,7 +526,7 @@ public interface IdeaService extends IService<Idea> {
 
     /**
     * listMyAssigneeCount
-    * 
+    * 非归档数据，且负责人为当前登录人的数据
     * @param context
     * @return
     */
@@ -471,7 +534,7 @@ public interface IdeaService extends IService<Idea> {
 
     /**
     * fetchMyAttention
-    * 
+    * 查询我关注的需求（未归档、未删除）
     * @param context
     * @return
     */
@@ -479,7 +542,7 @@ public interface IdeaService extends IService<Idea> {
 
     /**
     * listMyAttention
-    * 
+    * 查询我关注的需求（未归档、未删除）
     * @param context
     * @return
     */
@@ -487,7 +550,7 @@ public interface IdeaService extends IService<Idea> {
 
     /**
     * fetchMyCreated
-    * 
+    * 首页我创建的需求表格调用
     * @param context
     * @return
     */
@@ -495,7 +558,7 @@ public interface IdeaService extends IService<Idea> {
 
     /**
     * listMyCreated
-    * 
+    * 首页我创建的需求表格调用
     * @param context
     * @return
     */
@@ -503,7 +566,7 @@ public interface IdeaService extends IService<Idea> {
 
     /**
     * fetchNormal
-    * 
+    * 状态非删除，如果上下文传递了子产品参数，查询当前子产品下的需求
     * @param context
     * @return
     */
@@ -511,7 +574,7 @@ public interface IdeaService extends IService<Idea> {
 
     /**
     * listNormal
-    * 
+    * 状态非删除，如果上下文传递了子产品参数，查询当前子产品下的需求
     * @param context
     * @return
     */
@@ -519,7 +582,7 @@ public interface IdeaService extends IService<Idea> {
 
     /**
     * fetchNotExsistsRelation
-    * 
+    * 多项选择视图中右侧表格的数据来源；查询了未与当前主体关联的数据。
     * @param context
     * @return
     */
@@ -527,7 +590,7 @@ public interface IdeaService extends IService<Idea> {
 
     /**
     * listNotExsistsRelation
-    * 
+    * 多项选择视图中右侧表格的数据来源；查询了未与当前主体关联的数据。
     * @param context
     * @return
     */
@@ -535,7 +598,7 @@ public interface IdeaService extends IService<Idea> {
 
     /**
     * fetchNotifyAssignee
-    * 
+    * 查询指定属性组（负责人相关）
     * @param context
     * @return
     */
@@ -543,7 +606,7 @@ public interface IdeaService extends IService<Idea> {
 
     /**
     * listNotifyAssignee
-    * 
+    * 查询指定属性组（负责人相关）
     * @param context
     * @return
     */
@@ -551,7 +614,7 @@ public interface IdeaService extends IService<Idea> {
 
     /**
     * fetchPlanRelationIdea
-    * 
+    * 计划关联需求表格调用
     * @param context
     * @return
     */
@@ -559,15 +622,31 @@ public interface IdeaService extends IService<Idea> {
 
     /**
     * listPlanRelationIdea
-    * 
+    * 计划关联需求表格调用
     * @param context
     * @return
     */
     List<Idea> listPlanRelationIdea(IdeaSearchContext context);
 
     /**
-    * fetchRecentIdea
+    * fetchReader
     * 
+    * @param context
+    * @return
+    */
+    Page<Idea> fetchReader(IdeaSearchContext context);
+
+    /**
+    * listReader
+    * 
+    * @param context
+    * @return
+    */
+    List<Idea> listReader(IdeaSearchContext context);
+
+    /**
+    * fetchRecentIdea
+    * 最近浏览的且未关联当前主体且非归档非删除的数据
     * @param context
     * @return
     */
@@ -575,7 +654,7 @@ public interface IdeaService extends IService<Idea> {
 
     /**
     * listRecentIdea
-    * 
+    * 最近浏览的且未关联当前主体且非归档非删除的数据
     * @param context
     * @return
     */
@@ -588,8 +667,15 @@ public interface IdeaService extends IService<Idea> {
     */
     List<Idea> findByCategoryId(List<String> categoryIds);
     default List<Idea> findByCategoryId(String categoryId){
-        return findByCategoryId(Arrays.asList(categoryId));
+        return findByCategory(new Category().setId(categoryId));
     }
+
+    /**
+    * findByCategory
+    * @param category
+    * @return
+    */
+    List<Idea> findByCategory(Category category);
 
     /**
     * removeByCategoryId
@@ -630,8 +716,15 @@ public interface IdeaService extends IService<Idea> {
     */
     List<Idea> findByProductId(List<String> productIds);
     default List<Idea> findByProductId(String productId){
-        return findByProductId(Arrays.asList(productId));
+        return findByProduct(new Product().setId(productId));
     }
+
+    /**
+    * findByProduct
+    * @param product
+    * @return
+    */
+    List<Idea> findByProduct(Product product);
 
     /**
     * removeByProductId
@@ -672,8 +765,15 @@ public interface IdeaService extends IService<Idea> {
     */
     List<Idea> findByAssigneeId(List<String> assigneeIds);
     default List<Idea> findByAssigneeId(String assigneeId){
-        return findByAssigneeId(Arrays.asList(assigneeId));
+        return findByUser(new User().setId(assigneeId));
     }
+
+    /**
+    * findByUser
+    * @param user
+    * @return
+    */
+    List<Idea> findByUser(User user);
 
     /**
     * removeByAssigneeId
@@ -724,6 +824,42 @@ public interface IdeaService extends IService<Idea> {
     default Idea getBaselineName(Idea et) {
         return et;
     }
+
+    /**
+    * getCustomerScore
+    * 获取客户分数数据
+    * @param et
+    * @return
+    */
+    default Idea getCustomerScore(Idea et) {
+        return et;
+    }
+
+    /**
+    * getTicketNum
+    * 
+    * @param et
+    * @return
+    */
+    default Idea getTicketNum(Idea et) {
+        return et;
+    }
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Idea> fetchView(IdeaSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Idea> listView(IdeaSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Idea> list) {

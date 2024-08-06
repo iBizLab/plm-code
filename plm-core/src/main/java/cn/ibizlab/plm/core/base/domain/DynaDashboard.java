@@ -4,6 +4,7 @@
 package cn.ibizlab.plm.core.base.domain;
 
 import java.util.*;
+import java.math.BigDecimal;
 import cn.ibizlab.util.domain.IEntity;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.*;
@@ -20,6 +21,7 @@ import lombok.experimental.Accessors;
 import io.swagger.annotations.*;
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
+import cn.ibizlab.plm.core.insight.domain.InsightView;
 
 /**
  * 动态数据看板实体类[DynaDashboard]
@@ -35,6 +37,16 @@ import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 @ApiModel(value = "DYNADASHBOARD", description = "动态数据看板")
 public class DynaDashboard extends EntityMP implements Serializable
 {
+
+    /**
+    * 是否系统类型
+    */
+    @TableField(value = "is_system")
+    @DEField(name = "is_system" , defaultValue = "0" , dict = "YesNo")
+    @JSONField(name = "is_system")
+    @JsonProperty("is_system")
+    @ApiModelProperty(value = "is_system", notes = "是否系统类型")
+    private Integer isSystem;
 
     /**
     * 看板类型
@@ -67,6 +79,36 @@ public class DynaDashboard extends EntityMP implements Serializable
     private String ownerId;
 
     /**
+    * 描述
+    */
+    @TableField(value = "desc")
+    @DEField(name = "desc")
+    @JSONField(name = "desc")
+    @JsonProperty("desc")
+    @ApiModelProperty(value = "desc", notes = "描述")
+    private String desc;
+
+    /**
+    * 示例图
+    */
+    @TableField(value = "example_chart")
+    @DEField(name = "example_chart")
+    @JSONField(name = "example_chart")
+    @JsonProperty("example_chart")
+    @ApiModelProperty(value = "example_chart", notes = "示例图")
+    private String exampleChart;
+
+    /**
+    * 序号
+    */
+    @TableField(value = "sequences")
+    @DEField(name = "sequences" , defaultValueType = DEFieldDefaultValueType.ORDERVALUE)
+    @JSONField(name = "sequences")
+    @JsonProperty("sequences")
+    @ApiModelProperty(value = "sequences", notes = "序号")
+    private BigDecimal sequences;
+
+    /**
     * 动态数据看板标识
     */
     @Id
@@ -78,13 +120,13 @@ public class DynaDashboard extends EntityMP implements Serializable
     private String dynaDashboardId;
 
     /**
-    * 动态数据看板名称
+    * 名称
     */
     @TableField(value = "dynadashboardname")
     @DEField(name = "dynadashboardname")
     @JSONField(name = "dynadashboardname")
     @JsonProperty("dynadashboardname")
-    @ApiModelProperty(value = "dynadashboardname", notes = "动态数据看板名称")
+    @ApiModelProperty(value = "dynadashboardname", notes = "名称")
     private String dynaDashboardName;
 
     /**
@@ -170,6 +212,25 @@ public class DynaDashboard extends EntityMP implements Serializable
     private String model;
 
     /**
+    * 效能视图-动态报表
+    */
+    @Transient
+    @TableField(exist = false)
+    @JsonIgnore
+    @JSONField(serialize = false)
+    @ApiModelProperty(value = "insight_view", notes = "效能视图-动态报表")
+    private InsightView insightView;
+
+    /**
+    * 设置 [是否系统类型]
+    */
+    public DynaDashboard setIsSystem(Integer isSystem) {
+        this.isSystem = isSystem;
+        this.modify("is_system", isSystem);
+        return this;
+    }
+
+    /**
     * 设置 [看板类型]
     */
     public DynaDashboard setType(String type) {
@@ -197,7 +258,34 @@ public class DynaDashboard extends EntityMP implements Serializable
     }
 
     /**
-    * 设置 [动态数据看板名称]
+    * 设置 [描述]
+    */
+    public DynaDashboard setDesc(String desc) {
+        this.desc = desc;
+        this.modify("desc", desc);
+        return this;
+    }
+
+    /**
+    * 设置 [示例图]
+    */
+    public DynaDashboard setExampleChart(String exampleChart) {
+        this.exampleChart = exampleChart;
+        this.modify("example_chart", exampleChart);
+        return this;
+    }
+
+    /**
+    * 设置 [序号]
+    */
+    public DynaDashboard setSequences(BigDecimal sequences) {
+        this.sequences = sequences;
+        this.modify("sequences", sequences);
+        return this;
+    }
+
+    /**
+    * 设置 [名称]
     */
     public DynaDashboard setDynaDashboardName(String dynaDashboardName) {
         this.dynaDashboardName = dynaDashboardName;

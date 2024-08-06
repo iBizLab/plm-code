@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.projmgmt.domain.ProjectMember;
@@ -117,17 +118,17 @@ public abstract class AbstractProjectMemberService extends ServiceImpl<ProjectMe
         return et;
     }
 	
-    public Integer checkKey(ProjectMember et) {
+    public CheckKeyStatus checkKey(ProjectMember et) {
         fillParentData(et);
         if(ObjectUtils.isEmpty(et.getId()))
             et.setId((String)et.getDefaultKey(true));
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ProjectMember>lambdaQuery().eq(ProjectMember::getId, et.getId()))>0)?1:0;
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ProjectMember>lambdaQuery().eq(ProjectMember::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(ProjectMember et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -185,6 +186,10 @@ public abstract class AbstractProjectMemberService extends ServiceImpl<ProjectMe
         return list;	
 	}
 
+	public List<ProjectMember> findByProject(Project project){
+        List<ProjectMember> list = findByProjectId(Arrays.asList(project.getId()));
+		return list;
+	}
 	public boolean removeByProjectId(String projectId){
         return this.remove(Wrappers.<ProjectMember>lambdaQuery().eq(ProjectMember::getProjectId,projectId));
 	}
@@ -195,8 +200,8 @@ public abstract class AbstractProjectMemberService extends ServiceImpl<ProjectMe
 	public boolean saveByProject(Project project, List<ProjectMember> list){
         if(list==null)
             return true;
-        Map<String,ProjectMember> before = findByProjectId(project.getId()).stream().collect(Collectors.toMap(ProjectMember::getId,e->e));
 
+        Map<String,ProjectMember> before = findByProject(project).stream().collect(Collectors.toMap(ProjectMember::getId,e->e));
         List<ProjectMember> update = new ArrayList<>();
         List<ProjectMember> create = new ArrayList<>();
 
@@ -229,6 +234,10 @@ public abstract class AbstractProjectMemberService extends ServiceImpl<ProjectMe
         return list;	
 	}
 
+	public List<ProjectMember> findByUser(User user){
+        List<ProjectMember> list = findByUserId(Arrays.asList(user.getId()));
+		return list;
+	}
 	public boolean removeByUserId(String userId){
         return this.remove(Wrappers.<ProjectMember>lambdaQuery().eq(ProjectMember::getUserId,userId));
 	}
@@ -239,8 +248,8 @@ public abstract class AbstractProjectMemberService extends ServiceImpl<ProjectMe
 	public boolean saveByUser(User user, List<ProjectMember> list){
         if(list==null)
             return true;
-        Map<String,ProjectMember> before = findByUserId(user.getId()).stream().collect(Collectors.toMap(ProjectMember::getId,e->e));
 
+        Map<String,ProjectMember> before = findByUser(user).stream().collect(Collectors.toMap(ProjectMember::getId,e->e));
         List<ProjectMember> update = new ArrayList<>();
         List<ProjectMember> create = new ArrayList<>();
 
@@ -268,6 +277,17 @@ public abstract class AbstractProjectMemberService extends ServiceImpl<ProjectMe
             return true;
 			
 	}
+   public Page<ProjectMember> fetchView(ProjectMemberSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ProjectMember> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<ProjectMember> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<ProjectMember> listView(ProjectMemberSearchContext context) {
+        List<ProjectMember> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(ProjectMember et) {
         if(Entities.PROJECT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

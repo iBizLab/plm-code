@@ -385,7 +385,7 @@ export default {
         sortMode: 'REMOTE',
         singleSelect: true,
         fetchControlAction: {
-          appDEMethodId: 'fetch_my_test_case_workload',
+          appDEMethodId: 'fetch_test_case_dimension',
           appDataEntityId: 'plmweb.workload',
           id: 'fetch',
         },
@@ -515,7 +515,6 @@ export default {
                   colMD: 24,
                   layout: 'TABLE_24COL',
                 },
-                showCaption: true,
                 id: 'n_register_date_gtandeq',
               },
               {
@@ -542,7 +541,6 @@ export default {
                   colMD: 24,
                   layout: 'TABLE_24COL',
                 },
-                showCaption: true,
                 id: 'n_register_date_ltandeq',
               },
             ],

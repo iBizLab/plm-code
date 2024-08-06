@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.Parameter;
 import cn.ibizlab.plm.core.base.filter.ParameterSearchContext;
 
@@ -137,7 +138,7 @@ public interface ParameterService extends IService<Parameter> {
     * @param et
     * @return
     */
-    Integer checkKey(Parameter et);
+    CheckKeyStatus checkKey(Parameter et);
 
     /**
     * 保存
@@ -168,6 +169,22 @@ public interface ParameterService extends IService<Parameter> {
     * @return
     */
     List<Parameter> listDefault(ParameterSearchContext context);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Parameter> fetchView(ParameterSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Parameter> listView(ParameterSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Parameter> list) {

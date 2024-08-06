@@ -1,5 +1,5 @@
 /**
- * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{entities@SQL}}.java.hbs
+ * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{domains@SQL}}.java.hbs
  */
 package cn.ibizlab.plm.core.testmgmt.domain;
 
@@ -51,7 +51,7 @@ public class ReviewContentExtend extends EntityMP implements Serializable
     /**
     * 变更版本
     */
-    @TableField(value = "change_version")
+    @TableField(value = "change_version", jdbcType = org.apache.ibatis.type.JdbcType.VARCHAR, typeHandler =com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler.class)
     @DEField(name = "change_version")
     @JSONField(name = "change_version")
     @JsonProperty("change_version")

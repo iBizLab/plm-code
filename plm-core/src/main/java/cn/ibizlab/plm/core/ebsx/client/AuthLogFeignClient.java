@@ -21,6 +21,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.util.Assert;
 import org.springframework.beans.factory.annotation.Value;
 import cn.ibizlab.util.errors.BadRequestAlertException;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.ebsx.domain.AuthLog;
@@ -35,7 +36,7 @@ import org.springframework.web.bind.annotation.*;
 @FeignClient(value = "${ibiz.ref.service.ibizrtclient:ibizrtclient}", contextId = "authlog")
 public interface AuthLogFeignClient  {
     @PostMapping("authlogs/checkkey")
-    Integer checkKey(@Validated @RequestBody AuthLog dto) ;
+    CheckKeyStatus checkKey(@Validated @RequestBody AuthLog dto) ;
 
     @PostMapping("authlogs")
     AuthLog create(@Validated @RequestBody AuthLog dto) ;

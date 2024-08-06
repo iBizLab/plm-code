@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.team.domain.Period;
@@ -100,14 +101,14 @@ public abstract class AbstractPeriodService extends ServiceImpl<PeriodMapper,Per
         return et;
     }
 	
-    public Integer checkKey(Period et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Period>lambdaQuery().eq(Period::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(Period et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Period>lambdaQuery().eq(Period::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(Period et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -142,6 +143,17 @@ public abstract class AbstractPeriodService extends ServiceImpl<PeriodMapper,Per
 
    public List<Period> listDefault(PeriodSearchContext context) {
         List<Period> list = baseMapper.listDefault(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Period> fetchView(PeriodSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Period> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<Period> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Period> listView(PeriodSearchContext context) {
+        List<Period> list = baseMapper.listView(context,context.getSelectCond());
         return list;
    }
 	

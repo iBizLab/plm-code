@@ -26,6 +26,14 @@ export default {
   ],
   appDEFields: [
     {
+      codeName: 'visibility',
+      logicName: '可见范围',
+      stdDataType: 25,
+      stringLength: 60,
+      name: 'VISIBILITY',
+      id: 'visibility',
+    },
+    {
       codeName: 'sequence',
       logicName: '序号',
       stdDataType: 6,
@@ -139,6 +147,15 @@ export default {
     {
       codeName: 'group_dto',
       appDEMethodDTOFields: [
+        {
+          codeName: 'visibility',
+          logicName: '可见范围',
+          appDEFieldId: 'visibility',
+          sourceType: 'DEFIELD',
+          stdDataType: 25,
+          type: 'SIMPLE',
+          id: 'visibility',
+        },
         {
           codeName: 'sequence',
           logicName: '序号',
@@ -302,6 +319,16 @@ export default {
           type: 'SIMPLE',
           allowEmpty: true,
           id: 'n_section_name_like',
+        },
+        {
+          codeName: 'n_visibility_eq',
+          logicName: '可见范围',
+          appDEFieldId: 'visibility',
+          sourceType: 'DEFSEARCHMODE',
+          stdDataType: 25,
+          type: 'SIMPLE',
+          allowEmpty: true,
+          id: 'n_visibility_eq',
         },
       ],
       sourceType: 'DE',
@@ -545,6 +572,28 @@ export default {
       dataSetTag: 'reader',
       dataSetType: 'REMOTE',
       id: 'fetch_reader',
+    },
+    {
+      codeName: 'fetch_user',
+      methodType: 'FETCH',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'group_filter_dto',
+        type: 'DTO',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'group_dto',
+        type: 'PAGE',
+        id: '返回对象',
+      },
+      requestMethod: 'POST',
+      requestParamType: 'ENTITY',
+      requestPath: '/fetch_user',
+      actionType: 'REMOTE',
+      dataSetName: 'user',
+      dataSetTag: 'user',
+      dataSetType: 'REMOTE',
+      id: 'fetch_user',
     },
     {
       codeName: 'fetch_user_group_admin',

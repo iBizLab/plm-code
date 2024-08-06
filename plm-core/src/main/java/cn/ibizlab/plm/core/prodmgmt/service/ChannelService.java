@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.prodmgmt.domain.Channel;
 import cn.ibizlab.plm.core.prodmgmt.filter.ChannelSearchContext;
 import cn.ibizlab.plm.core.prodmgmt.domain.Product;
@@ -138,7 +139,7 @@ public interface ChannelService extends IService<Channel> {
     * @param et
     * @return
     */
-    Integer checkKey(Channel et);
+    CheckKeyStatus checkKey(Channel et);
 
     /**
     * 保存
@@ -177,8 +178,15 @@ public interface ChannelService extends IService<Channel> {
     */
     List<Channel> findByProductId(List<String> productIds);
     default List<Channel> findByProductId(String productId){
-        return findByProductId(Arrays.asList(productId));
+        return findByProduct(new Product().setId(productId));
     }
+
+    /**
+    * findByProduct
+    * @param product
+    * @return
+    */
+    List<Channel> findByProduct(Product product);
 
     /**
     * removeByProductId
@@ -211,6 +219,22 @@ public interface ChannelService extends IService<Channel> {
     * @return
     */
     boolean saveByProduct(Product product, List<Channel> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Channel> fetchView(ChannelSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Channel> listView(ChannelSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Channel> list) {

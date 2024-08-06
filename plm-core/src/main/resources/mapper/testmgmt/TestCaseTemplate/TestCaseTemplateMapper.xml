@@ -5,21 +5,21 @@
         <!--通过mybatis将查询结果注入到entity中,通过配置autoMapping="true"由mybatis自动处理映射关系 -->
     <resultMap id="TestCaseTemplateResultMap" type="cn.ibizlab.plm.core.testmgmt.domain.TestCaseTemplate" autoMapping="true">
 		<id property="id" column="id" /><!--主键字段映射-->
-		<result property="testType" column="test_type" />
-		<result property="isArchived" column="is_archived" />
-		<result property="isDeleted" column="is_deleted" />
-        <result property="steps" column="steps" jdbcType="VARCHAR" typeHandler="cn.ibizlab.plm.core.testmgmt.domain.handlers.StepTypeHandler" />
-		<result property="estimatedWorkload" column="estimated_workload" />
-		<result property="remainingWorkload" column="remaining_workload" />
-		<result property="actualWorkload" column="actual_workload" />
-		<result property="createMan" column="create_man" />
-		<result property="createTime" column="create_time" />
-		<result property="updateMan" column="update_man" />
-		<result property="updateTime" column="update_time" />
-		<result property="testLibraryId" column="test_library_id" />
-		<result property="testLibraryName" column="test_library_name" />
-		<result property="suiteId" column="suite_id" />
-		<result property="suiteName" column="suite_name" />
+		<result property="testType" column="test_type"/>
+		<result property="isArchived" column="is_archived"/>
+		<result property="isDeleted" column="is_deleted"/>
+		<result property="steps" column="steps" jdbcType="VARCHAR" typeHandler="cn.ibizlab.plm.core.testmgmt.domain.handlers.StepTypeHandler"/>
+		<result property="estimatedWorkload" column="estimated_workload"/>
+		<result property="remainingWorkload" column="remaining_workload"/>
+		<result property="actualWorkload" column="actual_workload"/>
+		<result property="createMan" column="create_man"/>
+		<result property="createTime" column="create_time"/>
+		<result property="updateMan" column="update_man"/>
+		<result property="updateTime" column="update_time"/>
+		<result property="testLibraryId" column="test_library_id"/>
+		<result property="testLibraryName" column="test_library_name"/>
+		<result property="suiteId" column="suite_id"/>
+		<result property="suiteName" column="suite_name"/>
         <association property="library" javaType="cn.ibizlab.plm.core.testmgmt.domain.Library" column="test_library_id" select="cn.ibizlab.plm.core.testmgmt.mapper.LibraryMapper.selectById" fetchType="lazy"></association>
         <association property="testSuite" javaType="cn.ibizlab.plm.core.testmgmt.domain.TestSuite" column="suite_id" select="cn.ibizlab.plm.core.testmgmt.mapper.TestSuiteMapper.selectById" fetchType="lazy"></association>
     </resultMap>
@@ -76,6 +76,15 @@
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
         
+    </select>
+
+    <select id="listView"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestCaseTemplateSearchContext"  resultMap="TestCaseTemplateResultMap">
+        select t1.*
+        from (
+            <include refid="view" />
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
     </select>
 
     <select id="findByTestLibraryId" resultMap="TestCaseTemplateResultMap">

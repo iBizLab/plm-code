@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.Favorite;
 import cn.ibizlab.plm.core.base.filter.FavoriteSearchContext;
 import cn.ibizlab.plm.core.projmgmt.domain.Project;
@@ -139,7 +140,7 @@ public interface FavoriteService extends IService<Favorite> {
     * @param et
     * @return
     */
-    Integer checkKey(Favorite et);
+    CheckKeyStatus checkKey(Favorite et);
 
     /**
     * 保存
@@ -178,8 +179,15 @@ public interface FavoriteService extends IService<Favorite> {
     */
     List<Favorite> findByOwnerId(List<String> ownerIds);
     default List<Favorite> findByOwnerId(String ownerId){
-        return findByOwnerId(Arrays.asList(ownerId));
+        return findByProject(new Project().setId(ownerId));
     }
+
+    /**
+    * findByProject
+    * @param project
+    * @return
+    */
+    List<Favorite> findByProject(Project project);
 
     /**
     * removeByOwnerId
@@ -214,12 +222,35 @@ public interface FavoriteService extends IService<Favorite> {
     boolean saveByProject(Project project, List<Favorite> list);
 
     /**
+    * findByProduct
+    * @param product
+    * @return
+    */
+    List<Favorite> findByProduct(Product product);
+
+    /**
     * saveByProduct
     * @param product
     * @param list
     * @return
     */
     boolean saveByProduct(Product product, List<Favorite> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Favorite> fetchView(FavoriteSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Favorite> listView(FavoriteSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Favorite> list) {

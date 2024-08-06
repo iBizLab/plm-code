@@ -23,12 +23,14 @@ import java.util.stream.IntStream;
 import cn.ibizlab.util.domain.ImportResult;
 import cn.ibizlab.util.domain.RequestWrapper;
 import cn.ibizlab.util.domain.ResponseWrapper;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.serviceapi.dto.*;
 import cn.ibizlab.plm.serviceapi.mapping.*;
 import cn.ibizlab.plm.core.base.domain.PortfolioMember;
 import cn.ibizlab.plm.core.base.service.PortfolioMemberService;
 import cn.ibizlab.plm.core.base.filter.PortfolioMemberSearchContext;
 import cn.ibizlab.util.annotation.VersionCheck;
+import reactor.core.publisher.Mono;
 
 /**
  * 实体[PortfolioMember] rest实现
@@ -54,19 +56,19 @@ public abstract class AbstractPortfolioMemberResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<PortfolioMemberDTO>
+    * @return Mono<ResponseEntity<PortfolioMemberDTO>>
     */
     @ApiOperation(value = "创建Create", tags = {"文件夹成员" },  notes = "PortfolioMember-Create ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-Create-all') or hasPermission(this.portfolioMemberDtoMapping.toDomain(#dto),'ibizplm-PortfolioMember-Create')")
     @PostMapping("portfolio_members")
-    public ResponseEntity<ResponseWrapper<PortfolioMemberDTO>> create
+    public Mono<ResponseEntity<ResponseWrapper<PortfolioMemberDTO>>>create
             (@Validated @RequestBody RequestWrapper<PortfolioMemberDTO> dto) {
         ResponseWrapper<PortfolioMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(create(item)));
         else
             rt.set(create(dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -90,13 +92,13 @@ public abstract class AbstractPortfolioMemberResource {
     *
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<PortfolioMemberDTO>
+    * @return Mono<ResponseEntity<PortfolioMemberDTO>>
     */
     @ApiOperation(value = "更新Update", tags = {"文件夹成员" },  notes = "PortfolioMember-Update ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-Update-all') or hasPermission(this.portfolioMemberService.get(#id),'ibizplm-PortfolioMember-Update')")
     @VersionCheck(entity = "portfoliomember" , versionfield = "updateTime")
     @PutMapping("portfolio_members/{id}")
-    public ResponseEntity<ResponseWrapper<PortfolioMemberDTO>> updateById
+    public Mono<ResponseEntity<ResponseWrapper<PortfolioMemberDTO>>>updateById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<PortfolioMemberDTO> dto) {
         ResponseWrapper<PortfolioMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -105,7 +107,7 @@ public abstract class AbstractPortfolioMemberResource {
         }
         else
             rt.set(updateById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -131,11 +133,11 @@ public abstract class AbstractPortfolioMemberResource {
     *
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<PortfolioMemberDTO>
+    * @return Mono<ResponseEntity<PortfolioMemberDTO>>
     */
     @ApiOperation(value = "change_role", tags = {"文件夹成员" },  notes = "PortfolioMember-change_role ")
     @PostMapping("portfolio_members/{id}/change_role")
-    public ResponseEntity<ResponseWrapper<PortfolioMemberDTO>> changeRoleById
+    public Mono<ResponseEntity<ResponseWrapper<PortfolioMemberDTO>>>changeRoleById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<PortfolioMemberDTO> dto) {
         ResponseWrapper<PortfolioMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -144,7 +146,7 @@ public abstract class AbstractPortfolioMemberResource {
         }
         else
             rt.set(changeRoleById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -168,19 +170,19 @@ public abstract class AbstractPortfolioMemberResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<PortfolioMemberDTO>
+    * @return Mono<ResponseEntity<PortfolioMemberDTO>>
     */
     @ApiOperation(value = "保存Save", tags = {"文件夹成员" },  notes = "PortfolioMember-Save ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-Save-all') or hasPermission(this.portfolioMemberDtoMapping.toDomain(#dto),'ibizplm-PortfolioMember-Save')")
     @PostMapping("portfolio_members/save")
-    public ResponseEntity<ResponseWrapper<PortfolioMemberDTO>> save
+    public Mono<ResponseEntity<ResponseWrapper<PortfolioMemberDTO>>>save
             (@Validated @RequestBody RequestWrapper<PortfolioMemberDTO> dto) {
         ResponseWrapper<PortfolioMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(save(item)));
         else
             rt.set(save(dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -204,19 +206,19 @@ public abstract class AbstractPortfolioMemberResource {
     *
     * @param portfolioId portfolioId
     * @param dto dto
-    * @return ResponseEntity<PortfolioMemberDTO>
+    * @return Mono<ResponseEntity<PortfolioMemberDTO>>
     */
     @ApiOperation(value = "创建Create", tags = {"文件夹成员" },  notes = "PortfolioMember-Create ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-Create-all') or hasPermission('portfolio',#portfolioId,this.portfolioMemberDtoMapping.toDomain(#dto),'ibizplm-PortfolioMember-Create')")
     @PostMapping("portfolios/{portfolioId}/portfolio_members")
-    public ResponseEntity<ResponseWrapper<PortfolioMemberDTO>> createByPortfolioId
+    public Mono<ResponseEntity<ResponseWrapper<PortfolioMemberDTO>>>createByPortfolioId
             (@PathVariable("portfolioId") String portfolioId, @Validated @RequestBody RequestWrapper<PortfolioMemberDTO> dto) {
         ResponseWrapper<PortfolioMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(createByPortfolioId(portfolioId, item)));
         else
             rt.set(createByPortfolioId(portfolioId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -243,13 +245,13 @@ public abstract class AbstractPortfolioMemberResource {
     * @param portfolioId portfolioId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<PortfolioMemberDTO>
+    * @return Mono<ResponseEntity<PortfolioMemberDTO>>
     */
     @ApiOperation(value = "更新Update", tags = {"文件夹成员" },  notes = "PortfolioMember-Update ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-Update-all') or hasPermission('portfolio',#portfolioId,this.portfolioMemberService.get(#id),'ibizplm-PortfolioMember-Update')")
     @VersionCheck(entity = "portfoliomember" , versionfield = "updateTime")
     @PutMapping("portfolios/{portfolioId}/portfolio_members/{id}")
-    public ResponseEntity<ResponseWrapper<PortfolioMemberDTO>> updateByPortfolioIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<PortfolioMemberDTO>>>updateByPortfolioIdAndId
             (@PathVariable("portfolioId") String portfolioId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<PortfolioMemberDTO> dto) {
         ResponseWrapper<PortfolioMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -258,7 +260,7 @@ public abstract class AbstractPortfolioMemberResource {
         }
         else
             rt.set(updateByPortfolioIdAndId(portfolioId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -286,11 +288,11 @@ public abstract class AbstractPortfolioMemberResource {
     * @param portfolioId portfolioId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<PortfolioMemberDTO>
+    * @return Mono<ResponseEntity<PortfolioMemberDTO>>
     */
     @ApiOperation(value = "change_role", tags = {"文件夹成员" },  notes = "PortfolioMember-change_role ")
     @PostMapping("portfolios/{portfolioId}/portfolio_members/{id}/change_role")
-    public ResponseEntity<ResponseWrapper<PortfolioMemberDTO>> changeRoleByPortfolioIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<PortfolioMemberDTO>>>changeRoleByPortfolioIdAndId
             (@PathVariable("portfolioId") String portfolioId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<PortfolioMemberDTO> dto) {
         ResponseWrapper<PortfolioMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -299,7 +301,7 @@ public abstract class AbstractPortfolioMemberResource {
         }
         else
             rt.set(changeRoleByPortfolioIdAndId(portfolioId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -325,19 +327,19 @@ public abstract class AbstractPortfolioMemberResource {
     *
     * @param portfolioId portfolioId
     * @param dto dto
-    * @return ResponseEntity<PortfolioMemberDTO>
+    * @return Mono<ResponseEntity<PortfolioMemberDTO>>
     */
     @ApiOperation(value = "保存Save", tags = {"文件夹成员" },  notes = "PortfolioMember-Save ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-Save-all') or hasPermission('portfolio',#portfolioId,this.portfolioMemberDtoMapping.toDomain(#dto),'ibizplm-PortfolioMember-Save')")
     @PostMapping("portfolios/{portfolioId}/portfolio_members/save")
-    public ResponseEntity<ResponseWrapper<PortfolioMemberDTO>> saveByPortfolioId
+    public Mono<ResponseEntity<ResponseWrapper<PortfolioMemberDTO>>>saveByPortfolioId
             (@PathVariable("portfolioId") String portfolioId, @Validated @RequestBody RequestWrapper<PortfolioMemberDTO> dto) {
         ResponseWrapper<PortfolioMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(saveByPortfolioId(portfolioId, item)));
         else
             rt.set(saveByPortfolioId(portfolioId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -363,19 +365,19 @@ public abstract class AbstractPortfolioMemberResource {
     *
     * @param userId userId
     * @param dto dto
-    * @return ResponseEntity<PortfolioMemberDTO>
+    * @return Mono<ResponseEntity<PortfolioMemberDTO>>
     */
     @ApiOperation(value = "创建Create", tags = {"文件夹成员" },  notes = "PortfolioMember-Create ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-Create-all') or hasPermission('user',#userId,this.portfolioMemberDtoMapping.toDomain(#dto),'ibizplm-PortfolioMember-Create')")
     @PostMapping("users/{userId}/portfolio_members")
-    public ResponseEntity<ResponseWrapper<PortfolioMemberDTO>> createByUserId
+    public Mono<ResponseEntity<ResponseWrapper<PortfolioMemberDTO>>>createByUserId
             (@PathVariable("userId") String userId, @Validated @RequestBody RequestWrapper<PortfolioMemberDTO> dto) {
         ResponseWrapper<PortfolioMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(createByUserId(userId, item)));
         else
             rt.set(createByUserId(userId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -402,13 +404,13 @@ public abstract class AbstractPortfolioMemberResource {
     * @param userId userId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<PortfolioMemberDTO>
+    * @return Mono<ResponseEntity<PortfolioMemberDTO>>
     */
     @ApiOperation(value = "更新Update", tags = {"文件夹成员" },  notes = "PortfolioMember-Update ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-Update-all') or hasPermission('user',#userId,this.portfolioMemberService.get(#id),'ibizplm-PortfolioMember-Update')")
     @VersionCheck(entity = "portfoliomember" , versionfield = "updateTime")
     @PutMapping("users/{userId}/portfolio_members/{id}")
-    public ResponseEntity<ResponseWrapper<PortfolioMemberDTO>> updateByUserIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<PortfolioMemberDTO>>>updateByUserIdAndId
             (@PathVariable("userId") String userId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<PortfolioMemberDTO> dto) {
         ResponseWrapper<PortfolioMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -417,7 +419,7 @@ public abstract class AbstractPortfolioMemberResource {
         }
         else
             rt.set(updateByUserIdAndId(userId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -445,11 +447,11 @@ public abstract class AbstractPortfolioMemberResource {
     * @param userId userId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<PortfolioMemberDTO>
+    * @return Mono<ResponseEntity<PortfolioMemberDTO>>
     */
     @ApiOperation(value = "change_role", tags = {"文件夹成员" },  notes = "PortfolioMember-change_role ")
     @PostMapping("users/{userId}/portfolio_members/{id}/change_role")
-    public ResponseEntity<ResponseWrapper<PortfolioMemberDTO>> changeRoleByUserIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<PortfolioMemberDTO>>>changeRoleByUserIdAndId
             (@PathVariable("userId") String userId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<PortfolioMemberDTO> dto) {
         ResponseWrapper<PortfolioMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -458,7 +460,7 @@ public abstract class AbstractPortfolioMemberResource {
         }
         else
             rt.set(changeRoleByUserIdAndId(userId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -484,19 +486,19 @@ public abstract class AbstractPortfolioMemberResource {
     *
     * @param userId userId
     * @param dto dto
-    * @return ResponseEntity<PortfolioMemberDTO>
+    * @return Mono<ResponseEntity<PortfolioMemberDTO>>
     */
     @ApiOperation(value = "保存Save", tags = {"文件夹成员" },  notes = "PortfolioMember-Save ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-Save-all') or hasPermission('user',#userId,this.portfolioMemberDtoMapping.toDomain(#dto),'ibizplm-PortfolioMember-Save')")
     @PostMapping("users/{userId}/portfolio_members/save")
-    public ResponseEntity<ResponseWrapper<PortfolioMemberDTO>> saveByUserId
+    public Mono<ResponseEntity<ResponseWrapper<PortfolioMemberDTO>>>saveByUserId
             (@PathVariable("userId") String userId, @Validated @RequestBody RequestWrapper<PortfolioMemberDTO> dto) {
         ResponseWrapper<PortfolioMemberDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(saveByUserId(userId, item)));
         else
             rt.set(saveByUserId(userId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -522,15 +524,15 @@ public abstract class AbstractPortfolioMemberResource {
     * 
     *
     * @param id id
-    * @return ResponseEntity<PortfolioMemberDTO>
+    * @return Mono<ResponseEntity<PortfolioMemberDTO>>
     */
     @ApiOperation(value = "获取Get", tags = {"文件夹成员" },  notes = "PortfolioMember-Get ")
-    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-Get-all')  or hasPermission(this.portfolioMemberDtoMapping.toDomain(returnObject.body),'ibizplm-PortfolioMember-Get')")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-Get-all')  or hasPermission(this.portfolioMemberDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-PortfolioMember-Get')")
     @GetMapping("portfolio_members/{id}")
-    public ResponseEntity<PortfolioMemberDTO> getById
+    public Mono<ResponseEntity<PortfolioMemberDTO>> getById
             (@PathVariable("id") String id) {
         PortfolioMember rt = portfolioMemberService.get(id);
-        return ResponseEntity.status(HttpStatus.OK).body(portfolioMemberDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(portfolioMemberDtoMapping.toDto(rt)));
     }
 
     /**
@@ -538,15 +540,15 @@ public abstract class AbstractPortfolioMemberResource {
     * 
     *
     * @param id id
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @ApiOperation(value = "删除Remove", tags = {"文件夹成员" },  notes = "PortfolioMember-Remove ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-Remove-all') or hasPermission(this.portfolioMemberService.get(#id),'ibizplm-PortfolioMember-Remove')")
     @DeleteMapping("portfolio_members/{id}")
-    public ResponseEntity<Boolean> removeById
+    public Mono<ResponseEntity<Boolean>> removeById
             (@PathVariable("id") String id) {
         Boolean rt = portfolioMemberService.remove(id);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -554,15 +556,15 @@ public abstract class AbstractPortfolioMemberResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<Integer>
+    * @return Mono<ResponseEntity<Integer>>
     */
     @ApiOperation(value = "校验CheckKey", tags = {"文件夹成员" },  notes = "PortfolioMember-CheckKey ")
     @PostMapping("portfolio_members/check_key")
-    public ResponseEntity<Integer> checkKey
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKey
             (@Validated @RequestBody PortfolioMemberDTO dto) {
         PortfolioMember domain = portfolioMemberDtoMapping.toDomain(dto);
-        Integer rt = portfolioMemberService.checkKey(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        CheckKeyStatus rt = portfolioMemberService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -570,15 +572,15 @@ public abstract class AbstractPortfolioMemberResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<PortfolioMemberDTO>
+    * @return Mono<ResponseEntity<PortfolioMemberDTO>>
     */
     @ApiOperation(value = "草稿GetDraft", tags = {"文件夹成员" },  notes = "PortfolioMember-GetDraft ")
     @GetMapping("portfolio_members/get_draft")
-    public ResponseEntity<PortfolioMemberDTO> getDraft
+    public Mono<ResponseEntity<PortfolioMemberDTO>> getDraft
             (@SpringQueryMap PortfolioMemberDTO dto) {
         PortfolioMember domain = portfolioMemberDtoMapping.toDomain(dto);
         PortfolioMember rt = portfolioMemberService.getDraft(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(portfolioMemberDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(portfolioMemberDtoMapping.toDto(rt)));
     }
 
     /**
@@ -586,21 +588,21 @@ public abstract class AbstractPortfolioMemberResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<PortfolioMemberDTO>>
+    * @return Mono<ResponseEntity<List<PortfolioMemberDTO>>>
     */
     @ApiOperation(value = "查询fetch_cur_project_set", tags = {"文件夹成员" },  notes = "PortfolioMember-fetch_cur_project_set ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-fetch_cur_project_set-all') or hasPermission(#dto,'ibizplm-PortfolioMember-fetch_cur_project_set')")
     @PostMapping("portfolio_members/fetch_cur_project_set")
-    public ResponseEntity<List<PortfolioMemberDTO>> fetchCurProjectSet
+    public Mono<ResponseEntity<List<PortfolioMemberDTO>>> fetchCurProjectSet
             (@Validated @RequestBody PortfolioMemberFilterDTO dto) {
         PortfolioMemberSearchContext context = portfolioMemberFilterDtoMapping.toDomain(dto);
         Page<PortfolioMember> domains = portfolioMemberService.fetchCurProjectSet(context) ;
         List<PortfolioMemberDTO> list = portfolioMemberDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -608,21 +610,21 @@ public abstract class AbstractPortfolioMemberResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<PortfolioMemberDTO>>
+    * @return Mono<ResponseEntity<List<PortfolioMemberDTO>>>
     */
     @ApiOperation(value = "查询fetch_default", tags = {"文件夹成员" },  notes = "PortfolioMember-fetch_default ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-fetch_default-all') or hasPermission(#dto,'ibizplm-PortfolioMember-fetch_default')")
     @PostMapping("portfolio_members/fetch_default")
-    public ResponseEntity<List<PortfolioMemberDTO>> fetchDefault
+    public Mono<ResponseEntity<List<PortfolioMemberDTO>>> fetchDefault
             (@Validated @RequestBody PortfolioMemberFilterDTO dto) {
         PortfolioMemberSearchContext context = portfolioMemberFilterDtoMapping.toDomain(dto);
         Page<PortfolioMember> domains = portfolioMemberService.fetchDefault(context) ;
         List<PortfolioMemberDTO> list = portfolioMemberDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -631,15 +633,15 @@ public abstract class AbstractPortfolioMemberResource {
     *
     * @param portfolioId portfolioId
     * @param id id
-    * @return ResponseEntity<PortfolioMemberDTO>
+    * @return Mono<ResponseEntity<PortfolioMemberDTO>>
     */
     @ApiOperation(value = "获取Get", tags = {"文件夹成员" },  notes = "PortfolioMember-Get ")
-    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-Get-all')  or hasPermission('portfolio',#portfolioId,this.portfolioMemberDtoMapping.toDomain(returnObject.body),'ibizplm-PortfolioMember-Get')")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-Get-all')  or hasPermission('portfolio',#portfolioId,this.portfolioMemberDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-PortfolioMember-Get')")
     @GetMapping("portfolios/{portfolioId}/portfolio_members/{id}")
-    public ResponseEntity<PortfolioMemberDTO> getByPortfolioIdAndId
+    public Mono<ResponseEntity<PortfolioMemberDTO>> getByPortfolioIdAndId
             (@PathVariable("portfolioId") String portfolioId, @PathVariable("id") String id) {
         PortfolioMember rt = portfolioMemberService.get(id);
-        return ResponseEntity.status(HttpStatus.OK).body(portfolioMemberDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(portfolioMemberDtoMapping.toDto(rt)));
     }
 
     /**
@@ -648,15 +650,15 @@ public abstract class AbstractPortfolioMemberResource {
     *
     * @param portfolioId portfolioId
     * @param id id
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @ApiOperation(value = "删除Remove", tags = {"文件夹成员" },  notes = "PortfolioMember-Remove ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-Remove-all') or hasPermission('portfolio',#portfolioId,this.portfolioMemberService.get(#id),'ibizplm-PortfolioMember-Remove')")
     @DeleteMapping("portfolios/{portfolioId}/portfolio_members/{id}")
-    public ResponseEntity<Boolean> removeByPortfolioIdAndId
+    public Mono<ResponseEntity<Boolean>> removeByPortfolioIdAndId
             (@PathVariable("portfolioId") String portfolioId, @PathVariable("id") String id) {
         Boolean rt = portfolioMemberService.remove(id);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -665,16 +667,16 @@ public abstract class AbstractPortfolioMemberResource {
     *
     * @param portfolioId portfolioId
     * @param dto dto
-    * @return ResponseEntity<Integer>
+    * @return Mono<ResponseEntity<Integer>>
     */
     @ApiOperation(value = "校验CheckKey", tags = {"文件夹成员" },  notes = "PortfolioMember-CheckKey ")
     @PostMapping("portfolios/{portfolioId}/portfolio_members/check_key")
-    public ResponseEntity<Integer> checkKeyByPortfolioId
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKeyByPortfolioId
             (@PathVariable("portfolioId") String portfolioId, @Validated @RequestBody PortfolioMemberDTO dto) {
         PortfolioMember domain = portfolioMemberDtoMapping.toDomain(dto);
         domain.setPortfolioId(portfolioId);
-        Integer rt = portfolioMemberService.checkKey(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        CheckKeyStatus rt = portfolioMemberService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -683,16 +685,16 @@ public abstract class AbstractPortfolioMemberResource {
     *
     * @param portfolioId portfolioId
     * @param dto dto
-    * @return ResponseEntity<PortfolioMemberDTO>
+    * @return Mono<ResponseEntity<PortfolioMemberDTO>>
     */
     @ApiOperation(value = "草稿GetDraft", tags = {"文件夹成员" },  notes = "PortfolioMember-GetDraft ")
     @GetMapping("portfolios/{portfolioId}/portfolio_members/get_draft")
-    public ResponseEntity<PortfolioMemberDTO> getDraftByPortfolioId
+    public Mono<ResponseEntity<PortfolioMemberDTO>> getDraftByPortfolioId
             (@PathVariable("portfolioId") String portfolioId, @SpringQueryMap PortfolioMemberDTO dto) {
         PortfolioMember domain = portfolioMemberDtoMapping.toDomain(dto);
         domain.setPortfolioId(portfolioId);
         PortfolioMember rt = portfolioMemberService.getDraft(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(portfolioMemberDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(portfolioMemberDtoMapping.toDto(rt)));
     }
 
     /**
@@ -701,22 +703,22 @@ public abstract class AbstractPortfolioMemberResource {
     *
     * @param portfolioId portfolioId
     * @param dto dto
-    * @return ResponseEntity<List<PortfolioMemberDTO>>
+    * @return Mono<ResponseEntity<List<PortfolioMemberDTO>>>
     */
     @ApiOperation(value = "查询fetch_cur_project_set", tags = {"文件夹成员" },  notes = "PortfolioMember-fetch_cur_project_set ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-fetch_cur_project_set-all') or hasPermission('portfolio',#portfolioId,#dto,'ibizplm-PortfolioMember-fetch_cur_project_set')")
     @PostMapping("portfolios/{portfolioId}/portfolio_members/fetch_cur_project_set")
-    public ResponseEntity<List<PortfolioMemberDTO>> fetchCurProjectSetByPortfolioId
+    public Mono<ResponseEntity<List<PortfolioMemberDTO>>> fetchCurProjectSetByPortfolioId
             (@PathVariable("portfolioId") String portfolioId, @Validated @RequestBody PortfolioMemberFilterDTO dto) {
         dto.setPortfolioIdEQ(portfolioId);
         PortfolioMemberSearchContext context = portfolioMemberFilterDtoMapping.toDomain(dto);
         Page<PortfolioMember> domains = portfolioMemberService.fetchCurProjectSet(context) ;
         List<PortfolioMemberDTO> list = portfolioMemberDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -725,22 +727,22 @@ public abstract class AbstractPortfolioMemberResource {
     *
     * @param portfolioId portfolioId
     * @param dto dto
-    * @return ResponseEntity<List<PortfolioMemberDTO>>
+    * @return Mono<ResponseEntity<List<PortfolioMemberDTO>>>
     */
     @ApiOperation(value = "查询fetch_default", tags = {"文件夹成员" },  notes = "PortfolioMember-fetch_default ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-fetch_default-all') or hasPermission('portfolio',#portfolioId,#dto,'ibizplm-PortfolioMember-fetch_default')")
     @PostMapping("portfolios/{portfolioId}/portfolio_members/fetch_default")
-    public ResponseEntity<List<PortfolioMemberDTO>> fetchDefaultByPortfolioId
+    public Mono<ResponseEntity<List<PortfolioMemberDTO>>> fetchDefaultByPortfolioId
             (@PathVariable("portfolioId") String portfolioId, @Validated @RequestBody PortfolioMemberFilterDTO dto) {
         dto.setPortfolioIdEQ(portfolioId);
         PortfolioMemberSearchContext context = portfolioMemberFilterDtoMapping.toDomain(dto);
         Page<PortfolioMember> domains = portfolioMemberService.fetchDefault(context) ;
         List<PortfolioMemberDTO> list = portfolioMemberDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -749,15 +751,15 @@ public abstract class AbstractPortfolioMemberResource {
     *
     * @param userId userId
     * @param id id
-    * @return ResponseEntity<PortfolioMemberDTO>
+    * @return Mono<ResponseEntity<PortfolioMemberDTO>>
     */
     @ApiOperation(value = "获取Get", tags = {"文件夹成员" },  notes = "PortfolioMember-Get ")
-    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-Get-all')  or hasPermission('user',#userId,this.portfolioMemberDtoMapping.toDomain(returnObject.body),'ibizplm-PortfolioMember-Get')")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-Get-all')  or hasPermission('user',#userId,this.portfolioMemberDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-PortfolioMember-Get')")
     @GetMapping("users/{userId}/portfolio_members/{id}")
-    public ResponseEntity<PortfolioMemberDTO> getByUserIdAndId
+    public Mono<ResponseEntity<PortfolioMemberDTO>> getByUserIdAndId
             (@PathVariable("userId") String userId, @PathVariable("id") String id) {
         PortfolioMember rt = portfolioMemberService.get(id);
-        return ResponseEntity.status(HttpStatus.OK).body(portfolioMemberDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(portfolioMemberDtoMapping.toDto(rt)));
     }
 
     /**
@@ -766,15 +768,15 @@ public abstract class AbstractPortfolioMemberResource {
     *
     * @param userId userId
     * @param id id
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @ApiOperation(value = "删除Remove", tags = {"文件夹成员" },  notes = "PortfolioMember-Remove ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-Remove-all') or hasPermission('user',#userId,this.portfolioMemberService.get(#id),'ibizplm-PortfolioMember-Remove')")
     @DeleteMapping("users/{userId}/portfolio_members/{id}")
-    public ResponseEntity<Boolean> removeByUserIdAndId
+    public Mono<ResponseEntity<Boolean>> removeByUserIdAndId
             (@PathVariable("userId") String userId, @PathVariable("id") String id) {
         Boolean rt = portfolioMemberService.remove(id);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -783,16 +785,16 @@ public abstract class AbstractPortfolioMemberResource {
     *
     * @param userId userId
     * @param dto dto
-    * @return ResponseEntity<Integer>
+    * @return Mono<ResponseEntity<Integer>>
     */
     @ApiOperation(value = "校验CheckKey", tags = {"文件夹成员" },  notes = "PortfolioMember-CheckKey ")
     @PostMapping("users/{userId}/portfolio_members/check_key")
-    public ResponseEntity<Integer> checkKeyByUserId
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKeyByUserId
             (@PathVariable("userId") String userId, @Validated @RequestBody PortfolioMemberDTO dto) {
         PortfolioMember domain = portfolioMemberDtoMapping.toDomain(dto);
         domain.setUserId(userId);
-        Integer rt = portfolioMemberService.checkKey(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        CheckKeyStatus rt = portfolioMemberService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -801,16 +803,16 @@ public abstract class AbstractPortfolioMemberResource {
     *
     * @param userId userId
     * @param dto dto
-    * @return ResponseEntity<PortfolioMemberDTO>
+    * @return Mono<ResponseEntity<PortfolioMemberDTO>>
     */
     @ApiOperation(value = "草稿GetDraft", tags = {"文件夹成员" },  notes = "PortfolioMember-GetDraft ")
     @GetMapping("users/{userId}/portfolio_members/get_draft")
-    public ResponseEntity<PortfolioMemberDTO> getDraftByUserId
+    public Mono<ResponseEntity<PortfolioMemberDTO>> getDraftByUserId
             (@PathVariable("userId") String userId, @SpringQueryMap PortfolioMemberDTO dto) {
         PortfolioMember domain = portfolioMemberDtoMapping.toDomain(dto);
         domain.setUserId(userId);
         PortfolioMember rt = portfolioMemberService.getDraft(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(portfolioMemberDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(portfolioMemberDtoMapping.toDto(rt)));
     }
 
     /**
@@ -819,22 +821,22 @@ public abstract class AbstractPortfolioMemberResource {
     *
     * @param userId userId
     * @param dto dto
-    * @return ResponseEntity<List<PortfolioMemberDTO>>
+    * @return Mono<ResponseEntity<List<PortfolioMemberDTO>>>
     */
     @ApiOperation(value = "查询fetch_cur_project_set", tags = {"文件夹成员" },  notes = "PortfolioMember-fetch_cur_project_set ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-fetch_cur_project_set-all') or hasPermission('user',#userId,#dto,'ibizplm-PortfolioMember-fetch_cur_project_set')")
     @PostMapping("users/{userId}/portfolio_members/fetch_cur_project_set")
-    public ResponseEntity<List<PortfolioMemberDTO>> fetchCurProjectSetByUserId
+    public Mono<ResponseEntity<List<PortfolioMemberDTO>>> fetchCurProjectSetByUserId
             (@PathVariable("userId") String userId, @Validated @RequestBody PortfolioMemberFilterDTO dto) {
         dto.setUserIdEQ(userId);
         PortfolioMemberSearchContext context = portfolioMemberFilterDtoMapping.toDomain(dto);
         Page<PortfolioMember> domains = portfolioMemberService.fetchCurProjectSet(context) ;
         List<PortfolioMemberDTO> list = portfolioMemberDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -843,88 +845,88 @@ public abstract class AbstractPortfolioMemberResource {
     *
     * @param userId userId
     * @param dto dto
-    * @return ResponseEntity<List<PortfolioMemberDTO>>
+    * @return Mono<ResponseEntity<List<PortfolioMemberDTO>>>
     */
     @ApiOperation(value = "查询fetch_default", tags = {"文件夹成员" },  notes = "PortfolioMember-fetch_default ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-fetch_default-all') or hasPermission('user',#userId,#dto,'ibizplm-PortfolioMember-fetch_default')")
     @PostMapping("users/{userId}/portfolio_members/fetch_default")
-    public ResponseEntity<List<PortfolioMemberDTO>> fetchDefaultByUserId
+    public Mono<ResponseEntity<List<PortfolioMemberDTO>>> fetchDefaultByUserId
             (@PathVariable("userId") String userId, @Validated @RequestBody PortfolioMemberFilterDTO dto) {
         dto.setUserIdEQ(userId);
         PortfolioMemberSearchContext context = portfolioMemberFilterDtoMapping.toDomain(dto);
         Page<PortfolioMember> domains = portfolioMemberService.fetchDefault(context) ;
         List<PortfolioMemberDTO> list = portfolioMemberDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
 
     /**
     * 批量新建文件夹成员
     * @param dtos
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-PortfolioMember-Create-all')")
     @ApiOperation(value = "批量新建文件夹成员", tags = {"文件夹成员" },  notes = "批量新建文件夹成员")
 	@PostMapping("portfolio_members/batch")
-    public ResponseEntity<Boolean> createBatch(@RequestBody List<PortfolioMemberDTO> dtos) {
+    public Mono<ResponseEntity<Boolean>> createBatch(@RequestBody List<PortfolioMemberDTO> dtos) {
         portfolioMemberService.create(portfolioMemberDtoMapping.toDomain(dtos));
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量删除文件夹成员
     * @param ids ids
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-PortfolioMember-Remove-all')")
     @ApiOperation(value = "批量删除文件夹成员", tags = {"文件夹成员" },  notes = "批量删除文件夹成员")
 	@DeleteMapping("portfolio_members/batch")
-    public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
+    public Mono<ResponseEntity<Boolean>> removeBatch(@RequestBody List<String> ids) {
         portfolioMemberService.remove(ids);
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量更新文件夹成员
     * @param dtos
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-PortfolioMember-Update-all')")
     @ApiOperation(value = "批量更新文件夹成员", tags = {"文件夹成员" },  notes = "批量更新文件夹成员")
 	@PutMapping("portfolio_members/batch")
-    public ResponseEntity<Boolean> updateBatch(@RequestBody List<PortfolioMemberDTO> dtos) {
+    public Mono<ResponseEntity<Boolean>> updateBatch(@RequestBody List<PortfolioMemberDTO> dtos) {
         portfolioMemberService.update(portfolioMemberDtoMapping.toDomain(dtos));
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量保存文件夹成员
     * @param dtos
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-PortfolioMember-Save-all')")
     @ApiOperation(value = "批量保存文件夹成员", tags = {"文件夹成员" },  notes = "批量保存文件夹成员")
 	@PostMapping("portfolio_members/savebatch")
-    public ResponseEntity<Boolean> saveBatch(@RequestBody List<PortfolioMemberDTO> dtos) {
+    public Mono<ResponseEntity<Boolean>> saveBatch(@RequestBody List<PortfolioMemberDTO> dtos) {
         portfolioMemberService.save(portfolioMemberDtoMapping.toDomain(dtos));
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量导入文件夹成员
     * @param config 导入模式
     * @param ignoreError 导入中忽略错误
-    * @return ResponseEntity<ImportResult>
+    * @return Mono<ResponseEntity<ImportResult>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-PortfolioMember-Save-all')")
     @ApiOperation(value = "批量导入文件夹成员", tags = {"文件夹成员" },  notes = "批量导入文件夹成员")
 	@PostMapping("portfolio_members/import")
-    public ResponseEntity<ImportResult> importData(@RequestParam(value = "config" , required = false) String config ,@RequestParam(value = "ignoreerror", required = false, defaultValue = "true") Boolean ignoreError ,@RequestBody List<PortfolioMemberDTO> dtos) {
-        return  ResponseEntity.status(HttpStatus.OK).body(portfolioMemberService.importData(config,ignoreError,portfolioMemberDtoMapping.toDomain(dtos)));
+    public Mono<ResponseEntity<ImportResult>> importData(@RequestParam(value = "config" , required = false) String config ,@RequestParam(value = "ignoreerror", required = false, defaultValue = "true") Boolean ignoreError ,@RequestBody List<PortfolioMemberDTO> dtos) {
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(portfolioMemberService.importData(config,ignoreError,portfolioMemberDtoMapping.toDomain(dtos))));
     }
 
 }

@@ -78,6 +78,25 @@ public interface BaselinePageMapper extends BaseMapper<BaselinePage> {
     List<BaselinePage> findByTargetVersionId(@Param("targetVersionIds") List<String> targetVersionIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<BaselinePage> searchView(IPage<BaselinePage> page, @Param("ctx") BaselinePageSearchContext context, @Param("ew") Wrapper<BaselinePage> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<BaselinePage> listView(@Param("ctx") BaselinePageSearchContext context, @Param("ew") Wrapper<BaselinePage> wrapper);
+
+    /**
      * 主键查询
      *
      * @param id

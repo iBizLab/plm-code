@@ -74,6 +74,14 @@ export default {
       id: 'info',
     },
     {
+      codeName: 'debug_info',
+      logicName: '调试日志信息',
+      stdDataType: 21,
+      stringLength: 1048576,
+      name: 'DEBUG_INFO',
+      id: 'debug_info',
+    },
+    {
       codeName: 'start_at',
       logicName: '起始时间',
       stdDataType: 5,
@@ -225,6 +233,16 @@ export default {
           type: 'SIMPLE',
           allowEmpty: true,
           id: 'level',
+        },
+        {
+          codeName: 'debug_info',
+          logicName: '调试日志信息',
+          appDEFieldId: 'debug_info',
+          sourceType: 'DEFIELD',
+          stdDataType: 21,
+          type: 'SIMPLE',
+          allowEmpty: true,
+          id: 'debug_info',
         },
         {
           codeName: 'info',

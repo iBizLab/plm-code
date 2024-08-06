@@ -6,7 +6,7 @@ export default {
   deviewId: '6CD51951-2853-4272-A11F-3E65D7B843BF',
   accUserMode: 2,
   capLanguageRes: {
-    lanResTag: 'DE.LNAME.INSIGHT_VIEW',
+    lanResTag: 'PAGE.CAPTION.INSIGHT_VIEW.CONFIG_TREE_EXP_VIEW',
   },
   caption: '效能度量',
   codeName: 'insight_view_config_tree_exp_view',
@@ -54,6 +54,32 @@ export default {
       showTitleBar: true,
       autoLoad: true,
       showBusyIndicator: true,
+      appViewRefs: [
+        {
+          realTitle: '效能度量导航视图',
+          refAppViewId: 'plmweb.insight_view_management_tab_exp_view',
+          name: 'EXPITEM:node_3',
+          id: 'expitem:node_3',
+        },
+        {
+          realTitle: '立方体树导航',
+          refAppViewId: 'plmweb.ps_sys_bi_cube_tree_exp_view',
+          name: 'EXPITEM:node_4',
+          id: 'expitem:node_4',
+        },
+        {
+          realTitle: '系统预置报表表格',
+          refAppViewId: 'plmweb.insight_report_system_report_grid_view',
+          name: 'EXPITEM:node_6',
+          id: 'expitem:node_6',
+        },
+        {
+          realTitle: '系统模板仪表盘表格',
+          refAppViewId: 'plmweb.dyna_dashboard_system_board_grid_view',
+          name: 'EXPITEM:node_7',
+          id: 'expitem:node_7',
+        },
+      ],
       controls: [
         {
           detreeNodeRSs: [
@@ -65,13 +91,6 @@ export default {
               id: '默认根节点 - 通用',
             },
             {
-              childDETreeNodeId: 'node_3',
-              parentDETreeNodeId: 'node',
-              parentValueLevel: 1,
-              searchMode: 3,
-              id: '通用 - 视图管理',
-            },
-            {
               childDETreeNodeId: 'node_4',
               parentDETreeNodeId: 'node_1',
               parentValueLevel: 1,
@@ -79,11 +98,11 @@ export default {
               id: '配置 - 数据管理',
             },
             {
-              childDETreeNodeId: 'node_5',
-              parentDETreeNodeId: 'node_2',
+              childDETreeNodeId: 'node_3',
+              parentDETreeNodeId: 'node',
               parentValueLevel: 1,
               searchMode: 3,
-              id: '权限 - 权限管理',
+              id: '通用 - 视图管理',
             },
             {
               childDETreeNodeId: 'node_1',
@@ -93,11 +112,11 @@ export default {
               id: '默认根节点 - 配置',
             },
             {
-              childDETreeNodeId: 'node_2',
-              parentDETreeNodeId: 'root',
+              childDETreeNodeId: 'node_6',
+              parentDETreeNodeId: 'node_1',
               parentValueLevel: 1,
               searchMode: 3,
-              id: '默认根节点 - 权限',
+              id: '配置 - 报表模板管理',
             },
           ],
           detreeNodes: [
@@ -130,16 +149,8 @@ export default {
               id: 'node_1',
             },
             {
-              text: '权限',
-              nodeType: 'node_2',
-              treeNodeType: 'STATIC',
-              hasDETreeNodeRSs: true,
-              expanded: true,
-              name: '权限',
-              id: 'node_2',
-            },
-            {
               text: '视图管理',
+              navAppViewId: 'plmweb.insight_view_management_tab_exp_view',
               nodeType: 'node_3',
               treeNodeType: 'STATIC',
               name: '视图管理',
@@ -147,17 +158,27 @@ export default {
             },
             {
               text: '数据管理',
+              navAppViewId: 'plmweb.ps_sys_bi_cube_tree_exp_view',
               nodeType: 'node_4',
               treeNodeType: 'STATIC',
               name: '数据管理',
               id: 'node_4',
             },
             {
-              text: '权限管理',
-              nodeType: 'node_5',
+              text: '报表模板管理',
+              navAppViewId: 'plmweb.insight_report_system_report_grid_view',
+              nodeType: 'node_6',
               treeNodeType: 'STATIC',
-              name: '权限管理',
-              id: 'node_5',
+              name: '报表模板管理',
+              id: 'node_6',
+            },
+            {
+              text: '仪表盘模板管理',
+              navAppViewId: 'plmweb.dyna_dashboard_system_board_grid_view',
+              nodeType: 'node_7',
+              treeNodeType: 'STATIC',
+              name: '仪表盘模板管理',
+              id: 'node_7',
             },
           ],
           outputIconDefault: true,
@@ -276,7 +297,7 @@ export default {
     },
     {
       capLanguageRes: {
-        lanResTag: 'DE.LNAME.INSIGHT_VIEW',
+        lanResTag: 'PAGE.CAPTION.INSIGHT_VIEW.CONFIG_TREE_EXP_VIEW',
       },
       caption: '效能度量',
       codeName: 'config_tree_exp_view_captionbar',
@@ -299,6 +320,9 @@ export default {
     id: 'layoutpanel',
   },
   title: '视图配置中心',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.INSIGHT_VIEW.CONFIG_TREE_EXP_VIEW',
+  },
   viewStyle: 'DEFAULT',
   viewType: 'DETREEEXPVIEW',
   enableDP: true,

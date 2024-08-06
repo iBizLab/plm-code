@@ -78,6 +78,25 @@ public interface ProductMemberMapper extends BaseMapper<ProductMember> {
     List<ProductMember> findByUserId(@Param("userIds") List<String> userIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<ProductMember> searchView(IPage<ProductMember> page, @Param("ctx") ProductMemberSearchContext context, @Param("ew") Wrapper<ProductMember> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<ProductMember> listView(@Param("ctx") ProductMemberSearchContext context, @Param("ew") Wrapper<ProductMember> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

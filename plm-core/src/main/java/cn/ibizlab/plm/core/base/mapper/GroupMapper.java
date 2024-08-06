@@ -81,6 +81,25 @@ public interface GroupMapper extends BaseMapper<Group> {
     List<Group> listReader(@Param("ctx") GroupSearchContext context, @Param("ew") Wrapper<Group> wrapper);
 
     /**
+     * 数据集合user分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Group> searchUser(IPage<Group> page, @Param("ctx") GroupSearchContext context, @Param("ew") Wrapper<Group> wrapper);
+    
+    /**
+     * 数据集合user查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Group> listUser(@Param("ctx") GroupSearchContext context, @Param("ew") Wrapper<Group> wrapper);
+
+    /**
      * 数据集合user_group_admin分页查询
      * 
      * @param page
@@ -106,6 +125,25 @@ public interface GroupMapper extends BaseMapper<Group> {
     * @return
     */
     List<Group> findBySectionId(@Param("sectionIds") List<String> sectionIds);
+
+    /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Group> searchView(IPage<Group> page, @Param("ctx") GroupSearchContext context, @Param("ew") Wrapper<Group> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Group> listView(@Param("ctx") GroupSearchContext context, @Param("ew") Wrapper<Group> wrapper);
 
     /**
      * 主键查询

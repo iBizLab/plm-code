@@ -51,7 +51,7 @@ public class PSDELogicFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_psdelogicid_eq")
     @JSONField(name = "n_psdelogicid_eq")
-    @ApiModelProperty(value = "实体处理逻辑标识EQ", position = 160)
+    @ApiModelProperty(value = "实体处理逻辑标识EQ", position = 210)
 	private String psdeLogicIdEQ;
 
     /**
@@ -59,7 +59,7 @@ public class PSDELogicFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_psdelogicname_like")
     @JSONField(name = "n_psdelogicname_like")
-    @ApiModelProperty(value = "规则名称LIKE", position = 170)
+    @ApiModelProperty(value = "规则名称LIKE", position = 220)
 	private String psdeLogicNameLIKE;
 
     /**
@@ -67,7 +67,7 @@ public class PSDELogicFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_psdeid_eq")
     @JSONField(name = "n_psdeid_eq")
-    @ApiModelProperty(value = "实体EQ", position = 220)
+    @ApiModelProperty(value = "实体EQ", position = 270)
 	private String psdeidEQ;
 
     /**
@@ -75,7 +75,7 @@ public class PSDELogicFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_psdename_eq")
     @JSONField(name = "n_psdename_eq")
-    @ApiModelProperty(value = "实体EQ", position = 230)
+    @ApiModelProperty(value = "实体EQ", position = 280)
 	private String psdeNameEQ;
 
     /**
@@ -83,7 +83,7 @@ public class PSDELogicFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_psdename_like")
     @JSONField(name = "n_psdename_like")
-    @ApiModelProperty(value = "实体LIKE", position = 231)
+    @ApiModelProperty(value = "实体LIKE", position = 281)
 	private String psdeNameLIKE;
 
     /**
@@ -91,7 +91,7 @@ public class PSDELogicFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_logicsubtype_eq")
     @JSONField(name = "n_logicsubtype_eq")
-    @ApiModelProperty(value = "逻辑子类EQ", position = 250)
+    @ApiModelProperty(value = "逻辑子类EQ", position = 300)
 	private String logicSubTypeEQ;
 
     /**
@@ -99,7 +99,7 @@ public class PSDELogicFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_logicsubtype_in")
     @JSONField(name = "n_logicsubtype_in")
-    @ApiModelProperty(value = "逻辑子类IN", position = 251)
+    @ApiModelProperty(value = "逻辑子类IN", position = 301)
 	private String logicSubTypeIN;
 
     /**
@@ -107,7 +107,7 @@ public class PSDELogicFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_logicsubtype_noteq")
     @JSONField(name = "n_logicsubtype_noteq")
-    @ApiModelProperty(value = "逻辑子类NOTEQ", position = 252)
+    @ApiModelProperty(value = "逻辑子类NOTEQ", position = 302)
 	private String logicSubTypeNOTEQ;
 
 

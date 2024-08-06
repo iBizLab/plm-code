@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.team.domain.DiscussMember;
@@ -116,17 +117,17 @@ public abstract class AbstractDiscussMemberService extends ServiceImpl<DiscussMe
         return et;
     }
 	
-    public Integer checkKey(DiscussMember et) {
+    public CheckKeyStatus checkKey(DiscussMember et) {
         fillParentData(et);
         if(ObjectUtils.isEmpty(et.getId()))
             et.setId((String)et.getDefaultKey(true));
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<DiscussMember>lambdaQuery().eq(DiscussMember::getId, et.getId()))>0)?1:0;
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<DiscussMember>lambdaQuery().eq(DiscussMember::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(DiscussMember et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -173,6 +174,10 @@ public abstract class AbstractDiscussMemberService extends ServiceImpl<DiscussMe
         return list;	
 	}
 
+	public List<DiscussMember> findByDiscussTopic(DiscussTopic discussTopic){
+        List<DiscussMember> list = findByOwnerId(Arrays.asList(discussTopic.getId()));
+		return list;
+	}
 	public boolean removeByOwnerId(String ownerId){
         return this.remove(Wrappers.<DiscussMember>lambdaQuery().eq(DiscussMember::getOwnerId,ownerId));
 	}
@@ -183,8 +188,8 @@ public abstract class AbstractDiscussMemberService extends ServiceImpl<DiscussMe
 	public boolean saveByDiscussTopic(DiscussTopic discussTopic, List<DiscussMember> list){
         if(list==null)
             return true;
-        Map<String,DiscussMember> before = findByOwnerId(discussTopic.getId()).stream().collect(Collectors.toMap(DiscussMember::getId,e->e));
 
+        Map<String,DiscussMember> before = findByDiscussTopic(discussTopic).stream().collect(Collectors.toMap(DiscussMember::getId,e->e));
         List<DiscussMember> update = new ArrayList<>();
         List<DiscussMember> create = new ArrayList<>();
 
@@ -217,6 +222,10 @@ public abstract class AbstractDiscussMemberService extends ServiceImpl<DiscussMe
         return list;	
 	}
 
+	public List<DiscussMember> findByUser(User user){
+        List<DiscussMember> list = findByUserId(Arrays.asList(user.getId()));
+		return list;
+	}
 	public boolean removeByUserId(String userId){
         return this.remove(Wrappers.<DiscussMember>lambdaQuery().eq(DiscussMember::getUserId,userId));
 	}
@@ -227,8 +236,8 @@ public abstract class AbstractDiscussMemberService extends ServiceImpl<DiscussMe
 	public boolean saveByUser(User user, List<DiscussMember> list){
         if(list==null)
             return true;
-        Map<String,DiscussMember> before = findByUserId(user.getId()).stream().collect(Collectors.toMap(DiscussMember::getId,e->e));
 
+        Map<String,DiscussMember> before = findByUser(user).stream().collect(Collectors.toMap(DiscussMember::getId,e->e));
         List<DiscussMember> update = new ArrayList<>();
         List<DiscussMember> create = new ArrayList<>();
 
@@ -256,6 +265,17 @@ public abstract class AbstractDiscussMemberService extends ServiceImpl<DiscussMe
             return true;
 			
 	}
+   public Page<DiscussMember> fetchView(DiscussMemberSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<DiscussMember> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<DiscussMember> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<DiscussMember> listView(DiscussMemberSearchContext context) {
+        List<DiscussMember> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(DiscussMember et) {
         if(Entities.DISCUSS_TOPIC.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

@@ -5,24 +5,24 @@
         <!--通过mybatis将查询结果注入到entity中,通过配置autoMapping="true"由mybatis自动处理映射关系 -->
     <resultMap id="TestPlanResultMap" type="cn.ibizlab.plm.core.testmgmt.domain.TestPlan" autoMapping="true">
 		<id property="id" column="id" /><!--主键字段映射-->
-		<result property="startAt" column="start_at" />
-		<result property="endAt" column="end_at" />
-		<result property="assigneeName" column="assignee_name" />
-		<result property="assigneeId" column="assignee_id" />
-		<result property="projectType" column="project_type" />
-		<result property="libraryIdentifier" column="library_identifier" />
-		<result property="createMan" column="create_man" />
-		<result property="createTime" column="create_time" />
-		<result property="updateMan" column="update_man" />
-		<result property="updateTime" column="update_time" />
-		<result property="libraryId" column="library_id" />
-		<result property="projectId" column="project_id" />
-		<result property="sprintId" column="sprint_id" />
-		<result property="projectName" column="project_name" />
-		<result property="sprintName" column="sprint_name" />
-		<result property="libraryName" column="library_name" />
-		<result property="releaseId" column="release_id" />
-		<result property="releaseName" column="release_name" />
+		<result property="startAt" column="start_at"/>
+		<result property="endAt" column="end_at"/>
+		<result property="assigneeName" column="assignee_name"/>
+		<result property="assigneeId" column="assignee_id"/>
+		<result property="projectType" column="project_type"/>
+		<result property="libraryIdentifier" column="library_identifier"/>
+		<result property="createMan" column="create_man"/>
+		<result property="createTime" column="create_time"/>
+		<result property="updateMan" column="update_man"/>
+		<result property="updateTime" column="update_time"/>
+		<result property="libraryId" column="library_id"/>
+		<result property="projectId" column="project_id"/>
+		<result property="sprintId" column="sprint_id"/>
+		<result property="projectName" column="project_name"/>
+		<result property="sprintName" column="sprint_name"/>
+		<result property="libraryName" column="library_name"/>
+		<result property="releaseId" column="release_id"/>
+		<result property="releaseName" column="release_name"/>
         <association property="library" javaType="cn.ibizlab.plm.core.testmgmt.domain.Library" column="library_id" select="cn.ibizlab.plm.core.testmgmt.mapper.LibraryMapper.selectById" fetchType="lazy"></association>
         <association property="project" javaType="cn.ibizlab.plm.core.projmgmt.domain.Project" column="project_id" select="cn.ibizlab.plm.core.projmgmt.mapper.ProjectMapper.selectById" fetchType="lazy"></association>
         <association property="release" javaType="cn.ibizlab.plm.core.projmgmt.domain.Release" column="release_id" select="cn.ibizlab.plm.core.projmgmt.mapper.ReleaseMapper.selectById" fetchType="lazy"></association>
@@ -60,6 +60,14 @@
 
     <sql id="view" databaseId="mysql">
          <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`END_AT`, t1.`ID`, t1.`LIBRARY_ID`, t21.`IDENTIFIER` AS `LIBRARY_IDENTIFIER`, t21.`NAME` AS `LIBRARY_NAME`, t1.`NAME`, t1.`PROJECT_ID`, t11.`NAME` AS `PROJECT_NAME`, t11.`TYPE` AS `PROJECT_TYPE`, t1.`RELEASE_ID`, t41.`NAME` AS `RELEASE_NAME`, t1.`SPRINT_ID`, t31.`NAME` AS `SPRINT_NAME`, t1.`START_AT`, t1.`STATUS`, t1.`SUMMARY`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `TEST_PLAN` t1  LEFT JOIN `PROJECT` t11 ON t1.`PROJECT_ID` = t11.`ID`  LEFT JOIN `LIBRARY` t21 ON t1.`LIBRARY_ID` = t21.`ID`  LEFT JOIN `SPRINT` t31 ON t1.`SPRINT_ID` = t31.`ID`  LEFT JOIN `PROJECT_RELEASE` t41 ON t1.`RELEASE_ID` = t41.`ID`   ]]>  
+    </sql>
+
+    <sql id="biDetail" databaseId="mysql">
+         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`END_AT`, t1.`ID`, t1.`LIBRARY_ID`, t21.`IDENTIFIER` AS `LIBRARY_IDENTIFIER`, t21.`NAME` AS `LIBRARY_NAME`, t1.`NAME`, t1.`PROJECT_ID`, t11.`NAME` AS `PROJECT_NAME`, t11.`TYPE` AS `PROJECT_TYPE`, t1.`RELEASE_ID`, t41.`NAME` AS `RELEASE_NAME`, t1.`SPRINT_ID`, t31.`NAME` AS `SPRINT_NAME`, t1.`START_AT`, t1.`STATUS`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `TEST_PLAN` t1  LEFT JOIN `PROJECT` t11 ON t1.`PROJECT_ID` = t11.`ID`  LEFT JOIN `LIBRARY` t21 ON t1.`LIBRARY_ID` = t21.`ID`  LEFT JOIN `SPRINT` t31 ON t1.`SPRINT_ID` = t31.`ID`  LEFT JOIN `PROJECT_RELEASE` t41 ON t1.`RELEASE_ID` = t41.`ID`   ]]>  
+    </sql>
+
+    <sql id="biSearch" databaseId="mysql">
+         <![CDATA[ SELECT t1.`ASSIGNEE_ID`, t1.`ASSIGNEE_NAME`, t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`END_AT`, t1.`ID`, t1.`LIBRARY_ID`, t21.`IDENTIFIER` AS `LIBRARY_IDENTIFIER`, t21.`NAME` AS `LIBRARY_NAME`, t1.`NAME`, t1.`PROJECT_ID`, t11.`NAME` AS `PROJECT_NAME`, t11.`TYPE` AS `PROJECT_TYPE`, t1.`RELEASE_ID`, t41.`NAME` AS `RELEASE_NAME`, t1.`SPRINT_ID`, t31.`NAME` AS `SPRINT_NAME`, t1.`START_AT`, t1.`STATUS`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `TEST_PLAN` t1  LEFT JOIN `PROJECT` t11 ON t1.`PROJECT_ID` = t11.`ID`  LEFT JOIN `LIBRARY` t21 ON t1.`LIBRARY_ID` = t21.`ID`  LEFT JOIN `SPRINT` t31 ON t1.`SPRINT_ID` = t31.`ID`  LEFT JOIN `PROJECT_RELEASE` t41 ON t1.`RELEASE_ID` = t41.`ID`   ]]>  
     </sql>
 
     <sql id="myAssignee" databaseId="mysql">
@@ -101,6 +109,48 @@
         select t1.*
         from (
             <include refid="default"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchBiDetail"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestPlanSearchContext"  resultMap="TestPlanResultMap">
+        select t1.* 
+        from (
+            <include refid="biDetail"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listBiDetail"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestPlanSearchContext"  resultMap="TestPlanResultMap">
+        select t1.*
+        from (
+            <include refid="biDetail"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchBiSearch"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestPlanSearchContext"  resultMap="TestPlanResultMap">
+        select t1.* 
+        from (
+            <include refid="biSearch"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listBiSearch"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestPlanSearchContext"  resultMap="TestPlanResultMap">
+        select t1.*
+        from (
+            <include refid="biSearch"/>
         ) t1
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
@@ -231,6 +281,15 @@
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
         
+    </select>
+
+    <select id="listView"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.TestPlanSearchContext"  resultMap="TestPlanResultMap">
+        select t1.*
+        from (
+            <include refid="view" />
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
     </select>
 
     <select id="findByLibraryId" resultMap="TestPlanResultMap">

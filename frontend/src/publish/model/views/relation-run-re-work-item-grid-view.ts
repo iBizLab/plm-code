@@ -267,6 +267,12 @@ export default {
             openMode: 'POPUPMODAL',
             navigateContexts: [
               {
+                key: 'SRFDATATYPE',
+                value: 'work_item.work_item_type_id',
+                name: 'SRFDATATYPE',
+                id: 'srfdatatype',
+              },
+              {
                 key: 'WORK_ITEM',
                 value: 'target_id',
                 name: 'WORK_ITEM',
@@ -274,18 +280,37 @@ export default {
               },
               {
                 key: 'PROJECT',
-                value: 'target_parent_id.project_id',
+                value: 'work_item.project_id',
                 name: 'PROJECT',
                 id: 'project',
               },
+              {
+                key: 'WORK_ITEM_TYPE_ID',
+                value: 'work_item.work_item_type_id',
+                name: 'WORK_ITEM_TYPE_ID',
+                id: 'work_item_type_id',
+              },
             ],
-            refAppViewId: 'plmweb.work_item_main_view',
+            navigateParams: [
+              {
+                key: 'srfdatatype',
+                value: 'work_item.work_item_type_id',
+                id: 'srfdatatype',
+              },
+            ],
+            refAppViewId: 'plmweb.work_item_dyna_main_view',
           },
           editMode: true,
           appUILogicRefViews: [
             {
               openMode: 'POPUPMODAL',
               navigateContexts: [
+                {
+                  key: 'SRFDATATYPE',
+                  value: 'work_item.work_item_type_id',
+                  name: 'SRFDATATYPE',
+                  id: 'srfdatatype',
+                },
                 {
                   key: 'WORK_ITEM',
                   value: 'target_id',
@@ -294,12 +319,25 @@ export default {
                 },
                 {
                   key: 'PROJECT',
-                  value: 'target_parent_id.project_id',
+                  value: 'work_item.project_id',
                   name: 'PROJECT',
                   id: 'project',
                 },
+                {
+                  key: 'WORK_ITEM_TYPE_ID',
+                  value: 'work_item.work_item_type_id',
+                  name: 'WORK_ITEM_TYPE_ID',
+                  id: 'work_item_type_id',
+                },
               ],
-              refAppViewId: 'plmweb.work_item_main_view',
+              navigateParams: [
+                {
+                  key: 'srfdatatype',
+                  value: 'work_item.work_item_type_id',
+                  id: 'srfdatatype',
+                },
+              ],
+              refAppViewId: 'plmweb.work_item_dyna_main_view',
             },
           ],
           builtinLogic: true,
@@ -316,6 +354,12 @@ export default {
         openMode: 'POPUPMODAL',
         navigateContexts: [
           {
+            key: 'SRFDATATYPE',
+            value: 'work_item.work_item_type_id',
+            name: 'SRFDATATYPE',
+            id: 'srfdatatype',
+          },
+          {
             key: 'WORK_ITEM',
             value: 'target_id',
             name: 'WORK_ITEM',
@@ -323,14 +367,27 @@ export default {
           },
           {
             key: 'PROJECT',
-            value: 'target_parent_id.project_id',
+            value: 'work_item.project_id',
             name: 'PROJECT',
             id: 'project',
           },
+          {
+            key: 'WORK_ITEM_TYPE_ID',
+            value: 'work_item.work_item_type_id',
+            name: 'WORK_ITEM_TYPE_ID',
+            id: 'work_item_type_id',
+          },
+        ],
+        navigateParams: [
+          {
+            key: 'srfdatatype',
+            value: 'work_item.work_item_type_id',
+            id: 'srfdatatype',
+          },
         ],
         realOpenMode: 'POPUPMODAL',
-        realTitle: '工作项',
-        refAppViewId: 'plmweb.work_item_main_view',
+        realTitle: '工作项（动态）',
+        refAppViewId: 'plmweb.work_item_dyna_main_view',
         name: 'EDITDATA',
         id: 'editdata',
       },
@@ -386,13 +443,11 @@ export default {
             id: 'target_title',
           },
           {
-            clconvertMode: 'FRONT',
-            dataItemName: 'work_item',
+            clconvertMode: 'NONE',
+            dataItemName: 'target_state',
             excelCaption: '状态',
-            objectNameField: 'state',
-            appCodeListId: 'plmweb.projmgmt__work_item_state2',
-            appDEFieldId: 'work_item',
-            valueType: 'OBJECT',
+            appDEFieldId: 'target_state',
+            valueType: 'SIMPLE',
             aggMode: 'NONE',
             align: 'LEFT',
             caption: '状态',
@@ -449,6 +504,7 @@ export default {
             caption: '关联目标标识',
             codeName: 'target_id',
             columnType: 'DEFGRIDCOLUMN',
+            hideMode: 1,
             noPrivDisplayMode: 1,
             width: 100,
             widthUnit: 'PX',
@@ -468,6 +524,7 @@ export default {
             caption: '工作项',
             codeName: 'target_parent_id',
             columnType: 'DEFGRIDCOLUMN',
+            hideMode: 1,
             noPrivDisplayMode: 1,
             width: 100,
             widthUnit: 'PX',
@@ -485,6 +542,7 @@ export default {
             caption: '工作项',
             codeName: 'work_item',
             columnType: 'DEFGRIDCOLUMN',
+            hideMode: 1,
             noPrivDisplayMode: 1,
             width: 100,
             widthUnit: 'PX',
@@ -498,6 +556,15 @@ export default {
             valueType: 'OBJECT',
             dataType: 21,
             id: 'work_item',
+          },
+          {
+            appDEFieldId: 'target_state',
+            scriptCode:
+              'const app = ibiz.hub.getApp(context.srfappid);\r\nconst tempparams = {...params, work_item_type_id: data.work_item.work_item_type_id, project_id: data.work_item.project_id, state: data.work_item.state}\r\nconst dataItems = await app.codeList.get(\r\n    \'plmweb.projmgmt__scrum_state\',\r\n    context,\r\n    tempparams,\r\n);\r\nconst value = data.work_item.state;\r\nconst item =dataItems.find(x => x.value === value);\r\nif (item) {\r\n    return `<div class="ibiz-dropdown ibiz-dropdown--readonly ibiz-dropdown--round ibiz-grid-field-edit-column__editor" title="${item.text}"><span class="ibiz-dropdown-readonly-text-item" style="--ibiz-dropdown-readonly-text-item-color: ${item.color}; --ibiz-dropdown-select-option-item-color: ${item.color}; --ibiz-dropdown-select-option-item-bkcolor: ${item.bkcolor};"><span class="ibiz-dropdown-readonly-text-item__label">${item.text}</span></span></div>`;\r\n}',
+            valueType: 'SIMPLE',
+            customCode: true,
+            dataType: 25,
+            id: 'target_state',
           },
           {
             appDEFieldId: 'target_id',

@@ -62,6 +62,25 @@ public interface ActivityMapper extends BaseMapper<Activity> {
     List<Activity> listDefault(@Param("ctx") ActivitySearchContext context, @Param("ew") Wrapper<Activity> wrapper);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Activity> searchView(IPage<Activity> page, @Param("ctx") ActivitySearchContext context, @Param("ew") Wrapper<Activity> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Activity> listView(@Param("ctx") ActivitySearchContext context, @Param("ew") Wrapper<Activity> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

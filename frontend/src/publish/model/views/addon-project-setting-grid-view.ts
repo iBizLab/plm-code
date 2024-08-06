@@ -24,8 +24,7 @@ export default {
       logicTrigger: 'VIEWEVENT',
       logicType: 'SCRIPT',
       ctrlName: 'grid',
-      scriptCode:
-        'ibiz.mc.command.update.send({ srfdecodename: \'project\'})\r\nconsole.log("当前视图", view)',
+      scriptCode: "ibiz.mc.command.update.send({ srfdecodename: 'project'})",
       builtinLogic: true,
       name: 'LOGIC',
       id: 'logic',

@@ -335,6 +335,28 @@ export default {
       id: 'get_draft',
     },
     {
+      codeName: 'move_order',
+      methodType: 'DEACTION',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'workload_type_dto',
+        type: 'DTO',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'workload_type_dto',
+        type: 'DTOS',
+        id: '返回对象',
+      },
+      requestMethod: 'POST',
+      requestParamType: 'ENTITY',
+      requestPath: '/move_order',
+      needResourceKey: true,
+      actionMode: 'MOVEORDER',
+      actionType: 'REMOTE',
+      dataSetType: 'REMOTE',
+      id: 'move_order',
+    },
+    {
       codeName: 'nothing',
       methodType: 'DEACTION',
       appDEMethodInput: {
@@ -566,6 +588,7 @@ export default {
       refreshMode: 1,
       successMsg: '删除成功',
       timeout: 60000,
+      tooltip: '删除',
       uiactionMode: 'BACKEND',
       uiactionTag: 'remove',
       uiactionType: 'DEUIACTION',

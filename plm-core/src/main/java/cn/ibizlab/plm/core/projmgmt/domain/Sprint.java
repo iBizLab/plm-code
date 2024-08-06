@@ -4,6 +4,7 @@
 package cn.ibizlab.plm.core.projmgmt.domain;
 
 import java.util.*;
+import java.math.BigDecimal;
 import cn.ibizlab.util.domain.IEntity;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.*;
@@ -21,8 +22,10 @@ import io.swagger.annotations.*;
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import cn.ibizlab.plm.core.projmgmt.domain.Project;
+import cn.ibizlab.plm.core.projmgmt.domain.SprintAlteration;
 import cn.ibizlab.plm.core.testmgmt.domain.TestPlan;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
+import cn.ibizlab.plm.core.base.domain.Relation;
 
 /**
  * 迭代实体类[Sprint]
@@ -122,6 +125,16 @@ public class Sprint extends EntityMP implements Serializable
     private String categoriesName;
 
     /**
+    * 进度
+    */
+    @TableField(value = "schedule" , exist = false)
+    @DEField(name = "schedule")
+    @JSONField(name = "schedule")
+    @JsonProperty("schedule")
+    @ApiModelProperty(value = "schedule", notes = "进度")
+    private BigDecimal schedule;
+
+    /**
     * 负责人
     */
     @TableField(value = "assignee_name")
@@ -135,11 +148,41 @@ public class Sprint extends EntityMP implements Serializable
     * 负责人标识
     */
     @TableField(value = "assignee_id")
-    @DEField(name = "assignee_id")
+    @DEField(name = "assignee_id" , dict = "SysOperator")
     @JSONField(name = "assignee_id")
     @JsonProperty("assignee_id")
     @ApiModelProperty(value = "assignee_id", notes = "负责人标识")
     private String assigneeId;
+
+    /**
+    * 已完成工作项数
+    */
+    @TableField(value = "completed_work_items" , exist = false)
+    @DEField(name = "completed_work_items")
+    @JSONField(name = "completed_work_items")
+    @JsonProperty("completed_work_items")
+    @ApiModelProperty(value = "completed_work_items", notes = "已完成工作项数")
+    private BigDecimal completedWorkItems;
+
+    /**
+    * 全部工作项数
+    */
+    @TableField(value = "all_work_items" , exist = false)
+    @DEField(name = "all_work_items")
+    @JSONField(name = "all_work_items")
+    @JsonProperty("all_work_items")
+    @ApiModelProperty(value = "all_work_items", notes = "全部工作项数")
+    private BigDecimal allWorkItems;
+
+    /**
+    * 迭代已过天数
+    */
+    @TableField(value = "past_days" , exist = false)
+    @DEField(name = "past_days")
+    @JSONField(name = "past_days")
+    @JsonProperty("past_days")
+    @ApiModelProperty(value = "past_days", notes = "迭代已过天数")
+    private BigDecimal pastDays;
 
     /**
     * 标识
@@ -205,13 +248,13 @@ public class Sprint extends EntityMP implements Serializable
     private Date updateTime;
 
     /**
-    * 产品标识
+    * 项目标识
     */
     @TableField(value = "project_id")
     @DEField(name = "project_id")
     @JSONField(name = "project_id")
     @JsonProperty("project_id")
-    @ApiModelProperty(value = "project_id", notes = "产品标识")
+    @ApiModelProperty(value = "project_id", notes = "项目标识")
     private String projectId;
 
     /**
@@ -317,6 +360,15 @@ public class Sprint extends EntityMP implements Serializable
     }
 
     /**
+    * 设置 [进度]
+    */
+    public Sprint setSchedule(BigDecimal schedule) {
+        this.schedule = schedule;
+        this.modify("schedule", schedule);
+        return this;
+    }
+
+    /**
     * 设置 [负责人]
     */
     public Sprint setAssigneeName(String assigneeName) {
@@ -335,6 +387,33 @@ public class Sprint extends EntityMP implements Serializable
     }
 
     /**
+    * 设置 [已完成工作项数]
+    */
+    public Sprint setCompletedWorkItems(BigDecimal completedWorkItems) {
+        this.completedWorkItems = completedWorkItems;
+        this.modify("completed_work_items", completedWorkItems);
+        return this;
+    }
+
+    /**
+    * 设置 [全部工作项数]
+    */
+    public Sprint setAllWorkItems(BigDecimal allWorkItems) {
+        this.allWorkItems = allWorkItems;
+        this.modify("all_work_items", allWorkItems);
+        return this;
+    }
+
+    /**
+    * 设置 [迭代已过天数]
+    */
+    public Sprint setPastDays(BigDecimal pastDays) {
+        this.pastDays = pastDays;
+        this.modify("past_days", pastDays);
+        return this;
+    }
+
+    /**
     * 设置 [名称]
     */
     public Sprint setName(String name) {
@@ -344,7 +423,7 @@ public class Sprint extends EntityMP implements Serializable
     }
 
     /**
-    * 设置 [产品标识]
+    * 设置 [项目标识]
     */
     public Sprint setProjectId(String projectId) {
         this.projectId = projectId;

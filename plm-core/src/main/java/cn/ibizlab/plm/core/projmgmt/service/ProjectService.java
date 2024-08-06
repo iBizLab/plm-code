@@ -3,6 +3,7 @@
  */
 package cn.ibizlab.plm.core.projmgmt.service;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 import org.springframework.data.domain.Page;
@@ -10,6 +11,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.projmgmt.domain.Project;
 import cn.ibizlab.plm.core.projmgmt.filter.ProjectSearchContext;
 import cn.ibizlab.plm.core.base.domain.CommonFlow;
@@ -17,6 +19,7 @@ import cn.ibizlab.plm.core.projmgmt.domain.Board;
 import cn.ibizlab.plm.core.projmgmt.domain.Entry;
 import cn.ibizlab.plm.core.projmgmt.domain.Progress;
 import cn.ibizlab.plm.core.projmgmt.domain.ProjectMember;
+import cn.ibizlab.plm.core.extension.domain.PSDELogicNode;
 import cn.ibizlab.plm.core.projmgmt.domain.Release;
 import cn.ibizlab.plm.core.projmgmt.domain.Sprint;
 import cn.ibizlab.plm.core.projmgmt.domain.Swimlane;
@@ -255,7 +258,7 @@ public interface ProjectService extends IService<Project> {
     * @param et
     * @return
     */
-    Integer checkKey(Project et);
+    CheckKeyStatus checkKey(Project et);
 
     /**
     * 保存
@@ -470,6 +473,38 @@ public interface ProjectService extends IService<Project> {
     List<Project> listArchived(ProjectSearchContext context);
 
     /**
+    * fetchBiDetail
+    * 
+    * @param context
+    * @return
+    */
+    Page<Project> fetchBiDetail(ProjectSearchContext context);
+
+    /**
+    * listBiDetail
+    * 
+    * @param context
+    * @return
+    */
+    List<Project> listBiDetail(ProjectSearchContext context);
+
+    /**
+    * fetchBiSearch
+    * 
+    * @param context
+    * @return
+    */
+    Page<Project> fetchBiSearch(ProjectSearchContext context);
+
+    /**
+    * listBiSearch
+    * 
+    * @param context
+    * @return
+    */
+    List<Project> listBiSearch(ProjectSearchContext context);
+
+    /**
     * fetchChooseProject
     * 
     * @param context
@@ -668,8 +703,15 @@ public interface ProjectService extends IService<Project> {
     */
     List<Project> findById(List<String> ids);
     default List<Project> findById(String id){
-        return findById(Arrays.asList(id));
+        return findByProject(new CommonFlow().setId(id));
     }
+
+    /**
+    * findByProject
+    * @param commonFlow
+    * @return
+    */
+    List<Project> findByProject(CommonFlow commonFlow);
 
     /**
     * removeById
@@ -716,6 +758,22 @@ public interface ProjectService extends IService<Project> {
     default Project getMajorData(Project et) {
         return et;
     }
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Project> fetchView(ProjectSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Project> listView(ProjectSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Project> list) {

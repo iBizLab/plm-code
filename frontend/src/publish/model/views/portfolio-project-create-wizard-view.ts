@@ -60,6 +60,7 @@ export default {
                 regExCode: '^[A-Z0-9]{1,15}$',
                 ruleInfo: '请填写大写字母和数字',
                 ruleType: 'REGEX',
+                uniqueTag: 'UsrValueRule0312488358',
                 name: '大写字母和数字',
                 id: 'usrvaluerule0312488358',
               },
@@ -121,7 +122,6 @@ export default {
                   id: '默认组',
                 },
                 ruleInfo: '开始时间必须小于等于结束时间',
-                checkDefault: true,
                 name: '开始时间',
                 id: 'start_at',
               },
@@ -184,7 +184,6 @@ export default {
                   id: '默认组',
                 },
                 ruleInfo: '结束时间必须大于等于开始时间',
-                checkDefault: true,
                 name: '结束时间',
                 id: 'end_at',
               },
@@ -407,7 +406,6 @@ export default {
                         colMD: 24,
                         layout: 'TABLE_24COL',
                       },
-                      showCaption: true,
                       id: 'assignee_id',
                     },
                     {
@@ -581,7 +579,6 @@ export default {
                     colMD: 12,
                     layout: 'TABLE_24COL',
                   },
-                  showCaption: true,
                   id: 'id',
                 },
               ],
@@ -812,7 +809,6 @@ export default {
                         colMD: 24,
                         layout: 'TABLE_24COL',
                       },
-                      showCaption: true,
                       id: 'name',
                     },
                     {
@@ -842,7 +838,6 @@ export default {
                         colMD: 24,
                         layout: 'TABLE_24COL',
                       },
-                      showCaption: true,
                       id: 'identifier',
                     },
                     {
@@ -872,7 +867,6 @@ export default {
                         colMD: 24,
                         layout: 'TABLE_24COL',
                       },
-                      showCaption: true,
                       id: 'assignee_name',
                     },
                     {
@@ -901,7 +895,6 @@ export default {
                         colMD: 24,
                         layout: 'TABLE_24COL',
                       },
-                      showCaption: true,
                       id: 'assignee_id',
                     },
                     {
@@ -932,7 +925,6 @@ export default {
                         colMD: 24,
                         layout: 'TABLE_24COL',
                       },
-                      showCaption: true,
                       id: 'start_at',
                     },
                     {
@@ -963,7 +955,6 @@ export default {
                         colMD: 24,
                         layout: 'TABLE_24COL',
                       },
-                      showCaption: true,
                       id: 'end_at',
                     },
                     {
@@ -993,7 +984,6 @@ export default {
                         colMD: 24,
                         layout: 'TABLE_24COL',
                       },
-                      showCaption: true,
                       id: 'description',
                     },
                   ],
@@ -1039,7 +1029,6 @@ export default {
                     colMD: 12,
                     layout: 'TABLE_24COL',
                   },
-                  showCaption: true,
                   id: 'id',
                 },
               ],

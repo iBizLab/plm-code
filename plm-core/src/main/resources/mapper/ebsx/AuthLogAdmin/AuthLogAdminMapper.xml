@@ -5,7 +5,7 @@
         <!--通过mybatis将查询结果注入到entity中,通过配置autoMapping="true"由mybatis自动处理映射关系 -->
     <resultMap id="AuthLogAdminResultMap" type="cn.ibizlab.plm.core.ebsx.domain.AuthLogAdmin" autoMapping="true">
 		<id property="logId" column="logid" /><!--主键字段映射-->
-		<result property="domain" column="domains" />
+		<result property="domain" column="domains"/>
     </resultMap>
 
     <select id="selectById"  resultMap="AuthLogAdminResultMap">
@@ -102,6 +102,15 @@
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
          group by DATE(AUTHTIME)
+    </select>
+
+    <select id="listView"  parameterType="cn.ibizlab.plm.core.ebsx.filter.AuthLogAdminSearchContext"  resultMap="AuthLogAdminResultMap">
+        select t1.*
+        from (
+            <include refid="view" />
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
     </select>
 
 

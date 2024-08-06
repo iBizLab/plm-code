@@ -10,12 +10,15 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.Relation;
 import cn.ibizlab.plm.core.base.filter.RelationSearchContext;
 import cn.ibizlab.plm.core.base.domain.Baseline;
 import cn.ibizlab.plm.core.prodmgmt.domain.Idea;
+import cn.ibizlab.plm.core.projmgmt.domain.Release;
 import cn.ibizlab.plm.core.testmgmt.domain.Review;
 import cn.ibizlab.plm.core.testmgmt.domain.ReviewContentExtend;
+import cn.ibizlab.plm.core.projmgmt.domain.Sprint;
 import cn.ibizlab.plm.core.prodmgmt.domain.Customer;
 import cn.ibizlab.plm.core.wiki.domain.ArticlePage;
 import cn.ibizlab.plm.core.prodmgmt.domain.ProductPlan;
@@ -148,7 +151,7 @@ public interface RelationService extends IService<Relation> {
     * @param et
     * @return
     */
-    Integer checkKey(Relation et);
+    CheckKeyStatus checkKey(Relation et);
 
     /**
     * 保存
@@ -163,6 +166,16 @@ public interface RelationService extends IService<Relation> {
      * @return
      */
     boolean save(List<Relation> list);
+
+    /**
+    * addDependency
+    * 
+    * @param et
+    * @return
+    */
+    default Relation addDependency(Relation et) {
+        return et;
+    }
 
     /**
     * delRelation
@@ -245,6 +258,22 @@ public interface RelationService extends IService<Relation> {
     * @return
     */
     List<Relation> listAll(RelationSearchContext context);
+
+    /**
+    * fetchDependencyWorkItems
+    * 
+    * @param context
+    * @return
+    */
+    Page<Relation> fetchDependencyWorkItems(RelationSearchContext context);
+
+    /**
+    * listDependencyWorkItems
+    * 
+    * @param context
+    * @return
+    */
+    List<Relation> listDependencyWorkItems(RelationSearchContext context);
 
     /**
     * fetchExistsRunRelationBug
@@ -344,7 +373,7 @@ public interface RelationService extends IService<Relation> {
 
     /**
     * fetchIdeaVersionRelation
-    * 
+    * 主实体版本创建时，查询关联principal_type为需求的数据存入version_data
     * @param context
     * @return
     */
@@ -352,7 +381,7 @@ public interface RelationService extends IService<Relation> {
 
     /**
     * listIdeaVersionRelation
-    * 
+    * 主实体版本创建时，查询关联principal_type为需求的数据存入version_data
     * @param context
     * @return
     */
@@ -424,7 +453,7 @@ public interface RelationService extends IService<Relation> {
 
     /**
     * fetchTestCaseReBug
-    * 
+    * 仅关联缺陷类型工作项
     * @param context
     * @return
     */
@@ -432,7 +461,7 @@ public interface RelationService extends IService<Relation> {
 
     /**
     * listTestCaseReBug
-    * 
+    * 仅关联缺陷类型工作项
     * @param context
     * @return
     */
@@ -456,7 +485,7 @@ public interface RelationService extends IService<Relation> {
 
     /**
     * fetchTestCaseReWorkItem
-    * 
+    * 排除了缺陷类型的工作项
     * @param context
     * @return
     */
@@ -464,7 +493,7 @@ public interface RelationService extends IService<Relation> {
 
     /**
     * listTestCaseReWorkItem
-    * 
+    * 排除了缺陷类型的工作项
     * @param context
     * @return
     */
@@ -472,7 +501,7 @@ public interface RelationService extends IService<Relation> {
 
     /**
     * fetchTestCaseVersionRelation
-    * 
+    * 主实体版本创建时，查询关联principal_type为用例的数据存入version_data
     * @param context
     * @return
     */
@@ -480,7 +509,7 @@ public interface RelationService extends IService<Relation> {
 
     /**
     * listTestCaseVersionRelation
-    * 
+    * 主实体版本创建时，查询关联principal_type为用例的数据存入version_data
     * @param context
     * @return
     */
@@ -600,7 +629,7 @@ public interface RelationService extends IService<Relation> {
 
     /**
     * fetchWorkItemVersionRelation
-    * 
+    * 主实体版本创建时，查询关联principal_type为工作项的数据存入version_data
     * @param context
     * @return
     */
@@ -608,7 +637,7 @@ public interface RelationService extends IService<Relation> {
 
     /**
     * listWorkItemVersionRelation
-    * 
+    * 主实体版本创建时，查询关联principal_type为工作项的数据存入version_data
     * @param context
     * @return
     */
@@ -621,8 +650,15 @@ public interface RelationService extends IService<Relation> {
     */
     List<Relation> findByPrincipalId(List<String> principalIds);
     default List<Relation> findByPrincipalId(String principalId){
-        return findByPrincipalId(Arrays.asList(principalId));
+        return findByPrincipalBaseline(new Baseline().setId(principalId));
     }
+
+    /**
+    * findByPrincipalBaseline
+    * @param baseline
+    * @return
+    */
+    List<Relation> findByPrincipalBaseline(Baseline baseline);
 
     /**
     * removeByPrincipalId
@@ -657,12 +693,41 @@ public interface RelationService extends IService<Relation> {
     boolean saveByPrincipalBaseline(Baseline baseline, List<Relation> list);
 
     /**
+    * findByPrincipalIdea
+    * @param idea
+    * @return
+    */
+    List<Relation> findByPrincipalIdea(Idea idea);
+
+    /**
     * saveByPrincipalIdea
     * @param idea
     * @param list
     * @return
     */
     boolean saveByPrincipalIdea(Idea idea, List<Relation> list);
+
+    /**
+    * findByRelationRelease
+    * @param release
+    * @return
+    */
+    List<Relation> findByRelationRelease(Release release);
+
+    /**
+    * saveByRelationRelease
+    * @param release
+    * @param list
+    * @return
+    */
+    boolean saveByRelationRelease(Release release, List<Relation> list);
+
+    /**
+    * findByPrincipalReview
+    * @param review
+    * @return
+    */
+    List<Relation> findByPrincipalReview(Review review);
 
     /**
     * saveByPrincipalReview
@@ -679,8 +744,15 @@ public interface RelationService extends IService<Relation> {
     */
     List<Relation> findById(List<String> ids);
     default List<Relation> findById(String id){
-        return findById(Arrays.asList(id));
+        return findByReviewContentExtend(new ReviewContentExtend().setId(id));
     }
+
+    /**
+    * findByReviewContentExtend
+    * @param reviewContentExtend
+    * @return
+    */
+    List<Relation> findByReviewContentExtend(ReviewContentExtend reviewContentExtend);
 
     /**
     * removeById
@@ -715,14 +787,36 @@ public interface RelationService extends IService<Relation> {
     boolean saveByReviewContentExtend(ReviewContentExtend reviewContentExtend, List<Relation> list);
 
     /**
+    * findByPrincipalSprint
+    * @param sprint
+    * @return
+    */
+    List<Relation> findByPrincipalSprint(Sprint sprint);
+
+    /**
+    * saveByPrincipalSprint
+    * @param sprint
+    * @param list
+    * @return
+    */
+    boolean saveByPrincipalSprint(Sprint sprint, List<Relation> list);
+
+    /**
     * findByTargetId
     * @param targetIds
     * @return
     */
     List<Relation> findByTargetId(List<String> targetIds);
     default List<Relation> findByTargetId(String targetId){
-        return findByTargetId(Arrays.asList(targetId));
+        return findByTargetCustomer(new Customer().setId(targetId));
     }
+
+    /**
+    * findByTargetCustomer
+    * @param customer
+    * @return
+    */
+    List<Relation> findByTargetCustomer(Customer customer);
 
     /**
     * removeByTargetId
@@ -757,12 +851,26 @@ public interface RelationService extends IService<Relation> {
     boolean saveByTargetCustomer(Customer customer, List<Relation> list);
 
     /**
+    * findByTargetIdea
+    * @param idea
+    * @return
+    */
+    List<Relation> findByTargetIdea(Idea idea);
+
+    /**
     * saveByTargetIdea
     * @param idea
     * @param list
     * @return
     */
     boolean saveByTargetIdea(Idea idea, List<Relation> list);
+
+    /**
+    * findByTargetPage
+    * @param articlePage
+    * @return
+    */
+    List<Relation> findByTargetPage(ArticlePage articlePage);
 
     /**
     * saveByTargetPage
@@ -773,12 +881,26 @@ public interface RelationService extends IService<Relation> {
     boolean saveByTargetPage(ArticlePage articlePage, List<Relation> list);
 
     /**
+    * findByTargetProductPlanCategory
+    * @param productPlan
+    * @return
+    */
+    List<Relation> findByTargetProductPlanCategory(ProductPlan productPlan);
+
+    /**
     * saveByTargetProductPlanCategory
     * @param productPlan
     * @param list
     * @return
     */
     boolean saveByTargetProductPlanCategory(ProductPlan productPlan, List<Relation> list);
+
+    /**
+    * findByTargetTestCase
+    * @param testCase
+    * @return
+    */
+    List<Relation> findByTargetTestCase(TestCase testCase);
 
     /**
     * saveByTargetTestCase
@@ -789,12 +911,26 @@ public interface RelationService extends IService<Relation> {
     boolean saveByTargetTestCase(TestCase testCase, List<Relation> list);
 
     /**
+    * findByTargetTicket
+    * @param ticket
+    * @return
+    */
+    List<Relation> findByTargetTicket(Ticket ticket);
+
+    /**
     * saveByTargetTicket
     * @param ticket
     * @param list
     * @return
     */
     boolean saveByTargetTicket(Ticket ticket, List<Relation> list);
+
+    /**
+    * findByTargetWorkItem
+    * @param workItem
+    * @return
+    */
+    List<Relation> findByTargetWorkItem(WorkItem workItem);
 
     /**
     * saveByTargetWorkItem
@@ -805,12 +941,26 @@ public interface RelationService extends IService<Relation> {
     boolean saveByTargetWorkItem(WorkItem workItem, List<Relation> list);
 
     /**
+    * findByPrincipalTestCase
+    * @param testCase
+    * @return
+    */
+    List<Relation> findByPrincipalTestCase(TestCase testCase);
+
+    /**
     * saveByPrincipalTestCase
     * @param testCase
     * @param list
     * @return
     */
     boolean saveByPrincipalTestCase(TestCase testCase, List<Relation> list);
+
+    /**
+    * findByPrincipalTestPlan
+    * @param testPlan
+    * @return
+    */
+    List<Relation> findByPrincipalTestPlan(TestPlan testPlan);
 
     /**
     * saveByPrincipalTestPlan
@@ -821,12 +971,35 @@ public interface RelationService extends IService<Relation> {
     boolean saveByPrincipalTestPlan(TestPlan testPlan, List<Relation> list);
 
     /**
+    * findByPrincipalWorkItem
+    * @param workItem
+    * @return
+    */
+    List<Relation> findByPrincipalWorkItem(WorkItem workItem);
+
+    /**
     * saveByPrincipalWorkItem
     * @param workItem
     * @param list
     * @return
     */
     boolean saveByPrincipalWorkItem(WorkItem workItem, List<Relation> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Relation> fetchView(RelationSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Relation> listView(RelationSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Relation> list) {

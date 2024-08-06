@@ -434,7 +434,6 @@ export default {
                       colMD: 24,
                       layout: 'TABLE_24COL',
                     },
-                    showCaption: true,
                     id: 'n_sprint_id_eq',
                   },
                   {
@@ -661,6 +660,7 @@ export default {
         },
         dechartSerieses: [
           {
+            caption: '状态类型',
             catalogField: 'filter_type',
             catalogCodeListId: 'plmweb.projmgmt__state_type',
             echartsType: 'pie',
@@ -686,6 +686,7 @@ export default {
             id: 'state_type',
           },
           {
+            caption: '优先级',
             catalogField: 'filter_type',
             catalogCodeListId: 'plmweb.projmgmt__work_item_priority',
             echartsType: 'pie',
@@ -712,6 +713,7 @@ export default {
             id: 'priority',
           },
           {
+            caption: '严重程度',
             catalogField: 'filter_type',
             catalogCodeListId: 'plmweb.projmgmt__severity',
             echartsType: 'pie',
@@ -738,6 +740,7 @@ export default {
             id: 'severity',
           },
           {
+            caption: '迭代',
             catalogField: 'filter_type',
             catalogCodeListId: 'plmweb.projmgmt__cur_sprint',
             echartsType: 'pie',
@@ -764,6 +767,7 @@ export default {
             id: 'sprint_id',
           },
           {
+            caption: '复现概率',
             catalogField: 'filter_type',
             catalogCodeListId: 'plmweb.projmgmt__reproduction_probability',
             echartsType: 'pie',
@@ -791,6 +795,7 @@ export default {
             id: 'reappear_probability',
           },
           {
+            caption: '状态',
             catalogField: 'filter_type',
             catalogCodeListId: 'plmweb.projmgmt__work_item_state',
             echartsType: 'pie',

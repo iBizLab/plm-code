@@ -23,12 +23,14 @@ import java.util.stream.IntStream;
 import cn.ibizlab.util.domain.ImportResult;
 import cn.ibizlab.util.domain.RequestWrapper;
 import cn.ibizlab.util.domain.ResponseWrapper;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.serviceapi.dto.*;
 import cn.ibizlab.plm.serviceapi.mapping.*;
 import cn.ibizlab.plm.core.testmgmt.domain.Run;
 import cn.ibizlab.plm.core.testmgmt.service.RunService;
 import cn.ibizlab.plm.core.testmgmt.filter.RunSearchContext;
 import cn.ibizlab.util.annotation.VersionCheck;
+import reactor.core.publisher.Mono;
 
 /**
  * 实体[Run] rest实现
@@ -40,6 +42,10 @@ public abstract class AbstractRunResource {
 
     @Autowired
     public RunService runService;
+
+    @Autowired
+    @Lazy
+    public RunBiSearchGroupDTOMapping runBiSearchGroupDtoMapping;
 
     @Autowired
     @Lazy
@@ -58,19 +64,19 @@ public abstract class AbstractRunResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "创建Create", tags = {"执行用例" },  notes = "Run-Create ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-Create-all') or hasPermission(this.runDtoMapping.toDomain(#dto),'ibizplm-Run-Create')")
     @PostMapping("runs")
-    public ResponseEntity<ResponseWrapper<RunDTO>> create
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>create
             (@Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(create(item)));
         else
             rt.set(create(dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -94,13 +100,13 @@ public abstract class AbstractRunResource {
     *
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "更新Update", tags = {"执行用例" },  notes = "Run-Update ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-Update-all') or hasPermission(this.runService.get(#id),'ibizplm-Run-Update')")
     @VersionCheck(entity = "run" , versionfield = "updateTime")
     @PutMapping("runs/{id}")
-    public ResponseEntity<ResponseWrapper<RunDTO>> updateById
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>updateById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -109,7 +115,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(updateById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -135,12 +141,12 @@ public abstract class AbstractRunResource {
     *
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "add_plan_run", tags = {"执行用例" },  notes = "Run-add_plan_run ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-add_plan_run-all') or hasPermission(this.runDtoMapping.toDomain(#dto),'ibizplm-Run-add_plan_run')")
     @PostMapping("runs/{id}/add_plan_run")
-    public ResponseEntity<ResponseWrapper<RunDTO>> addPlanRunById
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>addPlanRunById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -149,7 +155,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(addPlanRunById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -174,11 +180,11 @@ public abstract class AbstractRunResource {
     *
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "batch_save_run_history", tags = {"执行用例" },  notes = "Run-batch_save_run_history ")
     @PostMapping("runs/{id}/batch_save_run_history")
-    public ResponseEntity<ResponseWrapper<RunDTO>> batchSaveRunHistoryById
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>batchSaveRunHistoryById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -187,7 +193,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(batchSaveRunHistoryById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -212,12 +218,12 @@ public abstract class AbstractRunResource {
     *
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "other_relation_run", tags = {"执行用例" },  notes = "Run-other_relation_run ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-other_relation_run-all') or hasPermission(this.runDtoMapping.toDomain(#dto),'ibizplm-Run-other_relation_run')")
     @PutMapping("runs/{id}/other_relation_run")
-    public ResponseEntity<ResponseWrapper<RunDTO>> otherRelationRunById
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>otherRelationRunById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -226,7 +232,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(otherRelationRunById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -250,19 +256,19 @@ public abstract class AbstractRunResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "program_plan", tags = {"执行用例" },  notes = "Run-program_plan ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-program_plan-all') or hasPermission(this.runDtoMapping.toDomain(#dto),'ibizplm-Run-program_plan')")
     @PostMapping("runs/program_plan")
-    public ResponseEntity<ResponseWrapper<RunDTO>> programPlan
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>programPlan
             (@Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(programPlan(item)));
         else
             rt.set(programPlan(dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -285,12 +291,12 @@ public abstract class AbstractRunResource {
     *
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "reset_not_test", tags = {"执行用例" },  notes = "Run-reset_not_test ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-reset_not_test-all') or hasPermission(this.runDtoMapping.toDomain(#dto),'ibizplm-Run-reset_not_test')")
     @PostMapping("runs/{id}/reset_not_test")
-    public ResponseEntity<ResponseWrapper<RunDTO>> resetNotTestById
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>resetNotTestById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -299,7 +305,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(resetNotTestById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -324,11 +330,11 @@ public abstract class AbstractRunResource {
     *
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "run_re_counters", tags = {"执行用例" },  notes = "Run-run_re_counters ")
     @PostMapping("runs/{id}/run_re_counters")
-    public ResponseEntity<ResponseWrapper<RunDTO>> runReCountersById
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>runReCountersById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -337,7 +343,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(runReCountersById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -361,18 +367,18 @@ public abstract class AbstractRunResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "保存Save", tags = {"执行用例" },  notes = "Run-Save ")
     @PostMapping("runs/save")
-    public ResponseEntity<ResponseWrapper<RunDTO>> save
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>save
             (@Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(save(item)));
         else
             rt.set(save(dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -396,11 +402,11 @@ public abstract class AbstractRunResource {
     *
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "save_run_history", tags = {"执行用例" },  notes = "Run-save_run_history ")
     @PostMapping("runs/{id}/save_run_history")
-    public ResponseEntity<ResponseWrapper<RunDTO>> saveRunHistoryById
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>saveRunHistoryById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -409,7 +415,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(saveRunHistoryById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -434,11 +440,11 @@ public abstract class AbstractRunResource {
     *
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "set_executor", tags = {"执行用例" },  notes = "Run-set_executor ")
     @PostMapping("runs/{id}/set_executor")
-    public ResponseEntity<ResponseWrapper<RunDTO>> setExecutorById
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>setExecutorById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -447,7 +453,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(setExecutorById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -472,19 +478,19 @@ public abstract class AbstractRunResource {
     *
     * @param caseId caseId
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "创建Create", tags = {"执行用例" },  notes = "Run-Create ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-Create-all') or hasPermission('test_case',#caseId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-Create')")
     @PostMapping("test_cases/{caseId}/runs")
-    public ResponseEntity<ResponseWrapper<RunDTO>> createByCaseId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>createByCaseId
             (@PathVariable("caseId") String caseId, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(createByCaseId(caseId, item)));
         else
             rt.set(createByCaseId(caseId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -511,13 +517,13 @@ public abstract class AbstractRunResource {
     * @param caseId caseId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "更新Update", tags = {"执行用例" },  notes = "Run-Update ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-Update-all') or hasPermission('test_case',#caseId,this.runService.get(#id),'ibizplm-Run-Update')")
     @VersionCheck(entity = "run" , versionfield = "updateTime")
     @PutMapping("test_cases/{caseId}/runs/{id}")
-    public ResponseEntity<ResponseWrapper<RunDTO>> updateByCaseIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>updateByCaseIdAndId
             (@PathVariable("caseId") String caseId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -526,7 +532,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(updateByCaseIdAndId(caseId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -554,12 +560,12 @@ public abstract class AbstractRunResource {
     * @param caseId caseId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "add_plan_run", tags = {"执行用例" },  notes = "Run-add_plan_run ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-add_plan_run-all') or hasPermission('test_case',#caseId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-add_plan_run')")
     @PostMapping("test_cases/{caseId}/runs/{id}/add_plan_run")
-    public ResponseEntity<ResponseWrapper<RunDTO>> addPlanRunByCaseIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>addPlanRunByCaseIdAndId
             (@PathVariable("caseId") String caseId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -568,7 +574,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(addPlanRunByCaseIdAndId(caseId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -595,11 +601,11 @@ public abstract class AbstractRunResource {
     * @param caseId caseId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "batch_save_run_history", tags = {"执行用例" },  notes = "Run-batch_save_run_history ")
     @PostMapping("test_cases/{caseId}/runs/{id}/batch_save_run_history")
-    public ResponseEntity<ResponseWrapper<RunDTO>> batchSaveRunHistoryByCaseIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>batchSaveRunHistoryByCaseIdAndId
             (@PathVariable("caseId") String caseId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -608,7 +614,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(batchSaveRunHistoryByCaseIdAndId(caseId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -635,12 +641,12 @@ public abstract class AbstractRunResource {
     * @param caseId caseId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "other_relation_run", tags = {"执行用例" },  notes = "Run-other_relation_run ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-other_relation_run-all') or hasPermission('test_case',#caseId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-other_relation_run')")
     @PutMapping("test_cases/{caseId}/runs/{id}/other_relation_run")
-    public ResponseEntity<ResponseWrapper<RunDTO>> otherRelationRunByCaseIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>otherRelationRunByCaseIdAndId
             (@PathVariable("caseId") String caseId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -649,7 +655,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(otherRelationRunByCaseIdAndId(caseId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -675,19 +681,19 @@ public abstract class AbstractRunResource {
     *
     * @param caseId caseId
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "program_plan", tags = {"执行用例" },  notes = "Run-program_plan ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-program_plan-all') or hasPermission('test_case',#caseId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-program_plan')")
     @PostMapping("test_cases/{caseId}/runs/program_plan")
-    public ResponseEntity<ResponseWrapper<RunDTO>> programPlanByCaseId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>programPlanByCaseId
             (@PathVariable("caseId") String caseId, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(programPlanByCaseId(caseId, item)));
         else
             rt.set(programPlanByCaseId(caseId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -713,12 +719,12 @@ public abstract class AbstractRunResource {
     * @param caseId caseId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "reset_not_test", tags = {"执行用例" },  notes = "Run-reset_not_test ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-reset_not_test-all') or hasPermission('test_case',#caseId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-reset_not_test')")
     @PostMapping("test_cases/{caseId}/runs/{id}/reset_not_test")
-    public ResponseEntity<ResponseWrapper<RunDTO>> resetNotTestByCaseIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>resetNotTestByCaseIdAndId
             (@PathVariable("caseId") String caseId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -727,7 +733,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(resetNotTestByCaseIdAndId(caseId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -754,11 +760,11 @@ public abstract class AbstractRunResource {
     * @param caseId caseId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "run_re_counters", tags = {"执行用例" },  notes = "Run-run_re_counters ")
     @PostMapping("test_cases/{caseId}/runs/{id}/run_re_counters")
-    public ResponseEntity<ResponseWrapper<RunDTO>> runReCountersByCaseIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>runReCountersByCaseIdAndId
             (@PathVariable("caseId") String caseId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -767,7 +773,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(runReCountersByCaseIdAndId(caseId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -793,18 +799,18 @@ public abstract class AbstractRunResource {
     *
     * @param caseId caseId
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "保存Save", tags = {"执行用例" },  notes = "Run-Save ")
     @PostMapping("test_cases/{caseId}/runs/save")
-    public ResponseEntity<ResponseWrapper<RunDTO>> saveByCaseId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>saveByCaseId
             (@PathVariable("caseId") String caseId, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(saveByCaseId(caseId, item)));
         else
             rt.set(saveByCaseId(caseId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -831,11 +837,11 @@ public abstract class AbstractRunResource {
     * @param caseId caseId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "save_run_history", tags = {"执行用例" },  notes = "Run-save_run_history ")
     @PostMapping("test_cases/{caseId}/runs/{id}/save_run_history")
-    public ResponseEntity<ResponseWrapper<RunDTO>> saveRunHistoryByCaseIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>saveRunHistoryByCaseIdAndId
             (@PathVariable("caseId") String caseId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -844,7 +850,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(saveRunHistoryByCaseIdAndId(caseId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -871,11 +877,11 @@ public abstract class AbstractRunResource {
     * @param caseId caseId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "set_executor", tags = {"执行用例" },  notes = "Run-set_executor ")
     @PostMapping("test_cases/{caseId}/runs/{id}/set_executor")
-    public ResponseEntity<ResponseWrapper<RunDTO>> setExecutorByCaseIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>setExecutorByCaseIdAndId
             (@PathVariable("caseId") String caseId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -884,7 +890,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(setExecutorByCaseIdAndId(caseId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -911,19 +917,19 @@ public abstract class AbstractRunResource {
     * @param testLibraryId testLibraryId
     * @param caseId caseId
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "创建Create", tags = {"执行用例" },  notes = "Run-Create ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-Create-all') or hasPermission('library',#testLibraryId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-Create')")
     @PostMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs")
-    public ResponseEntity<ResponseWrapper<RunDTO>> createByTestLibraryIdAndCaseId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>createByTestLibraryIdAndCaseId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(createByTestLibraryIdAndCaseId(testLibraryId, caseId, item)));
         else
             rt.set(createByTestLibraryIdAndCaseId(testLibraryId, caseId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -952,13 +958,13 @@ public abstract class AbstractRunResource {
     * @param caseId caseId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "更新Update", tags = {"执行用例" },  notes = "Run-Update ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-Update-all') or hasPermission('library',#testLibraryId,this.runService.get(#id),'ibizplm-Run-Update')")
     @VersionCheck(entity = "run" , versionfield = "updateTime")
     @PutMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/{id}")
-    public ResponseEntity<ResponseWrapper<RunDTO>> updateByTestLibraryIdAndCaseIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>updateByTestLibraryIdAndCaseIdAndId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -967,7 +973,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(updateByTestLibraryIdAndCaseIdAndId(testLibraryId, caseId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -997,12 +1003,12 @@ public abstract class AbstractRunResource {
     * @param caseId caseId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "add_plan_run", tags = {"执行用例" },  notes = "Run-add_plan_run ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-add_plan_run-all') or hasPermission('library',#testLibraryId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-add_plan_run')")
     @PostMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/{id}/add_plan_run")
-    public ResponseEntity<ResponseWrapper<RunDTO>> addPlanRunByTestLibraryIdAndCaseIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>addPlanRunByTestLibraryIdAndCaseIdAndId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -1011,7 +1017,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(addPlanRunByTestLibraryIdAndCaseIdAndId(testLibraryId, caseId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -1040,11 +1046,11 @@ public abstract class AbstractRunResource {
     * @param caseId caseId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "batch_save_run_history", tags = {"执行用例" },  notes = "Run-batch_save_run_history ")
     @PostMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/{id}/batch_save_run_history")
-    public ResponseEntity<ResponseWrapper<RunDTO>> batchSaveRunHistoryByTestLibraryIdAndCaseIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>batchSaveRunHistoryByTestLibraryIdAndCaseIdAndId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -1053,7 +1059,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(batchSaveRunHistoryByTestLibraryIdAndCaseIdAndId(testLibraryId, caseId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -1082,12 +1088,12 @@ public abstract class AbstractRunResource {
     * @param caseId caseId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "other_relation_run", tags = {"执行用例" },  notes = "Run-other_relation_run ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-other_relation_run-all') or hasPermission('library',#testLibraryId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-other_relation_run')")
     @PutMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/{id}/other_relation_run")
-    public ResponseEntity<ResponseWrapper<RunDTO>> otherRelationRunByTestLibraryIdAndCaseIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>otherRelationRunByTestLibraryIdAndCaseIdAndId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -1096,7 +1102,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(otherRelationRunByTestLibraryIdAndCaseIdAndId(testLibraryId, caseId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -1124,19 +1130,19 @@ public abstract class AbstractRunResource {
     * @param testLibraryId testLibraryId
     * @param caseId caseId
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "program_plan", tags = {"执行用例" },  notes = "Run-program_plan ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-program_plan-all') or hasPermission('library',#testLibraryId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-program_plan')")
     @PostMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/program_plan")
-    public ResponseEntity<ResponseWrapper<RunDTO>> programPlanByTestLibraryIdAndCaseId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>programPlanByTestLibraryIdAndCaseId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(programPlanByTestLibraryIdAndCaseId(testLibraryId, caseId, item)));
         else
             rt.set(programPlanByTestLibraryIdAndCaseId(testLibraryId, caseId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -1164,12 +1170,12 @@ public abstract class AbstractRunResource {
     * @param caseId caseId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "reset_not_test", tags = {"执行用例" },  notes = "Run-reset_not_test ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-reset_not_test-all') or hasPermission('library',#testLibraryId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-reset_not_test')")
     @PostMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/{id}/reset_not_test")
-    public ResponseEntity<ResponseWrapper<RunDTO>> resetNotTestByTestLibraryIdAndCaseIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>resetNotTestByTestLibraryIdAndCaseIdAndId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -1178,7 +1184,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(resetNotTestByTestLibraryIdAndCaseIdAndId(testLibraryId, caseId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -1207,11 +1213,11 @@ public abstract class AbstractRunResource {
     * @param caseId caseId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "run_re_counters", tags = {"执行用例" },  notes = "Run-run_re_counters ")
     @PostMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/{id}/run_re_counters")
-    public ResponseEntity<ResponseWrapper<RunDTO>> runReCountersByTestLibraryIdAndCaseIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>runReCountersByTestLibraryIdAndCaseIdAndId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -1220,7 +1226,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(runReCountersByTestLibraryIdAndCaseIdAndId(testLibraryId, caseId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -1248,18 +1254,18 @@ public abstract class AbstractRunResource {
     * @param testLibraryId testLibraryId
     * @param caseId caseId
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "保存Save", tags = {"执行用例" },  notes = "Run-Save ")
     @PostMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/save")
-    public ResponseEntity<ResponseWrapper<RunDTO>> saveByTestLibraryIdAndCaseId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>saveByTestLibraryIdAndCaseId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(saveByTestLibraryIdAndCaseId(testLibraryId, caseId, item)));
         else
             rt.set(saveByTestLibraryIdAndCaseId(testLibraryId, caseId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -1288,11 +1294,11 @@ public abstract class AbstractRunResource {
     * @param caseId caseId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "save_run_history", tags = {"执行用例" },  notes = "Run-save_run_history ")
     @PostMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/{id}/save_run_history")
-    public ResponseEntity<ResponseWrapper<RunDTO>> saveRunHistoryByTestLibraryIdAndCaseIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>saveRunHistoryByTestLibraryIdAndCaseIdAndId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -1301,7 +1307,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(saveRunHistoryByTestLibraryIdAndCaseIdAndId(testLibraryId, caseId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -1330,11 +1336,11 @@ public abstract class AbstractRunResource {
     * @param caseId caseId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "set_executor", tags = {"执行用例" },  notes = "Run-set_executor ")
     @PostMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/{id}/set_executor")
-    public ResponseEntity<ResponseWrapper<RunDTO>> setExecutorByTestLibraryIdAndCaseIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>setExecutorByTestLibraryIdAndCaseIdAndId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -1343,7 +1349,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(setExecutorByTestLibraryIdAndCaseIdAndId(testLibraryId, caseId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -1370,19 +1376,19 @@ public abstract class AbstractRunResource {
     *
     * @param planId planId
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "创建Create", tags = {"执行用例" },  notes = "Run-Create ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-Create-all') or hasPermission('test_plan',#planId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-Create')")
     @PostMapping("test_plans/{planId}/runs")
-    public ResponseEntity<ResponseWrapper<RunDTO>> createByPlanId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>createByPlanId
             (@PathVariable("planId") String planId, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(createByPlanId(planId, item)));
         else
             rt.set(createByPlanId(planId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -1409,13 +1415,13 @@ public abstract class AbstractRunResource {
     * @param planId planId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "更新Update", tags = {"执行用例" },  notes = "Run-Update ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-Update-all') or hasPermission('test_plan',#planId,this.runService.get(#id),'ibizplm-Run-Update')")
     @VersionCheck(entity = "run" , versionfield = "updateTime")
     @PutMapping("test_plans/{planId}/runs/{id}")
-    public ResponseEntity<ResponseWrapper<RunDTO>> updateByPlanIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>updateByPlanIdAndId
             (@PathVariable("planId") String planId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -1424,7 +1430,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(updateByPlanIdAndId(planId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -1452,12 +1458,12 @@ public abstract class AbstractRunResource {
     * @param planId planId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "add_plan_run", tags = {"执行用例" },  notes = "Run-add_plan_run ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-add_plan_run-all') or hasPermission('test_plan',#planId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-add_plan_run')")
     @PostMapping("test_plans/{planId}/runs/{id}/add_plan_run")
-    public ResponseEntity<ResponseWrapper<RunDTO>> addPlanRunByPlanIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>addPlanRunByPlanIdAndId
             (@PathVariable("planId") String planId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -1466,7 +1472,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(addPlanRunByPlanIdAndId(planId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -1493,11 +1499,11 @@ public abstract class AbstractRunResource {
     * @param planId planId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "batch_save_run_history", tags = {"执行用例" },  notes = "Run-batch_save_run_history ")
     @PostMapping("test_plans/{planId}/runs/{id}/batch_save_run_history")
-    public ResponseEntity<ResponseWrapper<RunDTO>> batchSaveRunHistoryByPlanIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>batchSaveRunHistoryByPlanIdAndId
             (@PathVariable("planId") String planId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -1506,7 +1512,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(batchSaveRunHistoryByPlanIdAndId(planId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -1533,12 +1539,12 @@ public abstract class AbstractRunResource {
     * @param planId planId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "other_relation_run", tags = {"执行用例" },  notes = "Run-other_relation_run ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-other_relation_run-all') or hasPermission('test_plan',#planId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-other_relation_run')")
     @PutMapping("test_plans/{planId}/runs/{id}/other_relation_run")
-    public ResponseEntity<ResponseWrapper<RunDTO>> otherRelationRunByPlanIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>otherRelationRunByPlanIdAndId
             (@PathVariable("planId") String planId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -1547,7 +1553,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(otherRelationRunByPlanIdAndId(planId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -1573,19 +1579,19 @@ public abstract class AbstractRunResource {
     *
     * @param planId planId
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "program_plan", tags = {"执行用例" },  notes = "Run-program_plan ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-program_plan-all') or hasPermission('test_plan',#planId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-program_plan')")
     @PostMapping("test_plans/{planId}/runs/program_plan")
-    public ResponseEntity<ResponseWrapper<RunDTO>> programPlanByPlanId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>programPlanByPlanId
             (@PathVariable("planId") String planId, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(programPlanByPlanId(planId, item)));
         else
             rt.set(programPlanByPlanId(planId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -1611,12 +1617,12 @@ public abstract class AbstractRunResource {
     * @param planId planId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "reset_not_test", tags = {"执行用例" },  notes = "Run-reset_not_test ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-reset_not_test-all') or hasPermission('test_plan',#planId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-reset_not_test')")
     @PostMapping("test_plans/{planId}/runs/{id}/reset_not_test")
-    public ResponseEntity<ResponseWrapper<RunDTO>> resetNotTestByPlanIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>resetNotTestByPlanIdAndId
             (@PathVariable("planId") String planId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -1625,7 +1631,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(resetNotTestByPlanIdAndId(planId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -1652,11 +1658,11 @@ public abstract class AbstractRunResource {
     * @param planId planId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "run_re_counters", tags = {"执行用例" },  notes = "Run-run_re_counters ")
     @PostMapping("test_plans/{planId}/runs/{id}/run_re_counters")
-    public ResponseEntity<ResponseWrapper<RunDTO>> runReCountersByPlanIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>runReCountersByPlanIdAndId
             (@PathVariable("planId") String planId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -1665,7 +1671,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(runReCountersByPlanIdAndId(planId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -1691,18 +1697,18 @@ public abstract class AbstractRunResource {
     *
     * @param planId planId
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "保存Save", tags = {"执行用例" },  notes = "Run-Save ")
     @PostMapping("test_plans/{planId}/runs/save")
-    public ResponseEntity<ResponseWrapper<RunDTO>> saveByPlanId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>saveByPlanId
             (@PathVariable("planId") String planId, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(saveByPlanId(planId, item)));
         else
             rt.set(saveByPlanId(planId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -1729,11 +1735,11 @@ public abstract class AbstractRunResource {
     * @param planId planId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "save_run_history", tags = {"执行用例" },  notes = "Run-save_run_history ")
     @PostMapping("test_plans/{planId}/runs/{id}/save_run_history")
-    public ResponseEntity<ResponseWrapper<RunDTO>> saveRunHistoryByPlanIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>saveRunHistoryByPlanIdAndId
             (@PathVariable("planId") String planId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -1742,7 +1748,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(saveRunHistoryByPlanIdAndId(planId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -1769,11 +1775,11 @@ public abstract class AbstractRunResource {
     * @param planId planId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "set_executor", tags = {"执行用例" },  notes = "Run-set_executor ")
     @PostMapping("test_plans/{planId}/runs/{id}/set_executor")
-    public ResponseEntity<ResponseWrapper<RunDTO>> setExecutorByPlanIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>setExecutorByPlanIdAndId
             (@PathVariable("planId") String planId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -1782,7 +1788,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(setExecutorByPlanIdAndId(planId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -1809,19 +1815,19 @@ public abstract class AbstractRunResource {
     * @param libraryId libraryId
     * @param planId planId
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "创建Create", tags = {"执行用例" },  notes = "Run-Create ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-Create-all') or hasPermission('library',#libraryId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-Create')")
     @PostMapping("libraries/{libraryId}/test_plans/{planId}/runs")
-    public ResponseEntity<ResponseWrapper<RunDTO>> createByLibraryIdAndPlanId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>createByLibraryIdAndPlanId
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(createByLibraryIdAndPlanId(libraryId, planId, item)));
         else
             rt.set(createByLibraryIdAndPlanId(libraryId, planId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -1850,13 +1856,13 @@ public abstract class AbstractRunResource {
     * @param planId planId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "更新Update", tags = {"执行用例" },  notes = "Run-Update ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-Update-all') or hasPermission('library',#libraryId,this.runService.get(#id),'ibizplm-Run-Update')")
     @VersionCheck(entity = "run" , versionfield = "updateTime")
     @PutMapping("libraries/{libraryId}/test_plans/{planId}/runs/{id}")
-    public ResponseEntity<ResponseWrapper<RunDTO>> updateByLibraryIdAndPlanIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>updateByLibraryIdAndPlanIdAndId
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -1865,7 +1871,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(updateByLibraryIdAndPlanIdAndId(libraryId, planId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -1895,12 +1901,12 @@ public abstract class AbstractRunResource {
     * @param planId planId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "add_plan_run", tags = {"执行用例" },  notes = "Run-add_plan_run ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-add_plan_run-all') or hasPermission('library',#libraryId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-add_plan_run')")
     @PostMapping("libraries/{libraryId}/test_plans/{planId}/runs/{id}/add_plan_run")
-    public ResponseEntity<ResponseWrapper<RunDTO>> addPlanRunByLibraryIdAndPlanIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>addPlanRunByLibraryIdAndPlanIdAndId
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -1909,7 +1915,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(addPlanRunByLibraryIdAndPlanIdAndId(libraryId, planId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -1938,11 +1944,11 @@ public abstract class AbstractRunResource {
     * @param planId planId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "batch_save_run_history", tags = {"执行用例" },  notes = "Run-batch_save_run_history ")
     @PostMapping("libraries/{libraryId}/test_plans/{planId}/runs/{id}/batch_save_run_history")
-    public ResponseEntity<ResponseWrapper<RunDTO>> batchSaveRunHistoryByLibraryIdAndPlanIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>batchSaveRunHistoryByLibraryIdAndPlanIdAndId
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -1951,7 +1957,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(batchSaveRunHistoryByLibraryIdAndPlanIdAndId(libraryId, planId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -1980,12 +1986,12 @@ public abstract class AbstractRunResource {
     * @param planId planId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "other_relation_run", tags = {"执行用例" },  notes = "Run-other_relation_run ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-other_relation_run-all') or hasPermission('library',#libraryId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-other_relation_run')")
     @PutMapping("libraries/{libraryId}/test_plans/{planId}/runs/{id}/other_relation_run")
-    public ResponseEntity<ResponseWrapper<RunDTO>> otherRelationRunByLibraryIdAndPlanIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>otherRelationRunByLibraryIdAndPlanIdAndId
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -1994,7 +2000,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(otherRelationRunByLibraryIdAndPlanIdAndId(libraryId, planId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -2022,19 +2028,19 @@ public abstract class AbstractRunResource {
     * @param libraryId libraryId
     * @param planId planId
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "program_plan", tags = {"执行用例" },  notes = "Run-program_plan ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-program_plan-all') or hasPermission('library',#libraryId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-program_plan')")
     @PostMapping("libraries/{libraryId}/test_plans/{planId}/runs/program_plan")
-    public ResponseEntity<ResponseWrapper<RunDTO>> programPlanByLibraryIdAndPlanId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>programPlanByLibraryIdAndPlanId
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(programPlanByLibraryIdAndPlanId(libraryId, planId, item)));
         else
             rt.set(programPlanByLibraryIdAndPlanId(libraryId, planId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -2062,12 +2068,12 @@ public abstract class AbstractRunResource {
     * @param planId planId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "reset_not_test", tags = {"执行用例" },  notes = "Run-reset_not_test ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-reset_not_test-all') or hasPermission('library',#libraryId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-reset_not_test')")
     @PostMapping("libraries/{libraryId}/test_plans/{planId}/runs/{id}/reset_not_test")
-    public ResponseEntity<ResponseWrapper<RunDTO>> resetNotTestByLibraryIdAndPlanIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>resetNotTestByLibraryIdAndPlanIdAndId
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -2076,7 +2082,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(resetNotTestByLibraryIdAndPlanIdAndId(libraryId, planId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -2105,11 +2111,11 @@ public abstract class AbstractRunResource {
     * @param planId planId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "run_re_counters", tags = {"执行用例" },  notes = "Run-run_re_counters ")
     @PostMapping("libraries/{libraryId}/test_plans/{planId}/runs/{id}/run_re_counters")
-    public ResponseEntity<ResponseWrapper<RunDTO>> runReCountersByLibraryIdAndPlanIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>runReCountersByLibraryIdAndPlanIdAndId
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -2118,7 +2124,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(runReCountersByLibraryIdAndPlanIdAndId(libraryId, planId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -2146,18 +2152,18 @@ public abstract class AbstractRunResource {
     * @param libraryId libraryId
     * @param planId planId
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "保存Save", tags = {"执行用例" },  notes = "Run-Save ")
     @PostMapping("libraries/{libraryId}/test_plans/{planId}/runs/save")
-    public ResponseEntity<ResponseWrapper<RunDTO>> saveByLibraryIdAndPlanId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>saveByLibraryIdAndPlanId
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(saveByLibraryIdAndPlanId(libraryId, planId, item)));
         else
             rt.set(saveByLibraryIdAndPlanId(libraryId, planId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -2186,11 +2192,11 @@ public abstract class AbstractRunResource {
     * @param planId planId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "save_run_history", tags = {"执行用例" },  notes = "Run-save_run_history ")
     @PostMapping("libraries/{libraryId}/test_plans/{planId}/runs/{id}/save_run_history")
-    public ResponseEntity<ResponseWrapper<RunDTO>> saveRunHistoryByLibraryIdAndPlanIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>saveRunHistoryByLibraryIdAndPlanIdAndId
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -2199,7 +2205,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(saveRunHistoryByLibraryIdAndPlanIdAndId(libraryId, planId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -2228,11 +2234,11 @@ public abstract class AbstractRunResource {
     * @param planId planId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "set_executor", tags = {"执行用例" },  notes = "Run-set_executor ")
     @PostMapping("libraries/{libraryId}/test_plans/{planId}/runs/{id}/set_executor")
-    public ResponseEntity<ResponseWrapper<RunDTO>> setExecutorByLibraryIdAndPlanIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>setExecutorByLibraryIdAndPlanIdAndId
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
         ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -2241,7 +2247,7 @@ public abstract class AbstractRunResource {
         }
         else
             rt.set(setExecutorByLibraryIdAndPlanIdAndId(libraryId, planId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -2268,15 +2274,15 @@ public abstract class AbstractRunResource {
     * 
     *
     * @param id id
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "获取Get", tags = {"执行用例" },  notes = "Run-Get ")
-    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-Get-all')  or hasPermission(this.runDtoMapping.toDomain(returnObject.body),'ibizplm-Run-Get')")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-Get-all')  or hasPermission(this.runDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-Run-Get')")
     @GetMapping("runs/{id}")
-    public ResponseEntity<RunDTO> getById
+    public Mono<ResponseEntity<RunDTO>> getById
             (@PathVariable("id") String id) {
         Run rt = runService.get(id);
-        return ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt)));
     }
 
     /**
@@ -2284,15 +2290,15 @@ public abstract class AbstractRunResource {
     * 
     *
     * @param id id
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @ApiOperation(value = "删除Remove", tags = {"执行用例" },  notes = "Run-Remove ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-Remove-all') or hasPermission(this.runService.get(#id),'ibizplm-Run-Remove')")
     @DeleteMapping("runs/{id}")
-    public ResponseEntity<Boolean> removeById
+    public Mono<ResponseEntity<Boolean>> removeById
             (@PathVariable("id") String id) {
         Boolean rt = runService.remove(id);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -2300,15 +2306,15 @@ public abstract class AbstractRunResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<Integer>
+    * @return Mono<ResponseEntity<Integer>>
     */
     @ApiOperation(value = "校验CheckKey", tags = {"执行用例" },  notes = "Run-CheckKey ")
     @PostMapping("runs/check_key")
-    public ResponseEntity<Integer> checkKey
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKey
             (@Validated @RequestBody RunDTO dto) {
         Run domain = runDtoMapping.toDomain(dto);
-        Integer rt = runService.checkKey(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        CheckKeyStatus rt = runService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -2316,14 +2322,14 @@ public abstract class AbstractRunResource {
     * 
     *
     * @param id id
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "get_actual_workload", tags = {"执行用例" },  notes = "Run-get_actual_workload ")
     @GetMapping("runs/{id}/get_actual_workload")
-    public ResponseEntity<RunDTO> getActualWorkloadById
+    public Mono<ResponseEntity<RunDTO>> getActualWorkloadById
             (@PathVariable("id") String id) {
         Run rt = runService.getActualWorkload(id);
-        return ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt)));
     }
 
     /**
@@ -2331,15 +2337,15 @@ public abstract class AbstractRunResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "草稿GetDraft", tags = {"执行用例" },  notes = "Run-GetDraft ")
     @GetMapping("runs/get_draft")
-    public ResponseEntity<RunDTO> getDraft
+    public Mono<ResponseEntity<RunDTO>> getDraft
             (@SpringQueryMap RunDTO dto) {
         Run domain = runDtoMapping.toDomain(dto);
         Run rt = runService.getDraft(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt)));
     }
 
     /**
@@ -2347,16 +2353,16 @@ public abstract class AbstractRunResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "run_history_get", tags = {"执行用例" },  notes = "Run-run_history_get ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-run_history_get-all') or hasPermission(this.runDtoMapping.toDomain(#dto),'ibizplm-Run-run_history_get')")
     @GetMapping("runs/run_history_get")
-    public ResponseEntity<RunDTO> runHistoryGet
+    public Mono<ResponseEntity<RunDTO>> runHistoryGet
             (@SpringQueryMap RunDTO dto) {
         Run domain = runDtoMapping.toDomain(dto);
         Run rt = runService.runHistoryGet(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt)));
     }
 
     /**
@@ -2364,15 +2370,58 @@ public abstract class AbstractRunResource {
     * 
     *
     * @param id id
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "this_run_details", tags = {"执行用例" },  notes = "Run-this_run_details ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-this_run_details-all') or hasPermission(this.runService.get(#id),'ibizplm-Run-this_run_details')")
     @GetMapping("runs/{id}/this_run_details")
-    public ResponseEntity<RunDTO> thisRunDetailsById
+    public Mono<ResponseEntity<RunDTO>> thisRunDetailsById
             (@PathVariable("id") String id) {
         Run rt = runService.thisRunDetails(id);
-        return ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt)));
+    }
+
+    /**
+    * 查询fetch_bi_detail 执行用例
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<RunDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_bi_detail", tags = {"执行用例" },  notes = "Run-fetch_bi_detail ")
+    @PostMapping("runs/fetch_bi_detail")
+    public Mono<ResponseEntity<List<RunDTO>>> fetchBiDetail
+            (@Validated @RequestBody RunFilterDTO dto) {
+        RunSearchContext context = runFilterDtoMapping.toDomain(dto);
+        Page<Run> domains = runService.fetchBiDetail(context) ;
+        List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_bi_search 执行用例
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<RunBiSearchGroupDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_bi_search", tags = {"执行用例" },  notes = "Run-fetch_bi_search ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_bi_search-all') or hasPermission(#dto,'ibizplm-Run-fetch_bi_search')")
+    @PostMapping("runs/fetch_bi_search")
+    public Mono<ResponseEntity<List<RunBiSearchGroupDTO>>> fetchBiSearch
+            (@Validated @RequestBody RunFilterDTO dto) {
+        RunSearchContext context = runFilterDtoMapping.toDomain(dto);
+        Page<Run> domains = runService.fetchBiSearch(context) ;
+        List<RunBiSearchGroupDTO> list = runBiSearchGroupDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
     }
 
     /**
@@ -2380,20 +2429,20 @@ public abstract class AbstractRunResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<RunDTO>>
+    * @return Mono<ResponseEntity<List<RunDTO>>>
     */
     @ApiOperation(value = "查询fetch_case_person", tags = {"执行用例" },  notes = "Run-fetch_case_person ")
     @PostMapping("runs/fetch_case_person")
-    public ResponseEntity<List<RunDTO>> fetchCasePerson
+    public Mono<ResponseEntity<List<RunDTO>>> fetchCasePerson
             (@Validated @RequestBody RunFilterDTO dto) {
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchCasePerson(context) ;
         List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -2401,21 +2450,21 @@ public abstract class AbstractRunResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<RunExecutorDTO>>
+    * @return Mono<ResponseEntity<List<RunExecutorDTO>>>
     */
     @ApiOperation(value = "查询fetch_comment_notify_executor", tags = {"执行用例" },  notes = "Run-fetch_comment_notify_executor ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_comment_notify_executor-all') or hasPermission(#dto,'ibizplm-Run-fetch_comment_notify_executor')")
     @PostMapping("runs/fetch_comment_notify_executor")
-    public ResponseEntity<List<RunExecutorDTO>> fetchCommentNotifyExecutor
+    public Mono<ResponseEntity<List<RunExecutorDTO>>> fetchCommentNotifyExecutor
             (@Validated @RequestBody RunFilterDTO dto) {
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchCommentNotifyExecutor(context) ;
         List<RunExecutorDTO> list = runExecutorDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -2423,21 +2472,21 @@ public abstract class AbstractRunResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<RunDTO>>
+    * @return Mono<ResponseEntity<List<RunDTO>>>
     */
     @ApiOperation(value = "查询fetch_default", tags = {"执行用例" },  notes = "Run-fetch_default ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_default-all') or hasPermission(#dto,'ibizplm-Run-fetch_default')")
     @PostMapping("runs/fetch_default")
-    public ResponseEntity<List<RunDTO>> fetchDefault
+    public Mono<ResponseEntity<List<RunDTO>>> fetchDefault
             (@Validated @RequestBody RunFilterDTO dto) {
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchDefault(context) ;
         List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -2445,20 +2494,20 @@ public abstract class AbstractRunResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<RunDTO>>
+    * @return Mono<ResponseEntity<List<RunDTO>>>
     */
     @ApiOperation(value = "查询fetch_implementation_results", tags = {"执行用例" },  notes = "Run-fetch_implementation_results ")
     @PostMapping("runs/fetch_implementation_results")
-    public ResponseEntity<List<RunDTO>> fetchImplementationResults
+    public Mono<ResponseEntity<List<RunDTO>>> fetchImplementationResults
             (@Validated @RequestBody RunFilterDTO dto) {
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchImplementationResults(context) ;
         List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -2466,21 +2515,21 @@ public abstract class AbstractRunResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<RunDTO>>
+    * @return Mono<ResponseEntity<List<RunDTO>>>
     */
     @ApiOperation(value = "查询fetch_normal", tags = {"执行用例" },  notes = "Run-fetch_normal ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_normal-all') or hasPermission(#dto,'ibizplm-Run-fetch_normal')")
     @PostMapping("runs/fetch_normal")
-    public ResponseEntity<List<RunDTO>> fetchNormal
+    public Mono<ResponseEntity<List<RunDTO>>> fetchNormal
             (@Validated @RequestBody RunFilterDTO dto) {
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchNormal(context) ;
         List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -2488,21 +2537,21 @@ public abstract class AbstractRunResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<RunDTO>>
+    * @return Mono<ResponseEntity<List<RunDTO>>>
     */
     @ApiOperation(value = "查询fetch_plan_run_history", tags = {"执行用例" },  notes = "Run-fetch_plan_run_history ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_plan_run_history-all') or hasPermission(#dto,'ibizplm-Run-fetch_plan_run_history')")
     @PostMapping("runs/fetch_plan_run_history")
-    public ResponseEntity<List<RunDTO>> fetchPlanRunHistory
+    public Mono<ResponseEntity<List<RunDTO>>> fetchPlanRunHistory
             (@Validated @RequestBody RunFilterDTO dto) {
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchPlanRunHistory(context) ;
         List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -2510,20 +2559,42 @@ public abstract class AbstractRunResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<RunDTO>>
+    * @return Mono<ResponseEntity<List<RunDTO>>>
     */
     @ApiOperation(value = "查询fetch_priority_distributions", tags = {"执行用例" },  notes = "Run-fetch_priority_distributions ")
     @PostMapping("runs/fetch_priority_distributions")
-    public ResponseEntity<List<RunDTO>> fetchPriorityDistributions
+    public Mono<ResponseEntity<List<RunDTO>>> fetchPriorityDistributions
             (@Validated @RequestBody RunFilterDTO dto) {
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchPriorityDistributions(context) ;
         List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_reader 执行用例
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<RunDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_reader", tags = {"执行用例" },  notes = "Run-fetch_reader ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_reader-all') or hasPermission(#dto,'ibizplm-Run-fetch_reader')")
+    @PostMapping("runs/fetch_reader")
+    public Mono<ResponseEntity<List<RunDTO>>> fetchReader
+            (@Validated @RequestBody RunFilterDTO dto) {
+        RunSearchContext context = runFilterDtoMapping.toDomain(dto);
+        Page<Run> domains = runService.fetchReader(context) ;
+        List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
     }
 
     /**
@@ -2532,15 +2603,15 @@ public abstract class AbstractRunResource {
     *
     * @param caseId caseId
     * @param id id
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "获取Get", tags = {"执行用例" },  notes = "Run-Get ")
-    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-Get-all')  or hasPermission('test_case',#caseId,this.runDtoMapping.toDomain(returnObject.body),'ibizplm-Run-Get')")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-Get-all')  or hasPermission('test_case',#caseId,this.runDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-Run-Get')")
     @GetMapping("test_cases/{caseId}/runs/{id}")
-    public ResponseEntity<RunDTO> getByCaseIdAndId
+    public Mono<ResponseEntity<RunDTO>> getByCaseIdAndId
             (@PathVariable("caseId") String caseId, @PathVariable("id") String id) {
         Run rt = runService.get(id);
-        return ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt)));
     }
 
     /**
@@ -2549,15 +2620,15 @@ public abstract class AbstractRunResource {
     *
     * @param caseId caseId
     * @param id id
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @ApiOperation(value = "删除Remove", tags = {"执行用例" },  notes = "Run-Remove ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-Remove-all') or hasPermission('test_case',#caseId,this.runService.get(#id),'ibizplm-Run-Remove')")
     @DeleteMapping("test_cases/{caseId}/runs/{id}")
-    public ResponseEntity<Boolean> removeByCaseIdAndId
+    public Mono<ResponseEntity<Boolean>> removeByCaseIdAndId
             (@PathVariable("caseId") String caseId, @PathVariable("id") String id) {
         Boolean rt = runService.remove(id);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -2566,16 +2637,16 @@ public abstract class AbstractRunResource {
     *
     * @param caseId caseId
     * @param dto dto
-    * @return ResponseEntity<Integer>
+    * @return Mono<ResponseEntity<Integer>>
     */
     @ApiOperation(value = "校验CheckKey", tags = {"执行用例" },  notes = "Run-CheckKey ")
     @PostMapping("test_cases/{caseId}/runs/check_key")
-    public ResponseEntity<Integer> checkKeyByCaseId
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKeyByCaseId
             (@PathVariable("caseId") String caseId, @Validated @RequestBody RunDTO dto) {
         Run domain = runDtoMapping.toDomain(dto);
         domain.setCaseId(caseId);
-        Integer rt = runService.checkKey(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        CheckKeyStatus rt = runService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -2584,14 +2655,14 @@ public abstract class AbstractRunResource {
     *
     * @param caseId caseId
     * @param id id
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "get_actual_workload", tags = {"执行用例" },  notes = "Run-get_actual_workload ")
     @GetMapping("test_cases/{caseId}/runs/{id}/get_actual_workload")
-    public ResponseEntity<RunDTO> getActualWorkloadByCaseIdAndId
+    public Mono<ResponseEntity<RunDTO>> getActualWorkloadByCaseIdAndId
             (@PathVariable("caseId") String caseId, @PathVariable("id") String id) {
         Run rt = runService.getActualWorkload(id);
-        return ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt)));
     }
 
     /**
@@ -2600,16 +2671,16 @@ public abstract class AbstractRunResource {
     *
     * @param caseId caseId
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "草稿GetDraft", tags = {"执行用例" },  notes = "Run-GetDraft ")
     @GetMapping("test_cases/{caseId}/runs/get_draft")
-    public ResponseEntity<RunDTO> getDraftByCaseId
+    public Mono<ResponseEntity<RunDTO>> getDraftByCaseId
             (@PathVariable("caseId") String caseId, @SpringQueryMap RunDTO dto) {
         Run domain = runDtoMapping.toDomain(dto);
         domain.setCaseId(caseId);
         Run rt = runService.getDraft(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt)));
     }
 
     /**
@@ -2618,17 +2689,17 @@ public abstract class AbstractRunResource {
     *
     * @param caseId caseId
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "run_history_get", tags = {"执行用例" },  notes = "Run-run_history_get ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-run_history_get-all') or hasPermission('test_case',#caseId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-run_history_get')")
     @GetMapping("test_cases/{caseId}/runs/run_history_get")
-    public ResponseEntity<RunDTO> runHistoryGetByCaseId
+    public Mono<ResponseEntity<RunDTO>> runHistoryGetByCaseId
             (@PathVariable("caseId") String caseId, @SpringQueryMap RunDTO dto) {
         Run domain = runDtoMapping.toDomain(dto);
         domain.setCaseId(caseId);
         Run rt = runService.runHistoryGet(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt)));
     }
 
     /**
@@ -2637,15 +2708,62 @@ public abstract class AbstractRunResource {
     *
     * @param caseId caseId
     * @param id id
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "this_run_details", tags = {"执行用例" },  notes = "Run-this_run_details ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-this_run_details-all') or hasPermission('test_case',#caseId,this.runService.get(#id),'ibizplm-Run-this_run_details')")
     @GetMapping("test_cases/{caseId}/runs/{id}/this_run_details")
-    public ResponseEntity<RunDTO> thisRunDetailsByCaseIdAndId
+    public Mono<ResponseEntity<RunDTO>> thisRunDetailsByCaseIdAndId
             (@PathVariable("caseId") String caseId, @PathVariable("id") String id) {
         Run rt = runService.thisRunDetails(id);
-        return ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt)));
+    }
+
+    /**
+    * 查询fetch_bi_detail 执行用例
+    * 
+    *
+    * @param caseId caseId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<RunDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_bi_detail", tags = {"执行用例" },  notes = "Run-fetch_bi_detail ")
+    @PostMapping("test_cases/{caseId}/runs/fetch_bi_detail")
+    public Mono<ResponseEntity<List<RunDTO>>> fetchBiDetailByCaseId
+            (@PathVariable("caseId") String caseId, @Validated @RequestBody RunFilterDTO dto) {
+        dto.setCaseIdEQ(caseId);
+        RunSearchContext context = runFilterDtoMapping.toDomain(dto);
+        Page<Run> domains = runService.fetchBiDetail(context) ;
+        List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_bi_search 执行用例
+    * 
+    *
+    * @param caseId caseId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<RunBiSearchGroupDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_bi_search", tags = {"执行用例" },  notes = "Run-fetch_bi_search ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_bi_search-all') or hasPermission('test_case',#caseId,#dto,'ibizplm-Run-fetch_bi_search')")
+    @PostMapping("test_cases/{caseId}/runs/fetch_bi_search")
+    public Mono<ResponseEntity<List<RunBiSearchGroupDTO>>> fetchBiSearchByCaseId
+            (@PathVariable("caseId") String caseId, @Validated @RequestBody RunFilterDTO dto) {
+        dto.setCaseIdEQ(caseId);
+        RunSearchContext context = runFilterDtoMapping.toDomain(dto);
+        Page<Run> domains = runService.fetchBiSearch(context) ;
+        List<RunBiSearchGroupDTO> list = runBiSearchGroupDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
     }
 
     /**
@@ -2654,21 +2772,21 @@ public abstract class AbstractRunResource {
     *
     * @param caseId caseId
     * @param dto dto
-    * @return ResponseEntity<List<RunDTO>>
+    * @return Mono<ResponseEntity<List<RunDTO>>>
     */
     @ApiOperation(value = "查询fetch_case_person", tags = {"执行用例" },  notes = "Run-fetch_case_person ")
     @PostMapping("test_cases/{caseId}/runs/fetch_case_person")
-    public ResponseEntity<List<RunDTO>> fetchCasePersonByCaseId
+    public Mono<ResponseEntity<List<RunDTO>>> fetchCasePersonByCaseId
             (@PathVariable("caseId") String caseId, @Validated @RequestBody RunFilterDTO dto) {
         dto.setCaseIdEQ(caseId);
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchCasePerson(context) ;
         List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -2677,22 +2795,22 @@ public abstract class AbstractRunResource {
     *
     * @param caseId caseId
     * @param dto dto
-    * @return ResponseEntity<List<RunExecutorDTO>>
+    * @return Mono<ResponseEntity<List<RunExecutorDTO>>>
     */
     @ApiOperation(value = "查询fetch_comment_notify_executor", tags = {"执行用例" },  notes = "Run-fetch_comment_notify_executor ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_comment_notify_executor-all') or hasPermission('test_case',#caseId,#dto,'ibizplm-Run-fetch_comment_notify_executor')")
     @PostMapping("test_cases/{caseId}/runs/fetch_comment_notify_executor")
-    public ResponseEntity<List<RunExecutorDTO>> fetchCommentNotifyExecutorByCaseId
+    public Mono<ResponseEntity<List<RunExecutorDTO>>> fetchCommentNotifyExecutorByCaseId
             (@PathVariable("caseId") String caseId, @Validated @RequestBody RunFilterDTO dto) {
         dto.setCaseIdEQ(caseId);
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchCommentNotifyExecutor(context) ;
         List<RunExecutorDTO> list = runExecutorDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -2701,22 +2819,22 @@ public abstract class AbstractRunResource {
     *
     * @param caseId caseId
     * @param dto dto
-    * @return ResponseEntity<List<RunDTO>>
+    * @return Mono<ResponseEntity<List<RunDTO>>>
     */
     @ApiOperation(value = "查询fetch_default", tags = {"执行用例" },  notes = "Run-fetch_default ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_default-all') or hasPermission('test_case',#caseId,#dto,'ibizplm-Run-fetch_default')")
     @PostMapping("test_cases/{caseId}/runs/fetch_default")
-    public ResponseEntity<List<RunDTO>> fetchDefaultByCaseId
+    public Mono<ResponseEntity<List<RunDTO>>> fetchDefaultByCaseId
             (@PathVariable("caseId") String caseId, @Validated @RequestBody RunFilterDTO dto) {
         dto.setCaseIdEQ(caseId);
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchDefault(context) ;
         List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -2725,21 +2843,21 @@ public abstract class AbstractRunResource {
     *
     * @param caseId caseId
     * @param dto dto
-    * @return ResponseEntity<List<RunDTO>>
+    * @return Mono<ResponseEntity<List<RunDTO>>>
     */
     @ApiOperation(value = "查询fetch_implementation_results", tags = {"执行用例" },  notes = "Run-fetch_implementation_results ")
     @PostMapping("test_cases/{caseId}/runs/fetch_implementation_results")
-    public ResponseEntity<List<RunDTO>> fetchImplementationResultsByCaseId
+    public Mono<ResponseEntity<List<RunDTO>>> fetchImplementationResultsByCaseId
             (@PathVariable("caseId") String caseId, @Validated @RequestBody RunFilterDTO dto) {
         dto.setCaseIdEQ(caseId);
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchImplementationResults(context) ;
         List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -2748,22 +2866,22 @@ public abstract class AbstractRunResource {
     *
     * @param caseId caseId
     * @param dto dto
-    * @return ResponseEntity<List<RunDTO>>
+    * @return Mono<ResponseEntity<List<RunDTO>>>
     */
     @ApiOperation(value = "查询fetch_normal", tags = {"执行用例" },  notes = "Run-fetch_normal ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_normal-all') or hasPermission('test_case',#caseId,#dto,'ibizplm-Run-fetch_normal')")
     @PostMapping("test_cases/{caseId}/runs/fetch_normal")
-    public ResponseEntity<List<RunDTO>> fetchNormalByCaseId
+    public Mono<ResponseEntity<List<RunDTO>>> fetchNormalByCaseId
             (@PathVariable("caseId") String caseId, @Validated @RequestBody RunFilterDTO dto) {
         dto.setCaseIdEQ(caseId);
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchNormal(context) ;
         List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -2772,22 +2890,22 @@ public abstract class AbstractRunResource {
     *
     * @param caseId caseId
     * @param dto dto
-    * @return ResponseEntity<List<RunDTO>>
+    * @return Mono<ResponseEntity<List<RunDTO>>>
     */
     @ApiOperation(value = "查询fetch_plan_run_history", tags = {"执行用例" },  notes = "Run-fetch_plan_run_history ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_plan_run_history-all') or hasPermission('test_case',#caseId,#dto,'ibizplm-Run-fetch_plan_run_history')")
     @PostMapping("test_cases/{caseId}/runs/fetch_plan_run_history")
-    public ResponseEntity<List<RunDTO>> fetchPlanRunHistoryByCaseId
+    public Mono<ResponseEntity<List<RunDTO>>> fetchPlanRunHistoryByCaseId
             (@PathVariable("caseId") String caseId, @Validated @RequestBody RunFilterDTO dto) {
         dto.setCaseIdEQ(caseId);
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchPlanRunHistory(context) ;
         List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -2796,21 +2914,45 @@ public abstract class AbstractRunResource {
     *
     * @param caseId caseId
     * @param dto dto
-    * @return ResponseEntity<List<RunDTO>>
+    * @return Mono<ResponseEntity<List<RunDTO>>>
     */
     @ApiOperation(value = "查询fetch_priority_distributions", tags = {"执行用例" },  notes = "Run-fetch_priority_distributions ")
     @PostMapping("test_cases/{caseId}/runs/fetch_priority_distributions")
-    public ResponseEntity<List<RunDTO>> fetchPriorityDistributionsByCaseId
+    public Mono<ResponseEntity<List<RunDTO>>> fetchPriorityDistributionsByCaseId
             (@PathVariable("caseId") String caseId, @Validated @RequestBody RunFilterDTO dto) {
         dto.setCaseIdEQ(caseId);
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchPriorityDistributions(context) ;
         List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_reader 执行用例
+    * 
+    *
+    * @param caseId caseId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<RunDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_reader", tags = {"执行用例" },  notes = "Run-fetch_reader ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_reader-all') or hasPermission('test_case',#caseId,#dto,'ibizplm-Run-fetch_reader')")
+    @PostMapping("test_cases/{caseId}/runs/fetch_reader")
+    public Mono<ResponseEntity<List<RunDTO>>> fetchReaderByCaseId
+            (@PathVariable("caseId") String caseId, @Validated @RequestBody RunFilterDTO dto) {
+        dto.setCaseIdEQ(caseId);
+        RunSearchContext context = runFilterDtoMapping.toDomain(dto);
+        Page<Run> domains = runService.fetchReader(context) ;
+        List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
     }
 
     /**
@@ -2820,15 +2962,15 @@ public abstract class AbstractRunResource {
     * @param testLibraryId testLibraryId
     * @param caseId caseId
     * @param id id
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "获取Get", tags = {"执行用例" },  notes = "Run-Get ")
-    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-Get-all')  or hasPermission('library',#testLibraryId,this.runDtoMapping.toDomain(returnObject.body),'ibizplm-Run-Get')")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-Get-all')  or hasPermission('library',#testLibraryId,this.runDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-Run-Get')")
     @GetMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/{id}")
-    public ResponseEntity<RunDTO> getByTestLibraryIdAndCaseIdAndId
+    public Mono<ResponseEntity<RunDTO>> getByTestLibraryIdAndCaseIdAndId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @PathVariable("id") String id) {
         Run rt = runService.get(id);
-        return ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt)));
     }
 
     /**
@@ -2838,15 +2980,15 @@ public abstract class AbstractRunResource {
     * @param testLibraryId testLibraryId
     * @param caseId caseId
     * @param id id
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @ApiOperation(value = "删除Remove", tags = {"执行用例" },  notes = "Run-Remove ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-Remove-all') or hasPermission('library',#testLibraryId,this.runService.get(#id),'ibizplm-Run-Remove')")
     @DeleteMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/{id}")
-    public ResponseEntity<Boolean> removeByTestLibraryIdAndCaseIdAndId
+    public Mono<ResponseEntity<Boolean>> removeByTestLibraryIdAndCaseIdAndId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @PathVariable("id") String id) {
         Boolean rt = runService.remove(id);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -2856,16 +2998,16 @@ public abstract class AbstractRunResource {
     * @param testLibraryId testLibraryId
     * @param caseId caseId
     * @param dto dto
-    * @return ResponseEntity<Integer>
+    * @return Mono<ResponseEntity<Integer>>
     */
     @ApiOperation(value = "校验CheckKey", tags = {"执行用例" },  notes = "Run-CheckKey ")
     @PostMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/check_key")
-    public ResponseEntity<Integer> checkKeyByTestLibraryIdAndCaseId
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKeyByTestLibraryIdAndCaseId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @Validated @RequestBody RunDTO dto) {
         Run domain = runDtoMapping.toDomain(dto);
         domain.setCaseId(caseId);
-        Integer rt = runService.checkKey(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        CheckKeyStatus rt = runService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -2875,14 +3017,14 @@ public abstract class AbstractRunResource {
     * @param testLibraryId testLibraryId
     * @param caseId caseId
     * @param id id
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "get_actual_workload", tags = {"执行用例" },  notes = "Run-get_actual_workload ")
     @GetMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/{id}/get_actual_workload")
-    public ResponseEntity<RunDTO> getActualWorkloadByTestLibraryIdAndCaseIdAndId
+    public Mono<ResponseEntity<RunDTO>> getActualWorkloadByTestLibraryIdAndCaseIdAndId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @PathVariable("id") String id) {
         Run rt = runService.getActualWorkload(id);
-        return ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt)));
     }
 
     /**
@@ -2892,16 +3034,16 @@ public abstract class AbstractRunResource {
     * @param testLibraryId testLibraryId
     * @param caseId caseId
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "草稿GetDraft", tags = {"执行用例" },  notes = "Run-GetDraft ")
     @GetMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/get_draft")
-    public ResponseEntity<RunDTO> getDraftByTestLibraryIdAndCaseId
+    public Mono<ResponseEntity<RunDTO>> getDraftByTestLibraryIdAndCaseId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @SpringQueryMap RunDTO dto) {
         Run domain = runDtoMapping.toDomain(dto);
         domain.setCaseId(caseId);
         Run rt = runService.getDraft(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt)));
     }
 
     /**
@@ -2911,17 +3053,17 @@ public abstract class AbstractRunResource {
     * @param testLibraryId testLibraryId
     * @param caseId caseId
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "run_history_get", tags = {"执行用例" },  notes = "Run-run_history_get ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-run_history_get-all') or hasPermission('library',#testLibraryId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-run_history_get')")
     @GetMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/run_history_get")
-    public ResponseEntity<RunDTO> runHistoryGetByTestLibraryIdAndCaseId
+    public Mono<ResponseEntity<RunDTO>> runHistoryGetByTestLibraryIdAndCaseId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @SpringQueryMap RunDTO dto) {
         Run domain = runDtoMapping.toDomain(dto);
         domain.setCaseId(caseId);
         Run rt = runService.runHistoryGet(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt)));
     }
 
     /**
@@ -2931,15 +3073,64 @@ public abstract class AbstractRunResource {
     * @param testLibraryId testLibraryId
     * @param caseId caseId
     * @param id id
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "this_run_details", tags = {"执行用例" },  notes = "Run-this_run_details ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-this_run_details-all') or hasPermission('library',#testLibraryId,this.runService.get(#id),'ibizplm-Run-this_run_details')")
     @GetMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/{id}/this_run_details")
-    public ResponseEntity<RunDTO> thisRunDetailsByTestLibraryIdAndCaseIdAndId
+    public Mono<ResponseEntity<RunDTO>> thisRunDetailsByTestLibraryIdAndCaseIdAndId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @PathVariable("id") String id) {
         Run rt = runService.thisRunDetails(id);
-        return ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt)));
+    }
+
+    /**
+    * 查询fetch_bi_detail 执行用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param caseId caseId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<RunDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_bi_detail", tags = {"执行用例" },  notes = "Run-fetch_bi_detail ")
+    @PostMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/fetch_bi_detail")
+    public Mono<ResponseEntity<List<RunDTO>>> fetchBiDetailByTestLibraryIdAndCaseId
+            (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @Validated @RequestBody RunFilterDTO dto) {
+        dto.setCaseIdEQ(caseId);
+        RunSearchContext context = runFilterDtoMapping.toDomain(dto);
+        Page<Run> domains = runService.fetchBiDetail(context) ;
+        List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_bi_search 执行用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param caseId caseId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<RunBiSearchGroupDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_bi_search", tags = {"执行用例" },  notes = "Run-fetch_bi_search ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_bi_search-all') or hasPermission('library',#testLibraryId,#dto,'ibizplm-Run-fetch_bi_search')")
+    @PostMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/fetch_bi_search")
+    public Mono<ResponseEntity<List<RunBiSearchGroupDTO>>> fetchBiSearchByTestLibraryIdAndCaseId
+            (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @Validated @RequestBody RunFilterDTO dto) {
+        dto.setCaseIdEQ(caseId);
+        RunSearchContext context = runFilterDtoMapping.toDomain(dto);
+        Page<Run> domains = runService.fetchBiSearch(context) ;
+        List<RunBiSearchGroupDTO> list = runBiSearchGroupDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
     }
 
     /**
@@ -2949,21 +3140,21 @@ public abstract class AbstractRunResource {
     * @param testLibraryId testLibraryId
     * @param caseId caseId
     * @param dto dto
-    * @return ResponseEntity<List<RunDTO>>
+    * @return Mono<ResponseEntity<List<RunDTO>>>
     */
     @ApiOperation(value = "查询fetch_case_person", tags = {"执行用例" },  notes = "Run-fetch_case_person ")
     @PostMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/fetch_case_person")
-    public ResponseEntity<List<RunDTO>> fetchCasePersonByTestLibraryIdAndCaseId
+    public Mono<ResponseEntity<List<RunDTO>>> fetchCasePersonByTestLibraryIdAndCaseId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @Validated @RequestBody RunFilterDTO dto) {
         dto.setCaseIdEQ(caseId);
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchCasePerson(context) ;
         List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -2973,22 +3164,22 @@ public abstract class AbstractRunResource {
     * @param testLibraryId testLibraryId
     * @param caseId caseId
     * @param dto dto
-    * @return ResponseEntity<List<RunExecutorDTO>>
+    * @return Mono<ResponseEntity<List<RunExecutorDTO>>>
     */
     @ApiOperation(value = "查询fetch_comment_notify_executor", tags = {"执行用例" },  notes = "Run-fetch_comment_notify_executor ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_comment_notify_executor-all') or hasPermission('library',#testLibraryId,#dto,'ibizplm-Run-fetch_comment_notify_executor')")
     @PostMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/fetch_comment_notify_executor")
-    public ResponseEntity<List<RunExecutorDTO>> fetchCommentNotifyExecutorByTestLibraryIdAndCaseId
+    public Mono<ResponseEntity<List<RunExecutorDTO>>> fetchCommentNotifyExecutorByTestLibraryIdAndCaseId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @Validated @RequestBody RunFilterDTO dto) {
         dto.setCaseIdEQ(caseId);
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchCommentNotifyExecutor(context) ;
         List<RunExecutorDTO> list = runExecutorDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -2998,22 +3189,22 @@ public abstract class AbstractRunResource {
     * @param testLibraryId testLibraryId
     * @param caseId caseId
     * @param dto dto
-    * @return ResponseEntity<List<RunDTO>>
+    * @return Mono<ResponseEntity<List<RunDTO>>>
     */
     @ApiOperation(value = "查询fetch_default", tags = {"执行用例" },  notes = "Run-fetch_default ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_default-all') or hasPermission('library',#testLibraryId,#dto,'ibizplm-Run-fetch_default')")
     @PostMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/fetch_default")
-    public ResponseEntity<List<RunDTO>> fetchDefaultByTestLibraryIdAndCaseId
+    public Mono<ResponseEntity<List<RunDTO>>> fetchDefaultByTestLibraryIdAndCaseId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @Validated @RequestBody RunFilterDTO dto) {
         dto.setCaseIdEQ(caseId);
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchDefault(context) ;
         List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -3023,21 +3214,21 @@ public abstract class AbstractRunResource {
     * @param testLibraryId testLibraryId
     * @param caseId caseId
     * @param dto dto
-    * @return ResponseEntity<List<RunDTO>>
+    * @return Mono<ResponseEntity<List<RunDTO>>>
     */
     @ApiOperation(value = "查询fetch_implementation_results", tags = {"执行用例" },  notes = "Run-fetch_implementation_results ")
     @PostMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/fetch_implementation_results")
-    public ResponseEntity<List<RunDTO>> fetchImplementationResultsByTestLibraryIdAndCaseId
+    public Mono<ResponseEntity<List<RunDTO>>> fetchImplementationResultsByTestLibraryIdAndCaseId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @Validated @RequestBody RunFilterDTO dto) {
         dto.setCaseIdEQ(caseId);
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchImplementationResults(context) ;
         List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -3047,22 +3238,22 @@ public abstract class AbstractRunResource {
     * @param testLibraryId testLibraryId
     * @param caseId caseId
     * @param dto dto
-    * @return ResponseEntity<List<RunDTO>>
+    * @return Mono<ResponseEntity<List<RunDTO>>>
     */
     @ApiOperation(value = "查询fetch_normal", tags = {"执行用例" },  notes = "Run-fetch_normal ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_normal-all') or hasPermission('library',#testLibraryId,#dto,'ibizplm-Run-fetch_normal')")
     @PostMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/fetch_normal")
-    public ResponseEntity<List<RunDTO>> fetchNormalByTestLibraryIdAndCaseId
+    public Mono<ResponseEntity<List<RunDTO>>> fetchNormalByTestLibraryIdAndCaseId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @Validated @RequestBody RunFilterDTO dto) {
         dto.setCaseIdEQ(caseId);
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchNormal(context) ;
         List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -3072,22 +3263,22 @@ public abstract class AbstractRunResource {
     * @param testLibraryId testLibraryId
     * @param caseId caseId
     * @param dto dto
-    * @return ResponseEntity<List<RunDTO>>
+    * @return Mono<ResponseEntity<List<RunDTO>>>
     */
     @ApiOperation(value = "查询fetch_plan_run_history", tags = {"执行用例" },  notes = "Run-fetch_plan_run_history ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_plan_run_history-all') or hasPermission('library',#testLibraryId,#dto,'ibizplm-Run-fetch_plan_run_history')")
     @PostMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/fetch_plan_run_history")
-    public ResponseEntity<List<RunDTO>> fetchPlanRunHistoryByTestLibraryIdAndCaseId
+    public Mono<ResponseEntity<List<RunDTO>>> fetchPlanRunHistoryByTestLibraryIdAndCaseId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @Validated @RequestBody RunFilterDTO dto) {
         dto.setCaseIdEQ(caseId);
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchPlanRunHistory(context) ;
         List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -3097,21 +3288,46 @@ public abstract class AbstractRunResource {
     * @param testLibraryId testLibraryId
     * @param caseId caseId
     * @param dto dto
-    * @return ResponseEntity<List<RunDTO>>
+    * @return Mono<ResponseEntity<List<RunDTO>>>
     */
     @ApiOperation(value = "查询fetch_priority_distributions", tags = {"执行用例" },  notes = "Run-fetch_priority_distributions ")
     @PostMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/fetch_priority_distributions")
-    public ResponseEntity<List<RunDTO>> fetchPriorityDistributionsByTestLibraryIdAndCaseId
+    public Mono<ResponseEntity<List<RunDTO>>> fetchPriorityDistributionsByTestLibraryIdAndCaseId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @Validated @RequestBody RunFilterDTO dto) {
         dto.setCaseIdEQ(caseId);
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchPriorityDistributions(context) ;
         List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_reader 执行用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param caseId caseId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<RunDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_reader", tags = {"执行用例" },  notes = "Run-fetch_reader ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_reader-all') or hasPermission('library',#testLibraryId,#dto,'ibizplm-Run-fetch_reader')")
+    @PostMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/fetch_reader")
+    public Mono<ResponseEntity<List<RunDTO>>> fetchReaderByTestLibraryIdAndCaseId
+            (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @Validated @RequestBody RunFilterDTO dto) {
+        dto.setCaseIdEQ(caseId);
+        RunSearchContext context = runFilterDtoMapping.toDomain(dto);
+        Page<Run> domains = runService.fetchReader(context) ;
+        List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
     }
 
     /**
@@ -3120,15 +3336,15 @@ public abstract class AbstractRunResource {
     *
     * @param planId planId
     * @param id id
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "获取Get", tags = {"执行用例" },  notes = "Run-Get ")
-    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-Get-all')  or hasPermission('test_plan',#planId,this.runDtoMapping.toDomain(returnObject.body),'ibizplm-Run-Get')")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-Get-all')  or hasPermission('test_plan',#planId,this.runDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-Run-Get')")
     @GetMapping("test_plans/{planId}/runs/{id}")
-    public ResponseEntity<RunDTO> getByPlanIdAndId
+    public Mono<ResponseEntity<RunDTO>> getByPlanIdAndId
             (@PathVariable("planId") String planId, @PathVariable("id") String id) {
         Run rt = runService.get(id);
-        return ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt)));
     }
 
     /**
@@ -3137,15 +3353,15 @@ public abstract class AbstractRunResource {
     *
     * @param planId planId
     * @param id id
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @ApiOperation(value = "删除Remove", tags = {"执行用例" },  notes = "Run-Remove ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-Remove-all') or hasPermission('test_plan',#planId,this.runService.get(#id),'ibizplm-Run-Remove')")
     @DeleteMapping("test_plans/{planId}/runs/{id}")
-    public ResponseEntity<Boolean> removeByPlanIdAndId
+    public Mono<ResponseEntity<Boolean>> removeByPlanIdAndId
             (@PathVariable("planId") String planId, @PathVariable("id") String id) {
         Boolean rt = runService.remove(id);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -3154,16 +3370,16 @@ public abstract class AbstractRunResource {
     *
     * @param planId planId
     * @param dto dto
-    * @return ResponseEntity<Integer>
+    * @return Mono<ResponseEntity<Integer>>
     */
     @ApiOperation(value = "校验CheckKey", tags = {"执行用例" },  notes = "Run-CheckKey ")
     @PostMapping("test_plans/{planId}/runs/check_key")
-    public ResponseEntity<Integer> checkKeyByPlanId
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKeyByPlanId
             (@PathVariable("planId") String planId, @Validated @RequestBody RunDTO dto) {
         Run domain = runDtoMapping.toDomain(dto);
         domain.setPlanId(planId);
-        Integer rt = runService.checkKey(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        CheckKeyStatus rt = runService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -3172,14 +3388,14 @@ public abstract class AbstractRunResource {
     *
     * @param planId planId
     * @param id id
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "get_actual_workload", tags = {"执行用例" },  notes = "Run-get_actual_workload ")
     @GetMapping("test_plans/{planId}/runs/{id}/get_actual_workload")
-    public ResponseEntity<RunDTO> getActualWorkloadByPlanIdAndId
+    public Mono<ResponseEntity<RunDTO>> getActualWorkloadByPlanIdAndId
             (@PathVariable("planId") String planId, @PathVariable("id") String id) {
         Run rt = runService.getActualWorkload(id);
-        return ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt)));
     }
 
     /**
@@ -3188,16 +3404,16 @@ public abstract class AbstractRunResource {
     *
     * @param planId planId
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "草稿GetDraft", tags = {"执行用例" },  notes = "Run-GetDraft ")
     @GetMapping("test_plans/{planId}/runs/get_draft")
-    public ResponseEntity<RunDTO> getDraftByPlanId
+    public Mono<ResponseEntity<RunDTO>> getDraftByPlanId
             (@PathVariable("planId") String planId, @SpringQueryMap RunDTO dto) {
         Run domain = runDtoMapping.toDomain(dto);
         domain.setPlanId(planId);
         Run rt = runService.getDraft(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt)));
     }
 
     /**
@@ -3206,17 +3422,17 @@ public abstract class AbstractRunResource {
     *
     * @param planId planId
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "run_history_get", tags = {"执行用例" },  notes = "Run-run_history_get ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-run_history_get-all') or hasPermission('test_plan',#planId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-run_history_get')")
     @GetMapping("test_plans/{planId}/runs/run_history_get")
-    public ResponseEntity<RunDTO> runHistoryGetByPlanId
+    public Mono<ResponseEntity<RunDTO>> runHistoryGetByPlanId
             (@PathVariable("planId") String planId, @SpringQueryMap RunDTO dto) {
         Run domain = runDtoMapping.toDomain(dto);
         domain.setPlanId(planId);
         Run rt = runService.runHistoryGet(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt)));
     }
 
     /**
@@ -3225,15 +3441,62 @@ public abstract class AbstractRunResource {
     *
     * @param planId planId
     * @param id id
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "this_run_details", tags = {"执行用例" },  notes = "Run-this_run_details ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-this_run_details-all') or hasPermission('test_plan',#planId,this.runService.get(#id),'ibizplm-Run-this_run_details')")
     @GetMapping("test_plans/{planId}/runs/{id}/this_run_details")
-    public ResponseEntity<RunDTO> thisRunDetailsByPlanIdAndId
+    public Mono<ResponseEntity<RunDTO>> thisRunDetailsByPlanIdAndId
             (@PathVariable("planId") String planId, @PathVariable("id") String id) {
         Run rt = runService.thisRunDetails(id);
-        return ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt)));
+    }
+
+    /**
+    * 查询fetch_bi_detail 执行用例
+    * 
+    *
+    * @param planId planId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<RunDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_bi_detail", tags = {"执行用例" },  notes = "Run-fetch_bi_detail ")
+    @PostMapping("test_plans/{planId}/runs/fetch_bi_detail")
+    public Mono<ResponseEntity<List<RunDTO>>> fetchBiDetailByPlanId
+            (@PathVariable("planId") String planId, @Validated @RequestBody RunFilterDTO dto) {
+        dto.setPlanIdEQ(planId);
+        RunSearchContext context = runFilterDtoMapping.toDomain(dto);
+        Page<Run> domains = runService.fetchBiDetail(context) ;
+        List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_bi_search 执行用例
+    * 
+    *
+    * @param planId planId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<RunBiSearchGroupDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_bi_search", tags = {"执行用例" },  notes = "Run-fetch_bi_search ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_bi_search-all') or hasPermission('test_plan',#planId,#dto,'ibizplm-Run-fetch_bi_search')")
+    @PostMapping("test_plans/{planId}/runs/fetch_bi_search")
+    public Mono<ResponseEntity<List<RunBiSearchGroupDTO>>> fetchBiSearchByPlanId
+            (@PathVariable("planId") String planId, @Validated @RequestBody RunFilterDTO dto) {
+        dto.setPlanIdEQ(planId);
+        RunSearchContext context = runFilterDtoMapping.toDomain(dto);
+        Page<Run> domains = runService.fetchBiSearch(context) ;
+        List<RunBiSearchGroupDTO> list = runBiSearchGroupDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
     }
 
     /**
@@ -3242,21 +3505,21 @@ public abstract class AbstractRunResource {
     *
     * @param planId planId
     * @param dto dto
-    * @return ResponseEntity<List<RunDTO>>
+    * @return Mono<ResponseEntity<List<RunDTO>>>
     */
     @ApiOperation(value = "查询fetch_case_person", tags = {"执行用例" },  notes = "Run-fetch_case_person ")
     @PostMapping("test_plans/{planId}/runs/fetch_case_person")
-    public ResponseEntity<List<RunDTO>> fetchCasePersonByPlanId
+    public Mono<ResponseEntity<List<RunDTO>>> fetchCasePersonByPlanId
             (@PathVariable("planId") String planId, @Validated @RequestBody RunFilterDTO dto) {
         dto.setPlanIdEQ(planId);
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchCasePerson(context) ;
         List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -3265,22 +3528,22 @@ public abstract class AbstractRunResource {
     *
     * @param planId planId
     * @param dto dto
-    * @return ResponseEntity<List<RunExecutorDTO>>
+    * @return Mono<ResponseEntity<List<RunExecutorDTO>>>
     */
     @ApiOperation(value = "查询fetch_comment_notify_executor", tags = {"执行用例" },  notes = "Run-fetch_comment_notify_executor ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_comment_notify_executor-all') or hasPermission('test_plan',#planId,#dto,'ibizplm-Run-fetch_comment_notify_executor')")
     @PostMapping("test_plans/{planId}/runs/fetch_comment_notify_executor")
-    public ResponseEntity<List<RunExecutorDTO>> fetchCommentNotifyExecutorByPlanId
+    public Mono<ResponseEntity<List<RunExecutorDTO>>> fetchCommentNotifyExecutorByPlanId
             (@PathVariable("planId") String planId, @Validated @RequestBody RunFilterDTO dto) {
         dto.setPlanIdEQ(planId);
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchCommentNotifyExecutor(context) ;
         List<RunExecutorDTO> list = runExecutorDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -3289,22 +3552,22 @@ public abstract class AbstractRunResource {
     *
     * @param planId planId
     * @param dto dto
-    * @return ResponseEntity<List<RunDTO>>
+    * @return Mono<ResponseEntity<List<RunDTO>>>
     */
     @ApiOperation(value = "查询fetch_default", tags = {"执行用例" },  notes = "Run-fetch_default ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_default-all') or hasPermission('test_plan',#planId,#dto,'ibizplm-Run-fetch_default')")
     @PostMapping("test_plans/{planId}/runs/fetch_default")
-    public ResponseEntity<List<RunDTO>> fetchDefaultByPlanId
+    public Mono<ResponseEntity<List<RunDTO>>> fetchDefaultByPlanId
             (@PathVariable("planId") String planId, @Validated @RequestBody RunFilterDTO dto) {
         dto.setPlanIdEQ(planId);
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchDefault(context) ;
         List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -3313,21 +3576,21 @@ public abstract class AbstractRunResource {
     *
     * @param planId planId
     * @param dto dto
-    * @return ResponseEntity<List<RunDTO>>
+    * @return Mono<ResponseEntity<List<RunDTO>>>
     */
     @ApiOperation(value = "查询fetch_implementation_results", tags = {"执行用例" },  notes = "Run-fetch_implementation_results ")
     @PostMapping("test_plans/{planId}/runs/fetch_implementation_results")
-    public ResponseEntity<List<RunDTO>> fetchImplementationResultsByPlanId
+    public Mono<ResponseEntity<List<RunDTO>>> fetchImplementationResultsByPlanId
             (@PathVariable("planId") String planId, @Validated @RequestBody RunFilterDTO dto) {
         dto.setPlanIdEQ(planId);
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchImplementationResults(context) ;
         List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -3336,22 +3599,22 @@ public abstract class AbstractRunResource {
     *
     * @param planId planId
     * @param dto dto
-    * @return ResponseEntity<List<RunDTO>>
+    * @return Mono<ResponseEntity<List<RunDTO>>>
     */
     @ApiOperation(value = "查询fetch_normal", tags = {"执行用例" },  notes = "Run-fetch_normal ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_normal-all') or hasPermission('test_plan',#planId,#dto,'ibizplm-Run-fetch_normal')")
     @PostMapping("test_plans/{planId}/runs/fetch_normal")
-    public ResponseEntity<List<RunDTO>> fetchNormalByPlanId
+    public Mono<ResponseEntity<List<RunDTO>>> fetchNormalByPlanId
             (@PathVariable("planId") String planId, @Validated @RequestBody RunFilterDTO dto) {
         dto.setPlanIdEQ(planId);
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchNormal(context) ;
         List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -3360,22 +3623,22 @@ public abstract class AbstractRunResource {
     *
     * @param planId planId
     * @param dto dto
-    * @return ResponseEntity<List<RunDTO>>
+    * @return Mono<ResponseEntity<List<RunDTO>>>
     */
     @ApiOperation(value = "查询fetch_plan_run_history", tags = {"执行用例" },  notes = "Run-fetch_plan_run_history ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_plan_run_history-all') or hasPermission('test_plan',#planId,#dto,'ibizplm-Run-fetch_plan_run_history')")
     @PostMapping("test_plans/{planId}/runs/fetch_plan_run_history")
-    public ResponseEntity<List<RunDTO>> fetchPlanRunHistoryByPlanId
+    public Mono<ResponseEntity<List<RunDTO>>> fetchPlanRunHistoryByPlanId
             (@PathVariable("planId") String planId, @Validated @RequestBody RunFilterDTO dto) {
         dto.setPlanIdEQ(planId);
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchPlanRunHistory(context) ;
         List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -3384,21 +3647,45 @@ public abstract class AbstractRunResource {
     *
     * @param planId planId
     * @param dto dto
-    * @return ResponseEntity<List<RunDTO>>
+    * @return Mono<ResponseEntity<List<RunDTO>>>
     */
     @ApiOperation(value = "查询fetch_priority_distributions", tags = {"执行用例" },  notes = "Run-fetch_priority_distributions ")
     @PostMapping("test_plans/{planId}/runs/fetch_priority_distributions")
-    public ResponseEntity<List<RunDTO>> fetchPriorityDistributionsByPlanId
+    public Mono<ResponseEntity<List<RunDTO>>> fetchPriorityDistributionsByPlanId
             (@PathVariable("planId") String planId, @Validated @RequestBody RunFilterDTO dto) {
         dto.setPlanIdEQ(planId);
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchPriorityDistributions(context) ;
         List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_reader 执行用例
+    * 
+    *
+    * @param planId planId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<RunDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_reader", tags = {"执行用例" },  notes = "Run-fetch_reader ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_reader-all') or hasPermission('test_plan',#planId,#dto,'ibizplm-Run-fetch_reader')")
+    @PostMapping("test_plans/{planId}/runs/fetch_reader")
+    public Mono<ResponseEntity<List<RunDTO>>> fetchReaderByPlanId
+            (@PathVariable("planId") String planId, @Validated @RequestBody RunFilterDTO dto) {
+        dto.setPlanIdEQ(planId);
+        RunSearchContext context = runFilterDtoMapping.toDomain(dto);
+        Page<Run> domains = runService.fetchReader(context) ;
+        List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
     }
 
     /**
@@ -3408,15 +3695,15 @@ public abstract class AbstractRunResource {
     * @param libraryId libraryId
     * @param planId planId
     * @param id id
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "获取Get", tags = {"执行用例" },  notes = "Run-Get ")
-    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-Get-all')  or hasPermission('library',#libraryId,this.runDtoMapping.toDomain(returnObject.body),'ibizplm-Run-Get')")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-Get-all')  or hasPermission('library',#libraryId,this.runDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-Run-Get')")
     @GetMapping("libraries/{libraryId}/test_plans/{planId}/runs/{id}")
-    public ResponseEntity<RunDTO> getByLibraryIdAndPlanIdAndId
+    public Mono<ResponseEntity<RunDTO>> getByLibraryIdAndPlanIdAndId
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @PathVariable("id") String id) {
         Run rt = runService.get(id);
-        return ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt)));
     }
 
     /**
@@ -3426,15 +3713,15 @@ public abstract class AbstractRunResource {
     * @param libraryId libraryId
     * @param planId planId
     * @param id id
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @ApiOperation(value = "删除Remove", tags = {"执行用例" },  notes = "Run-Remove ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-Remove-all') or hasPermission('library',#libraryId,this.runService.get(#id),'ibizplm-Run-Remove')")
     @DeleteMapping("libraries/{libraryId}/test_plans/{planId}/runs/{id}")
-    public ResponseEntity<Boolean> removeByLibraryIdAndPlanIdAndId
+    public Mono<ResponseEntity<Boolean>> removeByLibraryIdAndPlanIdAndId
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @PathVariable("id") String id) {
         Boolean rt = runService.remove(id);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -3444,16 +3731,16 @@ public abstract class AbstractRunResource {
     * @param libraryId libraryId
     * @param planId planId
     * @param dto dto
-    * @return ResponseEntity<Integer>
+    * @return Mono<ResponseEntity<Integer>>
     */
     @ApiOperation(value = "校验CheckKey", tags = {"执行用例" },  notes = "Run-CheckKey ")
     @PostMapping("libraries/{libraryId}/test_plans/{planId}/runs/check_key")
-    public ResponseEntity<Integer> checkKeyByLibraryIdAndPlanId
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKeyByLibraryIdAndPlanId
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @Validated @RequestBody RunDTO dto) {
         Run domain = runDtoMapping.toDomain(dto);
         domain.setPlanId(planId);
-        Integer rt = runService.checkKey(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        CheckKeyStatus rt = runService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -3463,14 +3750,14 @@ public abstract class AbstractRunResource {
     * @param libraryId libraryId
     * @param planId planId
     * @param id id
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "get_actual_workload", tags = {"执行用例" },  notes = "Run-get_actual_workload ")
     @GetMapping("libraries/{libraryId}/test_plans/{planId}/runs/{id}/get_actual_workload")
-    public ResponseEntity<RunDTO> getActualWorkloadByLibraryIdAndPlanIdAndId
+    public Mono<ResponseEntity<RunDTO>> getActualWorkloadByLibraryIdAndPlanIdAndId
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @PathVariable("id") String id) {
         Run rt = runService.getActualWorkload(id);
-        return ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt)));
     }
 
     /**
@@ -3480,16 +3767,16 @@ public abstract class AbstractRunResource {
     * @param libraryId libraryId
     * @param planId planId
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "草稿GetDraft", tags = {"执行用例" },  notes = "Run-GetDraft ")
     @GetMapping("libraries/{libraryId}/test_plans/{planId}/runs/get_draft")
-    public ResponseEntity<RunDTO> getDraftByLibraryIdAndPlanId
+    public Mono<ResponseEntity<RunDTO>> getDraftByLibraryIdAndPlanId
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @SpringQueryMap RunDTO dto) {
         Run domain = runDtoMapping.toDomain(dto);
         domain.setPlanId(planId);
         Run rt = runService.getDraft(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt)));
     }
 
     /**
@@ -3499,17 +3786,17 @@ public abstract class AbstractRunResource {
     * @param libraryId libraryId
     * @param planId planId
     * @param dto dto
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "run_history_get", tags = {"执行用例" },  notes = "Run-run_history_get ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-run_history_get-all') or hasPermission('library',#libraryId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-run_history_get')")
     @GetMapping("libraries/{libraryId}/test_plans/{planId}/runs/run_history_get")
-    public ResponseEntity<RunDTO> runHistoryGetByLibraryIdAndPlanId
+    public Mono<ResponseEntity<RunDTO>> runHistoryGetByLibraryIdAndPlanId
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @SpringQueryMap RunDTO dto) {
         Run domain = runDtoMapping.toDomain(dto);
         domain.setPlanId(planId);
         Run rt = runService.runHistoryGet(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt)));
     }
 
     /**
@@ -3519,15 +3806,64 @@ public abstract class AbstractRunResource {
     * @param libraryId libraryId
     * @param planId planId
     * @param id id
-    * @return ResponseEntity<RunDTO>
+    * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "this_run_details", tags = {"执行用例" },  notes = "Run-this_run_details ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-this_run_details-all') or hasPermission('library',#libraryId,this.runService.get(#id),'ibizplm-Run-this_run_details')")
     @GetMapping("libraries/{libraryId}/test_plans/{planId}/runs/{id}/this_run_details")
-    public ResponseEntity<RunDTO> thisRunDetailsByLibraryIdAndPlanIdAndId
+    public Mono<ResponseEntity<RunDTO>> thisRunDetailsByLibraryIdAndPlanIdAndId
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @PathVariable("id") String id) {
         Run rt = runService.thisRunDetails(id);
-        return ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt)));
+    }
+
+    /**
+    * 查询fetch_bi_detail 执行用例
+    * 
+    *
+    * @param libraryId libraryId
+    * @param planId planId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<RunDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_bi_detail", tags = {"执行用例" },  notes = "Run-fetch_bi_detail ")
+    @PostMapping("libraries/{libraryId}/test_plans/{planId}/runs/fetch_bi_detail")
+    public Mono<ResponseEntity<List<RunDTO>>> fetchBiDetailByLibraryIdAndPlanId
+            (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @Validated @RequestBody RunFilterDTO dto) {
+        dto.setPlanIdEQ(planId);
+        RunSearchContext context = runFilterDtoMapping.toDomain(dto);
+        Page<Run> domains = runService.fetchBiDetail(context) ;
+        List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_bi_search 执行用例
+    * 
+    *
+    * @param libraryId libraryId
+    * @param planId planId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<RunBiSearchGroupDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_bi_search", tags = {"执行用例" },  notes = "Run-fetch_bi_search ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_bi_search-all') or hasPermission('library',#libraryId,#dto,'ibizplm-Run-fetch_bi_search')")
+    @PostMapping("libraries/{libraryId}/test_plans/{planId}/runs/fetch_bi_search")
+    public Mono<ResponseEntity<List<RunBiSearchGroupDTO>>> fetchBiSearchByLibraryIdAndPlanId
+            (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @Validated @RequestBody RunFilterDTO dto) {
+        dto.setPlanIdEQ(planId);
+        RunSearchContext context = runFilterDtoMapping.toDomain(dto);
+        Page<Run> domains = runService.fetchBiSearch(context) ;
+        List<RunBiSearchGroupDTO> list = runBiSearchGroupDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
     }
 
     /**
@@ -3537,21 +3873,21 @@ public abstract class AbstractRunResource {
     * @param libraryId libraryId
     * @param planId planId
     * @param dto dto
-    * @return ResponseEntity<List<RunDTO>>
+    * @return Mono<ResponseEntity<List<RunDTO>>>
     */
     @ApiOperation(value = "查询fetch_case_person", tags = {"执行用例" },  notes = "Run-fetch_case_person ")
     @PostMapping("libraries/{libraryId}/test_plans/{planId}/runs/fetch_case_person")
-    public ResponseEntity<List<RunDTO>> fetchCasePersonByLibraryIdAndPlanId
+    public Mono<ResponseEntity<List<RunDTO>>> fetchCasePersonByLibraryIdAndPlanId
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @Validated @RequestBody RunFilterDTO dto) {
         dto.setPlanIdEQ(planId);
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchCasePerson(context) ;
         List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -3561,22 +3897,22 @@ public abstract class AbstractRunResource {
     * @param libraryId libraryId
     * @param planId planId
     * @param dto dto
-    * @return ResponseEntity<List<RunExecutorDTO>>
+    * @return Mono<ResponseEntity<List<RunExecutorDTO>>>
     */
     @ApiOperation(value = "查询fetch_comment_notify_executor", tags = {"执行用例" },  notes = "Run-fetch_comment_notify_executor ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_comment_notify_executor-all') or hasPermission('library',#libraryId,#dto,'ibizplm-Run-fetch_comment_notify_executor')")
     @PostMapping("libraries/{libraryId}/test_plans/{planId}/runs/fetch_comment_notify_executor")
-    public ResponseEntity<List<RunExecutorDTO>> fetchCommentNotifyExecutorByLibraryIdAndPlanId
+    public Mono<ResponseEntity<List<RunExecutorDTO>>> fetchCommentNotifyExecutorByLibraryIdAndPlanId
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @Validated @RequestBody RunFilterDTO dto) {
         dto.setPlanIdEQ(planId);
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchCommentNotifyExecutor(context) ;
         List<RunExecutorDTO> list = runExecutorDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -3586,22 +3922,22 @@ public abstract class AbstractRunResource {
     * @param libraryId libraryId
     * @param planId planId
     * @param dto dto
-    * @return ResponseEntity<List<RunDTO>>
+    * @return Mono<ResponseEntity<List<RunDTO>>>
     */
     @ApiOperation(value = "查询fetch_default", tags = {"执行用例" },  notes = "Run-fetch_default ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_default-all') or hasPermission('library',#libraryId,#dto,'ibizplm-Run-fetch_default')")
     @PostMapping("libraries/{libraryId}/test_plans/{planId}/runs/fetch_default")
-    public ResponseEntity<List<RunDTO>> fetchDefaultByLibraryIdAndPlanId
+    public Mono<ResponseEntity<List<RunDTO>>> fetchDefaultByLibraryIdAndPlanId
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @Validated @RequestBody RunFilterDTO dto) {
         dto.setPlanIdEQ(planId);
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchDefault(context) ;
         List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -3611,21 +3947,21 @@ public abstract class AbstractRunResource {
     * @param libraryId libraryId
     * @param planId planId
     * @param dto dto
-    * @return ResponseEntity<List<RunDTO>>
+    * @return Mono<ResponseEntity<List<RunDTO>>>
     */
     @ApiOperation(value = "查询fetch_implementation_results", tags = {"执行用例" },  notes = "Run-fetch_implementation_results ")
     @PostMapping("libraries/{libraryId}/test_plans/{planId}/runs/fetch_implementation_results")
-    public ResponseEntity<List<RunDTO>> fetchImplementationResultsByLibraryIdAndPlanId
+    public Mono<ResponseEntity<List<RunDTO>>> fetchImplementationResultsByLibraryIdAndPlanId
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @Validated @RequestBody RunFilterDTO dto) {
         dto.setPlanIdEQ(planId);
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchImplementationResults(context) ;
         List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -3635,22 +3971,22 @@ public abstract class AbstractRunResource {
     * @param libraryId libraryId
     * @param planId planId
     * @param dto dto
-    * @return ResponseEntity<List<RunDTO>>
+    * @return Mono<ResponseEntity<List<RunDTO>>>
     */
     @ApiOperation(value = "查询fetch_normal", tags = {"执行用例" },  notes = "Run-fetch_normal ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_normal-all') or hasPermission('library',#libraryId,#dto,'ibizplm-Run-fetch_normal')")
     @PostMapping("libraries/{libraryId}/test_plans/{planId}/runs/fetch_normal")
-    public ResponseEntity<List<RunDTO>> fetchNormalByLibraryIdAndPlanId
+    public Mono<ResponseEntity<List<RunDTO>>> fetchNormalByLibraryIdAndPlanId
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @Validated @RequestBody RunFilterDTO dto) {
         dto.setPlanIdEQ(planId);
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchNormal(context) ;
         List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -3660,22 +3996,22 @@ public abstract class AbstractRunResource {
     * @param libraryId libraryId
     * @param planId planId
     * @param dto dto
-    * @return ResponseEntity<List<RunDTO>>
+    * @return Mono<ResponseEntity<List<RunDTO>>>
     */
     @ApiOperation(value = "查询fetch_plan_run_history", tags = {"执行用例" },  notes = "Run-fetch_plan_run_history ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_plan_run_history-all') or hasPermission('library',#libraryId,#dto,'ibizplm-Run-fetch_plan_run_history')")
     @PostMapping("libraries/{libraryId}/test_plans/{planId}/runs/fetch_plan_run_history")
-    public ResponseEntity<List<RunDTO>> fetchPlanRunHistoryByLibraryIdAndPlanId
+    public Mono<ResponseEntity<List<RunDTO>>> fetchPlanRunHistoryByLibraryIdAndPlanId
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @Validated @RequestBody RunFilterDTO dto) {
         dto.setPlanIdEQ(planId);
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchPlanRunHistory(context) ;
         List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -3685,87 +4021,112 @@ public abstract class AbstractRunResource {
     * @param libraryId libraryId
     * @param planId planId
     * @param dto dto
-    * @return ResponseEntity<List<RunDTO>>
+    * @return Mono<ResponseEntity<List<RunDTO>>>
     */
     @ApiOperation(value = "查询fetch_priority_distributions", tags = {"执行用例" },  notes = "Run-fetch_priority_distributions ")
     @PostMapping("libraries/{libraryId}/test_plans/{planId}/runs/fetch_priority_distributions")
-    public ResponseEntity<List<RunDTO>> fetchPriorityDistributionsByLibraryIdAndPlanId
+    public Mono<ResponseEntity<List<RunDTO>>> fetchPriorityDistributionsByLibraryIdAndPlanId
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @Validated @RequestBody RunFilterDTO dto) {
         dto.setPlanIdEQ(planId);
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchPriorityDistributions(context) ;
         List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_reader 执行用例
+    * 
+    *
+    * @param libraryId libraryId
+    * @param planId planId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<RunDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_reader", tags = {"执行用例" },  notes = "Run-fetch_reader ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_reader-all') or hasPermission('library',#libraryId,#dto,'ibizplm-Run-fetch_reader')")
+    @PostMapping("libraries/{libraryId}/test_plans/{planId}/runs/fetch_reader")
+    public Mono<ResponseEntity<List<RunDTO>>> fetchReaderByLibraryIdAndPlanId
+            (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @Validated @RequestBody RunFilterDTO dto) {
+        dto.setPlanIdEQ(planId);
+        RunSearchContext context = runFilterDtoMapping.toDomain(dto);
+        Page<Run> domains = runService.fetchReader(context) ;
+        List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
     }
 
 
     /**
     * 批量新建执行用例
     * @param dtos
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-Run-Create-all')")
     @ApiOperation(value = "批量新建执行用例", tags = {"执行用例" },  notes = "批量新建执行用例")
 	@PostMapping("runs/batch")
-    public ResponseEntity<Boolean> createBatch(@RequestBody List<RunDTO> dtos) {
+    public Mono<ResponseEntity<Boolean>> createBatch(@RequestBody List<RunDTO> dtos) {
         runService.create(runDtoMapping.toDomain(dtos));
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量删除执行用例
     * @param ids ids
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-Run-Remove-all')")
     @ApiOperation(value = "批量删除执行用例", tags = {"执行用例" },  notes = "批量删除执行用例")
 	@DeleteMapping("runs/batch")
-    public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
+    public Mono<ResponseEntity<Boolean>> removeBatch(@RequestBody List<String> ids) {
         runService.remove(ids);
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量更新执行用例
     * @param dtos
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-Run-Update-all')")
     @ApiOperation(value = "批量更新执行用例", tags = {"执行用例" },  notes = "批量更新执行用例")
 	@PutMapping("runs/batch")
-    public ResponseEntity<Boolean> updateBatch(@RequestBody List<RunDTO> dtos) {
+    public Mono<ResponseEntity<Boolean>> updateBatch(@RequestBody List<RunDTO> dtos) {
         runService.update(runDtoMapping.toDomain(dtos));
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量保存执行用例
     * @param dtos
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-Run-Save-all')")
     @ApiOperation(value = "批量保存执行用例", tags = {"执行用例" },  notes = "批量保存执行用例")
 	@PostMapping("runs/savebatch")
-    public ResponseEntity<Boolean> saveBatch(@RequestBody List<RunDTO> dtos) {
+    public Mono<ResponseEntity<Boolean>> saveBatch(@RequestBody List<RunDTO> dtos) {
         runService.save(runDtoMapping.toDomain(dtos));
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量导入执行用例
     * @param config 导入模式
     * @param ignoreError 导入中忽略错误
-    * @return ResponseEntity<ImportResult>
+    * @return Mono<ResponseEntity<ImportResult>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-Run-Save-all')")
     @ApiOperation(value = "批量导入执行用例", tags = {"执行用例" },  notes = "批量导入执行用例")
 	@PostMapping("runs/import")
-    public ResponseEntity<ImportResult> importData(@RequestParam(value = "config" , required = false) String config ,@RequestParam(value = "ignoreerror", required = false, defaultValue = "true") Boolean ignoreError ,@RequestBody List<RunDTO> dtos) {
-        return  ResponseEntity.status(HttpStatus.OK).body(runService.importData(config,ignoreError,runDtoMapping.toDomain(dtos)));
+    public Mono<ResponseEntity<ImportResult>> importData(@RequestParam(value = "config" , required = false) String config ,@RequestParam(value = "ignoreerror", required = false, defaultValue = "true") Boolean ignoreError ,@RequestBody List<RunDTO> dtos) {
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(runService.importData(config,ignoreError,runDtoMapping.toDomain(dtos))));
     }
 
 }

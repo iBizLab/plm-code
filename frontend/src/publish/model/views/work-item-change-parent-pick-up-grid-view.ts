@@ -44,6 +44,7 @@ export default {
       columnEnableFilter: 2,
       columnEnableLink: 2,
       groupMode: 'NONE',
+      orderValueAppDEFieldId: 'sequence',
       degridColumns: [
         {
           clconvertMode: 'NONE',
@@ -119,11 +120,8 @@ export default {
           clconvertMode: 'NONE',
           dataItemName: 'assignee_name',
           excelCaption: '负责人',
-          linkAppViewId: 'plmweb.user_redirect_view',
-          linkValueItem: 'ASSIGNEE_ID',
           appDEFieldId: 'assignee_name',
           valueType: 'SIMPLE',
-          enableLinkView: true,
           aggMode: 'NONE',
           align: 'LEFT',
           caption: '负责人',
@@ -282,7 +280,6 @@ export default {
       pagingMode: 1,
       pagingSize: 20,
       sortMode: 'REMOTE',
-      enableCustomized: true,
       enablePagingBar: true,
       fetchControlAction: {
         appDEMethodId: 'fetch_change_parent',

@@ -157,6 +157,7 @@ export default {
                 beforeItemType: 'NONE',
                 detailType: 'DEUIACTION',
                 uiactionId: 'recover@library',
+                tooltip: '恢复',
                 showIcon: true,
                 sysImage: {
                   cssClass: 'fa fa-refresh',

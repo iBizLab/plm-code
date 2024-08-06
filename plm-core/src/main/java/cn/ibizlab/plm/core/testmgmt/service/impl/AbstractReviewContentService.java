@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.testmgmt.domain.ReviewContent;
@@ -150,16 +151,16 @@ public abstract class AbstractReviewContentService extends ServiceImpl<ReviewCon
         return et;
     }
 	
-    public Integer checkKey(ReviewContent et) {
+    public CheckKeyStatus checkKey(ReviewContent et) {
         if(ObjectUtils.isEmpty(et.getId()))
             et.setId((String)et.getDefaultKey(true));
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ReviewContent>lambdaQuery().eq(ReviewContent::getId, et.getId()))>0)?1:0;
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ReviewContent>lambdaQuery().eq(ReviewContent::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED: CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(ReviewContent et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -193,10 +194,26 @@ public abstract class AbstractReviewContentService extends ServiceImpl<ReviewCon
         return list;
    }
 	
+   public Page<ReviewContent> fetchHistoryList(ReviewContentSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ReviewContent> pages=baseMapper.searchHistoryList(context.getPages(),context,context.getSelectCond());
+        List<ReviewContent> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+   }
+
+   public List<ReviewContent> listHistoryList(ReviewContentSearchContext context) {
+        List<ReviewContent> list = baseMapper.listHistoryList(context,context.getSelectCond());
+        return list;
+   }
+	
 	public List<ReviewContent> findByPrincipalId(List<String> principalIds){
         List<ReviewContent> list = baseMapper.findByPrincipalId(principalIds);
         return list;	
 	}
+	
+	public List<ReviewContent> findByReview(Review review){
+        List<ReviewContent> list = findByPrincipalId(Arrays.asList(review.getId()));
+		return list;
+	}	
 
 	public boolean removeByPrincipalId(String principalId){
         return this.remove(Wrappers.<ReviewContent>lambdaQuery().eq(ReviewContent::getPrincipalId,principalId));
@@ -236,6 +253,11 @@ public abstract class AbstractReviewContentService extends ServiceImpl<ReviewCon
             return true;
 			
 	}
+	public List<ReviewContent> findByReviewWizard(ReviewWizard reviewWizard){
+        List<ReviewContent> list = findByPrincipalId(Arrays.asList(reviewWizard.getId()));
+		return list;
+	}	
+
 	public boolean saveByReviewWizard(ReviewWizard reviewWizard, List<ReviewContent> list){
         if(list==null)
             return true;
@@ -271,6 +293,11 @@ public abstract class AbstractReviewContentService extends ServiceImpl<ReviewCon
         List<ReviewContent> list = baseMapper.findByTargetVersionId(targetVersionIds);
         return list;	
 	}
+	
+	public List<ReviewContent> findByTargetVersion(Version version){
+        List<ReviewContent> list = findByTargetVersionId(Arrays.asList(version.getId()));
+		return list;
+	}	
 
 	public boolean removeByTargetVersionId(String targetVersionId){
         return this.remove(Wrappers.<ReviewContent>lambdaQuery().eq(ReviewContent::getTargetVersionId,targetVersionId));
@@ -314,6 +341,11 @@ public abstract class AbstractReviewContentService extends ServiceImpl<ReviewCon
         List<ReviewContent> list = baseMapper.findByTargetId(targetIds);
         return list;	
 	}
+	
+	public List<ReviewContent> findByTestCase(TestCase testCase){
+        List<ReviewContent> list = findByTargetId(Arrays.asList(testCase.getId()));
+		return list;
+	}	
 
 	public boolean removeByTargetId(String targetId){
         return this.remove(Wrappers.<ReviewContent>lambdaQuery().eq(ReviewContent::getTargetId,targetId));

@@ -43,6 +43,25 @@ public interface MemberMapper extends BaseMapper<Member> {
     List<Member> listDefault(@Param("ctx") MemberSearchContext context, @Param("ew") Wrapper<Member> wrapper);
 
     /**
+     * 数据集合shared_page_member分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Member> searchSharedPageMember(IPage<Member> page, @Param("ctx") MemberSearchContext context, @Param("ew") Wrapper<Member> wrapper);
+    
+    /**
+     * 数据集合shared_page_member查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Member> listSharedPageMember(@Param("ctx") MemberSearchContext context, @Param("ew") Wrapper<Member> wrapper);
+
+    /**
      * 数据集合user_group_admin分页查询
      * 
      * @param page
@@ -84,6 +103,25 @@ public interface MemberMapper extends BaseMapper<Member> {
     * @return
     */
     List<Member> findByOwnerId(@Param("ownerIds") List<String> ownerIds);
+
+    /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Member> searchView(IPage<Member> page, @Param("ctx") MemberSearchContext context, @Param("ew") Wrapper<Member> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Member> listView(@Param("ctx") MemberSearchContext context, @Param("ew") Wrapper<Member> wrapper);
 
     /**
      * 主键查询

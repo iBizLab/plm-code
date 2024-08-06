@@ -62,6 +62,25 @@ public interface ReviewContentMapper extends BaseMapper<ReviewContent> {
     List<ReviewContent> listAll(@Param("ctx") ReviewContentSearchContext context, @Param("ew") Wrapper<ReviewContent> wrapper);
 
     /**
+     * 数据集合history_list分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<ReviewContent> searchHistoryList(IPage<ReviewContent> page, @Param("ctx") ReviewContentSearchContext context, @Param("ew") Wrapper<ReviewContent> wrapper);
+    
+    /**
+     * 数据集合history_list查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<ReviewContent> listHistoryList(@Param("ctx") ReviewContentSearchContext context, @Param("ew") Wrapper<ReviewContent> wrapper);
+
+    /**
     * 根据principalId查询
     *
     * @param principalIds
@@ -84,6 +103,25 @@ public interface ReviewContentMapper extends BaseMapper<ReviewContent> {
     * @return
     */
     List<ReviewContent> findByTargetId(@Param("targetIds") List<String> targetIds);
+
+    /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<ReviewContent> searchView(IPage<ReviewContent> page, @Param("ctx") ReviewContentSearchContext context, @Param("ew") Wrapper<ReviewContent> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<ReviewContent> listView(@Param("ctx") ReviewContentSearchContext context, @Param("ew") Wrapper<ReviewContent> wrapper);
 
     /**
      * 主键查询

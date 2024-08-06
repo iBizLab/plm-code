@@ -4,6 +4,7 @@
 package cn.ibizlab.plm.serviceapi.dto;
 
 import java.util.*;
+import java.math.BigDecimal;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -174,11 +175,51 @@ public class ProjectDTO extends DTOBase implements Serializable {
     private String assigneeId;
 
     /**
+     * 已完成工作项数
+     */
+    @JsonProperty("completed_work_items")
+    @JSONField(name = "completed_work_items")
+    @ApiModelProperty(value = "已完成工作项数", position = 17)
+    private BigDecimal completedWorkItems;
+
+    /**
+     * 全部工作项数
+     */
+    @JsonProperty("all_work_items")
+    @JSONField(name = "all_work_items")
+    @ApiModelProperty(value = "全部工作项数", position = 18)
+    private BigDecimal allWorkItems;
+
+    /**
+     * 临时
+     */
+    @JsonProperty("temp")
+    @JSONField(name = "temp")
+    @ApiModelProperty(value = "临时", position = 19)
+    private String temp;
+
+    /**
+     * 公告
+     */
+    @JsonProperty("notice")
+    @JSONField(name = "notice")
+    @ApiModelProperty(value = "公告", position = 20)
+    private String notice;
+
+    /**
+     * 进度
+     */
+    @JsonProperty("schedule")
+    @JSONField(name = "schedule")
+    @ApiModelProperty(value = "进度", position = 21)
+    private BigDecimal schedule;
+
+    /**
      * 建立人
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 17)
+    @ApiModelProperty(value = "建立人", position = 22)
     private String createMan;
 
     /**
@@ -187,7 +228,7 @@ public class ProjectDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 18)
+    @ApiModelProperty(value = "建立时间", position = 23)
     private Date createTime;
 
     /**
@@ -195,7 +236,7 @@ public class ProjectDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 19)
+    @ApiModelProperty(value = "标识", position = 24)
     private String id;
 
     /**
@@ -203,7 +244,7 @@ public class ProjectDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "项目名称", position = 20)
+    @ApiModelProperty(value = "项目名称", position = 25)
     private String name;
 
     /**
@@ -211,7 +252,7 @@ public class ProjectDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 21)
+    @ApiModelProperty(value = "更新人", position = 26)
     private String updateMan;
 
     /**
@@ -220,7 +261,7 @@ public class ProjectDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 22)
+    @ApiModelProperty(value = "更新时间", position = 27)
     private Date updateTime;
 
 
@@ -374,6 +415,51 @@ public class ProjectDTO extends DTOBase implements Serializable {
     public ProjectDTO setAssigneeId(String assigneeId) {
         this.assigneeId = assigneeId;
         this.modify("assignee_id", assigneeId);
+        return this;
+    }
+
+    /**
+     * 设置 [已完成工作项数]
+     */
+    public ProjectDTO setCompletedWorkItems(BigDecimal completedWorkItems) {
+        this.completedWorkItems = completedWorkItems;
+        this.modify("completed_work_items", completedWorkItems);
+        return this;
+    }
+
+    /**
+     * 设置 [全部工作项数]
+     */
+    public ProjectDTO setAllWorkItems(BigDecimal allWorkItems) {
+        this.allWorkItems = allWorkItems;
+        this.modify("all_work_items", allWorkItems);
+        return this;
+    }
+
+    /**
+     * 设置 [临时]
+     */
+    public ProjectDTO setTemp(String temp) {
+        this.temp = temp;
+        this.modify("temp", temp);
+        return this;
+    }
+
+    /**
+     * 设置 [公告]
+     */
+    public ProjectDTO setNotice(String notice) {
+        this.notice = notice;
+        this.modify("notice", notice);
+        return this;
+    }
+
+    /**
+     * 设置 [进度]
+     */
+    public ProjectDTO setSchedule(BigDecimal schedule) {
+        this.schedule = schedule;
+        this.modify("schedule", schedule);
         return this;
     }
 

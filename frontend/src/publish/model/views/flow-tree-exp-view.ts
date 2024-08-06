@@ -145,10 +145,10 @@ export default {
               nodeType: 'auto',
               navigateParams: [
                 {
-                  key: 'n_logicsubtype_eq',
-                  value: 'EVENTHOOK',
+                  key: 'n_logicsubtype_in',
+                  value: 'EVENTHOOK,FIELDCHANGEHOOK,WEBHOOK',
                   rawValue: true,
-                  id: 'n_logicsubtype_eq',
+                  id: 'n_logicsubtype_in',
                 },
                 {
                   key: 'n_dynamodelflag_eq',

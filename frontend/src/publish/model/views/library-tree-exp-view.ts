@@ -74,6 +74,12 @@ export default {
           id: 'expitem:node_1',
         },
         {
+          realTitle: '归档测试库表格',
+          refAppViewId: 'plmweb.library_is_archived_grid_view',
+          name: 'EXPITEM:node_11',
+          id: 'expitem:node_11',
+        },
+        {
           realTitle: '组织测试库',
           refAppViewId: 'plmweb.library_org_grid_view',
           name: 'EXPITEM:node_2',
@@ -200,6 +206,13 @@ export default {
               id: '默认根节点 - 星标',
             },
             {
+              childDETreeNodeId: 'node_11',
+              parentDETreeNodeId: 'root',
+              parentValueLevel: 1,
+              searchMode: 3,
+              id: '默认根节点 - 归档测试库',
+            },
+            {
               childDETreeNodeId: 'node_8',
               parentDETreeNodeId: 'root',
               parentValueLevel: 1,
@@ -302,6 +315,18 @@ export default {
               enableRemoveData: true,
               name: '星标_测试库',
               id: 'node_10',
+            },
+            {
+              text: '归档测试库',
+              navAppViewId: 'plmweb.library_is_archived_grid_view',
+              nodeType: 'node_11',
+              sysImage: {
+                rawContent:
+                  '<svg xmlns="http://www.w3.org/2000/svg" class="icon design-iconfont" viewBox="0 0 1024 1024" width="128" height="128">\n  <path d="M820 120.016C815.888 98.784 794.928 64 764 64H232c-30.928 0-50.768 35.536-56 56.016L64 596.272V876A84 84 0 0 0 148 960h728A84 84 0 0 0 960 876V596.272L820 120.016zM271.344 144h456.16c14.832 0 26.832 11.584 26.832 25.904L864.016 544H673.84c-28.288 0-26.832 40.384-26.832 40.384v77.712c0 14.32-12 25.904-26.832 25.904H405.504c-14.816 0-26.832-11.584-26.832-25.904v-77.712S378.672 544 351.84 544H160l84.512-374.096c0-14.32 12-25.904 26.832-25.904z m44.64 480v84c0 30.896 25.088 60 56.016 60h280c30.928 0 56-29.104 56-60V624H880v208c0 30.896-33.072 48-64 48H208c-30.928 0-64-17.104-64-48V624h172zM512 199.2a36.72 36.72 0 0 1 36.736 36.72l-0.016 224.064 80.96-80.944a36.736 36.736 0 0 1 49.824-1.952l2.112 1.952c14.336 14.352 14.336 37.6 0 51.936l-143.648 143.632a36.704 36.704 0 0 1-51.936 0L342.4 430.976a36.72 36.72 0 1 1 51.936-51.936l80.928 80.928V235.92c0-19.44 15.12-35.344 34.24-36.64z" fill="#F6C659"></path>\n</svg>',
+              },
+              treeNodeType: 'STATIC',
+              name: '归档测试库',
+              id: 'node_11',
             },
             {
               text: '组织测试库',

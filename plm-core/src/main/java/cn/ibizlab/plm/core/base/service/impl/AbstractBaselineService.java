@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.base.domain.Baseline;
@@ -151,14 +152,14 @@ public abstract class AbstractBaselineService extends ServiceImpl<BaselineMapper
         return et;
     }
 	
-    public Integer checkKey(Baseline et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Baseline>lambdaQuery().eq(Baseline::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(Baseline et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Baseline>lambdaQuery().eq(Baseline::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(Baseline et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -235,6 +236,13 @@ public abstract class AbstractBaselineService extends ServiceImpl<BaselineMapper
         return list;	
 	}
 
+	public List<Baseline> findByLibrary(Library library){
+        List<Baseline> list = this.baseMapper.selectList(Wrappers.<Baseline>lambdaQuery()
+                        .eq(Baseline::getOwnerId, library.getId())
+                        .eq(Baseline::getOwnerType,"LIBRARY")
+                        .eq(Baseline::getOwnerSubtype,"LIBRARY"));
+		return list;
+	}
 	public boolean removeByOwnerId(String ownerId){
         return this.remove(Wrappers.<Baseline>lambdaQuery().eq(Baseline::getOwnerId,ownerId));
 	}
@@ -245,13 +253,8 @@ public abstract class AbstractBaselineService extends ServiceImpl<BaselineMapper
 	public boolean saveByLibrary(Library library, List<Baseline> list){
         if(list==null)
             return true;
-        Map<String,Baseline> before = this.baseMapper.selectList(Wrappers.<Baseline>lambdaQuery()
-                        .eq(Baseline::getOwnerId, library.getId())
-                        .eq(Baseline::getOwnerType,"LIBRARY")
-                        .eq(Baseline::getOwnerSubtype,"LIBRARY"))
-                        .stream()
-                        .collect(Collectors.toMap(Baseline::getId,e->e));
 
+        Map<String,Baseline> before = findByLibrary(library).stream().collect(Collectors.toMap(Baseline::getId,e->e));
         List<Baseline> update = new ArrayList<>();
         List<Baseline> create = new ArrayList<>();
 
@@ -275,16 +278,18 @@ public abstract class AbstractBaselineService extends ServiceImpl<BaselineMapper
             return true;
 			
 	}
+	public List<Baseline> findByProduct(Product product){
+        List<Baseline> list = this.baseMapper.selectList(Wrappers.<Baseline>lambdaQuery()
+                        .eq(Baseline::getOwnerId, product.getId())
+                        .eq(Baseline::getOwnerType,"PRODUCT")
+                        .eq(Baseline::getOwnerSubtype,"PRODUCT"));
+		return list;
+	}
 	public boolean saveByProduct(Product product, List<Baseline> list){
         if(list==null)
             return true;
-        Map<String,Baseline> before = this.baseMapper.selectList(Wrappers.<Baseline>lambdaQuery()
-                        .eq(Baseline::getOwnerId, product.getId())
-                        .eq(Baseline::getOwnerType,"PRODUCT")
-                        .eq(Baseline::getOwnerSubtype,"PRODUCT"))
-                        .stream()
-                        .collect(Collectors.toMap(Baseline::getId,e->e));
 
+        Map<String,Baseline> before = findByProduct(product).stream().collect(Collectors.toMap(Baseline::getId,e->e));
         List<Baseline> update = new ArrayList<>();
         List<Baseline> create = new ArrayList<>();
 
@@ -308,16 +313,18 @@ public abstract class AbstractBaselineService extends ServiceImpl<BaselineMapper
             return true;
 			
 	}
+	public List<Baseline> findByProject(Project project){
+        List<Baseline> list = this.baseMapper.selectList(Wrappers.<Baseline>lambdaQuery()
+                        .eq(Baseline::getOwnerId, project.getId())
+                        .eq(Baseline::getOwnerType,"PROJECT")
+                        .eq(Baseline::getOwnerSubtype,"PROJECT"));
+		return list;
+	}
 	public boolean saveByProject(Project project, List<Baseline> list){
         if(list==null)
             return true;
-        Map<String,Baseline> before = this.baseMapper.selectList(Wrappers.<Baseline>lambdaQuery()
-                        .eq(Baseline::getOwnerId, project.getId())
-                        .eq(Baseline::getOwnerType,"PROJECT")
-                        .eq(Baseline::getOwnerSubtype,"PROJECT"))
-                        .stream()
-                        .collect(Collectors.toMap(Baseline::getId,e->e));
 
+        Map<String,Baseline> before = findByProject(project).stream().collect(Collectors.toMap(Baseline::getId,e->e));
         List<Baseline> update = new ArrayList<>();
         List<Baseline> create = new ArrayList<>();
 
@@ -341,16 +348,18 @@ public abstract class AbstractBaselineService extends ServiceImpl<BaselineMapper
             return true;
 			
 	}
+	public List<Baseline> findBySpace(Space space){
+        List<Baseline> list = this.baseMapper.selectList(Wrappers.<Baseline>lambdaQuery()
+                        .eq(Baseline::getOwnerId, space.getId())
+                        .eq(Baseline::getOwnerType,"SPACE")
+                        .eq(Baseline::getOwnerSubtype,"SPACE"));
+		return list;
+	}
 	public boolean saveBySpace(Space space, List<Baseline> list){
         if(list==null)
             return true;
-        Map<String,Baseline> before = this.baseMapper.selectList(Wrappers.<Baseline>lambdaQuery()
-                        .eq(Baseline::getOwnerId, space.getId())
-                        .eq(Baseline::getOwnerType,"SPACE")
-                        .eq(Baseline::getOwnerSubtype,"SPACE"))
-                        .stream()
-                        .collect(Collectors.toMap(Baseline::getId,e->e));
 
+        Map<String,Baseline> before = findBySpace(space).stream().collect(Collectors.toMap(Baseline::getId,e->e));
         List<Baseline> update = new ArrayList<>();
         List<Baseline> create = new ArrayList<>();
 
@@ -374,6 +383,17 @@ public abstract class AbstractBaselineService extends ServiceImpl<BaselineMapper
             return true;
 			
 	}
+   public Page<Baseline> fetchView(BaselineSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Baseline> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<Baseline> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Baseline> listView(BaselineSearchContext context) {
+        List<Baseline> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(Baseline et) {
         if(Entities.LIBRARY.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

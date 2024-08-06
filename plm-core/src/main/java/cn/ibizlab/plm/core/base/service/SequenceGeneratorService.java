@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.SequenceGenerator;
 import cn.ibizlab.plm.core.base.filter.SequenceGeneratorSearchContext;
 
@@ -137,7 +138,7 @@ public interface SequenceGeneratorService extends IService<SequenceGenerator> {
     * @param et
     * @return
     */
-    Integer checkKey(SequenceGenerator et);
+    CheckKeyStatus checkKey(SequenceGenerator et);
 
     /**
     * 保存
@@ -168,6 +169,22 @@ public interface SequenceGeneratorService extends IService<SequenceGenerator> {
     * @return
     */
     List<SequenceGenerator> listDefault(SequenceGeneratorSearchContext context);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<SequenceGenerator> fetchView(SequenceGeneratorSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<SequenceGenerator> listView(SequenceGeneratorSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<SequenceGenerator> list) {

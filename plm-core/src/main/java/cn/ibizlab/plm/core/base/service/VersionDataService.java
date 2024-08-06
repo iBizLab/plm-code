@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.VersionData;
 import cn.ibizlab.plm.core.base.filter.VersionDataSearchContext;
 
@@ -137,7 +138,7 @@ public interface VersionDataService extends IService<VersionData> {
     * @param et
     * @return
     */
-    Integer checkKey(VersionData et);
+    CheckKeyStatus checkKey(VersionData et);
 
     /**
     * 保存
@@ -168,6 +169,22 @@ public interface VersionDataService extends IService<VersionData> {
     * @return
     */
     List<VersionData> listDefault(VersionDataSearchContext context);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<VersionData> fetchView(VersionDataSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<VersionData> listView(VersionDataSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<VersionData> list) {

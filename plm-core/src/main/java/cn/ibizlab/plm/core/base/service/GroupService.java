@@ -11,6 +11,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.Group;
 import cn.ibizlab.plm.core.base.filter.GroupSearchContext;
 import cn.ibizlab.plm.core.base.domain.Section;
@@ -140,7 +141,7 @@ public interface GroupService extends IService<Group> {
     * @param et
     * @return
     */
-    Integer checkKey(Group et);
+    CheckKeyStatus checkKey(Group et);
 
     /**
     * 保存
@@ -205,6 +206,22 @@ public interface GroupService extends IService<Group> {
     List<Group> listReader(GroupSearchContext context);
 
     /**
+    * fetchUser
+    * 
+    * @param context
+    * @return
+    */
+    Page<Group> fetchUser(GroupSearchContext context);
+
+    /**
+    * listUser
+    * 
+    * @param context
+    * @return
+    */
+    List<Group> listUser(GroupSearchContext context);
+
+    /**
     * fetchUserGroupAdmin
     * 
     * @param context
@@ -227,8 +244,15 @@ public interface GroupService extends IService<Group> {
     */
     List<Group> findBySectionId(List<String> sectionIds);
     default List<Group> findBySectionId(String sectionId){
-        return findBySectionId(Arrays.asList(sectionId));
+        return findBySection(new Section().setId(sectionId));
     }
+
+    /**
+    * findBySection
+    * @param section
+    * @return
+    */
+    List<Group> findBySection(Section section);
 
     /**
     * removeBySectionId
@@ -261,6 +285,22 @@ public interface GroupService extends IService<Group> {
     * @return
     */
     boolean saveBySection(Section section, List<Group> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Group> fetchView(GroupSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Group> listView(GroupSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Group> list) {

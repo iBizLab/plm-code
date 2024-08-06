@@ -99,7 +99,7 @@ export default {
             },
             dataRegionType: 'INHERIT',
             caption: '容器',
-            cssStyle: 'margin-right:15px',
+            cssStyle: 'margin-right:7px',
             itemStyle: 'DEFAULT',
             itemType: 'CONTAINER',
             layoutPos: {
@@ -268,27 +268,6 @@ export default {
             id: 'work_item_type',
           },
           {
-            caption: '项目属性',
-            appViewId: 'plmweb.psde_field_grid_view',
-            navigateContexts: [
-              {
-                key: 'PSDATAENTITY',
-                value: 'ProjMgmt.PROJECT',
-                rawValue: true,
-                name: 'PSDATAENTITY',
-                id: 'psdataentity',
-              },
-              {
-                key: 'PSDENAME',
-                value: 'PROJECT',
-                rawValue: true,
-                name: 'PSDENAME',
-                id: 'psdename',
-              },
-            ],
-            id: 'field',
-          },
-          {
             caption: '组件设置',
             appViewId: 'plmweb.addon_no_name_setting_grid_view',
             navigateParams: [
@@ -314,7 +293,7 @@ export default {
             id: 'addon_setting',
           },
         ],
-        dataRelationTag: 'setting_tab_view_scrum_flow_DR',
+        dataRelationTag: 'setting_tab_view_scrum_flow_dr',
         editItemCaption: '项目',
         uniqueTag: 'project_scrum_flow_setting_tab_view__tabexppanel',
         hideEditItem: true,

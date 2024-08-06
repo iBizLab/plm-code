@@ -11,6 +11,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.dynamic.datasource.annotation.DS;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.ebsx.domain.AuthLogAdmin;
 import cn.ibizlab.plm.core.ebsx.filter.AuthLogAdminSearchContext;
 
@@ -139,7 +140,7 @@ public interface AuthLogAdminService extends IService<AuthLogAdmin> {
     * @param et
     * @return
     */
-    Integer checkKey(AuthLogAdmin et);
+    CheckKeyStatus checkKey(AuthLogAdmin et);
 
     /**
     * 保存
@@ -202,6 +203,22 @@ public interface AuthLogAdminService extends IService<AuthLogAdmin> {
     * @return
     */
     List<AuthLogAdmin> listGroupByData(AuthLogAdminSearchContext context);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<AuthLogAdmin> fetchView(AuthLogAdminSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<AuthLogAdmin> listView(AuthLogAdminSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<AuthLogAdmin> list) {

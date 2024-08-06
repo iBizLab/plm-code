@@ -11,6 +11,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.Version;
 import cn.ibizlab.plm.core.base.filter.VersionSearchContext;
 import cn.ibizlab.plm.core.prodmgmt.domain.Idea;
@@ -147,7 +148,7 @@ public interface VersionService extends IService<Version> {
     * @param et
     * @return
     */
-    Integer checkKey(Version et);
+    CheckKeyStatus checkKey(Version et);
 
     /**
     * commit
@@ -210,6 +211,22 @@ public interface VersionService extends IService<Version> {
     List<Version> listDefault(VersionSearchContext context);
 
     /**
+    * fetchNameVersion
+    * 
+    * @param context
+    * @return
+    */
+    Page<Version> fetchNameVersion(VersionSearchContext context);
+
+    /**
+    * listNameVersion
+    * 
+    * @param context
+    * @return
+    */
+    List<Version> listNameVersion(VersionSearchContext context);
+
+    /**
     * fetchOwner
     * 
     * @param context
@@ -232,8 +249,15 @@ public interface VersionService extends IService<Version> {
     */
     List<Version> findByOwnerId(List<String> ownerIds);
     default List<Version> findByOwnerId(String ownerId){
-        return findByOwnerId(Arrays.asList(ownerId));
+        return findByIdea(new Idea().setId(ownerId));
     }
+
+    /**
+    * findByIdea
+    * @param idea
+    * @return
+    */
+    List<Version> findByIdea(Idea idea);
 
     /**
     * removeByOwnerId
@@ -268,12 +292,26 @@ public interface VersionService extends IService<Version> {
     boolean saveByIdea(Idea idea, List<Version> list);
 
     /**
+    * findByPage
+    * @param articlePage
+    * @return
+    */
+    List<Version> findByPage(ArticlePage articlePage);
+
+    /**
     * saveByPage
     * @param articlePage
     * @param list
     * @return
     */
     boolean saveByPage(ArticlePage articlePage, List<Version> list);
+
+    /**
+    * findByTestCase
+    * @param testCase
+    * @return
+    */
+    List<Version> findByTestCase(TestCase testCase);
 
     /**
     * saveByTestCase
@@ -284,12 +322,35 @@ public interface VersionService extends IService<Version> {
     boolean saveByTestCase(TestCase testCase, List<Version> list);
 
     /**
+    * findByWorkItem
+    * @param workItem
+    * @return
+    */
+    List<Version> findByWorkItem(WorkItem workItem);
+
+    /**
     * saveByWorkItem
     * @param workItem
     * @param list
     * @return
     */
     boolean saveByWorkItem(WorkItem workItem, List<Version> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Version> fetchView(VersionSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Version> listView(VersionSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Version> list) {

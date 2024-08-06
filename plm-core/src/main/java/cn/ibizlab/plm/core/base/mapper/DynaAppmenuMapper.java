@@ -43,6 +43,25 @@ public interface DynaAppmenuMapper extends BaseMapper<DynaAppmenu> {
     List<DynaAppmenu> listDefault(@Param("ctx") DynaAppmenuSearchContext context, @Param("ew") Wrapper<DynaAppmenu> wrapper);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<DynaAppmenu> searchView(IPage<DynaAppmenu> page, @Param("ctx") DynaAppmenuSearchContext context, @Param("ew") Wrapper<DynaAppmenu> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<DynaAppmenu> listView(@Param("ctx") DynaAppmenuSearchContext context, @Param("ew") Wrapper<DynaAppmenu> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

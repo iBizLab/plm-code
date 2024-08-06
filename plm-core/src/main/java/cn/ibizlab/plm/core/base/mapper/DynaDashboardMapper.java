@@ -43,6 +43,90 @@ public interface DynaDashboardMapper extends BaseMapper<DynaDashboard> {
     List<DynaDashboard> listDefault(@Param("ctx") DynaDashboardSearchContext context, @Param("ew") Wrapper<DynaDashboard> wrapper);
 
     /**
+     * 数据集合example_chart分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<DynaDashboard> searchExampleChart(IPage<DynaDashboard> page, @Param("ctx") DynaDashboardSearchContext context, @Param("ew") Wrapper<DynaDashboard> wrapper);
+    
+    /**
+     * 数据集合example_chart查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<DynaDashboard> listExampleChart(@Param("ctx") DynaDashboardSearchContext context, @Param("ew") Wrapper<DynaDashboard> wrapper);
+
+    /**
+     * 数据集合is_system分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<DynaDashboard> searchIsSystem(IPage<DynaDashboard> page, @Param("ctx") DynaDashboardSearchContext context, @Param("ew") Wrapper<DynaDashboard> wrapper);
+    
+    /**
+     * 数据集合is_system查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<DynaDashboard> listIsSystem(@Param("ctx") DynaDashboardSearchContext context, @Param("ew") Wrapper<DynaDashboard> wrapper);
+
+    /**
+     * 数据集合normal分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<DynaDashboard> searchNormal(IPage<DynaDashboard> page, @Param("ctx") DynaDashboardSearchContext context, @Param("ew") Wrapper<DynaDashboard> wrapper);
+    
+    /**
+     * 数据集合normal查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<DynaDashboard> listNormal(@Param("ctx") DynaDashboardSearchContext context, @Param("ew") Wrapper<DynaDashboard> wrapper);
+
+    /**
+    * 根据ownerId查询
+    *
+    * @param ownerIds
+    * @return
+    */
+    List<DynaDashboard> findByOwnerId(@Param("ownerIds") List<String> ownerIds);
+
+    /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<DynaDashboard> searchView(IPage<DynaDashboard> page, @Param("ctx") DynaDashboardSearchContext context, @Param("ew") Wrapper<DynaDashboard> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<DynaDashboard> listView(@Param("ctx") DynaDashboardSearchContext context, @Param("ew") Wrapper<DynaDashboard> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

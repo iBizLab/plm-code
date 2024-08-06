@@ -34,12 +34,12 @@ import cn.ibizlab.plm.core.projmgmt.domain.WorkItemWizard;
 public class WorkItemWizardDetail extends EntityBase implements Serializable
 {
     /**
-     * 源类型
+     * 原工作项类型
      */
     @DEField(name = "origin_type" , dict = "work_item_type")
     @JSONField(name = "origin_type")
     @JsonProperty("origin_type")
-    @ApiModelProperty(value = "origin_type", notes = "源类型")
+    @ApiModelProperty(value = "origin_type", notes = "原工作项类型")
     private String originType;
 
     /**
@@ -77,6 +77,96 @@ public class WorkItemWizardDetail extends EntityBase implements Serializable
     @JsonProperty("properties")
     @ApiModelProperty(value = "properties", notes = "属性补充集合")
     private List<Map> properties;
+
+    /**
+     * 影响工作项数量
+     */
+    @DEField(name = "influence")
+    @JSONField(name = "influence")
+    @JsonProperty("influence")
+    @ApiModelProperty(value = "influence", notes = "影响工作项数量")
+    private Integer influence;
+
+    /**
+     * 目标工作项状态
+     */
+    @DEField(name = "target_state" , dict = "scrum_state")
+    @JSONField(name = "target_state")
+    @JsonProperty("target_state")
+    @ApiModelProperty(value = "target_state", notes = "目标工作项状态")
+    private String targetState;
+
+    /**
+     * 原工作项状态
+     */
+    @DEField(name = "origin_state" , dict = "scrum_state")
+    @JSONField(name = "origin_state")
+    @JsonProperty("origin_state")
+    @ApiModelProperty(value = "origin_state", notes = "原工作项状态")
+    private String originState;
+
+    /**
+     * 项目标识
+     */
+    @DEField(name = "project_id")
+    @JSONField(name = "project_id")
+    @JsonProperty("project_id")
+    @ApiModelProperty(value = "project_id", notes = "项目标识")
+    private String projectId;
+
+    /**
+     * 工作项标题
+     */
+    @DEField(name = "title")
+    @JSONField(name = "title")
+    @JsonProperty("title")
+    @ApiModelProperty(value = "title", notes = "工作项标题")
+    private String title;
+
+    /**
+     * 负责人
+     */
+    @DEField(name = "assignee_name")
+    @JSONField(name = "assigee_name")
+    @JsonProperty("assigee_name")
+    @ApiModelProperty(value = "assignee_name", notes = "负责人")
+    private String assigeeName;
+
+    /**
+     * 优先级
+     */
+    @DEField(name = "priority" , dict = "work_item_priority")
+    @JSONField(name = "priority")
+    @JsonProperty("priority")
+    @ApiModelProperty(value = "priority", notes = "优先级")
+    private String priority;
+
+    /**
+     * 目标父工作项
+     */
+    @DEField(name = "target_parent")
+    @JSONField(name = "target_parent")
+    @JsonProperty("target_parent")
+    @ApiModelProperty(value = "target_parent", notes = "目标父工作项")
+    private String targetParent;
+
+    /**
+     * 原父工作项
+     */
+    @DEField(name = "origin_parent")
+    @JSONField(name = "origin_parent")
+    @JsonProperty("origin_parent")
+    @ApiModelProperty(value = "origin_parent", notes = "原父工作项")
+    private String originParent;
+
+    /**
+     * 子工作项类型
+     */
+    @DEField(name = "child_type" , dict = "work_item_type")
+    @JSONField(name = "child_type")
+    @JsonProperty("child_type")
+    @ApiModelProperty(value = "child_type", notes = "子工作项类型")
+    private String childType;
 
     /**
      * 标识
@@ -154,7 +244,7 @@ public class WorkItemWizardDetail extends EntityBase implements Serializable
     private WorkItemWizard workItemWizard;
 
     /**
-    * 设置 [源类型]
+    * 设置 [原工作项类型]
     */
     public WorkItemWizardDetail setOriginType(String originType) {
         this.originType = originType;
@@ -195,6 +285,96 @@ public class WorkItemWizardDetail extends EntityBase implements Serializable
     public WorkItemWizardDetail setProperties(List<Map> properties) {
         this.properties = properties;
         this.modify("properties", properties);
+        return this;
+    }
+
+    /**
+    * 设置 [影响工作项数量]
+    */
+    public WorkItemWizardDetail setInfluence(Integer influence) {
+        this.influence = influence;
+        this.modify("influence", influence);
+        return this;
+    }
+
+    /**
+    * 设置 [目标工作项状态]
+    */
+    public WorkItemWizardDetail setTargetState(String targetState) {
+        this.targetState = targetState;
+        this.modify("target_state", targetState);
+        return this;
+    }
+
+    /**
+    * 设置 [原工作项状态]
+    */
+    public WorkItemWizardDetail setOriginState(String originState) {
+        this.originState = originState;
+        this.modify("origin_state", originState);
+        return this;
+    }
+
+    /**
+    * 设置 [项目标识]
+    */
+    public WorkItemWizardDetail setProjectId(String projectId) {
+        this.projectId = projectId;
+        this.modify("project_id", projectId);
+        return this;
+    }
+
+    /**
+    * 设置 [工作项标题]
+    */
+    public WorkItemWizardDetail setTitle(String title) {
+        this.title = title;
+        this.modify("title", title);
+        return this;
+    }
+
+    /**
+    * 设置 [负责人]
+    */
+    public WorkItemWizardDetail setAssigeeName(String assigeeName) {
+        this.assigeeName = assigeeName;
+        this.modify("assigee_name", assigeeName);
+        return this;
+    }
+
+    /**
+    * 设置 [优先级]
+    */
+    public WorkItemWizardDetail setPriority(String priority) {
+        this.priority = priority;
+        this.modify("priority", priority);
+        return this;
+    }
+
+    /**
+    * 设置 [目标父工作项]
+    */
+    public WorkItemWizardDetail setTargetParent(String targetParent) {
+        this.targetParent = targetParent;
+        this.modify("target_parent", targetParent);
+        return this;
+    }
+
+    /**
+    * 设置 [原父工作项]
+    */
+    public WorkItemWizardDetail setOriginParent(String originParent) {
+        this.originParent = originParent;
+        this.modify("origin_parent", originParent);
+        return this;
+    }
+
+    /**
+    * 设置 [子工作项类型]
+    */
+    public WorkItemWizardDetail setChildType(String childType) {
+        this.childType = childType;
+        this.modify("child_type", childType);
         return this;
     }
 

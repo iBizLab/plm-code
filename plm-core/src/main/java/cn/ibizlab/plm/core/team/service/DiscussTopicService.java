@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.team.domain.DiscussTopic;
 import cn.ibizlab.plm.core.team.filter.DiscussTopicSearchContext;
 import cn.ibizlab.plm.core.team.domain.DiscussMember;
@@ -239,7 +240,7 @@ public interface DiscussTopicService extends IService<DiscussTopic> {
     * @param et
     * @return
     */
-    Integer checkKey(DiscussTopic et);
+    CheckKeyStatus checkKey(DiscussTopic et);
 
     /**
     * 保存
@@ -540,6 +541,22 @@ public interface DiscussTopicService extends IService<DiscussTopic> {
     default List<DiscussMember> getMembers(DiscussTopic et) {
         return new ArrayList<>();
     }
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<DiscussTopic> fetchView(DiscussTopicSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<DiscussTopic> listView(DiscussTopicSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<DiscussTopic> list) {

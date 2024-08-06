@@ -59,6 +59,25 @@ public interface ProductTicketTypeMapper extends BaseMapper<ProductTicketType> {
     List<ProductTicketType> findByTicketTypeId(@Param("ticketTypeIds") List<String> ticketTypeIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<ProductTicketType> searchView(IPage<ProductTicketType> page, @Param("ctx") ProductTicketTypeSearchContext context, @Param("ew") Wrapper<ProductTicketType> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<ProductTicketType> listView(@Param("ctx") ProductTicketTypeSearchContext context, @Param("ew") Wrapper<ProductTicketType> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

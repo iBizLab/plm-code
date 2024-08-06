@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.team.domain.UpdateRecord;
 import cn.ibizlab.plm.core.team.filter.UpdateRecordSearchContext;
 import cn.ibizlab.plm.core.team.domain.KeyResult;
@@ -139,7 +140,7 @@ public interface UpdateRecordService extends IService<UpdateRecord> {
     * @param et
     * @return
     */
-    Integer checkKey(UpdateRecord et);
+    CheckKeyStatus checkKey(UpdateRecord et);
 
     /**
     * 保存
@@ -178,8 +179,15 @@ public interface UpdateRecordService extends IService<UpdateRecord> {
     */
     List<UpdateRecord> findByKeyResultId(List<String> keyResultIds);
     default List<UpdateRecord> findByKeyResultId(String keyResultId){
-        return findByKeyResultId(Arrays.asList(keyResultId));
+        return findByKeyResult(new KeyResult().setId(keyResultId));
     }
+
+    /**
+    * findByKeyResult
+    * @param keyResult
+    * @return
+    */
+    List<UpdateRecord> findByKeyResult(KeyResult keyResult);
 
     /**
     * removeByKeyResultId
@@ -220,8 +228,15 @@ public interface UpdateRecordService extends IService<UpdateRecord> {
     */
     List<UpdateRecord> findByObjectiveId(List<String> objectiveIds);
     default List<UpdateRecord> findByObjectiveId(String objectiveId){
-        return findByObjectiveId(Arrays.asList(objectiveId));
+        return findByObjective(new Objective().setId(objectiveId));
     }
+
+    /**
+    * findByObjective
+    * @param objective
+    * @return
+    */
+    List<UpdateRecord> findByObjective(Objective objective);
 
     /**
     * removeByObjectiveId
@@ -254,6 +269,22 @@ public interface UpdateRecordService extends IService<UpdateRecord> {
     * @return
     */
     boolean saveByObjective(Objective objective, List<UpdateRecord> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<UpdateRecord> fetchView(UpdateRecordSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<UpdateRecord> listView(UpdateRecordSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<UpdateRecord> list) {

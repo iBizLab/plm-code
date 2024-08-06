@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.team.domain.DiscussPost;
 import cn.ibizlab.plm.core.team.filter.DiscussPostSearchContext;
 import cn.ibizlab.plm.core.team.domain.DiscussTopic;
@@ -142,7 +143,7 @@ public interface DiscussPostService extends IService<DiscussPost> {
     * @param et
     * @return
     */
-    Integer checkKey(DiscussPost et);
+    CheckKeyStatus checkKey(DiscussPost et);
 
     /**
     * 保存
@@ -372,7 +373,7 @@ public interface DiscussPostService extends IService<DiscussPost> {
 
     /**
     * fetchRecent
-    * 
+    * 最新讨论
     * @param context
     * @return
     */
@@ -380,7 +381,7 @@ public interface DiscussPostService extends IService<DiscussPost> {
 
     /**
     * listRecent
-    * 
+    * 最新讨论
     * @param context
     * @return
     */
@@ -393,8 +394,15 @@ public interface DiscussPostService extends IService<DiscussPost> {
     */
     List<DiscussPost> findByTopicId(List<String> topicIds);
     default List<DiscussPost> findByTopicId(String topicId){
-        return findByTopicId(Arrays.asList(topicId));
+        return findByDiscussTopic(new DiscussTopic().setId(topicId));
     }
+
+    /**
+    * findByDiscussTopic
+    * @param discussTopic
+    * @return
+    */
+    List<DiscussPost> findByDiscussTopic(DiscussTopic discussTopic);
 
     /**
     * removeByTopicId
@@ -439,6 +447,22 @@ public interface DiscussPostService extends IService<DiscussPost> {
     default List<Attachment> getAttachments(DiscussPost et) {
         return new ArrayList<>();
     }
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<DiscussPost> fetchView(DiscussPostSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<DiscussPost> listView(DiscussPostSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<DiscussPost> list) {

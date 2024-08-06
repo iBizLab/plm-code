@@ -5,14 +5,14 @@
         <!--通过mybatis将查询结果注入到entity中,通过配置autoMapping="true"由mybatis自动处理映射关系 -->
     <resultMap id="StencilResultMap" type="cn.ibizlab.plm.core.wiki.domain.Stencil" autoMapping="true">
 		<id property="id" column="id" /><!--主键字段映射-->
-		<result property="formatType" column="format_type" />
-		<result property="isGlobal" column="is_global" />
-		<result property="createMan" column="create_man" />
-		<result property="createTime" column="create_time" />
-		<result property="updateMan" column="update_man" />
-		<result property="updateTime" column="update_time" />
-		<result property="spaceId" column="space_id" />
-		<result property="spaceName" column="space_name" />
+		<result property="formatType" column="format_type"/>
+		<result property="isGlobal" column="is_global"/>
+		<result property="createMan" column="create_man"/>
+		<result property="createTime" column="create_time"/>
+		<result property="updateMan" column="update_man"/>
+		<result property="updateTime" column="update_time"/>
+		<result property="spaceId" column="space_id"/>
+		<result property="spaceName" column="space_name"/>
         <association property="space" javaType="cn.ibizlab.plm.core.wiki.domain.Space" column="space_id" select="cn.ibizlab.plm.core.wiki.mapper.SpaceMapper.selectById" fetchType="lazy"></association>
     </resultMap>
 
@@ -107,7 +107,7 @@
         select t1.* 
         from (
             <include refid="reader"/>
-                 union all 
+                 union
             <include refid="noSpaceStencil"/>
         ) t1 
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
@@ -120,7 +120,7 @@
         select t1.*
         from (
             <include refid="reader"/>
-                 union all
+                 union
             <include refid="noSpaceStencil"/>
         ) t1
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
@@ -147,6 +147,15 @@
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
         
+    </select>
+
+    <select id="listView"  parameterType="cn.ibizlab.plm.core.wiki.filter.StencilSearchContext"  resultMap="StencilResultMap">
+        select t1.*
+        from (
+            <include refid="view" />
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
     </select>
 
     <select id="findBySpaceId" resultMap="StencilResultMap">

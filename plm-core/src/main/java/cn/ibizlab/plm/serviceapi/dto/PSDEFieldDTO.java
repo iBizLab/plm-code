@@ -36,11 +36,19 @@ public class PSDEFieldDTO extends DTOBase implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
+     * 扩展模型
+     */
+    @JsonProperty("dynamodelflag")
+    @JSONField(name = "dynamodelflag")
+    @ApiModelProperty(value = "扩展模型", position = 0)
+    private Integer dynaModelFlag;
+
+    /**
      * 允许空值
      */
     @JsonProperty("allowempty")
     @JSONField(name = "allowempty")
-    @ApiModelProperty(value = "允许空值", position = 0)
+    @ApiModelProperty(value = "允许空值", position = 1)
     private Integer allowEmpty;
 
     /**
@@ -48,7 +56,7 @@ public class PSDEFieldDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("codename")
     @JSONField(name = "codename")
-    @ApiModelProperty(value = "代码名称", position = 1)
+    @ApiModelProperty(value = "代码名称", position = 2)
     private String codeName;
 
     /**
@@ -57,7 +65,7 @@ public class PSDEFieldDTO extends DTOBase implements Serializable {
     @JsonProperty("createdate")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "createdate" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 2)
+    @ApiModelProperty(value = "建立时间", position = 3)
     private Date createDate;
 
     /**
@@ -65,7 +73,7 @@ public class PSDEFieldDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("createman")
     @JSONField(name = "createman")
-    @ApiModelProperty(value = "建立人", position = 3)
+    @ApiModelProperty(value = "建立人", position = 4)
     private String createMan;
 
     /**
@@ -73,7 +81,7 @@ public class PSDEFieldDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("deftype")
     @JSONField(name = "deftype")
-    @ApiModelProperty(value = "属性类型", position = 4)
+    @ApiModelProperty(value = "属性类型", position = 5)
     private Integer defType;
 
     /**
@@ -81,7 +89,7 @@ public class PSDEFieldDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("fieldtag")
     @JSONField(name = "fieldtag")
-    @ApiModelProperty(value = "属性标记", position = 5)
+    @ApiModelProperty(value = "属性标记", position = 6)
     private String fieldTag;
 
     /**
@@ -89,7 +97,7 @@ public class PSDEFieldDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("fieldtag2")
     @JSONField(name = "fieldtag2")
-    @ApiModelProperty(value = "属性标记2", position = 6)
+    @ApiModelProperty(value = "属性标记2", position = 7)
     private String fieldTag2;
 
     /**
@@ -97,7 +105,7 @@ public class PSDEFieldDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("length")
     @JSONField(name = "length")
-    @ApiModelProperty(value = "长度", position = 7)
+    @ApiModelProperty(value = "长度", position = 8)
     private Integer length;
 
     /**
@@ -105,7 +113,7 @@ public class PSDEFieldDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("logicname")
     @JSONField(name = "logicname")
-    @ApiModelProperty(value = "中文名称", position = 8)
+    @ApiModelProperty(value = "中文名称", position = 9)
     private String logicName;
 
     /**
@@ -113,7 +121,7 @@ public class PSDEFieldDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("psdefieldid")
     @JSONField(name = "psdefieldid")
-    @ApiModelProperty(value = "实体属性标识", position = 9)
+    @ApiModelProperty(value = "实体属性标识", position = 10)
     private String psdeFieldId;
 
     /**
@@ -121,7 +129,7 @@ public class PSDEFieldDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("psdefieldname")
     @JSONField(name = "psdefieldname")
-    @ApiModelProperty(value = "实体属性名称", position = 10)
+    @ApiModelProperty(value = "实体属性名称", position = 11)
     private String psdeFieldName;
 
     /**
@@ -129,7 +137,7 @@ public class PSDEFieldDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("psdeid")
     @JSONField(name = "psdeid")
-    @ApiModelProperty(value = "实体", position = 11)
+    @ApiModelProperty(value = "实体", position = 12)
     private String psdeid;
 
     /**
@@ -137,7 +145,7 @@ public class PSDEFieldDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("psdename")
     @JSONField(name = "psdename")
-    @ApiModelProperty(value = "实体", position = 12)
+    @ApiModelProperty(value = "实体", position = 13)
     private String psdeName;
 
     /**
@@ -145,7 +153,7 @@ public class PSDEFieldDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("psdatatypeid")
     @JSONField(name = "psdatatypeid")
-    @ApiModelProperty(value = "数据类型", position = 13)
+    @ApiModelProperty(value = "数据类型", position = 14)
     private String psDataTypeId;
 
     /**
@@ -153,7 +161,7 @@ public class PSDEFieldDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("psdatatypename")
     @JSONField(name = "psdatatypename")
-    @ApiModelProperty(value = "数据类型", position = 14)
+    @ApiModelProperty(value = "数据类型", position = 15)
     private String psDataTypeName;
 
     /**
@@ -161,7 +169,7 @@ public class PSDEFieldDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("precision2")
     @JSONField(name = "precision2")
-    @ApiModelProperty(value = "浮点精度", position = 15)
+    @ApiModelProperty(value = "浮点精度", position = 16)
     private Integer precision2;
 
     /**
@@ -170,7 +178,7 @@ public class PSDEFieldDTO extends DTOBase implements Serializable {
     @JsonProperty("updatedate")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "updatedate" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 16)
+    @ApiModelProperty(value = "更新时间", position = 17)
     private Date updateDate;
 
     /**
@@ -178,7 +186,7 @@ public class PSDEFieldDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("updateman")
     @JSONField(name = "updateman")
-    @ApiModelProperty(value = "更新人", position = 17)
+    @ApiModelProperty(value = "更新人", position = 18)
     private String updateMan;
 
     /**
@@ -186,7 +194,7 @@ public class PSDEFieldDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("usertag")
     @JSONField(name = "usertag")
-    @ApiModelProperty(value = "用户标记", position = 18)
+    @ApiModelProperty(value = "用户标记", position = 19)
     private String userTag;
 
     /**
@@ -194,7 +202,7 @@ public class PSDEFieldDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("usertag2")
     @JSONField(name = "usertag2")
-    @ApiModelProperty(value = "用户标记2", position = 19)
+    @ApiModelProperty(value = "用户标记2", position = 20)
     private String userTag2;
 
     /**
@@ -202,7 +210,7 @@ public class PSDEFieldDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("usertag3")
     @JSONField(name = "usertag3")
-    @ApiModelProperty(value = "用户标记3", position = 20)
+    @ApiModelProperty(value = "用户标记3", position = 21)
     private String userTag3;
 
     /**
@@ -210,7 +218,7 @@ public class PSDEFieldDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("usertag4")
     @JSONField(name = "usertag4")
-    @ApiModelProperty(value = "用户标记4", position = 21)
+    @ApiModelProperty(value = "用户标记4", position = 22)
     private String userTag4;
 
     /**
@@ -218,7 +226,7 @@ public class PSDEFieldDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("extension_tag")
     @JSONField(name = "extension_tag")
-    @ApiModelProperty(value = "扩展标记", position = 22)
+    @ApiModelProperty(value = "扩展标记", position = 23)
     private String extensionTag;
 
     /**
@@ -226,7 +234,7 @@ public class PSDEFieldDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("extension_tag2")
     @JSONField(name = "extension_tag2")
-    @ApiModelProperty(value = "扩展标记2", position = 23)
+    @ApiModelProperty(value = "扩展标记2", position = 24)
     private String extensionTag2;
 
     /**
@@ -234,7 +242,7 @@ public class PSDEFieldDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("extension_tag3")
     @JSONField(name = "extension_tag3")
-    @ApiModelProperty(value = "扩展标记3", position = 24)
+    @ApiModelProperty(value = "扩展标记3", position = 25)
     private String extensionTag3;
 
     /**
@@ -242,9 +250,18 @@ public class PSDEFieldDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("extension_tag4")
     @JSONField(name = "extension_tag4")
-    @ApiModelProperty(value = "扩展标记4", position = 25)
+    @ApiModelProperty(value = "扩展标记4", position = 26)
     private String extensionTag4;
 
+
+    /**
+     * 设置 [扩展模型]
+     */
+    public PSDEFieldDTO setDynaModelFlag(Integer dynaModelFlag) {
+        this.dynaModelFlag = dynaModelFlag;
+        this.modify("dynamodelflag", dynaModelFlag);
+        return this;
+    }
 
     /**
      * 设置 [允许空值]

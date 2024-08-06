@@ -23,12 +23,14 @@ import java.util.stream.IntStream;
 import cn.ibizlab.util.domain.ImportResult;
 import cn.ibizlab.util.domain.RequestWrapper;
 import cn.ibizlab.util.domain.ResponseWrapper;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.serviceapi.dto.*;
 import cn.ibizlab.plm.serviceapi.mapping.*;
 import cn.ibizlab.plm.core.base.domain.SearchAttachment;
 import cn.ibizlab.plm.core.base.service.SearchAttachmentService;
 import cn.ibizlab.plm.core.base.filter.SearchAttachmentSearchContext;
 import cn.ibizlab.util.annotation.VersionCheck;
+import reactor.core.publisher.Mono;
 
 /**
  * 实体[SearchAttachment] rest实现
@@ -55,21 +57,21 @@ public abstract class AbstractSearchAttachmentResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<SearchAttachmentDTO>>
+    * @return Mono<ResponseEntity<List<SearchAttachmentDTO>>>
     */
     @ApiOperation(value = "查询fetch_default", tags = {"附件搜索" },  notes = "SearchAttachment-fetch_default ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-SearchAttachment-fetch_default-all') or hasPermission(#dto,'ibizplm-SearchAttachment-fetch_default')")
     @PostMapping("search_attachments/fetch_default")
-    public ResponseEntity<List<SearchAttachmentDTO>> fetchDefault
+    public Mono<ResponseEntity<List<SearchAttachmentDTO>>> fetchDefault
             (@Validated @RequestBody SearchAttachmentFilterDTO dto) {
         SearchAttachmentSearchContext context = searchAttachmentFilterDtoMapping.toDomain(dto);
         Page<SearchAttachment> domains = searchAttachmentService.fetchDefault(context) ;
         List<SearchAttachmentDTO> list = searchAttachmentDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -77,21 +79,21 @@ public abstract class AbstractSearchAttachmentResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<SearchAttachmentDTO>>
+    * @return Mono<ResponseEntity<List<SearchAttachmentDTO>>>
     */
     @ApiOperation(value = "查询fetch_relation", tags = {"附件搜索" },  notes = "SearchAttachment-fetch_relation ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-SearchAttachment-fetch_relation-all') or hasPermission(#dto,'ibizplm-SearchAttachment-fetch_relation')")
     @PostMapping("search_attachments/fetch_relation")
-    public ResponseEntity<List<SearchAttachmentDTO>> fetchRelation
+    public Mono<ResponseEntity<List<SearchAttachmentDTO>>> fetchRelation
             (@Validated @RequestBody SearchAttachmentFilterDTO dto) {
         SearchAttachmentSearchContext context = searchAttachmentFilterDtoMapping.toDomain(dto);
         Page<SearchAttachment> domains = searchAttachmentService.fetchRelation(context) ;
         List<SearchAttachmentDTO> list = searchAttachmentDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
 

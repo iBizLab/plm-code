@@ -180,6 +180,7 @@ export default {
               id: 'root',
             },
             {
+              iconAppDEFieldId: 'icon',
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
               appDEDataSetId: 'fetch_normal',
@@ -200,6 +201,7 @@ export default {
               id: 'node_2',
             },
             {
+              iconAppDEFieldId: 'icon',
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
               appDEDataSetId: 'fetch_normal',
@@ -218,6 +220,7 @@ export default {
               id: 'node_4',
             },
             {
+              iconAppDEFieldId: 'icon',
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
               appDEDataSetId: 'fetch_only_page',

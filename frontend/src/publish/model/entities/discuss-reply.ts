@@ -736,26 +736,10 @@ export default {
           codeName: 'Begin',
           leftPos: 200,
           logicNodeType: 'BEGIN',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'debugparam1',
-              srcDEUILogicNodeId: 'begin',
-              id: '连接名称',
-            },
-          ],
           topPos: 200,
           parallelOutput: true,
           name: '开始',
           id: 'begin',
-        },
-        {
-          codeName: 'DEBUGPARAM1',
-          dstDEUILogicParamId: 'ctrl',
-          leftPos: 160,
-          logicNodeType: 'DEBUGPARAM',
-          topPos: 370,
-          name: '调试逻辑参数',
-          id: 'debugparam1',
         },
         {
           codeName: 'PREPAREJSPARAM1',

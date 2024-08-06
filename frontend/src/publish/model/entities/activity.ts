@@ -649,7 +649,7 @@ export default {
           logicNodeType: 'BEGIN',
           deuilogicLinks: [
             {
-              dstDEUILogicNodeId: 'debugparam1',
+              dstDEUILogicNodeId: 'deaction1',
               srcDEUILogicNodeId: 'begin',
               id: '连接名称',
             },
@@ -669,7 +669,7 @@ export default {
           logicNodeType: 'DEACTION',
           deuilogicLinks: [
             {
-              dstDEUILogicNodeId: 'debugparam2',
+              dstDEUILogicNodeId: 'end1',
               srcDEUILogicNodeId: 'deaction1',
               id: '连接名称',
             },
@@ -686,51 +686,19 @@ export default {
           name: '结束',
           id: 'end1',
         },
-        {
-          codeName: 'DEBUGPARAM2',
-          dstDEUILogicParamId: 'obj_info',
-          leftPos: 614,
-          logicNodeType: 'DEBUGPARAM',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'end1',
-              srcDEUILogicNodeId: 'debugparam2',
-              id: '连接名称',
-            },
-          ],
-          topPos: 208,
-          name: '调试逻辑参数',
-          id: 'debugparam2',
-        },
-        {
-          codeName: 'DEBUGPARAM1',
-          dstDEUILogicParamId: 'default',
-          leftPos: 230,
-          logicNodeType: 'DEBUGPARAM',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'deaction1',
-              srcDEUILogicNodeId: 'debugparam1',
-              id: '连接名称',
-            },
-          ],
-          topPos: 208,
-          name: '调试逻辑参数',
-          id: 'debugparam1',
-        },
       ],
       deuilogicParams: [
-        {
-          codeName: 'view',
-          activeViewParam: true,
-          name: '当前视图',
-          id: 'view',
-        },
         {
           codeName: 'obj_info',
           entityParam: true,
           name: '活动对象详情信息',
           id: 'obj_info',
+        },
+        {
+          codeName: 'list',
+          ctrlParam: true,
+          name: '列表部件',
+          id: 'list',
         },
         {
           codeName: 'Default',
@@ -740,10 +708,10 @@ export default {
           id: 'default',
         },
         {
-          codeName: 'list',
-          ctrlParam: true,
-          name: '列表部件',
-          id: 'list',
+          codeName: 'view',
+          activeViewParam: true,
+          name: '当前视图',
+          id: 'view',
         },
       ],
       startDEUILogicNodeId: 'begin',

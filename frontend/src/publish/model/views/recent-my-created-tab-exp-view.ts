@@ -72,6 +72,7 @@ export default {
             srfdeid: 'RECENT',
           },
           tag: '9683e6cc84957a11aea51c22b98e3f86',
+          uniqueTag: 'my_created_entry',
           id: '9683e6cc84957a11aea51c22b98e3f86',
         },
       ],

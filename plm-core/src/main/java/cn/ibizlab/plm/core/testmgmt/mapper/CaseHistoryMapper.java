@@ -51,6 +51,25 @@ public interface CaseHistoryMapper extends BaseMapper<CaseHistory> {
     List<CaseHistory> findByCaseId(@Param("caseIds") List<String> caseIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<CaseHistory> searchView(IPage<CaseHistory> page, @Param("ctx") CaseHistorySearchContext context, @Param("ew") Wrapper<CaseHistory> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<CaseHistory> listView(@Param("ctx") CaseHistorySearchContext context, @Param("ew") Wrapper<CaseHistory> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

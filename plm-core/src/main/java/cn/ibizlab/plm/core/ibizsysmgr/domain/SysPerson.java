@@ -160,6 +160,15 @@ public class SysPerson extends EntityClient implements Serializable
     private String description;
 
     /**
+     * 状态
+     */
+    @DEField(name = "status")
+    @JSONField(name = "status")
+    @JsonProperty("status")
+    @ApiModelProperty(value = "status", notes = "状态")
+    private String status;
+
+    /**
      * 统计
      */
     @DEField(name = "report_flag" , dict = "YesNo")
@@ -357,6 +366,15 @@ public class SysPerson extends EntityClient implements Serializable
     public SysPerson setDescription(String description) {
         this.description = description;
         this.modify("description", description);
+        return this;
+    }
+
+    /**
+    * 设置 [状态]
+    */
+    public SysPerson setStatus(String status) {
+        this.status = status;
+        this.modify("status", status);
         return this;
     }
 

@@ -270,6 +270,8 @@ export default {
             },
             {
               text: '配置中心',
+              accUserMode: 4,
+              accessKey: 'BASE',
               nodeType: 'node_5',
               decontextMenu: {
                 detoolbarItems: [

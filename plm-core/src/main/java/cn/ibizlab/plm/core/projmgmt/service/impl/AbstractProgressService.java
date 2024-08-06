@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.projmgmt.domain.Progress;
@@ -103,14 +104,14 @@ public abstract class AbstractProgressService extends ServiceImpl<ProgressMapper
         return et;
     }
 	
-    public Integer checkKey(Progress et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Progress>lambdaQuery().eq(Progress::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(Progress et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Progress>lambdaQuery().eq(Progress::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(Progress et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -153,6 +154,10 @@ public abstract class AbstractProgressService extends ServiceImpl<ProgressMapper
         return list;	
 	}
 
+	public List<Progress> findByProject(Project project){
+        List<Progress> list = findByProjectId(Arrays.asList(project.getId()));
+		return list;
+	}
 	public boolean removeByProjectId(String projectId){
         return this.remove(Wrappers.<Progress>lambdaQuery().eq(Progress::getProjectId,projectId));
 	}
@@ -163,8 +168,8 @@ public abstract class AbstractProgressService extends ServiceImpl<ProgressMapper
 	public boolean saveByProject(Project project, List<Progress> list){
         if(list==null)
             return true;
-        Map<String,Progress> before = findByProjectId(project.getId()).stream().collect(Collectors.toMap(Progress::getId,e->e));
 
+        Map<String,Progress> before = findByProject(project).stream().collect(Collectors.toMap(Progress::getId,e->e));
         List<Progress> update = new ArrayList<>();
         List<Progress> create = new ArrayList<>();
 
@@ -188,6 +193,17 @@ public abstract class AbstractProgressService extends ServiceImpl<ProgressMapper
             return true;
 			
 	}
+   public Page<Progress> fetchView(ProgressSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Progress> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<Progress> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Progress> listView(ProgressSearchContext context) {
+        List<Progress> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(Progress et) {
         if(Entities.PROJECT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

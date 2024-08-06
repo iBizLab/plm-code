@@ -11,6 +11,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
 import cn.ibizlab.plm.core.testmgmt.filter.TestCaseSearchContext;
 import cn.ibizlab.plm.core.testmgmt.domain.Library;
@@ -153,7 +154,7 @@ public interface TestCaseService extends IService<TestCase> {
     * @param et
     * @return
     */
-    Integer checkKey(TestCase et);
+    CheckKeyStatus checkKey(TestCase et);
 
     /**
     * 保存
@@ -411,7 +412,7 @@ public interface TestCaseService extends IService<TestCase> {
 
     /**
     * fetchBaselineChooseCase
-    * 
+    * 基线选择用例
     * @param context
     * @return
     */
@@ -419,11 +420,43 @@ public interface TestCaseService extends IService<TestCase> {
 
     /**
     * listBaselineChooseCase
-    * 
+    * 基线选择用例
     * @param context
     * @return
     */
     List<TestCase> listBaselineChooseCase(TestCaseSearchContext context);
+
+    /**
+    * fetchBiDetail
+    * 
+    * @param context
+    * @return
+    */
+    Page<TestCase> fetchBiDetail(TestCaseSearchContext context);
+
+    /**
+    * listBiDetail
+    * 
+    * @param context
+    * @return
+    */
+    List<TestCase> listBiDetail(TestCaseSearchContext context);
+
+    /**
+    * fetchBiSearch
+    * 
+    * @param context
+    * @return
+    */
+    Page<TestCase> fetchBiSearch(TestCaseSearchContext context);
+
+    /**
+    * listBiSearch
+    * 
+    * @param context
+    * @return
+    */
+    List<TestCase> listBiSearch(TestCaseSearchContext context);
 
     /**
     * fetchCasePerson
@@ -714,6 +747,22 @@ public interface TestCaseService extends IService<TestCase> {
     List<TestCase> listPriorityDistributions(TestCaseSearchContext context);
 
     /**
+    * fetchReader
+    * 
+    * @param context
+    * @return
+    */
+    Page<TestCase> fetchReader(TestCaseSearchContext context);
+
+    /**
+    * listReader
+    * 
+    * @param context
+    * @return
+    */
+    List<TestCase> listReader(TestCaseSearchContext context);
+
+    /**
     * fetchRecentTestCase
     * 
     * @param context
@@ -768,8 +817,15 @@ public interface TestCaseService extends IService<TestCase> {
     */
     List<TestCase> findByTestLibraryId(List<String> testLibraryIds);
     default List<TestCase> findByTestLibraryId(String testLibraryId){
-        return findByTestLibraryId(Arrays.asList(testLibraryId));
+        return findByLibrary(new Library().setId(testLibraryId));
     }
+
+    /**
+    * findByLibrary
+    * @param library
+    * @return
+    */
+    List<TestCase> findByLibrary(Library library);
 
     /**
     * removeByTestLibraryId
@@ -810,8 +866,15 @@ public interface TestCaseService extends IService<TestCase> {
     */
     List<TestCase> findBySuiteId(List<String> suiteIds);
     default List<TestCase> findBySuiteId(String suiteId){
-        return findBySuiteId(Arrays.asList(suiteId));
+        return findByTestSuite(new TestSuite().setId(suiteId));
     }
+
+    /**
+    * findByTestSuite
+    * @param testSuite
+    * @return
+    */
+    List<TestCase> findByTestSuite(TestSuite testSuite);
 
     /**
     * removeBySuiteId
@@ -852,8 +915,15 @@ public interface TestCaseService extends IService<TestCase> {
     */
     List<TestCase> findByMaintenanceId(List<String> maintenanceIds);
     default List<TestCase> findByMaintenanceId(String maintenanceId){
-        return findByMaintenanceId(Arrays.asList(maintenanceId));
+        return findByUser(new User().setId(maintenanceId));
     }
+
+    /**
+    * findByUser
+    * @param user
+    * @return
+    */
+    List<TestCase> findByUser(User user);
 
     /**
     * removeByMaintenanceId
@@ -914,6 +984,22 @@ public interface TestCaseService extends IService<TestCase> {
     default TestCase newestRun(TestCase et) {
         return et;
     }
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<TestCase> fetchView(TestCaseSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<TestCase> listView(TestCaseSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<TestCase> list) {

@@ -43,6 +43,25 @@ public interface ExtendStorageMapper extends BaseMapper<ExtendStorage> {
     List<ExtendStorage> listDefault(@Param("ctx") ExtendStorageSearchContext context, @Param("ew") Wrapper<ExtendStorage> wrapper);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<ExtendStorage> searchView(IPage<ExtendStorage> page, @Param("ctx") ExtendStorageSearchContext context, @Param("ew") Wrapper<ExtendStorage> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<ExtendStorage> listView(@Param("ctx") ExtendStorageSearchContext context, @Param("ew") Wrapper<ExtendStorage> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

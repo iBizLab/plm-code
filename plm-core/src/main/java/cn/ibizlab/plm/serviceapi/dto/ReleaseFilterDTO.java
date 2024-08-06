@@ -35,7 +35,7 @@ public class ReleaseFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_status_eq")
     @JSONField(name = "n_status_eq")
-    @ApiModelProperty(value = "阶段EQ", position = 40)
+    @ApiModelProperty(value = "阶段EQ", position = 30)
 	private String statusEQ;
 
     /**
@@ -43,7 +43,7 @@ public class ReleaseFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_categories_like")
     @JSONField(name = "n_categories_like")
-    @ApiModelProperty(value = "类别LIKE", position = 50)
+    @ApiModelProperty(value = "类别LIKE", position = 40)
 	private String categoriesLIKE;
 
     /**
@@ -51,7 +51,7 @@ public class ReleaseFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 90)
+    @ApiModelProperty(value = "标识EQ", position = 120)
 	private String idEQ;
 
     /**
@@ -59,7 +59,7 @@ public class ReleaseFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 100)
+    @ApiModelProperty(value = "名称LIKE", position = 130)
 	private String nameLIKE;
 
     /**
@@ -67,7 +67,7 @@ public class ReleaseFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_project_id_eq")
     @JSONField(name = "n_project_id_eq")
-    @ApiModelProperty(value = "项目标识EQ", position = 150)
+    @ApiModelProperty(value = "项目标识EQ", position = 180)
 	private String projectIdEQ;
 
     /**
@@ -75,7 +75,7 @@ public class ReleaseFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_project_name_eq")
     @JSONField(name = "n_project_name_eq")
-    @ApiModelProperty(value = "项目名称EQ", position = 160)
+    @ApiModelProperty(value = "项目名称EQ", position = 190)
 	private String projectNameEQ;
 
     /**
@@ -83,7 +83,7 @@ public class ReleaseFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_project_name_like")
     @JSONField(name = "n_project_name_like")
-    @ApiModelProperty(value = "项目名称LIKE", position = 161)
+    @ApiModelProperty(value = "项目名称LIKE", position = 191)
 	private String projectNameLIKE;
 
 

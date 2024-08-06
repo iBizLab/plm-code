@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.Work;
 import cn.ibizlab.plm.core.base.filter.WorkSearchContext;
 import cn.ibizlab.plm.core.base.domain.Portfolio;
@@ -139,7 +140,7 @@ public interface WorkService extends IService<Work> {
     * @param et
     * @return
     */
-    Integer checkKey(Work et);
+    CheckKeyStatus checkKey(Work et);
 
     /**
     * 保存
@@ -214,8 +215,15 @@ public interface WorkService extends IService<Work> {
     */
     List<Work> findByPortfolioId(List<String> portfolioIds);
     default List<Work> findByPortfolioId(String portfolioId){
-        return findByPortfolioId(Arrays.asList(portfolioId));
+        return findByPortfolio(new Portfolio().setId(portfolioId));
     }
+
+    /**
+    * findByPortfolio
+    * @param portfolio
+    * @return
+    */
+    List<Work> findByPortfolio(Portfolio portfolio);
 
     /**
     * removeByPortfolioId
@@ -256,8 +264,15 @@ public interface WorkService extends IService<Work> {
     */
     List<Work> findByPilotId(List<String> pilotIds);
     default List<Work> findByPilotId(String pilotId){
-        return findByPilotId(Arrays.asList(pilotId));
+        return findByProject(new Project().setId(pilotId));
     }
+
+    /**
+    * findByProject
+    * @param project
+    * @return
+    */
+    List<Work> findByProject(Project project);
 
     /**
     * removeByPilotId
@@ -290,6 +305,22 @@ public interface WorkService extends IService<Work> {
     * @return
     */
     boolean saveByProject(Project project, List<Work> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Work> fetchView(WorkSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Work> listView(WorkSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Work> list) {

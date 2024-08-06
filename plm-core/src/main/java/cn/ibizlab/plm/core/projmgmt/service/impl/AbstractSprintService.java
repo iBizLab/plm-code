@@ -3,6 +3,7 @@
  */
 package cn.ibizlab.plm.core.projmgmt.service.impl;
 
+import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.projmgmt.domain.Sprint;
@@ -26,10 +28,14 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import cn.ibizlab.plm.core.projmgmt.domain.Project;
 import cn.ibizlab.plm.core.projmgmt.service.ProjectService;
+import cn.ibizlab.plm.core.projmgmt.domain.SprintAlteration;
+import cn.ibizlab.plm.core.projmgmt.service.SprintAlterationService;
 import cn.ibizlab.plm.core.testmgmt.domain.TestPlan;
 import cn.ibizlab.plm.core.testmgmt.service.TestPlanService;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
 import cn.ibizlab.plm.core.projmgmt.service.WorkItemService;
+import cn.ibizlab.plm.core.base.domain.Relation;
+import cn.ibizlab.plm.core.base.service.RelationService;
 
 /**
  * 实体[迭代] 服务对象接口实现
@@ -45,11 +51,19 @@ public abstract class AbstractSprintService extends ServiceImpl<SprintMapper,Spr
 
     @Autowired
     @Lazy
+    protected SprintAlterationService sprintAlterationService;
+
+    @Autowired
+    @Lazy
     protected TestPlanService testPlanService;
 
     @Autowired
     @Lazy
     protected WorkItemService workItemService;
+
+    @Autowired
+    @Lazy
+    protected RelationService relationService;
 
     @Autowired
     @Lazy
@@ -123,14 +137,14 @@ public abstract class AbstractSprintService extends ServiceImpl<SprintMapper,Spr
         return et;
     }
 	
-    public Integer checkKey(Sprint et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Sprint>lambdaQuery().eq(Sprint::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(Sprint et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<Sprint>lambdaQuery().eq(Sprint::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(Sprint et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -172,6 +186,43 @@ public abstract class AbstractSprintService extends ServiceImpl<SprintMapper,Spr
         return list;
    }
 	
+   public Page<Sprint> fetchAll(SprintSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("START_AT,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Sprint> pages=baseMapper.searchAll(context.getPages(),context,context.getSelectCond());
+        List<Sprint> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Sprint> listAll(SprintSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("START_AT,DESC");
+        List<Sprint> list = baseMapper.listAll(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Sprint> fetchBiDetail(SprintSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Sprint> pages=baseMapper.searchBiDetail(context.getPages(),context,context.getSelectCond());
+        List<Sprint> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Sprint> listBiDetail(SprintSearchContext context) {
+        List<Sprint> list = baseMapper.listBiDetail(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Sprint> fetchBiSearch(SprintSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Sprint> pages=baseMapper.searchBiSearch(context.getPages(),context,context.getSelectCond());
+        List<Sprint> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Sprint> listBiSearch(SprintSearchContext context) {
+        List<Sprint> list = baseMapper.listBiSearch(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<Sprint> fetchChooseMove(SprintSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Sprint> pages=baseMapper.searchChooseMove(context.getPages(),context,context.getSelectCond());
         List<Sprint> list = pages.getRecords();
@@ -180,6 +231,17 @@ public abstract class AbstractSprintService extends ServiceImpl<SprintMapper,Spr
 
    public List<Sprint> listChooseMove(SprintSearchContext context) {
         List<Sprint> list = baseMapper.listChooseMove(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Sprint> fetchChooseSprintRelation(SprintSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Sprint> pages=baseMapper.searchChooseSprintRelation(context.getPages(),context,context.getSelectCond());
+        List<Sprint> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Sprint> listChooseSprintRelation(SprintSearchContext context) {
+        List<Sprint> list = baseMapper.listChooseSprintRelation(context,context.getSelectCond());
         return list;
    }
 	
@@ -205,11 +267,37 @@ public abstract class AbstractSprintService extends ServiceImpl<SprintMapper,Spr
         return list;
    }
 	
+   public Page<Sprint> fetchReader(SprintSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Sprint> pages=baseMapper.searchReader(context.getPages(),context,context.getSelectCond());
+        List<Sprint> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Sprint> listReader(SprintSearchContext context) {
+        List<Sprint> list = baseMapper.listReader(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Sprint> fetchReleaseRelation(SprintSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Sprint> pages=baseMapper.searchReleaseRelation(context.getPages(),context,context.getSelectCond());
+        List<Sprint> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Sprint> listReleaseRelation(SprintSearchContext context) {
+        List<Sprint> list = baseMapper.listReleaseRelation(context,context.getSelectCond());
+        return list;
+   }
+	
 	public List<Sprint> findByProjectId(List<String> projectIds){
         List<Sprint> list = baseMapper.findByProjectId(projectIds);
         return list;	
 	}
 
+	public List<Sprint> findByProject(Project project){
+        List<Sprint> list = findByProjectId(Arrays.asList(project.getId()));
+		return list;
+	}
 	public boolean removeByProjectId(String projectId){
         List<String> ids = baseMapper.findByProjectId(Arrays.asList(projectId)).stream().map(e->e.getId()).collect(Collectors.toList());
         if(!ObjectUtils.isEmpty(ids))
@@ -224,8 +312,8 @@ public abstract class AbstractSprintService extends ServiceImpl<SprintMapper,Spr
 	public boolean saveByProject(Project project, List<Sprint> list){
         if(list==null)
             return true;
-        Map<String,Sprint> before = findByProjectId(project.getId()).stream().collect(Collectors.toMap(Sprint::getId,e->e));
 
+        Map<String,Sprint> before = findByProject(project).stream().collect(Collectors.toMap(Sprint::getId,e->e));
         List<Sprint> update = new ArrayList<>();
         List<Sprint> create = new ArrayList<>();
 
@@ -254,6 +342,10 @@ public abstract class AbstractSprintService extends ServiceImpl<SprintMapper,Spr
         return list;	
 	}
 
+	public List<Sprint> findBySprint(Sprint sprint){
+        List<Sprint> list = findByPid(Arrays.asList(sprint.getId()));
+		return list;
+	}
 	public boolean removeByPid(String pid){
         List<String> ids = baseMapper.findByPid(Arrays.asList(pid)).stream().map(e->e.getId()).collect(Collectors.toList());
         if(!ObjectUtils.isEmpty(ids))
@@ -268,8 +360,8 @@ public abstract class AbstractSprintService extends ServiceImpl<SprintMapper,Spr
 	public boolean saveBySprint(Sprint sprint, List<Sprint> list){
         if(list==null)
             return true;
-        Map<String,Sprint> before = findByPid(sprint.getId()).stream().collect(Collectors.toMap(Sprint::getId,e->e));
 
+        Map<String,Sprint> before = findBySprint(sprint).stream().collect(Collectors.toMap(Sprint::getId,e->e));
         List<Sprint> update = new ArrayList<>();
         List<Sprint> create = new ArrayList<>();
 
@@ -293,6 +385,17 @@ public abstract class AbstractSprintService extends ServiceImpl<SprintMapper,Spr
             return true;
 			
 	}
+   public Page<Sprint> fetchView(SprintSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Sprint> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<Sprint> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Sprint> listView(SprintSearchContext context) {
+        List<Sprint> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
+	
 
     public void fillParentData(Sprint et) {
         if(Entities.PROJECT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

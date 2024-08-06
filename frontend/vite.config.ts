@@ -157,6 +157,13 @@ export default defineConfig({
           return path.replace('/api/', '/');
         },
       },
+      '/api/ibizplm__plmweb/jsonschema': {
+        target: 'http://nacos.ibizcloud.cn:30086',
+        changeOrigin: true,
+        rewrite(path) {
+          return path.replace('/api/', '/');
+        },
+      },
 
       // 前端依赖网关代理的已启动的serviceRunner服务
       //
@@ -171,7 +178,6 @@ export default defineConfig({
       ///////////////////////////////
 
       // 前端依赖本地已启动的后台代码服务
-      //
       '/api/ibizplm__plmweb/appdata': {
         target: 'http://127.0.0.1:18080',
         rewrite(path) {

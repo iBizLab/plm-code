@@ -98,11 +98,11 @@ export default {
               },
             ],
             layout: {
-              dir: 'row-reverse',
               layout: 'FLEX',
             },
             dataRegionType: 'INHERIT',
             caption: '容器',
+            cssStyle: 'margin-right:10px',
             itemStyle: 'DEFAULT',
             itemType: 'CONTAINER',
             layoutPos: {
@@ -262,7 +262,7 @@ export default {
     ],
     controls: [
       {
-        tabExpPageIds: ['is_running', 'is_archived', 'is_deleted'],
+        tabExpPageIds: ['is_running', 'is_shared', 'is_archived', 'is_deleted'],
         tabLayout: 'TOP',
         uniqueTag: 'space_tab_exp_view__tabexppanel',
         appViewRefs: [
@@ -271,6 +271,12 @@ export default {
             refAppViewId: 'plmweb.space_in_progress_grid_view',
             name: 'EXPITEM:is_running',
             id: 'expitem:is_running',
+          },
+          {
+            realTitle: '空间管理表格视图（共享中）',
+            refAppViewId: 'plmweb.shared_space_shared_grid_view',
+            name: 'EXPITEM:is_shared',
+            id: 'expitem:is_shared',
           },
           {
             realTitle: '空间管理',
@@ -299,6 +305,20 @@ export default {
             modelType: 'PSVIEWPANEL',
             name: 'is_running',
             id: 'tab_exp_view_is_running',
+          },
+          {
+            caption: '共享中',
+            embeddedAppDEViewId: 'plmweb.shared_space_shared_grid_view',
+            codeName: 'tab_exp_view_is_shared',
+            controlType: 'TABVIEWPANEL',
+            appDataEntityId: 'plmweb.space',
+            controlParam: {
+              id: 'is_shared',
+            },
+            modelId: 'a3790b72a843294d734c705dd52b87ee_is_shared',
+            modelType: 'PSVIEWPANEL',
+            name: 'is_shared',
+            id: 'tab_exp_view_is_shared',
           },
           {
             caption: '已归档',

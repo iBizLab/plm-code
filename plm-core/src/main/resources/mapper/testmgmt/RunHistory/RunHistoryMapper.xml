@@ -5,17 +5,17 @@
         <!--通过mybatis将查询结果注入到entity中,通过配置autoMapping="true"由mybatis自动处理映射关系 -->
     <resultMap id="RunHistoryResultMap" type="cn.ibizlab.plm.core.testmgmt.domain.RunHistory" autoMapping="true">
 		<id property="id" column="id" /><!--主键字段映射-->
-		<result property="caseId" column="case_id" />
-		<result property="executedAt" column="executed_at" />
-        <result property="steps" column="steps" jdbcType="VARCHAR" typeHandler="cn.ibizlab.plm.core.testmgmt.domain.handlers.StepTypeHandler" />
-		<result property="executorId" column="executor_id" />
-		<result property="executorName" column="executor_name" />
-		<result property="createMan" column="create_man" />
-		<result property="createTime" column="create_time" />
-		<result property="updateMan" column="update_man" />
-		<result property="updateTime" column="update_time" />
-		<result property="runId" column="run_id" />
-		<result property="runTitle" column="run_title" />
+		<result property="caseId" column="case_id"/>
+		<result property="executedAt" column="executed_at"/>
+		<result property="steps" column="steps" jdbcType="VARCHAR" typeHandler="cn.ibizlab.plm.core.testmgmt.domain.handlers.StepTypeHandler"/>
+		<result property="executorId" column="executor_id"/>
+		<result property="executorName" column="executor_name"/>
+		<result property="createMan" column="create_man"/>
+		<result property="createTime" column="create_time"/>
+		<result property="updateMan" column="update_man"/>
+		<result property="updateTime" column="update_time"/>
+		<result property="runId" column="run_id"/>
+		<result property="runTitle" column="run_title"/>
         <association property="run" javaType="cn.ibizlab.plm.core.testmgmt.domain.Run" column="run_id" select="cn.ibizlab.plm.core.testmgmt.mapper.RunMapper.selectById" fetchType="lazy"></association>
     </resultMap>
 
@@ -96,6 +96,15 @@
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
         
+    </select>
+
+    <select id="listView"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.RunHistorySearchContext"  resultMap="RunHistoryResultMap">
+        select t1.*
+        from (
+            <include refid="view" />
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
     </select>
 
     <select id="findByRunId" resultMap="RunHistoryResultMap">

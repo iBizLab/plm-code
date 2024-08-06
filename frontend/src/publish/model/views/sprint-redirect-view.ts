@@ -1,0 +1,71 @@
+export default {
+  redirectAppViewRefs: [
+    {
+      realTitle: '迭代编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.SPRINT.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.sprint_edit_view',
+      name: 'SPRINT:EDITVIEW',
+      id: 'sprint:editview',
+    },
+    {
+      realTitle: '迭代编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.SPRINT.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.sprint_edit_view',
+      name: 'EDITVIEW',
+      id: 'editview',
+    },
+  ],
+  enableWorkflow: true,
+  funcViewMode: 'REDIRECTVIEW',
+  deviewCodeName: 'RedirectView',
+  deviewId: '128cad1d32597724ae5de5bda47513a0',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.SPRINT',
+  },
+  caption: '迭代',
+  codeName: 'sprint_redirect_view',
+  appDataEntityId: 'plmweb.sprint',
+  controls: [
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.SPRINT',
+      },
+      caption: '迭代',
+      codeName: 'redirect_view_captionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.sprint',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'redirect_view_captionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'layoutpanel',
+    controlStyle: 'APPDEREDIRECTVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.sprint',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '迭代数据重定向视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.SPRINT.REDIRECTVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEREDIRECTVIEW',
+  enableDP: true,
+  redirectView: true,
+  showCaptionBar: true,
+  modelId: '65b425490c7978b3adae54214afccafb',
+  modelType: 'PSAPPDEVIEW',
+  name: 'sprintRedirectView',
+  id: 'plmweb.sprint_redirect_view',
+};

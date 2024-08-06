@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.testmgmt.domain.Library;
 import cn.ibizlab.plm.core.testmgmt.filter.LibrarySearchContext;
 import cn.ibizlab.plm.core.testmgmt.domain.LibraryMember;
@@ -248,7 +249,7 @@ public interface LibraryService extends IService<Library> {
     * @param et
     * @return
     */
-    Integer checkKey(Library et);
+    CheckKeyStatus checkKey(Library et);
 
     /**
     * 保存
@@ -478,7 +479,7 @@ public interface LibraryService extends IService<Library> {
 
     /**
     * fetchProjectRelationLibrary
-    * 
+    * 通过测试计划中进行关联项目展示测试库
     * @param context
     * @return
     */
@@ -486,7 +487,7 @@ public interface LibraryService extends IService<Library> {
 
     /**
     * listProjectRelationLibrary
-    * 
+    * 通过测试计划中进行关联项目展示测试库
     * @param context
     * @return
     */
@@ -543,6 +544,22 @@ public interface LibraryService extends IService<Library> {
     default List<LibraryMember> getMembers(Library et) {
         return new ArrayList<>();
     }
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Library> fetchView(LibrarySearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Library> listView(LibrarySearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Library> list) {

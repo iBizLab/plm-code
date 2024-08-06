@@ -35,7 +35,7 @@ public class PSDELogicNodeFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_psdelogicnodeid_eq")
     @JSONField(name = "n_psdelogicnodeid_eq")
-    @ApiModelProperty(value = "实体处理逻辑节点标识EQ", position = 0)
+    @ApiModelProperty(value = "实体处理逻辑节点标识EQ", position = 50)
 	private String psdeLogicNodeIdEQ;
 
     /**
@@ -43,7 +43,7 @@ public class PSDELogicNodeFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_psdelogicnodename_like")
     @JSONField(name = "n_psdelogicnodename_like")
-    @ApiModelProperty(value = "逻辑处理名称LIKE", position = 10)
+    @ApiModelProperty(value = "逻辑处理名称LIKE", position = 60)
 	private String psdeLogicNodeNameLIKE;
 
     /**
@@ -51,7 +51,7 @@ public class PSDELogicNodeFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_psdelogicid_eq")
     @JSONField(name = "n_psdelogicid_eq")
-    @ApiModelProperty(value = "实体处理逻辑EQ", position = 20)
+    @ApiModelProperty(value = "实体处理逻辑EQ", position = 70)
 	private String psdeLogicIdEQ;
 
     /**
@@ -59,7 +59,7 @@ public class PSDELogicNodeFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_psdelogicname_eq")
     @JSONField(name = "n_psdelogicname_eq")
-    @ApiModelProperty(value = "实体处理逻辑EQ", position = 30)
+    @ApiModelProperty(value = "实体处理逻辑EQ", position = 80)
 	private String psdeLogicNameEQ;
 
     /**
@@ -67,8 +67,40 @@ public class PSDELogicNodeFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_psdelogicname_like")
     @JSONField(name = "n_psdelogicname_like")
-    @ApiModelProperty(value = "实体处理逻辑LIKE", position = 31)
+    @ApiModelProperty(value = "实体处理逻辑LIKE", position = 81)
 	private String psdeLogicNameLIKE;
+
+    /**
+     * 项目标识EQ
+     */
+    @JsonProperty("n_project_id_eq")
+    @JSONField(name = "n_project_id_eq")
+    @ApiModelProperty(value = "项目标识EQ", position = 90)
+	private String projectIdEQ;
+
+    /**
+     * 项目名称EQ
+     */
+    @JsonProperty("n_project_name_eq")
+    @JSONField(name = "n_project_name_eq")
+    @ApiModelProperty(value = "项目名称EQ", position = 100)
+	private String projectNameEQ;
+
+    /**
+     * 项目名称LIKE
+     */
+    @JsonProperty("n_project_name_like")
+    @JSONField(name = "n_project_name_like")
+    @ApiModelProperty(value = "项目名称LIKE", position = 101)
+	private String projectNameLIKE;
+
+    /**
+     * 逻辑节点类型EQ
+     */
+    @JsonProperty("n_logicnodetype_eq")
+    @JSONField(name = "n_logicnodetype_eq")
+    @ApiModelProperty(value = "逻辑节点类型EQ", position = 110)
+	private String logicNodeTypeEQ;
 
 
 }

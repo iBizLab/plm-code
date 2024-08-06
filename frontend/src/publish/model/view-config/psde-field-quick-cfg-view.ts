@@ -4,7 +4,7 @@ export default {
   openMode: 'POPUPMODAL',
   viewType: 'DEEDITVIEW',
   width: 800,
-  height: 300,
+  height: 200,
   appDataEntityId: 'plmweb.psdefield',
   redirectView: false,
   modalOption: {},

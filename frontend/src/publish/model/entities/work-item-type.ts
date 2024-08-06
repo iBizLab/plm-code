@@ -80,6 +80,14 @@ export default {
       id: 'sub_type',
     },
     {
+      codeName: 'orgin_state',
+      logicName: '原始状态',
+      stdDataType: 25,
+      stringLength: 100,
+      name: 'ORGIN_STATE',
+      id: 'orgin_state',
+    },
+    {
       codeName: 'id',
       lnlanguageRes: {
         lanResTag: 'DEF.LNAME.ID',
@@ -261,6 +269,16 @@ export default {
           type: 'SIMPLE',
           allowEmpty: true,
           id: 'sub_type',
+        },
+        {
+          codeName: 'orgin_state',
+          logicName: '原始状态',
+          appDEFieldId: 'orgin_state',
+          sourceType: 'DEFIELD',
+          stdDataType: 25,
+          type: 'SIMPLE',
+          allowEmpty: true,
+          id: 'orgin_state',
         },
         {
           codeName: 'create_man',
@@ -605,6 +623,28 @@ export default {
       id: 'update',
     },
     {
+      codeName: 'fetch_choose_target_type',
+      methodType: 'FETCH',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'work_item_type_filter_dto',
+        type: 'DTO',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'work_item_type_dto',
+        type: 'PAGE',
+        id: '返回对象',
+      },
+      requestMethod: 'POST',
+      requestParamType: 'ENTITY',
+      requestPath: '/fetch_choose_target_type',
+      actionType: 'REMOTE',
+      dataSetName: 'choose_target_type',
+      dataSetTag: 'choose_target_type',
+      dataSetType: 'REMOTE',
+      id: 'fetch_choose_target_type',
+    },
+    {
       codeName: 'fetch_cur_project_type',
       methodType: 'FETCH',
       appDEMethodInput: {
@@ -647,6 +687,28 @@ export default {
       dataSetTag: 'Default',
       dataSetType: 'REMOTE',
       id: 'fetch_default',
+    },
+    {
+      codeName: 'fetch_group_by_origin_state',
+      methodType: 'FETCH',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'work_item_type_filter_dto',
+        type: 'DTO',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'work_item_type_dto',
+        type: 'PAGE',
+        id: '返回对象',
+      },
+      requestMethod: 'POST',
+      requestParamType: 'ENTITY',
+      requestPath: '/fetch_group_by_origin_state',
+      actionType: 'REMOTE',
+      dataSetName: 'group_by_origin_state',
+      dataSetTag: 'group_by_origin_state',
+      dataSetType: 'REMOTE',
+      id: 'fetch_group_by_origin_state',
     },
     {
       codeName: 'fetch_project_work_item_type',
@@ -798,6 +860,12 @@ export default {
           name: 'PSDATAENTITY',
           id: 'psdataentity',
         },
+        {
+          key: 'NOTIFYTAG',
+          value: 'id',
+          name: 'NOTIFYTAG',
+          id: 'notifytag',
+        },
       ],
       timeout: 60000,
       uiactionMode: 'FRONT',
@@ -814,7 +882,7 @@ export default {
       actionTarget: 'SINGLEDATA',
       caption: '设计',
       codeName: 'panel_usr12299058218_button_link_click',
-      frontAppViewId: 'plmweb.psdelogicmslogicdesign_modal',
+      frontAppViewId: 'plmweb.psdemslogicmslogicdesign_modal',
       frontProcessType: 'WIZARD',
       fullCodeName: 'work_item_type_panel_usr12299058218_button_link_click',
       navigateContexts: [
@@ -919,7 +987,7 @@ export default {
       actionTarget: 'SINGLEDATA',
       caption: '设计',
       codeName: 'panel_usr1229905828_button_link_click',
-      frontAppViewId: 'plmweb.psdelogicmslogicdesign_modal',
+      frontAppViewId: 'plmweb.psdemslogicmslogicdesign_modal',
       frontProcessType: 'WIZARD',
       fullCodeName: 'work_item_type_panel_usr1229905828_button_link_click',
       navigateContexts: [

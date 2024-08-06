@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.ebsx.domain.AuthLogAdmin;
@@ -94,14 +95,14 @@ public abstract class AbstractAuthLogAdminService extends ServiceImpl<AuthLogAdm
         return et;
     }
 	
-    public Integer checkKey(AuthLogAdmin et) {
-        return (!ObjectUtils.isEmpty(et.getLogId()) && this.count(Wrappers.<AuthLogAdmin>lambdaQuery().eq(AuthLogAdmin::getLogId, et.getLogId()))>0)?1:0;
+    public CheckKeyStatus checkKey(AuthLogAdmin et) {
+        return (!ObjectUtils.isEmpty(et.getLogId()) && this.count(Wrappers.<AuthLogAdmin>lambdaQuery().eq(AuthLogAdmin::getLogId, et.getLogId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(AuthLogAdmin et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -155,6 +156,17 @@ public abstract class AbstractAuthLogAdminService extends ServiceImpl<AuthLogAdm
 
    public List<AuthLogAdmin> listGroupByData(AuthLogAdminSearchContext context) {
         return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listGroupByData(context,context.getSelectCond()),AuthLogAdmin.class);
+   }
+	
+   public Page<AuthLogAdmin> fetchView(AuthLogAdminSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<AuthLogAdmin> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<AuthLogAdmin> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<AuthLogAdmin> listView(AuthLogAdminSearchContext context) {
+        List<AuthLogAdmin> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
    }
 	
 

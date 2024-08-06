@@ -5,18 +5,18 @@
         <!--通过mybatis将查询结果注入到entity中,通过配置autoMapping="true"由mybatis自动处理映射关系 -->
     <resultMap id="RecentResultMap" type="cn.ibizlab.plm.core.base.domain.Recent" autoMapping="true">
 		<id property="id" column="id" /><!--主键字段映射-->
-		<result property="ownerId" column="owner_id" />
-		<result property="ownerType" column="owner_type" />
-		<result property="ownerSubtype" column="owner_subtype" />
-		<result property="isDeleted" column="is_deleted" />
-		<result property="recentParentName" column="recent_parent_name" />
-		<result property="recentParent" column="recent_parent" />
-		<result property="showIdentifier" column="show_identifier" />
-		<result property="recentParentIdentifier" column="recent_parent_identifier" />
-		<result property="createMan" column="create_man" />
-		<result property="createTime" column="create_time" />
-		<result property="updateMan" column="update_man" />
-		<result property="updateTime" column="update_time" />
+		<result property="ownerId" column="owner_id"/>
+		<result property="ownerType" column="owner_type"/>
+		<result property="ownerSubtype" column="owner_subtype"/>
+		<result property="isDeleted" column="is_deleted"/>
+		<result property="recentParentName" column="recent_parent_name"/>
+		<result property="recentParent" column="recent_parent"/>
+		<result property="showIdentifier" column="show_identifier"/>
+		<result property="recentParentIdentifier" column="recent_parent_identifier"/>
+		<result property="createMan" column="create_man"/>
+		<result property="createTime" column="create_time"/>
+		<result property="updateMan" column="update_man"/>
+		<result property="updateTime" column="update_time"/>
         <association property="dercustomRecentWorkItem" javaType="cn.ibizlab.plm.core.projmgmt.domain.WorkItem" column="owner_id" select="cn.ibizlab.plm.core.projmgmt.mapper.WorkItemMapper.selectById" fetchType="lazy"></association>
     </resultMap>
 
@@ -98,7 +98,7 @@
     </sql>
 
     <sql id="recentWorkItem" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_DELETED`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`RECENT_PARENT`, t1.`RECENT_PARENT_IDENTIFIER`, t1.`RECENT_PARENT_NAME`, concat(t1.`RECENT_PARENT_IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RECENT` t1   ]]>  where  <![CDATA[ ( t1.`OWNER_TYPE` = 'project'  AND  t1.`OWNER_SUBTYPE` = 'work_item'  AND  t1.`CREATE_MAN` = #{ctx.sessioncontext.srfpersonid}  AND  exists(select 1 from work_item t3 where t1.owner_id = t3.id and t3.is_deleted = 0)  AND  not exists(select 1 from relation t2 where t2.target_id = t1.owner_id and t2.principal_id = #{ctx.webcontext.principal_id})  AND  t1.`OWNER_ID` <> #{ctx.webcontext.principal_id} ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_DELETED`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`RECENT_PARENT`, t1.`RECENT_PARENT_IDENTIFIER`, t1.`RECENT_PARENT_NAME`, concat(t1.`RECENT_PARENT_IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RECENT` t1   ]]>  where  <![CDATA[ ( t1.`OWNER_TYPE` = 'project'  AND  t1.`OWNER_SUBTYPE` = 'work_item'  AND  t1.`CREATE_MAN` = #{ctx.sessioncontext.srfpersonid}  AND  exists(select 1 from work_item t3 where t1.owner_id = t3.id and t3.is_deleted = 0)  AND  not exists(select 1 from relation t2 where t2.target_id = t1.owner_id and t2.principal_id = #{ctx.webcontext.principal_id} and principal_type <> 'dependency')  AND  t1.`OWNER_ID` <> #{ctx.webcontext.principal_id} ) ]]> 
     </sql>
 
     <sql id="recentWorkItemAndNobug" databaseId="mysql">
@@ -107,6 +107,10 @@
 
     <sql id="recentWorkItemBug" databaseId="mysql">
          <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_DELETED`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`RECENT_PARENT`, t1.`RECENT_PARENT_IDENTIFIER`, t1.`RECENT_PARENT_NAME`, concat(t1.`RECENT_PARENT_IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RECENT` t1   ]]>  where  <![CDATA[ ( t1.`OWNER_TYPE` = 'project'  AND  t1.`OWNER_SUBTYPE` = 'work_item'  AND  t1.`CREATE_MAN` = #{ctx.sessioncontext.srfpersonid}  AND  t1.`OWNER_ID` <> #{ctx.webcontext.principal_id}  AND  not exists(select 1 from relation t2 where t2.target_id = t1.owner_id and t2.principal_id = #{ctx.webcontext.principal_id} )  AND  exists(SELECT 1 FROM work_item t3,work_item_type t4 where t3.id = t1.owner_id and t3.is_deleted =0 and t3.WORK_ITEM_TYPE_ID = t4.ID and t4.`group` =  'bug') ) ]]> 
+    </sql>
+
+    <sql id="recentWorkItemDependency" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_DELETED`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`RECENT_PARENT`, t1.`RECENT_PARENT_IDENTIFIER`, t1.`RECENT_PARENT_NAME`, concat(t1.`RECENT_PARENT_IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RECENT` t1   ]]>  where  <![CDATA[ ( t1.`OWNER_TYPE` = 'project'  AND  t1.`OWNER_SUBTYPE` = 'work_item'  AND  t1.`CREATE_MAN` = #{ctx.sessioncontext.srfpersonid}  AND  exists(select 1 from work_item t3 where t1.owner_id = t3.id and t3.project_id = #{ctx.webcontext.project} and t3.is_deleted = 0)  AND  t1.`OWNER_ID` <> #{ctx.webcontext.principal_id}  AND  not exists(select  1 from relation t3 where (t1.owner_id = t3.principal_id or  t1.owner_id = t3.target_id) and t3.principal_type = 'dependency') ) ]]> 
     </sql>
 
     <sql id="user" databaseId="mysql">
@@ -428,6 +432,27 @@
         
     </select>
 
+    <select id="searchRecentWorkItemDependency"  parameterType="cn.ibizlab.plm.core.base.filter.RecentSearchContext"  resultMap="RecentResultMap">
+        select t1.* 
+        from (
+            <include refid="recentWorkItemDependency"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listRecentWorkItemDependency"  parameterType="cn.ibizlab.plm.core.base.filter.RecentSearchContext"  resultMap="RecentResultMap">
+        select t1.*
+        from (
+            <include refid="recentWorkItemDependency"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
     <select id="searchUser"  parameterType="cn.ibizlab.plm.core.base.filter.RecentSearchContext"  resultMap="RecentResultMap">
         select t1.* 
         from (
@@ -447,6 +472,15 @@
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
         
+    </select>
+
+    <select id="listView"  parameterType="cn.ibizlab.plm.core.base.filter.RecentSearchContext"  resultMap="RecentResultMap">
+        select t1.*
+        from (
+            <include refid="view" />
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
     </select>
 
     <select id="findByOwnerId" resultMap="RecentResultMap">

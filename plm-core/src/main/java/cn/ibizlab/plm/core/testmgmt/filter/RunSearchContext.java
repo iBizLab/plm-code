@@ -170,6 +170,14 @@ public class RunSearchContext extends QueryWrapperContext<Run> {
     private String libraryIdEQ;
 
     /**
+     * 优先级EQ
+     */
+    @JsonProperty("n_priority_eq")
+    @JSONField(name = "n_priority_eq")
+    @ApiModelProperty("优先级EQ")
+    private String priorityEQ;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")

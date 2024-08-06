@@ -1,0 +1,73 @@
+export default {
+  redirectAppViewRefs: [
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '智能报表立方体指标编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.PSSYSBICUBEMEASURE.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.ps_sys_bi_cube_measure_edit_view',
+      name: 'PSSYSBICUBEMEASURE:EDITVIEW',
+      id: 'pssysbicubemeasure:editview',
+    },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '智能报表立方体指标编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.PSSYSBICUBEMEASURE.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.ps_sys_bi_cube_measure_edit_view',
+      name: 'EDITVIEW',
+      id: 'editview',
+    },
+  ],
+  enableWorkflow: true,
+  funcViewMode: 'REDIRECTVIEW',
+  deviewCodeName: 'RedirectView',
+  deviewId: 'd612620840343ec48d3bdbb402dc937f',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.PSSYSBICUBEMEASURE',
+  },
+  caption: '智能报表立方体指标',
+  codeName: 'ps_sys_bi_cube_measure_redirect_view',
+  appDataEntityId: 'plmweb.pssysbicubemeasure',
+  controls: [
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.PSSYSBICUBEMEASURE',
+      },
+      caption: '智能报表立方体指标',
+      codeName: 'redirect_view_captionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.pssysbicubemeasure',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'redirect_view_captionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'layoutpanel',
+    controlStyle: 'APPDEREDIRECTVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.pssysbicubemeasure',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '智能报表立方体指标数据重定向视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.PSSYSBICUBEMEASURE.REDIRECTVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEREDIRECTVIEW',
+  enableDP: true,
+  redirectView: true,
+  showCaptionBar: true,
+  modelId: '04ad13a9ae2e61407ca85d307ffe04e0',
+  modelType: 'PSAPPDEVIEW',
+  name: 'PSSysBICubeMeasureRedirectView',
+  id: 'plmweb.ps_sys_bi_cube_measure_redirect_view',
+};

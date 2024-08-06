@@ -55,11 +55,19 @@ public class VersionFilterDTO extends FilterBase implements Serializable {
 	private String ownerTypeEQ;
 
     /**
+     * 是否命名EQ
+     */
+    @JsonProperty("n_is_named_eq")
+    @JSONField(name = "n_is_named_eq")
+    @ApiModelProperty(value = "是否命名EQ", position = 70)
+	private Integer isNamedEQ;
+
+    /**
      * 标识IN
      */
     @JsonProperty("n_id_in")
     @JSONField(name = "n_id_in")
-    @ApiModelProperty(value = "标识IN", position = 70)
+    @ApiModelProperty(value = "标识IN", position = 80)
 	private String idIN;
 
     /**
@@ -67,7 +75,7 @@ public class VersionFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 71)
+    @ApiModelProperty(value = "标识EQ", position = 81)
 	private String idEQ;
 
     /**
@@ -75,7 +83,7 @@ public class VersionFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 80)
+    @ApiModelProperty(value = "名称LIKE", position = 90)
 	private String nameLIKE;
 
 

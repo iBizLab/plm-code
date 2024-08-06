@@ -55,13 +55,32 @@ export default {
           openMode: 'INDEXVIEWTAB_POPUPMODAL',
           navigateContexts: [
             {
+              key: 'SRFDATATYPE',
+              value: 'work_item_type_id',
+              name: 'SRFDATATYPE',
+              id: 'srfdatatype',
+            },
+            {
               key: 'PROJECT',
               value: 'project_id',
               name: 'PROJECT',
               id: 'project',
             },
+            {
+              key: 'WORK_ITEM_TYPE_ID',
+              value: 'work_item_type_id',
+              name: 'WORK_ITEM_TYPE_ID',
+              id: 'work_item_type_id',
+            },
           ],
-          refAppViewId: 'plmweb.work_item_main_view',
+          navigateParams: [
+            {
+              key: 'srfdatatype',
+              value: 'work_item_type_id',
+              id: 'srfdatatype',
+            },
+          ],
+          refAppViewId: 'plmweb.work_item_dyna_main_view',
         },
         editMode: true,
         appUILogicRefViews: [
@@ -69,13 +88,32 @@ export default {
             openMode: 'INDEXVIEWTAB_POPUPMODAL',
             navigateContexts: [
               {
+                key: 'SRFDATATYPE',
+                value: 'work_item_type_id',
+                name: 'SRFDATATYPE',
+                id: 'srfdatatype',
+              },
+              {
                 key: 'PROJECT',
                 value: 'project_id',
                 name: 'PROJECT',
                 id: 'project',
               },
+              {
+                key: 'WORK_ITEM_TYPE_ID',
+                value: 'work_item_type_id',
+                name: 'WORK_ITEM_TYPE_ID',
+                id: 'work_item_type_id',
+              },
             ],
-            refAppViewId: 'plmweb.work_item_main_view',
+            navigateParams: [
+              {
+                key: 'srfdatatype',
+                value: 'work_item_type_id',
+                id: 'srfdatatype',
+              },
+            ],
+            refAppViewId: 'plmweb.work_item_dyna_main_view',
           },
         ],
         builtinLogic: true,
@@ -89,22 +127,6 @@ export default {
   ],
   appViewRefs: [
     {
-      openMode: 'INDEXVIEWTAB_POPUPMODAL',
-      navigateContexts: [
-        {
-          key: 'PROJECT',
-          value: 'project_id',
-          name: 'PROJECT',
-          id: 'project',
-        },
-      ],
-      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realTitle: '工作项',
-      refAppViewId: 'plmweb.work_item_main_view',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
-    {
       realTitle: '工作项编辑视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
@@ -113,6 +135,41 @@ export default {
       name: 'NEWDATA',
       id: 'newdata',
     },
+    {
+      openMode: 'INDEXVIEWTAB_POPUPMODAL',
+      navigateContexts: [
+        {
+          key: 'SRFDATATYPE',
+          value: 'work_item_type_id',
+          name: 'SRFDATATYPE',
+          id: 'srfdatatype',
+        },
+        {
+          key: 'PROJECT',
+          value: 'project_id',
+          name: 'PROJECT',
+          id: 'project',
+        },
+        {
+          key: 'WORK_ITEM_TYPE_ID',
+          value: 'work_item_type_id',
+          name: 'WORK_ITEM_TYPE_ID',
+          id: 'work_item_type_id',
+        },
+      ],
+      navigateParams: [
+        {
+          key: 'srfdatatype',
+          value: 'work_item_type_id',
+          id: 'srfdatatype',
+        },
+      ],
+      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realTitle: '工作项（动态）',
+      refAppViewId: 'plmweb.work_item_dyna_main_view',
+      name: 'EDITDATA',
+      id: 'editdata',
+    },
   ],
   controls: [
     {
@@ -120,6 +177,7 @@ export default {
       columnEnableFilter: 2,
       columnEnableLink: 2,
       groupMode: 'NONE',
+      orderValueAppDEFieldId: 'sequence',
       degridColumns: [
         {
           clconvertMode: 'NONE',
@@ -175,18 +233,19 @@ export default {
         },
         {
           clconvertMode: 'FRONT',
-          dataItemName: 'state',
+          dataItemName: 'state_text',
           excelCaption: '状态',
-          appCodeListId: 'plmweb.projmgmt__work_item_state',
+          appCodeListId: 'plmweb.projmgmt__scrum_state',
           appDEFieldId: 'state',
           valueType: 'SIMPLE',
+          enableRowEdit: true,
           aggMode: 'NONE',
           align: 'LEFT',
           caption: '状态',
           codeName: 'state',
           columnType: 'DEFGRIDCOLUMN',
           noPrivDisplayMode: 1,
-          width: 100,
+          width: 150,
           widthUnit: 'PX',
           enableSort: true,
           id: 'state',
@@ -345,6 +404,12 @@ export default {
           appDEFieldId: 'state',
           valueType: 'SIMPLE',
           dataType: 25,
+          id: 'state_text',
+        },
+        {
+          appDEFieldId: 'state',
+          valueType: 'SIMPLE',
+          dataType: 25,
           id: 'state',
         },
         {
@@ -484,6 +549,72 @@ export default {
       ],
       degridEditItems: [
         {
+          caption: '状态',
+          codeName: 'state',
+          enableCond: 3,
+          appDEFieldId: 'state',
+          editor: {
+            singleSelect: true,
+            appCodeListId: 'plmweb.projmgmt__scrum_state',
+            editorParams: {
+              'srfnavparam.state': '%state%',
+              'srfnavparam.project_id': '%project_id%',
+              'srfnavparam.work_item_type_id': '%work_item_type_id%',
+              type: 'round',
+              alwaysLoad: 'true',
+            },
+            editorType: 'DROPDOWNLIST',
+            editorItems: [
+              {
+                appDEACModeId: 'default',
+                appDEDataSetId: 'fetch_default',
+                appDataEntityId: 'plmweb.work_item_state',
+                navigateParams: [
+                  {
+                    key: 'state',
+                    value: 'state',
+                    id: 'state',
+                  },
+                  {
+                    key: 'project_id',
+                    value: 'project_id',
+                    id: 'project_id',
+                  },
+                  {
+                    key: 'work_item_type_id',
+                    value: 'work_item_type_id',
+                    id: 'work_item_type_id',
+                  },
+                ],
+                id: 'state',
+              },
+            ],
+            valueType: 'SIMPLE',
+            editable: true,
+            navigateParams: [
+              {
+                key: 'state',
+                value: 'state',
+                id: 'state',
+              },
+              {
+                key: 'project_id',
+                value: 'project_id',
+                id: 'project_id',
+              },
+              {
+                key: 'work_item_type_id',
+                value: 'work_item_type_id',
+                id: 'work_item_type_id',
+              },
+            ],
+            id: 'state',
+          },
+          allowEmpty: true,
+          needCodeListConfig: true,
+          id: 'state',
+        },
+        {
           caption: '标识',
           codeName: 'srfkey',
           enableCond: 3,
@@ -557,6 +688,13 @@ export default {
         {
           dataType: 25,
           labelPos: 'NONE',
+          defsearchMode: {
+            codeName: 'N_STATE_EQ',
+            stdDataType: 25,
+            valueOP: 'EQ',
+            name: 'N_STATE_EQ',
+            id: 'n_state_eq',
+          },
           editor: {
             singleSelect: true,
             appCodeListId: 'plmweb.projmgmt__work_item_state',
@@ -567,11 +705,9 @@ export default {
           },
           allowEmpty: true,
           needCodeListConfig: true,
+          caption: '状态',
           itemType: 'FILTER',
           appDEFieldId: 'state',
-          userParam: {
-            ITEMTYPE: 'HIDDEN',
-          },
           id: 'state',
         },
         {
@@ -759,6 +895,13 @@ export default {
         {
           dataType: 21,
           labelPos: 'NONE',
+          defsearchMode: {
+            codeName: 'N_DESCRIPTION_LIKE',
+            stdDataType: 21,
+            valueOP: 'LIKE',
+            name: 'N_DESCRIPTION_LIKE',
+            id: 'n_description_like',
+          },
           editor: {
             editorType: 'TEXTBOX',
             valueType: 'SIMPLE',
@@ -766,6 +909,7 @@ export default {
             id: 'description',
           },
           allowEmpty: true,
+          caption: '描述',
           itemType: 'FILTER',
           appDEFieldId: 'description',
           id: 'description',
@@ -803,8 +947,7 @@ export default {
             sysPFPluginId: 'person_select',
             valueType: 'SIMPLE',
             editable: true,
-            name: 'AEUSER_ID_EQ',
-            id: 'aeuser_id_eq',
+            id: 'attentions',
           },
           allowEmpty: true,
           caption: '关注人',
@@ -813,8 +956,7 @@ export default {
           userParam: {
             ITEMTYPE: 'SIMPLE',
           },
-          name: 'AEUSER_ID_EQ',
-          id: 'aeuser_id_eq',
+          id: 'attentions',
         },
         {
           dataType: 25,
@@ -1082,6 +1224,160 @@ export default {
           appDEFieldId: 'create_man',
           id: 'create_man_notnull',
         },
+        {
+          dataType: 25,
+          labelPos: 'NONE',
+          defsearchMode: {
+            codeName: 'N_STATE_TYPE_EQ',
+            stdDataType: 25,
+            valueOP: 'EQ',
+            name: 'N_STATE_TYPE_EQ',
+            id: 'n_state_type_eq',
+          },
+          editor: {
+            singleSelect: true,
+            appCodeListId: 'plmweb.projmgmt__state_type',
+            editorType: 'DROPDOWNLIST',
+            valueType: 'SIMPLE',
+            editable: true,
+            id: 'state_type_eq',
+          },
+          allowEmpty: true,
+          needCodeListConfig: true,
+          caption: '状态类型',
+          itemType: 'FILTER',
+          appDEFieldId: 'state_type',
+          id: 'state_type_eq',
+        },
+        {
+          dataType: 25,
+          labelPos: 'NONE',
+          defsearchMode: {
+            codeName: 'N_STATE_TYPE_NOTEQ',
+            stdDataType: 25,
+            valueOP: 'NOTEQ',
+            name: 'N_STATE_TYPE_NOTEQ',
+            id: 'n_state_type_noteq',
+          },
+          editor: {
+            singleSelect: true,
+            appCodeListId: 'plmweb.projmgmt__state_type',
+            editorType: 'DROPDOWNLIST',
+            valueType: 'SIMPLE',
+            editable: true,
+            id: 'state_type_noteq',
+          },
+          allowEmpty: true,
+          needCodeListConfig: true,
+          caption: '状态类型',
+          itemType: 'FILTER',
+          appDEFieldId: 'state_type',
+          id: 'state_type_noteq',
+        },
+        {
+          dataType: 5,
+          labelPos: 'NONE',
+          defsearchMode: {
+            codeName: 'N_START_AT_GTANDEQ',
+            stdDataType: 5,
+            valueOP: 'GTANDEQ',
+            name: 'N_START_AT_GTANDEQ',
+            id: 'n_start_at_gtandeq',
+          },
+          editor: {
+            dateTimeFormat: 'YYYY-MM-DD',
+            editorParams: {
+              TIMEFMT: 'YYYY-MM-DD',
+            },
+            editorType: 'DATEPICKEREX_NOTIME',
+            valueType: 'SIMPLE',
+            editable: true,
+            id: 'start_at_gt',
+          },
+          allowEmpty: true,
+          caption: '开始时间',
+          itemType: 'FILTER',
+          appDEFieldId: 'start_at',
+          id: 'start_at_gt',
+        },
+        {
+          dataType: 5,
+          labelPos: 'NONE',
+          defsearchMode: {
+            codeName: 'N_START_AT_LTANDEQ',
+            stdDataType: 5,
+            valueOP: 'LTANDEQ',
+            name: 'N_START_AT_LTANDEQ',
+            id: 'n_start_at_ltandeq',
+          },
+          editor: {
+            dateTimeFormat: 'YYYY-MM-DD',
+            editorParams: {
+              TIMEFMT: 'YYYY-MM-DD',
+            },
+            editorType: 'DATEPICKEREX_NOTIME',
+            valueType: 'SIMPLE',
+            editable: true,
+            id: 'start_at_lt',
+          },
+          allowEmpty: true,
+          caption: '开始时间',
+          itemType: 'FILTER',
+          appDEFieldId: 'start_at',
+          id: 'start_at_lt',
+        },
+        {
+          dataType: 5,
+          labelPos: 'NONE',
+          defsearchMode: {
+            codeName: 'N_END_AT_GTANDEQ',
+            stdDataType: 5,
+            valueOP: 'GTANDEQ',
+            name: 'N_END_AT_GTANDEQ',
+            id: 'n_end_at_gtandeq',
+          },
+          editor: {
+            dateTimeFormat: 'YYYY-MM-DD',
+            editorParams: {
+              TIMEFMT: 'YYYY-MM-DD',
+            },
+            editorType: 'DATEPICKEREX_NOTIME',
+            valueType: 'SIMPLE',
+            editable: true,
+            id: 'end_at_gt',
+          },
+          allowEmpty: true,
+          caption: '截止时间',
+          itemType: 'FILTER',
+          appDEFieldId: 'end_at',
+          id: 'end_at_gt',
+        },
+        {
+          dataType: 5,
+          labelPos: 'NONE',
+          defsearchMode: {
+            codeName: 'N_END_AT_LTANDEQ',
+            stdDataType: 5,
+            valueOP: 'LTANDEQ',
+            name: 'N_END_AT_LTANDEQ',
+            id: 'n_end_at_ltandeq',
+          },
+          editor: {
+            dateTimeFormat: 'YYYY-MM-DD',
+            editorParams: {
+              TIMEFMT: 'YYYY-MM-DD',
+            },
+            editorType: 'DATEPICKEREX_NOTIME',
+            valueType: 'SIMPLE',
+            editable: true,
+            id: 'end_at_lt',
+          },
+          allowEmpty: true,
+          caption: '截止时间',
+          itemType: 'FILTER',
+          appDEFieldId: 'end_at',
+          id: 'end_at_lt',
+        },
       ],
       searchBarGroups: [
         {
@@ -1113,8 +1409,12 @@ export default {
         },
         {
           caption: '我参与的工作项',
-          data: '{\n  "theme_model": {\n    "searchconds": [\n      {\n        "condtype": "GROUP",\n        "condop": "AND",\n        "bnotmode": false,\n        "searchconds": [\n          {\n            "condtype": "ITEMS",\n            "fieldname": "attentions",\n            "condop": "EXISTS",\n            "searchconds": [\n\t\t\t\t{\n\t\t\t\t"condtype": "DEFIELD",\n\t\t\t\t"fieldname": "user_id",\n\t\t\t\t"condop": "EQ",\n\t\t\t\t"value": "${context.srfpersonid}"\n\t\t\t\t}\n\t\t\t\t]\n          }\n        ]\n      }\n    ]\n  }\n}',
+          data: '{\n  "theme_model": {\n    "searchconds": [\n      {\n        "condtype": "GROUP",\n        "condop": "AND",\n        "bnotmode": false,\n        "searchconds": [\n          {\n            "condtype": "ITEMS",\n            "fieldname": "attentions",\n            "condop": "EXISTS",\n            "simple": true,\n            "searchconds": [\n\t\t\t\t{\n\t\t\t\t"condtype": "DEFIELD",\n\t\t\t\t"fieldname": "USER_ID",\n\t\t\t\t"condop": "EQ",\n\t\t\t\t"value": "${context.srfpersonid}"\n\t\t\t\t}\n\t\t\t\t]\n          }\n        ]\n      }\n    ]\n  }\n}',
           itemType: 'GROUP',
+          appDEFieldId: 'attentions',
+          userParam: {
+            ITEMTYPE: 'SIMPLE',
+          },
           id: 'my_involved',
         },
       ],

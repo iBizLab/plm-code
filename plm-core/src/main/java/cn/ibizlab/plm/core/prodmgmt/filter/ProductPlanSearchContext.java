@@ -46,6 +46,14 @@ public class ProductPlanSearchContext extends QueryWrapperContext<ProductPlan> {
     private String categoriesLIKE;
 
     /**
+     * 是否已删除EQ
+     */
+    @JsonProperty("n_is_deleted_eq")
+    @JSONField(name = "n_is_deleted_eq")
+    @ApiModelProperty("是否已删除EQ")
+    private Integer isDeletedEQ;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")

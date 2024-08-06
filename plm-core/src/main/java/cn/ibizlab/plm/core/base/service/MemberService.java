@@ -10,11 +10,13 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.Member;
 import cn.ibizlab.plm.core.base.filter.MemberSearchContext;
 import cn.ibizlab.plm.core.base.domain.User;
 import cn.ibizlab.plm.core.base.domain.CommonFlow;
 import cn.ibizlab.plm.core.base.domain.Group;
+import cn.ibizlab.plm.core.wiki.domain.ArticlePage;
 import cn.ibizlab.plm.core.projmgmt.domain.Project;
 
 /**
@@ -141,7 +143,7 @@ public interface MemberService extends IService<Member> {
     * @param et
     * @return
     */
-    Integer checkKey(Member et);
+    CheckKeyStatus checkKey(Member et);
 
     /**
     * 保存
@@ -156,6 +158,16 @@ public interface MemberService extends IService<Member> {
      * @return
      */
     boolean save(List<Member> list);
+
+    /**
+    * addSharedPageMember
+    * 
+    * @param et
+    * @return
+    */
+    default Member addSharedPageMember(Member et) {
+        return et;
+    }
 
     /**
     * changeRole
@@ -204,6 +216,22 @@ public interface MemberService extends IService<Member> {
     List<Member> listDefault(MemberSearchContext context);
 
     /**
+    * fetchSharedPageMember
+    * 
+    * @param context
+    * @return
+    */
+    Page<Member> fetchSharedPageMember(MemberSearchContext context);
+
+    /**
+    * listSharedPageMember
+    * 
+    * @param context
+    * @return
+    */
+    List<Member> listSharedPageMember(MemberSearchContext context);
+
+    /**
     * fetchUserGroupAdmin
     * 
     * @param context
@@ -226,8 +254,15 @@ public interface MemberService extends IService<Member> {
     */
     List<Member> findByUserId(List<String> userIds);
     default List<Member> findByUserId(String userId){
-        return findByUserId(Arrays.asList(userId));
+        return findByUser(new User().setId(userId));
     }
+
+    /**
+    * findByUser
+    * @param user
+    * @return
+    */
+    List<Member> findByUser(User user);
 
     /**
     * removeByUserId
@@ -268,8 +303,15 @@ public interface MemberService extends IService<Member> {
     */
     List<Member> findById(List<String> ids);
     default List<Member> findById(String id){
-        return findById(Arrays.asList(id));
+        return findByMemberCommonFlow(new CommonFlow().setId(id));
     }
+
+    /**
+    * findByMemberCommonFlow
+    * @param commonFlow
+    * @return
+    */
+    List<Member> findByMemberCommonFlow(CommonFlow commonFlow);
 
     /**
     * removeById
@@ -310,8 +352,15 @@ public interface MemberService extends IService<Member> {
     */
     List<Member> findByOwnerId(List<String> ownerIds);
     default List<Member> findByOwnerId(String ownerId){
-        return findByOwnerId(Arrays.asList(ownerId));
+        return findByMemberGroup(new Group().setId(ownerId));
     }
+
+    /**
+    * findByMemberGroup
+    * @param group
+    * @return
+    */
+    List<Member> findByMemberGroup(Group group);
 
     /**
     * removeByOwnerId
@@ -346,12 +395,50 @@ public interface MemberService extends IService<Member> {
     boolean saveByMemberGroup(Group group, List<Member> list);
 
     /**
+    * findBySharedPageMember
+    * @param articlePage
+    * @return
+    */
+    List<Member> findBySharedPageMember(ArticlePage articlePage);
+
+    /**
+    * saveBySharedPageMember
+    * @param articlePage
+    * @param list
+    * @return
+    */
+    boolean saveBySharedPageMember(ArticlePage articlePage, List<Member> list);
+
+    /**
+    * findByProjectResource
+    * @param project
+    * @return
+    */
+    List<Member> findByProjectResource(Project project);
+
+    /**
     * saveByProjectResource
     * @param project
     * @param list
     * @return
     */
     boolean saveByProjectResource(Project project, List<Member> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Member> fetchView(MemberSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Member> listView(MemberSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Member> list) {

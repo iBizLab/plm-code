@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.prodmgmt.domain.ProductTag;
 import cn.ibizlab.plm.core.prodmgmt.filter.ProductTagSearchContext;
 import cn.ibizlab.plm.core.prodmgmt.domain.Product;
@@ -138,7 +139,7 @@ public interface ProductTagService extends IService<ProductTag> {
     * @param et
     * @return
     */
-    Integer checkKey(ProductTag et);
+    CheckKeyStatus checkKey(ProductTag et);
 
     /**
     * 保存
@@ -223,8 +224,15 @@ public interface ProductTagService extends IService<ProductTag> {
     */
     List<ProductTag> findByProductId(List<String> productIds);
     default List<ProductTag> findByProductId(String productId){
-        return findByProductId(Arrays.asList(productId));
+        return findByProduct(new Product().setId(productId));
     }
+
+    /**
+    * findByProduct
+    * @param product
+    * @return
+    */
+    List<ProductTag> findByProduct(Product product);
 
     /**
     * removeByProductId
@@ -267,6 +275,22 @@ public interface ProductTagService extends IService<ProductTag> {
     default ProductTag getConProductTag(ProductTag et) {
         return et;
     }
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<ProductTag> fetchView(ProductTagSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<ProductTag> listView(ProductTagSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<ProductTag> list) {

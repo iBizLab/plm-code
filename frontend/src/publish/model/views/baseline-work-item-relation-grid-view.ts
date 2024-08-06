@@ -48,6 +48,12 @@ export default {
           openMode: 'POPUPMODAL',
           navigateContexts: [
             {
+              key: 'SRFDATATYPE',
+              value: 'work_item_type_id',
+              name: 'SRFDATATYPE',
+              id: 'srfdatatype',
+            },
+            {
               key: 'WORK_ITEM',
               value: 'target_id',
               name: 'WORK_ITEM',
@@ -58,6 +64,12 @@ export default {
               value: 'project_id',
               name: 'PROJECT',
               id: 'project',
+            },
+            {
+              key: 'WORK_ITEM_TYPE_ID',
+              value: 'work_item_type_id',
+              name: 'WORK_ITEM_TYPE_ID',
+              id: 'work_item_type_id',
             },
             {
               key: 'SRFREADONLY',
@@ -73,14 +85,25 @@ export default {
               value: 'target_version_id',
               id: 'srfversionid',
             },
+            {
+              key: 'srfdatatype',
+              value: 'work_item_type_id',
+              id: 'srfdatatype',
+            },
           ],
-          refAppViewId: 'plmweb.work_item_main_view',
+          refAppViewId: 'plmweb.work_item_dyna_main_view',
         },
         editMode: true,
         appUILogicRefViews: [
           {
             openMode: 'POPUPMODAL',
             navigateContexts: [
+              {
+                key: 'SRFDATATYPE',
+                value: 'work_item_type_id',
+                name: 'SRFDATATYPE',
+                id: 'srfdatatype',
+              },
               {
                 key: 'WORK_ITEM',
                 value: 'target_id',
@@ -92,6 +115,12 @@ export default {
                 value: 'project_id',
                 name: 'PROJECT',
                 id: 'project',
+              },
+              {
+                key: 'WORK_ITEM_TYPE_ID',
+                value: 'work_item_type_id',
+                name: 'WORK_ITEM_TYPE_ID',
+                id: 'work_item_type_id',
               },
               {
                 key: 'SRFREADONLY',
@@ -107,8 +136,13 @@ export default {
                 value: 'target_version_id',
                 id: 'srfversionid',
               },
+              {
+                key: 'srfdatatype',
+                value: 'work_item_type_id',
+                id: 'srfdatatype',
+              },
             ],
-            refAppViewId: 'plmweb.work_item_main_view',
+            refAppViewId: 'plmweb.work_item_dyna_main_view',
           },
         ],
         builtinLogic: true,
@@ -129,17 +163,14 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '基线工作项编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.BASELINE_WORK_ITEM.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.baseline_work_item_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       openMode: 'POPUPMODAL',
       navigateContexts: [
+        {
+          key: 'SRFDATATYPE',
+          value: 'work_item_type_id',
+          name: 'SRFDATATYPE',
+          id: 'srfdatatype',
+        },
         {
           key: 'WORK_ITEM',
           value: 'target_id',
@@ -151,6 +182,12 @@ export default {
           value: 'project_id',
           name: 'PROJECT',
           id: 'project',
+        },
+        {
+          key: 'WORK_ITEM_TYPE_ID',
+          value: 'work_item_type_id',
+          name: 'WORK_ITEM_TYPE_ID',
+          id: 'work_item_type_id',
         },
         {
           key: 'SRFREADONLY',
@@ -166,12 +203,26 @@ export default {
           value: 'target_version_id',
           id: 'srfversionid',
         },
+        {
+          key: 'srfdatatype',
+          value: 'work_item_type_id',
+          id: 'srfdatatype',
+        },
       ],
       realOpenMode: 'POPUPMODAL',
-      realTitle: '工作项',
-      refAppViewId: 'plmweb.work_item_main_view',
+      realTitle: '工作项（动态）',
+      refAppViewId: 'plmweb.work_item_dyna_main_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realTitle: '基线工作项编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.BASELINE_WORK_ITEM.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.baseline_work_item_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -396,6 +447,12 @@ export default {
           valueType: 'SIMPLE',
           dataType: 25,
           id: 'id',
+        },
+        {
+          appDEFieldId: 'work_item_type_id',
+          valueType: 'SIMPLE',
+          dataType: 25,
+          id: 'work_item_type_id',
         },
         {
           appDEFieldId: 'id',

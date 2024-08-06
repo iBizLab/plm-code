@@ -257,6 +257,7 @@ export default {
                                 caption: '所属数据标识',
                                 codeName: 'owner_id',
                                 columnType: 'DEFGRIDCOLUMN',
+                                hideMode: 1,
                                 noPrivDisplayMode: 1,
                                 width: 100,
                                 widthUnit: 'PX',
@@ -577,7 +578,6 @@ export default {
                         colMD: 12,
                         layout: 'TABLE_12COL',
                       },
-                      showCaption: true,
                       id: 'topic_id',
                     },
                     {
@@ -674,7 +674,6 @@ export default {
                 colMD: 24,
                 layout: 'TABLE_24COL',
               },
-              showCaption: true,
               id: 'id',
             },
           ],

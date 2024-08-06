@@ -13,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Page;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.ebsx.domain.SysTodo;
@@ -80,7 +81,7 @@ public abstract class AbstractSysTodoService implements SysTodoService {
         return sysTodoFeignClient.getDraft(et);
     }
 	
-    public Integer checkKey(SysTodo et) {
+    public CheckKeyStatus checkKey(SysTodo et) {
          return sysTodoFeignClient.checkKey(et);
     }
 	

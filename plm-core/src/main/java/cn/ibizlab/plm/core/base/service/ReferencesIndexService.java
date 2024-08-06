@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.ReferencesIndex;
 import cn.ibizlab.plm.core.base.filter.ReferencesIndexSearchContext;
 
@@ -137,7 +138,7 @@ public interface ReferencesIndexService extends IService<ReferencesIndex> {
     * @param et
     * @return
     */
-    Integer checkKey(ReferencesIndex et);
+    CheckKeyStatus checkKey(ReferencesIndex et);
 
     /**
     * 保存
@@ -168,6 +169,22 @@ public interface ReferencesIndexService extends IService<ReferencesIndex> {
     * @return
     */
     List<ReferencesIndex> listDefault(ReferencesIndexSearchContext context);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<ReferencesIndex> fetchView(ReferencesIndexSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<ReferencesIndex> listView(ReferencesIndexSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<ReferencesIndex> list) {

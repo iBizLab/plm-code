@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.wiki.domain.ArticlePage;
@@ -27,16 +28,22 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import cn.ibizlab.plm.core.wiki.domain.Space;
 import cn.ibizlab.plm.core.wiki.service.SpaceService;
+import cn.ibizlab.plm.core.wiki.domain.SharedSpace;
+import cn.ibizlab.plm.core.wiki.service.SharedSpaceService;
 import cn.ibizlab.plm.core.base.domain.Comment;
 import cn.ibizlab.plm.core.base.service.CommentService;
 import cn.ibizlab.plm.core.base.domain.Attention;
 import cn.ibizlab.plm.core.base.service.AttentionService;
+import cn.ibizlab.plm.core.base.domain.Member;
+import cn.ibizlab.plm.core.base.service.MemberService;
 import cn.ibizlab.plm.core.base.domain.Attachment;
 import cn.ibizlab.plm.core.base.service.AttachmentService;
 import cn.ibizlab.plm.core.base.domain.SearchAttachment;
 import cn.ibizlab.plm.core.base.service.SearchAttachmentService;
 import cn.ibizlab.plm.core.base.domain.SearchComment;
 import cn.ibizlab.plm.core.base.service.SearchCommentService;
+import cn.ibizlab.plm.core.wiki.domain.PageVersion;
+import cn.ibizlab.plm.core.wiki.service.PageVersionService;
 import cn.ibizlab.plm.core.base.domain.Relation;
 import cn.ibizlab.plm.core.base.service.RelationService;
 import cn.ibizlab.plm.core.base.domain.Version;
@@ -56,11 +63,19 @@ public abstract class AbstractArticlePageService extends ServiceImpl<ArticlePage
 
     @Autowired
     @Lazy
+    protected SharedSpaceService sharedSpaceService;
+
+    @Autowired
+    @Lazy
     protected CommentService commentService;
 
     @Autowired
     @Lazy
     protected AttentionService attentionService;
+
+    @Autowired
+    @Lazy
+    protected MemberService memberService;
 
     @Autowired
     @Lazy
@@ -73,6 +88,10 @@ public abstract class AbstractArticlePageService extends ServiceImpl<ArticlePage
     @Autowired
     @Lazy
     protected SearchCommentService searchCommentService;
+
+    @Autowired
+    @Lazy
+    protected PageVersionService pageVersionService;
 
     @Autowired
     @Lazy
@@ -162,14 +181,14 @@ public abstract class AbstractArticlePageService extends ServiceImpl<ArticlePage
         return et;
     }
 	
-    public Integer checkKey(ArticlePage et) {
-        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ArticlePage>lambdaQuery().eq(ArticlePage::getId, et.getId()))>0)?1:0;
+    public CheckKeyStatus checkKey(ArticlePage et) {
+        return (!ObjectUtils.isEmpty(et.getId()) && this.count(Wrappers.<ArticlePage>lambdaQuery().eq(ArticlePage::getId, et.getId()))>0)? CheckKeyStatus.FOUNDED : CheckKeyStatus.NOT_FOUND;
     }
 	
     @Override
     @Transactional
     public boolean save(ArticlePage et) {
-        if(checkKey(et) > 0)
+        if(CheckKeyStatus.FOUNDED == checkKey(et))
             return getSelf().update(et);
         else
             return getSelf().create(et);
@@ -222,6 +241,21 @@ public abstract class AbstractArticlePageService extends ServiceImpl<ArticlePage
         return list;
    }
 	
+   public Page<ArticlePage> fetchAllSharedPages(ArticlePageSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("SHARED_TIME,ASC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ArticlePage> pages=baseMapper.searchAllSharedPages(context.getPages(),context,context.getSelectCond());
+        List<ArticlePage> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<ArticlePage> listAllSharedPages(ArticlePageSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("SHARED_TIME,ASC");
+        List<ArticlePage> list = baseMapper.listAllSharedPages(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<ArticlePage> fetchBaselineChoosePage(ArticlePageSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<ArticlePage> pages=baseMapper.searchBaselineChoosePage(context.getPages(),context,context.getSelectCond());
         List<ArticlePage> list = pages.getRecords();
@@ -230,6 +264,17 @@ public abstract class AbstractArticlePageService extends ServiceImpl<ArticlePage
 
    public List<ArticlePage> listBaselineChoosePage(ArticlePageSearchContext context) {
         List<ArticlePage> list = baseMapper.listBaselineChoosePage(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<ArticlePage> fetchChooseShared(ArticlePageSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ArticlePage> pages=baseMapper.searchChooseShared(context.getPages(),context,context.getSelectCond());
+        List<ArticlePage> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<ArticlePage> listChooseShared(ArticlePageSearchContext context) {
+        List<ArticlePage> list = baseMapper.listChooseShared(context,context.getSelectCond());
         return list;
    }
 	
@@ -314,6 +359,76 @@ public abstract class AbstractArticlePageService extends ServiceImpl<ArticlePage
         return list;
    }
 	
+   public Page<ArticlePage> fetchSharedPage(ArticlePageSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ArticlePage> pages=baseMapper.searchSharedPage(context.getPages(),context,context.getSelectCond());
+        List<ArticlePage> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<ArticlePage> listSharedPage(ArticlePageSearchContext context) {
+        List<ArticlePage> list = baseMapper.listSharedPage(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<ArticlePage> fetchSharedReader(ArticlePageSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ArticlePage> pages=baseMapper.searchSharedReader(context.getPages(),context,context.getSelectCond());
+        List<ArticlePage> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<ArticlePage> listSharedReader(ArticlePageSearchContext context) {
+        List<ArticlePage> list = baseMapper.listSharedReader(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<ArticlePage> fetchSharedSearch(ArticlePageSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ArticlePage> pages=baseMapper.searchSharedSearch(context.getPages(),context,context.getSelectCond());
+        List<ArticlePage> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<ArticlePage> listSharedSearch(ArticlePageSearchContext context) {
+        List<ArticlePage> list = baseMapper.listSharedSearch(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<ArticlePage> fetchSharedSubPages(ArticlePageSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ArticlePage> pages=baseMapper.searchSharedSubPages(context.getPages(),context,context.getSelectCond());
+        List<ArticlePage> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<ArticlePage> listSharedSubPages(ArticlePageSearchContext context) {
+        List<ArticlePage> list = baseMapper.listSharedSubPages(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<ArticlePage> fetchSharedWithMe(ArticlePageSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("SHARED_TIME,ASC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ArticlePage> pages=baseMapper.searchSharedWithMe(context.getPages(),context,context.getSelectCond());
+        List<ArticlePage> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<ArticlePage> listSharedWithMe(ArticlePageSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("SHARED_TIME,ASC");
+        List<ArticlePage> list = baseMapper.listSharedWithMe(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<ArticlePage> fetchSharedWithMeEdit(ArticlePageSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ArticlePage> pages=baseMapper.searchSharedWithMeEdit(context.getPages(),context,context.getSelectCond());
+        List<ArticlePage> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<ArticlePage> listSharedWithMeEdit(ArticlePageSearchContext context) {
+        List<ArticlePage> list = baseMapper.listSharedWithMeEdit(context,context.getSelectCond());
+        return list;
+   }
+	
 	public List<ArticlePage> findByParentId(List<String> parentIds){
         List<ArticlePage> list = baseMapper.findByParentId(parentIds);
         if(!ObjectUtils.isEmpty(list))
@@ -325,6 +440,10 @@ public abstract class AbstractArticlePageService extends ServiceImpl<ArticlePage
         return list;	
 	}
 
+	public List<ArticlePage> findByPage(ArticlePage articlePage){
+        List<ArticlePage> list = findByParentId(Arrays.asList(articlePage.getId()));
+		return list;
+	}
 	public boolean removeByParentId(String parentId){
         List<String> ids = baseMapper.findByParentId(Arrays.asList(parentId)).stream().map(e->e.getId()).collect(Collectors.toList());
         if(!ObjectUtils.isEmpty(ids))
@@ -339,8 +458,8 @@ public abstract class AbstractArticlePageService extends ServiceImpl<ArticlePage
 	public boolean saveByPage(ArticlePage articlePage, List<ArticlePage> list){
         if(list==null)
             return true;
-        Map<String,ArticlePage> before = findByParentId(articlePage.getId()).stream().collect(Collectors.toMap(ArticlePage::getId,e->e));
 
+        Map<String,ArticlePage> before = findByPage(articlePage).stream().collect(Collectors.toMap(ArticlePage::getId,e->e));
         List<ArticlePage> update = new ArrayList<>();
         List<ArticlePage> create = new ArrayList<>();
 
@@ -375,6 +494,10 @@ public abstract class AbstractArticlePageService extends ServiceImpl<ArticlePage
         return list;	
 	}
 
+	public List<ArticlePage> findBySpace(Space space){
+        List<ArticlePage> list = findBySpaceId(Arrays.asList(space.getId()));
+		return list;
+	}
 	public boolean removeBySpaceId(String spaceId){
         List<String> ids = baseMapper.findBySpaceId(Arrays.asList(spaceId)).stream().map(e->e.getId()).collect(Collectors.toList());
         if(!ObjectUtils.isEmpty(ids))
@@ -389,8 +512,8 @@ public abstract class AbstractArticlePageService extends ServiceImpl<ArticlePage
 	public boolean saveBySpace(Space space, List<ArticlePage> list){
         if(list==null)
             return true;
-        Map<String,ArticlePage> before = findBySpaceId(space.getId()).stream().collect(Collectors.toMap(ArticlePage::getId,e->e));
 
+        Map<String,ArticlePage> before = findBySpace(space).stream().collect(Collectors.toMap(ArticlePage::getId,e->e));
         List<ArticlePage> update = new ArrayList<>();
         List<ArticlePage> create = new ArrayList<>();
 
@@ -414,19 +537,62 @@ public abstract class AbstractArticlePageService extends ServiceImpl<ArticlePage
             return true;
 			
 	}
+	public List<ArticlePage> findBySharedSpacePage(SharedSpace sharedSpace){
+        List<ArticlePage> list = findBySpaceId(Arrays.asList(sharedSpace.getId()));
+		return list;
+	}
+	public boolean saveBySharedSpacePage(SharedSpace sharedSpace, List<ArticlePage> list){
+        if(list==null)
+            return true;
+
+        Map<String,ArticlePage> before = findBySharedSpacePage(sharedSpace).stream().collect(Collectors.toMap(ArticlePage::getId,e->e));
+        List<ArticlePage> update = new ArrayList<>();
+        List<ArticlePage> create = new ArrayList<>();
+
+        for(ArticlePage sub:list) {
+            sub.setSpaceId(sharedSpace.getId());
+            sub.setSharedSpacePage(sharedSpace);
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
 	@Override
     public List<Attention> getAttentions(ArticlePage et) {
-        List<Attention> list = attentionService.findByOwnerId(et.getId());
+        List<Attention> list = attentionService.findByPage(et);
         et.setAttentions(list);
         return list;
     }
 	
 	@Override
     public List<Attachment> getAttachments(ArticlePage et) {
-        List<Attachment> list = attachmentService.findByOwnerId(et.getId());
+        List<Attachment> list = attachmentService.findByPage(et);
         et.setAttachments(list);
         return list;
     }
+	
+   public Page<ArticlePage> fetchView(ArticlePageSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ArticlePage> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
+        List<ArticlePage> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<ArticlePage> listView(ArticlePageSearchContext context) {
+        List<ArticlePage> list = baseMapper.listView(context,context.getSelectCond());
+        return list;
+   }
 	
 
     public void fillParentData(ArticlePage et) {
@@ -445,6 +611,9 @@ public abstract class AbstractArticlePageService extends ServiceImpl<ArticlePage
                 et.setSpaceId(space.getId());
                 et.setSpaceName(space.getName());
             }
+        }
+        if(Entities.SHARED_SPACE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setSpaceId((String)et.getContextParentKey());
         }
     }
 

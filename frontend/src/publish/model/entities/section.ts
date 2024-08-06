@@ -569,6 +569,28 @@ export default {
       id: 'fetch_default',
     },
     {
+      codeName: 'fetch_idea_section',
+      methodType: 'FETCH',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'section_filter_dto',
+        type: 'DTO',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'section_dto',
+        type: 'PAGE',
+        id: '返回对象',
+      },
+      requestMethod: 'POST',
+      requestParamType: 'ENTITY',
+      requestPath: '/fetch_idea_section',
+      actionType: 'REMOTE',
+      dataSetName: 'idea_section',
+      dataSetTag: 'idea_section',
+      dataSetType: 'REMOTE',
+      id: 'fetch_idea_section',
+    },
+    {
       codeName: 'fetch_this_product_section',
       methodType: 'FETCH',
       appDEMethodInput: {

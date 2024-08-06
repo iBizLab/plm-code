@@ -78,6 +78,25 @@ public interface LibraryMemberMapper extends BaseMapper<LibraryMember> {
     List<LibraryMember> findByUserId(@Param("userIds") List<String> userIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<LibraryMember> searchView(IPage<LibraryMember> page, @Param("ctx") LibraryMemberSearchContext context, @Param("ew") Wrapper<LibraryMember> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<LibraryMember> listView(@Param("ctx") LibraryMemberSearchContext context, @Param("ew") Wrapper<LibraryMember> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

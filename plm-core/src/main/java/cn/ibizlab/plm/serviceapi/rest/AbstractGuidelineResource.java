@@ -23,12 +23,14 @@ import java.util.stream.IntStream;
 import cn.ibizlab.util.domain.ImportResult;
 import cn.ibizlab.util.domain.RequestWrapper;
 import cn.ibizlab.util.domain.ResponseWrapper;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.serviceapi.dto.*;
 import cn.ibizlab.plm.serviceapi.mapping.*;
 import cn.ibizlab.plm.core.testmgmt.domain.Guideline;
 import cn.ibizlab.plm.core.testmgmt.service.GuidelineService;
 import cn.ibizlab.plm.core.testmgmt.filter.GuidelineSearchContext;
 import cn.ibizlab.util.annotation.VersionCheck;
+import reactor.core.publisher.Mono;
 
 /**
  * 实体[Guideline] rest实现
@@ -58,19 +60,19 @@ public abstract class AbstractGuidelineResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<GuidelineDTO>
+    * @return Mono<ResponseEntity<GuidelineDTO>>
     */
     @ApiOperation(value = "创建Create", tags = {"流程准则" },  notes = "Guideline-Create ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Guideline-Create-all') or hasPermission(this.guidelineDtoMapping.toDomain(#dto),'ibizplm-Guideline-Create')")
     @PostMapping("guidelines")
-    public ResponseEntity<ResponseWrapper<GuidelineDTO>> create
+    public Mono<ResponseEntity<ResponseWrapper<GuidelineDTO>>>create
             (@Validated @RequestBody RequestWrapper<GuidelineDTO> dto) {
         ResponseWrapper<GuidelineDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(create(item)));
         else
             rt.set(create(dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -94,13 +96,13 @@ public abstract class AbstractGuidelineResource {
     *
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<GuidelineDTO>
+    * @return Mono<ResponseEntity<GuidelineDTO>>
     */
     @ApiOperation(value = "更新Update", tags = {"流程准则" },  notes = "Guideline-Update ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Guideline-Update-all') or hasPermission(this.guidelineService.get(#id),'ibizplm-Guideline-Update')")
     @VersionCheck(entity = "guideline" , versionfield = "updateTime")
     @PutMapping("guidelines/{id}")
-    public ResponseEntity<ResponseWrapper<GuidelineDTO>> updateById
+    public Mono<ResponseEntity<ResponseWrapper<GuidelineDTO>>>updateById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<GuidelineDTO> dto) {
         ResponseWrapper<GuidelineDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -109,7 +111,7 @@ public abstract class AbstractGuidelineResource {
         }
         else
             rt.set(updateById(id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -134,19 +136,19 @@ public abstract class AbstractGuidelineResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<GuidelineDTO>
+    * @return Mono<ResponseEntity<GuidelineDTO>>
     */
     @ApiOperation(value = "保存Save", tags = {"流程准则" },  notes = "Guideline-Save ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Guideline-Save-all') or hasPermission(this.guidelineDtoMapping.toDomain(#dto),'ibizplm-Guideline-Save')")
     @PostMapping("guidelines/save")
-    public ResponseEntity<ResponseWrapper<GuidelineDTO>> save
+    public Mono<ResponseEntity<ResponseWrapper<GuidelineDTO>>>save
             (@Validated @RequestBody RequestWrapper<GuidelineDTO> dto) {
         ResponseWrapper<GuidelineDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(save(item)));
         else
             rt.set(save(dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -170,19 +172,19 @@ public abstract class AbstractGuidelineResource {
     *
     * @param scopeId scopeId
     * @param dto dto
-    * @return ResponseEntity<GuidelineDTO>
+    * @return Mono<ResponseEntity<GuidelineDTO>>
     */
     @ApiOperation(value = "创建Create", tags = {"流程准则" },  notes = "Guideline-Create ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Guideline-Create-all') or hasPermission('library',#scopeId,this.guidelineDtoMapping.toDomain(#dto),'ibizplm-Guideline-Create')")
     @PostMapping("libraries/{scopeId}/guidelines")
-    public ResponseEntity<ResponseWrapper<GuidelineDTO>> createByScopeId
+    public Mono<ResponseEntity<ResponseWrapper<GuidelineDTO>>>createByScopeId
             (@PathVariable("scopeId") String scopeId, @Validated @RequestBody RequestWrapper<GuidelineDTO> dto) {
         ResponseWrapper<GuidelineDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(createByScopeId(scopeId, item)));
         else
             rt.set(createByScopeId(scopeId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -209,13 +211,13 @@ public abstract class AbstractGuidelineResource {
     * @param scopeId scopeId
     * @param id id
     * @param dto dto
-    * @return ResponseEntity<GuidelineDTO>
+    * @return Mono<ResponseEntity<GuidelineDTO>>
     */
     @ApiOperation(value = "更新Update", tags = {"流程准则" },  notes = "Guideline-Update ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Guideline-Update-all') or hasPermission('library',#scopeId,this.guidelineService.get(#id),'ibizplm-Guideline-Update')")
     @VersionCheck(entity = "guideline" , versionfield = "updateTime")
     @PutMapping("libraries/{scopeId}/guidelines/{id}")
-    public ResponseEntity<ResponseWrapper<GuidelineDTO>> updateByScopeIdAndId
+    public Mono<ResponseEntity<ResponseWrapper<GuidelineDTO>>>updateByScopeIdAndId
             (@PathVariable("scopeId") String scopeId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<GuidelineDTO> dto) {
         ResponseWrapper<GuidelineDTO> rt = new ResponseWrapper<>();
         if (dto.isArray()) {
@@ -224,7 +226,7 @@ public abstract class AbstractGuidelineResource {
         }
         else
             rt.set(updateByScopeIdAndId(scopeId, id, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -251,19 +253,19 @@ public abstract class AbstractGuidelineResource {
     *
     * @param scopeId scopeId
     * @param dto dto
-    * @return ResponseEntity<GuidelineDTO>
+    * @return Mono<ResponseEntity<GuidelineDTO>>
     */
     @ApiOperation(value = "保存Save", tags = {"流程准则" },  notes = "Guideline-Save ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Guideline-Save-all') or hasPermission('library',#scopeId,this.guidelineDtoMapping.toDomain(#dto),'ibizplm-Guideline-Save')")
     @PostMapping("libraries/{scopeId}/guidelines/save")
-    public ResponseEntity<ResponseWrapper<GuidelineDTO>> saveByScopeId
+    public Mono<ResponseEntity<ResponseWrapper<GuidelineDTO>>>saveByScopeId
             (@PathVariable("scopeId") String scopeId, @Validated @RequestBody RequestWrapper<GuidelineDTO> dto) {
         ResponseWrapper<GuidelineDTO> rt = new ResponseWrapper<>();
         if (dto.isArray())
             dto.getList().forEach(item -> rt.add(saveByScopeId(scopeId, item)));
         else
             rt.set(saveByScopeId(scopeId, dto.getDto()));
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -289,15 +291,15 @@ public abstract class AbstractGuidelineResource {
     * 
     *
     * @param id id
-    * @return ResponseEntity<GuidelineDTO>
+    * @return Mono<ResponseEntity<GuidelineDTO>>
     */
     @ApiOperation(value = "获取Get", tags = {"流程准则" },  notes = "Guideline-Get ")
-    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Guideline-Get-all')  or hasPermission(this.guidelineDtoMapping.toDomain(returnObject.body),'ibizplm-Guideline-Get')")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Guideline-Get-all')  or hasPermission(this.guidelineDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-Guideline-Get')")
     @GetMapping("guidelines/{id}")
-    public ResponseEntity<GuidelineDTO> getById
+    public Mono<ResponseEntity<GuidelineDTO>> getById
             (@PathVariable("id") String id) {
         Guideline rt = guidelineService.get(id);
-        return ResponseEntity.status(HttpStatus.OK).body(guidelineDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(guidelineDtoMapping.toDto(rt)));
     }
 
     /**
@@ -305,15 +307,15 @@ public abstract class AbstractGuidelineResource {
     * 
     *
     * @param id id
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @ApiOperation(value = "删除Remove", tags = {"流程准则" },  notes = "Guideline-Remove ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Guideline-Remove-all') or hasPermission(this.guidelineService.get(#id),'ibizplm-Guideline-Remove')")
     @DeleteMapping("guidelines/{id}")
-    public ResponseEntity<Boolean> removeById
+    public Mono<ResponseEntity<Boolean>> removeById
             (@PathVariable("id") String id) {
         Boolean rt = guidelineService.remove(id);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -321,15 +323,15 @@ public abstract class AbstractGuidelineResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<Integer>
+    * @return Mono<ResponseEntity<Integer>>
     */
     @ApiOperation(value = "校验CheckKey", tags = {"流程准则" },  notes = "Guideline-CheckKey ")
     @PostMapping("guidelines/check_key")
-    public ResponseEntity<Integer> checkKey
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKey
             (@Validated @RequestBody GuidelineDTO dto) {
         Guideline domain = guidelineDtoMapping.toDomain(dto);
-        Integer rt = guidelineService.checkKey(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        CheckKeyStatus rt = guidelineService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -337,15 +339,15 @@ public abstract class AbstractGuidelineResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<GuidelineDTO>
+    * @return Mono<ResponseEntity<GuidelineDTO>>
     */
     @ApiOperation(value = "草稿GetDraft", tags = {"流程准则" },  notes = "Guideline-GetDraft ")
     @GetMapping("guidelines/get_draft")
-    public ResponseEntity<GuidelineDTO> getDraft
+    public Mono<ResponseEntity<GuidelineDTO>> getDraft
             (@SpringQueryMap GuidelineDTO dto) {
         Guideline domain = guidelineDtoMapping.toDomain(dto);
         Guideline rt = guidelineService.getDraft(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(guidelineDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(guidelineDtoMapping.toDto(rt)));
     }
 
     /**
@@ -353,21 +355,21 @@ public abstract class AbstractGuidelineResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<GuidelineDefGroupDTO>>
+    * @return Mono<ResponseEntity<List<GuidelineDefGroupDTO>>>
     */
     @ApiOperation(value = "查询fetch_base", tags = {"流程准则" },  notes = "Guideline-fetch_base ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Guideline-fetch_base-all') or hasPermission(#dto,'ibizplm-Guideline-fetch_base')")
     @PostMapping("guidelines/fetch_base")
-    public ResponseEntity<List<GuidelineDefGroupDTO>> fetchBase
+    public Mono<ResponseEntity<List<GuidelineDefGroupDTO>>> fetchBase
             (@Validated @RequestBody GuidelineFilterDTO dto) {
         GuidelineSearchContext context = guidelineFilterDtoMapping.toDomain(dto);
         Page<Guideline> domains = guidelineService.fetchBase(context) ;
         List<GuidelineDefGroupDTO> list = guidelineDefGroupDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -375,21 +377,21 @@ public abstract class AbstractGuidelineResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<GuidelineDefGroupDTO>>
+    * @return Mono<ResponseEntity<List<GuidelineDefGroupDTO>>>
     */
     @ApiOperation(value = "查询fetch_default", tags = {"流程准则" },  notes = "Guideline-fetch_default ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Guideline-fetch_default-all') or hasPermission(#dto,'ibizplm-Guideline-fetch_default')")
     @PostMapping("guidelines/fetch_default")
-    public ResponseEntity<List<GuidelineDefGroupDTO>> fetchDefault
+    public Mono<ResponseEntity<List<GuidelineDefGroupDTO>>> fetchDefault
             (@Validated @RequestBody GuidelineFilterDTO dto) {
         GuidelineSearchContext context = guidelineFilterDtoMapping.toDomain(dto);
         Page<Guideline> domains = guidelineService.fetchDefault(context) ;
         List<GuidelineDefGroupDTO> list = guidelineDefGroupDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -397,21 +399,21 @@ public abstract class AbstractGuidelineResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<GuidelineDTO>>
+    * @return Mono<ResponseEntity<List<GuidelineDTO>>>
     */
     @ApiOperation(value = "查询fetch_normal", tags = {"流程准则" },  notes = "Guideline-fetch_normal ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Guideline-fetch_normal-all') or hasPermission(#dto,'ibizplm-Guideline-fetch_normal')")
     @PostMapping("guidelines/fetch_normal")
-    public ResponseEntity<List<GuidelineDTO>> fetchNormal
+    public Mono<ResponseEntity<List<GuidelineDTO>>> fetchNormal
             (@Validated @RequestBody GuidelineFilterDTO dto) {
         GuidelineSearchContext context = guidelineFilterDtoMapping.toDomain(dto);
         Page<Guideline> domains = guidelineService.fetchNormal(context) ;
         List<GuidelineDTO> list = guidelineDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -419,21 +421,21 @@ public abstract class AbstractGuidelineResource {
     * 
     *
     * @param dto dto
-    * @return ResponseEntity<List<GuidelineDefGroupDTO>>
+    * @return Mono<ResponseEntity<List<GuidelineDefGroupDTO>>>
     */
     @ApiOperation(value = "查询fetch_under_library", tags = {"流程准则" },  notes = "Guideline-fetch_under_library ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Guideline-fetch_under_library-all') or hasPermission(#dto,'ibizplm-Guideline-fetch_under_library')")
     @PostMapping("guidelines/fetch_under_library")
-    public ResponseEntity<List<GuidelineDefGroupDTO>> fetchUnderLibrary
+    public Mono<ResponseEntity<List<GuidelineDefGroupDTO>>> fetchUnderLibrary
             (@Validated @RequestBody GuidelineFilterDTO dto) {
         GuidelineSearchContext context = guidelineFilterDtoMapping.toDomain(dto);
         Page<Guideline> domains = guidelineService.fetchUnderLibrary(context) ;
         List<GuidelineDefGroupDTO> list = guidelineDefGroupDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -442,15 +444,15 @@ public abstract class AbstractGuidelineResource {
     *
     * @param scopeId scopeId
     * @param id id
-    * @return ResponseEntity<GuidelineDTO>
+    * @return Mono<ResponseEntity<GuidelineDTO>>
     */
     @ApiOperation(value = "获取Get", tags = {"流程准则" },  notes = "Guideline-Get ")
-    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Guideline-Get-all')  or hasPermission('library',#scopeId,this.guidelineDtoMapping.toDomain(returnObject.body),'ibizplm-Guideline-Get')")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Guideline-Get-all')  or hasPermission('library',#scopeId,this.guidelineDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-Guideline-Get')")
     @GetMapping("libraries/{scopeId}/guidelines/{id}")
-    public ResponseEntity<GuidelineDTO> getByScopeIdAndId
+    public Mono<ResponseEntity<GuidelineDTO>> getByScopeIdAndId
             (@PathVariable("scopeId") String scopeId, @PathVariable("id") String id) {
         Guideline rt = guidelineService.get(id);
-        return ResponseEntity.status(HttpStatus.OK).body(guidelineDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(guidelineDtoMapping.toDto(rt)));
     }
 
     /**
@@ -459,15 +461,15 @@ public abstract class AbstractGuidelineResource {
     *
     * @param scopeId scopeId
     * @param id id
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @ApiOperation(value = "删除Remove", tags = {"流程准则" },  notes = "Guideline-Remove ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Guideline-Remove-all') or hasPermission('library',#scopeId,this.guidelineService.get(#id),'ibizplm-Guideline-Remove')")
     @DeleteMapping("libraries/{scopeId}/guidelines/{id}")
-    public ResponseEntity<Boolean> removeByScopeIdAndId
+    public Mono<ResponseEntity<Boolean>> removeByScopeIdAndId
             (@PathVariable("scopeId") String scopeId, @PathVariable("id") String id) {
         Boolean rt = guidelineService.remove(id);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -476,16 +478,16 @@ public abstract class AbstractGuidelineResource {
     *
     * @param scopeId scopeId
     * @param dto dto
-    * @return ResponseEntity<Integer>
+    * @return Mono<ResponseEntity<Integer>>
     */
     @ApiOperation(value = "校验CheckKey", tags = {"流程准则" },  notes = "Guideline-CheckKey ")
     @PostMapping("libraries/{scopeId}/guidelines/check_key")
-    public ResponseEntity<Integer> checkKeyByScopeId
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKeyByScopeId
             (@PathVariable("scopeId") String scopeId, @Validated @RequestBody GuidelineDTO dto) {
         Guideline domain = guidelineDtoMapping.toDomain(dto);
         domain.setScopeId(scopeId);
-        Integer rt = guidelineService.checkKey(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(rt);
+        CheckKeyStatus rt = guidelineService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
     /**
@@ -494,16 +496,16 @@ public abstract class AbstractGuidelineResource {
     *
     * @param scopeId scopeId
     * @param dto dto
-    * @return ResponseEntity<GuidelineDTO>
+    * @return Mono<ResponseEntity<GuidelineDTO>>
     */
     @ApiOperation(value = "草稿GetDraft", tags = {"流程准则" },  notes = "Guideline-GetDraft ")
     @GetMapping("libraries/{scopeId}/guidelines/get_draft")
-    public ResponseEntity<GuidelineDTO> getDraftByScopeId
+    public Mono<ResponseEntity<GuidelineDTO>> getDraftByScopeId
             (@PathVariable("scopeId") String scopeId, @SpringQueryMap GuidelineDTO dto) {
         Guideline domain = guidelineDtoMapping.toDomain(dto);
         domain.setScopeId(scopeId);
         Guideline rt = guidelineService.getDraft(domain);
-        return ResponseEntity.status(HttpStatus.OK).body(guidelineDtoMapping.toDto(rt));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(guidelineDtoMapping.toDto(rt)));
     }
 
     /**
@@ -512,22 +514,22 @@ public abstract class AbstractGuidelineResource {
     *
     * @param scopeId scopeId
     * @param dto dto
-    * @return ResponseEntity<List<GuidelineDefGroupDTO>>
+    * @return Mono<ResponseEntity<List<GuidelineDefGroupDTO>>>
     */
     @ApiOperation(value = "查询fetch_base", tags = {"流程准则" },  notes = "Guideline-fetch_base ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Guideline-fetch_base-all') or hasPermission('library',#scopeId,#dto,'ibizplm-Guideline-fetch_base')")
     @PostMapping("libraries/{scopeId}/guidelines/fetch_base")
-    public ResponseEntity<List<GuidelineDefGroupDTO>> fetchBaseByScopeId
+    public Mono<ResponseEntity<List<GuidelineDefGroupDTO>>> fetchBaseByScopeId
             (@PathVariable("scopeId") String scopeId, @Validated @RequestBody GuidelineFilterDTO dto) {
         dto.setScopeIdEQ(scopeId);
         GuidelineSearchContext context = guidelineFilterDtoMapping.toDomain(dto);
         Page<Guideline> domains = guidelineService.fetchBase(context) ;
         List<GuidelineDefGroupDTO> list = guidelineDefGroupDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -536,22 +538,22 @@ public abstract class AbstractGuidelineResource {
     *
     * @param scopeId scopeId
     * @param dto dto
-    * @return ResponseEntity<List<GuidelineDefGroupDTO>>
+    * @return Mono<ResponseEntity<List<GuidelineDefGroupDTO>>>
     */
     @ApiOperation(value = "查询fetch_default", tags = {"流程准则" },  notes = "Guideline-fetch_default ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Guideline-fetch_default-all') or hasPermission('library',#scopeId,#dto,'ibizplm-Guideline-fetch_default')")
     @PostMapping("libraries/{scopeId}/guidelines/fetch_default")
-    public ResponseEntity<List<GuidelineDefGroupDTO>> fetchDefaultByScopeId
+    public Mono<ResponseEntity<List<GuidelineDefGroupDTO>>> fetchDefaultByScopeId
             (@PathVariable("scopeId") String scopeId, @Validated @RequestBody GuidelineFilterDTO dto) {
         dto.setScopeIdEQ(scopeId);
         GuidelineSearchContext context = guidelineFilterDtoMapping.toDomain(dto);
         Page<Guideline> domains = guidelineService.fetchDefault(context) ;
         List<GuidelineDefGroupDTO> list = guidelineDefGroupDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -560,22 +562,22 @@ public abstract class AbstractGuidelineResource {
     *
     * @param scopeId scopeId
     * @param dto dto
-    * @return ResponseEntity<List<GuidelineDTO>>
+    * @return Mono<ResponseEntity<List<GuidelineDTO>>>
     */
     @ApiOperation(value = "查询fetch_normal", tags = {"流程准则" },  notes = "Guideline-fetch_normal ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Guideline-fetch_normal-all') or hasPermission('library',#scopeId,#dto,'ibizplm-Guideline-fetch_normal')")
     @PostMapping("libraries/{scopeId}/guidelines/fetch_normal")
-    public ResponseEntity<List<GuidelineDTO>> fetchNormalByScopeId
+    public Mono<ResponseEntity<List<GuidelineDTO>>> fetchNormalByScopeId
             (@PathVariable("scopeId") String scopeId, @Validated @RequestBody GuidelineFilterDTO dto) {
         dto.setScopeIdEQ(scopeId);
         GuidelineSearchContext context = guidelineFilterDtoMapping.toDomain(dto);
         Page<Guideline> domains = guidelineService.fetchNormal(context) ;
         List<GuidelineDTO> list = guidelineDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
     /**
@@ -584,88 +586,88 @@ public abstract class AbstractGuidelineResource {
     *
     * @param scopeId scopeId
     * @param dto dto
-    * @return ResponseEntity<List<GuidelineDefGroupDTO>>
+    * @return Mono<ResponseEntity<List<GuidelineDefGroupDTO>>>
     */
     @ApiOperation(value = "查询fetch_under_library", tags = {"流程准则" },  notes = "Guideline-fetch_under_library ")
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Guideline-fetch_under_library-all') or hasPermission('library',#scopeId,#dto,'ibizplm-Guideline-fetch_under_library')")
     @PostMapping("libraries/{scopeId}/guidelines/fetch_under_library")
-    public ResponseEntity<List<GuidelineDefGroupDTO>> fetchUnderLibraryByScopeId
+    public Mono<ResponseEntity<List<GuidelineDefGroupDTO>>> fetchUnderLibraryByScopeId
             (@PathVariable("scopeId") String scopeId, @Validated @RequestBody GuidelineFilterDTO dto) {
         dto.setScopeIdEQ(scopeId);
         GuidelineSearchContext context = guidelineFilterDtoMapping.toDomain(dto);
         Page<Guideline> domains = guidelineService.fetchUnderLibrary(context) ;
         List<GuidelineDefGroupDTO> list = guidelineDefGroupDtoMapping.toDto(domains.getContent());
-            return ResponseEntity.status(HttpStatus.OK)
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
             .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
             .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list);
+            .body(list));
     }
 
 
     /**
     * 批量新建流程准则
     * @param dtos
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-Guideline-Create-all')")
     @ApiOperation(value = "批量新建流程准则", tags = {"流程准则" },  notes = "批量新建流程准则")
 	@PostMapping("guidelines/batch")
-    public ResponseEntity<Boolean> createBatch(@RequestBody List<GuidelineDTO> dtos) {
+    public Mono<ResponseEntity<Boolean>> createBatch(@RequestBody List<GuidelineDTO> dtos) {
         guidelineService.create(guidelineDtoMapping.toDomain(dtos));
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量删除流程准则
     * @param ids ids
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-Guideline-Remove-all')")
     @ApiOperation(value = "批量删除流程准则", tags = {"流程准则" },  notes = "批量删除流程准则")
 	@DeleteMapping("guidelines/batch")
-    public ResponseEntity<Boolean> removeBatch(@RequestBody List<String> ids) {
+    public Mono<ResponseEntity<Boolean>> removeBatch(@RequestBody List<String> ids) {
         guidelineService.remove(ids);
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量更新流程准则
     * @param dtos
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-Guideline-Update-all')")
     @ApiOperation(value = "批量更新流程准则", tags = {"流程准则" },  notes = "批量更新流程准则")
 	@PutMapping("guidelines/batch")
-    public ResponseEntity<Boolean> updateBatch(@RequestBody List<GuidelineDTO> dtos) {
+    public Mono<ResponseEntity<Boolean>> updateBatch(@RequestBody List<GuidelineDTO> dtos) {
         guidelineService.update(guidelineDtoMapping.toDomain(dtos));
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量保存流程准则
     * @param dtos
-    * @return ResponseEntity<Boolean>
+    * @return Mono<ResponseEntity<Boolean>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-Guideline-Save-all')")
     @ApiOperation(value = "批量保存流程准则", tags = {"流程准则" },  notes = "批量保存流程准则")
 	@PostMapping("guidelines/savebatch")
-    public ResponseEntity<Boolean> saveBatch(@RequestBody List<GuidelineDTO> dtos) {
+    public Mono<ResponseEntity<Boolean>> saveBatch(@RequestBody List<GuidelineDTO> dtos) {
         guidelineService.save(guidelineDtoMapping.toDomain(dtos));
-        return  ResponseEntity.status(HttpStatus.OK).body(true);
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(true));
     }
 
     /**
     * 批量导入流程准则
     * @param config 导入模式
     * @param ignoreError 导入中忽略错误
-    * @return ResponseEntity<ImportResult>
+    * @return Mono<ResponseEntity<ImportResult>>
     */
     @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','plm-Guideline-Save-all')")
     @ApiOperation(value = "批量导入流程准则", tags = {"流程准则" },  notes = "批量导入流程准则")
 	@PostMapping("guidelines/import")
-    public ResponseEntity<ImportResult> importData(@RequestParam(value = "config" , required = false) String config ,@RequestParam(value = "ignoreerror", required = false, defaultValue = "true") Boolean ignoreError ,@RequestBody List<GuidelineDTO> dtos) {
-        return  ResponseEntity.status(HttpStatus.OK).body(guidelineService.importData(config,ignoreError,guidelineDtoMapping.toDomain(dtos)));
+    public Mono<ResponseEntity<ImportResult>> importData(@RequestParam(value = "config" , required = false) String config ,@RequestParam(value = "ignoreerror", required = false, defaultValue = "true") Boolean ignoreError ,@RequestBody List<GuidelineDTO> dtos) {
+        return  Mono.just(ResponseEntity.status(HttpStatus.OK).body(guidelineService.importData(config,ignoreError,guidelineDtoMapping.toDomain(dtos))));
     }
 
 }

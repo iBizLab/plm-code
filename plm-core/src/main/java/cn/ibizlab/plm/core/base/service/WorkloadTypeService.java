@@ -11,6 +11,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.WorkloadType;
 import cn.ibizlab.plm.core.base.filter.WorkloadTypeSearchContext;
 import cn.ibizlab.plm.core.base.domain.Workload;
@@ -139,7 +140,7 @@ public interface WorkloadTypeService extends IService<WorkloadType> {
     * @param et
     * @return
     */
-    Integer checkKey(WorkloadType et);
+    CheckKeyStatus checkKey(WorkloadType et);
 
     /**
     * 保存
@@ -154,6 +155,16 @@ public interface WorkloadTypeService extends IService<WorkloadType> {
      * @return
      */
     boolean save(List<WorkloadType> list);
+
+    /**
+    * moveOrder
+    * 
+    * @param et
+    * @return
+    */
+    default List<WorkloadType> moveOrder(WorkloadType et) {
+        return new ArrayList<>();
+    }
 
     /**
     * nothing
@@ -180,6 +191,22 @@ public interface WorkloadTypeService extends IService<WorkloadType> {
     * @return
     */
     List<WorkloadType> listDefault(WorkloadTypeSearchContext context);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<WorkloadType> fetchView(WorkloadTypeSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<WorkloadType> listView(WorkloadTypeSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<WorkloadType> list) {

@@ -13,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Page;
 import org.springframework.util.*;
 import cn.ibizlab.util.errors.*;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
 import cn.ibizlab.plm.core.ibizsysmgr.domain.SysDepartment;
@@ -80,7 +81,7 @@ public abstract class AbstractSysDepartmentService implements SysDepartmentServi
         return sysDepartmentFeignClient.getDraft(et);
     }
 	
-    public Integer checkKey(SysDepartment et) {
+    public CheckKeyStatus checkKey(SysDepartment et) {
          return sysDepartmentFeignClient.checkKey(et);
     }
 	

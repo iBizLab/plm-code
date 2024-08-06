@@ -70,6 +70,25 @@ public interface ProductPlanMapper extends BaseMapper<ProductPlan> {
     List<ProductPlan> findByProductId(@Param("productIds") List<String> productIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<ProductPlan> searchView(IPage<ProductPlan> page, @Param("ctx") ProductPlanSearchContext context, @Param("ew") Wrapper<ProductPlan> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<ProductPlan> listView(@Param("ctx") ProductPlanSearchContext context, @Param("ew") Wrapper<ProductPlan> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.Attachment;
 import cn.ibizlab.plm.core.base.filter.AttachmentSearchContext;
 import cn.ibizlab.plm.core.wiki.domain.Stencil;
@@ -145,7 +146,7 @@ public interface AttachmentService extends IService<Attachment> {
     * @param et
     * @return
     */
-    Integer checkKey(Attachment et);
+    CheckKeyStatus checkKey(Attachment et);
 
     /**
     * 保存
@@ -216,8 +217,15 @@ public interface AttachmentService extends IService<Attachment> {
     */
     List<Attachment> findByOwnerId(List<String> ownerIds);
     default List<Attachment> findByOwnerId(String ownerId){
-        return findByOwnerId(Arrays.asList(ownerId));
+        return findByStencil(new Stencil().setId(ownerId));
     }
+
+    /**
+    * findByStencil
+    * @param stencil
+    * @return
+    */
+    List<Attachment> findByStencil(Stencil stencil);
 
     /**
     * removeByOwnerId
@@ -252,12 +260,26 @@ public interface AttachmentService extends IService<Attachment> {
     boolean saveByStencil(Stencil stencil, List<Attachment> list);
 
     /**
+    * findByDiscussPost
+    * @param discussPost
+    * @return
+    */
+    List<Attachment> findByDiscussPost(DiscussPost discussPost);
+
+    /**
     * saveByDiscussPost
     * @param discussPost
     * @param list
     * @return
     */
     boolean saveByDiscussPost(DiscussPost discussPost, List<Attachment> list);
+
+    /**
+    * findByIdea
+    * @param idea
+    * @return
+    */
+    List<Attachment> findByIdea(Idea idea);
 
     /**
     * saveByIdea
@@ -268,12 +290,26 @@ public interface AttachmentService extends IService<Attachment> {
     boolean saveByIdea(Idea idea, List<Attachment> list);
 
     /**
+    * findByPage
+    * @param articlePage
+    * @return
+    */
+    List<Attachment> findByPage(ArticlePage articlePage);
+
+    /**
     * saveByPage
     * @param articlePage
     * @param list
     * @return
     */
     boolean saveByPage(ArticlePage articlePage, List<Attachment> list);
+
+    /**
+    * findByReview
+    * @param review
+    * @return
+    */
+    List<Attachment> findByReview(Review review);
 
     /**
     * saveByReview
@@ -284,12 +320,26 @@ public interface AttachmentService extends IService<Attachment> {
     boolean saveByReview(Review review, List<Attachment> list);
 
     /**
+    * findByTestCase
+    * @param testCase
+    * @return
+    */
+    List<Attachment> findByTestCase(TestCase testCase);
+
+    /**
     * saveByTestCase
     * @param testCase
     * @param list
     * @return
     */
     boolean saveByTestCase(TestCase testCase, List<Attachment> list);
+
+    /**
+    * findByTicket
+    * @param ticket
+    * @return
+    */
+    List<Attachment> findByTicket(Ticket ticket);
 
     /**
     * saveByTicket
@@ -300,12 +350,35 @@ public interface AttachmentService extends IService<Attachment> {
     boolean saveByTicket(Ticket ticket, List<Attachment> list);
 
     /**
+    * findByWorkItem
+    * @param workItem
+    * @return
+    */
+    List<Attachment> findByWorkItem(WorkItem workItem);
+
+    /**
     * saveByWorkItem
     * @param workItem
     * @param list
     * @return
     */
     boolean saveByWorkItem(WorkItem workItem, List<Attachment> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Attachment> fetchView(AttachmentSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Attachment> listView(AttachmentSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Attachment> list) {

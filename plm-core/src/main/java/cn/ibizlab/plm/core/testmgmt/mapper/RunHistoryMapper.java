@@ -70,6 +70,25 @@ public interface RunHistoryMapper extends BaseMapper<RunHistory> {
     List<RunHistory> findByRunId(@Param("runIds") List<String> runIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<RunHistory> searchView(IPage<RunHistory> page, @Param("ctx") RunHistorySearchContext context, @Param("ew") Wrapper<RunHistory> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<RunHistory> listView(@Param("ctx") RunHistorySearchContext context, @Param("ew") Wrapper<RunHistory> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

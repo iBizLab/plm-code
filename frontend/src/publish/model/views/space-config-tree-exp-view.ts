@@ -68,6 +68,12 @@ export default {
           id: 'expitem:node_5',
         },
         {
+          realTitle: '共享页面表格视图',
+          refAppViewId: 'plmweb.article_page_shared_grid_view',
+          name: 'EXPITEM:node_6',
+          id: 'expitem:node_6',
+        },
+        {
           realTitle: '组件设置',
           refAppViewId: 'plmweb.addon_setting_grid_view',
           name: 'EXPITEM:node_7',
@@ -212,9 +218,10 @@ export default {
             },
             {
               text: '页面共享',
+              navAppViewId: 'plmweb.article_page_shared_grid_view',
               nodeType: 'node_6',
               treeNodeType: 'STATIC',
-              disableSelect: true,
+              enableCheck: true,
               name: '页面共享',
               id: 'node_6',
             },

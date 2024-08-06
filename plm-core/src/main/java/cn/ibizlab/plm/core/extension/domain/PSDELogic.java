@@ -4,6 +4,7 @@
 package cn.ibizlab.plm.core.extension.domain;
 
 import java.util.*;
+import java.math.BigDecimal;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -20,8 +21,6 @@ import lombok.experimental.Accessors;
 import io.swagger.annotations.*;
 import cn.ibizlab.plm.core.extension.domain.PSDELogicLink;
 import cn.ibizlab.plm.core.extension.domain.PSDELogicNode;
-import cn.ibizlab.plm.core.extension.domain.PSDELogicNode;
-import cn.ibizlab.plm.core.extension.domain.PSDELogicLink;
 
 /**
  * 实体处理逻辑实体类[PSDELogic]
@@ -170,7 +169,7 @@ public class PSDELogic extends EntityBase implements Serializable
     @JSONField(name = "psdelogicnodes")
     @JsonProperty("psdelogicnodes")
     @ApiModelProperty(value = "psdelogicnodes", notes = "逻辑节点")
-    private List<PSDELogicNode> psdelogicnodes;
+    private List<PSDELogicNode> psdeLogicNodes;
 
     /**
      * 逻辑连接
@@ -179,7 +178,52 @@ public class PSDELogic extends EntityBase implements Serializable
     @JSONField(name = "psdelogiclinks")
     @JsonProperty("psdelogiclinks")
     @ApiModelProperty(value = "psdelogiclinks", notes = "逻辑连接")
-    private List<PSDELogicLink> psdelogiclinks;
+    private List<PSDELogicLink> psdeLogicLinks;
+
+    /**
+     * WebHook地址
+     */
+    @DEField(name = "webhookurl")
+    @JSONField(name = "webhookurl")
+    @JsonProperty("webhookurl")
+    @ApiModelProperty(value = "webhookurl", notes = "WebHook地址")
+    private String webHookUrl;
+
+    /**
+     * 成功率
+     */
+    @DEField(name = "success_rate")
+    @JSONField(name = "success_rate")
+    @JsonProperty("success_rate")
+    @ApiModelProperty(value = "success_rate", notes = "成功率")
+    private BigDecimal successRate;
+
+    /**
+     * 成功率
+     */
+    @DEField(name = "success_per")
+    @JSONField(name = "success_per")
+    @JsonProperty("success_per")
+    @ApiModelProperty(value = "success_per", notes = "成功率")
+    private BigDecimal successPer;
+
+    /**
+     * 失败率
+     */
+    @DEField(name = "failure_rate")
+    @JSONField(name = "failure_rate")
+    @JsonProperty("failure_rate")
+    @ApiModelProperty(value = "failure_rate", notes = "失败率")
+    private BigDecimal failureRate;
+
+    /**
+     * 失败率
+     */
+    @DEField(name = "failure_per")
+    @JSONField(name = "failure_per")
+    @JsonProperty("failure_per")
+    @ApiModelProperty(value = "failure_per", notes = "失败率")
+    private BigDecimal failurePer;
 
     /**
      * 实体处理逻辑标识
@@ -547,18 +591,63 @@ public class PSDELogic extends EntityBase implements Serializable
     /**
     * 设置 [逻辑节点]
     */
-    public PSDELogic setPsdelogicnodes(List<PSDELogicNode> psdelogicnodes) {
-        this.psdelogicnodes = psdelogicnodes;
-        this.modify("psdelogicnodes", psdelogicnodes);
+    public PSDELogic setPsdeLogicNodes(List<PSDELogicNode> psdeLogicNodes) {
+        this.psdeLogicNodes = psdeLogicNodes;
+        this.modify("psdelogicnodes", psdeLogicNodes);
         return this;
     }
 
     /**
     * 设置 [逻辑连接]
     */
-    public PSDELogic setPsdelogiclinks(List<PSDELogicLink> psdelogiclinks) {
-        this.psdelogiclinks = psdelogiclinks;
-        this.modify("psdelogiclinks", psdelogiclinks);
+    public PSDELogic setPsdeLogicLinks(List<PSDELogicLink> psdeLogicLinks) {
+        this.psdeLogicLinks = psdeLogicLinks;
+        this.modify("psdelogiclinks", psdeLogicLinks);
+        return this;
+    }
+
+    /**
+    * 设置 [WebHook地址]
+    */
+    public PSDELogic setWebHookUrl(String webHookUrl) {
+        this.webHookUrl = webHookUrl;
+        this.modify("webhookurl", webHookUrl);
+        return this;
+    }
+
+    /**
+    * 设置 [成功率]
+    */
+    public PSDELogic setSuccessRate(BigDecimal successRate) {
+        this.successRate = successRate;
+        this.modify("success_rate", successRate);
+        return this;
+    }
+
+    /**
+    * 设置 [成功率]
+    */
+    public PSDELogic setSuccessPer(BigDecimal successPer) {
+        this.successPer = successPer;
+        this.modify("success_per", successPer);
+        return this;
+    }
+
+    /**
+    * 设置 [失败率]
+    */
+    public PSDELogic setFailureRate(BigDecimal failureRate) {
+        this.failureRate = failureRate;
+        this.modify("failure_rate", failureRate);
+        return this;
+    }
+
+    /**
+    * 设置 [失败率]
+    */
+    public PSDELogic setFailurePer(BigDecimal failurePer) {
+        this.failurePer = failurePer;
+        this.modify("failure_per", failurePer);
         return this;
     }
 

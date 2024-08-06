@@ -110,10 +110,8 @@ export default {
                   },
                 ],
                 layout: {
-                  align: 'center',
                   dir: 'row',
                   layout: 'FLEX',
-                  valign: 'center',
                 },
                 dataRegionType: 'INHERIT',
                 caption: '容器',
@@ -127,8 +125,10 @@ export default {
               },
             ],
             layout: {
+              align: 'center',
               dir: 'row',
               layout: 'FLEX',
+              valign: 'center',
             },
             dataRegionType: 'INHERIT',
             caption: '容器',

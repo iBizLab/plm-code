@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.Baseline;
 import cn.ibizlab.plm.core.base.filter.BaselineSearchContext;
 import cn.ibizlab.plm.core.testmgmt.domain.Library;
@@ -146,7 +147,7 @@ public interface BaselineService extends IService<Baseline> {
     * @param et
     * @return
     */
-    Integer checkKey(Baseline et);
+    CheckKeyStatus checkKey(Baseline et);
 
     /**
     * 保存
@@ -287,8 +288,15 @@ public interface BaselineService extends IService<Baseline> {
     */
     List<Baseline> findByOwnerId(List<String> ownerIds);
     default List<Baseline> findByOwnerId(String ownerId){
-        return findByOwnerId(Arrays.asList(ownerId));
+        return findByLibrary(new Library().setId(ownerId));
     }
+
+    /**
+    * findByLibrary
+    * @param library
+    * @return
+    */
+    List<Baseline> findByLibrary(Library library);
 
     /**
     * removeByOwnerId
@@ -323,12 +331,26 @@ public interface BaselineService extends IService<Baseline> {
     boolean saveByLibrary(Library library, List<Baseline> list);
 
     /**
+    * findByProduct
+    * @param product
+    * @return
+    */
+    List<Baseline> findByProduct(Product product);
+
+    /**
     * saveByProduct
     * @param product
     * @param list
     * @return
     */
     boolean saveByProduct(Product product, List<Baseline> list);
+
+    /**
+    * findByProject
+    * @param project
+    * @return
+    */
+    List<Baseline> findByProject(Project project);
 
     /**
     * saveByProject
@@ -339,12 +361,35 @@ public interface BaselineService extends IService<Baseline> {
     boolean saveByProject(Project project, List<Baseline> list);
 
     /**
+    * findBySpace
+    * @param space
+    * @return
+    */
+    List<Baseline> findBySpace(Space space);
+
+    /**
     * saveBySpace
     * @param space
     * @param list
     * @return
     */
     boolean saveBySpace(Space space, List<Baseline> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Baseline> fetchView(BaselineSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Baseline> listView(BaselineSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Baseline> list) {

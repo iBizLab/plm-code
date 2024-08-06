@@ -70,6 +70,25 @@ public interface DeliverableMapper extends BaseMapper<Deliverable> {
     List<Deliverable> findByOwnerId(@Param("ownerIds") List<String> ownerIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Deliverable> searchView(IPage<Deliverable> page, @Param("ctx") DeliverableSearchContext context, @Param("ew") Wrapper<Deliverable> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Deliverable> listView(@Param("ctx") DeliverableSearchContext context, @Param("ew") Wrapper<Deliverable> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

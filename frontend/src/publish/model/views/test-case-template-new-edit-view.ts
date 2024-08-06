@@ -382,7 +382,6 @@ export default {
                             layout: 'TABLE_24COL',
                           },
                           repeatContent: true,
-                          showCaption: true,
                           id: 'is_group',
                         },
                         {
@@ -408,7 +407,6 @@ export default {
                             layout: 'TABLE_24COL',
                           },
                           repeatContent: true,
-                          showCaption: true,
                           id: 'group_id',
                         },
                         {
@@ -435,7 +433,6 @@ export default {
                             layout: 'TABLE_24COL',
                           },
                           repeatContent: true,
-                          showCaption: true,
                           id: 'id',
                         },
                       ],
@@ -751,7 +748,6 @@ export default {
                     colMD: 24,
                     layout: 'TABLE_24COL',
                   },
-                  showCaption: true,
                   id: 'test_library_id',
                 },
                 {
@@ -777,7 +773,6 @@ export default {
                     colMD: 24,
                     layout: 'TABLE_24COL',
                   },
-                  showCaption: true,
                   id: 'suite_id',
                 },
               ],
@@ -817,7 +812,6 @@ export default {
                 colMD: 24,
                 layout: 'TABLE_24COL',
               },
-              showCaption: true,
               id: 'id',
             },
           ],

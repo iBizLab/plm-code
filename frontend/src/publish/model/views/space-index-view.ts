@@ -116,6 +116,7 @@ export default {
                       editorParams: {
                         ENABLESEARCH: 'TRUE',
                         AC: 'TRUE',
+                        'SRFNAVPARAM.space': '%space%',
                         SUFFIX: 'chevron-expand-outline',
                         PICKUPVIEW: 'TRUE',
                       },
@@ -125,6 +126,13 @@ export default {
                       predefinedType: 'FIELD_TEXT_DYNAMIC',
                       valueType: 'SIMPLE',
                       editable: true,
+                      navigateParams: [
+                        {
+                          key: 'space',
+                          value: 'space',
+                          id: 'space',
+                        },
+                      ],
                       id: 'route_picker',
                     },
                     allowEmpty: true,
@@ -372,7 +380,6 @@ export default {
                   colMD: 24,
                   layout: 'TABLE_24COL',
                 },
-                showCaption: true,
                 id: 'id',
               },
             ],
@@ -466,6 +473,7 @@ export default {
               srfdeid: 'SPACE',
             },
             tag: 'db48a729f39c55e5c363d94c717bc3f3',
+            uniqueTag: 'space_add_on_counters',
             id: 'db48a729f39c55e5c363d94c717bc3f3',
           },
         ],

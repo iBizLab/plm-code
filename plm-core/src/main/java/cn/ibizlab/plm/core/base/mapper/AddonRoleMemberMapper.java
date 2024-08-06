@@ -51,6 +51,25 @@ public interface AddonRoleMemberMapper extends BaseMapper<AddonRoleMember> {
     List<AddonRoleMember> findByAddonId(@Param("addonIds") List<String> addonIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<AddonRoleMember> searchView(IPage<AddonRoleMember> page, @Param("ctx") AddonRoleMemberSearchContext context, @Param("ew") Wrapper<AddonRoleMember> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<AddonRoleMember> listView(@Param("ctx") AddonRoleMemberSearchContext context, @Param("ew") Wrapper<AddonRoleMember> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

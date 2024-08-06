@@ -35,7 +35,7 @@ public class PSDENotifyFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_psdenotifyid_eq")
     @JSONField(name = "n_psdenotifyid_eq")
-    @ApiModelProperty(value = "实体通知标识EQ", position = 0)
+    @ApiModelProperty(value = "实体通知标识EQ", position = 10)
 	private String psdeNotifyIdEQ;
 
     /**
@@ -43,7 +43,7 @@ public class PSDENotifyFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_psdenotifyname_like")
     @JSONField(name = "n_psdenotifyname_like")
-    @ApiModelProperty(value = "实体通知名称LIKE", position = 10)
+    @ApiModelProperty(value = "实体通知名称LIKE", position = 20)
 	private String psdeNotifyNameLIKE;
 
     /**
@@ -51,7 +51,7 @@ public class PSDENotifyFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_taskmode_eq")
     @JSONField(name = "n_taskmode_eq")
-    @ApiModelProperty(value = "附加任务模式EQ", position = 110)
+    @ApiModelProperty(value = "附加任务模式EQ", position = 120)
 	private Integer taskModeEQ;
 
     /**
@@ -59,15 +59,23 @@ public class PSDENotifyFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_psdeid_eq")
     @JSONField(name = "n_psdeid_eq")
-    @ApiModelProperty(value = "实体EQ", position = 140)
+    @ApiModelProperty(value = "实体EQ", position = 150)
 	private String psdeidEQ;
+
+    /**
+     * 用户标识EQ
+     */
+    @JsonProperty("n_usertag_eq")
+    @JSONField(name = "n_usertag_eq")
+    @ApiModelProperty(value = "用户标识EQ", position = 170)
+	private String userTagEQ;
 
     /**
      * 通知子类EQ
      */
     @JsonProperty("n_notifysubtype_eq")
     @JSONField(name = "n_notifysubtype_eq")
-    @ApiModelProperty(value = "通知子类EQ", position = 290)
+    @ApiModelProperty(value = "通知子类EQ", position = 300)
 	private String notifySubTypeEQ;
 
 

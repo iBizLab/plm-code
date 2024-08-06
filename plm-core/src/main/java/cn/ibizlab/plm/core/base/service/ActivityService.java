@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.Activity;
 import cn.ibizlab.plm.core.base.filter.ActivitySearchContext;
 
@@ -137,7 +138,7 @@ public interface ActivityService extends IService<Activity> {
     * @param et
     * @return
     */
-    Integer checkKey(Activity et);
+    CheckKeyStatus checkKey(Activity et);
 
     /**
     * 保存
@@ -194,6 +195,22 @@ public interface ActivityService extends IService<Activity> {
     * @return
     */
     List<Activity> listDefault(ActivitySearchContext context);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Activity> fetchView(ActivitySearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Activity> listView(ActivitySearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<Activity> list) {

@@ -51,6 +51,25 @@ public interface ReviewResultMapper extends BaseMapper<ReviewResult> {
     List<ReviewResult> findByContentId(@Param("contentIds") List<String> contentIds);
 
     /**
+     * 数据集合View分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<ReviewResult> searchView(IPage<ReviewResult> page, @Param("ctx") ReviewResultSearchContext context, @Param("ew") Wrapper<ReviewResult> wrapper);
+    
+    /**
+     * 数据集合View查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<ReviewResult> listView(@Param("ctx") ReviewResultSearchContext context, @Param("ew") Wrapper<ReviewResult> wrapper);
+
+    /**
      * 主键查询
      *
      * @param 

@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.ibizlab.util.security.SpringContextHolder;
 import cn.ibizlab.util.domain.ImportResult;
+import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.wiki.domain.SpaceMember;
 import cn.ibizlab.plm.core.wiki.filter.SpaceMemberSearchContext;
 import cn.ibizlab.plm.core.wiki.domain.Space;
@@ -139,7 +140,7 @@ public interface SpaceMemberService extends IService<SpaceMember> {
     * @param et
     * @return
     */
-    Integer checkKey(SpaceMember et);
+    CheckKeyStatus checkKey(SpaceMember et);
 
     /**
     * 保存
@@ -214,8 +215,15 @@ public interface SpaceMemberService extends IService<SpaceMember> {
     */
     List<SpaceMember> findBySpaceId(List<String> spaceIds);
     default List<SpaceMember> findBySpaceId(String spaceId){
-        return findBySpaceId(Arrays.asList(spaceId));
+        return findBySpace(new Space().setId(spaceId));
     }
+
+    /**
+    * findBySpace
+    * @param space
+    * @return
+    */
+    List<SpaceMember> findBySpace(Space space);
 
     /**
     * removeBySpaceId
@@ -256,8 +264,15 @@ public interface SpaceMemberService extends IService<SpaceMember> {
     */
     List<SpaceMember> findByUserId(List<String> userIds);
     default List<SpaceMember> findByUserId(String userId){
-        return findByUserId(Arrays.asList(userId));
+        return findByUser(new User().setId(userId));
     }
+
+    /**
+    * findByUser
+    * @param user
+    * @return
+    */
+    List<SpaceMember> findByUser(User user);
 
     /**
     * removeByUserId
@@ -290,6 +305,22 @@ public interface SpaceMemberService extends IService<SpaceMember> {
     * @return
     */
     boolean saveByUser(User user, List<SpaceMember> list);
+
+    /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<SpaceMember> fetchView(SpaceMemberSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<SpaceMember> listView(SpaceMemberSearchContext context);
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<SpaceMember> list) {
