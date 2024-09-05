@@ -284,7 +284,6 @@ import project_scrum_main_view from './project-scrum-main-view';
 import discuss_post_redirect_view from './discuss-post-redirect-view';
 import relation_work_item_re_self_list_view from './relation-work-item-re-self-list-view';
 import discuss_post_recycle_bin_grid_view from './discuss-post-recycle-bin-grid-view';
-import insight_report_tree_exp_view from './insight-report-tree-exp-view';
 import flow_tab_exp_view from './flow-tab-exp-view';
 import idea_pick_up_tree_view from './idea-pick-up-tree-view';
 import work_item_backlog_age_report_report_view from './work-item-backlog-age-report-report-view';
