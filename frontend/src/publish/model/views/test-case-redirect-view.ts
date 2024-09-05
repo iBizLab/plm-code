@@ -1,0 +1,71 @@
+export default {
+  redirectAppViewRefs: [
+    {
+      realTitle: '用例编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.TEST_CASE.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.test_case_edit_view',
+      name: 'TEST_CASE:EDITVIEW',
+      id: 'test_case:editview',
+    },
+    {
+      realTitle: '用例编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.TEST_CASE.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.test_case_edit_view',
+      name: 'EDITVIEW',
+      id: 'editview',
+    },
+  ],
+  enableWorkflow: true,
+  funcViewMode: 'REDIRECTVIEW',
+  deviewCodeName: 'RedirectView',
+  deviewId: 'f8de60300e60bd679d24a2b41026bed3',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.TEST_CASE',
+  },
+  caption: '用例',
+  codeName: 'test_case_redirect_view',
+  appDataEntityId: 'plmweb.test_case',
+  controls: [
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.TEST_CASE',
+      },
+      caption: '用例',
+      codeName: 'redirect_view_captionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.test_case',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'redirect_view_captionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'layoutpanel',
+    controlStyle: 'APPDEREDIRECTVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.test_case',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '用例数据重定向视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.TEST_CASE.REDIRECTVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEREDIRECTVIEW',
+  enableDP: true,
+  redirectView: true,
+  showCaptionBar: true,
+  modelId: 'c11d442f27b214716ce5f3f0eb871a5d',
+  modelType: 'PSAPPDEVIEW',
+  name: 'test_caseRedirectView',
+  id: 'plmweb.test_case_redirect_view',
+};

@@ -1,0 +1,71 @@
+export default {
+  redirectAppViewRefs: [
+    {
+      realTitle: '附件搜索编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.SEARCH_ATTACHMENT.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.search_attachment_edit_view',
+      name: 'SEARCH_ATTACHMENT:EDITVIEW',
+      id: 'search_attachment:editview',
+    },
+    {
+      realTitle: '附件搜索编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.SEARCH_ATTACHMENT.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.search_attachment_edit_view',
+      name: 'EDITVIEW',
+      id: 'editview',
+    },
+  ],
+  enableWorkflow: true,
+  funcViewMode: 'REDIRECTVIEW',
+  deviewCodeName: 'RedirectView',
+  deviewId: '0a9565639f30bcb36a0414a468387886',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.SEARCH_ATTACHMENT',
+  },
+  caption: '附件搜索',
+  codeName: 'search_attachment_redirect_view',
+  appDataEntityId: 'plmweb.search_attachment',
+  controls: [
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.SEARCH_ATTACHMENT',
+      },
+      caption: '附件搜索',
+      codeName: 'redirect_view_captionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.search_attachment',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'redirect_view_captionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'layoutpanel',
+    controlStyle: 'APPDEREDIRECTVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.search_attachment',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '附件搜索数据重定向视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.SEARCH_ATTACHMENT.REDIRECTVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEREDIRECTVIEW',
+  enableDP: true,
+  redirectView: true,
+  showCaptionBar: true,
+  modelId: '18234ca3dae8eaf43d894be2d71d54ff',
+  modelType: 'PSAPPDEVIEW',
+  name: 'search_attachmentRedirectView',
+  id: 'plmweb.search_attachment_redirect_view',
+};

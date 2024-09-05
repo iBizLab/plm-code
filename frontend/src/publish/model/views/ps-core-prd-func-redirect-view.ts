@@ -1,0 +1,73 @@
+export default {
+  redirectAppViewRefs: [
+    {
+      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realTitle: '核心产品功能编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.PSCOREPRDFUNC.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.ps_core_prd_func_info_view',
+      name: 'PSCOREPRDFUNC:EDITVIEW',
+      id: 'pscoreprdfunc:editview',
+    },
+    {
+      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realTitle: '核心产品功能编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.PSCOREPRDFUNC.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.ps_core_prd_func_info_view',
+      name: 'EDITVIEW',
+      id: 'editview',
+    },
+  ],
+  enableWorkflow: true,
+  funcViewMode: 'REDIRECTVIEW',
+  deviewCodeName: 'RedirectView',
+  deviewId: '9870c3a8815b8bb64508c0ea5e63a3aa',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.PSCOREPRDFUNC',
+  },
+  caption: '核心产品功能',
+  codeName: 'ps_core_prd_func_redirect_view',
+  appDataEntityId: 'plmweb.pscoreprdfunc',
+  controls: [
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.PSCOREPRDFUNC',
+      },
+      caption: '核心产品功能',
+      codeName: 'redirect_view_captionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.pscoreprdfunc',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'redirect_view_captionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'layoutpanel',
+    controlStyle: 'APPDEREDIRECTVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.pscoreprdfunc',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '核心产品功能数据重定向视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.PSCOREPRDFUNC.REDIRECTVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEREDIRECTVIEW',
+  enableDP: true,
+  redirectView: true,
+  showCaptionBar: true,
+  modelId: '5d6c8ef8281a14609ab33354bf9f2dac',
+  modelType: 'PSAPPDEVIEW',
+  name: 'PSCorePrdFuncRedirectView',
+  id: 'plmweb.ps_core_prd_func_redirect_view',
+};

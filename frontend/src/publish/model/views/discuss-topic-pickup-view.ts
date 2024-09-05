@@ -1,0 +1,67 @@
+export default {
+  funcViewMode: 'PICKUPVIEW',
+  deviewCodeName: 'PickupView',
+  deviewId: '1aba54465f74cd4c46aec4b59a17e4fb',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.DISCUSS_TOPIC',
+  },
+  caption: '话题',
+  codeName: 'discuss_topic_pickup_view',
+  appDataEntityId: 'plmweb.discuss_topic',
+  appViewEngines: [
+    {
+      engineCat: 'VIEW',
+      engineType: 'PickupView',
+      id: 'engine',
+    },
+  ],
+  controls: [
+    {
+      embeddedAppDEViewId: 'plmweb.discuss_topic_pickup_grid_view',
+      codeName: 'pickup_view_pickupviewpanel',
+      controlType: 'PICKUPVIEWPANEL',
+      appDataEntityId: 'plmweb.discuss_topic',
+      controlParam: {
+        id: 'pickupviewpanel',
+      },
+      name: 'pickupviewpanel',
+      id: 'pickup_view_pickupviewpanel',
+    },
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.DISCUSS_TOPIC',
+      },
+      caption: '话题',
+      codeName: 'pickup_view_captionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.discuss_topic',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'pickup_view_captionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'layoutpanel',
+    controlStyle: 'APPDEPICKUPVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.discuss_topic',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '话题数据选择视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.DISCUSS_TOPIC.PICKUPVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEPICKUPVIEW',
+  enableDP: true,
+  showCaptionBar: false,
+  modelId: 'cfe82fad250a595b9ff861c27d300c0d',
+  modelType: 'PSAPPDEVIEW',
+  name: 'discuss_topicPickupView',
+  id: 'plmweb.discuss_topic_pickup_view',
+};

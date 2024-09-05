@@ -1,0 +1,71 @@
+export default {
+  redirectAppViewRefs: [
+    {
+      realTitle: '工作项类型编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.WORK_ITEM_TYPE.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.work_item_type_edit_view',
+      name: 'WORK_ITEM_TYPE:EDITVIEW',
+      id: 'work_item_type:editview',
+    },
+    {
+      realTitle: '工作项类型编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.WORK_ITEM_TYPE.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.work_item_type_edit_view',
+      name: 'EDITVIEW',
+      id: 'editview',
+    },
+  ],
+  enableWorkflow: true,
+  funcViewMode: 'REDIRECTVIEW',
+  deviewCodeName: 'RedirectView',
+  deviewId: '8a9be39604877e44cec9a87e82ae8f89',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.WORK_ITEM_TYPE',
+  },
+  caption: '工作项类型',
+  codeName: 'work_item_type_redirect_view',
+  appDataEntityId: 'plmweb.work_item_type',
+  controls: [
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.WORK_ITEM_TYPE',
+      },
+      caption: '工作项类型',
+      codeName: 'redirect_view_captionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.work_item_type',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'redirect_view_captionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'layoutpanel',
+    controlStyle: 'APPDEREDIRECTVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.work_item_type',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '工作项类型数据重定向视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.WORK_ITEM_TYPE.REDIRECTVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEREDIRECTVIEW',
+  enableDP: true,
+  redirectView: true,
+  showCaptionBar: true,
+  modelId: 'b58bb92209b2327053da5d60c37dd6df',
+  modelType: 'PSAPPDEVIEW',
+  name: 'work_item_typeRedirectView',
+  id: 'plmweb.work_item_type_redirect_view',
+};

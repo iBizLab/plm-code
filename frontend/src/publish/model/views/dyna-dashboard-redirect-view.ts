@@ -1,0 +1,71 @@
+export default {
+  redirectAppViewRefs: [
+    {
+      realTitle: '动态数据看板编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.DYNADASHBOARD.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.dyna_dashboard_edit_view',
+      name: 'DYNADASHBOARD:EDITVIEW',
+      id: 'dynadashboard:editview',
+    },
+    {
+      realTitle: '动态数据看板编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.DYNADASHBOARD.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.dyna_dashboard_edit_view',
+      name: 'EDITVIEW',
+      id: 'editview',
+    },
+  ],
+  enableWorkflow: true,
+  funcViewMode: 'REDIRECTVIEW',
+  deviewCodeName: 'RedirectView',
+  deviewId: '97cb3adce3eca78e36bb892f49696bff',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.DYNADASHBOARD',
+  },
+  caption: '动态数据看板',
+  codeName: 'dyna_dashboard_redirect_view',
+  appDataEntityId: 'plmweb.dyna_dashboard',
+  controls: [
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.DYNADASHBOARD',
+      },
+      caption: '动态数据看板',
+      codeName: 'redirect_view_captionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.dyna_dashboard',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'redirect_view_captionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'layoutpanel',
+    controlStyle: 'APPDEREDIRECTVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.dyna_dashboard',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '动态数据看板数据重定向视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.DYNADASHBOARD.REDIRECTVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEREDIRECTVIEW',
+  enableDP: true,
+  redirectView: true,
+  showCaptionBar: true,
+  modelId: 'a5fa94fbdc94b15387d15e178d65f181',
+  modelType: 'PSAPPDEVIEW',
+  name: 'dyna_dashboardRedirectView',
+  id: 'plmweb.dyna_dashboard_redirect_view',
+};

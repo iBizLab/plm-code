@@ -1,0 +1,71 @@
+export default {
+  redirectAppViewRefs: [
+    {
+      realTitle: '评论搜索编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.SEARCH_COMMENT.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.search_comment_edit_view',
+      name: 'SEARCH_COMMENT:EDITVIEW',
+      id: 'search_comment:editview',
+    },
+    {
+      realTitle: '评论搜索编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.SEARCH_COMMENT.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.search_comment_edit_view',
+      name: 'EDITVIEW',
+      id: 'editview',
+    },
+  ],
+  enableWorkflow: true,
+  funcViewMode: 'REDIRECTVIEW',
+  deviewCodeName: 'RedirectView',
+  deviewId: '6d4835de1021e02347cccb41ea5c97d1',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.SEARCH_COMMENT',
+  },
+  caption: '评论搜索',
+  codeName: 'search_comment_redirect_view',
+  appDataEntityId: 'plmweb.search_comment',
+  controls: [
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.SEARCH_COMMENT',
+      },
+      caption: '评论搜索',
+      codeName: 'redirect_view_captionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.search_comment',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'redirect_view_captionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'layoutpanel',
+    controlStyle: 'APPDEREDIRECTVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.search_comment',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '评论搜索数据重定向视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.SEARCH_COMMENT.REDIRECTVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEREDIRECTVIEW',
+  enableDP: true,
+  redirectView: true,
+  showCaptionBar: true,
+  modelId: '486c70c49c7388d68d7e7261d5d6b84e',
+  modelType: 'PSAPPDEVIEW',
+  name: 'search_commentRedirectView',
+  id: 'plmweb.search_comment_redirect_view',
+};

@@ -1,0 +1,67 @@
+export default {
+  funcViewMode: 'INDEXDEPICKUPVIEW',
+  deviewCodeName: 'index_pick_up_view',
+  deviewId: '88747fc8bb053cc709deabd575187b41',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.REFERENCES_INDEX',
+  },
+  caption: '引用索引',
+  codeName: 'references_index_index_pick_up_view',
+  appDataEntityId: 'plmweb.references_index',
+  appViewEngines: [
+    {
+      engineCat: 'VIEW',
+      engineType: 'PickupView',
+      id: 'engine',
+    },
+  ],
+  controls: [
+    {
+      embeddedAppDEViewId: 'plmweb.references_index_index_pick_up_data_view',
+      codeName: 'index_pick_up_view_pickupviewpanel',
+      controlType: 'PICKUPVIEWPANEL',
+      appDataEntityId: 'plmweb.references_index',
+      controlParam: {
+        id: 'pickupviewpanel',
+      },
+      name: 'pickupviewpanel',
+      id: 'index_pick_up_view_pickupviewpanel',
+    },
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.REFERENCES_INDEX',
+      },
+      caption: '引用索引',
+      codeName: 'index_pick_up_view_captionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.references_index',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'index_pick_up_view_captionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'layoutpanel',
+    controlStyle: 'APPDEPICKUPVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.references_index',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '引用索引数据选择视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.REFERENCES_INDEX.INDEXPICKUPVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEPICKUPVIEW',
+  enableDP: true,
+  showCaptionBar: false,
+  modelId: '9fb2ded63905e9eb02b77884bda08187',
+  modelType: 'PSAPPDEVIEW',
+  name: 'references_indexindex_pick_up_view',
+  id: 'plmweb.references_index_index_pick_up_view',
+};

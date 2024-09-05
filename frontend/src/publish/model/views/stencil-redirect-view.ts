@@ -1,0 +1,73 @@
+export default {
+  redirectAppViewRefs: [
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '页面模板编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.STENCIL.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.stencil_edit_view',
+      name: 'STENCIL:EDITVIEW',
+      id: 'stencil:editview',
+    },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '页面模板编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.STENCIL.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.stencil_edit_view',
+      name: 'EDITVIEW',
+      id: 'editview',
+    },
+  ],
+  enableWorkflow: true,
+  funcViewMode: 'REDIRECTVIEW',
+  deviewCodeName: 'RedirectView',
+  deviewId: 'c3c482c55bd19a5d43b2ba363f6c005d',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.STENCIL',
+  },
+  caption: '页面模板',
+  codeName: 'stencil_redirect_view',
+  appDataEntityId: 'plmweb.stencil',
+  controls: [
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.STENCIL',
+      },
+      caption: '页面模板',
+      codeName: 'redirect_view_captionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.stencil',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'redirect_view_captionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'layoutpanel',
+    controlStyle: 'APPDEREDIRECTVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.stencil',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '页面模板数据重定向视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.STENCIL.REDIRECTVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEREDIRECTVIEW',
+  enableDP: true,
+  redirectView: true,
+  showCaptionBar: true,
+  modelId: 'd21506268d99a9afa8871ffdd46aeb22',
+  modelType: 'PSAPPDEVIEW',
+  name: 'stencilRedirectView',
+  id: 'plmweb.stencil_redirect_view',
+};

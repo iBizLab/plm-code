@@ -1,0 +1,71 @@
+export default {
+  redirectAppViewRefs: [
+    {
+      realTitle: '数据字典编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.DICTIONARY.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.dictionary_data_edit_view',
+      name: 'DICTIONARY:EDITVIEW',
+      id: 'dictionary:editview',
+    },
+    {
+      realTitle: '数据字典编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.DICTIONARY.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.dictionary_data_edit_view',
+      name: 'EDITVIEW',
+      id: 'editview',
+    },
+  ],
+  enableWorkflow: true,
+  funcViewMode: 'REDIRECTVIEW',
+  deviewCodeName: 'RedirectView',
+  deviewId: '4548af22d09e540072c4af4d3d4444aa',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.DICTIONARY',
+  },
+  caption: '数据字典',
+  codeName: 'dictionary_data_redirect_view',
+  appDataEntityId: 'plmweb.dictionary_data',
+  controls: [
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.DICTIONARY',
+      },
+      caption: '数据字典',
+      codeName: 'redirect_view_captionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.dictionary_data',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'redirect_view_captionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'layoutpanel',
+    controlStyle: 'APPDEREDIRECTVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.dictionary_data',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '数据字典数据重定向视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.DICTIONARY.REDIRECTVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEREDIRECTVIEW',
+  enableDP: true,
+  redirectView: true,
+  showCaptionBar: true,
+  modelId: '7fe86ade26777caceb1cc98ec9e91b72',
+  modelType: 'PSAPPDEVIEW',
+  name: 'dictionaryRedirectView',
+  id: 'plmweb.dictionary_data_redirect_view',
+};

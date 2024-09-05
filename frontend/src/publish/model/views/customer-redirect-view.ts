@@ -1,0 +1,71 @@
+export default {
+  redirectAppViewRefs: [
+    {
+      realTitle: '客户编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.CUSTOMER.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.customer_edit_view',
+      name: 'CUSTOMER:EDITVIEW',
+      id: 'customer:editview',
+    },
+    {
+      realTitle: '客户编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.CUSTOMER.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.customer_edit_view',
+      name: 'EDITVIEW',
+      id: 'editview',
+    },
+  ],
+  enableWorkflow: true,
+  funcViewMode: 'REDIRECTVIEW',
+  deviewCodeName: 'RedirectView',
+  deviewId: '8de26cd85b968e5a4a2c748bd4d45fff',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.CUSTOMER',
+  },
+  caption: '客户',
+  codeName: 'customer_redirect_view',
+  appDataEntityId: 'plmweb.customer',
+  controls: [
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.CUSTOMER',
+      },
+      caption: '客户',
+      codeName: 'redirect_view_captionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.customer',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'redirect_view_captionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'layoutpanel',
+    controlStyle: 'APPDEREDIRECTVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.customer',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '客户数据重定向视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.CUSTOMER.REDIRECTVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEREDIRECTVIEW',
+  enableDP: true,
+  redirectView: true,
+  showCaptionBar: true,
+  modelId: '9ddee8f670bc31fc604fe49aef9606db',
+  modelType: 'PSAPPDEVIEW',
+  name: 'customerRedirectView',
+  id: 'plmweb.customer_redirect_view',
+};
