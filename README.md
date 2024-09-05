@@ -147,41 +147,81 @@ $ mvn package -Pserviceapi
 ```
 # 演示图
 
-<table>
-    <tr>
-        <td><img src="doc/images/staging.png"></td>
-        <td><img src="doc/images/dashboard.png"></td>
-    </tr>
-    <tr>
-        <td><img src="doc/images/demand.png"></td>
-        <td><img src="doc/images/newDemand.png"></td>
-    </tr>
-    <tr>
-        <td><img src="doc/images/project.png"></td>
-        <td><img src="doc/images/workitem.png"></td>
-    </tr>
-    <tr>
-        <td><img src="doc/images/testCase.png"></td>
-        <td><img src="doc/images/caseDetail.png"></td>
-    </tr>
-    <tr>
-        <td><img src="doc/images/space.png"></td>
-        <td><img src="doc/images/spacePage.png"></td>
-    </tr>
-    <tr>
-        <td><img src="doc/images/viewDashboard.png"></td>
-        <td><img src="doc/images/report.png"></td>
-    </tr>
-    <tr>
-        <td><img src="doc/images/workCalender.png"></td>
-        <td><img src="doc/images/resourceAllocation.png"></td>
-    </tr>
-</table>
+#### 工作台
 
+- 工作台-首页
+
+![image.png](doc/images/staging.png)
+
+- 工作台-仪表盘
+
+![image.png](doc/images/dashboard.png)
+
+#### 产品管理
+
+- 产品-首页
+
+![image.png](doc/images/demand.png)
+
+- 产品-需求
+
+![image.png](doc/images/newDemand.png)
+
+#### 项目管理
+
+- 项目-主页
+
+![image.png](doc/images/project.png)
+
+- 项目-工作项
+
+![image.png](doc/images/workitem.png)
+#### 测试管理
+
+- 测试-用例
+
+![image.png](doc/images/testCase.png)
+
+- 测试-用例详情
+
+
+![image.png](doc/images/caseDetail.png)
+
+#### 知识管理
+
+- 知识-首页
+
+![image.png](doc/images/space.png)
+
+- 知识-页面
+
+![image.png](doc/images/spacePage.png)
+
+#### 效能度量
+
+- 效能度量-仪表盘
+
+![image.png](doc/images/viewDashboard.png)
+
+- 效能度量-报表
+
+![image.png](doc/images/report.png)
+
+#### 工时管理
+
+- 工时管理-首页
+
+![image.png](doc/images/workCalender.png)
+
+#### 资源分配
+
+- 资源分配-首页
+
+![image.png](doc/images/resourceAllocation.png)
 
 # 附录
 [系统功能文档](http://plm.ibizlab.cn/ibizplm-plmweb/#/-/index/-/article_page_help_tree_exp_view/-)<br>
 [系统详细设计文档](http://plmdoc.ibizlab.cn)<br>
-[系统更新日志(版本迭代说明)](https://gitee.com/ibizlab/plm/blob/main/CHANGELOG.md)<br>
-[pingcode功能对照表](https://gitee.com/ibizlab/plm/blob/main/sample/pingcode-iBizPLM%E5%AF%B9%E7%85%A7%E8%A1%A8.xlsx)<br>
+[系统更新日志(版本迭代说明)](doc/CHANGELOG.md)<br>
+[pingcode功能对照表](doc/pingcode-iBizPLM%E5%AF%B9%E7%85%A7%E8%A1%A8.xlsx)<br>
 欢迎加入iBizPLM交流QQ群：1067434627
