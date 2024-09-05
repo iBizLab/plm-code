@@ -53,6 +53,14 @@ export default {
           widthUnit: 'px',
           id: 'end',
         },
+        {
+          caption: '负责人',
+          codeName: 'assignee_name',
+          columnType: 'DEFGRIDCOLUMN',
+          width: 80,
+          widthUnit: 'px',
+          id: 'assignee_name',
+        },
       ],
       detreeNodeRSs: [
         {
@@ -179,6 +187,17 @@ export default {
           detreeNodeColumns: [
             {
               clconvertMode: 'NONE',
+              dataItemName: 'assignee_name',
+              appDEFieldId: 'assignee_name',
+              valueType: 'SIMPLE',
+              codeName: 'assignee_name',
+              columnType: 'DEFGRIDCOLUMN',
+              noPrivDisplayMode: 1,
+              detreeColumnId: 'assignee_name',
+              id: 'assignee_name',
+            },
+            {
+              clconvertMode: 'NONE',
               dataItemName: 'end_at',
               appDEFieldId: 'end_at',
               valueFormat: 'YYYY-MM-DD',
@@ -228,6 +247,14 @@ export default {
             },
           ],
           detreeNodeDataItems: [
+            {
+              clconvertMode: 'NONE',
+              appDEFieldId: 'assignee_name',
+              detreeColumnId: 'assignee_name',
+              valueType: 'SIMPLE',
+              dataType: 25,
+              id: 'assignee_name',
+            },
             {
               clconvertMode: 'NONE',
               appDEFieldId: 'end_at',
@@ -724,6 +751,17 @@ export default {
           detreeNodeColumns: [
             {
               clconvertMode: 'NONE',
+              dataItemName: 'assignee_name',
+              appDEFieldId: 'assignee_name',
+              valueType: 'SIMPLE',
+              codeName: 'assignee_name',
+              columnType: 'DEFGRIDCOLUMN',
+              noPrivDisplayMode: 1,
+              detreeColumnId: 'assignee_name',
+              id: 'assignee_name',
+            },
+            {
+              clconvertMode: 'NONE',
               dataItemName: 'end_at',
               appDEFieldId: 'end_at',
               valueFormat: 'YYYY-MM-DD',
@@ -773,6 +811,14 @@ export default {
             },
           ],
           detreeNodeDataItems: [
+            {
+              clconvertMode: 'NONE',
+              appDEFieldId: 'assignee_name',
+              detreeColumnId: 'assignee_name',
+              valueType: 'SIMPLE',
+              dataType: 25,
+              id: 'assignee_name',
+            },
             {
               clconvertMode: 'NONE',
               appDEFieldId: 'end_at',

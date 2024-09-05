@@ -520,6 +520,45 @@ public abstract class AbstractIdeaResource {
     }
 
     /**
+    * move_order 需求
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<IdeaDTO>>>
+    */
+    @ApiOperation(value = "move_order", tags = {"需求" },  notes = "Idea-move_order ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-move_order-all') or hasPermission(this.ideaDtoMapping.toDomain(#dto),'ibizplm-Idea-move_order')")
+    @PostMapping("ideas/{id}/move_order")
+    public Mono<ResponseEntity<ResponseWrapper<List<IdeaDTO>>>>moveOrderById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<IdeaDTO> dto) {
+        ResponseWrapper<List<IdeaDTO>> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(moveOrderById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(moveOrderById(id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * move_order 需求
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<List<IdeaDTO>>
+    */   
+    public List<IdeaDTO> moveOrderById
+            (String id, IdeaDTO dto) {
+        Idea domain = ideaDtoMapping.toDomain(dto);
+        domain.setId(id);
+        List<Idea> rt = ideaService.moveOrder(domain);
+        return ideaDtoMapping.toDto(rt);
+    }
+
+    /**
     * others_relation_idea 需求
     * 
     *
@@ -1191,6 +1230,47 @@ public abstract class AbstractIdeaResource {
     }
 
     /**
+    * move_order 需求
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<IdeaDTO>>>
+    */
+    @ApiOperation(value = "move_order", tags = {"需求" },  notes = "Idea-move_order ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-move_order-all') or hasPermission('product',#productId,this.ideaDtoMapping.toDomain(#dto),'ibizplm-Idea-move_order')")
+    @PostMapping("products/{productId}/ideas/{id}/move_order")
+    public Mono<ResponseEntity<ResponseWrapper<List<IdeaDTO>>>>moveOrderByProductIdAndId
+            (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<IdeaDTO> dto) {
+        ResponseWrapper<List<IdeaDTO>> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(moveOrderByProductIdAndId(productId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(moveOrderByProductIdAndId(productId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * move_order 需求
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<List<IdeaDTO>>
+    */   
+    public List<IdeaDTO> moveOrderByProductIdAndId
+            (String productId, String id, IdeaDTO dto) {
+        Idea domain = ideaDtoMapping.toDomain(dto);
+        domain.setId(id);
+        List<Idea> rt = ideaService.moveOrder(domain);
+        return ideaDtoMapping.toDto(rt);
+    }
+
+    /**
     * others_relation_idea 需求
     * 
     *
@@ -1716,6 +1796,28 @@ public abstract class AbstractIdeaResource {
     }
 
     /**
+    * 查询fetch_move_idea 需求
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<IdeaDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_move_idea", tags = {"需求" },  notes = "Idea-fetch_move_idea ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-fetch_move_idea-all') or hasPermission(#dto,'ibizplm-Idea-fetch_move_idea')")
+    @PostMapping("ideas/fetch_move_idea")
+    public Mono<ResponseEntity<List<IdeaDTO>>> fetchMoveIdea
+            (@Validated @RequestBody IdeaFilterDTO dto) {
+        IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
+        Page<Idea> domains = ideaService.fetchMoveIdea(context) ;
+        List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 查询fetch_my_assign 需求
     * 非归档数据，且负责人为当前登录人的数据
     *
@@ -1792,6 +1894,28 @@ public abstract class AbstractIdeaResource {
             (@Validated @RequestBody IdeaFilterDTO dto) {
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
         Page<Idea> domains = ideaService.fetchMyCreated(context) ;
+        List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_my_filter 需求
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<IdeaDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_my_filter", tags = {"需求" },  notes = "Idea-fetch_my_filter ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-fetch_my_filter-all') or hasPermission(#dto,'ibizplm-Idea-fetch_my_filter')")
+    @PostMapping("ideas/fetch_my_filter")
+    public Mono<ResponseEntity<List<IdeaDTO>>> fetchMyFilter
+            (@Validated @RequestBody IdeaFilterDTO dto) {
+        IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
+        Page<Idea> domains = ideaService.fetchMyFilter(context) ;
         List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2283,6 +2407,30 @@ public abstract class AbstractIdeaResource {
     }
 
     /**
+    * 查询fetch_move_idea 需求
+    * 
+    *
+    * @param productId productId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<IdeaDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_move_idea", tags = {"需求" },  notes = "Idea-fetch_move_idea ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-fetch_move_idea-all') or hasPermission('product',#productId,#dto,'ibizplm-Idea-fetch_move_idea')")
+    @PostMapping("products/{productId}/ideas/fetch_move_idea")
+    public Mono<ResponseEntity<List<IdeaDTO>>> fetchMoveIdeaByProductId
+            (@PathVariable("productId") String productId, @Validated @RequestBody IdeaFilterDTO dto) {
+        dto.setProductIdEQ(productId);
+        IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
+        Page<Idea> domains = ideaService.fetchMoveIdea(context) ;
+        List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 查询fetch_my_assign 需求
     * 非归档数据，且负责人为当前登录人的数据
     *
@@ -2367,6 +2515,30 @@ public abstract class AbstractIdeaResource {
         dto.setProductIdEQ(productId);
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
         Page<Idea> domains = ideaService.fetchMyCreated(context) ;
+        List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_my_filter 需求
+    * 
+    *
+    * @param productId productId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<IdeaDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_my_filter", tags = {"需求" },  notes = "Idea-fetch_my_filter ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-fetch_my_filter-all') or hasPermission('product',#productId,#dto,'ibizplm-Idea-fetch_my_filter')")
+    @PostMapping("products/{productId}/ideas/fetch_my_filter")
+    public Mono<ResponseEntity<List<IdeaDTO>>> fetchMyFilterByProductId
+            (@PathVariable("productId") String productId, @Validated @RequestBody IdeaFilterDTO dto) {
+        dto.setProductIdEQ(productId);
+        IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
+        Page<Idea> domains = ideaService.fetchMyFilter(context) ;
         List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

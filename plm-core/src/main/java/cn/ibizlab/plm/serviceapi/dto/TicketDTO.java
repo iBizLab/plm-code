@@ -221,11 +221,19 @@ public class TicketDTO extends DTOBase implements Serializable {
     private String attentionsImp;
 
     /**
+     * 最近创建日期
+     */
+    @JsonProperty("recent_create_days")
+    @JSONField(name = "recent_create_days")
+    @ApiModelProperty(value = "最近创建日期", position = 23)
+    private Integer recentCreateDays;
+
+    /**
      * 建立人
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 23)
+    @ApiModelProperty(value = "建立人", position = 24)
     private String createMan;
 
     /**
@@ -234,7 +242,7 @@ public class TicketDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 24)
+    @ApiModelProperty(value = "建立时间", position = 25)
     private Date createTime;
 
     /**
@@ -242,7 +250,7 @@ public class TicketDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("customer_id")
     @JSONField(name = "customer_id")
-    @ApiModelProperty(value = "客户标识", position = 25)
+    @ApiModelProperty(value = "客户标识", position = 26)
     private String customerId;
 
     /**
@@ -250,7 +258,7 @@ public class TicketDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("customer_name")
     @JSONField(name = "customer_name")
-    @ApiModelProperty(value = "客户", position = 26)
+    @ApiModelProperty(value = "客户", position = 27)
     private String customerName;
 
     /**
@@ -258,7 +266,7 @@ public class TicketDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 27)
+    @ApiModelProperty(value = "标识", position = 28)
     private String id;
 
     /**
@@ -266,7 +274,7 @@ public class TicketDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 28)
+    @ApiModelProperty(value = "名称", position = 29)
     private String name;
 
     /**
@@ -274,7 +282,7 @@ public class TicketDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("product_id")
     @JSONField(name = "product_id")
-    @ApiModelProperty(value = "产品标识", position = 29)
+    @ApiModelProperty(value = "产品标识", position = 30)
     private String productId;
 
     /**
@@ -282,7 +290,7 @@ public class TicketDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("product_name")
     @JSONField(name = "product_name")
-    @ApiModelProperty(value = "所属产品", position = 30)
+    @ApiModelProperty(value = "所属产品", position = 31)
     private String productName;
 
     /**
@@ -290,7 +298,7 @@ public class TicketDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 31)
+    @ApiModelProperty(value = "更新人", position = 32)
     private String updateMan;
 
     /**
@@ -299,7 +307,7 @@ public class TicketDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 32)
+    @ApiModelProperty(value = "更新时间", position = 33)
     private Date updateTime;
 
 
@@ -507,6 +515,15 @@ public class TicketDTO extends DTOBase implements Serializable {
     public TicketDTO setAttentionsImp(String attentionsImp) {
         this.attentionsImp = attentionsImp;
         this.modify("attentions_imp", attentionsImp);
+        return this;
+    }
+
+    /**
+     * 设置 [最近创建日期]
+     */
+    public TicketDTO setRecentCreateDays(Integer recentCreateDays) {
+        this.recentCreateDays = recentCreateDays;
+        this.modify("recent_create_days", recentCreateDays);
         return this;
     }
 

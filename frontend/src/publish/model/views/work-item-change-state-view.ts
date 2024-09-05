@@ -19,6 +19,13 @@ export default {
       id: 'engine',
     },
   ],
+  appViewNavParams: [
+    {
+      key: 'project_id',
+      value: 'project',
+      id: 'project_id',
+    },
+  ],
   controls: [
     {
       createControlAction: {
@@ -71,10 +78,34 @@ export default {
                   appDEFieldId: 'state',
                   editor: {
                     singleSelect: true,
-                    appCodeListId: 'plmweb.projmgmt__work_item_state',
+                    appCodeListId: 'plmweb.projmgmt__scrum_state',
+                    editorParams: {
+                      'srfnavparam.state': '%state%',
+                      'srfnavparam.project_id': '%project_id%',
+                      'srfnavparam.work_item_type_id': '%work_item_type_id%',
+                      type: 'round',
+                      alwaysLoad: 'true',
+                    },
                     editorType: 'DROPDOWNLIST',
                     valueType: 'SIMPLE',
                     editable: true,
+                    navigateParams: [
+                      {
+                        key: 'state',
+                        value: 'state',
+                        id: 'state',
+                      },
+                      {
+                        key: 'project_id',
+                        value: 'project_id',
+                        id: 'project_id',
+                      },
+                      {
+                        key: 'work_item_type_id',
+                        value: 'work_item_type_id',
+                        id: 'work_item_type_id',
+                      },
+                    ],
                     id: 'state',
                   },
                   needCodeListConfig: true,

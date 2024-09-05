@@ -466,16 +466,6 @@ export default {
         id: 'onmounted',
       },
       {
-        eventNames: 'onSaveSuccess',
-        logicTrigger: 'VIEWEVENT',
-        logicType: 'APPDEUILOGIC',
-        appDEUILogicId: 'get_customer_score',
-        appDataEntityId: 'plmweb.customer',
-        builtinLogic: true,
-        name: 'GET_CUSTOMER_SCORE',
-        id: 'get_customer_score',
-      },
-      {
         eventNames: 'onLoadSuccess',
         logicTrigger: 'VIEWEVENT',
         logicType: 'APPDEUILOGIC',

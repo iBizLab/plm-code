@@ -288,6 +288,16 @@ public interface InsightViewService extends IService<InsightView> {
     }
 
     /**
+    * fillBiFormDefault
+    * 
+    * @param et
+    * @return
+    */
+    default InsightView fillBiFormDefault(InsightView et) {
+        return et;
+    }
+
+    /**
     * nothing
     * 
     * @param et

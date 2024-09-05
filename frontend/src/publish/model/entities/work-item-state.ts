@@ -538,6 +538,28 @@ export default {
       id: 'update',
     },
     {
+      codeName: 'fetch_bi_form',
+      methodType: 'FETCH',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'work_item_state_filter_dto',
+        type: 'DTO',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'work_item_state_dto',
+        type: 'PAGE',
+        id: '返回对象',
+      },
+      requestMethod: 'POST',
+      requestParamType: 'ENTITY',
+      requestPath: '/fetch_bi_form',
+      actionType: 'REMOTE',
+      dataSetName: 'BI_FORM',
+      dataSetTag: 'BI_FORM',
+      dataSetType: 'REMOTE',
+      id: 'fetch_bi_form',
+    },
+    {
       codeName: 'fetch_default',
       methodType: 'FETCH',
       appDEMethodInput: {

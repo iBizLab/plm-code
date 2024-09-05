@@ -347,7 +347,7 @@ export default {
                   appDEFieldId: 'content',
                   editor: {
                     mode: 'EDIT',
-                    maxLength: 1048576,
+                    maxLength: 16777215,
                     showMaxLength: true,
                     editorHeight: 600,
                     editorType: 'MARKDOWN',
@@ -410,7 +410,7 @@ export default {
                   noPrivDisplayMode: 1,
                   appDEFieldId: 'content',
                   editor: {
-                    maxLength: 1048576,
+                    maxLength: 16777215,
                     showMaxLength: true,
                     editorHeight: 600,
                     editorStyle: 'LUCKYSHEET',

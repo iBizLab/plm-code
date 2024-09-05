@@ -222,11 +222,19 @@ public class RunDTO extends DTOBase implements Serializable {
     private String libraryId;
 
     /**
+     * 编号
+     */
+    @JsonProperty("show_identifier")
+    @JSONField(name = "show_identifier")
+    @ApiModelProperty(value = "编号", position = 23)
+    private String showIdentifier;
+
+    /**
      * 关注
      */
     @JsonProperty("attentions")
     @JSONField(name = "attentions")
-    @ApiModelProperty(value = "关注", position = 23)
+    @ApiModelProperty(value = "关注", position = 24)
     private List<AttentionDTO> attentions;
 
     /**
@@ -234,7 +242,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("estimated_workload")
     @JSONField(name = "estimated_workload")
-    @ApiModelProperty(value = "预估工时", position = 24)
+    @ApiModelProperty(value = "预估工时", position = 25)
     private BigDecimal estimatedWorkload;
 
     /**
@@ -242,7 +250,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("workload_schedule")
     @JSONField(name = "workload_schedule")
-    @ApiModelProperty(value = "工时进度", position = 25)
+    @ApiModelProperty(value = "工时进度", position = 26)
     private BigDecimal workloadSchedule;
 
     /**
@@ -250,7 +258,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("remaining_workload")
     @JSONField(name = "remaining_workload")
-    @ApiModelProperty(value = "剩余工时", position = 26)
+    @ApiModelProperty(value = "剩余工时", position = 27)
     private BigDecimal remainingWorkload;
 
     /**
@@ -258,7 +266,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("actual_workload")
     @JSONField(name = "actual_workload")
-    @ApiModelProperty(value = "实际工时", position = 27)
+    @ApiModelProperty(value = "实际工时", position = 28)
     private BigDecimal actualWorkload;
 
     /**
@@ -266,7 +274,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("run_attachment")
     @JSONField(name = "run_attachment")
-    @ApiModelProperty(value = "结果附件", position = 28)
+    @ApiModelProperty(value = "结果附件", position = 29)
     private List<RunAttachmentDTO> runAttachment;
 
     /**
@@ -274,7 +282,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("relation_total_history")
     @JSONField(name = "relation_total_history")
-    @ApiModelProperty(value = "关联执行结果数", position = 29)
+    @ApiModelProperty(value = "关联执行结果数", position = 30)
     private BigDecimal relationTotalHistory;
 
     /**
@@ -282,7 +290,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("priority")
     @JSONField(name = "priority")
-    @ApiModelProperty(value = "优先级", position = 30)
+    @ApiModelProperty(value = "优先级", position = 31)
     private String priority;
 
     /**
@@ -290,7 +298,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("is_newest")
     @JSONField(name = "is_newest")
-    @ApiModelProperty(value = "是否最新", position = 31)
+    @ApiModelProperty(value = "是否最新", position = 32)
     private Integer isNewest;
 
     /**
@@ -298,7 +306,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("library_identifier")
     @JSONField(name = "library_identifier")
-    @ApiModelProperty(value = "测试库编号", position = 32)
+    @ApiModelProperty(value = "测试库编号", position = 33)
     private String libraryIdentifier;
 
     /**
@@ -306,7 +314,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("bi_plan_name")
     @JSONField(name = "bi_plan_name")
-    @ApiModelProperty(value = "bi测试计划名称", position = 33)
+    @ApiModelProperty(value = "bi测试计划名称", position = 34)
     private String biPlanName;
 
     /**
@@ -314,15 +322,23 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("attentions_imp")
     @JSONField(name = "attentions_imp")
-    @ApiModelProperty(value = "关注人", position = 34)
+    @ApiModelProperty(value = "关注人", position = 35)
     private String attentionsImp;
+
+    /**
+     * 最近创建日期
+     */
+    @JsonProperty("recent_create_days")
+    @JSONField(name = "recent_create_days")
+    @ApiModelProperty(value = "最近创建日期", position = 36)
+    private Integer recentCreateDays;
 
     /**
      * 测试用例标识
      */
     @JsonProperty("case_id")
     @JSONField(name = "case_id")
-    @ApiModelProperty(value = "测试用例标识", position = 35)
+    @ApiModelProperty(value = "测试用例标识", position = 37)
     private String caseId;
 
     /**
@@ -330,7 +346,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("case_name")
     @JSONField(name = "case_name")
-    @ApiModelProperty(value = "名称", position = 36)
+    @ApiModelProperty(value = "名称", position = 38)
     private String caseName;
 
     /**
@@ -338,7 +354,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 37)
+    @ApiModelProperty(value = "建立人", position = 39)
     private String createMan;
 
     /**
@@ -347,7 +363,7 @@ public class RunDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 38)
+    @ApiModelProperty(value = "建立时间", position = 40)
     private Date createTime;
 
     /**
@@ -355,7 +371,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 39)
+    @ApiModelProperty(value = "标识", position = 41)
     private String id;
 
     /**
@@ -363,7 +379,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 40)
+    @ApiModelProperty(value = "名称", position = 42)
     private String name;
 
     /**
@@ -371,7 +387,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("plan_id")
     @JSONField(name = "plan_id")
-    @ApiModelProperty(value = "测试计划标识", position = 41)
+    @ApiModelProperty(value = "测试计划标识", position = 43)
     private String planId;
 
     /**
@@ -379,7 +395,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 42)
+    @ApiModelProperty(value = "更新人", position = 44)
     private String updateMan;
 
     /**
@@ -388,7 +404,7 @@ public class RunDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 43)
+    @ApiModelProperty(value = "更新时间", position = 45)
     private Date updateTime;
 
 
@@ -582,6 +598,15 @@ public class RunDTO extends DTOBase implements Serializable {
     }
 
     /**
+     * 设置 [编号]
+     */
+    public RunDTO setShowIdentifier(String showIdentifier) {
+        this.showIdentifier = showIdentifier;
+        this.modify("show_identifier", showIdentifier);
+        return this;
+    }
+
+    /**
      * 设置 [关注]
      */
     public RunDTO setAttentions(List<AttentionDTO> attentions) {
@@ -686,6 +711,15 @@ public class RunDTO extends DTOBase implements Serializable {
     public RunDTO setAttentionsImp(String attentionsImp) {
         this.attentionsImp = attentionsImp;
         this.modify("attentions_imp", attentionsImp);
+        return this;
+    }
+
+    /**
+     * 设置 [最近创建日期]
+     */
+    public RunDTO setRecentCreateDays(Integer recentCreateDays) {
+        this.recentCreateDays = recentCreateDays;
+        this.modify("recent_create_days", recentCreateDays);
         return this;
     }
 

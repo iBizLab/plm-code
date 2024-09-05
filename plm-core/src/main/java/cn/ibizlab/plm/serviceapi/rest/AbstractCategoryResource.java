@@ -166,6 +166,45 @@ public abstract class AbstractCategoryResource {
     }
 
     /**
+    * move_order 类别
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<CategoryDTO>>>
+    */
+    @ApiOperation(value = "move_order", tags = {"类别" },  notes = "Category-move_order ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Category-move_order-all') or hasPermission(this.categoryDtoMapping.toDomain(#dto),'ibizplm-Category-move_order')")
+    @PostMapping("categories/{id}/move_order")
+    public Mono<ResponseEntity<ResponseWrapper<List<CategoryDTO>>>>moveOrderById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<CategoryDTO> dto) {
+        ResponseWrapper<List<CategoryDTO>> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(moveOrderById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(moveOrderById(id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * move_order 类别
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<List<CategoryDTO>>
+    */   
+    public List<CategoryDTO> moveOrderById
+            (String id, CategoryDTO dto) {
+        Category domain = categoryDtoMapping.toDomain(dto);
+        domain.setId(id);
+        List<Category> rt = categoryService.moveOrder(domain);
+        return categoryDtoMapping.toDto(rt);
+    }
+
+    /**
     * 保存Save 类别
     * 
     *
@@ -345,6 +384,28 @@ public abstract class AbstractCategoryResource {
             (@Validated @RequestBody CategoryFilterDTO dto) {
         CategorySearchContext context = categoryFilterDtoMapping.toDomain(dto);
         Page<Category> domains = categoryService.fetchDefault(context) ;
+        List<CategoryDTO> list = categoryDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_no_parent 类别
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<CategoryDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_no_parent", tags = {"类别" },  notes = "Category-fetch_no_parent ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Category-fetch_no_parent-all') or hasPermission(#dto,'ibizplm-Category-fetch_no_parent')")
+    @PostMapping("categories/fetch_no_parent")
+    public Mono<ResponseEntity<List<CategoryDTO>>> fetchNoParent
+            (@Validated @RequestBody CategoryFilterDTO dto) {
+        CategorySearchContext context = categoryFilterDtoMapping.toDomain(dto);
+        Page<Category> domains = categoryService.fetchNoParent(context) ;
         List<CategoryDTO> list = categoryDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

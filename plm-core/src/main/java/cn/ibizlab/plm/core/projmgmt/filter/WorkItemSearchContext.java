@@ -478,12 +478,38 @@ public class WorkItemSearchContext extends QueryWrapperContext<WorkItem> {
     private Date createTimeLTANDEQ;
 
     /**
+     * 更新时间GTANDEQ
+     */
+    @JsonProperty("n_update_time_gtandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_update_time_gtandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("更新时间GTANDEQ")
+    private Date updateTimeGTANDEQ;
+
+    /**
+     * 更新时间LTANDEQ
+     */
+    @JsonProperty("n_update_time_ltandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_update_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("更新时间LTANDEQ")
+    private Date updateTimeLTANDEQ;
+
+    /**
      * 项目EQ
      */
     @JsonProperty("n_project_id_eq")
     @JSONField(name = "n_project_id_eq")
     @ApiModelProperty("项目EQ")
     private String projectIdEQ;
+
+    /**
+     * 项目IN
+     */
+    @JsonProperty("n_project_id_in")
+    @JSONField(name = "n_project_id_in")
+    @ApiModelProperty("项目IN")
+    private String projectIdIN;
 
     /**
      * 工作项类型EQ

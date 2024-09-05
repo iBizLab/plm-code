@@ -54,6 +54,12 @@ export default {
       showBusyIndicator: true,
       appViewRefs: [
         {
+          realTitle: '页面筛选器',
+          refAppViewId: 'plmweb.article_page_filter_grid_view',
+          name: 'EXPITEM:filter',
+          id: 'expitem:filter',
+        },
+        {
           parentDataJO: {
             srfparentdefname: 'category_id',
           },
@@ -147,6 +153,13 @@ export default {
               parentValueLevel: 1,
               searchMode: 3,
               id: '默认根节点 - 空间',
+            },
+            {
+              childDETreeNodeId: 'filter',
+              parentDETreeNodeId: 'work',
+              parentValueLevel: 1,
+              searchMode: 3,
+              id: '工作 - 筛选器',
             },
             {
               childDETreeNodeId: 'node_14',
@@ -251,11 +264,11 @@ export default {
               id: '页面 - 我的收藏',
             },
             {
-              childDETreeNodeId: 'node_1',
+              childDETreeNodeId: 'work',
               parentDETreeNodeId: 'root',
               parentValueLevel: 1,
               searchMode: 3,
-              id: '默认根节点 - 页面',
+              id: '默认根节点 - 工作',
             },
             {
               childDETreeNodeId: 'node_6',
@@ -263,6 +276,13 @@ export default {
               parentValueLevel: 1,
               searchMode: 3,
               id: '空间 - 个人空间',
+            },
+            {
+              childDETreeNodeId: 'node_1',
+              parentDETreeNodeId: 'root',
+              parentValueLevel: 1,
+              searchMode: 3,
+              id: '默认根节点 - 页面',
             },
             {
               childDETreeNodeId: 'node_12',
@@ -304,6 +324,18 @@ export default {
               rootNode: true,
               name: '默认根节点',
               id: 'root',
+            },
+            {
+              text: '筛选器',
+              navAppViewId: 'plmweb.article_page_filter_grid_view',
+              nodeType: 'filter',
+              sysImage: {
+                rawContent:
+                  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="design-iconfont" width="18" height="18">\n  <path d="M5.70161537,6.83314599 C5.63755287,6.83314599 5.58442787,6.88158349 5.58442787,6.94252099 L5.58442787,7.59877099 C5.58442787,7.65814599 5.63755287,7.70814599 5.70161537,7.70814599 L10.0793816,7.70814599 C10.1434441,7.70814599 10.1965691,7.65814599 10.1965691,7.59877099 L10.1965691,6.94252099 C10.1965691,6.88158349 10.1434441,6.83314599 10.0793816,6.83314599 L5.70161537,6.83314599 Z M6.14124547,8.46714621 C6.07718297,8.46714621 6.02405797,8.51558371 6.02405797,8.57652121 L6.02405797,9.23277121 C6.02405797,9.29214621 6.07718297,9.34214621 6.14124547,9.34214621 L9.60335754,9.34214621 C9.66742004,9.34214621 9.72054504,9.29214621 9.72054504,9.23277121 L9.72054504,8.57652121 C9.72054504,8.51558371 9.66742004,8.46714621 9.60335754,8.46714621 L6.14124547,8.46714621 Z M6.61654715,10.1181998 C6.55248465,10.1181998 6.49935965,10.1666373 6.49935965,10.2275748 L6.49935965,10.8838248 C6.49935965,10.9431998 6.55248465,10.9931998 6.61654715,10.9931998 L9.12782868,10.9931998 C9.19189118,10.9931998 9.24501618,10.9431998 9.24501618,10.8838248 L9.24501618,10.2275748 C9.24501618,10.1666373 9.19189118,10.1181998 9.12782868,10.1181998 L6.61654715,10.1181998 Z M13.75,4.6625 L8.140625,4.6625 L6.3078125,2.909375 C6.284375,2.8875 6.253125,2.875 6.221875,2.875 L2.25,2.875 C1.9734375,2.875 1.75,3.0984375 1.75,3.375 L1.75,12.625 C1.75,12.9015625 1.9734375,13.125 2.25,13.125 L13.75,13.125 C14.0265625,13.125 14.25,12.9015625 14.25,12.625 L14.25,5.1625 C14.25,4.8859375 14.0265625,4.6625 13.75,4.6625 Z M13.125,12 L2.875,12 L2.875,4 L5.8203125,4 L7.6890625,5.7875 L13.125,5.7875 L13.125,12 Z" fill="#F6C659" fill-rule="nonzero"></path>\n</svg>',
+              },
+              treeNodeType: 'STATIC',
+              name: '筛选器',
+              id: 'filter',
             },
             {
               text: '空间',
@@ -609,6 +641,16 @@ export default {
               name: '我的收藏',
               id: 'node_9',
             },
+            {
+              text: '工作',
+              nodeType: 'work',
+              treeNodeType: 'STATIC',
+              hasDETreeNodeRSs: true,
+              disableSelect: true,
+              expanded: true,
+              name: '工作',
+              id: 'work',
+            },
           ],
           outputIconDefault: true,
           createControlAction: {
@@ -638,34 +680,6 @@ export default {
           autoLoad: true,
           showBusyIndicator: true,
           controls: [
-            {
-              detoolbarItems: [
-                {
-                  actionLevel: 200,
-                  noPrivDisplayMode: 2,
-                  uiactionId: 'open_space_setting@space',
-                  uiactionTarget: 'NONE',
-                  valid: true,
-                  caption: '空间配置',
-                  itemType: 'DEUIACTION',
-                  tooltip: '空间配置',
-                  showCaption: true,
-                  showIcon: true,
-                  id: 'deuiaction1',
-                },
-              ],
-              codeName: 'tree_exp_view_node2_cm',
-              controlType: 'CONTEXTMENU',
-              logicName: '空间配置树节点菜单',
-              appDataEntityId: 'plmweb.space',
-              controlParam: {
-                id: 'node_2_cm',
-              },
-              modelId: 'e333e8ea09cf1253bbd904d3299d5651',
-              modelType: 'PSDETOOLBAR',
-              name: 'node_2_cm',
-              id: 'tree_exp_view_node2_cm',
-            },
             {
               detoolbarItems: [
                 {
@@ -709,6 +723,34 @@ export default {
               modelType: 'PSDETOOLBAR',
               name: 'node_11_cm',
               id: 'tree_exp_view_node11_cm',
+            },
+            {
+              detoolbarItems: [
+                {
+                  actionLevel: 200,
+                  noPrivDisplayMode: 2,
+                  uiactionId: 'open_space_setting@space',
+                  uiactionTarget: 'NONE',
+                  valid: true,
+                  caption: '空间配置',
+                  itemType: 'DEUIACTION',
+                  tooltip: '空间配置',
+                  showCaption: true,
+                  showIcon: true,
+                  id: 'deuiaction1',
+                },
+              ],
+              codeName: 'tree_exp_view_node2_cm',
+              controlType: 'CONTEXTMENU',
+              logicName: '空间配置树节点菜单',
+              appDataEntityId: 'plmweb.space',
+              controlParam: {
+                id: 'node_2_cm',
+              },
+              modelId: 'e333e8ea09cf1253bbd904d3299d5651',
+              modelType: 'PSDETOOLBAR',
+              name: 'node_2_cm',
+              id: 'tree_exp_view_node2_cm',
             },
           ],
           codeName: 'tree_exp_view_tree_view',

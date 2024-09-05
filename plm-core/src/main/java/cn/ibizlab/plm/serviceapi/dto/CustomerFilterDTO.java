@@ -49,16 +49,16 @@ public class CustomerFilterDTO extends FilterBase implements Serializable {
     /**
      * 类别ISNULL
      */
-    @JsonProperty("n_categorys_isnull")
-    @JSONField(name = "n_categorys_isnull")
+    @JsonProperty("n_categories_isnull")
+    @JSONField(name = "n_categories_isnull")
     @ApiModelProperty(value = "类别ISNULL", position = 70)
 	private String categoriesISNULL;
 
     /**
      * 类别LIKE
      */
-    @JsonProperty("n_categorys_like")
-    @JSONField(name = "n_categorys_like")
+    @JsonProperty("n_categories_like")
+    @JSONField(name = "n_categories_like")
     @ApiModelProperty(value = "类别LIKE", position = 71)
 	private String categoriesLIKE;
 
@@ -173,6 +173,42 @@ public class CustomerFilterDTO extends FilterBase implements Serializable {
     @JSONField(name = "n_create_man_notin")
     @ApiModelProperty(value = "建立人NOTIN", position = 184)
 	private String createManNOTIN;
+
+    /**
+     * 建立时间GTANDEQ
+     */
+    @JsonProperty("n_create_time_gtandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_create_time_gtandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "建立时间GTANDEQ", position = 190)
+	private Date createTimeGTANDEQ;
+
+    /**
+     * 建立时间LTANDEQ
+     */
+    @JsonProperty("n_create_time_ltandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_create_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "建立时间LTANDEQ", position = 191)
+	private Date createTimeLTANDEQ;
+
+    /**
+     * 更新时间GTANDEQ
+     */
+    @JsonProperty("n_update_time_gtandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_update_time_gtandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "更新时间GTANDEQ", position = 210)
+	private Date updateTimeGTANDEQ;
+
+    /**
+     * 更新时间LTANDEQ
+     */
+    @JsonProperty("n_update_time_ltandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_update_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "更新时间LTANDEQ", position = 211)
+	private Date updateTimeLTANDEQ;
 
     /**
      * 产品标识EQ

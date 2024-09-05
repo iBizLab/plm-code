@@ -158,6 +158,16 @@ public interface GroupService extends IService<Group> {
     boolean save(List<Group> list);
 
     /**
+    * moveOrder
+    * 
+    * @param et
+    * @return
+    */
+    default List<Group> moveOrder(Group et) {
+        return new ArrayList<>();
+    }
+
+    /**
     * fetchDefault
     * 
     * @param context

@@ -172,6 +172,7 @@ export default {
             {
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
+              moveAppDEActionId: 'move_order',
               appDEDataSetId: 'fetch_default',
               sortDir: 'ASC',
               sortAppDEFieldId: 'sequence',
@@ -268,6 +269,7 @@ export default {
             {
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
+              moveAppDEActionId: 'move_order',
               appDEDataSetId: 'fetch_default',
               sortDir: 'ASC',
               sortAppDEFieldId: 'sequence',
@@ -370,6 +372,7 @@ export default {
             {
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
+              moveAppDEActionId: 'move_order',
               appDEDataSetId: 'fetch_no_section',
               sortDir: 'ASC',
               sortAppDEFieldId: 'sequence',
@@ -503,7 +506,7 @@ export default {
                   actionLevel: 100,
                   noPrivDisplayMode: 2,
                   uiactionId:
-                    'toolbar_tree_exp_view_node3_cm_deuiaction1_click@release',
+                    'toolbar_tree_exp_view_node2_cm_deuiaction1_click@release',
                   uiactionTarget: 'SINGLEDATA',
                   valid: true,
                   caption: '编辑',
@@ -511,7 +514,7 @@ export default {
                   controlLogics: [
                     {
                       itemName: 'deuiaction1',
-                      logicTag: 'node_3_cm',
+                      logicTag: 'node_2_cm',
                       logicType: 'SCRIPT',
                       scriptCode: '!context.srfreadonly',
                       triggerType: 'ITEMVISIBLE',
@@ -531,7 +534,7 @@ export default {
                   actionLevel: 100,
                   noPrivDisplayMode: 2,
                   uiactionId:
-                    'toolbar_tree_exp_view_node3_cm_deuiaction2_click@release',
+                    'toolbar_tree_exp_view_node2_cm_deuiaction2_click@release',
                   uiactionTarget: 'SINGLEDATA',
                   valid: true,
                   caption: '删除',
@@ -539,7 +542,7 @@ export default {
                   controlLogics: [
                     {
                       itemName: 'deuiaction2',
-                      logicTag: 'node_3_cm',
+                      logicTag: 'node_2_cm',
                       logicType: 'SCRIPT',
                       scriptCode: '!context.srfreadonly',
                       triggerType: 'ITEMVISIBLE',
@@ -557,17 +560,17 @@ export default {
                 },
               ],
               toolbarStyle: 'CONTEXTMENU',
-              codeName: 'tree_exp_view_node3_cm',
+              codeName: 'tree_exp_view_node2_cm',
               controlType: 'CONTEXTMENU',
               logicName: '树节点上下文菜单',
               appDataEntityId: 'plmweb.release',
               controlParam: {
-                id: 'node_3_cm',
+                id: 'node_2_cm',
               },
               modelId: '5c21ba53614135d0b96ba605a993a61b',
               modelType: 'PSDETOOLBAR',
-              name: 'node_3_cm',
-              id: 'tree_exp_view_node3_cm',
+              name: 'node_2_cm',
+              id: 'tree_exp_view_node2_cm',
             },
             {
               detoolbarItems: [
@@ -647,7 +650,7 @@ export default {
                   actionLevel: 100,
                   noPrivDisplayMode: 2,
                   uiactionId:
-                    'toolbar_tree_exp_view_node2_cm_deuiaction1_click@release',
+                    'toolbar_tree_exp_view_node3_cm_deuiaction1_click@release',
                   uiactionTarget: 'SINGLEDATA',
                   valid: true,
                   caption: '编辑',
@@ -655,7 +658,7 @@ export default {
                   controlLogics: [
                     {
                       itemName: 'deuiaction1',
-                      logicTag: 'node_2_cm',
+                      logicTag: 'node_3_cm',
                       logicType: 'SCRIPT',
                       scriptCode: '!context.srfreadonly',
                       triggerType: 'ITEMVISIBLE',
@@ -675,7 +678,7 @@ export default {
                   actionLevel: 100,
                   noPrivDisplayMode: 2,
                   uiactionId:
-                    'toolbar_tree_exp_view_node2_cm_deuiaction2_click@release',
+                    'toolbar_tree_exp_view_node3_cm_deuiaction2_click@release',
                   uiactionTarget: 'SINGLEDATA',
                   valid: true,
                   caption: '删除',
@@ -683,7 +686,7 @@ export default {
                   controlLogics: [
                     {
                       itemName: 'deuiaction2',
-                      logicTag: 'node_2_cm',
+                      logicTag: 'node_3_cm',
                       logicType: 'SCRIPT',
                       scriptCode: '!context.srfreadonly',
                       triggerType: 'ITEMVISIBLE',
@@ -701,17 +704,17 @@ export default {
                 },
               ],
               toolbarStyle: 'CONTEXTMENU',
-              codeName: 'tree_exp_view_node2_cm',
+              codeName: 'tree_exp_view_node3_cm',
               controlType: 'CONTEXTMENU',
               logicName: '树节点上下文菜单',
               appDataEntityId: 'plmweb.release',
               controlParam: {
-                id: 'node_2_cm',
+                id: 'node_3_cm',
               },
               modelId: '5c21ba53614135d0b96ba605a993a61b',
               modelType: 'PSDETOOLBAR',
-              name: 'node_2_cm',
-              id: 'tree_exp_view_node2_cm',
+              name: 'node_3_cm',
+              id: 'tree_exp_view_node3_cm',
             },
           ],
           codeName: 'tree_exp_view_tree_view',

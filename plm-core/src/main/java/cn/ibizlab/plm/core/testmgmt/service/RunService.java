@@ -380,6 +380,22 @@ public interface RunService extends IService<Run> {
     List<Run> listCommentNotifyExecutor(RunSearchContext context);
 
     /**
+    * fetchMyFilter
+    * 
+    * @param context
+    * @return
+    */
+    Page<Run> fetchMyFilter(RunSearchContext context);
+
+    /**
+    * listMyFilter
+    * 
+    * @param context
+    * @return
+    */
+    List<Run> listMyFilter(RunSearchContext context);
+
+    /**
     * fetchNormal
     * 
     * @param context

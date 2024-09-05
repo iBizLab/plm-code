@@ -35,7 +35,7 @@ public class ProductPlanFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_categories_like")
     @JSONField(name = "n_categories_like")
-    @ApiModelProperty(value = "类别LIKE", position = 30)
+    @ApiModelProperty(value = "类别LIKE", position = 40)
 	private String categoriesLIKE;
 
     /**
@@ -43,7 +43,7 @@ public class ProductPlanFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_is_deleted_eq")
     @JSONField(name = "n_is_deleted_eq")
-    @ApiModelProperty(value = "是否已删除EQ", position = 50)
+    @ApiModelProperty(value = "是否已删除EQ", position = 60)
 	private Integer isDeletedEQ;
 
     /**
@@ -51,7 +51,7 @@ public class ProductPlanFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 80)
+    @ApiModelProperty(value = "标识EQ", position = 100)
 	private String idEQ;
 
     /**
@@ -59,7 +59,7 @@ public class ProductPlanFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "计划名称LIKE", position = 90)
+    @ApiModelProperty(value = "计划名称LIKE", position = 110)
 	private String nameLIKE;
 
     /**
@@ -67,7 +67,7 @@ public class ProductPlanFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_product_id_eq")
     @JSONField(name = "n_product_id_eq")
-    @ApiModelProperty(value = "产品标识EQ", position = 140)
+    @ApiModelProperty(value = "产品标识EQ", position = 160)
 	private String productIdEQ;
 
 

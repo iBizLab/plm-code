@@ -451,6 +451,45 @@ public abstract class AbstractArticlePageResource {
     }
 
     /**
+    * move_order 页面
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<ArticlePageDTO>>>
+    */
+    @ApiOperation(value = "move_order", tags = {"页面" },  notes = "ArticlePage-move_order ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-move_order-all') or hasPermission(this.articlePageDtoMapping.toDomain(#dto),'ibizplm-ArticlePage-move_order')")
+    @PostMapping("article_pages/{id}/move_order")
+    public Mono<ResponseEntity<ResponseWrapper<List<ArticlePageDTO>>>>moveOrderById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ArticlePageDTO> dto) {
+        ResponseWrapper<List<ArticlePageDTO>> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(moveOrderById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(moveOrderById(id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * move_order 页面
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<List<ArticlePageDTO>>
+    */   
+    public List<ArticlePageDTO> moveOrderById
+            (String id, ArticlePageDTO dto) {
+        ArticlePage domain = articlePageDtoMapping.toDomain(dto);
+        domain.setId(id);
+        List<ArticlePage> rt = articlePageService.moveOrder(domain);
+        return articlePageDtoMapping.toDto(rt);
+    }
+
+    /**
     * move_page 页面
     * 
     *
@@ -1348,6 +1387,47 @@ public abstract class AbstractArticlePageResource {
     }
 
     /**
+    * move_order 页面
+    * 
+    *
+    * @param spaceId spaceId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<ArticlePageDTO>>>
+    */
+    @ApiOperation(value = "move_order", tags = {"页面" },  notes = "ArticlePage-move_order ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-move_order-all') or hasPermission('shared_space',#spaceId,this.articlePageDtoMapping.toDomain(#dto),'ibizplm-ArticlePage-move_order')")
+    @PostMapping("shared_spaces/{spaceId}/article_pages/{id}/move_order")
+    public Mono<ResponseEntity<ResponseWrapper<List<ArticlePageDTO>>>>moveOrderBySpaceIdAndId
+            (@PathVariable("spaceId") String spaceId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ArticlePageDTO> dto) {
+        ResponseWrapper<List<ArticlePageDTO>> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(moveOrderBySpaceIdAndId(spaceId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(moveOrderBySpaceIdAndId(spaceId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * move_order 页面
+    * 
+    *
+    * @param spaceId spaceId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<List<ArticlePageDTO>>
+    */   
+    public List<ArticlePageDTO> moveOrderBySpaceIdAndId
+            (String spaceId, String id, ArticlePageDTO dto) {
+        ArticlePage domain = articlePageDtoMapping.toDomain(dto);
+        domain.setId(id);
+        List<ArticlePage> rt = articlePageService.moveOrder(domain);
+        return articlePageDtoMapping.toDto(rt);
+    }
+
+    /**
     * move_page 页面
     * 
     *
@@ -2175,6 +2255,28 @@ public abstract class AbstractArticlePageResource {
     }
 
     /**
+    * 查询fetch_my_filter 页面
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<ArticlePageDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_my_filter", tags = {"页面" },  notes = "ArticlePage-fetch_my_filter ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-fetch_my_filter-all') or hasPermission(#dto,'ibizplm-ArticlePage-fetch_my_filter')")
+    @PostMapping("article_pages/fetch_my_filter")
+    public Mono<ResponseEntity<List<ArticlePageDTO>>> fetchMyFilter
+            (@Validated @RequestBody ArticlePageFilterDTO dto) {
+        ArticlePageSearchContext context = articlePageFilterDtoMapping.toDomain(dto);
+        Page<ArticlePage> domains = articlePageService.fetchMyFilter(context) ;
+        List<ArticlePageDTO> list = articlePageDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 查询fetch_no_parent_page 页面
     * 
     *
@@ -2232,6 +2334,28 @@ public abstract class AbstractArticlePageResource {
             (@Validated @RequestBody ArticlePageFilterDTO dto) {
         ArticlePageSearchContext context = articlePageFilterDtoMapping.toDomain(dto);
         Page<ArticlePage> domains = articlePageService.fetchOnlyPage(context) ;
+        List<ArticlePageDTO> list = articlePageDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_reader 页面
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<ArticlePageDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_reader", tags = {"页面" },  notes = "ArticlePage-fetch_reader ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-fetch_reader-all') or hasPermission(#dto,'ibizplm-ArticlePage-fetch_reader')")
+    @PostMapping("article_pages/fetch_reader")
+    public Mono<ResponseEntity<List<ArticlePageDTO>>> fetchReader
+            (@Validated @RequestBody ArticlePageFilterDTO dto) {
+        ArticlePageSearchContext context = articlePageFilterDtoMapping.toDomain(dto);
+        Page<ArticlePage> domains = articlePageService.fetchReader(context) ;
         List<ArticlePageDTO> list = articlePageDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2708,6 +2832,30 @@ public abstract class AbstractArticlePageResource {
     }
 
     /**
+    * 查询fetch_my_filter 页面
+    * 
+    *
+    * @param spaceId spaceId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<ArticlePageDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_my_filter", tags = {"页面" },  notes = "ArticlePage-fetch_my_filter ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-fetch_my_filter-all') or hasPermission('shared_space',#spaceId,#dto,'ibizplm-ArticlePage-fetch_my_filter')")
+    @PostMapping("shared_spaces/{spaceId}/article_pages/fetch_my_filter")
+    public Mono<ResponseEntity<List<ArticlePageDTO>>> fetchMyFilterBySpaceId
+            (@PathVariable("spaceId") String spaceId, @Validated @RequestBody ArticlePageFilterDTO dto) {
+        dto.setSpaceIdEQ(spaceId);
+        ArticlePageSearchContext context = articlePageFilterDtoMapping.toDomain(dto);
+        Page<ArticlePage> domains = articlePageService.fetchMyFilter(context) ;
+        List<ArticlePageDTO> list = articlePageDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 查询fetch_no_parent_page 页面
     * 
     *
@@ -2771,6 +2919,30 @@ public abstract class AbstractArticlePageResource {
         dto.setSpaceIdEQ(spaceId);
         ArticlePageSearchContext context = articlePageFilterDtoMapping.toDomain(dto);
         Page<ArticlePage> domains = articlePageService.fetchOnlyPage(context) ;
+        List<ArticlePageDTO> list = articlePageDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_reader 页面
+    * 
+    *
+    * @param spaceId spaceId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<ArticlePageDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_reader", tags = {"页面" },  notes = "ArticlePage-fetch_reader ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-fetch_reader-all') or hasPermission('shared_space',#spaceId,#dto,'ibizplm-ArticlePage-fetch_reader')")
+    @PostMapping("shared_spaces/{spaceId}/article_pages/fetch_reader")
+    public Mono<ResponseEntity<List<ArticlePageDTO>>> fetchReaderBySpaceId
+            (@PathVariable("spaceId") String spaceId, @Validated @RequestBody ArticlePageFilterDTO dto) {
+        dto.setSpaceIdEQ(spaceId);
+        ArticlePageSearchContext context = articlePageFilterDtoMapping.toDomain(dto);
+        Page<ArticlePage> domains = articlePageService.fetchReader(context) ;
         List<ArticlePageDTO> list = articlePageDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

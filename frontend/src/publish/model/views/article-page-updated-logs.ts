@@ -374,6 +374,7 @@ export default {
         },
         minorSortDir: 'DESC',
         minorSortAppDEFieldId: 'create_time',
+        orderValueAppDEFieldId: 'sequence',
         dedataViewDataItems: [
           {
             appDEFieldId: 'id',

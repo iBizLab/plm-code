@@ -377,11 +377,27 @@ public class IdeaDTO extends DTOBase implements Serializable {
     private String attentionsImp;
 
     /**
+     * 最近创建日期
+     */
+    @JsonProperty("recent_create_days")
+    @JSONField(name = "recent_create_days")
+    @ApiModelProperty(value = "最近创建日期", position = 42)
+    private Integer recentCreateDays;
+
+    /**
+     * 序号
+     */
+    @JsonProperty("sequence")
+    @JSONField(name = "sequence")
+    @ApiModelProperty(value = "序号", position = 43)
+    private BigDecimal sequence;
+
+    /**
      * 类别标识
      */
     @JsonProperty("category_id")
     @JSONField(name = "category_id")
-    @ApiModelProperty(value = "类别标识", position = 42)
+    @ApiModelProperty(value = "类别标识", position = 44)
     private String categoryId;
 
     /**
@@ -389,7 +405,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("category_name")
     @JSONField(name = "category_name")
-    @ApiModelProperty(value = "名称", position = 43)
+    @ApiModelProperty(value = "名称", position = 45)
     private String categoryName;
 
     /**
@@ -397,7 +413,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 44)
+    @ApiModelProperty(value = "建立人", position = 46)
     private String createMan;
 
     /**
@@ -406,7 +422,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 45)
+    @ApiModelProperty(value = "建立时间", position = 47)
     private Date createTime;
 
     /**
@@ -414,7 +430,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 46)
+    @ApiModelProperty(value = "标识", position = 48)
     private String id;
 
     /**
@@ -422,7 +438,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 47)
+    @ApiModelProperty(value = "名称", position = 49)
     private String name;
 
     /**
@@ -430,7 +446,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("product_id")
     @JSONField(name = "product_id")
-    @ApiModelProperty(value = "产品", position = 48)
+    @ApiModelProperty(value = "产品", position = 50)
     private String productId;
 
     /**
@@ -438,7 +454,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("product_name")
     @JSONField(name = "product_name")
-    @ApiModelProperty(value = "所属产品", position = 49)
+    @ApiModelProperty(value = "所属产品", position = 51)
     private String productName;
 
     /**
@@ -446,7 +462,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 50)
+    @ApiModelProperty(value = "更新人", position = 52)
     private String updateMan;
 
     /**
@@ -455,7 +471,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 51)
+    @ApiModelProperty(value = "更新时间", position = 53)
     private Date updateTime;
 
 
@@ -825,6 +841,15 @@ public class IdeaDTO extends DTOBase implements Serializable {
     public IdeaDTO setAttentionsImp(String attentionsImp) {
         this.attentionsImp = attentionsImp;
         this.modify("attentions_imp", attentionsImp);
+        return this;
+    }
+
+    /**
+     * 设置 [最近创建日期]
+     */
+    public IdeaDTO setRecentCreateDays(Integer recentCreateDays) {
+        this.recentCreateDays = recentCreateDays;
+        this.modify("recent_create_days", recentCreateDays);
         return this;
     }
 

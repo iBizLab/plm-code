@@ -150,6 +150,7 @@ export default {
             {
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
+              moveAppDEActionId: 'move_order',
               appDEDataSetId: 'fetch_space_category_top',
               sortDir: 'ASC',
               sortAppDEFieldId: 'sequence',
@@ -204,6 +205,7 @@ export default {
             {
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
+              moveAppDEActionId: 'move_order',
               appDEDataSetId: 'fetch_space_category',
               sortDir: 'ASC',
               sortAppDEFieldId: 'sequence',
@@ -291,35 +293,6 @@ export default {
                   actionLevel: 100,
                   noPrivDisplayMode: 2,
                   uiactionId:
-                    'toolbar_category_tree_exp_view_node_cm_deuiaction1_click@category',
-                  uiactionTarget: 'SINGLEDATA',
-                  valid: true,
-                  caption: '删除',
-                  itemType: 'DEUIACTION',
-                  tooltip: '删除',
-                  showCaption: true,
-                  showIcon: true,
-                  id: 'deuiaction1',
-                },
-              ],
-              codeName: 'category_tree_exp_view_node_cm',
-              controlType: 'CONTEXTMENU',
-              logicName: '树节点删除',
-              appDataEntityId: 'plmweb.category',
-              controlParam: {
-                id: 'node_cm',
-              },
-              modelId: '8aa9da8f9e2f308c751f25a6e82ea732',
-              modelType: 'PSDETOOLBAR',
-              name: 'node_cm',
-              id: 'category_tree_exp_view_node_cm',
-            },
-            {
-              detoolbarItems: [
-                {
-                  actionLevel: 100,
-                  noPrivDisplayMode: 2,
-                  uiactionId:
                     'toolbar_category_tree_exp_view_node1_cm_deuiaction1_click@category',
                   uiactionTarget: 'SINGLEDATA',
                   valid: true,
@@ -342,6 +315,35 @@ export default {
               modelType: 'PSDETOOLBAR',
               name: 'node_1_cm',
               id: 'category_tree_exp_view_node1_cm',
+            },
+            {
+              detoolbarItems: [
+                {
+                  actionLevel: 100,
+                  noPrivDisplayMode: 2,
+                  uiactionId:
+                    'toolbar_category_tree_exp_view_node_cm_deuiaction1_click@category',
+                  uiactionTarget: 'SINGLEDATA',
+                  valid: true,
+                  caption: '删除',
+                  itemType: 'DEUIACTION',
+                  tooltip: '删除',
+                  showCaption: true,
+                  showIcon: true,
+                  id: 'deuiaction1',
+                },
+              ],
+              codeName: 'category_tree_exp_view_node_cm',
+              controlType: 'CONTEXTMENU',
+              logicName: '树节点删除',
+              appDataEntityId: 'plmweb.category',
+              controlParam: {
+                id: 'node_cm',
+              },
+              modelId: '8aa9da8f9e2f308c751f25a6e82ea732',
+              modelType: 'PSDETOOLBAR',
+              name: 'node_cm',
+              id: 'category_tree_exp_view_node_cm',
             },
           ],
           codeName: 'category_tree_exp_view_tree_view',

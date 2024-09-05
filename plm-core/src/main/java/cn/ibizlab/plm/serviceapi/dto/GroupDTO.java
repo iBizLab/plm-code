@@ -145,15 +145,6 @@ public class GroupDTO extends DTOBase implements Serializable {
     }
 
     /**
-     * 设置 [序号]
-     */
-    public GroupDTO setSequence(BigDecimal sequence) {
-        this.sequence = sequence;
-        this.modify("sequence", sequence);
-        return this;
-    }
-
-    /**
      * 设置 [描述]
      */
     public GroupDTO setDescription(String description) {

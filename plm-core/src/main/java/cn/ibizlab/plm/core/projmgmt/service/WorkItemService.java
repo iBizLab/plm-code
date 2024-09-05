@@ -298,6 +298,26 @@ public interface WorkItemService extends IService<WorkItem> {
     }
 
     /**
+    * fillBiFormDefault
+    * 
+    * @param et
+    * @return
+    */
+    default WorkItem fillBiFormDefault(WorkItem et) {
+        return et;
+    }
+
+    /**
+    * fillTypeOfState
+    * 
+    * @param et
+    * @return
+    */
+    default WorkItem fillTypeOfState(WorkItem et) {
+        return et;
+    }
+
+    /**
     * fixCommit
     * 
     * @param et

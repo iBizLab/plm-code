@@ -47,20 +47,217 @@ export default {
                 actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
-                    caption: '页面标题',
+                    rawItem: {
+                      sysImage: {
+                        cssClass: 'fa fa-file-text-o',
+                        glyph: 'xf0f6@FontAwesome',
+                      },
+                      contentType: 'IMAGE',
+                      predefinedType: 'STATIC_IMAGE',
+                      id: 'static_image1',
+                    },
+                    caption: '图片',
                     itemStyle: 'DEFAULT',
-                    itemType: 'CTRLPOS',
+                    itemType: 'RAWITEM',
                     layoutPos: {
                       shrink: 1,
                       layout: 'FLEX',
                     },
+                    panelItemGroupLogics: [
+                      {
+                        logicCat: 'PANELVISIBLE',
+                        relatedItemNames: ['icon'],
+                        groupOP: 'AND',
+                        panelItemLogics: [
+                          {
+                            condOp: 'ISNULL',
+                            dstModelField: 'icon',
+                            logicType: 'SINGLE',
+                            id: '逻辑项',
+                          },
+                        ],
+                        logicType: 'GROUP',
+                        id: '面板成员[static_image1][面板显示]逻辑',
+                      },
+                    ],
+                    sysImage: {
+                      cssClass: 'fa fa-file-text-o',
+                      glyph: 'xf0f6@FontAwesome',
+                    },
                     showCaption: true,
-                    id: 'captionbar',
+                    id: 'static_image1',
+                  },
+                  {
+                    editor: {
+                      halign: 'LEFT',
+                      valign: 'MIDDLE',
+                      wrapMode: 'NOWRAP',
+                      editorType: 'SPAN',
+                      predefinedType: 'FIELD_IMAGE',
+                      valueType: 'SIMPLE',
+                      editable: true,
+                      id: 'icon',
+                    },
+                    viewFieldName: 'icon',
+                    allowEmpty: true,
+                    caption: '图片(动态)',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'FIELD',
+                    layoutPos: {
+                      shrink: 1,
+                      layout: 'FLEX',
+                      spacingRight: 'OUTERNONE',
+                    },
+                    panelItemGroupLogics: [
+                      {
+                        logicCat: 'PANELVISIBLE',
+                        relatedItemNames: ['icon'],
+                        groupOP: 'AND',
+                        panelItemLogics: [
+                          {
+                            condOp: 'ISNOTNULL',
+                            dstModelField: 'icon',
+                            logicType: 'SINGLE',
+                            id: '逻辑项',
+                          },
+                        ],
+                        logicType: 'GROUP',
+                        id: '面板成员[icon][面板显示]逻辑',
+                      },
+                    ],
+                    id: 'icon',
+                  },
+                  {
+                    editor: {
+                      halign: 'LEFT',
+                      renderMode: 'TEXT_DYNAMIC',
+                      valign: 'MIDDLE',
+                      wrapMode: 'NOWRAP',
+                      editorType: 'SPAN',
+                      predefinedType: 'FIELD_TEXT_DYNAMIC',
+                      valueType: 'SIMPLE',
+                      editable: true,
+                      id: 'name',
+                    },
+                    viewFieldName: 'PUBLISH_NAME',
+                    allowEmpty: true,
+                    caption: '文本(动态)',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'FIELD',
+                    layoutPos: {
+                      shrink: 1,
+                      layout: 'FLEX',
+                    },
+                    id: 'name',
+                  },
+                  {
+                    rawItem: {
+                      sysImage: {
+                        cssClass: 'fa fa-lock',
+                        glyph: 'xf023@FontAwesome',
+                      },
+                      contentType: 'IMAGE',
+                      predefinedType: 'STATIC_IMAGE',
+                      id: 'static_image',
+                    },
+                    caption: '图片',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'RAWITEM',
+                    layoutPos: {
+                      shrink: 1,
+                      layout: 'FLEX',
+                    },
+                    panelItemGroupLogics: [
+                      {
+                        logicCat: 'PANELVISIBLE',
+                        relatedItemNames: ['is_lock'],
+                        groupOP: 'AND',
+                        panelItemLogics: [
+                          {
+                            condOp: 'EQ',
+                            dstModelField: 'is_lock',
+                            value: '1',
+                            logicType: 'SINGLE',
+                            id: '逻辑项',
+                          },
+                        ],
+                        logicType: 'GROUP',
+                        id: '面板成员[static_image][面板显示]逻辑',
+                      },
+                    ],
+                    sysImage: {
+                      cssClass: 'fa fa-lock',
+                      glyph: 'xf023@FontAwesome',
+                    },
+                    showCaption: true,
+                    id: 'static_image',
+                  },
+                  {
+                    editor: {
+                      editorType: 'HIDDEN',
+                      predefinedType: 'FIELD_TEXT_DYNAMIC',
+                      valueType: 'SIMPLE',
+                      editable: true,
+                      id: 'is_lock',
+                    },
+                    viewFieldName: 'is_lock',
+                    allowEmpty: true,
+                    hidden: true,
+                    caption: '文本(动态)',
+                    itemType: 'FIELD',
+                    layoutPos: {
+                      shrink: 1,
+                      layout: 'FLEX',
+                    },
+                    id: 'is_lock',
                   },
                 ],
                 layout: {
-                  align: 'center',
+                  align: 'flex-start',
+                  dir: 'row',
                   layout: 'FLEX',
+                  valign: 'center',
+                },
+                dataRegionType: 'INHERIT',
+                caption: '容器',
+                itemStyle: 'DEFAULT',
+                itemType: 'CONTAINER',
+                layoutPos: {
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                sysCss: {
+                  cssName: 'wiki_page_title_style',
+                },
+                id: 'container1',
+              },
+            ],
+            predefinedType: 'CONTAINER_SINGLEDATA',
+            layout: {
+              layout: 'FLEX',
+            },
+            dataName: 'srfactiveviewdata',
+            dataRegionType: 'SINGLEDATA',
+            dataSourceType: 'VIEWSESSIONPARAM',
+            caption: '单项数据容器',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              shrink: 1,
+              layout: 'FLEX',
+            },
+            id: 'container_caption',
+          },
+          {
+            actionGroupExtractMode: 'ITEM',
+            panelItems: [
+              {
+                actionGroupExtractMode: 'ITEM',
+                layout: {
+                  align: 'center',
+                  dir: 'row',
+                  layout: 'FLEX',
+                  valign: 'center',
                 },
                 dataRegionType: 'INHERIT',
                 caption: '容器',
@@ -924,46 +1121,6 @@ export default {
                         },
                         id: 'title',
                       },
-                      {
-                        rawItem: {
-                          sysImage: {
-                            cssClass: 'fa fa-lock',
-                            glyph: 'xf023@FontAwesome',
-                          },
-                          contentType: 'IMAGE',
-                          id: 'rawitem3',
-                        },
-                        codeName: 'rawitem3',
-                        detailStyle: 'DEFAULT',
-                        detailType: 'RAWITEM',
-                        defdgroupLogics: [
-                          {
-                            logicCat: 'PANELVISIBLE',
-                            relatedDetailNames: ['is_lock'],
-                            groupOP: 'AND',
-                            defdlogics: [
-                              {
-                                condOP: 'EQ',
-                                defdname: 'is_lock',
-                                value: '1',
-                                logicType: 'SINGLE',
-                              },
-                            ],
-                            logicType: 'GROUP',
-                            id: '表单成员[rawitem3][面板显示]逻辑',
-                          },
-                        ],
-                        layoutPos: {
-                          shrink: 1,
-                          layout: 'FLEX',
-                        },
-                        sysImage: {
-                          cssClass: 'fa fa-lock',
-                          glyph: 'xf023@FontAwesome',
-                        },
-                        showCaption: true,
-                        id: 'rawitem3',
-                      },
                     ],
                     codeName: 'grouppanel1',
                     detailStyle: 'DEFAULT',
@@ -1081,7 +1238,7 @@ export default {
                         appDEFieldId: 'publish_content',
                         editor: {
                           mode: 'EDIT',
-                          maxLength: 1048576,
+                          maxLength: 16777215,
                           showMaxLength: true,
                           editorType: 'MARKDOWN',
                           valueType: 'SIMPLE',
@@ -1138,7 +1295,7 @@ export default {
                         noPrivDisplayMode: 1,
                         appDEFieldId: 'publish_content',
                         editor: {
-                          maxLength: 1048576,
+                          maxLength: 16777215,
                           showMaxLength: true,
                           editorStyle: 'LUCKYSHEET',
                           editorType: 'TEXTAREA',
@@ -2072,6 +2229,14 @@ export default {
                           caption: '文本(动态)',
                           itemStyle: 'DEFAULT',
                           itemType: 'FIELD',
+                          controlRenders: [
+                            {
+                              layoutPanelModel:
+                                'data.pcontent?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g, "<span class=\'comment-tag\'>$4 $3 $2</span>").replace(/#{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)}/g, "<span class=\'comment-tag\'>$4 $3 $2</span>").replaceAll(/<span data-w-e-type="emoji" class=\'emoji\'>(.+?)<\\/span>/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji));return `<span data-w-e-type="emoji" class=\'emoji\'>${tempVal}</span>`;}).replaceAll(/{"emoji":"(.+?)"}/g, (x, emoji) => {const tempVal = decodeURIComponent(atob(emoji));return `<span data-w-e-type="emoji" class=\'emoji\'>${tempVal}</span>`;})',
+                              renderType: 'LAYOUTPANEL_MODEL',
+                              id: 'logic3',
+                            },
+                          ],
                           layoutPos: {
                             grow: 1,
                             shrink: 1,
@@ -2159,24 +2324,19 @@ export default {
         minorSortAppDEFieldId: 'create_time',
         delistDataItems: [
           {
+            appDEFieldId: 'content',
+            dataType: 21,
+            id: 'content',
+          },
+          {
             appDEFieldId: 'id',
             dataType: 25,
             id: 'id',
           },
           {
-            appDEFieldId: 'pid',
-            dataType: 25,
-            id: 'pid',
-          },
-          {
             appDEFieldId: 'pcontent',
             dataType: 21,
             id: 'pcontent',
-          },
-          {
-            appDEFieldId: 'content',
-            dataType: 21,
-            id: 'content',
           },
           {
             appDEFieldId: 'create_time',
@@ -2185,16 +2345,21 @@ export default {
             id: 'create_time',
           },
           {
+            appDEFieldId: 'create_man',
+            frontCodeListId: 'plmweb.sysoperator',
+            dataType: 25,
+            id: 'create_man',
+          },
+          {
             appDEFieldId: 'pcreate_man',
             frontCodeListId: 'plmweb.sysoperator',
             dataType: 25,
             id: 'pcreate_man',
           },
           {
-            appDEFieldId: 'create_man',
-            frontCodeListId: 'plmweb.sysoperator',
+            appDEFieldId: 'pid',
             dataType: 25,
-            id: 'create_man',
+            id: 'pid',
           },
           {
             appDEFieldId: 'id',

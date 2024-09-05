@@ -2209,6 +2209,7 @@ export default {
       confirmMsg: '确认删除该产品？',
       frontProcessType: 'WIZARD',
       fullCodeName: 'product_in_progress_into_deleted',
+      nextId: 'open_product_exp_page@product',
       appDEMethodId: 'delete',
       refreshMode: 1,
       successMsg: '删除成功',

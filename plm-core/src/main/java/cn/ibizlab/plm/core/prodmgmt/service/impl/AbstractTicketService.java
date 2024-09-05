@@ -399,6 +399,21 @@ public abstract class AbstractTicketService extends ServiceImpl<TicketMapper,Tic
         return list;
    }
 	
+   public Page<Ticket> fetchMyFilter(TicketSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("CREATE_TIME,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Ticket> pages=baseMapper.searchMyFilter(context.getPages(),context,context.getSelectCond());
+        List<Ticket> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Ticket> listMyFilter(TicketSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("CREATE_TIME,DESC");
+        List<Ticket> list = baseMapper.listMyFilter(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<Ticket> fetchNormal(TicketSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("SHOW_IDENTIFIER,DESC");
@@ -497,14 +512,12 @@ public abstract class AbstractTicketService extends ServiceImpl<TicketMapper,Tic
    }
 	
    public Page<Ticket> fetchTicketStatePieChart(TicketSearchContext context) {
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Ticket> pages=baseMapper.searchTicketStatePieChart(context.getPages(),context,context.getSelectCond());
-        List<Ticket> list = pages.getRecords();
-        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchTicketStatePieChart(context.getPages(),context,context.getSelectCond());
+        return new PageImpl<Ticket>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),Ticket.class), context.getPageable(), pages.getTotal());
     }
 
    public List<Ticket> listTicketStatePieChart(TicketSearchContext context) {
-        List<Ticket> list = baseMapper.listTicketStatePieChart(context,context.getSelectCond());
-        return list;
+        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listTicketStatePieChart(context,context.getSelectCond()),Ticket.class);
    }
 	
    public Page<Ticket> fetchWorkItemRelationTicket(TicketSearchContext context) {

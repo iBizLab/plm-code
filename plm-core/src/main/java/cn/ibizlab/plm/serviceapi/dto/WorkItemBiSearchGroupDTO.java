@@ -425,6 +425,22 @@ public class WorkItemBiSearchGroupDTO extends DTOBase implements Serializable {
     @ApiModelProperty(value = "原始状态", position = 47)
     private String workItemOriginState;
 
+    /**
+     * 看板名称
+     */
+    @JsonProperty("board_name")
+    @JSONField(name = "board_name")
+    @ApiModelProperty(value = "看板名称", position = 48)
+    private String boardName;
+
+    /**
+     * 看板标识
+     */
+    @JsonProperty("board_id")
+    @JSONField(name = "board_id")
+    @ApiModelProperty(value = "看板标识", position = 49)
+    private String boardId;
+
 
     /**
      * 设置 [是否已删除]
@@ -810,6 +826,24 @@ public class WorkItemBiSearchGroupDTO extends DTOBase implements Serializable {
     public WorkItemBiSearchGroupDTO setWorkItemOriginState(String workItemOriginState) {
         this.workItemOriginState = workItemOriginState;
         this.modify("work_item_origin_state", workItemOriginState);
+        return this;
+    }
+
+    /**
+     * 设置 [看板名称]
+     */
+    public WorkItemBiSearchGroupDTO setBoardName(String boardName) {
+        this.boardName = boardName;
+        this.modify("board_name", boardName);
+        return this;
+    }
+
+    /**
+     * 设置 [看板标识]
+     */
+    public WorkItemBiSearchGroupDTO setBoardId(String boardId) {
+        this.boardId = boardId;
+        this.modify("board_id", boardId);
         return this;
     }
 

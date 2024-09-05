@@ -759,29 +759,6 @@ export default {
         minorSortAppDEFieldId: 'create_time',
         delistDataItems: [
           {
-            appDEFieldId: 'create_time',
-            dataType: 5,
-            format: 'YYYY-MM-DD HH:mm:ss',
-            id: 'create_time',
-          },
-          {
-            appDEFieldId: 'pcontent',
-            dataType: 21,
-            id: 'pcontent',
-          },
-          {
-            appDEFieldId: 'create_man',
-            frontCodeListId: 'plmweb.sysoperator',
-            dataType: 25,
-            id: 'create_man',
-          },
-          {
-            appDEFieldId: 'pcreate_man',
-            frontCodeListId: 'plmweb.sysoperator',
-            dataType: 25,
-            id: 'pcreate_man',
-          },
-          {
             appDEFieldId: 'pid',
             dataType: 25,
             id: 'pid',
@@ -792,9 +769,32 @@ export default {
             id: 'content',
           },
           {
+            appDEFieldId: 'pcontent',
+            dataType: 21,
+            id: 'pcontent',
+          },
+          {
+            appDEFieldId: 'create_time',
+            dataType: 5,
+            format: 'YYYY-MM-DD HH:mm:ss',
+            id: 'create_time',
+          },
+          {
+            appDEFieldId: 'pcreate_man',
+            frontCodeListId: 'plmweb.sysoperator',
+            dataType: 25,
+            id: 'pcreate_man',
+          },
+          {
             appDEFieldId: 'id',
             dataType: 25,
             id: 'id',
+          },
+          {
+            appDEFieldId: 'create_man',
+            frontCodeListId: 'plmweb.sysoperator',
+            dataType: 25,
+            id: 'create_man',
           },
           {
             appDEFieldId: 'id',

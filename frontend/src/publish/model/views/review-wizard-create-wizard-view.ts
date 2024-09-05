@@ -8,7 +8,7 @@ export default {
   },
   caption: '新建评审',
   codeName: 'review_wizard_create_wizard_view',
-  height: 700,
+  height: 720,
   appDataEntityId: 'plmweb.review_wizard',
   appViewEngines: [
     {

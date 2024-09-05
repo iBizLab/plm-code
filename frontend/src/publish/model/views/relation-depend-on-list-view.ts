@@ -749,7 +749,7 @@ export default {
                     {
                       editor: {
                         singleSelect: true,
-                        appCodeListId: 'plmweb.projmgmt__front_dependency_type',
+                        appCodeListId: 'plmweb.projmgmt__front_type',
                         editorType: 'DROPDOWNLIST',
                         editorWidth: 23,
                         predefinedType: 'FIELD_TEXT_DYNAMIC',
@@ -830,7 +830,7 @@ export default {
                     {
                       editor: {
                         singleSelect: true,
-                        appCodeListId: 'plmweb.projmgmt__rear_dependency_type',
+                        appCodeListId: 'plmweb.projmgmt__after_type',
                         editorType: 'DROPDOWNLIST',
                         editorWidth: 23,
                         predefinedType: 'FIELD_TEXT_DYNAMIC',
@@ -1208,24 +1208,14 @@ export default {
         },
         delistDataItems: [
           {
+            appDEFieldId: 'relation_type',
+            dataType: 25,
+            id: 'relation_type',
+          },
+          {
             appDEFieldId: 'target_id',
             dataType: 25,
             id: 'target_id',
-          },
-          {
-            appDEFieldId: 'work_item',
-            dataType: 21,
-            id: 'work_item',
-          },
-          {
-            appDEFieldId: 'principal_work_item',
-            dataType: 21,
-            id: 'principal_work_item',
-          },
-          {
-            appDEFieldId: 'id',
-            dataType: 25,
-            id: 'id',
           },
           {
             appDEFieldId: 'principal_id',
@@ -1233,9 +1223,19 @@ export default {
             id: 'principal_id',
           },
           {
-            appDEFieldId: 'relation_type',
+            appDEFieldId: 'id',
             dataType: 25,
-            id: 'relation_type',
+            id: 'id',
+          },
+          {
+            appDEFieldId: 'principal_work_item',
+            dataType: 21,
+            id: 'principal_work_item',
+          },
+          {
+            appDEFieldId: 'work_item',
+            dataType: 21,
+            id: 'work_item',
           },
           {
             appDEFieldId: 'id',

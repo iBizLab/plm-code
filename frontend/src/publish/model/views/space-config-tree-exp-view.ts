@@ -346,7 +346,7 @@ export default {
           toolbarStyle: 'USER',
           codeName: 'config_tree_exp_view_treeexpbar_toolbar',
           controlType: 'TOOLBAR',
-          logicName: '工具栏模板（只有一个返回按钮）',
+          logicName: '工具栏模板（只有返回按钮）',
           appDataEntityId: 'plmweb.space',
           controlParam: {
             id: 'treeexpbar_toolbar',

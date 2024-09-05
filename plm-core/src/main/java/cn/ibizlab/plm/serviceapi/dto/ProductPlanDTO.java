@@ -4,6 +4,7 @@
 package cn.ibizlab.plm.serviceapi.dto;
 
 import java.util.*;
+import java.math.BigDecimal;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -62,11 +63,19 @@ public class ProductPlanDTO extends DTOBase implements Serializable {
     private Date endAt;
 
     /**
+     * 是否叶子节点
+     */
+    @JsonProperty("is_leaf")
+    @JSONField(name = "is_leaf")
+    @ApiModelProperty(value = "是否叶子节点", position = 3)
+    private Integer isLeaf;
+
+    /**
      * 类别
      */
     @JsonProperty("categories")
     @JSONField(name = "categories")
-    @ApiModelProperty(value = "类别", position = 3)
+    @ApiModelProperty(value = "类别", position = 4)
     private String categories;
 
     /**
@@ -74,7 +83,7 @@ public class ProductPlanDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("categories_name")
     @JSONField(name = "categories_name")
-    @ApiModelProperty(value = "类别", position = 4)
+    @ApiModelProperty(value = "类别", position = 5)
     private String categoriesName;
 
     /**
@@ -82,7 +91,7 @@ public class ProductPlanDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("is_deleted")
     @JSONField(name = "is_deleted")
-    @ApiModelProperty(value = "是否已删除", position = 5)
+    @ApiModelProperty(value = "是否已删除", position = 6)
     private Integer isDeleted;
 
     /**
@@ -90,7 +99,7 @@ public class ProductPlanDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("assignee_name")
     @JSONField(name = "assignee_name")
-    @ApiModelProperty(value = "负责人", position = 6)
+    @ApiModelProperty(value = "负责人", position = 7)
     private String assigneeName;
 
     /**
@@ -98,15 +107,23 @@ public class ProductPlanDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("assignee_id")
     @JSONField(name = "assignee_id")
-    @ApiModelProperty(value = "负责人标识", position = 7)
+    @ApiModelProperty(value = "负责人标识", position = 8)
     private String assigneeId;
+
+    /**
+     * 序号
+     */
+    @JsonProperty("sequence")
+    @JSONField(name = "sequence")
+    @ApiModelProperty(value = "序号", position = 9)
+    private BigDecimal sequence;
 
     /**
      * 建立人
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 8)
+    @ApiModelProperty(value = "建立人", position = 10)
     private String createMan;
 
     /**
@@ -115,7 +132,7 @@ public class ProductPlanDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 9)
+    @ApiModelProperty(value = "建立时间", position = 11)
     private Date createTime;
 
     /**
@@ -123,7 +140,7 @@ public class ProductPlanDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 10)
+    @ApiModelProperty(value = "标识", position = 12)
     private String id;
 
     /**
@@ -131,7 +148,7 @@ public class ProductPlanDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "计划名称", position = 11)
+    @ApiModelProperty(value = "计划名称", position = 13)
     private String name;
 
     /**
@@ -139,7 +156,7 @@ public class ProductPlanDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("product_id")
     @JSONField(name = "product_id")
-    @ApiModelProperty(value = "产品标识", position = 12)
+    @ApiModelProperty(value = "产品标识", position = 14)
     private String productId;
 
     /**
@@ -147,7 +164,7 @@ public class ProductPlanDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 13)
+    @ApiModelProperty(value = "更新人", position = 15)
     private String updateMan;
 
     /**
@@ -156,7 +173,7 @@ public class ProductPlanDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 14)
+    @ApiModelProperty(value = "更新时间", position = 16)
     private Date updateTime;
 
 
@@ -184,6 +201,15 @@ public class ProductPlanDTO extends DTOBase implements Serializable {
     public ProductPlanDTO setEndAt(Date endAt) {
         this.endAt = endAt;
         this.modify("end_at", endAt);
+        return this;
+    }
+
+    /**
+     * 设置 [是否叶子节点]
+     */
+    public ProductPlanDTO setIsLeaf(Integer isLeaf) {
+        this.isLeaf = isLeaf;
+        this.modify("is_leaf", isLeaf);
         return this;
     }
 

@@ -2511,6 +2511,28 @@ public abstract class AbstractRunResource {
     }
 
     /**
+    * 查询fetch_my_filter 执行用例
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<RunDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_my_filter", tags = {"执行用例" },  notes = "Run-fetch_my_filter ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_my_filter-all') or hasPermission(#dto,'ibizplm-Run-fetch_my_filter')")
+    @PostMapping("runs/fetch_my_filter")
+    public Mono<ResponseEntity<List<RunDTO>>> fetchMyFilter
+            (@Validated @RequestBody RunFilterDTO dto) {
+        RunSearchContext context = runFilterDtoMapping.toDomain(dto);
+        Page<Run> domains = runService.fetchMyFilter(context) ;
+        List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 查询fetch_normal 执行用例
     * 
     *
@@ -2852,6 +2874,30 @@ public abstract class AbstractRunResource {
         dto.setCaseIdEQ(caseId);
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchImplementationResults(context) ;
+        List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_my_filter 执行用例
+    * 
+    *
+    * @param caseId caseId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<RunDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_my_filter", tags = {"执行用例" },  notes = "Run-fetch_my_filter ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_my_filter-all') or hasPermission('test_case',#caseId,#dto,'ibizplm-Run-fetch_my_filter')")
+    @PostMapping("test_cases/{caseId}/runs/fetch_my_filter")
+    public Mono<ResponseEntity<List<RunDTO>>> fetchMyFilterByCaseId
+            (@PathVariable("caseId") String caseId, @Validated @RequestBody RunFilterDTO dto) {
+        dto.setCaseIdEQ(caseId);
+        RunSearchContext context = runFilterDtoMapping.toDomain(dto);
+        Page<Run> domains = runService.fetchMyFilter(context) ;
         List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -3232,6 +3278,31 @@ public abstract class AbstractRunResource {
     }
 
     /**
+    * 查询fetch_my_filter 执行用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param caseId caseId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<RunDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_my_filter", tags = {"执行用例" },  notes = "Run-fetch_my_filter ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_my_filter-all') or hasPermission('library',#testLibraryId,#dto,'ibizplm-Run-fetch_my_filter')")
+    @PostMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/fetch_my_filter")
+    public Mono<ResponseEntity<List<RunDTO>>> fetchMyFilterByTestLibraryIdAndCaseId
+            (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @Validated @RequestBody RunFilterDTO dto) {
+        dto.setCaseIdEQ(caseId);
+        RunSearchContext context = runFilterDtoMapping.toDomain(dto);
+        Page<Run> domains = runService.fetchMyFilter(context) ;
+        List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 查询fetch_normal 执行用例
     * 
     *
@@ -3585,6 +3656,30 @@ public abstract class AbstractRunResource {
         dto.setPlanIdEQ(planId);
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchImplementationResults(context) ;
+        List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_my_filter 执行用例
+    * 
+    *
+    * @param planId planId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<RunDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_my_filter", tags = {"执行用例" },  notes = "Run-fetch_my_filter ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_my_filter-all') or hasPermission('test_plan',#planId,#dto,'ibizplm-Run-fetch_my_filter')")
+    @PostMapping("test_plans/{planId}/runs/fetch_my_filter")
+    public Mono<ResponseEntity<List<RunDTO>>> fetchMyFilterByPlanId
+            (@PathVariable("planId") String planId, @Validated @RequestBody RunFilterDTO dto) {
+        dto.setPlanIdEQ(planId);
+        RunSearchContext context = runFilterDtoMapping.toDomain(dto);
+        Page<Run> domains = runService.fetchMyFilter(context) ;
         List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -3956,6 +4051,31 @@ public abstract class AbstractRunResource {
         dto.setPlanIdEQ(planId);
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchImplementationResults(context) ;
+        List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_my_filter 执行用例
+    * 
+    *
+    * @param libraryId libraryId
+    * @param planId planId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<RunDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_my_filter", tags = {"执行用例" },  notes = "Run-fetch_my_filter ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_my_filter-all') or hasPermission('library',#libraryId,#dto,'ibizplm-Run-fetch_my_filter')")
+    @PostMapping("libraries/{libraryId}/test_plans/{planId}/runs/fetch_my_filter")
+    public Mono<ResponseEntity<List<RunDTO>>> fetchMyFilterByLibraryIdAndPlanId
+            (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @Validated @RequestBody RunFilterDTO dto) {
+        dto.setPlanIdEQ(planId);
+        RunSearchContext context = runFilterDtoMapping.toDomain(dto);
+        Page<Run> domains = runService.fetchMyFilter(context) ;
         List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

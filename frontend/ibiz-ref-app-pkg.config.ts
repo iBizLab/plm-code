@@ -5,4 +5,5 @@ export const refAppPkgConfig = [
   '@ibiz-template-plugin/antv-x6-design@0.0.2',
   '@ibiz-template-plugin/logic-tree-design@0.0.2',
   '@ibiz-template-plugin/dnd-design@0.0.2',
+  '@ibiz-template-plugin/dnd-design@0.0.3-alpha.1',
 ];

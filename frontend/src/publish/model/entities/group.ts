@@ -433,6 +433,28 @@ export default {
       id: 'get_draft',
     },
     {
+      codeName: 'move_order',
+      methodType: 'DEACTION',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'group_dto',
+        type: 'DTO',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'group_dto',
+        type: 'DTOS',
+        id: '返回对象',
+      },
+      requestMethod: 'POST',
+      requestParamType: 'ENTITY',
+      requestPath: '/move_order',
+      needResourceKey: true,
+      actionMode: 'MOVEORDER',
+      actionType: 'REMOTE',
+      dataSetType: 'REMOTE',
+      id: 'move_order',
+    },
+    {
       codeName: 'remove',
       methodType: 'DEACTION',
       appDEMethodInput: {

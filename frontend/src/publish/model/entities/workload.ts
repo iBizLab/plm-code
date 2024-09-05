@@ -222,6 +222,20 @@ export default {
       id: 'type_name',
     },
   ],
+  appDELogics: [
+    {
+      codeName: 'fill_bi_form_default',
+      defaultParamName: 'DEFAULT',
+      logicName: '填充BI报表默认值',
+      logicSubType: 'NONE',
+      scriptCode:
+        'if(!data){\n    data = {};\n}\nObject.keys(viewParam).forEach((key) =>{\n    data[key] = viewParam[key];\n})\nreturn data;',
+      customCode: true,
+      valid: true,
+      name: '填充BI报表默认值',
+      id: 'fill_bi_form_default',
+    },
+  ],
   appDEMethodDTOs: [
     {
       codeName: 'workload_bi_search_group_dto',
@@ -1166,6 +1180,26 @@ export default {
       actionType: 'REMOTE',
       dataSetType: 'REMOTE',
       id: 'create_workload',
+    },
+    {
+      codeName: 'fill_bi_form_default',
+      methodType: 'DEACTION',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'workload_dto',
+        type: 'DTO',
+        name: 'Fill_bi_form_defaultInput',
+        id: 'fill_bi_form_defaultinput',
+      },
+      appDEMethodReturn: {
+        type: 'VOID',
+        name: 'Fill_bi_form_defaultResult',
+        id: 'fill_bi_form_defaultresult',
+      },
+      actionMode: 'CUSTOM',
+      actionType: 'DELOGIC',
+      appDELogicId: 'fill_bi_form_default',
+      dataSetType: 'REMOTE',
+      id: 'fill_bi_form_default',
     },
     {
       codeName: 'get',
@@ -2381,12 +2415,12 @@ export default {
           id: 'loaddraftfrom',
         },
         getDraftControlAction: {
-          appDEMethodId: 'get_draft',
+          appDEMethodId: 'fill_bi_form_default',
           appDataEntityId: 'plmweb.workload',
           id: 'loaddraft',
         },
         getControlAction: {
-          appDEMethodId: 'get',
+          appDEMethodId: 'fill_bi_form_default',
           appDataEntityId: 'plmweb.workload',
           id: 'load',
         },

@@ -127,7 +127,7 @@ export default {
               childDETreeNodeId: 'node_5',
               parentAppDEFieldId: 'space_id',
               parentDER1N: {
-                masterOrder: 100,
+                masterOrder: 10,
                 masterRS: 5,
                 pickupDEFName: 'SPACE_ID',
                 codeName: 'space',
@@ -281,7 +281,7 @@ export default {
               ],
               parentAppDEFieldId: 'space_id',
               parentDER1N: {
-                masterOrder: 100,
+                masterOrder: 10,
                 masterRS: 5,
                 pickupDEFName: 'SPACE_ID',
                 codeName: 'space',
@@ -435,7 +435,7 @@ export default {
               ],
               parentAppDEFieldId: 'space_id',
               parentDER1N: {
-                masterOrder: 100,
+                masterOrder: 10,
                 masterRS: 5,
                 pickupDEFName: 'SPACE_ID',
                 codeName: 'space',
@@ -526,12 +526,13 @@ export default {
             {
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
+              moveAppDEActionId: 'move_order',
               appDEDataSetId: 'fetch_no_parent_page',
               sortAppDEFieldId: 'sequence',
               textAppDEFieldId: 'name',
               navAppViewId: 'plmweb.article_page_re_show_view',
               navDER: {
-                masterOrder: 100,
+                masterOrder: 10,
                 masterRS: 5,
                 pickupDEFName: 'SPACE_ID',
                 codeName: 'space',
@@ -561,12 +562,13 @@ export default {
             {
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
+              moveAppDEActionId: 'move_order',
               appDEDataSetId: 'fetch_normal',
               sortAppDEFieldId: 'sequence',
               textAppDEFieldId: 'name',
               navAppViewId: 'plmweb.article_page_re_show_view',
               navDER: {
-                masterOrder: 100,
+                masterOrder: 10,
                 masterRS: 5,
                 pickupDEFName: 'SPACE_ID',
                 codeName: 'space',
@@ -596,6 +598,7 @@ export default {
             {
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
+              moveAppDEActionId: 'move_order',
               appDEDataSetId: 'fetch_no_parent_page',
               sortAppDEFieldId: 'sequence',
               textAppDEFieldId: 'name',
@@ -616,6 +619,7 @@ export default {
             {
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
+              moveAppDEActionId: 'move_order',
               appDEDataSetId: 'fetch_normal',
               sortAppDEFieldId: 'sequence',
               textAppDEFieldId: 'name',
@@ -640,7 +644,7 @@ export default {
               textAppDEFieldId: 'name',
               navAppViewId: 'plmweb.article_page_re_show_view',
               navDER: {
-                masterOrder: 100,
+                masterOrder: 10,
                 masterRS: 5,
                 pickupDEFName: 'SPACE_ID',
                 codeName: 'space',

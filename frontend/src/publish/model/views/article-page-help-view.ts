@@ -168,46 +168,6 @@ export default {
                       },
                       id: 'title',
                     },
-                    {
-                      rawItem: {
-                        sysImage: {
-                          cssClass: 'fa fa-lock',
-                          glyph: 'xf023@FontAwesome',
-                        },
-                        contentType: 'IMAGE',
-                        id: 'rawitem3',
-                      },
-                      codeName: 'rawitem3',
-                      detailStyle: 'DEFAULT',
-                      detailType: 'RAWITEM',
-                      defdgroupLogics: [
-                        {
-                          logicCat: 'PANELVISIBLE',
-                          relatedDetailNames: ['is_lock'],
-                          groupOP: 'AND',
-                          defdlogics: [
-                            {
-                              condOP: 'EQ',
-                              defdname: 'is_lock',
-                              value: '1',
-                              logicType: 'SINGLE',
-                            },
-                          ],
-                          logicType: 'GROUP',
-                          id: '表单成员[rawitem3][面板显示]逻辑',
-                        },
-                      ],
-                      layoutPos: {
-                        shrink: 1,
-                        layout: 'FLEX',
-                      },
-                      sysImage: {
-                        cssClass: 'fa fa-lock',
-                        glyph: 'xf023@FontAwesome',
-                      },
-                      showCaption: true,
-                      id: 'rawitem3',
-                    },
                   ],
                   codeName: 'grouppanel1',
                   detailStyle: 'DEFAULT',
@@ -325,7 +285,7 @@ export default {
                       appDEFieldId: 'publish_content',
                       editor: {
                         mode: 'EDIT',
-                        maxLength: 1048576,
+                        maxLength: 16777215,
                         showMaxLength: true,
                         editorType: 'MARKDOWN',
                         valueType: 'SIMPLE',
@@ -382,7 +342,7 @@ export default {
                       noPrivDisplayMode: 1,
                       appDEFieldId: 'publish_content',
                       editor: {
-                        maxLength: 1048576,
+                        maxLength: 16777215,
                         showMaxLength: true,
                         editorStyle: 'LUCKYSHEET',
                         editorType: 'TEXTAREA',
@@ -955,9 +915,6 @@ export default {
       logicName: '页面实体编辑视图（展示）_表单',
       appDataEntityId: 'plmweb.article_page',
       controlParam: {
-        ctrlParams: {
-          EDITMODE: 'hover',
-        },
         id: 'form',
       },
       modelId: '4e0904462538e4af00965741988ded54',

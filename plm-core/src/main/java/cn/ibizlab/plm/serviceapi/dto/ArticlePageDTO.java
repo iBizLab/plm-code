@@ -304,11 +304,19 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
     private String chooseVersionName;
 
     /**
+     * 最近创建日期
+     */
+    @JsonProperty("recent_create_days")
+    @JSONField(name = "recent_create_days")
+    @ApiModelProperty(value = "最近创建日期", position = 33)
+    private Integer recentCreateDays;
+
+    /**
      * 建立人
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 33)
+    @ApiModelProperty(value = "建立人", position = 34)
     private String createMan;
 
     /**
@@ -317,7 +325,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 34)
+    @ApiModelProperty(value = "建立时间", position = 35)
     private Date createTime;
 
     /**
@@ -325,7 +333,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 35)
+    @ApiModelProperty(value = "标识", position = 36)
     private String id;
 
     /**
@@ -333,7 +341,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "主题", position = 36)
+    @ApiModelProperty(value = "主题", position = 37)
     private String name;
 
     /**
@@ -341,7 +349,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("parent_id")
     @JSONField(name = "parent_id")
-    @ApiModelProperty(value = "父页面标识", position = 37)
+    @ApiModelProperty(value = "父页面标识", position = 38)
     private String parentId;
 
     /**
@@ -349,7 +357,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("space_id")
     @JSONField(name = "space_id")
-    @ApiModelProperty(value = "空间标识", position = 38)
+    @ApiModelProperty(value = "空间标识", position = 39)
     private String spaceId;
 
     /**
@@ -357,7 +365,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("space_name")
     @JSONField(name = "space_name")
-    @ApiModelProperty(value = "空间名称", position = 39)
+    @ApiModelProperty(value = "空间名称", position = 40)
     private String spaceName;
 
     /**
@@ -365,7 +373,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 40)
+    @ApiModelProperty(value = "更新人", position = 41)
     private String updateMan;
 
     /**
@@ -374,7 +382,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 41)
+    @ApiModelProperty(value = "更新时间", position = 42)
     private Date updateTime;
 
 
@@ -420,15 +428,6 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
     public ArticlePageDTO setFormatType(String formatType) {
         this.formatType = formatType;
         this.modify("format_type", formatType);
-        return this;
-    }
-
-    /**
-     * 设置 [序号]
-     */
-    public ArticlePageDTO setSequence(BigDecimal sequence) {
-        this.sequence = sequence;
-        this.modify("sequence", sequence);
         return this;
     }
 
@@ -645,6 +644,15 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
     public ArticlePageDTO setChooseVersionName(String chooseVersionName) {
         this.chooseVersionName = chooseVersionName;
         this.modify("choose_version_name", chooseVersionName);
+        return this;
+    }
+
+    /**
+     * 设置 [最近创建日期]
+     */
+    public ArticlePageDTO setRecentCreateDays(Integer recentCreateDays) {
+        this.recentCreateDays = recentCreateDays;
+        this.modify("recent_create_days", recentCreateDays);
         return this;
     }
 

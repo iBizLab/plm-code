@@ -261,7 +261,7 @@ export default {
       enableCustomized: true,
       enablePagingBar: true,
       fetchControlAction: {
-        appDEMethodId: 'fetch_not_exsists_relation',
+        appDEMethodId: 'fetch_not_add_case',
         appDataEntityId: 'plmweb.test_case',
         id: 'fetch',
       },

@@ -62,5 +62,13 @@ public class PSCorePrdFuncFilterDTO extends FilterBase implements Serializable {
     @ApiModelProperty(value = "功能状态EQ", position = 210)
 	private String funcStateEQ;
 
+    /**
+     * 功能状态NOTEQ
+     */
+    @JsonProperty("n_funcstate_noteq")
+    @JSONField(name = "n_funcstate_noteq")
+    @ApiModelProperty(value = "功能状态NOTEQ", position = 211)
+	private String funcStateNOTEQ;
+
 
 }

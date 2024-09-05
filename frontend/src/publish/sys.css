@@ -385,6 +385,9 @@ top: 0;
 max-width: 250px;
 }
 
+    .main_state_hover_style .el-popper.is-light .el-select-dropdown__item.hover, .main_state_hover_style .el-popper.is-light .el-select-dropdown__item:hover {
+    background-color: rgb(74 129 199 / 60%) !important;
+}
     .codelist-only-icon {
     display: flex;
     align-items: center;
@@ -1023,7 +1026,7 @@ height: 63px;
 }
 
 .activate_button .ibiz-panel-button.ibiz-panel-button--default{
-        height: 15px;
+    height: 19px;
     padding: 0px;
 }
     .todo-tips{
@@ -1385,6 +1388,9 @@ width: 100%;
     background-color: #ffdcaf;
     vertical-align: inherit;
 }
+.ibiz-span .orange-span {
+    margin: 4px 0;
+}
     .active-members-font-postion >.ibiz-rawitem>.ibiz-rawitem__text{
     position: relative;
     bottom: -34px;
@@ -1605,6 +1611,9 @@ width: 58px;
     background-color: #e1e1e1;
     vertical-align: inherit;
 }
+.ibiz-span .grey-span {
+    margin: 4px 0;
+}
     /* 视图大的布局样式 */
 .user-info-view-content {
 box-shadow: rgba(0, 0, 0, 0.08) 0px 0px var(--ibiz-spacing-base) 0px;
@@ -1799,6 +1808,21 @@ content-visibility: hidden;
 .ibiz-form-group--grouppanel1:has(.wiki-page-title) .ibiz-form-item--icon .ibiz-span {
 font-size: 24px;
 }
+    .wiki_page_title_style{
+    padding-left: 10px !important;
+}
+
+.wiki_page_title_style .ibiz-span {
+    font-size: 18px;
+    color: var(--ibiz-color-black);
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.wiki_page_title_style .ibiz-rawitem .ibiz-icon {
+    font-size: 18px !important;
+    margin-left: 5px;
+}
     .confirm-remove-view .ibiz-form-item--formitem{
     background-color: rgba(255, 117, 117, 0.15);
     padding: 0px;
@@ -1861,6 +1885,9 @@ width: 58px;
     background-color: #d2d8ed;
     vertical-align: inherit;
 }
+.ibiz-span .purple-span {
+    margin: 4px 0;
+}
     .red-span{
    width: 58px;
     height: 24px;
@@ -1874,7 +1901,9 @@ width: 58px;
     background-color: #fcd0cb;
     vertical-align: inherit;
 }
-
+.ibiz-span .red-span {
+    margin: 4px 0;
+}
  
 
     .green-span{
@@ -1890,11 +1919,28 @@ width: 58px;
     background-color: #ccf2cc;
     vertical-align: inherit;
 }
+.ibiz-span .green-span {
+    margin: 4px 0;
+}
     .ibiz-form-item{
    --ibiz-form-item-placeholder-color:#cacaca;
 }
 .el-input{
     --el-input-placeholder-color:#cacaca;
+}
+    .more_log_style .ibiz-control-toolbar__item {
+    position: absolute !important;
+    margin: -65px 0px 0px -65px !important;
+}
+
+.more_log_style .el-button {
+    --el-button-bg-color: none !important;
+    --el-button-text-color: rgb(70 107 144) !important;
+    --el-button-hover-text-color: none !important;
+    --el-button-hover-bg-color: none !important; 
+    --el-button-hover-border-color: none !important;
+    --el-button-active-text-color: node !important;
+    --el-button-active-bg-color: none !important;
 }
     .blue-span{
 width: 58px;
@@ -1908,6 +1954,9 @@ width: 58px;
     border-radius: 5px;
     background-color: #c8e8fa;
     vertical-align: inherit;
+}
+.ibiz-span .blue-span {
+    margin: 4px 0;
 }
     /* 表单分组标题 */
 .ibiz-form-group__caption{
@@ -1959,6 +2008,9 @@ padding-bottom: 16px;
 }
 /* 树padding */
 .ibiz-nav-pos > .ibiz-view-detreeexpview .ibiz-panel-ctrl-pos--treeexpbar_tree > .ibiz-control-treeview .ibiz-control-treeview-tree {
+    padding: 0 var(--ibiz-spacing-tight);
+}
+.ibiz-control-treeexpbar .ibiz-panel-exp-header {
     padding: 0 var(--ibiz-spacing-tight);
 }
     .view-content-no-padding .ibiz-panel-view-content {
@@ -2360,11 +2412,14 @@ background-color: var(--ibiz-color-primary) !important;
 .common-level-veryimportant>span::before {
 background-color: var(--ibiz-color-primary) !important;
 }
-    .idea_create_info{
-    font-size: 14px;
-    height: 32px;
-    margin-top: 10.1px;
+    .page_info_style .ibiz-form-item-container--left {
+  text-align: left;
 }
+
+.page_info_style .ibiz-form-item-container__label {
+  text-align: left;
+}
+
     .project-notice-style .ibiz-portlet-layout-content,
 .project-notice-style .ibiz-portlet-layout-content .ibiz-panel-view-content--view_content{
     overflow: visible;

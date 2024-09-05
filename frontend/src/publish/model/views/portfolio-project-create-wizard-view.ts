@@ -8,7 +8,7 @@ export default {
   },
   caption: '新建项目集',
   codeName: 'portfolio_project_create_wizard_view',
-  height: 700,
+  height: 720,
   appDataEntityId: 'plmweb.portfolio',
   appViewEngines: [
     {

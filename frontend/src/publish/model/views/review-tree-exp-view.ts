@@ -350,6 +350,7 @@ export default {
             {
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
+              moveAppDEActionId: 'move_order',
               appDEDataSetId: 'fetch_no_section',
               sortDir: 'ASC',
               sortAppDEFieldId: 'sequence',
@@ -581,6 +582,7 @@ export default {
             {
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
+              moveAppDEActionId: 'move_order',
               appDEDataSetId: 'fetch_default',
               sortDir: 'ASC',
               sortAppDEFieldId: 'sequence',
@@ -673,6 +675,7 @@ export default {
             {
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
+              moveAppDEActionId: 'move_order',
               appDEDataSetId: 'fetch_default',
               sortDir: 'ASC',
               sortAppDEFieldId: 'sequence',
@@ -807,7 +810,7 @@ export default {
                   actionLevel: 100,
                   noPrivDisplayMode: 2,
                   uiactionId:
-                    'toolbar_tree_exp_view_node8_cm_deuiaction1_click@review',
+                    'toolbar_tree_exp_view_node9_cm_deuiaction1_click@review',
                   uiactionTarget: 'SINGLEDATA',
                   valid: true,
                   caption: '编辑',
@@ -815,7 +818,7 @@ export default {
                   controlLogics: [
                     {
                       itemName: 'deuiaction1',
-                      logicTag: 'node_8_cm',
+                      logicTag: 'node_9_cm',
                       logicType: 'SCRIPT',
                       scriptCode: '!context.srfreadonly',
                       triggerType: 'ITEMVISIBLE',
@@ -835,7 +838,7 @@ export default {
                   actionLevel: 100,
                   noPrivDisplayMode: 2,
                   uiactionId:
-                    'toolbar_tree_exp_view_node8_cm_deuiaction2_click@review',
+                    'toolbar_tree_exp_view_node9_cm_deuiaction2_click@review',
                   uiactionTarget: 'SINGLEDATA',
                   valid: true,
                   caption: '删除',
@@ -843,7 +846,7 @@ export default {
                   controlLogics: [
                     {
                       itemName: 'deuiaction2',
-                      logicTag: 'node_8_cm',
+                      logicTag: 'node_9_cm',
                       logicType: 'SCRIPT',
                       scriptCode: '!context.srfreadonly',
                       triggerType: 'ITEMVISIBLE',
@@ -860,17 +863,17 @@ export default {
                   id: 'deuiaction2',
                 },
               ],
-              codeName: 'tree_exp_view_node8_cm',
+              codeName: 'tree_exp_view_node9_cm',
               controlType: 'CONTEXTMENU',
               logicName: '树节点上下文菜单',
               appDataEntityId: 'plmweb.review',
               controlParam: {
-                id: 'node_8_cm',
+                id: 'node_9_cm',
               },
               modelId: 'FC2682ED-3306-48C1-AF42-8DCD3FB4CC91',
               modelType: 'PSDETOOLBAR',
-              name: 'node_8_cm',
-              id: 'tree_exp_view_node8_cm',
+              name: 'node_9_cm',
+              id: 'tree_exp_view_node9_cm',
             },
             {
               detoolbarItems: [
@@ -949,7 +952,7 @@ export default {
                   actionLevel: 100,
                   noPrivDisplayMode: 2,
                   uiactionId:
-                    'toolbar_tree_exp_view_node9_cm_deuiaction1_click@review',
+                    'toolbar_tree_exp_view_node8_cm_deuiaction1_click@review',
                   uiactionTarget: 'SINGLEDATA',
                   valid: true,
                   caption: '编辑',
@@ -957,7 +960,7 @@ export default {
                   controlLogics: [
                     {
                       itemName: 'deuiaction1',
-                      logicTag: 'node_9_cm',
+                      logicTag: 'node_8_cm',
                       logicType: 'SCRIPT',
                       scriptCode: '!context.srfreadonly',
                       triggerType: 'ITEMVISIBLE',
@@ -977,7 +980,7 @@ export default {
                   actionLevel: 100,
                   noPrivDisplayMode: 2,
                   uiactionId:
-                    'toolbar_tree_exp_view_node9_cm_deuiaction2_click@review',
+                    'toolbar_tree_exp_view_node8_cm_deuiaction2_click@review',
                   uiactionTarget: 'SINGLEDATA',
                   valid: true,
                   caption: '删除',
@@ -985,7 +988,7 @@ export default {
                   controlLogics: [
                     {
                       itemName: 'deuiaction2',
-                      logicTag: 'node_9_cm',
+                      logicTag: 'node_8_cm',
                       logicType: 'SCRIPT',
                       scriptCode: '!context.srfreadonly',
                       triggerType: 'ITEMVISIBLE',
@@ -1002,17 +1005,17 @@ export default {
                   id: 'deuiaction2',
                 },
               ],
-              codeName: 'tree_exp_view_node9_cm',
+              codeName: 'tree_exp_view_node8_cm',
               controlType: 'CONTEXTMENU',
               logicName: '树节点上下文菜单',
               appDataEntityId: 'plmweb.review',
               controlParam: {
-                id: 'node_9_cm',
+                id: 'node_8_cm',
               },
               modelId: 'FC2682ED-3306-48C1-AF42-8DCD3FB4CC91',
               modelType: 'PSDETOOLBAR',
-              name: 'node_9_cm',
-              id: 'tree_exp_view_node9_cm',
+              name: 'node_8_cm',
+              id: 'tree_exp_view_node8_cm',
             },
           ],
           codeName: 'tree_exp_view_tree_view',

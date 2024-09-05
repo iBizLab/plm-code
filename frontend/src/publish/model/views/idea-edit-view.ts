@@ -110,10 +110,10 @@ export default {
           codeName: 'estimated_update',
           defiupdateDetails: [
             {
-              id: 'remaining_workload',
+              id: 'workload_schedule',
             },
             {
-              id: 'workload_schedule',
+              id: 'remaining_workload',
             },
           ],
           scriptCode:
@@ -839,6 +839,7 @@ export default {
                           detailStyle: 'DEFAULT',
                           detailType: 'GROUPPANEL',
                           layoutPos: {
+                            colLG: 24,
                             colMD: 24,
                             layout: 'TABLE_24COL',
                           },
@@ -2163,6 +2164,23 @@ export default {
                       codeName: 'grouppanel10',
                       detailStyle: 'DEFAULT',
                       detailType: 'GROUPPANEL',
+                      defdgroupLogics: [
+                        {
+                          logicCat: 'PANELVISIBLE',
+                          relatedDetailNames: ['title'],
+                          groupOP: 'AND',
+                          defdlogics: [
+                            {
+                              condOP: 'EQ',
+                              defdname: 'title',
+                              value: '-1',
+                              logicType: 'SINGLE',
+                            },
+                          ],
+                          logicType: 'GROUP',
+                          id: '表单成员[grouppanel10][面板显示]逻辑',
+                        },
+                      ],
                       layoutPos: {
                         colMD: 24,
                         layout: 'TABLE_24COL',
@@ -2572,7 +2590,7 @@ export default {
                   },
                   deformDetails: [
                     {
-                      appViewId: 'plmweb.ticket_idea_re_ticket_chart_view',
+                      appViewId: 'plmweb.ticket_idea_re_ticket_statistics_view',
                       parentDataJO: {
                         srfparentdename: 'IDEA',
                         SRFPARENTTYPE: 'CUSTOM',
@@ -2686,22 +2704,13 @@ export default {
           id: 'check_customer_info',
         },
         {
-          eventNames: 'onLoadSuccess',
+          eventNames: 'onClick',
+          itemName: 'ticket_num_percent',
           logicTag: 'form',
-          logicType: 'APPDEUILOGIC',
-          appDEUILogicId: 'get_customer_score',
-          appDataEntityId: 'plmweb.idea',
+          logicType: 'APPDEUIACTION',
+          appDEUIActionId: 'check_ticket_info@idea',
           triggerType: 'CTRLEVENT',
-          id: 'get_customer_score',
-        },
-        {
-          eventNames: 'onLoadSuccess',
-          logicTag: 'form',
-          logicType: 'APPDEUILOGIC',
-          appDEUILogicId: 'get_ticket_num',
-          appDataEntityId: 'plmweb.idea',
-          triggerType: 'CTRLEVENT',
-          id: 'get_ticket_num',
+          id: 'ticket_num_precent',
         },
       ],
       controlParam: {

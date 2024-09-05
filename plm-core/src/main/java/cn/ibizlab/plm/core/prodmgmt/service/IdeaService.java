@@ -217,6 +217,16 @@ public interface IdeaService extends IService<Idea> {
     }
 
     /**
+    * fillBiFormDefault
+    * 
+    * @param et
+    * @return
+    */
+    default Idea fillBiFormDefault(Idea et) {
+        return et;
+    }
+
+    /**
     * getAttention
     * 
     * @param key
@@ -304,6 +314,16 @@ public interface IdeaService extends IService<Idea> {
     */
     default Idea ideaReadonlyRecognize(Idea et) {
         return et;
+    }
+
+    /**
+    * moveOrder
+    * 
+    * @param et
+    * @return
+    */
+    default List<Idea> moveOrder(Idea et) {
+        return new ArrayList<>();
     }
 
     /**
@@ -501,6 +521,22 @@ public interface IdeaService extends IService<Idea> {
     List<Idea> listDeleted(IdeaSearchContext context);
 
     /**
+    * fetchMoveIdea
+    * 
+    * @param context
+    * @return
+    */
+    Page<Idea> fetchMoveIdea(IdeaSearchContext context);
+
+    /**
+    * listMoveIdea
+    * 
+    * @param context
+    * @return
+    */
+    List<Idea> listMoveIdea(IdeaSearchContext context);
+
+    /**
     * fetchMyAssign
     * 非归档数据，且负责人为当前登录人的数据
     * @param context
@@ -563,6 +599,22 @@ public interface IdeaService extends IService<Idea> {
     * @return
     */
     List<Idea> listMyCreated(IdeaSearchContext context);
+
+    /**
+    * fetchMyFilter
+    * 
+    * @param context
+    * @return
+    */
+    Page<Idea> fetchMyFilter(IdeaSearchContext context);
+
+    /**
+    * listMyFilter
+    * 
+    * @param context
+    * @return
+    */
+    List<Idea> listMyFilter(IdeaSearchContext context);
 
     /**
     * fetchNormal

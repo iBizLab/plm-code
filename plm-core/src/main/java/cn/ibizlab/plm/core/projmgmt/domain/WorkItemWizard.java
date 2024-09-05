@@ -19,7 +19,6 @@ import lombok.*;
 import lombok.experimental.Accessors;
 import io.swagger.annotations.*;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItemWizardDetail;
-import cn.ibizlab.plm.core.projmgmt.domain.WorkItemWizardDetail;
 
 /**
  * 工作项操作向导实体类[WorkItemWizard]

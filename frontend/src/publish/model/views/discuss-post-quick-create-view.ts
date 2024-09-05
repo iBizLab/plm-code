@@ -12,6 +12,7 @@ export default {
   },
   caption: '发起讨论',
   codeName: 'discuss_post_quick_create_view',
+  height: 90,
   appDataEntityId: 'plmweb.discuss_post',
   appViewEngines: [
     {
@@ -741,6 +742,7 @@ export default {
   title: '发起讨论',
   viewStyle: 'DEFAULT',
   viewType: 'DEOPTVIEW',
+  width: 90,
   enableDP: true,
   showCaptionBar: true,
   modelId: 'd48304f6ba96e3b2946233ab6e732371',

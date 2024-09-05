@@ -215,12 +215,28 @@ public class TestCaseSearchContext extends QueryWrapperContext<TestCase> {
     private String showIdentifierLIKE;
 
     /**
+     * 关注EXISTS
+     */
+    @JsonProperty("n_attentions_exists__n_user_id_eq")
+    @JSONField(name = "n_attentions_exists__n_user_id_eq")
+    @ApiModelProperty("关注EXISTS")
+    private String attentionsEXISTSuser_idEQ;
+
+    /**
      * 评审结果EQ
      */
     @JsonProperty("n_review_result_state_eq")
     @JSONField(name = "n_review_result_state_eq")
     @ApiModelProperty("评审结果EQ")
     private String reviewResultStateEQ;
+
+    /**
+     * 最近创建日期LTANDEQ
+     */
+    @JsonProperty("n_recent_create_days_ltandeq")
+    @JSONField(name = "n_recent_create_days_ltandeq")
+    @ApiModelProperty("最近创建日期LTANDEQ")
+    private Integer recentCreateDaysLTANDEQ;
 
     /**
      * 标识IN
@@ -280,6 +296,24 @@ public class TestCaseSearchContext extends QueryWrapperContext<TestCase> {
     @JSONField(name = "n_create_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
     @ApiModelProperty("建立时间LTANDEQ")
     private Date createTimeLTANDEQ;
+
+    /**
+     * 更新时间GTANDEQ
+     */
+    @JsonProperty("n_update_time_gtandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_update_time_gtandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("更新时间GTANDEQ")
+    private Date updateTimeGTANDEQ;
+
+    /**
+     * 更新时间LTANDEQ
+     */
+    @JsonProperty("n_update_time_ltandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_update_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("更新时间LTANDEQ")
+    private Date updateTimeLTANDEQ;
 
     /**
      * 名称LIKE
@@ -385,6 +419,13 @@ public class TestCaseSearchContext extends QueryWrapperContext<TestCase> {
     @Override
     public QueryWrapper<TestCase> getSelectCond() {
         QueryWrapper<TestCase> queryWrapper = super.getSelectCond();
+        if (!ObjectUtils.isEmpty(this.attentionsEXISTSuser_idEQ)) {
+            queryWrapper.exists("SELECT 1 FROM ATTENTION WHERE ATTENTION. = T1. "
+                + " AND ATTENTION.USER_ID "
+                + " = "
+                + "'" + this.attentionsEXISTSuser_idEQ + "'"
+            );
+        }
         return queryWrapper;
     }
 }

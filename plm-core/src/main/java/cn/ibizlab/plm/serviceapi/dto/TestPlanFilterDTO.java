@@ -159,6 +159,42 @@ public class TestPlanFilterDTO extends FilterBase implements Serializable {
 	private String createManNOTIN;
 
     /**
+     * 建立时间GTANDEQ
+     */
+    @JsonProperty("n_create_time_gtandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_create_time_gtandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "建立时间GTANDEQ", position = 150)
+	private Date createTimeGTANDEQ;
+
+    /**
+     * 建立时间LTANDEQ
+     */
+    @JsonProperty("n_create_time_ltandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_create_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "建立时间LTANDEQ", position = 151)
+	private Date createTimeLTANDEQ;
+
+    /**
+     * 更新时间GTANDEQ
+     */
+    @JsonProperty("n_update_time_gtandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_update_time_gtandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "更新时间GTANDEQ", position = 170)
+	private Date updateTimeGTANDEQ;
+
+    /**
+     * 更新时间LTANDEQ
+     */
+    @JsonProperty("n_update_time_ltandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_update_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "更新时间LTANDEQ", position = 171)
+	private Date updateTimeLTANDEQ;
+
+    /**
      * 测试库标识EQ
      */
     @JsonProperty("n_library_id_eq")

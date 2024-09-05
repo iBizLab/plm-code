@@ -317,7 +317,7 @@ export default {
             ],
             parentAppDEFieldId: 'space_id',
             parentDER1N: {
-              masterOrder: 100,
+              masterOrder: 10,
               masterRS: 5,
               pickupDEFName: 'SPACE_ID',
               codeName: 'space',
@@ -347,7 +347,7 @@ export default {
             ],
             parentAppDEFieldId: 'space_id',
             parentDER1N: {
-              masterOrder: 100,
+              masterOrder: 10,
               masterRS: 5,
               pickupDEFName: 'SPACE_ID',
               codeName: 'space',

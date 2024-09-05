@@ -170,6 +170,16 @@ public interface CategoryService extends IService<Category> {
     }
 
     /**
+    * moveOrder
+    * 
+    * @param et
+    * @return
+    */
+    default List<Category> moveOrder(Category et) {
+        return new ArrayList<>();
+    }
+
+    /**
     * fetchDefault
     * 
     * @param context
@@ -232,6 +242,22 @@ public interface CategoryService extends IService<Category> {
     * @return
     */
     List<Category> listCurProductIdeaCategory(CategorySearchContext context);
+
+    /**
+    * fetchNoParent
+    * 
+    * @param context
+    * @return
+    */
+    Page<Category> fetchNoParent(CategorySearchContext context);
+
+    /**
+    * listNoParent
+    * 
+    * @param context
+    * @return
+    */
+    List<Category> listNoParent(CategorySearchContext context);
 
     /**
     * fetchNoSection

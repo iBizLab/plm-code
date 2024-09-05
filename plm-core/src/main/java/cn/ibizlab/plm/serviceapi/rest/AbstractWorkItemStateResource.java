@@ -228,6 +228,28 @@ public abstract class AbstractWorkItemStateResource {
     }
 
     /**
+    * 查询fetch_bi_form 工作项状态
+    * 类型为已完成或者已关闭的工作项状态
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<WorkItemStateDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_bi_form", tags = {"工作项状态" },  notes = "WorkItemState-fetch_bi_form 类型为已完成或者已关闭的工作项状态")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItemState-fetch_bi_form-all') or hasPermission(#dto,'ibizplm-WorkItemState-fetch_bi_form')")
+    @PostMapping("work_item_states/fetch_bi_form")
+    public Mono<ResponseEntity<List<WorkItemStateDTO>>> fetchBiForm
+            (@Validated @RequestBody WorkItemStateFilterDTO dto) {
+        WorkItemStateSearchContext context = workItemStateFilterDtoMapping.toDomain(dto);
+        Page<WorkItemState> domains = workItemStateService.fetchBiForm(context) ;
+        List<WorkItemStateDTO> list = workItemStateDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 查询fetch_default 工作项状态
     * 
     *

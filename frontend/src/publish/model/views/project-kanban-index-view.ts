@@ -6,6 +6,15 @@ export default {
   caption: '项目',
   codeName: 'project_kanban_index_view',
   appDataEntityId: 'plmweb.project',
+  appViewNavContexts: [
+    {
+      rawValue: true,
+      key: 'PROJECT_TYPE',
+      value: 'kanban',
+      name: 'PROJECT_TYPE',
+      id: 'project_type',
+    },
+  ],
   appViewNavParams: [
     {
       key: 'project',
@@ -429,6 +438,14 @@ export default {
             counterMode: 1,
             enableMode: 'COUNT_GTE_ZERO',
             appViewId: 'plmweb.work_item_dyna_kanban_tree_grid_view',
+            navigateParams: [
+              {
+                key: 'project_type',
+                value: 'kanban',
+                rawValue: true,
+                id: 'project_type',
+              },
+            ],
             id: 'work_item',
           },
           {

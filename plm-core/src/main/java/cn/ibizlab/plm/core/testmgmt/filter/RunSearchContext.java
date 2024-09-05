@@ -39,6 +39,22 @@ import cn.ibizlab.plm.core.testmgmt.domain.Run;
 public class RunSearchContext extends QueryWrapperContext<Run> {
 
     /**
+     * 标题EQ
+     */
+    @JsonProperty("n_title_eq")
+    @JSONField(name = "n_title_eq")
+    @ApiModelProperty("标题EQ")
+    private String titleEQ;
+
+    /**
+     * 标题LIKE
+     */
+    @JsonProperty("n_title_like")
+    @JSONField(name = "n_title_like")
+    @ApiModelProperty("标题LIKE")
+    private String titleLIKE;
+
+    /**
      * 执行时间EQ
      */
     @JsonProperty("n_executed_at_eq")
@@ -96,6 +112,38 @@ public class RunSearchContext extends QueryWrapperContext<Run> {
     @JSONField(name = "n_plan_name_like")
     @ApiModelProperty("测试计划LIKE")
     private String planNameLIKE;
+
+    /**
+     * 维护人EQ
+     */
+    @JsonProperty("n_maintenance_name_eq")
+    @JSONField(name = "n_maintenance_name_eq")
+    @ApiModelProperty("维护人EQ")
+    private String maintenanceNameEQ;
+
+    /**
+     * 维护人ISNOTNULL
+     */
+    @JsonProperty("n_maintenance_name_isnotnull")
+    @JSONField(name = "n_maintenance_name_isnotnull")
+    @ApiModelProperty("维护人ISNOTNULL")
+    private String maintenanceNameISNOTNULL;
+
+    /**
+     * 维护人ISNULL
+     */
+    @JsonProperty("n_maintenance_name_isnull")
+    @JSONField(name = "n_maintenance_name_isnull")
+    @ApiModelProperty("维护人ISNULL")
+    private String maintenanceNameISNULL;
+
+    /**
+     * 维护人NOTEQ
+     */
+    @JsonProperty("n_maintenance_name_noteq")
+    @JSONField(name = "n_maintenance_name_noteq")
+    @ApiModelProperty("维护人NOTEQ")
+    private String maintenanceNameNOTEQ;
 
     /**
      * 执行人标识EQ
@@ -162,6 +210,22 @@ public class RunSearchContext extends QueryWrapperContext<Run> {
     private String suiteIdEQ;
 
     /**
+     * 所属测试库EQ
+     */
+    @JsonProperty("n_library_name_eq")
+    @JSONField(name = "n_library_name_eq")
+    @ApiModelProperty("所属测试库EQ")
+    private String libraryNameEQ;
+
+    /**
+     * 所属测试库LIKE
+     */
+    @JsonProperty("n_library_name_like")
+    @JSONField(name = "n_library_name_like")
+    @ApiModelProperty("所属测试库LIKE")
+    private String libraryNameLIKE;
+
+    /**
      * 测试库标识EQ
      */
     @JsonProperty("n_library_id_eq")
@@ -170,12 +234,44 @@ public class RunSearchContext extends QueryWrapperContext<Run> {
     private String libraryIdEQ;
 
     /**
+     * 编号EQ
+     */
+    @JsonProperty("n_show_identifier_eq")
+    @JSONField(name = "n_show_identifier_eq")
+    @ApiModelProperty("编号EQ")
+    private String showIdentifierEQ;
+
+    /**
+     * 编号LIKE
+     */
+    @JsonProperty("n_show_identifier_like")
+    @JSONField(name = "n_show_identifier_like")
+    @ApiModelProperty("编号LIKE")
+    private String showIdentifierLIKE;
+
+    /**
+     * 关注EXISTS
+     */
+    @JsonProperty("n_attentions_exists__n_user_id_eq")
+    @JSONField(name = "n_attentions_exists__n_user_id_eq")
+    @ApiModelProperty("关注EXISTS")
+    private String attentionsEXISTSuser_idEQ;
+
+    /**
      * 优先级EQ
      */
     @JsonProperty("n_priority_eq")
     @JSONField(name = "n_priority_eq")
     @ApiModelProperty("优先级EQ")
     private String priorityEQ;
+
+    /**
+     * 最近创建日期LTANDEQ
+     */
+    @JsonProperty("n_recent_create_days_ltandeq")
+    @JSONField(name = "n_recent_create_days_ltandeq")
+    @ApiModelProperty("最近创建日期LTANDEQ")
+    private Integer recentCreateDaysLTANDEQ;
 
     /**
      * 标识EQ
@@ -305,6 +401,13 @@ public class RunSearchContext extends QueryWrapperContext<Run> {
     @Override
     public QueryWrapper<Run> getSelectCond() {
         QueryWrapper<Run> queryWrapper = super.getSelectCond();
+        if (!ObjectUtils.isEmpty(this.attentionsEXISTSuser_idEQ)) {
+            queryWrapper.exists("SELECT 1 FROM ATTENTION WHERE ATTENTION. = T1. "
+                + " AND ATTENTION.USER_ID "
+                + " = "
+                + "'" + this.attentionsEXISTSuser_idEQ + "'"
+            );
+        }
         return queryWrapper;
     }
 }

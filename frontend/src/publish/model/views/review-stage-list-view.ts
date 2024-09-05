@@ -721,6 +721,7 @@ export default {
         ],
         pagingSize: 1000,
         showHeader: true,
+        singleSelect: true,
         createControlAction: {
           appDEMethodId: 'create',
           appDataEntityId: 'plmweb.review_stage',

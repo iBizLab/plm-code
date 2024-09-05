@@ -94,6 +94,7 @@ export default {
       columnEnableFilter: 2,
       columnEnableLink: 2,
       groupMode: 'NONE',
+      orderValueAppDEFieldId: 'sequence',
       degridColumns: [
         {
           clconvertMode: 'NONE',

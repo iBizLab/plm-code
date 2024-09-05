@@ -10,7 +10,7 @@ export default {
   capLanguageRes: {
     lanResTag: 'DE.LNAME.ADDON_RESOURCE',
   },
-  caption: '新建资源',
+  caption: '新建资源视图',
   codeName: 'addon_resource_quick_create_view',
   height: 220,
   appDataEntityId: 'plmweb.addon_resource',
@@ -83,7 +83,7 @@ export default {
                   capLanguageRes: {
                     lanResTag: 'DEF.LNAME.NAME',
                   },
-                  caption: '资源名称',
+                  caption: '资源视图名称',
                   codeName: 'name',
                   detailStyle: 'DEFAULT',
                   detailType: 'FORMITEM',
@@ -225,7 +225,7 @@ export default {
       capLanguageRes: {
         lanResTag: 'DE.LNAME.ADDON_RESOURCE',
       },
-      caption: '新建资源',
+      caption: '新建资源视图',
       codeName: 'quick_create_view_captionbar',
       controlType: 'CAPTIONBAR',
       appDataEntityId: 'plmweb.addon_resource',

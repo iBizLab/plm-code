@@ -267,6 +267,16 @@ public interface ArticlePageService extends IService<ArticlePage> {
     }
 
     /**
+    * moveOrder
+    * 
+    * @param et
+    * @return
+    */
+    default List<ArticlePage> moveOrder(ArticlePage et) {
+        return new ArrayList<>();
+    }
+
+    /**
     * movePage
     * 
     * @param et
@@ -551,6 +561,22 @@ public interface ArticlePageService extends IService<ArticlePage> {
     List<ArticlePage> listMyFavoritePage(ArticlePageSearchContext context);
 
     /**
+    * fetchMyFilter
+    * 
+    * @param context
+    * @return
+    */
+    Page<ArticlePage> fetchMyFilter(ArticlePageSearchContext context);
+
+    /**
+    * listMyFilter
+    * 
+    * @param context
+    * @return
+    */
+    List<ArticlePage> listMyFilter(ArticlePageSearchContext context);
+
+    /**
     * fetchNoParentPage
     * 
     * @param context
@@ -597,6 +623,22 @@ public interface ArticlePageService extends IService<ArticlePage> {
     * @return
     */
     List<ArticlePage> listOnlyPage(ArticlePageSearchContext context);
+
+    /**
+    * fetchReader
+    * 
+    * @param context
+    * @return
+    */
+    Page<ArticlePage> fetchReader(ArticlePageSearchContext context);
+
+    /**
+    * listReader
+    * 
+    * @param context
+    * @return
+    */
+    List<ArticlePage> listReader(ArticlePageSearchContext context);
 
     /**
     * fetchSharedPage

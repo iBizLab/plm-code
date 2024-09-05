@@ -69,22 +69,24 @@ export default {
   ],
   appViewNavParams: [
     {
+      rawValue: true,
+      key: 'target_type',
+      value: 'product_plan',
+      id: 'target_type',
+    },
+    {
+      rawValue: true,
+      key: 'principal_type',
+      value: 'idea',
+      id: 'principal_type',
+    },
+    {
       key: 'principal_id',
       value: 'product_plan',
       id: 'principal_id',
     },
   ],
   appViewRefs: [
-    {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '需求编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.IDEA.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.idea_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
     {
       openMode: 'POPUPMODAL',
       realOpenMode: 'POPUPMODAL',
@@ -95,6 +97,16 @@ export default {
       refAppViewId: 'plmweb.idea_main_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '需求编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.IDEA.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.idea_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -138,6 +150,7 @@ export default {
       groupMode: 'AUTO',
       groupAppDEFieldId: 'section_name',
       groupCodeListId: 'plmweb.prodmgmt__idea_section',
+      orderValueAppDEFieldId: 'sequence',
       degridColumns: [
         {
           clconvertMode: 'NONE',
@@ -1132,6 +1145,116 @@ export default {
           itemType: 'FILTER',
           appDEFieldId: 'create_man',
           id: 'create_man_notnull',
+        },
+        {
+          dataType: 5,
+          labelPos: 'NONE',
+          defsearchMode: {
+            codeName: 'N_CREATE_TIME_GTANDEQ',
+            stdDataType: 5,
+            valueOP: 'GTANDEQ',
+            name: 'N_CREATE_TIME_GTANDEQ',
+            id: 'n_create_time_gtandeq',
+          },
+          editor: {
+            dateTimeFormat: 'YYYY-MM-DD',
+            editorParams: {
+              TIMEFMT: 'YYYY-MM-DD',
+            },
+            editorType: 'DATEPICKEREX_NOTIME',
+            valueType: 'SIMPLE',
+            editable: true,
+            id: 'create_time_gtand',
+          },
+          allowEmpty: true,
+          capLanguageRes: {
+            lanResTag: 'CONTROL.DEFSFITEM.IDEA.N_CREATE_TIME_GTANDEQ',
+          },
+          caption: '创建时间',
+          itemType: 'FILTER',
+          appDEFieldId: 'create_time',
+          id: 'create_time_gtand',
+        },
+        {
+          dataType: 5,
+          labelPos: 'NONE',
+          defsearchMode: {
+            codeName: 'N_CREATE_TIME_LTANDEQ',
+            stdDataType: 5,
+            valueOP: 'LTANDEQ',
+            name: 'N_CREATE_TIME_LTANDEQ',
+            id: 'n_create_time_ltandeq',
+          },
+          editor: {
+            dateTimeFormat: 'YYYY-MM-DD',
+            editorParams: {
+              TIMEFMT: 'YYYY-MM-DD',
+            },
+            editorType: 'DATEPICKEREX_NOTIME',
+            valueType: 'SIMPLE',
+            editable: true,
+            id: 'create_time_ltand',
+          },
+          allowEmpty: true,
+          capLanguageRes: {
+            lanResTag: 'CONTROL.DEFSFITEM.IDEA.N_CREATE_TIME_LTANDEQ',
+          },
+          caption: '创建时间',
+          itemType: 'FILTER',
+          appDEFieldId: 'create_time',
+          id: 'create_time_ltand',
+        },
+        {
+          dataType: 5,
+          labelPos: 'NONE',
+          defsearchMode: {
+            codeName: 'N_UPDATE_TIME_GTANDEQ',
+            stdDataType: 5,
+            valueOP: 'GTANDEQ',
+            name: 'N_UPDATE_TIME_GTANDEQ',
+            id: 'n_update_time_gtandeq',
+          },
+          editor: {
+            dateTimeFormat: 'YYYY-MM-DD',
+            editorParams: {
+              TIMEFMT: 'YYYY-MM-DD',
+            },
+            editorType: 'DATEPICKEREX_NOTIME',
+            valueType: 'SIMPLE',
+            editable: true,
+            id: 'update_time_gtand',
+          },
+          allowEmpty: true,
+          caption: '更新时间',
+          itemType: 'FILTER',
+          appDEFieldId: 'update_time',
+          id: 'update_time_gtand',
+        },
+        {
+          dataType: 5,
+          labelPos: 'NONE',
+          defsearchMode: {
+            codeName: 'N_UPDATE_TIME_LTANDEQ',
+            stdDataType: 5,
+            valueOP: 'LTANDEQ',
+            name: 'N_UPDATE_TIME_LTANDEQ',
+            id: 'n_update_time_ltandeq',
+          },
+          editor: {
+            dateTimeFormat: 'YYYY-MM-DD',
+            editorParams: {
+              TIMEFMT: 'YYYY-MM-DD',
+            },
+            editorType: 'DATEPICKEREX_NOTIME',
+            valueType: 'SIMPLE',
+            editable: true,
+            id: 'update_time_ltand',
+          },
+          allowEmpty: true,
+          caption: '更新时间',
+          itemType: 'FILTER',
+          appDEFieldId: 'update_time',
+          id: 'update_time_ltand',
         },
       ],
       quickSearchMode: 1,

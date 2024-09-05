@@ -195,6 +195,25 @@ public interface ArticlePageMapper extends BaseMapper<ArticlePage> {
     List<ArticlePage> listMyFavoritePage(@Param("ctx") ArticlePageSearchContext context, @Param("ew") Wrapper<ArticlePage> wrapper);
 
     /**
+     * 数据集合my_filter分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<ArticlePage> searchMyFilter(IPage<ArticlePage> page, @Param("ctx") ArticlePageSearchContext context, @Param("ew") Wrapper<ArticlePage> wrapper);
+    
+    /**
+     * 数据集合my_filter查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<ArticlePage> listMyFilter(@Param("ctx") ArticlePageSearchContext context, @Param("ew") Wrapper<ArticlePage> wrapper);
+
+    /**
      * 数据集合no_parent_page分页查询
      * 
      * @param page
@@ -250,6 +269,25 @@ public interface ArticlePageMapper extends BaseMapper<ArticlePage> {
      * @return
      */
     List<ArticlePage> listOnlyPage(@Param("ctx") ArticlePageSearchContext context, @Param("ew") Wrapper<ArticlePage> wrapper);
+
+    /**
+     * 数据集合reader分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<ArticlePage> searchReader(IPage<ArticlePage> page, @Param("ctx") ArticlePageSearchContext context, @Param("ew") Wrapper<ArticlePage> wrapper);
+    
+    /**
+     * 数据集合reader查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<ArticlePage> listReader(@Param("ctx") ArticlePageSearchContext context, @Param("ew") Wrapper<ArticlePage> wrapper);
 
     /**
      * 数据集合shared_page分页查询

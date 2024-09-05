@@ -176,15 +176,6 @@ public class CategoryDTO extends DTOBase implements Serializable {
 
 
     /**
-     * 设置 [序号]
-     */
-    public CategoryDTO setSequence(BigDecimal sequence) {
-        this.sequence = sequence;
-        this.modify("sequence", sequence);
-        return this;
-    }
-
-    /**
      * 设置 [是否叶子节点]
      */
     public CategoryDTO setIsLeaf(Integer isLeaf) {

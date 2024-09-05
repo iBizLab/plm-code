@@ -784,6 +784,13 @@ export default {
                 id: 'engine',
               },
             ],
+            appViewNavParams: [
+              {
+                key: 'id',
+                value: 'project',
+                id: 'id',
+              },
+            ],
             controls: [
               {
                 xdataControlName: 'form',
@@ -1071,8 +1078,12 @@ export default {
                               contentType: 'HTML',
                               editorParams: {
                                 contenttype: 'HTML',
+                                PARSESCRIPT:
+                                  'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>").replace(/#{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>").replaceAll(/\\{\\"\\emoji\\":\\"(.+?)\\"\\}/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji)); return `<span class="emoji-tag">${tempVal}</span>`})',
                               },
+                              editorStyle: 'ANCHO_HTML',
                               editorType: 'RAW',
+                              sysPFPluginId: 'ancho_html',
                               valueType: 'SIMPLE',
                               editable: true,
                               id: 'notice',

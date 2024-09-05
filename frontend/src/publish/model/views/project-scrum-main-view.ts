@@ -542,7 +542,7 @@ export default {
           {
             navDER: {
               masterOrder: 100,
-              masterRS: 101,
+              masterRS: 357,
               pickupDEFName: 'PROJECT_ID',
               codeName: 'project',
               dertype: 'DER1N',
@@ -575,7 +575,7 @@ export default {
           {
             navDER: {
               masterOrder: 100,
-              masterRS: 101,
+              masterRS: 357,
               pickupDEFName: 'PROJECT_ID',
               codeName: 'project',
               dertype: 'DER1N',
@@ -608,7 +608,7 @@ export default {
           {
             navDER: {
               masterOrder: 100,
-              masterRS: 101,
+              masterRS: 357,
               pickupDEFName: 'PROJECT_ID',
               codeName: 'project',
               dertype: 'DER1N',

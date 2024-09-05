@@ -39,6 +39,10 @@
          in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.id }) </foreach>)
     </delete>
 
+    <sql id="biForm" databaseId="mysql">
+         <![CDATA[ SELECT t1.`COLOR`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_SYSTEM`, t1.`NAME`, t1.`SEQUENCE`, t1.`STYLE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`WORK_ITEM_TYPE_ID` FROM `WORK_ITEM_STATE` t1   ]]>  where  <![CDATA[ ( ( t1.`TYPE` = 'closed'  OR  t1.`TYPE` = 'completed' ) ) ]]> 
+    </sql>
+
     <sql id="default" databaseId="mysql">
          <![CDATA[ SELECT t1.`COLOR`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_SYSTEM`, t1.`NAME`, t1.`SEQUENCE`, t1.`STYLE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`WORK_ITEM_TYPE_ID` FROM `WORK_ITEM_STATE` t1   ]]>  
     </sql>
@@ -46,6 +50,27 @@
     <sql id="view" databaseId="mysql">
          <![CDATA[ SELECT t1.`COLOR`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_SYSTEM`, t1.`NAME`, t1.`SEQUENCE`, t1.`STYLE`, t1.`TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`WORK_ITEM_TYPE_ID` FROM `WORK_ITEM_STATE` t1   ]]>  
     </sql>
+
+    <select id="searchBiForm"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.WorkItemStateSearchContext"  resultMap="WorkItemStateResultMap">
+        select t1.* 
+        from (
+            <include refid="biForm"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listBiForm"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.WorkItemStateSearchContext"  resultMap="WorkItemStateResultMap">
+        select t1.*
+        from (
+            <include refid="biForm"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
 
     <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.projmgmt.filter.WorkItemStateSearchContext"  resultMap="WorkItemStateResultMap">
         select t1.* 

@@ -4,7 +4,7 @@ export default {
   openMode: 'POPUPMODAL',
   viewType: 'DEWIZARDVIEW',
   width: 1400,
-  height: 700,
+  height: 720,
   appDataEntityId: 'plmweb.review_wizard',
   redirectView: false,
   modalOption: {},

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper	namespace="cn.ibizlab.plm.core.base.mapper.AddonApplicationActivityMapper">
+
+        <!--通过mybatis将查询结果注入到entity中,通过配置autoMapping="true"由mybatis自动处理映射关系 -->
+    <resultMap id="AddonApplicationActivityResultMap" type="cn.ibizlab.plm.core.base.domain.AddonApplicationActivity" autoMapping="true">
+		<id property="id" column="id" /><!--主键字段映射-->
+		<result property="pid" column="pid"/>
+		<result property="debugInfo" column="debug_info"/>
+		<result property="systemId" column="system_id"/>
+		<result property="startAt" column="start_at"/>
+		<result property="endAt" column="end_at"/>
+		<result property="elapsedTime" column="elapsed_time"/>
+		<result property="createTime" column="create_time"/>
+		<result property="createMan" column="create_man"/>
+		<result property="updateMan" column="update_man"/>
+		<result property="updateTime" column="update_time"/>
+        <association property="addonApplicationActivity" javaType="cn.ibizlab.plm.core.base.domain.AddonApplicationActivity" column="pid" select="cn.ibizlab.plm.core.base.mapper.AddonApplicationActivityMapper.selectById" fetchType="lazy"></association>
+    </resultMap>
+
+    <select id="selectById"  resultMap="AddonApplicationActivityResultMap">
+        <include refid="view" /> 
+         where 
+         t1.id=#{ id }
+    </select>
+
+    <select id="selectEntity" parameterType="cn.ibizlab.plm.core.base.domain.AddonApplicationActivity" resultMap="AddonApplicationActivityResultMap">
+        <include refid="view" /> 
+         where 
+         (t1.id = #{ id })
+    </select>
+
+    <select id="selectEntities" parameterType="java.util.List" resultMap="AddonApplicationActivityResultMap">
+        <include refid="view" /> 
+         where 
+         (t1.id)
+         in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.id }) </foreach>)
+    </select>
+
+    <delete id="deleteEntities" parameterType="java.util.List">
+    delete from ADDON_APPLICATION_ACTIVITY
+    where (id)
+         in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.id }) </foreach>)
+    </delete>
+
+    <sql id="default" databaseId="mysql">
+         <![CDATA[ SELECT t1.`ACTION`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ELAPSED_TIME`, t1.`END_AT`, t1.`ID`, t1.`LEVEL`, t1.`NAME`, t1.`PID`, t1.`START_AT`, t1.`STATE`, t1.`SYSTEM_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `ADDON_APPLICATION_ACTIVITY` t1   ]]>  
+    </sql>
+
+    <sql id="view" databaseId="mysql">
+         <![CDATA[ SELECT t1.`ACTION`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DEBUG_INFO`, t1.`ELAPSED_TIME`, t1.`END_AT`, t1.`ID`, t1.`INFO`, t1.`LEVEL`, t1.`NAME`, t1.`PID`, t1.`START_AT`, t1.`STATE`, t1.`SYSTEM_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `ADDON_APPLICATION_ACTIVITY` t1   ]]>  
+    </sql>
+
+    <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.base.filter.AddonApplicationActivitySearchContext"  resultMap="AddonApplicationActivityResultMap">
+        select t1.* 
+        from (
+            <include refid="default"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listDefault"  parameterType="cn.ibizlab.plm.core.base.filter.AddonApplicationActivitySearchContext"  resultMap="AddonApplicationActivityResultMap">
+        select t1.*
+        from (
+            <include refid="default"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="listView"  parameterType="cn.ibizlab.plm.core.base.filter.AddonApplicationActivitySearchContext"  resultMap="AddonApplicationActivityResultMap">
+        select t1.*
+        from (
+            <include refid="view" />
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+    </select>
+
+    <select id="findByPid" resultMap="AddonApplicationActivityResultMap">
+        select t1.* from (
+            <include refid="default"/>
+        ) t1
+        where pid in <foreach item="id" index="index" collection="pids" open="(" separator="," close=")">#{id}</foreach> 
+    </select>
+
+
+</mapper>

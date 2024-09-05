@@ -170,6 +170,16 @@ public interface WorkloadService extends IService<Workload> {
     }
 
     /**
+    * fillBiFormDefault
+    * 
+    * @param et
+    * @return
+    */
+    default Workload fillBiFormDefault(Workload et) {
+        return et;
+    }
+
+    /**
     * getRegisterWorkload
     * 修改实际工时表单获取数据行为
     * @param key

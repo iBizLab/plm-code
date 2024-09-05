@@ -309,6 +309,25 @@ public interface TicketMapper extends BaseMapper<Ticket> {
     List<Ticket> listMyCreated(@Param("ctx") TicketSearchContext context, @Param("ew") Wrapper<Ticket> wrapper);
 
     /**
+     * 数据集合my_filter分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Ticket> searchMyFilter(IPage<Ticket> page, @Param("ctx") TicketSearchContext context, @Param("ew") Wrapper<Ticket> wrapper);
+    
+    /**
+     * 数据集合my_filter查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Ticket> listMyFilter(@Param("ctx") TicketSearchContext context, @Param("ew") Wrapper<Ticket> wrapper);
+
+    /**
      * 数据集合normal分页查询
      * 
      * @param page
@@ -449,7 +468,7 @@ public interface TicketMapper extends BaseMapper<Ticket> {
      * @param wrapper
      * @return
      */
-    Page<Ticket> searchTicketStatePieChart(IPage<Ticket> page, @Param("ctx") TicketSearchContext context, @Param("ew") Wrapper<Ticket> wrapper);
+    Page<Map> searchTicketStatePieChart(IPage<Ticket> page, @Param("ctx") TicketSearchContext context, @Param("ew") Wrapper<Ticket> wrapper);
     
     /**
      * 数据集合ticket_state_pie_chart查询
@@ -458,7 +477,7 @@ public interface TicketMapper extends BaseMapper<Ticket> {
      * @param wrapper
      * @return
      */
-    List<Ticket> listTicketStatePieChart(@Param("ctx") TicketSearchContext context, @Param("ew") Wrapper<Ticket> wrapper);
+    List<Map> listTicketStatePieChart(@Param("ctx") TicketSearchContext context, @Param("ew") Wrapper<Ticket> wrapper);
 
     /**
      * 数据集合work_item_relation_ticket分页查询

@@ -213,6 +213,7 @@ export default {
       pagingSize: 20,
       sortMode: 'REMOTE',
       enableCustomized: true,
+      singleSelect: true,
       fetchControlAction: {
         appDEMethodId: 'fetch_recent_page',
         appDataEntityId: 'plmweb.recent',

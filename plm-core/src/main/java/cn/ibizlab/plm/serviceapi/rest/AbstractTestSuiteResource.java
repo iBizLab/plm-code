@@ -128,6 +128,45 @@ public abstract class AbstractTestSuiteResource {
     }
 
     /**
+    * move_order 用例模块
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<TestSuiteDTO>>>
+    */
+    @ApiOperation(value = "move_order", tags = {"用例模块" },  notes = "TestSuite-move_order ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestSuite-move_order-all') or hasPermission(this.testSuiteDtoMapping.toDomain(#dto),'ibizplm-TestSuite-move_order')")
+    @PostMapping("test_suites/{id}/move_order")
+    public Mono<ResponseEntity<ResponseWrapper<List<TestSuiteDTO>>>>moveOrderById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestSuiteDTO> dto) {
+        ResponseWrapper<List<TestSuiteDTO>> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(moveOrderById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(moveOrderById(id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * move_order 用例模块
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<List<TestSuiteDTO>>
+    */   
+    public List<TestSuiteDTO> moveOrderById
+            (String id, TestSuiteDTO dto) {
+        TestSuite domain = testSuiteDtoMapping.toDomain(dto);
+        domain.setId(id);
+        List<TestSuite> rt = testSuiteService.moveOrder(domain);
+        return testSuiteDtoMapping.toDto(rt);
+    }
+
+    /**
     * 保存Save 用例模块
     * 
     *
@@ -240,6 +279,47 @@ public abstract class AbstractTestSuiteResource {
         domain.setId(id);
         testSuiteService.update(domain);
         TestSuite rt = domain;
+        return testSuiteDtoMapping.toDto(rt);
+    }
+
+    /**
+    * move_order 用例模块
+    * 
+    *
+    * @param libraryId libraryId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<TestSuiteDTO>>>
+    */
+    @ApiOperation(value = "move_order", tags = {"用例模块" },  notes = "TestSuite-move_order ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestSuite-move_order-all') or hasPermission('library',#libraryId,this.testSuiteDtoMapping.toDomain(#dto),'ibizplm-TestSuite-move_order')")
+    @PostMapping("libraries/{libraryId}/test_suites/{id}/move_order")
+    public Mono<ResponseEntity<ResponseWrapper<List<TestSuiteDTO>>>>moveOrderByLibraryIdAndId
+            (@PathVariable("libraryId") String libraryId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestSuiteDTO> dto) {
+        ResponseWrapper<List<TestSuiteDTO>> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(moveOrderByLibraryIdAndId(libraryId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(moveOrderByLibraryIdAndId(libraryId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * move_order 用例模块
+    * 
+    *
+    * @param libraryId libraryId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<List<TestSuiteDTO>>
+    */   
+    public List<TestSuiteDTO> moveOrderByLibraryIdAndId
+            (String libraryId, String id, TestSuiteDTO dto) {
+        TestSuite domain = testSuiteDtoMapping.toDomain(dto);
+        domain.setId(id);
+        List<TestSuite> rt = testSuiteService.moveOrder(domain);
         return testSuiteDtoMapping.toDto(rt);
     }
 

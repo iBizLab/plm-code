@@ -6,6 +6,15 @@ export default {
   caption: '项目',
   codeName: 'project_scrum_index_view',
   appDataEntityId: 'plmweb.project',
+  appViewNavContexts: [
+    {
+      rawValue: true,
+      key: 'PROJECT_TYPE',
+      value: 'scrum',
+      name: 'PROJECT_TYPE',
+      id: 'project_type',
+    },
+  ],
   viewLayoutPanel: {
     viewProxyMode: true,
     layoutMode: 'FLEX',
@@ -509,6 +518,14 @@ export default {
             counterMode: 1,
             enableMode: 'COUNT_GTE_ZERO',
             appViewId: 'plmweb.work_item_dyna_srcum_tree_grid_view',
+            navigateParams: [
+              {
+                key: 'project_type',
+                value: 'scrum',
+                rawValue: true,
+                id: 'project_type',
+              },
+            ],
             id: 'work_item',
           },
           {
@@ -518,6 +535,14 @@ export default {
             counterMode: 1,
             enableMode: 'COUNT_GTE_ZERO',
             appViewId: 'plmweb.work_item_scrum_require_tree_grid_view',
+            navigateParams: [
+              {
+                key: 'project_type',
+                value: 'scrum',
+                rawValue: true,
+                id: 'project_type',
+              },
+            ],
             id: 'requirement',
           },
           {
@@ -527,6 +552,14 @@ export default {
             counterMode: 1,
             enableMode: 'COUNT_GTE_ZERO',
             appViewId: 'plmweb.work_item_scrum_bug_grid_view',
+            navigateParams: [
+              {
+                key: 'project_type',
+                value: 'scrum',
+                rawValue: true,
+                id: 'project_type',
+              },
+            ],
             id: 'defect',
           },
           {

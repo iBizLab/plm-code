@@ -212,46 +212,6 @@ export default {
                       },
                       id: 'title',
                     },
-                    {
-                      rawItem: {
-                        sysImage: {
-                          cssClass: 'fa fa-lock',
-                          glyph: 'xf023@FontAwesome',
-                        },
-                        contentType: 'IMAGE',
-                        id: 'rawitem3',
-                      },
-                      codeName: 'rawitem3',
-                      detailStyle: 'DEFAULT',
-                      detailType: 'RAWITEM',
-                      defdgroupLogics: [
-                        {
-                          logicCat: 'PANELVISIBLE',
-                          relatedDetailNames: ['is_lock'],
-                          groupOP: 'AND',
-                          defdlogics: [
-                            {
-                              condOP: 'EQ',
-                              defdname: 'is_lock',
-                              value: '1',
-                              logicType: 'SINGLE',
-                            },
-                          ],
-                          logicType: 'GROUP',
-                          id: '表单成员[rawitem3][面板显示]逻辑',
-                        },
-                      ],
-                      layoutPos: {
-                        shrink: 1,
-                        layout: 'FLEX',
-                      },
-                      sysImage: {
-                        cssClass: 'fa fa-lock',
-                        glyph: 'xf023@FontAwesome',
-                      },
-                      showCaption: true,
-                      id: 'rawitem3',
-                    },
                   ],
                   codeName: 'grouppanel1',
                   detailStyle: 'DEFAULT',
@@ -369,7 +329,7 @@ export default {
                       appDEFieldId: 'publish_content',
                       editor: {
                         mode: 'EDIT',
-                        maxLength: 1048576,
+                        maxLength: 16777215,
                         showMaxLength: true,
                         editorType: 'MARKDOWN',
                         valueType: 'SIMPLE',
@@ -426,7 +386,7 @@ export default {
                       noPrivDisplayMode: 1,
                       appDEFieldId: 'publish_content',
                       editor: {
-                        maxLength: 1048576,
+                        maxLength: 16777215,
                         showMaxLength: true,
                         editorStyle: 'LUCKYSHEET',
                         editorType: 'TEXTAREA',
@@ -1000,9 +960,6 @@ export default {
       logicName: '页面实体编辑视图（展示）_表单',
       appDataEntityId: 'plmweb.article_page',
       controlParam: {
-        ctrlParams: {
-          EDITMODE: 'hover',
-        },
         id: 'form',
       },
       modelId: '4e0904462538e4af00965741988ded54',
@@ -1362,6 +1319,14 @@ export default {
                         caption: '文本(动态)',
                         itemStyle: 'DEFAULT',
                         itemType: 'FIELD',
+                        controlRenders: [
+                          {
+                            layoutPanelModel:
+                              'data.pcontent?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g, "<span class=\'comment-tag\'>$4 $3 $2</span>").replace(/#{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)}/g, "<span class=\'comment-tag\'>$4 $3 $2</span>").replaceAll(/<span data-w-e-type="emoji" class=\'emoji\'>(.+?)<\\/span>/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji));return `<span data-w-e-type="emoji" class=\'emoji\'>${tempVal}</span>`;}).replaceAll(/{"emoji":"(.+?)"}/g, (x, emoji) => {const tempVal = decodeURIComponent(atob(emoji));return `<span data-w-e-type="emoji" class=\'emoji\'>${tempVal}</span>`;})',
+                            renderType: 'LAYOUTPANEL_MODEL',
+                            id: 'logic3',
+                          },
+                        ],
                         layoutPos: {
                           grow: 1,
                           shrink: 1,
@@ -1449,24 +1414,19 @@ export default {
       minorSortAppDEFieldId: 'create_time',
       delistDataItems: [
         {
+          appDEFieldId: 'content',
+          dataType: 21,
+          id: 'content',
+        },
+        {
           appDEFieldId: 'id',
           dataType: 25,
           id: 'id',
         },
         {
-          appDEFieldId: 'pid',
-          dataType: 25,
-          id: 'pid',
-        },
-        {
           appDEFieldId: 'pcontent',
           dataType: 21,
           id: 'pcontent',
-        },
-        {
-          appDEFieldId: 'content',
-          dataType: 21,
-          id: 'content',
         },
         {
           appDEFieldId: 'create_time',
@@ -1475,16 +1435,21 @@ export default {
           id: 'create_time',
         },
         {
+          appDEFieldId: 'create_man',
+          frontCodeListId: 'plmweb.sysoperator',
+          dataType: 25,
+          id: 'create_man',
+        },
+        {
           appDEFieldId: 'pcreate_man',
           frontCodeListId: 'plmweb.sysoperator',
           dataType: 25,
           id: 'pcreate_man',
         },
         {
-          appDEFieldId: 'create_man',
-          frontCodeListId: 'plmweb.sysoperator',
+          appDEFieldId: 'pid',
           dataType: 25,
-          id: 'create_man',
+          id: 'pid',
         },
         {
           appDEFieldId: 'id',

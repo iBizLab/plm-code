@@ -29,6 +29,13 @@ export default {
       id: 'product',
     },
   ],
+  appViewNavParams: [
+    {
+      key: 'category_id',
+      value: 'category',
+      id: 'category_id',
+    },
+  ],
   controls: [
     {
       createControlAction: {
@@ -968,6 +975,8 @@ export default {
                   id: 'assignee_id',
                 },
                 {
+                  createDV: 'category_id',
+                  createDVT: 'APPDATA',
                   dataType: 25,
                   enableCond: 3,
                   labelPos: 'TOP',

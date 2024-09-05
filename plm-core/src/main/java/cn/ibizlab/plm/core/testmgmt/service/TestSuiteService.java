@@ -159,6 +159,16 @@ public interface TestSuiteService extends IService<TestSuite> {
     boolean save(List<TestSuite> list);
 
     /**
+    * moveOrder
+    * 
+    * @param et
+    * @return
+    */
+    default List<TestSuite> moveOrder(TestSuite et) {
+        return new ArrayList<>();
+    }
+
+    /**
     * fetchDefault
     * 
     * @param context

@@ -214,6 +214,17 @@ public abstract class AbstractCategoryService extends ServiceImpl<CategoryMapper
         return list;
    }
 	
+   public Page<Category> fetchNoParent(CategorySearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Category> pages=baseMapper.searchNoParent(context.getPages(),context,context.getSelectCond());
+        List<Category> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Category> listNoParent(CategorySearchContext context) {
+        List<Category> list = baseMapper.listNoParent(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<Category> fetchNoSection(CategorySearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Category> pages=baseMapper.searchNoSection(context.getPages(),context,context.getSelectCond());
         List<Category> list = pages.getRecords();

@@ -195,6 +195,25 @@ public interface IdeaMapper extends BaseMapper<Idea> {
     List<Idea> listDeleted(@Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
 
     /**
+     * 数据集合move_idea分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Idea> searchMoveIdea(IPage<Idea> page, @Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
+    
+    /**
+     * 数据集合move_idea查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Idea> listMoveIdea(@Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
+
+    /**
      * 数据集合my_assign分页查询
      * 
      * @param page
@@ -269,6 +288,25 @@ public interface IdeaMapper extends BaseMapper<Idea> {
      * @return
      */
     List<Idea> listMyCreated(@Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
+
+    /**
+     * 数据集合my_filter分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Idea> searchMyFilter(IPage<Idea> page, @Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
+    
+    /**
+     * 数据集合my_filter查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Idea> listMyFilter(@Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
 
     /**
      * 数据集合normal分页查询

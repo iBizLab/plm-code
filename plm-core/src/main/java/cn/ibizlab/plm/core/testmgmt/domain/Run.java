@@ -181,7 +181,7 @@ public class Run extends EntityMP implements Serializable
     * 当前版本标识
     */
     @TableField(value = "cur_version_id")
-    @DEField(name = "cur_version_id" , preType = DEPredefinedFieldType.VERSIONID , dict = "version_test")
+    @DEField(name = "cur_version_id" , preType = DEPredefinedFieldType.VERSIONID)
     @JSONField(name = "cur_version_id")
     @JsonProperty("cur_version_id")
     @ApiModelProperty(value = "cur_version_id", notes = "当前版本标识")
@@ -191,7 +191,7 @@ public class Run extends EntityMP implements Serializable
     * 执行人标识
     */
     @TableField(value = "executor_id")
-    @DEField(name = "executor_id" , defaultValueType = DEFieldDefaultValueType.OPERATOR , dict = "SysOperator")
+    @DEField(name = "executor_id")
     @JSONField(name = "executor_id")
     @JsonProperty("executor_id")
     @ApiModelProperty(value = "executor_id", notes = "执行人标识")
@@ -201,7 +201,7 @@ public class Run extends EntityMP implements Serializable
     * 执行人
     */
     @TableField(value = "executor_name")
-    @DEField(name = "executor_name" , defaultValueType = DEFieldDefaultValueType.OPERATORNAME)
+    @DEField(name = "executor_name")
     @JSONField(name = "executor_name")
     @JsonProperty("executor_name")
     @ApiModelProperty(value = "executor_name", notes = "执行人")
@@ -276,6 +276,16 @@ public class Run extends EntityMP implements Serializable
     @JsonProperty("library_id")
     @ApiModelProperty(value = "library_id", notes = "测试库标识")
     private String libraryId;
+
+    /**
+    * 编号
+    */
+    @TableField(value = "show_identifier" , exist = false)
+    @DEField(name = "show_identifier")
+    @JSONField(name = "show_identifier")
+    @JsonProperty("show_identifier")
+    @ApiModelProperty(value = "show_identifier", notes = "编号")
+    private String showIdentifier;
 
     /**
     * 关注
@@ -396,6 +406,16 @@ public class Run extends EntityMP implements Serializable
     @JsonProperty("attentions_imp")
     @ApiModelProperty(value = "attentions_imp", notes = "关注人")
     private String attentionsImp;
+
+    /**
+    * 最近创建日期
+    */
+    @TableField(value = "recent_create_days" , exist = false)
+    @DEField(name = "recent_create_days")
+    @JSONField(name = "recent_create_days")
+    @JsonProperty("recent_create_days")
+    @ApiModelProperty(value = "recent_create_days", notes = "最近创建日期")
+    private Integer recentCreateDays;
 
     /**
     * 标识
@@ -700,6 +720,15 @@ public class Run extends EntityMP implements Serializable
     }
 
     /**
+    * 设置 [编号]
+    */
+    public Run setShowIdentifier(String showIdentifier) {
+        this.showIdentifier = showIdentifier;
+        this.modify("show_identifier", showIdentifier);
+        return this;
+    }
+
+    /**
     * 设置 [关注]
     */
     public Run setAttentions(List<Attention> attentions) {
@@ -804,6 +833,15 @@ public class Run extends EntityMP implements Serializable
     public Run setAttentionsImp(String attentionsImp) {
         this.attentionsImp = attentionsImp;
         this.modify("attentions_imp", attentionsImp);
+        return this;
+    }
+
+    /**
+    * 设置 [最近创建日期]
+    */
+    public Run setRecentCreateDays(Integer recentCreateDays) {
+        this.recentCreateDays = recentCreateDays;
+        this.modify("recent_create_days", recentCreateDays);
         return this;
     }
 

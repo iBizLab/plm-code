@@ -8,7 +8,7 @@ export default {
   },
   caption: '新建空间',
   codeName: 'space_create_wizard_view',
-  height: 700,
+  height: 710,
   appDataEntityId: 'plmweb.space',
   appViewEngines: [
     {

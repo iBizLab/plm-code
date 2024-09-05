@@ -128,6 +128,45 @@ public abstract class AbstractSectionResource {
     }
 
     /**
+    * move_order 分组
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<SectionDTO>>>
+    */
+    @ApiOperation(value = "move_order", tags = {"分组" },  notes = "Section-move_order ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Section-move_order-all') or hasPermission(this.sectionDtoMapping.toDomain(#dto),'ibizplm-Section-move_order')")
+    @PostMapping("sections/{id}/move_order")
+    public Mono<ResponseEntity<ResponseWrapper<List<SectionDTO>>>>moveOrderById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<SectionDTO> dto) {
+        ResponseWrapper<List<SectionDTO>> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(moveOrderById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(moveOrderById(id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * move_order 分组
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<List<SectionDTO>>
+    */   
+    public List<SectionDTO> moveOrderById
+            (String id, SectionDTO dto) {
+        Section domain = sectionDtoMapping.toDomain(dto);
+        domain.setId(id);
+        List<Section> rt = sectionService.moveOrder(domain);
+        return sectionDtoMapping.toDto(rt);
+    }
+
+    /**
     * 保存Save 分组
     * 
     *

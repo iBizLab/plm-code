@@ -619,6 +619,40 @@ public abstract class AbstractWorkItemResource {
     }
 
     /**
+    * fill_type_of_state 工作项
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<WorkItemDTO>>
+    */
+    @ApiOperation(value = "fill_type_of_state", tags = {"工作项" },  notes = "WorkItem-fill_type_of_state ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-fill_type_of_state-all') or hasPermission(this.workItemDtoMapping.toDomain(#dto),'ibizplm-WorkItem-fill_type_of_state')")
+    @PostMapping("work_items/fill_type_of_state")
+    public Mono<ResponseEntity<ResponseWrapper<WorkItemDTO>>>fillTypeOfState
+            (@Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
+        ResponseWrapper<WorkItemDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(fillTypeOfState(item)));
+        else
+            rt.set(fillTypeOfState(dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * fill_type_of_state 工作项
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<WorkItemDTO>
+    */   
+    public WorkItemDTO fillTypeOfState
+            (WorkItemDTO dto) {
+        WorkItem domain = workItemDtoMapping.toDomain(dto);
+        WorkItem rt = workItemService.fillTypeOfState(domain);
+        return workItemDtoMapping.toDto(rt);
+    }
+
+    /**
     * fix_commit 工作项
     * 
     *
@@ -1925,6 +1959,43 @@ public abstract class AbstractWorkItemResource {
         WorkItem domain = workItemDtoMapping.toDomain(dto);
         domain.setId(id);
         WorkItem rt = workItemService.delete(domain);
+        return workItemDtoMapping.toDto(rt);
+    }
+
+    /**
+    * fill_type_of_state 工作项
+    * 
+    *
+    * @param projectId projectId
+    * @param dto dto
+    * @return Mono<ResponseEntity<WorkItemDTO>>
+    */
+    @ApiOperation(value = "fill_type_of_state", tags = {"工作项" },  notes = "WorkItem-fill_type_of_state ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-fill_type_of_state-all') or hasPermission('project',#projectId,this.workItemDtoMapping.toDomain(#dto),'ibizplm-WorkItem-fill_type_of_state')")
+    @PostMapping("projects/{projectId}/work_items/fill_type_of_state")
+    public Mono<ResponseEntity<ResponseWrapper<WorkItemDTO>>>fillTypeOfStateByProjectId
+            (@PathVariable("projectId") String projectId, @Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
+        ResponseWrapper<WorkItemDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(fillTypeOfStateByProjectId(projectId, item)));
+        else
+            rt.set(fillTypeOfStateByProjectId(projectId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * fill_type_of_state 工作项
+    * 
+    *
+    * @param projectId projectId
+    * @param dto dto
+    * @return ResponseEntity<WorkItemDTO>
+    */   
+    public WorkItemDTO fillTypeOfStateByProjectId
+            (String projectId, WorkItemDTO dto) {
+        WorkItem domain = workItemDtoMapping.toDomain(dto);
+        domain.setProjectId(projectId);
+        WorkItem rt = workItemService.fillTypeOfState(domain);
         return workItemDtoMapping.toDto(rt);
     }
 
@@ -3281,6 +3352,43 @@ public abstract class AbstractWorkItemResource {
         WorkItem domain = workItemDtoMapping.toDomain(dto);
         domain.setId(id);
         WorkItem rt = workItemService.delete(domain);
+        return workItemDtoMapping.toDto(rt);
+    }
+
+    /**
+    * fill_type_of_state 工作项
+    * 
+    *
+    * @param releaseId releaseId
+    * @param dto dto
+    * @return Mono<ResponseEntity<WorkItemDTO>>
+    */
+    @ApiOperation(value = "fill_type_of_state", tags = {"工作项" },  notes = "WorkItem-fill_type_of_state ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-fill_type_of_state-all') or hasPermission('release',#releaseId,this.workItemDtoMapping.toDomain(#dto),'ibizplm-WorkItem-fill_type_of_state')")
+    @PostMapping("releases/{releaseId}/work_items/fill_type_of_state")
+    public Mono<ResponseEntity<ResponseWrapper<WorkItemDTO>>>fillTypeOfStateByReleaseId
+            (@PathVariable("releaseId") String releaseId, @Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
+        ResponseWrapper<WorkItemDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(fillTypeOfStateByReleaseId(releaseId, item)));
+        else
+            rt.set(fillTypeOfStateByReleaseId(releaseId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * fill_type_of_state 工作项
+    * 
+    *
+    * @param releaseId releaseId
+    * @param dto dto
+    * @return ResponseEntity<WorkItemDTO>
+    */   
+    public WorkItemDTO fillTypeOfStateByReleaseId
+            (String releaseId, WorkItemDTO dto) {
+        WorkItem domain = workItemDtoMapping.toDomain(dto);
+        domain.setReleaseId(releaseId);
+        WorkItem rt = workItemService.fillTypeOfState(domain);
         return workItemDtoMapping.toDto(rt);
     }
 
@@ -4665,6 +4773,45 @@ public abstract class AbstractWorkItemResource {
         WorkItem domain = workItemDtoMapping.toDomain(dto);
         domain.setId(id);
         WorkItem rt = workItemService.delete(domain);
+        return workItemDtoMapping.toDto(rt);
+    }
+
+    /**
+    * fill_type_of_state 工作项
+    * 
+    *
+    * @param projectId projectId
+    * @param releaseId releaseId
+    * @param dto dto
+    * @return Mono<ResponseEntity<WorkItemDTO>>
+    */
+    @ApiOperation(value = "fill_type_of_state", tags = {"工作项" },  notes = "WorkItem-fill_type_of_state ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-fill_type_of_state-all') or hasPermission('project',#projectId,this.workItemDtoMapping.toDomain(#dto),'ibizplm-WorkItem-fill_type_of_state')")
+    @PostMapping("projects/{projectId}/releases/{releaseId}/work_items/fill_type_of_state")
+    public Mono<ResponseEntity<ResponseWrapper<WorkItemDTO>>>fillTypeOfStateByProjectIdAndReleaseId
+            (@PathVariable("projectId") String projectId, @PathVariable("releaseId") String releaseId, @Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
+        ResponseWrapper<WorkItemDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(fillTypeOfStateByProjectIdAndReleaseId(projectId, releaseId, item)));
+        else
+            rt.set(fillTypeOfStateByProjectIdAndReleaseId(projectId, releaseId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * fill_type_of_state 工作项
+    * 
+    *
+    * @param projectId projectId
+    * @param releaseId releaseId
+    * @param dto dto
+    * @return ResponseEntity<WorkItemDTO>
+    */   
+    public WorkItemDTO fillTypeOfStateByProjectIdAndReleaseId
+            (String projectId, String releaseId, WorkItemDTO dto) {
+        WorkItem domain = workItemDtoMapping.toDomain(dto);
+        domain.setReleaseId(releaseId);
+        WorkItem rt = workItemService.fillTypeOfState(domain);
         return workItemDtoMapping.toDto(rt);
     }
 

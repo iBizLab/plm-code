@@ -3,6 +3,7 @@
  */
 package cn.ibizlab.plm.serviceapi.dto;
 
+import java.math.BigDecimal;
 import java.util.*;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -198,6 +199,14 @@ public class ProjectRedirctDefGroupDTO extends DTOBase implements Serializable {
     @JSONField(name = "description")
     @ApiModelProperty(value = "描述", position = 19)
     private String description;
+
+    /**
+     * 进度
+     */
+    @JsonProperty("schedule")
+    @JSONField(name = "schedule")
+    @ApiModelProperty(value = "进度", position = 20)
+    private BigDecimal schedule;
 
 
     /**

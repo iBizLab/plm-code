@@ -326,11 +326,19 @@ public class TestCaseDTO extends DTOBase implements Serializable {
     private String attentionsImp;
 
     /**
+     * 最近创建日期
+     */
+    @JsonProperty("recent_create_days")
+    @JSONField(name = "recent_create_days")
+    @ApiModelProperty(value = "最近创建日期", position = 36)
+    private Integer recentCreateDays;
+
+    /**
      * 建立人
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 36)
+    @ApiModelProperty(value = "建立人", position = 37)
     private String createMan;
 
     /**
@@ -339,7 +347,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 37)
+    @ApiModelProperty(value = "建立时间", position = 38)
     private Date createTime;
 
     /**
@@ -347,7 +355,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 38)
+    @ApiModelProperty(value = "标识", position = 39)
     private String id;
 
     /**
@@ -355,7 +363,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 39)
+    @ApiModelProperty(value = "名称", position = 40)
     private String name;
 
     /**
@@ -363,7 +371,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("suite_id")
     @JSONField(name = "suite_id")
-    @ApiModelProperty(value = "用例模块标识", position = 40)
+    @ApiModelProperty(value = "用例模块标识", position = 41)
     private String suiteId;
 
     /**
@@ -371,7 +379,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("suite_name")
     @JSONField(name = "suite_name")
-    @ApiModelProperty(value = "所属模块", position = 41)
+    @ApiModelProperty(value = "所属模块", position = 42)
     private String suiteName;
 
     /**
@@ -379,7 +387,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("test_library_id")
     @JSONField(name = "test_library_id")
-    @ApiModelProperty(value = "测试库", position = 42)
+    @ApiModelProperty(value = "测试库", position = 43)
     private String testLibraryId;
 
     /**
@@ -387,7 +395,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("test_library_name")
     @JSONField(name = "test_library_name")
-    @ApiModelProperty(value = "所属测试库", position = 43)
+    @ApiModelProperty(value = "所属测试库", position = 44)
     private String testLibraryName;
 
     /**
@@ -395,7 +403,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 44)
+    @ApiModelProperty(value = "更新人", position = 45)
     private String updateMan;
 
     /**
@@ -404,7 +412,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 45)
+    @ApiModelProperty(value = "更新时间", position = 46)
     private Date updateTime;
 
 
@@ -720,6 +728,15 @@ public class TestCaseDTO extends DTOBase implements Serializable {
     public TestCaseDTO setAttentionsImp(String attentionsImp) {
         this.attentionsImp = attentionsImp;
         this.modify("attentions_imp", attentionsImp);
+        return this;
+    }
+
+    /**
+     * 设置 [最近创建日期]
+     */
+    public TestCaseDTO setRecentCreateDays(Integer recentCreateDays) {
+        this.recentCreateDays = recentCreateDays;
+        this.modify("recent_create_days", recentCreateDays);
         return this;
     }
 

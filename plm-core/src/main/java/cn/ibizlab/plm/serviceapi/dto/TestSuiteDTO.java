@@ -144,15 +144,6 @@ public class TestSuiteDTO extends DTOBase implements Serializable {
 
 
     /**
-     * 设置 [序号]
-     */
-    public TestSuiteDTO setSequence(BigDecimal sequence) {
-        this.sequence = sequence;
-        this.modify("sequence", sequence);
-        return this;
-    }
-
-    /**
      * 设置 [是否叶子节点]
      */
     public TestSuiteDTO setIsLeaf(Integer isLeaf) {

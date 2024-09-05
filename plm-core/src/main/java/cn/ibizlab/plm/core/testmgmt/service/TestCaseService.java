@@ -211,6 +211,16 @@ public interface TestCaseService extends IService<TestCase> {
     }
 
     /**
+    * fillBiFormDefault
+    * 
+    * @param et
+    * @return
+    */
+    default TestCase fillBiFormDefault(TestCase et) {
+        return et;
+    }
+
+    /**
     * getAttention
     * 
     * @param key
@@ -649,6 +659,22 @@ public interface TestCaseService extends IService<TestCase> {
     * @return
     */
     List<TestCase> listMyCreated(TestCaseSearchContext context);
+
+    /**
+    * fetchMyFilter
+    * 
+    * @param context
+    * @return
+    */
+    Page<TestCase> fetchMyFilter(TestCaseSearchContext context);
+
+    /**
+    * listMyFilter
+    * 
+    * @param context
+    * @return
+    */
+    List<TestCase> listMyFilter(TestCaseSearchContext context);
 
     /**
     * fetchNormal

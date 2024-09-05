@@ -368,12 +368,16 @@ public abstract class AbstractRecentService extends ServiceImpl<RecentMapper,Rec
    }
 	
    public Page<Recent> fetchRecentWorkItemDependency(RecentSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("UPDATE_TIME,DESC");
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Recent> pages=baseMapper.searchRecentWorkItemDependency(context.getPages(),context,context.getSelectCond());
         List<Recent> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
    public List<Recent> listRecentWorkItemDependency(RecentSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("UPDATE_TIME,DESC");
         List<Recent> list = baseMapper.listRecentWorkItemDependency(context,context.getSelectCond());
         return list;
    }

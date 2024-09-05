@@ -289,452 +289,6 @@
             }
         }
 ,
-        {
-            "id": "ibizplm-plmweb-plm_menu-menuitem17",
-            "code_name": "menuitem17",
-            "display_name": "测试菜单1431",
-            "parent_id": "0",
-            "router_path": "",
-            "sort": 15,
-            "description": ""
-                ,"children":[    {
-        "id": "ibizplm-plmweb-plm_menu-menuitem12",
-        "code_name": "menuitem12",
-        "display_name": "自动规则测试",
-        "parent_id": "ibizplm-plmweb-plm_menu-menuitem17",
-        "router_path": "",
-        "sort": 0,
-        "description": ""
-        ,"func": {
-            "menu_id": "ibizplm-plmweb-plm_menu-menuitem12",
-            "id": "UsrAppFunc0603133683",
-            "display_name": "自动规则测试",
-            "component_id": "ibizplm-plmweb-psde_logic_test_auto_rules_grid_view"
-        }
-    }
-    , {
-        "id": "ibizplm-plmweb-plm_menu-menuitem20",
-        "code_name": "menuitem20",
-        "display_name": "测试库主数据56",
-        "parent_id": "ibizplm-plmweb-plm_menu-menuitem17",
-        "router_path": "",
-        "sort": 1,
-        "description": ""
-        ,"func": {
-            "menu_id": "ibizplm-plmweb-plm_menu-menuitem20",
-            "id": "UsrAppFunc1227100845",
-            "display_name": "测试库首页视图（test）",
-            "component_id": "ibizplm-plmweb-library_grid_view"
-        }
-    }
-    , {
-        "id": "ibizplm-plmweb-plm_menu-menuitem22",
-        "code_name": "menuitem22",
-        "display_name": "树表测试",
-        "parent_id": "ibizplm-plmweb-plm_menu-menuitem17",
-        "router_path": "",
-        "sort": 2,
-        "description": ""
-        ,"func": {
-            "menu_id": "ibizplm-plmweb-plm_menu-menuitem22",
-            "id": "UsrAppFunc0104326573",
-            "display_name": "树表测试",
-            "component_id": "ibizplm-plmweb-work_item_srcum_tree_grid_view"
-        }
-    }
-    , {
-        "id": "ibizplm-plmweb-plm_menu-menuitem30",
-        "code_name": "menuitem30",
-        "display_name": "测试动态视图",
-        "parent_id": "ibizplm-plmweb-plm_menu-menuitem17",
-        "router_path": "",
-        "sort": 3,
-        "description": ""
-        ,"func": {
-            "menu_id": "ibizplm-plmweb-plm_menu-menuitem30",
-            "id": "UsrAppFunc0124227761",
-            "display_name": "测试动态视图（工作项）",
-            "component_id": "ibizplm-plmweb-work_item_work_item_testdyna"
-        }
-    }
-    , {
-        "id": "ibizplm-plmweb-plm_menu-menuitem52",
-        "code_name": "menuitem52",
-        "display_name": "测试报告（测试）",
-        "parent_id": "ibizplm-plmweb-plm_menu-menuitem17",
-        "router_path": "",
-        "sort": 4,
-        "description": ""
-        ,"func": {
-            "menu_id": "ibizplm-plmweb-plm_menu-menuitem52",
-            "id": "UsrAppFunc0412301639",
-            "display_name": "测试报告（测试）",
-            "component_id": "ibizplm-plmweb-test_plan_report_custom_view"
-        }
-    }
-    , {
-        "id": "ibizplm-plmweb-plm_menu-menuitem37",
-        "code_name": "menuitem37",
-        "display_name": "产品配置测试",
-        "parent_id": "ibizplm-plmweb-plm_menu-menuitem17",
-        "router_path": "",
-        "sort": 5,
-        "description": ""
-        ,"func": {
-            "menu_id": "ibizplm-plmweb-plm_menu-menuitem37",
-            "id": "UsrAppFunc0314540704",
-            "display_name": "测试功能_产品详情配置",
-            "component_id": "ibizplm-plmweb-product_grid_view"
-        }
-    }
-    , {
-        "id": "ibizplm-plmweb-plm_menu-menuitem38",
-        "code_name": "menuitem38",
-        "display_name": "通知列表（测试）",
-        "parent_id": "ibizplm-plmweb-plm_menu-menuitem17",
-        "router_path": "",
-        "sort": 6,
-        "description": ""
-        ,"func": {
-            "menu_id": "ibizplm-plmweb-plm_menu-menuitem38",
-            "id": "UsrAppFunc0314430777",
-            "display_name": "通知列表（测试）",
-            "component_id": "ibizplm-plmweb-notify_setting_config_view"
-        }
-    }
-    , {
-        "id": "ibizplm-plmweb-plm_menu-menuitem39",
-        "code_name": "menuitem39",
-        "display_name": "日志列表",
-        "parent_id": "ibizplm-plmweb-plm_menu-menuitem17",
-        "router_path": "",
-        "sort": 7,
-        "description": ""
-        ,"func": {
-            "menu_id": "ibizplm-plmweb-plm_menu-menuitem39",
-            "id": "UsrAppFunc0314782045",
-            "display_name": "日志列表",
-            "component_id": "ibizplm-plmweb-article_page_log_list_view"
-        }
-    }
-    , {
-        "id": "ibizplm-plmweb-plm_menu-menuitem41",
-        "code_name": "menuitem41",
-        "display_name": "工单测试",
-        "parent_id": "ibizplm-plmweb-plm_menu-menuitem17",
-        "router_path": "",
-        "sort": 8,
-        "description": ""
-        ,"func": {
-            "menu_id": "ibizplm-plmweb-plm_menu-menuitem41",
-            "id": "UsrAppFunc0318045890",
-            "display_name": "工单工具栏（测试）",
-            "component_id": "ibizplm-plmweb-ticket_test_all_grid_view"
-        }
-    }
-    , {
-        "id": "ibizplm-plmweb-plm_menu-menuitem45",
-        "code_name": "menuitem45",
-        "display_name": "测试库配置测试",
-        "parent_id": "ibizplm-plmweb-plm_menu-menuitem17",
-        "router_path": "",
-        "sort": 9,
-        "description": ""
-        ,"func": {
-            "menu_id": "ibizplm-plmweb-plm_menu-menuitem45",
-            "id": "UsrAppFunc0319609703",
-            "display_name": "测试功能_测试库配置",
-            "component_id": "ibizplm-plmweb-library_grid_view"
-        }
-    }
-    , {
-        "id": "ibizplm-plmweb-plm_menu-menuitem46",
-        "code_name": "menuitem46",
-        "display_name": "测试功能_空间配置",
-        "parent_id": "ibizplm-plmweb-plm_menu-menuitem17",
-        "router_path": "",
-        "sort": 10,
-        "description": ""
-        ,"func": {
-            "menu_id": "ibizplm-plmweb-plm_menu-menuitem46",
-            "id": "UsrAppFunc0319810552",
-            "display_name": "测试功能_空间配置",
-            "component_id": "ibizplm-plmweb-space_grid_view"
-        }
-    }
-    , {
-        "id": "ibizplm-plmweb-plm_menu-menuitem47",
-        "code_name": "menuitem47",
-        "display_name": "测试功能_项目配置",
-        "parent_id": "ibizplm-plmweb-plm_menu-menuitem17",
-        "router_path": "",
-        "sort": 11,
-        "description": ""
-        ,"func": {
-            "menu_id": "ibizplm-plmweb-plm_menu-menuitem47",
-            "id": "UsrAppFunc0319778232",
-            "display_name": "测试功能_项目配置",
-            "component_id": "ibizplm-plmweb-project_grid_view"
-        }
-    }
-    , {
-        "id": "ibizplm-plmweb-plm_menu-menuitem48",
-        "code_name": "menuitem48",
-        "display_name": "测试功能_项目集配置",
-        "parent_id": "ibizplm-plmweb-plm_menu-menuitem17",
-        "router_path": "",
-        "sort": 12,
-        "description": ""
-        ,"func": {
-            "menu_id": "ibizplm-plmweb-plm_menu-menuitem48",
-            "id": "UsrAppFunc0319178498",
-            "display_name": "测试功能_项目集配置",
-            "component_id": "ibizplm-plmweb-portfolio_grid_view"
-        }
-    }
-    , {
-        "id": "ibizplm-plmweb-plm_menu-menuitem49",
-        "code_name": "menuitem49",
-        "display_name": "测试协同编辑",
-        "parent_id": "ibizplm-plmweb-plm_menu-menuitem17",
-        "router_path": "",
-        "sort": 13,
-        "description": ""
-        ,"func": {
-            "menu_id": "ibizplm-plmweb-plm_menu-menuitem49",
-            "id": "UsrAppFunc0408117104",
-            "display_name": "测试协同编辑",
-            "component_id": "ibizplm-plmweb-article_page_test_edit_view"
-        }
-    }
-    , {
-        "id": "ibizplm-plmweb-plm_menu-menuitem51",
-        "code_name": "menuitem51",
-        "display_name": "测试功能_工作台",
-        "parent_id": "ibizplm-plmweb-plm_menu-menuitem17",
-        "router_path": "",
-        "sort": 14,
-        "description": ""
-        ,"func": {
-            "menu_id": "ibizplm-plmweb-plm_menu-menuitem51",
-            "id": "UsrAppFunc0102561422",
-            "display_name": "测试功能_工作台",
-            "component_id": "ibizplm-plmweb-recent_his_tab_exp_view"
-        }
-    }
-    , {
-        "id": "ibizplm-plmweb-plm_menu-menuitem16",
-        "code_name": "menuitem16",
-        "display_name": "数据字典",
-        "parent_id": "ibizplm-plmweb-plm_menu-menuitem17",
-        "router_path": "",
-        "sort": 15,
-        "description": ""
-        ,"func": {
-            "menu_id": "ibizplm-plmweb-plm_menu-menuitem16",
-            "id": "UsrAppFunc0418174025",
-            "display_name": "测试功能_数据字典",
-            "component_id": "ibizplm-plmweb-dictionary_data_grid_view"
-        }
-    }
-    , {
-        "id": "ibizplm-plmweb-plm_menu-menuitem32",
-        "code_name": "menuitem32",
-        "display_name": "测试功能_系统参数",
-        "parent_id": "ibizplm-plmweb-plm_menu-menuitem17",
-        "router_path": "",
-        "sort": 16,
-        "description": ""
-        ,"func": {
-            "menu_id": "ibizplm-plmweb-plm_menu-menuitem32",
-            "id": "UsrAppFunc0418643340",
-            "display_name": "测试功能_系统参数",
-            "component_id": "ibizplm-plmweb-parameter_grid_view"
-        }
-    }
-    , {
-        "id": "ibizplm-plmweb-plm_menu-menuitem10",
-        "code_name": "menuitem10",
-        "display_name": "高级搜索",
-        "parent_id": "ibizplm-plmweb-plm_menu-menuitem17",
-        "router_path": "",
-        "sort": 17,
-        "description": ""
-        ,"func": {
-            "menu_id": "ibizplm-plmweb-plm_menu-menuitem10",
-            "id": "UsrAppFunc0322807078",
-            "display_name": "高级搜索",
-            "component_id": "ibizplm-plmweb-search_hub_tab_search_view"
-        }
-    }
-    , {
-        "id": "ibizplm-plmweb-plm_menu-menuitem11",
-        "code_name": "menuitem11",
-        "display_name": "活动列表测试",
-        "parent_id": "ibizplm-plmweb-plm_menu-menuitem17",
-        "router_path": "",
-        "sort": 18,
-        "description": ""
-        ,"func": {
-            "menu_id": "ibizplm-plmweb-plm_menu-menuitem11",
-            "id": "UsrAppFunc0424497791",
-            "display_name": "测试全部活动列表",
-            "component_id": "ibizplm-plmweb-activity_test_all_list_view"
-        }
-    }
-    , {
-        "id": "ibizplm-plmweb-plm_menu-menuitem14",
-        "code_name": "menuitem14",
-        "display_name": "测试日志图表",
-        "parent_id": "ibizplm-plmweb-plm_menu-menuitem17",
-        "router_path": "",
-        "sort": 19,
-        "description": ""
-        ,"func": {
-            "menu_id": "ibizplm-plmweb-plm_menu-menuitem14",
-            "id": "UsrAppFunc0425317037",
-            "display_name": "测试日志图表",
-            "component_id": "ibizplm-plmweb-login_log_active_members"
-        }
-    }
-    , {
-        "id": "ibizplm-plmweb-plm_menu-menuitem43",
-        "code_name": "menuitem43",
-        "display_name": "测试组件配置",
-        "parent_id": "ibizplm-plmweb-plm_menu-menuitem17",
-        "router_path": "",
-        "sort": 20,
-        "description": ""
-        ,"func": {
-            "menu_id": "ibizplm-plmweb-plm_menu-menuitem43",
-            "id": "UsrAppFunc0516562119",
-            "display_name": "组件配置",
-            "component_id": "ibizplm-plmweb-addon_setting_grid_view"
-        }
-    }
-    , {
-        "id": "ibizplm-plmweb-plm_menu-menuitem13",
-        "code_name": "menuitem13",
-        "display_name": "容量设置",
-        "parent_id": "ibizplm-plmweb-plm_menu-menuitem17",
-        "router_path": "",
-        "sort": 21,
-        "description": ""
-        ,"func": {
-            "menu_id": "ibizplm-plmweb-plm_menu-menuitem13",
-            "id": "UsrAppFunc0523054865",
-            "display_name": "容量设置",
-            "component_id": "ibizplm-plmweb-addon_resource_project_capacity_view"
-        }
-    }
-    , {
-        "id": "ibizplm-plmweb-plm_menu-menuitem36",
-        "code_name": "menuitem36",
-        "display_name": "资源分配甘特视图",
-        "parent_id": "ibizplm-plmweb-plm_menu-menuitem17",
-        "router_path": "",
-        "sort": 22,
-        "description": ""
-        ,"func": {
-            "menu_id": "ibizplm-plmweb-plm_menu-menuitem36",
-            "id": "UsrAppFunc0527833109",
-            "display_name": "资源分配甘特视图",
-            "component_id": "ibizplm-plmweb-work_item_project_resource_gantt_view"
-        }
-    }
-    , {
-        "id": "ibizplm-plmweb-plm_menu-menuitem40",
-        "code_name": "menuitem40",
-        "display_name": "逻辑设计自定义",
-        "parent_id": "ibizplm-plmweb-plm_menu-menuitem17",
-        "router_path": "",
-        "sort": 23,
-        "description": ""
-        ,"func": {
-            "menu_id": "ibizplm-plmweb-plm_menu-menuitem40",
-            "id": "UsrAppFunc0605624829",
-            "display_name": "逻辑设计自定义",
-            "component_id": "ibizplm-plmweb-psde_logic_logic_design_custom"
-        }
-    }
-    , {
-        "id": "ibizplm-plmweb-plm_menu-menuitem44",
-        "code_name": "menuitem44",
-        "display_name": "智能报表",
-        "parent_id": "ibizplm-plmweb-plm_menu-menuitem17",
-        "router_path": "",
-        "sort": 24,
-        "description": ""
-        ,"func": {
-            "menu_id": "ibizplm-plmweb-plm_menu-menuitem44",
-            "id": "UsrAppFunc0618759124",
-            "display_name": "智能报表",
-            "component_id": "ibizplm-plmweb-work_item_test_report_view"
-        }
-    }
-    , {
-        "id": "ibizplm-plmweb-plm_menu-menuitem50",
-        "code_name": "menuitem50",
-        "display_name": "迭代变更记录",
-        "parent_id": "ibizplm-plmweb-plm_menu-menuitem17",
-        "router_path": "",
-        "sort": 25,
-        "description": ""
-        ,"func": {
-            "menu_id": "ibizplm-plmweb-plm_menu-menuitem50",
-            "id": "UsrAppFunc0618607639",
-            "display_name": "迭代变更",
-            "component_id": "ibizplm-plmweb-sprint_alteration_log_grid_view"
-        }
-    }
-    , {
-        "id": "ibizplm-plmweb-plm_menu-menuitem53",
-        "code_name": "menuitem53",
-        "display_name": "报表门户部件",
-        "parent_id": "ibizplm-plmweb-plm_menu-menuitem17",
-        "router_path": "",
-        "sort": 26,
-        "description": ""
-        ,"func": {
-            "menu_id": "ibizplm-plmweb-plm_menu-menuitem53",
-            "id": "UsrAppFunc0619472640",
-            "display_name": "报表门户部件",
-            "component_id": "ibizplm-plmweb-dyna_dashboard_test_dashboard_view"
-        }
-    }
-    , {
-        "id": "ibizplm-plmweb-plm_menu-menuitem54",
-        "code_name": "menuitem54",
-        "display_name": "测试主状态逻辑",
-        "parent_id": "ibizplm-plmweb-plm_menu-menuitem17",
-        "router_path": "",
-        "sort": 27,
-        "description": ""
-        ,"func": {
-            "menu_id": "ibizplm-plmweb-plm_menu-menuitem54",
-            "id": "UsrAppFunc0620639074",
-            "display_name": "主状态逻辑测试",
-            "component_id": "ibizplm-plmweb-psdems_logic_ms_logic_design_custom"
-        }
-    }
-    , {
-        "id": "ibizplm-plmweb-plm_menu-menuitem55",
-        "code_name": "menuitem55",
-        "display_name": "应用管理",
-        "parent_id": "ibizplm-plmweb-plm_menu-menuitem17",
-        "router_path": "",
-        "sort": 28,
-        "description": ""
-        ,"func": {
-            "menu_id": "ibizplm-plmweb-plm_menu-menuitem55",
-            "id": "UsrAppFunc0715256113",
-            "display_name": "应用管理",
-            "component_id": "ibizplm-plmweb-ps_core_prd_func_tree_exp_view"
-        }
-    }
-]
-        }
-,
         
         
         {
@@ -768,13 +322,24 @@
         }
 ,
         {
+            "id": "ibizplm-plmweb-product_filter_tab_exp_view",
+            "code_name": "filter_tab_exp_view",
+            "display_name": "产品 - filter_tab_exp_view",
+            "component_type": "DETABEXPVIEW",
+            "parent_id": "ibizplm-plmweb-product_tree_exp_view",
+            "router_path": "products/:product?/filter_tab_exp_view/:filter_tab_exp_view?",
+            "sort": 1,
+            "description": ""
+        }
+,
+        {
             "id": "ibizplm-plmweb-product_all_grid_view",
             "code_name": "all_grid_view",
             "display_name": "全部产品 - all_grid_view",
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-product_tree_exp_view",
             "router_path": "products/:product?/all_grid_view/:all_grid_view?",
-            "sort": 1,
+            "sort": 2,
             "description": ""
             ,"apis": [
                 {
@@ -791,7 +356,7 @@
             "component_type": "DETABEXPVIEW",
             "parent_id": "ibizplm-plmweb-product_all_grid_view",
             "router_path": "products/:product?/main_view/:main_view?",
-            "sort": 2,
+            "sort": 3,
             "description": ""
         }
 ,
@@ -802,7 +367,7 @@
             "component_type": "DETREEEXPVIEW",
             "parent_id": "ibizplm-plmweb-product_main_view",
             "router_path": "ideas/:idea?/tree_exp_view/:tree_exp_view?",
-            "sort": 3,
+            "sort": 4,
             "description": ""
         }
 ,
@@ -813,7 +378,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-idea_tree_exp_view",
             "router_path": "ideas/:idea?/all_grid_view/:all_grid_view?",
-            "sort": 4,
+            "sort": 5,
             "description": ""
             ,"apis": [
                 {
@@ -830,7 +395,7 @@
             "component_type": "DEOPTVIEW",
             "parent_id": "ibizplm-plmweb-idea_all_grid_view",
             "router_path": "ideas/:idea?/quick_create_view/:quick_create_view?",
-            "sort": 5,
+            "sort": 6,
             "description": ""
             ,"apis": [
                 {
@@ -847,7 +412,7 @@
             "component_type": "DEEDITVIEW",
             "parent_id": "ibizplm-plmweb-idea_all_grid_view",
             "router_path": "ideas/:idea?/main_view/:main_view?",
-            "sort": 6,
+            "sort": 7,
             "description": ""
             ,"apis": [
                 {
@@ -864,7 +429,7 @@
             "component_type": "DELISTVIEW",
             "parent_id": "ibizplm-plmweb-idea_main_view",
             "router_path": null,
-            "sort": 7,
+            "sort": 8,
             "description": ""
             ,"apis": [
                 {
@@ -881,7 +446,7 @@
             "component_type": "DEEDITVIEW",
             "parent_id": "ibizplm-plmweb-comment_list_view",
             "router_path": "comments/:comment?/editview/:editview?",
-            "sort": 8,
+            "sort": 9,
             "description": ""
             ,"apis": [
                 {
@@ -898,7 +463,7 @@
             "component_type": "DELISTVIEW",
             "parent_id": "ibizplm-plmweb-idea_main_view",
             "router_path": null,
-            "sort": 9,
+            "sort": 10,
             "description": ""
             ,"apis": [
                 {
@@ -915,7 +480,7 @@
             "component_type": "DECALENDARVIEW",
             "parent_id": "ibizplm-plmweb-idea_main_view",
             "router_path": null,
-            "sort": 10,
+            "sort": 11,
             "description": ""
         }
 ,
@@ -926,7 +491,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-idea_main_view",
             "router_path": null,
-            "sort": 11,
+            "sort": 12,
             "description": ""
             ,"apis": [
                 {
@@ -943,7 +508,7 @@
             "component_type": "DEEDITVIEW",
             "parent_id": "ibizplm-plmweb-relation_idea_re_customer_grid_view",
             "router_path": "relations/:relation?/editview/:editview?",
-            "sort": 12,
+            "sort": 13,
             "description": ""
             ,"apis": [
                 {
@@ -960,7 +525,7 @@
             "component_type": "DEEDITVIEW",
             "parent_id": "ibizplm-plmweb-relation_idea_re_customer_grid_view",
             "router_path": "customers/:customer?/main_view/:main_view?",
-            "sort": 13,
+            "sort": 14,
             "description": ""
             ,"apis": [
                 {
@@ -977,7 +542,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-customer_main_view",
             "router_path": null,
-            "sort": 14,
+            "sort": 15,
             "description": ""
             ,"apis": [
                 {
@@ -994,7 +559,7 @@
             "component_type": "DEEDITVIEW",
             "parent_id": "ibizplm-plmweb-ticket_customer_re_ticket_grid_view",
             "router_path": "tickets/:ticket?/main_view/:main_view?",
-            "sort": 15,
+            "sort": 16,
             "description": ""
             ,"apis": [
                 {
@@ -1011,7 +576,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-ticket_main_view",
             "router_path": null,
-            "sort": 16,
+            "sort": 17,
             "description": ""
             ,"apis": [
                 {
@@ -1028,7 +593,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-ticket_main_view",
             "router_path": null,
-            "sort": 17,
+            "sort": 18,
             "description": ""
             ,"apis": [
                 {
@@ -1045,7 +610,7 @@
             "component_type": "DEEDITVIEW",
             "parent_id": "ibizplm-plmweb-relation_ticket_re_work_item_grid_view",
             "router_path": "work_items/:work_item?/dyna_main_view/:dyna_main_view?",
-            "sort": 18,
+            "sort": 19,
             "description": ""
             ,"apis": [
                 {
@@ -1062,7 +627,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-work_item_dyna_main_view",
             "router_path": null,
-            "sort": 19,
+            "sort": 20,
             "description": ""
             ,"apis": [
                 {
@@ -1079,7 +644,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-work_item_dyna_main_view",
             "router_path": null,
-            "sort": 20,
+            "sort": 21,
             "description": ""
             ,"apis": [
                 {
@@ -1096,7 +661,7 @@
             "component_type": "DEEDITVIEW",
             "parent_id": "ibizplm-plmweb-work_item_child_grid_view",
             "router_path": "work_items/:work_item?/editview/:editview?",
-            "sort": 21,
+            "sort": 22,
             "description": ""
             ,"apis": [
                 {
@@ -1113,7 +678,7 @@
             "component_type": "DELISTVIEW",
             "parent_id": "ibizplm-plmweb-work_item_dyna_main_view",
             "router_path": null,
-            "sort": 22,
+            "sort": 23,
             "description": ""
             ,"apis": [
                 {
@@ -1130,7 +695,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-work_item_dyna_main_view",
             "router_path": null,
-            "sort": 23,
+            "sort": 24,
             "description": ""
             ,"apis": [
                 {
@@ -1147,7 +712,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-work_item_dyna_main_view",
             "router_path": null,
-            "sort": 24,
+            "sort": 25,
             "description": ""
             ,"apis": [
                 {
@@ -1164,7 +729,7 @@
             "component_type": "DEREDIRECTVIEW",
             "parent_id": "ibizplm-plmweb-deliverable_target_grid_view",
             "router_path": "deliverables/:deliverable?/redirectview/:redirectview?",
-            "sort": 25,
+            "sort": 26,
             "description": ""
         }
 ,
@@ -1175,7 +740,7 @@
             "component_type": "DEEDITVIEW",
             "parent_id": "ibizplm-plmweb-deliverable_redirect_view",
             "router_path": "deliverables/:deliverable?/editview/:editview?",
-            "sort": 26,
+            "sort": 27,
             "description": ""
             ,"apis": [
                 {
@@ -1192,7 +757,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-work_item_dyna_main_view",
             "router_path": null,
-            "sort": 27,
+            "sort": 28,
             "description": ""
             ,"apis": [
                 {
@@ -1209,7 +774,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-work_item_dyna_main_view",
             "router_path": null,
-            "sort": 28,
+            "sort": 29,
             "description": ""
             ,"apis": [
                 {
@@ -1226,7 +791,7 @@
             "component_type": "DEEDITVIEW",
             "parent_id": "ibizplm-plmweb-relation_work_item_re_test_case_grid_view",
             "router_path": "test_cases/:test_case?/main_view/:main_view?",
-            "sort": 29,
+            "sort": 30,
             "description": ""
             ,"apis": [
                 {
@@ -1243,7 +808,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-test_case_main_view",
             "router_path": null,
-            "sort": 30,
+            "sort": 31,
             "description": ""
             ,"apis": [
                 {
@@ -1260,7 +825,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-test_case_main_view",
             "router_path": null,
-            "sort": 31,
+            "sort": 32,
             "description": ""
             ,"apis": [
                 {
@@ -1277,7 +842,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-test_case_main_view",
             "router_path": null,
-            "sort": 32,
+            "sort": 33,
             "description": ""
             ,"apis": [
                 {
@@ -1294,7 +859,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-test_case_main_view",
             "router_path": null,
-            "sort": 33,
+            "sort": 34,
             "description": ""
             ,"apis": [
                 {
@@ -1311,7 +876,7 @@
             "component_type": "DEREDIRECTVIEW",
             "parent_id": "ibizplm-plmweb-run_history_grid_view",
             "router_path": "runs/:run?/redirectview/:redirectview?",
-            "sort": 34,
+            "sort": 35,
             "description": ""
         }
 ,
@@ -1322,7 +887,7 @@
             "component_type": "DEEDITVIEW",
             "parent_id": "ibizplm-plmweb-run_redirect_view",
             "router_path": "runs/:run?/main_view/:main_view?",
-            "sort": 35,
+            "sort": 36,
             "description": ""
             ,"apis": [
                 {
@@ -1339,7 +904,7 @@
             "component_type": "DEEDITVIEW",
             "parent_id": "ibizplm-plmweb-run_main_view",
             "router_path": null,
-            "sort": 36,
+            "sort": 37,
             "description": ""
             ,"apis": [
                 {
@@ -1356,7 +921,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-run_main_view",
             "router_path": null,
-            "sort": 37,
+            "sort": 38,
             "description": ""
             ,"apis": [
                 {
@@ -1373,7 +938,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-run_main_view",
             "router_path": null,
-            "sort": 38,
+            "sort": 39,
             "description": ""
             ,"apis": [
                 {
@@ -1390,7 +955,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-run_main_view",
             "router_path": null,
-            "sort": 39,
+            "sort": 40,
             "description": ""
             ,"apis": [
                 {
@@ -1407,7 +972,7 @@
             "component_type": "DEEDITVIEW",
             "parent_id": "ibizplm-plmweb-relation_run_re_bug_grid_view",
             "router_path": "work_items/:work_item?/main_view/:main_view?",
-            "sort": 40,
+            "sort": 41,
             "description": ""
             ,"apis": [
                 {
@@ -1424,7 +989,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-work_item_main_view",
             "router_path": null,
-            "sort": 41,
+            "sort": 42,
             "description": ""
             ,"apis": [
                 {
@@ -1441,7 +1006,7 @@
             "component_type": "DEEDITVIEW",
             "parent_id": "ibizplm-plmweb-version_work_item_grid_view",
             "router_path": "versions/:version?/editview/:editview?",
-            "sort": 42,
+            "sort": 43,
             "description": ""
             ,"apis": [
                 {
@@ -1458,7 +1023,7 @@
             "component_type": "DELISTVIEW",
             "parent_id": "ibizplm-plmweb-work_item_main_view",
             "router_path": null,
-            "sort": 43,
+            "sort": 44,
             "description": ""
             ,"apis": [
                 {
@@ -1475,7 +1040,7 @@
             "component_type": "DEOPTVIEW",
             "parent_id": "ibizplm-plmweb-workload_list_view",
             "router_path": "workloads/:workload?/update_view/:update_view?",
-            "sort": 44,
+            "sort": 45,
             "description": ""
             ,"apis": [
                 {
@@ -1492,7 +1057,7 @@
             "component_type": "DEEDITVIEW",
             "parent_id": "ibizplm-plmweb-workload_list_view",
             "router_path": "workloads/:workload?/editview/:editview?",
-            "sort": 45,
+            "sort": 46,
             "description": ""
             ,"apis": [
                 {
@@ -1509,7 +1074,7 @@
             "component_type": "DELISTVIEW",
             "parent_id": "ibizplm-plmweb-work_item_main_view",
             "router_path": null,
-            "sort": 46,
+            "sort": 47,
             "description": ""
             ,"apis": [
                 {
@@ -1526,7 +1091,7 @@
             "component_type": "DEEDITVIEW",
             "parent_id": "ibizplm-plmweb-baseline_work_item_realtion_version_list_view",
             "router_path": "baseline_work_items/:baseline_work_item?/editview/:editview?",
-            "sort": 47,
+            "sort": 48,
             "description": ""
             ,"apis": [
                 {
@@ -1543,7 +1108,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-run_main_view",
             "router_path": null,
-            "sort": 48,
+            "sort": 49,
             "description": ""
             ,"apis": [
                 {
@@ -1560,7 +1125,7 @@
             "component_type": "DEEDITVIEW",
             "parent_id": "ibizplm-plmweb-run_main_view",
             "router_path": null,
-            "sort": 49,
+            "sort": 50,
             "description": ""
             ,"apis": [
                 {
@@ -1577,7 +1142,7 @@
             "component_type": "DELISTVIEW",
             "parent_id": "ibizplm-plmweb-run_main_view",
             "router_path": null,
-            "sort": 50,
+            "sort": 51,
             "description": ""
             ,"apis": [
                 {
@@ -1594,7 +1159,7 @@
             "component_type": "DEMPICKUPVIEW2",
             "parent_id": "ibizplm-plmweb-run_history_grid_view",
             "router_path": "test_cases/:test_case?/mpick_up_view2_review/:mpick_up_view2_review?",
-            "sort": 51,
+            "sort": 52,
             "description": ""
             ,"apis": [
                 {
@@ -1611,7 +1176,7 @@
             "component_type": "DEPICKUPGRIDVIEW",
             "parent_id": "ibizplm-plmweb-test_case_mpick_up_view2_review",
             "router_path": "test_cases/:test_case?/not_add_pick_up_grid_view_review/:not_add_pick_up_grid_view_review?",
-            "sort": 52,
+            "sort": 53,
             "description": ""
             ,"apis": [
                 {
@@ -1628,7 +1193,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-test_case_mpick_up_view2_review",
             "router_path": "test_cases/:test_case?/all_grid_view/:all_grid_view?",
-            "sort": 53,
+            "sort": 54,
             "description": ""
             ,"apis": [
                 {
@@ -1645,7 +1210,7 @@
             "component_type": "DEOPTVIEW",
             "parent_id": "ibizplm-plmweb-test_case_all_grid_view",
             "router_path": "test_cases/:test_case?/quick_create_view/:quick_create_view?",
-            "sort": 54,
+            "sort": 55,
             "description": ""
             ,"apis": [
                 {
@@ -1662,7 +1227,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-test_case_mpick_up_view2_review",
             "router_path": "test_cases/:test_case?/nosuite_test_case_grid_view/:nosuite_test_case_grid_view?",
-            "sort": 55,
+            "sort": 56,
             "description": ""
             ,"apis": [
                 {
@@ -1679,7 +1244,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-test_case_main_view",
             "router_path": null,
-            "sort": 56,
+            "sort": 57,
             "description": ""
             ,"apis": [
                 {
@@ -1696,7 +1261,7 @@
             "component_type": "DELISTVIEW",
             "parent_id": "ibizplm-plmweb-test_case_main_view",
             "router_path": null,
-            "sort": 57,
+            "sort": 58,
             "description": ""
             ,"apis": [
                 {
@@ -1713,7 +1278,7 @@
             "component_type": "DEEDITVIEW",
             "parent_id": "ibizplm-plmweb-baseline_test_case_relation_version_list_view",
             "router_path": "baseline_test_cases/:baseline_test_case?/editview/:editview?",
-            "sort": 58,
+            "sort": 59,
             "description": ""
             ,"apis": [
                 {
@@ -1730,7 +1295,7 @@
             "component_type": "DELISTVIEW",
             "parent_id": "ibizplm-plmweb-test_case_main_view",
             "router_path": null,
-            "sort": 59,
+            "sort": 60,
             "description": ""
             ,"apis": [
                 {
@@ -1747,7 +1312,7 @@
             "component_type": "DEEDITVIEW",
             "parent_id": "ibizplm-plmweb-review_content_list_view",
             "router_path": "review_contents/:review_content?/editview/:editview?",
-            "sort": 60,
+            "sort": 61,
             "description": ""
             ,"apis": [
                 {
@@ -1764,7 +1329,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-ticket_main_view",
             "router_path": null,
-            "sort": 61,
+            "sort": 62,
             "description": ""
             ,"apis": [
                 {
@@ -1781,7 +1346,7 @@
             "component_type": "DELISTVIEW",
             "parent_id": "ibizplm-plmweb-ticket_main_view",
             "router_path": null,
-            "sort": 62,
+            "sort": 63,
             "description": ""
             ,"apis": [
                 {
@@ -1798,7 +1363,7 @@
             "component_type": "DEEDITVIEW",
             "parent_id": "ibizplm-plmweb-ticket_customer_re_ticket_grid_view",
             "router_path": "tickets/:ticket?/editview/:editview?",
-            "sort": 63,
+            "sort": 64,
             "description": ""
             ,"apis": [
                 {
@@ -1815,7 +1380,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-idea_main_view",
             "router_path": null,
-            "sort": 64,
+            "sort": 65,
             "description": ""
             ,"apis": [
                 {
@@ -1832,7 +1397,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-idea_main_view",
             "router_path": null,
-            "sort": 65,
+            "sort": 66,
             "description": ""
             ,"apis": [
                 {
@@ -1849,7 +1414,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-idea_main_view",
             "router_path": null,
-            "sort": 66,
+            "sort": 67,
             "description": ""
             ,"apis": [
                 {
@@ -1866,7 +1431,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-idea_main_view",
             "router_path": null,
-            "sort": 67,
+            "sort": 68,
             "description": ""
             ,"apis": [
                 {
@@ -1883,7 +1448,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-idea_main_view",
             "router_path": null,
-            "sort": 68,
+            "sort": 69,
             "description": ""
             ,"apis": [
                 {
@@ -1900,7 +1465,7 @@
             "component_type": "DELISTVIEW",
             "parent_id": "ibizplm-plmweb-idea_main_view",
             "router_path": null,
-            "sort": 69,
+            "sort": 70,
             "description": ""
             ,"apis": [
                 {
@@ -1917,7 +1482,7 @@
             "component_type": "DEEDITVIEW",
             "parent_id": "ibizplm-plmweb-baseline_idea_relation_version_list_view",
             "router_path": "baseline_ideas/:baseline_idea?/editview/:editview?",
-            "sort": 70,
+            "sort": 71,
             "description": ""
             ,"apis": [
                 {
@@ -1934,7 +1499,7 @@
             "component_type": "DEEDITVIEW",
             "parent_id": "ibizplm-plmweb-idea_main_view",
             "router_path": null,
-            "sort": 71,
+            "sort": 72,
             "description": ""
             ,"apis": [
                 {
@@ -1945,18 +1510,22 @@
         }
 ,
         {
-            "id": "ibizplm-plmweb-ticket_idea_re_ticket_chart_view",
+            "id": "ibizplm-plmweb-ticket_idea_re_ticket_statistics_view",
             "code_name": "",
-            "display_name": "工单 - idea_re_ticket_chart_view",
-            "component_type": "DECHARTVIEW",
+            "display_name": "工单 - idea_re_ticket_statistics_view",
+            "component_type": "DEEDITVIEW",
             "parent_id": "ibizplm-plmweb-idea_main_view",
             "router_path": null,
-            "sort": 72,
+            "sort": 73,
             "description": ""
             ,"apis": [
                 {
-                "component_id": "ibizplm-plmweb-ticket_idea_re_ticket_chart_view",
-                "api_operation_id": "ibizplm-Ticket-fetch_default"
+                "component_id": "ibizplm-plmweb-ticket_idea_re_ticket_statistics_view",
+                "api_operation_id": "ibizplm-Ticket-Get"
+                }
+                ,{
+                "component_id": "ibizplm-plmweb-ticket_idea_re_ticket_statistics_view",
+                "api_operation_id": "ibizplm-Ticket-fetch_ticket_state_pie_chart"
                 }
             ]
         }
@@ -1968,7 +1537,7 @@
             "component_type": "DEEDITVIEW",
             "parent_id": "ibizplm-plmweb-idea_tree_exp_view",
             "router_path": "ideas/:idea?/show_edit_view/:show_edit_view?",
-            "sort": 73,
+            "sort": 74,
             "description": ""
             ,"apis": [
                 {
@@ -1989,7 +1558,7 @@
             "component_type": "DETREEEXPVIEW",
             "parent_id": "ibizplm-plmweb-product_main_view",
             "router_path": "product_plans/:product_plan?/tree_exp_view/:tree_exp_view?",
-            "sort": 74,
+            "sort": 75,
             "description": ""
         }
 ,
@@ -2000,29 +1569,12 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-product_plan_tree_exp_view",
             "router_path": "product_plans/:product_plan?/all_grid_view/:all_grid_view?",
-            "sort": 75,
+            "sort": 76,
             "description": ""
             ,"apis": [
                 {
                 "component_id": "ibizplm-plmweb-product_plan_all_grid_view",
                 "api_operation_id": "ibizplm-ProductPlan-fetch_normal"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-product_plan_quick_create_view",
-            "code_name": "quick_create_view",
-            "display_name": "新建计划 - quick_create_view",
-            "component_type": "DEOPTVIEW",
-            "parent_id": "ibizplm-plmweb-product_plan_all_grid_view",
-            "router_path": "product_plans/:product_plan?/quick_create_view/:quick_create_view?",
-            "sort": 76,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-product_plan_quick_create_view",
-                "api_operation_id": "ibizplm-ProductPlan-Get"
                 }
             ]
         }
@@ -2062,13 +1614,30 @@
         }
 ,
         {
+            "id": "ibizplm-plmweb-product_plan_quick_create_view",
+            "code_name": "quick_create_view",
+            "display_name": "新建计划 - quick_create_view",
+            "component_type": "DEOPTVIEW",
+            "parent_id": "ibizplm-plmweb-product_plan_all_grid_view",
+            "router_path": "product_plans/:product_plan?/quick_create_view/:quick_create_view?",
+            "sort": 79,
+            "description": ""
+            ,"apis": [
+                {
+                "component_id": "ibizplm-plmweb-product_plan_quick_create_view",
+                "api_operation_id": "ibizplm-ProductPlan-Get"
+                }
+            ]
+        }
+,
+        {
             "id": "ibizplm-plmweb-ticket_tree_exp_view",
             "code_name": "tree_exp_view",
             "display_name": "工单导航 - tree_exp_view",
             "component_type": "DETREEEXPVIEW",
             "parent_id": "ibizplm-plmweb-product_main_view",
             "router_path": "tickets/:ticket?/tree_exp_view/:tree_exp_view?",
-            "sort": 79,
+            "sort": 80,
             "description": ""
         }
 ,
@@ -2079,7 +1648,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-ticket_tree_exp_view",
             "router_path": "tickets/:ticket?/all_grid_view/:all_grid_view?",
-            "sort": 80,
+            "sort": 81,
             "description": ""
             ,"apis": [
                 {
@@ -2096,7 +1665,7 @@
             "component_type": "DEOPTVIEW",
             "parent_id": "ibizplm-plmweb-ticket_all_grid_view",
             "router_path": "tickets/:ticket?/quick_create_view/:quick_create_view?",
-            "sort": 81,
+            "sort": 82,
             "description": ""
             ,"apis": [
                 {
@@ -2113,7 +1682,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-ticket_tree_exp_view",
             "router_path": "tickets/:ticket?/un_plan_grid_view/:un_plan_grid_view?",
-            "sort": 82,
+            "sort": 83,
             "description": ""
             ,"apis": [
                 {
@@ -2130,7 +1699,7 @@
             "component_type": "DEREDIRECTVIEW",
             "parent_id": "ibizplm-plmweb-ticket_un_plan_grid_view",
             "router_path": "tickets/:ticket?/redirectview/:redirectview?",
-            "sort": 83,
+            "sort": 84,
             "description": ""
         }
 ,
@@ -2141,7 +1710,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-ticket_tree_exp_view",
             "router_path": "tickets/:ticket?/progress_grid_view/:progress_grid_view?",
-            "sort": 84,
+            "sort": 85,
             "description": ""
             ,"apis": [
                 {
@@ -2158,7 +1727,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-ticket_tree_exp_view",
             "router_path": "tickets/:ticket?/my_assignee_grid_view/:my_assignee_grid_view?",
-            "sort": 85,
+            "sort": 86,
             "description": ""
             ,"apis": [
                 {
@@ -2175,7 +1744,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-ticket_tree_exp_view",
             "router_path": "tickets/:ticket?/submit_grid_view/:submit_grid_view?",
-            "sort": 86,
+            "sort": 87,
             "description": ""
             ,"apis": [
                 {
@@ -2192,7 +1761,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-ticket_tree_exp_view",
             "router_path": "tickets/:ticket?/archived_grid_view/:archived_grid_view?",
-            "sort": 87,
+            "sort": 88,
             "description": ""
             ,"apis": [
                 {
@@ -2209,7 +1778,7 @@
             "component_type": "DETREEEXPVIEW",
             "parent_id": "ibizplm-plmweb-product_main_view",
             "router_path": "customers/:customer?/tree_exp_view/:tree_exp_view?",
-            "sort": 88,
+            "sort": 89,
             "description": ""
         }
 ,
@@ -2220,7 +1789,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-customer_tree_exp_view",
             "router_path": "customers/:customer?/all_grid_view/:all_grid_view?",
-            "sort": 89,
+            "sort": 90,
             "description": ""
             ,"apis": [
                 {
@@ -2237,7 +1806,7 @@
             "component_type": "DEOPTVIEW",
             "parent_id": "ibizplm-plmweb-customer_all_grid_view",
             "router_path": "customers/:customer?/quick_create_view/:quick_create_view?",
-            "sort": 90,
+            "sort": 91,
             "description": ""
             ,"apis": [
                 {
@@ -2254,7 +1823,7 @@
             "component_type": "DEWIZARDVIEW",
             "parent_id": "ibizplm-plmweb-product_all_grid_view",
             "router_path": "products/:product?/create_wizard_view/:create_wizard_view?",
-            "sort": 91,
+            "sort": 92,
             "description": ""
         }
 ,
@@ -2265,7 +1834,7 @@
             "component_type": "DEINDEXVIEW",
             "parent_id": "ibizplm-plmweb-product_all_grid_view",
             "router_path": "products/:product?/index_view/:index_view?",
-            "sort": 92,
+            "sort": 93,
             "description": ""
             ,"apis": [
                 {
@@ -2282,7 +1851,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-product_tree_exp_view",
             "router_path": "products/:product?/org_grid_view/:org_grid_view?",
-            "sort": 93,
+            "sort": 94,
             "description": ""
             ,"apis": [
                 {
@@ -2299,7 +1868,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-product_tree_exp_view",
             "router_path": "products/:product?/team_grid_view/:team_grid_view?",
-            "sort": 94,
+            "sort": 95,
             "description": ""
             ,"apis": [
                 {
@@ -2316,7 +1885,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-product_tree_exp_view",
             "router_path": "products/:product?/is_archived_grid_view/:is_archived_grid_view?",
-            "sort": 95,
+            "sort": 96,
             "description": ""
             ,"apis": [
                 {
@@ -2333,7 +1902,7 @@
             "component_type": "DEEDITVIEW",
             "parent_id": "ibizplm-plmweb-product_tree_exp_view",
             "router_path": "products/:product?/editview/:editview?",
-            "sort": 96,
+            "sort": 97,
             "description": ""
             ,"apis": [
                 {
@@ -2350,7 +1919,18 @@
             "component_type": "DETREEEXPVIEW",
             "parent_id": "",
             "router_path": "libraries/:library?/tree_exp_view/:tree_exp_view?",
-            "sort": 97,
+            "sort": 98,
+            "description": ""
+        }
+,
+        {
+            "id": "ibizplm-plmweb-library_filter_tab_exp_view",
+            "code_name": "filter_tab_exp_view",
+            "display_name": "测试库 - filter_tab_exp_view",
+            "component_type": "DETABEXPVIEW",
+            "parent_id": "ibizplm-plmweb-library_tree_exp_view",
+            "router_path": "libraries/:library?/filter_tab_exp_view/:filter_tab_exp_view?",
+            "sort": 99,
             "description": ""
         }
 ,
@@ -2361,7 +1941,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-library_tree_exp_view",
             "router_path": "libraries/:library?/all_grid_view/:all_grid_view?",
-            "sort": 98,
+            "sort": 100,
             "description": ""
             ,"apis": [
                 {
@@ -2378,7 +1958,7 @@
             "component_type": "DEWIZARDVIEW",
             "parent_id": "ibizplm-plmweb-library_all_grid_view",
             "router_path": "libraries/:library?/create_wizard_view/:create_wizard_view?",
-            "sort": 99,
+            "sort": 101,
             "description": ""
         }
 ,
@@ -2389,7 +1969,7 @@
             "component_type": "DEINDEXVIEW",
             "parent_id": "ibizplm-plmweb-library_all_grid_view",
             "router_path": "libraries/:library?/index_view/:index_view?",
-            "sort": 100,
+            "sort": 102,
             "description": ""
             ,"apis": [
                 {
@@ -2406,7 +1986,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-library_tree_exp_view",
             "router_path": "libraries/:library?/is_archived_grid_view/:is_archived_grid_view?",
-            "sort": 101,
+            "sort": 103,
             "description": ""
             ,"apis": [
                 {
@@ -2423,7 +2003,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-library_tree_exp_view",
             "router_path": "libraries/:library?/org_grid_view/:org_grid_view?",
-            "sort": 102,
+            "sort": 104,
             "description": ""
             ,"apis": [
                 {
@@ -2440,7 +2020,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-library_tree_exp_view",
             "router_path": "libraries/:library?/team_grid_view/:team_grid_view?",
-            "sort": 103,
+            "sort": 105,
             "description": ""
             ,"apis": [
                 {
@@ -2457,7 +2037,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-library_tree_exp_view",
             "router_path": "test_plans/:test_plan?/my_assignee_grid_view/:my_assignee_grid_view?",
-            "sort": 104,
+            "sort": 106,
             "description": ""
             ,"apis": [
                 {
@@ -2474,7 +2054,7 @@
             "component_type": "DEOPTVIEW",
             "parent_id": "ibizplm-plmweb-test_plan_my_assignee_grid_view",
             "router_path": "test_plans/:test_plan?/update_option_view/:update_option_view?",
-            "sort": 105,
+            "sort": 107,
             "description": ""
             ,"apis": [
                 {
@@ -2491,7 +2071,7 @@
             "component_type": "DEREDIRECTVIEW",
             "parent_id": "ibizplm-plmweb-test_plan_my_assignee_grid_view",
             "router_path": "test_plans/:test_plan?/redirectview/:redirectview?",
-            "sort": 106,
+            "sort": 108,
             "description": ""
         }
 ,
@@ -2502,7 +2082,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-library_tree_exp_view",
             "router_path": "test_plans/:test_plan?/my_part_grid_view/:my_part_grid_view?",
-            "sort": 107,
+            "sort": 109,
             "description": ""
             ,"apis": [
                 {
@@ -2519,7 +2099,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-library_tree_exp_view",
             "router_path": "test_plans/:test_plan?/in_progress_grid_view/:in_progress_grid_view?",
-            "sort": 108,
+            "sort": 110,
             "description": ""
             ,"apis": [
                 {
@@ -2536,7 +2116,7 @@
             "component_type": "DETREEEXPVIEW",
             "parent_id": "",
             "router_path": "projects/:project?/tree_exp_view/:tree_exp_view?",
-            "sort": 109,
+            "sort": 111,
             "description": ""
         }
 ,
@@ -2547,7 +2127,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-project_tree_exp_view",
             "router_path": "projects/:project?/all_grid_view/:all_grid_view?",
-            "sort": 110,
+            "sort": 112,
             "description": ""
             ,"apis": [
                 {
@@ -2564,7 +2144,7 @@
             "component_type": "DEOPTVIEW",
             "parent_id": "ibizplm-plmweb-project_all_grid_view",
             "router_path": "projects/:project?/quick_create_view/:quick_create_view?",
-            "sort": 111,
+            "sort": 113,
             "description": ""
             ,"apis": [
                 {
@@ -2581,7 +2161,7 @@
             "component_type": "DEWIZARDVIEW",
             "parent_id": "ibizplm-plmweb-project_all_grid_view",
             "router_path": "projects/:project?/create_wizard_view/:create_wizard_view?",
-            "sort": 112,
+            "sort": 114,
             "description": ""
         }
 ,
@@ -2592,7 +2172,7 @@
             "component_type": "DEREDIRECTVIEW",
             "parent_id": "ibizplm-plmweb-project_all_grid_view",
             "router_path": "projects/:project?/redirectview/:redirectview?",
-            "sort": 113,
+            "sort": 115,
             "description": ""
         }
 ,
@@ -2603,7 +2183,7 @@
             "component_type": "DEINDEXVIEW",
             "parent_id": "ibizplm-plmweb-project_redirect_view",
             "router_path": "projects/:project?/scrum_index_view/:scrum_index_view?",
-            "sort": 114,
+            "sort": 116,
             "description": ""
             ,"apis": [
                 {
@@ -2620,7 +2200,7 @@
             "component_type": "DEINDEXVIEW",
             "parent_id": "ibizplm-plmweb-project_redirect_view",
             "router_path": "projects/:project?/kanban_index_view/:kanban_index_view?",
-            "sort": 115,
+            "sort": 117,
             "description": ""
             ,"apis": [
                 {
@@ -2637,7 +2217,7 @@
             "component_type": "DEINDEXVIEW",
             "parent_id": "ibizplm-plmweb-project_redirect_view",
             "router_path": "projects/:project?/waterfall_index_view/:waterfall_index_view?",
-            "sort": 116,
+            "sort": 118,
             "description": ""
             ,"apis": [
                 {
@@ -2654,7 +2234,7 @@
             "component_type": "DEEDITVIEW",
             "parent_id": "ibizplm-plmweb-project_redirect_view",
             "router_path": "projects/:project?/editview/:editview?",
-            "sort": 117,
+            "sort": 119,
             "description": ""
             ,"apis": [
                 {
@@ -2667,11 +2247,11 @@
         {
             "id": "ibizplm-plmweb-work_item_filter_grid_view",
             "code_name": "filter_grid_view",
-            "display_name": "查询结果 - filter_grid_view",
+            "display_name": "工作项 - filter_grid_view",
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-project_tree_exp_view",
             "router_path": "work_items/:work_item?/filter_grid_view/:filter_grid_view?",
-            "sort": 118,
+            "sort": 120,
             "description": ""
             ,"apis": [
                 {
@@ -2688,7 +2268,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-project_tree_exp_view",
             "router_path": "projects/:project?/is_archived_grid_view/:is_archived_grid_view?",
-            "sort": 119,
+            "sort": 121,
             "description": ""
             ,"apis": [
                 {
@@ -2705,7 +2285,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-project_tree_exp_view",
             "router_path": "projects/:project?/org_grid_view/:org_grid_view?",
-            "sort": 120,
+            "sort": 122,
             "description": ""
             ,"apis": [
                 {
@@ -2722,7 +2302,7 @@
             "component_type": "DETABEXPVIEW",
             "parent_id": "ibizplm-plmweb-project_org_grid_view",
             "router_path": "projects/:project?/scrum_main_view/:scrum_main_view?",
-            "sort": 121,
+            "sort": 123,
             "description": ""
         }
 ,
@@ -2733,7 +2313,7 @@
             "component_type": "DEPORTALVIEW",
             "parent_id": "ibizplm-plmweb-project_scrum_main_view",
             "router_path": "projects/:project?/over_view/:over_view?",
-            "sort": 122,
+            "sort": 124,
             "description": ""
         }
 ,
@@ -2744,7 +2324,7 @@
             "component_type": "DEGANTTVIEW",
             "parent_id": "ibizplm-plmweb-project_scrum_main_view",
             "router_path": "work_items/:work_item?/gantt_view/:gantt_view?",
-            "sort": 123,
+            "sort": 125,
             "description": ""
         }
 ,
@@ -2755,7 +2335,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-project_scrum_main_view",
             "router_path": "work_items/:work_item?/all_scrum_grid_view/:all_scrum_grid_view?",
-            "sort": 124,
+            "sort": 126,
             "description": ""
             ,"apis": [
                 {
@@ -2772,7 +2352,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-project_scrum_main_view",
             "router_path": "work_items/:work_item?/scrum_bug_grid_view/:scrum_bug_grid_view?",
-            "sort": 125,
+            "sort": 127,
             "description": ""
             ,"apis": [
                 {
@@ -2789,7 +2369,7 @@
             "component_type": "DEOPTVIEW",
             "parent_id": "ibizplm-plmweb-work_item_scrum_bug_grid_view",
             "router_path": "work_items/:work_item?/quick_create_bug_view/:quick_create_bug_view?",
-            "sort": 126,
+            "sort": 128,
             "description": ""
             ,"apis": [
                 {
@@ -2806,7 +2386,7 @@
             "component_type": "DETREEEXPVIEW",
             "parent_id": "ibizplm-plmweb-project_scrum_main_view",
             "router_path": "sprints/:sprint?/tree_exp_view/:tree_exp_view?",
-            "sort": 127,
+            "sort": 129,
             "description": ""
         }
 ,
@@ -2817,7 +2397,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-sprint_tree_exp_view",
             "router_path": "sprints/:sprint?/all_grid_view/:all_grid_view?",
-            "sort": 128,
+            "sort": 130,
             "description": ""
             ,"apis": [
                 {
@@ -2834,7 +2414,7 @@
             "component_type": "DETABEXPVIEW",
             "parent_id": "ibizplm-plmweb-sprint_all_grid_view",
             "router_path": "sprints/:sprint?/main_view/:main_view?",
-            "sort": 129,
+            "sort": 131,
             "description": ""
         }
 ,
@@ -2845,7 +2425,7 @@
             "component_type": "DEPORTALVIEW",
             "parent_id": "ibizplm-plmweb-sprint_main_view",
             "router_path": "sprints/:sprint?/overview_dashboard_view/:overview_dashboard_view?",
-            "sort": 130,
+            "sort": 132,
             "description": ""
         }
 ,
@@ -2856,7 +2436,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-sprint_main_view",
             "router_path": "work_items/:work_item?/sprint_grid_view/:sprint_grid_view?",
-            "sort": 131,
+            "sort": 133,
             "description": ""
             ,"apis": [
                 {
@@ -2873,7 +2453,7 @@
             "component_type": "DEOPTVIEW",
             "parent_id": "ibizplm-plmweb-sprint_all_grid_view",
             "router_path": "sprints/:sprint?/quick_create_view/:quick_create_view?",
-            "sort": 132,
+            "sort": 134,
             "description": ""
             ,"apis": [
                 {
@@ -2890,7 +2470,7 @@
             "component_type": "DETREEEXPVIEW",
             "parent_id": "ibizplm-plmweb-project_scrum_main_view",
             "router_path": "test_plans/:test_plan?/project_tree_exp_view/:project_tree_exp_view?",
-            "sort": 133,
+            "sort": 135,
             "description": ""
         }
 ,
@@ -2901,7 +2481,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-test_plan_project_tree_exp_view",
             "router_path": "test_plans/:test_plan?/project_grid_view/:project_grid_view?",
-            "sort": 134,
+            "sort": 136,
             "description": ""
             ,"apis": [
                 {
@@ -2918,7 +2498,7 @@
             "component_type": "DETABEXPVIEW",
             "parent_id": "ibizplm-plmweb-test_plan_project_grid_view",
             "router_path": "test_plans/:test_plan?/main_view/:main_view?",
-            "sort": 135,
+            "sort": 137,
             "description": ""
         }
 ,
@@ -2929,7 +2509,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-project_tree_exp_view",
             "router_path": "portfolios/:portfolio?/project_grid_view/:project_grid_view?",
-            "sort": 136,
+            "sort": 138,
             "description": ""
             ,"apis": [
                 {
@@ -2946,7 +2526,7 @@
             "component_type": "DEWIZARDVIEW",
             "parent_id": "ibizplm-plmweb-portfolio_project_grid_view",
             "router_path": "portfolios/:portfolio?/project_create_wizard_view/:project_create_wizard_view?",
-            "sort": 137,
+            "sort": 139,
             "description": ""
         }
 ,
@@ -2957,7 +2537,7 @@
             "component_type": "DEINDEXVIEW",
             "parent_id": "ibizplm-plmweb-portfolio_project_grid_view",
             "router_path": "portfolios/:portfolio?/project_index_view/:project_index_view?",
-            "sort": 138,
+            "sort": 140,
             "description": ""
             ,"apis": [
                 {
@@ -2974,7 +2554,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-project_tree_exp_view",
             "router_path": "projects/:project?/team_grid_view/:team_grid_view?",
-            "sort": 139,
+            "sort": 141,
             "description": ""
             ,"apis": [
                 {
@@ -2991,7 +2571,7 @@
             "component_type": "DEEDITVIEW",
             "parent_id": "ibizplm-plmweb-project_tree_exp_view",
             "router_path": "portfolios/:portfolio?/project_show_view/:project_show_view?",
-            "sort": 140,
+            "sort": 142,
             "description": ""
             ,"apis": [
                 {
@@ -3008,7 +2588,7 @@
             "component_type": "DETABEXPVIEW",
             "parent_id": "",
             "router_path": "workspaces/:workspace?/tab_exp_view/:tab_exp_view?",
-            "sort": 141,
+            "sort": 143,
             "description": ""
         }
 ,
@@ -3019,8 +2599,63 @@
             "component_type": "DETREEEXPVIEW",
             "parent_id": "",
             "router_path": "spaces/:space?/tree_exp_view/:tree_exp_view?",
-            "sort": 142,
+            "sort": 144,
             "description": ""
+        }
+,
+        {
+            "id": "ibizplm-plmweb-article_page_filter_grid_view",
+            "code_name": "filter_grid_view",
+            "display_name": "页面 - filter_grid_view",
+            "component_type": "DEGRIDVIEW",
+            "parent_id": "ibizplm-plmweb-space_tree_exp_view",
+            "router_path": "article_pages/:article_page?/filter_grid_view/:filter_grid_view?",
+            "sort": 145,
+            "description": ""
+            ,"apis": [
+                {
+                "component_id": "ibizplm-plmweb-article_page_filter_grid_view",
+                "api_operation_id": "ibizplm-ArticlePage-fetch_my_filter"
+                }
+            ]
+        }
+,
+        {
+            "id": "ibizplm-plmweb-article_page_model_show_view",
+            "code_name": "model_show_view",
+            "display_name": "页面 - model_show_view",
+            "component_type": "DEEDITVIEW",
+            "parent_id": "ibizplm-plmweb-article_page_filter_grid_view",
+            "router_path": "article_pages/:article_page?/model_show_view/:model_show_view?",
+            "sort": 146,
+            "description": ""
+            ,"apis": [
+                {
+                "component_id": "ibizplm-plmweb-article_page_model_show_view",
+                "api_operation_id": "ibizplm-ArticlePage-Get"
+                }
+                ,{
+                "component_id": "ibizplm-plmweb-article_page_model_show_view",
+                "api_operation_id": "ibizplm-ArticlePage-fetch_default"
+                }
+            ]
+        }
+,
+        {
+            "id": "ibizplm-plmweb-article_page_edit_view",
+            "code_name": "EditView",
+            "display_name": "页面 - EditView",
+            "component_type": "DEEDITVIEW",
+            "parent_id": "ibizplm-plmweb-article_page_filter_grid_view",
+            "router_path": "article_pages/:article_page?/editview/:editview?",
+            "sort": 147,
+            "description": ""
+            ,"apis": [
+                {
+                "component_id": "ibizplm-plmweb-article_page_edit_view",
+                "api_operation_id": "ibizplm-ArticlePage-Get"
+                }
+            ]
         }
 ,
         {
@@ -3030,7 +2665,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-space_tree_exp_view",
             "router_path": "spaces/:space?/category_grid_view/:category_grid_view?",
-            "sort": 143,
+            "sort": 148,
             "description": ""
             ,"apis": [
                 {
@@ -3047,7 +2682,7 @@
             "component_type": "DEINDEXVIEW",
             "parent_id": "ibizplm-plmweb-space_category_grid_view",
             "router_path": "spaces/:space?/index_view/:index_view?",
-            "sort": 144,
+            "sort": 149,
             "description": ""
             ,"apis": [
                 {
@@ -3064,7 +2699,7 @@
             "component_type": "DEWIZARDVIEW",
             "parent_id": "ibizplm-plmweb-space_category_grid_view",
             "router_path": "spaces/:space?/create_wizard_view/:create_wizard_view?",
-            "sort": 145,
+            "sort": 150,
             "description": ""
         }
 ,
@@ -3075,7 +2710,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-space_tree_exp_view",
             "router_path": "spaces/:space?/is_archived_grid_view/:is_archived_grid_view?",
-            "sort": 146,
+            "sort": 151,
             "description": ""
             ,"apis": [
                 {
@@ -3092,7 +2727,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-space_tree_exp_view",
             "router_path": "spaces/:space?/all_grid_view/:all_grid_view?",
-            "sort": 147,
+            "sort": 152,
             "description": ""
             ,"apis": [
                 {
@@ -3109,7 +2744,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-space_tree_exp_view",
             "router_path": "spaces/:space?/org_grid_view/:org_grid_view?",
-            "sort": 148,
+            "sort": 153,
             "description": ""
             ,"apis": [
                 {
@@ -3126,7 +2761,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-space_tree_exp_view",
             "router_path": "spaces/:space?/team_grid_view/:team_grid_view?",
-            "sort": 149,
+            "sort": 154,
             "description": ""
             ,"apis": [
                 {
@@ -3143,7 +2778,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-space_tree_exp_view",
             "router_path": "spaces/:space?/person_grid_view/:person_grid_view?",
-            "sort": 150,
+            "sort": 155,
             "description": ""
             ,"apis": [
                 {
@@ -3160,7 +2795,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-space_tree_exp_view",
             "router_path": "recents/:recent?/recent_page_grid_view/:recent_page_grid_view?",
-            "sort": 151,
+            "sort": 156,
             "description": ""
             ,"apis": [
                 {
@@ -3177,7 +2812,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-space_tree_exp_view",
             "router_path": "article_pages/:article_page?/shared_with_me_grid_view/:shared_with_me_grid_view?",
-            "sort": 152,
+            "sort": 157,
             "description": ""
             ,"apis": [
                 {
@@ -3194,7 +2829,7 @@
             "component_type": "DEEDITVIEW",
             "parent_id": "ibizplm-plmweb-article_page_shared_with_me_grid_view",
             "router_path": "article_pages/:article_page?/shared_with_me_view/:shared_with_me_view?",
-            "sort": 153,
+            "sort": 158,
             "description": ""
             ,"apis": [
                 {
@@ -3204,23 +2839,6 @@
                 ,{
                 "component_id": "ibizplm-plmweb-article_page_shared_with_me_view",
                 "api_operation_id": "ibizplm-ArticlePage-fetch_default"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-article_page_edit_view",
-            "code_name": "EditView",
-            "display_name": "页面 - EditView",
-            "component_type": "DEEDITVIEW",
-            "parent_id": "ibizplm-plmweb-article_page_shared_with_me_grid_view",
-            "router_path": "article_pages/:article_page?/editview/:editview?",
-            "sort": 154,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-article_page_edit_view",
-                "api_operation_id": "ibizplm-ArticlePage-Get"
                 }
             ]
         }
@@ -3232,33 +2850,12 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-space_tree_exp_view",
             "router_path": "article_pages/:article_page?/my_favorite_page_grid_view/:my_favorite_page_grid_view?",
-            "sort": 155,
+            "sort": 159,
             "description": ""
             ,"apis": [
                 {
                 "component_id": "ibizplm-plmweb-article_page_my_favorite_page_grid_view",
                 "api_operation_id": "ibizplm-ArticlePage-fetch_my_favorite_page"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-article_page_model_show_view",
-            "code_name": "model_show_view",
-            "display_name": "页面 - model_show_view",
-            "component_type": "DEEDITVIEW",
-            "parent_id": "ibizplm-plmweb-article_page_my_favorite_page_grid_view",
-            "router_path": "article_pages/:article_page?/model_show_view/:model_show_view?",
-            "sort": 156,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-article_page_model_show_view",
-                "api_operation_id": "ibizplm-ArticlePage-Get"
-                }
-                ,{
-                "component_id": "ibizplm-plmweb-article_page_model_show_view",
-                "api_operation_id": "ibizplm-ArticlePage-fetch_default"
                 }
             ]
         }
@@ -3270,7 +2867,7 @@
             "component_type": "DETREEEXPVIEW",
             "parent_id": "",
             "router_path": "insight_views/:insight_view?/tree_exp_view/:tree_exp_view?",
-            "sort": 157,
+            "sort": 160,
             "description": ""
         }
 ,
@@ -3281,7 +2878,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-insight_view_tree_exp_view",
             "router_path": "insight_views/:insight_view?/all_grid_view/:all_grid_view?",
-            "sort": 158,
+            "sort": 161,
             "description": ""
             ,"apis": [
                 {
@@ -3298,7 +2895,7 @@
             "component_type": "DEINDEXVIEW",
             "parent_id": "ibizplm-plmweb-insight_view_all_grid_view",
             "router_path": "insight_views/:insight_view?/index_view/:index_view?",
-            "sort": 159,
+            "sort": 162,
             "description": ""
             ,"apis": [
                 {
@@ -3315,7 +2912,7 @@
             "component_type": "DEEDITVIEW",
             "parent_id": "ibizplm-plmweb-insight_view_all_grid_view",
             "router_path": "insight_views/:insight_view?/editview/:editview?",
-            "sort": 160,
+            "sort": 163,
             "description": ""
             ,"apis": [
                 {
@@ -3332,7 +2929,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-insight_view_tree_exp_view",
             "router_path": "insight_views/:insight_view?/org_grid_view/:org_grid_view?",
-            "sort": 161,
+            "sort": 164,
             "description": ""
             ,"apis": [
                 {
@@ -3349,7 +2946,7 @@
             "component_type": "DEREDIRECTVIEW",
             "parent_id": "ibizplm-plmweb-insight_view_org_grid_view",
             "router_path": "insight_views/:insight_view?/redirectview/:redirectview?",
-            "sort": 162,
+            "sort": 165,
             "description": ""
         }
 ,
@@ -3360,7 +2957,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-insight_view_tree_exp_view",
             "router_path": "insight_views/:insight_view?/team_grid_view/:team_grid_view?",
-            "sort": 163,
+            "sort": 166,
             "description": ""
             ,"apis": [
                 {
@@ -3377,7 +2974,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-insight_view_tree_exp_view",
             "router_path": "insight_views/:insight_view?/person_grid_view/:person_grid_view?",
-            "sort": 164,
+            "sort": 167,
             "description": ""
             ,"apis": [
                 {
@@ -3394,18 +2991,18 @@
             "component_type": "DETABEXPVIEW",
             "parent_id": "",
             "router_path": "discuss_topics/:discuss_topic?/tab_exp_view/:tab_exp_view?",
-            "sort": 165,
+            "sort": 168,
             "description": ""
         }
 ,
         {
             "id": "ibizplm-plmweb-search_hub_tab_search_view",
             "code_name": "tab_search_view",
-            "display_name": "高级搜索",
+            "display_name": "应用搜索匹配的菜单项（勿删）",
             "component_type": "DETABSEARCHVIEW",
             "parent_id": "",
             "router_path": "search_hubs/:search_hub?/tab_search_view/:tab_search_view?",
-            "sort": 166,
+            "sort": 169,
             "description": ""
         }
 ,
@@ -3416,7 +3013,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-search_hub_tab_search_view",
             "router_path": "work_items/:work_item?/advanced_search_grid_view/:advanced_search_grid_view?",
-            "sort": 167,
+            "sort": 170,
             "description": ""
             ,"apis": [
                 {
@@ -3433,7 +3030,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-search_hub_tab_search_view",
             "router_path": "ideas/:idea?/advanced_search_grid_view/:advanced_search_grid_view?",
-            "sort": 168,
+            "sort": 171,
             "description": ""
             ,"apis": [
                 {
@@ -3450,7 +3047,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-search_hub_tab_search_view",
             "router_path": "tickets/:ticket?/advanced_search_grid_view/:advanced_search_grid_view?",
-            "sort": 169,
+            "sort": 172,
             "description": ""
             ,"apis": [
                 {
@@ -3467,7 +3064,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-search_hub_tab_search_view",
             "router_path": "article_pages/:article_page?/advanced_search_grid_view/:advanced_search_grid_view?",
-            "sort": 170,
+            "sort": 173,
             "description": ""
             ,"apis": [
                 {
@@ -3484,7 +3081,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-search_hub_tab_search_view",
             "router_path": "test_cases/:test_case?/advanced_search_grid_view/:advanced_search_grid_view?",
-            "sort": 171,
+            "sort": 174,
             "description": ""
             ,"apis": [
                 {
@@ -3501,7 +3098,7 @@
             "component_type": "DEEDITVIEW",
             "parent_id": "ibizplm-plmweb-test_case_advanced_search_grid_view",
             "router_path": "test_cases/:test_case?/editview/:editview?",
-            "sort": 172,
+            "sort": 175,
             "description": ""
             ,"apis": [
                 {
@@ -3518,7 +3115,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-search_hub_tab_search_view",
             "router_path": "search_attachments/:search_attachment?/advanced_search_grid_view/:advanced_search_grid_view?",
-            "sort": 173,
+            "sort": 176,
             "description": ""
             ,"apis": [
                 {
@@ -3535,7 +3132,7 @@
             "component_type": "DEEDITVIEW",
             "parent_id": "ibizplm-plmweb-search_attachment_advanced_search_grid_view",
             "router_path": "search_attachments/:search_attachment?/editview/:editview?",
-            "sort": 174,
+            "sort": 177,
             "description": ""
             ,"apis": [
                 {
@@ -3552,7 +3149,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-search_hub_tab_search_view",
             "router_path": "search_comments/:search_comment?/advanced_search_grid_view/:advanced_search_grid_view?",
-            "sort": 175,
+            "sort": 178,
             "description": ""
             ,"apis": [
                 {
@@ -3569,7 +3166,7 @@
             "component_type": "DEEDITVIEW",
             "parent_id": "ibizplm-plmweb-search_comment_advanced_search_grid_view",
             "router_path": "search_comments/:search_comment?/editview/:editview?",
-            "sort": 176,
+            "sort": 179,
             "description": ""
             ,"apis": [
                 {
@@ -3586,7 +3183,7 @@
             "component_type": "DETABEXPVIEW",
             "parent_id": "",
             "router_path": "managements/:management?/tab_exp_view/:tab_exp_view?",
-            "sort": 177,
+            "sort": 180,
             "description": ""
         }
 ,
@@ -3597,7 +3194,7 @@
             "component_type": "DETREEEXPVIEW",
             "parent_id": "",
             "router_path": "article_pages/:article_page?/help_tree_exp_view/:help_tree_exp_view?",
-            "sort": 178,
+            "sort": 181,
             "description": ""
         }
 ,
@@ -3608,7 +3205,7 @@
             "component_type": "DEEDITVIEW",
             "parent_id": "ibizplm-plmweb-article_page_help_tree_exp_view",
             "router_path": "article_pages/:article_page?/help_view/:help_view?",
-            "sort": 179,
+            "sort": 182,
             "description": ""
             ,"apis": [
                 {
@@ -3625,7 +3222,7 @@
             "component_type": "DECUSTOMVIEW",
             "parent_id": "",
             "router_path": "workspaces/:workspace?/quick_create_view/:quick_create_view?",
-            "sort": 180,
+            "sort": 183,
             "description": ""
         }
 ,
@@ -3636,7 +3233,7 @@
             "component_type": "DETABEXPVIEW",
             "parent_id": "",
             "router_path": "workloads/:workload?/management_view/:management_view?",
-            "sort": 181,
+            "sort": 184,
             "description": ""
         }
 ,
@@ -3647,7 +3244,7 @@
             "component_type": "DETABSEARCHVIEW",
             "parent_id": "ibizplm-plmweb-workload_management_view",
             "router_path": "workloads/:workload?/management_tab_search_view/:management_tab_search_view?",
-            "sort": 182,
+            "sort": 185,
             "description": ""
         }
 ,
@@ -3658,7 +3255,7 @@
             "component_type": "DEGRIDVIEW",
             "parent_id": "ibizplm-plmweb-workload_management_view",
             "router_path": "workloads/:workload?/log_management_view/:log_management_view?",
-            "sort": 183,
+            "sort": 186,
             "description": ""
             ,"apis": [
                 {
@@ -3675,7 +3272,7 @@
             "component_type": "DEGANTTVIEW",
             "parent_id": "",
             "router_path": "work_items/:work_item?/resource_gantt_view/:resource_gantt_view?",
-            "sort": 184,
+            "sort": 187,
             "description": ""
         }
 ,
@@ -3686,825 +3283,8 @@
             "component_type": "DETABEXPVIEW",
             "parent_id": "",
             "router_path": "psdelogics/:psdelogic?/tab_exp_view/:tab_exp_view?",
-            "sort": 185,
-            "description": ""
-        }
-,
-        {
-            "id": "ibizplm-plmweb-psde_logic_test_auto_rules_grid_view",
-            "code_name": "Test_AutoRulesGridView",
-            "display_name": "自动规则测试",
-            "component_type": "DEGRIDVIEW",
-            "parent_id": "",
-            "router_path": "psdelogics/:psdelogic?/test_autorulesgridview/:test_autorulesgridview?",
-            "sort": 186,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-psde_logic_test_auto_rules_grid_view",
-                "api_operation_id": "ibizplm-PsdeLogic-FetchDefault"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-psde_logic_test_auto_rules_edit_view",
-            "code_name": "Test_AutoRulesEditView",
-            "display_name": "实体处理逻辑 - Test_AutoRulesEditView",
-            "component_type": "DEEDITVIEW",
-            "parent_id": "ibizplm-plmweb-psde_logic_test_auto_rules_grid_view",
-            "router_path": "psdelogics/:psdelogic?/test_autoruleseditview/:test_autoruleseditview?",
-            "sort": 187,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-psde_logic_test_auto_rules_edit_view",
-                "api_operation_id": "ibizplm-PsdeLogic-Get"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-library_grid_view",
-            "code_name": "GridView",
-            "display_name": "测试库配置测试",
-            "component_type": "DEGRIDVIEW",
-            "parent_id": "",
-            "router_path": "libraries/:library?/gridview/:gridview?",
             "sort": 188,
             "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-library_grid_view",
-                "api_operation_id": "ibizplm-Library-fetch_reader"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-library_setting_view",
-            "code_name": "setting_view",
-            "display_name": "测试库配置 - setting_view",
-            "component_type": "DEEDITVIEW2",
-            "parent_id": "ibizplm-plmweb-library_grid_view",
-            "router_path": "libraries/:library?/setting_view/:setting_view?",
-            "sort": 189,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-library_setting_view",
-                "api_operation_id": "ibizplm-Library-Get"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-work_item_srcum_tree_grid_view",
-            "code_name": "srcum_tree_grid_view",
-            "display_name": "树表测试",
-            "component_type": "DETREEGRIDVIEW",
-            "parent_id": "",
-            "router_path": "work_items/:work_item?/srcum_tree_grid_view/:srcum_tree_grid_view?",
-            "sort": 190,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-work_item_srcum_tree_grid_view",
-                "api_operation_id": "ibizplm-WorkItem-fetch_tree_or_tile"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-work_item_test_follow_edit_view",
-            "code_name": "test_follow_edit_view",
-            "display_name": "工作项 - test_follow_edit_view",
-            "component_type": "DEEDITVIEW",
-            "parent_id": "ibizplm-plmweb-work_item_srcum_tree_grid_view",
-            "router_path": "work_items/:work_item?/test_follow_edit_view/:test_follow_edit_view?",
-            "sort": 191,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-work_item_test_follow_edit_view",
-                "api_operation_id": "ibizplm-WorkItem-Get"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-work_item_work_item_testdyna",
-            "code_name": "work_item_testdyna",
-            "display_name": "测试动态视图",
-            "component_type": "DEGRIDVIEW",
-            "parent_id": "",
-            "router_path": "work_items/:work_item?/work_item_testdyna/:work_item_testdyna?",
-            "sort": 192,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-work_item_work_item_testdyna",
-                "api_operation_id": "ibizplm-WorkItem-fetch_common"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-test_plan_report_custom_view",
-            "code_name": "report_custom_view",
-            "display_name": "测试报告（测试）",
-            "component_type": "DECUSTOMVIEW",
-            "parent_id": "",
-            "router_path": "test_plans/:test_plan?/report_custom_view/:report_custom_view?",
-            "sort": 193,
-            "description": ""
-        }
-,
-        {
-            "id": "ibizplm-plmweb-product_grid_view",
-            "code_name": "GridView",
-            "display_name": "产品配置测试",
-            "component_type": "DEGRIDVIEW",
-            "parent_id": "",
-            "router_path": "products/:product?/gridview/:gridview?",
-            "sort": 194,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-product_grid_view",
-                "api_operation_id": "ibizplm-Product-fetch_default"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-ticket_test_all_grid_view",
-            "code_name": "test_all_grid_view",
-            "display_name": "工单测试",
-            "component_type": "DEGRIDVIEW",
-            "parent_id": "",
-            "router_path": "tickets/:ticket?/test_all_grid_view/:test_all_grid_view?",
-            "sort": 195,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-ticket_test_all_grid_view",
-                "api_operation_id": "ibizplm-Ticket-fetch_common"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-ticket_test_main_view",
-            "code_name": "test_main_view",
-            "display_name": "工单 - test_main_view",
-            "component_type": "DEEDITVIEW",
-            "parent_id": "ibizplm-plmweb-ticket_test_all_grid_view",
-            "router_path": "tickets/:ticket?/test_main_view/:test_main_view?",
-            "sort": 196,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-ticket_test_main_view",
-                "api_operation_id": "ibizplm-Ticket-Get"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-notify_setting_config_view",
-            "code_name": "config_view",
-            "display_name": "通知列表（测试）",
-            "component_type": "DEEDITVIEW",
-            "parent_id": "",
-            "router_path": "notify_settings/:notify_setting?/config_view/:config_view?",
-            "sort": 197,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-notify_setting_config_view",
-                "api_operation_id": "ibizplm-NotifySetting-Get"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-article_page_log_list_view",
-            "code_name": "LogListView",
-            "display_name": "日志列表",
-            "component_type": "DELISTVIEW",
-            "parent_id": "",
-            "router_path": "article_pages/:article_page?/loglistview/:loglistview?",
-            "sort": 198,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-article_page_log_list_view",
-                "api_operation_id": "ibizplm-ArticlePage-fetch_normal"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-article_page_re_show_view",
-            "code_name": "re_show_view",
-            "display_name": "页面 - re_show_view",
-            "component_type": "DEEDITVIEW",
-            "parent_id": "ibizplm-plmweb-article_page_log_list_view",
-            "router_path": "article_pages/:article_page?/re_show_view/:re_show_view?",
-            "sort": 199,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-article_page_re_show_view",
-                "api_operation_id": "ibizplm-ArticlePage-Get"
-                }
-                ,{
-                "component_id": "ibizplm-plmweb-article_page_re_show_view",
-                "api_operation_id": "ibizplm-ArticlePage-fetch_default"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-space_grid_view",
-            "code_name": "GridView",
-            "display_name": "测试功能_空间配置",
-            "component_type": "DEGRIDVIEW",
-            "parent_id": "",
-            "router_path": "spaces/:space?/gridview/:gridview?",
-            "sort": 200,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-space_grid_view",
-                "api_operation_id": "ibizplm-Space-fetch_default"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-space_setting_view",
-            "code_name": "setting_view",
-            "display_name": "空间配置 - setting_view",
-            "component_type": "DEEDITVIEW2",
-            "parent_id": "ibizplm-plmweb-space_grid_view",
-            "router_path": "spaces/:space?/setting_view/:setting_view?",
-            "sort": 201,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-space_setting_view",
-                "api_operation_id": "ibizplm-Space-Get"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-space_edit_view",
-            "code_name": "EditView",
-            "display_name": "空间 - EditView",
-            "component_type": "DEEDITVIEW",
-            "parent_id": "ibizplm-plmweb-space_grid_view",
-            "router_path": "spaces/:space?/editview/:editview?",
-            "sort": 202,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-space_edit_view",
-                "api_operation_id": "ibizplm-Space-Get"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-project_grid_view",
-            "code_name": "GridView",
-            "display_name": "测试功能_项目配置",
-            "component_type": "DEGRIDVIEW",
-            "parent_id": "",
-            "router_path": "projects/:project?/gridview/:gridview?",
-            "sort": 203,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-project_grid_view",
-                "api_operation_id": "ibizplm-Project-fetch_default"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-project_setting_view",
-            "code_name": "setting_view",
-            "display_name": "项目配置 - setting_view",
-            "component_type": "DEEDITVIEW2",
-            "parent_id": "ibizplm-plmweb-project_grid_view",
-            "router_path": "projects/:project?/setting_view/:setting_view?",
-            "sort": 204,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-project_setting_view",
-                "api_operation_id": "ibizplm-Project-Get"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-portfolio_grid_view",
-            "code_name": "GridView",
-            "display_name": "测试功能_项目集配置",
-            "component_type": "DEGRIDVIEW",
-            "parent_id": "",
-            "router_path": "portfolios/:portfolio?/gridview/:gridview?",
-            "sort": 205,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-portfolio_grid_view",
-                "api_operation_id": "ibizplm-Portfolio-fetch_default"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-portfolio_setting_view",
-            "code_name": "setting_view",
-            "display_name": "项目集配置 - setting_view",
-            "component_type": "DEEDITVIEW2",
-            "parent_id": "ibizplm-plmweb-portfolio_grid_view",
-            "router_path": "portfolios/:portfolio?/setting_view/:setting_view?",
-            "sort": 206,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-portfolio_setting_view",
-                "api_operation_id": "ibizplm-Portfolio-Get"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-article_page_test_edit_view",
-            "code_name": "TestEditView",
-            "display_name": "测试协同编辑",
-            "component_type": "DEEDITVIEW",
-            "parent_id": "",
-            "router_path": "article_pages/:article_page?/testeditview/:testeditview?",
-            "sort": 207,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-article_page_test_edit_view",
-                "api_operation_id": "ibizplm-ArticlePage-Get"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-recent_his_tab_exp_view",
-            "code_name": "his_tab_exp_view",
-            "display_name": "测试功能_工作台",
-            "component_type": "DETABEXPVIEW",
-            "parent_id": "",
-            "router_path": "recents/:recent?/his_tab_exp_view/:his_tab_exp_view?",
-            "sort": 208,
-            "description": ""
-        }
-,
-        {
-            "id": "ibizplm-plmweb-dictionary_data_grid_view",
-            "code_name": "GridView",
-            "display_name": "数据字典",
-            "component_type": "DEGRIDVIEW",
-            "parent_id": "",
-            "router_path": "dictionary_data/:dictionary_data?/gridview/:gridview?",
-            "sort": 209,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-dictionary_data_grid_view",
-                "api_operation_id": "ibizplm-DictionaryData-fetch_default"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-dictionary_data_edit_view",
-            "code_name": "EditView",
-            "display_name": "数据字典 - EditView",
-            "component_type": "DEEDITVIEW",
-            "parent_id": "ibizplm-plmweb-dictionary_data_grid_view",
-            "router_path": "dictionary_data/:dictionary_data?/editview/:editview?",
-            "sort": 210,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-dictionary_data_edit_view",
-                "api_operation_id": "ibizplm-DictionaryData-Get"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-parameter_grid_view",
-            "code_name": "GridView",
-            "display_name": "测试功能_系统参数",
-            "component_type": "DEGRIDVIEW",
-            "parent_id": "",
-            "router_path": "parameters/:parameter?/gridview/:gridview?",
-            "sort": 211,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-parameter_grid_view",
-                "api_operation_id": "ibizplm-Parameter-fetch_default"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-parameter_edit_view",
-            "code_name": "EditView",
-            "display_name": "系统参数 - EditView",
-            "component_type": "DEEDITVIEW",
-            "parent_id": "ibizplm-plmweb-parameter_grid_view",
-            "router_path": "parameters/:parameter?/editview/:editview?",
-            "sort": 212,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-parameter_edit_view",
-                "api_operation_id": "ibizplm-Parameter-Get"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-activity_test_all_list_view",
-            "code_name": "test_all_list_view",
-            "display_name": "活动列表测试",
-            "component_type": "DELISTVIEW",
-            "parent_id": "",
-            "router_path": "activities/:activity?/test_all_list_view/:test_all_list_view?",
-            "sort": 213,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-activity_test_all_list_view",
-                "api_operation_id": "ibizplm-Activity-fetch_default"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-login_log_active_members",
-            "code_name": "active_members",
-            "display_name": "测试日志图表",
-            "component_type": "DECUSTOMVIEW",
-            "parent_id": "",
-            "router_path": "login_logs/:login_log?/active_members/:active_members?",
-            "sort": 214,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-login_log_active_members",
-                "api_operation_id": "ibizplm-LoginLog-fetch_calc_chart_datas"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-addon_setting_grid_view",
-            "code_name": "setting_grid_view",
-            "display_name": "测试组件配置",
-            "component_type": "DEGRIDVIEW",
-            "parent_id": "",
-            "router_path": "addons/:addon?/setting_grid_view/:setting_grid_view?",
-            "sort": 215,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-addon_setting_grid_view",
-                "api_operation_id": "ibizplm-Addon-fetch_default"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-addon_resource_project_capacity_view",
-            "code_name": "project_capacity_view",
-            "display_name": "容量设置",
-            "component_type": "DEOPTVIEW",
-            "parent_id": "",
-            "router_path": "addon_resources/:addon_resource?/project_capacity_view/:project_capacity_view?",
-            "sort": 216,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-addon_resource_project_capacity_view",
-                "api_operation_id": "ibizplm-AddonResource-Get"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-work_item_project_resource_gantt_view",
-            "code_name": "project_resource_gantt_view",
-            "display_name": "资源分配甘特视图",
-            "component_type": "DEGANTTVIEW",
-            "parent_id": "",
-            "router_path": "work_items/:work_item?/project_resource_gantt_view/:project_resource_gantt_view?",
-            "sort": 217,
-            "description": ""
-        }
-,
-        {
-            "id": "ibizplm-plmweb-psde_logic_logic_design_custom",
-            "code_name": "LogicDesign_Custom",
-            "display_name": "逻辑设计自定义",
-            "component_type": "DECUSTOMVIEW",
-            "parent_id": "",
-            "router_path": "psdelogics/:psdelogic?/logicdesign_custom/:logicdesign_custom?",
-            "sort": 218,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-psde_logic_logic_design_custom",
-                "api_operation_id": "ibizplm-PsdeLogic-Get"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-psde_logic_node_design_view_create_work_item",
-            "code_name": "DesignView_create_work_item",
-            "display_name": "建立工作项 - DesignView_create_work_item",
-            "component_type": "DEEDITVIEW",
-            "parent_id": "ibizplm-plmweb-psde_logic_logic_design_custom",
-            "router_path": "psdelogicnodes/:psdelogicnode?/designview_create_work_item/:designview_create_work_item?",
-            "sort": 219,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-psde_logic_node_design_view_create_work_item",
-                "api_operation_id": "ibizplm-PsdeLogicNode-Get"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-psdelogicnodedesignview_begin",
-            "code_name": "DesignView_Begin",
-            "display_name": "开始节点(设计) - DesignView_Begin",
-            "component_type": "DEEDITVIEW",
-            "parent_id": "ibizplm-plmweb-psde_logic_logic_design_custom",
-            "router_path": "psdelogicnodes/:psdelogicnode?/designview_begin/:designview_begin?",
-            "sort": 220,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-psdelogicnodedesignview_begin",
-                "api_operation_id": "ibizplm-PsdeLogicNode-Get"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-psde_logic_design_edit_view",
-            "code_name": "DesignEditView",
-            "display_name": "实体处理逻辑 - DesignEditView",
-            "component_type": "DEEDITVIEW",
-            "parent_id": "ibizplm-plmweb-psde_logic_logic_design_custom",
-            "router_path": "psdelogics/:psdelogic?/designeditview/:designeditview?",
-            "sort": 221,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-psde_logic_design_edit_view",
-                "api_operation_id": "ibizplm-PsdeLogic-Get"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-work_item_test_report_view",
-            "code_name": "test_report_view",
-            "display_name": "智能报表",
-            "component_type": "DEREPORTVIEW",
-            "parent_id": "",
-            "router_path": "work_items/:work_item?/test_report_view/:test_report_view?",
-            "sort": 222,
-            "description": ""
-        }
-,
-        {
-            "id": "ibizplm-plmweb-sprint_alteration_log_grid_view",
-            "code_name": "log_grid_view",
-            "display_name": "迭代变更记录",
-            "component_type": "DEGRIDVIEW",
-            "parent_id": "",
-            "router_path": "sprint_alterations/:sprint_alteration?/log_grid_view/:log_grid_view?",
-            "sort": 223,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-sprint_alteration_log_grid_view",
-                "api_operation_id": "ibizplm-SprintAlteration-fetch_default"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-sprint_alteration_edit_view",
-            "code_name": "EditView",
-            "display_name": "迭代变更 - EditView",
-            "component_type": "DEEDITVIEW",
-            "parent_id": "ibizplm-plmweb-sprint_alteration_log_grid_view",
-            "router_path": "sprint_alterations/:sprint_alteration?/editview/:editview?",
-            "sort": 224,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-sprint_alteration_edit_view",
-                "api_operation_id": "ibizplm-SprintAlteration-Get"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-sprint_alteration_redirect_view",
-            "code_name": "RedirectView",
-            "display_name": "迭代变更 - RedirectView",
-            "component_type": "DEREDIRECTVIEW",
-            "parent_id": "ibizplm-plmweb-sprint_alteration_log_grid_view",
-            "router_path": "sprint_alterations/:sprint_alteration?/redirectview/:redirectview?",
-            "sort": 225,
-            "description": ""
-        }
-,
-        {
-            "id": "ibizplm-plmweb-dyna_dashboard_test_dashboard_view",
-            "code_name": "test_dashboard_view",
-            "display_name": "报表门户部件",
-            "component_type": "DEPORTALVIEW",
-            "parent_id": "",
-            "router_path": "dyna_dashboards/:dyna_dashboard?/test_dashboard_view/:test_dashboard_view?",
-            "sort": 226,
-            "description": ""
-        }
-,
-        {
-            "id": "ibizplm-plmweb-psdems_logic_ms_logic_design_custom",
-            "code_name": "MSLogicDesign_Custom",
-            "display_name": "测试主状态逻辑",
-            "component_type": "DECUSTOMVIEW",
-            "parent_id": "",
-            "router_path": "psdemslogics/:psdemslogic?/mslogicdesign_custom/:mslogicdesign_custom?",
-            "sort": 227,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-psdems_logic_ms_logic_design_custom",
-                "api_operation_id": "ibizplm-PsdemsLogic-Get"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-psdemslogicdesigneditview_ms",
-            "code_name": "DesignEditView_MS",
-            "display_name": "实体主状态迁移逻辑 - DesignEditView_MS",
-            "component_type": "DEEDITVIEW",
-            "parent_id": "ibizplm-plmweb-psdems_logic_ms_logic_design_custom",
-            "router_path": "psdemslogics/:psdemslogic?/designeditview_ms/:designeditview_ms?",
-            "sort": 228,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-psdemslogicdesigneditview_ms",
-                "api_operation_id": "ibizplm-PsdemsLogic-Get"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-psdelogicnodedesignview_msnode2",
-            "code_name": "DesignView_MSNode2",
-            "display_name": "主状态逻辑节点(设计) - DesignView_MSNode2",
-            "component_type": "DEEDITVIEW",
-            "parent_id": "ibizplm-plmweb-psdems_logic_ms_logic_design_custom",
-            "router_path": "psdelogicnodes/:psdelogicnode?/designview_msnode2/:designview_msnode2?",
-            "sort": 229,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-psdelogicnodedesignview_msnode2",
-                "api_operation_id": "ibizplm-PsdeLogicNode-Get"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-psdelogiclinkdesigneditview_ms",
-            "code_name": "DesignEditView_MS",
-            "display_name": "主状态处理逻辑节点连接(设计) - DesignEditView_MS",
-            "component_type": "DEEDITVIEW",
-            "parent_id": "ibizplm-plmweb-psdems_logic_ms_logic_design_custom",
-            "router_path": "psdelogiclinks/:psdelogiclink?/designeditview_ms/:designeditview_ms?",
-            "sort": 230,
-            "description": ""
-        }
-,
-        {
-            "id": "ibizplm-plmweb-ps_core_prd_func_tree_exp_view",
-            "code_name": "TreeExpView",
-            "display_name": "应用管理",
-            "component_type": "DETREEEXPVIEW",
-            "parent_id": "",
-            "router_path": "pscoreprdfuncs/:pscoreprdfunc?/treeexpview/:treeexpview?",
-            "sort": 231,
-            "description": ""
-        }
-,
-        {
-            "id": "ibizplm-plmweb-ps_core_prd_func_installed_grid_view",
-            "code_name": "InstalledGridView",
-            "display_name": "核心产品功能 - InstalledGridView",
-            "component_type": "DEGRIDVIEW",
-            "parent_id": "ibizplm-plmweb-ps_core_prd_func_tree_exp_view",
-            "router_path": "pscoreprdfuncs/:pscoreprdfunc?/installedgridview/:installedgridview?",
-            "sort": 232,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-ps_core_prd_func_installed_grid_view",
-                "api_operation_id": "ibizplm-PsCorePrdFunc-FetchDefault"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-ps_core_prd_func_edit_view",
-            "code_name": "EditView",
-            "display_name": "核心产品功能 - EditView",
-            "component_type": "DEEDITVIEW",
-            "parent_id": "ibizplm-plmweb-ps_core_prd_func_installed_grid_view",
-            "router_path": "pscoreprdfuncs/:pscoreprdfunc?/editview/:editview?",
-            "sort": 233,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-ps_core_prd_func_edit_view",
-                "api_operation_id": "ibizplm-PsCorePrdFunc-Get"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-ps_core_prd_func_redirect_view",
-            "code_name": "RedirectView",
-            "display_name": "核心产品功能 - RedirectView",
-            "component_type": "DEREDIRECTVIEW",
-            "parent_id": "ibizplm-plmweb-ps_core_prd_func_installed_grid_view",
-            "router_path": "pscoreprdfuncs/:pscoreprdfunc?/redirectview/:redirectview?",
-            "sort": 234,
-            "description": ""
-        }
-,
-        {
-            "id": "ibizplm-plmweb-ps_core_prd_market_application_view",
-            "code_name": "MarketApplicationView",
-            "display_name": "核心产品 - MarketApplicationView",
-            "component_type": "DEDATAVIEW",
-            "parent_id": "ibizplm-plmweb-ps_core_prd_func_tree_exp_view",
-            "router_path": "pscoreprds/:pscoreprd?/marketapplicationview/:marketapplicationview?",
-            "sort": 235,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-ps_core_prd_market_application_view",
-                "api_operation_id": "ibizplm-PsCorePrd-FetchDefault"
-                }
-            ]
-        }
-,
-        {
-            "id": "ibizplm-plmweb-ps_core_prd_info_view",
-            "code_name": "InfoView",
-            "display_name": "应用 - InfoView",
-            "component_type": "DEEDITVIEW",
-            "parent_id": "ibizplm-plmweb-ps_core_prd_market_application_view",
-            "router_path": "pscoreprds/:pscoreprd?/infoview/:infoview?",
-            "sort": 236,
-            "description": ""
-            ,"apis": [
-                {
-                "component_id": "ibizplm-plmweb-ps_core_prd_info_view",
-                "api_operation_id": "ibizplm-PsCorePrd-Get"
-                }
-            ]
         }
 ,
         
@@ -7450,6 +6230,28 @@
 , 
                         {
                             "id":"ibizplm-Ticket-fetch_my_created-createman",
+                            "code_name": "createman",
+                            "display_name": "创建人"
+                        }
+                    ]
+                }
+                , {
+                    "id": "ibizplm-Ticket-fetch_my_filter",
+                    "code_name": "fetch_my_filter",
+                    "api_id": "ibizplm-Ticket",
+                    "path": "tickets/fetch_my_filter",
+                    "notes": "查询fetch_my_filter",
+                    "description": "",
+                    "scopes": [
+                        
+                        {
+                            "id":"ibizplm-Ticket-fetch_my_filter-all",
+                            "code_name": "all",
+                            "display_name": "全部数据"
+                        }
+, 
+                        {
+                            "id":"ibizplm-Ticket-fetch_my_filter-createman",
                             "code_name": "createman",
                             "display_name": "创建人"
                         }
@@ -14812,6 +13614,28 @@
                     ]
                 }
                 , {
+                    "id": "ibizplm-TestCase-fetch_my_filter",
+                    "code_name": "fetch_my_filter",
+                    "api_id": "ibizplm-TestCase",
+                    "path": "test_cases/fetch_my_filter",
+                    "notes": "查询fetch_my_filter",
+                    "description": "",
+                    "scopes": [
+                        
+                        {
+                            "id":"ibizplm-TestCase-fetch_my_filter-all",
+                            "code_name": "all",
+                            "display_name": "全部数据"
+                        }
+, 
+                        {
+                            "id":"ibizplm-TestCase-fetch_my_filter-createman",
+                            "code_name": "createman",
+                            "display_name": "创建人"
+                        }
+                    ]
+                }
+                , {
                     "id": "ibizplm-TestCase-fetch_normal",
                     "code_name": "fetch_normal",
                     "api_id": "ibizplm-TestCase",
@@ -16830,6 +15654,28 @@
                     ]
                 }
                 , {
+                    "id": "ibizplm-ArticlePage-move_order",
+                    "code_name": "move_order",
+                    "api_id": "ibizplm-ArticlePage",
+                    "path": "article_pages/{id}/move_order",
+                    "notes": "move_order",
+                    "description": "",
+                    "scopes": [
+                        
+                        {
+                            "id":"ibizplm-ArticlePage-move_order-all",
+                            "code_name": "all",
+                            "display_name": "全部数据"
+                        }
+, 
+                        {
+                            "id":"ibizplm-ArticlePage-move_order-createman",
+                            "code_name": "createman",
+                            "display_name": "创建人"
+                        }
+                    ]
+                }
+                , {
                     "id": "ibizplm-ArticlePage-move_page",
                     "code_name": "move_page",
                     "api_id": "ibizplm-ArticlePage",
@@ -17336,6 +16182,28 @@
                     ]
                 }
                 , {
+                    "id": "ibizplm-ArticlePage-fetch_my_filter",
+                    "code_name": "fetch_my_filter",
+                    "api_id": "ibizplm-ArticlePage",
+                    "path": "article_pages/fetch_my_filter",
+                    "notes": "查询fetch_my_filter",
+                    "description": "",
+                    "scopes": [
+                        
+                        {
+                            "id":"ibizplm-ArticlePage-fetch_my_filter-all",
+                            "code_name": "all",
+                            "display_name": "全部数据"
+                        }
+, 
+                        {
+                            "id":"ibizplm-ArticlePage-fetch_my_filter-createman",
+                            "code_name": "createman",
+                            "display_name": "创建人"
+                        }
+                    ]
+                }
+                , {
                     "id": "ibizplm-ArticlePage-fetch_no_parent_page",
                     "code_name": "fetch_no_parent_page",
                     "api_id": "ibizplm-ArticlePage",
@@ -17396,6 +16264,28 @@
 , 
                         {
                             "id":"ibizplm-ArticlePage-fetch_only_page-createman",
+                            "code_name": "createman",
+                            "display_name": "创建人"
+                        }
+                    ]
+                }
+                , {
+                    "id": "ibizplm-ArticlePage-fetch_reader",
+                    "code_name": "fetch_reader",
+                    "api_id": "ibizplm-ArticlePage",
+                    "path": "article_pages/fetch_reader",
+                    "notes": "查询fetch_reader",
+                    "description": "",
+                    "scopes": [
+                        
+                        {
+                            "id":"ibizplm-ArticlePage-fetch_reader-all",
+                            "code_name": "all",
+                            "display_name": "全部数据"
+                        }
+, 
+                        {
+                            "id":"ibizplm-ArticlePage-fetch_reader-createman",
                             "code_name": "createman",
                             "display_name": "创建人"
                         }
@@ -18196,6 +17086,28 @@
 , 
                         {
                             "id":"ibizplm-WorkItemState-Save-createman",
+                            "code_name": "createman",
+                            "display_name": "创建人"
+                        }
+                    ]
+                }
+                , {
+                    "id": "ibizplm-WorkItemState-fetch_bi_form",
+                    "code_name": "fetch_bi_form",
+                    "api_id": "ibizplm-WorkItemState",
+                    "path": "work_item_states/fetch_bi_form",
+                    "notes": "查询fetch_bi_form",
+                    "description": "",
+                    "scopes": [
+                        
+                        {
+                            "id":"ibizplm-WorkItemState-fetch_bi_form-all",
+                            "code_name": "all",
+                            "display_name": "全部数据"
+                        }
+, 
+                        {
+                            "id":"ibizplm-WorkItemState-fetch_bi_form-createman",
                             "code_name": "createman",
                             "display_name": "创建人"
                         }
@@ -21174,6 +20086,28 @@
                     ]
                 }
                 , {
+                    "id": "ibizplm-Idea-move_order",
+                    "code_name": "move_order",
+                    "api_id": "ibizplm-Idea",
+                    "path": "ideas/{id}/move_order",
+                    "notes": "move_order",
+                    "description": "",
+                    "scopes": [
+                        
+                        {
+                            "id":"ibizplm-Idea-move_order-all",
+                            "code_name": "all",
+                            "display_name": "全部数据"
+                        }
+, 
+                        {
+                            "id":"ibizplm-Idea-move_order-createman",
+                            "code_name": "createman",
+                            "display_name": "创建人"
+                        }
+                    ]
+                }
+                , {
                     "id": "ibizplm-Idea-others_relation_idea",
                     "code_name": "others_relation_idea",
                     "api_id": "ibizplm-Idea",
@@ -21482,6 +20416,28 @@
                     ]
                 }
                 , {
+                    "id": "ibizplm-Idea-fetch_move_idea",
+                    "code_name": "fetch_move_idea",
+                    "api_id": "ibizplm-Idea",
+                    "path": "ideas/fetch_move_idea",
+                    "notes": "查询fetch_move_idea",
+                    "description": "",
+                    "scopes": [
+                        
+                        {
+                            "id":"ibizplm-Idea-fetch_move_idea-all",
+                            "code_name": "all",
+                            "display_name": "全部数据"
+                        }
+, 
+                        {
+                            "id":"ibizplm-Idea-fetch_move_idea-createman",
+                            "code_name": "createman",
+                            "display_name": "创建人"
+                        }
+                    ]
+                }
+                , {
                     "id": "ibizplm-Idea-fetch_my_assign",
                     "code_name": "fetch_my_assign",
                     "api_id": "ibizplm-Idea",
@@ -21564,6 +20520,28 @@
 , 
                         {
                             "id":"ibizplm-Idea-fetch_my_created-createman",
+                            "code_name": "createman",
+                            "display_name": "创建人"
+                        }
+                    ]
+                }
+                , {
+                    "id": "ibizplm-Idea-fetch_my_filter",
+                    "code_name": "fetch_my_filter",
+                    "api_id": "ibizplm-Idea",
+                    "path": "ideas/fetch_my_filter",
+                    "notes": "查询fetch_my_filter",
+                    "description": "",
+                    "scopes": [
+                        
+                        {
+                            "id":"ibizplm-Idea-fetch_my_filter-all",
+                            "code_name": "all",
+                            "display_name": "全部数据"
+                        }
+, 
+                        {
+                            "id":"ibizplm-Idea-fetch_my_filter-createman",
                             "code_name": "createman",
                             "display_name": "创建人"
                         }
@@ -25584,6 +24562,28 @@
                     ]
                 }
                 , {
+                    "id": "ibizplm-Run-fetch_my_filter",
+                    "code_name": "fetch_my_filter",
+                    "api_id": "ibizplm-Run",
+                    "path": "runs/fetch_my_filter",
+                    "notes": "查询fetch_my_filter",
+                    "description": "",
+                    "scopes": [
+                        
+                        {
+                            "id":"ibizplm-Run-fetch_my_filter-all",
+                            "code_name": "all",
+                            "display_name": "全部数据"
+                        }
+, 
+                        {
+                            "id":"ibizplm-Run-fetch_my_filter-createman",
+                            "code_name": "createman",
+                            "display_name": "创建人"
+                        }
+                    ]
+                }
+                , {
                     "id": "ibizplm-Run-fetch_normal",
                     "code_name": "fetch_normal",
                     "api_id": "ibizplm-Run",
@@ -26192,6 +25192,28 @@
                     ]
                 }
                 , {
+                    "id": "ibizplm-Category-move_order",
+                    "code_name": "move_order",
+                    "api_id": "ibizplm-Category",
+                    "path": "categories/{id}/move_order",
+                    "notes": "move_order",
+                    "description": "",
+                    "scopes": [
+                        
+                        {
+                            "id":"ibizplm-Category-move_order-all",
+                            "code_name": "all",
+                            "display_name": "全部数据"
+                        }
+, 
+                        {
+                            "id":"ibizplm-Category-move_order-createman",
+                            "code_name": "createman",
+                            "display_name": "创建人"
+                        }
+                    ]
+                }
+                , {
                     "id": "ibizplm-Category-Save",
                     "code_name": "Save",
                     "api_id": "ibizplm-Category",
@@ -26296,6 +25318,28 @@
 , 
                         {
                             "id":"ibizplm-Category-fetch_default-createman",
+                            "code_name": "createman",
+                            "display_name": "创建人"
+                        }
+                    ]
+                }
+                , {
+                    "id": "ibizplm-Category-fetch_no_parent",
+                    "code_name": "fetch_no_parent",
+                    "api_id": "ibizplm-Category",
+                    "path": "categories/fetch_no_parent",
+                    "notes": "查询fetch_no_parent",
+                    "description": "",
+                    "scopes": [
+                        
+                        {
+                            "id":"ibizplm-Category-fetch_no_parent-all",
+                            "code_name": "all",
+                            "display_name": "全部数据"
+                        }
+, 
+                        {
+                            "id":"ibizplm-Category-fetch_no_parent-createman",
                             "code_name": "createman",
                             "display_name": "创建人"
                         }
@@ -29180,6 +28224,28 @@
                     ]
                 }
                 , {
+                    "id": "ibizplm-Section-move_order",
+                    "code_name": "move_order",
+                    "api_id": "ibizplm-Section",
+                    "path": "sections/{id}/move_order",
+                    "notes": "move_order",
+                    "description": "",
+                    "scopes": [
+                        
+                        {
+                            "id":"ibizplm-Section-move_order-all",
+                            "code_name": "all",
+                            "display_name": "全部数据"
+                        }
+, 
+                        {
+                            "id":"ibizplm-Section-move_order-createman",
+                            "code_name": "createman",
+                            "display_name": "创建人"
+                        }
+                    ]
+                }
+                , {
                     "id": "ibizplm-Section-Save",
                     "code_name": "Save",
                     "api_id": "ibizplm-Section",
@@ -30576,6 +29642,28 @@
 , 
                         {
                             "id":"ibizplm-TestSuite-GetDraft-createman",
+                            "code_name": "createman",
+                            "display_name": "创建人"
+                        }
+                    ]
+                }
+                , {
+                    "id": "ibizplm-TestSuite-move_order",
+                    "code_name": "move_order",
+                    "api_id": "ibizplm-TestSuite",
+                    "path": "test_suites/{id}/move_order",
+                    "notes": "move_order",
+                    "description": "",
+                    "scopes": [
+                        
+                        {
+                            "id":"ibizplm-TestSuite-move_order-all",
+                            "code_name": "all",
+                            "display_name": "全部数据"
+                        }
+, 
+                        {
+                            "id":"ibizplm-TestSuite-move_order-createman",
                             "code_name": "createman",
                             "display_name": "创建人"
                         }
@@ -35370,6 +34458,28 @@
                     ]
                 }
                 , {
+                    "id": "ibizplm-Group-move_order",
+                    "code_name": "move_order",
+                    "api_id": "ibizplm-Group",
+                    "path": "groups/{id}/move_order",
+                    "notes": "move_order",
+                    "description": "",
+                    "scopes": [
+                        
+                        {
+                            "id":"ibizplm-Group-move_order-all",
+                            "code_name": "all",
+                            "display_name": "全部数据"
+                        }
+, 
+                        {
+                            "id":"ibizplm-Group-move_order-createman",
+                            "code_name": "createman",
+                            "display_name": "创建人"
+                        }
+                    ]
+                }
+                , {
                     "id": "ibizplm-Group-Save",
                     "code_name": "Save",
                     "api_id": "ibizplm-Group",
@@ -39486,6 +38596,28 @@
 , 
                         {
                             "id":"ibizplm-WorkItem-delete-createman",
+                            "code_name": "createman",
+                            "display_name": "创建人"
+                        }
+                    ]
+                }
+                , {
+                    "id": "ibizplm-WorkItem-fill_type_of_state",
+                    "code_name": "fill_type_of_state",
+                    "api_id": "ibizplm-WorkItem",
+                    "path": "work_items/fill_type_of_state",
+                    "notes": "fill_type_of_state",
+                    "description": "",
+                    "scopes": [
+                        
+                        {
+                            "id":"ibizplm-WorkItem-fill_type_of_state-all",
+                            "code_name": "all",
+                            "display_name": "全部数据"
+                        }
+, 
+                        {
+                            "id":"ibizplm-WorkItem-fill_type_of_state-createman",
                             "code_name": "createman",
                             "display_name": "创建人"
                         }

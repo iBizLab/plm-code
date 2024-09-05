@@ -56,18 +56,10 @@ public class CustomerSearchContext extends QueryWrapperContext<Customer> {
     /**
      * 类别ISNULL
      */
-    @JsonProperty("n_categorys_isnull")
-    @JSONField(name = "n_categorys_isnull")
+    @JsonProperty("n_categories_isnull")
+    @JSONField(name = "n_categories_isnull")
     @ApiModelProperty("类别ISNULL")
     private String categoriesISNULL;
-
-    /**
-     * 类别LIKE
-     */
-    @JsonProperty("n_categorys_like")
-    @JSONField(name = "n_categorys_like")
-    @ApiModelProperty("类别LIKE")
-    private String categoriesLIKE;
 
     /**
      * 类别LIKE
@@ -75,7 +67,7 @@ public class CustomerSearchContext extends QueryWrapperContext<Customer> {
     @JsonProperty("n_categories_like")
     @JSONField(name = "n_categories_like")
     @ApiModelProperty("类别LIKE")
-    private String categoriesLIKE2;
+    private String categoriesLIKE;
 
     /**
      * 产品名称EQ
@@ -190,21 +182,48 @@ public class CustomerSearchContext extends QueryWrapperContext<Customer> {
     private String createManNOTIN;
 
     /**
+     * 建立时间GTANDEQ
+     */
+    @JsonProperty("n_create_time_gtandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_create_time_gtandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("建立时间GTANDEQ")
+    private Date createTimeGTANDEQ;
+
+    /**
+     * 建立时间LTANDEQ
+     */
+    @JsonProperty("n_create_time_ltandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_create_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("建立时间LTANDEQ")
+    private Date createTimeLTANDEQ;
+
+    /**
+     * 更新时间GTANDEQ
+     */
+    @JsonProperty("n_update_time_gtandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_update_time_gtandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("更新时间GTANDEQ")
+    private Date updateTimeGTANDEQ;
+
+    /**
+     * 更新时间LTANDEQ
+     */
+    @JsonProperty("n_update_time_ltandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_update_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("更新时间LTANDEQ")
+    private Date updateTimeLTANDEQ;
+
+    /**
      * 产品标识EQ
      */
     @JsonProperty("n_product_id_eq")
     @JSONField(name = "n_product_id_eq")
     @ApiModelProperty("产品标识EQ")
     private String productIdEQ;
-
-    /**
-     * 设置类别
-     * @param categoriesLIKE
-     */
-    public void setCategoriesLIKE(String categoriesLIKE) {
-        this.categoriesLIKE = categoriesLIKE;
-        this.categoriesLIKE2 = categoriesLIKE;
-    }
 
     @Override
     public void setContextParentKey(Serializable contextParentKey) {

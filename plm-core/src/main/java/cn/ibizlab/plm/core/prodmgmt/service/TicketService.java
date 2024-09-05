@@ -234,6 +234,16 @@ public interface TicketService extends IService<Ticket> {
     }
 
     /**
+    * fillBiFormDefault
+    * 
+    * @param et
+    * @return
+    */
+    default Ticket fillBiFormDefault(Ticket et) {
+        return et;
+    }
+
+    /**
     * getAttention
     * 
     * @param key
@@ -542,6 +552,22 @@ public interface TicketService extends IService<Ticket> {
     * @return
     */
     List<Ticket> listMyCreated(TicketSearchContext context);
+
+    /**
+    * fetchMyFilter
+    * 
+    * @param context
+    * @return
+    */
+    Page<Ticket> fetchMyFilter(TicketSearchContext context);
+
+    /**
+    * listMyFilter
+    * 
+    * @param context
+    * @return
+    */
+    List<Ticket> listMyFilter(TicketSearchContext context);
 
     /**
     * fetchNormal

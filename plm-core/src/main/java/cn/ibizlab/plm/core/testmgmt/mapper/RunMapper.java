@@ -138,6 +138,25 @@ public interface RunMapper extends BaseMapper<Run> {
     List<Run> listCommentNotifyExecutor(@Param("ctx") RunSearchContext context, @Param("ew") Wrapper<Run> wrapper);
 
     /**
+     * 数据集合my_filter分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Run> searchMyFilter(IPage<Run> page, @Param("ctx") RunSearchContext context, @Param("ew") Wrapper<Run> wrapper);
+    
+    /**
+     * 数据集合my_filter查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Run> listMyFilter(@Param("ctx") RunSearchContext context, @Param("ew") Wrapper<Run> wrapper);
+
+    /**
      * 数据集合normal分页查询
      * 
      * @param page

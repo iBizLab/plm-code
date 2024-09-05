@@ -44,7 +44,7 @@ public class TestSuite extends EntityMP implements Serializable
     * 序号
     */
     @TableField(value = "sequence")
-    @DEField(name = "sequence" , defaultValue = "1")
+    @DEField(name = "sequence" , defaultValue = "1" , preType = DEPredefinedFieldType.ORDERVALUE)
     @JSONField(name = "sequence")
     @JsonProperty("sequence")
     @ApiModelProperty(value = "sequence", notes = "序号")
@@ -192,15 +192,6 @@ public class TestSuite extends EntityMP implements Serializable
     @JSONField(serialize = false)
     @ApiModelProperty(value = "test_suite", notes = "模块")
     private TestSuite testSuite;
-
-    /**
-    * 设置 [序号]
-    */
-    public TestSuite setSequence(BigDecimal sequence) {
-        this.sequence = sequence;
-        this.modify("sequence", sequence);
-        return this;
-    }
 
     /**
     * 设置 [是否叶子节点]

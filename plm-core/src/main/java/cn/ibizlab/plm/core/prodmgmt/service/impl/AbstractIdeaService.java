@@ -328,6 +328,17 @@ public abstract class AbstractIdeaService extends ServiceImpl<IdeaMapper,Idea> i
         return list;
    }
 	
+   public Page<Idea> fetchMoveIdea(IdeaSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Idea> pages=baseMapper.searchMoveIdea(context.getPages(),context,context.getSelectCond());
+        List<Idea> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Idea> listMoveIdea(IdeaSearchContext context) {
+        List<Idea> list = baseMapper.listMoveIdea(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<Idea> fetchMyAssign(IdeaSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("SHOW_IDENTIFIER,DESC");
@@ -383,6 +394,21 @@ public abstract class AbstractIdeaService extends ServiceImpl<IdeaMapper,Idea> i
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("SHOW_IDENTIFIER,DESC");
         List<Idea> list = baseMapper.listMyCreated(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Idea> fetchMyFilter(IdeaSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("CREATE_TIME,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Idea> pages=baseMapper.searchMyFilter(context.getPages(),context,context.getSelectCond());
+        List<Idea> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Idea> listMyFilter(IdeaSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("CREATE_TIME,DESC");
+        List<Idea> list = baseMapper.listMyFilter(context,context.getSelectCond());
         return list;
    }
 	

@@ -1,0 +1,73 @@
+/* stylelint-disable selector-class-pattern */
+@include b(dnd-design-raw-item) {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  min-height: 38px;
+  padding: 0 getCssVar('spacing', 'tight');
+  overflow: auto;
+  font-size: getCssVar('font-size', 'regular');
+  line-height: 1.5;
+  color: getCssVar(color, text, 1);
+
+  @include e(raw) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  @include e(html) {
+    p {
+      margin: 0;
+    }
+  }
+
+  @include e(image) {
+    display: flex;
+    color: #8c8c8c;
+  }
+
+  @include e(video) {
+    display: flex;
+    color: #1890FF;
+  }
+
+  @include e(placeholder) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  @include e(divider) {
+    margin: 0;
+    border-top: 1px solid getCssVar(color, border);
+
+    .el-divider__text {
+      font-size: getCssVar('font-size', 'small');
+      color: getCssVar(color, text, 2);
+      background-color: getCssVar(color, white);
+    }
+  }
+
+  @include e(info) {
+    overflow: hidden;
+    color: getCssVar(color, info);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  @include e(warning) {
+    overflow: hidden;
+    color: getCssVar(color, warning);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  @include e(error) {
+    overflow: hidden;
+    color: getCssVar(color, danger);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+

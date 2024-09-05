@@ -4,6 +4,7 @@
 package cn.ibizlab.plm.core.prodmgmt.domain;
 
 import java.util.*;
+import java.math.BigDecimal;
 import cn.ibizlab.util.domain.IEntity;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.*;
@@ -71,6 +72,16 @@ public class ProductPlan extends EntityMP implements Serializable
     private Date endAt;
 
     /**
+    * 是否叶子节点
+    */
+    @TableField(value = "is_leaf")
+    @DEField(name = "is_leaf" , defaultValue = "1" , dict = "YesNo")
+    @JSONField(name = "is_leaf")
+    @JsonProperty("is_leaf")
+    @ApiModelProperty(value = "is_leaf", notes = "是否叶子节点")
+    private Integer isLeaf;
+
+    /**
     * 类别
     */
     @TableField(value = "categories")
@@ -119,6 +130,16 @@ public class ProductPlan extends EntityMP implements Serializable
     @JsonProperty("assignee_id")
     @ApiModelProperty(value = "assignee_id", notes = "负责人标识")
     private String assigneeId;
+
+    /**
+    * 序号
+    */
+    @TableField(value = "sequence")
+    @DEField(name = "sequence" , preType = DEPredefinedFieldType.ORDERVALUE)
+    @JSONField(name = "sequence")
+    @JsonProperty("sequence")
+    @ApiModelProperty(value = "sequence", notes = "序号")
+    private BigDecimal sequence;
 
     /**
     * 标识
@@ -227,6 +248,15 @@ public class ProductPlan extends EntityMP implements Serializable
     public ProductPlan setEndAt(Date endAt) {
         this.endAt = endAt;
         this.modify("end_at", endAt);
+        return this;
+    }
+
+    /**
+    * 设置 [是否叶子节点]
+    */
+    public ProductPlan setIsLeaf(Integer isLeaf) {
+        this.isLeaf = isLeaf;
+        this.modify("is_leaf", isLeaf);
         return this;
     }
 

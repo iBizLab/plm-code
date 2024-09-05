@@ -103,7 +103,7 @@ public class ArticlePage extends EntityMP implements Serializable
     * 序号
     */
     @TableField(value = "sequence")
-    @DEField(name = "sequence" , defaultValue = "1")
+    @DEField(name = "sequence" , defaultValue = "1" , preType = DEPredefinedFieldType.ORDERVALUE)
     @JSONField(name = "sequence")
     @JsonProperty("sequence")
     @ApiModelProperty(value = "sequence", notes = "序号")
@@ -382,6 +382,16 @@ public class ArticlePage extends EntityMP implements Serializable
     private String chooseVersionName;
 
     /**
+    * 最近创建日期
+    */
+    @TableField(value = "recent_create_days" , exist = false)
+    @DEField(name = "recent_create_days")
+    @JSONField(name = "recent_create_days")
+    @JsonProperty("recent_create_days")
+    @ApiModelProperty(value = "recent_create_days", notes = "最近创建日期")
+    private Integer recentCreateDays;
+
+    /**
     * 标识
     */
     @Id
@@ -546,15 +556,6 @@ public class ArticlePage extends EntityMP implements Serializable
     public ArticlePage setFormatType(String formatType) {
         this.formatType = formatType;
         this.modify("format_type", formatType);
-        return this;
-    }
-
-    /**
-    * 设置 [序号]
-    */
-    public ArticlePage setSequence(BigDecimal sequence) {
-        this.sequence = sequence;
-        this.modify("sequence", sequence);
         return this;
     }
 
@@ -771,6 +772,15 @@ public class ArticlePage extends EntityMP implements Serializable
     public ArticlePage setChooseVersionName(String chooseVersionName) {
         this.chooseVersionName = chooseVersionName;
         this.modify("choose_version_name", chooseVersionName);
+        return this;
+    }
+
+    /**
+    * 设置 [最近创建日期]
+    */
+    public ArticlePage setRecentCreateDays(Integer recentCreateDays) {
+        this.recentCreateDays = recentCreateDays;
+        this.modify("recent_create_days", recentCreateDays);
         return this;
     }
 

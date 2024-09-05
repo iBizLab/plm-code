@@ -55,7 +55,7 @@ public class Category extends EntityMP implements Serializable
     * 序号
     */
     @TableField(value = "sequence")
-    @DEField(name = "sequence" , defaultValue = "1")
+    @DEField(name = "sequence" , defaultValue = "1" , preType = DEPredefinedFieldType.ORDERVALUE)
     @JSONField(name = "sequence")
     @JsonProperty("sequence")
     @ApiModelProperty(value = "sequence", notes = "序号")
@@ -233,15 +233,6 @@ public class Category extends EntityMP implements Serializable
     @JSONField(serialize = false)
     @ApiModelProperty(value = "section", notes = "分组-类别")
     private Section section;
-
-    /**
-    * 设置 [序号]
-    */
-    public Category setSequence(BigDecimal sequence) {
-        this.sequence = sequence;
-        this.modify("sequence", sequence);
-        return this;
-    }
 
     /**
     * 设置 [是否叶子节点]

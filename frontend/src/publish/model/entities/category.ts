@@ -590,6 +590,28 @@ export default {
       id: 'get_draft',
     },
     {
+      codeName: 'move_order',
+      methodType: 'DEACTION',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'category_dto',
+        type: 'DTO',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'category_dto',
+        type: 'DTOS',
+        id: '返回对象',
+      },
+      requestMethod: 'POST',
+      requestParamType: 'ENTITY',
+      requestPath: '/move_order',
+      needResourceKey: true,
+      actionMode: 'MOVEORDER',
+      actionType: 'REMOTE',
+      dataSetType: 'REMOTE',
+      id: 'move_order',
+    },
+    {
       codeName: 'remove',
       methodType: 'DEACTION',
       appDEMethodInput: {
@@ -813,6 +835,28 @@ export default {
       dataSetTag: 'Default',
       dataSetType: 'REMOTE',
       id: 'fetch_default',
+    },
+    {
+      codeName: 'fetch_no_parent',
+      methodType: 'FETCH',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'category_filter_dto',
+        type: 'DTO',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'category_dto',
+        type: 'PAGE',
+        id: '返回对象',
+      },
+      requestMethod: 'POST',
+      requestParamType: 'ENTITY',
+      requestPath: '/fetch_no_parent',
+      actionType: 'REMOTE',
+      dataSetName: 'no_parent',
+      dataSetTag: 'no_parent',
+      dataSetType: 'REMOTE',
+      id: 'fetch_no_parent',
     },
     {
       codeName: 'fetch_no_section',

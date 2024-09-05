@@ -270,6 +270,21 @@ public abstract class AbstractRunService extends ServiceImpl<RunMapper,Run> impl
         return list;
    }
 	
+   public Page<Run> fetchMyFilter(RunSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("CREATE_TIME,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Run> pages=baseMapper.searchMyFilter(context.getPages(),context,context.getSelectCond());
+        List<Run> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Run> listMyFilter(RunSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("CREATE_TIME,DESC");
+        List<Run> list = baseMapper.listMyFilter(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<Run> fetchNormal(RunSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("IDENTIFIER,DESC");

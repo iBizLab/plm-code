@@ -158,6 +158,16 @@ public interface SectionService extends IService<Section> {
     boolean save(List<Section> list);
 
     /**
+    * moveOrder
+    * 
+    * @param et
+    * @return
+    */
+    default List<Section> moveOrder(Section et) {
+        return new ArrayList<>();
+    }
+
+    /**
     * fetchDefault
     * 
     * @param context

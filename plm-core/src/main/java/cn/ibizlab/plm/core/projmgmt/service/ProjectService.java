@@ -325,6 +325,16 @@ public interface ProjectService extends IService<Project> {
     }
 
     /**
+    * fillBiFormDefault
+    * 
+    * @param et
+    * @return
+    */
+    default Project fillBiFormDefault(Project et) {
+        return et;
+    }
+
+    /**
     * getMajorData
     * 
     * @param key

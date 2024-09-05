@@ -470,12 +470,38 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
 	private Date createTimeLTANDEQ;
 
     /**
+     * 更新时间GTANDEQ
+     */
+    @JsonProperty("n_update_time_gtandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_update_time_gtandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "更新时间GTANDEQ", position = 620)
+	private Date updateTimeGTANDEQ;
+
+    /**
+     * 更新时间LTANDEQ
+     */
+    @JsonProperty("n_update_time_ltandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_update_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "更新时间LTANDEQ", position = 621)
+	private Date updateTimeLTANDEQ;
+
+    /**
      * 项目EQ
      */
     @JsonProperty("n_project_id_eq")
     @JSONField(name = "n_project_id_eq")
     @ApiModelProperty(value = "项目EQ", position = 630)
 	private String projectIdEQ;
+
+    /**
+     * 项目IN
+     */
+    @JsonProperty("n_project_id_in")
+    @JSONField(name = "n_project_id_in")
+    @ApiModelProperty(value = "项目IN", position = 631)
+	private String projectIdIN;
 
     /**
      * 工作项类型EQ

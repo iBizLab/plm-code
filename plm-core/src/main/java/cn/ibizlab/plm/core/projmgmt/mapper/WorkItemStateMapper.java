@@ -24,6 +24,25 @@ import com.alibaba.fastjson.JSONObject;
 public interface WorkItemStateMapper extends BaseMapper<WorkItemState> {
 
     /**
+     * 数据集合BI_FORM分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<WorkItemState> searchBiForm(IPage<WorkItemState> page, @Param("ctx") WorkItemStateSearchContext context, @Param("ew") Wrapper<WorkItemState> wrapper);
+    
+    /**
+     * 数据集合BI_FORM查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<WorkItemState> listBiForm(@Param("ctx") WorkItemStateSearchContext context, @Param("ew") Wrapper<WorkItemState> wrapper);
+
+    /**
      * 数据集合Default分页查询
      * 
      * @param page

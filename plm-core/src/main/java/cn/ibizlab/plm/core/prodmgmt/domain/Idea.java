@@ -474,6 +474,26 @@ public class Idea extends EntityMP implements Serializable
     private String attentionsImp;
 
     /**
+    * 最近创建日期
+    */
+    @TableField(value = "recent_create_days" , exist = false)
+    @DEField(name = "recent_create_days")
+    @JSONField(name = "recent_create_days")
+    @JsonProperty("recent_create_days")
+    @ApiModelProperty(value = "recent_create_days", notes = "最近创建日期")
+    private Integer recentCreateDays;
+
+    /**
+    * 序号
+    */
+    @TableField(value = "sequence")
+    @DEField(name = "sequence" , preType = DEPredefinedFieldType.ORDERVALUE)
+    @JSONField(name = "sequence")
+    @JsonProperty("sequence")
+    @ApiModelProperty(value = "sequence", notes = "序号")
+    private BigDecimal sequence;
+
+    /**
     * 标识
     */
     @Id
@@ -972,6 +992,15 @@ public class Idea extends EntityMP implements Serializable
     public Idea setAttentionsImp(String attentionsImp) {
         this.attentionsImp = attentionsImp;
         this.modify("attentions_imp", attentionsImp);
+        return this;
+    }
+
+    /**
+    * 设置 [最近创建日期]
+    */
+    public Idea setRecentCreateDays(Integer recentCreateDays) {
+        this.recentCreateDays = recentCreateDays;
+        this.modify("recent_create_days", recentCreateDays);
         return this;
     }
 

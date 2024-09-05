@@ -128,6 +128,45 @@ public abstract class AbstractGroupResource {
     }
 
     /**
+    * move_order 团队
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<GroupDTO>>>
+    */
+    @ApiOperation(value = "move_order", tags = {"团队" },  notes = "Group-move_order ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Group-move_order-all') or hasPermission(this.groupDtoMapping.toDomain(#dto),'ibizplm-Group-move_order')")
+    @PostMapping("groups/{id}/move_order")
+    public Mono<ResponseEntity<ResponseWrapper<List<GroupDTO>>>>moveOrderById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<GroupDTO> dto) {
+        ResponseWrapper<List<GroupDTO>> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(moveOrderById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(moveOrderById(id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * move_order 团队
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<List<GroupDTO>>
+    */   
+    public List<GroupDTO> moveOrderById
+            (String id, GroupDTO dto) {
+        Group domain = groupDtoMapping.toDomain(dto);
+        domain.setId(id);
+        List<Group> rt = groupService.moveOrder(domain);
+        return groupDtoMapping.toDto(rt);
+    }
+
+    /**
     * 保存Save 团队
     * 
     *

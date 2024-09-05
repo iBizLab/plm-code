@@ -326,6 +326,21 @@ public abstract class AbstractArticlePageService extends ServiceImpl<ArticlePage
         return list;
    }
 	
+   public Page<ArticlePage> fetchMyFilter(ArticlePageSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("CREATE_TIME,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ArticlePage> pages=baseMapper.searchMyFilter(context.getPages(),context,context.getSelectCond());
+        List<ArticlePage> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<ArticlePage> listMyFilter(ArticlePageSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("CREATE_TIME,DESC");
+        List<ArticlePage> list = baseMapper.listMyFilter(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<ArticlePage> fetchNoParentPage(ArticlePageSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<ArticlePage> pages=baseMapper.searchNoParentPage(context.getPages(),context,context.getSelectCond());
         List<ArticlePage> list = pages.getRecords();
@@ -356,6 +371,17 @@ public abstract class AbstractArticlePageService extends ServiceImpl<ArticlePage
 
    public List<ArticlePage> listOnlyPage(ArticlePageSearchContext context) {
         List<ArticlePage> list = baseMapper.listOnlyPage(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<ArticlePage> fetchReader(ArticlePageSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ArticlePage> pages=baseMapper.searchReader(context.getPages(),context,context.getSelectCond());
+        List<ArticlePage> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<ArticlePage> listReader(ArticlePageSearchContext context) {
+        List<ArticlePage> list = baseMapper.listReader(context,context.getSelectCond());
         return list;
    }
 	

@@ -145,6 +145,17 @@ public abstract class AbstractWorkItemStateService extends ServiceImpl<WorkItemS
             return true;
     }
 	
+   public Page<WorkItemState> fetchBiForm(WorkItemStateSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItemState> pages=baseMapper.searchBiForm(context.getPages(),context,context.getSelectCond());
+        List<WorkItemState> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItemState> listBiForm(WorkItemStateSearchContext context) {
+        List<WorkItemState> list = baseMapper.listBiForm(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<WorkItemState> fetchDefault(WorkItemStateSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItemState> pages=baseMapper.searchDefault(context.getPages(),context,context.getSelectCond());
         List<WorkItemState> list = pages.getRecords();

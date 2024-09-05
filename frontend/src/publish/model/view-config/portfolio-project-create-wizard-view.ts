@@ -4,7 +4,7 @@ export default {
   openMode: 'POPUPMODAL',
   viewType: 'DEWIZARDVIEW',
   width: 1024,
-  height: 700,
+  height: 720,
   appDataEntityId: 'plmweb.portfolio',
   redirectView: false,
   modalOption: {},

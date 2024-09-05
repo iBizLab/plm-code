@@ -168,6 +168,22 @@ public interface WorkItemStateService extends IService<WorkItemState> {
     }
 
     /**
+    * fetchBiForm
+    * 类型为已完成或者已关闭的工作项状态
+    * @param context
+    * @return
+    */
+    Page<WorkItemState> fetchBiForm(WorkItemStateSearchContext context);
+
+    /**
+    * listBiForm
+    * 类型为已完成或者已关闭的工作项状态
+    * @param context
+    * @return
+    */
+    List<WorkItemState> listBiForm(WorkItemStateSearchContext context);
+
+    /**
     * fetchDefault
     * 
     * @param context

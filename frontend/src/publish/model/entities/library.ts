@@ -2132,6 +2132,7 @@ export default {
       codeName: 'delete',
       confirmMsg: '确认删除该测试库？',
       fullCodeName: 'library_delete',
+      nextId: 'open_library_exp_view@library',
       appDEMethodId: 'delete',
       refreshMode: 1,
       successMsg: '删除成功',

@@ -16,6 +16,13 @@ export default {
       id: 'engine',
     },
   ],
+  appViewNavParams: [
+    {
+      key: 'id',
+      value: 'project',
+      id: 'id',
+    },
+  ],
   controls: [
     {
       xdataControlName: 'form',

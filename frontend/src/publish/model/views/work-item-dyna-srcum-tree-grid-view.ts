@@ -10,6 +10,14 @@ export default {
   caption: '工作项',
   codeName: 'work_item_dyna_srcum_tree_grid_view',
   appDataEntityId: 'plmweb.work_item',
+  appViewNavContexts: [
+    {
+      key: 'PROJECT_TYPE',
+      value: 'project_type',
+      name: 'PROJECT_TYPE',
+      id: 'project_type',
+    },
+  ],
   appViewNavParams: [
     {
       key: 'srfcurtime',
@@ -234,6 +242,17 @@ export default {
     layoutPanel: true,
     appViewLogics: [
       {
+        eventNames: 'onSelectionChange',
+        logicTrigger: 'CTRLEVENT',
+        logicType: 'APPDEUILOGIC',
+        appDEUILogicId: 'before_state_change',
+        appDataEntityId: 'plmweb.work_item',
+        ctrlName: 'treegrid',
+        builtinLogic: true,
+        name: 'STATE_LOGIC',
+        id: 'state_logic',
+      },
+      {
         logicTrigger: 'CUSTOM',
         logicType: 'APPUILOGIC',
         builtinAppUILogic: {
@@ -329,11 +348,13 @@ export default {
     ],
     appViewRefs: [
       {
-        realOpenMode: 'POPUPMODAL',
-        realTitle: '测试关注编辑视图',
-        refAppViewId: 'plmweb.work_item_test_follow_edit_view',
-        name: 'OPENDATA',
-        id: 'opendata',
+        realTitle: '工作项编辑视图',
+        realTitleLanguageRes: {
+          lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
+        },
+        refAppViewId: 'plmweb.work_item_edit_view',
+        name: 'NEWDATA',
+        id: 'newdata',
       },
       {
         openMode: 'INDEXVIEWTAB_POPUPMODAL',
@@ -365,13 +386,11 @@ export default {
         id: 'editdata',
       },
       {
-        realTitle: '工作项编辑视图',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
-        },
-        refAppViewId: 'plmweb.work_item_edit_view',
-        name: 'NEWDATA',
-        id: 'newdata',
+        realOpenMode: 'POPUPMODAL',
+        realTitle: '测试关注编辑视图',
+        refAppViewId: 'plmweb.work_item_test_follow_edit_view',
+        name: 'OPENDATA',
+        id: 'opendata',
       },
     ],
     controls: [
@@ -529,6 +548,10 @@ export default {
             valid: true,
             caption: '切换显示模式',
             itemType: 'DEUIACTION',
+            sysImage: {
+              cssClass: 'fa fa-th',
+              glyph: 'xf00a@FontAwesome',
+            },
             sysPFPluginId: 'show_mode_toolbar_item',
             tooltip: '切换显示模式',
             showCaption: true,
@@ -805,7 +828,7 @@ export default {
             codeName: 'state',
             columnType: 'DEFGRIDCOLUMN',
             noPrivDisplayMode: 1,
-            width: 150,
+            width: 160,
             widthUnit: 'PX',
             enableSort: true,
             id: 'state',
@@ -1276,6 +1299,22 @@ export default {
             id: 'srfmstag',
           },
         ],
+        degridEditItemUpdates: [
+          {
+            codeName: 'UpdateStateCodeList',
+            degeiupdateDetails: [
+              {
+                id: 'state',
+              },
+            ],
+            scriptCode:
+              "const msg = {\r\n    messageid: 'updatestate',\r\n    messagename: 'command',\r\n    type: 'COMMAND',\r\n    subtype: 'OBJECTUPDATED',\r\n    triggerKey: ctrl.triggerKey,\r\n    data: data || {},\r\n    params: {\r\n        state: data?.state,\r\n        srfcustomtag: data?.srfkey\r\n    }\r\n};\r\nibiz.mc.command.update.next(msg);",
+            customCode: true,
+            showBusyIndicator: true,
+            name: '更新状态代码表',
+            id: 'updatestatecodelist',
+          },
+        ],
         degridEditItems: [
           {
             caption: '标题',
@@ -1298,6 +1337,7 @@ export default {
             codeName: 'state',
             enableCond: 3,
             appDEFieldId: 'state',
+            degridEditItemUpdateId: 'updatestatecodelist',
             editor: {
               singleSelect: true,
               appCodeListId: 'plmweb.projmgmt__scrum_state',
@@ -1842,14 +1882,128 @@ export default {
             id: 'description',
           },
           {
+            dataType: 5,
+            labelPos: 'NONE',
+            defsearchMode: {
+              codeName: 'N_CREATE_TIME_GTANDEQ',
+              stdDataType: 5,
+              valueOP: 'GTANDEQ',
+              name: 'N_CREATE_TIME_GTANDEQ',
+              id: 'n_create_time_gtandeq',
+            },
+            editor: {
+              dateTimeFormat: 'YYYY-MM-DD',
+              editorParams: {
+                TIMEFMT: 'YYYY-MM-DD',
+              },
+              editorType: 'DATEPICKEREX_NOTIME',
+              valueType: 'SIMPLE',
+              editable: true,
+              id: 'create_time_gtand',
+            },
+            allowEmpty: true,
+            caption: '创建时间',
+            itemType: 'FILTER',
+            appDEFieldId: 'create_time',
+            id: 'create_time_gtand',
+          },
+          {
+            dataType: 5,
+            labelPos: 'NONE',
+            defsearchMode: {
+              codeName: 'N_CREATE_TIME_LTANDEQ',
+              stdDataType: 5,
+              valueOP: 'LTANDEQ',
+              name: 'N_CREATE_TIME_LTANDEQ',
+              id: 'n_create_time_ltandeq',
+            },
+            editor: {
+              dateTimeFormat: 'YYYY-MM-DD',
+              editorParams: {
+                TIMEFMT: 'YYYY-MM-DD',
+              },
+              editorType: 'DATEPICKEREX_NOTIME',
+              valueType: 'SIMPLE',
+              editable: true,
+              id: 'create_time_ltand',
+            },
+            allowEmpty: true,
+            caption: '创建时间',
+            itemType: 'FILTER',
+            appDEFieldId: 'create_time',
+            id: 'create_time_ltand',
+          },
+          {
+            dataType: 5,
+            labelPos: 'NONE',
+            defsearchMode: {
+              codeName: 'N_UPDATE_TIME_LTANDEQ',
+              stdDataType: 5,
+              valueOP: 'LTANDEQ',
+              name: 'N_UPDATE_TIME_LTANDEQ',
+              id: 'n_update_time_ltandeq',
+            },
+            editor: {
+              dateTimeFormat: 'YYYY-MM-DD',
+              editorParams: {
+                TIMEFMT: 'YYYY-MM-DD',
+              },
+              editorType: 'DATEPICKEREX_NOTIME',
+              valueType: 'SIMPLE',
+              editable: true,
+              id: 'update_time_ltand',
+            },
+            allowEmpty: true,
+            caption: '更新时间',
+            itemType: 'FILTER',
+            appDEFieldId: 'update_time',
+            id: 'update_time_ltand',
+          },
+          {
+            dataType: 5,
+            labelPos: 'NONE',
+            defsearchMode: {
+              codeName: 'N_UPDATE_TIME_GTANDEQ',
+              stdDataType: 5,
+              valueOP: 'GTANDEQ',
+              name: 'N_UPDATE_TIME_GTANDEQ',
+              id: 'n_update_time_gtandeq',
+            },
+            editor: {
+              dateTimeFormat: 'YYYY-MM-DD',
+              editorParams: {
+                TIMEFMT: 'YYYY-MM-DD',
+              },
+              editorType: 'DATEPICKEREX_NOTIME',
+              valueType: 'SIMPLE',
+              editable: true,
+              id: 'update_time_gtand',
+            },
+            allowEmpty: true,
+            caption: '更新时间',
+            itemType: 'FILTER',
+            appDEFieldId: 'update_time',
+            id: 'update_time_gtand',
+          },
+          {
             dataType: 25,
             labelPos: 'NONE',
             editor: {
               singleSelect: true,
               appCodeListId: 'plmweb.projmgmt__work_item_type',
+              editorParams: {
+                'SRFNAVPARAM.N_PROJECT_TYPE_EQ': '%project_type%',
+              },
               editorType: 'DROPDOWNLIST',
               valueType: 'SIMPLE',
               editable: true,
+              navigateParams: [
+                {
+                  key: 'n_project_type_eq',
+                  value: 'project_type',
+                  id: 'n_project_type_eq',
+                },
+              ],
               id: 'work_item_type_id',
             },
             allowEmpty: true,

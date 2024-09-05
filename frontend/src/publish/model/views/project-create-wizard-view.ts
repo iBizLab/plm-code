@@ -5,7 +5,7 @@ export default {
   accUserMode: 2,
   caption: '新建项目',
   codeName: 'project_create_wizard_view',
-  height: 700,
+  height: 710,
   appDataEntityId: 'plmweb.project',
   appViewEngines: [
     {

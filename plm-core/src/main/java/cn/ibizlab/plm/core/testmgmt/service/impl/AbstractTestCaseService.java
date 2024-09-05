@@ -446,6 +446,21 @@ public abstract class AbstractTestCaseService extends ServiceImpl<TestCaseMapper
         return list;
    }
 	
+   public Page<TestCase> fetchMyFilter(TestCaseSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("CREATE_TIME,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestCase> pages=baseMapper.searchMyFilter(context.getPages(),context,context.getSelectCond());
+        List<TestCase> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<TestCase> listMyFilter(TestCaseSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("CREATE_TIME,DESC");
+        List<TestCase> list = baseMapper.listMyFilter(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<TestCase> fetchNormal(TestCaseSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("SHOW_IDENTIFIER,DESC");

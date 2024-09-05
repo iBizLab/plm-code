@@ -671,17 +671,6 @@ export default {
       controlType: 'FORM',
       logicName: '执行结果展示表单',
       appDataEntityId: 'plmweb.run',
-      controlLogics: [
-        {
-          eventNames: 'onLoadSuccess',
-          itemName: 'status',
-          logicTag: 'form',
-          logicType: 'SCRIPT',
-          scriptCode: "console.log('123333333223')",
-          triggerType: 'CTRLEVENT',
-          id: 'logic_form_sc',
-        },
-      ],
       controlParam: {
         ctrlParams: {
           'SRFNAVPARAM.ID': '%run%',

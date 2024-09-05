@@ -1748,6 +1748,28 @@ public abstract class AbstractTestCaseResource {
     }
 
     /**
+    * 查询fetch_my_filter 用例
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<TestCaseDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_my_filter", tags = {"用例" },  notes = "TestCase-fetch_my_filter ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_my_filter-all') or hasPermission(#dto,'ibizplm-TestCase-fetch_my_filter')")
+    @PostMapping("test_cases/fetch_my_filter")
+    public Mono<ResponseEntity<List<TestCaseDTO>>> fetchMyFilter
+            (@Validated @RequestBody TestCaseFilterDTO dto) {
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.fetchMyFilter(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 查询fetch_normal 用例
     * 
     *
@@ -2549,6 +2571,30 @@ public abstract class AbstractTestCaseResource {
         dto.setTestLibraryIdEQ(testLibraryId);
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
         Page<TestCase> domains = testCaseService.fetchMyCreated(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_my_filter 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<TestCaseDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_my_filter", tags = {"用例" },  notes = "TestCase-fetch_my_filter ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_my_filter-all') or hasPermission('library',#testLibraryId,#dto,'ibizplm-TestCase-fetch_my_filter')")
+    @PostMapping("libraries/{testLibraryId}/test_cases/fetch_my_filter")
+    public Mono<ResponseEntity<List<TestCaseDTO>>> fetchMyFilterByTestLibraryId
+            (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
+        dto.setTestLibraryIdEQ(testLibraryId);
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.fetchMyFilter(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

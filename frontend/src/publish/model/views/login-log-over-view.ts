@@ -697,8 +697,8 @@ export default {
                       {
                         chartGrid: {
                           chartGridXAxis0Id: '0',
-                          chartGridYAxis0Id: '0',
-                          chartGridYAxis1Id: '1',
+                          chartGridYAxis0Id: '1',
+                          chartGridYAxis1Id: '0',
                           chartCoordinateSystemId: '0',
                           type: 'grid',
                           name: '[line_1]直角坐标系[0]',
@@ -727,7 +727,7 @@ export default {
                         chartDataSetId: '0',
                         chartSeriesEncode: {
                           chartXAxisId: '0',
-                          chartYAxisId: '1',
+                          chartYAxisId: '0',
                           x: ['AUTHTIME'],
                           y: ['ACTIVE_RATE'],
                           type: 'XY',
@@ -752,7 +752,7 @@ export default {
                         chartDataSetId: '1',
                         chartSeriesEncode: {
                           chartXAxisId: '0',
-                          chartYAxisId: '0',
+                          chartYAxisId: '1',
                           x: ['AUTHTIME'],
                           y: ['ACTIVE_MEMBERS'],
                           type: 'XY',
@@ -765,7 +765,7 @@ export default {
                         enableChartDataSet: true,
                         index: 1,
                         userParam: {
-                          'EC.label': '{"show":0}',
+                          'EC.label': '{"show":0,"position":"inside"}',
                           'EC.itemStyle':
                             '{"color":"#67BCFE","borderWidth":100}',
                           'EC.barWidth': '40',
@@ -824,8 +824,8 @@ export default {
                     chartGrids: [
                       {
                         chartGridXAxis0Id: '0',
-                        chartGridYAxis0Id: '0',
-                        chartGridYAxis1Id: '1',
+                        chartGridYAxis0Id: '1',
+                        chartGridYAxis1Id: '0',
                         chartCoordinateSystemId: '0',
                         type: 'grid',
                         name: '[line_1]直角坐标系[0]',
@@ -849,20 +849,8 @@ export default {
                       {
                         echartsPos: 'yAxis',
                         echartsType: 'value',
-                        position: 'left',
-                        type: 'numeric',
-                        userParam: {
-                          'EC.alignTicks': 'true',
-                        },
-                        name: 'axis_yAxis_0',
-                        id: '0',
-                      },
-                      {
-                        echartsPos: 'yAxis',
-                        echartsType: 'value',
                         position: 'right',
                         type: 'numeric',
-                        index: 1,
                         userParam: {
                           'EC.axisTick': '{"show":0,"length":2}',
                           'EC.axisLine': '{"show":0}',
@@ -870,6 +858,18 @@ export default {
                           'EC.axisLabel': '{"rotate":0,"formatter":"{value}%"}',
                         },
                         name: 'axis_yAxis_2',
+                        id: '0',
+                      },
+                      {
+                        echartsPos: 'yAxis',
+                        echartsType: 'value',
+                        position: 'left',
+                        type: 'numeric',
+                        index: 1,
+                        userParam: {
+                          'EC.alignTicks': 'true',
+                        },
+                        name: 'axis_yAxis_0',
                         id: '1',
                       },
                     ],
@@ -936,8 +936,6 @@ export default {
             },
             layoutPos: {
               colMD: 24,
-              height: 625,
-              heightMode: 'PX',
               layout: 'TABLE_24COL',
             },
             portletType: 'VIEW',
@@ -947,7 +945,6 @@ export default {
             showBusyIndicator: true,
             codeName: 'active_members',
             controlType: 'PORTLET',
-            height: 625,
             appDataEntityId: 'plmweb.login_log',
             controlParam: {},
             modelId: '192ED2FA-C044-4692-816E-C95CB79A276B',

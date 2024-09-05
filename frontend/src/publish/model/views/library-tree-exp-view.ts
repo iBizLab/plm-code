@@ -68,6 +68,12 @@ export default {
       showBusyIndicator: true,
       appViewRefs: [
         {
+          realTitle: '测试库筛选器',
+          refAppViewId: 'plmweb.library_filter_tab_exp_view',
+          name: 'EXPITEM:filter',
+          id: 'expitem:filter',
+        },
+        {
           realTitle: '全部测试库',
           refAppViewId: 'plmweb.library_all_grid_view',
           name: 'EXPITEM:node_1',
@@ -126,6 +132,13 @@ export default {
               parentValueLevel: 1,
               searchMode: 3,
               id: '默认根节点 - 测试库',
+            },
+            {
+              childDETreeNodeId: 'filter',
+              parentDETreeNodeId: 'work',
+              parentValueLevel: 1,
+              searchMode: 3,
+              id: '工作 - 筛选器',
             },
             {
               childDETreeNodeId: 'node_10',
@@ -192,6 +205,13 @@ export default {
               id: '待办 - 进行中的',
             },
             {
+              childDETreeNodeId: 'work',
+              parentDETreeNodeId: 'root',
+              parentValueLevel: 1,
+              searchMode: 3,
+              id: '默认根节点 - 工作',
+            },
+            {
               childDETreeNodeId: 'node_4',
               parentDETreeNodeId: 'root',
               parentValueLevel: 1,
@@ -230,6 +250,18 @@ export default {
               rootNode: true,
               name: '默认根节点',
               id: 'root',
+            },
+            {
+              text: '筛选器',
+              navAppViewId: 'plmweb.library_filter_tab_exp_view',
+              nodeType: 'filter',
+              sysImage: {
+                rawContent:
+                  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="design-iconfont" width="18" height="18">\n  <path d="M5.70161537,6.83314599 C5.63755287,6.83314599 5.58442787,6.88158349 5.58442787,6.94252099 L5.58442787,7.59877099 C5.58442787,7.65814599 5.63755287,7.70814599 5.70161537,7.70814599 L10.0793816,7.70814599 C10.1434441,7.70814599 10.1965691,7.65814599 10.1965691,7.59877099 L10.1965691,6.94252099 C10.1965691,6.88158349 10.1434441,6.83314599 10.0793816,6.83314599 L5.70161537,6.83314599 Z M6.14124547,8.46714621 C6.07718297,8.46714621 6.02405797,8.51558371 6.02405797,8.57652121 L6.02405797,9.23277121 C6.02405797,9.29214621 6.07718297,9.34214621 6.14124547,9.34214621 L9.60335754,9.34214621 C9.66742004,9.34214621 9.72054504,9.29214621 9.72054504,9.23277121 L9.72054504,8.57652121 C9.72054504,8.51558371 9.66742004,8.46714621 9.60335754,8.46714621 L6.14124547,8.46714621 Z M6.61654715,10.1181998 C6.55248465,10.1181998 6.49935965,10.1666373 6.49935965,10.2275748 L6.49935965,10.8838248 C6.49935965,10.9431998 6.55248465,10.9931998 6.61654715,10.9931998 L9.12782868,10.9931998 C9.19189118,10.9931998 9.24501618,10.9431998 9.24501618,10.8838248 L9.24501618,10.2275748 C9.24501618,10.1666373 9.19189118,10.1181998 9.12782868,10.1181998 L6.61654715,10.1181998 Z M13.75,4.6625 L8.140625,4.6625 L6.3078125,2.909375 C6.284375,2.8875 6.253125,2.875 6.221875,2.875 L2.25,2.875 C1.9734375,2.875 1.75,3.0984375 1.75,3.375 L1.75,12.625 C1.75,12.9015625 1.9734375,13.125 2.25,13.125 L13.75,13.125 C14.0265625,13.125 14.25,12.9015625 14.25,12.625 L14.25,5.1625 C14.25,4.8859375 14.0265625,4.6625 13.75,4.6625 Z M13.125,12 L2.875,12 L2.875,4 L5.8203125,4 L7.6890625,5.7875 L13.125,5.7875 L13.125,12 Z" fill="#F6C659" fill-rule="nonzero"></path>\n</svg>',
+              },
+              treeNodeType: 'STATIC',
+              name: '筛选器',
+              id: 'filter',
             },
             {
               text: '测试库',
@@ -469,6 +501,16 @@ export default {
               expanded: true,
               name: '星标',
               id: 'node_9',
+            },
+            {
+              text: '工作',
+              nodeType: 'work',
+              treeNodeType: 'STATIC',
+              hasDETreeNodeRSs: true,
+              disableSelect: true,
+              expanded: true,
+              name: '工作',
+              id: 'work',
             },
           ],
           outputIconDefault: true,

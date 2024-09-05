@@ -95,12 +95,28 @@ public class ArticlePageSearchContext extends QueryWrapperContext<ArticlePage> {
     private String categoriesLIKE;
 
     /**
+     * 是否已归档EQ
+     */
+    @JsonProperty("n_is_archived_eq")
+    @JSONField(name = "n_is_archived_eq")
+    @ApiModelProperty("是否已归档EQ")
+    private Integer isArchivedEQ;
+
+    /**
      * 是否已删除EQ
      */
     @JsonProperty("n_is_deleted_eq")
     @JSONField(name = "n_is_deleted_eq")
     @ApiModelProperty("是否已删除EQ")
     private Integer isDeletedEQ;
+
+    /**
+     * 关注EXISTS
+     */
+    @JsonProperty("n_attentions_exists__n_user_id_eq")
+    @JSONField(name = "n_attentions_exists__n_user_id_eq")
+    @ApiModelProperty("关注EXISTS")
+    private String attentionsEXISTSuser_idEQ;
 
     /**
      * 发布时间GTANDEQ
@@ -129,12 +145,36 @@ public class ArticlePageSearchContext extends QueryWrapperContext<ArticlePage> {
     private String publishManEQ;
 
     /**
+     * 编号EQ
+     */
+    @JsonProperty("n_show_identifier_eq")
+    @JSONField(name = "n_show_identifier_eq")
+    @ApiModelProperty("编号EQ")
+    private String showIdentifierEQ;
+
+    /**
+     * 编号LIKE
+     */
+    @JsonProperty("n_show_identifier_like")
+    @JSONField(name = "n_show_identifier_like")
+    @ApiModelProperty("编号LIKE")
+    private String showIdentifierLIKE;
+
+    /**
      * 是否同时共享子页面EQ
      */
     @JsonProperty("n_is_shared_subset_eq")
     @JSONField(name = "n_is_shared_subset_eq")
     @ApiModelProperty("是否同时共享子页面EQ")
     private String isSharedSubsetEQ;
+
+    /**
+     * 最近创建日期LTANDEQ
+     */
+    @JsonProperty("n_recent_create_days_ltandeq")
+    @JSONField(name = "n_recent_create_days_ltandeq")
+    @ApiModelProperty("最近创建日期LTANDEQ")
+    private Integer recentCreateDaysLTANDEQ;
 
     /**
      * 标识EQ
@@ -177,6 +217,46 @@ public class ArticlePageSearchContext extends QueryWrapperContext<ArticlePage> {
     private String createManEQ;
 
     /**
+     * 建立人IN
+     */
+    @JsonProperty("n_create_man_in")
+    @JSONField(name = "n_create_man_in")
+    @ApiModelProperty("建立人IN")
+    private String createManIN;
+
+    /**
+     * 建立人ISNOTNULL
+     */
+    @JsonProperty("n_create_man_isnotnull")
+    @JSONField(name = "n_create_man_isnotnull")
+    @ApiModelProperty("建立人ISNOTNULL")
+    private String createManISNOTNULL;
+
+    /**
+     * 建立人ISNULL
+     */
+    @JsonProperty("n_create_man_isnull")
+    @JSONField(name = "n_create_man_isnull")
+    @ApiModelProperty("建立人ISNULL")
+    private String createManISNULL;
+
+    /**
+     * 建立人NOTEQ
+     */
+    @JsonProperty("n_create_man_noteq")
+    @JSONField(name = "n_create_man_noteq")
+    @ApiModelProperty("建立人NOTEQ")
+    private String createManNOTEQ;
+
+    /**
+     * 建立人NOTIN
+     */
+    @JsonProperty("n_create_man_notin")
+    @JSONField(name = "n_create_man_notin")
+    @ApiModelProperty("建立人NOTIN")
+    private String createManNOTIN;
+
+    /**
      * 建立时间EQ
      */
     @JsonProperty("n_create_time_eq")
@@ -202,6 +282,24 @@ public class ArticlePageSearchContext extends QueryWrapperContext<ArticlePage> {
     @JSONField(name = "n_create_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
     @ApiModelProperty("建立时间LTANDEQ")
     private Date createTimeLTANDEQ;
+
+    /**
+     * 更新时间GTANDEQ
+     */
+    @JsonProperty("n_update_time_gtandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_update_time_gtandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("更新时间GTANDEQ")
+    private Date updateTimeGTANDEQ;
+
+    /**
+     * 更新时间LTANDEQ
+     */
+    @JsonProperty("n_update_time_ltandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_update_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("更新时间LTANDEQ")
+    private Date updateTimeLTANDEQ;
 
     /**
      * 空间标识EQ
@@ -275,6 +373,13 @@ public class ArticlePageSearchContext extends QueryWrapperContext<ArticlePage> {
     @Override
     public QueryWrapper<ArticlePage> getSelectCond() {
         QueryWrapper<ArticlePage> queryWrapper = super.getSelectCond();
+        if (!ObjectUtils.isEmpty(this.attentionsEXISTSuser_idEQ)) {
+            queryWrapper.exists("SELECT 1 FROM ATTENTION WHERE ATTENTION. = T1. "
+                + " AND ATTENTION.USER_ID "
+                + " = "
+                + "'" + this.attentionsEXISTSuser_idEQ + "'"
+            );
+        }
         return queryWrapper;
     }
 }
