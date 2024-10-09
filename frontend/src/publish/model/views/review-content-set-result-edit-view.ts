@@ -150,19 +150,6 @@ export default {
                   codeName: 'title',
                   detailStyle: 'DEFAULT',
                   detailType: 'FORMITEM',
-                  defdgroupLogics: [
-                    {
-                      logicCat: 'SCRIPTCODE_CLICK',
-                      groupOP: 'AND',
-                      defdlogics: [
-                        {
-                          logicType: 'SINGLE',
-                        },
-                      ],
-                      logicType: 'GROUP',
-                      id: '表单成员[title][表单项点击（脚本处理）]逻辑',
-                    },
-                  ],
                   layoutPos: {
                     shrink: 1,
                     layout: 'FLEX',

@@ -1047,6 +1047,7 @@ export default {
                     columnEnableFilter: 2,
                     columnEnableLink: 2,
                     groupMode: 'NONE',
+                    groupStyle: 'DEFAULT',
                     orderValueAppDEFieldId: 'sequence',
                     degridColumns: [
                       {
@@ -1774,6 +1775,7 @@ export default {
                     columnEnableFilter: 2,
                     columnEnableLink: 2,
                     groupMode: 'NONE',
+                    groupStyle: 'DEFAULT',
                     degridColumns: [
                       {
                         clconvertMode: 'FRONT',
@@ -2183,6 +2185,7 @@ export default {
                   columnEnableFilter: 2,
                   columnEnableLink: 2,
                   groupMode: 'NONE',
+                  groupStyle: 'DEFAULT',
                   orderValueAppDEFieldId: 'sequence',
                   degridColumns: [
                     {
@@ -2719,6 +2722,7 @@ export default {
                     columnEnableFilter: 2,
                     columnEnableLink: 2,
                     groupMode: 'NONE',
+                    groupStyle: 'DEFAULT',
                     degridColumns: [
                       {
                         clconvertMode: 'FRONT',

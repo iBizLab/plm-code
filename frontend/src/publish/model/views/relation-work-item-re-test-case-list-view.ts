@@ -166,6 +166,7 @@ export default {
     },
     {
       groupMode: 'NONE',
+      groupStyle: 'DEFAULT',
       itemLayoutPanel: {
         layoutMode: 'TABLE_24COL',
         layout: {

@@ -92,6 +92,7 @@ export default {
         cardColLG: 6,
         cardColMD: 6,
         groupMode: 'NONE',
+        groupStyle: 'DEFAULT',
         itemLayoutPanel: {
           layoutMode: 'TABLE_24COL',
           layout: {

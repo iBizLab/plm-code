@@ -1,29 +1,4 @@
 export default {
-  appDEACModes: [
-    {
-      actype: 'AUTOCOMPLETE',
-      codeName: 'Default',
-      logicName: 'DEFAULT',
-      deacmodeDataItems: [
-        {
-          appDEFieldId: 'pssysbicubeid',
-          dataType: 25,
-          id: 'value',
-        },
-        {
-          appDEFieldId: 'pssysbicubename',
-          dataType: 25,
-          id: 'text',
-        },
-      ],
-      pagingSize: 50,
-      defaultMode: true,
-      textAppDEFieldId: 'pssysbicubename',
-      valueAppDEFieldId: 'pssysbicubeid',
-      name: 'DEFAULT',
-      id: 'default',
-    },
-  ],
   appDEFields: [
     {
       codeName: 'PSSysBICubeId',

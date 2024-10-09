@@ -134,6 +134,7 @@ export default {
       columnEnableFilter: 2,
       columnEnableLink: 2,
       groupMode: 'NONE',
+      groupStyle: 'DEFAULT',
       minorSortDir: 'DESC',
       minorSortAppDEFieldId: 'show_identifier',
       degridColumns: [

@@ -1,29 +1,4 @@
 export default {
-  appDEACModes: [
-    {
-      actype: 'AUTOCOMPLETE',
-      codeName: 'Default',
-      logicName: 'DEFAULT',
-      deacmodeDataItems: [
-        {
-          appDEFieldId: 'psdenotifytargetid',
-          dataType: 25,
-          id: 'value',
-        },
-        {
-          appDEFieldId: 'psdenotifytargetname',
-          dataType: 25,
-          id: 'text',
-        },
-      ],
-      pagingSize: 50,
-      defaultMode: true,
-      textAppDEFieldId: 'psdenotifytargetname',
-      valueAppDEFieldId: 'psdenotifytargetid',
-      name: 'DEFAULT',
-      id: 'default',
-    },
-  ],
   appDEFields: [
     {
       codeName: 'PSDENotifyTargetId',

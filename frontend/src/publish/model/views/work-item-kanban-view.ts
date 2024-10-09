@@ -783,6 +783,7 @@ export default {
           name: '工作项看板_分组界面行为组',
           id: 'usr1219683065',
         },
+        groupStyle: 'DEFAULT',
         itemLayoutPanel: {
           layoutMode: 'TABLE_24COL',
           layout: {

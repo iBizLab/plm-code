@@ -1,29 +1,4 @@
 export default {
-  appDEACModes: [
-    {
-      actype: 'AUTOCOMPLETE',
-      codeName: 'Default',
-      logicName: 'DEFAULT',
-      deacmodeDataItems: [
-        {
-          appDEFieldId: 'id',
-          dataType: 25,
-          id: 'value',
-        },
-        {
-          appDEFieldId: 'name',
-          dataType: 25,
-          id: 'text',
-        },
-      ],
-      pagingSize: 50,
-      defaultMode: true,
-      textAppDEFieldId: 'name',
-      valueAppDEFieldId: 'id',
-      name: 'DEFAULT',
-      id: 'default',
-    },
-  ],
   appDEFields: [
     {
       codeName: 'level',
@@ -1855,7 +1830,7 @@ export default {
       refreshMode: 1,
       successMsg: '取消关联成功',
       timeout: 60000,
-      tooltip: '取消关联',
+      tooltip: '取消关联测试用例',
       uiactionMode: 'BACKEND',
       uiactionTag: 'test_case_del_relation_bug',
       uiactionType: 'DEUIACTION',
@@ -2550,7 +2525,7 @@ export default {
             },
           ],
           topPos: 208,
-          name: '注入脚本代码',
+          name: '触发计数器刷新',
           id: 'rawjscode2',
         },
         {

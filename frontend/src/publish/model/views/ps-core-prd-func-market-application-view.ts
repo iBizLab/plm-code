@@ -149,6 +149,7 @@ export default {
       cardHeight: 250,
       cardWidth: 420,
       groupMode: 'NONE',
+      groupStyle: 'DEFAULT',
       itemLayoutPanel: {
         layoutMode: 'TABLE_24COL',
         layout: {

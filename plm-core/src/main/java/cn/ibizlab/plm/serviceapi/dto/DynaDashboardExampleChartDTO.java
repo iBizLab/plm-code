@@ -164,15 +164,6 @@ public class DynaDashboardExampleChartDTO extends DTOBase implements Serializabl
     }
 
     /**
-     * 设置 [序号]
-     */
-    public DynaDashboardExampleChartDTO setSequences(BigDecimal sequences) {
-        this.sequences = sequences;
-        this.modify("sequences", sequences);
-        return this;
-    }
-
-    /**
      * 设置 [名称]
      */
     public DynaDashboardExampleChartDTO setDynaDashboardName(String dynaDashboardName) {

@@ -71,6 +71,7 @@ export default {
   controls: [
     {
       groupMode: 'NONE',
+      groupStyle: 'DEFAULT',
       itemLayoutPanel: {
         layoutMode: 'TABLE_24COL',
         layout: {
@@ -499,17 +500,6 @@ export default {
           id: 'auditinfo',
         },
         {
-          appDEFieldId: 'op_person_id',
-          dataType: 25,
-          id: 'oppersonid',
-        },
-        {
-          appDEFieldId: 'update_time',
-          dataType: 5,
-          format: 'YYYY-MM-DD HH:mm:ss',
-          id: 'update_time',
-        },
-        {
           appDEFieldId: 'audit_type',
           dataType: 25,
           id: 'audittype',
@@ -520,9 +510,20 @@ export default {
           id: 'oppersonname',
         },
         {
+          appDEFieldId: 'op_person_id',
+          dataType: 25,
+          id: 'oppersonid',
+        },
+        {
           appDEFieldId: 'object_type',
           dataType: 25,
           id: 'objecttype',
+        },
+        {
+          appDEFieldId: 'update_time',
+          dataType: 5,
+          format: 'YYYY-MM-DD HH:mm:ss',
+          id: 'update_time',
         },
         {
           appDEFieldId: 'id',

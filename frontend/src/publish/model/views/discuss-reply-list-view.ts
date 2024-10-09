@@ -121,6 +121,7 @@ export default {
     },
     {
       groupMode: 'NONE',
+      groupStyle: 'DEFAULT',
       itemLayoutPanel: {
         layoutMode: 'TABLE_24COL',
         layout: {
@@ -602,25 +603,15 @@ export default {
       },
       delistDataItems: [
         {
-          appDEFieldId: 'post_id',
-          dataType: 25,
-          id: 'post_id',
-        },
-        {
-          appDEFieldId: 'comments',
-          dataType: 21,
-          id: 'comments',
-        },
-        {
           appDEFieldId: 'create_time',
           dataType: 5,
           format: 'YYYY-MM-DD HH:mm:ss',
           id: 'create_time',
         },
         {
-          appDEFieldId: 'id',
-          dataType: 25,
-          id: 'id',
+          appDEFieldId: 'content',
+          dataType: 21,
+          id: 'content',
         },
         {
           appDEFieldId: 'create_man',
@@ -629,9 +620,19 @@ export default {
           id: 'create_man',
         },
         {
-          appDEFieldId: 'content',
+          appDEFieldId: 'post_id',
+          dataType: 25,
+          id: 'post_id',
+        },
+        {
+          appDEFieldId: 'id',
+          dataType: 25,
+          id: 'id',
+        },
+        {
+          appDEFieldId: 'comments',
           dataType: 21,
-          id: 'content',
+          id: 'comments',
         },
         {
           appDEFieldId: 'id',

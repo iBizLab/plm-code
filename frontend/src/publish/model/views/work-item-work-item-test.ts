@@ -110,6 +110,7 @@ export default {
       columnEnableLink: 2,
       gridStyle: 'TREEGRID',
       groupMode: 'NONE',
+      groupStyle: 'DEFAULT',
       orderValueAppDEFieldId: 'sequence',
       degridColumns: [
         {

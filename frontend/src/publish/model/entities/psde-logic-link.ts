@@ -1,29 +1,4 @@
 export default {
-  appDEACModes: [
-    {
-      actype: 'AUTOCOMPLETE',
-      codeName: 'Default',
-      logicName: 'DEFAULT',
-      deacmodeDataItems: [
-        {
-          appDEFieldId: 'psdelogiclinkid',
-          dataType: 25,
-          id: 'value',
-        },
-        {
-          appDEFieldId: 'psdelogiclinkname',
-          dataType: 25,
-          id: 'text',
-        },
-      ],
-      pagingSize: 50,
-      defaultMode: true,
-      textAppDEFieldId: 'psdelogiclinkname',
-      valueAppDEFieldId: 'psdelogiclinkid',
-      name: 'DEFAULT',
-      id: 'default',
-    },
-  ],
   appDEFields: [
     {
       codeName: 'PSDELogicLinkId',

@@ -374,6 +374,7 @@ export default {
     },
     {
       groupMode: 'NONE',
+      groupStyle: 'DEFAULT',
       itemLayoutPanel: {
         layoutMode: 'TABLE_24COL',
         layout: {
@@ -433,6 +434,16 @@ export default {
         id: 'plmweb.ticket.usr1225787442',
       },
       delistDataItems: [
+        {
+          appDEFieldId: 'title',
+          dataType: 25,
+          id: 'title',
+        },
+        {
+          appDEFieldId: 'id',
+          dataType: 25,
+          id: 'id',
+        },
         {
           appDEFieldId: 'id',
           dataType: 25,

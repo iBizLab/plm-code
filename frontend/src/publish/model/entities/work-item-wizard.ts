@@ -1,29 +1,4 @@
 export default {
-  appDEACModes: [
-    {
-      actype: 'AUTOCOMPLETE',
-      codeName: 'Default',
-      logicName: 'DEFAULT',
-      deacmodeDataItems: [
-        {
-          appDEFieldId: 'id',
-          dataType: 25,
-          id: 'value',
-        },
-        {
-          appDEFieldId: 'name',
-          dataType: 25,
-          id: 'text',
-        },
-      ],
-      pagingSize: 50,
-      defaultMode: true,
-      textAppDEFieldId: 'name',
-      valueAppDEFieldId: 'id',
-      name: 'DEFAULT',
-      id: 'default',
-    },
-  ],
   appDEFields: [
     {
       codeName: 'details',
@@ -832,72 +807,6 @@ export default {
       dataSetType: 'REMOTE',
       name: 'FILTERUPDATE',
       id: 'filterupdate',
-    },
-  ],
-  appDEUILogics: [
-    {
-      codeName: 'remove_batch_temp',
-      defaultParamName: 'Default',
-      logicName: '批量删除临时数据',
-      deuilogicNodes: [
-        {
-          codeName: 'Begin',
-          leftPos: 200,
-          logicNodeType: 'BEGIN',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'rawjscode1',
-              srcDEUILogicNodeId: 'begin',
-              id: '连接名称',
-            },
-          ],
-          topPos: 200,
-          name: '开始',
-          id: 'begin',
-        },
-        {
-          codeName: 'END1',
-          leftPos: 700,
-          logicNodeType: 'END',
-          topPos: 200,
-          name: '结束',
-          id: 'end1',
-        },
-        {
-          code: "return (async function() { \r\n    // 获取所有临时数据\r\n    const serviceUtil = ibiz.hub.getApp(context.srfappid).deService;\r\n    const service = await serviceUtil.getService(context, 'plmweb.work_item_wizard_detail');\r\n    const list = service.local.getList();\r\n    // 遍历临时数据删除\r\n    list.forEach(item => {\r\n        service.local.delete(context, item.id);\r\n    })\r\n    } \r\n)();\r\n",
-          codeName: 'RAWJSCODE1',
-          leftPos: 433,
-          logicNodeType: 'RAWJSCODE',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'end1',
-              srcDEUILogicNodeId: 'rawjscode1',
-              id: '连接名称',
-            },
-          ],
-          topPos: 208,
-          name: '批量删除临时数据',
-          id: 'rawjscode1',
-        },
-      ],
-      deuilogicParams: [
-        {
-          codeName: 'Default',
-          default: true,
-          entityParam: true,
-          name: '传入变量',
-          id: 'default',
-        },
-        {
-          codeName: 'list',
-          entityListParam: true,
-          name: '临时数据列表',
-          id: 'list',
-        },
-      ],
-      startDEUILogicNodeId: 'begin',
-      name: '批量删除临时数据',
-      id: 'remove_batch_temp',
     },
   ],
   deopprivs: [

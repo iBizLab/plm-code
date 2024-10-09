@@ -1,29 +1,4 @@
 export default {
-  appDEACModes: [
-    {
-      actype: 'AUTOCOMPLETE',
-      codeName: 'Default',
-      logicName: 'DEFAULT',
-      deacmodeDataItems: [
-        {
-          appDEFieldId: 'id',
-          dataType: 25,
-          id: 'value',
-        },
-        {
-          appDEFieldId: 'name',
-          dataType: 25,
-          id: 'text',
-        },
-      ],
-      pagingSize: 50,
-      defaultMode: true,
-      textAppDEFieldId: 'name',
-      valueAppDEFieldId: 'id',
-      name: 'DEFAULT',
-      id: 'default',
-    },
-  ],
   appDEFields: [
     {
       codeName: 'type',
@@ -861,14 +836,6 @@ export default {
           id: 'begin',
         },
         {
-          codeName: 'END1',
-          leftPos: 200,
-          logicNodeType: 'END',
-          topPos: 484,
-          name: '结束',
-          id: 'end1',
-        },
-        {
           code: '\tconst rows = uiLogic.grid.state.rows;\r\n    console.log(rows);\r\n\tif (rows && rows.length > 0) {\r\n\t\trows.forEach(row => {\r\n\t\t\tconst is_system = row.data.is_system;\r\n\t\t\t\t\t if (is_system === 1) {\r\n\t\t\t\t\t\t// 禁用\r\n                        row.uaColStates.uagridcolumn1.visible = false;\r\n                        Object.values(row.uaColStates.uagridcolumn1).forEach(item => {\r\n                            item.visible = false;\r\n                            item.disabled = true;\r\n                        })\r\n\t\t\t\t\t} \t\r\n\t\t})\r\n\t}\r\n',
           codeName: 'RAWJSCODE1',
           leftPos: 160,
@@ -881,8 +848,16 @@ export default {
             },
           ],
           topPos: 358,
-          name: '注入脚本代码',
+          name: '判断操作列是否禁用',
           id: 'rawjscode1',
+        },
+        {
+          codeName: 'END1',
+          leftPos: 200,
+          logicNodeType: 'END',
+          topPos: 484,
+          name: '结束',
+          id: 'end1',
         },
       ],
       deuilogicParams: [

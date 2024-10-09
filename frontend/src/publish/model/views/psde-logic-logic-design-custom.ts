@@ -29,7 +29,7 @@ export default {
     {
       rawValue: true,
       key: 'SRFAPPMAPPINGMAP',
-      value: 'logicdesign__logicdesign:ibizplm__plmweb',
+      value: 'logicdesign:plmweb',
       name: 'SRFAPPMAPPINGMAP',
       id: 'srfappmappingmap',
     },
@@ -45,6 +45,12 @@ export default {
       id: 'editdata:psdelogicnode:create_work_item',
     },
     {
+      realTitle: '属性视图',
+      refAppViewId: 'plmweb.psde_logic_design_edit_view',
+      name: 'EDITDATA:PSDELOGIC',
+      id: 'editdata:psdelogic',
+    },
+    {
       realTitle: '开始节点(设计)',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.PSDELOGICNODE.DESIGNVIEW_BEGIN',
@@ -52,12 +58,6 @@ export default {
       refAppViewId: 'plmweb.psdelogicnodedesignview_begin',
       name: 'EDITDATA:PSDELOGICNODE:BEGIN',
       id: 'editdata:psdelogicnode:begin',
-    },
-    {
-      realTitle: '属性视图',
-      refAppViewId: 'plmweb.psde_logic_design_edit_view',
-      name: 'EDITDATA:PSDELOGIC',
-      id: 'editdata:psdelogic',
     },
   ],
   controls: [

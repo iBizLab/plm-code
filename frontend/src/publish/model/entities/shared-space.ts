@@ -1,29 +1,4 @@
 export default {
-  appDEACModes: [
-    {
-      actype: 'AUTOCOMPLETE',
-      codeName: 'Default',
-      logicName: 'DEFAULT',
-      deacmodeDataItems: [
-        {
-          appDEFieldId: 'id',
-          dataType: 25,
-          id: 'value',
-        },
-        {
-          appDEFieldId: 'name',
-          dataType: 25,
-          id: 'text',
-        },
-      ],
-      pagingSize: 50,
-      defaultMode: true,
-      textAppDEFieldId: 'name',
-      valueAppDEFieldId: 'id',
-      name: 'DEFAULT',
-      id: 'default',
-    },
-  ],
   appDEFields: [
     {
       codeName: 'is_shared',
@@ -1011,7 +986,7 @@ export default {
             },
           ],
           topPos: 370,
-          name: '注入脚本代码',
+          name: '复制共享链接',
           id: 'rawjscode1',
         },
       ],

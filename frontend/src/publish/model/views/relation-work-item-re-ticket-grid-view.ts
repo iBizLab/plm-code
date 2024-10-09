@@ -494,6 +494,7 @@ export default {
         columnEnableFilter: 2,
         columnEnableLink: 2,
         groupMode: 'NONE',
+        groupStyle: 'DEFAULT',
         degridColumns: [
           {
             clconvertMode: 'NONE',
@@ -742,6 +743,9 @@ export default {
           },
         ],
         controlParam: {
+          ctrlParams: {
+            LOCATERECORDKEY: 'target_id',
+          },
           id: 'grid',
         },
         modelId: '502c2132d21a49a061232259458d0a1a',

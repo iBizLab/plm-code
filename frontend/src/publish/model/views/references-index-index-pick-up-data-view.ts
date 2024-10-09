@@ -16,6 +16,7 @@ export default {
   controls: [
     {
       groupMode: 'NONE',
+      groupStyle: 'DEFAULT',
       dedataViewDataItems: [
         {
           appDEFieldId: 'id',

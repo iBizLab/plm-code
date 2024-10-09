@@ -68,6 +68,16 @@ public class InsightReport extends EntityMP implements Serializable
     private String chartType;
 
     /**
+    * 组别
+    */
+    @TableField(value = "group")
+    @DEField(name = "group" , dict = "report_group_bi")
+    @JSONField(name = "group")
+    @JsonProperty("group")
+    @ApiModelProperty(value = "group", notes = "组别")
+    private String group;
+
+    /**
     * 类别
     */
     @TableField(value = "categories")
@@ -234,6 +244,15 @@ public class InsightReport extends EntityMP implements Serializable
     public InsightReport setChartType(String chartType) {
         this.chartType = chartType;
         this.modify("chart_type", chartType);
+        return this;
+    }
+
+    /**
+    * 设置 [组别]
+    */
+    public InsightReport setGroup(String group) {
+        this.group = group;
+        this.modify("group", group);
         return this;
     }
 

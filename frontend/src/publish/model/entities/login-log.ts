@@ -1,29 +1,4 @@
 export default {
-  appDEACModes: [
-    {
-      actype: 'AUTOCOMPLETE',
-      codeName: 'Default',
-      logicName: 'DEFAULT',
-      deacmodeDataItems: [
-        {
-          appDEFieldId: 'id',
-          dataType: 25,
-          id: 'value',
-        },
-        {
-          appDEFieldId: 'name',
-          dataType: 25,
-          id: 'text',
-        },
-      ],
-      pagingSize: 50,
-      defaultMode: true,
-      textAppDEFieldId: 'name',
-      valueAppDEFieldId: 'id',
-      name: 'DEFAULT',
-      id: 'default',
-    },
-  ],
   appDEFields: [
     {
       codeName: 'auth_time',
@@ -862,24 +837,6 @@ export default {
           id: 'begin',
         },
         {
-          dstAppDEActionId: 'active_member',
-          dstAppDataEntityId: 'plmweb.login_log',
-          retDEUILogicParamId: 'datas',
-          codeName: 'DEACTION1',
-          leftPos: 280,
-          logicNodeType: 'DEACTION',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'rawjscode1',
-              srcDEUILogicNodeId: 'deaction1',
-              id: '连接名称',
-            },
-          ],
-          topPos: 363,
-          name: '实体行为',
-          id: 'deaction1',
-        },
-        {
           codeName: 'END1',
           leftPos: 320,
           logicNodeType: 'END',
@@ -900,8 +857,26 @@ export default {
             },
           ],
           topPos: 538,
-          name: '注入脚本代码',
+          name: '计算活跃成员数据信息',
           id: 'rawjscode1',
+        },
+        {
+          dstAppDEActionId: 'active_member',
+          dstAppDataEntityId: 'plmweb.login_log',
+          retDEUILogicParamId: 'datas',
+          codeName: 'DEACTION1',
+          leftPos: 280,
+          logicNodeType: 'DEACTION',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'rawjscode1',
+              srcDEUILogicNodeId: 'deaction1',
+              id: '连接名称',
+            },
+          ],
+          topPos: 363,
+          name: '实体行为',
+          id: 'deaction1',
         },
       ],
       deuilogicParams: [

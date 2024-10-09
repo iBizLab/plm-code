@@ -407,6 +407,7 @@ export default {
         columnEnableFilter: 2,
         columnEnableLink: 2,
         groupMode: 'NONE',
+        groupStyle: 'DEFAULT',
         degridColumns: [
           {
             clconvertMode: 'NONE',
@@ -627,6 +628,9 @@ export default {
         logicName: '关联工作项(无取消关联行为)_表格',
         appDataEntityId: 'plmweb.relation',
         controlParam: {
+          ctrlParams: {
+            LOCATERECORDKEY: 'target_id',
+          },
           id: 'grid',
         },
         modelId: 'e236f113cc782c5ce459869aba1e5d63',

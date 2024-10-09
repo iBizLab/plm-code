@@ -55,6 +55,7 @@ export default {
       columnEnableFilter: 2,
       columnEnableLink: 2,
       groupMode: 'NONE',
+      groupStyle: 'DEFAULT',
       orderValueAppDEFieldId: 'sequence',
       degridColumns: [
         {

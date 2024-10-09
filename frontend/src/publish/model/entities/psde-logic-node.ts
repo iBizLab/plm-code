@@ -1,29 +1,4 @@
 export default {
-  appDEACModes: [
-    {
-      actype: 'AUTOCOMPLETE',
-      codeName: 'Default',
-      logicName: 'DEFAULT',
-      deacmodeDataItems: [
-        {
-          appDEFieldId: 'psdelogicnodeid',
-          dataType: 25,
-          id: 'value',
-        },
-        {
-          appDEFieldId: 'psdelogicnodename',
-          dataType: 25,
-          id: 'text',
-        },
-      ],
-      pagingSize: 50,
-      defaultMode: true,
-      textAppDEFieldId: 'psdelogicnodename',
-      valueAppDEFieldId: 'psdelogicnodeid',
-      name: 'DEFAULT',
-      id: 'default',
-    },
-  ],
   appDEFields: [
     {
       codeName: 'work_item_type_id',
@@ -1059,7 +1034,7 @@ export default {
       actionTarget: 'NONE',
       caption: '添加状态',
       codeName: 'addStatus',
-      frontAppViewId: 'plmweb.psdelogicnodequickcreateview_msnode2',
+      frontAppViewId: 'plmweb.psdelogicnodequickcreateview_msnode',
       frontProcessType: 'WIZARD',
       fullCodeName: 'PSDELogicNode_addStatus',
       navigateParams: [

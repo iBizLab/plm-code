@@ -20,8 +20,7 @@ import lombok.experimental.Accessors;
 import io.swagger.annotations.*;
 import cn.ibizlab.plm.core.base.domain.Baseline;
 import cn.ibizlab.plm.core.base.domain.Version;
-import cn.ibizlab.plm.core.base.domain.Version;
-import cn.ibizlab.plm.core.base.domain.Baseline;
+import cn.ibizlab.plm.core.base.domain.Relation;
 
 /**
  * 基线页面实体类[BaselinePage]

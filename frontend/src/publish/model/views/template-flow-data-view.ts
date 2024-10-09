@@ -285,6 +285,7 @@ export default {
         groupLayout: 'ROW',
         groupMode: 'AUTO',
         groupAppDEFieldId: 'usertag2',
+        groupStyle: 'DEFAULT',
         itemLayoutPanel: {
           layoutMode: 'TABLE_24COL',
           layout: {

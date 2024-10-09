@@ -90,6 +90,7 @@ export default {
       groupMode: 'CODELIST',
       groupAppDEFieldId: 'project_type',
       groupCodeListId: 'plmweb.projmgmt__project_type',
+      groupStyle: 'DEFAULT',
       degridColumns: [
         {
           clconvertMode: 'NONE',

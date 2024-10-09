@@ -281,11 +281,11 @@ export default {
                         '{"page":0,"size":20,"sort":"update_time,desc"}',
                       MODE: 'default',
                       QUOTEINSCRIPT:
-                        'value.replaceAll(/\\#\\{\\"id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\",\\"identifier\\":\\"(.+?)\\",\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })}).replaceAll(/\\#\\{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })})',
+                        'value?.replaceAll(/\\#\\{\\"id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\",\\"identifier\\":\\"(.+?)\\",\\"type\\":\\"(.+?)\\",\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g, (x, id, name, identifier, type, icon) => { return controller.getNodeInfo({ id, name, identifier, type, icon })}).replaceAll(/\\#\\{\\"id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\",\\"identifier\\":\\"(.+?)\\",\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })}).replaceAll(/\\#\\{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })})',
                       USERSCRIPT:
                         '`@{"id":"${data.id}","name":"${data.name}"}`',
                       QUOTESCRIPT:
-                        '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","icon":"${data.icon}"}`',
+                        '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","type":"${data.type}","icon":"${data.icon}"}`',
                       USERURL:
                         '`spaces/${context.space}/space_members/fetch_default`',
                       USERFIELDMAP: '{"id":"user_id","name":"name"}',
@@ -562,6 +562,7 @@ export default {
                     columnEnableFilter: 2,
                     columnEnableLink: 2,
                     groupMode: 'NONE',
+                    groupStyle: 'DEFAULT',
                     degridColumns: [
                       {
                         clconvertMode: 'NONE',

@@ -1,29 +1,4 @@
 export default {
-  appDEACModes: [
-    {
-      actype: 'AUTOCOMPLETE',
-      codeName: 'Default',
-      logicName: 'DEFAULT',
-      deacmodeDataItems: [
-        {
-          appDEFieldId: 'id',
-          dataType: 25,
-          id: 'value',
-        },
-        {
-          appDEFieldId: 'title',
-          dataType: 25,
-          id: 'text',
-        },
-      ],
-      pagingSize: 50,
-      defaultMode: true,
-      textAppDEFieldId: 'title',
-      valueAppDEFieldId: 'id',
-      name: 'DEFAULT',
-      id: 'default',
-    },
-  ],
   appDEFields: [
     {
       codeName: 'identifier',
@@ -3124,22 +3099,6 @@ export default {
           id: 'end1',
         },
         {
-          code: 'if (uiLogic.ctrl) {\r\nuiLogic.ctrl.refresh();\r\n}',
-          codeName: 'RAWJSCODE2',
-          leftPos: 697,
-          logicNodeType: 'RAWJSCODE',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'end1',
-              srcDEUILogicNodeId: 'rawjscode2',
-              id: '连接名称',
-            },
-          ],
-          topPos: 208,
-          name: '注入脚本代码',
-          id: 'rawjscode2',
-        },
-        {
           code: "const report_id = uiLogic.ctrl.model.id;\r\nconst prefix = \"uxbireport__\";\r\nconst remainingId = report_id.replace(prefix, '');\r\nconst newRemainingId = remainingId.replace(/__(?!__)/, '.');\r\n\r\nconst result = await ibiz.util.biReport.openDesignPage(context, params, { mode: 'DATA', reportId: newRemainingId });\r\nreturn result;\r\n",
           codeName: 'RAWJSCODE1',
           leftPos: 401,
@@ -3155,6 +3114,22 @@ export default {
           name: '跳转设计页',
           id: 'rawjscode1',
         },
+        {
+          code: 'if (uiLogic.ctrl) {\r\nuiLogic.ctrl.refresh();\r\n}',
+          codeName: 'RAWJSCODE2',
+          leftPos: 697,
+          logicNodeType: 'RAWJSCODE',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'end1',
+              srcDEUILogicNodeId: 'rawjscode2',
+              id: '连接名称',
+            },
+          ],
+          topPos: 208,
+          name: '门户刷新',
+          id: 'rawjscode2',
+        },
       ],
       deuilogicParams: [
         {
@@ -3164,18 +3139,18 @@ export default {
           id: 'view',
         },
         {
-          codeName: 'Default',
-          default: true,
-          entityParam: true,
-          name: '传入变量',
-          id: 'default',
-        },
-        {
           codeName: 'ctrl',
           activeCtrlParam: true,
           ctrlParam: true,
           name: '门户部件',
           id: 'ctrl',
+        },
+        {
+          codeName: 'Default',
+          default: true,
+          entityParam: true,
+          name: '传入变量',
+          id: 'default',
         },
       ],
       startDEUILogicNodeId: 'begin',
@@ -3428,78 +3403,6 @@ export default {
       id: 'get_actual_workload',
     },
     {
-      codeName: 'get_run_result_total',
-      defaultParamName: 'Default',
-      logicName: '获取执行结果总条数',
-      deuilogicNodes: [
-        {
-          codeName: 'Begin',
-          leftPos: 200,
-          logicNodeType: 'BEGIN',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'rawjscode1',
-              srcDEUILogicNodeId: 'begin',
-              id: '连接名称',
-            },
-          ],
-          topPos: 200,
-          parallelOutput: true,
-          name: '开始',
-          id: 'begin',
-        },
-        {
-          code: 'const total = uiLogic.ctrl.state.total;\r\nuiLogic.view.layoutPanel.state.data.total = total;\r\nif(!total){\r\n    view.layoutPanel.panelItems.grid.state.visible = false\r\n}else{\r\n    view.layoutPanel.panelItems.grid.state.visible = true\r\n}',
-          codeName: 'RAWJSCODE1',
-          leftPos: 160,
-          logicNodeType: 'RAWJSCODE',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'end1',
-              srcDEUILogicNodeId: 'rawjscode1',
-              id: '连接名称',
-            },
-          ],
-          topPos: 350,
-          name: '设置总条数',
-          id: 'rawjscode1',
-        },
-        {
-          codeName: 'END1',
-          leftPos: 200,
-          logicNodeType: 'END',
-          topPos: 461,
-          name: '结束',
-          id: 'end1',
-        },
-      ],
-      deuilogicParams: [
-        {
-          codeName: 'CTRL',
-          activeCtrlParam: true,
-          ctrlParam: true,
-          name: '当前部件对象',
-          id: 'ctrl',
-        },
-        {
-          codeName: 'Default',
-          default: true,
-          entityParam: true,
-          name: '传入变量',
-          id: 'default',
-        },
-        {
-          codeName: 'VIEW',
-          activeViewParam: true,
-          name: '当前视图对象',
-          id: 'view',
-        },
-      ],
-      startDEUILogicNodeId: 'begin',
-      name: '获取执行结果总条数',
-      id: 'get_run_result_total',
-    },
-    {
       codeName: 'open_re_run',
       defaultParamName: 'Default',
       logicName: '打开关联用例',
@@ -3609,65 +3512,6 @@ export default {
       startDEUILogicNodeId: 'begin',
       name: '门户刷新',
       id: 'portlet_refresh',
-    },
-    {
-      codeName: 'refresh_counter_run',
-      defaultParamName: 'Default',
-      logicName: '触发计数器刷新(run)',
-      deuilogicNodes: [
-        {
-          codeName: 'Begin',
-          leftPos: 200,
-          logicNodeType: 'BEGIN',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'rawjscode1',
-              srcDEUILogicNodeId: 'begin',
-              id: '连接名称',
-            },
-          ],
-          topPos: 200,
-          parallelOutput: true,
-          name: '开始',
-          id: 'begin',
-        },
-        {
-          codeName: 'END1',
-          leftPos: 756,
-          logicNodeType: 'END',
-          topPos: 200,
-          name: '结束',
-          id: 'end1',
-        },
-        {
-          code: "ibiz.mc.command.update.send({ srfdecodename:'run'})",
-          codeName: 'RAWJSCODE1',
-          leftPos: 434,
-          logicNodeType: 'RAWJSCODE',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'end1',
-              srcDEUILogicNodeId: 'rawjscode1',
-              id: '连接名称',
-            },
-          ],
-          topPos: 208,
-          name: '注入脚本代码',
-          id: 'rawjscode1',
-        },
-      ],
-      deuilogicParams: [
-        {
-          codeName: 'Default',
-          default: true,
-          entityParam: true,
-          name: '传入变量',
-          id: 'default',
-        },
-      ],
-      startDEUILogicNodeId: 'begin',
-      name: '触发计数器刷新(run)',
-      id: 'refresh_counter_run',
     },
     {
       codeName: 'refresh_run_grid',

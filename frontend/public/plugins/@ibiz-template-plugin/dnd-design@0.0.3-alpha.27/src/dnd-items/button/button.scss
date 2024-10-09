@@ -1,0 +1,22 @@
+@include b(dnd-design-button) {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  min-height: 38px;
+  padding: 0 getCssVar('spacing', 'tight');
+  overflow: auto;
+}
+
+@include b(dnd-design-button-content) {
+  &.el-button {
+    width: 100%;
+    padding: 0 getCssVar('spacing', 'base');
+    font-size: getCssVar('font-size', 'regular');
+    font-weight: getCssVar('font-weight', 'regular');
+    line-height: 1.5;
+    border: 1px solid getCssVar(color, border);
+    border-radius: getCssVar(border, radius, small);
+    box-shadow: 0 getCssVar('spacing', 'super-tight') 0 rgba(var(#{getCssVarName(black)}), 0.015);
+    transition: all .3s cubic-bezier(.645,.045,.355,1);
+  }
+}

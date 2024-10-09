@@ -93,6 +93,7 @@ export default {
         controls: [
           {
             groupMode: 'NONE',
+            groupStyle: 'DEFAULT',
             pagingSize: 1000,
             createControlAction: {
               appDEMethodId: 'create',
@@ -164,6 +165,7 @@ export default {
         cardHeight: 120,
         cardWidth: 150,
         groupMode: 'NONE',
+        groupStyle: 'DEFAULT',
         itemLayoutPanel: {
           layoutMode: 'FLEX',
           layout: {

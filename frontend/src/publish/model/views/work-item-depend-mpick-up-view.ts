@@ -11,8 +11,7 @@ export default {
   appDataEntityId: 'plmweb.work_item',
   controls: [
     {
-      embeddedAppDEViewId:
-        'plmweb.work_item_depend_mpick_up_view_pickup_grid_view',
+      embeddedAppDEViewId: 'plmweb.work_item_depend_mpick_up_grid_view',
       codeName: 'depend_mpick_up_view_pickupviewpanel',
       controlType: 'PICKUPVIEWPANEL',
       appDataEntityId: 'plmweb.work_item',
@@ -265,6 +264,7 @@ export default {
     },
     {
       groupMode: 'NONE',
+      groupStyle: 'DEFAULT',
       itemLayoutPanel: {
         layoutMode: 'TABLE_24COL',
         layout: {

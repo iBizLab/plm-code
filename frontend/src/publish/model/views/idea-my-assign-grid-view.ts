@@ -120,6 +120,7 @@ export default {
       columnEnableFilter: 2,
       columnEnableLink: 2,
       groupMode: 'NONE',
+      groupStyle: 'DEFAULT',
       orderValueAppDEFieldId: 'sequence',
       degridColumns: [
         {
@@ -398,7 +399,6 @@ export default {
               appDEFieldId: 'state',
               editor: {
                 singleSelect: true,
-                appCodeListId: 'plmweb.prodmgmt__idea_state',
                 editorType: 'DROPDOWNLIST',
                 placeHolder: '选择状态',
                 valueType: 'SIMPLE',

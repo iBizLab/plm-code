@@ -455,6 +455,7 @@ export default {
                                 columnEnableFilter: 2,
                                 columnEnableLink: 2,
                                 groupMode: 'NONE',
+                                groupStyle: 'DEFAULT',
                                 degridColumns: [
                                   {
                                     clconvertMode: 'NONE',
@@ -1363,18 +1364,11 @@ export default {
                         showTrigger: true,
                         valueItemName: 'submitter_id',
                         editorParams: {
-                          'SRFNAVPARAM.n_department_id_eq': '%srforgsectorid%',
                           AC: 'TRUE',
                           TRIGGER: 'TRUE',
-                          URL: 'products/${context.product}/product_members/fetch_default',
                           PICKUPVIEW: 'FALSE',
-                          USERMETHOD: 'post',
-                          USERMAP: '{"id":"user_id","name":"name"}',
-                          DEPTMAP: '{"id":"id","name":"display_name"}',
-                          DEPTMETHOD: 'get',
-                          DEPTURL: '/users/fetch_default',
                         },
-                        editorStyle: 'PERSONEL_SELECT_PRODUCT',
+                        editorStyle: 'PERSONEL_SELECT',
                         editorType: 'PICKEREX_TRIGGER',
                         editorItems: [
                           {
@@ -1384,13 +1378,6 @@ export default {
                         sysPFPluginId: 'person_select',
                         valueType: 'SIMPLE',
                         editable: true,
-                        navigateParams: [
-                          {
-                            key: 'n_department_id_eq',
-                            value: 'srforgsectorid',
-                            id: 'n_department_id_eq',
-                          },
-                        ],
                         id: 'submitter_name',
                       },
                       allowEmpty: true,

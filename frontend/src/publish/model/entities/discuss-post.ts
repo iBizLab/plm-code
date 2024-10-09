@@ -1,29 +1,4 @@
 export default {
-  appDEACModes: [
-    {
-      actype: 'AUTOCOMPLETE',
-      codeName: 'Default',
-      logicName: 'DEFAULT',
-      deacmodeDataItems: [
-        {
-          appDEFieldId: 'id',
-          dataType: 25,
-          id: 'value',
-        },
-        {
-          appDEFieldId: 'name',
-          dataType: 25,
-          id: 'text',
-        },
-      ],
-      pagingSize: 50,
-      defaultMode: true,
-      textAppDEFieldId: 'name',
-      valueAppDEFieldId: 'id',
-      name: 'DEFAULT',
-      id: 'default',
-    },
-  ],
   appDEFields: [
     {
       codeName: 'is_deleted',
@@ -1853,7 +1828,7 @@ export default {
           leftPos: 190,
           logicNodeType: 'RAWJSCODE',
           topPos: 470,
-          name: '注入脚本代码',
+          name: '清空回复',
           id: 'rawjscode1',
         },
       ],
@@ -2129,95 +2104,6 @@ export default {
       startDEUILogicNodeId: 'begin',
       name: '编辑回复',
       id: 'edit_reply',
-    },
-    {
-      codeName: 'remove_reply',
-      defaultParamName: 'Default',
-      logicName: '删除回复',
-      deuilogicNodes: [
-        {
-          codeName: 'Begin',
-          leftPos: 198,
-          logicNodeType: 'BEGIN',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'preparejsparam1',
-              srcDEUILogicNodeId: 'begin',
-              id: '连接名称',
-            },
-          ],
-          topPos: 60,
-          parallelOutput: true,
-          name: '开始',
-          id: 'begin',
-        },
-        {
-          dstAppDEActionId: 'del_reply',
-          dstAppDataEntityId: 'plmweb.discuss_reply',
-          codeName: 'DEACTION1',
-          dstDEUILogicParamId: 'reply',
-          leftPos: 158,
-          logicNodeType: 'DEACTION',
-          topPos: 344,
-          name: '删除回复',
-          id: 'deaction1',
-        },
-        {
-          codeName: 'PREPAREJSPARAM1',
-          leftPos: 158,
-          logicNodeType: 'PREPAREJSPARAM',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'deaction1',
-              srcDEUILogicNodeId: 'preparejsparam1',
-              id: '连接名称',
-            },
-          ],
-          deuilogicNodeParams: [
-            {
-              dstFieldName: 'id',
-              dstDEUILogicParamId: 'reply',
-              paramAction: 'SETPARAMVALUE',
-              srcFieldName: 'id',
-              srcDEUILogicParamId: 'default',
-              srcValueType: 'SRCDLPARAM',
-              name: 'Default[id] ==> reply[id]',
-              id: 'default[id] ==> reply[id]',
-            },
-            {
-              dstFieldName: 'post_id',
-              dstDEUILogicParamId: 'reply',
-              paramAction: 'SETPARAMVALUE',
-              srcFieldName: 'post_id',
-              srcDEUILogicParamId: 'default',
-              srcValueType: 'SRCDLPARAM',
-              name: 'Default[post_id] ==> reply[post_id]',
-              id: 'default[post_id] ==> reply[post_id]',
-            },
-          ],
-          topPos: 227,
-          name: '准备参数',
-          id: 'preparejsparam1',
-        },
-      ],
-      deuilogicParams: [
-        {
-          codeName: 'reply',
-          entityParam: true,
-          name: '回复',
-          id: 'reply',
-        },
-        {
-          codeName: 'Default',
-          default: true,
-          entityParam: true,
-          name: '传入变量',
-          id: 'default',
-        },
-      ],
-      startDEUILogicNodeId: 'begin',
-      name: '删除回复',
-      id: 'remove_reply',
     },
     {
       codeName: 'send_comment',

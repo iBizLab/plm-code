@@ -72,6 +72,7 @@ export default {
       columnEnableFilter: 2,
       columnEnableLink: 2,
       groupMode: 'NONE',
+      groupStyle: 'DEFAULT',
       orderValueAppDEFieldId: 'order_value',
       degridColumns: [
         {

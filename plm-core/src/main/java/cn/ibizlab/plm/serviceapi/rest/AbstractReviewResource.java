@@ -918,7 +918,7 @@ public abstract class AbstractReviewResource {
     * @return Mono<ResponseEntity<ReviewDefGroupDTO>>
     */
     @ApiOperation(value = "获取Get", tags = {"评审" },  notes = "Review-Get ")
-    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Review-Get-all')  or hasPermission(this.reviewDefGroupDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-Review-Get')")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Review-Get-all')  or hasPermission(this.reviewDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-Review-Get')")
     @GetMapping("reviews/{id}")
     public Mono<ResponseEntity<ReviewDefGroupDTO>> getById
             (@PathVariable("id") String id) {
@@ -1087,7 +1087,7 @@ public abstract class AbstractReviewResource {
     * @return Mono<ResponseEntity<ReviewDefGroupDTO>>
     */
     @ApiOperation(value = "获取Get", tags = {"评审" },  notes = "Review-Get ")
-    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Review-Get-all')  or hasPermission('library',#libraryId,this.reviewDefGroupDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-Review-Get')")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Review-Get-all')  or hasPermission('library',#libraryId,this.reviewDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-Review-Get')")
     @GetMapping("libraries/{libraryId}/reviews/{id}")
     public Mono<ResponseEntity<ReviewDefGroupDTO>> getByLibraryIdAndId
             (@PathVariable("libraryId") String libraryId, @PathVariable("id") String id) {

@@ -568,15 +568,6 @@ export default {
     ],
     appViewRefs: [
       {
-        realTitle: '工作项关联编辑视图',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.RELATION.EDITVIEW',
-        },
-        refAppViewId: 'plmweb.relation_edit_view',
-        name: 'NEWDATA',
-        id: 'newdata',
-      },
-      {
         openMode: 'POPUPMODAL',
         navigateContexts: [
           {
@@ -597,6 +588,15 @@ export default {
         refAppViewId: 'plmweb.customer_main_view',
         name: 'EDITDATA',
         id: 'editdata',
+      },
+      {
+        realTitle: '工作项关联编辑视图',
+        realTitleLanguageRes: {
+          lanResTag: 'PAGE.TITLE.RELATION.EDITVIEW',
+        },
+        refAppViewId: 'plmweb.relation_edit_view',
+        name: 'NEWDATA',
+        id: 'newdata',
       },
     ],
     controls: [
@@ -649,6 +649,7 @@ export default {
         columnEnableFilter: 2,
         columnEnableLink: 2,
         groupMode: 'NONE',
+        groupStyle: 'DEFAULT',
         degridColumns: [
           {
             clconvertMode: 'NONE',
@@ -899,6 +900,9 @@ export default {
         logicName: '关联客户_表格',
         appDataEntityId: 'plmweb.relation',
         controlParam: {
+          ctrlParams: {
+            LOCATERECORDKEY: 'target_id',
+          },
           id: 'grid',
         },
         modelId: '05BEDC84-10A6-4961-89F6-00105BE42389',

@@ -123,6 +123,7 @@ export default {
     },
     {
       groupMode: 'NONE',
+      groupStyle: 'DEFAULT',
       itemLayoutPanel: {
         layoutMode: 'TABLE_24COL',
         layout: {
@@ -1232,16 +1233,16 @@ export default {
       },
       delistDataItems: [
         {
-          dataType: 21,
-          id: 'icon',
-        },
-        {
           dataType: 25,
           id: 'name',
         },
         {
           dataType: 25,
           id: 'id',
+        },
+        {
+          dataType: 21,
+          id: 'icon',
         },
         {
           appDEFieldId: 'id',

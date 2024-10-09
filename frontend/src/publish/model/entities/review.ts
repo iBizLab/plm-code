@@ -1,29 +1,4 @@
 export default {
-  appDEACModes: [
-    {
-      actype: 'AUTOCOMPLETE',
-      codeName: 'Default',
-      logicName: 'DEFAULT',
-      deacmodeDataItems: [
-        {
-          appDEFieldId: 'id',
-          dataType: 25,
-          id: 'value',
-        },
-        {
-          appDEFieldId: 'name',
-          dataType: 25,
-          id: 'text',
-        },
-      ],
-      pagingSize: 50,
-      defaultMode: true,
-      textAppDEFieldId: 'name',
-      valueAppDEFieldId: 'id',
-      name: 'DEFAULT',
-      id: 'default',
-    },
-  ],
   appDEFields: [
     {
       codeName: 'identifier',
@@ -2727,6 +2702,14 @@ export default {
           id: 'begin',
         },
         {
+          codeName: 'END1',
+          leftPos: 200,
+          logicNodeType: 'END',
+          topPos: 571,
+          name: '结束',
+          id: 'end1',
+        },
+        {
           code: "\tconst rows = uiLogic.grid.state.rows;\r\n    const ctx = uiLogic.ctx;\r\n\tif (rows && rows.length > 0) {\r\n\t\trows.forEach(row => {\r\n\t\t\tconst titleColumn = row.uiActionGroupStates.name;\r\n\t\t\tconst cur_user = ctx.srfuserid;\r\n\t\t\tconst state = row.data.state;\r\n\t\t\tconst create_man = row.data.create_man;\r\n\t\t\tif (titleColumn && Object.values(titleColumn).length > 0) {\r\n\t\t\t\tObject.values(titleColumn).forEach(action => {\r\n                    action.visible = false;\r\n                    if(action.uiActionId === 'delete@review'&& create_man == cur_user){\r\n                        action.visible = true;\r\n                    }else if (action.uiActionId === 'repeal_review@review'&& create_man == cur_user && state == '20' ) {\r\n\t\t\t\t\t\taction.visible = true;\r\n\t\t\t\t\t} else if (action.uiActionId === 'submit_review@review'&& create_man == cur_user && (state == '10'||state == '50') ) {\r\n\t\t\t\t\t\taction.visible = true;\r\n\t\t\t\t\t}else if (action.uiActionId === 'set_category@review'&& create_man == cur_user){\r\n                        action.visible = true;\r\n                    }\r\n\t\t\t\t})\r\n\t\t\t}\r\n\t\t})\r\n\t}\r\n",
           codeName: 'RAWJSCODE1',
           leftPos: 160,
@@ -2739,16 +2722,8 @@ export default {
             },
           ],
           topPos: 420,
-          name: '注入脚本代码',
+          name: '计算表格列行为状态',
           id: 'rawjscode1',
-        },
-        {
-          codeName: 'END1',
-          leftPos: 200,
-          logicNodeType: 'END',
-          topPos: 571,
-          name: '结束',
-          id: 'end1',
         },
       ],
       deuilogicParams: [
@@ -2776,73 +2751,6 @@ export default {
       startDEUILogicNodeId: 'begin',
       name: '计算表格列行为状态(review)',
       id: 'calc_column_action_state',
-    },
-    {
-      codeName: 'commit_review',
-      defaultParamName: 'Default',
-      logicName: '提交评审',
-      deuilogicNodes: [
-        {
-          codeName: 'Begin',
-          leftPos: 140,
-          logicNodeType: 'BEGIN',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'deaction1',
-              srcDEUILogicNodeId: 'begin',
-              id: '连接名称',
-            },
-          ],
-          topPos: 200,
-          parallelOutput: true,
-          name: '开始',
-          id: 'begin',
-        },
-        {
-          dstAppDEActionId: 'submit_review',
-          dstAppDataEntityId: 'plmweb.review',
-          codeName: 'DEACTION1',
-          dstDEUILogicParamId: 'default',
-          leftPos: 621,
-          logicNodeType: 'DEACTION',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'end1',
-              srcDEUILogicNodeId: 'deaction1',
-              id: '连接名称',
-            },
-          ],
-          topPos: 208,
-          name: '提交评审',
-          id: 'deaction1',
-        },
-        {
-          codeName: 'END1',
-          leftPos: 1127,
-          logicNodeType: 'END',
-          topPos: 200,
-          name: '结束',
-          id: 'end1',
-        },
-      ],
-      deuilogicParams: [
-        {
-          codeName: 'ctx',
-          navContextParam: true,
-          name: '上下文',
-          id: 'ctx',
-        },
-        {
-          codeName: 'Default',
-          default: true,
-          entityParam: true,
-          name: '传入变量',
-          id: 'default',
-        },
-      ],
-      startDEUILogicNodeId: 'begin',
-      name: '提交评审',
-      id: 'commit_review',
     },
     {
       codeName: 'create_category',
@@ -3217,17 +3125,9 @@ export default {
           id: 'begin',
         },
         {
-          codeName: 'END1',
-          leftPos: 1022,
-          logicNodeType: 'END',
-          topPos: 200,
-          name: '结束',
-          id: 'end1',
-        },
-        {
           code: 'if (uiLogic.ctrl) {\r\nuiLogic.ctrl.refresh();\r\n}',
           codeName: 'RAWJSCODE2',
-          leftPos: 830,
+          leftPos: 820,
           logicNodeType: 'RAWJSCODE',
           deuilogicLinks: [
             {
@@ -3236,8 +3136,8 @@ export default {
               id: '连接名称',
             },
           ],
-          topPos: 216,
-          name: '注入脚本代码',
+          topPos: 208,
+          name: '门户刷新',
           id: 'rawjscode2',
         },
         {
@@ -3256,6 +3156,14 @@ export default {
           name: '跳转设计页',
           id: 'rawjscode1',
         },
+        {
+          codeName: 'END1',
+          leftPos: 1022,
+          logicNodeType: 'END',
+          topPos: 200,
+          name: '结束',
+          id: 'end1',
+        },
       ],
       deuilogicParams: [
         {
@@ -3266,17 +3174,17 @@ export default {
           id: 'default',
         },
         {
+          codeName: 'view',
+          activeViewParam: true,
+          name: '当前视图',
+          id: 'view',
+        },
+        {
           codeName: 'ctrl',
           activeCtrlParam: true,
           ctrlParam: true,
           name: '门户部件',
           id: 'ctrl',
-        },
-        {
-          codeName: 'view',
-          activeViewParam: true,
-          name: '当前视图',
-          id: 'view',
         },
       ],
       startDEUILogicNodeId: 'begin',
@@ -3407,22 +3315,6 @@ export default {
           id: 'begin',
         },
         {
-          code: 'uiLogic.parent_form.control.details.grouppanel6.state.visible=true;\r\nuiLogic.parent_form.control.details.review_results.state.keepAlive=true;\r\nuiLogic.parent_form.control.details.review_results.state.visible=false;\r\n\r\nconst choose_data = uiLogic.parent_form.control.details.choosed_content;\r\nchoose_data.setDataValue(null);',
-          codeName: 'RAWJSCODE2',
-          leftPos: 700,
-          logicNodeType: 'RAWJSCODE',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'rawjscode1',
-              srcDEUILogicNodeId: 'rawjscode2',
-              id: '连接名称',
-            },
-          ],
-          topPos: 208,
-          name: '注入脚本代码',
-          id: 'rawjscode2',
-        },
-        {
           codeName: 'END1',
           leftPos: 1105,
           logicNodeType: 'END',
@@ -3431,24 +3323,8 @@ export default {
           id: 'end1',
         },
         {
-          codeName: 'DEBUGPARAM1',
-          dstDEUILogicParamId: 'view',
-          leftPos: 303,
-          logicNodeType: 'DEBUGPARAM',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'preparejsparam1',
-              srcDEUILogicNodeId: 'debugparam1',
-              id: '连接名称',
-            },
-          ],
-          topPos: 208,
-          name: '调试逻辑参数',
-          id: 'debugparam1',
-        },
-        {
           codeName: 'PREPAREJSPARAM1',
-          leftPos: 465,
+          leftPos: 475,
           logicNodeType: 'PREPAREJSPARAM',
           deuilogicLinks: [
             {
@@ -3478,8 +3354,40 @@ export default {
             },
           ],
           topPos: 208,
-          name: '准备参数',
+          name: '设置分页表单',
           id: 'preparejsparam1',
+        },
+        {
+          codeName: 'DEBUGPARAM1',
+          dstDEUILogicParamId: 'view',
+          leftPos: 303,
+          logicNodeType: 'DEBUGPARAM',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'preparejsparam1',
+              srcDEUILogicNodeId: 'debugparam1',
+              id: '连接名称',
+            },
+          ],
+          topPos: 208,
+          name: '调试逻辑参数',
+          id: 'debugparam1',
+        },
+        {
+          code: 'uiLogic.parent_form.control.details.grouppanel6.state.visible=true;\r\nuiLogic.parent_form.control.details.review_results.state.keepAlive=true;\r\nuiLogic.parent_form.control.details.review_results.state.visible=false;\r\n\r\nconst choose_data = uiLogic.parent_form.control.details.choosed_content;\r\nchoose_data.setDataValue(null);',
+          codeName: 'RAWJSCODE2',
+          leftPos: 670,
+          logicNodeType: 'RAWJSCODE',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'rawjscode1',
+              srcDEUILogicNodeId: 'rawjscode2',
+              id: '连接名称',
+            },
+          ],
+          topPos: 208,
+          name: '控制显隐',
+          id: 'rawjscode2',
         },
         {
           code: "ibiz.mc.command.update.send({ srfdecodename: 'review', srfkey: context.review})",
@@ -3507,16 +3415,16 @@ export default {
           id: 'default',
         },
         {
-          codeName: 'view',
-          activeViewParam: true,
-          name: '当前视图对象',
-          id: 'view',
-        },
-        {
           codeName: 'parent_view',
           entityParam: true,
           name: '父页面',
           id: 'parent_view',
+        },
+        {
+          codeName: 'view',
+          activeViewParam: true,
+          name: '当前视图对象',
+          id: 'view',
         },
         {
           codeName: 'parent_form',
@@ -3683,93 +3591,6 @@ export default {
       startDEUILogicNodeId: 'begin',
       name: '删除类别或分组',
       id: 'remove_section_or_category',
-    },
-    {
-      codeName: 'repeal_review',
-      defaultParamName: 'Default',
-      logicName: '撤销评审',
-      deuilogicNodes: [
-        {
-          codeName: 'Begin',
-          leftPos: 200,
-          logicNodeType: 'BEGIN',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'preparejsparam1',
-              srcDEUILogicNodeId: 'begin',
-              id: '连接名称',
-            },
-          ],
-          topPos: 200,
-          parallelOutput: true,
-          name: '开始',
-          id: 'begin',
-        },
-        {
-          codeName: 'PREPAREJSPARAM1',
-          leftPos: 320,
-          logicNodeType: 'PREPAREJSPARAM',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'deaction1',
-              srcDEUILogicNodeId: 'preparejsparam1',
-              id: '连接名称',
-            },
-          ],
-          deuilogicNodeParams: [
-            {
-              dstFieldName: 'state',
-              dstDEUILogicParamId: 'default',
-              paramAction: 'SETPARAMVALUE',
-              srcValue: '50',
-              srcValueType: 'SRCVALUE',
-              name: '直接值[50] ==> Default[state]',
-              id: '直接值[50] ==> default[state]',
-            },
-          ],
-          topPos: 208,
-          name: '设置评审状态为已撤回',
-          id: 'preparejsparam1',
-        },
-        {
-          codeName: 'END1',
-          leftPos: 876,
-          logicNodeType: 'END',
-          topPos: 200,
-          name: '结束',
-          id: 'end1',
-        },
-        {
-          dstAppDEActionId: 'update',
-          dstAppDataEntityId: 'plmweb.review',
-          codeName: 'DEACTION1',
-          dstDEUILogicParamId: 'default',
-          leftPos: 543,
-          logicNodeType: 'DEACTION',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'end1',
-              srcDEUILogicNodeId: 'deaction1',
-              id: '连接名称',
-            },
-          ],
-          topPos: 208,
-          name: '更新评审状态',
-          id: 'deaction1',
-        },
-      ],
-      deuilogicParams: [
-        {
-          codeName: 'Default',
-          default: true,
-          entityParam: true,
-          name: '传入变量',
-          id: 'default',
-        },
-      ],
-      startDEUILogicNodeId: 'begin',
-      name: '撤销评审',
-      id: 'repeal_review',
     },
   ],
   deopprivs: [

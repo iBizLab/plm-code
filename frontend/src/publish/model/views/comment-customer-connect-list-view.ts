@@ -451,6 +451,7 @@ export default {
       },
       {
         groupMode: 'NONE',
+        groupStyle: 'DEFAULT',
         itemLayoutPanel: {
           layoutMode: 'FLEX',
           layout: {

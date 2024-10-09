@@ -451,15 +451,6 @@ export default {
     ],
     appViewRefs: [
       {
-        realTitle: '工作项关联编辑视图',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.RELATION.EDITVIEW',
-        },
-        refAppViewId: 'plmweb.relation_edit_view',
-        name: 'NEWDATA',
-        id: 'newdata',
-      },
-      {
         openMode: 'POPUPMODAL',
         navigateContexts: [
           {
@@ -499,6 +490,15 @@ export default {
         refAppViewId: 'plmweb.work_item_dyna_main_view',
         name: 'EDITDATA',
         id: 'editdata',
+      },
+      {
+        realTitle: '工作项关联编辑视图',
+        realTitleLanguageRes: {
+          lanResTag: 'PAGE.TITLE.RELATION.EDITVIEW',
+        },
+        refAppViewId: 'plmweb.relation_edit_view',
+        name: 'NEWDATA',
+        id: 'newdata',
       },
     ],
     controls: [
@@ -551,6 +551,7 @@ export default {
         columnEnableFilter: 2,
         columnEnableLink: 2,
         groupMode: 'NONE',
+        groupStyle: 'DEFAULT',
         degridColumns: [
           {
             clconvertMode: 'NONE',
@@ -636,7 +637,7 @@ export default {
                   caption: '取消关联',
                   detailType: 'DEUIACTION',
                   uiactionId: 'test_case_del_relation_bug@relation',
-                  tooltip: '取消关联',
+                  tooltip: '取消关联测试用例',
                   showCaption: true,
                   showIcon: true,
                   sysImage: {
@@ -788,6 +789,9 @@ export default {
           },
         ],
         controlParam: {
+          ctrlParams: {
+            LOCATERECORDKEY: 'target_id',
+          },
           id: 'grid',
         },
         modelId: '164b269ae96b7da6c3e129ec36e14087',

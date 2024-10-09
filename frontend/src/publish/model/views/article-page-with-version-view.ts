@@ -438,7 +438,7 @@ export default {
                             contenttype: 'HTML',
                             TITLE: 'name',
                             PARSESCRIPT:
-                              'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>").replace(/#{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>").replaceAll(/\\{\\"\\emoji\\":\\"(.+?)\\"\\}/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji)); return `<span class="emoji-tag">${tempVal}</span>`})',
+                              'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","type":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g,(match, id, name, identifier, type, icon) => { const tempIcon = icon.trim(); const params = JSON.stringify({ id, name, identifier, type, }); return `<span markerClick=\'marker\' params=\'${params}\' class=\'comment-tag is-click\'>${tempIcon} ${identifier} ${name}</span>`;}).replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>").replace(/#{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>").replaceAll(/\\{\\"\\emoji\\":\\"(.+?)\\"\\}/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji)); return `<span class="emoji-tag">${tempVal}</span>`})',
                           },
                           editorStyle: 'ANCHO_HTML',
                           editorType: 'RAW',
@@ -494,6 +494,7 @@ export default {
                       {
                         dataType: 21,
                         ignoreInput: 12,
+                        itemHeight: 1,
                         labelPos: 'NONE',
                         noPrivDisplayMode: 1,
                         appDEFieldId: 'publish_content',
@@ -501,6 +502,7 @@ export default {
                           mode: 'EDIT',
                           maxLength: 16777215,
                           showMaxLength: true,
+                          editorHeight: 1,
                           editorType: 'MARKDOWN',
                           valueType: 'SIMPLE',
                           editable: true,
@@ -647,6 +649,7 @@ export default {
                           columnEnableFilter: 2,
                           columnEnableLink: 2,
                           groupMode: 'NONE',
+                          groupStyle: 'DEFAULT',
                           degridColumns: [
                             {
                               clconvertMode: 'NONE',

@@ -169,6 +169,7 @@ export default {
     },
     {
       groupMode: 'NONE',
+      groupStyle: 'DEFAULT',
       itemLayoutPanel: {
         layoutMode: 'TABLE_24COL',
         layout: {
@@ -226,7 +227,7 @@ export default {
                       predefinedType: 'FIELD_TEXT_DYNAMIC',
                       valueType: 'OBJECT',
                       editable: true,
-                      id: 'field_text_dynamic',
+                      id: 'title',
                     },
                     viewFieldName: 'IDEA',
                     allowEmpty: true,
@@ -237,7 +238,7 @@ export default {
                       shrink: 1,
                       layout: 'FLEX',
                     },
-                    id: 'field_text_dynamic',
+                    id: 'title',
                   },
                 ],
                 layout: {

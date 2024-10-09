@@ -522,6 +522,7 @@ export default {
         groupMode: 'AUTO',
         groupAppDEFieldId: 'job_type',
         groupCodeListId: 'plmweb.base__choose_job_type',
+        groupStyle: 'DEFAULT',
         itemLayoutPanel: {
           layoutMode: 'TABLE_24COL',
           layout: {

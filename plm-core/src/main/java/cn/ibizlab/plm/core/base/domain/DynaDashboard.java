@@ -102,7 +102,7 @@ public class DynaDashboard extends EntityMP implements Serializable
     * 序号
     */
     @TableField(value = "sequences")
-    @DEField(name = "sequences" , defaultValueType = DEFieldDefaultValueType.ORDERVALUE)
+    @DEField(name = "sequences" , preType = DEPredefinedFieldType.ORDERVALUE)
     @JSONField(name = "sequences")
     @JsonProperty("sequences")
     @ApiModelProperty(value = "sequences", notes = "序号")
@@ -272,15 +272,6 @@ public class DynaDashboard extends EntityMP implements Serializable
     public DynaDashboard setExampleChart(String exampleChart) {
         this.exampleChart = exampleChart;
         this.modify("example_chart", exampleChart);
-        return this;
-    }
-
-    /**
-    * 设置 [序号]
-    */
-    public DynaDashboard setSequences(BigDecimal sequences) {
-        this.sequences = sequences;
-        this.modify("sequences", sequences);
         return this;
     }
 

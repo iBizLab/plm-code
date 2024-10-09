@@ -296,6 +296,7 @@ export default {
         columnEnableFilter: 2,
         columnEnableLink: 2,
         groupMode: 'NONE',
+        groupStyle: 'DEFAULT',
         degridColumns: [
           {
             clconvertMode: 'FRONT',
@@ -487,7 +488,8 @@ export default {
           },
           {
             appDEFieldId: 'description',
-            scriptCode: 'data.description',
+            scriptCode:
+              'data.description.replaceAll(/<img(.+?)>/g,\'[图片]\').replaceAll(/@{(.+?)name":"(.+?)"}/g,\'@$2\').replaceAll(/#{(.+?)name":"(.+?)"((.|[\\t\\r\\f\\n\\s])+?)}/g,\'#$2\')',
             valueType: 'SIMPLE',
             customCode: true,
             dataType: 21,

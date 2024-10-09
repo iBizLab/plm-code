@@ -675,6 +675,14 @@ export default {
           id: 'begin',
         },
         {
+          codeName: 'END1',
+          leftPos: 430,
+          logicNodeType: 'END',
+          topPos: 514,
+          name: '结束',
+          id: 'end1',
+        },
+        {
           code: 'var disabled = view.layoutPanel.panelItems.form.control.state.data.disabled;\r\nif(disabled === 1){\r\n    view.layoutPanel.panelItems.button_okaction.state.disabled = true;\r\n}\r\n',
           codeName: 'RAWJSCODE1',
           leftPos: 390,
@@ -687,16 +695,8 @@ export default {
             },
           ],
           topPos: 306,
-          name: '注入脚本代码',
+          name: '判断是否禁用',
           id: 'rawjscode1',
-        },
-        {
-          codeName: 'END1',
-          leftPos: 430,
-          logicNodeType: 'END',
-          topPos: 514,
-          name: '结束',
-          id: 'end1',
         },
       ],
       deuilogicParams: [

@@ -1,4 +1,5 @@
 export default {
+  markOpenDataMode: 'DISPLAYOPPERSON',
   enableDirtyChecking: true,
   showDataInfoBar: true,
   xdataControlName: 'form',
@@ -100,6 +101,7 @@ export default {
                 layoutPos: {
                   shrink: 1,
                   layout: 'FLEX',
+                  spacingRight: 'OUTERLARGE',
                 },
                 showCaption: true,
                 id: 'coop_pos',
@@ -136,8 +138,10 @@ export default {
               },
             ],
             layout: {
+              align: 'flex-start',
               dir: 'row',
               layout: 'FLEX',
+              valign: 'center',
             },
             dataRegionType: 'INHERIT',
             caption: '容器',
@@ -489,6 +493,7 @@ export default {
                       columnEnableFilter: 2,
                       columnEnableLink: 2,
                       groupMode: 'NONE',
+                      groupStyle: 'DEFAULT',
                       degridColumns: [
                         {
                           clconvertMode: 'NONE',

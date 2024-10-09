@@ -1,0 +1,73 @@
+/* stylelint-disable selector-class-pattern */
+@include b(design_tree) {
+    width: 100%;
+    height: 100%;
+    @include e(component){
+      width: 100%;
+      overflow: hidden;
+    }
+
+    @include e(item-icon){
+      flex-shrink: 0;
+      padding: 4px 6px 4px 0;
+      font-size: 16px;
+      vertical-align: middle;
+    }
+    @include e(item-label){
+      flex-grow: 1;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    @include e(item-caption){
+      vertical-align: middle;
+    }
+
+    @include e(actions){
+      display: flex;
+      padding:0 5px;
+
+      &.first .ibiz-design_tree__item-actions {
+        display: flex;
+      }
+    }
+
+    @include e(item-actions){
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: flex-end;
+      width: 0;
+      overflow: hidden;
+    }
+
+    @include e(default-actions){
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    @include e(item-action-item){
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
+      padding: 0 3px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    @include e(item){
+        display: flex;
+        width: 100%;
+
+      &:hover{
+        @include e(item-actions){
+          display: flex;
+          width: auto;
+        }
+      }
+    }
+  }

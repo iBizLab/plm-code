@@ -1133,8 +1133,6 @@ export default {
                                 editable: true,
                                 id: 'executor_id',
                               },
-                              updateDV: 'srfpersonid',
-                              updateDVT: 'SESSION',
                               allowEmpty: true,
                               hidden: true,
                               caption: '执行人标识',

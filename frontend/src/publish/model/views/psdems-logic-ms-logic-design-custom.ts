@@ -47,8 +47,14 @@ export default {
     {
       realTitle: '属性视图',
       refAppViewId: 'plmweb.psdemslogicdesigneditview_ms',
-      name: 'EDITDATA:PSDEMSLOGIC',
-      id: 'editdata:psdemslogic',
+      name: 'EDITDATA:PSDELOGIC',
+      id: 'editdata:psdelogic',
+    },
+    {
+      realTitle: '主状态逻辑节点(设计)',
+      refAppViewId: 'plmweb.psdelogicnodedesignview_msnode2',
+      name: 'EDITDATA:PSDELOGICNODE',
+      id: 'editdata:psdelogicnode',
     },
     {
       realTitle: '主状态逻辑节点(设计)',
@@ -57,22 +63,16 @@ export default {
       id: 'editdata:psdelogicnode:mainstate',
     },
     {
-      realTitle: '属性视图',
-      refAppViewId: 'plmweb.psdemslogicdesigneditview_ms',
-      name: 'EDITDATA:PSDELOGIC',
-      id: 'editdata:psdelogic',
-    },
-    {
       realTitle: '主状态处理逻辑节点连接(设计)',
       refAppViewId: 'plmweb.psdelogiclinkdesigneditview_ms',
       name: 'EDITDATA:PSDELOGICLINK',
       id: 'editdata:psdelogiclink',
     },
     {
-      realTitle: '主状态逻辑节点(设计)',
-      refAppViewId: 'plmweb.psdelogicnodedesignview_msnode2',
-      name: 'EDITDATA:PSDELOGICNODE',
-      id: 'editdata:psdelogicnode',
+      realTitle: '属性视图',
+      refAppViewId: 'plmweb.psdemslogicdesigneditview_ms',
+      name: 'EDITDATA:PSDEMSLOGIC',
+      id: 'editdata:psdemslogic',
     },
   ],
   controls: [
@@ -1225,7 +1225,7 @@ export default {
     name: 'layoutpanel',
     id: 'ms_logic_design_layout',
   },
-  priority: 30,
+  priority: 100,
   title: '主状态逻辑设计',
   viewStyle: 'X6DesignView',
   viewType: 'DECUSTOMVIEW',

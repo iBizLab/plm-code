@@ -92,6 +92,7 @@ export default {
     {
       emptyText: '当前内容未设置工时',
       groupMode: 'NONE',
+      groupStyle: 'DEFAULT',
       itemLayoutPanel: {
         layoutMode: 'TABLE_24COL',
         layout: {

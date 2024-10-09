@@ -1,29 +1,4 @@
 export default {
-  appDEACModes: [
-    {
-      actype: 'AUTOCOMPLETE',
-      codeName: 'Default',
-      logicName: 'DEFAULT',
-      deacmodeDataItems: [
-        {
-          appDEFieldId: 'pscoreprdcatid',
-          dataType: 25,
-          id: 'value',
-        },
-        {
-          appDEFieldId: 'pscoreprdcatname',
-          dataType: 25,
-          id: 'text',
-        },
-      ],
-      pagingSize: 50,
-      defaultMode: true,
-      textAppDEFieldId: 'pscoreprdcatname',
-      valueAppDEFieldId: 'pscoreprdcatid',
-      name: 'DEFAULT',
-      id: 'default',
-    },
-  ],
   appDEFields: [
     {
       codeName: 'PPSCorePrdCatId',

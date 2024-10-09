@@ -1,29 +1,4 @@
 export default {
-  appDEACModes: [
-    {
-      actype: 'AUTOCOMPLETE',
-      codeName: 'Default',
-      logicName: 'DEFAULT',
-      deacmodeDataItems: [
-        {
-          appDEFieldId: 'id',
-          dataType: 25,
-          id: 'value',
-        },
-        {
-          appDEFieldId: 'name',
-          dataType: 25,
-          id: 'text',
-        },
-      ],
-      pagingSize: 50,
-      defaultMode: true,
-      textAppDEFieldId: 'name',
-      valueAppDEFieldId: 'id',
-      name: 'DEFAULT',
-      id: 'default',
-    },
-  ],
   appDEFields: [
     {
       codeName: 'owner_id',
@@ -1135,22 +1110,6 @@ export default {
           id: 'begin',
         },
         {
-          codeName: 'DEBUGPARAM1',
-          dstDEUILogicParamId: 'view',
-          leftPos: 160,
-          logicNodeType: 'DEBUGPARAM',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'preparejsparam1',
-              srcDEUILogicNodeId: 'debugparam1',
-              id: '连接名称',
-            },
-          ],
-          topPos: 365,
-          name: '调试逻辑参数',
-          id: 'debugparam1',
-        },
-        {
           dstAppDEActionId: 'add_shared_page_member',
           dstAppDataEntityId: 'plmweb.member',
           codeName: 'DEACTION1',
@@ -1169,13 +1128,20 @@ export default {
           id: 'deaction1',
         },
         {
-          errorInfo: '未选择用户',
-          codeName: 'THROWEXCEPTION1',
-          leftPos: -28,
-          logicNodeType: 'THROWEXCEPTION',
-          topPos: 357,
-          name: '抛出异常',
-          id: 'throwexception1',
+          codeName: 'DEBUGPARAM1',
+          dstDEUILogicParamId: 'view',
+          leftPos: 160,
+          logicNodeType: 'DEBUGPARAM',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'preparejsparam1',
+              srcDEUILogicNodeId: 'debugparam1',
+              id: '连接名称',
+            },
+          ],
+          topPos: 365,
+          name: '调试逻辑参数',
+          id: 'debugparam1',
         },
         {
           code: 'view.layoutPanel.panelItems.choose_member.setDataValue(null);',
@@ -1183,7 +1149,7 @@ export default {
           leftPos: 160,
           logicNodeType: 'RAWJSCODE',
           topPos: 860,
-          name: '注入脚本代码',
+          name: '添加页面共享成员',
           id: 'rawjscode1',
         },
         {
@@ -1210,8 +1176,17 @@ export default {
             },
           ],
           topPos: 554,
-          name: '准备参数',
+          name: '绑定当前分页',
           id: 'preparejsparam1',
+        },
+        {
+          errorInfo: '未选择用户',
+          codeName: 'THROWEXCEPTION1',
+          leftPos: -28,
+          logicNodeType: 'THROWEXCEPTION',
+          topPos: 357,
+          name: '抛出异常',
+          id: 'throwexception1',
         },
       ],
       deuilogicParams: [
@@ -1222,16 +1197,16 @@ export default {
           id: 'ctx',
         },
         {
-          codeName: 'view',
-          activeViewParam: true,
-          id: 'view',
-        },
-        {
           codeName: 'Default',
           default: true,
           entityParam: true,
           name: '传入变量',
           id: 'default',
+        },
+        {
+          codeName: 'view',
+          activeViewParam: true,
+          id: 'view',
         },
       ],
       startDEUILogicNodeId: 'begin',

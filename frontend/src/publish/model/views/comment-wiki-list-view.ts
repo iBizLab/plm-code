@@ -486,6 +486,7 @@ export default {
     controls: [
       {
         groupMode: 'NONE',
+        groupStyle: 'DEFAULT',
         itemLayoutPanel: {
           layoutMode: 'FLEX',
           layout: {

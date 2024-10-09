@@ -90,13 +90,13 @@ export default {
                           noPrivDisplayMode: 1,
                           appDEFieldId: 'avatarurl',
                           editor: {
-                            maxFileCount: 1,
                             editorHeight: 160,
                             editorParams: {
                               readonly: 'true',
+                              RAWCONTENT: 'TRUE',
                               MAXCOUNT: '1',
                             },
-                            editorType: 'PICTURE_ONE',
+                            editorType: 'PICTURE_ONE_RAW',
                             editorWidth: 160,
                             valueType: 'SIMPLE',
                             editable: true,

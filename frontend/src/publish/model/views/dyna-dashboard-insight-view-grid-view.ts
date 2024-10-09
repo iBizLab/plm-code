@@ -131,6 +131,8 @@ export default {
       columnEnableFilter: 2,
       columnEnableLink: 2,
       groupMode: 'NONE',
+      groupStyle: 'DEFAULT',
+      orderValueAppDEFieldId: 'sequences',
       degridColumns: [
         {
           clconvertMode: 'NONE',
@@ -282,6 +284,11 @@ export default {
         appDEMethodId: 'fetch_normal',
         appDataEntityId: 'plmweb.dyna_dashboard',
         id: 'fetch',
+      },
+      moveControlAction: {
+        appDEMethodId: 'move_order',
+        appDataEntityId: 'plmweb.dyna_dashboard',
+        id: 'move',
       },
       removeControlAction: {
         appDEMethodId: 'remove',

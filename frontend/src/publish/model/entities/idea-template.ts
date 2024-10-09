@@ -1,29 +1,4 @@
 export default {
-  appDEACModes: [
-    {
-      actype: 'AUTOCOMPLETE',
-      codeName: 'Default',
-      logicName: 'DEFAULT',
-      deacmodeDataItems: [
-        {
-          appDEFieldId: 'id',
-          dataType: 25,
-          id: 'value',
-        },
-        {
-          appDEFieldId: 'title',
-          dataType: 25,
-          id: 'text',
-        },
-      ],
-      pagingSize: 50,
-      defaultMode: true,
-      textAppDEFieldId: 'title',
-      valueAppDEFieldId: 'id',
-      name: 'DEFAULT',
-      id: 'default',
-    },
-  ],
   appDEFields: [
     {
       codeName: 'title',
@@ -762,6 +737,7 @@ export default {
     {
       logicName: '建立',
       mapDEName: 'PRODUCT',
+      mapDEOPPrivName: 'CREATE',
       name: 'CREATE',
       id: 'product__create',
     },
@@ -778,6 +754,7 @@ export default {
     {
       logicName: '删除',
       mapDEName: 'PRODUCT',
+      mapDEOPPrivName: 'DELETE',
       name: 'DELETE',
       id: 'product__delete',
     },
@@ -789,12 +766,14 @@ export default {
     {
       logicName: '读取',
       mapDEName: 'PRODUCT',
+      mapDEOPPrivName: 'READ',
       name: 'READ',
       id: 'product__read',
     },
     {
       logicName: '更新',
       mapDEName: 'PRODUCT',
+      mapDEOPPrivName: 'UPDATE',
       name: 'UPDATE',
       id: 'product__update',
     },

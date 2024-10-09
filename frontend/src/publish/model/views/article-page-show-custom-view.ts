@@ -1095,23 +1095,6 @@ export default {
               {
                 actionLevel: 100,
                 noPrivDisplayMode: 2,
-                uiactionId: 'base_info@article_page',
-                uiactionTarget: 'SINGLEKEY',
-                valid: true,
-                caption: '页面信息',
-                itemType: 'DEUIACTION',
-                sysImage: {
-                  rawContent:
-                    '<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1723606263416" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4251" width="16" height="16" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M512 97.52381c228.912762 0 414.47619 185.563429 414.47619 414.47619s-185.563429 414.47619-414.47619 414.47619S97.52381 740.912762 97.52381 512 283.087238 97.52381 512 97.52381z m0 73.142857C323.486476 170.666667 170.666667 323.486476 170.666667 512s152.81981 341.333333 341.333333 341.333333 341.333333-152.81981 341.333333-341.333333S700.513524 170.666667 512 170.666667z m36.571429 268.190476v292.571428h-73.142858V438.857143h73.142858z m0-121.904762v73.142857h-73.142858v-73.142857h73.142858z" p-id="4252" fill="#707070"></path></svg>',
-                },
-                tooltip: '页面信息',
-                showCaption: true,
-                showIcon: true,
-                id: 'deuiaction17',
-              },
-              {
-                actionLevel: 100,
-                noPrivDisplayMode: 2,
                 uiactionId: 'save_to_stencil@article_page',
                 uiactionTarget: 'SINGLEDATA',
                 valid: true,
@@ -1248,7 +1231,6 @@ export default {
             noPrivDisplayMode: 2,
             uiactionId: 'prevrecord',
             uiactionTarget: 'SINGLEKEY',
-            hiddenItem: true,
             valid: true,
             caption: '上一条',
             itemType: 'DEUIACTION',
@@ -1265,7 +1247,6 @@ export default {
             noPrivDisplayMode: 2,
             uiactionId: 'nextrecord',
             uiactionTarget: 'SINGLEKEY',
-            hiddenItem: true,
             valid: true,
             caption: '下一条',
             itemType: 'DEUIACTION',
@@ -1287,7 +1268,7 @@ export default {
             itemType: 'DEUIACTION',
             sysImage: {
               rawContent:
-                '<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1715745278517" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1538" width="16" height="16" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M912.9 380.2L643.5 110.9c-12.1-12.1-29.6-15.8-45.6-9.8s-26.6 20.5-27.6 37.6l-4.9 83.7-299.1 199.4-112.6-5.4c-17.8-0.7-34 9.2-41.3 25.5s-3.7 35 8.9 47.7L314.7 683 102.5 895.2c-7.2 7.2-7.2 18.8 0 26 3.6 3.6 8.3 5.4 13 5.4s9.4-1.8 13-5.4L340.7 709l193.4 193.4c8.3 8.3 19.1 12.6 30.2 12.6 5.9 0 11.8-1.2 17.4-3.7 16.3-7.2 26.3-23.4 25.5-41.3l-5.4-112.6 199.5-299.2 83.7-4.9c17.1-1 31.5-11.6 37.6-27.6s2.4-33.4-9.7-45.5z m-24.6 32.5c-0.5 1.4-1.9 3.7-5.4 3.9l-85.2 5-135.3-135.3c-7.2-7.2-18.8-7.2-26 0s-7.2 18.8 0 26l130.9 130.9-187.5 281.2-223.7-223.7c-7.2-7.2-18.8-7.2-26 0s-7.2 18.8 0 26l225.1 225.1c2.8 2.8 6.3 4.5 9.9 5.1l5.5 114.9c0.2 3.5-1.9 5.1-3.6 5.9-1.7 0.8-4.4 1.2-6.8-1.3L147.3 463.6c-2.5-2.5-2-5.1-1.3-6.8 0.8-1.7 2.5-4 5.9-3.6l118.6 5.6c3.9 0.2 7.8-0.9 11.1-3.1l311.9-207.9c4.8-3.2 7.8-8.5 8.2-14.2l5.5-92.8c0.2-3.5 2.6-4.8 3.9-5.4 1.4-0.5 4.1-1 6.5 1.4l269.3 269.3c2.4 2.5 1.9 5.2 1.4 6.6z" fill="#2D3742" p-id="1539"></path></svg>',
+                '<svg t="1715745278517" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1538" width="16" height="16" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M912.9 380.2L643.5 110.9c-12.1-12.1-29.6-15.8-45.6-9.8s-26.6 20.5-27.6 37.6l-4.9 83.7-299.1 199.4-112.6-5.4c-17.8-0.7-34 9.2-41.3 25.5s-3.7 35 8.9 47.7L314.7 683 102.5 895.2c-7.2 7.2-7.2 18.8 0 26 3.6 3.6 8.3 5.4 13 5.4s9.4-1.8 13-5.4L340.7 709l193.4 193.4c8.3 8.3 19.1 12.6 30.2 12.6 5.9 0 11.8-1.2 17.4-3.7 16.3-7.2 26.3-23.4 25.5-41.3l-5.4-112.6 199.5-299.2 83.7-4.9c17.1-1 31.5-11.6 37.6-27.6s2.4-33.4-9.7-45.5z m-24.6 32.5c-0.5 1.4-1.9 3.7-5.4 3.9l-85.2 5-135.3-135.3c-7.2-7.2-18.8-7.2-26 0s-7.2 18.8 0 26l130.9 130.9-187.5 281.2-223.7-223.7c-7.2-7.2-18.8-7.2-26 0s-7.2 18.8 0 26l225.1 225.1c2.8 2.8 6.3 4.5 9.9 5.1l5.5 114.9c0.2 3.5-1.9 5.1-3.6 5.9-1.7 0.8-4.4 1.2-6.8-1.3L147.3 463.6c-2.5-2.5-2-5.1-1.3-6.8 0.8-1.7 2.5-4 5.9-3.6l118.6 5.6c3.9 0.2 7.8-0.9 11.1-3.1l311.9-207.9c4.8-3.2 7.8-8.5 8.2-14.2l5.5-92.8c0.2-3.5 2.6-4.8 3.9-5.4 1.4-0.5 4.1-1 6.5 1.4l269.3 269.3c2.4 2.5 1.9 5.2 1.4 6.6z" fill="currentColor" p-id="1539"></path></svg>',
             },
             tooltip: '最小化',
             showIcon: true,
@@ -1505,7 +1486,7 @@ export default {
                             contenttype: 'HTML',
                             TITLE: 'name',
                             PARSESCRIPT:
-                              'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>").replace(/#{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>").replaceAll(/\\{\\"\\emoji\\":\\"(.+?)\\"\\}/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji)); return `<span class="emoji-tag">${tempVal}</span>`})',
+                              'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","type":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g,(match, id, name, identifier, type, icon) => { const tempIcon = icon.trim(); const params = JSON.stringify({ id, name, identifier, type, }); return `<span markerClick=\'marker\' params=\'${params}\' class=\'comment-tag is-click\'>${tempIcon} ${identifier} ${name}</span>`;}).replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>").replace(/#{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>").replaceAll(/\\{\\"\\emoji\\":\\"(.+?)\\"\\}/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji)); return `<span class="emoji-tag">${tempVal}</span>`})',
                           },
                           editorStyle: 'ANCHO_HTML',
                           editorType: 'RAW',
@@ -1561,6 +1542,7 @@ export default {
                       {
                         dataType: 21,
                         ignoreInput: 12,
+                        itemHeight: 1,
                         labelPos: 'NONE',
                         noPrivDisplayMode: 1,
                         appDEFieldId: 'publish_content',
@@ -1568,6 +1550,7 @@ export default {
                           mode: 'EDIT',
                           maxLength: 16777215,
                           showMaxLength: true,
+                          editorHeight: 1,
                           editorType: 'MARKDOWN',
                           valueType: 'SIMPLE',
                           editable: true,
@@ -1714,6 +1697,7 @@ export default {
                           columnEnableFilter: 2,
                           columnEnableLink: 2,
                           groupMode: 'NONE',
+                          groupStyle: 'DEFAULT',
                           degridColumns: [
                             {
                               clconvertMode: 'NONE',
@@ -2205,6 +2189,7 @@ export default {
       },
       {
         groupMode: 'NONE',
+        groupStyle: 'DEFAULT',
         itemLayoutPanel: {
           layoutMode: 'FLEX',
           layout: {

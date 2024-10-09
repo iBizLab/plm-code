@@ -1586,10 +1586,6 @@ export async function getAppViewModel(name: string): Promise<IAppView> {
       return import('./views/work-item-scrum-print-user-stat-report-view').then(
         m => m.default as unknown as IAppView,
       );
-    case 'article_page_base_info_edit_view':
-      return import('./views/article-page-base-info-edit-view').then(
-        m => m.default as unknown as IAppView,
-      );
     case 'product_tree_exp_view':
       return import('./views/product-tree-exp-view').then(
         m => m.default as unknown as IAppView,
@@ -2022,10 +2018,10 @@ export async function getAppViewModel(name: string): Promise<IAppView> {
       return import(
         './views/baseline-product-categories-pick-up-tree-view'
       ).then(m => m.default as unknown as IAppView);
-    case 'work_item_depend_mpick_up_view_pickup_grid_view':
-      return import(
-        './views/work-item-depend-mpick-up-view-pickup-grid-view'
-      ).then(m => m.default as unknown as IAppView);
+    case 'work_item_depend_mpick_up_grid_view':
+      return import('./views/work-item-depend-mpick-up-grid-view').then(
+        m => m.default as unknown as IAppView,
+      );
     case 'work_item_change_parent_pick_up_view':
       return import('./views/work-item-change-parent-pick-up-view').then(
         m => m.default as unknown as IAppView,
@@ -3518,8 +3514,8 @@ export async function getAppViewModel(name: string): Promise<IAppView> {
       return import('./views/work-item-waterfall-require-tree-grid-view').then(
         m => m.default as unknown as IAppView,
       );
-    case 'psdelogicnodequickcreateview_msnode2':
-      return import('./views/psdelogicnodequickcreateview-msnode-2').then(
+    case 'psdelogicnodequickcreateview_msnode':
+      return import('./views/psdelogicnodequickcreateview-msnode').then(
         m => m.default as unknown as IAppView,
       );
     case 'baseline_space_create_view':

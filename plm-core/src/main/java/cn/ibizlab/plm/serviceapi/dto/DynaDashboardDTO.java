@@ -230,15 +230,6 @@ public class DynaDashboardDTO extends DTOBase implements Serializable {
     }
 
     /**
-     * 设置 [序号]
-     */
-    public DynaDashboardDTO setSequences(BigDecimal sequences) {
-        this.sequences = sequences;
-        this.modify("sequences", sequences);
-        return this;
-    }
-
-    /**
      * 设置 [应用标识]
      */
     public DynaDashboardDTO setAppId(String appId) {

@@ -215,6 +215,7 @@ export default {
       columnEnableLink: 2,
       frozenFirstColumn: 2,
       groupMode: 'NONE',
+      groupStyle: 'DEFAULT',
       degridColumns: [
         {
           clconvertMode: 'NONE',

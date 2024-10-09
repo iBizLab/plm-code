@@ -275,6 +275,7 @@ export default {
         columnEnableFilter: 2,
         columnEnableLink: 2,
         groupMode: 'NONE',
+        groupStyle: 'DEFAULT',
         minorSortDir: 'DESC',
         minorSortAppDEFieldId: 'update_time',
         degridColumns: [
@@ -590,6 +591,7 @@ export default {
         cardHeight: 120,
         cardWidth: 150,
         groupMode: 'NONE',
+        groupStyle: 'DEFAULT',
         itemLayoutPanel: {
           layoutMode: 'FLEX',
           layout: {

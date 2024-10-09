@@ -60,6 +60,23 @@ export default {
             id: 'fill_info',
           },
           formFuncMode: 'WIZARDFORM',
+          deformItemVRs: [
+            {
+              checkMode: 1,
+              deformItemName: 'identifier',
+              sysValueRule: {
+                codeName: 'UsrValueRule0312488358',
+                regExCode: '^[A-Z0-9]{1,15}$',
+                ruleInfo: '请填写大写字母和数字',
+                ruleType: 'REGEX',
+                uniqueTag: 'UsrValueRule0312488358',
+                name: '大写字母和数字',
+                id: 'usrvaluerule0312488358',
+              },
+              valueRuleType: 'SYSVALUERULE',
+              id: '表单项值规则',
+            },
+          ],
           deformPages: [
             {
               layout: {

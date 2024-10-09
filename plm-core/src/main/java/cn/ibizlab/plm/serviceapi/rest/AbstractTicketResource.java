@@ -2028,30 +2028,6 @@ public abstract class AbstractTicketResource {
     }
 
     /**
-    * 查询fetch_common 工单
-    * 通用查询，非删除数据
-    *
-    * @param productId productId
-    * @param dto dto
-    * @return Mono<ResponseEntity<List<TicketDTO>>>
-    */
-    @ApiOperation(value = "查询fetch_common", tags = {"工单" },  notes = "Ticket-fetch_common 通用查询，非删除数据")
-    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_common-all') or hasPermission('product',#productId,#dto,'ibizplm-Ticket-fetch_common')")
-    @PostMapping("products/{productId}/tickets/fetch_common")
-    public Mono<ResponseEntity<List<TicketDTO>>> fetchCommonByProductId
-            (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
-        dto.setProductIdEQ(productId);
-        TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
-        Page<Ticket> domains = ticketService.fetchCommon(context) ;
-        List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
-            return Mono.just(ResponseEntity.status(HttpStatus.OK)
-            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
-            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
-            .header("x-total", String.valueOf(domains.getTotalElements()))
-            .body(list));
-    }
-
-    /**
     * 查询fetch_customer_notre_ticket 工单
     * 查询未关联工单的数据；客户关联工单表格调用
     *

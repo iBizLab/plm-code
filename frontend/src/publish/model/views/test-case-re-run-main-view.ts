@@ -1318,6 +1318,7 @@ export default {
                                   columnEnableFilter: 2,
                                   columnEnableLink: 2,
                                   groupMode: 'NONE',
+                                  groupStyle: 'DEFAULT',
                                   degridColumns: [
                                     {
                                       clconvertMode: 'NONE',

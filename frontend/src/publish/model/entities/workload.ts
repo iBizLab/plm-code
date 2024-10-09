@@ -1,29 +1,4 @@
 export default {
-  appDEACModes: [
-    {
-      actype: 'AUTOCOMPLETE',
-      codeName: 'Default',
-      logicName: 'DEFAULT',
-      deacmodeDataItems: [
-        {
-          appDEFieldId: 'id',
-          dataType: 25,
-          id: 'value',
-        },
-        {
-          appDEFieldId: 'name',
-          dataType: 25,
-          id: 'text',
-        },
-      ],
-      pagingSize: 50,
-      defaultMode: true,
-      textAppDEFieldId: 'name',
-      valueAppDEFieldId: 'id',
-      name: 'DEFAULT',
-      id: 'default',
-    },
-  ],
   appDEFields: [
     {
       codeName: 'identifier',
@@ -3533,6 +3508,14 @@ export default {
           id: 'begin',
         },
         {
+          codeName: 'END1',
+          leftPos: 1022,
+          logicNodeType: 'END',
+          topPos: 200,
+          name: '结束',
+          id: 'end1',
+        },
+        {
           code: 'if (uiLogic.ctrl) {\r\nuiLogic.ctrl.refresh();\r\n}',
           codeName: 'RAWJSCODE2',
           leftPos: 712,
@@ -3545,7 +3528,7 @@ export default {
             },
           ],
           topPos: 208,
-          name: '注入脚本代码',
+          name: '门户刷新',
           id: 'rawjscode2',
         },
         {
@@ -3564,28 +3547,20 @@ export default {
           name: '跳转设计页',
           id: 'rawjscode1',
         },
-        {
-          codeName: 'END1',
-          leftPos: 1022,
-          logicNodeType: 'END',
-          topPos: 200,
-          name: '结束',
-          id: 'end1',
-        },
       ],
       deuilogicParams: [
+        {
+          codeName: 'view',
+          activeViewParam: true,
+          name: '当前视图',
+          id: 'view',
+        },
         {
           codeName: 'ctrl',
           activeCtrlParam: true,
           ctrlParam: true,
           name: '门户部件',
           id: 'ctrl',
-        },
-        {
-          codeName: 'view',
-          activeViewParam: true,
-          name: '当前视图',
-          id: 'view',
         },
         {
           codeName: 'Default',

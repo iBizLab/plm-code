@@ -419,6 +419,15 @@ export default {
     ],
     appViewRefs: [
       {
+        realTitle: '工单编辑视图',
+        realTitleLanguageRes: {
+          lanResTag: 'PAGE.TITLE.TICKET.EDITVIEW',
+        },
+        refAppViewId: 'plmweb.ticket_edit_view',
+        name: 'NEWDATA',
+        id: 'newdata',
+      },
+      {
         openMode: 'POPUPMODAL',
         navigateContexts: [
           {
@@ -433,15 +442,6 @@ export default {
         refAppViewId: 'plmweb.ticket_main_view',
         name: 'EDITDATA',
         id: 'editdata',
-      },
-      {
-        realTitle: '工单编辑视图',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.TICKET.EDITVIEW',
-        },
-        refAppViewId: 'plmweb.ticket_edit_view',
-        name: 'NEWDATA',
-        id: 'newdata',
       },
     ],
     controls: [
@@ -494,6 +494,7 @@ export default {
         columnEnableFilter: 2,
         columnEnableLink: 2,
         groupMode: 'NONE',
+        groupStyle: 'DEFAULT',
         degridColumns: [
           {
             clconvertMode: 'NONE',
@@ -713,6 +714,9 @@ export default {
         logicName: '客户关联工单表格',
         appDataEntityId: 'plmweb.ticket',
         controlParam: {
+          ctrlParams: {
+            LOCATERECORDKEY: 'target_id',
+          },
           id: 'grid',
         },
         modelId: 'ba0a6e4b4314edbb001edc874f2cba35',

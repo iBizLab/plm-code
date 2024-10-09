@@ -660,13 +660,6 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './work-item/work-item-scrum-print-user-stat-report-view/work-item-scrum-print-user-stat-report-view.vue'
           ),
       );
-    case 'article_page_base_info_edit_view':
-      return defineAsyncComponent(
-        () =>
-          import(
-            './article-page/article-page-base-info-edit-view/article-page-base-info-edit-view.vue'
-          ),
-      );
     case 'product_tree_exp_view':
       return defineAsyncComponent(
         () =>
@@ -1363,11 +1356,11 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './baseline/baseline-product-categories-pick-up-tree-view/baseline-product-categories-pick-up-tree-view.vue'
           ),
       );
-    case 'work_item_depend_mpick_up_view_pickup_grid_view':
+    case 'work_item_depend_mpick_up_grid_view':
       return defineAsyncComponent(
         () =>
           import(
-            './work-item/work-item-depend-mpick-up-view-pickup-grid-view/work-item-depend-mpick-up-view-pickup-grid-view.vue'
+            './work-item/work-item-depend-mpick-up-grid-view/work-item-depend-mpick-up-grid-view.vue'
           ),
       );
     case 'work_item_change_parent_pick_up_view':
@@ -3803,11 +3796,11 @@ export async function getAppViewComponent(name: string): Promise<Component> {
             './work-item/work-item-waterfall-require-tree-grid-view/work-item-waterfall-require-tree-grid-view.vue'
           ),
       );
-    case 'psdelogicnodequickcreateview_msnode2':
+    case 'psdelogicnodequickcreateview_msnode':
       return defineAsyncComponent(
         () =>
           import(
-            './psde-logic-node/psdelogicnodequickcreateview-msnode-2/psdelogicnodequickcreateview-msnode-2.vue'
+            './psde-logic-node/psdelogicnodequickcreateview-msnode/psdelogicnodequickcreateview-msnode.vue'
           ),
       );
     case 'baseline_space_create_view':

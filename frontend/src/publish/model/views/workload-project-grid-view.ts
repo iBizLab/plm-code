@@ -263,6 +263,7 @@ export default {
         columnEnableLink: 2,
         groupMode: 'AUTO',
         groupAppDEFieldId: 'recent_parent',
+        groupStyle: 'DEFAULT',
         degridColumns: [
           {
             clconvertMode: 'NONE',

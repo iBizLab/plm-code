@@ -1,29 +1,4 @@
 export default {
-  appDEACModes: [
-    {
-      actype: 'AUTOCOMPLETE',
-      codeName: 'Default',
-      logicName: 'DEFAULT',
-      deacmodeDataItems: [
-        {
-          appDEFieldId: 'pssysbicubedimensionid',
-          dataType: 25,
-          id: 'value',
-        },
-        {
-          appDEFieldId: 'pssysbicubedimensionname',
-          dataType: 25,
-          id: 'text',
-        },
-      ],
-      pagingSize: 50,
-      defaultMode: true,
-      textAppDEFieldId: 'pssysbicubedimensionname',
-      valueAppDEFieldId: 'pssysbicubedimensionid',
-      name: 'DEFAULT',
-      id: 'default',
-    },
-  ],
   appDEFields: [
     {
       codeName: 'DynaModelFlag',

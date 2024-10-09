@@ -2,29 +2,6 @@ export default {
   appDEACModes: [
     {
       actype: 'AUTOCOMPLETE',
-      codeName: 'Default',
-      logicName: 'DEFAULT',
-      deacmodeDataItems: [
-        {
-          appDEFieldId: 'id',
-          dataType: 25,
-          id: 'value',
-        },
-        {
-          appDEFieldId: 'name',
-          dataType: 25,
-          id: 'text',
-        },
-      ],
-      pagingSize: 50,
-      defaultMode: true,
-      textAppDEFieldId: 'name',
-      valueAppDEFieldId: 'id',
-      name: 'DEFAULT',
-      id: 'default',
-    },
-    {
-      actype: 'AUTOCOMPLETE',
       codeName: 'member_select',
       logicName: 'member_select',
       deacmodeDataItems: [
@@ -272,7 +249,7 @@ export default {
             },
           ],
           topPos: 284,
-          name: '绑定参数',
+          name: '绑定选中成员参数',
           id: 'bindparam1',
         },
         {
@@ -306,7 +283,7 @@ export default {
             },
           ],
           topPos: 284,
-          name: '重新建立参数',
+          name: '重新建立成员参数',
           id: 'renewparam1',
         },
         {

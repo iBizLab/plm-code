@@ -96,7 +96,6 @@ import workload_group_day_link_grid_view from './workload-group-day-link-grid-vi
 import test_case_set_state_option_view from './test-case-set-state-option-view';
 import customer_test_tree_select_edit_view from './customer-test-tree-select-edit-view';
 import work_item_scrum_print_user_stat_report_view from './work-item-scrum-print-user-stat-report-view';
-import article_page_base_info_edit_view from './article-page-base-info-edit-view';
 import product_tree_exp_view from './product-tree-exp-view';
 import recent_my_todo_item_tap_exp_view from './recent-my-todo-item-tap-exp-view';
 import ticket_all_grid_view from './ticket-all-grid-view';
@@ -205,7 +204,7 @@ import baseline_space_tree_exp_view from './baseline-space-tree-exp-view';
 import sys_todo_redirect_view from './sys-todo-redirect-view';
 import product_ticket_type_quick_create_view from './product-ticket-type-quick-create-view';
 import baseline_product_categories_pick_up_tree_view from './baseline-product-categories-pick-up-tree-view';
-import work_item_depend_mpick_up_view_pickup_grid_view from './work-item-depend-mpick-up-view-pickup-grid-view';
+import work_item_depend_mpick_up_grid_view from './work-item-depend-mpick-up-grid-view';
 import work_item_change_parent_pick_up_view from './work-item-change-parent-pick-up-view';
 import ticket_set_tags_option_view from './ticket-set-tags-option-view';
 import discuss_topic_is_archived_grid_view from './discuss-topic-is-archived-grid-view';
@@ -284,6 +283,7 @@ import project_scrum_main_view from './project-scrum-main-view';
 import discuss_post_redirect_view from './discuss-post-redirect-view';
 import relation_work_item_re_self_list_view from './relation-work-item-re-self-list-view';
 import discuss_post_recycle_bin_grid_view from './discuss-post-recycle-bin-grid-view';
+// import insight_report_tree_exp_view from './insight-report-tree-exp-view';
 import flow_tab_exp_view from './flow-tab-exp-view';
 import idea_pick_up_tree_view from './idea-pick-up-tree-view';
 import work_item_backlog_age_report_report_view from './work-item-backlog-age-report-report-view';
@@ -578,7 +578,7 @@ import dyna_dashboard_show_edit_view from './dyna-dashboard-show-edit-view';
 import test_case_others_re_mpick_up_grid_view from './test-case-others-re-mpick-up-grid-view';
 import category_pick_up_grid_view from './category-pick-up-grid-view';
 import work_item_waterfall_require_tree_grid_view from './work-item-waterfall-require-tree-grid-view';
-import psdelogicnodequickcreateview_msnode2 from './psdelogicnodequickcreateview-msnode-2';
+import psdelogicnodequickcreateview_msnode from './psdelogicnodequickcreateview-msnode';
 import baseline_space_create_view from './baseline-space-create-view';
 import work_item_usr07302198_grid_view from './work-item-usr-07302198-grid-view';
 import project_is_archived_grid_view from './project-is-archived-grid-view';
@@ -1555,10 +1555,6 @@ export async function initViewConfig(): Promise<void> {
     work_item_scrum_print_user_stat_report_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
-    'plmweb.article_page_base_info_edit_view',
-    article_page_base_info_edit_view as IViewConfig,
-  );
-  ibiz.hub.config.view.set(
     'plmweb.product_tree_exp_view',
     product_tree_exp_view as IViewConfig,
   );
@@ -1991,8 +1987,8 @@ export async function initViewConfig(): Promise<void> {
     baseline_product_categories_pick_up_tree_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
-    'plmweb.work_item_depend_mpick_up_view_pickup_grid_view',
-    work_item_depend_mpick_up_view_pickup_grid_view as IViewConfig,
+    'plmweb.work_item_depend_mpick_up_grid_view',
+    work_item_depend_mpick_up_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.work_item_change_parent_pick_up_view',
@@ -2306,10 +2302,10 @@ export async function initViewConfig(): Promise<void> {
     'plmweb.discuss_post_recycle_bin_grid_view',
     discuss_post_recycle_bin_grid_view as IViewConfig,
   );
-  ibiz.hub.config.view.set(
-    'plmweb.insight_report_tree_exp_view',
-    insight_report_tree_exp_view as IViewConfig,
-  );
+  // ibiz.hub.config.view.set(
+  //   'plmweb.insight_report_tree_exp_view',
+  //   insight_report_tree_exp_view as IViewConfig,
+  // );
   ibiz.hub.config.view.set(
     'plmweb.flow_tab_exp_view',
     flow_tab_exp_view as IViewConfig,
@@ -3487,8 +3483,8 @@ export async function initViewConfig(): Promise<void> {
     work_item_waterfall_require_tree_grid_view as IViewConfig,
   );
   ibiz.hub.config.view.set(
-    'plmweb.psdelogicnodequickcreateview_msnode2',
-    psdelogicnodequickcreateview_msnode2 as IViewConfig,
+    'plmweb.psdelogicnodequickcreateview_msnode',
+    psdelogicnodequickcreateview_msnode as IViewConfig,
   );
   ibiz.hub.config.view.set(
     'plmweb.baseline_space_create_view',

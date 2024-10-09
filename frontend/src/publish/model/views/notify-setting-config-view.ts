@@ -123,6 +123,7 @@ export default {
                   contentControl: {
                     groupMode: 'AUTO',
                     groupAppDEFieldId: 'group',
+                    groupStyle: 'DEFAULT',
                     itemLayoutPanel: {
                       layoutMode: 'TABLE_24COL',
                       layout: {

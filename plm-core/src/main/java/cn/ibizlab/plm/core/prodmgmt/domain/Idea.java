@@ -73,7 +73,7 @@ public class Idea extends EntityMP implements Serializable
     * 状态
     */
     @TableField(value = "state")
-    @DEField(name = "state" , defaultValue = "10" , dict = "idea_state")
+    @DEField(name = "state" , defaultValue = "10")
     @JSONField(name = "state")
     @JsonProperty("state")
     @ApiModelProperty(value = "state", notes = "状态")

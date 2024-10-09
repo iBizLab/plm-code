@@ -681,37 +681,22 @@ export default {
                     appDEFieldId: 'name',
                     editor: {
                       maxLength: 200,
-                      showMaxLength: true,
                       editorParams: {
                         SHOWLIMIT: 'true',
                         ISAUTO: 'true',
                       },
-                      editorType: 'TEXTAREA',
+                      editorType: 'TEXTBOX',
                       valueType: 'SIMPLE',
                       editable: true,
                       id: 'title',
                     },
                     capLanguageRes: {
-                      lanResTag:
-                        'CONTROL.DEFORM.REVIEW.MAIN_VIEW_FORM.FORMITEM.TITLE',
+                      lanResTag: 'DEF.LNAME.NAME',
                     },
-                    caption: '标题',
+                    caption: '名称',
                     codeName: 'title',
                     detailStyle: 'DEFAULT',
                     detailType: 'FORMITEM',
-                    defdgroupLogics: [
-                      {
-                        logicCat: 'SCRIPTCODE_CHANGE',
-                        groupOP: 'AND',
-                        defdlogics: [
-                          {
-                            logicType: 'SINGLE',
-                          },
-                        ],
-                        logicType: 'GROUP',
-                        id: '表单成员[title][表单项值变更（脚本处理）]逻辑',
-                      },
-                    ],
                     layoutPos: {
                       colLG: 24,
                       colMD: 24,
@@ -1300,6 +1285,7 @@ export default {
                                   columnEnableFilter: 2,
                                   columnEnableLink: 2,
                                   groupMode: 'NONE',
+                                  groupStyle: 'DEFAULT',
                                   degridColumns: [
                                     {
                                       clconvertMode: 'NONE',
@@ -2074,15 +2060,6 @@ export default {
           },
           {
             eventNames: 'onChange',
-            itemName: 'title',
-            logicTag: 'form',
-            logicType: 'APPDEUIACTION',
-            appDEUIActionId: 'save',
-            triggerType: 'CTRLEVENT',
-            id: 'change_title',
-          },
-          {
-            eventNames: 'onChange',
             itemName: 'description',
             logicTag: 'form',
             logicType: 'APPDEUIACTION',
@@ -2098,6 +2075,15 @@ export default {
             appDEUIActionId: 'save',
             triggerType: 'CTRLEVENT',
             id: 'change_attachments',
+          },
+          {
+            eventNames: 'onChange',
+            itemName: 'title',
+            logicTag: 'form',
+            logicType: 'APPDEUIACTION',
+            appDEUIActionId: 'save',
+            triggerType: 'CTRLEVENT',
+            id: 'title_save',
           },
         ],
         controlParam: {

@@ -297,6 +297,7 @@ export default {
         groupMode: 'AUTO',
         groupAppDEFieldId: 'create_man',
         groupCodeListId: 'plmweb.sysoperator',
+        groupStyle: 'DEFAULT',
         degridColumns: [
           {
             clconvertMode: 'FRONT',

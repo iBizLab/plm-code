@@ -717,6 +717,7 @@ export default {
       },
       {
         groupMode: 'NONE',
+        groupStyle: 'DEFAULT',
         delistDataItems: [
           {
             appDEFieldId: 'id',

@@ -91,6 +91,7 @@ export default {
       columnEnableLink: 2,
       groupMode: 'AUTO',
       groupAppDEFieldId: 'show_identifier',
+      groupStyle: 'DEFAULT',
       degridColumns: [
         {
           clconvertMode: 'NONE',
