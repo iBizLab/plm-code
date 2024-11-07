@@ -169,6 +169,7 @@ export default {
       enablePagingBar: true,
       noSort: true,
       singleSelect: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_choose_resource_member',
         appDataEntityId: 'plmweb.member',

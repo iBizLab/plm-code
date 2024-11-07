@@ -395,6 +395,7 @@ export default {
         sortMode: 'REMOTE',
         enableGroup: true,
         singleSelect: true,
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_test_case_dimension',
           appDataEntityId: 'plmweb.workload',
@@ -699,7 +700,7 @@ export default {
             labelPos: 'NONE',
             defsearchMode: {
               codeName: 'N_TEST_CASE_EXISTS__N_DESCRIPTION_LIKE',
-              stdDataType: 25,
+              stdDataType: 21,
               valueOP: 'EXISTS',
               name: 'N_TEST_CASE_EXISTS__N_DESCRIPTION_LIKE',
               id: 'n_test_case_exists__n_description_like',
@@ -751,7 +752,7 @@ export default {
           {
             actionLevel: 100,
             noPrivDisplayMode: 2,
-            uiactionId: 'exportexcel',
+            uiactionId: 'gridview_exportaction',
             valid: true,
             capLanguageRes: {
               lanResTag: 'TBB.TEXT.*.EXPORT',

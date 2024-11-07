@@ -1002,6 +1002,7 @@ export default {
         sortMode: 'REMOTE',
         enableCustomized: true,
         singleSelect: true,
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_default',
           appDataEntityId: 'plmweb.extend_log',
@@ -1177,6 +1178,7 @@ export default {
             id: '0',
           },
         ],
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_default',
           appDataEntityId: 'plmweb.extend_log',

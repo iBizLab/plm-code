@@ -54,11 +54,11 @@ public class SearchAttachmentSearchContext extends QueryWrapperContext<SearchAtt
     private String idEQ;
 
     /**
-     * 名称LIKE
+     * 文件名称LIKE
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty("名称LIKE")
+    @ApiModelProperty("文件名称LIKE")
     private String nameLIKE;
 
     /**

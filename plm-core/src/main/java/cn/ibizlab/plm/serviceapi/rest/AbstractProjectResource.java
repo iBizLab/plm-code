@@ -972,6 +972,28 @@ public abstract class AbstractProjectResource {
     }
 
     /**
+    * 查询fetch_mob_main 项目
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<ProjectDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_mob_main", tags = {"项目" },  notes = "Project-fetch_mob_main ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Project-fetch_mob_main-all') or hasPermission(#dto,'ibizplm-Project-fetch_mob_main')")
+    @PostMapping("projects/fetch_mob_main")
+    public Mono<ResponseEntity<List<ProjectDTO>>> fetchMobMain
+            (@Validated @RequestBody ProjectFilterDTO dto) {
+        ProjectSearchContext context = projectFilterDtoMapping.toDomain(dto);
+        Page<Project> domains = projectService.fetchMobMain(context) ;
+        List<ProjectDTO> list = projectDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 查询fetch_normal 项目
     * 
     *

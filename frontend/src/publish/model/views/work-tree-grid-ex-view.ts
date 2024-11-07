@@ -588,6 +588,7 @@ export default {
       ],
       treeGridMode: 1,
       outputIconDefault: true,
+      navViewPos: 'NONE',
       autoLoad: true,
       showBusyIndicator: true,
       codeName: 'tree_grid_ex_view_tree_grid',

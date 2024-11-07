@@ -200,6 +200,40 @@ public abstract class AbstractProductMemberResource {
     }
 
     /**
+    * mob_create_product_member 产品成员
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<ProductMemberDTO>>
+    */
+    @ApiOperation(value = "mob_create_product_member", tags = {"产品成员" },  notes = "ProductMember-mob_create_product_member ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductMember-mob_create_product_member-all') or hasPermission(this.productMemberDtoMapping.toDomain(#dto),'ibizplm-ProductMember-mob_create_product_member')")
+    @PostMapping("product_members/mob_create_product_member")
+    public Mono<ResponseEntity<ResponseWrapper<ProductMemberDTO>>>mobCreateProductMember
+            (@Validated @RequestBody RequestWrapper<ProductMemberDTO> dto) {
+        ResponseWrapper<ProductMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(mobCreateProductMember(item)));
+        else
+            rt.set(mobCreateProductMember(dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * mob_create_product_member 产品成员
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<ProductMemberDTO>
+    */   
+    public ProductMemberDTO mobCreateProductMember
+            (ProductMemberDTO dto) {
+        ProductMember domain = productMemberDtoMapping.toDomain(dto);
+        ProductMember rt = productMemberService.mobCreateProductMember(domain);
+        return productMemberDtoMapping.toDto(rt);
+    }
+
+    /**
     * 保存Save 产品成员
     * 
     *
@@ -389,6 +423,43 @@ public abstract class AbstractProductMemberResource {
         ProductMember domain = productMemberDtoMapping.toDomain(dto);
         domain.setProductId(productId);
         ProductMember rt = productMemberService.createProductMember(domain);
+        return productMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * mob_create_product_member 产品成员
+    * 
+    *
+    * @param productId productId
+    * @param dto dto
+    * @return Mono<ResponseEntity<ProductMemberDTO>>
+    */
+    @ApiOperation(value = "mob_create_product_member", tags = {"产品成员" },  notes = "ProductMember-mob_create_product_member ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductMember-mob_create_product_member-all') or hasPermission('product',#productId,this.productMemberDtoMapping.toDomain(#dto),'ibizplm-ProductMember-mob_create_product_member')")
+    @PostMapping("products/{productId}/product_members/mob_create_product_member")
+    public Mono<ResponseEntity<ResponseWrapper<ProductMemberDTO>>>mobCreateProductMemberByProductId
+            (@PathVariable("productId") String productId, @Validated @RequestBody RequestWrapper<ProductMemberDTO> dto) {
+        ResponseWrapper<ProductMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(mobCreateProductMemberByProductId(productId, item)));
+        else
+            rt.set(mobCreateProductMemberByProductId(productId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * mob_create_product_member 产品成员
+    * 
+    *
+    * @param productId productId
+    * @param dto dto
+    * @return ResponseEntity<ProductMemberDTO>
+    */   
+    public ProductMemberDTO mobCreateProductMemberByProductId
+            (String productId, ProductMemberDTO dto) {
+        ProductMember domain = productMemberDtoMapping.toDomain(dto);
+        domain.setProductId(productId);
+        ProductMember rt = productMemberService.mobCreateProductMember(domain);
         return productMemberDtoMapping.toDto(rt);
     }
 
@@ -589,6 +660,43 @@ public abstract class AbstractProductMemberResource {
     }
 
     /**
+    * mob_create_product_member 产品成员
+    * 
+    *
+    * @param userId userId
+    * @param dto dto
+    * @return Mono<ResponseEntity<ProductMemberDTO>>
+    */
+    @ApiOperation(value = "mob_create_product_member", tags = {"产品成员" },  notes = "ProductMember-mob_create_product_member ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductMember-mob_create_product_member-all') or hasPermission('user',#userId,this.productMemberDtoMapping.toDomain(#dto),'ibizplm-ProductMember-mob_create_product_member')")
+    @PostMapping("users/{userId}/product_members/mob_create_product_member")
+    public Mono<ResponseEntity<ResponseWrapper<ProductMemberDTO>>>mobCreateProductMemberByUserId
+            (@PathVariable("userId") String userId, @Validated @RequestBody RequestWrapper<ProductMemberDTO> dto) {
+        ResponseWrapper<ProductMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(mobCreateProductMemberByUserId(userId, item)));
+        else
+            rt.set(mobCreateProductMemberByUserId(userId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * mob_create_product_member 产品成员
+    * 
+    *
+    * @param userId userId
+    * @param dto dto
+    * @return ResponseEntity<ProductMemberDTO>
+    */   
+    public ProductMemberDTO mobCreateProductMemberByUserId
+            (String userId, ProductMemberDTO dto) {
+        ProductMember domain = productMemberDtoMapping.toDomain(dto);
+        domain.setUserId(userId);
+        ProductMember rt = productMemberService.mobCreateProductMember(domain);
+        return productMemberDtoMapping.toDto(rt);
+    }
+
+    /**
     * 保存Save 产品成员
     * 
     *
@@ -736,6 +844,28 @@ public abstract class AbstractProductMemberResource {
     }
 
     /**
+    * 查询fetch_with_product 产品成员
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<ProductMemberDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_with_product", tags = {"产品成员" },  notes = "ProductMember-fetch_with_product ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductMember-fetch_with_product-all') or hasPermission(#dto,'ibizplm-ProductMember-fetch_with_product')")
+    @PostMapping("product_members/fetch_with_product")
+    public Mono<ResponseEntity<List<ProductMemberDTO>>> fetchWithProduct
+            (@Validated @RequestBody ProductMemberFilterDTO dto) {
+        ProductMemberSearchContext context = productMemberFilterDtoMapping.toDomain(dto);
+        Page<ProductMember> domains = productMemberService.fetchWithProduct(context) ;
+        List<ProductMemberDTO> list = productMemberDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 获取Get 产品成员
     * 
     *
@@ -854,6 +984,30 @@ public abstract class AbstractProductMemberResource {
     }
 
     /**
+    * 查询fetch_with_product 产品成员
+    * 
+    *
+    * @param productId productId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<ProductMemberDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_with_product", tags = {"产品成员" },  notes = "ProductMember-fetch_with_product ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductMember-fetch_with_product-all') or hasPermission('product',#productId,#dto,'ibizplm-ProductMember-fetch_with_product')")
+    @PostMapping("products/{productId}/product_members/fetch_with_product")
+    public Mono<ResponseEntity<List<ProductMemberDTO>>> fetchWithProductByProductId
+            (@PathVariable("productId") String productId, @Validated @RequestBody ProductMemberFilterDTO dto) {
+        dto.setProductIdEQ(productId);
+        ProductMemberSearchContext context = productMemberFilterDtoMapping.toDomain(dto);
+        Page<ProductMember> domains = productMemberService.fetchWithProduct(context) ;
+        List<ProductMemberDTO> list = productMemberDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 获取Get 产品成员
     * 
     *
@@ -963,6 +1117,30 @@ public abstract class AbstractProductMemberResource {
         dto.setUserIdEQ(userId);
         ProductMemberSearchContext context = productMemberFilterDtoMapping.toDomain(dto);
         Page<ProductMember> domains = productMemberService.fetchDefault(context) ;
+        List<ProductMemberDTO> list = productMemberDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_with_product 产品成员
+    * 
+    *
+    * @param userId userId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<ProductMemberDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_with_product", tags = {"产品成员" },  notes = "ProductMember-fetch_with_product ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductMember-fetch_with_product-all') or hasPermission('user',#userId,#dto,'ibizplm-ProductMember-fetch_with_product')")
+    @PostMapping("users/{userId}/product_members/fetch_with_product")
+    public Mono<ResponseEntity<List<ProductMemberDTO>>> fetchWithProductByUserId
+            (@PathVariable("userId") String userId, @Validated @RequestBody ProductMemberFilterDTO dto) {
+        dto.setUserIdEQ(userId);
+        ProductMemberSearchContext context = productMemberFilterDtoMapping.toDomain(dto);
+        Page<ProductMember> domains = productMemberService.fetchWithProduct(context) ;
         List<ProductMemberDTO> list = productMemberDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

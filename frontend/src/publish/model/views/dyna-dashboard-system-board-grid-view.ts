@@ -241,7 +241,7 @@ export default {
                 afterItemType: 'NONE',
                 beforeItemType: 'NONE',
                 detailType: 'DEUIACTION',
-                uiactionId: 'edit',
+                uiactionId: 'gridview_editaction',
                 tooltip: '编辑',
                 tooltipLanguageRes: {
                   lanResTag: 'TBB.TOOLTIP.*.EDIT',
@@ -362,6 +362,7 @@ export default {
       sortMode: 'REMOTE',
       enableCustomized: true,
       enablePagingBar: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_is_system',
         appDataEntityId: 'plmweb.dyna_dashboard',

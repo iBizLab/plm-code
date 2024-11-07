@@ -410,6 +410,45 @@ public abstract class AbstractTicketResource {
     }
 
     /**
+    * mob_ticket_attention 工单
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<TicketDTO>>
+    */
+    @ApiOperation(value = "mob_ticket_attention", tags = {"工单" },  notes = "Ticket-mob_ticket_attention ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-mob_ticket_attention-all') or hasPermission(this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-mob_ticket_attention')")
+    @PostMapping("tickets/{id}/mob_ticket_attention")
+    public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>mobTicketAttentionById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
+        ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(mobTicketAttentionById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(mobTicketAttentionById(id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * mob_ticket_attention 工单
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TicketDTO>
+    */   
+    public TicketDTO mobTicketAttentionById
+            (String id, TicketDTO dto) {
+        Ticket domain = ticketDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Ticket rt = ticketService.mobTicketAttention(domain);
+        return ticketDtoMapping.toDto(rt);
+    }
+
+    /**
     * others_relation_ticket 工单
     * 
     *
@@ -965,6 +1004,47 @@ public abstract class AbstractTicketResource {
     }
 
     /**
+    * mob_ticket_attention 工单
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<TicketDTO>>
+    */
+    @ApiOperation(value = "mob_ticket_attention", tags = {"工单" },  notes = "Ticket-mob_ticket_attention ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-mob_ticket_attention-all') or hasPermission('product',#productId,this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-mob_ticket_attention')")
+    @PostMapping("products/{productId}/tickets/{id}/mob_ticket_attention")
+    public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>mobTicketAttentionByProductIdAndId
+            (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
+        ResponseWrapper<TicketDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(mobTicketAttentionByProductIdAndId(productId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(mobTicketAttentionByProductIdAndId(productId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * mob_ticket_attention 工单
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TicketDTO>
+    */   
+    public TicketDTO mobTicketAttentionByProductIdAndId
+            (String productId, String id, TicketDTO dto) {
+        Ticket domain = ticketDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Ticket rt = ticketService.mobTicketAttention(domain);
+        return ticketDtoMapping.toDto(rt);
+    }
+
+    /**
     * others_relation_ticket 工单
     * 
     *
@@ -1263,6 +1343,28 @@ public abstract class AbstractTicketResource {
     }
 
     /**
+    * 查询fetch_admin 工单
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_admin", tags = {"工单" },  notes = "Ticket-fetch_admin ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_admin-all') or hasPermission(#dto,'ibizplm-Ticket-fetch_admin')")
+    @PostMapping("tickets/fetch_admin")
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchAdmin
+            (@Validated @RequestBody TicketFilterDTO dto) {
+        TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
+        Page<Ticket> domains = ticketService.fetchAdmin(context) ;
+        List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 查询fetch_advanced_search 工单
     * 
     *
@@ -1437,6 +1539,28 @@ public abstract class AbstractTicketResource {
     }
 
     /**
+    * 查询fetch_customer_user 工单
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_customer_user", tags = {"工单" },  notes = "Ticket-fetch_customer_user ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_customer_user-all') or hasPermission(#dto,'ibizplm-Ticket-fetch_customer_user')")
+    @PostMapping("tickets/fetch_customer_user")
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchCustomerUser
+            (@Validated @RequestBody TicketFilterDTO dto) {
+        TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
+        Page<Ticket> domains = ticketService.fetchCustomerUser(context) ;
+        List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 查询fetch_default 工单
     * 
     *
@@ -1493,6 +1617,28 @@ public abstract class AbstractTicketResource {
             (@Validated @RequestBody TicketFilterDTO dto) {
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchIdeaRelationTicket(context) ;
+        List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_mob_ticket_list 工单
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_mob_ticket_list", tags = {"工单" },  notes = "Ticket-fetch_mob_ticket_list ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_mob_ticket_list-all') or hasPermission(#dto,'ibizplm-Ticket-fetch_mob_ticket_list')")
+    @PostMapping("tickets/fetch_mob_ticket_list")
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchMobTicketList
+            (@Validated @RequestBody TicketFilterDTO dto) {
+        TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
+        Page<Ticket> domains = ticketService.fetchMobTicketList(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1784,6 +1930,28 @@ public abstract class AbstractTicketResource {
     }
 
     /**
+    * 查询fetch_user 工单
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_user", tags = {"工单" },  notes = "Ticket-fetch_user ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_user-all') or hasPermission(#dto,'ibizplm-Ticket-fetch_user')")
+    @PostMapping("tickets/fetch_user")
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchUser
+            (@Validated @RequestBody TicketFilterDTO dto) {
+        TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
+        Page<Ticket> domains = ticketService.fetchUser(context) ;
+        List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 查询fetch_work_item_relation_ticket 工单
     * 
     *
@@ -1909,6 +2077,30 @@ public abstract class AbstractTicketResource {
     }
 
     /**
+    * 查询fetch_admin 工单
+    * 
+    *
+    * @param productId productId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_admin", tags = {"工单" },  notes = "Ticket-fetch_admin ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_admin-all') or hasPermission('product',#productId,#dto,'ibizplm-Ticket-fetch_admin')")
+    @PostMapping("products/{productId}/tickets/fetch_admin")
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchAdminByProductId
+            (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
+        dto.setProductIdEQ(productId);
+        TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
+        Page<Ticket> domains = ticketService.fetchAdmin(context) ;
+        List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 查询fetch_advanced_search 工单
     * 
     *
@@ -2028,6 +2220,30 @@ public abstract class AbstractTicketResource {
     }
 
     /**
+    * 查询fetch_common 工单
+    * 通用查询，非删除数据
+    *
+    * @param productId productId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_common", tags = {"工单" },  notes = "Ticket-fetch_common 通用查询，非删除数据")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_common-all') or hasPermission('product',#productId,#dto,'ibizplm-Ticket-fetch_common')")
+    @PostMapping("products/{productId}/tickets/fetch_common")
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchCommonByProductId
+            (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
+        dto.setProductIdEQ(productId);
+        TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
+        Page<Ticket> domains = ticketService.fetchCommon(context) ;
+        List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 查询fetch_customer_notre_ticket 工单
     * 查询未关联工单的数据；客户关联工单表格调用
     *
@@ -2066,6 +2282,30 @@ public abstract class AbstractTicketResource {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchCustomerRelationTicket(context) ;
+        List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_customer_user 工单
+    * 
+    *
+    * @param productId productId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_customer_user", tags = {"工单" },  notes = "Ticket-fetch_customer_user ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_customer_user-all') or hasPermission('product',#productId,#dto,'ibizplm-Ticket-fetch_customer_user')")
+    @PostMapping("products/{productId}/tickets/fetch_customer_user")
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchCustomerUserByProductId
+            (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
+        dto.setProductIdEQ(productId);
+        TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
+        Page<Ticket> domains = ticketService.fetchCustomerUser(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2137,6 +2377,30 @@ public abstract class AbstractTicketResource {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchIdeaRelationTicket(context) ;
+        List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_mob_ticket_list 工单
+    * 
+    *
+    * @param productId productId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_mob_ticket_list", tags = {"工单" },  notes = "Ticket-fetch_mob_ticket_list ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_mob_ticket_list-all') or hasPermission('product',#productId,#dto,'ibizplm-Ticket-fetch_mob_ticket_list')")
+    @PostMapping("products/{productId}/tickets/fetch_mob_ticket_list")
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchMobTicketListByProductId
+            (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
+        dto.setProductIdEQ(productId);
+        TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
+        Page<Ticket> domains = ticketService.fetchMobTicketList(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -2445,6 +2709,30 @@ public abstract class AbstractTicketResource {
         dto.setProductIdEQ(productId);
         TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
         Page<Ticket> domains = ticketService.fetchTicketStatePieChart(context) ;
+        List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_user 工单
+    * 
+    *
+    * @param productId productId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<TicketDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_user", tags = {"工单" },  notes = "Ticket-fetch_user ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-fetch_user-all') or hasPermission('product',#productId,#dto,'ibizplm-Ticket-fetch_user')")
+    @PostMapping("products/{productId}/tickets/fetch_user")
+    public Mono<ResponseEntity<List<TicketDTO>>> fetchUserByProductId
+            (@PathVariable("productId") String productId, @Validated @RequestBody TicketFilterDTO dto) {
+        dto.setProductIdEQ(productId);
+        TicketSearchContext context = ticketFilterDtoMapping.toDomain(dto);
+        Page<Ticket> domains = ticketService.fetchUser(context) ;
         List<TicketDTO> list = ticketDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

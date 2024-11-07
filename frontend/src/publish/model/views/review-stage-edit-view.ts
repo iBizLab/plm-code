@@ -26,7 +26,7 @@ export default {
         {
           actionLevel: 100,
           noPrivDisplayMode: 2,
-          uiactionId: 'saveandexit',
+          uiactionId: 'editview_saveandexitaction',
           valid: true,
           capLanguageRes: {
             lanResTag: 'TBB.TEXT.EDITVIEW.SAVEANDCLOSE',
@@ -200,6 +200,7 @@ export default {
                   AC: 'TRUE',
                   TEAMMEMBERMETHOD: 'post',
                   TEAMURL: '/groups/fetch_default',
+                  'SRFNAVPARAM.n_status_eq': '1',
                   URL: 'libraries/${context.library}/library_members/fetch_default',
                   PICKUPVIEW: 'TRUE',
                   USERMAP: '{"id":"user_id","name":"name"}',
@@ -223,6 +224,12 @@ export default {
                     key: 'n_department_id_eq',
                     value: 'srforgsectorid',
                     id: 'n_department_id_eq',
+                  },
+                  {
+                    key: 'n_status_eq',
+                    value: '1',
+                    rawValue: true,
+                    id: 'n_status_eq',
                   },
                 ],
                 id: 'formitem',

@@ -600,6 +600,7 @@ export default {
         enableGroup: true,
         noSort: true,
         singleSelect: true,
+        navViewPos: 'NONE',
         createControlAction: {
           appDEMethodId: 'create',
           appDataEntityId: 'plmweb.psdelogic',

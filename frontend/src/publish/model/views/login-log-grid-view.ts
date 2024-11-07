@@ -268,6 +268,7 @@ export default {
       enableCustomized: true,
       enablePagingBar: true,
       singleSelect: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_cur_user',
         appDataEntityId: 'plmweb.login_log',

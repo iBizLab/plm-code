@@ -721,6 +721,7 @@ export default {
             id: '0',
           },
         ],
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_kanban_user_stat',
           appDataEntityId: 'plmweb.work_item',

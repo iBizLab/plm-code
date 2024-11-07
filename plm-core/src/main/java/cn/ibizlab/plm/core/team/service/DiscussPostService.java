@@ -210,6 +210,16 @@ public interface DiscussPostService extends IService<DiscussPost> {
     }
 
     /**
+    * mobDiscussPostAttention
+    * 
+    * @param et
+    * @return
+    */
+    default DiscussPost mobDiscussPostAttention(DiscussPost et) {
+        return et;
+    }
+
+    /**
     * move
     * 
     * @param et
@@ -290,6 +300,22 @@ public interface DiscussPostService extends IService<DiscussPost> {
     * @return
     */
     List<DiscussPost> listDeleted(DiscussPostSearchContext context);
+
+    /**
+    * fetchMobDiscussPostList
+    * 
+    * @param context
+    * @return
+    */
+    Page<DiscussPost> fetchMobDiscussPostList(DiscussPostSearchContext context);
+
+    /**
+    * listMobDiscussPostList
+    * 
+    * @param context
+    * @return
+    */
+    List<DiscussPost> listMobDiscussPostList(DiscussPostSearchContext context);
 
     /**
     * fetchMyAttention

@@ -301,6 +301,7 @@ export default {
       enableCustomized: true,
       forceFit: true,
       singleSelect: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_default',
         appDataEntityId: 'plmweb.work_item_state',
@@ -349,7 +350,7 @@ export default {
         {
           actionLevel: 100,
           noPrivDisplayMode: 2,
-          uiactionId: 'new',
+          uiactionId: 'gridview_newaction',
           valid: true,
           capLanguageRes: {
             lanResTag: 'TBB.TEXT.*.NEW',

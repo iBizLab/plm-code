@@ -677,6 +677,7 @@ export default {
             id: '0',
           },
         ],
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_bug_state_group_grid',
           appDataEntityId: 'plmweb.work_item',

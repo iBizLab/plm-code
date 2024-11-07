@@ -276,7 +276,7 @@ public class WorkItem extends EntityMP implements Serializable
     * 标签
     */
     @TableField(value = "tags")
-    @DEField(name = "tags" , dict = "project_tag")
+    @DEField(name = "tags")
     @JSONField(name = "tags")
     @JsonProperty("tags")
     @ApiModelProperty(value = "tags", notes = "标签")
@@ -311,6 +311,16 @@ public class WorkItem extends EntityMP implements Serializable
     @JsonProperty("rep_num")
     @ApiModelProperty(value = "rep_num", notes = "统计数")
     private BigDecimal repNum;
+
+    /**
+    * 解决办法
+    */
+    @TableField(value = "solution_way")
+    @DEField(name = "solution_way")
+    @JSONField(name = "solution_way")
+    @JsonProperty("solution_way")
+    @ApiModelProperty(value = "solution_way", notes = "解决办法")
+    private String solutionWay;
 
     /**
     * 工作项类型序号
@@ -414,6 +424,26 @@ public class WorkItem extends EntityMP implements Serializable
     private List<Deliverable> deliverable;
 
     /**
+    * 父工作项类型
+    */
+    @TableField(value = "p_work_item_type_id" , exist = false)
+    @DEField(name = "p_work_item_type_id")
+    @JSONField(name = "p_work_item_type_id")
+    @JsonProperty("p_work_item_type_id")
+    @ApiModelProperty(value = "p_work_item_type_id", notes = "父工作项类型")
+    private String PWorkItemTypeId;
+
+    /**
+    * 关注数
+    */
+    @TableField(value = "attention_count" , exist = false)
+    @DEField(name = "attention_count")
+    @JSONField(name = "attention_count")
+    @JsonProperty("attention_count")
+    @ApiModelProperty(value = "attention_count", notes = "关注数")
+    private String attentionCount;
+
+    /**
     * 项目标识
     */
     @TableField(value = "project_identifier" , exist = false)
@@ -422,6 +452,16 @@ public class WorkItem extends EntityMP implements Serializable
     @JsonProperty("project_identifier")
     @ApiModelProperty(value = "project_identifier", notes = "项目标识")
     private String projectIdentifier;
+
+    /**
+    * 评论数
+    */
+    @TableField(value = "comment_count" , exist = false)
+    @DEField(name = "comment_count")
+    @JSONField(name = "comment_count")
+    @JsonProperty("comment_count")
+    @ApiModelProperty(value = "comment_count", notes = "评论数")
+    private String commentCount;
 
     /**
     * 关注
@@ -643,6 +683,16 @@ public class WorkItem extends EntityMP implements Serializable
     @JsonProperty("work_item_origin_state")
     @ApiModelProperty(value = "work_item_origin_state", notes = "原始状态")
     private String workItemOriginState;
+
+    /**
+    * 是否超时
+    */
+    @TableField(value = "is_overtime" , exist = false)
+    @DEField(name = "is_overtime")
+    @JSONField(name = "is_overtime")
+    @JsonProperty("is_overtime")
+    @ApiModelProperty(value = "is_overtime", notes = "是否超时")
+    private Integer isOvertime;
 
     /**
     * 标识
@@ -1204,6 +1254,15 @@ public class WorkItem extends EntityMP implements Serializable
     }
 
     /**
+    * 设置 [解决办法]
+    */
+    public WorkItem setSolutionWay(String solutionWay) {
+        this.solutionWay = solutionWay;
+        this.modify("solution_way", solutionWay);
+        return this;
+    }
+
+    /**
     * 设置 [工作项类型序号]
     */
     public WorkItem setWorkItemTypeSequence(BigDecimal workItemTypeSequence) {
@@ -1294,11 +1353,38 @@ public class WorkItem extends EntityMP implements Serializable
     }
 
     /**
+    * 设置 [父工作项类型]
+    */
+    public WorkItem setPWorkItemTypeId(String PWorkItemTypeId) {
+        this.PWorkItemTypeId = PWorkItemTypeId;
+        this.modify("p_work_item_type_id", PWorkItemTypeId);
+        return this;
+    }
+
+    /**
+    * 设置 [关注数]
+    */
+    public WorkItem setAttentionCount(String attentionCount) {
+        this.attentionCount = attentionCount;
+        this.modify("attention_count", attentionCount);
+        return this;
+    }
+
+    /**
     * 设置 [项目标识]
     */
     public WorkItem setProjectIdentifier(String projectIdentifier) {
         this.projectIdentifier = projectIdentifier;
         this.modify("project_identifier", projectIdentifier);
+        return this;
+    }
+
+    /**
+    * 设置 [评论数]
+    */
+    public WorkItem setCommentCount(String commentCount) {
+        this.commentCount = commentCount;
+        this.modify("comment_count", commentCount);
         return this;
     }
 
@@ -1488,6 +1574,15 @@ public class WorkItem extends EntityMP implements Serializable
     public WorkItem setWorkItemOriginState(String workItemOriginState) {
         this.workItemOriginState = workItemOriginState;
         this.modify("work_item_origin_state", workItemOriginState);
+        return this;
+    }
+
+    /**
+    * 设置 [是否超时]
+    */
+    public WorkItem setIsOvertime(Integer isOvertime) {
+        this.isOvertime = isOvertime;
+        this.modify("is_overtime", isOvertime);
         return this;
     }
 

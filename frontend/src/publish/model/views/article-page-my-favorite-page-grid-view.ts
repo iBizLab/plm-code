@@ -274,6 +274,7 @@ export default {
       enablePagingBar: true,
       singleSelect: true,
       navAppViewId: 'plmweb.article_page_model_show_view',
+      navViewPos: 'NONE',
       navigateParams: [
         {
           key: 'space',

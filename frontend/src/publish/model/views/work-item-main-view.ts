@@ -957,7 +957,7 @@ export default {
           {
             actionLevel: 100,
             noPrivDisplayMode: 2,
-            uiactionId: 'prevrecord',
+            uiactionId: 'editview_prevrecordaction',
             uiactionTarget: 'SINGLEKEY',
             valid: true,
             caption: '上一条',
@@ -983,7 +983,7 @@ export default {
           {
             actionLevel: 100,
             noPrivDisplayMode: 2,
-            uiactionId: 'nextrecord',
+            uiactionId: 'editview_nextrecordaction',
             uiactionTarget: 'SINGLEKEY',
             valid: true,
             caption: '下一条',
@@ -1318,6 +1318,7 @@ export default {
                       editorParams: {
                         'SRFNAVPARAM.n_department_id_eq': '%srforgsectorid%',
                         AC: 'TRUE',
+                        'SRFNAVPARAM.n_status_eq': '1',
                         TRIGGER: 'TRUE',
                         URL: 'projects/${context.project}/project_members/fetch_default',
                         PICKUPVIEW: 'FALSE',
@@ -1337,6 +1338,12 @@ export default {
                           key: 'n_department_id_eq',
                           value: 'srforgsectorid',
                           id: 'n_department_id_eq',
+                        },
+                        {
+                          key: 'n_status_eq',
+                          value: '1',
+                          rawValue: true,
+                          id: 'n_status_eq',
                         },
                       ],
                       id: 'assignee_name',
@@ -1799,6 +1806,7 @@ export default {
                                   enableRowEdit: true,
                                   enableRowNew: true,
                                   singleSelect: true,
+                                  navViewPos: 'NONE',
                                   createControlAction: {
                                     appDEMethodId: 'create',
                                     appDataEntityId: 'plmweb.attachment',

@@ -238,6 +238,40 @@ public abstract class AbstractMemberResource {
     }
 
     /**
+    * mob_add_shared_member 成员
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<MemberDTO>>
+    */
+    @ApiOperation(value = "mob_add_shared_member", tags = {"成员" },  notes = "Member-mob_add_shared_member ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Member-mob_add_shared_member-all') or hasPermission(this.memberDtoMapping.toDomain(#dto),'ibizplm-Member-mob_add_shared_member')")
+    @PostMapping("members/mob_add_shared_member")
+    public Mono<ResponseEntity<ResponseWrapper<MemberDTO>>>mobAddSharedMember
+            (@Validated @RequestBody RequestWrapper<MemberDTO> dto) {
+        ResponseWrapper<MemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(mobAddSharedMember(item)));
+        else
+            rt.set(mobAddSharedMember(dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * mob_add_shared_member 成员
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<MemberDTO>
+    */   
+    public MemberDTO mobAddSharedMember
+            (MemberDTO dto) {
+        Member domain = memberDtoMapping.toDomain(dto);
+        Member rt = memberService.mobAddSharedMember(domain);
+        return memberDtoMapping.toDto(rt);
+    }
+
+    /**
     * 保存Save 成员
     * 
     *
@@ -464,6 +498,43 @@ public abstract class AbstractMemberResource {
         Member domain = memberDtoMapping.toDomain(dto);
         domain.setOwnerId(ownerId);
         Member rt = memberService.createMember(domain);
+        return memberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * mob_add_shared_member 成员
+    * 
+    *
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return Mono<ResponseEntity<MemberDTO>>
+    */
+    @ApiOperation(value = "mob_add_shared_member", tags = {"成员" },  notes = "Member-mob_add_shared_member ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Member-mob_add_shared_member-all') or hasPermission('group',#ownerId,this.memberDtoMapping.toDomain(#dto),'ibizplm-Member-mob_add_shared_member')")
+    @PostMapping("groups/{ownerId}/members/mob_add_shared_member")
+    public Mono<ResponseEntity<ResponseWrapper<MemberDTO>>>mobAddSharedMemberByOwnerId
+            (@PathVariable("ownerId") String ownerId, @Validated @RequestBody RequestWrapper<MemberDTO> dto) {
+        ResponseWrapper<MemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(mobAddSharedMemberByOwnerId(ownerId, item)));
+        else
+            rt.set(mobAddSharedMemberByOwnerId(ownerId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * mob_add_shared_member 成员
+    * 
+    *
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return ResponseEntity<MemberDTO>
+    */   
+    public MemberDTO mobAddSharedMemberByOwnerId
+            (String ownerId, MemberDTO dto) {
+        Member domain = memberDtoMapping.toDomain(dto);
+        domain.setOwnerId(ownerId);
+        Member rt = memberService.mobAddSharedMember(domain);
         return memberDtoMapping.toDto(rt);
     }
 
@@ -711,6 +782,45 @@ public abstract class AbstractMemberResource {
     }
 
     /**
+    * mob_add_shared_member 成员
+    * 
+    *
+    * @param spaceId spaceId
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return Mono<ResponseEntity<MemberDTO>>
+    */
+    @ApiOperation(value = "mob_add_shared_member", tags = {"成员" },  notes = "Member-mob_add_shared_member ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Member-mob_add_shared_member-all') or hasPermission('shared_space',#spaceId,this.memberDtoMapping.toDomain(#dto),'ibizplm-Member-mob_add_shared_member')")
+    @PostMapping("shared_spaces/{spaceId}/article_pages/{ownerId}/members/mob_add_shared_member")
+    public Mono<ResponseEntity<ResponseWrapper<MemberDTO>>>mobAddSharedMemberBySpaceIdAndOwnerId
+            (@PathVariable("spaceId") String spaceId, @PathVariable("ownerId") String ownerId, @Validated @RequestBody RequestWrapper<MemberDTO> dto) {
+        ResponseWrapper<MemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(mobAddSharedMemberBySpaceIdAndOwnerId(spaceId, ownerId, item)));
+        else
+            rt.set(mobAddSharedMemberBySpaceIdAndOwnerId(spaceId, ownerId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * mob_add_shared_member 成员
+    * 
+    *
+    * @param spaceId spaceId
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return ResponseEntity<MemberDTO>
+    */   
+    public MemberDTO mobAddSharedMemberBySpaceIdAndOwnerId
+            (String spaceId, String ownerId, MemberDTO dto) {
+        Member domain = memberDtoMapping.toDomain(dto);
+        domain.setOwnerId(ownerId);
+        Member rt = memberService.mobAddSharedMember(domain);
+        return memberDtoMapping.toDto(rt);
+    }
+
+    /**
     * 保存Save 成员
     * 
     *
@@ -829,6 +939,28 @@ public abstract class AbstractMemberResource {
             (@Validated @RequestBody MemberFilterDTO dto) {
         MemberSearchContext context = memberFilterDtoMapping.toDomain(dto);
         Page<Member> domains = memberService.fetchDefault(context) ;
+        List<MemberDTO> list = memberDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_no_attention 成员
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<MemberDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_no_attention", tags = {"成员" },  notes = "Member-fetch_no_attention ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Member-fetch_no_attention-all') or hasPermission(#dto,'ibizplm-Member-fetch_no_attention')")
+    @PostMapping("members/fetch_no_attention")
+    public Mono<ResponseEntity<List<MemberDTO>>> fetchNoAttention
+            (@Validated @RequestBody MemberFilterDTO dto) {
+        MemberSearchContext context = memberFilterDtoMapping.toDomain(dto);
+        Page<Member> domains = memberService.fetchNoAttention(context) ;
         List<MemberDTO> list = memberDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -976,6 +1108,30 @@ public abstract class AbstractMemberResource {
     }
 
     /**
+    * 查询fetch_no_attention 成员
+    * 
+    *
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<MemberDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_no_attention", tags = {"成员" },  notes = "Member-fetch_no_attention ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Member-fetch_no_attention-all') or hasPermission('group',#ownerId,#dto,'ibizplm-Member-fetch_no_attention')")
+    @PostMapping("groups/{ownerId}/members/fetch_no_attention")
+    public Mono<ResponseEntity<List<MemberDTO>>> fetchNoAttentionByOwnerId
+            (@PathVariable("ownerId") String ownerId, @Validated @RequestBody MemberFilterDTO dto) {
+        dto.setOwnerIdEQ(ownerId);
+        MemberSearchContext context = memberFilterDtoMapping.toDomain(dto);
+        Page<Member> domains = memberService.fetchNoAttention(context) ;
+        List<MemberDTO> list = memberDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 查询fetch_shared_page_member 成员
     * 
     *
@@ -1114,6 +1270,31 @@ public abstract class AbstractMemberResource {
         dto.setOwnerIdEQ(ownerId);
         MemberSearchContext context = memberFilterDtoMapping.toDomain(dto);
         Page<Member> domains = memberService.fetchDefault(context) ;
+        List<MemberDTO> list = memberDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_no_attention 成员
+    * 
+    *
+    * @param spaceId spaceId
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<MemberDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_no_attention", tags = {"成员" },  notes = "Member-fetch_no_attention ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Member-fetch_no_attention-all') or hasPermission('shared_space',#spaceId,#dto,'ibizplm-Member-fetch_no_attention')")
+    @PostMapping("shared_spaces/{spaceId}/article_pages/{ownerId}/members/fetch_no_attention")
+    public Mono<ResponseEntity<List<MemberDTO>>> fetchNoAttentionBySpaceIdAndOwnerId
+            (@PathVariable("spaceId") String spaceId, @PathVariable("ownerId") String ownerId, @Validated @RequestBody MemberFilterDTO dto) {
+        dto.setOwnerIdEQ(ownerId);
+        MemberSearchContext context = memberFilterDtoMapping.toDomain(dto);
+        Page<Member> domains = memberService.fetchNoAttention(context) ;
         List<MemberDTO> list = memberDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

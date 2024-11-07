@@ -624,6 +624,7 @@ export default {
             id: '0',
           },
         ],
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_work_item_distribution',
           appDataEntityId: 'plmweb.work_item',

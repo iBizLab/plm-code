@@ -205,6 +205,7 @@ export default {
             id: '0',
           },
         ],
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_require_burn_out',
           appDataEntityId: 'plmweb.work_item',

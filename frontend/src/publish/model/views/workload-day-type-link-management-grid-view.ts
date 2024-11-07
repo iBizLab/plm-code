@@ -346,6 +346,7 @@ export default {
       sortMode: 'REMOTE',
       enablePagingBar: true,
       singleSelect: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_type_of',
         appDataEntityId: 'plmweb.workload',

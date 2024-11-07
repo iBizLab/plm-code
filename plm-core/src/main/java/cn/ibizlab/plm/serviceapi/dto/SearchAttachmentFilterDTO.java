@@ -47,11 +47,11 @@ public class SearchAttachmentFilterDTO extends FilterBase implements Serializabl
 	private String idEQ;
 
     /**
-     * 名称LIKE
+     * 文件名称LIKE
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 170)
+    @ApiModelProperty(value = "文件名称LIKE", position = 170)
 	private String nameLIKE;
 
     /**

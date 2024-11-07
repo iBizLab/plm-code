@@ -287,7 +287,7 @@ export default {
         {
           actionLevel: 100,
           noPrivDisplayMode: 2,
-          uiactionId: 'saveandexit',
+          uiactionId: 'editview_saveandexitaction',
           valid: true,
           capLanguageRes: {
             lanResTag: 'TBB.TEXT.EDITVIEW.SAVEANDCLOSE',

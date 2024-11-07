@@ -235,6 +235,35 @@
         
     </select>
 
+    <select id="searchMobMain"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.LibrarySearchContext"  resultMap="LibraryResultMap">
+        select t1.* 
+        from (
+            <include refid="curLibrary"/>
+                 union
+            <include refid="unfavorite"/>
+                 union
+            <include refid="favorite"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listMobMain"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.LibrarySearchContext"  resultMap="LibraryResultMap">
+        select t1.*
+        from (
+            <include refid="curLibrary"/>
+                 union
+            <include refid="unfavorite"/>
+                 union
+            <include refid="favorite"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
     <select id="searchNormal"  parameterType="cn.ibizlab.plm.core.testmgmt.filter.LibrarySearchContext"  resultMap="LibraryResultMap">
         select t1.* 
         from (

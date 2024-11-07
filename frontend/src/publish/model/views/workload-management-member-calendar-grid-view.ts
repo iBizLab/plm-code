@@ -376,6 +376,7 @@ export default {
         enableGroup: true,
         enablePagingBar: true,
         singleSelect: true,
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_member_dimension',
           appDataEntityId: 'plmweb.workload',
@@ -590,6 +591,7 @@ export default {
                 ISADDSYMBOL: 'true',
                 MULTIPLE: 'true',
                 AC: 'TRUE',
+                'SRFNAVPARAM.n_status_eq': '1',
                 TRIGGER: 'TRUE',
                 URL: '/users/fetch_default',
                 PICKUPVIEW: 'FALSE',
@@ -601,6 +603,14 @@ export default {
               sysPFPluginId: 'person_select',
               valueType: 'SIMPLE',
               editable: true,
+              navigateParams: [
+                {
+                  key: 'n_status_eq',
+                  value: '1',
+                  rawValue: true,
+                  id: 'n_status_eq',
+                },
+              ],
               id: 'user_id',
             },
             allowEmpty: true,
@@ -727,7 +737,7 @@ export default {
           {
             actionLevel: 100,
             noPrivDisplayMode: 2,
-            uiactionId: 'exportexcel',
+            uiactionId: 'gridview_exportaction',
             valid: true,
             capLanguageRes: {
               lanResTag: 'TBB.TEXT.*.EXPORT',

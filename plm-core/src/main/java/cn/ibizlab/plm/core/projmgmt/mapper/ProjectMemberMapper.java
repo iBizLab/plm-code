@@ -62,6 +62,25 @@ public interface ProjectMemberMapper extends BaseMapper<ProjectMember> {
     List<ProjectMember> listCurProject(@Param("ctx") ProjectMemberSearchContext context, @Param("ew") Wrapper<ProjectMember> wrapper);
 
     /**
+     * 数据集合no_attention分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<ProjectMember> searchNoAttention(IPage<ProjectMember> page, @Param("ctx") ProjectMemberSearchContext context, @Param("ew") Wrapper<ProjectMember> wrapper);
+    
+    /**
+     * 数据集合no_attention查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<ProjectMember> listNoAttention(@Param("ctx") ProjectMemberSearchContext context, @Param("ew") Wrapper<ProjectMember> wrapper);
+
+    /**
     * 根据projectId查询
     *
     * @param projectIds

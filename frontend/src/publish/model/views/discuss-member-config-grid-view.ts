@@ -112,11 +112,9 @@ export default {
         {
           actionLevel: 100,
           noPrivDisplayMode: 2,
-          uiactionId: 'new',
+          uiactionId: 'add_discuss_topic_member',
+          uiactionTarget: 'NONE',
           valid: true,
-          capLanguageRes: {
-            lanResTag: 'TBB.TEXT.*.NEW',
-          },
           caption: '添加成员',
           itemType: 'DEUIACTION',
           sysImage: {
@@ -124,9 +122,6 @@ export default {
             glyph: 'xf067@FontAwesome',
           },
           tooltip: '添加成员',
-          tooltipLanguageRes: {
-            lanResTag: 'TBB.TOOLTIP.*.NEW',
-          },
           showCaption: true,
           showIcon: true,
           id: 'deuiaction1',
@@ -311,6 +306,7 @@ export default {
       sortMode: 'REMOTE',
       enableCustomized: true,
       enablePagingBar: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_default',
         appDataEntityId: 'plmweb.discuss_member',
@@ -346,7 +342,7 @@ export default {
             {
               actionLevel: 100,
               noPrivDisplayMode: 1,
-              uiactionId: 'remove',
+              uiactionId: 'gridview_removeaction',
               uiactionTarget: 'MULTIKEY',
               valid: true,
               capLanguageRes: {

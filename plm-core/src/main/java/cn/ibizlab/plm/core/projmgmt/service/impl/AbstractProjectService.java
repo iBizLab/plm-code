@@ -356,6 +356,21 @@ public abstract class AbstractProjectService extends ServiceImpl<ProjectMapper,P
         return list;
    }
 	
+   public Page<Project> fetchMobMain(ProjectSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IS_FAVORITE,DESC;UPDATE_TIME,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Project> pages=baseMapper.searchMobMain(context.getPages(),context,context.getSelectCond());
+        List<Project> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Project> listMobMain(ProjectSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IS_FAVORITE,DESC;UPDATE_TIME,DESC");
+        List<Project> list = baseMapper.listMobMain(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<Project> fetchNormal(ProjectSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("NAME,DESC");

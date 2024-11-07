@@ -191,6 +191,17 @@ public abstract class AbstractAttachmentService extends ServiceImpl<AttachmentMa
         return list;
    }
 	
+   public Page<Attachment> fetchMobWorkItemAttachment(AttachmentSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Attachment> pages=baseMapper.searchMobWorkItemAttachment(context.getPages(),context,context.getSelectCond());
+        List<Attachment> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Attachment> listMobWorkItemAttachment(AttachmentSearchContext context) {
+        List<Attachment> list = baseMapper.listMobWorkItemAttachment(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<Attachment> fetchProjectDeliverable(AttachmentSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Attachment> pages=baseMapper.searchProjectDeliverable(context.getPages(),context,context.getSelectCond());
         List<Attachment> list = pages.getRecords();

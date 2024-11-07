@@ -473,8 +473,8 @@ export default {
             id: 'usrdrgroup1225632271',
           },
           {
-            caption: '页面',
-            name: '页面',
+            caption: '文档',
+            name: '文档',
             id: 'usrdrgroup1225293659',
           },
           {
@@ -600,11 +600,11 @@ export default {
           },
           {
             dedrbarGroupId: 'usrdrgroup1225293659',
-            caption: '页面',
+            caption: '文档',
             counterId: 'space',
             counterMode: 1,
             enableMode: 'COUNT_GTE_ZERO',
-            appViewId: 'plmweb.space_product_re_tree_exp_view',
+            appViewId: 'plmweb.space_project_re_tree_exp_view',
             navigateContexts: [
               {
                 key: 'PRINCIPAL_ID',

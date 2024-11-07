@@ -294,6 +294,7 @@ export default {
       enablePagingBar: true,
       forceFit: true,
       singleSelect: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_my_assign',
         appDataEntityId: 'plmweb.test_case',

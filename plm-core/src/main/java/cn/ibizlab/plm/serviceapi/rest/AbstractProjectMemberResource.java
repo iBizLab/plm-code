@@ -166,6 +166,40 @@ public abstract class AbstractProjectMemberResource {
     }
 
     /**
+    * mob_create_project_member 项目成员
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<ProjectMemberDTO>>
+    */
+    @ApiOperation(value = "mob_create_project_member", tags = {"项目成员" },  notes = "ProjectMember-mob_create_project_member ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProjectMember-mob_create_project_member-all') or hasPermission(this.projectMemberDtoMapping.toDomain(#dto),'ibizplm-ProjectMember-mob_create_project_member')")
+    @PostMapping("project_members/mob_create_project_member")
+    public Mono<ResponseEntity<ResponseWrapper<ProjectMemberDTO>>>mobCreateProjectMember
+            (@Validated @RequestBody RequestWrapper<ProjectMemberDTO> dto) {
+        ResponseWrapper<ProjectMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(mobCreateProjectMember(item)));
+        else
+            rt.set(mobCreateProjectMember(dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * mob_create_project_member 项目成员
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<ProjectMemberDTO>
+    */   
+    public ProjectMemberDTO mobCreateProjectMember
+            (ProjectMemberDTO dto) {
+        ProjectMember domain = projectMemberDtoMapping.toDomain(dto);
+        ProjectMember rt = projectMemberService.mobCreateProjectMember(domain);
+        return projectMemberDtoMapping.toDto(rt);
+    }
+
+    /**
     * 保存Save 项目成员
     * 
     *
@@ -318,6 +352,43 @@ public abstract class AbstractProjectMemberResource {
         ProjectMember domain = projectMemberDtoMapping.toDomain(dto);
         domain.setId(id);
         ProjectMember rt = projectMemberService.changeRole(domain);
+        return projectMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * mob_create_project_member 项目成员
+    * 
+    *
+    * @param projectId projectId
+    * @param dto dto
+    * @return Mono<ResponseEntity<ProjectMemberDTO>>
+    */
+    @ApiOperation(value = "mob_create_project_member", tags = {"项目成员" },  notes = "ProjectMember-mob_create_project_member ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProjectMember-mob_create_project_member-all') or hasPermission('project',#projectId,this.projectMemberDtoMapping.toDomain(#dto),'ibizplm-ProjectMember-mob_create_project_member')")
+    @PostMapping("projects/{projectId}/project_members/mob_create_project_member")
+    public Mono<ResponseEntity<ResponseWrapper<ProjectMemberDTO>>>mobCreateProjectMemberByProjectId
+            (@PathVariable("projectId") String projectId, @Validated @RequestBody RequestWrapper<ProjectMemberDTO> dto) {
+        ResponseWrapper<ProjectMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(mobCreateProjectMemberByProjectId(projectId, item)));
+        else
+            rt.set(mobCreateProjectMemberByProjectId(projectId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * mob_create_project_member 项目成员
+    * 
+    *
+    * @param projectId projectId
+    * @param dto dto
+    * @return ResponseEntity<ProjectMemberDTO>
+    */   
+    public ProjectMemberDTO mobCreateProjectMemberByProjectId
+            (String projectId, ProjectMemberDTO dto) {
+        ProjectMember domain = projectMemberDtoMapping.toDomain(dto);
+        domain.setProjectId(projectId);
+        ProjectMember rt = projectMemberService.mobCreateProjectMember(domain);
         return projectMemberDtoMapping.toDto(rt);
     }
 
@@ -481,6 +552,43 @@ public abstract class AbstractProjectMemberResource {
     }
 
     /**
+    * mob_create_project_member 项目成员
+    * 
+    *
+    * @param userId userId
+    * @param dto dto
+    * @return Mono<ResponseEntity<ProjectMemberDTO>>
+    */
+    @ApiOperation(value = "mob_create_project_member", tags = {"项目成员" },  notes = "ProjectMember-mob_create_project_member ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProjectMember-mob_create_project_member-all') or hasPermission('user',#userId,this.projectMemberDtoMapping.toDomain(#dto),'ibizplm-ProjectMember-mob_create_project_member')")
+    @PostMapping("users/{userId}/project_members/mob_create_project_member")
+    public Mono<ResponseEntity<ResponseWrapper<ProjectMemberDTO>>>mobCreateProjectMemberByUserId
+            (@PathVariable("userId") String userId, @Validated @RequestBody RequestWrapper<ProjectMemberDTO> dto) {
+        ResponseWrapper<ProjectMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(mobCreateProjectMemberByUserId(userId, item)));
+        else
+            rt.set(mobCreateProjectMemberByUserId(userId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * mob_create_project_member 项目成员
+    * 
+    *
+    * @param userId userId
+    * @param dto dto
+    * @return ResponseEntity<ProjectMemberDTO>
+    */   
+    public ProjectMemberDTO mobCreateProjectMemberByUserId
+            (String userId, ProjectMemberDTO dto) {
+        ProjectMember domain = projectMemberDtoMapping.toDomain(dto);
+        domain.setUserId(userId);
+        ProjectMember rt = projectMemberService.mobCreateProjectMember(domain);
+        return projectMemberDtoMapping.toDto(rt);
+    }
+
+    /**
     * 保存Save 项目成员
     * 
     *
@@ -628,6 +736,28 @@ public abstract class AbstractProjectMemberResource {
     }
 
     /**
+    * 查询fetch_no_attention 项目成员
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<ProjectMemberDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_no_attention", tags = {"项目成员" },  notes = "ProjectMember-fetch_no_attention ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProjectMember-fetch_no_attention-all') or hasPermission(#dto,'ibizplm-ProjectMember-fetch_no_attention')")
+    @PostMapping("project_members/fetch_no_attention")
+    public Mono<ResponseEntity<List<ProjectMemberDTO>>> fetchNoAttention
+            (@Validated @RequestBody ProjectMemberFilterDTO dto) {
+        ProjectMemberSearchContext context = projectMemberFilterDtoMapping.toDomain(dto);
+        Page<ProjectMember> domains = projectMemberService.fetchNoAttention(context) ;
+        List<ProjectMemberDTO> list = projectMemberDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 获取Get 项目成员
     * 
     *
@@ -746,6 +876,30 @@ public abstract class AbstractProjectMemberResource {
     }
 
     /**
+    * 查询fetch_no_attention 项目成员
+    * 
+    *
+    * @param projectId projectId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<ProjectMemberDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_no_attention", tags = {"项目成员" },  notes = "ProjectMember-fetch_no_attention ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProjectMember-fetch_no_attention-all') or hasPermission('project',#projectId,#dto,'ibizplm-ProjectMember-fetch_no_attention')")
+    @PostMapping("projects/{projectId}/project_members/fetch_no_attention")
+    public Mono<ResponseEntity<List<ProjectMemberDTO>>> fetchNoAttentionByProjectId
+            (@PathVariable("projectId") String projectId, @Validated @RequestBody ProjectMemberFilterDTO dto) {
+        dto.setProjectIdEQ(projectId);
+        ProjectMemberSearchContext context = projectMemberFilterDtoMapping.toDomain(dto);
+        Page<ProjectMember> domains = projectMemberService.fetchNoAttention(context) ;
+        List<ProjectMemberDTO> list = projectMemberDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 获取Get 项目成员
     * 
     *
@@ -855,6 +1009,30 @@ public abstract class AbstractProjectMemberResource {
         dto.setUserIdEQ(userId);
         ProjectMemberSearchContext context = projectMemberFilterDtoMapping.toDomain(dto);
         Page<ProjectMember> domains = projectMemberService.fetchDefault(context) ;
+        List<ProjectMemberDTO> list = projectMemberDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_no_attention 项目成员
+    * 
+    *
+    * @param userId userId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<ProjectMemberDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_no_attention", tags = {"项目成员" },  notes = "ProjectMember-fetch_no_attention ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProjectMember-fetch_no_attention-all') or hasPermission('user',#userId,#dto,'ibizplm-ProjectMember-fetch_no_attention')")
+    @PostMapping("users/{userId}/project_members/fetch_no_attention")
+    public Mono<ResponseEntity<List<ProjectMemberDTO>>> fetchNoAttentionByUserId
+            (@PathVariable("userId") String userId, @Validated @RequestBody ProjectMemberFilterDTO dto) {
+        dto.setUserIdEQ(userId);
+        ProjectMemberSearchContext context = projectMemberFilterDtoMapping.toDomain(dto);
+        Page<ProjectMember> domains = projectMemberService.fetchNoAttention(context) ;
         List<ProjectMemberDTO> list = projectMemberDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

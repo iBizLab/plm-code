@@ -177,6 +177,7 @@ export default {
       sortMode: 'REMOTE',
       enableCustomized: true,
       enablePagingBar: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_not_exsists_relation',
         appDataEntityId: 'plmweb.work_item',

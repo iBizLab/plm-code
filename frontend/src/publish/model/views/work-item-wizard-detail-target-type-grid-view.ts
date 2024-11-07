@@ -305,6 +305,7 @@ export default {
       pagingSize: 20,
       sortMode: 'REMOTE',
       singleSelect: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_default',
         appDataEntityId: 'plmweb.work_item_wizard_detail',

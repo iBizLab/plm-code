@@ -470,6 +470,7 @@ export default {
           },
         ],
         outputIconDefault: true,
+        navViewPos: 'NONE',
         createControlAction: {
           appDEMethodId: 'create',
           appDataEntityId: 'plmweb.article_page',

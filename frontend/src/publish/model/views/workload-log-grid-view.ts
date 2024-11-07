@@ -520,6 +520,7 @@ export default {
         sortMode: 'REMOTE',
         enablePagingBar: true,
         singleSelect: true,
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_my_log',
           appDataEntityId: 'plmweb.workload',
@@ -590,8 +591,8 @@ export default {
                   },
                 ],
                 layoutPos: {
-                  colLG: 4,
-                  colMD: 4,
+                  colLG: 6,
+                  colMD: 6,
                   colSM: 8,
                   colXS: 8,
                   layout: 'TABLE_24COL',
@@ -618,7 +619,7 @@ export default {
                 detailType: 'FORMITEM',
                 layoutPos: {
                   colLG: 4,
-                  colMD: 4,
+                  colMD: 6,
                   colSM: 6,
                   colXS: 6,
                   layout: 'TABLE_24COL',
@@ -647,10 +648,10 @@ export default {
                 detailStyle: 'DEFAULT',
                 detailType: 'FORMITEM',
                 layoutPos: {
-                  colLG: 3,
-                  colMD: 3,
-                  colSM: 8,
-                  colXS: 8,
+                  colLG: 4,
+                  colMD: 4,
+                  colSM: 6,
+                  colXS: 6,
                   layout: 'TABLE_24COL',
                 },
                 id: 'n_name_like',
@@ -749,7 +750,7 @@ export default {
           {
             actionLevel: 100,
             noPrivDisplayMode: 2,
-            uiactionId: 'exportexcel',
+            uiactionId: 'gridview_exportaction',
             valid: true,
             capLanguageRes: {
               lanResTag: 'TBB.TEXT.*.EXPORT',

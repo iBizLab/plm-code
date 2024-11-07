@@ -804,6 +804,7 @@ export default {
         pagingSize: 1000,
         showHeader: true,
         singleSelect: true,
+        navViewPos: 'NONE',
         createControlAction: {
           appDEMethodId: 'create',
           appDataEntityId: 'plmweb.review_content',

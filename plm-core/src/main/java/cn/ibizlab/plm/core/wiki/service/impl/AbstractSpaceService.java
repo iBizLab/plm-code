@@ -260,6 +260,21 @@ public abstract class AbstractSpaceService extends ServiceImpl<SpaceMapper,Space
         return list;
    }
 	
+   public Page<Space> fetchMobMain(SpaceSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IS_FAVORITE,DESC;UPDATE_TIME,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Space> pages=baseMapper.searchMobMain(context.getPages(),context,context.getSelectCond());
+        List<Space> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Space> listMobMain(SpaceSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IS_FAVORITE,DESC;UPDATE_TIME,DESC");
+        List<Space> list = baseMapper.listMobMain(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<Space> fetchNoCategorySpace(SpaceSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Space> pages=baseMapper.searchNoCategorySpace(context.getPages(),context,context.getSelectCond());
         List<Space> list = pages.getRecords();

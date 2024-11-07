@@ -403,6 +403,7 @@ export default {
         appendDEItems: true,
         enablePagingBar: true,
         singleSelect: true,
+        navViewPos: 'NONE',
         createControlAction: {
           appDEMethodId: 'create',
           appDataEntityId: 'plmweb.article_page',

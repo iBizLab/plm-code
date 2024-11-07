@@ -23,6 +23,12 @@ export default {
       value: 'reader',
       id: 'reader',
     },
+    {
+      codeName: 'customer',
+      text: '特定成员',
+      value: 'customer',
+      id: 'customer',
+    },
   ],
   enableCache: true,
   name: '角色类型',

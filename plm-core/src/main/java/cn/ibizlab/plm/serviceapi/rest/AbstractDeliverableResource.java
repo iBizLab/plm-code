@@ -212,6 +212,22 @@ public abstract class AbstractDeliverableResource {
     }
 
     /**
+    * get_delivery 交付物
+    * 
+    *
+    * @param id id
+    * @return Mono<ResponseEntity<DeliverableDTO>>
+    */
+    @ApiOperation(value = "get_delivery", tags = {"交付物" },  notes = "Deliverable-get_delivery ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Deliverable-get_delivery-all') or hasPermission(this.deliverableService.get(#id),'ibizplm-Deliverable-get_delivery')")
+    @GetMapping("deliverables/{id}/get_delivery")
+    public Mono<ResponseEntity<DeliverableDTO>> getDeliveryById
+            (@PathVariable("id") String id) {
+        Deliverable rt = deliverableService.getDelivery(id);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(deliverableDtoMapping.toDto(rt)));
+    }
+
+    /**
     * 草稿GetDraft 交付物
     * 
     *

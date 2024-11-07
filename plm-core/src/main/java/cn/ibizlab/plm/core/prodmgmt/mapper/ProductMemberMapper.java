@@ -62,6 +62,25 @@ public interface ProductMemberMapper extends BaseMapper<ProductMember> {
     List<ProductMember> listCurProduct(@Param("ctx") ProductMemberSearchContext context, @Param("ew") Wrapper<ProductMember> wrapper);
 
     /**
+     * 数据集合with_product分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<ProductMember> searchWithProduct(IPage<ProductMember> page, @Param("ctx") ProductMemberSearchContext context, @Param("ew") Wrapper<ProductMember> wrapper);
+    
+    /**
+     * 数据集合with_product查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<ProductMember> listWithProduct(@Param("ctx") ProductMemberSearchContext context, @Param("ew") Wrapper<ProductMember> wrapper);
+
+    /**
     * 根据productId查询
     *
     * @param productIds

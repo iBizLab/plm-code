@@ -250,6 +250,7 @@ export default {
       sortMode: 'REMOTE',
       enablePagingBar: true,
       singleSelect: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_project_set_deleted',
         appDataEntityId: 'plmweb.portfolio',

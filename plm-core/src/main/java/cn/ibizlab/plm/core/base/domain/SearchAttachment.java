@@ -214,13 +214,13 @@ public class SearchAttachment extends EntityMP implements Serializable
     private String id;
 
     /**
-    * 名称
+    * 文件名称
     */
     @TableField(value = "name")
     @DEField(name = "name")
     @JSONField(name = "name")
     @JsonProperty("name")
-    @ApiModelProperty(value = "name", notes = "名称")
+    @ApiModelProperty(value = "name", notes = "文件名称")
     private String name;
 
     /**
@@ -434,7 +434,7 @@ public class SearchAttachment extends EntityMP implements Serializable
     }
 
     /**
-    * 设置 [名称]
+    * 设置 [文件名称]
     */
     public SearchAttachment setName(String name) {
         this.name = name;

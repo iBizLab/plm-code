@@ -64,6 +64,7 @@ export default {
       id: 'opendata',
     },
   ],
+  appViewMsgGroupId: 'usrvmgroup1024186337',
   appViewNavParams: [
     {
       rawValue: true,
@@ -82,15 +83,15 @@ export default {
       realOpenMode: 'POPUPMODAL',
       realTitle: '实体属性选项操作视图',
       refAppViewId: 'plmweb.psde_field_quick_create_view',
-      name: 'NEWDATA',
-      id: 'newdata',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
     {
       realOpenMode: 'POPUPMODAL',
       realTitle: '实体属性选项操作视图',
       refAppViewId: 'plmweb.psde_field_quick_create_view',
-      name: 'EDITDATA',
-      id: 'editdata',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -296,6 +297,7 @@ export default {
       enableCustomized: true,
       enablePagingBar: true,
       singleSelect: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetchdefault',
         appDataEntityId: 'plmweb.psdefield',
@@ -355,7 +357,7 @@ export default {
         {
           actionLevel: 100,
           noPrivDisplayMode: 2,
-          uiactionId: 'new',
+          uiactionId: 'gridview_newaction',
           valid: true,
           capLanguageRes: {
             lanResTag: 'TBB.TEXT.*.NEW',

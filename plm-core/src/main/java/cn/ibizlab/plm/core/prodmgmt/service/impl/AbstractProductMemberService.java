@@ -180,6 +180,17 @@ public abstract class AbstractProductMemberService extends ServiceImpl<ProductMe
         return list;
    }
 	
+   public Page<ProductMember> fetchWithProduct(ProductMemberSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ProductMember> pages=baseMapper.searchWithProduct(context.getPages(),context,context.getSelectCond());
+        List<ProductMember> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<ProductMember> listWithProduct(ProductMemberSearchContext context) {
+        List<ProductMember> list = baseMapper.listWithProduct(context,context.getSelectCond());
+        return list;
+   }
+	
 	public List<ProductMember> findByProductId(List<String> productIds){
         List<ProductMember> list = baseMapper.findByProductId(productIds);
         return list;	

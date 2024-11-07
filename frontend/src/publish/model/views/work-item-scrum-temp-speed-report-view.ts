@@ -602,6 +602,7 @@ export default {
             id: '0',
           },
         ],
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_temp_speed_report',
           appDataEntityId: 'plmweb.work_item',

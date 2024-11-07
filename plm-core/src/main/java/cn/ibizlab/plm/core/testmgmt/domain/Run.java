@@ -398,6 +398,26 @@ public class Run extends EntityMP implements Serializable
     private String biPlanName;
 
     /**
+    * 关注数
+    */
+    @TableField(value = "attention_count" , exist = false)
+    @DEField(name = "attention_count")
+    @JSONField(name = "attention_count")
+    @JsonProperty("attention_count")
+    @ApiModelProperty(value = "attention_count", notes = "关注数")
+    private String attentionCount;
+
+    /**
+    * 评论数
+    */
+    @TableField(value = "comment_count" , exist = false)
+    @DEField(name = "comment_count")
+    @JSONField(name = "comment_count")
+    @JsonProperty("comment_count")
+    @ApiModelProperty(value = "comment_count", notes = "评论数")
+    private String commentCount;
+
+    /**
     * 关注人
     */
     @TableField(value = "attentions_imp" , exist = false)
@@ -824,6 +844,24 @@ public class Run extends EntityMP implements Serializable
     public Run setBiPlanName(String biPlanName) {
         this.biPlanName = biPlanName;
         this.modify("bi_plan_name", biPlanName);
+        return this;
+    }
+
+    /**
+    * 设置 [关注数]
+    */
+    public Run setAttentionCount(String attentionCount) {
+        this.attentionCount = attentionCount;
+        this.modify("attention_count", attentionCount);
+        return this;
+    }
+
+    /**
+    * 设置 [评论数]
+    */
+    public Run setCommentCount(String commentCount) {
+        this.commentCount = commentCount;
+        this.modify("comment_count", commentCount);
         return this;
     }
 

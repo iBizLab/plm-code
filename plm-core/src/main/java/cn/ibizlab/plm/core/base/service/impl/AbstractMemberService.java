@@ -182,6 +182,17 @@ public abstract class AbstractMemberService extends ServiceImpl<MemberMapper,Mem
         return list;
    }
 	
+   public Page<Member> fetchNoAttention(MemberSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Member> pages=baseMapper.searchNoAttention(context.getPages(),context,context.getSelectCond());
+        List<Member> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Member> listNoAttention(MemberSearchContext context) {
+        List<Member> list = baseMapper.listNoAttention(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<Member> fetchSharedPageMember(MemberSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("CREATE_TIME,DESC");

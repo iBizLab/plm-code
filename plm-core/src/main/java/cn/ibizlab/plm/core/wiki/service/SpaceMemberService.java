@@ -167,6 +167,16 @@ public interface SpaceMemberService extends IService<SpaceMember> {
     }
 
     /**
+    * mobCreateSpaceMember
+    * 
+    * @param et
+    * @return
+    */
+    default SpaceMember mobCreateSpaceMember(SpaceMember et) {
+        return et;
+    }
+
+    /**
     * nothing
     * 
     * @param et
@@ -207,6 +217,22 @@ public interface SpaceMemberService extends IService<SpaceMember> {
     * @return
     */
     List<SpaceMember> listCurSpace(SpaceMemberSearchContext context);
+
+    /**
+    * fetchNoAttention
+    * 
+    * @param context
+    * @return
+    */
+    Page<SpaceMember> fetchNoAttention(SpaceMemberSearchContext context);
+
+    /**
+    * listNoAttention
+    * 
+    * @param context
+    * @return
+    */
+    List<SpaceMember> listNoAttention(SpaceMemberSearchContext context);
 
     /**
     * findBySpaceId

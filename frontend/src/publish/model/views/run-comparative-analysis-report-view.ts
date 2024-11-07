@@ -757,6 +757,7 @@ export default {
             id: '0',
           },
         ],
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_comparative_analysis',
           appDataEntityId: 'plmweb.run',

@@ -413,6 +413,7 @@ export default {
                             enableRowEdit: true,
                             enableRowNew: true,
                             singleSelect: true,
+                            navViewPos: 'NONE',
                             createControlAction: {
                               appDEMethodId: 'create',
                               appDataEntityId: 'plmweb.attachment',
@@ -600,6 +601,7 @@ export default {
                           MULTIPLE: 'true',
                           DEFAULTATNVALUE: '40',
                           AC: 'TRUE',
+                          'SRFNAVPARAM.n_status_eq': '1',
                           TRIGGER: 'TRUE',
                           SELFFILLMAP:
                             '{"user_id":"user_id","user_name":"name"}',
@@ -615,6 +617,14 @@ export default {
                         sysPFPluginId: 'person_select',
                         valueType: 'OBJECTS',
                         editable: true,
+                        navigateParams: [
+                          {
+                            key: 'n_status_eq',
+                            value: '1',
+                            rawValue: true,
+                            id: 'n_status_eq',
+                          },
+                        ],
                         id: 'attentions',
                       },
                       allowEmpty: true,

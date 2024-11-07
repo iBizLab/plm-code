@@ -332,6 +332,7 @@ export default {
         forceFit: true,
         hideHeader: true,
         singleSelect: true,
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_recent_project',
           appDataEntityId: 'plmweb.recent',

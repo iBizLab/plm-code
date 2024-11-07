@@ -178,6 +178,16 @@ public interface ProjectMemberService extends IService<ProjectMember> {
     }
 
     /**
+    * mobCreateProjectMember
+    * 
+    * @param et
+    * @return
+    */
+    default ProjectMember mobCreateProjectMember(ProjectMember et) {
+        return et;
+    }
+
+    /**
     * nothing
     * 
     * @param et
@@ -218,6 +228,22 @@ public interface ProjectMemberService extends IService<ProjectMember> {
     * @return
     */
     List<ProjectMember> listCurProject(ProjectMemberSearchContext context);
+
+    /**
+    * fetchNoAttention
+    * 
+    * @param context
+    * @return
+    */
+    Page<ProjectMember> fetchNoAttention(ProjectMemberSearchContext context);
+
+    /**
+    * listNoAttention
+    * 
+    * @param context
+    * @return
+    */
+    List<ProjectMember> listNoAttention(ProjectMemberSearchContext context);
 
     /**
     * findByProjectId

@@ -676,6 +676,11 @@ export default {
             id: 'role_id',
           },
           {
+            appDEFieldId: 'id',
+            dataType: 25,
+            id: 'id',
+          },
+          {
             appDEFieldId: 'name',
             dataType: 25,
             id: 'name',
@@ -684,11 +689,6 @@ export default {
             appDEFieldId: 'user_id',
             dataType: 25,
             id: 'user_id',
-          },
-          {
-            appDEFieldId: 'id',
-            dataType: 25,
-            id: 'id',
           },
           {
             appDEFieldId: 'id',
@@ -703,6 +703,7 @@ export default {
         ],
         pagingSize: 1000,
         showHeader: true,
+        navViewPos: 'NONE',
         createControlAction: {
           appDEMethodId: 'create',
           appDataEntityId: 'plmweb.member',

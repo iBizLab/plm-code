@@ -211,6 +211,24 @@ public class WorkloadBiSearchGroupDTO extends DTOBase implements Serializable {
     }
 
     /**
+     * 设置 [工时主体类型]
+     */
+    public WorkloadBiSearchGroupDTO setPrincipalType(String principalType) {
+        this.principalType = principalType;
+        this.modify("principal_type", principalType);
+        return this;
+    }
+
+    /**
+     * 设置 [所属数据对象]
+     */
+    public WorkloadBiSearchGroupDTO setOwnerType(String ownerType) {
+        this.ownerType = ownerType;
+        this.modify("owner_type", ownerType);
+        return this;
+    }
+
+    /**
      * 设置 [事项]
      */
     public WorkloadBiSearchGroupDTO setName(String name) {

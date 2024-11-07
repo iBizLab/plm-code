@@ -189,11 +189,11 @@ public class SearchAttachmentDTO extends DTOBase implements Serializable {
     private String id;
 
     /**
-     * 名称
+     * 文件名称
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 19)
+    @ApiModelProperty(value = "文件名称", position = 19)
     private String name;
 
     /**
@@ -323,7 +323,7 @@ public class SearchAttachmentDTO extends DTOBase implements Serializable {
     }
 
     /**
-     * 设置 [名称]
+     * 设置 [文件名称]
      */
     public SearchAttachmentDTO setName(String name) {
         this.name = name;

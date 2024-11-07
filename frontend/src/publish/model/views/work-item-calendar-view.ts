@@ -178,6 +178,7 @@ export default {
           id: 'my_work_item',
         },
       ],
+      navViewPos: 'NONE',
       autoLoad: true,
       showBusyIndicator: true,
       appViewLogics: [
@@ -348,7 +349,7 @@ export default {
           id: 'my_work_item_opendata',
         },
       ],
-      codeName: 'alendar_view_calendar',
+      codeName: 'work_item_calendar_view_calendar',
       controlType: 'CALENDAR',
       logicName: '工作项日历视图_日历部件',
       appDataEntityId: 'plmweb.work_item',
@@ -358,7 +359,7 @@ export default {
       modelId: '8948343a22e6f3e2feaef4c63535db9a',
       modelType: 'PSSYSCALENDAR',
       name: 'calendar',
-      id: 'plmweb.work_item.alendar_view_calendar',
+      id: 'plmweb.work_item.work_item_calendar_view_calendar',
     },
     {
       groupMode: 'SINGLE',

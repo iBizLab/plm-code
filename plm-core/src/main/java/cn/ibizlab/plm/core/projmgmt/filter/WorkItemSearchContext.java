@@ -120,6 +120,15 @@ public class WorkItemSearchContext extends QueryWrapperContext<WorkItem> {
     private Date startAtGTANDEQ;
 
     /**
+     * 开始时间LT
+     */
+    @JsonProperty("n_start_at_lt")
+    @JsonFormat(pattern = "yyyy-MM-dd", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_start_at_lt" , format = "yyyy-MM-dd")
+    @ApiModelProperty("开始时间LT")
+    private Date startAtLT;
+
+    /**
      * 开始时间LTANDEQ
      */
     @JsonProperty("n_start_at_ltandeq")

@@ -90,6 +90,10 @@
          <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`DURATION`, t1.`ID`, t1.`IDENTIFIER`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`RECENT_PARENT`, t1.`RECENT_PARENT_IDENTIFIER`, t1.`RECENT_PARENT_NAME`, t1.`REGISTER_DATE`, concat(t1.`RECENT_PARENT_IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`TYPE_ID`, t11.`NAME` AS `TYPE_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `WORKLOAD` t1  LEFT JOIN `WORKLOAD_TYPE` t11 ON t1.`TYPE_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`CREATE_MAN` = #{ctx.sessioncontext.srfpersonid} ) ]]> 
     </sql>
 
+    <sql id="myMobLog" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`DURATION`, t1.`ID`, t1.`IDENTIFIER`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`RECENT_PARENT`, t1.`RECENT_PARENT_IDENTIFIER`, t1.`RECENT_PARENT_NAME`, t1.`REGISTER_DATE`, concat(t1.`RECENT_PARENT_IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`TYPE_ID`, t11.`NAME` AS `TYPE_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `WORKLOAD` t1  LEFT JOIN `WORKLOAD_TYPE` t11 ON t1.`TYPE_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`CREATE_MAN` = #{ctx.sessioncontext.srfpersonid} ) ]]> 
+    </sql>
+
     <sql id="myTestCaseWorkload" databaseId="mysql">
          <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`DURATION`, t1.`ID`, t1.`IDENTIFIER`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`RECENT_PARENT`, t1.`RECENT_PARENT_IDENTIFIER`, t1.`RECENT_PARENT_NAME`, t1.`REGISTER_DATE`, concat(t1.`RECENT_PARENT_IDENTIFIER`,'-',t1.`IDENTIFIER`) AS `SHOW_IDENTIFIER`, t1.`TYPE_ID`, t11.`NAME` AS `TYPE_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `WORKLOAD` t1  LEFT JOIN `WORKLOAD_TYPE` t11 ON t1.`TYPE_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`PRINCIPAL_TYPE` = 'TEST_CASE'  AND  t1.`CREATE_MAN` = #{ctx.sessioncontext.srfpersonid} ) ]]> 
     </sql>
@@ -269,6 +273,27 @@
         
     </select>
 
+    <select id="searchMobCalendar"  parameterType="cn.ibizlab.plm.core.base.filter.WorkloadSearchContext"  resultType="java.util.HashMap">
+        select SUM(DURATION) as duration,ID as id,NAME as name,PRINCIPAL_ID as principal_id,PRINCIPAL_TYPE as principal_type,REGISTER_DATE as register_date,SHOW_IDENTIFIER as show_identifier,UPDATE_TIME as update_time 
+        from (
+            <include refid="myCalendar"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+         group by PRINCIPAL_ID,REGISTER_DATE
+    </select>
+
+
+    <select id="listMobCalendar"  parameterType="cn.ibizlab.plm.core.base.filter.WorkloadSearchContext"  resultType="java.util.HashMap">
+        select SUM(DURATION) as duration,ID as id,NAME as name,PRINCIPAL_ID as principal_id,PRINCIPAL_TYPE as principal_type,REGISTER_DATE as register_date,SHOW_IDENTIFIER as show_identifier,UPDATE_TIME as update_time
+        from (
+            <include refid="myCalendar"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+         group by PRINCIPAL_ID,REGISTER_DATE
+    </select>
+
     <select id="searchMyCalendar"  parameterType="cn.ibizlab.plm.core.base.filter.WorkloadSearchContext"  resultMap="WorkloadResultMap">
         select t1.* 
         from (
@@ -326,6 +351,27 @@
         select t1.*
         from (
             <include refid="myLog"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchMyMobLog"  parameterType="cn.ibizlab.plm.core.base.filter.WorkloadSearchContext"  resultMap="WorkloadResultMap">
+        select t1.* 
+        from (
+            <include refid="myMobLog"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listMyMobLog"  parameterType="cn.ibizlab.plm.core.base.filter.WorkloadSearchContext"  resultMap="WorkloadResultMap">
+        select t1.*
+        from (
+            <include refid="myMobLog"/>
         ) t1
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>

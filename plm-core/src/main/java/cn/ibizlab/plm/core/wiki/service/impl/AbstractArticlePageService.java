@@ -363,6 +363,17 @@ public abstract class AbstractArticlePageService extends ServiceImpl<ArticlePage
         return list;
    }
 	
+   public Page<ArticlePage> fetchNormalTreePage(ArticlePageSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ArticlePage> pages=baseMapper.searchNormalTreePage(context.getPages(),context,context.getSelectCond());
+        List<ArticlePage> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<ArticlePage> listNormalTreePage(ArticlePageSearchContext context) {
+        List<ArticlePage> list = baseMapper.listNormalTreePage(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<ArticlePage> fetchOnlyPage(ArticlePageSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<ArticlePage> pages=baseMapper.searchOnlyPage(context.getPages(),context,context.getSelectCond());
         List<ArticlePage> list = pages.getRecords();

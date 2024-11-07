@@ -1234,11 +1234,8 @@ export default {
         name: 'list_itempanel',
         id: 'plmweb.work_item_type.usr1229905828',
       },
+      mobListStyle: 'EXTVIEW1',
       delistDataItems: [
-        {
-          dataType: 25,
-          id: 'id',
-        },
         {
           dataType: 21,
           id: 'icon',
@@ -1246,6 +1243,10 @@ export default {
         {
           dataType: 25,
           id: 'name',
+        },
+        {
+          dataType: 25,
+          id: 'id',
         },
         {
           appDEFieldId: 'id',
@@ -1265,6 +1266,7 @@ export default {
       ],
       pagingSize: 1000,
       showHeader: true,
+      navViewPos: 'NONE',
       createControlAction: {
         appDEMethodId: 'create',
         appDataEntityId: 'plmweb.work_item_type',
@@ -1293,6 +1295,7 @@ export default {
       autoLoad: true,
       showBusyIndicator: true,
       codeName: 'global_setting',
+      controlStyle: 'EXTVIEW1',
       controlType: 'LIST',
       logicName: 'global_setting',
       appDataEntityId: 'plmweb.work_item_type',

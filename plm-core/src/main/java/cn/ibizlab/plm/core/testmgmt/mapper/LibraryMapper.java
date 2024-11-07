@@ -138,6 +138,25 @@ public interface LibraryMapper extends BaseMapper<Library> {
     List<Library> listMain(@Param("ctx") LibrarySearchContext context, @Param("ew") Wrapper<Library> wrapper);
 
     /**
+     * 数据集合mob_main分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Library> searchMobMain(IPage<Library> page, @Param("ctx") LibrarySearchContext context, @Param("ew") Wrapper<Library> wrapper);
+    
+    /**
+     * 数据集合mob_main查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Library> listMobMain(@Param("ctx") LibrarySearchContext context, @Param("ew") Wrapper<Library> wrapper);
+
+    /**
      * 数据集合normal分页查询
      * 
      * @param page

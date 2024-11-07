@@ -412,6 +412,7 @@ export default {
       sortMode: 'REMOTE',
       enablePagingBar: true,
       noSort: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_fill_version_data',
         appDataEntityId: 'plmweb.baseline_test_case',
@@ -473,6 +474,9 @@ export default {
       logicName: '主表格',
       appDataEntityId: 'plmweb.baseline_test_case',
       controlParam: {
+        ctrlParams: {
+          LOCATERECORDKEY: 'target_id',
+        },
         id: 'grid',
       },
       modelId: 'a8a223e8f0ecec618e74a85dfd35938c',
@@ -534,7 +538,8 @@ export default {
               itemName: 'deuiaction1',
               logicTag: 'tabtoolbar',
               logicType: 'SCRIPT',
-              scriptCode: "context.baseline_status !== '2'",
+              scriptCode:
+                "context.baseline_status !== '2' && context.srfreadonly != true",
               triggerType: 'ITEMVISIBLE',
               id: 'logic',
             },

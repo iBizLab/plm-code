@@ -914,6 +914,7 @@ export default {
             id: '0',
           },
         ],
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_daily_tendencies',
           appDataEntityId: 'plmweb.run',

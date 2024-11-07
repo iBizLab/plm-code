@@ -26,6 +26,12 @@ export default {
       value: 'department_id_isnull',
       id: 'n_department_id_isnull',
     },
+    {
+      rawValue: true,
+      key: 'n_status_eq',
+      value: '1',
+      id: 'n_status_eq',
+    },
   ],
   controls: [
     {
@@ -118,6 +124,7 @@ export default {
       sortMode: 'REMOTE',
       enableCustomized: true,
       enablePagingBar: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_default',
         appDataEntityId: 'plmweb.user',

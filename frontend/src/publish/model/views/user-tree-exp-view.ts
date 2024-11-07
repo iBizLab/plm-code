@@ -60,8 +60,8 @@ export default {
             srfparentmode: 'DER1N_USER_DEPARTMENT_DEPARTMENT_ID',
             srfparentdefname: 'DEPARTMENT_ID',
           },
-          realTitle: '成员管理',
-          refAppViewId: 'plmweb.user_grid_view',
+          realTitle: '成员帐号',
+          refAppViewId: 'plmweb.user_account_tab_exp_view',
           name: 'EXPITEM:dept',
           id: 'expitem:dept',
         },
@@ -71,14 +71,14 @@ export default {
             srfparentmode: 'DER1N_USER_DEPARTMENT_DEPARTMENT_ID',
             srfparentdefname: 'DEPARTMENT_ID',
           },
-          realTitle: '成员管理',
-          refAppViewId: 'plmweb.user_grid_view',
+          realTitle: '成员帐号',
+          refAppViewId: 'plmweb.user_account_tab_exp_view',
           name: 'EXPITEM:node',
           id: 'expitem:node',
         },
         {
-          realTitle: '成员管理',
-          refAppViewId: 'plmweb.user_grid_view',
+          realTitle: '成员帐号',
+          refAppViewId: 'plmweb.user_account_tab_exp_view',
           name: 'EXPITEM:team',
           id: 'expitem:team',
         },
@@ -154,13 +154,6 @@ export default {
               searchMode: 3,
               id: '子部门（动态） - 子部门（动态）',
             },
-            {
-              childDETreeNodeId: 'unassigned_dept',
-              parentDETreeNodeId: 'root',
-              parentValueLevel: 1,
-              searchMode: 3,
-              id: '默认根节点 - 未分配部门',
-            },
           ],
           detreeNodes: [
             {
@@ -176,7 +169,7 @@ export default {
               idAppDEFieldId: 'id',
               appDEDataSetId: 'fetch_root',
               textAppDEFieldId: 'name',
-              navAppViewId: 'plmweb.user_grid_view',
+              navAppViewId: 'plmweb.user_account_tab_exp_view',
               navDER: {
                 pickupDEFName: 'DEPARTMENT_ID',
                 codeName: 'department',
@@ -204,7 +197,7 @@ export default {
               idAppDEFieldId: 'id',
               appDEDataSetId: 'fetch_default',
               textAppDEFieldId: 'name',
-              navAppViewId: 'plmweb.user_grid_view',
+              navAppViewId: 'plmweb.user_account_tab_exp_view',
               navDER: {
                 pickupDEFName: 'DEPARTMENT_ID',
                 codeName: 'department',
@@ -230,7 +223,7 @@ export default {
             },
             {
               text: '企业成员',
-              navAppViewId: 'plmweb.user_grid_view',
+              navAppViewId: 'plmweb.user_account_tab_exp_view',
               nodeType: 'team',
               sysImage: {
                 cssClass: 'fa fa-sitemap',
@@ -260,6 +253,7 @@ export default {
             },
           ],
           outputIconDefault: true,
+          navViewPos: 'NONE',
           createControlAction: {
             appDEMethodId: 'create',
             appDataEntityId: 'plmweb.user',
@@ -287,6 +281,7 @@ export default {
           autoLoad: true,
           showBusyIndicator: true,
           codeName: 'main',
+          controlStyle: 'GROUP_TREE',
           controlType: 'TREEVIEW',
           logicName: '成员管理',
           appDataEntityId: 'plmweb.user',
@@ -309,6 +304,7 @@ export default {
           controlParam: {
             id: 'treeexpbar_tree',
           },
+          sysPFPluginId: 'group_tree',
           modelId: '5b1481c903d43d72b1dace80963a3bd3',
           modelType: 'PSDETREEVIEW',
           name: 'treeexpbar_tree',

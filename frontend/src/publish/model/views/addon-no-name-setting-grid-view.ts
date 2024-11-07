@@ -197,6 +197,7 @@ export default {
       sortMode: 'REMOTE',
       enableCustomized: true,
       singleSelect: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_default',
         appDataEntityId: 'plmweb.addon',

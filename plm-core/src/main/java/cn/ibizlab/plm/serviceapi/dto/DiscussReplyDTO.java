@@ -44,11 +44,35 @@ public class DiscussReplyDTO extends DTOBase implements Serializable {
     private List<CommentDTO> comments;
 
     /**
+     * 回复评论数
+     */
+    @JsonProperty("reply_comment_num")
+    @JSONField(name = "reply_comment_num")
+    @ApiModelProperty(value = "回复评论数", position = 1)
+    private String replyCommentNum;
+
+    /**
+     * 讨论名称
+     */
+    @JsonProperty("discuss_name")
+    @JSONField(name = "discuss_name")
+    @ApiModelProperty(value = "讨论名称", position = 2)
+    private String discussName;
+
+    /**
+     * 回复评论数
+     */
+    @JsonProperty("comment_count")
+    @JSONField(name = "comment_count")
+    @ApiModelProperty(value = "回复评论数", position = 3)
+    private String commentCount;
+
+    /**
      * 回复内容
      */
     @JsonProperty("content")
     @JSONField(name = "content")
-    @ApiModelProperty(value = "回复内容", position = 1)
+    @ApiModelProperty(value = "回复内容", position = 4)
     private String content;
 
     /**
@@ -56,7 +80,7 @@ public class DiscussReplyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 2)
+    @ApiModelProperty(value = "建立人", position = 5)
     private String createMan;
 
     /**
@@ -65,7 +89,7 @@ public class DiscussReplyDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 3)
+    @ApiModelProperty(value = "建立时间", position = 6)
     private Date createTime;
 
     /**
@@ -73,7 +97,7 @@ public class DiscussReplyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 4)
+    @ApiModelProperty(value = "标识", position = 7)
     private String id;
 
     /**
@@ -81,7 +105,7 @@ public class DiscussReplyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 5)
+    @ApiModelProperty(value = "名称", position = 8)
     private String name;
 
     /**
@@ -89,7 +113,7 @@ public class DiscussReplyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("post_id")
     @JSONField(name = "post_id")
-    @ApiModelProperty(value = "讨论标识", position = 6)
+    @ApiModelProperty(value = "讨论标识", position = 9)
     private String postId;
 
     /**
@@ -97,7 +121,7 @@ public class DiscussReplyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 7)
+    @ApiModelProperty(value = "更新人", position = 10)
     private String updateMan;
 
     /**
@@ -106,7 +130,7 @@ public class DiscussReplyDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 8)
+    @ApiModelProperty(value = "更新时间", position = 11)
     private Date updateTime;
 
 
@@ -116,6 +140,33 @@ public class DiscussReplyDTO extends DTOBase implements Serializable {
     public DiscussReplyDTO setComments(List<CommentDTO> comments) {
         this.comments = comments;
         this.modify("comments", comments);
+        return this;
+    }
+
+    /**
+     * 设置 [回复评论数]
+     */
+    public DiscussReplyDTO setReplyCommentNum(String replyCommentNum) {
+        this.replyCommentNum = replyCommentNum;
+        this.modify("reply_comment_num", replyCommentNum);
+        return this;
+    }
+
+    /**
+     * 设置 [讨论名称]
+     */
+    public DiscussReplyDTO setDiscussName(String discussName) {
+        this.discussName = discussName;
+        this.modify("discuss_name", discussName);
+        return this;
+    }
+
+    /**
+     * 设置 [回复评论数]
+     */
+    public DiscussReplyDTO setCommentCount(String commentCount) {
+        this.commentCount = commentCount;
+        this.modify("comment_count", commentCount);
         return this;
     }
 

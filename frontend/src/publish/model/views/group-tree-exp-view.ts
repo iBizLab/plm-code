@@ -387,6 +387,7 @@ export default {
           ],
           enableEdit: true,
           outputIconDefault: true,
+          navViewPos: 'NONE',
           createControlAction: {
             appDEMethodId: 'create',
             appDataEntityId: 'plmweb.group',
@@ -655,7 +656,7 @@ export default {
             {
               actionLevel: 100,
               noPrivDisplayMode: 2,
-              uiactionId: 'refreshall',
+              uiactionId: 'treeview_refreshallaction',
               valid: true,
               caption: '刷新',
               itemType: 'DEUIACTION',

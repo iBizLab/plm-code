@@ -128,14 +128,12 @@ export default {
                   },
                   deformDetails: [
                     {
-                      dataType: 25,
+                      dataType: 21,
                       enableCond: 3,
-                      itemHeight: 450,
                       labelPos: 'NONE',
                       noPrivDisplayMode: 1,
                       appDEFieldId: 'precondition',
                       editor: {
-                        editorHeight: 450,
                         editorParams: {
                           USERINSCRIPT:
                             'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
@@ -163,7 +161,6 @@ export default {
                         editorStyle: 'COLLAPSE',
                         editorType: 'HTMLEDITOR',
                         sysPFPluginId: 'comment',
-                        placeHolder: '输入前置条件',
                         valueType: 'SIMPLE',
                         editable: true,
                         id: 'precondition',
@@ -179,6 +176,24 @@ export default {
                       },
                       id: 'precondition',
                     },
+                  ],
+                  caption: '前置条件',
+                  codeName: 'grouppanel3',
+                  detailStyle: 'DEFAULT',
+                  detailType: 'GROUPPANEL',
+                  layoutPos: {
+                    colMD: 24,
+                    layout: 'TABLE_24COL',
+                  },
+                  showCaption: true,
+                  id: 'grouppanel3',
+                },
+                {
+                  layout: {
+                    columnCount: 24,
+                    layout: 'TABLE_24COL',
+                  },
+                  deformDetails: [
                     {
                       buildInActions: 7,
                       contentType: 'REPEATER',
@@ -408,8 +423,8 @@ export default {
                       id: 'mdctrl1',
                     },
                   ],
-                  caption: '前置条件',
-                  codeName: 'grouppanel3',
+                  caption: '用例步骤',
+                  codeName: 'grouppanel5',
                   detailStyle: 'DEFAULT',
                   detailType: 'GROUPPANEL',
                   layoutPos: {
@@ -417,7 +432,7 @@ export default {
                     layout: 'TABLE_24COL',
                   },
                   showCaption: true,
-                  id: 'grouppanel3',
+                  id: 'grouppanel5',
                 },
                 {
                   layout: {
@@ -426,21 +441,39 @@ export default {
                   },
                   deformDetails: [
                     {
-                      dataType: 25,
+                      dataType: 21,
                       enableCond: 3,
-                      itemHeight: 200,
                       labelPos: 'NONE',
                       noPrivDisplayMode: 1,
                       appDEFieldId: 'description',
                       editor: {
-                        maxLength: 2000,
-                        showMaxLength: true,
-                        editorHeight: 200,
                         editorParams: {
-                          HEIGHT: '200',
+                          USERINSCRIPT:
+                            'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                          MAXHEIGHT: '450',
+                          QUOTECODELISTMAP:
+                            '{"type":"plmweb.base__recent_visite"}',
+                          QUOTEFIELDMAP:
+                            '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype"}',
+                          QUOTEPARAMS:
+                            '{"page":0,"size":20,"sort":"update_time,desc"}',
+                          MODE: 'default',
+                          QUOTEINSCRIPT:
+                            'value.replaceAll(/\\#\\{\\"id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\",\\"identifier\\":\\"(.+?)\\",\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })}).replaceAll(/\\#\\{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })})',
+                          USERSCRIPT:
+                            '`@{"id":"${data.id}","name":"${data.name}"}`',
+                          QUOTESCRIPT:
+                            '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","icon":"${data.icon}"}`',
+                          USERURL:
+                            "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
+                          USERFIELDMAP: '{"id":"user_id","name":"name"}',
+                          INSERTKEYS:
+                            '[{"index":66,"keys":["marker"]},{"index":5,"keys":["paintformat"]}]',
+                          QUOTEURL: '`recents/fetch_recent_access`',
                         },
-                        editorType: 'TEXTAREA_10',
-                        placeHolder: '输入描述',
+                        editorStyle: 'COLLAPSE',
+                        editorType: 'HTMLEDITOR',
+                        sysPFPluginId: 'comment',
                         valueType: 'SIMPLE',
                         editable: true,
                         id: 'case_description',
@@ -714,6 +747,7 @@ export default {
                         enableRowEdit: true,
                         enableRowNew: true,
                         singleSelect: true,
+                        navViewPos: 'NONE',
                         createControlAction: {
                           appDEMethodId: 'create',
                           appDataEntityId: 'plmweb.attachment',
@@ -1114,6 +1148,7 @@ export default {
                     editorParams: {
                       'SRFNAVPARAM.n_department_id_eq': '%srforgsectorid%',
                       AC: 'TRUE',
+                      'SRFNAVPARAM.n_status_eq': '1',
                       TRIGGER: 'TRUE',
                       URL: 'libraries/${context.library}/library_members/fetch_default',
                       PICKUPVIEW: 'FALSE',
@@ -1140,6 +1175,12 @@ export default {
                         key: 'n_department_id_eq',
                         value: 'srforgsectorid',
                         id: 'n_department_id_eq',
+                      },
+                      {
+                        key: 'n_status_eq',
+                        value: '1',
+                        rawValue: true,
+                        id: 'n_status_eq',
                       },
                     ],
                     id: 'maintenance_name',
@@ -1286,6 +1327,7 @@ export default {
                           'SRFNAVPARAM.n_department_id_eq': '%srforgsectorid%',
                           AC: 'TRUE',
                           DEFAULTSELCURUSER: 'true',
+                          'SRFNAVPARAM.n_status_eq': '1',
                           TRIGGER: 'TRUE',
                           SELFFILLMAP:
                             '{"user_id":"user_id","user_name":"name"}',
@@ -1309,6 +1351,12 @@ export default {
                             key: 'n_department_id_eq',
                             value: 'srforgsectorid',
                             id: 'n_department_id_eq',
+                          },
+                          {
+                            key: 'n_status_eq',
+                            value: '1',
+                            rawValue: true,
+                            id: 'n_status_eq',
                           },
                         ],
                         id: 'attentions',
@@ -1460,6 +1508,9 @@ export default {
       id: 'quick_create_view_captionbar',
     },
   ],
+  sysCss: {
+    cssName: 'quick_case_style',
+  },
   viewLayoutPanel: {
     layoutBodyOnly: true,
     useDefaultLayout: true,

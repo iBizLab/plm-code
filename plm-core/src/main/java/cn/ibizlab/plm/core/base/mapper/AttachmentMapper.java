@@ -43,6 +43,25 @@ public interface AttachmentMapper extends BaseMapper<Attachment> {
     List<Attachment> listDefault(@Param("ctx") AttachmentSearchContext context, @Param("ew") Wrapper<Attachment> wrapper);
 
     /**
+     * 数据集合mob_work_item_attachment分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Attachment> searchMobWorkItemAttachment(IPage<Attachment> page, @Param("ctx") AttachmentSearchContext context, @Param("ew") Wrapper<Attachment> wrapper);
+    
+    /**
+     * 数据集合mob_work_item_attachment查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Attachment> listMobWorkItemAttachment(@Param("ctx") AttachmentSearchContext context, @Param("ew") Wrapper<Attachment> wrapper);
+
+    /**
      * 数据集合project_deliverable分页查询
      * 
      * @param page

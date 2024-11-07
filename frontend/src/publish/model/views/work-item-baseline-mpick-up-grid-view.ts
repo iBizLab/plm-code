@@ -381,6 +381,7 @@ export default {
       enablePagingBar: true,
       enableRowEdit: true,
       enableRowNew: true,
+      navViewPos: 'NONE',
       createControlAction: {
         appDEMethodId: 'create',
         appDataEntityId: 'plmweb.work_item',

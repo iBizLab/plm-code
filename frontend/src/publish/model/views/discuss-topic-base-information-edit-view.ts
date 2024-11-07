@@ -284,7 +284,7 @@ export default {
                 },
                 {
                   actionType: 'UIACTION',
-                  uiactionId: 'save',
+                  uiactionId: 'editview_saveaction',
                   tooltip: '确定',
                   capLanguageRes: {
                     lanResTag: 'TBB.TEXT.*.SAVE',

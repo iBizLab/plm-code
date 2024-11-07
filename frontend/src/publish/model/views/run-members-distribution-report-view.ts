@@ -693,6 +693,7 @@ export default {
             id: '0',
           },
         ],
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_case_person',
           appDataEntityId: 'plmweb.run',

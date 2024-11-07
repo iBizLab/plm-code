@@ -195,7 +195,7 @@ export default {
                 afterItemType: 'NONE',
                 beforeItemType: 'NONE',
                 detailType: 'DEUIACTION',
-                uiactionId: 'edit',
+                uiactionId: 'gridview_editaction',
                 tooltip: '编辑',
                 tooltipLanguageRes: {
                   lanResTag: 'TBB.TOOLTIP.*.EDIT',
@@ -325,6 +325,7 @@ export default {
       enablePagingBar: true,
       enableRowEditOrder: true,
       singleSelect: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_default',
         appDataEntityId: 'plmweb.workload_type',

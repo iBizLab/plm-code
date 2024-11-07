@@ -434,6 +434,26 @@ public class Idea extends EntityMP implements Serializable
     private BigDecimal actualWorkload;
 
     /**
+    * 关注数
+    */
+    @TableField(value = "attention_count" , exist = false)
+    @DEField(name = "attention_count")
+    @JSONField(name = "attention_count")
+    @JsonProperty("attention_count")
+    @ApiModelProperty(value = "attention_count", notes = "关注数")
+    private String attentionCount;
+
+    /**
+    * 评论数
+    */
+    @TableField(value = "comment_count" , exist = false)
+    @DEField(name = "comment_count")
+    @JSONField(name = "comment_count")
+    @JsonProperty("comment_count")
+    @ApiModelProperty(value = "comment_count", notes = "评论数")
+    private String commentCount;
+
+    /**
     * 当前版本名称
     */
     @TableField(value = "cur_version_name" , exist = false)
@@ -956,6 +976,24 @@ public class Idea extends EntityMP implements Serializable
     public Idea setActualWorkload(BigDecimal actualWorkload) {
         this.actualWorkload = actualWorkload;
         this.modify("actual_workload", actualWorkload);
+        return this;
+    }
+
+    /**
+    * 设置 [关注数]
+    */
+    public Idea setAttentionCount(String attentionCount) {
+        this.attentionCount = attentionCount;
+        this.modify("attention_count", attentionCount);
+        return this;
+    }
+
+    /**
+    * 设置 [评论数]
+    */
+    public Idea setCommentCount(String commentCount) {
+        this.commentCount = commentCount;
+        this.modify("comment_count", commentCount);
         return this;
     }
 

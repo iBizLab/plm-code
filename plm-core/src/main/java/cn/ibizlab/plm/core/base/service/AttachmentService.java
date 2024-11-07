@@ -179,6 +179,22 @@ public interface AttachmentService extends IService<Attachment> {
     List<Attachment> listDefault(AttachmentSearchContext context);
 
     /**
+    * fetchMobWorkItemAttachment
+    * 
+    * @param context
+    * @return
+    */
+    Page<Attachment> fetchMobWorkItemAttachment(AttachmentSearchContext context);
+
+    /**
+    * listMobWorkItemAttachment
+    * 
+    * @param context
+    * @return
+    */
+    List<Attachment> listMobWorkItemAttachment(AttachmentSearchContext context);
+
+    /**
     * fetchProjectDeliverable
     * 
     * @param context

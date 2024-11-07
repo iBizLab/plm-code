@@ -317,6 +317,16 @@ public interface IdeaService extends IService<Idea> {
     }
 
     /**
+    * mobIdeaAttention
+    * 
+    * @param et
+    * @return
+    */
+    default Idea mobIdeaAttention(Idea et) {
+        return et;
+    }
+
+    /**
     * moveOrder
     * 
     * @param et
@@ -391,6 +401,22 @@ public interface IdeaService extends IService<Idea> {
     * @return
     */
     List<Idea> listDefault(IdeaSearchContext context);
+
+    /**
+    * fetchAdmin
+    * 
+    * @param context
+    * @return
+    */
+    Page<Idea> fetchAdmin(IdeaSearchContext context);
+
+    /**
+    * listAdmin
+    * 
+    * @param context
+    * @return
+    */
+    List<Idea> listAdmin(IdeaSearchContext context);
 
     /**
     * fetchAdvancedSearch
@@ -505,6 +531,22 @@ public interface IdeaService extends IService<Idea> {
     List<Idea> listCommon(IdeaSearchContext context);
 
     /**
+    * fetchCustomerUser
+    * 
+    * @param context
+    * @return
+    */
+    Page<Idea> fetchCustomerUser(IdeaSearchContext context);
+
+    /**
+    * listCustomerUser
+    * 
+    * @param context
+    * @return
+    */
+    List<Idea> listCustomerUser(IdeaSearchContext context);
+
+    /**
     * fetchDeleted
     * 查询已删除的需求数据
     * @param context
@@ -519,6 +561,22 @@ public interface IdeaService extends IService<Idea> {
     * @return
     */
     List<Idea> listDeleted(IdeaSearchContext context);
+
+    /**
+    * fetchMobNotArchived
+    * 
+    * @param context
+    * @return
+    */
+    Page<Idea> fetchMobNotArchived(IdeaSearchContext context);
+
+    /**
+    * listMobNotArchived
+    * 
+    * @param context
+    * @return
+    */
+    List<Idea> listMobNotArchived(IdeaSearchContext context);
 
     /**
     * fetchMoveIdea
@@ -711,6 +769,22 @@ public interface IdeaService extends IService<Idea> {
     * @return
     */
     List<Idea> listRecentIdea(IdeaSearchContext context);
+
+    /**
+    * fetchUser
+    * 
+    * @param context
+    * @return
+    */
+    Page<Idea> fetchUser(IdeaSearchContext context);
+
+    /**
+    * listUser
+    * 
+    * @param context
+    * @return
+    */
+    List<Idea> listUser(IdeaSearchContext context);
 
     /**
     * findByCategoryId

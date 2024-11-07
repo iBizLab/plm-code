@@ -390,6 +390,7 @@ export default {
         sortMode: 'REMOTE',
         enableGroup: true,
         singleSelect: true,
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_work_item_dimension',
           appDataEntityId: 'plmweb.workload',
@@ -633,7 +634,7 @@ export default {
           {
             actionLevel: 100,
             noPrivDisplayMode: 2,
-            uiactionId: 'exportexcel',
+            uiactionId: 'gridview_exportaction',
             valid: true,
             capLanguageRes: {
               lanResTag: 'TBB.TEXT.*.EXPORT',

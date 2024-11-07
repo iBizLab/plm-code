@@ -896,6 +896,7 @@ export default {
                       id: '0',
                     },
                   ],
+                  navViewPos: 'NONE',
                   fetchControlAction: {
                     appDEMethodId: 'fetch_release_work_item_chart',
                     appDataEntityId: 'plmweb.work_item',
@@ -1240,6 +1241,7 @@ export default {
                 sortMode: 'REMOTE',
                 noSort: true,
                 singleSelect: true,
+                navViewPos: 'NONE',
                 fetchControlAction: {
                   appDEMethodId: 'fetch_default',
                   appDataEntityId: 'plmweb.test_plan',
@@ -1683,6 +1685,7 @@ export default {
                 sortMode: 'REMOTE',
                 noSort: true,
                 singleSelect: true,
+                navViewPos: 'NONE',
                 fetchControlAction: {
                   appDEMethodId: 'fetch_release_relation',
                   appDataEntityId: 'plmweb.sprint',

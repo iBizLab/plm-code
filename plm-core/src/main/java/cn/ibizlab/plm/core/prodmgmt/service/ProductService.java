@@ -462,6 +462,22 @@ public interface ProductService extends IService<Product> {
     List<Product> listCurProduct(ProductSearchContext context);
 
     /**
+    * fetchCustomerUser
+    * 
+    * @param context
+    * @return
+    */
+    Page<Product> fetchCustomerUser(ProductSearchContext context);
+
+    /**
+    * listCustomerUser
+    * 
+    * @param context
+    * @return
+    */
+    List<Product> listCustomerUser(ProductSearchContext context);
+
+    /**
     * fetchDeleted
     * 
     * @param context
@@ -508,6 +524,22 @@ public interface ProductService extends IService<Product> {
     * @return
     */
     List<Product> listMain(ProductSearchContext context);
+
+    /**
+    * fetchMobMain
+    * 
+    * @param context
+    * @return
+    */
+    Page<Product> fetchMobMain(ProductSearchContext context);
+
+    /**
+    * listMobMain
+    * 
+    * @param context
+    * @return
+    */
+    List<Product> listMobMain(ProductSearchContext context);
 
     /**
     * fetchNormal

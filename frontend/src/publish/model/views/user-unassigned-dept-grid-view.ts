@@ -187,7 +187,7 @@ export default {
           codeName: 'employee_number',
           columnType: 'DEFGRIDCOLUMN',
           noPrivDisplayMode: 1,
-          width: 150,
+          width: 200,
           widthUnit: 'PX',
           enableSort: true,
           id: 'employee_number',
@@ -427,6 +427,7 @@ export default {
       enablePagingBar: true,
       enableRowEdit: true,
       enableRowNew: true,
+      navViewPos: 'NONE',
       createControlAction: {
         appDEMethodId: 'create',
         appDataEntityId: 'plmweb.user',

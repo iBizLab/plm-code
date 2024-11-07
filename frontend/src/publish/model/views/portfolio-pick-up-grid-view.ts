@@ -186,6 +186,7 @@ export default {
       pagingSize: 20,
       sortMode: 'REMOTE',
       enableCustomized: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_choose_project_portfolio',
         appDataEntityId: 'plmweb.portfolio',

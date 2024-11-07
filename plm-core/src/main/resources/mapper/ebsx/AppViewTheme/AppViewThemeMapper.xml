@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper	namespace="cn.ibizlab.plm.core.ebsx.mapper.AppViewThemeMapper">
+
+        <!--通过mybatis将查询结果注入到entity中,通过配置autoMapping="true"由mybatis自动处理映射关系 -->
+    <resultMap id="AppViewThemeResultMap" type="cn.ibizlab.plm.core.ebsx.domain.AppViewTheme" autoMapping="true">
+		<id property="id" column="id" /><!--主键字段映射-->
+		<result property="validFlag" column="valid_flag"/>
+		<result property="themeModel" column="theme_model"/>
+		<result property="ownerType" column="owner_type"/>
+		<result property="createMan" column="create_man"/>
+		<result property="createTime" column="create_time"/>
+		<result property="updateMan" column="update_man"/>
+		<result property="updateTime" column="update_time"/>
+		<result property="systemTag" column="system_tag"/>
+		<result property="appViewTag" column="app_view_tag"/>
+		<result property="appTag" column="app_tag"/>
+		<result property="orderValue" column="order_value"/>
+    </resultMap>
+
+    <select id="selectById"  resultMap="AppViewThemeResultMap">
+        <include refid="view" /> 
+         where 
+         t1.id=#{ id }
+    </select>
+
+    <select id="selectEntity" parameterType="cn.ibizlab.plm.core.ebsx.domain.AppViewTheme" resultMap="AppViewThemeResultMap">
+        <include refid="view" /> 
+         where 
+         (t1.id = #{ id })
+    </select>
+
+    <select id="selectEntities" parameterType="java.util.List" resultMap="AppViewThemeResultMap">
+        <include refid="view" /> 
+         where 
+         (t1.id)
+         in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.id }) </foreach>)
+    </select>
+
+    <delete id="deleteEntities" parameterType="java.util.List">
+    delete from APP_VIEW_THEME
+    where (id)
+         in (<foreach collection="list" item="item" index="index" separator=","> (#{ item.id }) </foreach>)
+    </delete>
+
+    <sql id="default" databaseId="mysql">
+         <![CDATA[ SELECT t1.`APP_TAG`, t1.`APP_VIEW_TAG`, t1.`CAPTION`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`NAME`, t1.`ORDER_VALUE`, t1.`OWNER_TYPE`, t1.`SYSTEM_TAG`, t1.`THEME_MODEL`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VALID_FLAG` FROM `APP_VIEW_THEME` t1   ]]>  
+    </sql>
+
+    <sql id="view" databaseId="mysql">
+         <![CDATA[ SELECT t1.`APP_TAG`, t1.`APP_VIEW_TAG`, t1.`CAPTION`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`NAME`, t1.`ORDER_VALUE`, t1.`OWNER_TYPE`, t1.`SYSTEM_TAG`, t1.`THEME_MODEL`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VALID_FLAG` FROM `APP_VIEW_THEME` t1   ]]>  
+    </sql>
+
+    <sql id="curSystem" databaseId="mysql">
+         <![CDATA[ SELECT t1.`APP_TAG`, t1.`APP_VIEW_TAG`, t1.`CAPTION`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`NAME`, t1.`ORDER_VALUE`, t1.`OWNER_TYPE`, t1.`SYSTEM_TAG`, t1.`THEME_MODEL`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VALID_FLAG` FROM `APP_VIEW_THEME` t1   ]]>  where  <![CDATA[ ( t1.`SYSTEM_TAG` = #{ctx.sessioncontext.srfdcsystemid}  AND  t1.`OWNER_TYPE` = 'SYSTEM' ) ]]> 
+    </sql>
+
+    <sql id="curSystemAll" databaseId="mysql">
+         <![CDATA[ SELECT t1.`APP_TAG`, t1.`APP_VIEW_TAG`, t1.`CAPTION`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`NAME`, t1.`ORDER_VALUE`, t1.`OWNER_TYPE`, t1.`SYSTEM_TAG`, t1.`THEME_MODEL`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VALID_FLAG` FROM `APP_VIEW_THEME` t1   ]]>  where  <![CDATA[ ( t1.`SYSTEM_TAG` = #{ctx.sessioncontext.srfdcsystemid} ) ]]> 
+    </sql>
+
+    <sql id="curUser" databaseId="mysql">
+         <![CDATA[ SELECT t1.`APP_TAG`, t1.`APP_VIEW_TAG`, t1.`CAPTION`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`NAME`, t1.`ORDER_VALUE`, t1.`OWNER_TYPE`, t1.`SYSTEM_TAG`, t1.`THEME_MODEL`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VALID_FLAG` FROM `APP_VIEW_THEME` t1   ]]>  where  <![CDATA[ ( t1.`CREATE_MAN` = #{ctx.sessioncontext.srfuserid}  AND  t1.`SYSTEM_TAG` = #{ctx.sessioncontext.srfdcsystemid} ) ]]> 
+    </sql>
+
+    <sql id="psmodelSync" databaseId="mysql">
+         <![CDATA[ SELECT t1.`APP_TAG`, t1.`APP_VIEW_TAG`, t1.`CAPTION`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`NAME`, t1.`ORDER_VALUE`, t1.`OWNER_TYPE`, t1.`SYSTEM_TAG`, t1.`THEME_MODEL`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VALID_FLAG` FROM `APP_VIEW_THEME` t1   ]]>  where  <![CDATA[ ( t1.`OWNER_TYPE` = 'SYSTEM' ) ]]> 
+    </sql>
+
+    <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.ebsx.filter.AppViewThemeSearchContext"  resultMap="AppViewThemeResultMap">
+        select t1.* 
+        from (
+            <include refid="default"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listDefault"  parameterType="cn.ibizlab.plm.core.ebsx.filter.AppViewThemeSearchContext"  resultMap="AppViewThemeResultMap">
+        select t1.*
+        from (
+            <include refid="default"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchCurSystem"  parameterType="cn.ibizlab.plm.core.ebsx.filter.AppViewThemeSearchContext"  resultMap="AppViewThemeResultMap">
+        select t1.* 
+        from (
+            <include refid="curSystem"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listCurSystem"  parameterType="cn.ibizlab.plm.core.ebsx.filter.AppViewThemeSearchContext"  resultMap="AppViewThemeResultMap">
+        select t1.*
+        from (
+            <include refid="curSystem"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchCurSystemAll"  parameterType="cn.ibizlab.plm.core.ebsx.filter.AppViewThemeSearchContext"  resultMap="AppViewThemeResultMap">
+        select t1.* 
+        from (
+            <include refid="curSystemAll"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listCurSystemAll"  parameterType="cn.ibizlab.plm.core.ebsx.filter.AppViewThemeSearchContext"  resultMap="AppViewThemeResultMap">
+        select t1.*
+        from (
+            <include refid="curSystemAll"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchCurUser"  parameterType="cn.ibizlab.plm.core.ebsx.filter.AppViewThemeSearchContext"  resultMap="AppViewThemeResultMap">
+        select t1.* 
+        from (
+            <include refid="curUser"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listCurUser"  parameterType="cn.ibizlab.plm.core.ebsx.filter.AppViewThemeSearchContext"  resultMap="AppViewThemeResultMap">
+        select t1.*
+        from (
+            <include refid="curUser"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchCurUserAll"  parameterType="cn.ibizlab.plm.core.ebsx.filter.AppViewThemeSearchContext"  resultMap="AppViewThemeResultMap">
+        select t1.* 
+        from (
+            <include refid="curUser"/>
+                 union
+            <include refid="curSystem"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listCurUserAll"  parameterType="cn.ibizlab.plm.core.ebsx.filter.AppViewThemeSearchContext"  resultMap="AppViewThemeResultMap">
+        select t1.*
+        from (
+            <include refid="curUser"/>
+                 union
+            <include refid="curSystem"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchPsmodelSync"  parameterType="cn.ibizlab.plm.core.ebsx.filter.AppViewThemeSearchContext"  resultMap="AppViewThemeResultMap">
+        select t1.* 
+        from (
+            <include refid="psmodelSync"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listPsmodelSync"  parameterType="cn.ibizlab.plm.core.ebsx.filter.AppViewThemeSearchContext"  resultMap="AppViewThemeResultMap">
+        select t1.*
+        from (
+            <include refid="psmodelSync"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="listView"  parameterType="cn.ibizlab.plm.core.ebsx.filter.AppViewThemeSearchContext"  resultMap="AppViewThemeResultMap">
+        select t1.*
+        from (
+            <include refid="view" />
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+    </select>
+
+
+</mapper>

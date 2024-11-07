@@ -100,6 +100,7 @@ export default {
       tabHeaderPos: 'TOP',
       noTabHeader: true,
       autoLoad: true,
+      enableItemPrivilege: true,
       showBusyIndicator: true,
       codeName: 'setting_view_form',
       controlType: 'FORM',

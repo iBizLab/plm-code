@@ -100,6 +100,25 @@ public interface ProductMapper extends BaseMapper<Product> {
     List<Product> listCurProduct(@Param("ctx") ProductSearchContext context, @Param("ew") Wrapper<Product> wrapper);
 
     /**
+     * 数据集合customer_user分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Product> searchCustomerUser(IPage<Product> page, @Param("ctx") ProductSearchContext context, @Param("ew") Wrapper<Product> wrapper);
+    
+    /**
+     * 数据集合customer_user查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Product> listCustomerUser(@Param("ctx") ProductSearchContext context, @Param("ew") Wrapper<Product> wrapper);
+
+    /**
      * 数据集合deleted分页查询
      * 
      * @param page
@@ -155,6 +174,25 @@ public interface ProductMapper extends BaseMapper<Product> {
      * @return
      */
     List<Product> listMain(@Param("ctx") ProductSearchContext context, @Param("ew") Wrapper<Product> wrapper);
+
+    /**
+     * 数据集合mob_main分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Product> searchMobMain(IPage<Product> page, @Param("ctx") ProductSearchContext context, @Param("ew") Wrapper<Product> wrapper);
+    
+    /**
+     * 数据集合mob_main查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Product> listMobMain(@Param("ctx") ProductSearchContext context, @Param("ew") Wrapper<Product> wrapper);
 
     /**
      * 数据集合normal分页查询

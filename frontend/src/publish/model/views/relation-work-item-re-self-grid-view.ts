@@ -857,6 +857,7 @@ export default {
         pagingSize: 1000,
         sortMode: 'REMOTE',
         singleSelect: true,
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_work_item_relation_self',
           appDataEntityId: 'plmweb.relation',

@@ -804,6 +804,7 @@ export default {
             id: '0',
           },
         ],
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_bug_daily_tide',
           appDataEntityId: 'plmweb.work_item',

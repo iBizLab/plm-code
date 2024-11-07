@@ -25,7 +25,7 @@ export default {
         {
           actionLevel: 100,
           noPrivDisplayMode: 2,
-          uiactionId: 'saveandexit',
+          uiactionId: 'editview_saveandexitaction',
           valid: true,
           capLanguageRes: {
             lanResTag: 'TBB.TEXT.EDITVIEW.SAVEANDCLOSE',
@@ -169,14 +169,12 @@ export default {
                   },
                   deformDetails: [
                     {
-                      dataType: 25,
+                      dataType: 21,
                       enableCond: 3,
-                      itemHeight: 450,
                       labelPos: 'NONE',
                       noPrivDisplayMode: 1,
                       appDEFieldId: 'precondition',
                       editor: {
-                        editorHeight: 450,
                         editorParams: {
                           USERINSCRIPT:
                             'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
@@ -204,7 +202,6 @@ export default {
                         editorStyle: 'COLLAPSE',
                         editorType: 'HTMLEDITOR',
                         sysPFPluginId: 'comment',
-                        placeHolder: '输入前置条件',
                         valueType: 'SIMPLE',
                         editable: true,
                         id: 'precondition',
@@ -220,6 +217,24 @@ export default {
                       },
                       id: 'precondition',
                     },
+                  ],
+                  caption: '前置条件',
+                  codeName: 'grouppanel5',
+                  detailStyle: 'DEFAULT',
+                  detailType: 'GROUPPANEL',
+                  layoutPos: {
+                    colMD: 24,
+                    layout: 'TABLE_24COL',
+                  },
+                  showCaption: true,
+                  id: 'grouppanel5',
+                },
+                {
+                  layout: {
+                    columnCount: 24,
+                    layout: 'TABLE_24COL',
+                  },
+                  deformDetails: [
                     {
                       buildInActions: 7,
                       contentType: 'REPEATER',
@@ -449,7 +464,7 @@ export default {
                       id: 'mdctrl1',
                     },
                   ],
-                  caption: '前置条件',
+                  caption: '用例步骤',
                   codeName: 'grouppanel2',
                   detailStyle: 'DEFAULT',
                   detailType: 'GROUPPANEL',
@@ -457,6 +472,7 @@ export default {
                     colMD: 24,
                     layout: 'TABLE_24COL',
                   },
+                  showCaption: true,
                   id: 'grouppanel2',
                 },
                 {
@@ -466,21 +482,39 @@ export default {
                   },
                   deformDetails: [
                     {
-                      dataType: 25,
+                      dataType: 21,
                       enableCond: 3,
-                      itemHeight: 200,
                       labelPos: 'NONE',
                       noPrivDisplayMode: 1,
                       appDEFieldId: 'description',
                       editor: {
-                        maxLength: 2000,
-                        showMaxLength: true,
-                        editorHeight: 200,
                         editorParams: {
-                          HEIGHT: '200',
+                          USERINSCRIPT:
+                            'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                          MAXHEIGHT: '450',
+                          QUOTECODELISTMAP:
+                            '{"type":"plmweb.base__recent_visite"}',
+                          QUOTEFIELDMAP:
+                            '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype"}',
+                          QUOTEPARAMS:
+                            '{"page":0,"size":20,"sort":"update_time,desc"}',
+                          MODE: 'default',
+                          QUOTEINSCRIPT:
+                            'value.replaceAll(/\\#\\{\\"id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\",\\"identifier\\":\\"(.+?)\\",\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })}).replaceAll(/\\#\\{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })})',
+                          USERSCRIPT:
+                            '`@{"id":"${data.id}","name":"${data.name}"}`',
+                          QUOTESCRIPT:
+                            '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","icon":"${data.icon}"}`',
+                          USERURL:
+                            "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
+                          USERFIELDMAP: '{"id":"user_id","name":"name"}',
+                          INSERTKEYS:
+                            '[{"index":66,"keys":["marker"]},{"index":5,"keys":["paintformat"]}]',
+                          QUOTEURL: '`recents/fetch_recent_access`',
                         },
-                        editorType: 'TEXTAREA_10',
-                        placeHolder: '输入描述',
+                        editorStyle: 'COLLAPSE',
+                        editorType: 'HTMLEDITOR',
+                        sysPFPluginId: 'comment',
                         valueType: 'SIMPLE',
                         editable: true,
                         id: 'case_description',

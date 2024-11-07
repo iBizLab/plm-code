@@ -310,6 +310,7 @@ export default {
             },
           ],
           outputIconDefault: true,
+          navViewPos: 'NONE',
           createControlAction: {
             appDEMethodId: 'create',
             appDataEntityId: 'plmweb.idea',
@@ -483,6 +484,7 @@ export default {
       ],
       pagingSize: 1000,
       showHeader: true,
+      navViewPos: 'NONE',
       createControlAction: {
         appDEMethodId: 'create',
         appDataEntityId: 'plmweb.idea',
@@ -825,7 +827,7 @@ export default {
             actionType: 'UIACTION',
             buttonStyle: 'PRIMARY',
             buttonType: 'PANELBUTTON',
-            uiactionId: 'ok',
+            uiactionId: 'view_okaction',
             renderMode: 'BUTTON',
             tooltip: '确定',
             caption: '确定',
@@ -842,7 +844,7 @@ export default {
             actionType: 'UIACTION',
             buttonStyle: 'INFO',
             buttonType: 'PANELBUTTON',
-            uiactionId: 'cancel',
+            uiactionId: 'view_cancelaction',
             renderMode: 'BUTTON',
             tooltip: '取消',
             caption: '取消',

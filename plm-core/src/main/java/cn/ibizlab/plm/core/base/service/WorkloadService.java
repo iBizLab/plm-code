@@ -180,6 +180,16 @@ public interface WorkloadService extends IService<Workload> {
     }
 
     /**
+    * fillWorkloadData
+    * 
+    * @param et
+    * @return
+    */
+    default Workload fillWorkloadData(Workload et) {
+        return et;
+    }
+
+    /**
     * getRegisterWorkload
     * 修改实际工时表单获取数据行为
     * @param key
@@ -312,6 +322,22 @@ public interface WorkloadService extends IService<Workload> {
     List<Workload> listMemberDimension(WorkloadSearchContext context);
 
     /**
+    * fetchMobCalendar
+    * 
+    * @param context
+    * @return
+    */
+    Page<Workload> fetchMobCalendar(WorkloadSearchContext context);
+
+    /**
+    * listMobCalendar
+    * 
+    * @param context
+    * @return
+    */
+    List<Workload> listMobCalendar(WorkloadSearchContext context);
+
+    /**
     * fetchMyCalendar
     * 
     * @param context
@@ -358,6 +384,22 @@ public interface WorkloadService extends IService<Workload> {
     * @return
     */
     List<Workload> listMyLog(WorkloadSearchContext context);
+
+    /**
+    * fetchMyMobLog
+    * 移动端我的工时日志
+    * @param context
+    * @return
+    */
+    Page<Workload> fetchMyMobLog(WorkloadSearchContext context);
+
+    /**
+    * listMyMobLog
+    * 移动端我的工时日志
+    * @param context
+    * @return
+    */
+    List<Workload> listMyMobLog(WorkloadSearchContext context);
 
     /**
     * fetchMyTestCaseWorkload

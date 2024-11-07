@@ -478,7 +478,10 @@ export default {
       degridDataItems: [
         {
           appDEFieldId: 'identifier',
+          scriptCode:
+            'var identifier = data.identifier;\r\nvar is_overtime = data.is_overtime;\r\nif(is_overtime == \'1\'){\r\n    var svgIcon = `<span title="超时提醒" style="display: flex;align-items: center;"><?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1729499164696" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4536" width="16" height="16" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M561.593458 104.448a227.555556 227.555556 0 1 1 319.715555 319.715556 416.995556 416.995556 0 1 1-319.715555-319.715556z m-38.343111 70.087111a341.333333 341.333333 0 1 0 287.971555 287.971556 227.555556 227.555556 0 0 1-287.857778-287.971556z m-11.719111 375.466667l-173.738667 46.648889a37.888 37.888 0 1 1-19.683556-73.272889l117.646223-31.402667V360.448a37.888 37.888 0 1 1 75.776 0v189.553778zM736.58368 67.584a37.888 37.888 0 0 0-37.888 37.888V257.137778a37.888 37.888 0 0 0 75.776 0V105.358222a37.888 37.888 0 0 0-37.888-37.888z m0 256.796444a37.888 37.888 0 1 0 0 75.889778 37.888 37.888 0 0 0 0-75.889778z" fill="#DE5A55" p-id="4537"></path></svg></span>`;\r\n    return  `<span style="display: flex; align-items: center;">` + identifier + `&nbsp;` + svgIcon + `</span>`;\r\n} else {\r\n    return identifier;\r\n}',
           valueType: 'SIMPLE',
+          customCode: true,
           dataType: 25,
           id: 'identifier',
         },
@@ -555,6 +558,12 @@ export default {
           valueType: 'SIMPLE',
           dataType: 25,
           id: 'work_item_type_origin',
+        },
+        {
+          appDEFieldId: 'is_overtime',
+          valueType: 'SIMPLE',
+          dataType: 9,
+          id: 'is_overtime',
         },
         {
           appDEFieldId: 'id',
@@ -774,6 +783,7 @@ export default {
             editorParams: {
               'SRFNAVPARAM.n_department_id_eq': '%srforgsectorid%',
               AC: 'TRUE',
+              'SRFNAVPARAM.n_status_eq': '1',
               TRIGGER: 'TRUE',
               URL: 'projects/${context.project}/project_members/fetch_default',
               PICKUPVIEW: 'FALSE',
@@ -794,6 +804,12 @@ export default {
                 key: 'n_department_id_eq',
                 value: 'srforgsectorid',
                 id: 'n_department_id_eq',
+              },
+              {
+                key: 'n_status_eq',
+                value: '1',
+                rawValue: true,
+                id: 'n_status_eq',
               },
             ],
             id: 'assignee_name',
@@ -885,6 +901,7 @@ export default {
       sortMode: 'REMOTE',
       enableCustomized: true,
       enablePagingBar: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_release',
         appDataEntityId: 'plmweb.work_item',
@@ -1179,6 +1196,16 @@ export default {
           valid: true,
           caption: '规划工作项',
           itemType: 'DEUIACTION',
+          controlLogics: [
+            {
+              itemName: 'deuiaction1',
+              logicTag: 'tabtoolbar',
+              logicType: 'SCRIPT',
+              scriptCode: 'context.srfreadonly != true',
+              triggerType: 'ITEMVISIBLE',
+              id: 'deuiaction1',
+            },
+          ],
           sysImage: {
             cssClass: 'fa fa-list-ol',
             glyph: 'xf0cb@FontAwesome',

@@ -1252,6 +1252,7 @@ export default {
         pagingSize: 1000,
         enableGroup: true,
         showHeader: true,
+        navViewPos: 'NONE',
         createControlAction: {
           appDEMethodId: 'create',
           appDataEntityId: 'plmweb.relation',

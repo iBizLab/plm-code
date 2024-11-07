@@ -736,6 +736,50 @@ public abstract class AbstractLibraryMemberResource {
     }
 
     /**
+    * 查询fetch_mob_cur_member 测试库成员
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<LibraryMemberDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_mob_cur_member", tags = {"测试库成员" },  notes = "LibraryMember-fetch_mob_cur_member ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-LibraryMember-fetch_mob_cur_member-all') or hasPermission(#dto,'ibizplm-LibraryMember-fetch_mob_cur_member')")
+    @PostMapping("library_members/fetch_mob_cur_member")
+    public Mono<ResponseEntity<List<LibraryMemberDTO>>> fetchMobCurMember
+            (@Validated @RequestBody LibraryMemberFilterDTO dto) {
+        LibraryMemberSearchContext context = libraryMemberFilterDtoMapping.toDomain(dto);
+        Page<LibraryMember> domains = libraryMemberService.fetchMobCurMember(context) ;
+        List<LibraryMemberDTO> list = libraryMemberDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_no_attention 测试库成员
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<LibraryMemberDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_no_attention", tags = {"测试库成员" },  notes = "LibraryMember-fetch_no_attention ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-LibraryMember-fetch_no_attention-all') or hasPermission(#dto,'ibizplm-LibraryMember-fetch_no_attention')")
+    @PostMapping("library_members/fetch_no_attention")
+    public Mono<ResponseEntity<List<LibraryMemberDTO>>> fetchNoAttention
+            (@Validated @RequestBody LibraryMemberFilterDTO dto) {
+        LibraryMemberSearchContext context = libraryMemberFilterDtoMapping.toDomain(dto);
+        Page<LibraryMember> domains = libraryMemberService.fetchNoAttention(context) ;
+        List<LibraryMemberDTO> list = libraryMemberDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 获取Get 测试库成员
     * 
     *
@@ -854,6 +898,54 @@ public abstract class AbstractLibraryMemberResource {
     }
 
     /**
+    * 查询fetch_mob_cur_member 测试库成员
+    * 
+    *
+    * @param libraryId libraryId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<LibraryMemberDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_mob_cur_member", tags = {"测试库成员" },  notes = "LibraryMember-fetch_mob_cur_member ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-LibraryMember-fetch_mob_cur_member-all') or hasPermission('library',#libraryId,#dto,'ibizplm-LibraryMember-fetch_mob_cur_member')")
+    @PostMapping("libraries/{libraryId}/library_members/fetch_mob_cur_member")
+    public Mono<ResponseEntity<List<LibraryMemberDTO>>> fetchMobCurMemberByLibraryId
+            (@PathVariable("libraryId") String libraryId, @Validated @RequestBody LibraryMemberFilterDTO dto) {
+        dto.setLibraryIdEQ(libraryId);
+        LibraryMemberSearchContext context = libraryMemberFilterDtoMapping.toDomain(dto);
+        Page<LibraryMember> domains = libraryMemberService.fetchMobCurMember(context) ;
+        List<LibraryMemberDTO> list = libraryMemberDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_no_attention 测试库成员
+    * 
+    *
+    * @param libraryId libraryId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<LibraryMemberDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_no_attention", tags = {"测试库成员" },  notes = "LibraryMember-fetch_no_attention ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-LibraryMember-fetch_no_attention-all') or hasPermission('library',#libraryId,#dto,'ibizplm-LibraryMember-fetch_no_attention')")
+    @PostMapping("libraries/{libraryId}/library_members/fetch_no_attention")
+    public Mono<ResponseEntity<List<LibraryMemberDTO>>> fetchNoAttentionByLibraryId
+            (@PathVariable("libraryId") String libraryId, @Validated @RequestBody LibraryMemberFilterDTO dto) {
+        dto.setLibraryIdEQ(libraryId);
+        LibraryMemberSearchContext context = libraryMemberFilterDtoMapping.toDomain(dto);
+        Page<LibraryMember> domains = libraryMemberService.fetchNoAttention(context) ;
+        List<LibraryMemberDTO> list = libraryMemberDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 获取Get 测试库成员
     * 
     *
@@ -963,6 +1055,54 @@ public abstract class AbstractLibraryMemberResource {
         dto.setUserIdEQ(userId);
         LibraryMemberSearchContext context = libraryMemberFilterDtoMapping.toDomain(dto);
         Page<LibraryMember> domains = libraryMemberService.fetchDefault(context) ;
+        List<LibraryMemberDTO> list = libraryMemberDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_mob_cur_member 测试库成员
+    * 
+    *
+    * @param userId userId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<LibraryMemberDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_mob_cur_member", tags = {"测试库成员" },  notes = "LibraryMember-fetch_mob_cur_member ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-LibraryMember-fetch_mob_cur_member-all') or hasPermission('user',#userId,#dto,'ibizplm-LibraryMember-fetch_mob_cur_member')")
+    @PostMapping("users/{userId}/library_members/fetch_mob_cur_member")
+    public Mono<ResponseEntity<List<LibraryMemberDTO>>> fetchMobCurMemberByUserId
+            (@PathVariable("userId") String userId, @Validated @RequestBody LibraryMemberFilterDTO dto) {
+        dto.setUserIdEQ(userId);
+        LibraryMemberSearchContext context = libraryMemberFilterDtoMapping.toDomain(dto);
+        Page<LibraryMember> domains = libraryMemberService.fetchMobCurMember(context) ;
+        List<LibraryMemberDTO> list = libraryMemberDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_no_attention 测试库成员
+    * 
+    *
+    * @param userId userId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<LibraryMemberDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_no_attention", tags = {"测试库成员" },  notes = "LibraryMember-fetch_no_attention ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-LibraryMember-fetch_no_attention-all') or hasPermission('user',#userId,#dto,'ibizplm-LibraryMember-fetch_no_attention')")
+    @PostMapping("users/{userId}/library_members/fetch_no_attention")
+    public Mono<ResponseEntity<List<LibraryMemberDTO>>> fetchNoAttentionByUserId
+            (@PathVariable("userId") String userId, @Validated @RequestBody LibraryMemberFilterDTO dto) {
+        dto.setUserIdEQ(userId);
+        LibraryMemberSearchContext context = libraryMemberFilterDtoMapping.toDomain(dto);
+        Page<LibraryMember> domains = libraryMemberService.fetchNoAttention(context) ;
         List<LibraryMemberDTO> list = libraryMemberDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

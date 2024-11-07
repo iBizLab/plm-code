@@ -149,11 +149,8 @@ export default {
         {
           actionLevel: 100,
           noPrivDisplayMode: 2,
-          uiactionId: 'new',
+          uiactionId: 'new_project',
           valid: true,
-          capLanguageRes: {
-            lanResTag: 'TBB.TEXT.*.NEW',
-          },
           caption: '添加成员',
           itemType: 'DEUIACTION',
           sysImage: {
@@ -161,9 +158,6 @@ export default {
             glyph: 'xf067@FontAwesome',
           },
           tooltip: '添加成员',
-          tooltipLanguageRes: {
-            lanResTag: 'TBB.TOOLTIP.*.NEW',
-          },
           showCaption: true,
           showIcon: true,
           id: 'deuiaction1',
@@ -300,6 +294,7 @@ export default {
       sortMode: 'REMOTE',
       enableCustomized: true,
       singleSelect: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_default',
         appDataEntityId: 'plmweb.project_member',

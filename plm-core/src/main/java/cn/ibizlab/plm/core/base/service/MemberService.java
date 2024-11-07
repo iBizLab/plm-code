@@ -190,6 +190,16 @@ public interface MemberService extends IService<Member> {
     }
 
     /**
+    * mobAddSharedMember
+    * 
+    * @param et
+    * @return
+    */
+    default Member mobAddSharedMember(Member et) {
+        return et;
+    }
+
+    /**
     * nothing
     * 
     * @param et
@@ -214,6 +224,22 @@ public interface MemberService extends IService<Member> {
     * @return
     */
     List<Member> listDefault(MemberSearchContext context);
+
+    /**
+    * fetchNoAttention
+    * 
+    * @param context
+    * @return
+    */
+    Page<Member> fetchNoAttention(MemberSearchContext context);
+
+    /**
+    * listNoAttention
+    * 
+    * @param context
+    * @return
+    */
+    List<Member> listNoAttention(MemberSearchContext context);
 
     /**
     * fetchSharedPageMember

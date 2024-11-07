@@ -247,6 +247,16 @@ public interface ArticlePageService extends IService<ArticlePage> {
     }
 
     /**
+    * finishAddAttention
+    * 
+    * @param et
+    * @return
+    */
+    default ArticlePage finishAddAttention(ArticlePage et) {
+        return et;
+    }
+
+    /**
     * getDraftPages
     * 
     * @param et
@@ -607,6 +617,22 @@ public interface ArticlePageService extends IService<ArticlePage> {
     * @return
     */
     List<ArticlePage> listNormal(ArticlePageSearchContext context);
+
+    /**
+    * fetchNormalTreePage
+    * 
+    * @param context
+    * @return
+    */
+    Page<ArticlePage> fetchNormalTreePage(ArticlePageSearchContext context);
+
+    /**
+    * listNormalTreePage
+    * 
+    * @param context
+    * @return
+    */
+    List<ArticlePage> listNormalTreePage(ArticlePageSearchContext context);
 
     /**
     * fetchOnlyPage

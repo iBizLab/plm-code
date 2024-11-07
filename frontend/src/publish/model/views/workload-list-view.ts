@@ -287,26 +287,6 @@ export default {
                 },
                 id: 'container2',
               },
-              {
-                rawItem: {
-                  contentType: 'DIVIDER',
-                  predefinedType: 'STATIC_LABEL',
-                  rawContent: '标签',
-                  rawItemWidth: 100,
-                  id: 'static_label',
-                },
-                contentWidth: 100,
-                itemStyle: 'DEFAULT',
-                itemType: 'RAWITEM',
-                layoutPos: {
-                  shrink: 1,
-                  layout: 'FLEX',
-                  width: 100,
-                  widthMode: 'FULL',
-                },
-                width: 100,
-                id: 'static_label',
-              },
             ],
             layout: {
               dir: 'column',
@@ -339,6 +319,12 @@ export default {
           id: 'duration',
         },
         {
+          appDEFieldId: 'create_man',
+          frontCodeListId: 'plmweb.sysoperator',
+          dataType: 25,
+          id: 'create_man',
+        },
+        {
           appDEFieldId: 'description',
           dataType: 21,
           id: 'description',
@@ -348,12 +334,6 @@ export default {
           dataType: 5,
           format: 'YYYY-MM-DD',
           id: 'register_date',
-        },
-        {
-          appDEFieldId: 'create_man',
-          frontCodeListId: 'plmweb.sysoperator',
-          dataType: 25,
-          id: 'create_man',
         },
         {
           appDEFieldId: 'id',
@@ -373,6 +353,7 @@ export default {
       ],
       pagingSize: 1000,
       showHeader: true,
+      navViewPos: 'NONE',
       createControlAction: {
         appDEMethodId: 'create',
         appDataEntityId: 'plmweb.workload',
@@ -430,7 +411,7 @@ export default {
         {
           actionLevel: 100,
           noPrivDisplayMode: 2,
-          uiactionId: 'edit',
+          uiactionId: 'gridview_editaction',
           uiactionTarget: 'SINGLEKEY',
           valid: true,
           capLanguageRes: {

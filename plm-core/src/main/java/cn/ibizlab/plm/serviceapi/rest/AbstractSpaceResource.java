@@ -945,6 +945,28 @@ public abstract class AbstractSpaceResource {
     }
 
     /**
+    * 查询fetch_mob_main 空间
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<SpaceDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_mob_main", tags = {"空间" },  notes = "Space-fetch_mob_main ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Space-fetch_mob_main-all') or hasPermission(#dto,'ibizplm-Space-fetch_mob_main')")
+    @PostMapping("spaces/fetch_mob_main")
+    public Mono<ResponseEntity<List<SpaceDTO>>> fetchMobMain
+            (@Validated @RequestBody SpaceFilterDTO dto) {
+        SpaceSearchContext context = spaceFilterDtoMapping.toDomain(dto);
+        Page<Space> domains = spaceService.fetchMobMain(context) ;
+        List<SpaceDTO> list = spaceDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 查询fetch_no_category_space 空间
     * 
     *

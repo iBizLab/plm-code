@@ -254,6 +254,7 @@ export default {
       pagingSize: 20,
       sortMode: 'REMOTE',
       enablePagingBar: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_not_published',
         appDataEntityId: 'plmweb.release',

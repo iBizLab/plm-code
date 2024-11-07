@@ -1,0 +1,356 @@
+export default {
+  tabLayout: 'TOP',
+  loadDefault: true,
+  showDataInfoBar: true,
+  deviewCodeName: 'global_setting_tab_exp_view',
+  deviewId: '71342D7C-9D1F-43B9-B5A1-27F139313EAB',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.TEST_CASE',
+  },
+  caption: '用例',
+  codeName: 'test_case_global_setting_tab_exp_view',
+  appDataEntityId: 'plmweb.test_case',
+  viewLayoutPanel: {
+    viewProxyMode: true,
+    layoutMode: 'FLEX',
+    layout: {
+      layout: 'FLEX',
+    },
+    rootPanelItems: [
+      {
+        actionGroupExtractMode: 'ITEM',
+        panelItems: [
+          {
+            actionGroupExtractMode: 'ITEM',
+            panelItems: [
+              {
+                caption: '标题栏',
+                itemStyle: 'DEFAULT',
+                itemType: 'CTRLPOS',
+                layoutPos: {
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                showCaption: true,
+                id: 'captionbar',
+              },
+            ],
+            layout: {
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            caption: '容器',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              shrink: 1,
+              layout: 'FLEX',
+            },
+            id: 'view_captionbar',
+          },
+          {
+            actionGroupExtractMode: 'ITEM',
+            panelItems: [
+              {
+                caption: '分页导航',
+                itemStyle: 'DEFAULT',
+                itemType: 'CTRLPOS',
+                layoutPos: {
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                showCaption: true,
+                id: 'tabexppanel',
+              },
+            ],
+            layout: {
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            caption: '容器',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              grow: 1,
+              shrink: 1,
+              layout: 'FLEX',
+            },
+            id: 'view_tabexppanel',
+          },
+          {
+            actionGroupExtractMode: 'ITEM',
+            panelItems: [
+              {
+                rawItem: {
+                  predefinedType: 'TELEPORT_PLACEHOLDER',
+                  id: 'tabsearchbar',
+                },
+                caption: '传送部件占位',
+                itemStyle: 'DEFAULT',
+                itemType: 'RAWITEM',
+                layoutPos: {
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                showCaption: true,
+                id: 'tabsearchbar',
+              },
+              {
+                rawItem: {
+                  predefinedType: 'TELEPORT_PLACEHOLDER',
+                  id: 'tabtoolbar',
+                },
+                caption: '传送部件占位',
+                itemStyle: 'DEFAULT',
+                itemType: 'RAWITEM',
+                layoutPos: {
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                showCaption: true,
+                id: 'tabtoolbar',
+              },
+            ],
+            layout: {
+              align: 'flex-start',
+              dir: 'row',
+              layout: 'FLEX',
+              valign: 'center',
+            },
+            dataRegionType: 'INHERIT',
+            caption: '容器',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              shrink: 1,
+              layout: 'FLEX',
+              spacingRight: 'OUTERSMALL',
+            },
+            id: 'container2',
+          },
+        ],
+        predefinedType: 'VIEWHEADER',
+        layout: {
+          dir: 'row',
+          layout: 'FLEX',
+          valign: 'center',
+        },
+        dataRegionType: 'INHERIT',
+        caption: '容器',
+        itemStyle: 'DEFAULT',
+        itemType: 'CONTAINER',
+        layoutPos: {
+          shrink: 0,
+          layout: 'FLEX',
+        },
+        id: 'view_header',
+      },
+      {
+        actionGroupExtractMode: 'ITEM',
+        panelItems: [
+          {
+            actionGroupExtractMode: 'ITEM',
+            layout: {
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            caption: '容器',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              shrink: 0,
+              layout: 'FLEX',
+            },
+            id: 'view_tabexppanel_left',
+          },
+          {
+            actionGroupExtractMode: 'ITEM',
+            panelItems: [
+              {
+                actionGroupExtractMode: 'ITEM',
+                panelItems: [
+                  {
+                    rawItem: {
+                      predefinedType: 'NAV_POS',
+                      id: 'nav_pos',
+                    },
+                    caption: '导航区占位',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'RAWITEM',
+                    layoutPos: {
+                      grow: 1,
+                      shrink: 1,
+                      layout: 'FLEX',
+                    },
+                    showCaption: true,
+                    id: 'nav_pos',
+                  },
+                ],
+                predefinedType: 'VIEWCONTENT',
+                layout: {
+                  layout: 'FLEX',
+                },
+                dataRegionType: 'INHERIT',
+                caption: '容器',
+                itemStyle: 'DEFAULT',
+                itemType: 'CONTAINER',
+                layoutPos: {
+                  grow: 1,
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                id: 'view_content',
+              },
+              {
+                actionGroupExtractMode: 'ITEM',
+                layout: {
+                  layout: 'FLEX',
+                },
+                dataRegionType: 'INHERIT',
+                caption: '容器',
+                itemStyle: 'DEFAULT',
+                itemType: 'CONTAINER',
+                layoutPos: {
+                  shrink: 0,
+                  layout: 'FLEX',
+                },
+                id: 'view_tabexppanel_bottom',
+              },
+            ],
+            layout: {
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            caption: '容器',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              grow: 1,
+              shrink: 1,
+              layout: 'FLEX',
+            },
+            id: 'container1',
+          },
+          {
+            actionGroupExtractMode: 'ITEM',
+            layout: {
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            caption: '容器',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              shrink: 0,
+              layout: 'FLEX',
+            },
+            id: 'view_tabexppanel_right',
+          },
+        ],
+        layout: {
+          dir: 'row',
+          layout: 'FLEX',
+        },
+        dataRegionType: 'INHERIT',
+        caption: '容器',
+        itemStyle: 'DEFAULT',
+        itemType: 'CONTAINER',
+        layoutPos: {
+          grow: 1,
+          shrink: 1,
+          layout: 'FLEX',
+        },
+        id: 'container',
+      },
+    ],
+    layoutPanel: true,
+    appViewEngines: [
+      {
+        engineCat: 'VIEW',
+        engineType: 'TabExpView',
+        id: 'engine',
+      },
+    ],
+    controls: [
+      {
+        dedrtabPages: [
+          {
+            caption: '测试用例设置',
+            appViewId: 'plmweb.test_case_global_setting_view',
+            id: 'setting',
+          },
+          {
+            caption: '属性管理',
+            appViewId: 'plmweb.psde_field_global_test_case_grid_view',
+            navigateContexts: [
+              {
+                key: 'PSDATAENTITY',
+                value: 'TestMgmt.TEST_CASE',
+                rawValue: true,
+                name: 'PSDATAENTITY',
+                id: 'psdataentity',
+              },
+              {
+                key: 'PSDENAME',
+                value: 'TEST_CASE',
+                rawValue: true,
+                name: 'PSDENAME',
+                id: 'psdename',
+              },
+            ],
+            id: 'field_manage',
+          },
+        ],
+        dataRelationTag: 'global_setting_tab_exp_dr',
+        editItemCapLanguageRes: {
+          lanResTag: 'DE.LNAME.TEST_CASE',
+        },
+        editItemCaption: '用例',
+        uniqueTag: 'test_case_global_setting_tab_exp_view__tabexppanel',
+        autoLoad: true,
+        showBusyIndicator: true,
+        codeName: 'global_setting_tab_exp_dr',
+        controlType: 'DRTAB',
+        appDataEntityId: 'plmweb.test_case',
+        controlParam: {
+          id: 'tabexppanel',
+        },
+        modelId: '15E875FE-348B-426E-917A-C7D6FE0BC2EB',
+        modelType: 'PSDEDRTAB',
+        name: 'tabexppanel',
+        id: 'global_setting_tab_exp_dr',
+      },
+      {
+        capLanguageRes: {
+          lanResTag: 'DE.LNAME.TEST_CASE',
+        },
+        caption: '用例',
+        codeName: 'global_setting_tab_exp_view_captionbar',
+        controlType: 'CAPTIONBAR',
+        appDataEntityId: 'plmweb.test_case',
+        controlParam: {},
+        name: 'captionbar',
+        id: 'global_setting_tab_exp_view_captionbar',
+      },
+    ],
+    codeName: 'usr1023699231',
+    controlType: 'VIEWLAYOUTPANEL',
+    logicName: 'global_setting_tab_exp_view分页导航视图布局面板',
+    appDataEntityId: 'plmweb.test_case',
+    controlParam: {},
+    modelId: '86FBA796-E901-43D9-889B-FE8673796D4F',
+    modelType: 'PSSYSVIEWLAYOUTPANEL',
+    name: 'layoutpanel',
+    id: 'usr1023699231',
+  },
+  title: '测试用例配置',
+  viewStyle: 'DEFAULT',
+  viewType: 'DETABEXPVIEW',
+  enableDP: true,
+  showCaptionBar: false,
+  modelId: 'a76e1bd1197fbf9d73b300a0fdb37621',
+  modelType: 'PSAPPDEVIEW',
+  name: 'test_caseglobal_setting_tab_exp_view',
+  id: 'plmweb.test_case_global_setting_tab_exp_view',
+};

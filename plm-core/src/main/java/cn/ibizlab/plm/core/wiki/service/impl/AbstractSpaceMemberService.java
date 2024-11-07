@@ -180,6 +180,17 @@ public abstract class AbstractSpaceMemberService extends ServiceImpl<SpaceMember
         return list;
    }
 	
+   public Page<SpaceMember> fetchNoAttention(SpaceMemberSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<SpaceMember> pages=baseMapper.searchNoAttention(context.getPages(),context,context.getSelectCond());
+        List<SpaceMember> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<SpaceMember> listNoAttention(SpaceMemberSearchContext context) {
+        List<SpaceMember> list = baseMapper.listNoAttention(context,context.getSelectCond());
+        return list;
+   }
+	
 	public List<SpaceMember> findBySpaceId(List<String> spaceIds){
         List<SpaceMember> list = baseMapper.findBySpaceId(spaceIds);
         return list;	

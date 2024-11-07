@@ -257,6 +257,37 @@ export default {
       name: 'GetDraft',
       id: 'getdraft',
     },
+    {
+      codeName: 'nothing',
+      defaultParamName: 'Default',
+      logicName: '无操作',
+      logicSubType: 'NONE',
+      delogicNodes: [
+        {
+          codeName: 'Begin',
+          leftPos: 200,
+          logicNodeType: 'BEGIN',
+          topPos: 200,
+          parallelOutput: true,
+          name: '开始',
+          id: 'begin',
+        },
+      ],
+      delogicParams: [
+        {
+          codeName: 'Default',
+          default: true,
+          entityParam: true,
+          paramAppDataEntityId: 'plmweb.psdefield',
+          name: '传入变量',
+          id: 'default',
+        },
+      ],
+      startDELogicNodeId: 'begin',
+      valid: true,
+      name: '无操作',
+      id: 'nothing',
+    },
   ],
   appDEMethodDTOs: [
     {

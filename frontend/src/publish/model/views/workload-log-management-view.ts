@@ -520,6 +520,7 @@ export default {
         sortMode: 'REMOTE',
         enablePagingBar: true,
         singleSelect: true,
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_log',
           appDataEntityId: 'plmweb.workload',
@@ -668,6 +669,7 @@ export default {
                   valueItemName: 'n_create_man_eq',
                   editorParams: {
                     URL: '/users/fetch_default',
+                    'SRFNAVPARAM.n_status_eq': '1',
                     ISSHOWTAB: 'false',
                     USERMAP: '{"id":"id","name":"display_name"}',
                     AC: 'TRUE',
@@ -685,6 +687,14 @@ export default {
                   sysPFPluginId: 'person_select',
                   valueType: 'SIMPLE',
                   editable: true,
+                  navigateParams: [
+                    {
+                      key: 'n_status_eq',
+                      value: '1',
+                      rawValue: true,
+                      id: 'n_status_eq',
+                    },
+                  ],
                   id: 'create_man',
                 },
                 allowEmpty: true,
@@ -822,7 +832,7 @@ export default {
           {
             actionLevel: 100,
             noPrivDisplayMode: 2,
-            uiactionId: 'exportexcel',
+            uiactionId: 'gridview_exportaction',
             valid: true,
             capLanguageRes: {
               lanResTag: 'TBB.TEXT.*.EXPORT',

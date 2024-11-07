@@ -595,6 +595,22 @@ public interface ProjectService extends IService<Project> {
     List<Project> listMain(ProjectSearchContext context);
 
     /**
+    * fetchMobMain
+    * 
+    * @param context
+    * @return
+    */
+    Page<Project> fetchMobMain(ProjectSearchContext context);
+
+    /**
+    * listMobMain
+    * 
+    * @param context
+    * @return
+    */
+    List<Project> listMobMain(ProjectSearchContext context);
+
+    /**
     * fetchNormal
     * 
     * @param context

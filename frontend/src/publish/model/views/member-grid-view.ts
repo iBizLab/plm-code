@@ -272,7 +272,7 @@ export default {
                 afterItemType: 'NONE',
                 beforeItemType: 'NONE',
                 detailType: 'DEUIACTION',
-                uiactionId: 'remove',
+                uiactionId: 'gridview_removeaction',
                 tooltip: '删除',
                 tooltipLanguageRes: {
                   lanResTag: 'TBB.TOOLTIP.*.REMOVE',
@@ -391,6 +391,7 @@ export default {
       enablePagingBar: true,
       enableRowEdit: true,
       enableRowNew: true,
+      navViewPos: 'NONE',
       createControlAction: {
         appDEMethodId: 'create',
         appDataEntityId: 'plmweb.member',
@@ -447,7 +448,7 @@ export default {
             {
               actionLevel: 100,
               noPrivDisplayMode: 1,
-              uiactionId: 'remove',
+              uiactionId: 'gridview_removeaction',
               uiactionTarget: 'MULTIKEY',
               valid: true,
               capLanguageRes: {

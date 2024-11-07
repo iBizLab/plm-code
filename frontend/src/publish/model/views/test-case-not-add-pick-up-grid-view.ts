@@ -261,6 +261,7 @@ export default {
       sortMode: 'REMOTE',
       enableCustomized: true,
       enablePagingBar: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_not_add_case',
         appDataEntityId: 'plmweb.test_case',

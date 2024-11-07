@@ -617,6 +617,7 @@ export default {
                         enableRowEdit: true,
                         enableRowNew: true,
                         singleSelect: true,
+                        navViewPos: 'NONE',
                         createControlAction: {
                           appDEMethodId: 'create',
                           appDataEntityId: 'plmweb.attachment',

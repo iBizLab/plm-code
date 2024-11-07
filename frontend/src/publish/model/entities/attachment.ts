@@ -538,6 +538,45 @@ export default {
       id: 'fetchdefault',
     },
     {
+      codeName: 'FetchMob_work_item_attachment',
+      methodType: 'FETCH',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'attachment_filter_dto',
+        type: 'DTO',
+        name: 'Mob_work_item_attachmentInput',
+        id: 'mob_work_item_attachmentinput',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'attachment_dto',
+        type: 'PAGE',
+        name: 'Mob_work_item_attachmentResult',
+        id: 'mob_work_item_attachmentresult',
+      },
+      actionType: 'REMOTE',
+      dataSetTag: 'mob_work_item_attachment',
+      dataSetType: 'DATAQUERY',
+      dedqgroupConditions: [
+        {
+          condOp: 'AND',
+          dedqconditions: [
+            {
+              condOp: 'EQ',
+              condValue: 'work_item',
+              fieldName: 'OWNER_ID',
+              vartypeId: 'WEBCONTEXT',
+              condType: 'SINGLE',
+              name: '(OWNER_ID) 等于(=) 网页请求上下文 work_item',
+              id: '(owner_id) 等于(=) 网页请求上下文 work_item',
+            },
+          ],
+          condType: 'GROUP',
+          id: '连接条件',
+        },
+      ],
+      name: 'mob_work_item_attachment',
+      id: 'fetchmob_work_item_attachment',
+    },
+    {
       codeName: 'FetchProject_deliverable',
       methodType: 'FETCH',
       appDEMethodInput: {
@@ -770,7 +809,7 @@ export default {
       frontProcessType: 'OTHER',
       fullCodeName: 'attachment_upload_attachment',
       scriptCode:
-        'const result = await ibiz.util.file.chooseFileAndUpload(context, params,data);\r\nif (result) {\r\n    const items = result.map(item => {\r\n        return {\r\n            uuid: item.id,\r\n            ...item,\r\n        };\r\n    });\r\n    Object.assign(data, items);\r\n}\r\nreturn { data: result };',
+        'const result = await ibiz.util.file.chooseFileAndUpload(context, params, data, { multiple: true });\r\nif (result) {\r\n    const items = result.map(item => {\r\n        return {\r\n            uuid: item.id,\r\n            ...item,\r\n        };\r\n    });\r\n    Object.assign(data, items);\r\n}\r\nreturn { data: result };',
       timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'upload_attachment',
@@ -1515,7 +1554,7 @@ export default {
   deapicodeName2: 'attachments',
   deapitag: 'ATTACHMENT',
   dataAccCtrlArch: 1,
-  dataAccCtrlMode: 1,
+  dataAccCtrlMode: 3,
   enableUIActions: 15,
   keyAppDEFieldId: 'id',
   logicName: '附件',

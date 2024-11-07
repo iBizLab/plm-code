@@ -760,6 +760,28 @@ public abstract class AbstractProductResource {
     }
 
     /**
+    * 查询fetch_customer_user 产品
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<ProductDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_customer_user", tags = {"产品" },  notes = "Product-fetch_customer_user ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Product-fetch_customer_user-all') or hasPermission(#dto,'ibizplm-Product-fetch_customer_user')")
+    @PostMapping("products/fetch_customer_user")
+    public Mono<ResponseEntity<List<ProductDTO>>> fetchCustomerUser
+            (@Validated @RequestBody ProductFilterDTO dto) {
+        ProductSearchContext context = productFilterDtoMapping.toDomain(dto);
+        Page<Product> domains = productService.fetchCustomerUser(context) ;
+        List<ProductDTO> list = productDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 查询fetch_default 产品
     * 
     *
@@ -839,6 +861,28 @@ public abstract class AbstractProductResource {
             (@Validated @RequestBody ProductFilterDTO dto) {
         ProductSearchContext context = productFilterDtoMapping.toDomain(dto);
         Page<Product> domains = productService.fetchMain(context) ;
+        List<ProductDTO> list = productDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_mob_main 产品
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<ProductDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_mob_main", tags = {"产品" },  notes = "Product-fetch_mob_main ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Product-fetch_mob_main-all') or hasPermission(#dto,'ibizplm-Product-fetch_mob_main')")
+    @PostMapping("products/fetch_mob_main")
+    public Mono<ResponseEntity<List<ProductDTO>>> fetchMobMain
+            (@Validated @RequestBody ProductFilterDTO dto) {
+        ProductSearchContext context = productFilterDtoMapping.toDomain(dto);
+        Page<Product> domains = productService.fetchMobMain(context) ;
         List<ProductDTO> list = productDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

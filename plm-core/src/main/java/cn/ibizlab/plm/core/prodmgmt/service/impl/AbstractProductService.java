@@ -261,6 +261,17 @@ public abstract class AbstractProductService extends ServiceImpl<ProductMapper,P
         return list;
    }
 	
+   public Page<Product> fetchCustomerUser(ProductSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Product> pages=baseMapper.searchCustomerUser(context.getPages(),context,context.getSelectCond());
+        List<Product> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Product> listCustomerUser(ProductSearchContext context) {
+        List<Product> list = baseMapper.listCustomerUser(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<Product> fetchDeleted(ProductSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Product> pages=baseMapper.searchDeleted(context.getPages(),context,context.getSelectCond());
         List<Product> list = pages.getRecords();
@@ -291,6 +302,21 @@ public abstract class AbstractProductService extends ServiceImpl<ProductMapper,P
 
    public List<Product> listMain(ProductSearchContext context) {
         List<Product> list = baseMapper.listMain(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Product> fetchMobMain(ProductSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IS_FAVORITE,DESC;UPDATE_TIME,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Product> pages=baseMapper.searchMobMain(context.getPages(),context,context.getSelectCond());
+        List<Product> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Product> listMobMain(ProductSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IS_FAVORITE,DESC;UPDATE_TIME,DESC");
+        List<Product> list = baseMapper.listMobMain(context,context.getSelectCond());
         return list;
    }
 	

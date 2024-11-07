@@ -1461,6 +1461,28 @@ export default {
       id: 'fetch_default',
     },
     {
+      codeName: 'fetch_mob_project_sprint',
+      methodType: 'FETCH',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'sprint_filter_dto',
+        type: 'DTO',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'sprint_dto',
+        type: 'PAGE',
+        id: '返回对象',
+      },
+      requestMethod: 'POST',
+      requestParamType: 'ENTITY',
+      requestPath: '/fetch_mob_project_sprint',
+      actionType: 'REMOTE',
+      dataSetName: 'mob_project_sprint',
+      dataSetTag: 'mob_project_sprint',
+      dataSetType: 'REMOTE',
+      id: 'fetch_mob_project_sprint',
+    },
+    {
       codeName: 'fetch_not_finish',
       methodType: 'FETCH',
       appDEMethodInput: {

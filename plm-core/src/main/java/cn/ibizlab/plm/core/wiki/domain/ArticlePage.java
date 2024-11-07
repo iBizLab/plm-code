@@ -362,6 +362,26 @@ public class ArticlePage extends EntityMP implements Serializable
     private Date sharedTime;
 
     /**
+    * 关注数
+    */
+    @TableField(value = "attention_count" , exist = false)
+    @DEField(name = "attention_count")
+    @JSONField(name = "attention_count")
+    @JsonProperty("attention_count")
+    @ApiModelProperty(value = "attention_count", notes = "关注数")
+    private String attentionCount;
+
+    /**
+    * 评论数
+    */
+    @TableField(value = "comment_count" , exist = false)
+    @DEField(name = "comment_count")
+    @JSONField(name = "comment_count")
+    @JsonProperty("comment_count")
+    @ApiModelProperty(value = "comment_count", notes = "评论数")
+    private String commentCount;
+
+    /**
     * 选择版本标识
     */
     @TableField(value = "choose_version_id" , exist = false)
@@ -754,6 +774,24 @@ public class ArticlePage extends EntityMP implements Serializable
     public ArticlePage setSharedTime(Date sharedTime) {
         this.sharedTime = sharedTime;
         this.modify("shared_time", sharedTime);
+        return this;
+    }
+
+    /**
+    * 设置 [关注数]
+    */
+    public ArticlePage setAttentionCount(String attentionCount) {
+        this.attentionCount = attentionCount;
+        this.modify("attention_count", attentionCount);
+        return this;
+    }
+
+    /**
+    * 设置 [评论数]
+    */
+    public ArticlePage setCommentCount(String commentCount) {
+        this.commentCount = commentCount;
+        this.modify("comment_count", commentCount);
         return this;
     }
 

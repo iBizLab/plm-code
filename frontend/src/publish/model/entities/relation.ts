@@ -2675,7 +2675,7 @@ export default {
   deapicodeName2: 'relations',
   deapitag: 'RELATION',
   dataAccCtrlArch: 1,
-  dataAccCtrlMode: 1,
+  dataAccCtrlMode: 3,
   enableUIActions: 15,
   keyAppDEFieldId: 'id',
   lnlanguageRes: {

@@ -459,7 +459,7 @@ export default {
           {
             navDER: {
               masterOrder: 100,
-              masterRS: 5,
+              masterRS: 69,
               pickupDEFName: 'PRODUCT_ID',
               codeName: 'product',
               dertype: 'DER1N',
@@ -525,7 +525,7 @@ export default {
           {
             navDER: {
               masterOrder: 100,
-              masterRS: 5,
+              masterRS: 69,
               pickupDEFName: 'PRODUCT_ID',
               codeName: 'product',
               dertype: 'DER1N',

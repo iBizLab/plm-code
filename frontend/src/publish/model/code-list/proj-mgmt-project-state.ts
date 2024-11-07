@@ -6,6 +6,17 @@ export default {
   appDataEntityId: 'plmweb.project',
   codeItems: [
     {
+      codeName: 'pending',
+      color: '#001EFF',
+      sysCss: {
+        cssName: 'blue-span',
+      },
+      text: '未开始',
+      textCls: 'blue-span',
+      value: 'pending',
+      id: 'pending',
+    },
+    {
       codeName: 'normal',
       color: '#10691B',
       sysCss: {
@@ -37,6 +48,17 @@ export default {
       textCls: 'red-span',
       value: 'delay',
       id: 'delay',
+    },
+    {
+      codeName: 'end',
+      color: '#10691B',
+      sysCss: {
+        cssName: 'green-span',
+      },
+      text: '结束',
+      textCls: 'green-span',
+      value: 'end',
+      id: 'end',
     },
   ],
   enableCache: true,

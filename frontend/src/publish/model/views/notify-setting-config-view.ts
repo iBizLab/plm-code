@@ -42,7 +42,7 @@ export default {
         {
           actionLevel: 100,
           noPrivDisplayMode: 2,
-          uiactionId: 'save',
+          uiactionId: 'editview_saveaction',
           valid: true,
           capLanguageRes: {
             lanResTag: 'TBB.TEXT.*.SAVE',
@@ -376,6 +376,7 @@ export default {
                     pagingSize: 1000,
                     enableGroup: true,
                     showHeader: true,
+                    navViewPos: 'NONE',
                     createControlAction: {
                       appDEMethodId: 'create',
                       appDataEntityId: 'plmweb.notify_event',

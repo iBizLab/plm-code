@@ -1,0 +1,49 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.6.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet author="mac (generated)" id="1730960481594-7">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="TICKET" columnName="SOLUTION_WAY" />
+            </not>
+        </preConditions>
+        <addColumn tableName="TICKET">
+            <column name="SOLUTION_WAY" type="VARCHAR(2000 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1730960481594-8">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="WORK_ITEM" columnName="SOLUTION_WAY" />
+            </not>
+        </preConditions>
+        <addColumn tableName="WORK_ITEM">
+            <column name="SOLUTION_WAY" type="VARCHAR(2000 BYTE)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet author="mac (generated)" id="1730960481594-1">
+        <preConditions onFail="MARK_RAN"  >
+            <columnExists tableName="TEST_CASE" columnName="DESCRIPTION" />
+        </preConditions>
+        <modifyDataType columnName="DESCRIPTION" newDataType="clob" tableName="TEST_CASE"/>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1730960481594-2">
+        <preConditions onFail="MARK_RAN"  >
+            <columnExists tableName="TEST_CASE_TEMPLATE" columnName="DESCRIPTION" />
+        </preConditions>
+        <modifyDataType columnName="DESCRIPTION" newDataType="clob" tableName="TEST_CASE_TEMPLATE"/>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1730960481594-3">
+        <preConditions onFail="MARK_RAN"  >
+            <columnExists tableName="TEST_CASE" columnName="PRECONDITION" />
+        </preConditions>
+        <modifyDataType columnName="PRECONDITION" newDataType="clob" tableName="TEST_CASE"/>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1730960481594-4">
+        <preConditions onFail="MARK_RAN"  >
+            <columnExists tableName="TEST_CASE_TEMPLATE" columnName="PRECONDITION" />
+        </preConditions>
+        <modifyDataType columnName="PRECONDITION" newDataType="clob" tableName="TEST_CASE_TEMPLATE"/>
+    </changeSet>
+</databaseChangeLog>

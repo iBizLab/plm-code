@@ -480,7 +480,7 @@ export default {
                             predefinedType: 'FIELD_TEXT_DYNAMIC',
                             valueType: 'SIMPLE',
                             editable: true,
-                            id: 'user_name',
+                            id: 'user_man',
                           },
                           viewFieldName: 'CREATE_MAN',
                           allowEmpty: true,
@@ -492,7 +492,7 @@ export default {
                             shrink: 1,
                             layout: 'FLEX',
                           },
-                          id: 'user_name',
+                          id: 'user_man',
                         },
                         {
                           editor: {
@@ -939,10 +939,9 @@ export default {
         minorSortAppDEFieldId: 'create_time',
         delistDataItems: [
           {
-            appDEFieldId: 'pcreate_man',
-            frontCodeListId: 'plmweb.sysoperator',
-            dataType: 25,
-            id: 'pcreate_man',
+            appDEFieldId: 'pcontent',
+            dataType: 21,
+            id: 'pcontent',
           },
           {
             appDEFieldId: 'pid',
@@ -950,20 +949,20 @@ export default {
             id: 'pid',
           },
           {
+            appDEFieldId: 'content',
+            dataType: 21,
+            id: 'content',
+          },
+          {
+            appDEFieldId: 'pcreate_man',
+            frontCodeListId: 'plmweb.sysoperator',
+            dataType: 25,
+            id: 'pcreate_man',
+          },
+          {
             appDEFieldId: 'id',
             dataType: 25,
             id: 'id',
-          },
-          {
-            appDEFieldId: 'create_man',
-            frontCodeListId: 'plmweb.sysoperator',
-            dataType: 25,
-            id: 'create_man',
-          },
-          {
-            appDEFieldId: 'pcontent',
-            dataType: 21,
-            id: 'pcontent',
           },
           {
             appDEFieldId: 'create_time',
@@ -972,9 +971,10 @@ export default {
             id: 'create_time',
           },
           {
-            appDEFieldId: 'content',
-            dataType: 21,
-            id: 'content',
+            appDEFieldId: 'create_man',
+            frontCodeListId: 'plmweb.sysoperator',
+            dataType: 25,
+            id: 'create_man',
           },
           {
             appDEFieldId: 'id',
@@ -989,6 +989,7 @@ export default {
         ],
         pagingSize: 1000,
         showHeader: true,
+        navViewPos: 'NONE',
         createControlAction: {
           appDEMethodId: 'create',
           appDataEntityId: 'plmweb.comment',

@@ -352,7 +352,7 @@ export default {
                 actionType: 'UIACTION',
                 buttonStyle: 'DEFAULT',
                 buttonType: 'PANELBUTTON',
-                uiactionId: 'logout',
+                uiactionId: 'app_logout',
                 renderMode: 'LINK',
                 tooltip: '退出登录',
                 caption: '退出登录',

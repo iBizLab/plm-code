@@ -61,6 +61,12 @@ export default {
           id: 'expitem:node',
         },
         {
+          realTitle: '测试用例配置',
+          refAppViewId: 'plmweb.test_case_global_setting_tab_exp_view',
+          name: 'EXPITEM:node_4',
+          id: 'expitem:node_4',
+        },
+        {
           realTitle: '流程准则全部表格视图',
           refAppViewId: 'plmweb.guideline_all_grid_view',
           name: 'EXPITEM:node_5',
@@ -110,6 +116,13 @@ export default {
               parentValueLevel: 1,
               searchMode: 3,
               id: '默认根节点 - 配置',
+            },
+            {
+              childDETreeNodeId: 'node_4',
+              parentDETreeNodeId: 'node_2',
+              parentValueLevel: 1,
+              searchMode: 3,
+              id: '配置 - 测试用例配置',
             },
             {
               childDETreeNodeId: 'node_5',
@@ -167,9 +180,9 @@ export default {
             },
             {
               text: '测试用例配置',
+              navAppViewId: 'plmweb.test_case_global_setting_tab_exp_view',
               nodeType: 'node_4',
               treeNodeType: 'STATIC',
-              disableSelect: true,
               name: '测试用例配置',
               id: 'node_4',
             },
@@ -213,6 +226,7 @@ export default {
             },
           ],
           outputIconDefault: true,
+          navViewPos: 'NONE',
           createControlAction: {
             appDEMethodId: 'create',
             appDataEntityId: 'plmweb.library',

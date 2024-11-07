@@ -539,6 +539,22 @@ public interface SpaceService extends IService<Space> {
     List<Space> listMain(SpaceSearchContext context);
 
     /**
+    * fetchMobMain
+    * 
+    * @param context
+    * @return
+    */
+    Page<Space> fetchMobMain(SpaceSearchContext context);
+
+    /**
+    * listMobMain
+    * 
+    * @param context
+    * @return
+    */
+    List<Space> listMobMain(SpaceSearchContext context);
+
+    /**
     * fetchNoCategorySpace
     * 
     * @param context

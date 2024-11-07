@@ -65,7 +65,7 @@ public class Workload extends EntityMP implements Serializable
     * 工时主体类型
     */
     @TableField(value = "principal_type")
-    @DEField(name = "principal_type" , preType = DEPredefinedFieldType.PARENTSUBTYPE)
+    @DEField(name = "principal_type")
     @JSONField(name = "principal_type")
     @JsonProperty("principal_type")
     @ApiModelProperty(value = "principal_type", notes = "工时主体类型")
@@ -75,7 +75,7 @@ public class Workload extends EntityMP implements Serializable
     * 所属数据对象
     */
     @TableField(value = "owner_type")
-    @DEField(name = "owner_type" , preType = DEPredefinedFieldType.PARENTTYPE)
+    @DEField(name = "owner_type")
     @JSONField(name = "owner_type")
     @JsonProperty("owner_type")
     @ApiModelProperty(value = "owner_type", notes = "所属数据对象")
@@ -311,6 +311,24 @@ public class Workload extends EntityMP implements Serializable
     public Workload setIdentifier(String identifier) {
         this.identifier = identifier;
         this.modify("identifier", identifier);
+        return this;
+    }
+
+    /**
+    * 设置 [工时主体类型]
+    */
+    public Workload setPrincipalType(String principalType) {
+        this.principalType = principalType;
+        this.modify("principal_type", principalType);
+        return this;
+    }
+
+    /**
+    * 设置 [所属数据对象]
+    */
+    public Workload setOwnerType(String ownerType) {
+        this.ownerType = ownerType;
+        this.modify("owner_type", ownerType);
         return this;
     }
 

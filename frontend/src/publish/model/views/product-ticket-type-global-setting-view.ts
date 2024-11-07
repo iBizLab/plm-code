@@ -7,7 +7,7 @@ export default {
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PRODUCT_TICKET_TYPE',
   },
-  caption: '工单类型',
+  caption: '产品工单类型',
   codeName: 'product_ticket_type_global_setting_view',
   appDataEntityId: 'plmweb.product_ticket_type',
   appViewEngines: [
@@ -76,17 +76,17 @@ export default {
   appViewRefs: [
     {
       realOpenMode: 'POPUPMODAL',
-      realTitle: '新建工单类型',
-      refAppViewId: 'plmweb.product_ticket_type_quick_create_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
-      realOpenMode: 'POPUPMODAL',
       realTitle: '编辑工单类型',
       refAppViewId: 'plmweb.product_ticket_type_edit_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '新建工单类型',
+      refAppViewId: 'plmweb.product_ticket_type_quick_create_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -111,17 +111,20 @@ export default {
         },
       ],
       xdataControlName: 'grid',
-      codeName: 'global_setting_view_toolbar',
+      codeName: 'global_setting_view_tabtoolbar',
       controlType: 'TOOLBAR',
       logicName: '工具栏模板（只有一个实体界面行为组）',
       appDataEntityId: 'plmweb.product_ticket_type',
       controlParam: {
-        id: 'toolbar',
+        ctrlParams: {
+          TELEPORTFLAG: 'true',
+        },
+        id: 'tabtoolbar',
       },
       modelId: '97b647cbe00cc608f9a368e2d0874c1e',
       modelType: 'PSDETOOLBAR',
-      name: 'toolbar',
-      id: 'global_setting_view_toolbar',
+      name: 'tabtoolbar',
+      id: 'global_setting_view_tabtoolbar',
     },
     {
       aggMode: 'NONE',
@@ -214,7 +217,7 @@ export default {
                 afterItemType: 'NONE',
                 beforeItemType: 'NONE',
                 detailType: 'DEUIACTION',
-                uiactionId: 'remove',
+                uiactionId: 'gridview_removeaction',
                 tooltip: '删除',
                 tooltipLanguageRes: {
                   lanResTag: 'TBB.TOOLTIP.*.REMOVE',
@@ -320,6 +323,7 @@ export default {
       sortMode: 'REMOTE',
       enableCustomized: true,
       singleSelect: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_default',
         appDataEntityId: 'plmweb.product_ticket_type',
@@ -348,6 +352,23 @@ export default {
       groupMode: 'SINGLE',
       quickSearchMode: 1,
       enableQuickSearch: true,
+      codeName: 'quick_searchbar',
+      controlType: 'SEARCHBAR',
+      logicName: '快速搜索栏',
+      appDataEntityId: 'plmweb.product_ticket_type',
+      controlParam: {
+        ctrlParams: {
+          TELEPORTFLAG: 'true',
+        },
+        id: 'tabsearchbar',
+      },
+      modelId: '40DB4D5E-9A32-4215-84B5-80F22D58179F',
+      modelType: 'PSSYSSEARCHBAR',
+      name: 'tabsearchbar',
+      id: 'plmweb.product_ticket_type.quick_searchbar',
+    },
+    {
+      groupMode: 'SINGLE',
       controlType: 'SEARCHBAR',
       appDataEntityId: 'plmweb.product_ticket_type',
       controlParam: {
@@ -359,7 +380,7 @@ export default {
       capLanguageRes: {
         lanResTag: 'DE.LNAME.PRODUCT_TICKET_TYPE',
       },
-      caption: '工单类型',
+      caption: '产品工单类型',
       codeName: 'global_setting_view_captionbar',
       controlType: 'CAPTIONBAR',
       appDataEntityId: 'plmweb.product_ticket_type',
@@ -383,7 +404,7 @@ export default {
   viewStyle: 'DEFAULT',
   viewType: 'DEGRIDVIEW',
   enableDP: true,
-  showCaptionBar: true,
+  showCaptionBar: false,
   modelId: '843295c3c4395f1afe369596dc2f32f7',
   modelType: 'PSAPPDEVIEW',
   name: 'product_ticket_typeglobal_setting_view',

@@ -325,6 +325,7 @@ export default {
       pagingSize: 1000,
       sortMode: 'REMOTE',
       singleSelect: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_my_created',
         appDataEntityId: 'plmweb.idea',
@@ -426,6 +427,7 @@ export default {
               appDEFieldId: 'state',
               editor: {
                 singleSelect: true,
+                appCodeListId: 'plmweb.prodmgmt__idea_state',
                 editorType: 'DROPDOWNLIST',
                 placeHolder: '选择状态',
                 valueType: 'SIMPLE',

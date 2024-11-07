@@ -450,6 +450,7 @@ export default {
             id: '0',
           },
         ],
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_ticket_state_pie_chart',
           appDataEntityId: 'plmweb.ticket',

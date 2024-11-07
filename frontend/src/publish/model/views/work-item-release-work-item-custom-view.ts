@@ -492,6 +492,7 @@ export default {
             id: '0',
           },
         ],
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_release_work_item_chart',
           appDataEntityId: 'plmweb.work_item',

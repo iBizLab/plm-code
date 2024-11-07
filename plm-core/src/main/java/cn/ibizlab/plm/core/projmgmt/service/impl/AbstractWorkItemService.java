@@ -1746,6 +1746,7 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
                 et.setWorkItem(workItem);
             }
             if(!ObjectUtils.isEmpty(workItem)) {
+                et.setPWorkItemTypeId(workItem.getWorkItemTypeId());
                 et.setPid(workItem.getId());
                 et.setPtitle(workItem.getTitle());
             }

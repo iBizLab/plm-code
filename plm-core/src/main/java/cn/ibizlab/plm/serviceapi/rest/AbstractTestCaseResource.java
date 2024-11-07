@@ -284,6 +284,45 @@ public abstract class AbstractTestCaseResource {
     }
 
     /**
+    * finish_add_attention 用例
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<TestCaseDTO>>
+    */
+    @ApiOperation(value = "finish_add_attention", tags = {"用例" },  notes = "TestCase-finish_add_attention ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-finish_add_attention-all') or hasPermission(this.testCaseDtoMapping.toDomain(#dto),'ibizplm-TestCase-finish_add_attention')")
+    @PostMapping("test_cases/{id}/finish_add_attention")
+    public Mono<ResponseEntity<ResponseWrapper<TestCaseDTO>>>finishAddAttentionById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
+        ResponseWrapper<TestCaseDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(finishAddAttentionById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(finishAddAttentionById(id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * finish_add_attention 用例
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */   
+    public TestCaseDTO finishAddAttentionById
+            (String id, TestCaseDTO dto) {
+        TestCase domain = testCaseDtoMapping.toDomain(dto);
+        domain.setId(id);
+        TestCase rt = testCaseService.finishAddAttention(domain);
+        return testCaseDtoMapping.toDto(rt);
+    }
+
+    /**
     * move_case 用例
     * 
     *
@@ -859,6 +898,47 @@ public abstract class AbstractTestCaseResource {
         TestCase domain = testCaseDtoMapping.toDomain(dto);
         domain.setId(id);
         TestCase rt = testCaseService.delete(domain);
+        return testCaseDtoMapping.toDto(rt);
+    }
+
+    /**
+    * finish_add_attention 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<TestCaseDTO>>
+    */
+    @ApiOperation(value = "finish_add_attention", tags = {"用例" },  notes = "TestCase-finish_add_attention ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-finish_add_attention-all') or hasPermission('library',#testLibraryId,this.testCaseDtoMapping.toDomain(#dto),'ibizplm-TestCase-finish_add_attention')")
+    @PostMapping("libraries/{testLibraryId}/test_cases/{id}/finish_add_attention")
+    public Mono<ResponseEntity<ResponseWrapper<TestCaseDTO>>>finishAddAttentionByTestLibraryIdAndId
+            (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
+        ResponseWrapper<TestCaseDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(finishAddAttentionByTestLibraryIdAndId(testLibraryId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(finishAddAttentionByTestLibraryIdAndId(testLibraryId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * finish_add_attention 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TestCaseDTO>
+    */   
+    public TestCaseDTO finishAddAttentionByTestLibraryIdAndId
+            (String testLibraryId, String id, TestCaseDTO dto) {
+        TestCase domain = testCaseDtoMapping.toDomain(dto);
+        domain.setId(id);
+        TestCase rt = testCaseService.finishAddAttention(domain);
         return testCaseDtoMapping.toDto(rt);
     }
 

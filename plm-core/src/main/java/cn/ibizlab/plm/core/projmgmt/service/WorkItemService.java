@@ -308,6 +308,16 @@ public interface WorkItemService extends IService<WorkItem> {
     }
 
     /**
+    * fillNotCompletedNum
+    * 
+    * @param et
+    * @return
+    */
+    default WorkItem fillNotCompletedNum(WorkItem et) {
+        return et;
+    }
+
+    /**
     * fillTypeOfState
     * 
     * @param et

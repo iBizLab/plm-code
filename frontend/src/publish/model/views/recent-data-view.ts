@@ -441,6 +441,7 @@ export default {
         forceFit: true,
         hideHeader: true,
         singleSelect: true,
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_recent_access',
           appDataEntityId: 'plmweb.recent',
@@ -726,6 +727,7 @@ export default {
         pagingSize: 1000,
         appendDEItems: true,
         singleSelect: true,
+        navViewPos: 'NONE',
         createControlAction: {
           appDEMethodId: 'create',
           appDataEntityId: 'plmweb.recent',

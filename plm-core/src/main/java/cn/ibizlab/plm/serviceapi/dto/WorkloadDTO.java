@@ -226,6 +226,24 @@ public class WorkloadDTO extends DTOBase implements Serializable {
     }
 
     /**
+     * 设置 [所属数据对象]
+     */
+    public WorkloadDTO setOwnerType(String ownerType) {
+        this.ownerType = ownerType;
+        this.modify("owner_type", ownerType);
+        return this;
+    }
+
+    /**
+     * 设置 [工时主体类型]
+     */
+    public WorkloadDTO setPrincipalType(String principalType) {
+        this.principalType = principalType;
+        this.modify("principal_type", principalType);
+        return this;
+    }
+
+    /**
      * 设置 [时长]
      */
     public WorkloadDTO setDuration(BigDecimal duration) {

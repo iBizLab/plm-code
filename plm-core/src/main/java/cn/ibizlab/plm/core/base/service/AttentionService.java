@@ -165,6 +165,56 @@ public interface AttentionService extends IService<Attention> {
     boolean save(List<Attention> list);
 
     /**
+    * addAttentionTestCase
+    * 
+    * @param et
+    * @return
+    */
+    default Attention addAttentionTestCase(Attention et) {
+        return et;
+    }
+
+    /**
+    * mobAddAttentionDiscussPost
+    * 
+    * @param et
+    * @return
+    */
+    default Attention mobAddAttentionDiscussPost(Attention et) {
+        return et;
+    }
+
+    /**
+    * mobAddAttentionIdea
+    * 
+    * @param et
+    * @return
+    */
+    default Attention mobAddAttentionIdea(Attention et) {
+        return et;
+    }
+
+    /**
+    * mobAddAttentionTicket
+    * 
+    * @param et
+    * @return
+    */
+    default Attention mobAddAttentionTicket(Attention et) {
+        return et;
+    }
+
+    /**
+    * unAttention
+    * 
+    * @param et
+    * @return
+    */
+    default Attention unAttention(Attention et) {
+        return et;
+    }
+
+    /**
     * fetchDefault
     * 
     * @param context

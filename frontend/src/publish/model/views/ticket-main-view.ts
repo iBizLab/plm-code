@@ -13,6 +13,7 @@ export default {
   },
   caption: '工单',
   codeName: 'ticket_main_view',
+  dynaSysMode: 1,
   height: 90,
   appDataEntityId: 'plmweb.ticket',
   appViewMsgGroupId: 'usrvmgroup0506712621',
@@ -29,6 +30,19 @@ export default {
       value: 'TICKET',
       name: 'PRINCIPAL_TYPE',
       id: 'principal_type',
+    },
+  ],
+  appViewNavParams: [
+    {
+      rawValue: true,
+      key: 'srfparentdename',
+      value: 'product',
+      id: 'srfparentdename',
+    },
+    {
+      key: 'srfparentkey',
+      value: 'product',
+      id: 'srfparentkey',
     },
   ],
   sysCss: {
@@ -458,12 +472,7 @@ export default {
                                 panelItems: [
                                   {
                                     editor: {
-                                      appDEACModeId: 'aichat',
-                                      appDEDataSetId: 'fetch_default',
-                                      appDataEntityId: 'plmweb.ticket',
-                                      enableAC: true,
                                       editorParams: {
-                                        DEFAULTCOLLAPSE: 'true',
                                         USERINSCRIPT:
                                           'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
                                         QUOTECODELISTMAP:
@@ -472,7 +481,6 @@ export default {
                                           '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype"}',
                                         QUOTEPARAMS:
                                           '{"page":0,"size":20,"sort":"update_time,desc"}',
-                                        AC: 'TRUE',
                                         QUOTEINSCRIPT:
                                           'value.replaceAll(/\\#\\{\\"id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\",\\"identifier\\":\\"(.+?)\\",\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })}).replaceAll(/\\#\\{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })})',
                                         USERSCRIPT:
@@ -592,7 +600,7 @@ export default {
                         itemStyle: 'DEFAULT',
                         itemType: 'CONTAINER',
                         layoutPos: {
-                          shrink: 1,
+                          shrink: 0,
                           layout: 'FLEX',
                         },
                         panelItemGroupLogics: [
@@ -820,7 +828,7 @@ export default {
         logicTrigger: 'VIEWEVENT',
         logicType: 'SCRIPT',
         scriptCode:
-          "const form = view.getController('form');\r\nif (form) {\r\n    form.evt.on('onFormDetailEvent', event =>{\r\n        const panelItems = view.layoutPanel.panelItems;\r\n        if (!panelItems.container_comment) {\r\n            return;\r\n        }\r\n        if (form.details.tabpanel1) {\r\n            const activeTab = form.details.tabpanel1.state.activeTab;\r\n            panelItems.container_comment.state.visible = activeTab === 'tabpage1';\r\n        }\r\n    });\r\n}",
+          "const form = view.getController('form');\r\nif (form) {\r\n    form.evt.on('onFormDetailEvent', event =>{\r\n        const panelItems = view.layoutPanel.panelItems;\r\n        if (!panelItems.container_comment) {\r\n            return;\r\n        }\r\n        if (form.details.tabpanel1) {\r\n            const activeTab = form.details.tabpanel1.state.activeTab;\r\n            panelItems.container_comment.state.visible = activeTab === 'tabpage1';\r\n            panelItems.client_container_comment.state.visible = activeTab === 'tabpanel1_customer_comment';\r\n        }\r\n    });\r\n}",
         builtinLogic: true,
         name: 'LOGIC',
         id: 'logic',
@@ -1045,7 +1053,7 @@ export default {
           {
             actionLevel: 100,
             noPrivDisplayMode: 2,
-            uiactionId: 'prevrecord',
+            uiactionId: 'editview_prevrecordaction',
             uiactionTarget: 'SINGLEKEY',
             valid: true,
             caption: '上一条',
@@ -1071,7 +1079,7 @@ export default {
           {
             actionLevel: 100,
             noPrivDisplayMode: 2,
-            uiactionId: 'nextrecord',
+            uiactionId: 'editview_nextrecordaction',
             uiactionTarget: 'SINGLEKEY',
             valid: true,
             caption: '下一条',
@@ -1247,6 +1255,7 @@ export default {
                       editorParams: {
                         'SRFNAVPARAM.n_department_id_eq': '%srforgsectorid%',
                         AC: 'TRUE',
+                        'SRFNAVPARAM.n_status_eq': '1',
                         TRIGGER: 'TRUE',
                         URL: 'products/${context.product}/product_members/fetch_default',
                         PICKUPVIEW: 'FALSE',
@@ -1271,6 +1280,12 @@ export default {
                           key: 'n_department_id_eq',
                           value: 'srforgsectorid',
                           id: 'n_department_id_eq',
+                        },
+                        {
+                          key: 'n_status_eq',
+                          value: '1',
+                          rawValue: true,
+                          id: 'n_status_eq',
                         },
                       ],
                       id: 'assignee_name',
@@ -1420,74 +1435,215 @@ export default {
                         },
                         deformDetails: [
                           {
-                            layout: {
-                              columnCount: 24,
-                              layout: 'TABLE_24COL',
-                            },
-                            deformDetails: [
+                            deformTabPages: [
                               {
-                                dataType: 25,
-                                enableCond: 3,
-                                labelPos: 'NONE',
-                                noPrivDisplayMode: 1,
-                                appDEFieldId: 'description',
-                                editor: {
-                                  editorParams: {
-                                    USERINSCRIPT:
-                                      'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
-                                    MAXHEIGHT: '450',
-                                    QUOTECODELISTMAP:
-                                      '{"type":"plmweb.base__recent_visite"}',
-                                    enableEdit: 'true',
-                                    QUOTEFIELDMAP:
-                                      '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype"}',
-                                    QUOTEPARAMS:
-                                      '{"page":0,"size":20,"sort":"update_time,desc"}',
-                                    enableFullScreen: 'true',
-                                    MODE: 'default',
-                                    QUOTEINSCRIPT:
-                                      'value.replaceAll(/\\#\\{\\"id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\",\\"identifier\\":\\"(.+?)\\",\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })}).replaceAll(/\\#\\{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })})',
-                                    USERSCRIPT:
-                                      '`@{"id":"${data.id}","name":"${data.name}"}`',
-                                    QUOTESCRIPT:
-                                      '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","icon":"${data.icon}"}`',
-                                    USERURL:
-                                      "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
-                                    USERFIELDMAP:
-                                      '{"id":"user_id","name":"name"}',
-                                    INSERTKEYS:
-                                      '[{"index":66,"keys":["marker"]},{"index":5,"keys":["paintformat"]}]',
-                                    QUOTEURL: '`recents/fetch_recent_access`',
-                                  },
-                                  editorStyle: 'COLLAPSE',
-                                  editorType: 'HTMLEDITOR',
-                                  sysPFPluginId: 'comment',
-                                  valueType: 'SIMPLE',
-                                  editable: true,
-                                  id: 'description',
-                                },
-                                allowEmpty: true,
-                                caption: '描述',
-                                codeName: 'description',
-                                detailStyle: 'DEFAULT',
-                                detailType: 'FORMITEM',
-                                layoutPos: {
-                                  colMD: 24,
+                                layout: {
+                                  columnCount: 24,
                                   layout: 'TABLE_24COL',
                                 },
-                                id: 'description',
+                                deformDetails: [
+                                  {
+                                    layout: {
+                                      columnCount: 24,
+                                      layout: 'TABLE_24COL',
+                                    },
+                                    deformDetails: [
+                                      {
+                                        dataType: 25,
+                                        enableCond: 3,
+                                        labelPos: 'NONE',
+                                        noPrivDisplayMode: 1,
+                                        appDEFieldId: 'description',
+                                        editor: {
+                                          editorParams: {
+                                            USERINSCRIPT:
+                                              'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                            MAXHEIGHT: '450',
+                                            QUOTECODELISTMAP:
+                                              '{"type":"plmweb.base__recent_visite"}',
+                                            enableEdit: 'true',
+                                            QUOTEFIELDMAP:
+                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype"}',
+                                            QUOTEPARAMS:
+                                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                            enableFullScreen: 'true',
+                                            MODE: 'default',
+                                            QUOTEINSCRIPT:
+                                              'value.replaceAll(/\\#\\{\\"id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\",\\"identifier\\":\\"(.+?)\\",\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })}).replaceAll(/\\#\\{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })})',
+                                            USERSCRIPT:
+                                              '`@{"id":"${data.id}","name":"${data.name}"}`',
+                                            QUOTESCRIPT:
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","icon":"${data.icon}"}`',
+                                            USERURL:
+                                              "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
+                                            USERFIELDMAP:
+                                              '{"id":"user_id","name":"name"}',
+                                            INSERTKEYS:
+                                              '[{"index":66,"keys":["marker"]},{"index":5,"keys":["paintformat"]}]',
+                                            QUOTEURL:
+                                              '`recents/fetch_recent_access`',
+                                          },
+                                          editorStyle: 'COLLAPSE',
+                                          editorType: 'HTMLEDITOR',
+                                          sysPFPluginId: 'comment',
+                                          placeHolder: '输入描述',
+                                          valueType: 'SIMPLE',
+                                          editable: true,
+                                          id: 'description',
+                                        },
+                                        allowEmpty: true,
+                                        emptyCaption: true,
+                                        codeName: 'description',
+                                        detailStyle: 'DEFAULT',
+                                        detailType: 'FORMITEM',
+                                        layoutPos: {
+                                          colMD: 24,
+                                          layout: 'TABLE_24COL',
+                                        },
+                                        id: 'description',
+                                      },
+                                    ],
+                                    caption: '描述',
+                                    codeName: 'tab_description_container',
+                                    detailStyle: 'DEFAULT',
+                                    detailType: 'GROUPPANEL',
+                                    layoutPos: {
+                                      colMD: 24,
+                                      layout: 'TABLE_24COL',
+                                    },
+                                    id: 'tab_description_container',
+                                  },
+                                ],
+                                caption: '描述',
+                                codeName: 'tabpage5',
+                                detailStyle: 'DEFAULT',
+                                detailType: 'TABPAGE',
+                                showCaption: true,
+                                id: 'tabpage5',
+                              },
+                              {
+                                layout: {
+                                  columnCount: 24,
+                                  layout: 'TABLE_24COL',
+                                },
+                                deformDetails: [
+                                  {
+                                    layout: {
+                                      columnCount: 24,
+                                      layout: 'TABLE_24COL',
+                                    },
+                                    deformDetails: [
+                                      {
+                                        dataType: 25,
+                                        enableCond: 3,
+                                        labelPos: 'NONE',
+                                        noPrivDisplayMode: 1,
+                                        appDEFieldId: 'solution_way',
+                                        editor: {
+                                          editorParams: {
+                                            USERINSCRIPT:
+                                              'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                            MAXHEIGHT: '450',
+                                            QUOTECODELISTMAP:
+                                              '{"type":"plmweb.base__recent_visite"}',
+                                            enableEdit: 'true',
+                                            QUOTEFIELDMAP:
+                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype"}',
+                                            QUOTEPARAMS:
+                                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                            enableFullScreen: 'true',
+                                            MODE: 'default',
+                                            QUOTEINSCRIPT:
+                                              'value.replaceAll(/\\#\\{\\"id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\",\\"identifier\\":\\"(.+?)\\",\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })}).replaceAll(/\\#\\{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })})',
+                                            USERSCRIPT:
+                                              '`@{"id":"${data.id}","name":"${data.name}"}`',
+                                            QUOTESCRIPT:
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","icon":"${data.icon}"}`',
+                                            USERURL:
+                                              "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
+                                            USERFIELDMAP:
+                                              '{"id":"user_id","name":"name"}',
+                                            INSERTKEYS:
+                                              '[{"index":66,"keys":["marker"]},{"index":5,"keys":["paintformat"]}]',
+                                            QUOTEURL:
+                                              '`recents/fetch_recent_access`',
+                                          },
+                                          editorStyle: 'COLLAPSE',
+                                          editorType: 'HTMLEDITOR',
+                                          sysPFPluginId: 'comment',
+                                          placeHolder: '输入解决办法',
+                                          valueType: 'SIMPLE',
+                                          editable: true,
+                                          id: 'solution_way',
+                                        },
+                                        allowEmpty: true,
+                                        emptyCaption: true,
+                                        codeName: 'solution_way',
+                                        detailStyle: 'DEFAULT',
+                                        detailType: 'FORMITEM',
+                                        layoutPos: {
+                                          colMD: 24,
+                                          layout: 'TABLE_24COL',
+                                        },
+                                        id: 'solution_way',
+                                      },
+                                    ],
+                                    caption: '解决办法',
+                                    codeName: 'tab_solution_container',
+                                    detailStyle: 'DEFAULT',
+                                    detailType: 'GROUPPANEL',
+                                    layoutPos: {
+                                      colMD: 24,
+                                      layout: 'TABLE_24COL',
+                                    },
+                                    id: 'tab_solution_container',
+                                  },
+                                ],
+                                caption: '解决办法',
+                                codeName: 'tabpage6',
+                                detailStyle: 'DEFAULT',
+                                detailType: 'TABPAGE',
+                                defdgroupLogics: [
+                                  {
+                                    logicCat: 'PANELVISIBLE',
+                                    relatedDetailNames: ['state'],
+                                    groupOP: 'AND',
+                                    defdlogics: [
+                                      {
+                                        groupOP: 'OR',
+                                        defdlogics: [
+                                          {
+                                            condOP: 'EQ',
+                                            defdname: 'state',
+                                            value: '40',
+                                            logicType: 'SINGLE',
+                                          },
+                                          {
+                                            condOP: 'EQ',
+                                            defdname: 'state',
+                                            value: '50',
+                                            logicType: 'SINGLE',
+                                          },
+                                        ],
+                                        logicType: 'GROUP',
+                                      },
+                                    ],
+                                    logicType: 'GROUP',
+                                    id: '表单成员[tabpage6][面板显示]逻辑',
+                                  },
+                                ],
+                                showCaption: true,
+                                id: 'tabpage6',
                               },
                             ],
-                            caption: '描述',
-                            codeName: 'description_container',
+                            codeName: 'tabpanel_desc_solution',
                             detailStyle: 'DEFAULT',
-                            detailType: 'GROUPPANEL',
+                            detailType: 'TABPANEL',
                             layoutPos: {
                               colMD: 24,
                               layout: 'TABLE_24COL',
                             },
-                            showCaption: true,
-                            id: 'description_container',
+                            id: 'tabpanel_desc_solution',
                           },
                           {
                             actionGroupExtractMode: 'ITEM',
@@ -1735,6 +1891,7 @@ export default {
                                   enableRowEdit: true,
                                   enableRowNew: true,
                                   singleSelect: true,
+                                  navViewPos: 'NONE',
                                   createControlAction: {
                                     appDEMethodId: 'create',
                                     appDataEntityId: 'plmweb.attachment',
@@ -2890,6 +3047,16 @@ export default {
         triggerType: 'CTRLEVENT',
         name: 'onFocus',
         id: 'onfocus',
+      },
+      {
+        eventNames: 'onBlur',
+        itemName: 'CLIENT_FIELD_TEXTBOX',
+        logicTag: 'layoutpanel',
+        logicType: 'SCRIPT',
+        scriptCode:
+          'console.log("123");\r\nconst value = data[0];\r\nif (value && !value.client_field_textbox) {\r\n   view.layoutPanel.panelItems.client_panel_container.state.visible = false;\r\n}',
+        triggerType: 'CTRLEVENT',
+        id: 'custom',
       },
     ],
     controlParam: {},

@@ -194,8 +194,44 @@
         </changeSet>
 
 
+        <!--输出实体[APP_VIEW_THEME]数据结构 -->
+        <changeSet author="root" id="tab-app_view_theme-254-6">
+                <createTable tableName="APP_VIEW_THEME">
+                        <column name="VALID_FLAG" remarks="" type="INT">
+                        </column>
+                        <column name="THEME_MODEL" remarks="" type="CLOB">
+                        </column>
+                        <column name="OWNER_TYPE" remarks="" type="VARCHAR(30)">
+                        </column>
+                        <column name="CAPTION" remarks="" type="VARCHAR(200)">
+                        </column>
+                        <column name="ID" remarks="" type="VARCHAR(100)">
+                                <constraints primaryKey="true" primaryKeyName="PK_APP_VIEW_THEME_ID"/>
+                        </column>
+                        <column name="NAME" remarks="" type="VARCHAR(200)">
+                        </column>
+                        <column name="CREATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="CREATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="UPDATE_MAN" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="UPDATE_TIME" remarks="" type="DATETIME">
+                        </column>
+                        <column name="SYSTEM_TAG" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="APP_VIEW_TAG" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="APP_TAG" remarks="" type="VARCHAR(100)">
+                        </column>
+                        <column name="ORDER_VALUE" remarks="" type="INT">
+                        </column>
+                </createTable>
+        </changeSet>
+
+
         <!--输出实体[PAGE]数据结构 -->
-        <changeSet author="root" id="tab-page-6382-6">
+        <changeSet author="root" id="tab-page-7649-7">
                 <createTable tableName="PAGE">
                         <column name="IDENTIFIER" remarks="" type="VARCHAR(100)">
                         </column>
@@ -269,7 +305,7 @@
 
 
         <!--输出实体[ATTACHMENT]数据结构 -->
-        <changeSet author="root" id="tab-attachment-205-7">
+        <changeSet author="root" id="tab-attachment-535-8">
                 <createTable tableName="ATTACHMENT">
                         <column name="OWNER_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -301,7 +337,7 @@
 
 
         <!--输出实体[ATTENTION]数据结构 -->
-        <changeSet author="root" id="tab-attention-54-8">
+        <changeSet author="root" id="tab-attention-770-9">
                 <createTable tableName="ATTENTION">
                         <column name="OWNER_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -331,7 +367,7 @@
 
 
         <!--输出实体[AUTH_LOG_ADMIN]数据结构 -->
-        <changeSet author="root" id="tab-auth_log_admin-201-9">
+        <changeSet author="root" id="tab-auth_log_admin-201-10">
                 <createTable tableName="IBZAUTHLOG">
                         <column name="LOGID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_AUTH_LOG_ADMIN_LOGID"/>
@@ -361,7 +397,7 @@
 
 
         <!--输出实体[BASELINE]数据结构 -->
-        <changeSet author="root" id="tab-baseline-1828-10">
+        <changeSet author="root" id="tab-baseline-1832-11">
                 <createTable tableName="BASELINE">
                         <column name="DESCRIPTION" remarks="" type="VARCHAR(2000)">
                         </column>
@@ -407,7 +443,7 @@
 
 
         <!--输出实体[BOARD]数据结构 -->
-        <changeSet author="root" id="tab-board-548-11">
+        <changeSet author="root" id="tab-board-548-12">
                 <createTable tableName="BOARD">
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_BOARD_ID"/>
@@ -429,7 +465,7 @@
 
 
         <!--输出实体[BRANCH]数据结构 -->
-        <changeSet author="root" id="tab-branch-158-12">
+        <changeSet author="root" id="tab-branch-158-13">
                 <createTable tableName="BRANCH">
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_BRANCH_ID"/>
@@ -451,7 +487,7 @@
 
 
         <!--输出实体[BRANCH_REF_COMMIT]数据结构 -->
-        <changeSet author="root" id="tab-branch_ref_commit-211-13">
+        <changeSet author="root" id="tab-branch_ref_commit-211-14">
                 <createTable tableName="BRANCH_REF_COMMIT">
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_BRANCH_REF_COMMIT_ID"/>
@@ -479,7 +515,7 @@
 
 
         <!--输出实体[CASE_HISTORY]数据结构 -->
-        <changeSet author="root" id="tab-case_history-1-14">
+        <changeSet author="root" id="tab-case_history-1-15">
                 <createTable tableName="CASE_HISTORY">
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_CASE_HISTORY_ID"/>
@@ -501,7 +537,7 @@
 
 
         <!--输出实体[CATEGORY]数据结构 -->
-        <changeSet author="root" id="tab-category-388-15">
+        <changeSet author="root" id="tab-category-388-16">
                 <createTable tableName="CATEGORY">
                         <column name="OWNER_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -539,7 +575,7 @@
 
 
         <!--输出实体[CHANNEL]数据结构 -->
-        <changeSet author="root" id="tab-channel-1-16">
+        <changeSet author="root" id="tab-channel-1-17">
                 <createTable tableName="CHANNEL">
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_CHANNEL_ID"/>
@@ -561,7 +597,7 @@
 
 
         <!--输出实体[COMMENT]数据结构 -->
-        <changeSet author="root" id="tab-comment-606-17">
+        <changeSet author="root" id="tab-comment-1504-18">
                 <createTable tableName="COMMENT">
                         <column name="PRINCIPAL_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -593,7 +629,7 @@
 
 
         <!--输出实体[COMMIT]数据结构 -->
-        <changeSet author="root" id="tab-commit-162-18">
+        <changeSet author="root" id="tab-commit-162-19">
                 <createTable tableName="scm_commit">
                         <column name="SHA" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_COMMIT_SHA"/>
@@ -607,7 +643,7 @@
 
 
         <!--输出实体[CUSTOMER]数据结构 -->
-        <changeSet author="root" id="tab-customer-970-19">
+        <changeSet author="root" id="tab-customer-1222-20">
                 <createTable tableName="CUSTOMER">
                         <column name="SCALE" remarks="" type="INT">
                         </column>
@@ -649,7 +685,7 @@
 
 
         <!--输出实体[DATA_SYNC_TASK]数据结构 -->
-        <changeSet author="root" id="tab-data_sync_task-93-20">
+        <changeSet author="root" id="tab-data_sync_task-93-21">
                 <createTable tableName="DATA_SYNC_TASK">
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_DATA_SYNC_TASK_ID"/>
@@ -676,7 +712,7 @@
 
 
         <!--输出实体[DICTIONARY]数据结构 -->
-        <changeSet author="root" id="tab-dictionary-811-22">
+        <changeSet author="root" id="tab-dictionary-825-23">
                 <createTable tableName="DICTIONARY">
                         <column name="TYPE" remarks="" type="VARCHAR(60)">
                         </column>
@@ -708,7 +744,7 @@
 
 
         <!--输出实体[DISCUSS_MEMBER]数据结构 -->
-        <changeSet author="root" id="tab-discuss_member-407-23">
+        <changeSet author="root" id="tab-discuss_member-607-24">
                 <createTable tableName="MEMBER">
                         <column name="OWNER_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -738,7 +774,7 @@
 
 
         <!--输出实体[DISCUSS_POST]数据结构 -->
-        <changeSet author="root" id="tab-discuss_post-1388-24">
+        <changeSet author="root" id="tab-discuss_post-2720-25">
                 <createTable tableName="DISCUSS_POST">
                         <column name="IS_DELETED" remarks="" type="INT">
                         </column>
@@ -768,7 +804,7 @@
 
 
         <!--输出实体[DISCUSS_REPLY]数据结构 -->
-        <changeSet author="root" id="tab-discuss_reply-734-25">
+        <changeSet author="root" id="tab-discuss_reply-1068-26">
                 <createTable tableName="DISCUSS_REPLY">
                         <column name="CONTENT" remarks="" type="CLOB">
                         </column>
@@ -792,7 +828,7 @@
 
 
         <!--输出实体[DISCUSS_TOPIC]数据结构 -->
-        <changeSet author="root" id="tab-discuss_topic-1638-26">
+        <changeSet author="root" id="tab-discuss_topic-2262-27">
                 <createTable tableName="DISCUSS_TOPIC">
                         <column name="IDENTIFIER" remarks="" type="VARCHAR(100)">
                         </column>
@@ -826,7 +862,7 @@
 
 
         <!--输出实体[DYNA_APPMENU]数据结构 -->
-        <changeSet author="root" id="tab-dyna_appmenu-125-27">
+        <changeSet author="root" id="tab-dyna_appmenu-125-28">
                 <createTable tableName="DYNA_APPMENU">
                         <column name="TYPE" remarks="" type="VARCHAR(100)">
                         </column>
@@ -860,7 +896,7 @@
 
 
         <!--输出实体[DYNADASHBOARD]数据结构 -->
-        <changeSet author="root" id="tab-dynadashboard-1137-28">
+        <changeSet author="root" id="tab-dynadashboard-1173-29">
                 <createTable tableName="DYNADASHBOARD">
                         <column name="IS_SYSTEM" remarks="" type="INT">
                         </column>
@@ -904,7 +940,7 @@
 
 
         <!--输出实体[ENTRY]数据结构 -->
-        <changeSet author="root" id="tab-entry-113-29">
+        <changeSet author="root" id="tab-entry-113-30">
                 <createTable tableName="ENTRY">
                         <column name="SHOWORDER" remarks="" type="INT">
                         </column>
@@ -934,7 +970,7 @@
 
 
         <!--输出实体[EXTEND_LOG]数据结构 -->
-        <changeSet author="root" id="tab-extend_log-41-30">
+        <changeSet author="root" id="tab-extend_log-41-31">
                 <createTable tableName="EXTEND_LOG">
                         <column name="OWNER_ID" remarks="" type="VARCHAR(200)">
                         </column>
@@ -976,7 +1012,7 @@
 
 
         <!--输出实体[EXTEND_STORAGE]数据结构 -->
-        <changeSet author="root" id="tab-extend_storage-47-31">
+        <changeSet author="root" id="tab-extend_storage-47-32">
                 <createTable tableName="EXTEND_STORAGE">
                         <column name="OWNER_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1014,7 +1050,7 @@
 
 
         <!--输出实体[FAVORITE]数据结构 -->
-        <changeSet author="root" id="tab-favorite-27-32">
+        <changeSet author="root" id="tab-favorite-27-33">
                 <createTable tableName="FAVORITE">
                         <column name="OWNER_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1040,7 +1076,7 @@
 
 
         <!--输出实体[GROUP]数据结构 -->
-        <changeSet author="root" id="tab-group-464-33">
+        <changeSet author="root" id="tab-group-464-34">
                 <createTable tableName="USER_GROUP">
                         <column name="VISIBILITY" remarks="" type="VARCHAR(60)">
                         </column>
@@ -1070,7 +1106,7 @@
 
 
         <!--输出实体[GUIDELINE]数据结构 -->
-        <changeSet author="root" id="tab-guideline-678-34">
+        <changeSet author="root" id="tab-guideline-678-35">
                 <createTable tableName="GUIDELINE">
                         <column name="SCOPE_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1104,7 +1140,7 @@
 
 
         <!--输出实体[IDEA]数据结构 -->
-        <changeSet author="root" id="tab-idea-4175-35">
+        <changeSet author="root" id="tab-idea-5282-36">
                 <createTable tableName="IDEA">
                         <column name="IDENTIFIER" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1180,7 +1216,7 @@
 
 
         <!--输出实体[IDEA_TEMPLATE]数据结构 -->
-        <changeSet author="root" id="tab-idea_template-637-36">
+        <changeSet author="root" id="tab-idea_template-637-37">
                 <createTable tableName="IDEA_TEMPLATE">
                         <column name="TITLE" remarks="" type="VARCHAR(500)">
                         </column>
@@ -1208,7 +1244,7 @@
 
 
         <!--输出实体[INSIGHT]数据结构 -->
-        <changeSet author="root" id="tab-insight-252-37">
+        <changeSet author="root" id="tab-insight-252-38">
                 <createTable tableName="INSIGHT">
                         <column name="TYPE" remarks="" type="VARCHAR(60)">
                         </column>
@@ -1241,7 +1277,7 @@
 
 
         <!--输出实体[INSIGHT_REPORT]数据结构 -->
-        <changeSet author="root" id="tab-insight_report-1972-39">
+        <changeSet author="root" id="tab-insight_report-1972-40">
                 <createTable tableName="INSIGHT_REPORT">
                         <column name="DESC" remarks="" type="CLOB">
                         </column>
@@ -1275,7 +1311,7 @@
 
 
         <!--输出实体[INSIGHT_VIEW]数据结构 -->
-        <changeSet author="root" id="tab-insight_view-2094-40">
+        <changeSet author="root" id="tab-insight_view-2122-41">
                 <createTable tableName="INSIGHT_VIEW">
                         <column name="IDENTIFIER" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1311,7 +1347,7 @@
 
 
         <!--输出实体[KEY_RESULT]数据结构 -->
-        <changeSet author="root" id="tab-key_result-110-41">
+        <changeSet author="root" id="tab-key_result-110-42">
                 <createTable tableName="KEY_RESULT">
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_KEY_RESULT_ID"/>
@@ -1333,7 +1369,7 @@
 
 
         <!--输出实体[LIBRARY]数据结构 -->
-        <changeSet author="root" id="tab-library-1751-42">
+        <changeSet author="root" id="tab-library-2146-43">
                 <createTable tableName="LIBRARY">
                         <column name="IDENTIFIER" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1369,7 +1405,7 @@
 
 
         <!--输出实体[LIBRARY_MEMBER]数据结构 -->
-        <changeSet author="root" id="tab-library_member-130-43">
+        <changeSet author="root" id="tab-library_member-608-44">
                 <createTable tableName="LIBRARY_MEMBER">
                         <column name="USER_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1395,7 +1431,7 @@
 
 
         <!--输出实体[LOCAL_DEPARTMENT]数据结构 -->
-        <changeSet author="root" id="tab-local_department-182-44">
+        <changeSet author="root" id="tab-local_department-182-45">
                 <createTable tableName="LOCAL_DEPARTMENT">
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_LOCAL_DEPARTMENT_ID"/>
@@ -1419,7 +1455,7 @@
 
 
         <!--输出实体[LOCAL_USER]数据结构 -->
-        <changeSet author="root" id="tab-local_user-190-45">
+        <changeSet author="root" id="tab-local_user-190-46">
                 <createTable tableName="LOCAL_USER">
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_LOCAL_USER_ID"/>
@@ -1468,7 +1504,7 @@
 
 
         <!--输出实体[OBJECTIVE]数据结构 -->
-        <changeSet author="root" id="tab-objective-126-47">
+        <changeSet author="root" id="tab-objective-126-48">
                 <createTable tableName="OBJECTIVE">
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_OBJECTIVE_ID"/>
@@ -1490,7 +1526,7 @@
 
 
         <!--输出实体[PAGE_VERSION]数据结构 -->
-        <changeSet author="root" id="tab-page_version-232-48">
+        <changeSet author="root" id="tab-page_version-233-49">
                 <createTable tableName="version">
                         <column name="DATA" remarks="" type="CLOB">
                         </column>
@@ -1520,7 +1556,7 @@
 
 
         <!--输出实体[PARAMETER]数据结构 -->
-        <changeSet author="root" id="tab-parameter-89-49">
+        <changeSet author="root" id="tab-parameter-89-50">
                 <createTable tableName="PARAMETER">
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_PARAMETER_ID"/>
@@ -1540,7 +1576,7 @@
 
 
         <!--输出实体[PERIOD]数据结构 -->
-        <changeSet author="root" id="tab-period-93-50">
+        <changeSet author="root" id="tab-period-93-51">
                 <createTable tableName="PERIOD">
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_PERIOD_ID"/>
@@ -1560,7 +1596,7 @@
 
 
         <!--输出实体[PORTFOLIO]数据结构 -->
-        <changeSet author="root" id="tab-portfolio-450-51">
+        <changeSet author="root" id="tab-portfolio-450-52">
                 <createTable tableName="PORTFOLIO">
                         <column name="STATE" remarks="" type="VARCHAR(60)">
                         </column>
@@ -1596,7 +1632,7 @@
 
 
         <!--输出实体[PORTFOLIO_MEMBER]数据结构 -->
-        <changeSet author="root" id="tab-portfolio_member-59-52">
+        <changeSet author="root" id="tab-portfolio_member-59-53">
                 <createTable tableName="PORTFOLIO_MEMBER">
                         <column name="USER_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1622,7 +1658,7 @@
 
 
         <!--输出实体[PRODUCT]数据结构 -->
-        <changeSet author="root" id="tab-product-2261-53">
+        <changeSet author="root" id="tab-product-3053-54">
                 <createTable tableName="PRODUCT">
                         <column name="IDENTIFIER" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1658,7 +1694,7 @@
 
 
         <!--输出实体[PRODUCT_MEMBER]数据结构 -->
-        <changeSet author="root" id="tab-product_member-169-54">
+        <changeSet author="root" id="tab-product_member-556-55">
                 <createTable tableName="PRODUCT_MEMBER">
                         <column name="USER_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1684,7 +1720,7 @@
 
 
         <!--输出实体[PRODUCT_PLAN]数据结构 -->
-        <changeSet author="root" id="tab-product_plan-542-55">
+        <changeSet author="root" id="tab-product_plan-696-56">
                 <createTable tableName="PRODUCT_PLAN">
                         <column name="TYPE" remarks="" type="VARCHAR(1000)">
                         </column>
@@ -1724,7 +1760,7 @@
 
 
         <!--输出实体[PRODUCT_TAG]数据结构 -->
-        <changeSet author="root" id="tab-product_tag-141-56">
+        <changeSet author="root" id="tab-product_tag-142-57">
                 <createTable tableName="PRODUCT_TAG">
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_PRODUCT_TAG_ID"/>
@@ -1746,7 +1782,7 @@
 
 
         <!--输出实体[PRODUCT_TICKET_TYPE]数据结构 -->
-        <changeSet author="root" id="tab-product_ticket_type-309-57">
+        <changeSet author="root" id="tab-product_ticket_type-311-58">
                 <createTable tableName="PRODUCT_TICKET_TYPE">
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_PRODUCT_TICKET_TYPE_ID"/>
@@ -1770,7 +1806,7 @@
 
 
         <!--输出实体[PROGRESS]数据结构 -->
-        <changeSet author="root" id="tab-progress-1-58">
+        <changeSet author="root" id="tab-progress-1-59">
                 <createTable tableName="PROGRESS">
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_PROGRESS_ID"/>
@@ -1792,7 +1828,7 @@
 
 
         <!--输出实体[PROJECT]数据结构 -->
-        <changeSet author="root" id="tab-project-3231-59">
+        <changeSet author="root" id="tab-project-4154-60">
                 <createTable tableName="PROJECT">
                         <column name="VISIBILITY" remarks="" type="VARCHAR(60)">
                         </column>
@@ -1846,7 +1882,7 @@
 
 
         <!--输出实体[PROJECT_MEMBER]数据结构 -->
-        <changeSet author="root" id="tab-project_member-247-60">
+        <changeSet author="root" id="tab-project_member-907-61">
                 <createTable tableName="PROJECT_MEMBER">
                         <column name="USER_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1876,7 +1912,7 @@
 
 
         <!--输出实体[PROJECT_TAG]数据结构 -->
-        <changeSet author="root" id="tab-project_tag-154-61">
+        <changeSet author="root" id="tab-project_tag-156-62">
                 <createTable tableName="PROJECT_TAG">
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_PROJECT_TAG_ID"/>
@@ -1896,7 +1932,7 @@
 
 
         <!--输出实体[PULL_REQUEST]数据结构 -->
-        <changeSet author="root" id="tab-pull_request-108-62">
+        <changeSet author="root" id="tab-pull_request-108-63">
                 <createTable tableName="PULL_REQUEST">
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_PULL_REQUEST_ID"/>
@@ -1918,7 +1954,7 @@
 
 
         <!--输出实体[RECENT]数据结构 -->
-        <changeSet author="root" id="tab-recent-391-63">
+        <changeSet author="root" id="tab-recent-1193-64">
                 <createTable tableName="RECENT">
                         <column name="IDENTIFIER" remarks="" type="VARCHAR(100)">
                         </column>
@@ -1958,7 +1994,7 @@
 
 
         <!--输出实体[RELATION]数据结构 -->
-        <changeSet author="root" id="tab-relation-4702-64">
+        <changeSet author="root" id="tab-relation-5967-65">
                 <createTable tableName="RELATION">
                         <column name="LEVEL" remarks="" type="VARCHAR(60)">
                         </column>
@@ -1998,7 +2034,7 @@
 
 
         <!--输出实体[RELEASE]数据结构 -->
-        <changeSet author="root" id="tab-release-1718-65">
+        <changeSet author="root" id="tab-release-1910-66">
                 <createTable tableName="PROJECT_RELEASE">
                         <column name="START_AT" remarks="" type="DATETIME">
                         </column>
@@ -2038,7 +2074,7 @@
 
 
         <!--输出实体[REVIEW]数据结构 -->
-        <changeSet author="root" id="tab-review-3055-66">
+        <changeSet author="root" id="tab-review-3057-67">
                 <createTable tableName="REVIEW">
                         <column name="IDENTIFIER" remarks="" type="VARCHAR(100)">
                         </column>
@@ -2090,7 +2126,7 @@
 
 
         <!--输出实体[REVIEW_CONTENT_EXTEND]数据结构 -->
-        <changeSet author="root" id="tab-review_content_extend-297-67">
+        <changeSet author="root" id="tab-review_content_extend-297-68">
                 <createTable tableName="REVIEW_CONTENT_EXTEND">
                         <column name="CHANGE_TYPE" remarks="" type="VARCHAR(100)">
                         </column>
@@ -2116,7 +2152,7 @@
 
 
         <!--输出实体[REVIEW_RESULT]数据结构 -->
-        <changeSet author="root" id="tab-review_result-762-68">
+        <changeSet author="root" id="tab-review_result-762-69">
                 <createTable tableName="REVIEW_RESULT">
                         <column name="RESULT_STATE" remarks="" type="INT">
                         </column>
@@ -2155,7 +2191,7 @@
 
 
         <!--输出实体[RUN]数据结构 -->
-        <changeSet author="root" id="tab-run-2560-70">
+        <changeSet author="root" id="tab-run-2985-71">
                 <createTable tableName="RUN">
                         <column name="PARENT_VERSION_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -2202,7 +2238,7 @@
 
 
         <!--输出实体[RUN_HISTORY]数据结构 -->
-        <changeSet author="root" id="tab-run_history-13-72">
+        <changeSet author="root" id="tab-run_history-13-73">
                 <createTable tableName="RUN_HISTORY">
                         <column name="REMARK" remarks="" type="VARCHAR(2000)">
                         </column>
@@ -2236,7 +2272,7 @@
 
 
         <!--输出实体[SCM_REVIEW]数据结构 -->
-        <changeSet author="root" id="tab-scm_review-109-73">
+        <changeSet author="root" id="tab-scm_review-109-74">
                 <createTable tableName="SCM_REVIEW">
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_SCM_REVIEW_ID"/>
@@ -2268,7 +2304,7 @@
 
 
         <!--输出实体[SECTION]数据结构 -->
-        <changeSet author="root" id="tab-section-141-76">
+        <changeSet author="root" id="tab-section-141-77">
                 <createTable tableName="SECTION">
                         <column name="OWNER_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -2298,7 +2334,7 @@
 
 
         <!--输出实体[SEQUENCE_GENERATOR]数据结构 -->
-        <changeSet author="root" id="tab-sequence_generator-7-77">
+        <changeSet author="root" id="tab-sequence_generator-7-78">
                 <createTable tableName="SEQUENCE_GENERATOR">
                         <column name="GROUP_TAG" remarks="" type="VARCHAR(200)">
                         </column>
@@ -2322,7 +2358,7 @@
 
 
         <!--输出实体[SHARED_SPACE]数据结构 -->
-        <changeSet author="root" id="tab-shared_space-773-78">
+        <changeSet author="root" id="tab-shared_space-773-79">
                 <createTable tableName="SPACE">
                         <column name="IS_SHARED" remarks="" type="VARCHAR(60)">
                         </column>
@@ -2355,7 +2391,7 @@
 
 
         <!--输出实体[SPACE_MEMBER]数据结构 -->
-        <changeSet author="root" id="tab-space_member-131-80">
+        <changeSet author="root" id="tab-space_member-368-81">
                 <createTable tableName="SPACE_MEMBER">
                         <column name="USER_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -2381,7 +2417,7 @@
 
 
         <!--输出实体[SPRINT]数据结构 -->
-        <changeSet author="root" id="tab-sprint-1609-81">
+        <changeSet author="root" id="tab-sprint-1799-82">
                 <createTable tableName="SPRINT">
                         <column name="START_AT" remarks="" type="DATETIME">
                         </column>
@@ -2419,7 +2455,7 @@
 
 
         <!--输出实体[SPRINT_ALTERATION]数据结构 -->
-        <changeSet author="root" id="tab-sprint_alteration-448-82">
+        <changeSet author="root" id="tab-sprint_alteration-448-83">
                 <createTable tableName="SPRINT_ALTERATION">
                         <column name="TYPE" remarks="" type="VARCHAR(100)">
                         </column>
@@ -2447,7 +2483,7 @@
 
 
         <!--输出实体[STAGE]数据结构 -->
-        <changeSet author="root" id="tab-stage-693-83">
+        <changeSet author="root" id="tab-stage-699-84">
                 <createTable tableName="STAGE">
                         <column name="COLOR" remarks="" type="VARCHAR(100)">
                         </column>
@@ -2481,7 +2517,7 @@
 
 
         <!--输出实体[STENCIL]数据结构 -->
-        <changeSet author="root" id="tab-stencil-599-84">
+        <changeSet author="root" id="tab-stencil-599-85">
                 <createTable tableName="STENCIL">
                         <column name="FORMAT_TYPE" remarks="" type="VARCHAR(60)">
                         </column>
@@ -2511,7 +2547,7 @@
 
 
         <!--输出实体[SWIMLANE]数据结构 -->
-        <changeSet author="root" id="tab-swimlane-59-85">
+        <changeSet author="root" id="tab-swimlane-59-86">
                 <createTable tableName="SWIMLANE">
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_SWIMLANE_ID"/>
@@ -2545,7 +2581,7 @@
 
 
         <!--输出实体[TEST_CASE]数据结构 -->
-        <changeSet author="root" id="tab-test_case-3465-86">
+        <changeSet author="root" id="tab-test_case-4347-87">
                 <createTable tableName="TEST_CASE">
                         <column name="IDENTIFIER" remarks="" type="VARCHAR(100)">
                         </column>
@@ -2557,9 +2593,9 @@
                         </column>
                         <column name="TEST_TYPE" remarks="" type="VARCHAR(60)">
                         </column>
-                        <column name="DESCRIPTION" remarks="" type="VARCHAR(2000)">
+                        <column name="DESCRIPTION" remarks="" type="CLOB">
                         </column>
-                        <column name="PRECONDITION" remarks="" type="VARCHAR(2000)">
+                        <column name="PRECONDITION" remarks="" type="CLOB">
                         </column>
                         <column name="IS_ARCHIVED" remarks="" type="INT">
                         </column>
@@ -2605,7 +2641,7 @@
 
 
         <!--输出实体[TEST_CASE_TEMPLATE]数据结构 -->
-        <changeSet author="root" id="tab-test_case_template-713-87">
+        <changeSet author="root" id="tab-test_case_template-754-88">
                 <createTable tableName="TEST_CASE_TEMPLATE">
                         <column name="TITLE" remarks="" type="VARCHAR(500)">
                         </column>
@@ -2615,9 +2651,9 @@
                         </column>
                         <column name="TEST_TYPE" remarks="" type="VARCHAR(60)">
                         </column>
-                        <column name="DESCRIPTION" remarks="" type="VARCHAR(2000)">
+                        <column name="DESCRIPTION" remarks="" type="CLOB">
                         </column>
-                        <column name="PRECONDITION" remarks="" type="VARCHAR(2000)">
+                        <column name="PRECONDITION" remarks="" type="CLOB">
                         </column>
                         <column name="IS_ARCHIVED" remarks="" type="INT">
                         </column>
@@ -2655,7 +2691,7 @@
 
 
         <!--输出实体[TEST_PLAN]数据结构 -->
-        <changeSet author="root" id="tab-test_plan-1001-88">
+        <changeSet author="root" id="tab-test_plan-1019-89">
                 <createTable tableName="TEST_PLAN">
                         <column name="STATUS" remarks="" type="VARCHAR(60)">
                         </column>
@@ -2699,7 +2735,7 @@
 
 
         <!--输出实体[TEST_SUITE]数据结构 -->
-        <changeSet author="root" id="tab-test_suite-111-89">
+        <changeSet author="root" id="tab-test_suite-111-90">
                 <createTable tableName="TEST_SUITE">
                         <column name="SEQUENCE" remarks="" type="DECIMAL(10)">
                         </column>
@@ -2729,7 +2765,7 @@
 
 
         <!--输出实体[TICKET]数据结构 -->
-        <changeSet author="root" id="tab-ticket-2626-90">
+        <changeSet author="root" id="tab-ticket-3684-91">
                 <createTable tableName="TICKET">
                         <column name="IDENTIFIER" remarks="" type="VARCHAR(100)">
                         </column>
@@ -2765,6 +2801,8 @@
                         </column>
                         <column name="SUBMITTER_NAME" remarks="" type="VARCHAR(100)">
                         </column>
+                        <column name="SOLUTION_WAY" remarks="" type="VARCHAR(2000)">
+                        </column>
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_TICKET_ID"/>
                         </column>
@@ -2787,7 +2825,7 @@
 
 
         <!--输出实体[TICKET_TYPE]数据结构 -->
-        <changeSet author="root" id="tab-ticket_type-464-91">
+        <changeSet author="root" id="tab-ticket_type-478-92">
                 <createTable tableName="TICKET_TYPE">
                         <column name="DESCRIPTION" remarks="" type="VARCHAR(2000)">
                         </column>
@@ -2811,7 +2849,7 @@
 
 
         <!--输出实体[TRANSITION_HISTORY]数据结构 -->
-        <changeSet author="root" id="tab-transition_history-7-92">
+        <changeSet author="root" id="tab-transition_history-7-93">
                 <createTable tableName="TRANSITION_HISTORY">
                         <column name="OWNER_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -2841,7 +2879,7 @@
 
 
         <!--输出实体[UPDATE_RECORD]数据结构 -->
-        <changeSet author="root" id="tab-update_record-111-93">
+        <changeSet author="root" id="tab-update_record-111-94">
                 <createTable tableName="UPDATE_RECORD">
                         <column name="ID" remarks="" type="VARCHAR(100)">
                                 <constraints primaryKey="true" primaryKeyName="PK_UPDATE_RECORD_ID"/>
@@ -2870,7 +2908,7 @@
 
 
         <!--输出实体[VERSION_DATA]数据结构 -->
-        <changeSet author="root" id="tab-version_data-200-95">
+        <changeSet author="root" id="tab-version_data-200-96">
                 <createTable tableName="VERSION_DATA">
                         <column name="DESCRIPTION" remarks="" type="VARCHAR(2000)">
                         </column>
@@ -2905,8 +2943,10 @@
         </changeSet>
 
 
+
+
         <!--输出实体[WORK]数据结构 -->
-        <changeSet author="root" id="tab-work-25-96">
+        <changeSet author="root" id="tab-work-25-97">
                 <createTable tableName="WORK">
                         <column name="PRINCIPAL_ID" remarks="" type="VARCHAR(100)">
                         </column>
@@ -2934,7 +2974,7 @@
 
 
         <!--输出实体[WORK_ITEM]数据结构 -->
-        <changeSet author="root" id="tab-work_item-18016-97">
+        <changeSet author="root" id="tab-work_item-20047-98">
                 <createTable tableName="WORK_ITEM">
                         <column name="IDENTIFIER" remarks="" type="VARCHAR(100)">
                         </column>
@@ -2977,6 +3017,8 @@
                         <column name="ENTRY_STATUS" remarks="" type="VARCHAR(100)">
                         </column>
                         <column name="ENTRY_POSITION" remarks="" type="INT">
+                        </column>
+                        <column name="SOLUTION_WAY" remarks="" type="VARCHAR(2000)">
                         </column>
                         <column name="COMPLETED_AT" remarks="" type="DATETIME">
                         </column>
@@ -3024,7 +3066,7 @@
 
 
         <!--输出实体[WORK_ITEM_STATE]数据结构 -->
-        <changeSet author="root" id="tab-work_item_state-357-98">
+        <changeSet author="root" id="tab-work_item_state-369-99">
                 <createTable tableName="WORK_ITEM_STATE">
                         <column name="SEQUENCE" remarks="" type="DECIMAL(10)">
                         </column>
@@ -3056,7 +3098,7 @@
 
 
         <!--输出实体[WORK_ITEM_TYPE]数据结构 -->
-        <changeSet author="root" id="tab-work_item_type-678-99">
+        <changeSet author="root" id="tab-work_item_type-726-100">
                 <createTable tableName="WORK_ITEM_TYPE">
                         <column name="SEQUENCE" remarks="" type="DECIMAL(10)">
                         </column>
@@ -3098,7 +3140,7 @@
 
 
         <!--输出实体[WORKLOAD]数据结构 -->
-        <changeSet author="root" id="tab-workload-2485-100">
+        <changeSet author="root" id="tab-workload-3425-101">
                 <createTable tableName="WORKLOAD">
                         <column name="IDENTIFIER" remarks="" type="VARCHAR(100)">
                         </column>
@@ -3140,7 +3182,7 @@
 
 
         <!--输出实体[WORKLOAD_TYPE]数据结构 -->
-        <changeSet author="root" id="tab-workload_type-174-101">
+        <changeSet author="root" id="tab-workload_type-176-102">
                 <createTable tableName="WORKLOAD_TYPE">
                         <column name="SEQUENCE" remarks="" type="DECIMAL(10)">
                         </column>
@@ -3165,19 +3207,20 @@
         <!--输出实体[ACTIVITY]外键关系 -->
         <!--输出实体[ADDON]外键关系 -->
         <!--输出实体[ADDON_APPLICATION_ACTIVITY]外键关系 -->
-        <changeSet author="root" id="fk-addon_application_activity-182-102">
+        <changeSet author="root" id="fk-addon_application_activity-182-103">
                 <addForeignKeyConstraint baseColumnNames="PID" baseTableName="ADDON_APPLICATION_ACTIVITY" constraintName="FK_ADDON_APPLICATION_ACTIVITY_" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="ADDON_APPLICATION_ACTIVITY" validate="true"/>
         </changeSet>
         <!--输出实体[ADDON_RESOURCE]外键关系 -->
         <!--输出实体[ADDON_ROLE_MEMBER]外键关系 -->
-        <changeSet author="root" id="fk-addon_role_member-159-103">
+        <changeSet author="root" id="fk-addon_role_member-159-104">
                 <addForeignKeyConstraint baseColumnNames="ADDON_ID" baseTableName="ADDON_ROLE_MEMBER" constraintName="FK_ADDON_ROLE_MEMBER_ADDON_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="ADDON" validate="true"/>
         </changeSet>
+        <!--输出实体[APP_VIEW_THEME]外键关系 -->
         <!--输出实体[PAGE]外键关系 -->
-        <changeSet author="root" id="fk-page-6382-104">
+        <changeSet author="root" id="fk-page-7649-105">
                 <addForeignKeyConstraint baseColumnNames="PARENT_ID" baseTableName="PAGE" constraintName="FK_PAGE_PARENT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PAGE" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-page-6382-105">
+        <changeSet author="root" id="fk-page-7649-106">
                 <addForeignKeyConstraint baseColumnNames="SPACE_ID" baseTableName="PAGE" constraintName="FK_PAGE_SPACE_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="SPACE" validate="true"/>
         </changeSet>
         <!--输出实体[ATTACHMENT]外键关系 -->
@@ -3185,121 +3228,121 @@
         <!--输出实体[AUTH_LOG_ADMIN]外键关系 -->
         <!--输出实体[BASELINE]外键关系 -->
         <!--输出实体[BOARD]外键关系 -->
-        <changeSet author="root" id="fk-board-548-106">
+        <changeSet author="root" id="fk-board-548-107">
                 <addForeignKeyConstraint baseColumnNames="PROJECT_ID" baseTableName="BOARD" constraintName="FK_BOARD_PROJECT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PROJECT" validate="true"/>
         </changeSet>
         <!--输出实体[BRANCH]外键关系 -->
         <!--输出实体[BRANCH_REF_COMMIT]外键关系 -->
-        <changeSet author="root" id="fk-branch_ref_commit-211-107">
+        <changeSet author="root" id="fk-branch_ref_commit-211-108">
                 <addForeignKeyConstraint baseColumnNames="META_ID" baseTableName="BRANCH_REF_COMMIT" constraintName="FK_BRANCH_REF_COMMIT_META_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="BRANCH" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-branch_ref_commit-211-108">
+        <changeSet author="root" id="fk-branch_ref_commit-211-109">
                 <addForeignKeyConstraint baseColumnNames="SHA" baseTableName="BRANCH_REF_COMMIT" constraintName="FK_BRANCH_REF_COMMIT_SHA" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SHA" referencedTableName="scm_commit" validate="true"/>
         </changeSet>
         <!--输出实体[CASE_HISTORY]外键关系 -->
-        <changeSet author="root" id="fk-case_history-1-109">
+        <changeSet author="root" id="fk-case_history-1-110">
                 <addForeignKeyConstraint baseColumnNames="CASE_ID" baseTableName="CASE_HISTORY" constraintName="FK_CASE_HISTORY_CASE_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="TEST_CASE" validate="true"/>
         </changeSet>
         <!--输出实体[CATEGORY]外键关系 -->
-        <changeSet author="root" id="fk-category-388-110">
+        <changeSet author="root" id="fk-category-388-111">
                 <addForeignKeyConstraint baseColumnNames="PID" baseTableName="CATEGORY" constraintName="FK_CATEGORY_PID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="CATEGORY" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-category-388-111">
+        <changeSet author="root" id="fk-category-388-112">
                 <addForeignKeyConstraint baseColumnNames="SECTION_ID" baseTableName="CATEGORY" constraintName="FK_CATEGORY_SECTION_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="SECTION" validate="true"/>
         </changeSet>
         <!--输出实体[CHANNEL]外键关系 -->
-        <changeSet author="root" id="fk-channel-1-112">
+        <changeSet author="root" id="fk-channel-1-113">
                 <addForeignKeyConstraint baseColumnNames="PRODUCT_ID" baseTableName="CHANNEL" constraintName="FK_CHANNEL_PRODUCT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PRODUCT" validate="true"/>
         </changeSet>
         <!--输出实体[COMMENT]外键关系 -->
-        <changeSet author="root" id="fk-comment-606-113">
+        <changeSet author="root" id="fk-comment-1504-114">
                 <addForeignKeyConstraint baseColumnNames="PID" baseTableName="COMMENT" constraintName="FK_COMMENT_PID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="COMMENT" validate="true"/>
         </changeSet>
         <!--输出实体[COMMIT]外键关系 -->
         <!--输出实体[CUSTOMER]外键关系 -->
-        <changeSet author="root" id="fk-customer-970-114">
+        <changeSet author="root" id="fk-customer-1222-115">
                 <addForeignKeyConstraint baseColumnNames="PRODUCT_ID" baseTableName="CUSTOMER" constraintName="FK_CUSTOMER_PRODUCT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PRODUCT" validate="true"/>
         </changeSet>
         <!--输出实体[DATA_SYNC_TASK]外键关系 -->
         <!--输出实体[DELIVERABLE]外键关系 -->
         <!--输出实体[DICTIONARY]外键关系 -->
         <!--输出实体[DISCUSS_MEMBER]外键关系 -->
-        <changeSet author="root" id="fk-discuss_member-407-115">
+        <changeSet author="root" id="fk-discuss_member-607-116">
                 <addForeignKeyConstraint baseColumnNames="OWNER_ID" baseTableName="MEMBER" constraintName="FK_DISCUSS_MEMBER_OWNER_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="DISCUSS_TOPIC" validate="true"/>
         </changeSet>
         <!--输出实体[DISCUSS_POST]外键关系 -->
-        <changeSet author="root" id="fk-discuss_post-1388-117">
+        <changeSet author="root" id="fk-discuss_post-2720-118">
                 <addForeignKeyConstraint baseColumnNames="TOPIC_ID" baseTableName="DISCUSS_POST" constraintName="FK_DISCUSS_POST_TOPIC_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="DISCUSS_TOPIC" validate="true"/>
         </changeSet>
         <!--输出实体[DISCUSS_REPLY]外键关系 -->
-        <changeSet author="root" id="fk-discuss_reply-734-118">
+        <changeSet author="root" id="fk-discuss_reply-1068-119">
                 <addForeignKeyConstraint baseColumnNames="POST_ID" baseTableName="DISCUSS_REPLY" constraintName="FK_DISCUSS_REPLY_POST_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="DISCUSS_POST" validate="true"/>
         </changeSet>
         <!--输出实体[DISCUSS_TOPIC]外键关系 -->
         <!--输出实体[DYNA_APPMENU]外键关系 -->
         <!--输出实体[DYNADASHBOARD]外键关系 -->
         <!--输出实体[ENTRY]外键关系 -->
-        <changeSet author="root" id="fk-entry-113-119">
+        <changeSet author="root" id="fk-entry-113-120">
                 <addForeignKeyConstraint baseColumnNames="BOARD_ID" baseTableName="ENTRY" constraintName="FK_ENTRY_BOARD_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="BOARD" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-entry-113-120">
+        <changeSet author="root" id="fk-entry-113-121">
                 <addForeignKeyConstraint baseColumnNames="PROJECT_ID" baseTableName="ENTRY" constraintName="FK_ENTRY_PROJECT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PROJECT" validate="true"/>
         </changeSet>
         <!--输出实体[EXTEND_LOG]外键关系 -->
         <!--输出实体[EXTEND_STORAGE]外键关系 -->
         <!--输出实体[FAVORITE]外键关系 -->
         <!--输出实体[GROUP]外键关系 -->
-        <changeSet author="root" id="fk-group-464-121">
+        <changeSet author="root" id="fk-group-464-122">
                 <addForeignKeyConstraint baseColumnNames="SECTION_ID" baseTableName="USER_GROUP" constraintName="FK_GROUP_SECTION_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="SECTION" validate="true"/>
         </changeSet>
         <!--输出实体[GUIDELINE]外键关系 -->
         <!--输出实体[IDEA]外键关系 -->
-        <changeSet author="root" id="fk-idea-4175-122">
+        <changeSet author="root" id="fk-idea-5282-123">
                 <addForeignKeyConstraint baseColumnNames="CATEGORY_ID" baseTableName="IDEA" constraintName="FK_IDEA_CATEGORY_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="CATEGORY" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-idea-4175-123">
+        <changeSet author="root" id="fk-idea-5282-124">
                 <addForeignKeyConstraint baseColumnNames="PRODUCT_ID" baseTableName="IDEA" constraintName="FK_IDEA_PRODUCT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PRODUCT" validate="true"/>
         </changeSet>
         <!--输出实体[IDEA_TEMPLATE]外键关系 -->
-        <changeSet author="root" id="fk-idea_template-637-125">
+        <changeSet author="root" id="fk-idea_template-637-126">
                 <addForeignKeyConstraint baseColumnNames="CATEGORY_ID" baseTableName="IDEA_TEMPLATE" constraintName="FK_IDEA_TEMPLATE_CATEGORY_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="CATEGORY" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-idea_template-637-126">
+        <changeSet author="root" id="fk-idea_template-637-127">
                 <addForeignKeyConstraint baseColumnNames="PRODUCT_ID" baseTableName="IDEA_TEMPLATE" constraintName="FK_IDEA_TEMPLATE_PRODUCT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PRODUCT" validate="true"/>
         </changeSet>
         <!--输出实体[INSIGHT]外键关系 -->
         <!--输出实体[INSIGHT_MEMBER]外键关系 -->
-        <changeSet author="root" id="fk-insight_member-386-127">
+        <changeSet author="root" id="fk-insight_member-394-128">
                 <addForeignKeyConstraint baseColumnNames="OWNER_ID" baseTableName="MEMBER" constraintName="FK_INSIGHT_MEMBER_OWNER_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="INSIGHT_VIEW" validate="true"/>
         </changeSet>
         <!--输出实体[INSIGHT_REPORT]外键关系 -->
-        <changeSet author="root" id="fk-insight_report-1972-129">
+        <changeSet author="root" id="fk-insight_report-1972-130">
                 <addForeignKeyConstraint baseColumnNames="VIEW_ID" baseTableName="INSIGHT_REPORT" constraintName="FK_INSIGHT_REPORT_VIEW_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="INSIGHT_VIEW" validate="true"/>
         </changeSet>
         <!--输出实体[INSIGHT_VIEW]外键关系 -->
         <!--输出实体[KEY_RESULT]外键关系 -->
-        <changeSet author="root" id="fk-key_result-110-130">
+        <changeSet author="root" id="fk-key_result-110-131">
                 <addForeignKeyConstraint baseColumnNames="OBJECTIVE_ID" baseTableName="KEY_RESULT" constraintName="FK_KEY_RESULT_OBJECTIVE_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="OBJECTIVE" validate="true"/>
         </changeSet>
         <!--输出实体[LIBRARY]外键关系 -->
         <!--输出实体[LIBRARY_MEMBER]外键关系 -->
-        <changeSet author="root" id="fk-library_member-130-131">
+        <changeSet author="root" id="fk-library_member-608-132">
                 <addForeignKeyConstraint baseColumnNames="LIBRARY_ID" baseTableName="LIBRARY_MEMBER" constraintName="FK_LIBRARY_MEMBER_LIBRARY_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="LIBRARY" validate="true"/>
         </changeSet>
         <!--输出实体[LOCAL_DEPARTMENT]外键关系 -->
-        <changeSet author="root" id="fk-local_department-182-133">
+        <changeSet author="root" id="fk-local_department-182-134">
                 <addForeignKeyConstraint baseColumnNames="PARENT_ID" baseTableName="LOCAL_DEPARTMENT" constraintName="FK_LOCAL_DEPARTMENT_PARENT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="LOCAL_DEPARTMENT" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-local_department-182-134">
+        <changeSet author="root" id="fk-local_department-182-135">
                 <addForeignKeyConstraint baseColumnNames="HEAD_ID" baseTableName="LOCAL_DEPARTMENT" constraintName="FK_LOCAL_DEPARTMENT_HEAD_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="LOCAL_USER" validate="true"/>
         </changeSet>
         <!--输出实体[LOCAL_USER]外键关系 -->
-        <changeSet author="root" id="fk-local_user-190-135">
+        <changeSet author="root" id="fk-local_user-190-136">
                 <addForeignKeyConstraint baseColumnNames="DEPARTMENT_ID" baseTableName="LOCAL_USER" constraintName="FK_LOCAL_USER_DEPARTMENT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="LOCAL_DEPARTMENT" validate="true"/>
         </changeSet>
         <!--输出实体[MEMBER]外键关系 -->
         <!--输出实体[OBJECTIVE]外键关系 -->
-        <changeSet author="root" id="fk-objective-126-137">
+        <changeSet author="root" id="fk-objective-126-138">
                 <addForeignKeyConstraint baseColumnNames="PERIOD_ID" baseTableName="OBJECTIVE" constraintName="FK_OBJECTIVE_PERIOD_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PERIOD" validate="true"/>
         </changeSet>
         <!--输出实体[PAGE_VERSION]外键关系 -->
@@ -3307,36 +3350,36 @@
         <!--输出实体[PERIOD]外键关系 -->
         <!--输出实体[PORTFOLIO]外键关系 -->
         <!--输出实体[PORTFOLIO_MEMBER]外键关系 -->
-        <changeSet author="root" id="fk-portfolio_member-59-138">
+        <changeSet author="root" id="fk-portfolio_member-59-139">
                 <addForeignKeyConstraint baseColumnNames="PORTFOLIO_ID" baseTableName="PORTFOLIO_MEMBER" constraintName="FK_PORTFOLIO_MEMBER_PORTFOLIO_" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PORTFOLIO" validate="true"/>
         </changeSet>
         <!--输出实体[PRODUCT]外键关系 -->
         <!--输出实体[PRODUCT_MEMBER]外键关系 -->
-        <changeSet author="root" id="fk-product_member-169-140">
+        <changeSet author="root" id="fk-product_member-556-141">
                 <addForeignKeyConstraint baseColumnNames="PRODUCT_ID" baseTableName="PRODUCT_MEMBER" constraintName="FK_PRODUCT_MEMBER_PRODUCT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PRODUCT" validate="true"/>
         </changeSet>
         <!--输出实体[PRODUCT_PLAN]外键关系 -->
-        <changeSet author="root" id="fk-product_plan-542-142">
+        <changeSet author="root" id="fk-product_plan-696-143">
                 <addForeignKeyConstraint baseColumnNames="PRODUCT_ID" baseTableName="PRODUCT_PLAN" constraintName="FK_PRODUCT_PLAN_PRODUCT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PRODUCT" validate="true"/>
         </changeSet>
         <!--输出实体[PRODUCT_TAG]外键关系 -->
-        <changeSet author="root" id="fk-product_tag-141-143">
+        <changeSet author="root" id="fk-product_tag-142-144">
                 <addForeignKeyConstraint baseColumnNames="PRODUCT_ID" baseTableName="PRODUCT_TAG" constraintName="FK_PRODUCT_TAG_PRODUCT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PRODUCT" validate="true"/>
         </changeSet>
         <!--输出实体[PRODUCT_TICKET_TYPE]外键关系 -->
-        <changeSet author="root" id="fk-product_ticket_type-309-144">
+        <changeSet author="root" id="fk-product_ticket_type-311-145">
                 <addForeignKeyConstraint baseColumnNames="PRODUCT_ID" baseTableName="PRODUCT_TICKET_TYPE" constraintName="FK_PRODUCT_TICKET_TYPE_PRODUCT" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PRODUCT" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-product_ticket_type-309-145">
+        <changeSet author="root" id="fk-product_ticket_type-311-146">
                 <addForeignKeyConstraint baseColumnNames="TICKET_TYPE_ID" baseTableName="PRODUCT_TICKET_TYPE" constraintName="FK_PRODUCT_TICKET_TYPE_TICKET_" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="TICKET_TYPE" validate="true"/>
         </changeSet>
         <!--输出实体[PROGRESS]外键关系 -->
-        <changeSet author="root" id="fk-progress-1-146">
+        <changeSet author="root" id="fk-progress-1-147">
                 <addForeignKeyConstraint baseColumnNames="PROJECT_ID" baseTableName="PROGRESS" constraintName="FK_PROGRESS_PROJECT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PROJECT" validate="true"/>
         </changeSet>
         <!--输出实体[PROJECT]外键关系 -->
         <!--输出实体[PROJECT_MEMBER]外键关系 -->
-        <changeSet author="root" id="fk-project_member-247-147">
+        <changeSet author="root" id="fk-project_member-907-148">
                 <addForeignKeyConstraint baseColumnNames="PROJECT_ID" baseTableName="PROJECT_MEMBER" constraintName="FK_PROJECT_MEMBER_PROJECT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PROJECT" validate="true"/>
         </changeSet>
         <!--输出实体[PROJECT_TAG]外键关系 -->
@@ -3344,42 +3387,42 @@
         <!--输出实体[RECENT]外键关系 -->
         <!--输出实体[RELATION]外键关系 -->
         <!--输出实体[RELEASE]外键关系 -->
-        <changeSet author="root" id="fk-release-1718-149">
+        <changeSet author="root" id="fk-release-1910-150">
                 <addForeignKeyConstraint baseColumnNames="PROJECT_ID" baseTableName="PROJECT_RELEASE" constraintName="FK_RELEASE_PROJECT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PROJECT" validate="true"/>
         </changeSet>
         <!--输出实体[REVIEW]外键关系 -->
-        <changeSet author="root" id="fk-review-3055-150">
+        <changeSet author="root" id="fk-review-3057-151">
                 <addForeignKeyConstraint baseColumnNames="GUIDELINE_ID" baseTableName="REVIEW" constraintName="FK_REVIEW_GUIDELINE_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="GUIDELINE" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-review-3055-151">
+        <changeSet author="root" id="fk-review-3057-152">
                 <addForeignKeyConstraint baseColumnNames="LIBRARY_ID" baseTableName="REVIEW" constraintName="FK_REVIEW_LIBRARY_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="LIBRARY" validate="true"/>
         </changeSet>
         <!--输出实体[REVIEW_CONTENT_EXTEND]外键关系 -->
         <!--输出实体[REVIEW_RESULT]外键关系 -->
-        <changeSet author="root" id="fk-review_result-762-152">
+        <changeSet author="root" id="fk-review_result-762-153">
                 <addForeignKeyConstraint baseColumnNames="CONTENT_ID" baseTableName="REVIEW_RESULT" constraintName="FK_REVIEW_RESULT_CONTENT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="REVIEW_CONTENT_EXTEND" validate="true"/>
         </changeSet>
         <!--输出实体[REVIEW_WIZARD]外键关系 -->
-        <changeSet author="root" id="fk-review_wizard-628-153">
+        <changeSet author="root" id="fk-review_wizard-628-154">
                 <addForeignKeyConstraint baseColumnNames="GUIDELINE_ID" baseTableName="REVIEW" constraintName="FK_REVIEW_WIZARD_GUIDELINE_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="GUIDELINE" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-review_wizard-628-154">
+        <changeSet author="root" id="fk-review_wizard-628-155">
                 <addForeignKeyConstraint baseColumnNames="LIBRARY_ID" baseTableName="REVIEW" constraintName="FK_REVIEW_WIZARD_LIBRARY_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="LIBRARY" validate="true"/>
         </changeSet>
         <!--输出实体[RUN]外键关系 -->
-        <changeSet author="root" id="fk-run-2560-155">
+        <changeSet author="root" id="fk-run-2985-156">
                 <addForeignKeyConstraint baseColumnNames="CASE_ID" baseTableName="RUN" constraintName="FK_RUN_CASE_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="TEST_CASE" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-run-2560-156">
+        <changeSet author="root" id="fk-run-2985-157">
                 <addForeignKeyConstraint baseColumnNames="PLAN_ID" baseTableName="RUN" constraintName="FK_RUN_PLAN_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="TEST_PLAN" validate="true"/>
         </changeSet>
         <!--输出实体[RUN_ATTACHMENT]外键关系 -->
         <!--输出实体[RUN_HISTORY]外键关系 -->
-        <changeSet author="root" id="fk-run_history-13-157">
+        <changeSet author="root" id="fk-run_history-13-158">
                 <addForeignKeyConstraint baseColumnNames="RUN_ID" baseTableName="RUN_HISTORY" constraintName="FK_RUN_HISTORY_RUN_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="RUN" validate="true"/>
         </changeSet>
         <!--输出实体[SCM_REVIEW]外键关系 -->
-        <changeSet author="root" id="fk-scm_review-109-158">
+        <changeSet author="root" id="fk-scm_review-109-159">
                 <addForeignKeyConstraint baseColumnNames="PULL_REQUEST_ID" baseTableName="SCM_REVIEW" constraintName="FK_SCM_REVIEW_PULL_REQUEST_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PULL_REQUEST" validate="true"/>
         </changeSet>
         <!--输出实体[SEARCH_ATTACHMENT]外键关系 -->
@@ -3390,138 +3433,138 @@
         <!--输出实体[SPACE]外键关系 -->
 
         <!--输出实体[SPACE_MEMBER]外键关系 -->
-        <changeSet author="root" id="fk-space_member-131-160">
+        <changeSet author="root" id="fk-space_member-368-161">
                 <addForeignKeyConstraint baseColumnNames="SPACE_ID" baseTableName="SPACE_MEMBER" constraintName="FK_SPACE_MEMBER_SPACE_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="SPACE" validate="true"/>
         </changeSet>
         <!--输出实体[SPRINT]外键关系 -->
-        <changeSet author="root" id="fk-sprint-1609-162">
+        <changeSet author="root" id="fk-sprint-1799-163">
                 <addForeignKeyConstraint baseColumnNames="PROJECT_ID" baseTableName="SPRINT" constraintName="FK_SPRINT_PROJECT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PROJECT" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-sprint-1609-163">
+        <changeSet author="root" id="fk-sprint-1799-164">
                 <addForeignKeyConstraint baseColumnNames="PID" baseTableName="SPRINT" constraintName="FK_SPRINT_PID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="SPRINT" validate="true"/>
         </changeSet>
         <!--输出实体[SPRINT_ALTERATION]外键关系 -->
-        <changeSet author="root" id="fk-sprint_alteration-448-164">
+        <changeSet author="root" id="fk-sprint_alteration-448-165">
                 <addForeignKeyConstraint baseColumnNames="SPRINT_ID" baseTableName="SPRINT_ALTERATION" constraintName="FK_SPRINT_ALTERATION_SPRINT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="SPRINT" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-sprint_alteration-448-165">
+        <changeSet author="root" id="fk-sprint_alteration-448-166">
                 <addForeignKeyConstraint baseColumnNames="WORK_ITEM_ID" baseTableName="SPRINT_ALTERATION" constraintName="FK_SPRINT_ALTERATION_WORK_ITEM" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="WORK_ITEM" validate="true"/>
         </changeSet>
         <!--输出实体[STAGE]外键关系 -->
-        <changeSet author="root" id="fk-stage-693-166">
+        <changeSet author="root" id="fk-stage-699-167">
                 <addForeignKeyConstraint baseColumnNames="RELEASE_ID" baseTableName="STAGE" constraintName="FK_STAGE_RELEASE_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PROJECT_RELEASE" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-stage-693-167">
+        <changeSet author="root" id="fk-stage-699-168">
                 <addForeignKeyConstraint baseColumnNames="PID" baseTableName="STAGE" constraintName="FK_STAGE_PID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="STAGE" validate="true"/>
         </changeSet>
         <!--输出实体[STENCIL]外键关系 -->
-        <changeSet author="root" id="fk-stencil-599-168">
+        <changeSet author="root" id="fk-stencil-599-169">
                 <addForeignKeyConstraint baseColumnNames="SPACE_ID" baseTableName="STENCIL" constraintName="FK_STENCIL_SPACE_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="SPACE" validate="true"/>
         </changeSet>
         <!--输出实体[SWIMLANE]外键关系 -->
-        <changeSet author="root" id="fk-swimlane-59-169">
+        <changeSet author="root" id="fk-swimlane-59-170">
                 <addForeignKeyConstraint baseColumnNames="BOARD_ID" baseTableName="SWIMLANE" constraintName="FK_SWIMLANE_BOARD_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="BOARD" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-swimlane-59-170">
+        <changeSet author="root" id="fk-swimlane-59-171">
                 <addForeignKeyConstraint baseColumnNames="PROJECT_ID" baseTableName="SWIMLANE" constraintName="FK_SWIMLANE_PROJECT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PROJECT" validate="true"/>
         </changeSet>
         <!--输出实体[TEST_CASE]外键关系 -->
-        <changeSet author="root" id="fk-test_case-3465-171">
+        <changeSet author="root" id="fk-test_case-4347-172">
                 <addForeignKeyConstraint baseColumnNames="TEST_LIBRARY_ID" baseTableName="TEST_CASE" constraintName="FK_TEST_CASE_TEST_LIBRARY_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="LIBRARY" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-test_case-3465-172">
+        <changeSet author="root" id="fk-test_case-4347-173">
                 <addForeignKeyConstraint baseColumnNames="SUITE_ID" baseTableName="TEST_CASE" constraintName="FK_TEST_CASE_SUITE_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="TEST_SUITE" validate="true"/>
         </changeSet>
         <!--输出实体[TEST_CASE_TEMPLATE]外键关系 -->
-        <changeSet author="root" id="fk-test_case_template-713-173">
+        <changeSet author="root" id="fk-test_case_template-754-174">
                 <addForeignKeyConstraint baseColumnNames="TEST_LIBRARY_ID" baseTableName="TEST_CASE_TEMPLATE" constraintName="FK_TEST_CASE_TEMPLATE_TEST_LIB" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="LIBRARY" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-test_case_template-713-174">
+        <changeSet author="root" id="fk-test_case_template-754-175">
                 <addForeignKeyConstraint baseColumnNames="SUITE_ID" baseTableName="TEST_CASE_TEMPLATE" constraintName="FK_TEST_CASE_TEMPLATE_SUITE_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="TEST_SUITE" validate="true"/>
         </changeSet>
         <!--输出实体[TEST_PLAN]外键关系 -->
-        <changeSet author="root" id="fk-test_plan-1001-175">
+        <changeSet author="root" id="fk-test_plan-1019-176">
                 <addForeignKeyConstraint baseColumnNames="LIBRARY_ID" baseTableName="TEST_PLAN" constraintName="FK_TEST_PLAN_LIBRARY_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="LIBRARY" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-test_plan-1001-176">
+        <changeSet author="root" id="fk-test_plan-1019-177">
                 <addForeignKeyConstraint baseColumnNames="PROJECT_ID" baseTableName="TEST_PLAN" constraintName="FK_TEST_PLAN_PROJECT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PROJECT" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-test_plan-1001-177">
+        <changeSet author="root" id="fk-test_plan-1019-178">
                 <addForeignKeyConstraint baseColumnNames="RELEASE_ID" baseTableName="TEST_PLAN" constraintName="FK_TEST_PLAN_RELEASE_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PROJECT_RELEASE" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-test_plan-1001-178">
+        <changeSet author="root" id="fk-test_plan-1019-179">
                 <addForeignKeyConstraint baseColumnNames="SPRINT_ID" baseTableName="TEST_PLAN" constraintName="FK_TEST_PLAN_SPRINT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="SPRINT" validate="true"/>
         </changeSet>
         <!--输出实体[TEST_SUITE]外键关系 -->
-        <changeSet author="root" id="fk-test_suite-111-179">
+        <changeSet author="root" id="fk-test_suite-111-180">
                 <addForeignKeyConstraint baseColumnNames="LIBRARY_ID" baseTableName="TEST_SUITE" constraintName="FK_TEST_SUITE_LIBRARY_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="LIBRARY" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-test_suite-111-180">
+        <changeSet author="root" id="fk-test_suite-111-181">
                 <addForeignKeyConstraint baseColumnNames="PID" baseTableName="TEST_SUITE" constraintName="FK_TEST_SUITE_PID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="TEST_SUITE" validate="true"/>
         </changeSet>
         <!--输出实体[TICKET]外键关系 -->
-        <changeSet author="root" id="fk-ticket-2626-181">
+        <changeSet author="root" id="fk-ticket-3684-182">
                 <addForeignKeyConstraint baseColumnNames="CUSTOMER_ID" baseTableName="TICKET" constraintName="FK_TICKET_CUSTOMER_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="CUSTOMER" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-ticket-2626-182">
+        <changeSet author="root" id="fk-ticket-3684-183">
                 <addForeignKeyConstraint baseColumnNames="PRODUCT_ID" baseTableName="TICKET" constraintName="FK_TICKET_PRODUCT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PRODUCT" validate="true"/>
         </changeSet>
         <!--输出实体[TICKET_TYPE]外键关系 -->
         <!--输出实体[TRANSITION_HISTORY]外键关系 -->
         <!--输出实体[UPDATE_RECORD]外键关系 -->
-        <changeSet author="root" id="fk-update_record-111-183">
+        <changeSet author="root" id="fk-update_record-111-184">
                 <addForeignKeyConstraint baseColumnNames="KEY_RESULT_ID" baseTableName="UPDATE_RECORD" constraintName="FK_UPDATE_RECORD_KEY_RESULT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="KEY_RESULT" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-update_record-111-184">
+        <changeSet author="root" id="fk-update_record-111-185">
                 <addForeignKeyConstraint baseColumnNames="OBJECTIVE_ID" baseTableName="UPDATE_RECORD" constraintName="FK_UPDATE_RECORD_OBJECTIVE_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="OBJECTIVE" validate="true"/>
         </changeSet>
         <!--输出实体[VERSION]外键关系 -->
         <!--输出实体[VERSION_DATA]外键关系 -->
         <!--输出实体[WORK]外键关系 -->
-        <changeSet author="root" id="fk-work-25-185">
+        <changeSet author="root" id="fk-work-25-186">
                 <addForeignKeyConstraint baseColumnNames="PORTFOLIO_ID" baseTableName="WORK" constraintName="FK_WORK_PORTFOLIO_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PORTFOLIO" validate="true"/>
         </changeSet>
         <!--输出实体[WORK_ITEM]外键关系 -->
-        <changeSet author="root" id="fk-work_item-18016-186">
+        <changeSet author="root" id="fk-work_item-20047-187">
                 <addForeignKeyConstraint baseColumnNames="BOARD_ID" baseTableName="WORK_ITEM" constraintName="FK_WORK_ITEM_BOARD_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="BOARD" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-work_item-18016-187">
+        <changeSet author="root" id="fk-work_item-20047-188">
                 <addForeignKeyConstraint baseColumnNames="ENTRY_ID" baseTableName="WORK_ITEM" constraintName="FK_WORK_ITEM_ENTRY_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="ENTRY" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-work_item-18016-188">
+        <changeSet author="root" id="fk-work_item-20047-189">
                 <addForeignKeyConstraint baseColumnNames="PROJECT_ID" baseTableName="WORK_ITEM" constraintName="FK_WORK_ITEM_PROJECT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PROJECT" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-work_item-18016-189">
+        <changeSet author="root" id="fk-work_item-20047-190">
                 <addForeignKeyConstraint baseColumnNames="RELEASE_ID" baseTableName="WORK_ITEM" constraintName="FK_WORK_ITEM_RELEASE_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PROJECT_RELEASE" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-work_item-18016-190">
+        <changeSet author="root" id="fk-work_item-20047-191">
                 <addForeignKeyConstraint baseColumnNames="SPRINT_ID" baseTableName="WORK_ITEM" constraintName="FK_WORK_ITEM_SPRINT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="SPRINT" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-work_item-18016-191">
+        <changeSet author="root" id="fk-work_item-20047-192">
                 <addForeignKeyConstraint baseColumnNames="SWIMLANE_ID" baseTableName="WORK_ITEM" constraintName="FK_WORK_ITEM_SWIMLANE_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="SWIMLANE" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-work_item-18016-193">
+        <changeSet author="root" id="fk-work_item-20047-194">
                 <addForeignKeyConstraint baseColumnNames="PID" baseTableName="WORK_ITEM" constraintName="FK_WORK_ITEM_PID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="WORK_ITEM" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-work_item-18016-194">
+        <changeSet author="root" id="fk-work_item-20047-195">
                 <addForeignKeyConstraint baseColumnNames="STATE" baseTableName="WORK_ITEM" constraintName="FK_WORK_ITEM_STATE" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="WORK_ITEM_STATE" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-work_item-18016-195">
+        <changeSet author="root" id="fk-work_item-20047-196">
                 <addForeignKeyConstraint baseColumnNames="TOP_ID" baseTableName="WORK_ITEM" constraintName="FK_WORK_ITEM_TOP_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="WORK_ITEM" validate="true"/>
         </changeSet>
-        <changeSet author="root" id="fk-work_item-18016-196">
+        <changeSet author="root" id="fk-work_item-20047-197">
                 <addForeignKeyConstraint baseColumnNames="WORK_ITEM_TYPE_ID" baseTableName="WORK_ITEM" constraintName="FK_WORK_ITEM_WORK_ITEM_TYPE_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="WORK_ITEM_TYPE" validate="true"/>
         </changeSet>
         <!--输出实体[WORK_ITEM_STATE]外键关系 -->
-        <changeSet author="root" id="fk-work_item_state-357-197">
+        <changeSet author="root" id="fk-work_item_state-369-198">
                 <addForeignKeyConstraint baseColumnNames="WORK_ITEM_TYPE_ID" baseTableName="WORK_ITEM_STATE" constraintName="FK_WORK_ITEM_STATE_WORK_ITEM_T" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="WORK_ITEM_TYPE" validate="true"/>
         </changeSet>
         <!--输出实体[WORK_ITEM_TYPE]外键关系 -->
-        <changeSet author="root" id="fk-work_item_type-678-198">
+        <changeSet author="root" id="fk-work_item_type-726-199">
                 <addForeignKeyConstraint baseColumnNames="PROJECT_ID" baseTableName="WORK_ITEM_TYPE" constraintName="FK_WORK_ITEM_TYPE_PROJECT_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PROJECT" validate="true"/>
         </changeSet>
         <!--输出实体[WORKLOAD]外键关系 -->
-        <changeSet author="root" id="fk-workload-2485-199">
+        <changeSet author="root" id="fk-workload-3425-200">
                 <addForeignKeyConstraint baseColumnNames="TYPE_ID" baseTableName="WORKLOAD" constraintName="FK_WORKLOAD_TYPE_ID" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="WORKLOAD_TYPE" validate="true"/>
         </changeSet>
         <!--输出实体[WORKLOAD_TYPE]外键关系 -->

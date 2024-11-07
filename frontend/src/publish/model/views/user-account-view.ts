@@ -309,6 +309,10 @@ export default {
                         colMD: 24,
                         layout: 'TABLE_24COL',
                       },
+                      sysImage: {
+                        cssClass: 'fa fa-save',
+                        glyph: 'xf0c7@FontAwesome',
+                      },
                       showCaption: true,
                       id: 'button1',
                     },

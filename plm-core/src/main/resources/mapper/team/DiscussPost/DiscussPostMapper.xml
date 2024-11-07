@@ -6,6 +6,8 @@
     <resultMap id="DiscussPostResultMap" type="cn.ibizlab.plm.core.team.domain.DiscussPost" autoMapping="true">
 		<id property="id" column="id" /><!--主键字段映射-->
 		<result property="isDeleted" column="is_deleted"/>
+		<result property="attentionCount" column="attention_count"/>
+		<result property="commentCount" column="comment_count"/>
 		<result property="createMan" column="create_man"/>
 		<result property="createTime" column="create_time"/>
 		<result property="updateMan" column="update_man"/>
@@ -41,47 +43,51 @@
     </delete>
 
     <sql id="default" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`HEAT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, t1.`STATUS`, t1.`TOPIC_ID`, t11.`NAME` AS `TOPIC_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `DISCUSS_POST` t1  LEFT JOIN `DISCUSS_TOPIC` t11 ON t1.`TOPIC_ID` = t11.`ID`   ]]>  
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`HEAT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, (SELECT COUNT( reply.ID ) AS reply_count FROM DISCUSS_REPLY reply LEFT JOIN discuss_post dis ON dis.ID = reply.POST_ID WHERE dis.ID = t1.`ID`) AS `REPLIES`, t1.`STATUS`, t1.`TOPIC_ID`, t11.`NAME` AS `TOPIC_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `DISCUSS_POST` t1  LEFT JOIN `DISCUSS_TOPIC` t11 ON t1.`TOPIC_ID` = t11.`ID`   ]]>  
     </sql>
 
     <sql id="view" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CONTENT`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`HEAT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, t1.`STATUS`, t1.`TOPIC_ID`, t11.`NAME` AS `TOPIC_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `DISCUSS_POST` t1  LEFT JOIN `DISCUSS_TOPIC` t11 ON t1.`TOPIC_ID` = t11.`ID`   ]]>  
+         <![CDATA[ SELECT (SELECT COUNT( att.ID ) AS comment_count FROM discuss_post tc LEFT JOIN `attention` att ON tc.ID = att.OWNER_ID WHERE tc.ID = t1.`ID`) AS `ATTENTION_COUNT`, (SELECT COUNT( com.ID ) AS comment_count FROM discuss_post tc LEFT JOIN `comment` com ON tc.ID = com.PRINCIPAL_ID WHERE tc.ID = t1.`ID`) AS `COMMENT_COUNT`, t1.`CONTENT`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`HEAT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, (SELECT COUNT( reply.ID ) AS reply_count FROM DISCUSS_REPLY reply LEFT JOIN discuss_post dis ON dis.ID = reply.POST_ID WHERE dis.ID = t1.`ID`) AS `REPLIES`, t1.`STATUS`, t1.`TOPIC_ID`, t11.`NAME` AS `TOPIC_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `DISCUSS_POST` t1  LEFT JOIN `DISCUSS_TOPIC` t11 ON t1.`TOPIC_ID` = t11.`ID`   ]]>  
     </sql>
 
     <sql id="deleted" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`HEAT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, t1.`STATUS`, t1.`TOPIC_ID`, t11.`NAME` AS `TOPIC_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `DISCUSS_POST` t1  LEFT JOIN `DISCUSS_TOPIC` t11 ON t1.`TOPIC_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`IS_DELETED` = 1 ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`HEAT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, (SELECT COUNT( reply.ID ) AS reply_count FROM DISCUSS_REPLY reply LEFT JOIN discuss_post dis ON dis.ID = reply.POST_ID WHERE dis.ID = t1.`ID`) AS `REPLIES`, t1.`STATUS`, t1.`TOPIC_ID`, t11.`NAME` AS `TOPIC_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `DISCUSS_POST` t1  LEFT JOIN `DISCUSS_TOPIC` t11 ON t1.`TOPIC_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`IS_DELETED` = 1 ) ]]> 
+    </sql>
+
+    <sql id="mobDiscussPostList" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`HEAT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, (SELECT COUNT( reply.ID ) AS reply_count FROM DISCUSS_REPLY reply LEFT JOIN discuss_post dis ON dis.ID = reply.POST_ID WHERE dis.ID = t1.`ID`) AS `REPLIES`, t1.`STATUS`, t1.`TOPIC_ID`, t11.`NAME` AS `TOPIC_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `DISCUSS_POST` t1  LEFT JOIN `DISCUSS_TOPIC` t11 ON t1.`TOPIC_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t11.`IS_ARCHIVED` = 0  AND  t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( t1.`IS_DELETED` = 0 ) ]]> 
     </sql>
 
     <sql id="myAttention" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`HEAT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, t1.`STATUS`, t1.`TOPIC_ID`, t11.`NAME` AS `TOPIC_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `DISCUSS_POST` t1  LEFT JOIN `DISCUSS_TOPIC` t11 ON t1.`TOPIC_ID` = t11.`ID`   ]]>  where  <![CDATA[ EXISTS(SELECT * FROM `ATTENTION` t21   WHERE   t1.`ID` = t21.`OWNER_ID`  AND  t21.`OWNER_TYPE` = 'DISCUSS_POST'  AND  t21.`OWNER_SUBTYPE` = 'DISCUSS_POST'  AND  ( t21.`USER_ID` = #{ctx.sessioncontext.srfpersonid}  AND  t21.`TYPE` IN ('20','30','40') ) ) ]]> and  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( t1.`IS_DELETED` = 0 ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`HEAT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, (SELECT COUNT( reply.ID ) AS reply_count FROM DISCUSS_REPLY reply LEFT JOIN discuss_post dis ON dis.ID = reply.POST_ID WHERE dis.ID = t1.`ID`) AS `REPLIES`, t1.`STATUS`, t1.`TOPIC_ID`, t11.`NAME` AS `TOPIC_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `DISCUSS_POST` t1  LEFT JOIN `DISCUSS_TOPIC` t11 ON t1.`TOPIC_ID` = t11.`ID`   ]]>  where  <![CDATA[ EXISTS(SELECT * FROM `ATTENTION` t21   WHERE   t1.`ID` = t21.`OWNER_ID`  AND  t21.`OWNER_TYPE` = 'DISCUSS_POST'  AND  t21.`OWNER_SUBTYPE` = 'DISCUSS_POST'  AND  ( t21.`USER_ID` = #{ctx.sessioncontext.srfpersonid}  AND  t21.`TYPE` IN ('20','30','40') ) ) ]]> and  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( t1.`IS_DELETED` = 0 ) ]]> 
     </sql>
 
     <sql id="myCreate" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`HEAT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, t1.`STATUS`, t1.`TOPIC_ID`, t11.`NAME` AS `TOPIC_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `DISCUSS_POST` t1  LEFT JOIN `DISCUSS_TOPIC` t11 ON t1.`TOPIC_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( t1.`CREATE_MAN` = #{ctx.sessioncontext.srfpersonid}  AND  t1.`IS_DELETED` = 0 ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`HEAT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, (SELECT COUNT( reply.ID ) AS reply_count FROM DISCUSS_REPLY reply LEFT JOIN discuss_post dis ON dis.ID = reply.POST_ID WHERE dis.ID = t1.`ID`) AS `REPLIES`, t1.`STATUS`, t1.`TOPIC_ID`, t11.`NAME` AS `TOPIC_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `DISCUSS_POST` t1  LEFT JOIN `DISCUSS_TOPIC` t11 ON t1.`TOPIC_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( t1.`CREATE_MAN` = #{ctx.sessioncontext.srfpersonid}  AND  t1.`IS_DELETED` = 0 ) ]]> 
     </sql>
 
     <sql id="myReply" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`HEAT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, t1.`STATUS`, t1.`TOPIC_ID`, t11.`NAME` AS `TOPIC_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `DISCUSS_POST` t1  LEFT JOIN `DISCUSS_TOPIC` t11 ON t1.`TOPIC_ID` = t11.`ID`   ]]>  where  <![CDATA[ EXISTS(SELECT * FROM `DISCUSS_REPLY` t21   WHERE   t1.`ID` = t21.`POST_ID`  AND  ( t21.`CREATE_MAN` = #{ctx.sessioncontext.srfpersonid} ) ) ]]> and  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( t1.`IS_DELETED` = 0 ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`HEAT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, (SELECT COUNT( reply.ID ) AS reply_count FROM DISCUSS_REPLY reply LEFT JOIN discuss_post dis ON dis.ID = reply.POST_ID WHERE dis.ID = t1.`ID`) AS `REPLIES`, t1.`STATUS`, t1.`TOPIC_ID`, t11.`NAME` AS `TOPIC_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `DISCUSS_POST` t1  LEFT JOIN `DISCUSS_TOPIC` t11 ON t1.`TOPIC_ID` = t11.`ID`   ]]>  where  <![CDATA[ EXISTS(SELECT * FROM `DISCUSS_REPLY` t21   WHERE   t1.`ID` = t21.`POST_ID`  AND  ( t21.`CREATE_MAN` = #{ctx.sessioncontext.srfpersonid} ) ) ]]> and  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( t1.`IS_DELETED` = 0 ) ]]> 
     </sql>
 
     <sql id="normal" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`HEAT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, t1.`STATUS`, t1.`TOPIC_ID`, t11.`NAME` AS `TOPIC_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `DISCUSS_POST` t1  LEFT JOIN `DISCUSS_TOPIC` t11 ON t1.`TOPIC_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`IS_DELETED` = 0 ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`HEAT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, (SELECT COUNT( reply.ID ) AS reply_count FROM DISCUSS_REPLY reply LEFT JOIN discuss_post dis ON dis.ID = reply.POST_ID WHERE dis.ID = t1.`ID`) AS `REPLIES`, t1.`STATUS`, t1.`TOPIC_ID`, t11.`NAME` AS `TOPIC_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `DISCUSS_POST` t1  LEFT JOIN `DISCUSS_TOPIC` t11 ON t1.`TOPIC_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`IS_DELETED` = 0 ) ]]> 
     </sql>
 
     <sql id="parentNotDeleted" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`HEAT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, t1.`STATUS`, t1.`TOPIC_ID`, t11.`NAME` AS `TOPIC_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `DISCUSS_POST` t1  LEFT JOIN `DISCUSS_TOPIC` t11 ON t1.`TOPIC_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`HEAT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, (SELECT COUNT( reply.ID ) AS reply_count FROM DISCUSS_REPLY reply LEFT JOIN discuss_post dis ON dis.ID = reply.POST_ID WHERE dis.ID = t1.`ID`) AS `REPLIES`, t1.`STATUS`, t1.`TOPIC_ID`, t11.`NAME` AS `TOPIC_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `DISCUSS_POST` t1  LEFT JOIN `DISCUSS_TOPIC` t11 ON t1.`TOPIC_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> 
     </sql>
 
     <sql id="public" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`HEAT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, t1.`STATUS`, t1.`TOPIC_ID`, t11.`NAME` AS `TOPIC_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `DISCUSS_POST` t1  LEFT JOIN `DISCUSS_TOPIC` t11 ON t1.`TOPIC_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t11.`VISIBILITY` = 'public' ) ]]> and  <![CDATA[ ( t1.`IS_DELETED` = 0 ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`HEAT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, (SELECT COUNT( reply.ID ) AS reply_count FROM DISCUSS_REPLY reply LEFT JOIN discuss_post dis ON dis.ID = reply.POST_ID WHERE dis.ID = t1.`ID`) AS `REPLIES`, t1.`STATUS`, t1.`TOPIC_ID`, t11.`NAME` AS `TOPIC_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `DISCUSS_POST` t1  LEFT JOIN `DISCUSS_TOPIC` t11 ON t1.`TOPIC_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t11.`VISIBILITY` = 'public' ) ]]> and  <![CDATA[ ( t1.`IS_DELETED` = 0 ) ]]> 
     </sql>
 
     <sql id="reader" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`HEAT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, t1.`STATUS`, t1.`TOPIC_ID`, t11.`NAME` AS `TOPIC_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `DISCUSS_POST` t1  LEFT JOIN `DISCUSS_TOPIC` t11 ON t1.`TOPIC_ID` = t11.`ID`   ]]>  where  <![CDATA[ EXISTS(SELECT * FROM `MEMBER` t21   WHERE   t11.`ID` = t21.`OWNER_ID`  AND  ( t21.`USER_ID` = #{ctx.sessioncontext.srfpersonid}  AND  t21.`OWNER_TYPE` = 'DISCUSS' ) ) ]]> and  <![CDATA[ ( t1.`IS_DELETED` = 0 ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`HEAT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, (SELECT COUNT( reply.ID ) AS reply_count FROM DISCUSS_REPLY reply LEFT JOIN discuss_post dis ON dis.ID = reply.POST_ID WHERE dis.ID = t1.`ID`) AS `REPLIES`, t1.`STATUS`, t1.`TOPIC_ID`, t11.`NAME` AS `TOPIC_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `DISCUSS_POST` t1  LEFT JOIN `DISCUSS_TOPIC` t11 ON t1.`TOPIC_ID` = t11.`ID`   ]]>  where  <![CDATA[ EXISTS(SELECT * FROM `MEMBER` t21   WHERE   t11.`ID` = t21.`OWNER_ID`  AND  ( t21.`USER_ID` = #{ctx.sessioncontext.srfpersonid}  AND  t21.`OWNER_TYPE` = 'DISCUSS' ) ) ]]> and  <![CDATA[ ( t1.`IS_DELETED` = 0 ) ]]> 
     </sql>
 
     <sql id="recent" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`HEAT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, t1.`STATUS`, t1.`TOPIC_ID`, t11.`NAME` AS `TOPIC_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `DISCUSS_POST` t1  LEFT JOIN `DISCUSS_TOPIC` t11 ON t1.`TOPIC_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( DATEDIFF(sysdate(),t1.`CREATE_TIME`) <= 30  AND  t1.`IS_DELETED` = 0 ) ]]> 
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`HEAT`, t1.`ID`, t1.`IS_DELETED`, t1.`NAME`, (SELECT COUNT( reply.ID ) AS reply_count FROM DISCUSS_REPLY reply LEFT JOIN discuss_post dis ON dis.ID = reply.POST_ID WHERE dis.ID = t1.`ID`) AS `REPLIES`, t1.`STATUS`, t1.`TOPIC_ID`, t11.`NAME` AS `TOPIC_NAME`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `DISCUSS_POST` t1  LEFT JOIN `DISCUSS_TOPIC` t11 ON t1.`TOPIC_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( DATEDIFF(sysdate(),t1.`CREATE_TIME`) <= 30  AND  t1.`IS_DELETED` = 0 ) ]]> 
     </sql>
 
     <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.team.filter.DiscussPostSearchContext"  resultMap="DiscussPostResultMap">
@@ -120,6 +126,27 @@
         select t1.*
         from (
             <include refid="deleted"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchMobDiscussPostList"  parameterType="cn.ibizlab.plm.core.team.filter.DiscussPostSearchContext"  resultMap="DiscussPostResultMap">
+        select t1.* 
+        from (
+            <include refid="mobDiscussPostList"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listMobDiscussPostList"  parameterType="cn.ibizlab.plm.core.team.filter.DiscussPostSearchContext"  resultMap="DiscussPostResultMap">
+        select t1.*
+        from (
+            <include refid="mobDiscussPostList"/>
         ) t1
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>

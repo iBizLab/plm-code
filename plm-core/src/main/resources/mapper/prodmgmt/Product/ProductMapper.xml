@@ -61,6 +61,10 @@
          <![CDATA[ SELECT t1.`COLOR`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`NAME`, t1.`SCOPE_ID`, t1.`SCOPE_TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VISIBILITY` FROM `PRODUCT` t1   ]]>  where  <![CDATA[ ( t1.`ID` = #{ctx.webcontext.product} ) ]]> 
     </sql>
 
+    <sql id="customerUser" databaseId="mysql">
+         <![CDATA[ SELECT t1.`COLOR`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`NAME`, t1.`SCOPE_ID`, t1.`SCOPE_TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VISIBILITY` FROM `PRODUCT` t1   ]]>  where  <![CDATA[ EXISTS(SELECT * FROM `PRODUCT_MEMBER` t11   WHERE   t1.`ID` = t11.`PRODUCT_ID`  AND  ( t11.`ROLE_ID` = 'customer'  AND  t11.`USER_ID` = #{ctx.sessioncontext.srfpersonid} ) ) ]]> 
+    </sql>
+
     <sql id="deleted" databaseId="mysql">
          <![CDATA[ SELECT t1.`COLOR`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`DESCRIPTION`, t1.`ID`, t1.`IDENTIFIER`, t1.`IS_ARCHIVED`, t1.`IS_DELETED`, (select count(1) from favorite where create_man=#{ctx.sessioncontext.srfpersonid} and OWNER_ID=t1.`ID` ) AS `IS_FAVORITE`, t1.`NAME`, t1.`SCOPE_ID`, t1.`SCOPE_TYPE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`VISIBILITY` FROM `PRODUCT` t1   ]]>  where  <![CDATA[ ( t1.`IS_DELETED` = 1 ) ]]> 
     </sql>
@@ -181,6 +185,27 @@
         
     </select>
 
+    <select id="searchCustomerUser"  parameterType="cn.ibizlab.plm.core.prodmgmt.filter.ProductSearchContext"  resultMap="ProductResultMap">
+        select t1.* 
+        from (
+            <include refid="customerUser"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listCustomerUser"  parameterType="cn.ibizlab.plm.core.prodmgmt.filter.ProductSearchContext"  resultMap="ProductResultMap">
+        select t1.*
+        from (
+            <include refid="customerUser"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
     <select id="searchDeleted"  parameterType="cn.ibizlab.plm.core.prodmgmt.filter.ProductSearchContext"  resultMap="ProductResultMap">
         select t1.* 
         from (
@@ -239,6 +264,35 @@
 
 
     <select id="listMain"  parameterType="cn.ibizlab.plm.core.prodmgmt.filter.ProductSearchContext"  resultMap="ProductResultMap">
+        select t1.*
+        from (
+            <include refid="favorite"/>
+                 union
+            <include refid="unfavorite"/>
+                 union
+            <include refid="curProduct"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchMobMain"  parameterType="cn.ibizlab.plm.core.prodmgmt.filter.ProductSearchContext"  resultMap="ProductResultMap">
+        select t1.* 
+        from (
+            <include refid="favorite"/>
+                 union
+            <include refid="unfavorite"/>
+                 union
+            <include refid="curProduct"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listMobMain"  parameterType="cn.ibizlab.plm.core.prodmgmt.filter.ProductSearchContext"  resultMap="ProductResultMap">
         select t1.*
         from (
             <include refid="favorite"/>

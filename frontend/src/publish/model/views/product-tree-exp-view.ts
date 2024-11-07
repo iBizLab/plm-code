@@ -402,6 +402,7 @@ export default {
             },
           ],
           outputIconDefault: true,
+          navViewPos: 'NONE',
           createControlAction: {
             appDEMethodId: 'create',
             appDataEntityId: 'plmweb.product',

@@ -552,6 +552,7 @@ export default {
             id: '0',
           },
         ],
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_assessment_result',
           appDataEntityId: 'plmweb.test_case',

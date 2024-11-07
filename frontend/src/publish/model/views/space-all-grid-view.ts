@@ -103,6 +103,16 @@ export default {
           valid: true,
           caption: '新建空间',
           itemType: 'DEUIACTION',
+          controlLogics: [
+            {
+              itemName: 'deuiaction1',
+              logicTag: 'toolbar',
+              logicType: 'SCRIPT',
+              scriptCode: 'context.srfreadonly != true',
+              triggerType: 'ITEMVISIBLE',
+              id: 'deuiaction1',
+            },
+          ],
           sysImage: {
             cssClass: 'fa fa-plus',
             glyph: 'xf067@FontAwesome',
@@ -392,6 +402,7 @@ export default {
       enableCustomized: true,
       enablePagingBar: true,
       singleSelect: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_main',
         appDataEntityId: 'plmweb.space',

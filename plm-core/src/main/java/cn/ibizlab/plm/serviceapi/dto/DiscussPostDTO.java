@@ -84,11 +84,35 @@ public class DiscussPostDTO extends DTOBase implements Serializable {
     private Integer heat;
 
     /**
+     * 讨论回复数
+     */
+    @JsonProperty("replies")
+    @JSONField(name = "replies")
+    @ApiModelProperty(value = "讨论回复数", position = 6)
+    private String replies;
+
+    /**
+     * 关注数
+     */
+    @JsonProperty("attention_count")
+    @JSONField(name = "attention_count")
+    @ApiModelProperty(value = "关注数", position = 7)
+    private String attentionCount;
+
+    /**
+     * 评论数
+     */
+    @JsonProperty("comment_count")
+    @JSONField(name = "comment_count")
+    @ApiModelProperty(value = "评论数", position = 8)
+    private String commentCount;
+
+    /**
      * 讨论内容
      */
     @JsonProperty("content")
     @JSONField(name = "content")
-    @ApiModelProperty(value = "讨论内容", position = 6)
+    @ApiModelProperty(value = "讨论内容", position = 9)
     private String content;
 
     /**
@@ -96,7 +120,7 @@ public class DiscussPostDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 7)
+    @ApiModelProperty(value = "建立人", position = 10)
     private String createMan;
 
     /**
@@ -105,7 +129,7 @@ public class DiscussPostDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 8)
+    @ApiModelProperty(value = "建立时间", position = 11)
     private Date createTime;
 
     /**
@@ -113,15 +137,15 @@ public class DiscussPostDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 9)
+    @ApiModelProperty(value = "标识", position = 12)
     private String id;
 
     /**
-     * 名称
+     * 讨论名称
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 10)
+    @ApiModelProperty(value = "讨论名称", position = 13)
     private String name;
 
     /**
@@ -129,7 +153,7 @@ public class DiscussPostDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("topic_id")
     @JSONField(name = "topic_id")
-    @ApiModelProperty(value = "话题标识", position = 11)
+    @ApiModelProperty(value = "话题标识", position = 14)
     private String topicId;
 
     /**
@@ -137,7 +161,7 @@ public class DiscussPostDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("topic_name")
     @JSONField(name = "topic_name")
-    @ApiModelProperty(value = "话题", position = 12)
+    @ApiModelProperty(value = "话题", position = 15)
     private String topicName;
 
     /**
@@ -145,7 +169,7 @@ public class DiscussPostDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 13)
+    @ApiModelProperty(value = "更新人", position = 16)
     private String updateMan;
 
     /**
@@ -154,7 +178,7 @@ public class DiscussPostDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 14)
+    @ApiModelProperty(value = "更新时间", position = 17)
     private Date updateTime;
 
 
@@ -213,6 +237,33 @@ public class DiscussPostDTO extends DTOBase implements Serializable {
     }
 
     /**
+     * 设置 [讨论回复数]
+     */
+    public DiscussPostDTO setReplies(String replies) {
+        this.replies = replies;
+        this.modify("replies", replies);
+        return this;
+    }
+
+    /**
+     * 设置 [关注数]
+     */
+    public DiscussPostDTO setAttentionCount(String attentionCount) {
+        this.attentionCount = attentionCount;
+        this.modify("attention_count", attentionCount);
+        return this;
+    }
+
+    /**
+     * 设置 [评论数]
+     */
+    public DiscussPostDTO setCommentCount(String commentCount) {
+        this.commentCount = commentCount;
+        this.modify("comment_count", commentCount);
+        return this;
+    }
+
+    /**
      * 设置 [讨论内容]
      */
     public DiscussPostDTO setContent(String content) {
@@ -222,7 +273,7 @@ public class DiscussPostDTO extends DTOBase implements Serializable {
     }
 
     /**
-     * 设置 [名称]
+     * 设置 [讨论名称]
      */
     public DiscussPostDTO setName(String name) {
         this.name = name;

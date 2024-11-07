@@ -775,6 +775,7 @@ export default {
             id: '0',
           },
         ],
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_backlog_daily_trend',
           appDataEntityId: 'plmweb.work_item',

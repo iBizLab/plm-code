@@ -932,9 +932,9 @@ export default {
     {
       actionLevel: 100,
       actionTarget: 'SINGLEDATA',
-      caption: '设计',
+      caption: '表单设计',
       codeName: 'panel_usr1229905828_button_link1_click',
-      frontAppViewId: 'plmweb.psdemslogicmslogicdesign_modal',
+      frontAppViewId: 'plmweb.psdeformdesign_modal',
       frontProcessType: 'WIZARD',
       fullCodeName: 'work_item_type_panel_usr1229905828_button_link1_click',
       navigateContexts: [

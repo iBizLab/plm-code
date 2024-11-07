@@ -134,11 +134,9 @@ export default {
         {
           actionLevel: 100,
           noPrivDisplayMode: 2,
-          uiactionId: 'new',
+          uiactionId: 'add_discuss_topic_member',
+          uiactionTarget: 'NONE',
           valid: true,
-          capLanguageRes: {
-            lanResTag: 'TBB.TEXT.*.NEW',
-          },
           caption: '添加成员',
           itemType: 'DEUIACTION',
           sysImage: {
@@ -146,9 +144,6 @@ export default {
             glyph: 'xf067@FontAwesome',
           },
           tooltip: '添加成员',
-          tooltipLanguageRes: {
-            lanResTag: 'TBB.TOOLTIP.*.NEW',
-          },
           showCaption: true,
           showIcon: true,
           id: 'deuiaction1',
@@ -288,6 +283,7 @@ export default {
       pagingSize: 20,
       sortMode: 'REMOTE',
       singleSelect: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_default',
         appDataEntityId: 'plmweb.discuss_member',

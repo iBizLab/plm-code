@@ -419,6 +419,7 @@ export default {
       sortMode: 'REMOTE',
       enablePagingBar: true,
       noSort: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_fill_version_data',
         appDataEntityId: 'plmweb.baseline_idea',
@@ -480,6 +481,9 @@ export default {
       logicName: '主表格',
       appDataEntityId: 'plmweb.baseline_idea',
       controlParam: {
+        ctrlParams: {
+          LOCATERECORDKEY: 'target_id',
+        },
         id: 'grid',
       },
       modelId: '7079c123aec209665264c00e875f5d8f',

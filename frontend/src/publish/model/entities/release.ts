@@ -1084,6 +1084,28 @@ export default {
       id: 'fetch_default',
     },
     {
+      codeName: 'fetch_mob_project_release',
+      methodType: 'FETCH',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'release_filter_dto',
+        type: 'DTO',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'release_dto',
+        type: 'PAGE',
+        id: '返回对象',
+      },
+      requestMethod: 'POST',
+      requestParamType: 'ENTITY',
+      requestPath: '/fetch_mob_project_release',
+      actionType: 'REMOTE',
+      dataSetName: 'mob_project_release',
+      dataSetTag: 'mob_project_release',
+      dataSetType: 'REMOTE',
+      id: 'fetch_mob_project_release',
+    },
+    {
       codeName: 'fetch_not_published',
       methodType: 'FETCH',
       appDEMethodInput: {

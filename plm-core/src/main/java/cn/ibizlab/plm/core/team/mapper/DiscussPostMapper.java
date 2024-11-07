@@ -62,6 +62,25 @@ public interface DiscussPostMapper extends BaseMapper<DiscussPost> {
     List<DiscussPost> listDeleted(@Param("ctx") DiscussPostSearchContext context, @Param("ew") Wrapper<DiscussPost> wrapper);
 
     /**
+     * 数据集合mob_discuss_post_list分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<DiscussPost> searchMobDiscussPostList(IPage<DiscussPost> page, @Param("ctx") DiscussPostSearchContext context, @Param("ew") Wrapper<DiscussPost> wrapper);
+    
+    /**
+     * 数据集合mob_discuss_post_list查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<DiscussPost> listMobDiscussPostList(@Param("ctx") DiscussPostSearchContext context, @Param("ew") Wrapper<DiscussPost> wrapper);
+
+    /**
      * 数据集合my_attention分页查询
      * 
      * @param page

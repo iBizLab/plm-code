@@ -143,6 +143,16 @@ public interface DiscussMemberService extends IService<DiscussMember> {
     CheckKeyStatus checkKey(DiscussMember et);
 
     /**
+    * restart
+    * 
+    * @param et
+    * @return
+    */
+    default DiscussMember restart(DiscussMember et) {
+        return et;
+    }
+
+    /**
     * 保存
     * @param et
     * @return
@@ -157,12 +167,32 @@ public interface DiscussMemberService extends IService<DiscussMember> {
     boolean save(List<DiscussMember> list);
 
     /**
+    * stop
+    * 
+    * @param et
+    * @return
+    */
+    default DiscussMember stop(DiscussMember et) {
+        return et;
+    }
+
+    /**
     * changeRole
     * 
     * @param et
     * @return
     */
     default DiscussMember changeRole(DiscussMember et) {
+        return et;
+    }
+
+    /**
+    * mobCreateTopicMember
+    * 
+    * @param et
+    * @return
+    */
+    default DiscussMember mobCreateTopicMember(DiscussMember et) {
         return et;
     }
 

@@ -806,6 +806,7 @@ export default {
             id: '1',
           },
         ],
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_calc_chart_datas',
           appDataEntityId: 'plmweb.login_log',

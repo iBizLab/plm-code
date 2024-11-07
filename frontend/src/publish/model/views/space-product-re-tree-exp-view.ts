@@ -72,7 +72,7 @@ export default {
   ],
   controls: [
     {
-      title: '空间',
+      title: '文档',
       xdataControlName: 'treeexpbar_tree',
       enableCounter: true,
       showTitleBar: true,
@@ -112,16 +112,22 @@ export default {
           name: 'EXPITEM:node_5',
           id: 'expitem:node_5',
         },
+        {
+          realTitle: '附件',
+          refAppViewId: 'plmweb.search_attachment_cur_product_grid_view',
+          name: 'EXPITEM:node_6',
+          id: 'expitem:node_6',
+        },
       ],
       controls: [
         {
           detreeNodeRSs: [
             {
-              childDETreeNodeId: 'node',
+              childDETreeNodeId: 'node_6',
               parentDETreeNodeId: 'root',
               parentValueLevel: 1,
               searchMode: 3,
-              id: '默认根节点 - 空间',
+              id: '默认根节点 - 全部附件',
             },
             {
               childDETreeNodeId: 'node_5',
@@ -393,6 +399,13 @@ export default {
               id: '首级分组 - 次级页面',
             },
             {
+              childDETreeNodeId: 'node',
+              parentDETreeNodeId: 'root',
+              parentValueLevel: 1,
+              searchMode: 3,
+              id: '默认根节点 - 空间',
+            },
+            {
               childDETreeNodeId: 'node_2',
               navigateParams: [
                 {
@@ -519,7 +532,6 @@ export default {
               },
               treeNodeType: 'DE',
               hasDETreeNodeRSs: true,
-              expanded: true,
               name: '空间',
               id: 'node',
             },
@@ -667,8 +679,28 @@ export default {
               name: '主页',
               id: 'node_5',
             },
+            {
+              text: '全部附件',
+              navAppViewId: 'plmweb.search_attachment_cur_product_grid_view',
+              nodeType: 'node_6',
+              navigateParams: [
+                {
+                  key: 'product_id',
+                  value: 'product',
+                  id: 'product_id',
+                },
+              ],
+              sysImage: {
+                cssClass: 'fa fa-paperclip',
+                glyph: 'xf0c6@FontAwesome',
+              },
+              treeNodeType: 'STATIC',
+              name: '全部附件',
+              id: 'node_6',
+            },
           ],
           outputIconDefault: true,
+          navViewPos: 'NONE',
           createControlAction: {
             appDEMethodId: 'create',
             appDataEntityId: 'plmweb.space',
@@ -739,10 +771,10 @@ export default {
               id: 'product_re_tree_exp_view_node_cm',
             },
           ],
-          codeName: 'relation_tree_exp_view_tree_view',
+          codeName: 'product_relation_tree_view',
           controlStyle: 'GROUP_TREE',
           controlType: 'TREEVIEW',
-          logicName: '关联空间树导航视图_树视图',
+          logicName: '产品关联空间树导航视图_树视图',
           appDataEntityId: 'plmweb.space',
           controlLogics: [
             {
@@ -767,7 +799,7 @@ export default {
           modelId: '7432bec385d110e3a8509da038a7d629',
           modelType: 'PSDETREEVIEW',
           name: 'treeexpbar_tree',
-          id: 'plmweb.space.relation_tree_exp_view_tree_view',
+          id: 'plmweb.space.product_relation_tree_view',
         },
         {
           detoolbarItems: [
@@ -827,7 +859,7 @@ export default {
             {
               actionLevel: 100,
               noPrivDisplayMode: 2,
-              uiactionId: 'refreshall',
+              uiactionId: 'treeview_refreshallaction',
               valid: true,
               caption: '刷新',
               itemType: 'DEUIACTION',

@@ -276,6 +276,32 @@ export default {
       {
         dedrtabPages: [
           {
+            caption: '需求设置',
+            appViewId: 'plmweb.idea_global_setting_view',
+            id: 'setting',
+          },
+          {
+            caption: '属性管理',
+            appViewId: 'plmweb.psde_field_global_idea_grid_view',
+            navigateContexts: [
+              {
+                key: 'PSDATAENTITY',
+                value: 'ProdMgmt.IDEA',
+                rawValue: true,
+                name: 'PSDATAENTITY',
+                id: 'psdataentity',
+              },
+              {
+                key: 'PSDENAME',
+                value: 'IDEA',
+                rawValue: true,
+                name: 'PSDENAME',
+                id: 'psdename',
+              },
+            ],
+            id: 'field_manage',
+          },
+          {
             caption: '状态管理',
             appViewId: 'plmweb.dictionary_data_idea_state_grid_view',
             navigateContexts: [

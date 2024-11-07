@@ -12,8 +12,8 @@ iBiz产品生命周期管理（iBiz Product Lifecycle Management，简称iBizPLM
 
 ![image.png](doc/images/structure.png)
 # 在线体验
-
-- 演示Demo地址：[http://plm.ibizlab.cn/ibizplm-plmweb/](https://gitee.com/link?target=http%3A%2F%2Fplm.ibizlab.cn%2Fibizplm-plmweb%2F)
+- PC端-演示地址：[http://plm.ibizlab.cn/ibizplm-plmweb/](http://plm.ibizlab.cn/ibizplm-plmweb/)
+- 移动端-演示地址（Demo版）：[http://mob.plm.ibizlab.cn/ibizplm-plmmob/](http://mob.plm.ibizlab.cn/ibizplm-plmmob/)
 - 演示管理员账号/密码：demo_admin/123456
 - 演示普通用户账号/密码：demo_user/123456
 # 系统架构

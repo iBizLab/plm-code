@@ -80,7 +80,7 @@ export default {
   viewStyle: 'DEFAULT',
   viewType: 'DETABEXPVIEW',
   enableDP: true,
-  showCaptionBar: true,
+  showCaptionBar: false,
   modelId: 'baab43984d47a76c4ae185724b53b30b',
   modelType: 'PSAPPDEVIEW',
   name: 'insight_viewtab_exp_view',

@@ -166,6 +166,40 @@ public abstract class AbstractSpaceMemberResource {
     }
 
     /**
+    * mob_create_space_member 空间成员
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<SpaceMemberDTO>>
+    */
+    @ApiOperation(value = "mob_create_space_member", tags = {"空间成员" },  notes = "SpaceMember-mob_create_space_member ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-SpaceMember-mob_create_space_member-all') or hasPermission(this.spaceMemberDtoMapping.toDomain(#dto),'ibizplm-SpaceMember-mob_create_space_member')")
+    @PostMapping("space_members/mob_create_space_member")
+    public Mono<ResponseEntity<ResponseWrapper<SpaceMemberDTO>>>mobCreateSpaceMember
+            (@Validated @RequestBody RequestWrapper<SpaceMemberDTO> dto) {
+        ResponseWrapper<SpaceMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(mobCreateSpaceMember(item)));
+        else
+            rt.set(mobCreateSpaceMember(dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * mob_create_space_member 空间成员
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<SpaceMemberDTO>
+    */   
+    public SpaceMemberDTO mobCreateSpaceMember
+            (SpaceMemberDTO dto) {
+        SpaceMember domain = spaceMemberDtoMapping.toDomain(dto);
+        SpaceMember rt = spaceMemberService.mobCreateSpaceMember(domain);
+        return spaceMemberDtoMapping.toDto(rt);
+    }
+
+    /**
     * 保存Save 空间成员
     * 
     *
@@ -318,6 +352,43 @@ public abstract class AbstractSpaceMemberResource {
         SpaceMember domain = spaceMemberDtoMapping.toDomain(dto);
         domain.setId(id);
         SpaceMember rt = spaceMemberService.changeRole(domain);
+        return spaceMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * mob_create_space_member 空间成员
+    * 
+    *
+    * @param spaceId spaceId
+    * @param dto dto
+    * @return Mono<ResponseEntity<SpaceMemberDTO>>
+    */
+    @ApiOperation(value = "mob_create_space_member", tags = {"空间成员" },  notes = "SpaceMember-mob_create_space_member ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-SpaceMember-mob_create_space_member-all') or hasPermission('space',#spaceId,this.spaceMemberDtoMapping.toDomain(#dto),'ibizplm-SpaceMember-mob_create_space_member')")
+    @PostMapping("spaces/{spaceId}/space_members/mob_create_space_member")
+    public Mono<ResponseEntity<ResponseWrapper<SpaceMemberDTO>>>mobCreateSpaceMemberBySpaceId
+            (@PathVariable("spaceId") String spaceId, @Validated @RequestBody RequestWrapper<SpaceMemberDTO> dto) {
+        ResponseWrapper<SpaceMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(mobCreateSpaceMemberBySpaceId(spaceId, item)));
+        else
+            rt.set(mobCreateSpaceMemberBySpaceId(spaceId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * mob_create_space_member 空间成员
+    * 
+    *
+    * @param spaceId spaceId
+    * @param dto dto
+    * @return ResponseEntity<SpaceMemberDTO>
+    */   
+    public SpaceMemberDTO mobCreateSpaceMemberBySpaceId
+            (String spaceId, SpaceMemberDTO dto) {
+        SpaceMember domain = spaceMemberDtoMapping.toDomain(dto);
+        domain.setSpaceId(spaceId);
+        SpaceMember rt = spaceMemberService.mobCreateSpaceMember(domain);
         return spaceMemberDtoMapping.toDto(rt);
     }
 
@@ -481,6 +552,43 @@ public abstract class AbstractSpaceMemberResource {
     }
 
     /**
+    * mob_create_space_member 空间成员
+    * 
+    *
+    * @param userId userId
+    * @param dto dto
+    * @return Mono<ResponseEntity<SpaceMemberDTO>>
+    */
+    @ApiOperation(value = "mob_create_space_member", tags = {"空间成员" },  notes = "SpaceMember-mob_create_space_member ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-SpaceMember-mob_create_space_member-all') or hasPermission('user',#userId,this.spaceMemberDtoMapping.toDomain(#dto),'ibizplm-SpaceMember-mob_create_space_member')")
+    @PostMapping("users/{userId}/space_members/mob_create_space_member")
+    public Mono<ResponseEntity<ResponseWrapper<SpaceMemberDTO>>>mobCreateSpaceMemberByUserId
+            (@PathVariable("userId") String userId, @Validated @RequestBody RequestWrapper<SpaceMemberDTO> dto) {
+        ResponseWrapper<SpaceMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(mobCreateSpaceMemberByUserId(userId, item)));
+        else
+            rt.set(mobCreateSpaceMemberByUserId(userId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * mob_create_space_member 空间成员
+    * 
+    *
+    * @param userId userId
+    * @param dto dto
+    * @return ResponseEntity<SpaceMemberDTO>
+    */   
+    public SpaceMemberDTO mobCreateSpaceMemberByUserId
+            (String userId, SpaceMemberDTO dto) {
+        SpaceMember domain = spaceMemberDtoMapping.toDomain(dto);
+        domain.setUserId(userId);
+        SpaceMember rt = spaceMemberService.mobCreateSpaceMember(domain);
+        return spaceMemberDtoMapping.toDto(rt);
+    }
+
+    /**
     * 保存Save 空间成员
     * 
     *
@@ -628,6 +736,28 @@ public abstract class AbstractSpaceMemberResource {
     }
 
     /**
+    * 查询fetch_no_attention 空间成员
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<SpaceMemberDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_no_attention", tags = {"空间成员" },  notes = "SpaceMember-fetch_no_attention ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-SpaceMember-fetch_no_attention-all') or hasPermission(#dto,'ibizplm-SpaceMember-fetch_no_attention')")
+    @PostMapping("space_members/fetch_no_attention")
+    public Mono<ResponseEntity<List<SpaceMemberDTO>>> fetchNoAttention
+            (@Validated @RequestBody SpaceMemberFilterDTO dto) {
+        SpaceMemberSearchContext context = spaceMemberFilterDtoMapping.toDomain(dto);
+        Page<SpaceMember> domains = spaceMemberService.fetchNoAttention(context) ;
+        List<SpaceMemberDTO> list = spaceMemberDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 获取Get 空间成员
     * 
     *
@@ -746,6 +876,30 @@ public abstract class AbstractSpaceMemberResource {
     }
 
     /**
+    * 查询fetch_no_attention 空间成员
+    * 
+    *
+    * @param spaceId spaceId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<SpaceMemberDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_no_attention", tags = {"空间成员" },  notes = "SpaceMember-fetch_no_attention ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-SpaceMember-fetch_no_attention-all') or hasPermission('space',#spaceId,#dto,'ibizplm-SpaceMember-fetch_no_attention')")
+    @PostMapping("spaces/{spaceId}/space_members/fetch_no_attention")
+    public Mono<ResponseEntity<List<SpaceMemberDTO>>> fetchNoAttentionBySpaceId
+            (@PathVariable("spaceId") String spaceId, @Validated @RequestBody SpaceMemberFilterDTO dto) {
+        dto.setSpaceIdEQ(spaceId);
+        SpaceMemberSearchContext context = spaceMemberFilterDtoMapping.toDomain(dto);
+        Page<SpaceMember> domains = spaceMemberService.fetchNoAttention(context) ;
+        List<SpaceMemberDTO> list = spaceMemberDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 获取Get 空间成员
     * 
     *
@@ -855,6 +1009,30 @@ public abstract class AbstractSpaceMemberResource {
         dto.setUserIdEQ(userId);
         SpaceMemberSearchContext context = spaceMemberFilterDtoMapping.toDomain(dto);
         Page<SpaceMember> domains = spaceMemberService.fetchDefault(context) ;
+        List<SpaceMemberDTO> list = spaceMemberDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_no_attention 空间成员
+    * 
+    *
+    * @param userId userId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<SpaceMemberDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_no_attention", tags = {"空间成员" },  notes = "SpaceMember-fetch_no_attention ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-SpaceMember-fetch_no_attention-all') or hasPermission('user',#userId,#dto,'ibizplm-SpaceMember-fetch_no_attention')")
+    @PostMapping("users/{userId}/space_members/fetch_no_attention")
+    public Mono<ResponseEntity<List<SpaceMemberDTO>>> fetchNoAttentionByUserId
+            (@PathVariable("userId") String userId, @Validated @RequestBody SpaceMemberFilterDTO dto) {
+        dto.setUserIdEQ(userId);
+        SpaceMemberSearchContext context = spaceMemberFilterDtoMapping.toDomain(dto);
+        Page<SpaceMember> domains = spaceMemberService.fetchNoAttention(context) ;
         List<SpaceMemberDTO> list = spaceMemberDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

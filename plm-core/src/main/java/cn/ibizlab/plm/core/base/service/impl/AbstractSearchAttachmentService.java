@@ -179,6 +179,36 @@ public abstract class AbstractSearchAttachmentService extends ServiceImpl<Search
         return list;
    }
 	
+   public Page<SearchAttachment> fetchCurProduct(SearchAttachmentSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("CREATE_TIME,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<SearchAttachment> pages=baseMapper.searchCurProduct(context.getPages(),context,context.getSelectCond());
+        List<SearchAttachment> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<SearchAttachment> listCurProduct(SearchAttachmentSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("CREATE_TIME,DESC");
+        List<SearchAttachment> list = baseMapper.listCurProduct(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<SearchAttachment> fetchCurProject(SearchAttachmentSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("CREATE_TIME,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<SearchAttachment> pages=baseMapper.searchCurProject(context.getPages(),context,context.getSelectCond());
+        List<SearchAttachment> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<SearchAttachment> listCurProject(SearchAttachmentSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("CREATE_TIME,DESC");
+        List<SearchAttachment> list = baseMapper.listCurProject(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<SearchAttachment> fetchRelation(SearchAttachmentSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("CREATE_TIME,DESC");

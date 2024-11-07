@@ -242,6 +242,19 @@ public abstract class AbstractWorkloadService extends ServiceImpl<WorkloadMapper
         return list;
    }
 	
+   public Page<Workload> fetchMobCalendar(WorkloadSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("REGISTER_DATE,DESC;UPDATE_TIME,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchMobCalendar(context.getPages(),context,context.getSelectCond());
+        return new PageImpl<Workload>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),Workload.class), context.getPageable(), pages.getTotal());
+    }
+
+   public List<Workload> listMobCalendar(WorkloadSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("REGISTER_DATE,DESC;UPDATE_TIME,DESC");
+        return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listMobCalendar(context,context.getSelectCond()),Workload.class);
+   }
+	
    public Page<Workload> fetchMyCalendar(WorkloadSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("SHOW_IDENTIFIER,ASC");
@@ -280,6 +293,21 @@ public abstract class AbstractWorkloadService extends ServiceImpl<WorkloadMapper
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("REGISTER_DATE,DESC");
         List<Workload> list = baseMapper.listMyLog(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Workload> fetchMyMobLog(WorkloadSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("REGISTER_DATE,DESC;UPDATE_TIME,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Workload> pages=baseMapper.searchMyMobLog(context.getPages(),context,context.getSelectCond());
+        List<Workload> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Workload> listMyMobLog(WorkloadSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("REGISTER_DATE,DESC;UPDATE_TIME,DESC");
+        List<Workload> list = baseMapper.listMyMobLog(context,context.getSelectCond());
         return list;
    }
 	
@@ -421,10 +449,7 @@ public abstract class AbstractWorkloadService extends ServiceImpl<WorkloadMapper
 	}
 
 	public List<Workload> findByRelIdea(Idea idea){
-        List<Workload> list = this.baseMapper.selectList(Wrappers.<Workload>lambdaQuery()
-                        .eq(Workload::getPrincipalId, idea.getId())
-                        .eq(Workload::getOwnerType,"IDEA")
-                        .eq(Workload::getPrincipalType,"IDEA"));
+        List<Workload> list = findByPrincipalId(Arrays.asList(idea.getId()));
 		return list;
 	}
 	public boolean removeByPrincipalId(String principalId){
@@ -463,10 +488,7 @@ public abstract class AbstractWorkloadService extends ServiceImpl<WorkloadMapper
 			
 	}
 	public List<Workload> findByRelTestCase(TestCase testCase){
-        List<Workload> list = this.baseMapper.selectList(Wrappers.<Workload>lambdaQuery()
-                        .eq(Workload::getPrincipalId, testCase.getId())
-                        .eq(Workload::getOwnerType,"TEST_CASE")
-                        .eq(Workload::getPrincipalType,"TEST_CASE"));
+        List<Workload> list = findByPrincipalId(Arrays.asList(testCase.getId()));
 		return list;
 	}
 	public boolean saveByRelTestCase(TestCase testCase, List<Workload> list){
@@ -498,10 +520,7 @@ public abstract class AbstractWorkloadService extends ServiceImpl<WorkloadMapper
 			
 	}
 	public List<Workload> findByRelWorkItem(WorkItem workItem){
-        List<Workload> list = this.baseMapper.selectList(Wrappers.<Workload>lambdaQuery()
-                        .eq(Workload::getPrincipalId, workItem.getId())
-                        .eq(Workload::getOwnerType,"WORK_ITEM")
-                        .eq(Workload::getPrincipalType,"WORK_ITEM"));
+        List<Workload> list = findByPrincipalId(Arrays.asList(workItem.getId()));
 		return list;
 	}
 	public boolean saveByRelWorkItem(WorkItem workItem, List<Workload> list){

@@ -617,6 +617,7 @@ export default {
             id: '0',
           },
         ],
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_person_distributions',
           appDataEntityId: 'plmweb.test_case',

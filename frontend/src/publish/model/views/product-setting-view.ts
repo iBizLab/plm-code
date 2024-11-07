@@ -142,12 +142,16 @@ export default {
         {
           dedrbarGroupId: 'usrdrgroup0314526198',
           caption: '标签管理',
+          dataAccessAction: 'UPDATE',
+          enableMode: 'DEOPPRIV',
           appViewId: 'plmweb.product_tag_tag_grid_view',
           id: 'tag',
         },
         {
           dedrbarGroupId: 'usrdrgroup0314526198',
           caption: '需求模版',
+          dataAccessAction: 'UPDATE',
+          enableMode: 'DEOPPRIV',
           appViewId: 'plmweb.idea_template_all_grid_view',
           id: 'idea_template',
         },
@@ -161,7 +165,25 @@ export default {
         },
         {
           dedrbarGroupId: 'usrdrgroup0314174756',
+          caption: '需求配置',
+          dataAccessAction: 'UPDATE',
+          enableMode: 'DEOPPRIV',
+          appViewId: 'plmweb.product_idea_configuration_tab_exp_view',
+          id: 'idea_configuration',
+        },
+        {
+          dedrbarGroupId: 'usrdrgroup0314174756',
+          caption: '工单配置',
+          dataAccessAction: 'UPDATE',
+          enableMode: 'DEOPPRIV',
+          appViewId: 'plmweb.product_ticket_configuration_tab_exp_view',
+          id: 'ticket_configuration',
+        },
+        {
+          dedrbarGroupId: 'usrdrgroup0314174756',
           caption: '产品组件',
+          dataAccessAction: 'UPDATE',
+          enableMode: 'DEOPPRIV',
           appViewId: 'plmweb.addon_product_setting_grid_view',
           navigateParams: [
             {
@@ -177,14 +199,6 @@ export default {
             },
           ],
           id: 'addon',
-        },
-        {
-          dedrbarGroupId: 'usrdrgroup0314174756',
-          caption: '工单类型',
-          dataAccessAction: 'UPDATE',
-          enableMode: 'DEOPPRIV',
-          appViewId: 'plmweb.product_ticket_type_global_setting_view',
-          id: 'workconfig',
         },
         {
           dedrbarGroupId: 'usrdrgroup0314383150',

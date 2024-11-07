@@ -121,6 +121,15 @@ public class User extends EntityBase implements Serializable
     private Integer reportFlag;
 
     /**
+     * 用户ID
+     */
+    @DEField(name = "user_id")
+    @JSONField(name = "user_id")
+    @JsonProperty("user_id")
+    @ApiModelProperty(value = "user_id", notes = "用户ID")
+    private String userId;
+
+    /**
      * 标识
      */
     @Id
@@ -300,6 +309,15 @@ public class User extends EntityBase implements Serializable
     public User setReportFlag(Integer reportFlag) {
         this.reportFlag = reportFlag;
         this.modify("report_flag", reportFlag);
+        return this;
+    }
+
+    /**
+    * 设置 [用户ID]
+    */
+    public User setUserId(String userId) {
+        this.userId = userId;
+        this.modify("user_id", userId);
         return this;
     }
 

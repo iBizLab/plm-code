@@ -254,6 +254,16 @@ public interface TicketService extends IService<Ticket> {
     }
 
     /**
+    * mobTicketAttention
+    * 
+    * @param et
+    * @return
+    */
+    default Ticket mobTicketAttention(Ticket et) {
+        return et;
+    }
+
+    /**
     * nothing
     * 
     * @param et
@@ -328,6 +338,22 @@ public interface TicketService extends IService<Ticket> {
     * @return
     */
     List<Ticket> listDefault(TicketSearchContext context);
+
+    /**
+    * fetchAdmin
+    * 
+    * @param context
+    * @return
+    */
+    Page<Ticket> fetchAdmin(TicketSearchContext context);
+
+    /**
+    * listAdmin
+    * 
+    * @param context
+    * @return
+    */
+    List<Ticket> listAdmin(TicketSearchContext context);
 
     /**
     * fetchAdvancedSearch
@@ -458,6 +484,22 @@ public interface TicketService extends IService<Ticket> {
     List<Ticket> listCustomerRelationTicket(TicketSearchContext context);
 
     /**
+    * fetchCustomerUser
+    * 
+    * @param context
+    * @return
+    */
+    Page<Ticket> fetchCustomerUser(TicketSearchContext context);
+
+    /**
+    * listCustomerUser
+    * 
+    * @param context
+    * @return
+    */
+    List<Ticket> listCustomerUser(TicketSearchContext context);
+
+    /**
     * fetchDeleted
     * 
     * @param context
@@ -488,6 +530,22 @@ public interface TicketService extends IService<Ticket> {
     * @return
     */
     List<Ticket> listIdeaRelationTicket(TicketSearchContext context);
+
+    /**
+    * fetchMobTicketList
+    * 
+    * @param context
+    * @return
+    */
+    Page<Ticket> fetchMobTicketList(TicketSearchContext context);
+
+    /**
+    * listMobTicketList
+    * 
+    * @param context
+    * @return
+    */
+    List<Ticket> listMobTicketList(TicketSearchContext context);
 
     /**
     * fetchMyAssign
@@ -698,6 +756,22 @@ public interface TicketService extends IService<Ticket> {
     * @return
     */
     List<Ticket> listTicketStatePieChart(TicketSearchContext context);
+
+    /**
+    * fetchUser
+    * 
+    * @param context
+    * @return
+    */
+    Page<Ticket> fetchUser(TicketSearchContext context);
+
+    /**
+    * listUser
+    * 
+    * @param context
+    * @return
+    */
+    List<Ticket> listUser(TicketSearchContext context);
 
     /**
     * fetchWorkItemRelationTicket

@@ -495,6 +495,7 @@ export default {
             id: '0',
           },
         ],
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_sprint_work_item_chart',
           appDataEntityId: 'plmweb.work_item',

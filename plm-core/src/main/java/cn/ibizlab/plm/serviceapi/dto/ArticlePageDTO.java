@@ -288,11 +288,27 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
     private Date sharedTime;
 
     /**
+     * 关注数
+     */
+    @JsonProperty("attention_count")
+    @JSONField(name = "attention_count")
+    @ApiModelProperty(value = "关注数", position = 31)
+    private String attentionCount;
+
+    /**
+     * 评论数
+     */
+    @JsonProperty("comment_count")
+    @JSONField(name = "comment_count")
+    @ApiModelProperty(value = "评论数", position = 32)
+    private String commentCount;
+
+    /**
      * 选择版本标识
      */
     @JsonProperty("choose_version_id")
     @JSONField(name = "choose_version_id")
-    @ApiModelProperty(value = "选择版本标识", position = 31)
+    @ApiModelProperty(value = "选择版本标识", position = 33)
     private String chooseVersionId;
 
     /**
@@ -300,7 +316,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("choose_version_name")
     @JSONField(name = "choose_version_name")
-    @ApiModelProperty(value = "选择版本名称", position = 32)
+    @ApiModelProperty(value = "选择版本名称", position = 34)
     private String chooseVersionName;
 
     /**
@@ -308,7 +324,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("recent_create_days")
     @JSONField(name = "recent_create_days")
-    @ApiModelProperty(value = "最近创建日期", position = 33)
+    @ApiModelProperty(value = "最近创建日期", position = 35)
     private Integer recentCreateDays;
 
     /**
@@ -316,7 +332,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 34)
+    @ApiModelProperty(value = "建立人", position = 36)
     private String createMan;
 
     /**
@@ -325,7 +341,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 35)
+    @ApiModelProperty(value = "建立时间", position = 37)
     private Date createTime;
 
     /**
@@ -333,7 +349,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 36)
+    @ApiModelProperty(value = "标识", position = 38)
     private String id;
 
     /**
@@ -341,7 +357,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "主题", position = 37)
+    @ApiModelProperty(value = "主题", position = 39)
     private String name;
 
     /**
@@ -349,7 +365,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("parent_id")
     @JSONField(name = "parent_id")
-    @ApiModelProperty(value = "父页面标识", position = 38)
+    @ApiModelProperty(value = "父页面标识", position = 40)
     private String parentId;
 
     /**
@@ -357,7 +373,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("space_id")
     @JSONField(name = "space_id")
-    @ApiModelProperty(value = "空间标识", position = 39)
+    @ApiModelProperty(value = "空间标识", position = 41)
     private String spaceId;
 
     /**
@@ -365,7 +381,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("space_name")
     @JSONField(name = "space_name")
-    @ApiModelProperty(value = "空间名称", position = 40)
+    @ApiModelProperty(value = "空间名称", position = 42)
     private String spaceName;
 
     /**
@@ -373,7 +389,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 41)
+    @ApiModelProperty(value = "更新人", position = 43)
     private String updateMan;
 
     /**
@@ -382,7 +398,7 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 42)
+    @ApiModelProperty(value = "更新时间", position = 44)
     private Date updateTime;
 
 
@@ -626,6 +642,24 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
     public ArticlePageDTO setSharedTime(Date sharedTime) {
         this.sharedTime = sharedTime;
         this.modify("shared_time", sharedTime);
+        return this;
+    }
+
+    /**
+     * 设置 [关注数]
+     */
+    public ArticlePageDTO setAttentionCount(String attentionCount) {
+        this.attentionCount = attentionCount;
+        this.modify("attention_count", attentionCount);
+        return this;
+    }
+
+    /**
+     * 设置 [评论数]
+     */
+    public ArticlePageDTO setCommentCount(String commentCount) {
+        this.commentCount = commentCount;
+        this.modify("comment_count", commentCount);
         return this;
     }
 

@@ -214,6 +214,25 @@ public interface ProjectMapper extends BaseMapper<Project> {
     List<Project> listMain(@Param("ctx") ProjectSearchContext context, @Param("ew") Wrapper<Project> wrapper);
 
     /**
+     * 数据集合mob_main分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Project> searchMobMain(IPage<Project> page, @Param("ctx") ProjectSearchContext context, @Param("ew") Wrapper<Project> wrapper);
+    
+    /**
+     * 数据集合mob_main查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Project> listMobMain(@Param("ctx") ProjectSearchContext context, @Param("ew") Wrapper<Project> wrapper);
+
+    /**
      * 数据集合normal分页查询
      * 
      * @param page

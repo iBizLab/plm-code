@@ -619,6 +619,40 @@ public abstract class AbstractWorkItemResource {
     }
 
     /**
+    * fill_not_completed_num 工作项
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<WorkItemDTO>>
+    */
+    @ApiOperation(value = "fill_not_completed_num", tags = {"工作项" },  notes = "WorkItem-fill_not_completed_num ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-fill_not_completed_num-all') or hasPermission(this.workItemDtoMapping.toDomain(#dto),'ibizplm-WorkItem-fill_not_completed_num')")
+    @PostMapping("work_items/fill_not_completed_num")
+    public Mono<ResponseEntity<ResponseWrapper<WorkItemDTO>>>fillNotCompletedNum
+            (@Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
+        ResponseWrapper<WorkItemDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(fillNotCompletedNum(item)));
+        else
+            rt.set(fillNotCompletedNum(dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * fill_not_completed_num 工作项
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<WorkItemDTO>
+    */   
+    public WorkItemDTO fillNotCompletedNum
+            (WorkItemDTO dto) {
+        WorkItem domain = workItemDtoMapping.toDomain(dto);
+        WorkItem rt = workItemService.fillNotCompletedNum(domain);
+        return workItemDtoMapping.toDto(rt);
+    }
+
+    /**
     * fill_type_of_state 工作项
     * 
     *
@@ -1959,6 +1993,43 @@ public abstract class AbstractWorkItemResource {
         WorkItem domain = workItemDtoMapping.toDomain(dto);
         domain.setId(id);
         WorkItem rt = workItemService.delete(domain);
+        return workItemDtoMapping.toDto(rt);
+    }
+
+    /**
+    * fill_not_completed_num 工作项
+    * 
+    *
+    * @param projectId projectId
+    * @param dto dto
+    * @return Mono<ResponseEntity<WorkItemDTO>>
+    */
+    @ApiOperation(value = "fill_not_completed_num", tags = {"工作项" },  notes = "WorkItem-fill_not_completed_num ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-fill_not_completed_num-all') or hasPermission('project',#projectId,this.workItemDtoMapping.toDomain(#dto),'ibizplm-WorkItem-fill_not_completed_num')")
+    @PostMapping("projects/{projectId}/work_items/fill_not_completed_num")
+    public Mono<ResponseEntity<ResponseWrapper<WorkItemDTO>>>fillNotCompletedNumByProjectId
+            (@PathVariable("projectId") String projectId, @Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
+        ResponseWrapper<WorkItemDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(fillNotCompletedNumByProjectId(projectId, item)));
+        else
+            rt.set(fillNotCompletedNumByProjectId(projectId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * fill_not_completed_num 工作项
+    * 
+    *
+    * @param projectId projectId
+    * @param dto dto
+    * @return ResponseEntity<WorkItemDTO>
+    */   
+    public WorkItemDTO fillNotCompletedNumByProjectId
+            (String projectId, WorkItemDTO dto) {
+        WorkItem domain = workItemDtoMapping.toDomain(dto);
+        domain.setProjectId(projectId);
+        WorkItem rt = workItemService.fillNotCompletedNum(domain);
         return workItemDtoMapping.toDto(rt);
     }
 
@@ -3352,6 +3423,43 @@ public abstract class AbstractWorkItemResource {
         WorkItem domain = workItemDtoMapping.toDomain(dto);
         domain.setId(id);
         WorkItem rt = workItemService.delete(domain);
+        return workItemDtoMapping.toDto(rt);
+    }
+
+    /**
+    * fill_not_completed_num 工作项
+    * 
+    *
+    * @param releaseId releaseId
+    * @param dto dto
+    * @return Mono<ResponseEntity<WorkItemDTO>>
+    */
+    @ApiOperation(value = "fill_not_completed_num", tags = {"工作项" },  notes = "WorkItem-fill_not_completed_num ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-fill_not_completed_num-all') or hasPermission('release',#releaseId,this.workItemDtoMapping.toDomain(#dto),'ibizplm-WorkItem-fill_not_completed_num')")
+    @PostMapping("releases/{releaseId}/work_items/fill_not_completed_num")
+    public Mono<ResponseEntity<ResponseWrapper<WorkItemDTO>>>fillNotCompletedNumByReleaseId
+            (@PathVariable("releaseId") String releaseId, @Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
+        ResponseWrapper<WorkItemDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(fillNotCompletedNumByReleaseId(releaseId, item)));
+        else
+            rt.set(fillNotCompletedNumByReleaseId(releaseId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * fill_not_completed_num 工作项
+    * 
+    *
+    * @param releaseId releaseId
+    * @param dto dto
+    * @return ResponseEntity<WorkItemDTO>
+    */   
+    public WorkItemDTO fillNotCompletedNumByReleaseId
+            (String releaseId, WorkItemDTO dto) {
+        WorkItem domain = workItemDtoMapping.toDomain(dto);
+        domain.setReleaseId(releaseId);
+        WorkItem rt = workItemService.fillNotCompletedNum(domain);
         return workItemDtoMapping.toDto(rt);
     }
 
@@ -4773,6 +4881,45 @@ public abstract class AbstractWorkItemResource {
         WorkItem domain = workItemDtoMapping.toDomain(dto);
         domain.setId(id);
         WorkItem rt = workItemService.delete(domain);
+        return workItemDtoMapping.toDto(rt);
+    }
+
+    /**
+    * fill_not_completed_num 工作项
+    * 
+    *
+    * @param projectId projectId
+    * @param releaseId releaseId
+    * @param dto dto
+    * @return Mono<ResponseEntity<WorkItemDTO>>
+    */
+    @ApiOperation(value = "fill_not_completed_num", tags = {"工作项" },  notes = "WorkItem-fill_not_completed_num ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-fill_not_completed_num-all') or hasPermission('project',#projectId,this.workItemDtoMapping.toDomain(#dto),'ibizplm-WorkItem-fill_not_completed_num')")
+    @PostMapping("projects/{projectId}/releases/{releaseId}/work_items/fill_not_completed_num")
+    public Mono<ResponseEntity<ResponseWrapper<WorkItemDTO>>>fillNotCompletedNumByProjectIdAndReleaseId
+            (@PathVariable("projectId") String projectId, @PathVariable("releaseId") String releaseId, @Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
+        ResponseWrapper<WorkItemDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(fillNotCompletedNumByProjectIdAndReleaseId(projectId, releaseId, item)));
+        else
+            rt.set(fillNotCompletedNumByProjectIdAndReleaseId(projectId, releaseId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * fill_not_completed_num 工作项
+    * 
+    *
+    * @param projectId projectId
+    * @param releaseId releaseId
+    * @param dto dto
+    * @return ResponseEntity<WorkItemDTO>
+    */   
+    public WorkItemDTO fillNotCompletedNumByProjectIdAndReleaseId
+            (String projectId, String releaseId, WorkItemDTO dto) {
+        WorkItem domain = workItemDtoMapping.toDomain(dto);
+        domain.setReleaseId(releaseId);
+        WorkItem rt = workItemService.fillNotCompletedNum(domain);
         return workItemDtoMapping.toDto(rt);
     }
 

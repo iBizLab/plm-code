@@ -43,6 +43,25 @@ public interface MemberMapper extends BaseMapper<Member> {
     List<Member> listDefault(@Param("ctx") MemberSearchContext context, @Param("ew") Wrapper<Member> wrapper);
 
     /**
+     * 数据集合no_attention分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Member> searchNoAttention(IPage<Member> page, @Param("ctx") MemberSearchContext context, @Param("ew") Wrapper<Member> wrapper);
+    
+    /**
+     * 数据集合no_attention查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Member> listNoAttention(@Param("ctx") MemberSearchContext context, @Param("ew") Wrapper<Member> wrapper);
+
+    /**
      * 数据集合shared_page_member分页查询
      * 
      * @param page

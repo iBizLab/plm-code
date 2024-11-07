@@ -215,6 +215,7 @@ export default {
       sortMode: 'REMOTE',
       enableCustomized: true,
       singleSelect: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_recent_page',
         appDataEntityId: 'plmweb.recent',

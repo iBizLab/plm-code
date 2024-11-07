@@ -385,6 +385,7 @@ export default {
         pagingSize: 20,
         sortMode: 'REMOTE',
         singleSelect: true,
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_test_case_dimension',
           appDataEntityId: 'plmweb.workload',
@@ -628,7 +629,7 @@ export default {
           {
             actionLevel: 100,
             noPrivDisplayMode: 2,
-            uiactionId: 'exportexcel',
+            uiactionId: 'gridview_exportaction',
             valid: true,
             capLanguageRes: {
               lanResTag: 'TBB.TEXT.*.EXPORT',

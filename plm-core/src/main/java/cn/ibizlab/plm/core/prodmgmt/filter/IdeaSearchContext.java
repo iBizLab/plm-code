@@ -103,6 +103,24 @@ public class IdeaSearchContext extends QueryWrapperContext<Idea> {
     private String suiteEQ;
 
     /**
+     * 计划开始时间GTANDEQ
+     */
+    @JsonProperty("n_plan_at_from_gtandeq")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_plan_at_from_gtandeq" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("计划开始时间GTANDEQ")
+    private Date planAtFromGTANDEQ;
+
+    /**
+     * 计划结束时间LT
+     */
+    @JsonProperty("n_plan_at_to_lt")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "n_plan_at_to_lt" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("计划结束时间LT")
+    private Date planAtToLT;
+
+    /**
      * 计划时间周期单位EQ
      */
     @JsonProperty("n_plan_at_granularity_eq")

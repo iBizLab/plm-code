@@ -313,6 +313,7 @@ export default {
       enableCustomized: true,
       enablePagingBar: true,
       singleSelect: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_default',
         appDataEntityId: 'plmweb.sprint',

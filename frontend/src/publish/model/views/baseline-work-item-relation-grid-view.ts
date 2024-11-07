@@ -163,6 +163,15 @@ export default {
   ],
   appViewRefs: [
     {
+      realTitle: '基线工作项编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.BASELINE_WORK_ITEM.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.baseline_work_item_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
+    },
+    {
       openMode: 'POPUPMODAL',
       navigateContexts: [
         {
@@ -214,15 +223,6 @@ export default {
       refAppViewId: 'plmweb.work_item_dyna_main_view',
       name: 'EDITDATA',
       id: 'editdata',
-    },
-    {
-      realTitle: '基线工作项编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.BASELINE_WORK_ITEM.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.baseline_work_item_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
     },
   ],
   controls: [
@@ -495,6 +495,7 @@ export default {
       sortMode: 'REMOTE',
       enablePagingBar: true,
       noSort: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_fill_version_data',
         appDataEntityId: 'plmweb.baseline_work_item',
@@ -556,6 +557,9 @@ export default {
       logicName: '主表格',
       appDataEntityId: 'plmweb.baseline_work_item',
       controlParam: {
+        ctrlParams: {
+          LOCATERECORDKEY: 'target_id',
+        },
         id: 'grid',
       },
       modelId: '9c5f445e03fdb3dd1b2430e8ccb2add1',
@@ -617,7 +621,8 @@ export default {
               itemName: 'deuiaction1',
               logicTag: 'tabtoolbar',
               logicType: 'SCRIPT',
-              scriptCode: "context.baseline_status !== '2'",
+              scriptCode:
+                "context.baseline_status !== '2'  && context.srfreadonly != true",
               triggerType: 'ITEMVISIBLE',
               id: 'logic',
             },

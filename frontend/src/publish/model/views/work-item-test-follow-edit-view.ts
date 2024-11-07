@@ -534,7 +534,7 @@ export default {
           {
             actionLevel: 100,
             noPrivDisplayMode: 2,
-            uiactionId: 'save',
+            uiactionId: 'editview_saveaction',
             valid: true,
             capLanguageRes: {
               lanResTag: 'TBB.TEXT.*.SAVE',
@@ -843,6 +843,7 @@ export default {
                         'SRFNAVPARAM.n_department_id_eq': '%srforgsectorid%',
                         AC: 'TRUE',
                         DEFAULTSELCURUSER: 'true',
+                        'SRFNAVPARAM.n_status_eq': '1',
                         TRIGGER: 'TRUE',
                         SELFFILLMAP: '{"user_id":"user_id","user_name":"name"}',
                         URL: 'projects/${context.project}/project_members/fetch_default',
@@ -865,6 +866,12 @@ export default {
                           key: 'n_department_id_eq',
                           value: 'srforgsectorid',
                           id: 'n_department_id_eq',
+                        },
+                        {
+                          key: 'n_status_eq',
+                          value: '1',
+                          rawValue: true,
+                          id: 'n_status_eq',
                         },
                       ],
                       id: 'attentions',

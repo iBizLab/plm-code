@@ -63,7 +63,7 @@ export default {
             {
               actionLevel: 100,
               noPrivDisplayMode: 2,
-              uiactionId: 'removeobject',
+              uiactionId: 'data_removeobject',
               valid: true,
               caption: '删除',
               itemType: 'DEUIACTION',
@@ -636,6 +636,7 @@ export default {
                         enableRowEdit: true,
                         enableRowNew: true,
                         singleSelect: true,
+                        navViewPos: 'NONE',
                         createControlAction: {
                           appDEMethodId: 'create',
                           appDataEntityId: 'plmweb.attachment',

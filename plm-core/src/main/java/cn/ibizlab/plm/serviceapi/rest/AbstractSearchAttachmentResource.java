@@ -53,6 +53,50 @@ public abstract class AbstractSearchAttachmentResource {
 
 
     /**
+    * 查询fetch_cur_product 附件搜索
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<SearchAttachmentDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_cur_product", tags = {"附件搜索" },  notes = "SearchAttachment-fetch_cur_product ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-SearchAttachment-fetch_cur_product-all') or hasPermission(#dto,'ibizplm-SearchAttachment-fetch_cur_product')")
+    @PostMapping("search_attachments/fetch_cur_product")
+    public Mono<ResponseEntity<List<SearchAttachmentDTO>>> fetchCurProduct
+            (@Validated @RequestBody SearchAttachmentFilterDTO dto) {
+        SearchAttachmentSearchContext context = searchAttachmentFilterDtoMapping.toDomain(dto);
+        Page<SearchAttachment> domains = searchAttachmentService.fetchCurProduct(context) ;
+        List<SearchAttachmentDTO> list = searchAttachmentDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_cur_project 附件搜索
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<SearchAttachmentDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_cur_project", tags = {"附件搜索" },  notes = "SearchAttachment-fetch_cur_project ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-SearchAttachment-fetch_cur_project-all') or hasPermission(#dto,'ibizplm-SearchAttachment-fetch_cur_project')")
+    @PostMapping("search_attachments/fetch_cur_project")
+    public Mono<ResponseEntity<List<SearchAttachmentDTO>>> fetchCurProject
+            (@Validated @RequestBody SearchAttachmentFilterDTO dto) {
+        SearchAttachmentSearchContext context = searchAttachmentFilterDtoMapping.toDomain(dto);
+        Page<SearchAttachment> domains = searchAttachmentService.fetchCurProject(context) ;
+        List<SearchAttachmentDTO> list = searchAttachmentDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 查询fetch_default 附件搜索
     * 
     *

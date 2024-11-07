@@ -455,6 +455,27 @@ export default {
       id: 'get_draft',
     },
     {
+      codeName: 'mob_create_space_member',
+      methodType: 'DEACTION',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'space_member_dto',
+        type: 'DTO',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'space_member_dto',
+        type: 'DTO',
+        id: '返回对象',
+      },
+      requestMethod: 'POST',
+      requestParamType: 'ENTITY',
+      requestPath: '/mob_create_space_member',
+      actionMode: 'GETDRAFT',
+      actionType: 'REMOTE',
+      dataSetType: 'REMOTE',
+      id: 'mob_create_space_member',
+    },
+    {
       codeName: 'nothing',
       methodType: 'DEACTION',
       appDEMethodInput: {
@@ -603,6 +624,28 @@ export default {
       dataSetTag: 'Default',
       dataSetType: 'REMOTE',
       id: 'fetch_default',
+    },
+    {
+      codeName: 'fetch_no_attention',
+      methodType: 'FETCH',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'space_member_filter_dto',
+        type: 'DTO',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'space_member_dto',
+        type: 'PAGE',
+        id: '返回对象',
+      },
+      requestMethod: 'POST',
+      requestParamType: 'ENTITY',
+      requestPath: '/fetch_no_attention',
+      actionType: 'REMOTE',
+      dataSetName: 'no_attention',
+      dataSetTag: 'no_attention',
+      dataSetType: 'REMOTE',
+      id: 'fetch_no_attention',
     },
     {
       codeName: 'FilterCreate',

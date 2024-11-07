@@ -156,6 +156,16 @@ public interface DeliverableService extends IService<Deliverable> {
     boolean save(List<Deliverable> list);
 
     /**
+    * getDelivery
+    * 
+    * @param key
+    * @return
+    */
+    default Deliverable getDelivery(String key) {
+        return getSelf().getDelivery(new Deliverable().setId(key));
+    }
+
+    /**
     * nothing
     * 
     * @param et
@@ -245,6 +255,16 @@ public interface DeliverableService extends IService<Deliverable> {
     * @return
     */
     boolean saveByWorkItem(WorkItem workItem, List<Deliverable> list);
+
+    /**
+    * getDelivery
+    * 
+    * @param et
+    * @return
+    */
+    default Deliverable getDelivery(Deliverable et) {
+        return et;
+    }
 
     /**
     * fetchView

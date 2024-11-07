@@ -43,6 +43,44 @@ public interface SearchAttachmentMapper extends BaseMapper<SearchAttachment> {
     List<SearchAttachment> listDefault(@Param("ctx") SearchAttachmentSearchContext context, @Param("ew") Wrapper<SearchAttachment> wrapper);
 
     /**
+     * 数据集合cur_product分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<SearchAttachment> searchCurProduct(IPage<SearchAttachment> page, @Param("ctx") SearchAttachmentSearchContext context, @Param("ew") Wrapper<SearchAttachment> wrapper);
+    
+    /**
+     * 数据集合cur_product查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<SearchAttachment> listCurProduct(@Param("ctx") SearchAttachmentSearchContext context, @Param("ew") Wrapper<SearchAttachment> wrapper);
+
+    /**
+     * 数据集合cur_project分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<SearchAttachment> searchCurProject(IPage<SearchAttachment> page, @Param("ctx") SearchAttachmentSearchContext context, @Param("ew") Wrapper<SearchAttachment> wrapper);
+    
+    /**
+     * 数据集合cur_project查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<SearchAttachment> listCurProject(@Param("ctx") SearchAttachmentSearchContext context, @Param("ew") Wrapper<SearchAttachment> wrapper);
+
+    /**
      * 数据集合relation分页查询
      * 
      * @param page

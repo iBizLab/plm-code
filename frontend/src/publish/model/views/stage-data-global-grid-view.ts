@@ -248,6 +248,7 @@ export default {
       enableRowEditOrder: true,
       noSort: true,
       singleSelect: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_system',
         appDataEntityId: 'plmweb.stage',
@@ -301,7 +302,7 @@ export default {
         {
           actionLevel: 100,
           noPrivDisplayMode: 2,
-          uiactionId: 'new',
+          uiactionId: 'gridview_newaction',
           valid: true,
           capLanguageRes: {
             lanResTag: 'TBB.TEXT.*.NEW',

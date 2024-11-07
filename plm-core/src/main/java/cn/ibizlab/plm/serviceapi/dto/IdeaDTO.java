@@ -345,11 +345,27 @@ public class IdeaDTO extends DTOBase implements Serializable {
     private BigDecimal actualWorkload;
 
     /**
+     * 关注数
+     */
+    @JsonProperty("attention_count")
+    @JSONField(name = "attention_count")
+    @ApiModelProperty(value = "关注数", position = 38)
+    private String attentionCount;
+
+    /**
+     * 评论数
+     */
+    @JsonProperty("comment_count")
+    @JSONField(name = "comment_count")
+    @ApiModelProperty(value = "评论数", position = 39)
+    private String commentCount;
+
+    /**
      * 当前版本名称
      */
     @JsonProperty("cur_version_name")
     @JSONField(name = "cur_version_name")
-    @ApiModelProperty(value = "当前版本名称", position = 38)
+    @ApiModelProperty(value = "当前版本名称", position = 40)
     private String curVersionName;
 
     /**
@@ -357,7 +373,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("choose_version_id")
     @JSONField(name = "choose_version_id")
-    @ApiModelProperty(value = "选择版本标识", position = 39)
+    @ApiModelProperty(value = "选择版本标识", position = 41)
     private String chooseVersionId;
 
     /**
@@ -365,7 +381,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("choose_version_name")
     @JSONField(name = "choose_version_name")
-    @ApiModelProperty(value = "选择版本名称", position = 40)
+    @ApiModelProperty(value = "选择版本名称", position = 42)
     private String chooseVersionName;
 
     /**
@@ -373,7 +389,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("attentions_imp")
     @JSONField(name = "attentions_imp")
-    @ApiModelProperty(value = "关注人", position = 41)
+    @ApiModelProperty(value = "关注人", position = 43)
     private String attentionsImp;
 
     /**
@@ -381,7 +397,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("recent_create_days")
     @JSONField(name = "recent_create_days")
-    @ApiModelProperty(value = "最近创建日期", position = 42)
+    @ApiModelProperty(value = "最近创建日期", position = 44)
     private Integer recentCreateDays;
 
     /**
@@ -389,7 +405,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("sequence")
     @JSONField(name = "sequence")
-    @ApiModelProperty(value = "序号", position = 43)
+    @ApiModelProperty(value = "序号", position = 45)
     private BigDecimal sequence;
 
     /**
@@ -397,7 +413,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("category_id")
     @JSONField(name = "category_id")
-    @ApiModelProperty(value = "类别标识", position = 44)
+    @ApiModelProperty(value = "类别标识", position = 46)
     private String categoryId;
 
     /**
@@ -405,7 +421,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("category_name")
     @JSONField(name = "category_name")
-    @ApiModelProperty(value = "名称", position = 45)
+    @ApiModelProperty(value = "名称", position = 47)
     private String categoryName;
 
     /**
@@ -413,7 +429,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 46)
+    @ApiModelProperty(value = "建立人", position = 48)
     private String createMan;
 
     /**
@@ -422,7 +438,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 47)
+    @ApiModelProperty(value = "建立时间", position = 49)
     private Date createTime;
 
     /**
@@ -430,7 +446,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 48)
+    @ApiModelProperty(value = "标识", position = 50)
     private String id;
 
     /**
@@ -438,7 +454,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 49)
+    @ApiModelProperty(value = "名称", position = 51)
     private String name;
 
     /**
@@ -446,7 +462,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("product_id")
     @JSONField(name = "product_id")
-    @ApiModelProperty(value = "产品", position = 50)
+    @ApiModelProperty(value = "产品", position = 52)
     private String productId;
 
     /**
@@ -454,7 +470,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("product_name")
     @JSONField(name = "product_name")
-    @ApiModelProperty(value = "所属产品", position = 51)
+    @ApiModelProperty(value = "所属产品", position = 53)
     private String productName;
 
     /**
@@ -462,7 +478,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 52)
+    @ApiModelProperty(value = "更新人", position = 54)
     private String updateMan;
 
     /**
@@ -471,7 +487,7 @@ public class IdeaDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 53)
+    @ApiModelProperty(value = "更新时间", position = 55)
     private Date updateTime;
 
 
@@ -805,6 +821,24 @@ public class IdeaDTO extends DTOBase implements Serializable {
     public IdeaDTO setActualWorkload(BigDecimal actualWorkload) {
         this.actualWorkload = actualWorkload;
         this.modify("actual_workload", actualWorkload);
+        return this;
+    }
+
+    /**
+     * 设置 [关注数]
+     */
+    public IdeaDTO setAttentionCount(String attentionCount) {
+        this.attentionCount = attentionCount;
+        this.modify("attention_count", attentionCount);
+        return this;
+    }
+
+    /**
+     * 设置 [评论数]
+     */
+    public IdeaDTO setCommentCount(String commentCount) {
+        this.commentCount = commentCount;
+        this.modify("comment_count", commentCount);
         return this;
     }
 

@@ -298,6 +298,7 @@ export default {
       enablePagingBar: true,
       forceFit: true,
       singleSelect: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_my_assign',
         appDataEntityId: 'plmweb.idea',
@@ -399,6 +400,7 @@ export default {
               appDEFieldId: 'state',
               editor: {
                 singleSelect: true,
+                appCodeListId: 'plmweb.prodmgmt__idea_state',
                 editorType: 'DROPDOWNLIST',
                 placeHolder: '选择状态',
                 valueType: 'SIMPLE',

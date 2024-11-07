@@ -54,11 +54,11 @@ public class DiscussPostSearchContext extends QueryWrapperContext<DiscussPost> {
     private String idEQ;
 
     /**
-     * 名称LIKE
+     * 讨论名称LIKE
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty("名称LIKE")
+    @ApiModelProperty("讨论名称LIKE")
     private String nameLIKE;
 
     /**

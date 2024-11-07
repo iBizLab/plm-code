@@ -395,6 +395,7 @@ export default {
         sortMode: 'REMOTE',
         enableGroup: true,
         singleSelect: true,
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_idea_management_dimension',
           appDataEntityId: 'plmweb.workload',
@@ -793,6 +794,7 @@ export default {
               valueItemName: 'create_man',
               editorParams: {
                 URL: '/users/fetch_default',
+                'SRFNAVPARAM.n_status_eq': '1',
                 ISSHOWTAB: 'false',
                 USERMAP: '{"id":"id","name":"display_name"}',
                 AC: 'TRUE',
@@ -805,6 +807,14 @@ export default {
               sysPFPluginId: 'person_select',
               valueType: 'SIMPLE',
               editable: true,
+              navigateParams: [
+                {
+                  key: 'n_status_eq',
+                  value: '1',
+                  rawValue: true,
+                  id: 'n_status_eq',
+                },
+              ],
               id: 'idea_create_man',
             },
             allowEmpty: true,
@@ -834,6 +844,7 @@ export default {
               valueItemName: 'assignee_id',
               editorParams: {
                 URL: '/users/fetch_default',
+                'SRFNAVPARAM.n_status_eq': '1',
                 ISSHOWTAB: 'false',
                 USERMAP: '{"id":"id","name":"display_name"}',
                 AC: 'TRUE',
@@ -846,6 +857,14 @@ export default {
               sysPFPluginId: 'person_select',
               valueType: 'SIMPLE',
               editable: true,
+              navigateParams: [
+                {
+                  key: 'n_status_eq',
+                  value: '1',
+                  rawValue: true,
+                  id: 'n_status_eq',
+                },
+              ],
               id: 'idea_assignee_id',
             },
             allowEmpty: true,
@@ -889,7 +908,7 @@ export default {
           {
             actionLevel: 100,
             noPrivDisplayMode: 2,
-            uiactionId: 'exportexcel',
+            uiactionId: 'gridview_exportaction',
             valid: true,
             capLanguageRes: {
               lanResTag: 'TBB.TEXT.*.EXPORT',

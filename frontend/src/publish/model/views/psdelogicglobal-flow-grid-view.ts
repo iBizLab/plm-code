@@ -213,7 +213,7 @@ export default {
                 },
                 caption: '删除',
                 detailType: 'DEUIACTION',
-                uiactionId: 'remove',
+                uiactionId: 'gridview_removeaction',
                 tooltip: '删除',
                 tooltipLanguageRes: {
                   lanResTag: 'TBB.TOOLTIP.*.REMOVE',
@@ -434,6 +434,7 @@ export default {
       enablePagingBar: true,
       enableRowEdit: true,
       singleSelect: true,
+      navViewPos: 'NONE',
       createControlAction: {
         appDEMethodId: 'create',
         appDataEntityId: 'plmweb.psdelogic',
@@ -475,7 +476,7 @@ export default {
           eventNames: 'onSaveSuccess',
           logicTag: 'grid',
           logicType: 'APPDEUIACTION',
-          appDEUIActionId: 'refresh',
+          appDEUIActionId: 'gridview_refreshaction',
           triggerType: 'CTRLEVENT',
           id: 'refresh',
         },

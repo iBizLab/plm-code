@@ -177,6 +177,38 @@ public interface SearchAttachmentService extends IService<SearchAttachment> {
     List<SearchAttachment> listDefault(SearchAttachmentSearchContext context);
 
     /**
+    * fetchCurProduct
+    * 
+    * @param context
+    * @return
+    */
+    Page<SearchAttachment> fetchCurProduct(SearchAttachmentSearchContext context);
+
+    /**
+    * listCurProduct
+    * 
+    * @param context
+    * @return
+    */
+    List<SearchAttachment> listCurProduct(SearchAttachmentSearchContext context);
+
+    /**
+    * fetchCurProject
+    * 
+    * @param context
+    * @return
+    */
+    Page<SearchAttachment> fetchCurProject(SearchAttachmentSearchContext context);
+
+    /**
+    * listCurProject
+    * 
+    * @param context
+    * @return
+    */
+    List<SearchAttachment> listCurProject(SearchAttachmentSearchContext context);
+
+    /**
     * fetchRelation
     * 
     * @param context

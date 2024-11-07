@@ -43,6 +43,25 @@ public interface IdeaMapper extends BaseMapper<Idea> {
     List<Idea> listDefault(@Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
 
     /**
+     * 数据集合admin分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Idea> searchAdmin(IPage<Idea> page, @Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
+    
+    /**
+     * 数据集合admin查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Idea> listAdmin(@Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
+
+    /**
      * 数据集合advanced_search分页查询
      * 
      * @param page
@@ -176,6 +195,25 @@ public interface IdeaMapper extends BaseMapper<Idea> {
     List<Idea> listCommon(@Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
 
     /**
+     * 数据集合customer_user分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Idea> searchCustomerUser(IPage<Idea> page, @Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
+    
+    /**
+     * 数据集合customer_user查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Idea> listCustomerUser(@Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
+
+    /**
      * 数据集合deleted分页查询
      * 
      * @param page
@@ -193,6 +231,25 @@ public interface IdeaMapper extends BaseMapper<Idea> {
      * @return
      */
     List<Idea> listDeleted(@Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
+
+    /**
+     * 数据集合mob_not_archived分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Idea> searchMobNotArchived(IPage<Idea> page, @Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
+    
+    /**
+     * 数据集合mob_not_archived查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Idea> listMobNotArchived(@Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
 
     /**
      * 数据集合move_idea分页查询
@@ -421,6 +478,25 @@ public interface IdeaMapper extends BaseMapper<Idea> {
      * @return
      */
     List<Idea> listRecentIdea(@Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
+
+    /**
+     * 数据集合user分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Idea> searchUser(IPage<Idea> page, @Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
+    
+    /**
+     * 数据集合user查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Idea> listUser(@Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
 
     /**
     * 根据categoryId查询

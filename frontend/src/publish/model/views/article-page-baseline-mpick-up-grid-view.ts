@@ -260,6 +260,7 @@ export default {
       sortMode: 'REMOTE',
       enableCustomized: true,
       enablePagingBar: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_baseline_plan_page',
         appDataEntityId: 'plmweb.article_page',

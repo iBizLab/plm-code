@@ -322,6 +322,44 @@ public abstract class AbstractDiscussTopicResource {
     }
 
     /**
+    * mob_change_admin_role 话题
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<DiscussTopicDTO>>
+    */
+    @ApiOperation(value = "mob_change_admin_role", tags = {"话题" },  notes = "DiscussTopic-mob_change_admin_role ")
+    @PostMapping("discuss_topics/{id}/mob_change_admin_role")
+    public Mono<ResponseEntity<ResponseWrapper<DiscussTopicDTO>>>mobChangeAdminRoleById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<DiscussTopicDTO> dto) {
+        ResponseWrapper<DiscussTopicDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(mobChangeAdminRoleById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(mobChangeAdminRoleById(id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * mob_change_admin_role 话题
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<DiscussTopicDTO>
+    */   
+    public DiscussTopicDTO mobChangeAdminRoleById
+            (String id, DiscussTopicDTO dto) {
+        DiscussTopic domain = discussTopicDtoMapping.toDomain(dto);
+        domain.setId(id);
+        DiscussTopic rt = discussTopicService.mobChangeAdminRole(domain);
+        return discussTopicDtoMapping.toDto(rt);
+    }
+
+    /**
     * move_discuss_topic 话题
     * 
     *

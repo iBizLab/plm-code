@@ -70,20 +70,20 @@ export default {
   ],
   appViewRefs: [
     {
-      openMode: 'POPUPMODAL',
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '新建用例',
-      refAppViewId: 'plmweb.test_case_quick_create_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       openMode: 'INDEXVIEWTAB_POPUPMODAL',
       realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
       realTitle: '用例',
       refAppViewId: 'plmweb.test_case_main_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      openMode: 'POPUPMODAL',
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '新建用例',
+      refAppViewId: 'plmweb.test_case_quick_create_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -159,7 +159,7 @@ export default {
             {
               actionLevel: 100,
               noPrivDisplayMode: 2,
-              uiactionId: 'exportexcel',
+              uiactionId: 'gridview_exportaction',
               valid: true,
               capLanguageRes: {
                 lanResTag: 'TBB.TEXT.*.EXPORT',
@@ -709,6 +709,7 @@ export default {
             editorParams: {
               'SRFNAVPARAM.n_department_id_eq': '%srforgsectorid%',
               AC: 'TRUE',
+              'SRFNAVPARAM.n_status_eq': '1',
               TRIGGER: 'TRUE',
               URL: 'libraries/${context.library}/library_members/fetch_default',
               PICKUPVIEW: 'FALSE',
@@ -728,6 +729,12 @@ export default {
                     value: 'srforgsectorid',
                     id: 'n_department_id_eq',
                   },
+                  {
+                    key: 'n_status_eq',
+                    value: '1',
+                    rawValue: true,
+                    id: 'n_status_eq',
+                  },
                 ],
                 id: 'maintenance_id',
               },
@@ -740,6 +747,12 @@ export default {
                 key: 'n_department_id_eq',
                 value: 'srforgsectorid',
                 id: 'n_department_id_eq',
+              },
+              {
+                key: 'n_status_eq',
+                value: '1',
+                rawValue: true,
+                id: 'n_status_eq',
               },
             ],
             id: 'maintenance_name',
@@ -798,6 +811,7 @@ export default {
             editorParams: {
               'SRFNAVPARAM.n_department_id_eq': '%srforgsectorid%',
               AC: 'TRUE',
+              'SRFNAVPARAM.n_status_eq': '1',
               TRIGGER: 'TRUE',
               URL: 'libraries/${context.library}/library_members/fetch_default',
               PICKUPVIEW: 'FALSE',
@@ -817,6 +831,12 @@ export default {
                 key: 'n_department_id_eq',
                 value: 'srforgsectorid',
                 id: 'n_department_id_eq',
+              },
+              {
+                key: 'n_status_eq',
+                value: '1',
+                rawValue: true,
+                id: 'n_status_eq',
               },
             ],
             id: 'maintenance_id',
@@ -846,6 +866,7 @@ export default {
       enablePagingBar: true,
       enableRowEdit: true,
       enableRowNew: true,
+      navViewPos: 'NONE',
       createControlAction: {
         appDEMethodId: 'create',
         appDataEntityId: 'plmweb.test_case',
@@ -1088,6 +1109,11 @@ export default {
       logicName: '主表格',
       appDataEntityId: 'plmweb.test_case',
       controlParam: {
+        ctrlParams: {
+          ENABLEJSONSCHEMA: 'true',
+          JSONSCHEMAPARAMS: '{"test_library_id":"%library%"}',
+          STORAGE: 'true',
+        },
         id: 'grid',
       },
       sysPFPluginId: 'number_grid',
@@ -1152,6 +1178,7 @@ export default {
             editorParams: {
               'SRFNAVPARAM.n_department_id_eq': '%srforgsectorid%',
               AC: 'TRUE',
+              'SRFNAVPARAM.n_status_eq': '1',
               TRIGGER: 'TRUE',
               URL: 'libraries/${context.library}/library_members/fetch_default',
               PICKUPVIEW: 'FALSE',
@@ -1171,6 +1198,12 @@ export default {
                 key: 'n_department_id_eq',
                 value: 'srforgsectorid',
                 id: 'n_department_id_eq',
+              },
+              {
+                key: 'n_status_eq',
+                value: '1',
+                rawValue: true,
+                id: 'n_status_eq',
               },
             ],
             id: 'maintenance_id_eq',
@@ -1237,6 +1270,7 @@ export default {
             editorParams: {
               'SRFNAVPARAM.n_department_id_eq': '%srforgsectorid%',
               AC: 'TRUE',
+              'SRFNAVPARAM.n_status_eq': '1',
               TRIGGER: 'TRUE',
               URL: 'libraries/${context.library}/library_members/fetch_default',
               PICKUPVIEW: 'FALSE',
@@ -1256,6 +1290,12 @@ export default {
                 key: 'n_department_id_eq',
                 value: 'srforgsectorid',
                 id: 'n_department_id_eq',
+              },
+              {
+                key: 'n_status_eq',
+                value: '1',
+                rawValue: true,
+                id: 'n_status_eq',
               },
             ],
             id: 'maintenance_not_eq',
@@ -1290,6 +1330,7 @@ export default {
               MULTIPLE: 'true',
               'SRFNAVPARAM.n_department_id_eq': '%srforgsectorid%',
               AC: 'TRUE',
+              'SRFNAVPARAM.n_status_eq': '1',
               TRIGGER: 'TRUE',
               URL: 'libraries/${context.library}/library_members/fetch_default',
               PICKUPVIEW: 'FALSE',
@@ -1309,6 +1350,12 @@ export default {
                 key: 'n_department_id_eq',
                 value: 'srforgsectorid',
                 id: 'n_department_id_eq',
+              },
+              {
+                key: 'n_status_eq',
+                value: '1',
+                rawValue: true,
+                id: 'n_status_eq',
               },
             ],
             id: 'maintenance_id_in',
@@ -1343,6 +1390,7 @@ export default {
               MULTIPLE: 'true',
               'SRFNAVPARAM.n_department_id_eq': '%srforgsectorid%',
               AC: 'TRUE',
+              'SRFNAVPARAM.n_status_eq': '1',
               TRIGGER: 'TRUE',
               URL: 'libraries/${context.library}/library_members/fetch_default',
               PICKUPVIEW: 'FALSE',
@@ -1362,6 +1410,12 @@ export default {
                 key: 'n_department_id_eq',
                 value: 'srforgsectorid',
                 id: 'n_department_id_eq',
+              },
+              {
+                key: 'n_status_eq',
+                value: '1',
+                rawValue: true,
+                id: 'n_status_eq',
               },
             ],
             id: 'maintenance_not_in',
@@ -1485,6 +1539,11 @@ export default {
       logicName: '用例搜索栏',
       appDataEntityId: 'plmweb.test_case',
       controlParam: {
+        ctrlParams: {
+          ENABLEJSONSCHEMA: 'true',
+          JSONSCHEMAPARAMS: '{"test_library_id":"%library%"}',
+          STORAGE: 'true',
+        },
         id: 'searchbar',
       },
       modelId: 'a4ba8c21fe6fc38a6e242e4f9c22d033',

@@ -869,6 +869,7 @@ export default {
             id: '5',
           },
         ],
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_backlog_property_distribution',
           appDataEntityId: 'plmweb.work_item',

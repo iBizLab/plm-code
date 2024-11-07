@@ -454,6 +454,27 @@ export default {
       id: 'get_draft',
     },
     {
+      codeName: 'mob_create_topic_member',
+      methodType: 'DEACTION',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'discuss_member_dto',
+        type: 'DTO',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'discuss_member_dto',
+        type: 'DTO',
+        id: '返回对象',
+      },
+      requestMethod: 'POST',
+      requestParamType: 'ENTITY',
+      requestPath: '/mob_create_topic_member',
+      actionMode: 'GETDRAFT',
+      actionType: 'REMOTE',
+      dataSetType: 'REMOTE',
+      id: 'mob_create_topic_member',
+    },
+    {
       codeName: 'nothing',
       methodType: 'DEACTION',
       appDEMethodInput: {
@@ -500,6 +521,29 @@ export default {
       id: 'remove',
     },
     {
+      codeName: 'restart',
+      methodType: 'DEACTION',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'discuss_member_dto',
+        type: 'DTO',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        type: 'VOID',
+        id: '返回对象',
+      },
+      requestMethod: 'POST',
+      requestParamType: 'ENTITY',
+      requestPath: '/restart',
+      needResourceKey: true,
+      actionMode: 'CUSTOM',
+      actionTag: 'Restart',
+      actionType: 'REMOTE',
+      dataSetType: 'REMOTE',
+      name: 'Restart',
+      id: 'restart',
+    },
+    {
       codeName: 'save',
       methodType: 'DEACTION',
       appDEMethodInput: {
@@ -522,6 +566,29 @@ export default {
       dataSetType: 'REMOTE',
       name: 'Save',
       id: 'save',
+    },
+    {
+      codeName: 'stop',
+      methodType: 'DEACTION',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'discuss_member_dto',
+        type: 'DTO',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        type: 'VOID',
+        id: '返回对象',
+      },
+      requestMethod: 'POST',
+      requestParamType: 'ENTITY',
+      requestPath: '/stop',
+      needResourceKey: true,
+      actionMode: 'CUSTOM',
+      actionTag: 'Stop',
+      actionType: 'REMOTE',
+      dataSetType: 'REMOTE',
+      name: 'Stop',
+      id: 'stop',
     },
     {
       codeName: 'update',
@@ -643,6 +710,10 @@ export default {
       confirmMsg: '确认删除该成员？',
       fullCodeName: 'discuss_member_remove_member',
       appDEMethodId: 'remove',
+      sysImage: {
+        cssClass: 'fa fa-trash-o',
+        glyph: 'xf014@FontAwesome',
+      },
       refreshMode: 1,
       successMsg: '删除成功',
       timeout: 60000,

@@ -307,6 +307,16 @@ public interface DiscussTopicService extends IService<DiscussTopic> {
     }
 
     /**
+    * mobChangeAdminRole
+    * 
+    * @param et
+    * @return
+    */
+    default DiscussTopic mobChangeAdminRole(DiscussTopic et) {
+        return et;
+    }
+
+    /**
     * moveDiscussTopic
     * 
     * @param et

@@ -995,6 +995,7 @@ export default {
             id: '6',
           },
         ],
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_defect_property_distribution',
           appDataEntityId: 'plmweb.work_item',

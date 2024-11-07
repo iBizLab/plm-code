@@ -203,7 +203,7 @@ export default {
                 afterItemType: 'NONE',
                 beforeItemType: 'NONE',
                 detailType: 'DEUIACTION',
-                uiactionId: 'edit',
+                uiactionId: 'gridview_editaction',
                 tooltip: '编辑',
                 tooltipLanguageRes: {
                   lanResTag: 'TBB.TOOLTIP.*.EDIT',
@@ -313,6 +313,7 @@ export default {
       enableCustomized: true,
       enablePagingBar: true,
       singleSelect: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_no_space_stencil',
         appDataEntityId: 'plmweb.stencil',

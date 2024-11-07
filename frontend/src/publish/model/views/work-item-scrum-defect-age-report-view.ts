@@ -659,6 +659,7 @@ export default {
             id: '0',
           },
         ],
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_defect_age_report',
           appDataEntityId: 'plmweb.work_item',

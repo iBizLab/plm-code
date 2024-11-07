@@ -358,8 +358,8 @@ export default {
             id: 'usrdrgroup0423482168',
           },
           {
-            caption: '页面',
-            name: '页面',
+            caption: '文档',
+            name: '文档',
             id: 'usrdrgroup0229373827',
           },
         ],
@@ -439,7 +439,7 @@ export default {
           },
           {
             dedrbarGroupId: 'usrdrgroup0229373827',
-            caption: '页面',
+            caption: '文档',
             counterId: 'space',
             counterMode: 1,
             enableMode: 'COUNT_GTE_ZERO',

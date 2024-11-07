@@ -120,21 +120,26 @@ export default {
         {
           actionLevel: 100,
           noPrivDisplayMode: 2,
-          uiactionId: 'new_common',
+          uiactionId: 'add_library_member',
+          uiactionTarget: 'NONE',
           valid: true,
-          capLanguageRes: {
-            lanResTag: 'TBB.TEXT.*.NEW',
-          },
           caption: '添加成员',
           itemType: 'DEUIACTION',
+          controlLogics: [
+            {
+              itemName: 'deuiaction1',
+              logicTag: 'toolbar',
+              logicType: 'SCRIPT',
+              scriptCode: 'context.srfreadonly != true',
+              triggerType: 'ITEMVISIBLE',
+              id: 'deuiaction1',
+            },
+          ],
           sysImage: {
             cssClass: 'fa fa-plus',
             glyph: 'xf067@FontAwesome',
           },
           tooltip: '添加成员',
-          tooltipLanguageRes: {
-            lanResTag: 'TBB.TOOLTIP.*.NEW',
-          },
           showCaption: true,
           showIcon: true,
           id: 'deuiaction1',
@@ -318,6 +323,7 @@ export default {
       sortMode: 'REMOTE',
       enableCustomized: true,
       enablePagingBar: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_default',
         appDataEntityId: 'plmweb.library_member',
@@ -353,7 +359,7 @@ export default {
             {
               actionLevel: 100,
               noPrivDisplayMode: 1,
-              uiactionId: 'remove',
+              uiactionId: 'gridview_removeaction',
               uiactionTarget: 'MULTIKEY',
               valid: true,
               capLanguageRes: {

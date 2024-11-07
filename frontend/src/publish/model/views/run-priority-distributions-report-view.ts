@@ -695,6 +695,7 @@ export default {
             id: '0',
           },
         ],
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_priority_distributions',
           appDataEntityId: 'plmweb.run',

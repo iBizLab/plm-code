@@ -715,6 +715,7 @@ export default {
         pagingSize: 1000,
         sortMode: 'REMOTE',
         singleSelect: true,
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_ticket_re_self',
           appDataEntityId: 'plmweb.relation',

@@ -62,6 +62,44 @@ public interface LibraryMemberMapper extends BaseMapper<LibraryMember> {
     List<LibraryMember> listCurLibraryMember(@Param("ctx") LibraryMemberSearchContext context, @Param("ew") Wrapper<LibraryMember> wrapper);
 
     /**
+     * 数据集合mob_cur_member分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<LibraryMember> searchMobCurMember(IPage<LibraryMember> page, @Param("ctx") LibraryMemberSearchContext context, @Param("ew") Wrapper<LibraryMember> wrapper);
+    
+    /**
+     * 数据集合mob_cur_member查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<LibraryMember> listMobCurMember(@Param("ctx") LibraryMemberSearchContext context, @Param("ew") Wrapper<LibraryMember> wrapper);
+
+    /**
+     * 数据集合no_attention分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<LibraryMember> searchNoAttention(IPage<LibraryMember> page, @Param("ctx") LibraryMemberSearchContext context, @Param("ew") Wrapper<LibraryMember> wrapper);
+    
+    /**
+     * 数据集合no_attention查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<LibraryMember> listNoAttention(@Param("ctx") LibraryMemberSearchContext context, @Param("ew") Wrapper<LibraryMember> wrapper);
+
+    /**
     * 根据libraryId查询
     *
     * @param libraryIds

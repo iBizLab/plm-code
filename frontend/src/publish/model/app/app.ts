@@ -18,7 +18,7 @@ export default {
       showBusyIndicator: true,
       noPrivDisplayMode: 2,
       name: '添加全部数据（数据选择）',
-      id: 'addall',
+      id: 'util_addall',
     },
     {
       actionLevel: 100,
@@ -37,7 +37,7 @@ export default {
       showBusyIndicator: true,
       noPrivDisplayMode: 2,
       name: '添加选中数据（数据选择）',
-      id: 'addselection',
+      id: 'util_addselection',
     },
     {
       actionLevel: 100,
@@ -52,7 +52,7 @@ export default {
       showBusyIndicator: true,
       noPrivDisplayMode: 2,
       name: '视图_取消',
-      id: 'cancel',
+      id: 'view_cancelaction',
     },
     {
       actionLevel: 100,
@@ -67,7 +67,7 @@ export default {
       showBusyIndicator: true,
       noPrivDisplayMode: 2,
       name: '取消变更',
-      id: 'cancelchanges',
+      id: 'data_cancelchanges',
     },
     {
       actionLevel: 100,
@@ -82,7 +82,7 @@ export default {
       showBusyIndicator: true,
       noPrivDisplayMode: 2,
       name: '建立数据',
-      id: 'createobject',
+      id: 'data_createobject',
     },
     {
       actionLevel: 100,
@@ -109,7 +109,7 @@ export default {
       showBusyIndicator: true,
       noPrivDisplayMode: 2,
       name: '表格界面_编辑操作',
-      id: 'edit',
+      id: 'gridview_editaction',
     },
     {
       actionLevel: 100,
@@ -134,7 +134,7 @@ export default {
       showBusyIndicator: true,
       noPrivDisplayMode: 2,
       name: '编辑界面_退出操作',
-      id: 'exit',
+      id: 'editview_exitaction',
     },
     {
       actionLevel: 100,
@@ -159,7 +159,7 @@ export default {
       showBusyIndicator: true,
       noPrivDisplayMode: 2,
       name: '表格界面_导出操作（Excel）',
-      id: 'exportexcel',
+      id: 'gridview_exportaction',
     },
     {
       actionLevel: 100,
@@ -174,7 +174,7 @@ export default {
       showBusyIndicator: true,
       noPrivDisplayMode: 2,
       name: '完成（向导）',
-      id: 'finish',
+      id: 'util_finish',
     },
     {
       actionLevel: 100,
@@ -205,7 +205,7 @@ export default {
       showBusyIndicator: true,
       noPrivDisplayMode: 2,
       name: '应用登录',
-      id: 'login',
+      id: 'app_login',
     },
     {
       actionLevel: 100,
@@ -220,7 +220,7 @@ export default {
       showBusyIndicator: true,
       noPrivDisplayMode: 2,
       name: '应用登出',
-      id: 'logout',
+      id: 'app_logout',
     },
     {
       actionLevel: 100,
@@ -245,7 +245,7 @@ export default {
       showBusyIndicator: true,
       noPrivDisplayMode: 2,
       name: '表格界面_新建操作',
-      id: 'new',
+      id: 'gridview_newaction',
     },
     {
       actionLevel: 100,
@@ -265,7 +265,7 @@ export default {
       showBusyIndicator: true,
       noPrivDisplayMode: 2,
       name: '编辑界面_下一个记录',
-      id: 'nextrecord',
+      id: 'editview_nextrecordaction',
     },
     {
       actionLevel: 100,
@@ -280,7 +280,7 @@ export default {
       showBusyIndicator: true,
       noPrivDisplayMode: 2,
       name: '下一步（向导）',
-      id: 'nextstep',
+      id: 'util_nextstep',
     },
     {
       actionLevel: 100,
@@ -295,7 +295,7 @@ export default {
       showBusyIndicator: true,
       noPrivDisplayMode: 2,
       name: '视图_否',
-      id: 'no',
+      id: 'view_noaction',
     },
     {
       actionLevel: 100,
@@ -310,7 +310,7 @@ export default {
       showBusyIndicator: true,
       noPrivDisplayMode: 2,
       name: '视图_确定',
-      id: 'ok',
+      id: 'view_okaction',
     },
     {
       actionLevel: 100,
@@ -330,7 +330,7 @@ export default {
       showBusyIndicator: true,
       noPrivDisplayMode: 2,
       name: '编辑界面_上一个记录',
-      id: 'prevrecord',
+      id: 'editview_prevrecordaction',
     },
     {
       actionLevel: 100,
@@ -345,7 +345,7 @@ export default {
       showBusyIndicator: true,
       noPrivDisplayMode: 2,
       name: '上一步（向导）',
-      id: 'prevstep',
+      id: 'util_prevstep',
     },
     {
       actionLevel: 100,
@@ -365,7 +365,7 @@ export default {
       showBusyIndicator: true,
       noPrivDisplayMode: 2,
       name: '编辑界面_刷新操作',
-      id: 'refresh',
+      id: 'editview_refreshaction',
     },
     {
       actionLevel: 100,
@@ -384,7 +384,7 @@ export default {
       showBusyIndicator: true,
       noPrivDisplayMode: 2,
       name: '表格界面_刷新操作',
-      id: 'refresh',
+      id: 'gridview_refreshaction',
     },
     {
       actionLevel: 100,
@@ -403,7 +403,7 @@ export default {
       showBusyIndicator: true,
       noPrivDisplayMode: 2,
       name: '树界面_刷新全部操作',
-      id: 'refreshall',
+      id: 'treeview_refreshallaction',
     },
     {
       actionLevel: 100,
@@ -432,7 +432,7 @@ export default {
       showBusyIndicator: true,
       noPrivDisplayMode: 1,
       name: '表格界面_删除操作',
-      id: 'remove',
+      id: 'gridview_removeaction',
     },
     {
       actionLevel: 100,
@@ -447,7 +447,7 @@ export default {
       showBusyIndicator: true,
       noPrivDisplayMode: 2,
       name: '移除全部数据（数据选择）',
-      id: 'removeall',
+      id: 'util_removeall',
     },
     {
       actionLevel: 100,
@@ -462,7 +462,7 @@ export default {
       showBusyIndicator: true,
       noPrivDisplayMode: 2,
       name: '删除数据',
-      id: 'removeobject',
+      id: 'data_removeobject',
     },
     {
       actionLevel: 100,
@@ -477,7 +477,7 @@ export default {
       showBusyIndicator: true,
       noPrivDisplayMode: 2,
       name: '移除选中数据（数据选择）',
-      id: 'removeselection',
+      id: 'util_removeselection',
     },
     {
       actionLevel: 100,
@@ -492,7 +492,7 @@ export default {
       showBusyIndicator: true,
       noPrivDisplayMode: 2,
       name: '重置（搜索栏）',
-      id: 'reset',
+      id: 'util_reset',
     },
     {
       actionLevel: 100,
@@ -517,7 +517,7 @@ export default {
       showBusyIndicator: true,
       noPrivDisplayMode: 2,
       name: '编辑界面_保存操作',
-      id: 'save',
+      id: 'editview_saveaction',
     },
     {
       actionLevel: 100,
@@ -543,7 +543,7 @@ export default {
       showBusyIndicator: true,
       noPrivDisplayMode: 2,
       name: '编辑界面_保存并退出操作',
-      id: 'saveandexit',
+      id: 'editview_saveandexitaction',
     },
     {
       actionLevel: 100,
@@ -562,7 +562,7 @@ export default {
       showBusyIndicator: true,
       noPrivDisplayMode: 2,
       name: '表格界面_保存行',
-      id: 'saverow',
+      id: 'gridview_saverowaction',
     },
     {
       actionLevel: 100,
@@ -577,7 +577,7 @@ export default {
       showBusyIndicator: true,
       noPrivDisplayMode: 2,
       name: '搜索（搜索栏）',
-      id: 'search',
+      id: 'util_search',
     },
     {
       actionLevel: 100,
@@ -612,7 +612,7 @@ export default {
       showBusyIndicator: true,
       noPrivDisplayMode: 2,
       name: '同步数据',
-      id: 'synchronize',
+      id: 'data_synchronize',
     },
     {
       actionLevel: 100,
@@ -627,7 +627,82 @@ export default {
       showBusyIndicator: true,
       noPrivDisplayMode: 2,
       name: '视图_是',
-      id: 'yes',
+      id: 'view_yesaction',
+    },
+    {
+      actionLevel: 100,
+      actionTarget: 'NONE',
+      caption: '添加成员',
+      codeName: 'add_discuss_topic_member',
+      dataAccessAction: 'UPDATE',
+      fullCodeName: 'add_discuss_topic_member',
+      deopprivId: 'update',
+      sysImage: {
+        cssClass: 'fa fa-file-text-o',
+        glyph: 'xf0f6@FontAwesome',
+      },
+      predefinedType: 'GRIDVIEW_NEWACTION',
+      refreshMode: 1,
+      timeout: 60000,
+      uiactionMode: 'SYS',
+      uiactionTag: 'add_discuss_topic_member',
+      uiactionType: 'DEUIACTION',
+      reloadData: true,
+      showBusyIndicator: true,
+      noPrivDisplayMode: 2,
+      appDataEntityId: 'plmweb.discuss_topic',
+      name: '添加话题成员',
+      id: 'add_discuss_topic_member',
+    },
+    {
+      actionLevel: 100,
+      actionTarget: 'NONE',
+      caption: '添加成员',
+      codeName: 'add_insight_view_member',
+      dataAccessAction: 'UPDATE',
+      fullCodeName: 'add_insight_view_member',
+      deopprivId: 'update',
+      sysImage: {
+        cssClass: 'fa fa-file-text-o',
+        glyph: 'xf0f6@FontAwesome',
+      },
+      predefinedType: 'GRIDVIEW_NEWACTION',
+      refreshMode: 1,
+      timeout: 60000,
+      uiactionMode: 'SYS',
+      uiactionTag: 'add_insight_view_member',
+      uiactionType: 'DEUIACTION',
+      reloadData: true,
+      showBusyIndicator: true,
+      noPrivDisplayMode: 2,
+      appDataEntityId: 'plmweb.insight_view',
+      name: '添加效能度量成员',
+      id: 'add_insight_view_member',
+    },
+    {
+      actionLevel: 100,
+      actionTarget: 'NONE',
+      caption: '添加成员',
+      codeName: 'add_library_member',
+      dataAccessAction: 'UPDATE',
+      fullCodeName: 'add_library_member',
+      deopprivId: 'update',
+      sysImage: {
+        cssClass: 'fa fa-file-text-o',
+        glyph: 'xf0f6@FontAwesome',
+      },
+      predefinedType: 'GRIDVIEW_NEWACTION',
+      refreshMode: 1,
+      timeout: 60000,
+      uiactionMode: 'SYS',
+      uiactionTag: 'add_library_member',
+      uiactionType: 'DEUIACTION',
+      reloadData: true,
+      showBusyIndicator: true,
+      noPrivDisplayMode: 2,
+      appDataEntityId: 'plmweb.library',
+      name: '添加测试库成员',
+      id: 'add_library_member',
     },
     {
       actionLevel: 100,
@@ -653,6 +728,56 @@ export default {
       appDataEntityId: 'plmweb.product',
       name: '添加产品成员',
       id: 'add_product_member',
+    },
+    {
+      actionLevel: 100,
+      actionTarget: 'NONE',
+      caption: '添加成员',
+      codeName: 'add_project_member',
+      dataAccessAction: 'UPDATE',
+      fullCodeName: 'add_project_member',
+      deopprivId: 'update',
+      sysImage: {
+        cssClass: 'fa fa-file-text-o',
+        glyph: 'xf0f6@FontAwesome',
+      },
+      predefinedType: 'GRIDVIEW_NEWACTION',
+      refreshMode: 1,
+      timeout: 60000,
+      uiactionMode: 'SYS',
+      uiactionTag: 'add_project_member',
+      uiactionType: 'DEUIACTION',
+      reloadData: true,
+      showBusyIndicator: true,
+      noPrivDisplayMode: 2,
+      appDataEntityId: 'plmweb.project',
+      name: '添加项目成员',
+      id: 'add_project_member',
+    },
+    {
+      actionLevel: 100,
+      actionTarget: 'NONE',
+      caption: '添加成员',
+      codeName: 'add_space_member',
+      dataAccessAction: 'UPDATE',
+      fullCodeName: 'add_space_member',
+      deopprivId: 'update',
+      sysImage: {
+        cssClass: 'fa fa-file-text-o',
+        glyph: 'xf0f6@FontAwesome',
+      },
+      predefinedType: 'GRIDVIEW_NEWACTION',
+      refreshMode: 1,
+      timeout: 60000,
+      uiactionMode: 'SYS',
+      uiactionTag: 'add_space_member',
+      uiactionType: 'DEUIACTION',
+      reloadData: true,
+      showBusyIndicator: true,
+      noPrivDisplayMode: 2,
+      appDataEntityId: 'plmweb.space',
+      name: '添加空间成员',
+      id: 'add_space_member',
     },
     {
       actionLevel: 100,
@@ -870,11 +995,12 @@ export default {
       codeName: 'edit_filter',
       frontProcessType: 'OTHER',
       fullCodeName: 'edit_filter',
+      scriptCode:
+        'if (ctrl) { const id = ctrl.model.id; ctrl.dashboard.openFilterDesignPage({id}) }',
       timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'edit_filter',
       uiactionType: 'DEUIACTION',
-      uilogicAttachMode: 'REPLACE',
       showBusyIndicator: true,
       noPrivDisplayMode: 2,
       name: '过滤器编辑',
@@ -887,11 +1013,11 @@ export default {
       codeName: 'hight_light_filter',
       frontProcessType: 'OTHER',
       fullCodeName: 'hight_light_filter',
+      scriptCode: 'if (ctrl) { ctrl.showEffectiveCtrl() }',
       timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'hight_light_filter',
       uiactionType: 'DEUIACTION',
-      uilogicAttachMode: 'REPLACE',
       showBusyIndicator: true,
       noPrivDisplayMode: 2,
       name: '过滤器高亮',
@@ -925,6 +1051,23 @@ export default {
       noPrivDisplayMode: 2,
       name: '表格界面_新建操作_通用',
       id: 'new_common',
+    },
+    {
+      actionLevel: 100,
+      caption: '新建项目',
+      codeName: 'new_project',
+      fullCodeName: 'new_project',
+      predefinedType: 'GRIDVIEW_NEWACTION',
+      refreshMode: 1,
+      timeout: 60000,
+      uiactionMode: 'SYS',
+      uiactionTag: 'new_project',
+      uiactionType: 'DEUIACTION',
+      reloadData: true,
+      showBusyIndicator: true,
+      noPrivDisplayMode: 2,
+      name: '表格界面_新建项目',
+      id: 'new_project',
     },
     {
       actionLevel: 100,
@@ -1432,6 +1575,14 @@ export default {
     },
     {
       appFuncType: 'APPVIEW',
+      codeName: 'UsrAppFunc0930366273',
+      openMode: 'INDEXVIEWTAB',
+      appViewId: 'plmweb.ticket_nav_grid_view',
+      name: '内置导航表格视图',
+      id: 'usrappfunc0930366273',
+    },
+    {
+      appFuncType: 'APPVIEW',
       codeName: 'UsrAppFunc0618607639',
       openMode: 'INDEXVIEWTAB',
       appViewId: 'plmweb.sprint_alteration_log_grid_view',
@@ -1866,7 +2017,7 @@ export default {
       pluginCode: 'COMMENT',
       pluginType: 'EDITOR_CUSTOMSTYLE',
       rtobjectName: 'IBizHtmlComment',
-      rtobjectRepo: '@ibiz-template-plm/html-comment@0.0.3-alpha.47',
+      rtobjectRepo: '@ibiz-template-plm/html-comment@0.0.3-alpha.80',
       refMode: 'EDITORSTYPE',
       runtimeObject: true,
       name: 'HTML（评论）',
@@ -2015,7 +2166,7 @@ export default {
       pluginCode: 'TEAM_PICKER',
       pluginType: 'EDITOR_CUSTOMSTYLE',
       rtobjectName: 'TeamPicker',
-      rtobjectRepo: '@ibiz-template-plm/team-picker@0.0.3-alpha.52',
+      rtobjectRepo: '@ibiz-template-plm/team-picker@0.0.3-alpha.71',
       refMode: 'EDITORSTYPE',
       runtimeObject: true,
       id: '团队选择',
@@ -2095,7 +2246,7 @@ export default {
       pluginCode: 'NUMBER_GRID',
       pluginType: 'GRID_RENDER',
       rtobjectName: 'IBizNumberGridControl',
-      rtobjectRepo: '@ibiz-template-plugin/number-grid@0.0.3-alpha.11',
+      rtobjectRepo: '@ibiz-template-plugin/number-grid@0.0.3-alpha.97',
       refMode: 'CONTROL',
       refTag: 'GRID',
       runtimeObject: true,
@@ -2105,7 +2256,7 @@ export default {
       pluginCode: 'NUMBER_GRID',
       pluginType: 'GRID_RENDER',
       rtobjectName: 'IBizNumberGridControl',
-      rtobjectRepo: '@ibiz-template-plugin/number-grid@0.0.3-alpha.11',
+      rtobjectRepo: '@ibiz-template-plugin/number-grid@0.0.3-alpha.97',
       refMode: 'CONTROL',
       refTag: 'TREEGRID',
       runtimeObject: true,
@@ -2200,6 +2351,16 @@ export default {
       id: '步骤看板',
     },
     {
+      pluginCode: 'ADD_TEST_MEMBER',
+      pluginType: 'DEUIACTION',
+      rtobjectName: 'AddTestMember',
+      rtobjectRepo: '@ibiz-template-plmmob/mob-add-member@0.0.3-alpha.91',
+      refMode: 'UIACTION',
+      refTag: 'BACKEND',
+      runtimeObject: true,
+      id: '添加测试库成员',
+    },
+    {
       pluginCode: 'CASE_STEPS',
       pluginType: 'FORM_USERCONTROL',
       rtobjectName: 'IBizRepeaterGridCaseSteps',
@@ -2241,6 +2402,17 @@ export default {
       refTag2: 'BUTTON',
       runtimeObject: true,
       id: '看板快捷操作',
+    },
+    {
+      pluginCode: 'ASSEMBLE_SELECTED_DATA',
+      pluginType: 'DEUIACTION',
+      rtobjectName: 'MobAssembleSelectedData',
+      rtobjectRepo:
+        '@ibiz-template-plmmob/mob-assemble-selected-data@0.0.3-alpha.90',
+      refMode: 'UIACTION',
+      refTag: 'FRONT',
+      runtimeObject: true,
+      id: '组装选中数据',
     },
     {
       pluginCode: 'IDENTIFIER_TITLE',
@@ -2417,7 +2589,7 @@ export default {
       pluginCode: 'RESOURCE_GANTT',
       pluginType: 'TREE_RENDER',
       rtobjectName: 'IBizResourceGanttControl',
-      rtobjectRepo: '@ibiz-template-plm/resource-gantt@0.0.3-alpha.42',
+      rtobjectRepo: '@ibiz-template-plm/resource-gantt@0.0.3-alpha.60',
       refMode: 'CONTROL',
       refTag: 'GANTT',
       runtimeObject: true,
@@ -2475,7 +2647,7 @@ export default {
       pluginCode: 'ANCHO_HTML',
       pluginType: 'EDITOR_CUSTOMSTYLE',
       rtobjectName: 'AnchoHtml',
-      rtobjectRepo: '@ibiz-template-plm/ancho-html@0.0.3-alpha.52',
+      rtobjectRepo: '@ibiz-template-plm/ancho-html@0.0.3-alpha.76',
       refMode: 'EDITORSTYPE',
       runtimeObject: true,
       id: '锚点富文本',
@@ -2777,6 +2949,7 @@ export default {
                               'SRFNAVPARAM.n_department_id_eq':
                                 '%srforgsectorid%',
                               AC: 'TRUE',
+                              'SRFNAVPARAM.n_status_eq': '1',
                               TRIGGER: 'TRUE',
                               URL: 'projects/${context.project}/project_members/fetch_default',
                               PICKUPVIEW: 'FALSE',
@@ -2801,6 +2974,12 @@ export default {
                                 key: 'n_department_id_eq',
                                 value: 'srforgsectorid',
                                 id: 'n_department_id_eq',
+                              },
+                              {
+                                key: 'n_status_eq',
+                                value: '1',
+                                rawValue: true,
+                                id: 'n_status_eq',
                               },
                             ],
                             id: 'assignee_name',
@@ -3249,6 +3428,7 @@ export default {
                 id: '0',
               },
             ],
+            navViewPos: 'NONE',
             fetchControlAction: {
               appDEMethodId: 'fetch_overview_chart',
               appDataEntityId: 'plmweb.work_item',
@@ -3989,6 +4169,7 @@ export default {
                 id: '0',
               },
             ],
+            navViewPos: 'NONE',
             fetchControlAction: {
               appDEMethodId: 'fetch_complete_trend',
               appDataEntityId: 'plmweb.work_item',
@@ -5229,6 +5410,7 @@ export default {
                 id: '0',
               },
             ],
+            navViewPos: 'NONE',
             fetchControlAction: {
               appDEMethodId: 'fetch_implementation_results',
               appDataEntityId: 'plmweb.run',
@@ -5431,6 +5613,7 @@ export default {
                 id: '0',
               },
             ],
+            navViewPos: 'NONE',
             fetchControlAction: {
               appDEMethodId: 'fetch_case_person',
               appDataEntityId: 'plmweb.run',
@@ -5636,6 +5819,7 @@ export default {
                 id: '0',
               },
             ],
+            navViewPos: 'NONE',
             fetchControlAction: {
               appDEMethodId: 'fetch_everyday_test',
               appDataEntityId: 'plmweb.run',
@@ -5954,6 +6138,7 @@ export default {
                 id: '0',
               },
             ],
+            navViewPos: 'NONE',
             fetchControlAction: {
               appDEMethodId: 'fetch_daily_tendencies',
               appDataEntityId: 'plmweb.run',
@@ -6814,6 +6999,7 @@ export default {
                     id: '1',
                   },
                 ],
+                navViewPos: 'NONE',
                 fetchControlAction: {
                   appDEMethodId: 'fetch_calc_chart_datas',
                   appDataEntityId: 'plmweb.login_log',
@@ -7087,6 +7273,7 @@ export default {
                   id: 'my_work_item',
                 },
               ],
+              navViewPos: 'NONE',
               autoLoad: true,
               showBusyIndicator: true,
               appViewLogics: [
@@ -7257,7 +7444,7 @@ export default {
                   id: 'my_work_item_opendata',
                 },
               ],
-              codeName: 'alendar_view_calendar',
+              codeName: 'work_item_calendar_view_calendar',
               controlType: 'CALENDAR',
               logicName: '工作项日历视图_日历部件',
               appDataEntityId: 'plmweb.work_item',
@@ -7267,7 +7454,7 @@ export default {
               modelId: '8948343a22e6f3e2feaef4c63535db9a',
               modelType: 'PSSYSCALENDAR',
               name: 'calendar',
-              id: 'plmweb.work_item.alendar_view_calendar',
+              id: 'plmweb.work_item.work_item_calendar_view_calendar',
             },
             {
               groupMode: 'SINGLE',
@@ -7565,6 +7752,7 @@ export default {
                 id: '0',
               },
             ],
+            navViewPos: 'NONE',
             fetchControlAction: {
               appDEMethodId: 'fetch_my_assignee',
               appDataEntityId: 'plmweb.work_item',
@@ -7964,6 +8152,7 @@ export default {
                 forceFit: true,
                 hideHeader: true,
                 singleSelect: true,
+                navViewPos: 'NONE',
                 fetchControlAction: {
                   appDEMethodId: 'fetch_recent_project',
                   appDataEntityId: 'plmweb.recent',
@@ -8625,6 +8814,7 @@ export default {
                 forceFit: true,
                 hideHeader: true,
                 singleSelect: true,
+                navViewPos: 'NONE',
                 fetchControlAction: {
                   appDEMethodId: 'fetch_my_assignee',
                   appDataEntityId: 'plmweb.work_item',
@@ -9346,6 +9536,7 @@ export default {
               forceFit: true,
               hideHeader: true,
               singleSelect: true,
+              navViewPos: 'NONE',
               fetchControlAction: {
                 appDEMethodId: 'fetch_my_created',
                 appDataEntityId: 'plmweb.work_item',
@@ -9822,6 +10013,7 @@ export default {
                 forceFit: true,
                 hideHeader: true,
                 singleSelect: true,
+                navViewPos: 'NONE',
                 fetchControlAction: {
                   appDEMethodId: 'fetch_recent_test_case_index',
                   appDataEntityId: 'plmweb.recent',
@@ -10229,6 +10421,7 @@ export default {
                   id: 'my_work_item',
                 },
               ],
+              navViewPos: 'NONE',
               autoLoad: true,
               showBusyIndicator: true,
               appViewLogics: [
@@ -10399,7 +10592,7 @@ export default {
                   id: 'my_work_item_opendata',
                 },
               ],
-              codeName: 'alendar_view_calendar',
+              codeName: 'work_item_calendar_view_calendar',
               controlType: 'CALENDAR',
               logicName: '工作项日历视图_日历部件',
               appDataEntityId: 'plmweb.work_item',
@@ -10409,7 +10602,7 @@ export default {
               modelId: '8948343a22e6f3e2feaef4c63535db9a',
               modelType: 'PSSYSCALENDAR',
               name: 'calendar',
-              id: 'plmweb.work_item.alendar_view_calendar',
+              id: 'plmweb.work_item.work_item_calendar_view_calendar',
             },
             {
               groupMode: 'SINGLE',
@@ -11047,6 +11240,7 @@ export default {
                 forceFit: true,
                 hideHeader: true,
                 singleSelect: true,
+                navViewPos: 'NONE',
                 fetchControlAction: {
                   appDEMethodId: 'fetch_my_assignee',
                   appDataEntityId: 'plmweb.work_item',
@@ -11691,6 +11885,7 @@ export default {
                 forceFit: true,
                 hideHeader: true,
                 singleSelect: true,
+                navViewPos: 'NONE',
                 fetchControlAction: {
                   appDEMethodId: 'fetch_recent_project',
                   appDataEntityId: 'plmweb.recent',
@@ -12211,6 +12406,7 @@ export default {
               forceFit: true,
               hideHeader: true,
               singleSelect: true,
+              navViewPos: 'NONE',
               fetchControlAction: {
                 appDEMethodId: 'fetch_my_created',
                 appDataEntityId: 'plmweb.work_item',
@@ -12690,6 +12886,7 @@ export default {
                 forceFit: true,
                 hideHeader: true,
                 singleSelect: true,
+                navViewPos: 'NONE',
                 fetchControlAction: {
                   appDEMethodId: 'fetch_recent_test_case_index',
                   appDataEntityId: 'plmweb.recent',
@@ -14007,6 +14204,7 @@ export default {
                     id: '0',
                   },
                 ],
+                navViewPos: 'NONE',
                 fetchControlAction: {
                   appDEMethodId: 'fetch_release_work_item_chart',
                   appDataEntityId: 'plmweb.work_item',
@@ -14365,6 +14563,7 @@ export default {
               sortMode: 'REMOTE',
               noSort: true,
               singleSelect: true,
+              navViewPos: 'NONE',
               fetchControlAction: {
                 appDEMethodId: 'fetch_default',
                 appDataEntityId: 'plmweb.test_plan',
@@ -14822,6 +15021,7 @@ export default {
               sortMode: 'REMOTE',
               noSort: true,
               singleSelect: true,
+              navViewPos: 'NONE',
               fetchControlAction: {
                 appDEMethodId: 'fetch_release_relation',
                 appDataEntityId: 'plmweb.sprint',
@@ -15667,6 +15867,7 @@ export default {
                     id: '0',
                   },
                 ],
+                navViewPos: 'NONE',
                 fetchControlAction: {
                   appDEMethodId: 'fetch_require_burn_out',
                   appDataEntityId: 'plmweb.work_item',
@@ -16018,6 +16219,7 @@ export default {
               sortMode: 'REMOTE',
               noSort: true,
               singleSelect: true,
+              navViewPos: 'NONE',
               fetchControlAction: {
                 appDEMethodId: 'fetch_sprint_relation',
                 appDataEntityId: 'plmweb.release',
@@ -16419,6 +16621,7 @@ export default {
               sortMode: 'REMOTE',
               noSort: true,
               singleSelect: true,
+              navViewPos: 'NONE',
               fetchControlAction: {
                 appDEMethodId: 'fetch_default',
                 appDataEntityId: 'plmweb.test_plan',
@@ -17059,6 +17262,7 @@ export default {
                     id: '0',
                   },
                 ],
+                navViewPos: 'NONE',
                 fetchControlAction: {
                   appDEMethodId: 'fetch_sprint_work_item_chart',
                   appDataEntityId: 'plmweb.work_item',
@@ -17294,6 +17498,7 @@ export default {
                 id: '0',
               },
             ],
+            navViewPos: 'NONE',
             fetchControlAction: {
               appDEMethodId: 'fetch_sprint_member_chart',
               appDataEntityId: 'plmweb.work_item',
@@ -17743,6 +17948,7 @@ export default {
                     editorParams: {
                       'SRFNAVPARAM.n_department_id_eq': '%srforgsectorid%',
                       AC: 'TRUE',
+                      'SRFNAVPARAM.n_status_eq': '1',
                       TRIGGER: 'TRUE',
                       URL: 'projects/${context.project}/project_members/fetch_default',
                       PICKUPVIEW: 'FALSE',
@@ -17763,6 +17969,12 @@ export default {
                         key: 'n_department_id_eq',
                         value: 'srforgsectorid',
                         id: 'n_department_id_eq',
+                      },
+                      {
+                        key: 'n_status_eq',
+                        value: '1',
+                        rawValue: true,
+                        id: 'n_status_eq',
                       },
                     ],
                     id: 'assignee_name',
@@ -17800,6 +18012,7 @@ export default {
               sortMode: 'REMOTE',
               noSort: true,
               singleSelect: true,
+              navViewPos: 'NONE',
               fetchControlAction: {
                 appDEMethodId: 'fetch_sprint_contribution',
                 appDataEntityId: 'plmweb.work_item',
@@ -17926,6 +18139,18 @@ export default {
   ],
   appViewMsgGroups: [
     {
+      codeName: 'UsrVMGroup1024813853',
+      appViewMsgGroupDetails: [
+        {
+          appViewMsgId: 'usrviewmsg1024349775',
+          position: 'TOP',
+          id: '测试用例全局属性配置提示',
+        },
+      ],
+      name: '测试用例全局属性配置提示组',
+      id: 'usrvmgroup1024813853',
+    },
+    {
       codeName: 'UsrVMGroup0507774593',
       appViewMsgGroupDetails: [
         {
@@ -17950,6 +18175,18 @@ export default {
       id: 'usrvmgroup0423875248',
     },
     {
+      codeName: 'UsrVMGroup1024587388',
+      appViewMsgGroupDetails: [
+        {
+          appViewMsgId: 'usrviewmsg10245718034',
+          position: 'TOP',
+          id: '测试用例属性配置提示',
+        },
+      ],
+      name: '测试用例属性配置提示消息组',
+      id: 'usrvmgroup1024587388',
+    },
+    {
       codeName: 'UsrVMGroup1229617041',
       appViewMsgGroupDetails: [
         {
@@ -17962,6 +18199,18 @@ export default {
       id: 'usrvmgroup1229617041',
     },
     {
+      codeName: 'UsrVMGroup1024762248',
+      appViewMsgGroupDetails: [
+        {
+          appViewMsgId: 'usrviewmsg1024686664',
+          position: 'TOP',
+          id: '产品需求属性配置提示',
+        },
+      ],
+      name: '产品需求属性配置提示消息组',
+      id: 'usrvmgroup1024762248',
+    },
+    {
       codeName: 'UsrVMGroup0529043941',
       appViewMsgGroupDetails: [
         {
@@ -17972,6 +18221,18 @@ export default {
       ],
       name: '已删除页面提示消息组',
       id: 'usrvmgroup0529043941',
+    },
+    {
+      codeName: 'UsrVMGroup1024188673',
+      appViewMsgGroupDetails: [
+        {
+          appViewMsgId: 'usrviewmsg1024259270',
+          position: 'BODY',
+          id: '项目属性配置提示',
+        },
+      ],
+      name: '项目属性配置提示消息组',
+      id: 'usrvmgroup1024188673',
     },
     {
       codeName: 'UsrVMGroup0419511397',
@@ -18034,6 +18295,18 @@ export default {
       id: 'usrvmgroup0529163716',
     },
     {
+      codeName: 'UsrVMGroup1024293256',
+      appViewMsgGroupDetails: [
+        {
+          appViewMsgId: 'usrviewmsg1024972522',
+          position: 'TOP',
+          id: '产品需求全局属性配置提示',
+        },
+      ],
+      name: '产品需求全局属性配置提示组',
+      id: 'usrvmgroup1024293256',
+    },
+    {
       codeName: 'UsrVMGroup0417664142',
       appViewMsgGroupDetails: [
         {
@@ -18070,6 +18343,18 @@ export default {
       id: 'usrvmgroup0514237398',
     },
     {
+      codeName: 'UsrVMGroup1022146691',
+      appViewMsgGroupDetails: [
+        {
+          appViewMsgId: 'usrviewmsg1022679573',
+          position: 'TOP',
+          id: '工单设置消息',
+        },
+      ],
+      name: '工单设置提示消息组',
+      id: 'usrvmgroup1022146691',
+    },
+    {
       codeName: 'UsrVMGroup0715319095',
       appViewMsgGroupDetails: [
         {
@@ -18080,6 +18365,18 @@ export default {
       ],
       name: '指标配置',
       id: 'usrvmgroup0715319095',
+    },
+    {
+      codeName: 'UsrVMGroup1024186337',
+      appViewMsgGroupDetails: [
+        {
+          appViewMsgId: 'usrviewmsg1024972521',
+          position: 'TOP',
+          id: '项目工作项全局属性配置提示',
+        },
+      ],
+      name: '项目工作项全局属性配置提示消息组',
+      id: 'usrvmgroup1024186337',
     },
     {
       codeName: 'UsrVMGroup0524918164',
@@ -18128,6 +18425,18 @@ export default {
       ],
       name: '归档需求提示消息组',
       id: 'usrvmgroup0523280119',
+    },
+    {
+      codeName: 'UsrVMGroup1024526824',
+      appViewMsgGroupDetails: [
+        {
+          appViewMsgId: 'usrviewmsg1024073333',
+          position: 'TOP',
+          id: '测试用例设置提示消息',
+        },
+      ],
+      name: '测试用例设置提示消息组',
+      id: 'usrvmgroup1024526824',
     },
     {
       codeName: 'UsrVMGroup0419025627',
@@ -18214,6 +18523,18 @@ export default {
       id: 'usrvmgroup0529712450',
     },
     {
+      codeName: 'UsrVMGroup1024605800',
+      appViewMsgGroupDetails: [
+        {
+          appViewMsgId: 'usrviewmsg1024571803',
+          position: 'TOP',
+          id: '产品工单属性配置提示',
+        },
+      ],
+      name: '产品工单属性配置提示消息组',
+      id: 'usrvmgroup1024605800',
+    },
+    {
       codeName: 'UsrVMGroup0506712621',
       appViewMsgGroupDetails: [
         {
@@ -18226,6 +18547,18 @@ export default {
       id: 'usrvmgroup0506712621',
     },
     {
+      codeName: 'UsrVMGroup1022124509',
+      appViewMsgGroupDetails: [
+        {
+          appViewMsgId: 'usrviewmsg1022101095',
+          position: 'TOP',
+          id: '需求设置提示消息',
+        },
+      ],
+      name: '需求设置提示消息组',
+      id: 'usrvmgroup1022124509',
+    },
+    {
       codeName: 'UsrVMGroup0715595933',
       appViewMsgGroupDetails: [
         {
@@ -18236,6 +18569,18 @@ export default {
       ],
       name: '维度配置',
       id: 'usrvmgroup0715595933',
+    },
+    {
+      codeName: 'UsrVMGroup1024351941',
+      appViewMsgGroupDetails: [
+        {
+          appViewMsgId: 'usrviewmsg1024972523',
+          position: 'TOP',
+          id: '工单全局属性配置提示',
+        },
+      ],
+      name: '工单全局属性配置提示组',
+      id: 'usrvmgroup1024351941',
     },
   ],
   appViewMsgs: [
@@ -23154,6 +23499,1788 @@ export default {
       id: 'usrviewmsg0715643336',
     },
     {
+      codeName: 'UsrViewMsg1022101095',
+      enableMode: 'DELOGIC',
+      message: '自定义需求属性与视图',
+      messageType: 'INFO',
+      appDataEntityId: 'plmweb.idea',
+      layoutPanel: {
+        layoutMode: 'FLEX',
+        layout: {
+          layout: 'FLEX',
+        },
+        rootPanelItems: [
+          {
+            actionGroupExtractMode: 'ITEM',
+            panelItems: [
+              {
+                actionGroupExtractMode: 'ITEM',
+                panelItems: [
+                  {
+                    actionGroupExtractMode: 'ITEM',
+                    panelItems: [
+                      {
+                        rawItem: {
+                          sysImage: {
+                            rawContent:
+                              '<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fit="" height="1em" width="1em" preserveAspectRatio="xMidYMid meet" focusable="false"><g id="aodnormal/lightbulb" stroke-width="1" fill-rule="evenodd"><path d="M9.733 15.091H6.447a.367.367 0 1 0 0 .735h3.286c.202 0 .372-.17.372-.371a.37.37 0 0 0-.372-.364m2.602-6.606h-.008a4.832 4.832 0 0 1-1.724 1.779.613.613 0 0 0-.285.529h-.012v1.42H5.88v-1.42a.588.588 0 0 0-.356-.553 4.9 4.9 0 0 1-1.669-1.755 4.816 4.816 0 0 1-.62-2.38 4.85 4.85 0 0 1 1.423-3.436 4.832 4.832 0 0 1 3.431-1.428c1.344 0 2.562.546 3.436 1.428a4.833 4.833 0 0 1 1.424 3.436c0 .869-.218 1.684-.613 2.38m1.85-2.38a6.065 6.065 0 0 0-1.79-4.314A6.078 6.078 0 0 0 8.087 0 6.108 6.108 0 0 0 3.78 1.791 6.1 6.1 0 0 0 2 6.105c0 1.083.28 2.103.775 2.984a6.316 6.316 0 0 0 1.866 2.032v1.712c0 .336.277.621.613.621h5.677c.34 0 .61-.285.61-.621v-1.712a6.09 6.09 0 0 0 2.644-5.016m-3.254 7.689H5.254a.371.371 0 1 0 0 .743h5.677a.372.372 0 0 0 0-.743m-.874-8.014a2.776 2.776 0 0 1-1.969.811c-.379 0-.735-.075-1.067-.206a2.677 2.677 0 0 1-.897-.605.365.365 0 0 0-.518 0 .355.355 0 0 0-.008.514c.324.324.72.593 1.146.771a3.543 3.543 0 0 0 3.84-.763.372.372 0 0 0-.527-.522" fill="#FF7575"></path></g></svg>',
+                          },
+                          contentType: 'IMAGE',
+                          predefinedType: 'STATIC_IMAGE',
+                          id: 'static_image',
+                        },
+                        caption: '图片',
+                        itemStyle: 'DEFAULT',
+                        itemType: 'RAWITEM',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        sysImage: {
+                          rawContent:
+                            '<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fit="" height="1em" width="1em" preserveAspectRatio="xMidYMid meet" focusable="false"><g id="aodnormal/lightbulb" stroke-width="1" fill-rule="evenodd"><path d="M9.733 15.091H6.447a.367.367 0 1 0 0 .735h3.286c.202 0 .372-.17.372-.371a.37.37 0 0 0-.372-.364m2.602-6.606h-.008a4.832 4.832 0 0 1-1.724 1.779.613.613 0 0 0-.285.529h-.012v1.42H5.88v-1.42a.588.588 0 0 0-.356-.553 4.9 4.9 0 0 1-1.669-1.755 4.816 4.816 0 0 1-.62-2.38 4.85 4.85 0 0 1 1.423-3.436 4.832 4.832 0 0 1 3.431-1.428c1.344 0 2.562.546 3.436 1.428a4.833 4.833 0 0 1 1.424 3.436c0 .869-.218 1.684-.613 2.38m1.85-2.38a6.065 6.065 0 0 0-1.79-4.314A6.078 6.078 0 0 0 8.087 0 6.108 6.108 0 0 0 3.78 1.791 6.1 6.1 0 0 0 2 6.105c0 1.083.28 2.103.775 2.984a6.316 6.316 0 0 0 1.866 2.032v1.712c0 .336.277.621.613.621h5.677c.34 0 .61-.285.61-.621v-1.712a6.09 6.09 0 0 0 2.644-5.016m-3.254 7.689H5.254a.371.371 0 1 0 0 .743h5.677a.372.372 0 0 0 0-.743m-.874-8.014a2.776 2.776 0 0 1-1.969.811c-.379 0-.735-.075-1.067-.206a2.677 2.677 0 0 1-.897-.605.365.365 0 0 0-.518 0 .355.355 0 0 0-.008.514c.324.324.72.593 1.146.771a3.543 3.543 0 0 0 3.84-.763.372.372 0 0 0-.527-.522" fill="#FF7575"></path></g></svg>',
+                        },
+                        showCaption: true,
+                        id: 'static_image',
+                      },
+                      {
+                        rawItem: {
+                          caption: 'Tips：',
+                          halign: 'LEFT',
+                          renderMode: 'TEXT',
+                          valign: 'MIDDLE',
+                          wrapMode: 'NOWRAP',
+                          contentType: 'RAW',
+                          cssStyle: 'margin-left:8px\n',
+                          predefinedType: 'STATIC_TEXT',
+                          id: 'static_text1',
+                        },
+                        caption: '文本',
+                        itemStyle: 'DEFAULT',
+                        itemType: 'RAWITEM',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        showCaption: true,
+                        id: 'static_text1',
+                      },
+                      {
+                        editor: {
+                          halign: 'LEFT',
+                          renderMode: 'TEXT_DYNAMIC',
+                          valign: 'MIDDLE',
+                          wrapMode: 'NOWRAP',
+                          editorType: 'SPAN',
+                          predefinedType: 'FIELD_TEXT_DYNAMIC',
+                          valueType: 'SIMPLE',
+                          editable: true,
+                          id: 'field_text_dynamic',
+                        },
+                        viewFieldName: 'message',
+                        allowEmpty: true,
+                        caption: '文本(动态)',
+                        itemStyle: 'DEFAULT',
+                        itemType: 'FIELD',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        id: 'field_text_dynamic',
+                      },
+                    ],
+                    layout: {
+                      align: 'flex-start',
+                      dir: 'row',
+                      layout: 'FLEX',
+                      valign: 'center',
+                    },
+                    dataRegionType: 'INHERIT',
+                    caption: '容器',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'CONTAINER',
+                    layoutPos: {
+                      shrink: 1,
+                      layout: 'FLEX',
+                    },
+                    id: 'container',
+                  },
+                ],
+                predefinedType: 'CONTAINER_SINGLEDATA',
+                layout: {
+                  layout: 'FLEX',
+                },
+                dataRegionType: 'SINGLEDATA',
+                dataSourceType: 'DELOGIC',
+                appDELogicId: 'get_view_msg',
+                appDataEntityId: 'plmweb.addon',
+                caption: '单项数据容器',
+                itemStyle: 'DEFAULT',
+                itemType: 'CONTAINER',
+                layoutPos: {
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                id: 'container_singledata',
+              },
+            ],
+            layout: {
+              dir: 'column',
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              shrink: 1,
+              layout: 'FLEX',
+            },
+            sysCss: {
+              cssName: 'prompt_message_style',
+            },
+            id: 'page_container',
+          },
+        ],
+        layoutPanel: true,
+        codeName: 'addon_setting_message_panel_show',
+        controlType: 'PANEL',
+        logicName: '全局设置消息提示',
+        appDataEntityId: 'plmweb.idea',
+        controlParam: {
+          id: 'panel',
+        },
+        modelId: 'af48ca4699e2893947ba4664850c480c',
+        modelType: 'PSSYSVIEWPANEL',
+        name: 'panel',
+        id: 'plmweb.idea.addon_setting_message_panel_show',
+      },
+      position: 'TOP',
+      removeMode: 0,
+      testAppDELogicId: 'nothing',
+      name: '需求设置提示',
+      id: 'usrviewmsg1022101095',
+    },
+    {
+      codeName: 'UsrViewMsg1022679573',
+      enableMode: 'DELOGIC',
+      message: '自定义工单属性与视图',
+      messageType: 'INFO',
+      appDataEntityId: 'plmweb.ticket',
+      layoutPanel: {
+        layoutMode: 'FLEX',
+        layout: {
+          layout: 'FLEX',
+        },
+        rootPanelItems: [
+          {
+            actionGroupExtractMode: 'ITEM',
+            panelItems: [
+              {
+                actionGroupExtractMode: 'ITEM',
+                panelItems: [
+                  {
+                    actionGroupExtractMode: 'ITEM',
+                    panelItems: [
+                      {
+                        rawItem: {
+                          sysImage: {
+                            rawContent:
+                              '<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fit="" height="1em" width="1em" preserveAspectRatio="xMidYMid meet" focusable="false"><g id="aodnormal/lightbulb" stroke-width="1" fill-rule="evenodd"><path d="M9.733 15.091H6.447a.367.367 0 1 0 0 .735h3.286c.202 0 .372-.17.372-.371a.37.37 0 0 0-.372-.364m2.602-6.606h-.008a4.832 4.832 0 0 1-1.724 1.779.613.613 0 0 0-.285.529h-.012v1.42H5.88v-1.42a.588.588 0 0 0-.356-.553 4.9 4.9 0 0 1-1.669-1.755 4.816 4.816 0 0 1-.62-2.38 4.85 4.85 0 0 1 1.423-3.436 4.832 4.832 0 0 1 3.431-1.428c1.344 0 2.562.546 3.436 1.428a4.833 4.833 0 0 1 1.424 3.436c0 .869-.218 1.684-.613 2.38m1.85-2.38a6.065 6.065 0 0 0-1.79-4.314A6.078 6.078 0 0 0 8.087 0 6.108 6.108 0 0 0 3.78 1.791 6.1 6.1 0 0 0 2 6.105c0 1.083.28 2.103.775 2.984a6.316 6.316 0 0 0 1.866 2.032v1.712c0 .336.277.621.613.621h5.677c.34 0 .61-.285.61-.621v-1.712a6.09 6.09 0 0 0 2.644-5.016m-3.254 7.689H5.254a.371.371 0 1 0 0 .743h5.677a.372.372 0 0 0 0-.743m-.874-8.014a2.776 2.776 0 0 1-1.969.811c-.379 0-.735-.075-1.067-.206a2.677 2.677 0 0 1-.897-.605.365.365 0 0 0-.518 0 .355.355 0 0 0-.008.514c.324.324.72.593 1.146.771a3.543 3.543 0 0 0 3.84-.763.372.372 0 0 0-.527-.522" fill="#FF7575"></path></g></svg>',
+                          },
+                          contentType: 'IMAGE',
+                          predefinedType: 'STATIC_IMAGE',
+                          id: 'static_image',
+                        },
+                        caption: '图片',
+                        itemStyle: 'DEFAULT',
+                        itemType: 'RAWITEM',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        sysImage: {
+                          rawContent:
+                            '<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fit="" height="1em" width="1em" preserveAspectRatio="xMidYMid meet" focusable="false"><g id="aodnormal/lightbulb" stroke-width="1" fill-rule="evenodd"><path d="M9.733 15.091H6.447a.367.367 0 1 0 0 .735h3.286c.202 0 .372-.17.372-.371a.37.37 0 0 0-.372-.364m2.602-6.606h-.008a4.832 4.832 0 0 1-1.724 1.779.613.613 0 0 0-.285.529h-.012v1.42H5.88v-1.42a.588.588 0 0 0-.356-.553 4.9 4.9 0 0 1-1.669-1.755 4.816 4.816 0 0 1-.62-2.38 4.85 4.85 0 0 1 1.423-3.436 4.832 4.832 0 0 1 3.431-1.428c1.344 0 2.562.546 3.436 1.428a4.833 4.833 0 0 1 1.424 3.436c0 .869-.218 1.684-.613 2.38m1.85-2.38a6.065 6.065 0 0 0-1.79-4.314A6.078 6.078 0 0 0 8.087 0 6.108 6.108 0 0 0 3.78 1.791 6.1 6.1 0 0 0 2 6.105c0 1.083.28 2.103.775 2.984a6.316 6.316 0 0 0 1.866 2.032v1.712c0 .336.277.621.613.621h5.677c.34 0 .61-.285.61-.621v-1.712a6.09 6.09 0 0 0 2.644-5.016m-3.254 7.689H5.254a.371.371 0 1 0 0 .743h5.677a.372.372 0 0 0 0-.743m-.874-8.014a2.776 2.776 0 0 1-1.969.811c-.379 0-.735-.075-1.067-.206a2.677 2.677 0 0 1-.897-.605.365.365 0 0 0-.518 0 .355.355 0 0 0-.008.514c.324.324.72.593 1.146.771a3.543 3.543 0 0 0 3.84-.763.372.372 0 0 0-.527-.522" fill="#FF7575"></path></g></svg>',
+                        },
+                        showCaption: true,
+                        id: 'static_image',
+                      },
+                      {
+                        rawItem: {
+                          caption: 'Tips：',
+                          halign: 'LEFT',
+                          renderMode: 'TEXT',
+                          valign: 'MIDDLE',
+                          wrapMode: 'NOWRAP',
+                          contentType: 'RAW',
+                          cssStyle: 'margin-left:8px\n',
+                          predefinedType: 'STATIC_TEXT',
+                          id: 'static_text1',
+                        },
+                        caption: '文本',
+                        itemStyle: 'DEFAULT',
+                        itemType: 'RAWITEM',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        showCaption: true,
+                        id: 'static_text1',
+                      },
+                      {
+                        editor: {
+                          halign: 'LEFT',
+                          renderMode: 'TEXT_DYNAMIC',
+                          valign: 'MIDDLE',
+                          wrapMode: 'NOWRAP',
+                          editorType: 'SPAN',
+                          predefinedType: 'FIELD_TEXT_DYNAMIC',
+                          valueType: 'SIMPLE',
+                          editable: true,
+                          id: 'field_text_dynamic',
+                        },
+                        viewFieldName: 'message',
+                        allowEmpty: true,
+                        caption: '文本(动态)',
+                        itemStyle: 'DEFAULT',
+                        itemType: 'FIELD',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        id: 'field_text_dynamic',
+                      },
+                    ],
+                    layout: {
+                      align: 'flex-start',
+                      dir: 'row',
+                      layout: 'FLEX',
+                      valign: 'center',
+                    },
+                    dataRegionType: 'INHERIT',
+                    caption: '容器',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'CONTAINER',
+                    layoutPos: {
+                      shrink: 1,
+                      layout: 'FLEX',
+                    },
+                    id: 'container',
+                  },
+                ],
+                predefinedType: 'CONTAINER_SINGLEDATA',
+                layout: {
+                  layout: 'FLEX',
+                },
+                dataRegionType: 'SINGLEDATA',
+                dataSourceType: 'DELOGIC',
+                appDELogicId: 'get_view_msg',
+                appDataEntityId: 'plmweb.addon',
+                caption: '单项数据容器',
+                itemStyle: 'DEFAULT',
+                itemType: 'CONTAINER',
+                layoutPos: {
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                id: 'container_singledata',
+              },
+            ],
+            layout: {
+              dir: 'column',
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              shrink: 1,
+              layout: 'FLEX',
+            },
+            sysCss: {
+              cssName: 'prompt_message_style',
+            },
+            id: 'page_container',
+          },
+        ],
+        layoutPanel: true,
+        codeName: 'addon_setting_message_panel_show',
+        controlType: 'PANEL',
+        logicName: '全局设置消息提示',
+        appDataEntityId: 'plmweb.ticket',
+        controlParam: {
+          id: 'panel',
+        },
+        modelId: 'af48ca4699e2893947ba4664850c480c',
+        modelType: 'PSSYSVIEWPANEL',
+        name: 'panel',
+        id: 'plmweb.ticket.addon_setting_message_panel_show',
+      },
+      position: 'TOP',
+      removeMode: 0,
+      testAppDELogicId: 'nothing',
+      name: '工单设置消息',
+      id: 'usrviewmsg1022679573',
+    },
+    {
+      codeName: 'UsrViewMsg1024073333',
+      enableMode: 'DELOGIC',
+      message: '配置测试用例的属性与视图',
+      messageType: 'INFO',
+      appDataEntityId: 'plmweb.test_case',
+      layoutPanel: {
+        layoutMode: 'FLEX',
+        layout: {
+          layout: 'FLEX',
+        },
+        rootPanelItems: [
+          {
+            actionGroupExtractMode: 'ITEM',
+            panelItems: [
+              {
+                actionGroupExtractMode: 'ITEM',
+                panelItems: [
+                  {
+                    actionGroupExtractMode: 'ITEM',
+                    panelItems: [
+                      {
+                        rawItem: {
+                          sysImage: {
+                            rawContent:
+                              '<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fit="" height="1em" width="1em" preserveAspectRatio="xMidYMid meet" focusable="false"><g id="aodnormal/lightbulb" stroke-width="1" fill-rule="evenodd"><path d="M9.733 15.091H6.447a.367.367 0 1 0 0 .735h3.286c.202 0 .372-.17.372-.371a.37.37 0 0 0-.372-.364m2.602-6.606h-.008a4.832 4.832 0 0 1-1.724 1.779.613.613 0 0 0-.285.529h-.012v1.42H5.88v-1.42a.588.588 0 0 0-.356-.553 4.9 4.9 0 0 1-1.669-1.755 4.816 4.816 0 0 1-.62-2.38 4.85 4.85 0 0 1 1.423-3.436 4.832 4.832 0 0 1 3.431-1.428c1.344 0 2.562.546 3.436 1.428a4.833 4.833 0 0 1 1.424 3.436c0 .869-.218 1.684-.613 2.38m1.85-2.38a6.065 6.065 0 0 0-1.79-4.314A6.078 6.078 0 0 0 8.087 0 6.108 6.108 0 0 0 3.78 1.791 6.1 6.1 0 0 0 2 6.105c0 1.083.28 2.103.775 2.984a6.316 6.316 0 0 0 1.866 2.032v1.712c0 .336.277.621.613.621h5.677c.34 0 .61-.285.61-.621v-1.712a6.09 6.09 0 0 0 2.644-5.016m-3.254 7.689H5.254a.371.371 0 1 0 0 .743h5.677a.372.372 0 0 0 0-.743m-.874-8.014a2.776 2.776 0 0 1-1.969.811c-.379 0-.735-.075-1.067-.206a2.677 2.677 0 0 1-.897-.605.365.365 0 0 0-.518 0 .355.355 0 0 0-.008.514c.324.324.72.593 1.146.771a3.543 3.543 0 0 0 3.84-.763.372.372 0 0 0-.527-.522" fill="#FF7575"></path></g></svg>',
+                          },
+                          contentType: 'IMAGE',
+                          predefinedType: 'STATIC_IMAGE',
+                          id: 'static_image',
+                        },
+                        caption: '图片',
+                        itemStyle: 'DEFAULT',
+                        itemType: 'RAWITEM',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        sysImage: {
+                          rawContent:
+                            '<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fit="" height="1em" width="1em" preserveAspectRatio="xMidYMid meet" focusable="false"><g id="aodnormal/lightbulb" stroke-width="1" fill-rule="evenodd"><path d="M9.733 15.091H6.447a.367.367 0 1 0 0 .735h3.286c.202 0 .372-.17.372-.371a.37.37 0 0 0-.372-.364m2.602-6.606h-.008a4.832 4.832 0 0 1-1.724 1.779.613.613 0 0 0-.285.529h-.012v1.42H5.88v-1.42a.588.588 0 0 0-.356-.553 4.9 4.9 0 0 1-1.669-1.755 4.816 4.816 0 0 1-.62-2.38 4.85 4.85 0 0 1 1.423-3.436 4.832 4.832 0 0 1 3.431-1.428c1.344 0 2.562.546 3.436 1.428a4.833 4.833 0 0 1 1.424 3.436c0 .869-.218 1.684-.613 2.38m1.85-2.38a6.065 6.065 0 0 0-1.79-4.314A6.078 6.078 0 0 0 8.087 0 6.108 6.108 0 0 0 3.78 1.791 6.1 6.1 0 0 0 2 6.105c0 1.083.28 2.103.775 2.984a6.316 6.316 0 0 0 1.866 2.032v1.712c0 .336.277.621.613.621h5.677c.34 0 .61-.285.61-.621v-1.712a6.09 6.09 0 0 0 2.644-5.016m-3.254 7.689H5.254a.371.371 0 1 0 0 .743h5.677a.372.372 0 0 0 0-.743m-.874-8.014a2.776 2.776 0 0 1-1.969.811c-.379 0-.735-.075-1.067-.206a2.677 2.677 0 0 1-.897-.605.365.365 0 0 0-.518 0 .355.355 0 0 0-.008.514c.324.324.72.593 1.146.771a3.543 3.543 0 0 0 3.84-.763.372.372 0 0 0-.527-.522" fill="#FF7575"></path></g></svg>',
+                        },
+                        showCaption: true,
+                        id: 'static_image',
+                      },
+                      {
+                        rawItem: {
+                          caption: 'Tips：',
+                          halign: 'LEFT',
+                          renderMode: 'TEXT',
+                          valign: 'MIDDLE',
+                          wrapMode: 'NOWRAP',
+                          contentType: 'RAW',
+                          cssStyle: 'margin-left:8px\n',
+                          predefinedType: 'STATIC_TEXT',
+                          id: 'static_text1',
+                        },
+                        caption: '文本',
+                        itemStyle: 'DEFAULT',
+                        itemType: 'RAWITEM',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        showCaption: true,
+                        id: 'static_text1',
+                      },
+                      {
+                        editor: {
+                          halign: 'LEFT',
+                          renderMode: 'TEXT_DYNAMIC',
+                          valign: 'MIDDLE',
+                          wrapMode: 'NOWRAP',
+                          editorType: 'SPAN',
+                          predefinedType: 'FIELD_TEXT_DYNAMIC',
+                          valueType: 'SIMPLE',
+                          editable: true,
+                          id: 'field_text_dynamic',
+                        },
+                        viewFieldName: 'message',
+                        allowEmpty: true,
+                        caption: '文本(动态)',
+                        itemStyle: 'DEFAULT',
+                        itemType: 'FIELD',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        id: 'field_text_dynamic',
+                      },
+                    ],
+                    layout: {
+                      align: 'flex-start',
+                      dir: 'row',
+                      layout: 'FLEX',
+                      valign: 'center',
+                    },
+                    dataRegionType: 'INHERIT',
+                    caption: '容器',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'CONTAINER',
+                    layoutPos: {
+                      shrink: 1,
+                      layout: 'FLEX',
+                    },
+                    id: 'container',
+                  },
+                ],
+                predefinedType: 'CONTAINER_SINGLEDATA',
+                layout: {
+                  layout: 'FLEX',
+                },
+                dataRegionType: 'SINGLEDATA',
+                dataSourceType: 'DELOGIC',
+                appDELogicId: 'get_view_msg',
+                appDataEntityId: 'plmweb.addon',
+                caption: '单项数据容器',
+                itemStyle: 'DEFAULT',
+                itemType: 'CONTAINER',
+                layoutPos: {
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                id: 'container_singledata',
+              },
+            ],
+            layout: {
+              dir: 'column',
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              shrink: 1,
+              layout: 'FLEX',
+            },
+            sysCss: {
+              cssName: 'prompt_message_style',
+            },
+            id: 'page_container',
+          },
+        ],
+        layoutPanel: true,
+        codeName: 'addon_setting_message_panel_show',
+        controlType: 'PANEL',
+        logicName: '全局设置消息提示',
+        appDataEntityId: 'plmweb.test_case',
+        controlParam: {
+          id: 'panel',
+        },
+        modelId: 'af48ca4699e2893947ba4664850c480c',
+        modelType: 'PSSYSVIEWPANEL',
+        name: 'panel',
+        id: 'plmweb.test_case.addon_setting_message_panel_show',
+      },
+      position: 'TOP',
+      removeMode: 0,
+      testAppDELogicId: 'nothing',
+      name: '测试用例设置提示',
+      id: 'usrviewmsg1024073333',
+    },
+    {
+      codeName: 'UsrViewMsg1024259270',
+      enableMode: 'DELOGIC',
+      message: '设置当前项目的扩展属性',
+      messageType: 'INFO',
+      appDataEntityId: 'plmweb.psdefield',
+      layoutPanel: {
+        layoutMode: 'FLEX',
+        layout: {
+          layout: 'FLEX',
+        },
+        rootPanelItems: [
+          {
+            actionGroupExtractMode: 'ITEM',
+            panelItems: [
+              {
+                actionGroupExtractMode: 'ITEM',
+                panelItems: [
+                  {
+                    actionGroupExtractMode: 'ITEM',
+                    panelItems: [
+                      {
+                        rawItem: {
+                          sysImage: {
+                            rawContent:
+                              '<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fit="" height="1em" width="1em" preserveAspectRatio="xMidYMid meet" focusable="false"><g id="aodnormal/lightbulb" stroke-width="1" fill-rule="evenodd"><path d="M9.733 15.091H6.447a.367.367 0 1 0 0 .735h3.286c.202 0 .372-.17.372-.371a.37.37 0 0 0-.372-.364m2.602-6.606h-.008a4.832 4.832 0 0 1-1.724 1.779.613.613 0 0 0-.285.529h-.012v1.42H5.88v-1.42a.588.588 0 0 0-.356-.553 4.9 4.9 0 0 1-1.669-1.755 4.816 4.816 0 0 1-.62-2.38 4.85 4.85 0 0 1 1.423-3.436 4.832 4.832 0 0 1 3.431-1.428c1.344 0 2.562.546 3.436 1.428a4.833 4.833 0 0 1 1.424 3.436c0 .869-.218 1.684-.613 2.38m1.85-2.38a6.065 6.065 0 0 0-1.79-4.314A6.078 6.078 0 0 0 8.087 0 6.108 6.108 0 0 0 3.78 1.791 6.1 6.1 0 0 0 2 6.105c0 1.083.28 2.103.775 2.984a6.316 6.316 0 0 0 1.866 2.032v1.712c0 .336.277.621.613.621h5.677c.34 0 .61-.285.61-.621v-1.712a6.09 6.09 0 0 0 2.644-5.016m-3.254 7.689H5.254a.371.371 0 1 0 0 .743h5.677a.372.372 0 0 0 0-.743m-.874-8.014a2.776 2.776 0 0 1-1.969.811c-.379 0-.735-.075-1.067-.206a2.677 2.677 0 0 1-.897-.605.365.365 0 0 0-.518 0 .355.355 0 0 0-.008.514c.324.324.72.593 1.146.771a3.543 3.543 0 0 0 3.84-.763.372.372 0 0 0-.527-.522" fill="#FF7575"></path></g></svg>',
+                          },
+                          contentType: 'IMAGE',
+                          predefinedType: 'STATIC_IMAGE',
+                          id: 'static_image',
+                        },
+                        caption: '图片',
+                        itemStyle: 'DEFAULT',
+                        itemType: 'RAWITEM',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        sysImage: {
+                          rawContent:
+                            '<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fit="" height="1em" width="1em" preserveAspectRatio="xMidYMid meet" focusable="false"><g id="aodnormal/lightbulb" stroke-width="1" fill-rule="evenodd"><path d="M9.733 15.091H6.447a.367.367 0 1 0 0 .735h3.286c.202 0 .372-.17.372-.371a.37.37 0 0 0-.372-.364m2.602-6.606h-.008a4.832 4.832 0 0 1-1.724 1.779.613.613 0 0 0-.285.529h-.012v1.42H5.88v-1.42a.588.588 0 0 0-.356-.553 4.9 4.9 0 0 1-1.669-1.755 4.816 4.816 0 0 1-.62-2.38 4.85 4.85 0 0 1 1.423-3.436 4.832 4.832 0 0 1 3.431-1.428c1.344 0 2.562.546 3.436 1.428a4.833 4.833 0 0 1 1.424 3.436c0 .869-.218 1.684-.613 2.38m1.85-2.38a6.065 6.065 0 0 0-1.79-4.314A6.078 6.078 0 0 0 8.087 0 6.108 6.108 0 0 0 3.78 1.791 6.1 6.1 0 0 0 2 6.105c0 1.083.28 2.103.775 2.984a6.316 6.316 0 0 0 1.866 2.032v1.712c0 .336.277.621.613.621h5.677c.34 0 .61-.285.61-.621v-1.712a6.09 6.09 0 0 0 2.644-5.016m-3.254 7.689H5.254a.371.371 0 1 0 0 .743h5.677a.372.372 0 0 0 0-.743m-.874-8.014a2.776 2.776 0 0 1-1.969.811c-.379 0-.735-.075-1.067-.206a2.677 2.677 0 0 1-.897-.605.365.365 0 0 0-.518 0 .355.355 0 0 0-.008.514c.324.324.72.593 1.146.771a3.543 3.543 0 0 0 3.84-.763.372.372 0 0 0-.527-.522" fill="#FF7575"></path></g></svg>',
+                        },
+                        showCaption: true,
+                        id: 'static_image',
+                      },
+                      {
+                        rawItem: {
+                          caption: 'Tips：',
+                          halign: 'LEFT',
+                          renderMode: 'TEXT',
+                          valign: 'MIDDLE',
+                          wrapMode: 'NOWRAP',
+                          contentType: 'RAW',
+                          cssStyle: 'margin-left:8px\n',
+                          predefinedType: 'STATIC_TEXT',
+                          id: 'static_text1',
+                        },
+                        caption: '文本',
+                        itemStyle: 'DEFAULT',
+                        itemType: 'RAWITEM',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        showCaption: true,
+                        id: 'static_text1',
+                      },
+                      {
+                        editor: {
+                          halign: 'LEFT',
+                          renderMode: 'TEXT_DYNAMIC',
+                          valign: 'MIDDLE',
+                          wrapMode: 'NOWRAP',
+                          editorType: 'SPAN',
+                          predefinedType: 'FIELD_TEXT_DYNAMIC',
+                          valueType: 'SIMPLE',
+                          editable: true,
+                          id: 'field_text_dynamic',
+                        },
+                        viewFieldName: 'message',
+                        allowEmpty: true,
+                        caption: '文本(动态)',
+                        itemStyle: 'DEFAULT',
+                        itemType: 'FIELD',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        id: 'field_text_dynamic',
+                      },
+                    ],
+                    layout: {
+                      align: 'flex-start',
+                      dir: 'row',
+                      layout: 'FLEX',
+                      valign: 'center',
+                    },
+                    dataRegionType: 'INHERIT',
+                    caption: '容器',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'CONTAINER',
+                    layoutPos: {
+                      shrink: 1,
+                      layout: 'FLEX',
+                    },
+                    id: 'container',
+                  },
+                ],
+                predefinedType: 'CONTAINER_SINGLEDATA',
+                layout: {
+                  layout: 'FLEX',
+                },
+                dataRegionType: 'SINGLEDATA',
+                dataSourceType: 'DELOGIC',
+                appDELogicId: 'get_view_msg',
+                appDataEntityId: 'plmweb.addon',
+                caption: '单项数据容器',
+                itemStyle: 'DEFAULT',
+                itemType: 'CONTAINER',
+                layoutPos: {
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                id: 'container_singledata',
+              },
+            ],
+            layout: {
+              dir: 'column',
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              shrink: 1,
+              layout: 'FLEX',
+            },
+            sysCss: {
+              cssName: 'prompt_message_style',
+            },
+            id: 'page_container',
+          },
+        ],
+        layoutPanel: true,
+        codeName: 'addon_setting_message_panel_show',
+        controlType: 'PANEL',
+        logicName: '全局设置消息提示',
+        appDataEntityId: 'plmweb.psdefield',
+        controlParam: {
+          id: 'panel',
+        },
+        modelId: 'af48ca4699e2893947ba4664850c480c',
+        modelType: 'PSSYSVIEWPANEL',
+        name: 'panel',
+        id: 'plmweb.psdefield.addon_setting_message_panel_show',
+      },
+      position: 'TOP',
+      removeMode: 0,
+      testAppDELogicId: 'nothing',
+      name: '项目属性配置提示',
+      id: 'usrviewmsg1024259270',
+    },
+    {
+      codeName: 'UsrViewMsg1024349775',
+      enableMode: 'DELOGIC',
+      message: '自定义测试用例的全局扩展属性',
+      messageType: 'INFO',
+      appDataEntityId: 'plmweb.test_case',
+      layoutPanel: {
+        layoutMode: 'FLEX',
+        layout: {
+          layout: 'FLEX',
+        },
+        rootPanelItems: [
+          {
+            actionGroupExtractMode: 'ITEM',
+            panelItems: [
+              {
+                actionGroupExtractMode: 'ITEM',
+                panelItems: [
+                  {
+                    actionGroupExtractMode: 'ITEM',
+                    panelItems: [
+                      {
+                        rawItem: {
+                          sysImage: {
+                            rawContent:
+                              '<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fit="" height="1em" width="1em" preserveAspectRatio="xMidYMid meet" focusable="false"><g id="aodnormal/lightbulb" stroke-width="1" fill-rule="evenodd"><path d="M9.733 15.091H6.447a.367.367 0 1 0 0 .735h3.286c.202 0 .372-.17.372-.371a.37.37 0 0 0-.372-.364m2.602-6.606h-.008a4.832 4.832 0 0 1-1.724 1.779.613.613 0 0 0-.285.529h-.012v1.42H5.88v-1.42a.588.588 0 0 0-.356-.553 4.9 4.9 0 0 1-1.669-1.755 4.816 4.816 0 0 1-.62-2.38 4.85 4.85 0 0 1 1.423-3.436 4.832 4.832 0 0 1 3.431-1.428c1.344 0 2.562.546 3.436 1.428a4.833 4.833 0 0 1 1.424 3.436c0 .869-.218 1.684-.613 2.38m1.85-2.38a6.065 6.065 0 0 0-1.79-4.314A6.078 6.078 0 0 0 8.087 0 6.108 6.108 0 0 0 3.78 1.791 6.1 6.1 0 0 0 2 6.105c0 1.083.28 2.103.775 2.984a6.316 6.316 0 0 0 1.866 2.032v1.712c0 .336.277.621.613.621h5.677c.34 0 .61-.285.61-.621v-1.712a6.09 6.09 0 0 0 2.644-5.016m-3.254 7.689H5.254a.371.371 0 1 0 0 .743h5.677a.372.372 0 0 0 0-.743m-.874-8.014a2.776 2.776 0 0 1-1.969.811c-.379 0-.735-.075-1.067-.206a2.677 2.677 0 0 1-.897-.605.365.365 0 0 0-.518 0 .355.355 0 0 0-.008.514c.324.324.72.593 1.146.771a3.543 3.543 0 0 0 3.84-.763.372.372 0 0 0-.527-.522" fill="#FF7575"></path></g></svg>',
+                          },
+                          contentType: 'IMAGE',
+                          predefinedType: 'STATIC_IMAGE',
+                          id: 'static_image',
+                        },
+                        caption: '图片',
+                        itemStyle: 'DEFAULT',
+                        itemType: 'RAWITEM',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        sysImage: {
+                          rawContent:
+                            '<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fit="" height="1em" width="1em" preserveAspectRatio="xMidYMid meet" focusable="false"><g id="aodnormal/lightbulb" stroke-width="1" fill-rule="evenodd"><path d="M9.733 15.091H6.447a.367.367 0 1 0 0 .735h3.286c.202 0 .372-.17.372-.371a.37.37 0 0 0-.372-.364m2.602-6.606h-.008a4.832 4.832 0 0 1-1.724 1.779.613.613 0 0 0-.285.529h-.012v1.42H5.88v-1.42a.588.588 0 0 0-.356-.553 4.9 4.9 0 0 1-1.669-1.755 4.816 4.816 0 0 1-.62-2.38 4.85 4.85 0 0 1 1.423-3.436 4.832 4.832 0 0 1 3.431-1.428c1.344 0 2.562.546 3.436 1.428a4.833 4.833 0 0 1 1.424 3.436c0 .869-.218 1.684-.613 2.38m1.85-2.38a6.065 6.065 0 0 0-1.79-4.314A6.078 6.078 0 0 0 8.087 0 6.108 6.108 0 0 0 3.78 1.791 6.1 6.1 0 0 0 2 6.105c0 1.083.28 2.103.775 2.984a6.316 6.316 0 0 0 1.866 2.032v1.712c0 .336.277.621.613.621h5.677c.34 0 .61-.285.61-.621v-1.712a6.09 6.09 0 0 0 2.644-5.016m-3.254 7.689H5.254a.371.371 0 1 0 0 .743h5.677a.372.372 0 0 0 0-.743m-.874-8.014a2.776 2.776 0 0 1-1.969.811c-.379 0-.735-.075-1.067-.206a2.677 2.677 0 0 1-.897-.605.365.365 0 0 0-.518 0 .355.355 0 0 0-.008.514c.324.324.72.593 1.146.771a3.543 3.543 0 0 0 3.84-.763.372.372 0 0 0-.527-.522" fill="#FF7575"></path></g></svg>',
+                        },
+                        showCaption: true,
+                        id: 'static_image',
+                      },
+                      {
+                        rawItem: {
+                          caption: 'Tips：',
+                          halign: 'LEFT',
+                          renderMode: 'TEXT',
+                          valign: 'MIDDLE',
+                          wrapMode: 'NOWRAP',
+                          contentType: 'RAW',
+                          cssStyle: 'margin-left:8px\n',
+                          predefinedType: 'STATIC_TEXT',
+                          id: 'static_text1',
+                        },
+                        caption: '文本',
+                        itemStyle: 'DEFAULT',
+                        itemType: 'RAWITEM',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        showCaption: true,
+                        id: 'static_text1',
+                      },
+                      {
+                        editor: {
+                          halign: 'LEFT',
+                          renderMode: 'TEXT_DYNAMIC',
+                          valign: 'MIDDLE',
+                          wrapMode: 'NOWRAP',
+                          editorType: 'SPAN',
+                          predefinedType: 'FIELD_TEXT_DYNAMIC',
+                          valueType: 'SIMPLE',
+                          editable: true,
+                          id: 'field_text_dynamic',
+                        },
+                        viewFieldName: 'message',
+                        allowEmpty: true,
+                        caption: '文本(动态)',
+                        itemStyle: 'DEFAULT',
+                        itemType: 'FIELD',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        id: 'field_text_dynamic',
+                      },
+                    ],
+                    layout: {
+                      align: 'flex-start',
+                      dir: 'row',
+                      layout: 'FLEX',
+                      valign: 'center',
+                    },
+                    dataRegionType: 'INHERIT',
+                    caption: '容器',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'CONTAINER',
+                    layoutPos: {
+                      shrink: 1,
+                      layout: 'FLEX',
+                    },
+                    id: 'container',
+                  },
+                ],
+                predefinedType: 'CONTAINER_SINGLEDATA',
+                layout: {
+                  layout: 'FLEX',
+                },
+                dataRegionType: 'SINGLEDATA',
+                dataSourceType: 'DELOGIC',
+                appDELogicId: 'get_view_msg',
+                appDataEntityId: 'plmweb.addon',
+                caption: '单项数据容器',
+                itemStyle: 'DEFAULT',
+                itemType: 'CONTAINER',
+                layoutPos: {
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                id: 'container_singledata',
+              },
+            ],
+            layout: {
+              dir: 'column',
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              shrink: 1,
+              layout: 'FLEX',
+            },
+            sysCss: {
+              cssName: 'prompt_message_style',
+            },
+            id: 'page_container',
+          },
+        ],
+        layoutPanel: true,
+        codeName: 'addon_setting_message_panel_show',
+        controlType: 'PANEL',
+        logicName: '全局设置消息提示',
+        appDataEntityId: 'plmweb.test_case',
+        controlParam: {
+          id: 'panel',
+        },
+        modelId: 'af48ca4699e2893947ba4664850c480c',
+        modelType: 'PSSYSVIEWPANEL',
+        name: 'panel',
+        id: 'plmweb.test_case.addon_setting_message_panel_show',
+      },
+      position: 'TOP',
+      removeMode: 0,
+      testAppDELogicId: 'nothing',
+      name: '测试用例全局属性配置提示',
+      id: 'usrviewmsg1024349775',
+    },
+    {
+      codeName: 'UsrViewMsg1024571803',
+      enableMode: 'DELOGIC',
+      message: '设置当前产品中工单的扩展属性',
+      messageType: 'INFO',
+      appDataEntityId: 'plmweb.psdefield',
+      layoutPanel: {
+        layoutMode: 'FLEX',
+        layout: {
+          layout: 'FLEX',
+        },
+        rootPanelItems: [
+          {
+            actionGroupExtractMode: 'ITEM',
+            panelItems: [
+              {
+                actionGroupExtractMode: 'ITEM',
+                panelItems: [
+                  {
+                    actionGroupExtractMode: 'ITEM',
+                    panelItems: [
+                      {
+                        rawItem: {
+                          sysImage: {
+                            rawContent:
+                              '<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fit="" height="1em" width="1em" preserveAspectRatio="xMidYMid meet" focusable="false"><g id="aodnormal/lightbulb" stroke-width="1" fill-rule="evenodd"><path d="M9.733 15.091H6.447a.367.367 0 1 0 0 .735h3.286c.202 0 .372-.17.372-.371a.37.37 0 0 0-.372-.364m2.602-6.606h-.008a4.832 4.832 0 0 1-1.724 1.779.613.613 0 0 0-.285.529h-.012v1.42H5.88v-1.42a.588.588 0 0 0-.356-.553 4.9 4.9 0 0 1-1.669-1.755 4.816 4.816 0 0 1-.62-2.38 4.85 4.85 0 0 1 1.423-3.436 4.832 4.832 0 0 1 3.431-1.428c1.344 0 2.562.546 3.436 1.428a4.833 4.833 0 0 1 1.424 3.436c0 .869-.218 1.684-.613 2.38m1.85-2.38a6.065 6.065 0 0 0-1.79-4.314A6.078 6.078 0 0 0 8.087 0 6.108 6.108 0 0 0 3.78 1.791 6.1 6.1 0 0 0 2 6.105c0 1.083.28 2.103.775 2.984a6.316 6.316 0 0 0 1.866 2.032v1.712c0 .336.277.621.613.621h5.677c.34 0 .61-.285.61-.621v-1.712a6.09 6.09 0 0 0 2.644-5.016m-3.254 7.689H5.254a.371.371 0 1 0 0 .743h5.677a.372.372 0 0 0 0-.743m-.874-8.014a2.776 2.776 0 0 1-1.969.811c-.379 0-.735-.075-1.067-.206a2.677 2.677 0 0 1-.897-.605.365.365 0 0 0-.518 0 .355.355 0 0 0-.008.514c.324.324.72.593 1.146.771a3.543 3.543 0 0 0 3.84-.763.372.372 0 0 0-.527-.522" fill="#FF7575"></path></g></svg>',
+                          },
+                          contentType: 'IMAGE',
+                          predefinedType: 'STATIC_IMAGE',
+                          id: 'static_image',
+                        },
+                        caption: '图片',
+                        itemStyle: 'DEFAULT',
+                        itemType: 'RAWITEM',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        sysImage: {
+                          rawContent:
+                            '<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fit="" height="1em" width="1em" preserveAspectRatio="xMidYMid meet" focusable="false"><g id="aodnormal/lightbulb" stroke-width="1" fill-rule="evenodd"><path d="M9.733 15.091H6.447a.367.367 0 1 0 0 .735h3.286c.202 0 .372-.17.372-.371a.37.37 0 0 0-.372-.364m2.602-6.606h-.008a4.832 4.832 0 0 1-1.724 1.779.613.613 0 0 0-.285.529h-.012v1.42H5.88v-1.42a.588.588 0 0 0-.356-.553 4.9 4.9 0 0 1-1.669-1.755 4.816 4.816 0 0 1-.62-2.38 4.85 4.85 0 0 1 1.423-3.436 4.832 4.832 0 0 1 3.431-1.428c1.344 0 2.562.546 3.436 1.428a4.833 4.833 0 0 1 1.424 3.436c0 .869-.218 1.684-.613 2.38m1.85-2.38a6.065 6.065 0 0 0-1.79-4.314A6.078 6.078 0 0 0 8.087 0 6.108 6.108 0 0 0 3.78 1.791 6.1 6.1 0 0 0 2 6.105c0 1.083.28 2.103.775 2.984a6.316 6.316 0 0 0 1.866 2.032v1.712c0 .336.277.621.613.621h5.677c.34 0 .61-.285.61-.621v-1.712a6.09 6.09 0 0 0 2.644-5.016m-3.254 7.689H5.254a.371.371 0 1 0 0 .743h5.677a.372.372 0 0 0 0-.743m-.874-8.014a2.776 2.776 0 0 1-1.969.811c-.379 0-.735-.075-1.067-.206a2.677 2.677 0 0 1-.897-.605.365.365 0 0 0-.518 0 .355.355 0 0 0-.008.514c.324.324.72.593 1.146.771a3.543 3.543 0 0 0 3.84-.763.372.372 0 0 0-.527-.522" fill="#FF7575"></path></g></svg>',
+                        },
+                        showCaption: true,
+                        id: 'static_image',
+                      },
+                      {
+                        rawItem: {
+                          caption: 'Tips：',
+                          halign: 'LEFT',
+                          renderMode: 'TEXT',
+                          valign: 'MIDDLE',
+                          wrapMode: 'NOWRAP',
+                          contentType: 'RAW',
+                          cssStyle: 'margin-left:8px\n',
+                          predefinedType: 'STATIC_TEXT',
+                          id: 'static_text1',
+                        },
+                        caption: '文本',
+                        itemStyle: 'DEFAULT',
+                        itemType: 'RAWITEM',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        showCaption: true,
+                        id: 'static_text1',
+                      },
+                      {
+                        editor: {
+                          halign: 'LEFT',
+                          renderMode: 'TEXT_DYNAMIC',
+                          valign: 'MIDDLE',
+                          wrapMode: 'NOWRAP',
+                          editorType: 'SPAN',
+                          predefinedType: 'FIELD_TEXT_DYNAMIC',
+                          valueType: 'SIMPLE',
+                          editable: true,
+                          id: 'field_text_dynamic',
+                        },
+                        viewFieldName: 'message',
+                        allowEmpty: true,
+                        caption: '文本(动态)',
+                        itemStyle: 'DEFAULT',
+                        itemType: 'FIELD',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        id: 'field_text_dynamic',
+                      },
+                    ],
+                    layout: {
+                      align: 'flex-start',
+                      dir: 'row',
+                      layout: 'FLEX',
+                      valign: 'center',
+                    },
+                    dataRegionType: 'INHERIT',
+                    caption: '容器',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'CONTAINER',
+                    layoutPos: {
+                      shrink: 1,
+                      layout: 'FLEX',
+                    },
+                    id: 'container',
+                  },
+                ],
+                predefinedType: 'CONTAINER_SINGLEDATA',
+                layout: {
+                  layout: 'FLEX',
+                },
+                dataRegionType: 'SINGLEDATA',
+                dataSourceType: 'DELOGIC',
+                appDELogicId: 'get_view_msg',
+                appDataEntityId: 'plmweb.addon',
+                caption: '单项数据容器',
+                itemStyle: 'DEFAULT',
+                itemType: 'CONTAINER',
+                layoutPos: {
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                id: 'container_singledata',
+              },
+            ],
+            layout: {
+              dir: 'column',
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              shrink: 1,
+              layout: 'FLEX',
+            },
+            sysCss: {
+              cssName: 'prompt_message_style',
+            },
+            id: 'page_container',
+          },
+        ],
+        layoutPanel: true,
+        codeName: 'addon_setting_message_panel_show',
+        controlType: 'PANEL',
+        logicName: '全局设置消息提示',
+        appDataEntityId: 'plmweb.psdefield',
+        controlParam: {
+          id: 'panel',
+        },
+        modelId: 'af48ca4699e2893947ba4664850c480c',
+        modelType: 'PSSYSVIEWPANEL',
+        name: 'panel',
+        id: 'plmweb.psdefield.addon_setting_message_panel_show',
+      },
+      position: 'TOP',
+      removeMode: 0,
+      testAppDELogicId: 'nothing',
+      name: '产品工单属性配置提示',
+      id: 'usrviewmsg1024571803',
+    },
+    {
+      codeName: 'UsrViewMsg10245718034',
+      enableMode: 'DELOGIC',
+      message: '设置当前测试库中用例的扩展属性',
+      messageType: 'INFO',
+      appDataEntityId: 'plmweb.psdefield',
+      layoutPanel: {
+        layoutMode: 'FLEX',
+        layout: {
+          layout: 'FLEX',
+        },
+        rootPanelItems: [
+          {
+            actionGroupExtractMode: 'ITEM',
+            panelItems: [
+              {
+                actionGroupExtractMode: 'ITEM',
+                panelItems: [
+                  {
+                    actionGroupExtractMode: 'ITEM',
+                    panelItems: [
+                      {
+                        rawItem: {
+                          sysImage: {
+                            rawContent:
+                              '<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fit="" height="1em" width="1em" preserveAspectRatio="xMidYMid meet" focusable="false"><g id="aodnormal/lightbulb" stroke-width="1" fill-rule="evenodd"><path d="M9.733 15.091H6.447a.367.367 0 1 0 0 .735h3.286c.202 0 .372-.17.372-.371a.37.37 0 0 0-.372-.364m2.602-6.606h-.008a4.832 4.832 0 0 1-1.724 1.779.613.613 0 0 0-.285.529h-.012v1.42H5.88v-1.42a.588.588 0 0 0-.356-.553 4.9 4.9 0 0 1-1.669-1.755 4.816 4.816 0 0 1-.62-2.38 4.85 4.85 0 0 1 1.423-3.436 4.832 4.832 0 0 1 3.431-1.428c1.344 0 2.562.546 3.436 1.428a4.833 4.833 0 0 1 1.424 3.436c0 .869-.218 1.684-.613 2.38m1.85-2.38a6.065 6.065 0 0 0-1.79-4.314A6.078 6.078 0 0 0 8.087 0 6.108 6.108 0 0 0 3.78 1.791 6.1 6.1 0 0 0 2 6.105c0 1.083.28 2.103.775 2.984a6.316 6.316 0 0 0 1.866 2.032v1.712c0 .336.277.621.613.621h5.677c.34 0 .61-.285.61-.621v-1.712a6.09 6.09 0 0 0 2.644-5.016m-3.254 7.689H5.254a.371.371 0 1 0 0 .743h5.677a.372.372 0 0 0 0-.743m-.874-8.014a2.776 2.776 0 0 1-1.969.811c-.379 0-.735-.075-1.067-.206a2.677 2.677 0 0 1-.897-.605.365.365 0 0 0-.518 0 .355.355 0 0 0-.008.514c.324.324.72.593 1.146.771a3.543 3.543 0 0 0 3.84-.763.372.372 0 0 0-.527-.522" fill="#FF7575"></path></g></svg>',
+                          },
+                          contentType: 'IMAGE',
+                          predefinedType: 'STATIC_IMAGE',
+                          id: 'static_image',
+                        },
+                        caption: '图片',
+                        itemStyle: 'DEFAULT',
+                        itemType: 'RAWITEM',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        sysImage: {
+                          rawContent:
+                            '<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fit="" height="1em" width="1em" preserveAspectRatio="xMidYMid meet" focusable="false"><g id="aodnormal/lightbulb" stroke-width="1" fill-rule="evenodd"><path d="M9.733 15.091H6.447a.367.367 0 1 0 0 .735h3.286c.202 0 .372-.17.372-.371a.37.37 0 0 0-.372-.364m2.602-6.606h-.008a4.832 4.832 0 0 1-1.724 1.779.613.613 0 0 0-.285.529h-.012v1.42H5.88v-1.42a.588.588 0 0 0-.356-.553 4.9 4.9 0 0 1-1.669-1.755 4.816 4.816 0 0 1-.62-2.38 4.85 4.85 0 0 1 1.423-3.436 4.832 4.832 0 0 1 3.431-1.428c1.344 0 2.562.546 3.436 1.428a4.833 4.833 0 0 1 1.424 3.436c0 .869-.218 1.684-.613 2.38m1.85-2.38a6.065 6.065 0 0 0-1.79-4.314A6.078 6.078 0 0 0 8.087 0 6.108 6.108 0 0 0 3.78 1.791 6.1 6.1 0 0 0 2 6.105c0 1.083.28 2.103.775 2.984a6.316 6.316 0 0 0 1.866 2.032v1.712c0 .336.277.621.613.621h5.677c.34 0 .61-.285.61-.621v-1.712a6.09 6.09 0 0 0 2.644-5.016m-3.254 7.689H5.254a.371.371 0 1 0 0 .743h5.677a.372.372 0 0 0 0-.743m-.874-8.014a2.776 2.776 0 0 1-1.969.811c-.379 0-.735-.075-1.067-.206a2.677 2.677 0 0 1-.897-.605.365.365 0 0 0-.518 0 .355.355 0 0 0-.008.514c.324.324.72.593 1.146.771a3.543 3.543 0 0 0 3.84-.763.372.372 0 0 0-.527-.522" fill="#FF7575"></path></g></svg>',
+                        },
+                        showCaption: true,
+                        id: 'static_image',
+                      },
+                      {
+                        rawItem: {
+                          caption: 'Tips：',
+                          halign: 'LEFT',
+                          renderMode: 'TEXT',
+                          valign: 'MIDDLE',
+                          wrapMode: 'NOWRAP',
+                          contentType: 'RAW',
+                          cssStyle: 'margin-left:8px\n',
+                          predefinedType: 'STATIC_TEXT',
+                          id: 'static_text1',
+                        },
+                        caption: '文本',
+                        itemStyle: 'DEFAULT',
+                        itemType: 'RAWITEM',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        showCaption: true,
+                        id: 'static_text1',
+                      },
+                      {
+                        editor: {
+                          halign: 'LEFT',
+                          renderMode: 'TEXT_DYNAMIC',
+                          valign: 'MIDDLE',
+                          wrapMode: 'NOWRAP',
+                          editorType: 'SPAN',
+                          predefinedType: 'FIELD_TEXT_DYNAMIC',
+                          valueType: 'SIMPLE',
+                          editable: true,
+                          id: 'field_text_dynamic',
+                        },
+                        viewFieldName: 'message',
+                        allowEmpty: true,
+                        caption: '文本(动态)',
+                        itemStyle: 'DEFAULT',
+                        itemType: 'FIELD',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        id: 'field_text_dynamic',
+                      },
+                    ],
+                    layout: {
+                      align: 'flex-start',
+                      dir: 'row',
+                      layout: 'FLEX',
+                      valign: 'center',
+                    },
+                    dataRegionType: 'INHERIT',
+                    caption: '容器',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'CONTAINER',
+                    layoutPos: {
+                      shrink: 1,
+                      layout: 'FLEX',
+                    },
+                    id: 'container',
+                  },
+                ],
+                predefinedType: 'CONTAINER_SINGLEDATA',
+                layout: {
+                  layout: 'FLEX',
+                },
+                dataRegionType: 'SINGLEDATA',
+                dataSourceType: 'DELOGIC',
+                appDELogicId: 'get_view_msg',
+                appDataEntityId: 'plmweb.addon',
+                caption: '单项数据容器',
+                itemStyle: 'DEFAULT',
+                itemType: 'CONTAINER',
+                layoutPos: {
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                id: 'container_singledata',
+              },
+            ],
+            layout: {
+              dir: 'column',
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              shrink: 1,
+              layout: 'FLEX',
+            },
+            sysCss: {
+              cssName: 'prompt_message_style',
+            },
+            id: 'page_container',
+          },
+        ],
+        layoutPanel: true,
+        codeName: 'addon_setting_message_panel_show',
+        controlType: 'PANEL',
+        logicName: '全局设置消息提示',
+        appDataEntityId: 'plmweb.psdefield',
+        controlParam: {
+          id: 'panel',
+        },
+        modelId: 'af48ca4699e2893947ba4664850c480c',
+        modelType: 'PSSYSVIEWPANEL',
+        name: 'panel',
+        id: 'plmweb.psdefield.addon_setting_message_panel_show',
+      },
+      position: 'TOP',
+      removeMode: 0,
+      testAppDELogicId: 'nothing',
+      name: '测试用例属性配置提示',
+      id: 'usrviewmsg10245718034',
+    },
+    {
+      codeName: 'UsrViewMsg1024686664',
+      enableMode: 'DELOGIC',
+      message: '设置当前产品中需求的扩展属性',
+      messageType: 'INFO',
+      appDataEntityId: 'plmweb.psdefield',
+      layoutPanel: {
+        layoutMode: 'FLEX',
+        layout: {
+          layout: 'FLEX',
+        },
+        rootPanelItems: [
+          {
+            actionGroupExtractMode: 'ITEM',
+            panelItems: [
+              {
+                actionGroupExtractMode: 'ITEM',
+                panelItems: [
+                  {
+                    actionGroupExtractMode: 'ITEM',
+                    panelItems: [
+                      {
+                        rawItem: {
+                          sysImage: {
+                            rawContent:
+                              '<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fit="" height="1em" width="1em" preserveAspectRatio="xMidYMid meet" focusable="false"><g id="aodnormal/lightbulb" stroke-width="1" fill-rule="evenodd"><path d="M9.733 15.091H6.447a.367.367 0 1 0 0 .735h3.286c.202 0 .372-.17.372-.371a.37.37 0 0 0-.372-.364m2.602-6.606h-.008a4.832 4.832 0 0 1-1.724 1.779.613.613 0 0 0-.285.529h-.012v1.42H5.88v-1.42a.588.588 0 0 0-.356-.553 4.9 4.9 0 0 1-1.669-1.755 4.816 4.816 0 0 1-.62-2.38 4.85 4.85 0 0 1 1.423-3.436 4.832 4.832 0 0 1 3.431-1.428c1.344 0 2.562.546 3.436 1.428a4.833 4.833 0 0 1 1.424 3.436c0 .869-.218 1.684-.613 2.38m1.85-2.38a6.065 6.065 0 0 0-1.79-4.314A6.078 6.078 0 0 0 8.087 0 6.108 6.108 0 0 0 3.78 1.791 6.1 6.1 0 0 0 2 6.105c0 1.083.28 2.103.775 2.984a6.316 6.316 0 0 0 1.866 2.032v1.712c0 .336.277.621.613.621h5.677c.34 0 .61-.285.61-.621v-1.712a6.09 6.09 0 0 0 2.644-5.016m-3.254 7.689H5.254a.371.371 0 1 0 0 .743h5.677a.372.372 0 0 0 0-.743m-.874-8.014a2.776 2.776 0 0 1-1.969.811c-.379 0-.735-.075-1.067-.206a2.677 2.677 0 0 1-.897-.605.365.365 0 0 0-.518 0 .355.355 0 0 0-.008.514c.324.324.72.593 1.146.771a3.543 3.543 0 0 0 3.84-.763.372.372 0 0 0-.527-.522" fill="#FF7575"></path></g></svg>',
+                          },
+                          contentType: 'IMAGE',
+                          predefinedType: 'STATIC_IMAGE',
+                          id: 'static_image',
+                        },
+                        caption: '图片',
+                        itemStyle: 'DEFAULT',
+                        itemType: 'RAWITEM',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        sysImage: {
+                          rawContent:
+                            '<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fit="" height="1em" width="1em" preserveAspectRatio="xMidYMid meet" focusable="false"><g id="aodnormal/lightbulb" stroke-width="1" fill-rule="evenodd"><path d="M9.733 15.091H6.447a.367.367 0 1 0 0 .735h3.286c.202 0 .372-.17.372-.371a.37.37 0 0 0-.372-.364m2.602-6.606h-.008a4.832 4.832 0 0 1-1.724 1.779.613.613 0 0 0-.285.529h-.012v1.42H5.88v-1.42a.588.588 0 0 0-.356-.553 4.9 4.9 0 0 1-1.669-1.755 4.816 4.816 0 0 1-.62-2.38 4.85 4.85 0 0 1 1.423-3.436 4.832 4.832 0 0 1 3.431-1.428c1.344 0 2.562.546 3.436 1.428a4.833 4.833 0 0 1 1.424 3.436c0 .869-.218 1.684-.613 2.38m1.85-2.38a6.065 6.065 0 0 0-1.79-4.314A6.078 6.078 0 0 0 8.087 0 6.108 6.108 0 0 0 3.78 1.791 6.1 6.1 0 0 0 2 6.105c0 1.083.28 2.103.775 2.984a6.316 6.316 0 0 0 1.866 2.032v1.712c0 .336.277.621.613.621h5.677c.34 0 .61-.285.61-.621v-1.712a6.09 6.09 0 0 0 2.644-5.016m-3.254 7.689H5.254a.371.371 0 1 0 0 .743h5.677a.372.372 0 0 0 0-.743m-.874-8.014a2.776 2.776 0 0 1-1.969.811c-.379 0-.735-.075-1.067-.206a2.677 2.677 0 0 1-.897-.605.365.365 0 0 0-.518 0 .355.355 0 0 0-.008.514c.324.324.72.593 1.146.771a3.543 3.543 0 0 0 3.84-.763.372.372 0 0 0-.527-.522" fill="#FF7575"></path></g></svg>',
+                        },
+                        showCaption: true,
+                        id: 'static_image',
+                      },
+                      {
+                        rawItem: {
+                          caption: 'Tips：',
+                          halign: 'LEFT',
+                          renderMode: 'TEXT',
+                          valign: 'MIDDLE',
+                          wrapMode: 'NOWRAP',
+                          contentType: 'RAW',
+                          cssStyle: 'margin-left:8px\n',
+                          predefinedType: 'STATIC_TEXT',
+                          id: 'static_text1',
+                        },
+                        caption: '文本',
+                        itemStyle: 'DEFAULT',
+                        itemType: 'RAWITEM',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        showCaption: true,
+                        id: 'static_text1',
+                      },
+                      {
+                        editor: {
+                          halign: 'LEFT',
+                          renderMode: 'TEXT_DYNAMIC',
+                          valign: 'MIDDLE',
+                          wrapMode: 'NOWRAP',
+                          editorType: 'SPAN',
+                          predefinedType: 'FIELD_TEXT_DYNAMIC',
+                          valueType: 'SIMPLE',
+                          editable: true,
+                          id: 'field_text_dynamic',
+                        },
+                        viewFieldName: 'message',
+                        allowEmpty: true,
+                        caption: '文本(动态)',
+                        itemStyle: 'DEFAULT',
+                        itemType: 'FIELD',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        id: 'field_text_dynamic',
+                      },
+                    ],
+                    layout: {
+                      align: 'flex-start',
+                      dir: 'row',
+                      layout: 'FLEX',
+                      valign: 'center',
+                    },
+                    dataRegionType: 'INHERIT',
+                    caption: '容器',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'CONTAINER',
+                    layoutPos: {
+                      shrink: 1,
+                      layout: 'FLEX',
+                    },
+                    id: 'container',
+                  },
+                ],
+                predefinedType: 'CONTAINER_SINGLEDATA',
+                layout: {
+                  layout: 'FLEX',
+                },
+                dataRegionType: 'SINGLEDATA',
+                dataSourceType: 'DELOGIC',
+                appDELogicId: 'get_view_msg',
+                appDataEntityId: 'plmweb.addon',
+                caption: '单项数据容器',
+                itemStyle: 'DEFAULT',
+                itemType: 'CONTAINER',
+                layoutPos: {
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                id: 'container_singledata',
+              },
+            ],
+            layout: {
+              dir: 'column',
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              shrink: 1,
+              layout: 'FLEX',
+            },
+            sysCss: {
+              cssName: 'prompt_message_style',
+            },
+            id: 'page_container',
+          },
+        ],
+        layoutPanel: true,
+        codeName: 'addon_setting_message_panel_show',
+        controlType: 'PANEL',
+        logicName: '全局设置消息提示',
+        appDataEntityId: 'plmweb.psdefield',
+        controlParam: {
+          id: 'panel',
+        },
+        modelId: 'af48ca4699e2893947ba4664850c480c',
+        modelType: 'PSSYSVIEWPANEL',
+        name: 'panel',
+        id: 'plmweb.psdefield.addon_setting_message_panel_show',
+      },
+      position: 'TOP',
+      removeMode: 0,
+      testAppDELogicId: 'nothing',
+      name: '产品需求属性配置提示',
+      id: 'usrviewmsg1024686664',
+    },
+    {
+      codeName: 'UsrViewMsg1024972521',
+      enableMode: 'DELOGIC',
+      message: '设置全局项目工作项的扩展属性',
+      messageType: 'INFO',
+      appDataEntityId: 'plmweb.psdefield',
+      layoutPanel: {
+        layoutMode: 'FLEX',
+        layout: {
+          layout: 'FLEX',
+        },
+        rootPanelItems: [
+          {
+            actionGroupExtractMode: 'ITEM',
+            panelItems: [
+              {
+                actionGroupExtractMode: 'ITEM',
+                panelItems: [
+                  {
+                    actionGroupExtractMode: 'ITEM',
+                    panelItems: [
+                      {
+                        rawItem: {
+                          sysImage: {
+                            rawContent:
+                              '<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fit="" height="1em" width="1em" preserveAspectRatio="xMidYMid meet" focusable="false"><g id="aodnormal/lightbulb" stroke-width="1" fill-rule="evenodd"><path d="M9.733 15.091H6.447a.367.367 0 1 0 0 .735h3.286c.202 0 .372-.17.372-.371a.37.37 0 0 0-.372-.364m2.602-6.606h-.008a4.832 4.832 0 0 1-1.724 1.779.613.613 0 0 0-.285.529h-.012v1.42H5.88v-1.42a.588.588 0 0 0-.356-.553 4.9 4.9 0 0 1-1.669-1.755 4.816 4.816 0 0 1-.62-2.38 4.85 4.85 0 0 1 1.423-3.436 4.832 4.832 0 0 1 3.431-1.428c1.344 0 2.562.546 3.436 1.428a4.833 4.833 0 0 1 1.424 3.436c0 .869-.218 1.684-.613 2.38m1.85-2.38a6.065 6.065 0 0 0-1.79-4.314A6.078 6.078 0 0 0 8.087 0 6.108 6.108 0 0 0 3.78 1.791 6.1 6.1 0 0 0 2 6.105c0 1.083.28 2.103.775 2.984a6.316 6.316 0 0 0 1.866 2.032v1.712c0 .336.277.621.613.621h5.677c.34 0 .61-.285.61-.621v-1.712a6.09 6.09 0 0 0 2.644-5.016m-3.254 7.689H5.254a.371.371 0 1 0 0 .743h5.677a.372.372 0 0 0 0-.743m-.874-8.014a2.776 2.776 0 0 1-1.969.811c-.379 0-.735-.075-1.067-.206a2.677 2.677 0 0 1-.897-.605.365.365 0 0 0-.518 0 .355.355 0 0 0-.008.514c.324.324.72.593 1.146.771a3.543 3.543 0 0 0 3.84-.763.372.372 0 0 0-.527-.522" fill="#FF7575"></path></g></svg>',
+                          },
+                          contentType: 'IMAGE',
+                          predefinedType: 'STATIC_IMAGE',
+                          id: 'static_image',
+                        },
+                        caption: '图片',
+                        itemStyle: 'DEFAULT',
+                        itemType: 'RAWITEM',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        sysImage: {
+                          rawContent:
+                            '<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fit="" height="1em" width="1em" preserveAspectRatio="xMidYMid meet" focusable="false"><g id="aodnormal/lightbulb" stroke-width="1" fill-rule="evenodd"><path d="M9.733 15.091H6.447a.367.367 0 1 0 0 .735h3.286c.202 0 .372-.17.372-.371a.37.37 0 0 0-.372-.364m2.602-6.606h-.008a4.832 4.832 0 0 1-1.724 1.779.613.613 0 0 0-.285.529h-.012v1.42H5.88v-1.42a.588.588 0 0 0-.356-.553 4.9 4.9 0 0 1-1.669-1.755 4.816 4.816 0 0 1-.62-2.38 4.85 4.85 0 0 1 1.423-3.436 4.832 4.832 0 0 1 3.431-1.428c1.344 0 2.562.546 3.436 1.428a4.833 4.833 0 0 1 1.424 3.436c0 .869-.218 1.684-.613 2.38m1.85-2.38a6.065 6.065 0 0 0-1.79-4.314A6.078 6.078 0 0 0 8.087 0 6.108 6.108 0 0 0 3.78 1.791 6.1 6.1 0 0 0 2 6.105c0 1.083.28 2.103.775 2.984a6.316 6.316 0 0 0 1.866 2.032v1.712c0 .336.277.621.613.621h5.677c.34 0 .61-.285.61-.621v-1.712a6.09 6.09 0 0 0 2.644-5.016m-3.254 7.689H5.254a.371.371 0 1 0 0 .743h5.677a.372.372 0 0 0 0-.743m-.874-8.014a2.776 2.776 0 0 1-1.969.811c-.379 0-.735-.075-1.067-.206a2.677 2.677 0 0 1-.897-.605.365.365 0 0 0-.518 0 .355.355 0 0 0-.008.514c.324.324.72.593 1.146.771a3.543 3.543 0 0 0 3.84-.763.372.372 0 0 0-.527-.522" fill="#FF7575"></path></g></svg>',
+                        },
+                        showCaption: true,
+                        id: 'static_image',
+                      },
+                      {
+                        rawItem: {
+                          caption: 'Tips：',
+                          halign: 'LEFT',
+                          renderMode: 'TEXT',
+                          valign: 'MIDDLE',
+                          wrapMode: 'NOWRAP',
+                          contentType: 'RAW',
+                          cssStyle: 'margin-left:8px\n',
+                          predefinedType: 'STATIC_TEXT',
+                          id: 'static_text1',
+                        },
+                        caption: '文本',
+                        itemStyle: 'DEFAULT',
+                        itemType: 'RAWITEM',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        showCaption: true,
+                        id: 'static_text1',
+                      },
+                      {
+                        editor: {
+                          halign: 'LEFT',
+                          renderMode: 'TEXT_DYNAMIC',
+                          valign: 'MIDDLE',
+                          wrapMode: 'NOWRAP',
+                          editorType: 'SPAN',
+                          predefinedType: 'FIELD_TEXT_DYNAMIC',
+                          valueType: 'SIMPLE',
+                          editable: true,
+                          id: 'field_text_dynamic',
+                        },
+                        viewFieldName: 'message',
+                        allowEmpty: true,
+                        caption: '文本(动态)',
+                        itemStyle: 'DEFAULT',
+                        itemType: 'FIELD',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        id: 'field_text_dynamic',
+                      },
+                    ],
+                    layout: {
+                      align: 'flex-start',
+                      dir: 'row',
+                      layout: 'FLEX',
+                      valign: 'center',
+                    },
+                    dataRegionType: 'INHERIT',
+                    caption: '容器',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'CONTAINER',
+                    layoutPos: {
+                      shrink: 1,
+                      layout: 'FLEX',
+                    },
+                    id: 'container',
+                  },
+                ],
+                predefinedType: 'CONTAINER_SINGLEDATA',
+                layout: {
+                  layout: 'FLEX',
+                },
+                dataRegionType: 'SINGLEDATA',
+                dataSourceType: 'DELOGIC',
+                appDELogicId: 'get_view_msg',
+                appDataEntityId: 'plmweb.addon',
+                caption: '单项数据容器',
+                itemStyle: 'DEFAULT',
+                itemType: 'CONTAINER',
+                layoutPos: {
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                id: 'container_singledata',
+              },
+            ],
+            layout: {
+              dir: 'column',
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              shrink: 1,
+              layout: 'FLEX',
+            },
+            sysCss: {
+              cssName: 'prompt_message_style',
+            },
+            id: 'page_container',
+          },
+        ],
+        layoutPanel: true,
+        codeName: 'addon_setting_message_panel_show',
+        controlType: 'PANEL',
+        logicName: '全局设置消息提示',
+        appDataEntityId: 'plmweb.psdefield',
+        controlParam: {
+          id: 'panel',
+        },
+        modelId: 'af48ca4699e2893947ba4664850c480c',
+        modelType: 'PSSYSVIEWPANEL',
+        name: 'panel',
+        id: 'plmweb.psdefield.addon_setting_message_panel_show',
+      },
+      position: 'TOP',
+      removeMode: 0,
+      testAppDELogicId: 'nothing',
+      name: '项目工作项全局属性配置提示',
+      id: 'usrviewmsg1024972521',
+    },
+    {
+      codeName: 'UsrViewMsg1024972522',
+      enableMode: 'DELOGIC',
+      message: '自定义需求的全局扩展属性',
+      messageType: 'INFO',
+      appDataEntityId: 'plmweb.psdefield',
+      layoutPanel: {
+        layoutMode: 'FLEX',
+        layout: {
+          layout: 'FLEX',
+        },
+        rootPanelItems: [
+          {
+            actionGroupExtractMode: 'ITEM',
+            panelItems: [
+              {
+                actionGroupExtractMode: 'ITEM',
+                panelItems: [
+                  {
+                    actionGroupExtractMode: 'ITEM',
+                    panelItems: [
+                      {
+                        rawItem: {
+                          sysImage: {
+                            rawContent:
+                              '<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fit="" height="1em" width="1em" preserveAspectRatio="xMidYMid meet" focusable="false"><g id="aodnormal/lightbulb" stroke-width="1" fill-rule="evenodd"><path d="M9.733 15.091H6.447a.367.367 0 1 0 0 .735h3.286c.202 0 .372-.17.372-.371a.37.37 0 0 0-.372-.364m2.602-6.606h-.008a4.832 4.832 0 0 1-1.724 1.779.613.613 0 0 0-.285.529h-.012v1.42H5.88v-1.42a.588.588 0 0 0-.356-.553 4.9 4.9 0 0 1-1.669-1.755 4.816 4.816 0 0 1-.62-2.38 4.85 4.85 0 0 1 1.423-3.436 4.832 4.832 0 0 1 3.431-1.428c1.344 0 2.562.546 3.436 1.428a4.833 4.833 0 0 1 1.424 3.436c0 .869-.218 1.684-.613 2.38m1.85-2.38a6.065 6.065 0 0 0-1.79-4.314A6.078 6.078 0 0 0 8.087 0 6.108 6.108 0 0 0 3.78 1.791 6.1 6.1 0 0 0 2 6.105c0 1.083.28 2.103.775 2.984a6.316 6.316 0 0 0 1.866 2.032v1.712c0 .336.277.621.613.621h5.677c.34 0 .61-.285.61-.621v-1.712a6.09 6.09 0 0 0 2.644-5.016m-3.254 7.689H5.254a.371.371 0 1 0 0 .743h5.677a.372.372 0 0 0 0-.743m-.874-8.014a2.776 2.776 0 0 1-1.969.811c-.379 0-.735-.075-1.067-.206a2.677 2.677 0 0 1-.897-.605.365.365 0 0 0-.518 0 .355.355 0 0 0-.008.514c.324.324.72.593 1.146.771a3.543 3.543 0 0 0 3.84-.763.372.372 0 0 0-.527-.522" fill="#FF7575"></path></g></svg>',
+                          },
+                          contentType: 'IMAGE',
+                          predefinedType: 'STATIC_IMAGE',
+                          id: 'static_image',
+                        },
+                        caption: '图片',
+                        itemStyle: 'DEFAULT',
+                        itemType: 'RAWITEM',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        sysImage: {
+                          rawContent:
+                            '<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fit="" height="1em" width="1em" preserveAspectRatio="xMidYMid meet" focusable="false"><g id="aodnormal/lightbulb" stroke-width="1" fill-rule="evenodd"><path d="M9.733 15.091H6.447a.367.367 0 1 0 0 .735h3.286c.202 0 .372-.17.372-.371a.37.37 0 0 0-.372-.364m2.602-6.606h-.008a4.832 4.832 0 0 1-1.724 1.779.613.613 0 0 0-.285.529h-.012v1.42H5.88v-1.42a.588.588 0 0 0-.356-.553 4.9 4.9 0 0 1-1.669-1.755 4.816 4.816 0 0 1-.62-2.38 4.85 4.85 0 0 1 1.423-3.436 4.832 4.832 0 0 1 3.431-1.428c1.344 0 2.562.546 3.436 1.428a4.833 4.833 0 0 1 1.424 3.436c0 .869-.218 1.684-.613 2.38m1.85-2.38a6.065 6.065 0 0 0-1.79-4.314A6.078 6.078 0 0 0 8.087 0 6.108 6.108 0 0 0 3.78 1.791 6.1 6.1 0 0 0 2 6.105c0 1.083.28 2.103.775 2.984a6.316 6.316 0 0 0 1.866 2.032v1.712c0 .336.277.621.613.621h5.677c.34 0 .61-.285.61-.621v-1.712a6.09 6.09 0 0 0 2.644-5.016m-3.254 7.689H5.254a.371.371 0 1 0 0 .743h5.677a.372.372 0 0 0 0-.743m-.874-8.014a2.776 2.776 0 0 1-1.969.811c-.379 0-.735-.075-1.067-.206a2.677 2.677 0 0 1-.897-.605.365.365 0 0 0-.518 0 .355.355 0 0 0-.008.514c.324.324.72.593 1.146.771a3.543 3.543 0 0 0 3.84-.763.372.372 0 0 0-.527-.522" fill="#FF7575"></path></g></svg>',
+                        },
+                        showCaption: true,
+                        id: 'static_image',
+                      },
+                      {
+                        rawItem: {
+                          caption: 'Tips：',
+                          halign: 'LEFT',
+                          renderMode: 'TEXT',
+                          valign: 'MIDDLE',
+                          wrapMode: 'NOWRAP',
+                          contentType: 'RAW',
+                          cssStyle: 'margin-left:8px\n',
+                          predefinedType: 'STATIC_TEXT',
+                          id: 'static_text1',
+                        },
+                        caption: '文本',
+                        itemStyle: 'DEFAULT',
+                        itemType: 'RAWITEM',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        showCaption: true,
+                        id: 'static_text1',
+                      },
+                      {
+                        editor: {
+                          halign: 'LEFT',
+                          renderMode: 'TEXT_DYNAMIC',
+                          valign: 'MIDDLE',
+                          wrapMode: 'NOWRAP',
+                          editorType: 'SPAN',
+                          predefinedType: 'FIELD_TEXT_DYNAMIC',
+                          valueType: 'SIMPLE',
+                          editable: true,
+                          id: 'field_text_dynamic',
+                        },
+                        viewFieldName: 'message',
+                        allowEmpty: true,
+                        caption: '文本(动态)',
+                        itemStyle: 'DEFAULT',
+                        itemType: 'FIELD',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        id: 'field_text_dynamic',
+                      },
+                    ],
+                    layout: {
+                      align: 'flex-start',
+                      dir: 'row',
+                      layout: 'FLEX',
+                      valign: 'center',
+                    },
+                    dataRegionType: 'INHERIT',
+                    caption: '容器',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'CONTAINER',
+                    layoutPos: {
+                      shrink: 1,
+                      layout: 'FLEX',
+                    },
+                    id: 'container',
+                  },
+                ],
+                predefinedType: 'CONTAINER_SINGLEDATA',
+                layout: {
+                  layout: 'FLEX',
+                },
+                dataRegionType: 'SINGLEDATA',
+                dataSourceType: 'DELOGIC',
+                appDELogicId: 'get_view_msg',
+                appDataEntityId: 'plmweb.addon',
+                caption: '单项数据容器',
+                itemStyle: 'DEFAULT',
+                itemType: 'CONTAINER',
+                layoutPos: {
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                id: 'container_singledata',
+              },
+            ],
+            layout: {
+              dir: 'column',
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              shrink: 1,
+              layout: 'FLEX',
+            },
+            sysCss: {
+              cssName: 'prompt_message_style',
+            },
+            id: 'page_container',
+          },
+        ],
+        layoutPanel: true,
+        codeName: 'addon_setting_message_panel_show',
+        controlType: 'PANEL',
+        logicName: '全局设置消息提示',
+        appDataEntityId: 'plmweb.psdefield',
+        controlParam: {
+          id: 'panel',
+        },
+        modelId: 'af48ca4699e2893947ba4664850c480c',
+        modelType: 'PSSYSVIEWPANEL',
+        name: 'panel',
+        id: 'plmweb.psdefield.addon_setting_message_panel_show',
+      },
+      position: 'TOP',
+      removeMode: 0,
+      testAppDELogicId: 'nothing',
+      name: '产品需求全局属性配置提示',
+      id: 'usrviewmsg1024972522',
+    },
+    {
+      codeName: 'UsrViewMsg1024972523',
+      enableMode: 'DELOGIC',
+      message: '自定义工单的全局扩展属性',
+      messageType: 'INFO',
+      appDataEntityId: 'plmweb.psdefield',
+      layoutPanel: {
+        layoutMode: 'FLEX',
+        layout: {
+          layout: 'FLEX',
+        },
+        rootPanelItems: [
+          {
+            actionGroupExtractMode: 'ITEM',
+            panelItems: [
+              {
+                actionGroupExtractMode: 'ITEM',
+                panelItems: [
+                  {
+                    actionGroupExtractMode: 'ITEM',
+                    panelItems: [
+                      {
+                        rawItem: {
+                          sysImage: {
+                            rawContent:
+                              '<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fit="" height="1em" width="1em" preserveAspectRatio="xMidYMid meet" focusable="false"><g id="aodnormal/lightbulb" stroke-width="1" fill-rule="evenodd"><path d="M9.733 15.091H6.447a.367.367 0 1 0 0 .735h3.286c.202 0 .372-.17.372-.371a.37.37 0 0 0-.372-.364m2.602-6.606h-.008a4.832 4.832 0 0 1-1.724 1.779.613.613 0 0 0-.285.529h-.012v1.42H5.88v-1.42a.588.588 0 0 0-.356-.553 4.9 4.9 0 0 1-1.669-1.755 4.816 4.816 0 0 1-.62-2.38 4.85 4.85 0 0 1 1.423-3.436 4.832 4.832 0 0 1 3.431-1.428c1.344 0 2.562.546 3.436 1.428a4.833 4.833 0 0 1 1.424 3.436c0 .869-.218 1.684-.613 2.38m1.85-2.38a6.065 6.065 0 0 0-1.79-4.314A6.078 6.078 0 0 0 8.087 0 6.108 6.108 0 0 0 3.78 1.791 6.1 6.1 0 0 0 2 6.105c0 1.083.28 2.103.775 2.984a6.316 6.316 0 0 0 1.866 2.032v1.712c0 .336.277.621.613.621h5.677c.34 0 .61-.285.61-.621v-1.712a6.09 6.09 0 0 0 2.644-5.016m-3.254 7.689H5.254a.371.371 0 1 0 0 .743h5.677a.372.372 0 0 0 0-.743m-.874-8.014a2.776 2.776 0 0 1-1.969.811c-.379 0-.735-.075-1.067-.206a2.677 2.677 0 0 1-.897-.605.365.365 0 0 0-.518 0 .355.355 0 0 0-.008.514c.324.324.72.593 1.146.771a3.543 3.543 0 0 0 3.84-.763.372.372 0 0 0-.527-.522" fill="#FF7575"></path></g></svg>',
+                          },
+                          contentType: 'IMAGE',
+                          predefinedType: 'STATIC_IMAGE',
+                          id: 'static_image',
+                        },
+                        caption: '图片',
+                        itemStyle: 'DEFAULT',
+                        itemType: 'RAWITEM',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        sysImage: {
+                          rawContent:
+                            '<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fit="" height="1em" width="1em" preserveAspectRatio="xMidYMid meet" focusable="false"><g id="aodnormal/lightbulb" stroke-width="1" fill-rule="evenodd"><path d="M9.733 15.091H6.447a.367.367 0 1 0 0 .735h3.286c.202 0 .372-.17.372-.371a.37.37 0 0 0-.372-.364m2.602-6.606h-.008a4.832 4.832 0 0 1-1.724 1.779.613.613 0 0 0-.285.529h-.012v1.42H5.88v-1.42a.588.588 0 0 0-.356-.553 4.9 4.9 0 0 1-1.669-1.755 4.816 4.816 0 0 1-.62-2.38 4.85 4.85 0 0 1 1.423-3.436 4.832 4.832 0 0 1 3.431-1.428c1.344 0 2.562.546 3.436 1.428a4.833 4.833 0 0 1 1.424 3.436c0 .869-.218 1.684-.613 2.38m1.85-2.38a6.065 6.065 0 0 0-1.79-4.314A6.078 6.078 0 0 0 8.087 0 6.108 6.108 0 0 0 3.78 1.791 6.1 6.1 0 0 0 2 6.105c0 1.083.28 2.103.775 2.984a6.316 6.316 0 0 0 1.866 2.032v1.712c0 .336.277.621.613.621h5.677c.34 0 .61-.285.61-.621v-1.712a6.09 6.09 0 0 0 2.644-5.016m-3.254 7.689H5.254a.371.371 0 1 0 0 .743h5.677a.372.372 0 0 0 0-.743m-.874-8.014a2.776 2.776 0 0 1-1.969.811c-.379 0-.735-.075-1.067-.206a2.677 2.677 0 0 1-.897-.605.365.365 0 0 0-.518 0 .355.355 0 0 0-.008.514c.324.324.72.593 1.146.771a3.543 3.543 0 0 0 3.84-.763.372.372 0 0 0-.527-.522" fill="#FF7575"></path></g></svg>',
+                        },
+                        showCaption: true,
+                        id: 'static_image',
+                      },
+                      {
+                        rawItem: {
+                          caption: 'Tips：',
+                          halign: 'LEFT',
+                          renderMode: 'TEXT',
+                          valign: 'MIDDLE',
+                          wrapMode: 'NOWRAP',
+                          contentType: 'RAW',
+                          cssStyle: 'margin-left:8px\n',
+                          predefinedType: 'STATIC_TEXT',
+                          id: 'static_text1',
+                        },
+                        caption: '文本',
+                        itemStyle: 'DEFAULT',
+                        itemType: 'RAWITEM',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        showCaption: true,
+                        id: 'static_text1',
+                      },
+                      {
+                        editor: {
+                          halign: 'LEFT',
+                          renderMode: 'TEXT_DYNAMIC',
+                          valign: 'MIDDLE',
+                          wrapMode: 'NOWRAP',
+                          editorType: 'SPAN',
+                          predefinedType: 'FIELD_TEXT_DYNAMIC',
+                          valueType: 'SIMPLE',
+                          editable: true,
+                          id: 'field_text_dynamic',
+                        },
+                        viewFieldName: 'message',
+                        allowEmpty: true,
+                        caption: '文本(动态)',
+                        itemStyle: 'DEFAULT',
+                        itemType: 'FIELD',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        id: 'field_text_dynamic',
+                      },
+                    ],
+                    layout: {
+                      align: 'flex-start',
+                      dir: 'row',
+                      layout: 'FLEX',
+                      valign: 'center',
+                    },
+                    dataRegionType: 'INHERIT',
+                    caption: '容器',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'CONTAINER',
+                    layoutPos: {
+                      shrink: 1,
+                      layout: 'FLEX',
+                    },
+                    id: 'container',
+                  },
+                ],
+                predefinedType: 'CONTAINER_SINGLEDATA',
+                layout: {
+                  layout: 'FLEX',
+                },
+                dataRegionType: 'SINGLEDATA',
+                dataSourceType: 'DELOGIC',
+                appDELogicId: 'get_view_msg',
+                appDataEntityId: 'plmweb.addon',
+                caption: '单项数据容器',
+                itemStyle: 'DEFAULT',
+                itemType: 'CONTAINER',
+                layoutPos: {
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                id: 'container_singledata',
+              },
+            ],
+            layout: {
+              dir: 'column',
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
+              shrink: 1,
+              layout: 'FLEX',
+            },
+            sysCss: {
+              cssName: 'prompt_message_style',
+            },
+            id: 'page_container',
+          },
+        ],
+        layoutPanel: true,
+        codeName: 'addon_setting_message_panel_show',
+        controlType: 'PANEL',
+        logicName: '全局设置消息提示',
+        appDataEntityId: 'plmweb.psdefield',
+        controlParam: {
+          id: 'panel',
+        },
+        modelId: 'af48ca4699e2893947ba4664850c480c',
+        modelType: 'PSSYSVIEWPANEL',
+        name: 'panel',
+        id: 'plmweb.psdefield.addon_setting_message_panel_show',
+      },
+      position: 'TOP',
+      removeMode: 0,
+      testAppDELogicId: 'nothing',
+      name: '工单全局属性配置提示',
+      id: 'usrviewmsg1024972523',
+    },
+    {
       codeName: 'UsrViewMsg1229723311',
       enableMode: 'DELOGIC',
       message: '修改当前项目类型全局配置后，不会同步到已经开启本地配置的项目',
@@ -23418,7 +25545,7 @@ export default {
   appMode: 'CLOUDHUBAPP',
   appType: 'WEBAPP_HTML5',
   appVersion: '1.0.0.0',
-  caption: '产品生命周期管理系统',
+  caption: '软件生命周期管理系统',
   codeName: 'plmweb',
   dynaSysMode: 1,
   engineVer: 240,

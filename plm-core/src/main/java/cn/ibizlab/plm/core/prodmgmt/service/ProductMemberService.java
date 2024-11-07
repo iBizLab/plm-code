@@ -177,6 +177,16 @@ public interface ProductMemberService extends IService<ProductMember> {
     }
 
     /**
+    * mobCreateProductMember
+    * 
+    * @param et
+    * @return
+    */
+    default ProductMember mobCreateProductMember(ProductMember et) {
+        return et;
+    }
+
+    /**
     * nothing
     * 
     * @param et
@@ -217,6 +227,22 @@ public interface ProductMemberService extends IService<ProductMember> {
     * @return
     */
     List<ProductMember> listCurProduct(ProductMemberSearchContext context);
+
+    /**
+    * fetchWithProduct
+    * 
+    * @param context
+    * @return
+    */
+    Page<ProductMember> fetchWithProduct(ProductMemberSearchContext context);
+
+    /**
+    * listWithProduct
+    * 
+    * @param context
+    * @return
+    */
+    List<ProductMember> listWithProduct(ProductMemberSearchContext context);
 
     /**
     * findByProductId

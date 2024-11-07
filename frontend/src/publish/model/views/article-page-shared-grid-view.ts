@@ -307,6 +307,7 @@ export default {
       enableCustomized: true,
       enablePagingBar: true,
       singleSelect: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_all_shared_pages',
         appDataEntityId: 'plmweb.article_page',

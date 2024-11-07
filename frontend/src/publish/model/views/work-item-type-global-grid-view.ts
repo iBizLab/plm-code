@@ -138,7 +138,7 @@ export default {
                 afterItemType: 'NONE',
                 beforeItemType: 'NONE',
                 detailType: 'DEUIACTION',
-                uiactionId: 'edit',
+                uiactionId: 'gridview_editaction',
                 tooltip: '编辑',
                 tooltipLanguageRes: {
                   lanResTag: 'TBB.TOOLTIP.*.EDIT',
@@ -155,7 +155,7 @@ export default {
                 afterItemType: 'NONE',
                 beforeItemType: 'NONE',
                 detailType: 'DEUIACTION',
-                uiactionId: 'remove',
+                uiactionId: 'gridview_removeaction',
                 tooltip: '删除',
                 tooltipLanguageRes: {
                   lanResTag: 'TBB.TOOLTIP.*.REMOVE',
@@ -280,6 +280,7 @@ export default {
       enableGroup: true,
       enablePagingBar: true,
       singleSelect: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_default',
         appDataEntityId: 'plmweb.work_item_type',

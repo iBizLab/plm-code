@@ -696,6 +696,7 @@ export default {
         sortMode: 'REMOTE',
         enableCustomized: true,
         singleSelect: true,
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_customer_relation_ticket',
           appDataEntityId: 'plmweb.ticket',

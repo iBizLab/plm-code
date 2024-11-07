@@ -462,6 +462,22 @@ public interface LibraryService extends IService<Library> {
     List<Library> listMain(LibrarySearchContext context);
 
     /**
+    * fetchMobMain
+    * 
+    * @param context
+    * @return
+    */
+    Page<Library> fetchMobMain(LibrarySearchContext context);
+
+    /**
+    * listMobMain
+    * 
+    * @param context
+    * @return
+    */
+    List<Library> listMobMain(LibrarySearchContext context);
+
+    /**
     * fetchNormal
     * 
     * @param context

@@ -386,6 +386,7 @@ export default {
           id: 'transition',
         },
       ],
+      navViewPos: 'NONE',
       autoLoad: true,
       showBusyIndicator: true,
       codeName: 'work_item_transition_timeline',

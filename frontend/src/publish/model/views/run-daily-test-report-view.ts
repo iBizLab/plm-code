@@ -829,6 +829,7 @@ export default {
             id: '0',
           },
         ],
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_everyday_test',
           appDataEntityId: 'plmweb.run',

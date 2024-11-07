@@ -268,6 +268,36 @@ public class Ticket extends EntityMP implements Serializable
     private String repNum;
 
     /**
+    * 解决办法
+    */
+    @TableField(value = "solution_way")
+    @DEField(name = "solution_way")
+    @JSONField(name = "solution_way")
+    @JsonProperty("solution_way")
+    @ApiModelProperty(value = "solution_way", notes = "解决办法")
+    private String solutionWay;
+
+    /**
+    * 关注数
+    */
+    @TableField(value = "attention_count" , exist = false)
+    @DEField(name = "attention_count")
+    @JSONField(name = "attention_count")
+    @JsonProperty("attention_count")
+    @ApiModelProperty(value = "attention_count", notes = "关注数")
+    private String attentionCount;
+
+    /**
+    * 评论数
+    */
+    @TableField(value = "comment_count" , exist = false)
+    @DEField(name = "comment_count")
+    @JSONField(name = "comment_count")
+    @JsonProperty("comment_count")
+    @ApiModelProperty(value = "comment_count", notes = "评论数")
+    private String commentCount;
+
+    /**
     * 关注人
     */
     @TableField(value = "attentions_imp" , exist = false)
@@ -615,6 +645,33 @@ public class Ticket extends EntityMP implements Serializable
     public Ticket setRepNum(String repNum) {
         this.repNum = repNum;
         this.modify("rep_num", repNum);
+        return this;
+    }
+
+    /**
+    * 设置 [解决办法]
+    */
+    public Ticket setSolutionWay(String solutionWay) {
+        this.solutionWay = solutionWay;
+        this.modify("solution_way", solutionWay);
+        return this;
+    }
+
+    /**
+    * 设置 [关注数]
+    */
+    public Ticket setAttentionCount(String attentionCount) {
+        this.attentionCount = attentionCount;
+        this.modify("attention_count", attentionCount);
+        return this;
+    }
+
+    /**
+    * 设置 [评论数]
+    */
+    public Ticket setCommentCount(String commentCount) {
+        this.commentCount = commentCount;
+        this.modify("comment_count", commentCount);
         return this;
     }
 

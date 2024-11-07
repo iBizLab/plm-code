@@ -695,6 +695,7 @@ export default {
             id: '0',
           },
         ],
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_defect_total_trend',
           appDataEntityId: 'plmweb.work_item',

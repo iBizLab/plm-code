@@ -42,7 +42,7 @@ export default {
         {
           actionLevel: 100,
           noPrivDisplayMode: 2,
-          uiactionId: 'saveandexit',
+          uiactionId: 'editview_saveandexitaction',
           valid: true,
           capLanguageRes: {
             lanResTag: 'TBB.TEXT.EDITVIEW.SAVEANDCLOSE',
@@ -107,23 +107,6 @@ export default {
       },
       deformItemUpdates: [
         {
-          codeName: 'estimated_update',
-          defiupdateDetails: [
-            {
-              id: 'workload_schedule',
-            },
-            {
-              id: 'remaining_workload',
-            },
-          ],
-          scriptCode:
-            'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nvar remaining = 0; // 剩余工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n\tif(estimated_workload){\r\n\t\t// 计算剩余工时\r\n\t\tremaining = (estimated - actual) >= 0 ? (estimated - actual) : 0;\r\n\t\tform_data.remaining_workload = remaining;\r\n\t}\r\n} else {\r\n\tremaining = estimated;\r\n\tform_data.remaining_workload = estimated_workload;\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}',
-          customCode: true,
-          showBusyIndicator: false,
-          name: '预估工时表单项更新',
-          id: 'estimated_update',
-        },
-        {
           codeName: 'remaining_update',
           defiupdateDetails: [
             {
@@ -136,6 +119,23 @@ export default {
           showBusyIndicator: false,
           name: '剩余工时表单项更新',
           id: 'remaining_update',
+        },
+        {
+          codeName: 'estimated_update',
+          defiupdateDetails: [
+            {
+              id: 'remaining_workload',
+            },
+            {
+              id: 'workload_schedule',
+            },
+          ],
+          scriptCode:
+            'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nvar remaining = 0; // 剩余工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n\tif(estimated_workload){\r\n\t\t// 计算剩余工时\r\n\t\tremaining = (estimated - actual) >= 0 ? (estimated - actual) : 0;\r\n\t\tform_data.remaining_workload = remaining;\r\n\t}\r\n} else {\r\n\tremaining = estimated;\r\n\tform_data.remaining_workload = estimated_workload;\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}',
+          customCode: true,
+          showBusyIndicator: false,
+          name: '预估工时表单项更新',
+          id: 'estimated_update',
         },
       ],
       deformPages: [
@@ -227,6 +227,7 @@ export default {
                     editorParams: {
                       'SRFNAVPARAM.n_department_id_eq': '%srforgsectorid%',
                       AC: 'TRUE',
+                      'SRFNAVPARAM.n_status_eq': '1',
                       TRIGGER: 'TRUE',
                       URL: 'products/${context.product}/product_members/fetch_default',
                       PICKUPVIEW: 'FALSE',
@@ -246,6 +247,12 @@ export default {
                         key: 'n_department_id_eq',
                         value: 'srforgsectorid',
                         id: 'n_department_id_eq',
+                      },
+                      {
+                        key: 'n_status_eq',
+                        value: '1',
+                        rawValue: true,
+                        id: 'n_status_eq',
                       },
                     ],
                     id: 'assignee_name',
@@ -760,6 +767,7 @@ export default {
                                 enableRowEdit: true,
                                 enableRowNew: true,
                                 singleSelect: true,
+                                navViewPos: 'NONE',
                                 createControlAction: {
                                   appDEMethodId: 'create',
                                   appDataEntityId: 'plmweb.attachment',

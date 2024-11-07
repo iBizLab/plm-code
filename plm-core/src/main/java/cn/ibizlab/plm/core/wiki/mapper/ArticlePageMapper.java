@@ -252,6 +252,25 @@ public interface ArticlePageMapper extends BaseMapper<ArticlePage> {
     List<ArticlePage> listNormal(@Param("ctx") ArticlePageSearchContext context, @Param("ew") Wrapper<ArticlePage> wrapper);
 
     /**
+     * 数据集合normal_tree_page分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<ArticlePage> searchNormalTreePage(IPage<ArticlePage> page, @Param("ctx") ArticlePageSearchContext context, @Param("ew") Wrapper<ArticlePage> wrapper);
+    
+    /**
+     * 数据集合normal_tree_page查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<ArticlePage> listNormalTreePage(@Param("ctx") ArticlePageSearchContext context, @Param("ew") Wrapper<ArticlePage> wrapper);
+
+    /**
      * 数据集合only_page分页查询
      * 
      * @param page

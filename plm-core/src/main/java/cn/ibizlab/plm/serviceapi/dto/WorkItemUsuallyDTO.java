@@ -262,6 +262,39 @@ public class WorkItemUsuallyDTO extends DTOBase implements Serializable {
     @ApiModelProperty(value = "工作项状态类型", position = 27)
     private String stateType;
 
+    /**
+     * 建立人
+     */
+    @JsonProperty("create_man")
+    @JSONField(name = "create_man")
+    @ApiModelProperty(value = "建立人", position = 28)
+    private String createMan;
+
+    /**
+     * 更新时间
+     */
+    @JsonProperty("update_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "更新时间", position = 29)
+    private Date updateTime;
+
+    /**
+     * 更新人
+     */
+    @JsonProperty("update_man")
+    @JSONField(name = "update_man")
+    @ApiModelProperty(value = "更新人", position = 30)
+    private String updateMan;
+
+    /**
+     * 是否超时
+     */
+    @JsonProperty("is_overtime")
+    @JSONField(name = "is_overtime")
+    @ApiModelProperty(value = "是否超时", position = 31)
+    private Integer isOvertime;
+
 
     /**
      * 设置 [标题]
@@ -485,6 +518,15 @@ public class WorkItemUsuallyDTO extends DTOBase implements Serializable {
     public WorkItemUsuallyDTO setStateType(String stateType) {
         this.stateType = stateType;
         this.modify("state_type", stateType);
+        return this;
+    }
+
+    /**
+     * 设置 [是否超时]
+     */
+    public WorkItemUsuallyDTO setIsOvertime(Integer isOvertime) {
+        this.isOvertime = isOvertime;
+        this.modify("is_overtime", isOvertime);
         return this;
     }
 

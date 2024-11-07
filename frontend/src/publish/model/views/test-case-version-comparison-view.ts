@@ -172,6 +172,7 @@ export default {
                 editorParams: {
                   'SRFNAVPARAM.n_department_id_eq': '%srforgsectorid%',
                   AC: 'TRUE',
+                  'SRFNAVPARAM.n_status_eq': '1',
                   TRIGGER: 'TRUE',
                   URL: 'libraries/${context.library}/library_members/fetch_default',
                   PICKUPVIEW: 'FALSE',
@@ -196,6 +197,12 @@ export default {
                     key: 'n_department_id_eq',
                     value: 'srforgsectorid',
                     id: 'n_department_id_eq',
+                  },
+                  {
+                    key: 'n_status_eq',
+                    value: '1',
+                    rawValue: true,
+                    id: 'n_status_eq',
                   },
                 ],
                 id: 'maintenance_name',
@@ -302,7 +309,7 @@ export default {
               },
               deformDetails: [
                 {
-                  dataType: 25,
+                  dataType: 21,
                   enableCond: 3,
                   labelPos: 'LEFT',
                   labelWidth: 130,

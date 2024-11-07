@@ -87,7 +87,7 @@ export default {
               },
               deformDetails: [
                 {
-                  titleBarCloseMode: 2,
+                  titleBarCloseMode: 1,
                   layout: {
                     columnCount: 24,
                     layout: 'TABLE_24COL',

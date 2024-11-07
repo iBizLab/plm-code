@@ -643,7 +643,7 @@ export default {
             dataItemName: 'change_version',
             excelCaption: '变更版本',
             appDEFieldId: 'change_version',
-            deuiactionId: 'saverow',
+            deuiactionId: 'gridview_saverowaction',
             valueType: 'OBJECTS',
             enableRowEdit: true,
             aggMode: 'NONE',
@@ -826,6 +826,7 @@ export default {
         enableRowEdit: true,
         enableRowNew: true,
         noSort: true,
+        navViewPos: 'NONE',
         createControlAction: {
           appDEMethodId: 'create',
           appDataEntityId: 'plmweb.review_content',

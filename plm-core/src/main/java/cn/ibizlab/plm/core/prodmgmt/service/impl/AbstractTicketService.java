@@ -203,6 +203,17 @@ public abstract class AbstractTicketService extends ServiceImpl<TicketMapper,Tic
         return list;
    }
 	
+   public Page<Ticket> fetchAdmin(TicketSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Ticket> pages=baseMapper.searchAdmin(context.getPages(),context,context.getSelectCond());
+        List<Ticket> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Ticket> listAdmin(TicketSearchContext context) {
+        List<Ticket> list = baseMapper.listAdmin(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<Ticket> fetchAdvancedSearch(TicketSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("SHOW_IDENTIFIER,DESC");
@@ -311,6 +322,17 @@ public abstract class AbstractTicketService extends ServiceImpl<TicketMapper,Tic
         return list;
    }
 	
+   public Page<Ticket> fetchCustomerUser(TicketSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Ticket> pages=baseMapper.searchCustomerUser(context.getPages(),context,context.getSelectCond());
+        List<Ticket> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Ticket> listCustomerUser(TicketSearchContext context) {
+        List<Ticket> list = baseMapper.listCustomerUser(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<Ticket> fetchDeleted(TicketSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("SHOW_IDENTIFIER,DESC");
@@ -338,6 +360,17 @@ public abstract class AbstractTicketService extends ServiceImpl<TicketMapper,Tic
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("SHOW_IDENTIFIER,DESC");
         List<Ticket> list = baseMapper.listIdeaRelationTicket(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Ticket> fetchMobTicketList(TicketSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Ticket> pages=baseMapper.searchMobTicketList(context.getPages(),context,context.getSelectCond());
+        List<Ticket> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Ticket> listMobTicketList(TicketSearchContext context) {
+        List<Ticket> list = baseMapper.listMobTicketList(context,context.getSelectCond());
         return list;
    }
 	
@@ -518,6 +551,17 @@ public abstract class AbstractTicketService extends ServiceImpl<TicketMapper,Tic
 
    public List<Ticket> listTicketStatePieChart(TicketSearchContext context) {
         return cn.ibizlab.util.helper.JacksonUtils.toArray(baseMapper.listTicketStatePieChart(context,context.getSelectCond()),Ticket.class);
+   }
+	
+   public Page<Ticket> fetchUser(TicketSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Ticket> pages=baseMapper.searchUser(context.getPages(),context,context.getSelectCond());
+        List<Ticket> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Ticket> listUser(TicketSearchContext context) {
+        List<Ticket> list = baseMapper.listUser(context,context.getSelectCond());
+        return list;
    }
 	
    public Page<Ticket> fetchWorkItemRelationTicket(TicketSearchContext context) {

@@ -217,6 +217,7 @@ export default {
       sortMode: 'REMOTE',
       enablePagingBar: true,
       singleSelect: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_shared_with_me',
         appDataEntityId: 'plmweb.article_page',

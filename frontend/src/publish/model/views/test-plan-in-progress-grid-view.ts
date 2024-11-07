@@ -265,6 +265,7 @@ export default {
       enableCustomized: true,
       enablePagingBar: true,
       singleSelect: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_my_in_progress',
         appDataEntityId: 'plmweb.test_plan',

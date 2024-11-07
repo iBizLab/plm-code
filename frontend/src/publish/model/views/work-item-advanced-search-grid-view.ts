@@ -393,6 +393,7 @@ export default {
       sortMode: 'REMOTE',
       enablePagingBar: true,
       singleSelect: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_advanced_search',
         appDataEntityId: 'plmweb.work_item',
@@ -601,6 +602,7 @@ export default {
                     valueItemName: 'n_assignee_id_eq',
                     editorParams: {
                       URL: '/users/fetch_default',
+                      'SRFNAVPARAM.n_status_eq': '1',
                       ISSHOWTAB: 'false',
                       USERMAP: '{"id":"id","name":"display_name"}',
                       AC: 'TRUE',
@@ -619,6 +621,14 @@ export default {
                     placeHolder: '选择负责人',
                     valueType: 'SIMPLE',
                     editable: true,
+                    navigateParams: [
+                      {
+                        key: 'n_status_eq',
+                        value: '1',
+                        rawValue: true,
+                        id: 'n_status_eq',
+                      },
+                    ],
                     id: 'assignee',
                   },
                   allowEmpty: true,

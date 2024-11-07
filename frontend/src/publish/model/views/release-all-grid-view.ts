@@ -298,6 +298,16 @@ export default {
             },
             caption: '新建发布',
             itemType: 'DEUIACTION',
+            controlLogics: [
+              {
+                itemName: 'deuiaction1',
+                logicTag: 'toolbar',
+                logicType: 'SCRIPT',
+                scriptCode: 'context.srfreadonly != true',
+                triggerType: 'ITEMVISIBLE',
+                id: 'deuiaction1',
+              },
+            ],
             sysImage: {
               cssClass: 'fa fa-plus',
               glyph: 'xf067@FontAwesome',
@@ -864,6 +874,7 @@ export default {
         enableRowEdit: true,
         enableRowNew: true,
         singleSelect: true,
+        navViewPos: 'NONE',
         createControlAction: {
           appDEMethodId: 'create',
           appDataEntityId: 'plmweb.release',

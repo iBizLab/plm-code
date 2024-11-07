@@ -221,6 +221,16 @@ public interface TestCaseService extends IService<TestCase> {
     }
 
     /**
+    * finishAddAttention
+    * 
+    * @param et
+    * @return
+    */
+    default TestCase finishAddAttention(TestCase et) {
+        return et;
+    }
+
+    /**
     * getAttention
     * 
     * @param key

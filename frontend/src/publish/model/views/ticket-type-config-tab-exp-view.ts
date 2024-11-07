@@ -276,9 +276,35 @@ export default {
       {
         dedrtabPages: [
           {
+            caption: '工单设置',
+            appViewId: 'plmweb.ticket_global_setting_view',
+            id: 'setting',
+          },
+          {
             caption: '工单类型',
             appViewId: 'plmweb.ticket_type_global_setting_view',
             id: 'ticket_type',
+          },
+          {
+            caption: '属性管理',
+            appViewId: 'plmweb.psde_field_global_ticket_grid_view',
+            navigateContexts: [
+              {
+                key: 'PSDATAENTITY',
+                value: 'ProdMgmt.TICKET',
+                rawValue: true,
+                name: 'PSDATAENTITY',
+                id: 'psdataentity',
+              },
+              {
+                key: 'PSDENAME',
+                value: 'TICKET',
+                rawValue: true,
+                name: 'PSDENAME',
+                id: 'psdename',
+              },
+            ],
+            id: 'field_manage',
           },
           {
             caption: '状态管理',

@@ -438,6 +438,7 @@ export default {
                         enableRowEdit: true,
                         enableRowNew: true,
                         singleSelect: true,
+                        navViewPos: 'NONE',
                         createControlAction: {
                           appDEMethodId: 'create',
                           appDataEntityId: 'plmweb.attachment',
@@ -757,6 +758,7 @@ export default {
                     editorParams: {
                       'SRFNAVPARAM.n_department_id_eq': '%srforgsectorid%',
                       AC: 'TRUE',
+                      'SRFNAVPARAM.n_status_eq': '1',
                       TRIGGER: 'TRUE',
                       'SRFNAVCTX.product': '%product_id%',
                       URL: 'products/${context.product}/product_members/fetch_default',
@@ -792,6 +794,12 @@ export default {
                         key: 'n_department_id_eq',
                         value: 'srforgsectorid',
                         id: 'n_department_id_eq',
+                      },
+                      {
+                        key: 'n_status_eq',
+                        value: '1',
+                        rawValue: true,
+                        id: 'n_status_eq',
                       },
                       {
                         key: 'n_product_id_eq',
@@ -835,6 +843,59 @@ export default {
                   id: 'assignee_name',
                 },
                 {
+                  dataType: 25,
+                  enableCond: 3,
+                  fieldName: 'target_customer',
+                  labelPos: 'TOP',
+                  labelWidth: 130,
+                  noPrivDisplayMode: 1,
+                  editor: {
+                    appCodeListId: 'plmweb.prodmgmt__product_customer',
+                    editorParams: {
+                      'SRFNAVPARAM.n_product_id_eq': '%product%',
+                    },
+                    editorType: 'MDROPDOWNLIST',
+                    valueType: 'SIMPLE',
+                    editable: true,
+                    navigateParams: [
+                      {
+                        key: 'n_product_id_eq',
+                        value: 'product',
+                        id: 'n_product_id_eq',
+                      },
+                    ],
+                    id: 'customer',
+                  },
+                  allowEmpty: true,
+                  needCodeListConfig: true,
+                  caption: '客户',
+                  codeName: 'customer',
+                  detailStyle: 'DEFAULT',
+                  detailType: 'FORMITEM',
+                  defdgroupLogics: [
+                    {
+                      logicCat: 'ITEMENABLE',
+                      relatedDetailNames: ['product_name'],
+                      groupOP: 'AND',
+                      defdlogics: [
+                        {
+                          condOP: 'ISNOTNULL',
+                          defdname: 'product_name',
+                          logicType: 'SINGLE',
+                        },
+                      ],
+                      logicType: 'GROUP',
+                      id: '表单成员[customer][表单项启用]逻辑',
+                    },
+                  ],
+                  layoutPos: {
+                    colMD: 24,
+                    layout: 'TABLE_24COL',
+                  },
+                  showCaption: true,
+                  id: 'customer',
+                },
+                {
                   layout: {
                     columnCount: 24,
                     layout: 'TABLE_24COL',
@@ -859,6 +920,7 @@ export default {
                           'SRFNAVPARAM.n_department_id_eq': '%srforgsectorid%',
                           AC: 'TRUE',
                           DEFAULTSELCURUSER: 'true',
+                          'SRFNAVPARAM.n_status_eq': '1',
                           TRIGGER: 'TRUE',
                           SELFFILLMAP:
                             '{"user_id":"user_id","user_name":"name"}',
@@ -882,6 +944,12 @@ export default {
                             key: 'n_department_id_eq',
                             value: 'srforgsectorid',
                             id: 'n_department_id_eq',
+                          },
+                          {
+                            key: 'n_status_eq',
+                            value: '1',
+                            rawValue: true,
+                            id: 'n_status_eq',
                           },
                         ],
                         id: 'attentions',

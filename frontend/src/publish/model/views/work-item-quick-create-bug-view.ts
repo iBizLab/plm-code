@@ -413,6 +413,7 @@ export default {
                             sortMode: 'REMOTE',
                             enableRowEdit: true,
                             enableRowNew: true,
+                            navViewPos: 'NONE',
                             createControlAction: {
                               appDEMethodId: 'create',
                               appDataEntityId: 'plmweb.attachment',
@@ -730,6 +731,7 @@ export default {
                         editorParams: {
                           'SRFNAVPARAM.n_department_id_eq': '%srforgsectorid%',
                           AC: 'TRUE',
+                          'SRFNAVPARAM.n_status_eq': '1',
                           TRIGGER: 'TRUE',
                           URL: 'projects/${context.project}/project_members/fetch_default',
                           PICKUPVIEW: 'FALSE',
@@ -754,6 +756,12 @@ export default {
                             key: 'n_department_id_eq',
                             value: 'srforgsectorid',
                             id: 'n_department_id_eq',
+                          },
+                          {
+                            key: 'n_status_eq',
+                            value: '1',
+                            rawValue: true,
+                            id: 'n_status_eq',
                           },
                         ],
                         id: 'assignee_name',
@@ -1187,6 +1195,7 @@ export default {
                                 '%srforgsectorid%',
                               AC: 'TRUE',
                               DEFAULTSELCURUSER: 'true',
+                              'SRFNAVPARAM.n_status_eq': '1',
                               TRIGGER: 'TRUE',
                               SELFFILLMAP:
                                 '{"user_id":"user_id","user_name":"name"}',
@@ -1210,6 +1219,12 @@ export default {
                                 key: 'n_department_id_eq',
                                 value: 'srforgsectorid',
                                 id: 'n_department_id_eq',
+                              },
+                              {
+                                key: 'n_status_eq',
+                                value: '1',
+                                rawValue: true,
+                                id: 'n_status_eq',
                               },
                             ],
                             id: 'attentions',

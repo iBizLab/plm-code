@@ -52,6 +52,10 @@
          <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`ROLE_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`USER_ID` FROM `MEMBER` t1   ]]>  
     </sql>
 
+    <sql id="noAttention" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`ROLE_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`USER_ID` FROM `MEMBER` t1   ]]>  where  <![CDATA[ ( ( USER_ID NOT IN (SELECT user_id from attention t2 where t2.OWNER_ID = #{ctx.webcontext.principal_id} )) ) ]]> 
+    </sql>
+
     <sql id="sharedPageMember" databaseId="mysql">
          <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`ROLE_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME`, t1.`USER_ID` FROM `MEMBER` t1   ]]>  where  <![CDATA[ ( t1.`OWNER_ID` = #{ctx.webcontext.shared_page}  AND  t1.`OWNER_TYPE` = 'PAGE'  AND  t1.`OWNER_SUBTYPE` = 'SHARED' ) ]]> 
     </sql>
@@ -75,6 +79,27 @@
         select t1.*
         from (
             <include refid="default"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchNoAttention"  parameterType="cn.ibizlab.plm.core.base.filter.MemberSearchContext"  resultMap="MemberResultMap">
+        select t1.* 
+        from (
+            <include refid="noAttention"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listNoAttention"  parameterType="cn.ibizlab.plm.core.base.filter.MemberSearchContext"  resultMap="MemberResultMap">
+        select t1.*
+        from (
+            <include refid="noAttention"/>
         ) t1
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>

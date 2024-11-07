@@ -229,6 +229,38 @@ public interface LibraryMemberService extends IService<LibraryMember> {
     List<LibraryMember> listCurLibraryMember(LibraryMemberSearchContext context);
 
     /**
+    * fetchMobCurMember
+    * 
+    * @param context
+    * @return
+    */
+    Page<LibraryMember> fetchMobCurMember(LibraryMemberSearchContext context);
+
+    /**
+    * listMobCurMember
+    * 
+    * @param context
+    * @return
+    */
+    List<LibraryMember> listMobCurMember(LibraryMemberSearchContext context);
+
+    /**
+    * fetchNoAttention
+    * 
+    * @param context
+    * @return
+    */
+    Page<LibraryMember> fetchNoAttention(LibraryMemberSearchContext context);
+
+    /**
+    * listNoAttention
+    * 
+    * @param context
+    * @return
+    */
+    List<LibraryMember> listNoAttention(LibraryMemberSearchContext context);
+
+    /**
     * findByLibraryId
     * @param libraryIds
     * @return

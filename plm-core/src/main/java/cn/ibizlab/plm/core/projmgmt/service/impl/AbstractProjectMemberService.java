@@ -181,6 +181,17 @@ public abstract class AbstractProjectMemberService extends ServiceImpl<ProjectMe
         return list;
    }
 	
+   public Page<ProjectMember> fetchNoAttention(ProjectMemberSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ProjectMember> pages=baseMapper.searchNoAttention(context.getPages(),context,context.getSelectCond());
+        List<ProjectMember> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<ProjectMember> listNoAttention(ProjectMemberSearchContext context) {
+        List<ProjectMember> list = baseMapper.listNoAttention(context,context.getSelectCond());
+        return list;
+   }
+	
 	public List<ProjectMember> findByProjectId(List<String> projectIds){
         List<ProjectMember> list = baseMapper.findByProjectId(projectIds);
         return list;	

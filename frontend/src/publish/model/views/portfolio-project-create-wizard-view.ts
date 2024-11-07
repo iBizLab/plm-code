@@ -345,6 +345,7 @@ export default {
                         valueItemName: 'assignee_id',
                         editorParams: {
                           URL: '/users/fetch_default',
+                          'SRFNAVPARAM.n_status_eq': '1',
                           ISSHOWTAB: 'false',
                           USERMAP: '{"id":"id","name":"display_name"}',
                           AC: 'TRUE',
@@ -362,6 +363,14 @@ export default {
                         sysPFPluginId: 'person_select',
                         valueType: 'SIMPLE',
                         editable: true,
+                        navigateParams: [
+                          {
+                            key: 'n_status_eq',
+                            value: '1',
+                            rawValue: true,
+                            id: 'n_status_eq',
+                          },
+                        ],
                         id: 'assignee_name',
                       },
                       allowEmpty: true,

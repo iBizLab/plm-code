@@ -13,6 +13,7 @@ export default {
   },
   caption: '用例',
   codeName: 'test_case_main_view',
+  dynaSysMode: 1,
   height: 90,
   appDataEntityId: 'plmweb.test_case',
   appViewMsgGroupId: 'usrvmgroup0529204458',
@@ -29,6 +30,19 @@ export default {
       value: 'TEST_CASE',
       name: 'PRINCIPAL_TYPE',
       id: 'principal_type',
+    },
+  ],
+  appViewNavParams: [
+    {
+      rawValue: true,
+      key: 'srfparentdename',
+      value: 'library',
+      id: 'srfparentdename',
+    },
+    {
+      key: 'srfparentkey',
+      value: 'library',
+      id: 'srfparentkey',
     },
   ],
   sysCss: {
@@ -859,7 +873,7 @@ export default {
           {
             actionLevel: 100,
             noPrivDisplayMode: 2,
-            uiactionId: 'prevrecord',
+            uiactionId: 'editview_prevrecordaction',
             uiactionTarget: 'SINGLEKEY',
             valid: true,
             caption: '上一条',
@@ -885,7 +899,7 @@ export default {
           {
             actionLevel: 100,
             noPrivDisplayMode: 2,
-            uiactionId: 'nextrecord',
+            uiactionId: 'editview_nextrecordaction',
             uiactionTarget: 'SINGLEKEY',
             valid: true,
             caption: '下一条',
@@ -1094,6 +1108,7 @@ export default {
                       editorParams: {
                         'SRFNAVPARAM.n_department_id_eq': '%srforgsectorid%',
                         AC: 'TRUE',
+                        'SRFNAVPARAM.n_status_eq': '1',
                         TRIGGER: 'TRUE',
                         URL: 'libraries/${context.library}/library_members/fetch_default',
                         PICKUPVIEW: 'FALSE',
@@ -1118,6 +1133,12 @@ export default {
                           key: 'n_department_id_eq',
                           value: 'srforgsectorid',
                           id: 'n_department_id_eq',
+                        },
+                        {
+                          key: 'n_status_eq',
+                          value: '1',
+                          rawValue: true,
+                          id: 'n_status_eq',
                         },
                       ],
                       id: 'maintenance_name',
@@ -1296,7 +1317,7 @@ export default {
                             },
                             deformDetails: [
                               {
-                                dataType: 25,
+                                dataType: 21,
                                 enableCond: 3,
                                 labelPos: 'NONE',
                                 noPrivDisplayMode: 1,
@@ -1347,6 +1368,24 @@ export default {
                                 },
                                 id: 'precondition',
                               },
+                            ],
+                            caption: '前置条件',
+                            codeName: 'description_container',
+                            detailStyle: 'DEFAULT',
+                            detailType: 'GROUPPANEL',
+                            layoutPos: {
+                              colMD: 24,
+                              layout: 'TABLE_24COL',
+                            },
+                            showCaption: true,
+                            id: 'description_container',
+                          },
+                          {
+                            layout: {
+                              columnCount: 24,
+                              layout: 'TABLE_24COL',
+                            },
+                            deformDetails: [
                               {
                                 buildInActions: 7,
                                 contentType: 'REPEATER',
@@ -1538,6 +1577,7 @@ export default {
                                     createDVT: 'UNIQUEID',
                                     dataType: 25,
                                     enableCond: 3,
+                                    fieldName: 'id',
                                     labelPos: 'LEFT',
                                     labelWidth: 130,
                                     noPrivDisplayMode: 1,
@@ -1545,12 +1585,12 @@ export default {
                                       editorType: 'HIDDEN',
                                       valueType: 'SIMPLE',
                                       editable: true,
-                                      id: 'id',
+                                      id: 'step_id',
                                     },
                                     allowEmpty: true,
                                     hidden: true,
-                                    caption: '标识',
-                                    codeName: 'id',
+                                    caption: '步骤标识',
+                                    codeName: 'step_id',
                                     detailStyle: 'DEFAULT',
                                     detailType: 'FORMITEM',
                                     layoutPos: {
@@ -1558,7 +1598,7 @@ export default {
                                       layout: 'TABLE_24COL',
                                     },
                                     repeatContent: true,
-                                    id: 'id',
+                                    id: 'step_id',
                                   },
                                 ],
                                 caption: '用例步骤',
@@ -1575,8 +1615,8 @@ export default {
                                 id: 'mdctrl1',
                               },
                             ],
-                            caption: '前置条件',
-                            codeName: 'description_container',
+                            caption: '用例步骤',
+                            codeName: 'grouppanel7',
                             detailStyle: 'DEFAULT',
                             detailType: 'GROUPPANEL',
                             layoutPos: {
@@ -1584,7 +1624,7 @@ export default {
                               layout: 'TABLE_24COL',
                             },
                             showCaption: true,
-                            id: 'description_container',
+                            id: 'grouppanel7',
                           },
                           {
                             layout: {
@@ -1593,20 +1633,42 @@ export default {
                             },
                             deformDetails: [
                               {
-                                dataType: 25,
+                                dataType: 21,
                                 enableCond: 3,
-                                itemHeight: 200,
                                 labelPos: 'NONE',
                                 noPrivDisplayMode: 1,
                                 appDEFieldId: 'description',
                                 editor: {
-                                  maxLength: 2000,
-                                  showMaxLength: true,
-                                  editorHeight: 200,
                                   editorParams: {
-                                    HEIGHT: '200',
+                                    USERINSCRIPT:
+                                      'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                    MAXHEIGHT: '450',
+                                    QUOTECODELISTMAP:
+                                      '{"type":"plmweb.base__recent_visite"}',
+                                    enableEdit: 'true',
+                                    QUOTEFIELDMAP:
+                                      '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype"}',
+                                    QUOTEPARAMS:
+                                      '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                    enableFullScreen: 'true',
+                                    MODE: 'default',
+                                    QUOTEINSCRIPT:
+                                      'value.replaceAll(/\\#\\{\\"id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\",\\"identifier\\":\\"(.+?)\\",\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })}).replaceAll(/\\#\\{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })})',
+                                    USERSCRIPT:
+                                      '`@{"id":"${data.id}","name":"${data.name}"}`',
+                                    QUOTESCRIPT:
+                                      '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","icon":"${data.icon}"}`',
+                                    USERURL:
+                                      "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
+                                    USERFIELDMAP:
+                                      '{"id":"user_id","name":"name"}',
+                                    INSERTKEYS:
+                                      '[{"index":66,"keys":["marker"]},{"index":5,"keys":["paintformat"]}]',
+                                    QUOTEURL: '`recents/fetch_recent_access`',
                                   },
-                                  editorType: 'TEXTAREA_10',
+                                  editorStyle: 'COLLAPSE',
+                                  editorType: 'HTMLEDITOR',
+                                  sysPFPluginId: 'comment',
                                   valueType: 'SIMPLE',
                                   editable: true,
                                   id: 'case_description',
@@ -1624,7 +1686,7 @@ export default {
                               },
                             ],
                             caption: '描述',
-                            codeName: 'grouppanel7',
+                            codeName: 'description_container2',
                             detailStyle: 'DEFAULT',
                             detailType: 'GROUPPANEL',
                             layoutPos: {
@@ -1632,7 +1694,7 @@ export default {
                               layout: 'TABLE_24COL',
                             },
                             showCaption: true,
-                            id: 'grouppanel7',
+                            id: 'description_container2',
                           },
                           {
                             actionGroupExtractMode: 'ITEM',
@@ -1880,6 +1942,7 @@ export default {
                                   enableRowEdit: true,
                                   enableRowNew: true,
                                   singleSelect: true,
+                                  navViewPos: 'NONE',
                                   createControlAction: {
                                     appDEMethodId: 'create',
                                     appDataEntityId: 'plmweb.attachment',
@@ -2524,6 +2587,35 @@ export default {
                             },
                             showCaption: true,
                             id: 'cur_version_name',
+                          },
+                          {
+                            createDVT: 'UNIQUEID',
+                            dataType: 25,
+                            enableCond: 3,
+                            labelPos: 'LEFT',
+                            labelWidth: 130,
+                            noPrivDisplayMode: 1,
+                            appDEFieldId: 'id',
+                            editor: {
+                              editorType: 'HIDDEN',
+                              valueType: 'SIMPLE',
+                              editable: true,
+                              id: 'id',
+                            },
+                            allowEmpty: true,
+                            hidden: true,
+                            capLanguageRes: {
+                              lanResTag: 'DEF.LNAME.ID',
+                            },
+                            caption: '标识',
+                            codeName: 'id',
+                            detailStyle: 'DEFAULT',
+                            detailType: 'FORMITEM',
+                            layoutPos: {
+                              colMD: 24,
+                              layout: 'TABLE_24COL',
+                            },
+                            id: 'id',
                           },
                           {
                             dataType: 25,
@@ -3459,34 +3551,6 @@ export default {
                   layout: 'TABLE_24COL',
                 },
                 id: 'right_grouppanel',
-              },
-              {
-                dataType: 25,
-                enableCond: 3,
-                labelPos: 'LEFT',
-                labelWidth: 130,
-                noPrivDisplayMode: 1,
-                appDEFieldId: 'id',
-                editor: {
-                  editorType: 'HIDDEN',
-                  valueType: 'SIMPLE',
-                  editable: true,
-                  id: 'id',
-                },
-                allowEmpty: true,
-                hidden: true,
-                capLanguageRes: {
-                  lanResTag: 'DEF.LNAME.ID',
-                },
-                caption: '标识',
-                codeName: 'id',
-                detailStyle: 'DEFAULT',
-                detailType: 'FORMITEM',
-                layoutPos: {
-                  colMD: 24,
-                  layout: 'TABLE_24COL',
-                },
-                id: 'id',
               },
             ],
             caption: '基本信息',

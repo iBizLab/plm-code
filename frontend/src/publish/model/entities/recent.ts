@@ -2453,6 +2453,28 @@ export default {
       id: 'fetch_default',
     },
     {
+      codeName: 'fetch_mob_home_recent_access',
+      methodType: 'FETCH',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'recent_filter_dto',
+        type: 'DTO',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'recent_dto',
+        type: 'PAGE',
+        id: '返回对象',
+      },
+      requestMethod: 'POST',
+      requestParamType: 'ENTITY',
+      requestPath: '/fetch_mob_home_recent_access',
+      actionType: 'REMOTE',
+      dataSetName: 'mob_home_recent_access',
+      dataSetTag: 'mob_home_recent_access',
+      dataSetType: 'REMOTE',
+      id: 'fetch_mob_home_recent_access',
+    },
+    {
       codeName: 'fetch_only_ten_access_use',
       methodType: 'FETCH',
       appDEMethodInput: {

@@ -98,6 +98,16 @@ public class Deliverable extends EntityMP implements Serializable
     private String workItemTitle;
 
     /**
+    * 工作项类型
+    */
+    @TableField(value = "work_item_type_id" , exist = false)
+    @DEField(name = "work_item_type_id")
+    @JSONField(name = "work_item_type_id")
+    @JsonProperty("work_item_type_id")
+    @ApiModelProperty(value = "work_item_type_id", notes = "工作项类型")
+    private String workItemTypeId;
+
+    /**
     * 标题
     */
     @TableField(value = "title")
@@ -204,6 +214,15 @@ public class Deliverable extends EntityMP implements Serializable
     public Deliverable setWorkItemTitle(String workItemTitle) {
         this.workItemTitle = workItemTitle;
         this.modify("work_item_title", workItemTitle);
+        return this;
+    }
+
+    /**
+    * 设置 [工作项类型]
+    */
+    public Deliverable setWorkItemTypeId(String workItemTypeId) {
+        this.workItemTypeId = workItemTypeId;
+        this.modify("work_item_type_id", workItemTypeId);
         return this;
     }
 

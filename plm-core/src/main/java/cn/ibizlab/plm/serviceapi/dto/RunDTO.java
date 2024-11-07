@@ -318,11 +318,27 @@ public class RunDTO extends DTOBase implements Serializable {
     private String biPlanName;
 
     /**
+     * 关注数
+     */
+    @JsonProperty("attention_count")
+    @JSONField(name = "attention_count")
+    @ApiModelProperty(value = "关注数", position = 35)
+    private String attentionCount;
+
+    /**
+     * 评论数
+     */
+    @JsonProperty("comment_count")
+    @JSONField(name = "comment_count")
+    @ApiModelProperty(value = "评论数", position = 36)
+    private String commentCount;
+
+    /**
      * 关注人
      */
     @JsonProperty("attentions_imp")
     @JSONField(name = "attentions_imp")
-    @ApiModelProperty(value = "关注人", position = 35)
+    @ApiModelProperty(value = "关注人", position = 37)
     private String attentionsImp;
 
     /**
@@ -330,7 +346,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("recent_create_days")
     @JSONField(name = "recent_create_days")
-    @ApiModelProperty(value = "最近创建日期", position = 36)
+    @ApiModelProperty(value = "最近创建日期", position = 38)
     private Integer recentCreateDays;
 
     /**
@@ -338,7 +354,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("case_id")
     @JSONField(name = "case_id")
-    @ApiModelProperty(value = "测试用例标识", position = 37)
+    @ApiModelProperty(value = "测试用例标识", position = 39)
     private String caseId;
 
     /**
@@ -346,7 +362,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("case_name")
     @JSONField(name = "case_name")
-    @ApiModelProperty(value = "名称", position = 38)
+    @ApiModelProperty(value = "名称", position = 40)
     private String caseName;
 
     /**
@@ -354,7 +370,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 39)
+    @ApiModelProperty(value = "建立人", position = 41)
     private String createMan;
 
     /**
@@ -363,7 +379,7 @@ public class RunDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 40)
+    @ApiModelProperty(value = "建立时间", position = 42)
     private Date createTime;
 
     /**
@@ -371,7 +387,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 41)
+    @ApiModelProperty(value = "标识", position = 43)
     private String id;
 
     /**
@@ -379,7 +395,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 42)
+    @ApiModelProperty(value = "名称", position = 44)
     private String name;
 
     /**
@@ -387,7 +403,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("plan_id")
     @JSONField(name = "plan_id")
-    @ApiModelProperty(value = "测试计划标识", position = 43)
+    @ApiModelProperty(value = "测试计划标识", position = 45)
     private String planId;
 
     /**
@@ -395,7 +411,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 44)
+    @ApiModelProperty(value = "更新人", position = 46)
     private String updateMan;
 
     /**
@@ -404,7 +420,7 @@ public class RunDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 45)
+    @ApiModelProperty(value = "更新时间", position = 47)
     private Date updateTime;
 
 
@@ -702,6 +718,24 @@ public class RunDTO extends DTOBase implements Serializable {
     public RunDTO setBiPlanName(String biPlanName) {
         this.biPlanName = biPlanName;
         this.modify("bi_plan_name", biPlanName);
+        return this;
+    }
+
+    /**
+     * 设置 [关注数]
+     */
+    public RunDTO setAttentionCount(String attentionCount) {
+        this.attentionCount = attentionCount;
+        this.modify("attention_count", attentionCount);
+        return this;
+    }
+
+    /**
+     * 设置 [评论数]
+     */
+    public RunDTO setCommentCount(String commentCount) {
+        this.commentCount = commentCount;
+        this.modify("comment_count", commentCount);
         return this;
     }
 

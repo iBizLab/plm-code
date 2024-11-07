@@ -460,6 +460,7 @@ export default {
       sortMode: 'REMOTE',
       enableCustomized: true,
       singleSelect: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_baseline_comparison',
         appDataEntityId: 'plmweb.baseline_idea',

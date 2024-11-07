@@ -180,6 +180,28 @@ public abstract class AbstractLibraryMemberService extends ServiceImpl<LibraryMe
         return list;
    }
 	
+   public Page<LibraryMember> fetchMobCurMember(LibraryMemberSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<LibraryMember> pages=baseMapper.searchMobCurMember(context.getPages(),context,context.getSelectCond());
+        List<LibraryMember> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<LibraryMember> listMobCurMember(LibraryMemberSearchContext context) {
+        List<LibraryMember> list = baseMapper.listMobCurMember(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<LibraryMember> fetchNoAttention(LibraryMemberSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<LibraryMember> pages=baseMapper.searchNoAttention(context.getPages(),context,context.getSelectCond());
+        List<LibraryMember> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<LibraryMember> listNoAttention(LibraryMemberSearchContext context) {
+        List<LibraryMember> list = baseMapper.listNoAttention(context,context.getSelectCond());
+        return list;
+   }
+	
 	public List<LibraryMember> findByLibraryId(List<String> libraryIds){
         List<LibraryMember> list = baseMapper.findByLibraryId(libraryIds);
         return list;	

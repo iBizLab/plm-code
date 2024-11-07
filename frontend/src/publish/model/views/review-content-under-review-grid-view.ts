@@ -126,7 +126,7 @@ export default {
         {
           actionLevel: 100,
           noPrivDisplayMode: 2,
-          uiactionId: 'new',
+          uiactionId: 'gridview_newaction',
           valid: true,
           capLanguageRes: {
             lanResTag: 'TBB.TEXT.*.NEW',
@@ -261,7 +261,7 @@ export default {
           dataItemName: 'change_version',
           excelCaption: '变更版本',
           appDEFieldId: 'change_version',
-          deuiactionId: 'saverow',
+          deuiactionId: 'gridview_saverowaction',
           valueType: 'OBJECTS',
           enableRowEdit: true,
           aggMode: 'NONE',
@@ -408,6 +408,7 @@ export default {
       enableCustomized: true,
       enableRowEdit: true,
       enableRowNew: true,
+      navViewPos: 'NONE',
       createControlAction: {
         appDEMethodId: 'create',
         appDataEntityId: 'plmweb.review_content',

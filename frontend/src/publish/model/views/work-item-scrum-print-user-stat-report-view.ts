@@ -833,6 +833,7 @@ export default {
             id: '0',
           },
         ],
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_sprint_user_stat',
           appDataEntityId: 'plmweb.work_item',

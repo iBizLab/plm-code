@@ -271,6 +271,21 @@ public abstract class AbstractLibraryService extends ServiceImpl<LibraryMapper,L
         return list;
    }
 	
+   public Page<Library> fetchMobMain(LibrarySearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IS_FAVORITE,DESC;UPDATE_TIME,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Library> pages=baseMapper.searchMobMain(context.getPages(),context,context.getSelectCond());
+        List<Library> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Library> listMobMain(LibrarySearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IS_FAVORITE,DESC;UPDATE_TIME,DESC");
+        List<Library> list = baseMapper.listMobMain(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<Library> fetchNormal(LibrarySearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("NAME,DESC");

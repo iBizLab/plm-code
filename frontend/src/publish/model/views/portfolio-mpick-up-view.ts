@@ -109,6 +109,7 @@ export default {
       ],
       pagingSize: 1000,
       showHeader: true,
+      navViewPos: 'NONE',
       createControlAction: {
         appDEMethodId: 'create',
         appDataEntityId: 'plmweb.portfolio',

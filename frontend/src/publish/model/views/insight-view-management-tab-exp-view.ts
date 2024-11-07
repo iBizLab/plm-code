@@ -102,7 +102,7 @@ export default {
             },
             dataRegionType: 'INHERIT',
             caption: '容器',
-            cssStyle: 'margin-right:7px',
+            cssStyle: 'margin-right:10px',
             itemStyle: 'DEFAULT',
             itemType: 'CONTAINER',
             layoutPos: {
@@ -154,6 +154,12 @@ export default {
                 panelItems: [
                   {
                     rawItem: {
+                      rawItemParams: [
+                        {
+                          key: 'EXPCACHE',
+                          value: 'NO_CACHE',
+                        },
+                      ],
                       predefinedType: 'NAV_POS',
                       id: 'nav_pos',
                     },
@@ -256,37 +262,61 @@ export default {
     ],
     controls: [
       {
-        dedrtabPages: [
+        tabExpPageIds: ['in_progress', 'deleted'],
+        tabLayout: 'TOP',
+        uniqueTag: 'insight_view_management_tab_exp_view__tabexppanel',
+        appViewRefs: [
+          {
+            realTitle: '效能度量表格视图（进行中）',
+            refAppViewId: 'plmweb.insight_view_in_progress_grid_view',
+            name: 'EXPITEM:in_progress',
+            id: 'expitem:in_progress',
+          },
+          {
+            realTitle: '效能度量表格视图（进行中）',
+            refAppViewId: 'plmweb.insight_view_deleted_grid_view',
+            name: 'EXPITEM:deleted',
+            id: 'expitem:deleted',
+          },
+        ],
+        controls: [
           {
             caption: '进行中',
-            appViewId: 'plmweb.insight_view_in_progress_grid_view',
-            id: 'in_progress',
+            embeddedAppDEViewId: 'plmweb.insight_view_in_progress_grid_view',
+            codeName: 'management_tab_exp_view_in_progress',
+            controlType: 'TABVIEWPANEL',
+            appDataEntityId: 'plmweb.insight_view',
+            controlParam: {
+              id: 'in_progress',
+            },
+            modelId: '90983c2d37485d52e5449d08be7af23a_in_progress',
+            modelType: 'PSVIEWPANEL',
+            name: 'in_progress',
+            id: 'management_tab_exp_view_in_progress',
           },
           {
             caption: '已删除',
-            appViewId: 'plmweb.insight_view_deleted_grid_view',
-            id: 'deleted',
+            embeddedAppDEViewId: 'plmweb.insight_view_deleted_grid_view',
+            codeName: 'management_tab_exp_view_deleted',
+            controlType: 'TABVIEWPANEL',
+            appDataEntityId: 'plmweb.insight_view',
+            controlParam: {
+              id: 'deleted',
+            },
+            modelId: '90983c2d37485d52e5449d08be7af23a_deleted',
+            modelType: 'PSVIEWPANEL',
+            name: 'deleted',
+            id: 'management_tab_exp_view_deleted',
           },
         ],
-        dataRelationTag: 'management_setting_view_dr',
-        editItemCapLanguageRes: {
-          lanResTag: 'DE.LNAME.INSIGHT_VIEW',
-        },
-        editItemCaption: '效能视图',
-        uniqueTag: 'insight_view_management_tab_exp_view__tabexppanel',
-        hideEditItem: true,
-        autoLoad: true,
-        showBusyIndicator: true,
-        codeName: 'management_setting_view_dr',
-        controlType: 'DRTAB',
+        codeName: 'management_tab_exp_view_tabexppanel',
+        controlType: 'TABEXPPANEL',
         appDataEntityId: 'plmweb.insight_view',
-        controlParam: {
-          id: 'tabexppanel',
-        },
-        modelId: 'AE81FF0B-04DA-4559-A1E1-A044C91BB559',
-        modelType: 'PSDEDRTAB',
+        controlParam: {},
+        modelId: '90983c2d37485d52e5449d08be7af23a_tabexppanel',
+        modelType: 'PSTABEXPPANEL',
         name: 'tabexppanel',
-        id: 'management_setting_view_dr',
+        id: 'management_tab_exp_view_tabexppanel',
       },
       {
         capLanguageRes: {
@@ -301,15 +331,15 @@ export default {
         id: 'management_tab_exp_view_captionbar',
       },
     ],
-    codeName: 'usr0709157357',
+    codeName: 'usr0416853624',
     controlType: 'VIEWLAYOUTPANEL',
     logicName: 'management_tab_exp_view分页导航视图布局面板',
     appDataEntityId: 'plmweb.insight_view',
     controlParam: {},
-    modelId: '80D681FE-D842-484A-9D54-49F48DFE300C',
+    modelId: '6483661A-4D41-4B0F-AFF6-071DF1390E12',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
-    id: 'usr0709157357',
+    id: 'usr0416853624',
   },
   title: '效能度量导航视图',
   viewStyle: 'DEFAULT',

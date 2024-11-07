@@ -176,6 +176,25 @@ public interface SpaceMapper extends BaseMapper<Space> {
     List<Space> listMain(@Param("ctx") SpaceSearchContext context, @Param("ew") Wrapper<Space> wrapper);
 
     /**
+     * 数据集合mob_main分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Space> searchMobMain(IPage<Space> page, @Param("ctx") SpaceSearchContext context, @Param("ew") Wrapper<Space> wrapper);
+    
+    /**
+     * 数据集合mob_main查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Space> listMobMain(@Param("ctx") SpaceSearchContext context, @Param("ew") Wrapper<Space> wrapper);
+
+    /**
      * 数据集合no_category_space分页查询
      * 
      * @param page

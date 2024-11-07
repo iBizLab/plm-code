@@ -294,11 +294,27 @@ public class TestCaseDTO extends DTOBase implements Serializable {
     private String stepsImp;
 
     /**
+     * 关注数
+     */
+    @JsonProperty("attention_count")
+    @JSONField(name = "attention_count")
+    @ApiModelProperty(value = "关注数", position = 32)
+    private String attentionCount;
+
+    /**
+     * 评论数
+     */
+    @JsonProperty("comment_count")
+    @JSONField(name = "comment_count")
+    @ApiModelProperty(value = "评论数", position = 33)
+    private String commentCount;
+
+    /**
      * 当前版本名称
      */
     @JsonProperty("cur_version_name")
     @JSONField(name = "cur_version_name")
-    @ApiModelProperty(value = "当前版本名称", position = 32)
+    @ApiModelProperty(value = "当前版本名称", position = 34)
     private String curVersionName;
 
     /**
@@ -306,7 +322,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("choose_version_id")
     @JSONField(name = "choose_version_id")
-    @ApiModelProperty(value = "选择版本标识", position = 33)
+    @ApiModelProperty(value = "选择版本标识", position = 35)
     private String chooseVersionId;
 
     /**
@@ -314,7 +330,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("choose_version_name")
     @JSONField(name = "choose_version_name")
-    @ApiModelProperty(value = "选择版本名称", position = 34)
+    @ApiModelProperty(value = "选择版本名称", position = 36)
     private String chooseVersionName;
 
     /**
@@ -322,7 +338,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("attentions_imp")
     @JSONField(name = "attentions_imp")
-    @ApiModelProperty(value = "关注人", position = 35)
+    @ApiModelProperty(value = "关注人", position = 37)
     private String attentionsImp;
 
     /**
@@ -330,7 +346,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("recent_create_days")
     @JSONField(name = "recent_create_days")
-    @ApiModelProperty(value = "最近创建日期", position = 36)
+    @ApiModelProperty(value = "最近创建日期", position = 38)
     private Integer recentCreateDays;
 
     /**
@@ -338,7 +354,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 37)
+    @ApiModelProperty(value = "建立人", position = 39)
     private String createMan;
 
     /**
@@ -347,7 +363,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 38)
+    @ApiModelProperty(value = "建立时间", position = 40)
     private Date createTime;
 
     /**
@@ -355,7 +371,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 39)
+    @ApiModelProperty(value = "标识", position = 41)
     private String id;
 
     /**
@@ -363,7 +379,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 40)
+    @ApiModelProperty(value = "名称", position = 42)
     private String name;
 
     /**
@@ -371,7 +387,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("suite_id")
     @JSONField(name = "suite_id")
-    @ApiModelProperty(value = "用例模块标识", position = 41)
+    @ApiModelProperty(value = "用例模块标识", position = 43)
     private String suiteId;
 
     /**
@@ -379,7 +395,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("suite_name")
     @JSONField(name = "suite_name")
-    @ApiModelProperty(value = "所属模块", position = 42)
+    @ApiModelProperty(value = "所属模块", position = 44)
     private String suiteName;
 
     /**
@@ -387,7 +403,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("test_library_id")
     @JSONField(name = "test_library_id")
-    @ApiModelProperty(value = "测试库", position = 43)
+    @ApiModelProperty(value = "测试库", position = 45)
     private String testLibraryId;
 
     /**
@@ -395,7 +411,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("test_library_name")
     @JSONField(name = "test_library_name")
-    @ApiModelProperty(value = "所属测试库", position = 44)
+    @ApiModelProperty(value = "所属测试库", position = 46)
     private String testLibraryName;
 
     /**
@@ -403,7 +419,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 45)
+    @ApiModelProperty(value = "更新人", position = 47)
     private String updateMan;
 
     /**
@@ -412,7 +428,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 46)
+    @ApiModelProperty(value = "更新时间", position = 48)
     private Date updateTime;
 
 
@@ -692,6 +708,24 @@ public class TestCaseDTO extends DTOBase implements Serializable {
     public TestCaseDTO setStepsImp(String stepsImp) {
         this.stepsImp = stepsImp;
         this.modify("steps_imp", stepsImp);
+        return this;
+    }
+
+    /**
+     * 设置 [关注数]
+     */
+    public TestCaseDTO setAttentionCount(String attentionCount) {
+        this.attentionCount = attentionCount;
+        this.modify("attention_count", attentionCount);
+        return this;
+    }
+
+    /**
+     * 设置 [评论数]
+     */
+    public TestCaseDTO setCommentCount(String commentCount) {
+        this.commentCount = commentCount;
+        this.modify("comment_count", commentCount);
         return this;
     }
 

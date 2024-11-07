@@ -148,18 +148,24 @@ export default {
         {
           dedrbarGroupId: 'usrdrgroup0319461775',
           caption: '用例模板',
+          dataAccessAction: 'UPDATE',
+          enableMode: 'DEOPPRIV',
           appViewId: 'plmweb.test_case_template_all_grid_view',
           id: 'test_case_template',
         },
         {
           dedrbarGroupId: 'usrdrgroup0319461775',
           caption: '回收站',
+          dataAccessAction: 'UPDATE',
+          enableMode: 'DEOPPRIV',
           appViewId: 'plmweb.test_case_recycle_grid_view',
           id: 'recycle',
         },
         {
           dedrbarGroupId: 'usrdrgroup0524468728',
           caption: '测试库组件',
+          dataAccessAction: 'UPDATE',
+          enableMode: 'DEOPPRIV',
           appViewId: 'plmweb.addon_library_setting_grid_view',
           navigateParams: [
             {
@@ -178,19 +184,33 @@ export default {
         },
         {
           dedrbarGroupId: 'usrdrgroup0524468728',
+          caption: '测试用例配置',
+          dataAccessAction: 'UPDATE',
+          enableMode: 'DEOPPRIV',
+          appViewId: 'plmweb.test_case_configuration_tab_exp_view',
+          id: 'configuration',
+        },
+        {
+          dedrbarGroupId: 'usrdrgroup0524468728',
           caption: '评审配置',
+          dataAccessAction: 'UPDATE',
+          enableMode: 'DEOPPRIV',
           appViewId: 'plmweb.guideline_library_all_grid_view',
           id: 'guideline',
         },
         {
           dedrbarGroupId: 'usrdrgroup0319986719',
           caption: '基本设置',
+          dataAccessAction: 'UPDATE',
+          enableMode: 'DEOPPRIV',
           appViewId: 'plmweb.library_base_info_edit_view',
           id: 'base',
         },
         {
           dedrbarGroupId: 'usrdrgroup0319986719',
           caption: '高级设置',
+          dataAccessAction: 'UPDATE',
+          enableMode: 'DEOPPRIV',
           appViewId: 'plmweb.library_advanced_setting_edit_view',
           id: 'adv',
         },

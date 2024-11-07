@@ -49,6 +49,36 @@ public class DiscussReply extends EntityMP implements Serializable
     private List<Comment> comments;
 
     /**
+    * 回复评论数
+    */
+    @TableField(value = "comment_num" , exist = false)
+    @DEField(name = "comment_num")
+    @JSONField(name = "reply_comment_num")
+    @JsonProperty("reply_comment_num")
+    @ApiModelProperty(value = "comment_num", notes = "回复评论数")
+    private String replyCommentNum;
+
+    /**
+    * 讨论名称
+    */
+    @TableField(value = "discuss_name" , exist = false)
+    @DEField(name = "discuss_name")
+    @JSONField(name = "discuss_name")
+    @JsonProperty("discuss_name")
+    @ApiModelProperty(value = "discuss_name", notes = "讨论名称")
+    private String discussName;
+
+    /**
+    * 回复评论数
+    */
+    @TableField(value = "comment_count" , exist = false)
+    @DEField(name = "comment_count")
+    @JSONField(name = "comment_count")
+    @JsonProperty("comment_count")
+    @ApiModelProperty(value = "comment_count", notes = "回复评论数")
+    private String commentCount;
+
+    /**
     * 回复内容
     */
     @TableField(value = "content")
@@ -147,6 +177,33 @@ public class DiscussReply extends EntityMP implements Serializable
     public DiscussReply setComments(List<Comment> comments) {
         this.comments = comments;
         this.modify("comments", comments);
+        return this;
+    }
+
+    /**
+    * 设置 [回复评论数]
+    */
+    public DiscussReply setReplyCommentNum(String replyCommentNum) {
+        this.replyCommentNum = replyCommentNum;
+        this.modify("reply_comment_num", replyCommentNum);
+        return this;
+    }
+
+    /**
+    * 设置 [讨论名称]
+    */
+    public DiscussReply setDiscussName(String discussName) {
+        this.discussName = discussName;
+        this.modify("discuss_name", discussName);
+        return this;
+    }
+
+    /**
+    * 设置 [回复评论数]
+    */
+    public DiscussReply setCommentCount(String commentCount) {
+        this.commentCount = commentCount;
+        this.modify("comment_count", commentCount);
         return this;
     }
 

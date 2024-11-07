@@ -310,6 +310,7 @@ export default {
       sortMode: 'REMOTE',
       enableCustomized: true,
       enablePagingBar: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_default',
         appDataEntityId: 'plmweb.product_member',
@@ -345,7 +346,7 @@ export default {
             {
               actionLevel: 100,
               noPrivDisplayMode: 1,
-              uiactionId: 'remove',
+              uiactionId: 'gridview_removeaction',
               uiactionTarget: 'MULTIKEY',
               valid: true,
               capLanguageRes: {

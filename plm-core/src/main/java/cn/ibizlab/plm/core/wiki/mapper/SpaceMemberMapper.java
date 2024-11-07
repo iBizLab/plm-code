@@ -62,6 +62,25 @@ public interface SpaceMemberMapper extends BaseMapper<SpaceMember> {
     List<SpaceMember> listCurSpace(@Param("ctx") SpaceMemberSearchContext context, @Param("ew") Wrapper<SpaceMember> wrapper);
 
     /**
+     * 数据集合no_attention分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<SpaceMember> searchNoAttention(IPage<SpaceMember> page, @Param("ctx") SpaceMemberSearchContext context, @Param("ew") Wrapper<SpaceMember> wrapper);
+    
+    /**
+     * 数据集合no_attention查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<SpaceMember> listNoAttention(@Param("ctx") SpaceMemberSearchContext context, @Param("ew") Wrapper<SpaceMember> wrapper);
+
+    /**
     * 根据spaceId查询
     *
     * @param spaceIds

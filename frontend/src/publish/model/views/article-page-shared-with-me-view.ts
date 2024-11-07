@@ -661,6 +661,7 @@ export default {
                         enableRowEdit: true,
                         enableRowNew: true,
                         singleSelect: true,
+                        navViewPos: 'NONE',
                         createControlAction: {
                           appDEMethodId: 'create',
                           appDataEntityId: 'plmweb.attachment',
@@ -1105,7 +1106,7 @@ export default {
                         actionType: 'UIACTION',
                         buttonStyle: 'STYLE2',
                         buttonType: 'PANELBUTTON',
-                        uiactionId: 'del_comment@comment',
+                        uiactionId: 'delete_comment_space@comment',
                         renderMode: 'BUTTON',
                         tooltip: '删除',
                         uiactionTarget: 'SINGLEKEY',
@@ -1209,6 +1210,24 @@ export default {
                       shrink: 1,
                       layout: 'FLEX',
                     },
+                    panelItemGroupLogics: [
+                      {
+                        logicCat: 'PANELVISIBLE',
+                        relatedItemNames: ['field_text_dynamic1'],
+                        groupOP: 'AND',
+                        panelItemLogics: [
+                          {
+                            condOp: 'NOTEQ',
+                            dstModelField: 'FIELD_TEXT_DYNAMIC1',
+                            value: '<p><del>该评论已删除</del></p>',
+                            logicType: 'SINGLE',
+                            id: '逻辑项',
+                          },
+                        ],
+                        logicType: 'GROUP',
+                        id: '面板成员[container2][面板显示]逻辑',
+                      },
+                    ],
                     id: 'container2',
                   },
                 ],
@@ -1418,14 +1437,20 @@ export default {
       minorSortAppDEFieldId: 'create_time',
       delistDataItems: [
         {
+          appDEFieldId: 'pid',
+          dataType: 25,
+          id: 'pid',
+        },
+        {
           appDEFieldId: 'content',
           dataType: 21,
           id: 'content',
         },
         {
-          appDEFieldId: 'id',
-          dataType: 25,
-          id: 'id',
+          appDEFieldId: 'create_time',
+          dataType: 5,
+          format: 'YYYY-MM-DD HH:mm:ss',
+          id: 'create_time',
         },
         {
           appDEFieldId: 'pcontent',
@@ -1433,10 +1458,9 @@ export default {
           id: 'pcontent',
         },
         {
-          appDEFieldId: 'create_time',
-          dataType: 5,
-          format: 'YYYY-MM-DD HH:mm:ss',
-          id: 'create_time',
+          appDEFieldId: 'id',
+          dataType: 25,
+          id: 'id',
         },
         {
           appDEFieldId: 'create_man',
@@ -1451,11 +1475,6 @@ export default {
           id: 'pcreate_man',
         },
         {
-          appDEFieldId: 'pid',
-          dataType: 25,
-          id: 'pid',
-        },
-        {
           appDEFieldId: 'id',
           dataType: 25,
           id: 'srfkey',
@@ -1468,6 +1487,7 @@ export default {
       ],
       pagingSize: 1000,
       showHeader: true,
+      navViewPos: 'NONE',
       createControlAction: {
         appDEMethodId: 'create',
         appDataEntityId: 'plmweb.comment',

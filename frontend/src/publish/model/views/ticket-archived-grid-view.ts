@@ -96,6 +96,16 @@ export default {
           },
           caption: '新建工单',
           itemType: 'DEUIACTION',
+          controlLogics: [
+            {
+              itemName: 'deuiaction1',
+              logicTag: 'toolbar',
+              logicType: 'SCRIPT',
+              scriptCode: 'context.srfreadonly != true',
+              triggerType: 'ITEMVISIBLE',
+              id: 'deuiaction1',
+            },
+          ],
           sysImage: {
             cssClass: 'fa fa-plus',
             glyph: 'xf067@FontAwesome',
@@ -139,7 +149,7 @@ export default {
             {
               actionLevel: 100,
               noPrivDisplayMode: 2,
-              uiactionId: 'exportexcel',
+              uiactionId: 'gridview_exportaction',
               valid: true,
               capLanguageRes: {
                 lanResTag: 'TBB.TEXT.*.EXPORT',
@@ -687,6 +697,7 @@ export default {
             editorParams: {
               'SRFNAVPARAM.n_department_id_eq': '%srforgsectorid%',
               AC: 'TRUE',
+              'SRFNAVPARAM.n_status_eq': '1',
               TRIGGER: 'TRUE',
               URL: 'products/${context.product}/product_members/fetch_default',
               PICKUPVIEW: 'FALSE',
@@ -707,6 +718,12 @@ export default {
                 key: 'n_department_id_eq',
                 value: 'srforgsectorid',
                 id: 'n_department_id_eq',
+              },
+              {
+                key: 'n_status_eq',
+                value: '1',
+                rawValue: true,
+                id: 'n_status_eq',
               },
             ],
             id: 'assignee_name',
@@ -799,6 +816,7 @@ export default {
       sortMode: 'REMOTE',
       enableCustomized: true,
       enablePagingBar: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_default',
         appDataEntityId: 'plmweb.ticket',

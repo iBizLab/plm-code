@@ -262,6 +262,15 @@ public abstract class AbstractDiscussReplyService extends ServiceImpl<DiscussRep
     public void fillParentData(DiscussReply et) {
         if(Entities.DISCUSS_POST.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
             et.setPostId((String)et.getContextParentKey());
+            DiscussPost discussPost = et.getDiscussPost();
+            if(discussPost == null) {
+                discussPost = discussPostService.getById(et.getPostId());
+                et.setDiscussPost(discussPost);
+            }
+            if(!ObjectUtils.isEmpty(discussPost)) {
+                et.setDiscussName(discussPost.getName());
+                et.setPostId(discussPost.getId());
+            }
         }
     }
 

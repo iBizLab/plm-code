@@ -490,6 +490,7 @@ export default {
         enableCustomized: true,
         enablePagingBar: true,
         singleSelect: true,
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_bug_state_group_grid',
           appDataEntityId: 'plmweb.work_item',
@@ -897,6 +898,7 @@ export default {
             id: '0',
           },
         ],
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_bug_state_group_grid',
           appDataEntityId: 'plmweb.work_item',

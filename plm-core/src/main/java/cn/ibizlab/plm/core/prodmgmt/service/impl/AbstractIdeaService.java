@@ -220,6 +220,17 @@ public abstract class AbstractIdeaService extends ServiceImpl<IdeaMapper,Idea> i
         return list;
    }
 	
+   public Page<Idea> fetchAdmin(IdeaSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Idea> pages=baseMapper.searchAdmin(context.getPages(),context,context.getSelectCond());
+        List<Idea> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Idea> listAdmin(IdeaSearchContext context) {
+        List<Idea> list = baseMapper.listAdmin(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<Idea> fetchAdvancedSearch(IdeaSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("SHOW_IDENTIFIER,DESC");
@@ -313,6 +324,17 @@ public abstract class AbstractIdeaService extends ServiceImpl<IdeaMapper,Idea> i
         return list;
    }
 	
+   public Page<Idea> fetchCustomerUser(IdeaSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Idea> pages=baseMapper.searchCustomerUser(context.getPages(),context,context.getSelectCond());
+        List<Idea> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Idea> listCustomerUser(IdeaSearchContext context) {
+        List<Idea> list = baseMapper.listCustomerUser(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<Idea> fetchDeleted(IdeaSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("SHOW_IDENTIFIER,DESC");
@@ -325,6 +347,17 @@ public abstract class AbstractIdeaService extends ServiceImpl<IdeaMapper,Idea> i
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("SHOW_IDENTIFIER,DESC");
         List<Idea> list = baseMapper.listDeleted(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Idea> fetchMobNotArchived(IdeaSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Idea> pages=baseMapper.searchMobNotArchived(context.getPages(),context,context.getSelectCond());
+        List<Idea> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Idea> listMobNotArchived(IdeaSearchContext context) {
+        List<Idea> list = baseMapper.listMobNotArchived(context,context.getSelectCond());
         return list;
    }
 	
@@ -491,6 +524,17 @@ public abstract class AbstractIdeaService extends ServiceImpl<IdeaMapper,Idea> i
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("SHOW_IDENTIFIER,DESC");
         List<Idea> list = baseMapper.listRecentIdea(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Idea> fetchUser(IdeaSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Idea> pages=baseMapper.searchUser(context.getPages(),context,context.getSelectCond());
+        List<Idea> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Idea> listUser(IdeaSearchContext context) {
+        List<Idea> list = baseMapper.listUser(context,context.getSelectCond());
         return list;
    }
 	

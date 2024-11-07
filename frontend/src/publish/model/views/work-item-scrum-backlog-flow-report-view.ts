@@ -742,6 +742,7 @@ export default {
             id: '0',
           },
         ],
+        navViewPos: 'NONE',
         fetchControlAction: {
           appDEMethodId: 'fetch_backlog_accumulate_flow',
           appDataEntityId: 'plmweb.work_item',

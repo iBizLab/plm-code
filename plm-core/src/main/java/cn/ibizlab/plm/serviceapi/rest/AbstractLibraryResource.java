@@ -710,6 +710,28 @@ public abstract class AbstractLibraryResource {
     }
 
     /**
+    * 查询fetch_mob_main 测试库
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<LibraryDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_mob_main", tags = {"测试库" },  notes = "Library-fetch_mob_main ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Library-fetch_mob_main-all') or hasPermission(#dto,'ibizplm-Library-fetch_mob_main')")
+    @PostMapping("libraries/fetch_mob_main")
+    public Mono<ResponseEntity<List<LibraryDTO>>> fetchMobMain
+            (@Validated @RequestBody LibraryFilterDTO dto) {
+        LibrarySearchContext context = libraryFilterDtoMapping.toDomain(dto);
+        Page<Library> domains = libraryService.fetchMobMain(context) ;
+        List<LibraryDTO> list = libraryDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 查询fetch_normal 测试库
     * 
     *

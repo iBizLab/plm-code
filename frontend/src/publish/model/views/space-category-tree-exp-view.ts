@@ -260,6 +260,7 @@ export default {
           ],
           enableEdit: true,
           outputIconDefault: true,
+          navViewPos: 'NONE',
           createControlAction: {
             appDEMethodId: 'create',
             appDataEntityId: 'plmweb.space',

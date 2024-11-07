@@ -412,6 +412,45 @@ public abstract class AbstractArticlePageResource {
     }
 
     /**
+    * finish_add_attention 页面
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<ArticlePageDTO>>
+    */
+    @ApiOperation(value = "finish_add_attention", tags = {"页面" },  notes = "ArticlePage-finish_add_attention ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-finish_add_attention-all') or hasPermission(this.articlePageDtoMapping.toDomain(#dto),'ibizplm-ArticlePage-finish_add_attention')")
+    @PostMapping("article_pages/{id}/finish_add_attention")
+    public Mono<ResponseEntity<ResponseWrapper<ArticlePageDTO>>>finishAddAttentionById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ArticlePageDTO> dto) {
+        ResponseWrapper<ArticlePageDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(finishAddAttentionById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(finishAddAttentionById(id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * finish_add_attention 页面
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ArticlePageDTO>
+    */   
+    public ArticlePageDTO finishAddAttentionById
+            (String id, ArticlePageDTO dto) {
+        ArticlePage domain = articlePageDtoMapping.toDomain(dto);
+        domain.setId(id);
+        ArticlePage rt = articlePageService.finishAddAttention(domain);
+        return articlePageDtoMapping.toDto(rt);
+    }
+
+    /**
     * lock_page 页面
     * 
     *
@@ -1342,6 +1381,47 @@ public abstract class AbstractArticlePageResource {
         ArticlePage domain = articlePageDtoMapping.toDomain(dto);
         domain.setId(id);
         ArticlePage rt = articlePageService.favorite(domain);
+        return articlePageDtoMapping.toDto(rt);
+    }
+
+    /**
+    * finish_add_attention 页面
+    * 
+    *
+    * @param spaceId spaceId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<ArticlePageDTO>>
+    */
+    @ApiOperation(value = "finish_add_attention", tags = {"页面" },  notes = "ArticlePage-finish_add_attention ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-finish_add_attention-all') or hasPermission('shared_space',#spaceId,this.articlePageDtoMapping.toDomain(#dto),'ibizplm-ArticlePage-finish_add_attention')")
+    @PostMapping("shared_spaces/{spaceId}/article_pages/{id}/finish_add_attention")
+    public Mono<ResponseEntity<ResponseWrapper<ArticlePageDTO>>>finishAddAttentionBySpaceIdAndId
+            (@PathVariable("spaceId") String spaceId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ArticlePageDTO> dto) {
+        ResponseWrapper<ArticlePageDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(finishAddAttentionBySpaceIdAndId(spaceId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(finishAddAttentionBySpaceIdAndId(spaceId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * finish_add_attention 页面
+    * 
+    *
+    * @param spaceId spaceId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ArticlePageDTO>
+    */   
+    public ArticlePageDTO finishAddAttentionBySpaceIdAndId
+            (String spaceId, String id, ArticlePageDTO dto) {
+        ArticlePage domain = articlePageDtoMapping.toDomain(dto);
+        domain.setId(id);
+        ArticlePage rt = articlePageService.finishAddAttention(domain);
         return articlePageDtoMapping.toDto(rt);
     }
 
@@ -2321,6 +2401,28 @@ public abstract class AbstractArticlePageResource {
     }
 
     /**
+    * 查询fetch_normal_tree_page 页面
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<ArticlePageDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_normal_tree_page", tags = {"页面" },  notes = "ArticlePage-fetch_normal_tree_page ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-fetch_normal_tree_page-all') or hasPermission(#dto,'ibizplm-ArticlePage-fetch_normal_tree_page')")
+    @PostMapping("article_pages/fetch_normal_tree_page")
+    public Mono<ResponseEntity<List<ArticlePageDTO>>> fetchNormalTreePage
+            (@Validated @RequestBody ArticlePageFilterDTO dto) {
+        ArticlePageSearchContext context = articlePageFilterDtoMapping.toDomain(dto);
+        Page<ArticlePage> domains = articlePageService.fetchNormalTreePage(context) ;
+        List<ArticlePageDTO> list = articlePageDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 查询fetch_only_page 页面
     * 只查询页面。不包含分组及草稿
     *
@@ -2895,6 +2997,30 @@ public abstract class AbstractArticlePageResource {
         dto.setSpaceIdEQ(spaceId);
         ArticlePageSearchContext context = articlePageFilterDtoMapping.toDomain(dto);
         Page<ArticlePage> domains = articlePageService.fetchNormal(context) ;
+        List<ArticlePageDTO> list = articlePageDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_normal_tree_page 页面
+    * 
+    *
+    * @param spaceId spaceId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<ArticlePageDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_normal_tree_page", tags = {"页面" },  notes = "ArticlePage-fetch_normal_tree_page ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-fetch_normal_tree_page-all') or hasPermission('shared_space',#spaceId,#dto,'ibizplm-ArticlePage-fetch_normal_tree_page')")
+    @PostMapping("shared_spaces/{spaceId}/article_pages/fetch_normal_tree_page")
+    public Mono<ResponseEntity<List<ArticlePageDTO>>> fetchNormalTreePageBySpaceId
+            (@PathVariable("spaceId") String spaceId, @Validated @RequestBody ArticlePageFilterDTO dto) {
+        dto.setSpaceIdEQ(spaceId);
+        ArticlePageSearchContext context = articlePageFilterDtoMapping.toDomain(dto);
+        Page<ArticlePage> domains = articlePageService.fetchNormalTreePage(context) ;
         List<ArticlePageDTO> list = articlePageDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

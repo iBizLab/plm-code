@@ -157,6 +157,25 @@ public interface WorkloadMapper extends BaseMapper<Workload> {
     List<Workload> listMemberDimension(@Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
 
     /**
+     * 数据集合mob_calendar分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Map> searchMobCalendar(IPage<Workload> page, @Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
+    
+    /**
+     * 数据集合mob_calendar查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Map> listMobCalendar(@Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
+
+    /**
      * 数据集合my_calendar分页查询
      * 
      * @param page
@@ -212,6 +231,25 @@ public interface WorkloadMapper extends BaseMapper<Workload> {
      * @return
      */
     List<Workload> listMyLog(@Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
+
+    /**
+     * 数据集合my_mob_log分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Workload> searchMyMobLog(IPage<Workload> page, @Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
+    
+    /**
+     * 数据集合my_mob_log查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Workload> listMyMobLog(@Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
 
     /**
      * 数据集合my_test_case_workload分页查询

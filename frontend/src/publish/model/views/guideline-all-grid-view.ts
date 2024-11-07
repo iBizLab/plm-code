@@ -302,6 +302,7 @@ export default {
       enableCustomized: true,
       enableRowEdit: true,
       singleSelect: true,
+      navViewPos: 'NONE',
       createControlAction: {
         appDEMethodId: 'create',
         appDataEntityId: 'plmweb.guideline',

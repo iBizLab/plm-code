@@ -254,6 +254,7 @@ export default {
       sortMode: 'REMOTE',
       noSort: true,
       singleSelect: true,
+      navViewPos: 'NONE',
       fetchControlAction: {
         appDEMethodId: 'fetch_sprint_relation',
         appDataEntityId: 'plmweb.release',
